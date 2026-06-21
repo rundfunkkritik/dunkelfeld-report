@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dossier: Das UAP-Narrativ — Wie ein Randthema Kongressthema wurde</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --surface: #111113;
+    --border: #1e1e22;
+    --amber: #e8c547;
+    --amber-dim: #a8892a;
+    --text: #d4d4d8;
+    --text-dim: #71717a;
+    --text-faint: #3f3f46;
+    --red: #ef4444;
+    --green: #22c55e;
+    --blue: #60a5fa;
+    --mono: 'Courier New', Courier, monospace;
+    --serif: Georgia, 'Times New Roman', serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--serif);
+    line-height: 1.7;
+    padding: 2rem 1rem 4rem;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  .dossier-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--amber);
+    text-transform: uppercase;
+    border: 1px solid var(--amber-dim);
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    margin-bottom: 1.4rem;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: normal;
+    color: #f4f4f5;
+    line-height: 1.3;
+    margin-bottom: 0.6rem;
+  }
+
+  .subtitle {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2rem 0;
+  }
+
+  /* INTRO */
+  .intro {
+    font-size: 0.95rem;
+    color: var(--text);
+    border-left: 2px solid var(--amber);
+    padding-left: 1.2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .intro em {
+    color: var(--amber);
+    font-style: normal;
+  }
+
+  /* AKTEURE TABELLE */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  /* TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 0;
+    margin-bottom: 3rem;
+  }
+
+  .timeline-spine {
+    position: absolute;
+    left: 3.8rem;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .tl-entry {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr;
+    gap: 0 1.2rem;
+    margin-bottom: 0;
+    position: relative;
+    align-items: start;
+  }
+
+  .tl-entry + .tl-entry {
+    margin-top: 0;
+  }
+
+  .tl-year {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--amber-dim);
+    text-align: right;
+    padding-top: 1.1rem;
+    letter-spacing: 0.05em;
+    position: relative;
+  }
+
+  .tl-year::after {
+    content: '';
+    position: absolute;
+    right: -1.5rem;
+    top: 1.45rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--amber);
+    border: 2px solid var(--bg);
+    transform: translateX(2px);
+  }
+
+  .tl-entry.milestone .tl-year::after {
+    background: var(--amber);
+    width: 8px;
+    height: 8px;
+    top: 1.35rem;
+  }
+
+  .tl-content {
+    padding: 0.8rem 0 0.8rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tl-entry:last-child .tl-content {
+    border-bottom: none;
+  }
+
+  .tl-event {
+    font-size: 0.9rem;
+    color: #f4f4f5;
+    margin-bottom: 0.2rem;
+    font-family: var(--serif);
+  }
+
+  .tl-detail {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  .tl-tag {
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.1rem 0.4rem;
+    border-radius: 2px;
+    margin-right: 0.3rem;
+    display: inline-block;
+    margin-top: 0.35rem;
+  }
+
+  .tag-media { background: #1e293b; color: #60a5fa; }
+  .tag-institution { background: #1a1a12; color: var(--amber); }
+  .tag-congress { background: #1a0f0f; color: #ef4444; }
+  .tag-struktur { background: #0f1a0f; color: #22c55e; }
+
+  /* AKTEURE */
+  .actor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    margin-bottom: 3rem;
+    border: 1px solid var(--border);
+  }
+
+  .actor-card {
+    background: var(--surface);
+    padding: 1rem;
+  }
+
+  .actor-name {
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    color: #f4f4f5;
+    margin-bottom: 0.2rem;
+  }
+
+  .actor-role {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--amber-dim);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+  }
+
+  .actor-bg {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+
+  /* BELEG-TABELLE */
+  .status-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    margin-bottom: 3rem;
+  }
+
+  .status-table th {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    text-align: left;
+    padding: 0.5rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .status-table td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text);
+    font-family: var(--serif);
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .status-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .status-table tr:hover td {
+    background: #0d0d10;
+  }
+
+  .status-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+
+  .dot-confirmed { background: var(--green); }
+  .dot-partial { background: var(--amber); }
+  .dot-unconfirmed { background: var(--red); }
+
+  /* PARADOX-BOX */
+  .paradox {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 2rem;
+    font-size: 0.88rem;
+  }
+
+  .paradox-title {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  /* OFFENE FRAGE */
+  .open-question {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  .open-question strong {
+    color: var(--amber);
+    font-style: normal;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  /* INTENSITY BAR */
+  .intensity-section {
+    margin-bottom: 3rem;
+  }
+
+  .intensity-row {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr 3rem;
+    gap: 0.8rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .i-year {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    text-align: right;
+  }
+
+  .i-bar-wrap {
+    background: var(--surface);
+    height: 6px;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .i-bar {
+    height: 100%;
+    background: var(--amber);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+
+  .i-val {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--text-faint);
+    text-align: right;
+  }
+
+  @media (max-width: 500px) {
+    .tl-year { font-size: 0.55rem; }
+    .actor-grid { grid-template-columns: 1fr; }
+    .intensity-row { grid-template-columns: 2.8rem 1fr 2.5rem; }
+  }
+
+  /* ═══════════════════════════════════════════
+     DUNKELFELD.REPORT — CSS STANDARD OVERRIDE
+     Farben, Lesbarkeit, DSGVO-konform
+     ═══════════════════════════════════════════ */
+  :root {
+    --dk-bg:       #09090b;
+    --dk-surface:  #111113;
+    --dk-border:   #27272a;
+    --dk-amber:    #e8c547;
+    --dk-amber-dim:#b89a2f;
+    --dk-text:     #d4d4d8;
+    --dk-muted:    #71717a;
+    --dk-bright:   #f4f4f5;
+    --dk-source-bg:#1a1a2e;
+  }
+
+  /* Basis-Reset auf Standard */
+  html { background: var(--dk-bg); }
+  body {
+    background: var(--dk-bg) !important;
+    color: var(--dk-text) !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    max-width: 720px !important;
+    margin: 0 auto !important;
+    padding: 48px 24px 80px !important;
+  }
+
+  /* Wrapper / Container auf 720px begrenzen */
+  .container, .content, main, article,
+  .article-body, .hero, .body-text {
+    max-width: 720px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Absätze */
+  p {
+    padding-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Überschriften */
+  h1 { color: var(--dk-bright) !important; }
+  h2, h3, h4 { color: var(--dk-bright) !important; }
+
+  /* Links */
+  a {
+    color: var(--dk-amber) !important;
+    text-decoration: none !important;
+  }
+  a:hover {
+    text-decoration: underline !important;
+  }
+
+  /* Labels / Metadaten */
+  .label, .meta, .article-meta, .dossier-id, .site-label,
+  .tag, .category, time, .date {
+    font-family: 'Courier New', Courier, monospace !important;
+  }
+
+  /* Quellenboxen */
+  .source-box, .quellen-box, .source, .sources,
+  blockquote, .zitat, .fact-box, .info-box,
+  .quelle, .source-entry, .reference {
+    background: var(--dk-source-bg) !important;
+    border-left: 3px solid var(--dk-amber) !important;
+    padding: 1rem 1.2rem !important;
+    margin-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+  }
+
+  /* Tabellen */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--dk-surface) !important;
+    color: var(--dk-amber) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.75rem !important;
+    padding: 0.6rem 0.8rem !important;
+    text-align: left;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--dk-border) !important;
+  }
+  td {
+    padding: 0.7rem 0.8rem !important;
+    border-bottom: 1px solid var(--dk-border) !important;
+    color: var(--dk-text) !important;
+    font-size: 0.95rem !important;
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+
+  /* Site-Header Breite */
+  .site-header, header, nav {
+    max-width: 100% !important;
+  }
+
+  /* Farbkorrekturen: alte Amber-Töne → Standard */
+  [style*="color: #d4a017"], [style*="color:#d4a017"] { color: var(--dk-amber) !important; }
+  [style*="color: #b8860b"], [style*="color:#b8860b"] { color: var(--dk-amber) !important; }
+
+  /* Lesbarkeit: dunkle Texte aufhellen */
+  [style*="color: #666"], [style*="color:#666"],
+  [style*="color: #555"], [style*="color:#555"] {
+    color: var(--dk-muted) !important;
+  }
+</style>
+</head>
+<body>
+
+<div class="dossier-label">Dossier · dunkelfeld.report · ohne Nummer</div>
+
+<h1>Das UAP-Narrativ<br>Wie ein Randthema Kongressthema wurde</h1>
+<p class="subtitle">Stand: Juni 2026 · Quellen: US-Kongress, Pentagon, SEC, NYT, Wikipedia (verifiziert)</p>
+
+<hr>
+
+<div class="intro">
+  Jahrzehntelang galt: Wer über außerirdische Besucher sprach, war <em>Erich von Däniken</em>. Belächelt, marginalisiert, aus dem Diskurs ausgeschlossen. Seit 2017 sprechen ehemalige CIA-Direktoren, Pentagon-Insider und US-Kongressabgeordnete unter Eid dasselbe. <em>Was hat sich geändert — die Fakten, oder das Interesse?</em> Dieses Dossier dokumentiert den Ablauf. Schlussfolgerungen bleiben dem Leser überlassen.
+</div>
+
+<!-- ZEITLEISTE -->
+<p class="section-label">// Zeitleiste der Eskalation</p>
+
+<div class="timeline">
+  <div class="timeline-spine"></div>
+
+  <div class="tl-entry">
+    <div class="tl-year">1968</div>
+    <div class="tl-content">
+      <div class="tl-event">Erich von Däniken: »Erinnerungen an die Zukunft«</div>
+      <div class="tl-detail">Bestseller über außerirdische Besucher in der Antike. Reaktion: Wissenschaftliche Ablehnung, Medienhohn. Von Däniken gilt als Prototyp des Fantasten.</div>
+      <span class="tl-tag tag-media">Kulturkontext</span>
+    </div>
+  </div>
+
+  <div class="tl-entry">
+    <div class="tl-year">2007</div>
+    <div class="tl-content">
+      <div class="tl-event">Pentagon startet AATIP — geheim</div>
+      <div class="tl-detail">Das Advanced Aerospace Threat Identification Program wird auf Initiative von Senator Harry Reid (Nevada) eingerichtet. Budget: ca. 22 Mio. USD. Auftragnehmer u.a.: Bigelow Aerospace. Existenz: bis 2017 nicht öffentlich.</div>
+      <span class="tl-tag tag-institution">Pentagon</span>
+      <span class="tl-tag tag-struktur">Dokumentiert</span>
+    </div>
+  </div>
+
+  <div class="tl-entry">
+    <div class="tl-year">2012</div>
+    <div class="tl-content">
+      <div class="tl-event">AATIP offiziell eingestellt — angeblich</div>
+      <div class="tl-detail">Pentagon erklärt das Programm für beendet. Spätere Angaben von Elizondo und anderen legen nahe, dass Nachfolgeprogramme weitergeführt wurden. Nicht unabhängig verifizierbar.</div>
+      <span class="tl-tag tag-institution">Pentagon</span>
+    </div>
+  </div>
+
+  <div class="tl-entry milestone">
+    <div class="tl-year">Okt.<br>2017</div>
+    <div class="tl-content">
+      <div class="tl-event">Gründung: To The Stars Academy of Arts &amp; Sciences (TTSA)</div>
+      <div class="tl-detail">Mitgründer: Tom DeLonge (Blink-182), Jim Semivan (25 Jahre CIA Directorate of Operations), Harold Puthoff (ehem. NSA-Forscher, NASA-Berater). Luis Elizondo (ehem. AATIP-Leiter) tritt bei. Kapitalerhöhung via SEC Reg-A+: 50 Mio. USD angestrebt, ca. 2,5 Mio. tatsächlich eingeworben. SEC-Anmeldungen öffentlich einsehbar.</div>
+      <span class="tl-tag tag-institution">TTSA / SEC-dokumentiert</span>
+      <span class="tl-tag tag-struktur">Belegbar</span>
+    </div>
+  </div>
+
+  <div class="tl-entry milestone">
+    <div class="tl-year">Dez.<br>2017</div>
+    <div class="tl-content">
+      <div class="tl-event">New York Times: Pentagon-UFO-Programm enthüllt</div>
+      <div class="tl-detail">Frontpage-Artikel enthüllt AATIP. Elizondo gibt CNN-Interview: »We may not be alone.« TTSA veröffentlicht gleichzeitig drei Militär-Videos (»Tic Tac«, »Gimbal«, »GoFast«). Die zeitliche Koordination von NYT-Artikel, Elizondo-Interview und Video-Release durch TTSA ist dokumentiert.</div>
+      <span class="tl-tag tag-media">NYT / CNN</span>
+      <span class="tl-tag tag-struktur">Koordination dokumentiert</span>
+    </div>
+  </div>
+
+  <div class="tl-entry">
+    <div class="tl-year">2019</div>
+    <div class="tl-content">
+      <div class="tl-event">US Army schließt Forschungsvertrag mit TTSA</div>
+      <div class="tl-detail">Cooperative Research and Development Agreement (CRADA). History Channel sendet »Unidentified: Inside America's UFO Investigation« — produziert von TTSA. Elizondo als Hauptfigur.</div>
+      <span class="tl-tag tag-institution">US Army / History Channel</span>
+    </div>
+  </div>
+
+  <div class="tl-entry">
+    <div class="tl-year">Apr.<br>2020</div>
+    <div class="tl-content">
+      <div class="tl-event">Pentagon declassifiziert offiziell die drei Videos</div>
+      <div class="tl-detail">US Navy bestätigt Echtheit. Die Videos waren bereits 2017 durch TTSA veröffentlicht worden — die offizielle Bestätigung folgte 2,5 Jahre später.</div>
+      <span class="tl-tag tag-institution">Pentagon / US Navy</span>
+      <span class="tl-tag tag-struktur">Belegbar</span>
+    </div>
+  </div>
+
+  <div class="tl-entry">
+    <div class="tl-year">Jun.<br>2021</div>
+    <div class="tl-content">
+      <div class="tl-event">Offizieller UAP-Bericht des DNI an den Kongress</div>
+      <div class="tl-detail">Director of National Intelligence legt 9-seitigen nicht-klassifizierten Bericht vor. 144 dokumentierte UAP-Sichtungen von Militärpersonal. Keine Erklärung für 143 davon. Bericht öffentlich verfügbar.</div>
+      <span class="tl-tag tag-congress">Kongress</span>
+      <span class="tl-tag tag-struktur">Primärquelle</span>
+    </div>
+  </div>
+
+  <div class="tl-entry">
+    <div class="tl-year">Feb.<br>2023</div>
+    <div class="tl-content">
+      <div class="tl-event">Seymour Hersh: Nordstream-Enthüllung + Ballon-Hysterie</div>
+      <div class="tl-detail">
+        <strong style="color:#d4d4d8">Chronologie der Woche:</strong><br>
+        4. Feb.: Erster chinesischer Ballon über den USA abgeschossen (South Carolina) — Hysterie beginnt.<br>
+        8. Feb.: Hersh veröffentlicht auf Substack: USA haben Nordstream gesprengt.<br>
+        10. Feb.: Zweites unbekanntes Objekt über Alaska abgeschossen.<br>
+        11. Feb.: Drittes Objekt über Kanada abgeschossen.<br>
+        12. Feb.: Viertes Objekt über Michigan abgeschossen.<br>
+        <br>
+        Mediale Berichterstattung in dieser Woche: Ballons und »UFOs über Nordamerika« dominieren. Hersh-Bericht: marginale Folgeberichterstattung in deutschen und US-Mainstreammedien.<br>
+        <br>
+        Mitte Feb.: Das Thema verschwindet aus den Schlagzeilen — ohne Erklärung der Objekte, ohne Konsequenzen, ohne Nachverfolgung. Zeitliche Koinzidenz ist dokumentiert. Kausalität: nicht belegbar.
+      </div>
+      <span class="tl-tag tag-media">Zeitliche Koinzidenz</span>
+    </div>
+  </div>
+
+  <div class="tl-entry milestone">
+    <div class="tl-year">Jul.<br>2023</div>
+    <div class="tl-content">
+      <div class="tl-event">Kongress-Anhörung: Erste seit über 50 Jahren</div>
+      <div class="tl-detail">House Subcommittee on National Security. Zeugen: David Grusch (ehem. NRO, NGA — behauptet: Pentagon besitzt nicht-menschliche Objekte und biologische Überreste), Ryan Graves (ehem. Navy-Pilot), David Fravor (»Tic Tac«-Pilot). DoD dementiert Gruschs Aussagen. Protokoll öffentlich auf congress.gov.</div>
+      <span class="tl-tag tag-congress">US-Kongress / Protokoll</span>
+      <span class="tl-tag tag-struktur">Primärquelle</span>
+    </div>
+  </div>
+
+  <div class="tl-entry">
+    <div class="tl-year">Nov.<br>2024</div>
+    <div class="tl-content">
+      <div class="tl-event">Zweite Anhörung: »Exposing the Truth«</div>
+      <div class="tl-detail">Zeugen u.a.: Elizondo, Rear Admiral Gallaudet (ret.), Michael Shellenberger, ehem. NASA-Administrator. Bipartisan UFO Caucus formiert sich im Kongress. Elizondo: »We are not alone in the cosmos.«</div>
+      <span class="tl-tag tag-congress">US-Kongress</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- INTENSITÄTS-CHART -->
+<p class="section-label">// Mediale Intensität: UAP als Nachrichtenthema (approximativ, basierend auf Kongressaktivität + Primärquellen)</p>
+<div class="intensity-section">
+  <div class="intensity-row"><span class="i-year">2007</span><div class="i-bar-wrap"><div class="i-bar" style="width:2%"></div></div><span class="i-val">▪</span></div>
+  <div class="intensity-row"><span class="i-year">2012</span><div class="i-bar-wrap"><div class="i-bar" style="width:3%"></div></div><span class="i-val">▪</span></div>
+  <div class="intensity-row"><span class="i-year">2017</span><div class="i-bar-wrap"><div class="i-bar" style="width:38%"></div></div><span class="i-val">↑ NYT</span></div>
+  <div class="intensity-row"><span class="i-year">2019</span><div class="i-bar-wrap"><div class="i-bar" style="width:28%"></div></div><span class="i-val">History</span></div>
+  <div class="intensity-row"><span class="i-year">2020</span><div class="i-bar-wrap"><div class="i-bar" style="width:35%"></div></div><span class="i-val">Pentagon</span></div>
+  <div class="intensity-row"><span class="i-year">2021</span><div class="i-bar-wrap"><div class="i-bar" style="width:52%"></div></div><span class="i-val">DNI</span></div>
+  <div class="intensity-row"><span class="i-year">2023</span><div class="i-bar-wrap"><div class="i-bar" style="width:95%"></div></div><span class="i-val">↑↑ Kongress</span></div>
+  <div class="intensity-row"><span class="i-year">2024</span><div class="i-bar-wrap"><div class="i-bar" style="width:80%"></div></div><span class="i-val">Caucus</span></div>
+  <div class="intensity-row"><span class="i-year">2025–</span><div class="i-bar-wrap"><div class="i-bar" style="width:70%"></div></div><span class="i-val">laufend</span></div>
+</div>
+
+<!-- AKTEURE -->
+<p class="section-label">// Schlüsselakteure — Hintergrund dokumentiert</p>
+<div class="actor-grid">
+  <div class="actor-card">
+    <div class="actor-name">Luis Elizondo</div>
+    <div class="actor-role">Ehem. Pentagon / AATIP → TTSA → Medien</div>
+    <div class="actor-bg">14 Jahre Militärgeheimdienst. Leitet angeblich AATIP. Wechselt 2017 zu Tom DeLonges TTSA. Hauptfigur im History-Channel-Format. 2024 als Kongress-Zeuge geladen.</div>
+  </div>
+  <div class="actor-card">
+    <div class="actor-name">Tom DeLonge</div>
+    <div class="actor-role">Blink-182-Gitarrist → TTSA-Gründer</div>
+    <div class="actor-bg">Musiker ohne nachweisliche Geheimdienstlaufbahn gründet Unternehmen mit Ex-CIA, Ex-NSA, Ex-DoD. SEC-Anmeldungen belegen Personalstruktur. Geschäftsmodell: Entertainment + Military Contractor.</div>
+  </div>
+  <div class="actor-card">
+    <div class="actor-name">Jim Semivan</div>
+    <div class="actor-role">CIA Directorate of Operations (25 J.) → TTSA-Mitgründer</div>
+    <div class="actor-bg">Operative Karriere CIA. Mitgründer TTSA. Öffentliche Biografie sparsam. Dokumentiert via TTSA-Pressematerial und SEC-Anmeldungen.</div>
+  </div>
+  <div class="actor-card">
+    <div class="actor-name">David Grusch</div>
+    <div class="actor-role">NRO / NGA → Whistleblower</div>
+    <div class="actor-bg">14 Jahre Nachrichtendienste. Behauptet unter Eid: Pentagon besitzt nicht-menschliche Objekte und biologische Überreste. DoD dementiert. Aussage öffentlich protokolliert (congress.gov).</div>
+  </div>
+  <div class="actor-card">
+    <div class="actor-name">Christopher Mellon</div>
+    <div class="actor-role">Ehem. Dep. Ass. Secretary of Defense → TTSA-Berater</div>
+    <div class="actor-bg">Hochrangige Pentagon-Laufbahn. Organisiert laut TTSA-Angaben Geheimanhörungen im Kongress für TTSA-Piloten. Verbindungsglied zwischen TTSA und Legislative dokumentiert.</div>
+  </div>
+  <div class="actor-card">
+    <div class="actor-name">Erich von Däniken</div>
+    <div class="actor-role">Autor / »Prä-Astronautik« (ab 1968)</div>
+    <div class="actor-bg">Behauptet seit Jahrzehnten außerirdischen Kontakt mit der Menschheitsgeschichte. Reaktion der Öffentlichkeit und Medien bis ca. 2017: Ablehnung, Verspottung. Dieselben Inhalte, andere Absender — andere Rezeption.</div>
+  </div>
+</div>
+
+<!-- BELEGT / NICHT BELEGT -->
+<p class="section-label">// Was ist dokumentiert — was nicht</p>
+<table class="status-table">
+  <thead>
+    <tr>
+      <th>Behauptung / Sachverhalt</th>
+      <th>Status</th>
+      <th>Quelle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>AATIP hat von 2007–2012 existiert und UAP untersucht</td>
+      <td><span class="status-dot dot-confirmed"></span>Belegt</td>
+      <td>Pentagon-Statement, DNI-Bericht 2021</td>
+    </tr>
+    <tr>
+      <td>TTSA wurde von Ex-CIA/NSA/DoD-Personal mitgegründet</td>
+      <td><span class="status-dot dot-confirmed"></span>Belegt</td>
+      <td>SEC-Anmeldungen, TTSA-Pressematerial</td>
+    </tr>
+    <tr>
+      <td>NYT-Artikel, Elizondo-CNN-Interview und TTSA-Videorelease erfolgten koordiniert im Dez. 2017</td>
+      <td><span class="status-dot dot-confirmed"></span>Belegt</td>
+      <td>Datumsvergleich öffentlicher Quellen</td>
+    </tr>
+    <tr>
+      <td>Pentagon hat 144 UAP-Sichtungen dokumentiert, 143 ungeklärt</td>
+      <td><span class="status-dot dot-confirmed"></span>Belegt</td>
+      <td>DNI Unclassified Report, Juni 2021</td>
+    </tr>
+    <tr>
+      <td>Kongress-Anhörung Juli 2023 war erste seit über 50 Jahren</td>
+      <td><span class="status-dot dot-confirmed"></span>Belegt</td>
+      <td>congress.gov Protokoll</td>
+    </tr>
+    <tr>
+      <td>Pentagon besitzt nicht-menschliche Objekte und biologische Überreste</td>
+      <td><span class="status-dot dot-unconfirmed"></span>Nicht belegt</td>
+      <td>Behauptung Grusch unter Eid — DoD dementiert</td>
+    </tr>
+    <tr>
+      <td>UAP-Berichtswelle Feb. 2023 überlagerte Hersh/Nordstream tagesgenau — und verschwand danach abrupt, ohne Erklärung der abgeschossenen Objekte</td>
+      <td><span class="status-dot dot-partial"></span>Koinzidenz belegt</td>
+      <td>Tagesdaten dokumentiert; Kausalität nicht belegbar; Verschwinden aus Medien ohne Erklärung ebenfalls dokumentiert</td>
+    </tr>
+    <tr>
+      <td>»Project Blue Beam« — geplante Fake-Alien-Invasion durch NASA/UN</td>
+      <td><span class="status-dot dot-unconfirmed"></span>Nicht belegt</td>
+      <td>Behauptung Monast 1994 — kein Primärdokument existiert</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- PARADOX -->
+<div class="paradox">
+  <div class="paradox-title">// Strukturelle Beobachtung</div>
+  <p>Erich von Däniken behauptete Jahrzehnte lang, die Menschheit sei von außerirdischen Intelligenzen besucht worden und werde es möglicherweise wieder. Er wurde aus dem seriösen Diskurs ausgeschlossen. Luis Elizondo, David Grusch und Rear Admiral Gallaudet machen im Kern vergleichbare Behauptungen — vor dem US-Kongress, unter Eid, als Hauptzeugen einer Anhörung der nationalen Sicherheit. <strong>Was hat sich zwischen 1968 und 2023 geändert?</strong> Nicht die Behauptungen. Geändert haben sich die Institutionen, die sie vortragen — und die Institutionen, die sie protokollieren.</p>
+</div>
+
+<!-- OFFENE FRAGE -->
+<div class="open-question">
+  <strong>// Offene Frage</strong>
+  Wer entscheidet, wann ein Randthema Kongressthema wird — und welches Interesse könnte eine solche Entscheidung leiten?
+</div>
+
+</body>
+</html>

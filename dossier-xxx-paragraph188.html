@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dossier XXX · Der Staat klagt – und ist nicht dein Freund · dunkelfeld.report</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #09090b;
+      --surface:   #111113;
+      --border:    #27272a;
+      --amber:     #e8c547;
+      --amber-dim: #b89a30;
+      --text:      #e4e4e7;
+      --muted:     #71717a;
+      --danger:    #ef4444;
+      --green:     #22c55e;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 6rem;
+    }
+
+    /* ── HEADER ── */
+    .site-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      color: var(--amber);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .dossier-meta {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: #fff;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      color: var(--amber);
+      letter-spacing: 0.06em;
+      margin-bottom: 2rem;
+    }
+
+    .lead {
+      font-size: 1.12rem;
+      color: #d4d4d8;
+      border-left: 3px solid var(--amber);
+      padding-left: 1.2rem;
+      margin-bottom: 3rem;
+      font-style: italic;
+    }
+
+    /* ── STAT CARDS ── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin: 2.5rem 0;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--amber);
+      padding: 1.2rem 1rem;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Courier New', monospace;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--amber);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.3rem;
+    }
+
+    /* ── SECTIONS ── */
+    h2 {
+      font-family: Georgia, serif;
+      font-size: 1.3rem;
+      color: var(--amber);
+      margin: 3rem 0 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h3 {
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      color: #a1a1aa;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 2rem 0 0.6rem;
+    }
+
+    p { margin-bottom: 1.1rem; }
+
+    /* ── CASE TABLE ── */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 2rem 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    thead tr {
+      background: var(--surface);
+      border-bottom: 2px solid var(--amber);
+    }
+
+    thead th {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      padding: 0.7rem 0.8rem;
+      text-align: left;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody tr:hover {
+      background: rgba(232, 197, 71, 0.04);
+    }
+
+    tbody td {
+      padding: 0.75rem 0.8rem;
+      vertical-align: top;
+      line-height: 1.4;
+    }
+
+    .tag {
+      display: inline-block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .tag-verurteilt { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+    .tag-eingestellt { background: rgba(161,161,170,0.1); color: #a1a1aa; border: 1px solid var(--border); }
+    .tag-ermittlung { background: rgba(232,197,71,0.1); color: var(--amber-dim); border: 1px solid rgba(232,197,71,0.25); }
+    .tag-bewaehrung { background: rgba(239,68,68,0.2); color: #fca5a5; border: 1px solid rgba(239,68,68,0.4); }
+
+    /* ── NGO TABLE ── */
+    .ngo-table td:first-child {
+      font-weight: 600;
+      color: #d4d4d8;
+      min-width: 180px;
+    }
+
+    /* ── INSTRUMENT TABLE ── */
+    .instrument-table td:first-child {
+      font-weight: 600;
+      color: var(--amber-dim);
+      min-width: 200px;
+    }
+
+    /* ── INFOBOX ── */
+    .infobox {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--amber);
+      padding: 1.2rem 1.4rem;
+      margin: 2.5rem 0;
+      font-size: 0.93rem;
+    }
+
+    .infobox-title {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--amber);
+      margin-bottom: 0.6rem;
+    }
+
+    /* ── TREND BAR ── */
+    .trend-row {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 0.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+    }
+
+    .trend-year {
+      color: var(--muted);
+      width: 40px;
+      flex-shrink: 0;
+    }
+
+    .trend-bar-wrap {
+      flex: 1;
+      background: var(--border);
+      height: 18px;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .trend-bar {
+      height: 100%;
+      background: var(--amber);
+      opacity: 0.75;
+      transition: width 0.3s;
+    }
+
+    .trend-val {
+      color: var(--text);
+      width: 60px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* ── FOOTER ── */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    .closing-question {
+      font-style: italic;
+      color: #a1a1aa;
+      font-size: 1rem;
+      border-left: 3px solid var(--border);
+      padding-left: 1.2rem;
+      margin-top: 2rem;
+    }
+
+    .footer-meta {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 3rem;
+    }
+
+    .source-note {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 0.4rem;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1.5rem 1rem 4rem; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  
+  /* ═══════════════════════════════════════════
+     DUNKELFELD.REPORT — CSS STANDARD OVERRIDE
+     Farben, Lesbarkeit, DSGVO-konform
+     ═══════════════════════════════════════════ */
+  :root {
+    --dk-bg:       #09090b;
+    --dk-surface:  #111113;
+    --dk-border:   #27272a;
+    --dk-amber:    #e8c547;
+    --dk-amber-dim:#b89a2f;
+    --dk-text:     #d4d4d8;
+    --dk-muted:    #71717a;
+    --dk-bright:   #f4f4f5;
+    --dk-source-bg:#1a1a2e;
+  }
+
+  /* Basis-Reset auf Standard */
+  html { background: var(--dk-bg); }
+  body {
+    background: var(--dk-bg) !important;
+    color: var(--dk-text) !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    max-width: 720px !important;
+    margin: 0 auto !important;
+    padding: 48px 24px 80px !important;
+  }
+
+  /* Wrapper / Container auf 720px begrenzen */
+  .container, .content, main, article,
+  .article-body, .hero, .body-text {
+    max-width: 720px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Absätze */
+  p {
+    padding-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Überschriften */
+  h1 { color: var(--dk-bright) !important; }
+  h2, h3, h4 { color: var(--dk-bright) !important; }
+
+  /* Links */
+  a {
+    color: var(--dk-amber) !important;
+    text-decoration: none !important;
+  }
+  a:hover {
+    text-decoration: underline !important;
+  }
+
+  /* Labels / Metadaten */
+  .label, .meta, .article-meta, .dossier-id, .site-label,
+  .tag, .category, time, .date {
+    font-family: 'Courier New', Courier, monospace !important;
+  }
+
+  /* Quellenboxen */
+  .source-box, .quellen-box, .source, .sources,
+  blockquote, .zitat, .fact-box, .info-box,
+  .quelle, .source-entry, .reference {
+    background: var(--dk-source-bg) !important;
+    border-left: 3px solid var(--dk-amber) !important;
+    padding: 1rem 1.2rem !important;
+    margin-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+  }
+
+  /* Tabellen */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--dk-surface) !important;
+    color: var(--dk-amber) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.75rem !important;
+    padding: 0.6rem 0.8rem !important;
+    text-align: left;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--dk-border) !important;
+  }
+  td {
+    padding: 0.7rem 0.8rem !important;
+    border-bottom: 1px solid var(--dk-border) !important;
+    color: var(--dk-text) !important;
+    font-size: 0.95rem !important;
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+
+  /* Site-Header Breite */
+  .site-header, header, nav {
+    max-width: 100% !important;
+  }
+
+  /* Farbkorrekturen: alte Amber-Töne → Standard */
+  [style*="color: #d4a017"], [style*="color:#d4a017"] { color: var(--dk-amber) !important; }
+  [style*="color: #b8860b"], [style*="color:#b8860b"] { color: var(--dk-amber) !important; }
+
+  /* Lesbarkeit: dunkle Texte aufhellen */
+  [style*="color: #666"], [style*="color:#666"],
+  [style*="color: #555"], [style*="color:#555"] {
+    color: var(--dk-muted) !important;
+  }
+</style>
+</head>
+<body>
+
+  <div class="site-label">● dunkelfeld.report</div>
+  <div class="dossier-meta">Dossier XXX &nbsp;·&nbsp; Stand Juni 2026 &nbsp;·&nbsp; Dokumentation &amp; Quellensammlung</div>
+
+  <h1>Der Staat klagt –<br>und ist nicht dein Freund</h1>
+  <div class="subtitle">§ 188 StGB · Politikerbeleidigung · NGO-Regulierungsdruck · Shadowbanning</div>
+
+  <p class="lead">
+    Ein Paragraph, der 2021 verschärft wurde. Eine Klagewelle, die seither explodiert.
+    Rentner, die Facebook-Posts teilen. Bürger, deren Wohnungen durchsucht werden.
+    Und im Hintergrund: Stiftungen, die definieren, was noch sagbar ist.
+    Dieses Dossier dokumentiert Fälle, Zahlen und Strukturen – ohne Bewertung, mit Quellen.
+  </p>
+
+  <!-- ── STAT CARDS ── -->
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-number">1.400</span>
+      <div class="stat-label">Fälle §188 · 2022</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">2.598</span>
+      <div class="stat-label">Fälle §188 · 2023</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">4.439</span>
+      <div class="stat-label">Fälle §188 · 2024</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">4.792</span>
+      <div class="stat-label">Fälle §188 · 2025</div>
+    </div>
+  </div>
+
+  <p class="source-note">Quelle: BKA / Polizeiliche Kriminalstatistik (PKS). Gezählt werden Anzeigen und Ermittlungsverfahren, nicht alle führen zu Verurteilungen.</p>
+
+  <!-- ── TRENDGRAFIK ── -->
+  <h2>Entwicklung 2022–2025</h2>
+  <p>Polizeilich erfasste Delikte nach § 188 StGB (Verleumdung gegen Personen des politischen Lebens):</p>
+
+  <div style="margin: 1.5rem 0 2rem;">
+    <div class="trend-row">
+      <span class="trend-year">2022</span>
+      <div class="trend-bar-wrap"><div class="trend-bar" style="width:29%"></div></div>
+      <span class="trend-val">~1.400</span>
+    </div>
+    <div class="trend-row">
+      <span class="trend-year">2023</span>
+      <div class="trend-bar-wrap"><div class="trend-bar" style="width:54%"></div></div>
+      <span class="trend-val">2.598</span>
+    </div>
+    <div class="trend-row">
+      <span class="trend-year">2024</span>
+      <div class="trend-bar-wrap"><div class="trend-bar" style="width:93%"></div></div>
+      <span class="trend-val">4.439</span>
+    </div>
+    <div class="trend-row">
+      <span class="trend-year">2025</span>
+      <div class="trend-bar-wrap"><div class="trend-bar" style="width:100%"></div></div>
+      <span class="trend-val">4.792</span>
+    </div>
+  </div>
+
+  <div class="infobox">
+    <div class="infobox-title">§ 188 StGB – Was steht dort?</div>
+    Der Paragraph „Üble Nachrede und Verleumdung gegen Personen des politischen Lebens" (§ 188 StGB) verschärft den Schutz von Politikern gegenüber den allgemeinen Beleidigungstatbeständen (§§ 185–187 StGB). Voraussetzung ist, dass die Äußerung geeignet ist, das öffentliche Wirken der betroffenen Person „erheblich zu erschweren". Der Strafrahmen reicht bis zu drei Jahren Freiheitsstrafe. Die Norm wurde zuletzt 2021 im Rahmen des Gesetzes zur Bekämpfung des Rechtsextremismus und der Hasskriminalität gestärkt.
+  </div>
+
+  <!-- ── FALLTABELLE ── -->
+  <h2>Dokumentierte Fälle (Auswahl 2021–2026)</h2>
+  <p>Chronologische Übersicht belegter Verfahren, Urteile und Einstellungen nach § 188 StGB (teils auch §§ 185–187).</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Jahr</th>
+          <th>Ort / Gericht</th>
+          <th>Zielperson</th>
+          <th>Äußerung (dokumentiert)</th>
+          <th>Rechtsfolge</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2021</td>
+          <td>LG Berlin<br><small style="color:var(--muted)">27 Ns 12/20, 08.02.2021</small></td>
+          <td>Bürgermeister (ungenannt)</td>
+          <td>Öffentliche Unterstellung, Flüchtlinge absichtlich geschädigt zu haben; über soziale Netzwerke verbreitet</td>
+          <td>LG bejaht § 188: öffentliches Wirken erheblich erschwert</td>
+          <td><span class="tag tag-verurteilt">Verurteilt</span></td>
+        </tr>
+        <tr>
+          <td>2022</td>
+          <td>AG Augsburg</td>
+          <td>Söder, Herrmann</td>
+          <td>Massive Schimpftirade zur Corona-Politik</td>
+          <td>16.500 € Geldstrafe (300 Tagessätze à 55 €, frühere Verurteilung einbezogen)</td>
+          <td><span class="tag tag-verurteilt">Verurteilt</span></td>
+        </tr>
+        <tr>
+          <td>2023/24</td>
+          <td>AG Biberach</td>
+          <td>„Deutsche Politiker" (allg.)</td>
+          <td>Facebook-Post: Politiker als „Lügner" und inkompetent dargestellt</td>
+          <td>900 € Geldstrafe (StA hatte 1.200 € beantragt)</td>
+          <td><span class="tag tag-verurteilt">Verurteilt</span></td>
+        </tr>
+        <tr>
+          <td>2023/24</td>
+          <td>AG Deggendorf</td>
+          <td>Markus Söder</td>
+          <td>„Södolf" – Bezeichnung in Rede beim politischen Aschermittwoch der AfD (Gerald Grosz)</td>
+          <td>ca. 15.000 € Geldstrafe (90 Tagessätze à ca. 167 €); Berufung eingelegt</td>
+          <td><span class="tag tag-verurteilt">Verurteilt</span></td>
+        </tr>
+        <tr>
+          <td>2023/24</td>
+          <td>AG Öhringen</td>
+          <td>Friedrich Merz</td>
+          <td>„Lügenfritz" auf Facebook; Strafbefehl ausdrücklich auf § 188 gestützt</td>
+          <td>30 Tagessätze Geldstrafe</td>
+          <td><span class="tag tag-verurteilt">Verurteilt</span></td>
+        </tr>
+        <tr>
+          <td>2023/24</td>
+          <td>StA Heilbronn</td>
+          <td>Friedrich Merz</td>
+          <td>„Lackaffe" – 30 Tagessätze beantragt</td>
+          <td>Einstellung gegen 100 € Geldauflage</td>
+          <td><span class="tag tag-eingestellt">Eingestellt</span></td>
+        </tr>
+        <tr>
+          <td>2023/24</td>
+          <td>NRW (diverse)</td>
+          <td>Friedrich Merz</td>
+          <td>„Pinocchio", „Lackaffe", „Lügenfritz", „Lügen-Kasper"</td>
+          <td>Ermittlungsverfahren (laufend oder eingestellt; keine rechtskräftigen Strafen dokumentiert)</td>
+          <td><span class="tag tag-ermittlung">Ermittlung</span></td>
+        </tr>
+        <tr>
+          <td>2024</td>
+          <td>NRW / X-Post</td>
+          <td>Katrin Göring-Eckardt</td>
+          <td>„extreme Dürre im Kopf" – X-Posting</td>
+          <td>Einstellung gegen 1.000 € Zahlung</td>
+          <td><span class="tag tag-eingestellt">Eingestellt</span></td>
+        </tr>
+        <tr>
+          <td>2024</td>
+          <td>AG Bamberg</td>
+          <td>Nancy Faeser</td>
+          <td>Meme: „Ich hasse die Meinungsfreiheit!" (David Bendels, Deutschland-Kurier); bewusst unwahre Tatsachenbehauptung nach § 188</td>
+          <td>7 Monate Freiheitsstrafe auf Bewährung</td>
+          <td><span class="tag tag-bewaehrung">Bewährung</span></td>
+        </tr>
+        <tr>
+          <td>2024</td>
+          <td>diverse (Baerbock)</td>
+          <td>Annalena Baerbock</td>
+          <td>„dümmste Außenministerin der Welt"</td>
+          <td>9.600 € Geldstrafe</td>
+          <td><span class="tag tag-verurteilt">Verurteilt</span></td>
+        </tr>
+        <tr>
+          <td>2024</td>
+          <td>diverse (Baerbock)</td>
+          <td>Annalena Baerbock</td>
+          <td>„Hohlbratze"</td>
+          <td>6.000 € Geldstrafe</td>
+          <td><span class="tag tag-verurteilt">Verurteilt</span></td>
+        </tr>
+        <tr>
+          <td>2024</td>
+          <td>diverse (Baerbock)</td>
+          <td>Annalena Baerbock</td>
+          <td>„beim Trampolinspringen zu oft an die Decke geknallt"</td>
+          <td>800 € Geldstrafe</td>
+          <td><span class="tag tag-verurteilt">Verurteilt</span></td>
+        </tr>
+        <tr>
+          <td>2024</td>
+          <td>diverse (Baerbock)</td>
+          <td>Annalena Baerbock</td>
+          <td>„Terroristin Bärbock"</td>
+          <td>600 € Geldstrafe</td>
+          <td><span class="tag tag-verurteilt">Verurteilt</span></td>
+        </tr>
+        <tr>
+          <td>2025</td>
+          <td>AG Haßfurt</td>
+          <td>– / Habeck</td>
+          <td>NS-bezogene Fotos; zuvor: Habeck als „Schwachkopf" (hierfür am Ende keine Strafe); Hausdurchsuchung dokumentiert</td>
+          <td>825 € für NS-Posts; „Schwachkopf" nicht bestraft</td>
+          <td><span class="tag tag-verurteilt">Verurteilt</span></td>
+        </tr>
+        <tr>
+          <td>2025</td>
+          <td>BayObLG<br><small style="color:var(--muted)">Az. 206 StRR 433/24</small></td>
+          <td>Minister (ungenannt)</td>
+          <td>Schmähung mit nationalsozialistischem Gedankengut</td>
+          <td>§ 188 bejaht; Reichweite des Paragraphen betont</td>
+          <td><span class="tag tag-verurteilt">Verurteilt</span></td>
+        </tr>
+        <tr>
+          <td>2025/26</td>
+          <td>AG Niedersachsen</td>
+          <td>Markus Söder</td>
+          <td>Beleidigender Post auf Plattform (mutmaßlich X); StA Göttingen: „bedeutsame Kriminalität"</td>
+          <td>30 Tagessätze à 15 € (ca. 531 € inkl. Kosten)</td>
+          <td><span class="tag tag-verurteilt">Verurteilt</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="infobox">
+    <div class="infobox-title">Statistische Einordnung (NRW)</div>
+    Laut Auswertungen der NRW-Justiz (Tagesschau/WDR): 23 Verurteilungen nach § 188 im Jahr 2023, 64 Verurteilungen im Jahr 2024 – Anstieg: +178 %. Bundesweit listete dejure.org per Juni 2026 über 120 veröffentlichte Entscheidungen zu § 188 StGB.
+  </div>
+
+  <!-- ── ANZEIGENPRAXIS ── -->
+  <h2>Anzeigenpraxis: Wer klagt wie oft?</h2>
+  <p>Mehrere Bundesministerien und Spitzenpolitiker haben seit 2021 systematisch Strafanzeigen wegen Beleidigung und Bedrohung gestellt. Dokumentierte Größenordnungen:</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Person / Ressort</th>
+          <th>Dokumentierte Anzeigen</th>
+          <th>Quellen / Hinweise</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Robert Habeck (BMWK)</td>
+          <td>Über 800 Strafanzeigen seit 2021</td>
+          <td>Medienberichte (u. a. Welt, Merkur)</td>
+        </tr>
+        <tr>
+          <td>Annalena Baerbock (AA)</td>
+          <td>Über 500 Strafanzeigen seit Amtsantritt</td>
+          <td>Medienberichte; mehrere Einzelurteile dokumentiert</td>
+        </tr>
+        <tr>
+          <td>Habeck + Baerbock (gesamt)</td>
+          <td>Mehr als 1.300 Anzeigen (zusammen)</td>
+          <td>Recherchen, mehrere Quellen</td>
+        </tr>
+        <tr>
+          <td>Friedrich Merz (CDU)</td>
+          <td>38 Ermittlungsverfahren allein nach Besuch Heilbronn</td>
+          <td>WDR-Auswertung</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── SHADOWBANNING ── -->
+  <h2>Shadowbanning: Reichweitenverlust ohne Begründung</h2>
+
+  <p>Neben dem strafrechtlichen Weg existiert ein zweiter, technisch verdeckter Mechanismus: das Shadowbanning. Betroffene Accounts bleiben für ihre eigenen Nutzer sichtbar – werden jedoch anderen Nutzern reduziert oder gar nicht mehr angezeigt, ohne Benachrichtigung oder formale Begründung.</p>
+
+  <h3>Erkennungsmerkmale (dokumentiert)</h3>
+  <p>Plötzlicher starker Reichweiteneinbruch bei bestimmten Themen (Migration, Corona, Systemkritik) bei gleichbleibendem Publikumsverhalten. Beiträge erscheinen nicht mehr in Hashtag-Suchen. Kommentare werden anderen Nutzern nicht mehr angezeigt, obwohl sie gepostet wurden.</p>
+
+  <h3>Regulatorischer Rahmen</h3>
+  <p>Der Digital Services Act (DSA) verpflichtet Plattformen formal zur Transparenz bei Sichtbarkeitseinschränkungen („Downranking"). NGOs und Betroffene berichten jedoch weiterhin, dass Reichweitendrosselungen in der Praxis intransparent erfolgen – insbesondere bei politisch brisanten Inhalten.</p>
+
+  <!-- ── NGO-TABELLE ── -->
+  <h2>NGOs und Stiftungen als informelle Regulierer</h2>
+
+  <p>Neben formaler Regulierung durch den Staat existiert ein System weicher Kontrolle: NGOs und Stiftungen, teils erheblich aus öffentlichen Mitteln finanziert, definieren, was als legitimes Medienangebot gilt – und was nicht.</p>
+
+  <div class="table-wrap">
+    <table class="instrument-table">
+      <thead>
+        <tr>
+          <th>Instrument</th>
+          <th>Konkrete Ausgestaltung</th>
+          <th>Typische Effekte auf alternative Medien</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Begriffsprägung &amp; Framing</td>
+          <td>Einführung und Verbreitung von Labels wie „Hass im Netz", „Desinformation", „Verschwörungsmedien"</td>
+          <td>Alternative Portale werden in Redaktionen, Schulen und Behörden automatisch als Problemkategorie verortet</td>
+        </tr>
+        <tr>
+          <td>Monitoring &amp; Dossiers</td>
+          <td>Watchlists, Studien und „Analysen" zu Medienakteuren, Netzwerken, Influencern</td>
+          <td>Namentliche Nennung als „problematisch" erzeugt Reputationsschaden; Plattformen und Werbekunden nutzen diese Dossiers als Begründung für Distanzierung</td>
+        </tr>
+        <tr>
+          <td>Lobbyarbeit bei Politik &amp; Behörden</td>
+          <td>Teilnahme an Anhörungen, Beratung von Ministerien, Zuarbeit zu Gesetzgebungsprozessen</td>
+          <td>Regulierung (DSA-Umsetzung, Medienstaatsvertrag, Förderprogramme) wird in einer Weise ausgestaltet, die vor allem alternative Angebote unter Druck setzt</td>
+        </tr>
+        <tr>
+          <td>Trusted-Flagger-Rolle bei Plattformen</td>
+          <td>NGOs liefern Input zu Community-Standards und Moderationsleitfäden; „Trusted Flagger"-Programme bei großen Plattformen</td>
+          <td>Inhalte bestimmter Spektren werden schneller als „problematisch" markiert; erhöhtes Risiko für Shadowbans, Demonetarisierung oder Sperren</td>
+        </tr>
+        <tr>
+          <td>Kampagnen &amp; öffentlicher Pranger</td>
+          <td>Öffentlichkeitskampagnen gegen bestimmte Portale, Boykottaufrufe, Druck auf Sponsoren</td>
+          <td>Wirtschaftliche Schäden (Werbekunden springen ab), Einschüchterungseffekt, Risiko von Vertragskündigungen</td>
+        </tr>
+        <tr>
+          <td>Bildungs- und Schulmaterialien</td>
+          <td>Unterrichtsmaterial und Broschüren zu „Medienkompetenz", in denen alternative Medien als Negativbeispiele erscheinen</td>
+          <td>Langfristige Delegitimierung: Jugendliche, Lehrer und Multiplikatoren lernen: Diese Portale sind „nicht seriös"</td>
+        </tr>
+        <tr>
+          <td>Staatlich geförderte Projekte</td>
+          <td>Millionenförderungen gegen „Extremismus/Desinformation", NGOs als zentrale Projektträger</td>
+          <td>Struktureller Vorteil für mainstreamnahe Akteure; alternative Medien bleiben von Fördergeldern ausgeschlossen und stehen als „Gegenstand" dieser Projekte unter Beobachtung</td>
+        </tr>
+        <tr>
+          <td>Moralischer Führungsanspruch</td>
+          <td>NGOs inszenieren sich als neue moralische Instanz, die festlegt, was demokratisch akzeptabel ist</td>
+          <td>Kritik an ihren Bewertungen wird als „Angriff auf die Zivilgesellschaft" gerahmt; alternative Medien geraten in die Rolle der angeblich „Undemokratischen"</td>
+        </tr>
+        <tr>
+          <td>Kooperation mit Leitmedien</td>
+          <td>Gastbeiträge, gemeinsame Kampagnen, Studienpräsentationen in ÖRR und Leitredaktionen</td>
+          <td>NGO-Narrative werden von Leitmedien verstärkt; Deutungen über „problematische" Portale verfestigen sich und werden schwer angreifbar</td>
+        </tr>
+        <tr>
+          <td>Informelle Sanktionsempfehlungen</td>
+          <td>Empfehlungen an Unternehmen, Verwaltungen, Kirchen: keine Kooperation/Anzeigen/Links zu bestimmten Portalen</td>
+          <td>Reichweiten- und Sichtbarkeitsverlust, weil alternative Medien faktisch aus vielen institutionellen Räumen ausgeschlossen werden – ohne formelles Verbot</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="infobox">
+    <div class="infobox-title">Finanzierungsstruktur: Öffentliche Mittel, private Einflussnahme</div>
+    Mehrere im Medienbereich aktive NGOs und Stiftungen erhalten erhebliche Zuwendungen aus öffentlichen Haushalten (Bundesministerien, EU-Programme wie LIFE, Landesmittel). Die IHK Südthüringen verwendete in diesem Zusammenhang den Begriff „verlängerter Arm der Politik". Eine vollständige Übersicht der Förderströme steht als gesondertes Recherchethema aus.
+  </div>
+
+  <!-- ── KONTRASTABSCHNITT ── -->
+  <h2>Historischer Maßstab: Was früher erlaubt war</h2>
+
+  <p>Die folgenden Primärquellen dokumentieren, wie Politiker und öffentlich-rechtliche Moderatoren selbst über den Umgang mit Kritik und Beleidigung geurteilt haben – und wie die politische Kultur bis vor wenigen Jahren aussah.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Person / Kontext</th>
+          <th>Äußerung (dokumentiert)</th>
+          <th>Datum / Quelle</th>
+          <th>Einordnung</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Armin Laschet</strong><br><small style="color:var(--muted)">CDU, ehem. Ministerpräsident NRW, Kanzlerkandidat</small></td>
+          <td>„In einer Demokratie darf man die Herrschenden Idioten, Schwachköpfe, Deppen nennen. In Diktaturen wird man dafür strafrechtlich verfolgt. Als Ministerpräsident wurde mir oft vorgeschlagen, beleidigende Tweets mit Strafanzeigen zu verfolgen. Bis heute unterzeichne ich solche nur bei Morddrohungen. Liberale Demokratie braucht Gelassenheit, Maß und Mitte."</td>
+          <td>X (Twitter), @ArminLaschet<br>17. November 2024<br><small style="color:var(--muted)">status/1857778173569605853</small><br>Hashtags: #Schwachkopf #Hausdurchsuchung</td>
+          <td>Direkter Kommentar zur Habeck-Schwachkopf-Hausdurchsuchung. Laschet beschreibt die Strafverfolgung als Merkmal von Diktaturen.</td>
+        </tr>
+        <tr>
+          <td><strong>Angela Merkel</strong><br><small style="color:var(--muted)">CDU, Bundeskanzlerin 2005–2021</small></td>
+          <td>Keine einzige Strafanzeige nach § 188 StGB während 16 Jahren Kanzlerschaft dokumentiert. Trotz massiver öffentlicher Kritik, Beleidigungen und Häme – insbesondere während der Flüchtlingskrise 2015/16.</td>
+          <td>Dokumentiert durch Abwesenheit: Keine BKA-Fälle, keine Medienberichte über Anzeigen aus dem Kanzleramt</td>
+          <td>Kontrast zur aktuellen Praxis: Habeck und Baerbock zusammen über 1.300 Anzeigen.</td>
+        </tr>
+        <tr>
+          <td><strong>Walter Sedlmayr</strong><br><small style="color:var(--muted)">Kabarettist, BR Nockherberg Starkbierfest</small></td>
+          <td>„Sehr verehrte Verbrecher und Verleumder..." – Eröffnung seiner legendären Begrüßungsrede vor versammelter Politikprominenz beim Nockherberg-Starkbierfest.</td>
+          <td>BR, Nockherberg 1982 ff.<br>Dokumentation: br.de/nachrichten/bayern/br24zeitreise-sedlmayrs-legendaere-nockherberg-begruessung,RK2iq47<br>YouTube: youtube.com/watch?v=YGaMVJrdkCI</td>
+          <td>Live im BR, vor Ministern und Abgeordneten. Niemand klagte. Gilt heute als kulturelles Erbe.</td>
+        </tr>
+        <tr>
+          <td><strong>J.D. Vance</strong><br><small style="color:var(--muted)">US-Vizepräsident, Münchner Sicherheitskonferenz (MSC)</small></td>
+          <td>Vance kritisierte europäische Regierungen offen wegen „Demokratiedefiziten" und Einschränkungen der Meinungsfreiheit. Die Reaktionen im Saal – dokumentiert auf Video – zeigten sichtliche Betroffenheit und Fassungslosigkeit bei deutschen Delegierten und Journalisten.</td>
+          <td>Münchner Sicherheitskonferenz<br>14. Februar 2025<br>BR-Livemitschnitt, YouTube: youtube.com/watch?v=PPvI5D5ay6s<br>116.718 Aufrufe (Stand Abruf)<br>BR-Berichte: br.de</td>
+          <td>Ein gewählter US-Repräsentant beschreibt europäische Meinungsfreiheitspraxis öffentlich als defizitär — vor dem Publikum, das diese Praxis verantwortet.</td>
+        </tr>
+        <tr>
+          <td><strong>Helmut Kohl</strong><br><small style="color:var(--muted)">CDU, Bundeskanzler 1982–1998, bei Thomas Gottschalk und Günther Jauch</small></td>
+          <td>Auf Häme und Spott angesprochen: „Das muss man aushalten können." Kohl reagierte mit Humor und Schlagfertigkeit auf direkte Kritik — ohne Anzeige, ohne Empörung.</td>
+          <td>TV-Aufzeichnung, Gottschalk/Jauch<br>YouTube: youtube.com/watch?v=3nFXK9nKBHo</td>
+          <td>Bundeskanzler während 16 Jahren Amtszeit. Kein dokumentierter Fall einer Strafanzeige wegen Beleidigung. Selbstbeschreibung: „Das muss man aushalten können."</td>
+        </tr>
+        <tr>
+          <td><strong>Dunja Hayali</strong><br><small style="color:var(--muted)">ZDF-Moderatorin, Morgenmagazin</small></td>
+          <td>„Man kann in Deutschland eigentlich alles sagen. Man muss dann halt manchmal mit Konsequenzen rechnen. Das ist das einzige, was der ein oder andere manchmal nicht ganz versteht."</td>
+          <td>ZDF Morgenmagazin<br>29. Januar 2021</td>
+          <td>ÖRR-Moderatorin beschreibt „Konsequenzen" als legitime Reaktion auf Meinungsäußerung – im selben Jahr, in dem § 188-Verfahren zu explodieren beginnen.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="infobox">
+    <div class="infobox-title">Dokumentierte Asymmetrie</div>
+    Helmut Kohl sagte über Häme und Spott: „Das muss man aushalten können." Er klagte 16 Jahre lang nicht. Walter Sedlmayr nannte Politiker vor laufender BR-Kamera „Verbrecher und Verleumder" – ohne Konsequenzen. Armin Laschet beschreibt strafrechtliche Verfolgung von Beleidigungen im November 2024 als Merkmal von Diktaturen. J.D. Vance wirft europäischen Regierungen auf der Münchner Sicherheitskonferenz öffentlich Meinungsfreiheitsdefizite vor. Ein Rentner aus Niedersachsen wird 2026 für einen Post zu 531 Euro verurteilt. Habeck und Baerbock erstatten zusammen über 1.300 Strafanzeigen. Diese Widersprüche sind dokumentiert. Eine Erklärung liefert dieses Dossier nicht.
+  </div>
+
+  <hr>
+
+  <p class="closing-question">
+    § 188 StGB wurde eingeführt, um das öffentliche Wirken von Politikern zu schützen.
+    Die Zahlen zeigen: Verfahren haben sich seit 2022 mehr als verdreifacht.
+    Wer wird hier vor wem geschützt – und wer trägt die Kosten dieser Schutzleistung?
+  </p>
+
+  <hr>
+
+  <div class="footer-meta">
+    Dossier XXX &nbsp;·&nbsp; dunkelfeld.report &nbsp;·&nbsp; Stand Juni 2026<br>
+    Quellen: BKA / PKS · Tagesschau/WDR · MDR · dejure.org · BayObLG Az. 206 StRR 433/24 · LG Berlin 27 Ns 12/20 · Medienberichte (Welt, Merkur, Hasepost, Deutschlandfunk)<br>
+    Alle Fälle basieren auf veröffentlichten Urteilen, Gerichtsbeschlüssen oder Medienberichten mit Quellenangabe. Spekulation ist als solche gekennzeichnet oder entfällt.
+  </div>
+
+</body>
+</html>

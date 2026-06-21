@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dossier: Der vergessene Skandal — Böhmermann gegen Michaela Huber | dunkelfeld.report</title>
+  <meta name="description" content="Wie ein öffentlich-rechtlicher Satiriker eine Traumatherapeutin diskreditierte, rituelle Gewalt lächerlich machte — und sein eigener Sender die Sendung löschte.">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: #222222;
+      --amber: #e8c547;
+      --amber-dim: #8a6610;
+      --text: #c8c8c8;
+      --text-dim: #666666;
+      --text-bright: #e8e8e8;
+      --red: #c0392b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 17px;
+      line-height: 1.75;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 2rem 6rem;
+    }
+    header {
+      border-bottom: 1px solid var(--amber-dim);
+      padding-bottom: 2rem;
+      margin-bottom: 3rem;
+    }
+    .site-label {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.5rem;
+    }
+    .dossier-id {
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      color: var(--amber-dim);
+      letter-spacing: 2px;
+      margin-bottom: 0.75rem;
+    }
+    h1 {
+      font-family: Georgia, serif;
+      font-size: 2rem;
+      font-weight: normal;
+      color: var(--text-bright);
+      line-height: 1.35;
+      margin-bottom: 1rem;
+    }
+    .subtitle {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+      margin-bottom: 1.5rem;
+    }
+    .meta-row {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      color: var(--text-dim);
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .meta-row span { color: var(--amber-dim); }
+
+    /* Alert box */
+    .alert-box {
+      border-left: 3px solid var(--amber);
+      background: #1a1500;
+      padding: 1.25rem 1.5rem;
+      margin: 2.5rem 0;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--amber);
+    }
+
+    h2 {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin: 3rem 0 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 {
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      color: var(--text-bright);
+      margin: 2rem 0 0.75rem;
+      font-weight: normal;
+      font-style: italic;
+    }
+    p { margin-bottom: 1.25rem; }
+
+    /* Timeline */
+    .timeline {
+      border-left: 2px solid var(--border);
+      padding-left: 2rem;
+      margin: 1.5rem 0;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.35rem;
+      top: 0.45rem;
+      width: 8px;
+      height: 8px;
+      background: var(--amber);
+      border-radius: 50%;
+    }
+    .timeline-date {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      color: var(--amber-dim);
+      letter-spacing: 2px;
+      margin-bottom: 0.4rem;
+    }
+    .timeline-text { color: var(--text); }
+
+    /* Fact table */
+    .fact-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 15px;
+    }
+    .fact-table th {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--amber-dim);
+      text-align: left;
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .fact-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .fact-table tr:hover td { background: #141414; }
+    .fact-table .label { color: var(--text-dim); font-family: 'Courier New', monospace; font-size: 13px; width: 38%; }
+    .fact-table .value { color: var(--text-bright); }
+
+    /* Source block */
+    .source-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.25rem 1.5rem;
+      margin: 1.25rem 0;
+      font-size: 15px;
+    }
+    .source-block .src-label {
+      font-family: 'Courier New', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--amber-dim);
+      margin-bottom: 0.5rem;
+    }
+    .source-block a {
+      color: var(--amber);
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .source-block a:hover { text-decoration: underline; }
+    .source-block .src-desc {
+      color: var(--text-dim);
+      font-size: 13px;
+      margin-top: 0.4rem;
+    }
+
+    /* Distinction box */
+    .distinction {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      margin: 2rem 0;
+    }
+    .distinction-col {
+      background: var(--surface);
+      padding: 1.25rem 1.5rem;
+    }
+    .distinction-col h4 {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .distinction-col.doc h4 { color: var(--amber); }
+    .distinction-col.not-doc h4 { color: var(--text-dim); }
+    .distinction-col ul {
+      list-style: none;
+      padding: 0;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .distinction-col.doc ul li::before { content: "✓ "; color: var(--amber); }
+    .distinction-col.not-doc ul li::before { content: "○ "; color: var(--text-dim); }
+
+    footer {
+      margin-top: 5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+    footer a { color: var(--amber-dim); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5rem; }
+      .distinction { grid-template-columns: 1fr; }
+      body { padding: 2rem 1.25rem 4rem; }
+    }
+  
+  /* ═══════════════════════════════════════════
+     DUNKELFELD.REPORT — CSS STANDARD OVERRIDE
+     Farben, Lesbarkeit, DSGVO-konform
+     ═══════════════════════════════════════════ */
+  :root {
+    --dk-bg:       #09090b;
+    --dk-surface:  #111113;
+    --dk-border:   #27272a;
+    --dk-amber:    #e8c547;
+    --dk-amber-dim:#b89a2f;
+    --dk-text:     #d4d4d8;
+    --dk-muted:    #71717a;
+    --dk-bright:   #f4f4f5;
+    --dk-source-bg:#1a1a2e;
+  }
+
+  /* Basis-Reset auf Standard */
+  html { background: var(--dk-bg); }
+  body {
+    background: var(--dk-bg) !important;
+    color: var(--dk-text) !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    max-width: 720px !important;
+    margin: 0 auto !important;
+    padding: 48px 24px 80px !important;
+  }
+
+  /* Wrapper / Container auf 720px begrenzen */
+  .container, .content, main, article,
+  .article-body, .hero, .body-text {
+    max-width: 720px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Absätze */
+  p {
+    padding-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Überschriften */
+  h1 { color: var(--dk-bright) !important; }
+  h2, h3, h4 { color: var(--dk-bright) !important; }
+
+  /* Links */
+  a {
+    color: var(--dk-amber) !important;
+    text-decoration: none !important;
+  }
+  a:hover {
+    text-decoration: underline !important;
+  }
+
+  /* Labels / Metadaten */
+  .label, .meta, .article-meta, .dossier-id, .site-label,
+  .tag, .category, time, .date {
+    font-family: 'Courier New', Courier, monospace !important;
+  }
+
+  /* Quellenboxen */
+  .source-box, .quellen-box, .source, .sources,
+  blockquote, .zitat, .fact-box, .info-box,
+  .quelle, .source-entry, .reference {
+    background: var(--dk-source-bg) !important;
+    border-left: 3px solid var(--dk-amber) !important;
+    padding: 1rem 1.2rem !important;
+    margin-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+  }
+
+  /* Tabellen */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--dk-surface) !important;
+    color: var(--dk-amber) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.75rem !important;
+    padding: 0.6rem 0.8rem !important;
+    text-align: left;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--dk-border) !important;
+  }
+  td {
+    padding: 0.7rem 0.8rem !important;
+    border-bottom: 1px solid var(--dk-border) !important;
+    color: var(--dk-text) !important;
+    font-size: 0.95rem !important;
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+
+  /* Site-Header Breite */
+  .site-header, header, nav {
+    max-width: 100% !important;
+  }
+
+  /* Farbkorrekturen: alte Amber-Töne → Standard */
+  [style*="color: #d4a017"], [style*="color:#d4a017"] { color: var(--dk-amber) !important; }
+  [style*="color: #b8860b"], [style*="color:#b8860b"] { color: var(--dk-amber) !important; }
+
+  /* Lesbarkeit: dunkle Texte aufhellen */
+  [style*="color: #666"], [style*="color:#666"],
+  [style*="color: #555"], [style*="color:#555"] {
+    color: var(--dk-muted) !important;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="site-label">dunkelfeld.report — dokumentiert. nicht kommentiert.</div>
+  <div class="dossier-id">DOSSIER // MEDIENKRITIK // 2023–2024</div>
+  <h1>Der vergessene Skandal:<br>Böhmermann gegen Michaela Huber</h1>
+  <div class="subtitle">Wie ein öffentlich-rechtlicher Satiriker eine Traumatherapeutin diskreditierte, rituelle Gewalt ins Lächerliche zog — und sein eigener Sender die Sendung löschte.</div>
+  <div class="meta-row">
+    <div>ERSTELLT <span>JUNI 2025</span></div>
+    <div>AKTUALISIERT <span>JUNI 2025</span></div>
+    <div>QUELLEN <span>PRIMÄR / ÖFFENTLICH</span></div>
+    <div>STATUS <span>DOKUMENTIERT</span></div>
+  </div>
+</header>
+
+<div class="alert-box">
+  REDAKTIONELLER HINWEIS — Dieses Dossier enthält ausschließlich belegte Sachverhalte aus öffentlichen Quellen: ZDF-Pressemitteilungen, Medienberichte, offizielle Stellungnahmen des ZDF-Fernsehrats und der Unabhängigen Kommission zur Aufarbeitung sexuellen Kindesmissbrauchs. Unbelegte Behauptungen werden als solche gekennzeichnet. Das Dossier zieht keine Schlussfolgerungen über die inhaltliche Richtigkeit oder Unrichtigkeit der Thesen von Michaela Huber.
+</div>
+
+<h2>Chronologie der Ereignisse</h2>
+
+<div class="timeline">
+
+  <div class="timeline-item">
+    <div class="timeline-date">JUNI 2023</div>
+    <div class="timeline-text">Die Redaktion des ZDF Magazin Royale meldet einen Mitarbeiter unter falscher Berufsbezeichnung zu einem Online-Fortbildungsseminar von Michaela Huber an. Das Seminar ist ausschließlich für Ärzte, Psychotherapeuten und Psychologen zugelassen. Der Mitarbeiter unterzeichnet eine elektronische Verschwiegenheitspflicht. Quelle: eigene Aussage Böhmermanns in der Sendung vom 8. September 2023.</div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-date">8. SEPTEMBER 2023</div>
+    <div class="timeline-text">Ausstrahlung von ZDF Magazin Royale, Thema: „Rituelle Gewalt". Böhmermann kritisiert Michaela Huber (71), Psycho- und Traumatherapeutin, öffentlich namentlich. Er behauptet in der Sendung: „Michaela Huber glaubt an eine satanistische Weltverschwörung." Er suggeriert, Therapeuten wie Huber würden Patienten falsche Erinnerungen an rituellen Missbrauch einreden und dabei finanziell profitieren. Der Begriff „Dissoziative Identitätsstörung" (DIS) — eine anerkannte psychiatrische Diagnose nach ICD-10/DSM-5 — fällt in der gesamten Sendung kein einziges Mal. Böhmermann gibt in der Sendung selbst bekannt, dass er angezeigt wurde.</div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-date">8./9. SEPTEMBER 2023</div>
+    <div class="timeline-text">Staatsschutz und Polizei Köln leiten Ermittlungen gegen Böhmermann ein, ausgelöst durch einen anonymen Hinweis im Vorfeld der Ausstrahlung. Hintergrund: Michaela Huber arbeitet u.a. mit Personen zusammen, die sich in Zeugenschutzprogrammen befinden (Aussteiger aus organisierter Kriminalität, Sekten). Die Kanzlei von Huber erstattet Strafanzeige gegen Böhmermann und einen namentlich genannten Journalisten der Redaktion. Das ZDF bestätigt die Ermittlungen auf Nachfrage.</div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-date">HERBST 2023</div>
+    <div class="timeline-text">Mehrere Programmbeschwerden werden beim ZDF-Fernsehrat eingereicht — darunter eine der Unabhängigen Kommission zur Aufarbeitung sexuellen Kindesmissbrauchs (UBSKM), eines offiziellen Beratungsgremiums der Bundesregierung. Vorwurf der Kommission: Die Sendung werte Betroffene sexueller Gewalt ab und habe eine „verhetzende Wirkung" gegenüber Überlebenden.</div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-date">DEZEMBER 2023</div>
+    <div class="timeline-text">Der ZDF-Fernsehrat stimmt den Programmbeschwerden zu. Das ZDF depubliziert die Sendung: Entfernung aus der ZDF-Mediathek und von YouTube. Die Redaktion des ZDF Magazin Royale reagiert mit einem Statement: Sie sei „überrascht, dass zum Tätigkeitsbereich des ZDF-Fernsehrats offenbar die Auswahl von redaktionellen Themen gehört." Offen bleibt laut Redaktion, welche sachlichen oder rechtlichen Gründe der Entscheidung zugrunde liegen.</div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-date">JANUAR 2024</div>
+    <div class="timeline-text">Der Präsident der Deutschen Gesellschaft für Psychiatrie und Psychotherapie, Neurologie und Nervenheilkunde (DGPPN) stellt sich öffentlich hinter die inhaltliche Stoßrichtung der Böhmermann-Sendung. Die Debatte bleibt polarisiert.</div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-date">FEBRUAR 2026</div>
+    <div class="timeline-text">Milena Preradovic (Punkt.PRERADOVIC) veröffentlicht ein ausführliches Interview mit Michaela Huber: „System Epstein auch in Deutschland". Huber schildert ihre jahrzehntelange Arbeit mit Betroffenen organisierter Gewalt. Das Interview erhält breite Rezeption in unabhängigen Medien.</div>
+  </div>
+
+</div>
+
+<h2>Was dokumentiert ist</h2>
+
+<table class="fact-table">
+  <thead>
+    <tr>
+      <th class="label">Sachverhalt</th>
+      <th class="value">Beleg / Quelle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="label">Böhmermann bezeichnete Huber öffentlich als Gläubige einer „satanistischen Weltverschwörung"</td>
+      <td class="value">Sendung ZDF Magazin Royale, 8.9.2023 (depubliziert; Wortlaut dokumentiert durch Übermedien, Achgut, t-online)</td>
+    </tr>
+    <tr>
+      <td class="label">Redaktionsmitarbeiter wurde unter falscher Berufsbezeichnung eingeschleust</td>
+      <td class="value">Eigene Aussage Böhmermanns in der Sendung, bestätigt durch ZDF-Statement</td>
+    </tr>
+    <tr>
+      <td class="label">Verschwiegenheitspflicht wurde per elektronischer Unterschrift verletzt</td>
+      <td class="value">Mail der Huber-Akademie, zitiert in der Sendung und durch Medien dokumentiert</td>
+    </tr>
+    <tr>
+      <td class="label">Begriff „Dissoziative Identitätsstörung" kam in der Sendung kein einziges Mal vor</td>
+      <td class="value">Übermedien-Analyse, Januar 2024 (uebermedien.de)</td>
+    </tr>
+    <tr>
+      <td class="label">Staatsschutz leitete Ermittlungsverfahren ein</td>
+      <td class="value">Polizeipräsidium Köln, bestätigt gegenüber Clap-Magazin und ZDF</td>
+    </tr>
+    <tr>
+      <td class="label">Unabhängige Kommission zur Aufarbeitung sexuellen Kindesmissbrauchs (UBSKM) legte Programmbeschwerde ein</td>
+      <td class="value">Offizielle Stellungnahme UBSKM, dokumentiert bei beauftragte-missbrauch.de</td>
+    </tr>
+    <tr>
+      <td class="label">ZDF-Fernsehrat stimmte den Beschwerden zu, Sendung wurde depubliziert</td>
+      <td class="value">Tagesspiegel, 13.12.2023; Legal Tribune Online, 26.9.2024</td>
+    </tr>
+    <tr>
+      <td class="label">Böhmermann ließ ein vom Bundesfamilienministerium finanziertes Aufklärungsvideo entfernen</td>
+      <td class="value">Achgut, Dezember 2023 — Böhmermanns eigene Aussage in der Sendung</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Was nicht dokumentiert / nicht Gegenstand dieses Dossiers ist</h2>
+
+<div class="distinction">
+  <div class="distinction-col doc">
+    <h4>Dokumentiert</h4>
+    <ul>
+      <li>Recherchemethode (eingeschleuster Mitarbeiter)</li>
+      <li>Fehlende Nennung der DIS-Diagnose</li>
+      <li>Staatschutz-Ermittlungen</li>
+      <li>Offizieller Widerspruch der UBSKM</li>
+      <li>Löschung durch ZDF-Fernsehrat</li>
+      <li>Löschung des Ministeriumsvideos</li>
+    </ul>
+  </div>
+  <div class="distinction-col not-doc">
+    <h4>Nicht Gegenstand dieses Dossiers</h4>
+    <ul>
+      <li>Inhaltliche Bewertung von Hubers Thesen</li>
+      <li>Wissenschaftliche Frage: Existenz ritueller Gewalt</li>
+      <li>Motivation Böhmermanns oder seiner Auftraggeber</li>
+      <li>Ergebnis der Staatsschutz-Ermittlungen</li>
+      <li>Diagnosestellung bei Hubers Patientinnen</li>
+    </ul>
+  </div>
+</div>
+
+<h2>Struktureller Befund</h2>
+
+<p>Die Böhmermann-Sendung vom 8. September 2023 ist aus dokumentarischer Perspektive aus mehreren Gründen bemerkenswert — unabhängig davon, welche Position man zu den inhaltlichen Fragen einnimmt:</p>
+
+<h3>1. Fehlende psychiatrische Grundlage im Sendungsaufbau</h3>
+<p>Die Medienanalyse-Plattform Übermedien stellte fest: Die dissoziative Identitätsstörung ist eine anerkannte Diagnose nach ICD-10 und DSM-5. Der Begriff fiel in der Sendung kein einziges Mal. Stattdessen entstand der Eindruck, Böhmermann mache sich über Menschen lustig, die unter den Symptomen dieser Störung leiden. Dies kritisierten nicht nur Betroffenenverbände, sondern auch Fachleute.</p>
+
+<h3>2. Recherchemethode mit rechtlichen Folgen</h3>
+<p>Die Einschleusung unter falscher Berufsbezeichnung in ein geschlossenes Fachseminar ist journalistisch nicht unüblich — führte hier jedoch zu Staatsschutz-Ermittlungen und Strafanzeigen. Die besondere Dimension: Huber arbeitet mit Personen in Zeugenschutzprogrammen. Die mögliche Gefährdung dieser Personen war Gegenstand der Ermittlungen, nicht nur die journalistische Methode selbst.</p>
+
+<h3>3. Das Paradox der Depublizierung</h3>
+<p>Der ZDF-Fernsehrat entschied auf Grundlage von Beschwerden eines offiziellen Bundesgremiums (UBSKM). Die Sendung, die angeblich Verschwörungsdenken aufklären sollte, wurde von einem Staatsorgan als problematisch eingestuft und vom öffentlich-rechtlichen Sender selbst entfernt. Die Redaktion kommentierte dies als Eingriff in redaktionelle Freiheit — ohne den inhaltlichen Vorwurf der Abwertung von Betroffenen zu adressieren.</p>
+
+<h3>4. Das gelöschte Ministeriumsvideo</h3>
+<p>Böhmermann gab in der Sendung selbst an, dass ein Schreiben seiner Redaktion ans Bundesfamilienministerium zur Entfernung eines 2019 vom Ministerium finanzierten Aufklärungsvideos der Bundesarbeitsgemeinschaft der Kinderschutz-Zentren e.V. und ECPAT Deutschland e.V. geführt hatte. Das Video wurde daraufhin depubliziert. Dieser Vorgang ist bislang kaum öffentlich diskutiert worden.</p>
+
+<h2>Weiterführende Quellen (primär)</h2>
+
+<div class="source-block">
+  <div class="src-label">Stellungnahme — ZDF Fernsehrat / Tagesspiegel</div>
+  <a href="https://www.tagesspiegel.de/gesellschaft/medien/bohmermann-sendung-zu-ritueller-gewalt-zdf-fernsehrat-stimmt-zwei-programmbeschwerden-zu-zdf-magazin-royale-zu-10901770.html" target="_blank" rel="noopener">tagesspiegel.de — ZDF-Fernsehrat stimmt Programmbeschwerden zu (13.12.2023)</a>
+  <div class="src-desc">Offizielle Bestätigung der Depublizierung durch ZDF auf Tagesspiegel-Anfrage</div>
+</div>
+
+<div class="source-block">
+  <div class="src-label">Medienanalyse — Übermedien</div>
+  <a href="https://uebermedien.de/90514/rituelle-gewalt-wer-ist-hier-im-wahn/" target="_blank" rel="noopener">uebermedien.de — Rituelle Gewalt: Wer ist hier im Wahn? (Januar 2024)</a>
+  <div class="src-desc">Analyse der Sendung inkl. fehlender DIS-Erwähnung und gesellschaftlicher Reaktionen</div>
+</div>
+
+<div class="source-block">
+  <div class="src-label">Ermittlungen — Clap / turi2</div>
+  <a href="https://www.turi2.de/aktuell/clap-staatsschutz-leitet-offenbar-ermittlungen-gegen-jan-boehmermann-ein/" target="_blank" rel="noopener">turi2.de — Staatsschutz leitet Ermittlungen gegen Böhmermann ein (9.9.2023)</a>
+  <div class="src-desc">Bestätigung der Ermittlungen durch Polizeipräsidium Köln</div>
+</div>
+
+<div class="source-block">
+  <div class="src-label">Programmbeschwerde — UBSKM (offiziell)</div>
+  <a href="https://beauftragte-missbrauch.de/presse/artikel/730" target="_blank" rel="noopener">beauftragte-missbrauch.de — Stellungnahme des Betroffenenrates</a>
+  <div class="src-desc">Offizielles Bundesgremium zur Aufarbeitung sexuellen Kindesmissbrauchs, Programmbeschwerde beim ZDF</div>
+</div>
+
+<div class="source-block">
+  <div class="src-label">Sachanalyse — Achse des Guten</div>
+  <a href="https://www.achgut.com/artikel/schlappe_fuer_boehmermann" target="_blank" rel="noopener">achgut.com — Schlappe für Böhmermann (15.12.2023)</a>
+  <div class="src-desc">Dokumentation des gelöschten Ministeriumsvideos und der Diskreditierungsstrategie</div>
+</div>
+
+<div class="source-block">
+  <div class="src-label">Interview — Punkt.PRERADOVIC mit Michaela Huber (2026)</div>
+  <a href="https://www.youtube.com/watch?v=5jFXBLU3qLk" target="_blank" rel="noopener">youtube.com — „System Epstein auch in Deutschland" (Februar 2026)</a>
+  <div class="src-desc">Michaela Huber im Gespräch mit Milena Preradovic über ihre jahrzehntelange Arbeit mit Überlebenden organisierter Gewalt</div>
+</div>
+
+<div class="source-block">
+  <div class="src-label">Originalseite — Michaela Huber</div>
+  <a href="https://michaela-huber.com/" target="_blank" rel="noopener">michaela-huber.com</a>
+  <div class="src-desc">Offizielle Website mit Qualifikationen, Bibliographie und Seminarangeboten</div>
+</div>
+
+<div class="source-block">
+  <div class="src-label">Rechtliche Einordnung — Legal Tribune Online</div>
+  <a href="https://www.lto.de/persistent/a_id/55505" target="_blank" rel="noopener">lto.de — ZDF-Magazin-Royale-Sendung über „Rituelle Gewalt" weiter offline (26.9.2024)</a>
+  <div class="src-desc">Stand des Verfahrens ein Jahr nach der Ausstrahlung</div>
+</div>
+
+<h2>Bildbriefing</h2>
+
+<div class="alert-box" style="color: var(--text); border-color: var(--border); background: var(--surface);">
+  <strong style="color: var(--amber); font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px;">FÜR BILDREDAKTION</strong><br><br>
+  Kein Foto von Böhmermann oder Huber verwenden (Persönlichkeitsrechte, Lizenzpflicht).<br><br>
+  <strong>Empfohlene Bildsprache:</strong><br>
+  — Leerer Fernsehbildschirm, schwarz / statisch (Symbol: Depublizierung)<br>
+  — Aktenmappe mit rotem „GELÖSCHT"-Stempel<br>
+  — Mikrofon vor leerem Podium (Symbol: Schweigen nach der Sendung)<br>
+  — Abstrakt: zwei gegenüberstehende Scheinwerfer in Dunkelheit<br><br>
+  <strong>Prompt für KI-Bildgenerierung:</strong><br>
+  „Dark documentary aesthetic, empty television screen with static, black background, amber light from below, cinematic, no text, no people, high contrast" — Stil: monochrom mit Amber-Akzent, passend zum dunkelfeld.report-Design.
+</div>
+
+<h2>Tags</h2>
+
+<div style="font-family: 'Courier New', monospace; font-size: 12px; color: var(--amber-dim); line-height: 2.2;">
+  #Böhmermann &nbsp;#ZDF &nbsp;#MichaelHuber &nbsp;#RituellGewalt &nbsp;#Medienkritik &nbsp;#Depublizierung &nbsp;#ZDFMagazinRoyale &nbsp;#Staatsschutz &nbsp;#UBSKM &nbsp;#DissociativeIdentitätsstörung &nbsp;#Traumatherapie &nbsp;#Kindesmissbrauch &nbsp;#Satanismus &nbsp;#Diskreditierung &nbsp;#Zensur &nbsp;#ÖffentlichRechtlich
+</div>
+
+<footer>
+  <div>dunkelfeld.report — strukturell dokumentiert. keine schlussfolgerungen. keine agenda.</div>
+  <div style="margin-top: 0.5rem;">alle verlinkten quellen sind öffentlich zugänglich. keine eigenen ermittlungen. keine kontaktaufnahme mit betroffenen personen.</div>
+  <div style="margin-top: 0.5rem;">© dunkelfeld.report — freie nutzung mit quellenangabe gestattet.</div>
+</footer>
+
+</body>
+</html>

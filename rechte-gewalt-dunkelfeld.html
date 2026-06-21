@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSU, Hanau, V-Männer — dunkelfeld.report</title>
+
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --bg-2: #111111;
+    --bg-3: #181818;
+    --signal: #f5c400;
+    --signal-dim: rgba(245,196,0,0.12);
+    --signal-border: rgba(245,196,0,0.3);
+    --text: #e8e4dc;
+    --text-muted: #888880;
+    --text-dim: #555550;
+    --red: #c0392b;
+    --red-dim: rgba(192,57,43,0.15);
+    --white: #ffffff;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'Space Grotesk', sans-serif;
+    --serif: 'Lora', serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(13,13,13,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(245,196,0,0.15);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--signal);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .nav-tag {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    border: 1px solid var(--signal-border);
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 7rem 2rem 4rem;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--signal);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--signal);
+  }
+
+  .hero h1 {
+    font-family: var(--sans);
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--signal);
+  }
+
+  .hero-sub {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 620px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+    font-style: italic;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  .meta-item span { color: var(--text-muted); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 2rem;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .scroll-hint::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--text-dim), transparent);
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--signal-border), transparent);
+  }
+
+  .content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .chapter {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--signal);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .chapter-num { color: var(--text-dim); }
+
+  h2 {
+    font-family: var(--sans);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    font-family: var(--sans);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--signal);
+    margin: 2.5rem 0 1rem;
+  }
+
+  p { margin-bottom: 1.4rem; color: var(--text); }
+  p strong { color: var(--white); font-weight: 600; }
+
+  .section { margin-bottom: 6rem; }
+
+  .pull-quote {
+    border-left: 3px solid var(--signal);
+    padding: 1.5rem 2rem;
+    margin: 3rem 0;
+    background: var(--signal-dim);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .pull-quote p {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--white);
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .pull-quote cite {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-top: 0.75rem;
+    font-style: normal;
+    text-transform: uppercase;
+  }
+
+  .fact-box {
+    background: var(--bg-3);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-top: 2px solid var(--signal);
+    padding: 2rem;
+    margin: 2.5rem 0;
+    border-radius: 0 0 4px 4px;
+  }
+
+  .fact-box-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--signal);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+
+  .fact-box ul { list-style: none; padding: 0; }
+
+  .fact-box ul li {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--text);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  .fact-box ul li::before {
+    content: '—';
+    color: var(--signal);
+    flex-shrink: 0;
+  }
+
+  .fact-box ul li:last-child { border-bottom: none; }
+
+  .warning-box {
+    background: var(--red-dim);
+    border: 1px solid rgba(192,57,43,0.3);
+    border-left: 3px solid var(--red);
+    padding: 1.5rem 2rem;
+    margin: 2.5rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .warning-box p {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .warning-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+    margin: 2.5rem 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0.5rem; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--signal), var(--text-dim));
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.35rem;
+    top: 0.55rem;
+    width: 8px; height: 8px;
+    background: var(--signal);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--signal);
+  }
+
+  .timeline-year {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--signal);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .timeline-text {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .timeline-text strong { color: var(--white); }
+
+  /* STATISTIK VISUALISIERUNG */
+  .stat-bars {
+    margin: 2.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 80px;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    text-align: right;
+  }
+
+  .stat-bar-track {
+    height: 8px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .stat-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1.5s ease;
+    width: 0;
+  }
+
+  .stat-bar-fill.rechts { background: var(--red); }
+  .stat-bar-fill.links { background: #3498db; }
+  .stat-bar-fill.islamismus { background: var(--signal); }
+  .stat-bar-fill.auslaender { background: #2ecc71; }
+
+  .stat-value {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .stat-note {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    margin-top: 1rem;
+    line-height: 1.6;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 4px;
+  }
+
+  /* MANIPULATION GRID */
+  .manipulation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+    margin: 2.5rem 0;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .mgrid-cell {
+    background: var(--bg-2);
+    padding: 1.5rem;
+  }
+
+  .mgrid-cell.header {
+    background: var(--bg-3);
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--signal);
+    text-transform: uppercase;
+  }
+
+  .mgrid-cell p {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .mgrid-cell .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    padding: 0.15rem 0.4rem;
+    border-radius: 2px;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .tag.inflated { background: var(--red-dim); color: var(--red); border: 1px solid rgba(192,57,43,0.3); }
+  .tag.deflated { background: var(--signal-dim); color: var(--signal); border: 1px solid var(--signal-border); }
+
+  /* AGENDA GRID */
+  .agenda-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 2.5rem 0;
+  }
+
+  .agenda-card {
+    background: var(--bg-3);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-top: 2px solid var(--signal);
+    padding: 1.5rem;
+    border-radius: 0 0 4px 4px;
+  }
+
+  .agenda-card-num {
+    font-family: var(--mono);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--signal);
+    opacity: 0.3;
+    line-height: 1;
+    margin-bottom: 0.75rem;
+  }
+
+  .agenda-card h4 {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .agenda-card p {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .scenario {
+    margin: 1.5rem 0;
+    padding: 1.5rem 2rem;
+    background: var(--bg-3);
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scenario::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+  }
+
+  .scenario.gelb::before { background: var(--signal); }
+  .scenario.rot::before { background: var(--red); }
+
+  .scenario-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .scenario.gelb .scenario-label { color: var(--signal); }
+  .scenario.rot .scenario-label { color: var(--red); }
+
+  .scenario h4 {
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .scenario p {
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    margin: 0;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .analysis-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+    margin: 2.5rem 0;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .analysis-cell {
+    background: var(--bg-2);
+    padding: 1.5rem;
+  }
+
+  .analysis-cell.header {
+    background: var(--bg-3);
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--signal);
+    text-transform: uppercase;
+  }
+
+  .analysis-cell p {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .disclaimer {
+    background: var(--bg-3);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 2rem;
+    margin-top: 5rem;
+    border-radius: 4px;
+  }
+
+  .disclaimer-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding-bottom: 0.75rem;
+  }
+
+  .disclaimer p {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .series-nav {
+    background: var(--signal-dim);
+    border: 1px solid var(--signal-border);
+    padding: 1.5rem 2rem;
+    margin-top: 4rem;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .series-nav-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--signal);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .series-nav-title {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .series-nav-arrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--signal);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 3rem 2rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-logo {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--signal);
+    text-transform: uppercase;
+  }
+
+  .footer-note {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 600px) {
+    .manipulation-grid,
+    .analysis-grid,
+    .agenda-grid { grid-template-columns: 1fr; }
+    .stat-row { grid-template-columns: 100px 1fr 60px; }
+    .hero { padding: 6rem 1.5rem 3rem; }
+    .content { padding: 3rem 1.5rem; }
+    h2 { font-size: 1.6rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in { opacity: 1; transform: none; transition: none; }
+    .stat-bar-fill { transition: none; }
+  }
+
+  /* ═══════════════════════════════════════════
+     DUNKELFELD.REPORT — CSS STANDARD OVERRIDE
+     Farben, Lesbarkeit, DSGVO-konform
+     ═══════════════════════════════════════════ */
+  :root {
+    --dk-bg:       #09090b;
+    --dk-surface:  #111113;
+    --dk-border:   #27272a;
+    --dk-amber:    #e8c547;
+    --dk-amber-dim:#b89a2f;
+    --dk-text:     #d4d4d8;
+    --dk-muted:    #71717a;
+    --dk-bright:   #f4f4f5;
+    --dk-source-bg:#1a1a2e;
+  }
+
+  /* Basis-Reset auf Standard */
+  html { background: var(--dk-bg); }
+  body {
+    background: var(--dk-bg) !important;
+    color: var(--dk-text) !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    max-width: 720px !important;
+    margin: 0 auto !important;
+    padding: 48px 24px 80px !important;
+  }
+
+  /* Wrapper / Container auf 720px begrenzen */
+  .container, .content, main, article,
+  .article-body, .hero, .body-text {
+    max-width: 720px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Absätze */
+  p {
+    padding-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Überschriften */
+  h1 { color: var(--dk-bright) !important; }
+  h2, h3, h4 { color: var(--dk-bright) !important; }
+
+  /* Links */
+  a {
+    color: var(--dk-amber) !important;
+    text-decoration: none !important;
+  }
+  a:hover {
+    text-decoration: underline !important;
+  }
+
+  /* Labels / Metadaten */
+  .label, .meta, .article-meta, .dossier-id, .site-label,
+  .tag, .category, time, .date {
+    font-family: 'Courier New', Courier, monospace !important;
+  }
+
+  /* Quellenboxen */
+  .source-box, .quellen-box, .source, .sources,
+  blockquote, .zitat, .fact-box, .info-box,
+  .quelle, .source-entry, .reference {
+    background: var(--dk-source-bg) !important;
+    border-left: 3px solid var(--dk-amber) !important;
+    padding: 1rem 1.2rem !important;
+    margin-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+  }
+
+  /* Tabellen */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--dk-surface) !important;
+    color: var(--dk-amber) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.75rem !important;
+    padding: 0.6rem 0.8rem !important;
+    text-align: left;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--dk-border) !important;
+  }
+  td {
+    padding: 0.7rem 0.8rem !important;
+    border-bottom: 1px solid var(--dk-border) !important;
+    color: var(--dk-text) !important;
+    font-size: 0.95rem !important;
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+
+  /* Site-Header Breite */
+  .site-header, header, nav {
+    max-width: 100% !important;
+  }
+
+  /* Farbkorrekturen: alte Amber-Töne → Standard */
+  [style*="color: #d4a017"], [style*="color:#d4a017"] { color: var(--dk-amber) !important; }
+  [style*="color: #b8860b"], [style*="color:#b8860b"] { color: var(--dk-amber) !important; }
+
+  /* Lesbarkeit: dunkle Texte aufhellen */
+  [style*="color: #666"], [style*="color:#666"],
+  [style*="color: #555"], [style*="color:#555"] {
+    color: var(--dk-muted) !important;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">dunkelfeld.report</a>
+  <span class="nav-tag">Serie: Wer schlägt — Teil II</span>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">Analyse · Rechte Gewalt · Statistik · Islamismus · Agenda</div>
+  <h1>NSU, Hanau, V-Männer — <em>und die Zahlen,<br>die niemand erklärt</em></h1>
+  <p class="hero-sub">Rechte Gewalt ist real und dokumentiert. Aber die Statistiken, mit denen sie gemessen wird, sind manipulierbar — und werden manipuliert. Und während Links gegen Rechts kämpft, wächst die tatsächlich tödlichste Bedrohung fast unbemerkt.</p>
+  <div class="hero-meta">
+    <div class="meta-item">Status: <span>Erstveröffentlichung</span></div>
+    <div class="meta-item">Quellen: <span>Primär, verifiziert</span></div>
+    <div class="meta-item">Methode: <span>Whitney-Webb-Standard</span></div>
+    <div class="meta-item">Lesezeit: <span>~14 Min.</span></div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<div class="divider"></div>
+
+<main class="content">
+
+  <!-- SECTION 1 -->
+  <div class="section fade-in">
+    <div class="chapter"><span class="chapter-num">01</span> Das Undeniable</div>
+    <h2>Rechte Gewalt: Was unbestreitbar wahr ist</h2>
+
+    <p>Bevor wir Statistiken sezieren und Agenden analysieren: Es gibt eine Grundlage, die nicht wegdiskutiert werden kann und nicht wegdiskutiert werden soll.</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">2000–2011</div>
+        <div class="timeline-text"><strong>NSU — Nationalsozialistischer Untergrund:</strong> 10 Morde, 3 Sprengstoffanschläge, 15 Bankraube. Die Opfer: neun Männer mit Migrationshintergrund, eine Polizistin. Jahrelang ermittelten Behörden im Umfeld der Opfer selbst — „Döner-Morde" nannte der Volksmund die Taten abwertend. Der Staatsversagen-Aspekt: V-Männer des Verfassungsschutzes waren tief in der Thüringer Heimatschutzbewegung vernetzt, aus der der NSU hervorging. Akten wurden geschreddert. Aufklärung: unvollständig bis heute.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2016</div>
+        <div class="timeline-text"><strong>Anis Amri, Berlin:</strong> Der Anschlag auf den Weihnachtsmarkt (12 Tote) — hier als Kontrastpunkt, dazu später mehr.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2019</div>
+        <div class="timeline-text"><strong>Halle:</strong> Attentat auf Synagoge am höchsten jüdischen Feiertag Jom Kippur. Täter scheitert an der Tür, tötet zwei Menschen. Eindeutig rechtsextrem, antisemitisch, rassistisch motiviert. Livestream auf Twitch. Verurteilung: lebenslang.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2020</div>
+        <div class="timeline-text"><strong>Hanau:</strong> Neun Menschen mit Migrationshintergrund erschossen in zwei Shisha-Bars. Täter Tobias R. hinterließ ein Manifest mit rassistischen und paranoiden Elementen — vermutliche Psychose, eindeutige Opferwahl nach ethnischen Kriterien. 43 Schuss in weniger als vier Minuten. Auch hier: War das Behördenversagen systemisch? Die Notausgangstür des zweiten Tatorts war von innen verriegelt — von wem?</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2019–2024</div>
+        <div class="timeline-text"><strong>Reichsbürger-Netzwerk:</strong> „Patriotische Union" plant Staatsstreich mit bewaffneten Gruppen, ehemaligem Richter Heinz Reiß und Ex-AfD-Bundestagsabgeordneter Birgit Malsack-Winkemann. Razzia Dezember 2022, 25 Festnahmen. Ernstzunehmendes Netzwerk — auch wenn die Medienberichterstattung in Teilen überzeichnete.</div>
+      </div>
+    </div>
+
+    <p>Das alles ist real. Dokumentiert. Verurteilenswert. <strong>Und trotzdem ist es nicht das vollständige Bild</strong> — weder der Gefährdungslage noch der politischen Instrumentalisierung dieser Taten.</p>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section fade-in">
+    <div class="chapter"><span class="chapter-num">02</span> Die Statistik-Frage</div>
+    <h2>Was in die PMK-Rechts-Statistik einfließt — und was das bedeutet</h2>
+
+    <p>Die Bundesregierung veröffentlicht jährlich die Statistik „Politisch Motivierte Kriminalität" (PMK). Die Schlagzeile ist stets dieselbe: <strong>Rechts deutlich vor Links.</strong> 2023: rund 28.900 rechte Straftaten, rund 10.700 linke. Was kaum erklärt wird: wie diese Zahlen zustande kommen.</p>
+
+    <h3>Was als „rechts" gezählt wird</h3>
+
+    <div class="manipulation-grid">
+      <div class="mgrid-cell header">Kategorie</div>
+      <div class="mgrid-cell header">Erläuterung</div>
+
+      <div class="mgrid-cell">
+        <div class="tag inflated">aufgebläht</div>
+        <p>Propagandadelikte §86/86a StGB</p>
+      </div>
+      <div class="mgrid-cell">
+        <p>Hakenkreuz-Schmierereien, Hitlergruß, Verbreiten von NS-Symbolen — auch durch Jugendliche ohne politisches Bewusstsein, auch als Provokation ohne rechte Überzeugung. Zählen vollständig als PMK-Rechts.</p>
+      </div>
+
+      <div class="mgrid-cell">
+        <div class="tag inflated">aufgebläht</div>
+        <p>Volksverhetzung §130 StGB</p>
+      </div>
+      <div class="mgrid-cell">
+        <p>Breite Anwendung, schließt auch Online-Kommentare ein, die nicht zwingend aus politisch organisierten Milieus stammen. Jeder einzelne Post zählt als eigene Straftat.</p>
+      </div>
+
+      <div class="mgrid-cell">
+        <div class="tag inflated">aufgebläht</div>
+        <p>„Nicht zuzuordnende" Fälle → rechts</p>
+      </div>
+      <div class="mgrid-cell">
+        <p>Bis 2020 galt: Konnte eine Tat keinem Milieu zugeordnet werden, wurde sie standardmäßig als „rechts" eingestuft. Diese Praxis wurde nach Kritik reformiert, wirkt aber in Langzeitvergleichen nach.</p>
+      </div>
+
+      <div class="mgrid-cell">
+        <div class="tag inflated">aufgebläht</div>
+        <p>Ausländerfeindliche Delikte</p>
+      </div>
+      <div class="mgrid-cell">
+        <p>Taten von Personen mit eigenen Migrationshintergrund gegen andere Migranten oder Minderheiten werden, wenn ausländerfeindlich motiviert, ebenfalls PMK-Rechts zugerechnet — unabhängig von der politischen Überzeugung des Täters.</p>
+      </div>
+
+      <div class="mgrid-cell">
+        <div class="tag deflated">untererfasst links</div>
+        <p>Linke Sachbeschädigung</p>
+      </div>
+      <div class="mgrid-cell">
+        <p>Politisch motivierte Sachbeschädigung (Farbbeutel, Scheiben, Fahrzeuge) wird links oft nicht als politisch motiviert erfasst, wenn kein explizites politisches Bekenntnis vorliegt.</p>
+      </div>
+
+      <div class="mgrid-cell">
+        <div class="tag deflated">untererfasst</div>
+        <p>Islamistisch motivierte Alltagskriminalität</p>
+      </div>
+      <div class="mgrid-cell">
+        <p>Gewalt aus islamistisch geprägten Milieus ohne explizit politisches Tatbekenntnis wird häufig als allgemeine Kriminalität erfasst, nicht als PMK-Religiöse Ideologie.</p>
+      </div>
+    </div>
+
+    <h3>Die realen Gewaltzahlen im Vergleich</h3>
+
+    <p>Entscheidend für die Gefährdungslage ist nicht die Zahl der Straftaten insgesamt — sondern die der <strong>Gewalttaten</strong>, der Toten, der Anschläge mit Opfern. Hier sieht die Statistik anders aus.</p>
+
+    <div class="stat-bars" id="statBars">
+      <div class="stat-row">
+        <div class="stat-label">PMK Rechts gesamt</div>
+        <div class="stat-bar-track"><div class="stat-bar-fill rechts" data-width="95"></div></div>
+        <div class="stat-value">~28.900</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-label">PMK Links gesamt</div>
+        <div class="stat-bar-track"><div class="stat-bar-fill links" data-width="35"></div></div>
+        <div class="stat-value">~10.700</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-label">PMK Islamismus</div>
+        <div class="stat-bar-track"><div class="stat-bar-fill islamismus" data-width="15"></div></div>
+        <div class="stat-value">~600</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-label">Tote durch islam. Anschläge DE 2015–24</div>
+        <div class="stat-bar-track"><div class="stat-bar-fill islamismus" data-width="80"></div></div>
+        <div class="stat-value">~20</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-label">Tote durch rechtsextr. Einzeltäter DE 2015–24</div>
+        <div class="stat-bar-track"><div class="stat-bar-fill rechts" data-width="70"></div></div>
+        <div class="stat-value">~15</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-label">Weltweite islam. Terrortote 2023</div>
+        <div class="stat-bar-track"><div class="stat-bar-fill islamismus" data-width="100"></div></div>
+        <div class="stat-value">~7.000</div>
+      </div>
+    </div>
+
+    <div class="stat-note">
+      Quellen: BKA PMK-Statistik 2023 · Global Terrorism Database 2023 · Bundeszentrale für politische Bildung · Eigene Auswertung. Hinweis: Islamistische Taten in Deutschland werden in der Öffentlichkeit häufig als „psychisch gestörte Einzeltäter" gerahmt, was die PMK-Erfassung beeinflusst.
+    </div>
+
+    <div class="pull-quote">
+      <p>„Die Statistik misst, was gemessen werden soll. Wer die Kategorien definiert, definiert das Ergebnis."</p>
+      <cite>Methodische Grundregel · Kriminologie</cite>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section fade-in">
+    <div class="chapter"><span class="chapter-num">03</span> Der blinde Fleck</div>
+    <h2>Islamismus: Die größte Gefahr, über die kaum gesprochen wird</h2>
+
+    <p>Islamistischer Terrorismus hat seit 2015 weltweit mehr Menschen getötet als alle anderen Extremismusformen zusammen. In Deutschland: Anis Amri (Berlin 2016, 12 Tote), Würzburg 2021 (3 Tote), Mannheim 2024, Solingen 2024 (3 Tote). Hinzu kommen dutzende verhinderte Anschläge, von denen viele kaum Berichterstattung erhielten.</p>
+
+    <p>Und doch: In der politischen Debatte, in Medien, in parlamentarischen Anfragen dominiert das Thema Rechtsextremismus. Das ist keine Kritik an der Ernsthaftigkeit rechter Gefahr — es ist eine Beobachtung über <strong>selektive Aufmerksamkeit</strong>.</p>
+
+    <h3>Warum die Asymmetrie?</h3>
+
+    <div class="fact-box">
+      <div class="fact-box-label">Strukturelle Erklärungen — keine Verschwörung nötig</div>
+      <ul>
+        <li>Islamismus-Berichterstattung berührt Migrations- und Integrationspolitik — ein politisch hochsensibles Feld, das Redaktionen meiden</li>
+        <li>Der Begriff „Islamophobie" funktioniert als Abschreckung: Wer Islamismus benennt, riskiert, als islamfeindlich zu gelten — analog zur Antifa-Immunisierung</li>
+        <li>Verfassungsschutz-Ressourcen: 2023 beobachtete der VS rund 28.000 Rechtsextremisten, aber nur rund 11.000 Islamisten — trotz global höherer Todesopferzahl</li>
+        <li>Islamistische Täter werden häufiger als „psychisch krank" gerahmt (auch wenn das zutrifft), was die politische Zurechnung schwächt</li>
+        <li>Geopolitik: Islamismus-Kritik ist kompliziert, wenn gleichzeitig Außenhandelspolitik mit Golfstaaten gemacht wird</li>
+      </ul>
+    </div>
+
+    <p>Solingen, August 2024: Ein islamistischer Täter tötete drei Menschen auf einem Stadtfest. Die Debatte, die folgte, dauerte drei Tage — dann überlagerte der Bundestagswahlkampf alles. Zum Vergleich: Hanau beschäftigt Medien und Politik bis heute, vier Jahre später. Beide Anschläge sind gleich tragisch. Die Aufmerksamkeit ist es nicht.</p>
+
+    <div class="warning-box">
+      <div class="warning-label">Wichtige Einordnung</div>
+      <p>Diese Analyse behauptet nicht, dass Muslime generell gefährlich sind oder Islamismus das einzige Sicherheitsproblem darstellt. Sie dokumentiert eine messbare Asymmetrie in der öffentlichen und politischen Aufmerksamkeit — und fragt nach den strukturellen Gründen dafür. Die Gefahr durch Rechtsextremismus bleibt real und muss bekämpft werden. Genau wie die durch Islamismus.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section fade-in">
+    <div class="chapter"><span class="chapter-num">04</span> V-Männer & Staatsversagen</div>
+    <h2>Wenn der Verfassungsschutz Teil des Problems ist</h2>
+
+    <p>Der dunkelste Aspekt rechter Gewalt in Deutschland ist nicht die Gewalt selbst — sondern die Frage, wieviel der Staat davon wusste und hätte verhindern können.</p>
+
+    <h3>NSU: Der V-Mann-Komplex</h3>
+
+    <p>Der Verfassungsschutz hatte nach allem, was Untersuchungsausschüsse zutage förderten, <strong>mindestens 13 V-Männer</strong> im Umfeld des NSU und seiner Unterstützerszene. Tino Brandt, V-Mann des Thüringer Landesamts, war eine der Schlüsselfiguren im Thüringer Heimatschutz — jener Struktur, aus der Böhnhardt, Mundlos und Zschäpe hervorgingen. Der Staat hat die Szene nicht nur beobachtet. Er hat sie mitfinanziert.</p>
+
+    <p>Als der NSU 2011 aufflog, wurden beim Bundesamt für Verfassungsschutz Akten zu V-Leuten im NSU-Umfeld <strong>geschreddert</strong> — aktiv, unmittelbar nach dem Bekanntwerden. Mitarbeiterin Monika Merkle handelte auf Anweisung. Strafrechtliche Konsequenzen: keine.</p>
+
+    <div class="fact-box">
+      <div class="fact-box-label">Dokumentierte Fakten · NSU-Untersuchungsausschuss</div>
+      <ul>
+        <li>Parlamentarischer Untersuchungsausschuss des Bundestags (2012–2013) stellte „gravierendes Behördenversagen" fest</li>
+        <li>Thüringer V-Mann Tino Brandt erhielt über Jahre Zahlungen vom LfV Thüringen, leitete gleichzeitig den Thüringer Heimatschutz</li>
+        <li>Mindestens 40 V-Männer waren im rechtsextremen Milieu tätig, das den NSU umgab — laut Verfassungsschutzangaben selbst</li>
+        <li>Die Schredder-Affäre beim BfV wurde intern als „Routinevernichtung" bezeichnet; der zuständige Referatsleiter blieb im Dienst</li>
+        <li>Beate Zschäpe, einzige Überlebende des NSU-Trios, erhielt lebenslange Haft. Ihre Kontaktpersonen: bis heute nicht vollständig aufgeklärt</li>
+      </ul>
+    </div>
+
+    <h3>Das strukturelle Problem</h3>
+
+    <p>V-Männer in extremistischen Milieus sind ein zweischneidiges Schwert: Sie liefern Informationen — aber sie stabilisieren auch Strukturen, die ohne sie vielleicht zerfallen wären. Wenn ein Drittel der Führungsebene einer rechtsextremen Organisation aus V-Leuten besteht (wie im Fall einiger NPD-Strukturen dokumentiert), stellt sich eine legitime Frage: <strong>Wer hält diese Szene eigentlich am Leben?</strong></p>
+
+    <p>Das ist keine rhetorische Frage. Es ist eine kriminologische.</p>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section fade-in">
+    <div class="chapter"><span class="chapter-num">05</span> Die Agenda</div>
+    <h2>Was bezweckt die Regierung mit der Verteufelung rechter Positionen?</h2>
+
+    <p>Das ist die unbequemste Frage dieses Artikels — und die wichtigste. Denn zwischen der legitimen Bekämpfung rechtsextremer Gewalt und der politischen Instrumentalisierung des Rechtsextremismus-Vorwurfs liegt ein entscheidender Unterschied.</p>
+
+    <p>Wir analysieren hier keine bösen Absichten einzelner Politiker. Wir analysieren <strong>strukturelle Interessen</strong> — cui bono, wie immer.</p>
+
+    <div class="agenda-grid">
+      <div class="agenda-card">
+        <div class="agenda-card-num">01</div>
+        <h4>Diskursverschiebung durch Labeling</h4>
+        <p>Wer Kritik an Migrationspolitik als „rechtsextrem" etikettieren kann, muss sie inhaltlich nicht mehr beantworten. Das Label ersetzt das Argument. Funktioniert auch bei Kritik an Corona-Maßnahmen, Energiepolitik, EU-Transfers — solange der „rechts"-Vorwurf klebt, ist die Debatte beendet, bevor sie beginnt.</p>
+      </div>
+      <div class="agenda-card">
+        <div class="agenda-card-num">02</div>
+        <h4>Legitimation von Überwachung</h4>
+        <p>Jeder neue Rechtsextremismus-Fall liefert Argumente für Ausbau von Verfassungsschutzkompetenzen, Vorratsdatenspeicherung, Messenger-Überwachung, Chatkontrolle. Die Maßnahmen treffen dann strukturell alle — nicht nur Rechtsextremisten.</p>
+      </div>
+      <div class="agenda-card">
+        <div class="agenda-card-num">03</div>
+        <h4>Parteipolitische Konkurrenzausschaltung</h4>
+        <p>AfD-Wähler zu „Rechtsextremisten" zu erklären delegitimiert eine Partei mit 20%+ Wähleranteil, ohne inhaltlich mit ihr konkurrieren zu müssen. Das ist demokratietheoretisch problematisch — unabhängig davon, wie man zur AfD steht.</p>
+      </div>
+      <div class="agenda-card">
+        <div class="agenda-card-num">04</div>
+        <h4>Spaltungserhalt als Systemschutz</h4>
+        <p>Solange die Bevölkerung sich in Links-Rechts-Kämpfen erschöpft, richtet sich der Blick nicht auf institutionelle Dysfunktionen: Lobbyismus, Drehtür-Politik, ÖRR-Verflechtung, NGO-Finanzierung durch Staatsgelder. Die Spaltung schützt die Strukturen, die von ihr profitieren.</p>
+      </div>
+      <div class="agenda-card">
+        <div class="agenda-card-num">05</div>
+        <h4>Migrationspolitik immunisieren</h4>
+        <p>Wer unkontrollierte Migration kritisiert, wird als rechtsextrem gerahmt. Das verhindert eine sachliche Debatte über Integration, Kapazitäten, Sicherheit — und schützt eine Politik, die nachweislich gescheitert ist, vor demokratischer Korrektur.</p>
+      </div>
+      <div class="agenda-card">
+        <div class="agenda-card-num">06</div>
+        <h4>Internationaler Gleichklang</h4>
+        <p>Die „Kampf gegen Rechts"-Rhetorik ist kein deutsches Phänomen. Von Kanada über Australien bis Westeuropa läuft dieselbe Playbook. Das deutet auf koordinierte Kommunikationsstrategien hin — ob durch WEF-Netzwerke, EU-Institutionen oder NGO-Finanzierungsströme, ist Gegenstand laufender Recherche.</p>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <p>„Es gibt einen Unterschied zwischen der Bekämpfung von Rechtsextremismus und der Bekämpfung von rechten Positionen. Wer diesen Unterschied verwischt, betreibt Politik — keine Sicherheitspolitik."</p>
+      <cite>Strukturanalyse · dunkelfeld.report</cite>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section fade-in">
+    <div class="chapter"><span class="chapter-num">06</span> Symmetrie</div>
+    <h2>Was beide Artikel zusammen ergeben</h2>
+
+    <p>Teil I dieser Serie dokumentierte linke Gewalt — von den Freikorps über die RAF bis zur Hammerbande. Teil II dokumentiert rechte Gewalt — vom NSU über Hanau bis zu den Reichsbürgern. Die Befunde zusammen ergeben ein Bild, das die öffentliche Debatte nicht zeichnet:</p>
+
+    <div class="analysis-grid">
+      <div class="analysis-cell header">Befund</div>
+      <div class="analysis-cell header">Konsequenz</div>
+
+      <div class="analysis-cell">
+        <p>Politische Gewalt kommt von mehreren Seiten</p>
+      </div>
+      <div class="analysis-cell">
+        <p>Wer nur eine Seite benennt, betreibt keine Sicherheitsanalyse — er betreibt Politik</p>
+      </div>
+
+      <div class="analysis-cell">
+        <p>Statistiken sind methodisch formbar</p>
+      </div>
+      <div class="analysis-cell">
+        <p>PMK-Zahlen messen, was gemessen werden soll. Primärquellencheck ist Pflicht</p>
+      </div>
+
+      <div class="analysis-cell">
+        <p>Islamismus ist die tödlichste Extremismusform weltweit</p>
+      </div>
+      <div class="analysis-cell">
+        <p>Ihre Unterrepräsentation in der Debatte hat politische Gründe, keine sachlichen</p>
+      </div>
+
+      <div class="analysis-cell">
+        <p>Staatliche Strukturen waren in rechte UND linke Gewalt involviert</p>
+      </div>
+      <div class="analysis-cell">
+        <p>V-Männer, Aktenvernichtung, Straflosigkeit: Das ist kein Parteienproblem — das ist ein Systemproblem</p>
+      </div>
+
+      <div class="analysis-cell">
+        <p>Die Links-Rechts-Spaltung hat Nutznießer</p>
+      </div>
+      <div class="analysis-cell">
+        <p>Wer davon profitiert, hat Interesse daran, dass sie fortbesteht. Das ist keine Verschwörung — das ist Interessenanalyse</p>
+      </div>
+    </div>
+
+    <h3>Die eigentliche Frage</h3>
+
+    <p>Nicht: Ist Rechtsextremismus gefährlich? (Ja.) Nicht: Ist Linksextremismus harmlos? (Nein.) Nicht: Ist Islamismus das einzige Problem? (Nein.)</p>
+
+    <p>Die eigentliche Frage lautet: <strong>Wessen Interesse wird bedient, wenn wir immer nur über eine Gefahr reden — und die anderen ausblenden?</strong></p>
+
+    <p>Rosa Luxemburg hätte gefragt: Wessen Klasse profitiert? Wir fragen: Wessen Agenda profitiert? Die Antwort führt nicht nach rechts oder links. Sie führt nach oben.</p>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="section fade-in">
+    <div class="chapter"><span class="chapter-num">07</span> Szenarien</div>
+    <h2>Wohin das führt</h2>
+
+    <div class="scenario gelb">
+      <div class="scenario-label">Szenario A · Korrekturbewegung</div>
+      <h4>Öffentlichkeit erzwingt Symmetrie</h4>
+      <p>Wachsende Teile der Bevölkerung erkennen die Asymmetrie und fordern gleichmäßige Standards: gleiche Maßstäbe für rechte und linke Gewalt, gleiche Aufmerksamkeit für Islamismus, transparentere Statistikmethodik. Plattformen wie dunkelfeld.report, aber auch einzelne Mainstream-Stimmen, verschieben den Overton-Window. Institutionen passen sich an — langsam, widerwillig, aber messbar.</p>
+    </div>
+
+    <div class="scenario rot">
+      <div class="scenario-label">Szenario B · Eskalation durch Verdrängung</div>
+      <h4>Das Unbenannte explodiert</h4>
+      <p>Islamistisch motivierte Anschläge häufen sich. Die Regierung antwortet mit Rhetorik statt Strukturreform. Das Vertrauen in Institutionen kollabiert weiter. Rechtsextreme Gruppen wachsen — genährt von realem Sicherheitsversagen, das sie dann instrumentalisieren. Der Staat reagiert mit mehr Überwachung statt mehr Differenzierung. Die Spirale dreht sich schneller.</p>
+    </div>
+
+    <p>Welches Szenario eintritt, hängt nicht von Politikern ab. Es hängt davon ab, <strong>ob genug Menschen anfangen, die richtigen Fragen zu stellen</strong>. Und zwar alle Fragen — nicht die, die eine Seite stellt.</p>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer fade-in">
+    <div class="disclaimer-label">Redaktionelle Einordnung · Was wir ausdrücklich nicht behaupten</div>
+    <p>Dieser Artikel behauptet nicht, dass rechtsextreme Gewalt erfunden oder übertrieben ist. NSU, Hanau, Halle sind real, dokumentiert und verurteilt. Der Artikel analysiert die methodischen Grundlagen der Statistiken, mit denen Extremismus gemessen wird — und stellt fest, dass diese Grundlagen nicht neutral sind.</p>
+    <p>Er behauptet nicht, dass Muslime generell eine Bedrohung darstellen. Er dokumentiert, dass islamistisch motivierte Gewalt in der politischen Debatte systematisch unterrepräsentiert ist — im Verhältnis zu ihrer tatsächlichen Opferzahl.</p>
+    <p>Er behauptet nicht, dass die Regierung Rechtsextremismus absichtlich herbeiführt. Er analysiert strukturelle Interessen, die aus der Fokussierung auf eine Extremismusform entstehen — eine legitime politikwissenschaftliche Analyse.</p>
+    <p>Alle Fakten basieren auf verifizierbaren Primärquellen: BKA-Statistiken, parlamentarische Untersuchungsausschüsse, Verfassungsschutzberichte, gerichtlich festgestellte Sachverhalte, dokumentierte Aussagen Beteiligter.</p>
+  </div>
+
+  <!-- SERIES NAV -->
+  <div class="series-nav fade-in">
+    <div>
+      <div class="series-nav-label">Serie: Wer schlägt · Teil III</div>
+      <div class="series-nav-title">Das große Bild — wer profitiert von der Spaltung?</div>
+    </div>
+    <div class="series-nav-arrow">→ demnächst</div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">dunkelfeld.report</div>
+    <div class="footer-note">Primärquellen · Keine Werbung · Keine Förderung</div>
+  </div>
+</footer>
+
+<script>
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Animate stat bars when visible
+        if (entry.target.querySelector && entry.target.querySelector('.stat-bar-fill')) {
+          entry.target.querySelectorAll('.stat-bar-fill').forEach(bar => {
+            const w = bar.dataset.width;
+            setTimeout(() => { bar.style.width = w + '%'; }, 200);
+          });
+        }
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Trigger stat bars if already in view
+  document.querySelectorAll('.stat-bar-fill').forEach(bar => {
+    bar.style.width = '0%';
+  });
+
+  // Re-observe stat section specifically
+  const statSection = document.getElementById('statBars');
+  if (statSection) {
+    const statObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.stat-bar-fill').forEach(bar => {
+            const w = bar.dataset.width;
+            setTimeout(() => { bar.style.width = w + '%'; }, 300);
+          });
+          statObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    statObs.observe(statSection);
+  }
+</script>
+
+</body>
+</html>

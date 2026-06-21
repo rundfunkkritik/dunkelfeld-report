@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOSSIER 001 — Großbritannien: Skandal und Schweigen | dunkelfeld.report</title>
+  <meta name="description" content="Grooming Gangs: Jahrzehntelange institutionelle Vertuschung, hunderttausende Opfer — und eine Staatsreaktion, die mehr mit Zensur als mit Aufarbeitung zu tun hat. Eine quellenbasierte Dokumentation.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #09090b;
+      --bg2: #111114;
+      --bg3: #1a1a2e;
+      --accent: #e8c547;
+      --accent-dim: #b89a2e;
+      --text: #e2e2e8;
+      --muted: #5a5a6a;
+      --border: #2a2a3a;
+      --red: #e05252;
+      --green: #52b788;
+      --yellow: #e8c547;
+      --orange: #c87a3a;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.08rem;
+      line-height: 1.85;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .site-header {
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+    }
+    .site-logo {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .site-header nav {
+      margin-left: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+    .site-header nav a { color: var(--muted); }
+    .site-header nav a:hover { color: var(--accent); }
+
+    .dossier-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 3.5rem 2rem 0.6rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem 2.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero .subtitle {
+      font-size: 1.05rem;
+      color: #a0a0b0;
+      line-height: 1.7;
+      margin-bottom: 1.8rem;
+      font-style: italic;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .stat-card {
+      background: var(--bg2);
+      padding: 1.4rem 1.1rem;
+      text-align: center;
+    }
+    .stat-card .num {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-card .label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.63rem;
+      color: var(--muted);
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    hr.divider {
+      max-width: 760px;
+      margin: 2.5rem auto;
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      color: var(--accent);
+      margin: 2.8rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      font-weight: 700;
+    }
+    h3 {
+      font-size: 1.05rem;
+      color: #c8c8d8;
+      margin: 1.8rem 0 0.6rem;
+      font-weight: 600;
+    }
+    p { margin-bottom: 1.2rem; }
+
+    .source-box {
+      background: var(--bg3);
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.2rem;
+      margin: 1.4rem 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.76rem;
+      color: #9090a8;
+      line-height: 1.6;
+    }
+    .source-box strong { color: var(--accent); }
+
+    .callout {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent-dim);
+      padding: 1.2rem 1.4rem;
+      margin: 1.6rem 0;
+      font-size: 0.95rem;
+      color: #b8b8c8;
+    }
+    .callout-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .callout.warn { border-left-color: var(--orange); }
+    .callout.warn .callout-label { color: var(--orange); }
+    .callout.alert { border-left-color: var(--red); }
+    .callout.alert .callout-label { color: var(--red); }
+
+    /* VERGLEICHSTABELLE */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.4rem 0;
+      font-size: 0.86rem;
+    }
+    .data-table th {
+      background: var(--bg3);
+      color: var(--accent);
+      font-family: 'Courier New', monospace;
+      font-size: 0.66rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.7rem 0.9rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table td {
+      padding: 0.75rem 0.9rem;
+      border-bottom: 1px solid var(--border);
+      color: #c8c8d8;
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: rgba(232,197,71,0.04); }
+
+    .tag {
+      display: inline-block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.6rem;
+      padding: 0.12rem 0.4rem;
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+    }
+    .tag.g { background: rgba(82,183,136,0.15); color: var(--green); }
+    .tag.r { background: rgba(224,82,82,0.15); color: var(--red); }
+    .tag.y { background: rgba(232,197,71,0.15); color: var(--yellow); }
+    .tag.o { background: rgba(200,122,58,0.15); color: var(--orange); }
+
+    /* TIMELINE */
+    .timeline { margin: 1.4rem 0; }
+    .tl-item {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 0 1.2rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .tl-item:last-child { border-bottom: none; }
+    .tl-date {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      padding-top: 0.1rem;
+      letter-spacing: 0.03em;
+    }
+    .tl-text { font-size: 0.9rem; color: #c0c0d0; line-height: 1.65; }
+    .tl-text strong { color: #e2e2e8; }
+
+    /* VERGLEICH SPLIT */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      margin: 1.6rem 0;
+    }
+    .compare-col {
+      background: var(--bg2);
+      padding: 1.2rem;
+    }
+    .compare-col h4 {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .compare-col.a h4 { color: var(--accent); }
+    .compare-col.b h4 { color: #a0a0b0; }
+    .compare-col p { font-size: 0.88rem; color: #b0b0c0; margin-bottom: 0.7rem; }
+    .compare-col .num-big {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .closing-question {
+      background: var(--bg3);
+      border-left: 3px solid var(--accent);
+      padding: 1.6rem 1.8rem;
+      margin: 3rem 0 2rem;
+      font-size: 1.05rem;
+      color: #c8c8d8;
+      font-style: italic;
+      line-height: 1.8;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-family: 'Courier New', monospace;
+      font-size: 0.67rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      line-height: 2;
+    }
+
+    @media (max-width: 600px) {
+      .site-header, main, .hero, .dossier-label { padding-left: 1rem; padding-right: 1rem; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .tl-item { grid-template-columns: 80px 1fr; }
+      .compare-grid { grid-template-columns: 1fr; }
+    }
+  
+  /* ═══════════════════════════════════════════
+     DUNKELFELD.REPORT — CSS STANDARD OVERRIDE
+     Farben, Lesbarkeit, DSGVO-konform
+     ═══════════════════════════════════════════ */
+  :root {
+    --dk-bg:       #09090b;
+    --dk-surface:  #111113;
+    --dk-border:   #27272a;
+    --dk-amber:    #e8c547;
+    --dk-amber-dim:#b89a2f;
+    --dk-text:     #d4d4d8;
+    --dk-muted:    #71717a;
+    --dk-bright:   #f4f4f5;
+    --dk-source-bg:#1a1a2e;
+  }
+
+  /* Basis-Reset auf Standard */
+  html { background: var(--dk-bg); }
+  body {
+    background: var(--dk-bg) !important;
+    color: var(--dk-text) !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    max-width: 720px !important;
+    margin: 0 auto !important;
+    padding: 48px 24px 80px !important;
+  }
+
+  /* Wrapper / Container auf 720px begrenzen */
+  .container, .content, main, article,
+  .article-body, .hero, .body-text {
+    max-width: 720px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Absätze */
+  p {
+    padding-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Überschriften */
+  h1 { color: var(--dk-bright) !important; }
+  h2, h3, h4 { color: var(--dk-bright) !important; }
+
+  /* Links */
+  a {
+    color: var(--dk-amber) !important;
+    text-decoration: none !important;
+  }
+  a:hover {
+    text-decoration: underline !important;
+  }
+
+  /* Labels / Metadaten */
+  .label, .meta, .article-meta, .dossier-id, .site-label,
+  .tag, .category, time, .date {
+    font-family: 'Courier New', Courier, monospace !important;
+  }
+
+  /* Quellenboxen */
+  .source-box, .quellen-box, .source, .sources,
+  blockquote, .zitat, .fact-box, .info-box,
+  .quelle, .source-entry, .reference {
+    background: var(--dk-source-bg) !important;
+    border-left: 3px solid var(--dk-amber) !important;
+    padding: 1rem 1.2rem !important;
+    margin-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+  }
+
+  /* Tabellen */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--dk-surface) !important;
+    color: var(--dk-amber) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.75rem !important;
+    padding: 0.6rem 0.8rem !important;
+    text-align: left;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--dk-border) !important;
+  }
+  td {
+    padding: 0.7rem 0.8rem !important;
+    border-bottom: 1px solid var(--dk-border) !important;
+    color: var(--dk-text) !important;
+    font-size: 0.95rem !important;
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+
+  /* Site-Header Breite */
+  .site-header, header, nav {
+    max-width: 100% !important;
+  }
+
+  /* Farbkorrekturen: alte Amber-Töne → Standard */
+  [style*="color: #d4a017"], [style*="color:#d4a017"] { color: var(--dk-amber) !important; }
+  [style*="color: #b8860b"], [style*="color:#b8860b"] { color: var(--dk-amber) !important; }
+
+  /* Lesbarkeit: dunkle Texte aufhellen */
+  [style*="color: #666"], [style*="color:#666"],
+  [style*="color: #555"], [style*="color:#555"] {
+    color: var(--dk-muted) !important;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-logo">● dunkelfeld.report</div>
+  <nav><a href="index.html">← Alle Dossiers</a></nav>
+</header>
+
+<div class="dossier-label">● DOSSIER 001 / JUNI 2026 / INSTITUTIONELLES VERSAGEN</div>
+
+<div class="hero">
+  <h1>Großbritannien:<br><span>Skandal und Schweigen</span></h1>
+  <p class="subtitle">Jahrzehntelange Vertuschung, hunderttausende Opfer, eine Staatsreaktion mit mehr Zensur als Aufarbeitung — und ein Vergleich, der Fragen aufwirft.</p>
+  <div class="hero-meta">
+    <span>DOSSIER 001</span>
+    <span>STAND: JUNI 2026</span>
+    <span>QUELLENBASIERT</span>
+    <span>PRIMÄRQUELLEN: CASEY AUDIT · WIKIPEDIA · AL JAZEERA · EURONEWS · PARLIAMENT.UK</span>
+  </div>
+</div>
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="num">~250.000</div>
+    <div class="label">Geschätzte Opfer (Lowe-Extrapolation, umstritten)</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">149</div>
+    <div class="label">Lokalbehörden mit dokumentierten Fällen (Casey 2025)</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">1.400+</div>
+    <div class="label">Belegte Opfer allein in Rotherham (Jay Report 2014)</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">30+ J.</div>
+    <div class="label">Dokumentierter Zeitraum ohne nat. Untersuchung</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<main>
+
+  <div class="callout">
+    <div class="callout-label">Methodik</div>
+    Alle Angaben basieren auf primärquellenfähigen Dokumenten: dem Casey National Audit (Juni 2025), dem Jay Report (2014), parlamentarischen Protokollen (UK Parliament), Berichten von Al Jazeera, Euronews, Wikipedia (mit Einzelnachweisen) und dem Briefing Paper des UK House of Commons Research Service. Die 250.000-Opferzahl ist eine Extrapolation — sie wird im Dossier als solche ausgewiesen. Gesicherte Primärquelle ist der Casey Audit. Motive werden keiner Person zugeschrieben. Unschuldsvermutung gilt für alle laufenden Verfahren.
+  </div>
+
+  <h2>I. Was dokumentiert ist: Der Skandal</h2>
+
+  <p>Seit den 1980er-Jahren sind in England Fälle dokumentiert, in denen organisierte Tätergruppen systematisch Mädchen zwischen 11 und 16 Jahren über Geschenke, Aufmerksamkeit, Alkohol und Drogen annäherten — und anschließend vergewaltigten, traffickten und einschüchterten. Die Fälle wurden von Behörden über Jahrzehnte nicht verfolgt.</p>
+
+  <h3>Der Jay Report (2014) — Rotherham</h3>
+  <p>Professor Alexis Jay stellte in ihrem 2014 veröffentlichten Bericht für Rotherham fest: Mindestens 1.400 Kinder waren zwischen 1997 und 2013 Opfer organisierter sexueller Ausbeutung. Behörden wussten von den Missständen — und handelten nicht. Als Grund wurde dokumentiert: Die zuständigen Stellen fürchteten, bei einer Strafverfolgung als rassistisch zu gelten, da die Tätergruppen überwiegend aus dem britisch-pakistanischen Milieu stammten.</p>
+
+  <div class="source-box">
+    <strong>PRIMÄRQUELLE</strong><br>
+    Jay, A. (2014): „Independent Inquiry into Child Sexual Exploitation in Rotherham 1997–2013"<br>
+    Rotherham Metropolitan Borough Council<br>
+    → öffentlich zugänglich: rotherham.gov.uk
+  </div>
+
+  <h3>Der Casey National Audit (Juni 2025)</h3>
+  <p>Baroness Louise Casey veröffentlichte im Juni 2025 einen nationalen Audit zu gruppenbasierter sexueller Ausbeutung. Kernbefunde:</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">BEFUND 1</div>
+      <div class="tl-text"><strong>149 Lokalbehörden</strong> mit dokumentierten Fällen gruppenbasierter sexueller Ausbeutung.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">BEFUND 2</div>
+      <div class="tl-text"><strong>Ethnizitätsdaten wurden aktiv verschleiert.</strong> Casey fand Fallakten, in denen das Wort „Pakistani" mit Tipp-Ex unkenntlich gemacht worden war.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">BEFUND 3</div>
+      <div class="tl-text"><strong>Opfer wurden systematisch diskreditiert</strong>: als „schwierig", „promiskuitiv" oder als Eigenverantwortliche eingestuft — statt als Opfer schwerer Verbrechen.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">BEFUND 4</div>
+      <div class="tl-text"><strong>Datenlage bleibt unvollständig</strong>: Wegen inkonsistenter Erfassung ist das wahre Ausmaß national nicht bestimmbar.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">BEFUND 5</div>
+      <div class="tl-text"><strong>Taxi-Lizenzen</strong> aus anderen Regionen wurden verwendet, um Auflagen in Hochrisikogebieten zu umgehen — strukturell ermöglicht durch lokale Lizenzierungsregeln.</div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>PRIMÄRQUELLE</strong><br>
+    Casey, L. (2025): „National Audit on Group-based Child Sexual Exploitation and Abuse"<br>
+    UK Government Publication, Juni 2025<br><br>
+    <strong>SEKUNDÄR</strong><br>
+    Al Jazeera (17.06.2025): „What is the Casey report on UK grooming gangs, and why did Labour U-turn?"<br>
+    → aljazeera.com/news/2025/6/17/…<br><br>
+    Wikipedia: „Grooming gangs scandal" (laufend aktualisiert, mit Einzelnachweisen)<br>
+    → en.wikipedia.org/wiki/Grooming_gangs_scandal
+  </div>
+
+  <h3>Zur 250.000-Zahl</h3>
+  <div class="callout warn">
+    <div class="callout-label">Quellenhinweis: Umstrittene Zahl</div>
+    Die Zahl von 250.000 Opfern ist eine Extrapolation aus regionalen Daten (Lowe-Bericht). Piers Morgan bezeichnete sie öffentlich als „massiv übertrieben". Der Casey Audit selbst hält fest, dass wegen inkonsistenter Datenerfassung keine belastbare nationale Zahl existiert. Dieses Dossier verwendet die Zahl mit dem ausdrücklichen Hinweis auf ihren Status als Schätzung — nicht als gesicherte Tatsache.
+  </div>
+
+  <h2>II. Die Chronologie: Von der Vertuschung zur Reaktion</h2>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">1990er</div>
+      <div class="tl-text">Risky Business, ein unabhängiges Jugendhilfeprogramm in Rotherham, identifiziert bereits Grooming-Muster. Lokalbehörden reagieren nicht.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2011</div>
+      <div class="tl-text">Times-Reporter Andrew Norfolk zählt 14 Grooming-Gang-Verfahren in drei Jahren. Erster öffentlicher Druck auf die Behörden.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2012</div>
+      <div class="tl-text">Erste Verurteilung einer Grooming Gang in Rochdale. Keir Starmer war zu diesem Zeitpunkt Director of Public Prosecutions (DPP) und änderte CPS-Richtlinien zur Erleichterung von Strafverfolgungen in Missbrauchsfällen.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Aug. 2024</div>
+      <div class="tl-text">Musk bezeichnet nach den Southport-Messerattacken auf X das britische Innenministerium als mitschuldig. Die Auseinandersetzung zwischen Musk und der Labour-Regierung beginnt.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Jan. 2025</div>
+      <div class="tl-text">Musk postet auf X ab dem 1. Januar 2025 innerhalb weniger Tage 48-mal zu Grooming Gangs und britischer Politik. Er bezeichnet Starmer als „zutiefst mitschuldig an Massenvergewaltigungen" — ohne dafür Belege vorzulegen. Safeguarding-Ministerin Jess Phillips nennt er „Vergewaltigungs-Genozid-Apologetin". Ein Musk-Post erreicht 49 Millionen Aufrufe.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Jan. 2025</div>
+      <div class="tl-text">Starmer antwortet ohne Namensnennung: „Wer Lügen und Desinformation verbreitet, interessiert sich nicht für die Opfer, sondern für sich selbst." Die Labour-Regierung lehnt eine nationale Untersuchung zunächst ab — mit Verweis auf den bereits vorliegenden Jay-Report.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Juni 2025</div>
+      <div class="tl-text">Casey Audit veröffentlicht. Starmer macht vollständige Kehrtwende: Die Regierung akzeptiert alle 12 Casey-Empfehlungen. National Crime Agency leitet Operation Beaconport ein — Überprüfung hunderte geschlossener Fallakten.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Dez. 2025</div>
+      <div class="tl-text">Home Secretary Shabana Mahmood kündigt im Parlament die Independent Inquiry into Grooming Gangs an. Baroness Anne Longfield wird als Vorsitzende ernannt.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">März 2026</div>
+      <div class="tl-text">Terms of Reference der Inquiry veröffentlicht. Schottland kündigt separate Untersuchung an (Prof. Alexis Jay). Operation Beaconport verweist erste Fälle zur Neuuntersuchung an Polizeibehörden zurück.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Juni 2026</div>
+      <div class="tl-text">MP Rupert Lowe veröffentlicht „The Rape Gang Inquiry Report" auf X. Die nationale Debatte läuft weiter.</div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>QUELLEN</strong><br>
+    Wikipedia: „Grooming gangs scandal" (mit Einzelnachweisen, laufend aktualisiert)<br>
+    Northeastern University News (08.01.2025): „Why Is Elon Musk Attacking Keir Starmer Over Grooming Gangs?"<br>
+    Euronews (09.01.2025): „What we know about Elon Musk's attack on Keir Starmer"<br>
+    Tortoise Media (06.01.2025): „Musk's obsession with Britain is complicated"<br>
+    House of Commons Research Briefing CBP-10613 (März 2026): „The Independent Inquiry into Grooming Gangs"<br>
+    → researchbriefings.files.parliament.uk/documents/CBP-10613/CBP-10613.pdf
+  </div>
+
+  <h2>III. Was dokumentiert ist — und was nicht</h2>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Behauptung / Befund</th>
+        <th>Status</th>
+        <th>Quelle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Mindestens 1.400 Opfer in Rotherham (1997–2013)</td>
+        <td><span class="tag g">BELEGT</span></td>
+        <td>Jay Report 2014</td>
+      </tr>
+      <tr>
+        <td>Behörden wussten von Missständen und handelten nicht</td>
+        <td><span class="tag g">BELEGT</span></td>
+        <td>Jay Report, Casey Audit</td>
+      </tr>
+      <tr>
+        <td>Ethnizitätsdaten wurden in Fallakten aktiv verschleiert</td>
+        <td><span class="tag g">BELEGT</span></td>
+        <td>Casey Audit 2025 (Tipp-Ex-Befund)</td>
+      </tr>
+      <tr>
+        <td>149 Lokalbehörden mit dokumentierten Fällen</td>
+        <td><span class="tag g">BELEGT</span></td>
+        <td>Casey Audit 2025</td>
+      </tr>
+      <tr>
+        <td>250.000 Opfer national</td>
+        <td><span class="tag o">EXTRAPOLATION</span></td>
+        <td>Lowe-Bericht — vom Casey Audit nicht bestätigt</td>
+      </tr>
+      <tr>
+        <td>Starmer persönlich blockierte Strafverfolgungen aus politischen Gründen</td>
+        <td><span class="tag r">NICHT BELEGT</span></td>
+        <td>Dokumentiert: Starmer initiierte 2012 erste Grooming-Verurteilung, änderte CPS-Richtlinien</td>
+      </tr>
+      <tr>
+        <td>Online Safety Act schränkt Meinungsfreiheit auf X ein</td>
+        <td><span class="tag g">BELEGT</span></td>
+        <td>UK Online Safety Act 2023 (Ofcom-Vollmachten dokumentiert)</td>
+      </tr>
+      <tr>
+        <td>Verhaftungen wegen Social-Media-Posts zum Thema Grooming</td>
+        <td><span class="tag y">TEILBELEGT</span></td>
+        <td>Einzelfälle dokumentiert — keine Systematik nachgewiesen</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>IV. Der Vergleich: Zwei Fälle — zwei Reaktionen</h2>
+
+  <p>Im März 2026 erschütterte ein Einzelfall die deutsche Öffentlichkeit: Schauspielerin Collien Fernandes erhob im Spiegel schwere Vorwürfe gegen ihren Ex-Mann Christian Ulmen. Die mediale und politische Reaktion war unmittelbar und massiv.</p>
+
+  <div class="compare-grid">
+    <div class="compare-col a">
+      <h4>Fall Fernandes/Ulmen — Deutschland 2026</h4>
+      <p><span class="num-big">1</span>Betroffene Person</p>
+      <p>Vorwürfe: Digitaler Missbrauch, Fake-Profile, sexuelle Übergriffe online. Verfahren in Deutschland eingestellt (fehlende Mitwirkung). Spanisches Verfahren ausgesetzt. Deepfake-Vorwurf laut Verteidigung nie explizit erhoben.</p>
+      <p><strong>Politische Reaktion:</strong> Bundesjustizministerin kündigt weitreichende Gesetzesänderung an (§ 98d StPO — biometrische Internetfahndung für 82 Millionen Menschen) — noch vor Abschluss der Ermittlungen.</p>
+      <p><strong>Mediale Reaktion:</strong> Spiegel-Titelgeschichte, Talkshow-Flut, Zehntausende auf Demonstrationen. SZ, Zeit, Funke-Zeitungen, ARD Tagesschau korrigierten später nachweislich falsche Berichterstattung.</p>
+    </div>
+    <div class="compare-col b">
+      <h4>UK Grooming Scandal — Großbritannien 1990er–2026</h4>
+      <p><span class="num-big" style="color:#a0a0b0">1.400+</span>Belegte Opfer in Rotherham allein</p>
+      <p>Vorwürfe: Systematische Vergewaltigung, Trafficking, Einschüchterung minderjähriger Mädchen durch organisierte Gruppen. Jahrzehntelang dokumentiert, nicht verfolgt.</p>
+      <p><strong>Politische Reaktion:</strong> Jahrzehnte kein politisches Handeln. Nationale Untersuchung erst nach Musk-Kampagne und Casey Audit (2025) angekündigt — 30+ Jahre nach ersten dokumentierten Fällen.</p>
+      <p><strong>Mediale Reaktion:</strong> Kaum internationale Berichterstattung bis 2025. Thema galt als politisch heikel. Erst Musks X-Posts brachten es auf 49 Millionen Aufrufe.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Redaktioneller Hinweis</div>
+    Dieser Vergleich stellt keine Wertung beider Fälle dar und behauptet keine kausale Verbindung. Er dokumentiert ein belegbares Missverhältnis in Reaktionsgeschwindigkeit und -intensität. Warum dieses Missverhältnis besteht, überlassen wir dem Leser.
+  </div>
+
+  <div class="source-box">
+    <strong>QUELLEN FERNANDES/ULMEN</strong><br>
+    kettner-edelmetalle.de (24.03.2026): „Fall Fernandes gegen Ulmen: Staatsanwaltschaft stellt Ermittlungen ein"<br>
+    anwalt.de (28.03.2026): „Wenn Tränen Gesetze machen: Der Fall Fernandes, § 98d StPO"<br>
+    WirtschaftsWoche (aktualisiert 21.04.2026): „Fernandes gegen Ulmen: Solche Vorwürfe sind das Worst-Case-Szenario"<br>
+    kettner-edelmetalle.de (02.04.2026): „Medien-Blamage im Fall Ulmen: Wenn Haltungsjournalismus die Fakten überholt"<br>
+    t-online (23.03.2026): „Fernandes gegen Ulmen: Der Tsunami der Empörung"<br><br>
+    Kanzlei Schertz Bergmann, Presseerklärung 27.03.2026: „Unser Mandant hat zu keinem Zeitpunkt Deepfake-Videos [...] hergestellt und/oder verbreitet."<br>
+    Anmerkung: Für Ulmen gilt die Unschuldsvermutung. Das Verfahren ist nicht abgeschlossen.
+  </div>
+
+  <h2>V. Die Staatsreaktion: Aufarbeitung oder Ablenkung?</h2>
+
+  <p>Parallel zur angekündigten Grooming-Untersuchung verabschiedete Großbritannien weitreichende Maßnahmen, die Kritiker als unverhältnismäßig bezeichnen. Dokumentiert:</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">2023</div>
+      <div class="tl-text"><strong>Online Safety Act</strong> verabschiedet. Ofcom erhält Vollmacht, Social-Media-Plattformen bei Verstoß mit bis zu 10 % des globalen Jahresumsatzes zu bestrafen. X (Musk) ist explizit betroffen.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2024–2025</div>
+      <div class="tl-text"><strong>Verhaftungen wegen Social-Media-Posts</strong> im Umfeld der Southport-Unruhen. Einzelfälle dokumentiert. Systematische Aufschlüsselung steht aus.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2025</div>
+      <div class="tl-text"><strong>Digitale ID</strong> als politisches Projekt vorangetrieben. Direkter Zusammenhang mit Grooming-Debatte von Regierung kommuniziert (Altersverifikation als Argument).</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Juni 2025</div>
+      <div class="tl-text"><strong>Kehrtwende:</strong> Regierung akzeptiert alle 12 Casey-Empfehlungen, kündigt nationale Inquiry an. NCA leitet Operation Beaconport ein.</div>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <div class="callout-label">Strukturelle Beobachtung</div>
+    Dass der Online Safety Act zeitlich vor der nationalen Grooming-Untersuchung verabschiedet wurde, ist dokumentiert. Ob zwischen beiden ein inhaltlicher Zusammenhang besteht, lässt sich aus den vorliegenden Primärquellen nicht ableiten. Die zeitliche Abfolge ist Teil des dokumentierten Sachverhalts.
+  </div>
+
+  <h2>VI. Musk: Katalysator oder Kontaminierung?</h2>
+
+  <p>Elon Musks Intervention ab Januar 2025 ist in ihrer Wirkung dokumentiert: Ein Post von ihm zum Thema erreichte 49 Millionen Aufrufe und 284.000 Likes. Das Thema wurde dadurch international sichtbar — gleichzeitig verbreitete Musk in mehreren Posts belegbar falsche Behauptungen.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Musk-Aussage</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>„Starmer war tief mitschuldig an Massenvergewaltigungen als Austausch für Stimmen"</td>
+        <td><span class="tag r">NICHT BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Jess Phillips sei eine „Vergewaltigungs-Genozid-Apologetin"</td>
+        <td><span class="tag r">NICHT BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Starmer habe als DPP Strafverfolgungen blockiert</td>
+        <td><span class="tag r">WIDERLEGT</span></td>
+      </tr>
+      <tr>
+        <td>Das Grooming-Phänomen existiert und wurde jahrzehntelang nicht ausreichend verfolgt</td>
+        <td><span class="tag g">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Ethnizität der Tätergruppen wurde in Behördenakten verschleiert</td>
+        <td><span class="tag g">BELEGT</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <strong>QUELLEN</strong><br>
+    Euronews (09.01.2025): „What we know about Elon Musk's attack on Keir Starmer"<br>
+    Tortoise Media (06.01.2025): „Musk's obsession with Britain is complicated"<br>
+    New Statesman (31.07.2025): „Why is Elon Musk tweeting about Britain's grooming gangs?"<br>
+    CSO Hate Report (Mai 2025): „Elon Musk, X and Amplification of Islamophobia in the UK"<br>
+    → csohate.org/wp-content/uploads/2025/05/…<br>
+    Fortune (07.01.2025): „Why Musk waded into U.K. child grooming gangs scandal"
+  </div>
+
+  <div class="closing-question">
+    Baroness Casey stellte 2025 fest, dass das Wort „Pakistani" in amtlichen Fallakten mit Tipp-Ex unkenntlich gemacht worden war. Der Jay Report dokumentierte 2014 mindestens 1.400 Opfer in einer einzigen Stadt — für einen Zeitraum von 16 Jahren.<br><br>
+    In Deutschland löste 2026 ein Einzelfall mit ungeklärtem Ausgang eine Gesetzgebungswelle aus, die alle 82 Millionen Bürger betrifft.<br><br>
+    <em>Was entscheidet darüber, welche Opfer politische Reaktionen auslösen — und welche nicht?</em>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Verknüpfte Dossiers</div>
+    Dossier 002 — Globale Ausbeutungssysteme &nbsp;|&nbsp; Dossier 003 — Institutionelles Versagen: Dutroux, Savile, Epstein &nbsp;|&nbsp; Dossier 004 — Sonderrechtszonen
+  </div>
+
+  <p style="font-size: 0.73rem; color: var(--muted); font-family: 'Courier New', monospace; margin-top: 3rem; line-height: 1.7; letter-spacing: 0.03em;">
+    METHODIK — Alle Angaben basieren auf öffentlich zugänglichen Primärquellen. Extrapolierte Zahlen sind als solche gekennzeichnet. Motive werden keiner Person zugeschrieben. Für alle Personen in laufenden oder eingestellten Verfahren gilt die Unschuldsvermutung. Der Vergleich Fernandes/Ulmen — UK Grooming dokumentiert ein Missverhältnis ohne kausale Schlussfolgerung.
+  </p>
+
+</main>
+
+<footer>
+  <div>dunkelfeld.report · Dossier 001 · Großbritannien: Skandal und Schweigen · Juni 2026</div>
+  <div style="margin-top: 0.4rem;">Fakten, die das Licht nicht scheuen.</div>
+  <div style="margin-top: 0.8rem;"><a href="index.html">← Zurück zur Übersicht</a></div>
+</footer>
+
+</body>
+</html>

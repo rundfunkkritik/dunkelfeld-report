@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOSSIER 005 — Die Dynastien | dunkelfeld.report</title>
+  <meta name="description" content="Wer besitzt die Welt? Eine quellenbasierte Dokumentation über dynastischen Reichtum, historische Machtakkumulation und strukturelle Kontinuität — von den Medici bis zu den Waltons.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #09090b;
+      --bg2: #111114;
+      --bg3: #1a1a2e;
+      --accent: #e8c547;
+      --accent-dim: #b89a2e;
+      --text: #e2e2e8;
+      --muted: #5a5a6a;
+      --border: #2a2a3a;
+      --red: #e05252;
+      --green: #52b788;
+      --yellow: #e8c547;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.08rem;
+      line-height: 1.85;
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* HEADER */
+    .site-header {
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .site-logo {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .site-header nav {
+      margin-left: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+    .site-header nav a { color: var(--muted); }
+    .site-header nav a:hover { color: var(--accent); }
+
+    /* DOSSIER LABEL */
+    .dossier-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 3.5rem 2rem 0.6rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    .hero {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem 2.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero .subtitle {
+      font-size: 1.1rem;
+      color: #a0a0b0;
+      line-height: 1.7;
+      margin-bottom: 1.8rem;
+      font-style: italic;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* STAT CARDS */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      max-width: 760px;
+      margin: 0 auto 0;
+    }
+    .stat-card {
+      background: var(--bg2);
+      padding: 1.4rem 1.2rem;
+      text-align: center;
+    }
+    .stat-card .num {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--accent);
+      font-family: Georgia, serif;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-card .label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* DIVIDER */
+    .section-divider {
+      max-width: 760px;
+      margin: 2.5rem auto;
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* MAIN CONTENT */
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    h2 {
+      font-size: 1.45rem;
+      color: var(--accent);
+      margin: 2.8rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      font-weight: 700;
+    }
+    h3 {
+      font-size: 1.1rem;
+      color: #c8c8d8;
+      margin: 1.8rem 0 0.6rem;
+      font-weight: 600;
+    }
+    p { margin-bottom: 1.2rem; }
+
+    /* SOURCE BOX */
+    .source-box {
+      background: var(--bg3);
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.2rem;
+      margin: 1.4rem 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: #9090a8;
+      line-height: 1.6;
+    }
+    .source-box strong { color: var(--accent); }
+
+    /* CALLOUT */
+    .callout {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent-dim);
+      padding: 1.2rem 1.4rem;
+      margin: 1.6rem 0;
+      font-size: 0.95rem;
+      color: #b8b8c8;
+    }
+    .callout-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .callout.warn { border-left-color: #c87a3a; }
+    .callout.warn .callout-label { color: #c87a3a; }
+
+    /* TABLE */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.4rem 0;
+      font-size: 0.88rem;
+    }
+    .data-table th {
+      background: var(--bg3);
+      color: var(--accent);
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.7rem 0.9rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table td {
+      padding: 0.75rem 0.9rem;
+      border-bottom: 1px solid var(--border);
+      color: #c8c8d8;
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: rgba(232,197,71,0.04); }
+    .tag {
+      display: inline-block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.62rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 2px;
+      letter-spacing: 0.06em;
+    }
+    .tag.b { background: rgba(232,197,71,0.15); color: var(--accent); }
+    .tag.g { background: rgba(82,183,136,0.15); color: var(--green); }
+    .tag.r { background: rgba(224,82,82,0.15); color: var(--red); }
+
+    /* TIMELINE */
+    .timeline { margin: 1.4rem 0; }
+    .tl-item {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 0 1.2rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .tl-item:last-child { border-bottom: none; }
+    .tl-year {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--accent);
+      padding-top: 0.1rem;
+      letter-spacing: 0.04em;
+    }
+    .tl-text { font-size: 0.92rem; color: #c0c0d0; line-height: 1.6; }
+
+    /* DYNASTY CARD */
+    .dynasty-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      margin: 1.6rem 0;
+      overflow: hidden;
+    }
+    .dynasty-header {
+      background: var(--bg3);
+      padding: 0.9rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .dynasty-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .dynasty-era {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+    .dynasty-body { padding: 1.1rem 1.2rem; }
+    .dynasty-body p { font-size: 0.92rem; color: #b8b8c8; margin-bottom: 0.8rem; }
+    .dynasty-fact {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-top: 0.4rem;
+    }
+
+    /* CLOSING QUESTION */
+    .closing-question {
+      background: var(--bg3);
+      border-left: 3px solid var(--accent);
+      padding: 1.6rem 1.8rem;
+      margin: 3rem 0 2rem;
+      font-size: 1.05rem;
+      color: #c8c8d8;
+      font-style: italic;
+      line-height: 1.75;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      line-height: 2;
+    }
+
+    @media (max-width: 600px) {
+      .site-header { padding: 1rem; }
+      main, .hero, .dossier-label { padding-left: 1rem; padding-right: 1rem; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .tl-item { grid-template-columns: 70px 1fr; }
+    }
+  
+  /* ═══════════════════════════════════════════
+     DUNKELFELD.REPORT — CSS STANDARD OVERRIDE
+     Farben, Lesbarkeit, DSGVO-konform
+     ═══════════════════════════════════════════ */
+  :root {
+    --dk-bg:       #09090b;
+    --dk-surface:  #111113;
+    --dk-border:   #27272a;
+    --dk-amber:    #e8c547;
+    --dk-amber-dim:#b89a2f;
+    --dk-text:     #d4d4d8;
+    --dk-muted:    #71717a;
+    --dk-bright:   #f4f4f5;
+    --dk-source-bg:#1a1a2e;
+  }
+
+  /* Basis-Reset auf Standard */
+  html { background: var(--dk-bg); }
+  body {
+    background: var(--dk-bg) !important;
+    color: var(--dk-text) !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    max-width: 720px !important;
+    margin: 0 auto !important;
+    padding: 48px 24px 80px !important;
+  }
+
+  /* Wrapper / Container auf 720px begrenzen */
+  .container, .content, main, article,
+  .article-body, .hero, .body-text {
+    max-width: 720px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Absätze */
+  p {
+    padding-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Überschriften */
+  h1 { color: var(--dk-bright) !important; }
+  h2, h3, h4 { color: var(--dk-bright) !important; }
+
+  /* Links */
+  a {
+    color: var(--dk-amber) !important;
+    text-decoration: none !important;
+  }
+  a:hover {
+    text-decoration: underline !important;
+  }
+
+  /* Labels / Metadaten */
+  .label, .meta, .article-meta, .dossier-id, .site-label,
+  .tag, .category, time, .date {
+    font-family: 'Courier New', Courier, monospace !important;
+  }
+
+  /* Quellenboxen */
+  .source-box, .quellen-box, .source, .sources,
+  blockquote, .zitat, .fact-box, .info-box,
+  .quelle, .source-entry, .reference {
+    background: var(--dk-source-bg) !important;
+    border-left: 3px solid var(--dk-amber) !important;
+    padding: 1rem 1.2rem !important;
+    margin-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+  }
+
+  /* Tabellen */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--dk-surface) !important;
+    color: var(--dk-amber) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.75rem !important;
+    padding: 0.6rem 0.8rem !important;
+    text-align: left;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--dk-border) !important;
+  }
+  td {
+    padding: 0.7rem 0.8rem !important;
+    border-bottom: 1px solid var(--dk-border) !important;
+    color: var(--dk-text) !important;
+    font-size: 0.95rem !important;
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+
+  /* Site-Header Breite */
+  .site-header, header, nav {
+    max-width: 100% !important;
+  }
+
+  /* Farbkorrekturen: alte Amber-Töne → Standard */
+  [style*="color: #d4a017"], [style*="color:#d4a017"] { color: var(--dk-amber) !important; }
+  [style*="color: #b8860b"], [style*="color:#b8860b"] { color: var(--dk-amber) !important; }
+
+  /* Lesbarkeit: dunkle Texte aufhellen */
+  [style*="color: #666"], [style*="color:#666"],
+  [style*="color: #555"], [style*="color:#555"] {
+    color: var(--dk-muted) !important;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-logo">● dunkelfeld.report</div>
+  <nav><a href="index.html">← Alle Dossiers</a></nav>
+</header>
+
+<div class="dossier-label">● DOSSIER 005 / JUNI 2026 / MACHTSTRUKTUREN</div>
+
+<div class="hero">
+  <h1>Die <span>Dynastien</span></h1>
+  <p class="subtitle">Wer besitzt die Welt? Vom Mittelalter bis heute: Wie dynastischer Reichtum entsteht, überlebt — und Strukturen formt.</p>
+  <div class="hero-meta">
+    <span>DOSSIER 005</span>
+    <span>JUNI 2026</span>
+    <span>QUELLENBASIERT</span>
+    <span>PRIMÄRQUELLEN: Forbes, Bloomberg, MPG, Oxfam, Wikipedia (Einzelnachweise)</span>
+  </div>
+</div>
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="num">2,9 Bio.$</div>
+    <div class="label">Vermögen der 25 reichsten Familien (2025)</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">+360 Mrd.</div>
+    <div class="label">Zuwachs in einem einzigen Jahr</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">3,55 Bio.$</div>
+    <div class="label">Unversteuerte Offshore-Vermögen (Oxfam 2024)</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">~100 J.</div>
+    <div class="label">Median-Kontinuität dt. Topvermögen (MPG 2025)</div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<main>
+
+  <div class="callout">
+    <div class="callout-label">Methodik</div>
+    Alle Angaben basieren auf öffentlich zugänglichen Primärquellen: Forbes-Milliardärslisten, Bloomberg Billionaires Index, Max-Planck-Gesellschaft (Forschungsbericht 2025), Oxfam-Berichte, Wikipedia (mit Einzelnachweisen), Deutschlandfunk, Süddeutsche Zeitung, SPIEGEL, ZEIT. Zahlenangaben zu historischen Vermögen sind inflationsbereinigte Schätzwerte aus akademischen Quellen — die Unsicherheitsmargen sind erheblich. Spekulation ist als solche gekennzeichnet. Motive werden keiner Person zugeschrieben.
+  </div>
+
+  <h2>I. Was die Forschung sagt</h2>
+
+  <p>Reichtum in Deutschland ist stark konzentriert — und oft tief in der Geschichte verwurzelt. Einige der größten Privatvermögen sind bis heute im Besitz von Familien, die schon vor über 100 Jahren Teil der ökonomischen Elite waren. Das ist kein Zitat aus einem kritischen Pamphlet, sondern das Ergebnis einer Studie der Max-Planck-Gesellschaft (2025).</p>
+
+  <div class="source-box">
+    <strong>QUELLE</strong><br>
+    Max-Planck-Gesellschaft (2025): „Wo Reichtum herkommt — und bleibt"<br>
+    → <a href="https://www.mpg.de/25909517/dynastischer-reichtum" target="_blank">mpg.de/25909517/dynastischer-reichtum</a><br><br>
+    <strong>QUELLE</strong><br>
+    Bloomberg Billionaires Index (2025): Die 25 reichsten Familienclans steigerten ihr Gesamtvermögen 2025 um fast 360 Milliarden Dollar auf 2,9 Billionen Dollar.<br>
+    → Manager Magazin, 2025
+  </div>
+
+  <p>Die strukturelle Frage, die sich daraus ergibt: Wie entsteht Vermögen, das sich über Generationen hält — und welche Mechanismen sichern diese Kontinuität ab?</p>
+
+  <h2>II. Die historischen Dynastien</h2>
+
+  <p>Ein kurzer Blick auf die bekanntesten Dynastien der Geschichte — nicht als moralische Abrechnung, sondern als Musteranalyse: Welche Mechanismen tauchen immer wieder auf?</p>
+
+  <div class="dynasty-card">
+    <div class="dynasty-header">
+      <div class="dynasty-name">Jakob Fugger — „der Reiche"</div>
+      <div class="dynasty-era">1459–1525 · Augsburg</div>
+    </div>
+    <div class="dynasty-body">
+      <p>Einer der ersten modernen Kapitalisten. Sein inflationsbereinigtes Vermögen wird auf rund 400 Milliarden Dollar in heutiger Währung geschätzt. Er monopolisierte den Silber- und Kupferhandel in Tirol und Ungarn, finanzierte Kaiserkrönungen — und bezahlte die Stimmen der Kurfürsten bei der Wahl Karls V.</p>
+      <p>Die Verflechtung mit dem Vatikan war so eng, dass der Humanist Ulrich von Hutten 1520 schrieb, in Rom sei durch die Fugger „alles zu erreichen, vom Erlass einer Bulle bis zum Erlass der Höllenstrafen."</p>
+      <p>Martin Luther nannte die Geldmacht der Fugger 1520 unchristlich: „Man müsste wirklich dem Fugger und dergleichen einmal den Zaum anlegen."</p>
+      <div class="dynasty-fact">→ Quellen: Wikipedia (Fugger), finanzen100.de, Deutschlandfunk</div>
+    </div>
+  </div>
+
+  <div class="dynasty-card">
+    <div class="dynasty-header">
+      <div class="dynasty-name">Die Medici</div>
+      <div class="dynasty-era">14.–17. Jahrhundert · Florenz</div>
+    </div>
+    <div class="dynasty-body">
+      <p>Aufstieg durch die Banco Medici mit Filialen in ganz Europa. Zwei Mitglieder wurden Päpste; die Familie stellte Großherzöge der Toskana und dominierte mehr als 300 Jahre lang die Geschicke von Florenz.</p>
+      <p>Die Pazzi-Verschwörung (1478) zeigt das damalige Instrument der Machterhaltung: In der Kathedrale Santa Maria del Fiore wurde Giuliano de' Medici während des Hochamts ermordet. Hinter dem Komplott standen rivalisierende Bankiersfamilien — und Papst Sixtus IV. persönlich.</p>
+      <div class="dynasty-fact">→ Quellen: Wikipedia (Medici, Pazzi-Verschwörung)</div>
+    </div>
+  </div>
+
+  <div class="dynasty-card">
+    <div class="dynasty-header">
+      <div class="dynasty-name">Die Rothschilds</div>
+      <div class="dynasty-era">Ab 18. Jahrhundert · Frankfurt / London / Paris</div>
+    </div>
+    <div class="dynasty-body">
+      <p>Mayer Amschel Rothschild entsandte seine fünf Söhne in die wichtigsten europäischen Finanzplätze und baute ein transnationales Banknetzwerk auf. In der Mitte des 19. Jahrhunderts waren die Rothschilds die reichste Familie Europas.</p>
+      <p>Ihr dokumentierter Aufstieg nach Waterloo: Sie kauften massenhaft britische Staatsanleihen auf, die nach dem Sieg dramatisch stiegen. Zuvor übernahmen sie die Besoldung britischer Truppen in Europa gegen hohe Zinsen.</p>
+      <p>Das heutige Vermögen der Familie wird auf mehr als 7 Milliarden Dollar geschätzt — ein Bruchteil des historischen Gipfels.</p>
+      <div class="callout warn" style="margin: 0.8rem 0 0;">
+        <div class="callout-label">Redaktioneller Hinweis</div>
+        Die Rothschilds sind bis heute Gegenstand antisemitischer Hetzkampagnen und Verschwörungstheorien, die historisch auf NS-Propaganda und mittelalterliche Judenfeindschaft zurückgehen. Dieses Dossier dokumentiert belegbare wirtschaftliche Fakten — nicht spekulative Netzwerkkonstrukte. Falsche Zuschreibungen untergraben legitime strukturelle Kritik.
+      </div>
+      <div class="dynasty-fact" style="margin-top:0.8rem">→ Quellen: Wikipedia (Rothschild), Zeilen & Zeiten, BPB (Verschwörungsmythen und Antisemitismus)</div>
+    </div>
+  </div>
+
+  <div class="dynasty-card">
+    <div class="dynasty-header">
+      <div class="dynasty-name">John D. Rockefeller</div>
+      <div class="dynasty-era">1839–1937 · USA</div>
+    </div>
+    <div class="dynasty-body">
+      <p>Gründer von Standard Oil (1870), erster Dollar-Milliardär der Geschichte. Inflationsbereinigt: rund 340 Milliarden Dollar. Auf dem Höhepunkt kontrollierte Standard Oil bis zu 90 Prozent aller US-Ölraffinerien, Pipelines und des Ölhandels.</p>
+      <p>1911 ordnete der Oberste Gerichtshof der USA die Zerschlagung von Standard Oil an — eines der bedeutendsten Kartellurteile der Geschichte. Die Teilunternehmen wurden zu den Vorläufern von ExxonMobil, Chevron und BP America.</p>
+      <p>Ironische Wendung, dokumentiert: Durch die Aufspaltung wurde Rockefeller noch reicher, da die Einzeltitel im Wert stiegen.</p>
+      <div class="dynasty-fact">→ Quellen: frag-machiavelli.de, schwerd.info, Caspar Dohmen, WELT (Kommentar Rockefeller-Szenario)</div>
+    </div>
+  </div>
+
+  <h2>III. Die Dynastien der Gegenwart</h2>
+
+  <p>Bloomberg und Forbes veröffentlichen jährlich die Ranglisten der reichsten Familien. Stand 2025:</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Rang</th>
+        <th>Familie</th>
+        <th>Land</th>
+        <th>Vermögen (Mrd.$)</th>
+        <th>Quelle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Walton</td><td>USA</td><td>513</td><td><span class="tag g">BELEGBAR</span></td></tr>
+      <tr><td>2</td><td>Al Nahyan</td><td>VAE</td><td>323</td><td><span class="tag g">BELEGBAR</span></td></tr>
+      <tr><td>3</td><td>Al Thani</td><td>Katar</td><td>172</td><td><span class="tag g">BELEGBAR</span></td></tr>
+      <tr><td>4</td><td>Hermès</td><td>Frankreich</td><td>170</td><td><span class="tag g">BELEGBAR</span></td></tr>
+      <tr><td>5</td><td>Koch</td><td>USA</td><td>148</td><td><span class="tag g">BELEGBAR</span></td></tr>
+      <tr><td>12</td><td>Albrecht (Aldi)</td><td>Deutschland</td><td>~60</td><td><span class="tag g">BELEGBAR</span></td></tr>
+      <tr><td>18</td><td>Quandt/Klatten (BMW)</td><td>Deutschland</td><td>~46</td><td><span class="tag g">BELEGBAR</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <strong>QUELLE</strong><br>
+    Bloomberg Billionaires Index; Manager Magazin (2025); DAS INVESTMENT Ranking 2024; Forbes 40. Milliardärs-Liste (März 2026)
+  </div>
+
+  <h3>Die Waltons — Walmart</h3>
+  <p>Die Familie Walton, Erben von Walmart-Gründer Sam Walton, ist mit einem Vermögen von über 513 Milliarden Dollar die reichste Familie der Welt. Ihr Vermögen wuchs 2024 um 172,7 Milliarden Dollar — umgerechnet 473 Millionen Dollar pro Tag.</p>
+  <p>Dokumentiert: Walmart zahlte lange Stundenlöhne an der US-Armutsgrenze; das Unternehmen wurde für gewerkschaftsfeindliche Praktiken verurteilt. 2025 warf das US-Justizministerium Walmart vor, zwischen 2006 und 2012 über sein Apothekennetz mehr als 5,2 Milliarden Opioid-Pillen ausgeliefert zu haben, die auf dem Schwarzmarkt landeten (Verfahren anhängig, Unschuldsvermutung gilt).</p>
+
+  <div class="source-box">
+    <strong>QUELLE</strong><br>
+    n-tv.de: „Der Aldi-Clan aus Arkansas" (Walton/Walmart Arbeitsbedingungen)<br>
+    US-Justizministerium: Klage gegen Walmart (Opioid-Vertrieb) — Verfahren laufend
+  </div>
+
+  <h3>Die Quandts — BMW und NS-Vergangenheit</h3>
+  <p>Die Quandt-Familie hält knapp 50 Prozent der BMW-Aktien und zählt mit rund 46 Milliarden Dollar zu den reichsten Familien Deutschlands. Firmengründer Günther Quandt war NSDAP-Mitglied. Das eng mit der deutschen Industriegeschichte verknüpfte Unternehmen Krupp — nicht direkt Quandt, aber Teil desselben Industrienetzwerks — beschäftigte nach Schätzungen mindestens 100.000 Zwangsarbeiter während des Zweiten Weltkriegs. Alfried Krupp wurde in Nürnberg als Kriegsverbrecher verurteilt. Die Krupp-Stiftung ließ diesen Abschnitt erst 2022 wissenschaftlich aufarbeiten.</p>
+
+  <div class="source-box">
+    <strong>QUELLE</strong><br>
+    Tagesspiegel: „Die Rettung von BMW machte die Quandts reich"<br>
+    ZEIT (13.07.2023): „Zwangsarbeit und Nazi-Netzwerk: Rolle Krupps wird erforscht"<br>
+    Süddeutsche Zeitung: „Krupp-Stiftung lässt Nazi-Vergangenheit aufarbeiten" (2022)<br>
+    Deutschlandfunk: Vor 75 Jahren verhaftet — Alfried Krupp
+  </div>
+
+  <h3>Die Koch-Brüder — Dark Money</h3>
+  <p>Charles und David Koch (Koch Industries, ~148 Milliarden Dollar) finanzierten über ein Netzwerk aus Tarnfirmen, Think Tanks und Stiftungen politische Kampagnen zur Schwächung von Umweltschutzgesetzen und staatlicher Regulierung. In die US-Präsidentschaftswahlen 2012 flossen von den Kochs rund 400 Millionen Dollar. Diese verschleierte Finanzierung politischer Einflussnahme — „Dark Money" — ist in Amerika weitgehend legal.</p>
+
+  <div class="source-box">
+    <strong>QUELLE</strong><br>
+    SPIEGEL: „Milliardäre Charles und David Koch helfen Republikanern vs. Obama"<br>
+    DW: „Macht und Machenschaften USA: Gekaufte Politik"
+  </div>
+
+  <h2>IV. Das verborgene Vermögen</h2>
+
+  <p>Ein erheblicher Teil des globalen Reichtums entzieht sich jeder Messung. Oxfam schätzt, dass 2024 unversteuerte Vermögen von 3,55 Billionen US-Dollar in Steueroasen und nicht gemeldeten Konten versteckt waren. Die reichsten 0,1 Prozent der Menschen besitzen dabei rund 80 Prozent des gesamten unversteuerten Offshore-Vermögens.</p>
+
+  <p>Liechtenstein gilt seit Jahrzehnten als bevorzugter Standort für undurchsichtige Trusts und Stiftungen. Der SPIEGEL beschrieb bereits 1997, wie „fast jeder Wirtschaftskrimi von Format in Liechtenstein endet."</p>
+
+  <div class="source-box">
+    <strong>QUELLE</strong><br>
+    Oxfam (2026): „Untaxed wealth hidden offshore by richest 0.1% surpasses entire wealth of poorest half of humanity" → sharing.org<br>
+    ntv.de: „Superreiche verstecken weiter Gelder in Billionenhöhe"<br>
+    SPIEGEL (1997): „Der versteckte Schatz" (Liechtenstein)<br>
+    ICIJ Panama Papers Datenbank → icij.org/investigations
+  </div>
+
+  <h2>V. Muster: Was wiederkehrt</h2>
+
+  <p>Über Jahrhunderte und Kontinente hinweg lassen sich in der Dokumentation immer wieder ähnliche Strukturmerkmale erkennen — ohne dass damit Absicht oder Koordination behauptet wird:</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Merkmal</th>
+        <th>Historisches Beispiel</th>
+        <th>Gegenwärtiges Beispiel</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Staatsnähe / politische Finanzierung</td>
+        <td>Fugger → Kaiserkrönungen</td>
+        <td>Koch → Dark Money</td>
+        <td><span class="tag g">BELEGBAR</span></td>
+      </tr>
+      <tr>
+        <td>Transnationale Netzwerke</td>
+        <td>Rothschild → 5 Städte</td>
+        <td>Walton → globale Lieferketten</td>
+        <td><span class="tag g">BELEGBAR</span></td>
+      </tr>
+      <tr>
+        <td>Philanthropie als Reputationsarchitektur</td>
+        <td>Medici → Kunstpatronat</td>
+        <td>Rockefeller Foundation, Gates Foundation</td>
+        <td><span class="tag g">BELEGBAR</span></td>
+      </tr>
+      <tr>
+        <td>Offshore / Steuervermeidung</td>
+        <td>Liechtenstein-Stiftungen (hist.)</td>
+        <td>Panama Papers, Oxfam 2024</td>
+        <td><span class="tag g">BELEGBAR</span></td>
+      </tr>
+      <tr>
+        <td>NS-Verflechtung → kein Vermögensbruch</td>
+        <td>Krupp (Zwangsarbeit, Nürnberg)</td>
+        <td>Quandt (BMW, Aufarbeitung erst 2010er)</td>
+        <td><span class="tag g">BELEGBAR</span></td>
+      </tr>
+      <tr>
+        <td>Vermögenskontinuität über Generationen</td>
+        <td>MPG-Studie (dt. Topvermögen, 100+ Jahre)</td>
+        <td>Walton, Quandt, Albrecht</td>
+        <td><span class="tag g">BELEGBAR</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>VI. Wohin fließt das Kapital heute?</h2>
+
+  <p>Nach Forbes und Binance/Bloomberg-Analysen (2026) sind die dominierenden Investitionstrends der Superreichen: Künstliche Intelligenz, private Unternehmen (Pre-IPO), Rüstung und Verteidigung, Immobilien, Gold und Rohstoffe, Kryptowährungen, Biotechnologie.</p>
+
+  <p>Elon Musk führt 2026 mit einem Vermögen von 839 Milliarden Dollar die Forbes-Liste an — der erste Mensch, der die 800-Milliarden-Marke überschritten hat. SpaceX und sein KI-Unternehmen xAI wurden im Februar 2026 zu einem Konzern mit einer Bewertung von 1,25 Billionen Dollar fusioniert.</p>
+
+  <div class="source-box">
+    <strong>QUELLE</strong><br>
+    Forbes 40. Milliardärsliste (März 2026) → businesswire.com<br>
+    Bloomberg: „Elon Musk fusioniert SpaceX und xAI zu 1,25-Billionen-Dollar-Konzern" (02/2026)<br>
+    DW: „Größter Tech-Deal der Geschichte: SpaceX verschmilzt mit xAI"
+  </div>
+
+  <div class="closing-question">
+    Die Max-Planck-Gesellschaft stellt 2025 fest, dass einige der größten deutschen Privatvermögen seit über 100 Jahren in denselben Familien sind. Oxfam dokumentiert, dass 3,55 Billionen Dollar unversteuert offshore liegen — und dass sich daran seit den Panama Papers (2016) strukturell wenig geändert hat.<br><br>
+    <em>Was folgt daraus für demokratische Kontrollmechanismen — und wer gestaltet sie?</em>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Verknüpfte Dossiers</div>
+    Dossier 006 — Zentralbanken: Wem gehört das Geld? &nbsp;|&nbsp; Dossier 004 — Sonderrechtszonen: City of London, Washington DC, Vatikan &nbsp;|&nbsp; Dossier 003 — Institutionelles Versagen: Dutroux, Savile, Epstein
+  </div>
+
+  <p style="font-size: 0.75rem; color: var(--muted); font-family: 'Courier New', monospace; margin-top: 3rem; line-height: 1.7; letter-spacing: 0.03em;">
+    METHODIK — Alle Angaben in diesem Dossier basieren auf publizierten Quellen: Ranking-Listen von Forbes und Bloomberg, Oxfam-Berichten, MPG-Forschungsergebnissen, Wikipedia-Artikeln mit Einzelnachweisen, sowie Berichterstattung von Tagesspiegel, SPIEGEL, Süddeutsche Zeitung, ZEIT und Deutschlandfunk. Historische Vermögensschätzungen sind inflationsbereinigte akademische Näherungswerte mit erheblichen Unsicherheitsmargen. Motive werden keiner Person oder Familie zugeschrieben. Bei laufenden Verfahren gilt die Unschuldsvermutung. Spekulationen sind als solche gekennzeichnet.
+  </p>
+
+</main>
+
+<footer>
+  <div>dunkelfeld.report · Dossier 005 · Die Dynastien · Juni 2026</div>
+  <div style="margin-top: 0.4rem;">Fakten, die das Licht nicht scheuen.</div>
+  <div style="margin-top: 0.8rem;"><a href="index.html">← Zurück zur Übersicht</a></div>
+</footer>
+
+</body>
+</html>

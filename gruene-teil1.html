@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Die dunkle Seite der Grünen — Teil 1 | dunkelfeld.report</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #09090b;
+      color: #d4d4d8;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      border-bottom: 1px solid #27272a;
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .site-header .dot {
+      width: 8px; height: 8px;
+      background: #e8c547;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .site-header .label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: #71717a;
+      text-transform: uppercase;
+    }
+    .site-header .label span {
+      color: #e8c547;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 4rem 2rem 2rem;
+    }
+    .article-meta {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      color: #52525b;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .article-meta .tag {
+      color: #e8c547;
+    }
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: #fafafa;
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+    }
+    h1 .part-label {
+      display: block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: #e8c547;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+    .hero-sub {
+      font-size: 1.15rem;
+      color: #a1a1aa;
+      font-style: italic;
+      margin-bottom: 2rem;
+      border-left: 3px solid #e8c547;
+      padding-left: 1rem;
+    }
+
+    /* ── DIVIDER ── */
+    .rule {
+      border: none;
+      border-top: 1px solid #27272a;
+      margin: 2.5rem 0;
+    }
+
+    /* ── STAT CARDS ── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin: 2.5rem 0;
+    }
+    .stat-card {
+      background: #111113;
+      border: 1px solid #27272a;
+      border-top: 2px solid #e8c547;
+      padding: 1.2rem 1rem;
+    }
+    .stat-card .value {
+      font-family: 'Courier New', monospace;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #e8c547;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-card .desc {
+      font-size: 0.75rem;
+      color: #71717a;
+      line-height: 1.4;
+    }
+
+    /* ── CONTENT ── */
+    .content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      color: #fafafa;
+      margin: 3rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #27272a;
+      font-weight: 600;
+    }
+    h2 .chapter-nr {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      color: #e8c547;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.3rem;
+      font-weight: 400;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      color: #e4e4e7;
+      margin: 2rem 0 0.6rem;
+      font-weight: 600;
+    }
+
+    p { margin-bottom: 1.2rem; }
+
+    /* ── QUOTE BLOCK ── */
+    .quote-block {
+      background: #111113;
+      border-left: 3px solid #e8c547;
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0;
+      font-style: italic;
+      color: #e4e4e7;
+    }
+    .quote-block .source {
+      display: block;
+      margin-top: 0.6rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: #52525b;
+      font-style: normal;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── PERSON CARD ── */
+    .person-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .person-card {
+      background: #111113;
+      border: 1px solid #27272a;
+      padding: 1.2rem;
+    }
+    .person-card .name {
+      font-weight: 700;
+      color: #fafafa;
+      margin-bottom: 0.3rem;
+      font-size: 0.95rem;
+    }
+    .person-card .role {
+      font-family: 'Courier New', monospace;
+      font-size: 0.62rem;
+      color: #e8c547;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.7rem;
+    }
+    .person-card .facts {
+      font-size: 0.82rem;
+      color: #a1a1aa;
+      line-height: 1.55;
+    }
+
+    /* ── STATUS TABLE ── */
+    .status-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      font-size: 0.85rem;
+    }
+    .status-table th {
+      font-family: 'Courier New', monospace;
+      font-size: 0.63rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #52525b;
+      text-align: left;
+      padding: 0.6rem 0.8rem;
+      border-bottom: 1px solid #27272a;
+    }
+    .status-table td {
+      padding: 0.7rem 0.8rem;
+      border-bottom: 1px solid #1c1c1e;
+      color: #a1a1aa;
+      vertical-align: top;
+    }
+    .status-table tr:hover td { background: #111113; }
+    .status-table td:first-child { color: #e4e4e7; font-weight: 500; }
+    .badge {
+      display: inline-block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+    }
+    .badge-confirmed { background: #14532d; color: #86efac; }
+    .badge-partial   { background: #713f12; color: #fcd34d; }
+    .badge-disputed  { background: #1e3a5f; color: #93c5fd; }
+
+    /* ── INFO BOX ── */
+    .info-box {
+      background: #111113;
+      border: 1px solid #27272a;
+      border-top: 2px solid #52525b;
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0;
+      font-size: 0.85rem;
+      color: #71717a;
+    }
+    .info-box strong { color: #a1a1aa; }
+
+    /* ── CLOSING QUESTION ── */
+    .closing {
+      background: #0d0d0f;
+      border: 1px solid #27272a;
+      padding: 2rem;
+      margin-top: 3rem;
+      text-align: center;
+    }
+    .closing p {
+      font-size: 1.05rem;
+      color: #a1a1aa;
+      font-style: italic;
+      margin-bottom: 0;
+    }
+    .closing .label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.63rem;
+      color: #52525b;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    /* ── SOURCES ── */
+    .sources {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #27272a;
+    }
+    .sources h4 {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: #52525b;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .sources ul {
+      list-style: none;
+      font-size: 0.78rem;
+      color: #52525b;
+      line-height: 2;
+    }
+    .sources ul li::before {
+      content: '→ ';
+      color: #e8c547;
+    }
+    .sources a {
+      color: #52525b;
+      text-decoration: none;
+    }
+    .sources a:hover { color: #e8c547; }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      border-top: 1px solid #1c1c1e;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-family: 'Courier New', monospace;
+      font-size: 0.62rem;
+      color: #3f3f46;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 600px) {
+      .hero, .content { padding-left: 1.2rem; padding-right: 1.2rem; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+      .person-grid { grid-template-columns: 1fr; }
+    }
+  
+  /* ═══════════════════════════════════════════
+     DUNKELFELD.REPORT — CSS STANDARD OVERRIDE
+     Farben, Lesbarkeit, DSGVO-konform
+     ═══════════════════════════════════════════ */
+  :root {
+    --dk-bg:       #09090b;
+    --dk-surface:  #111113;
+    --dk-border:   #27272a;
+    --dk-amber:    #e8c547;
+    --dk-amber-dim:#b89a2f;
+    --dk-text:     #d4d4d8;
+    --dk-muted:    #71717a;
+    --dk-bright:   #f4f4f5;
+    --dk-source-bg:#1a1a2e;
+  }
+
+  /* Basis-Reset auf Standard */
+  html { background: var(--dk-bg); }
+  body {
+    background: var(--dk-bg) !important;
+    color: var(--dk-text) !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    max-width: 720px !important;
+    margin: 0 auto !important;
+    padding: 48px 24px 80px !important;
+  }
+
+  /* Wrapper / Container auf 720px begrenzen */
+  .container, .content, main, article,
+  .article-body, .hero, .body-text {
+    max-width: 720px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Absätze */
+  p {
+    padding-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Überschriften */
+  h1 { color: var(--dk-bright) !important; }
+  h2, h3, h4 { color: var(--dk-bright) !important; }
+
+  /* Links */
+  a {
+    color: var(--dk-amber) !important;
+    text-decoration: none !important;
+  }
+  a:hover {
+    text-decoration: underline !important;
+  }
+
+  /* Labels / Metadaten */
+  .label, .meta, .article-meta, .dossier-id, .site-label,
+  .tag, .category, time, .date {
+    font-family: 'Courier New', Courier, monospace !important;
+  }
+
+  /* Quellenboxen */
+  .source-box, .quellen-box, .source, .sources,
+  blockquote, .zitat, .fact-box, .info-box,
+  .quelle, .source-entry, .reference {
+    background: var(--dk-source-bg) !important;
+    border-left: 3px solid var(--dk-amber) !important;
+    padding: 1rem 1.2rem !important;
+    margin-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+  }
+
+  /* Tabellen */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--dk-surface) !important;
+    color: var(--dk-amber) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.75rem !important;
+    padding: 0.6rem 0.8rem !important;
+    text-align: left;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--dk-border) !important;
+  }
+  td {
+    padding: 0.7rem 0.8rem !important;
+    border-bottom: 1px solid var(--dk-border) !important;
+    color: var(--dk-text) !important;
+    font-size: 0.95rem !important;
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+
+  /* Site-Header Breite */
+  .site-header, header, nav {
+    max-width: 100% !important;
+  }
+
+  /* Farbkorrekturen: alte Amber-Töne → Standard */
+  [style*="color: #d4a017"], [style*="color:#d4a017"] { color: var(--dk-amber) !important; }
+  [style*="color: #b8860b"], [style*="color:#b8860b"] { color: var(--dk-amber) !important; }
+
+  /* Lesbarkeit: dunkle Texte aufhellen */
+  [style*="color: #666"], [style*="color:#666"],
+  [style*="color: #555"], [style*="color:#555"] {
+    color: var(--dk-muted) !important;
+  }
+</style>
+</head>
+<body>
+
+<!-- SITE HEADER -->
+<header class="site-header">
+  <div class="dot"></div>
+  <div class="label">● <span>dunkelfeld.report</span> — Dokumentation · Fakten · Quellen</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="article-meta">
+    <span class="tag">ARTIKEL #19 — TEIL 1 VON 2</span>
+    <span>JUNI 2026</span>
+    <span>PRIMÄRQUELLEN VERLINKT</span>
+  </div>
+
+  <h1>
+    <span class="part-label">Teil 1 — Die Gründungsgeschichte</span>
+    Die dunkle Seite der Grünen
+  </h1>
+
+  <p class="hero-sub">
+    Eine Partei, die sich als moralischer Neuanfang definierte — und was die Primärquellen über ihre Gründungsjahre dokumentieren.
+  </p>
+
+  <!-- STAT CARDS -->
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="value">1980</div>
+      <div class="desc">Gründungsjahr — als "völlig neue" politische Bewegung</div>
+    </div>
+    <div class="stat-card">
+      <div class="value">2+</div>
+      <div class="desc">Dokumentierte NSDAP-Mitglieder unter den Gründern</div>
+    </div>
+    <div class="stat-card">
+      <div class="value">1983</div>
+      <div class="desc">Erstmaliger Einzug in den Bundestag — erster Alterspräsident tritt zurück</div>
+    </div>
+    <div class="stat-card">
+      <div class="value">2013</div>
+      <div class="desc">Beauftragter Forschungsbericht zur Pädophilie-Debatte</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule" style="max-width:780px;margin:0 auto 0;">
+
+<!-- CONTENT -->
+<main class="content">
+
+  <p style="color:#71717a; font-size:0.82rem; font-family:'Courier New',monospace; margin-top:2rem;">
+    Hinweis zur Methodik: Alle im Folgenden genannten Sachverhalte sind durch Primärquellen — Parlamentsprotokolle, Wikipedia-Einträge mit Einzelnachweisen, Parteiarchive, Gerichtsdokumente oder durch die Partei selbst beauftragte Forschungsberichte — belegbar. Spekulation ist als solche gekennzeichnet. Schlussfolgerungen zieht der Leser.
+  </p>
+
+  <!-- KAPITEL 0 -->
+  <h2>
+    <span class="chapter-nr">Kapitel 0</span>
+    Die Gründungslegende
+  </h2>
+
+  <p>
+    „Wir sind die Alternative zu den etablierten Parteien." Das war der Kern des grünen Gründungsmythos 1980. Eine neue, saubere, pazifistische Bewegung — jenseits der Verstrickungen der alten Bonner Republik. Anti-Atomkraft, Frieden, Ökologie. Das Selbstbild war klar.
+  </p>
+
+  <p>
+    Was die Bundeszentrale für politische Bildung (BpB) zu diesem Selbstbild dokumentiert, ist deutlich nüchterner.
+  </p>
+
+  <div class="quote-block">
+    „Dass ‚grün sein' nicht automatisch mit links-alternativen Einstellungen einhergeht, machte der Partei ‚Die Grünen' in ihren Anfangsjahren zu schaffen. Mit Baldur Springmann und Werner Vogel gehörten zwei ehemalige NSDAP-Mitglieder zu den Gründungsmitgliedern der Partei."
+    <span class="source">Bundeszentrale für politische Bildung (BpB) — primärquellenbasiert dokumentiert</span>
+  </div>
+
+  <p>
+    Das ist kein Vorwurf von politischen Gegnern. Es ist die Einschätzung der staatlichen Institution, die mit der politischen Bildung der Bundesrepublik beauftragt ist.
+  </p>
+
+  <!-- KAPITEL 1 -->
+  <h2>
+    <span class="chapter-nr">Kapitel 1</span>
+    Die Gründungspersonen — dokumentierte Biografien
+  </h2>
+
+  <p>
+    Was über die NS-belasteten Gründungsfiguren bekannt ist, findet sich nicht in Verschwörungsblogs — sondern in Wikipedia-Einträgen mit Einzelnachweisen, Parteichroniken und historischen Forschungsberichten.
+  </p>
+
+  <div class="person-grid">
+
+    <div class="person-card">
+      <div class="name">Werner Vogel</div>
+      <div class="role">Gründungsmitglied · NRW-Spitzenkandidat 1983</div>
+      <div class="facts">
+        SA-Mitglied ab früh, NSDAP-Beitrittsantrag 1933, Mitglied ab 1938. Beamter im Berliner Reichsministerium des Inneren. 1983 als Alterspräsident des Bundestages vorgesehen — erste Rede eines Grünen im Parlament. Trat zurück, als NS-Vergangenheit und pädophile Netzwerkkontakte bekannt wurden. Beides war Teilen der Parteiführung bereits zuvor bekannt.
+      </div>
+    </div>
+
+    <div class="person-card">
+      <div class="name">Baldur Springmann</div>
+      <div class="role">Gründungsmitglied 1980 · Öko-Pionier</div>
+      <div class="facts">
+        NSDAP-Mitglied, SA, später SS. Führungsoffizier in der weltanschaulichen Erziehung. Leitete im Zweiten Weltkrieg eine Flugabwehreinheit. Nach dem Krieg Öko-Landwirt und Anti-Atomkraft-Aktivist. 1978 Mitgründer der Grünen Liste Schleswig-Holstein, 1980 Mitgründer der Bundespartei. Verließ die Grünen, weil sie ihm zu weit links rückten.
+      </div>
+    </div>
+
+    <div class="person-card">
+      <div class="name">August Haußleiter</div>
+      <div class="role">Mitgründer 1979/1980</div>
+      <div class="facts">
+        Aktiv beim Münchener Bierhallen-Putsch 1923. Pries 1942 die „kämpferische Zucht der deutschen Wehrmacht". Bezeichnete 1952 die Nürnberger Prozesse als „das dümmste und infamste aller Strafgerichte". Spielte 1979 eine Schlüsselrolle bei der Gründungsphase der Grünen.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="info-box">
+    <strong>Einordnung:</strong> Auch CDU, SPD und FDP hatten NS-belastete Funktionäre in ihren Reihen — dies ist historisch umfassend dokumentiert. Der Unterschied: In den Altparteien geschah dies unmittelbar nach Kriegsende. Die Grünen hingegen gründeten sich 1980 — 35 Jahre nach Kriegsende — explizit als moralischer Neuanfang jenseits dieser Verstrickungen. Der Historiker Michael Miersch formuliert: „Dass 30 Jahre später bei Gründung der Grünen alte Nazis mitmischten, widerspricht einem zentralen Mythos der Partei."
+  </div>
+
+  <!-- KAPITEL 2 -->
+  <h2>
+    <span class="chapter-nr">Kapitel 2</span>
+    Die Pädophilie-Debatte — was dokumentiert ist
+  </h2>
+
+  <p>
+    Die Verbindung zwischen der NS-Geschichte Werner Vogels und seinem späteren politischen Wirken ist keine nachträgliche Konstruktion. Sie ist in einem einzigen Wikipedia-Eintrag mit zahlreichen Einzelnachweisen dokumentiert — und illustriert, wie beide Themen in einer Person zusammentrafen.
+  </p>
+
+  <div class="quote-block">
+    „Vogel unterstützte gegenüber dem Bundesvorstand der Grünen Forderungen der Gruppen Indianerkommune Nürnberg und ‚Kinderfrühling Wiesbaden' nach Beseitigung der Kinderschutzgesetze und nach Legalisierung der Päderastie. [...] Organisiert wurde der Kongress von Vogel. Nach Informationen der Welt und des Bayernkuriers wurde dieser Kongress vom Grünen-Parteivorstand NRW finanziert."
+    <span class="source">Wikipedia — Werner Vogel (Politiker), mit Einzelnachweisen aus Focus, Welt, Bayernkurier</span>
+  </div>
+
+  <p>
+    Die Pädophilie-Debatte innerhalb der Grünen ist keine Erfindung politischer Gegner. Die Partei hat sie selbst aufgearbeitet — und dazu externe Forscher beauftragt.
+  </p>
+
+  <h3>Dokumentierte Einzelfälle und Aussagen</h3>
+
+  <table class="status-table">
+    <thead>
+      <tr>
+        <th>Person / Dokument</th>
+        <th>Inhalt</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Daniel Cohn-Bendit</td>
+        <td>Zitat 1982 über sexuelle Handlungen mit Kindern in Kindertagesstätte</td>
+        <td><span class="badge badge-confirmed">Bestätigt</span><br><small style="color:#52525b;font-size:0.65rem;">Correctiv 2019</small></td>
+      </tr>
+      <tr>
+        <td>Jürgen Trittin</td>
+        <td>Unterzeichnung eines Wahlprogramms mit Forderung nach Entkriminalisierung von Sex mit Kindern (Göttingen 1981)</td>
+        <td><span class="badge badge-confirmed">Bestätigt</span><br><small style="color:#52525b;font-size:0.65rem;">Dokument veröffentlicht Focus 2013</small></td>
+      </tr>
+      <tr>
+        <td>Werner Vogel</td>
+        <td>Organisation eines Kongresses zu „Sex mit Kindern", finanziert durch Grünen-Parteivorstand NRW</td>
+        <td><span class="badge badge-confirmed">Bestätigt</span><br><small style="color:#52525b;font-size:0.65rem;">Welt, Bayernkurier, Wikipedia</small></td>
+      </tr>
+      <tr>
+        <td>Pädophilie-Debatte gesamt</td>
+        <td>Wissenschaftliche Aufarbeitung durch extern beauftragten Forscher Franz Walter (Uni Göttingen)</td>
+        <td><span class="badge badge-confirmed">Bestätigt</span><br><small style="color:#52525b;font-size:0.65rem;">Parteibeschluss, 2013</small></td>
+      </tr>
+      <tr>
+        <td>Renate Künast</td>
+        <td>Äußerungen im Berliner Abgeordnetenhaus 1986, die als verharmlosend interpretiert wurden</td>
+        <td><span class="badge badge-disputed">Kontrovers</span><br><small style="color:#52525b;font-size:0.65rem;">Gerichtlich mehrfach verhandelt</small></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-box">
+    <strong>Was die Partei selbst sagt:</strong> Die Grünen haben die Pädophilie-Debatte 2013 offiziell aufarbeiten lassen und sich entschuldigt. Der Forschungsbericht von Franz Walter (Universität Göttingen) ist öffentlich zugänglich. Die Partei bezeichnet die damaligen Forderungen als „Irrtum". Dies ist dokumentiert — und gehört zur vollständigen Darstellung.
+  </div>
+
+  <!-- KAPITEL 3 -->
+  <h2>
+    <span class="chapter-nr">Kapitel 3</span>
+    Ideologische Wurzeln — die Schnittmenge mit völkischem Denken
+  </h2>
+
+  <p>
+    Die Verbindung zwischen ökologischem Denken und rechtsextremen Ideologien ist historisch keine grüne Erfindung. Sie hat eine längere Geschichte — die für das Verständnis der Gründungsphase relevant ist.
+  </p>
+
+  <p>
+    Der nationalsozialistische „Blut und Boden"-Begriff hatte eine explizit ökologische Komponente. Das Reichsnaturschutzgesetz von 1935 war das erste umfassende staatliche Naturschutzgesetz in Deutschland. Diese Tradition war in der frühen Umweltbewegung der 1970er Jahre nicht vollständig aufgearbeitet.
+  </p>
+
+  <div class="quote-block">
+    „Dass ehemalige NSDAP-Mitglieder wie Baldur Springmann und Werner Vogel oder der neu-rechte Propagandist Henning Eichberg bei der Gründung der Grünen aktiv waren, geriet in Vergessenheit."
+    <span class="source">Akademische Quelle: Bierl/Heni, Kritiknetz.de — ideologiekritische Forschung zur Geschichte des Naturschutzes</span>
+  </div>
+
+  <p>
+    Baldur Springmann verließ die Grünen nicht, weil er mit der Partei gebrochen hatte — sondern weil ihm die Partei zu weit nach links rückte. Die inhaltliche Richtung, die er für richtig hielt, ist in seinen Schriften dokumentiert: völkisches Denken, Warnung vor dem „Volkstod durch Amerikanisierung".
+  </p>
+
+  <p>
+    Jürgen Trittin, später Bundesumweltminister, gehörte zu den wenigen Grünen, die sich offen mit dieser Geschichte auseinandersetzten. Auf seiner Website schrieb er von „erheblichen Schnittmengen" und „zahlreichen Berührungspunkten" zwischen der NS-Ideologie und frühen grünen Strömungen.
+  </p>
+
+  <!-- SCHLUSS -->
+  <hr class="rule">
+
+  <div class="closing">
+    <div class="label">Offene Frage — dunkelfeld.report</div>
+    <p>
+      Eine Partei, die sich 1980 als moralischer Neuanfang jenseits der alten Verstrickungen definierte — und zu deren Gründungsmitgliedern SA-Männer und NSDAP-Mitglieder zählten, die später pädophile Netzwerke unterstützten: Wie erklärt sich, dass eben diese Partei heute das moralische Maß an andere anlegt?
+    </p>
+    <p style="margin-top:1rem; font-size:0.85rem; color:#52525b; font-style:normal;">
+      Teil 2 folgt: Vom Pazifismus zur Kriegsbegeisterung — WEF-Netzwerke — Graichen-Clan — Energiewende und Versorgungsunsicherheit.
+    </p>
+  </div>
+
+  <!-- QUELLEN -->
+  <div class="sources">
+    <h4>Primärquellen &amp; Belege</h4>
+    <ul>
+      <li>Bundeszentrale für politische Bildung (BpB) — Gründungsgeschichte der Grünen</li>
+      <li>Wikipedia — Werner Vogel (Politiker), mit Einzelnachweisen</li>
+      <li>Wikipedia — Pädophilie-Debatte (Bündnis 90/Die Grünen)</li>
+      <li>Correctiv.org, 10.12.2019 — Bestätigung Cohn-Bendit-Zitat 1982</li>
+      <li>Focus Online — Originaldokument Trittin-Wahlprogramm Göttingen 1981</li>
+      <li>Franz Walter (Uni Göttingen) — Forschungsbericht Pädosexualität bei den Grünen, 2013 (Parteiauftrag)</li>
+      <li>Michael Miersch — „Grün mit braunen Flecken", miersch.media, 2022</li>
+      <li>Bierl/Heni — „NSDAP als grüne Partei", kritiknetz.de (akademische Quelle)</li>
+      <li>Welt, Bayernkurier — Vogel-Kongress 1983, Finanzierung durch Grünen-Parteivorstand NRW</li>
+      <li>Jürgen Trittin — eigene Website, Beitrag zu „Schnittmengen" NS/Grün (nicht mehr online, archiviert)</li>
+    </ul>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  dunkelfeld.report · Dokumentation auf Basis öffentlich zugänglicher Primärquellen · Keine Wertung — keine Agenda · Schlussfolgerungen zieht der Leser
+</footer>
+
+</body>
+</html>

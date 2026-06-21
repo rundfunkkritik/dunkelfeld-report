@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dossier 005 — Post Office / Horizon — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --surface: #111113;
+    --border: #222228;
+    --text: #e8e8f0;
+    --muted: #888899;
+    --accent: #e8c547;
+    --accent-dim: rgba(232,197,71,0.10);
+    --red: #e85447;
+    --red-dim: rgba(232,84,71,0.09);
+    --green: #47e8a0;
+    --green-dim: rgba(71,232,160,0.09);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+  .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+  .header-label { font-family: 'Courier New', monospace; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.14em; }
+  .header-right { margin-left: auto; font-family: 'Courier New', monospace; font-size: 0.68rem; color: var(--muted); }
+
+  .container { max-width: 740px; margin: 0 auto; padding: 0 2rem; }
+
+  .hero { padding: 4.5rem 0 3rem; }
+  .kicker { font-family: 'Courier New', monospace; font-size: 0.72rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.16em; margin-bottom: 1.6rem; }
+  h1 { font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 700; line-height: 1.08; margin-bottom: 0.5rem; }
+  h1 span { color: var(--muted); }
+  .subtitle { font-size: 1.05rem; color: var(--muted); line-height: 1.65; margin: 1.4rem 0 2.4rem; max-width: 600px; }
+
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: var(--border); }
+  .stat { background: var(--surface); padding: 1.3rem 1.1rem; }
+  .stat-num { font-size: 1.9rem; font-weight: 700; color: var(--accent); font-family: Georgia, serif; line-height: 1; }
+  .stat-label { font-family: 'Courier New', monospace; font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.4rem; }
+  .stat-sub { font-size: 0.76rem; color: var(--muted); margin-top: 0.3rem; line-height: 1.4; }
+
+  .divider { border-top: 1px solid var(--border); margin: 3rem 0; }
+
+  .section-label { font-family: 'Courier New', monospace; font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 1.3rem; }
+
+  h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.1rem; line-height: 1.25; }
+  h3 { font-family: 'Courier New', monospace; font-size: 0.78rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin: 2rem 0 0.8rem; }
+  p { margin-bottom: 1.2rem; }
+
+  .source-box { background: #0e0e14; border-left: 3px solid var(--accent); padding: 0.9rem 1.2rem; margin: 1.6rem 0; font-family: 'Courier New', monospace; font-size: 0.77rem; color: var(--muted); line-height: 1.65; }
+  .source-box strong { color: var(--accent); display: block; margin-bottom: 0.3rem; }
+
+  .highlight-box { background: var(--accent-dim); border: 1px solid rgba(232,197,71,0.2); padding: 1.3rem 1.6rem; margin: 1.8rem 0; border-radius: 2px; }
+  .highlight-label { font-family: 'Courier New', monospace; font-size: 0.65rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.7rem; }
+  .highlight-box p { font-size: 0.95rem; line-height: 1.7; margin-bottom: 0.5rem; }
+  .highlight-box p:last-child { margin-bottom: 0; }
+
+  .warn-box { background: var(--red-dim); border-left: 3px solid var(--red); padding: 1rem 1.3rem; margin: 1.8rem 0; font-size: 0.93rem; line-height: 1.65; color: var(--text); }
+  .warn-box strong { color: var(--red); }
+
+  .bridge-box { background: #0d0d15; border: 1px solid rgba(232,197,71,0.15); border-left: 3px solid var(--accent); padding: 1.4rem 1.6rem; margin: 2rem 0; }
+  .bridge-label { font-family: 'Courier New', monospace; font-size: 0.65rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.8rem; }
+  .bridge-box p { font-size: 0.93rem; line-height: 1.7; color: var(--muted); margin-bottom: 0.5rem; }
+  .bridge-box p:last-child { margin-bottom: 0; }
+
+  table { width: 100%; border-collapse: collapse; margin: 1.6rem 0; font-size: 0.87rem; }
+  th { background: var(--surface); color: var(--muted); font-family: 'Courier New', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.65rem 0.9rem; text-align: left; border-bottom: 1px solid var(--border); }
+  td { padding: 0.75rem 0.9rem; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; line-height: 1.5; }
+  tr:last-child td { border-bottom: none; }
+
+  .tag { display: inline-block; font-family: 'Courier New', monospace; font-size: 0.62rem; padding: 0.12rem 0.45rem; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
+  .tag-confirmed { background: var(--green-dim); color: var(--green); border: 1px solid rgba(71,232,160,0.3); }
+  .tag-partial   { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(232,197,71,0.3); }
+  .tag-open      { background: var(--red-dim); color: var(--red); border: 1px solid rgba(232,84,71,0.3); }
+
+  .chrono { margin: 1.8rem 0; }
+  .chrono-item { display: grid; grid-template-columns: 90px 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+  .chrono-item:last-child { border-bottom: none; }
+  .chrono-year { font-family: 'Courier New', monospace; font-size: 0.78rem; color: var(--accent); padding-top: 0.15rem; font-weight: 700; }
+  .chrono-text { font-size: 0.92rem; line-height: 1.6; color: var(--text); }
+
+  .person-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); margin: 1.8rem 0; }
+  .person-cell { background: var(--surface); padding: 1.2rem; }
+  .person-name { font-family: 'Courier New', monospace; font-size: 0.72rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+  .person-text { font-size: 0.85rem; color: var(--text); line-height: 1.55; }
+
+  .closing { background: var(--surface); border-top: 3px solid var(--accent); padding: 2.5rem 2rem; margin: 3rem 0; text-align: center; }
+  .closing p { font-size: 1.1rem; color: var(--muted); line-height: 1.7; max-width: 560px; margin: 0 auto; }
+  .closing strong { color: var(--text); }
+
+  footer { border-top: 1px solid var(--border); padding: 3rem 0 2.5rem; margin-top: 3rem; }
+  .footer-note { font-family: 'Courier New', monospace; font-size: 0.72rem; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+  .footer-brand { font-family: 'Courier New', monospace; font-size: 0.78rem; color: var(--accent); margin-top: 1.5rem; }
+
+  @media (max-width: 600px) {
+    .stats { grid-template-columns: 1fr 1fr; }
+    .chrono-item { grid-template-columns: 70px 1fr; }
+    .person-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 1.9rem; }
+  }
+
+  /* ═══════════════════════════════════════════
+     DUNKELFELD.REPORT — CSS STANDARD OVERRIDE
+     Farben, Lesbarkeit, DSGVO-konform
+     ═══════════════════════════════════════════ */
+  :root {
+    --dk-bg:       #09090b;
+    --dk-surface:  #111113;
+    --dk-border:   #27272a;
+    --dk-amber:    #e8c547;
+    --dk-amber-dim:#b89a2f;
+    --dk-text:     #d4d4d8;
+    --dk-muted:    #71717a;
+    --dk-bright:   #f4f4f5;
+    --dk-source-bg:#1a1a2e;
+  }
+
+  /* Basis-Reset auf Standard */
+  html { background: var(--dk-bg); }
+  body {
+    background: var(--dk-bg) !important;
+    color: var(--dk-text) !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    max-width: 720px !important;
+    margin: 0 auto !important;
+    padding: 48px 24px 80px !important;
+  }
+
+  /* Wrapper / Container auf 720px begrenzen */
+  .container, .content, main, article,
+  .article-body, .hero, .body-text {
+    max-width: 720px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Absätze */
+  p {
+    padding-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Überschriften */
+  h1 { color: var(--dk-bright) !important; }
+  h2, h3, h4 { color: var(--dk-bright) !important; }
+
+  /* Links */
+  a {
+    color: var(--dk-amber) !important;
+    text-decoration: none !important;
+  }
+  a:hover {
+    text-decoration: underline !important;
+  }
+
+  /* Labels / Metadaten */
+  .label, .meta, .article-meta, .dossier-id, .site-label,
+  .tag, .category, time, .date {
+    font-family: 'Courier New', Courier, monospace !important;
+  }
+
+  /* Quellenboxen */
+  .source-box, .quellen-box, .source, .sources,
+  blockquote, .zitat, .fact-box, .info-box,
+  .quelle, .source-entry, .reference {
+    background: var(--dk-source-bg) !important;
+    border-left: 3px solid var(--dk-amber) !important;
+    padding: 1rem 1.2rem !important;
+    margin-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+  }
+
+  /* Tabellen */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--dk-surface) !important;
+    color: var(--dk-amber) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.75rem !important;
+    padding: 0.6rem 0.8rem !important;
+    text-align: left;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--dk-border) !important;
+  }
+  td {
+    padding: 0.7rem 0.8rem !important;
+    border-bottom: 1px solid var(--dk-border) !important;
+    color: var(--dk-text) !important;
+    font-size: 0.95rem !important;
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+
+  /* Site-Header Breite */
+  .site-header, header, nav {
+    max-width: 100% !important;
+  }
+
+  /* Farbkorrekturen: alte Amber-Töne → Standard */
+  [style*="color: #d4a017"], [style*="color:#d4a017"] { color: var(--dk-amber) !important; }
+  [style*="color: #b8860b"], [style*="color:#b8860b"] { color: var(--dk-amber) !important; }
+
+  /* Lesbarkeit: dunkle Texte aufhellen */
+  [style*="color: #666"], [style*="color:#666"],
+  [style*="color: #555"], [style*="color:#555"] {
+    color: var(--dk-muted) !important;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="dot"></div>
+  <span class="header-label">dunkelfeld.report — Dossier 005</span>
+  <span class="header-right">Stand: Juni 2026</span>
+</header>
+
+<div class="container">
+
+  <section class="hero">
+    <div class="kicker">Dossier 005 — Großbritannien · Justizversagen &amp; digitale Infrastruktur</div>
+    <h1>Post Office / Horizon<br><span>Wenn Daten Menschen vernichten</span></h1>
+    <p class="subtitle">Quellenbasierte Dokumentation des größten Justizirrtums der britischen Geschichte — und was er über die Beweiskraft digitaler Systeme aussagt. 900+ Verurteilungen. 25 Jahre. Niemand zur Rechenschaft gezogen.</p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">900+</div>
+        <div class="stat-label">Falsch Verurteilte</div>
+        <div class="stat-sub">1999–2015, Post Office Horizon</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">13</div>
+        <div class="stat-label">Suizide</div>
+        <div class="stat-sub">Im Zusammenhang mit Horizon-Verfahren</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">£58 Mio.</div>
+        <div class="stat-label">Vergleich 2019</div>
+        <div class="stat-sub">Davon £12 Mio. nach Anwaltskosten bei Opfern</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">0</div>
+        <div class="stat-label">Verurteilungen</div>
+        <div class="stat-sub">Post Office / Fujitsu-Verantwortliche bis 2026</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- WAS PASSIERTE -->
+  <section>
+    <div class="section-label">Block 01 — Was geschah</div>
+    <h2>Das System, die Verurteilungen, die Vernichtung</h2>
+
+    <p>1999 führte Post Office Ltd das Buchhaltungssystem Horizon ein — entwickelt von Fujitsu. Es war damals das größte nicht-militärische IT-Projekt Europas. Das System berechnete automatisch, wie viel Bargeld und Warenbestand in jeder Filiale vorhanden sein sollte. Wichen die tatsächlichen Kassenbestände der Filialleiter davon ab, galten sie als Fehlbeträge — und die Filialleiter als Täter.</p>
+
+    <p>Was folgte, war das größte Justizversagen der britischen Nachkriegsgeschichte.</p>
+
+    <div class="highlight-box">
+      <div class="highlight-label">Dokumentierter Ablauf — Horizon-Verfahren</div>
+      <p><strong>Schritt 1:</strong> Horizon meldet Fehlbetrag in einer Filiale.</p>
+      <p><strong>Schritt 2:</strong> Post Office Revisoren erscheinen. Filialleiter wird aufgefordert, den Fehlbetrag aus eigener Tasche zu erstatten — oft ohne rechtliche Beratung.</p>
+      <p><strong>Schritt 3:</strong> Post Office nutzt seine eigenen Privatermittler und eigene Strafverfolgungsbefugnisse — einzigartig in Großbritannien.</p>
+      <p><strong>Schritt 4:</strong> Vor Gericht gilt Computeroutput als unwiderlegbarer Beweis. Richter akzeptieren Horizon-Daten als zuverlässig — gesetzliche Vermutung der Computerzuverlässigkeit.</p>
+      <p><strong>Schritt 5:</strong> Verurteilung wegen Diebstahl, Betrug oder falscher Buchführung. Gefängnis, Insolvenz, Rufvernichtung.</p>
+    </div>
+
+    <p>Call-Center-Mitarbeiter des Post Office wurden intern angewiesen, Filialleitern zu sagen, sie seien die Einzigen mit Horizon-Problemen — dokumentiert durch Zeugenaussagen vor der Inquiry.</p>
+
+    <div class="source-box">
+      <strong>Primärquelle</strong>
+      Post Office Horizon IT Inquiry — Abschlussbericht Volume 1, Juli 2025. Sir Wyn Williams (Chair).<br>
+      Criminal Cases Review Commission: „Post Office Horizon Cases" — ccrc.gov.uk<br>
+      Post Office (Horizon System) Offences Act 2024 — Gesetz zur Massenaufhebung der Urteile
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FUJITSU REMOTE ACCESS -->
+  <section>
+    <div class="section-label">Block 02 — Der technische Kern</div>
+    <h2>Fernzugriff ohne Wissen der Nutzer — dokumentiert</h2>
+
+    <p>Das ist der Punkt, der weit über den Einzelfall hinausweist. Im Rahmen der öffentlichen Untersuchung wurde vor der Inquiry belegt:</p>
+
+    <div class="warn-box">
+      <strong>Dokumentiert durch die Post Office Horizon IT Inquiry:</strong><br><br>
+      Mitarbeiter von Fujitsus Software Support Centre (SSC) hatten <strong>„unrestricted and unauditable"</strong> — unbeschränkten und nicht protokollierten — Remote-Zugriff auf die Konten laufender Postfilialen.<br><br>
+      Das bedeutet: Transaktionsdaten konnten verändert werden, ohne dass Filialleiter es wussten oder nachweisen konnten. Und ohne dass es in einem Prüfprotokoll erschien.
+    </div>
+
+    <p>Fujitsu-Chef Paul Patterson sagte im November 2024 vor der Inquiry aus, der Skandal sei „nicht durch Software-Fehler" verursacht worden. Die Inquiry stellte dennoch fest: Post Office- und Fujitsu-Führungskräfte „knew, or should have known" — wussten oder hätten wissen müssen — von den Mängeln des Systems.</p>
+
+    <p>Fujitsu betreibt das Horizon-System für den Post Office bis heute. Im August 2024 und Juli 2024 gab es weitere System-Abstürze. Eine YouGov-Umfrage im Auftrag der Inquiry (September 2024): 57 % der aktiven Filialleiter berichten von unerklärten Fehlbeträgen — 19 % von unerklärten Transaktionen, 14 % von verschwundenen Buchungen.</p>
+
+    <div class="source-box">
+      <strong>Primärquelle</strong>
+      Computer Weekly: „Fujitsu staff had 'unrestricted and unauditable' remote access to Post Office branch systems" — mit direktem Bezug auf Inquiry-Zeugenaussagen<br>
+      Post Office Horizon IT Inquiry — Phasen 1–4, öffentlich einsehbar unter postofficehorizoninquiry.org.uk
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CHRONOLOGIE -->
+  <section>
+    <div class="section-label">Block 03 — Chronologie</div>
+    <h2>25 Jahre — was wann dokumentiert ist</h2>
+
+    <div class="chrono">
+      <div class="chrono-item">
+        <div class="chrono-year">1996–1999</div>
+        <div class="chrono-text">Pilotprojekt Horizon in ausgewählten Filialen. Erste Berichte über unerklärte Fehlbeträge bereits in der Pilotphase — intern dokumentiert. Rollout trotzdem durchgeführt.</div>
+      </div>
+      <div class="chrono-item">
+        <div class="chrono-year">1999</div>
+        <div class="chrono-text">Flächendeckender Rollout auf alle Post Office-Filialen. Erstes Strafverfahren gegen Filialleiter wegen angeblichem Betrug — basierend auf Horizon-Daten.</div>
+      </div>
+      <div class="chrono-item">
+        <div class="chrono-year">2001</div>
+        <div class="chrono-text">Internes Fujitsu-Dokument „Report on the EPOSS PinICL TaskForce" dokumentiert schlechten Zustand der Software. Dokument wird in der Inquiry 2022 öffentlich.</div>
+      </div>
+      <div class="chrono-item">
+        <div class="chrono-year">2009</div>
+        <div class="chrono-text">Computer Weekly berichtet erstmals über Fälle von Filialleitern, die systematische Horizon-Fehler als Ursache ihrer Fehlbeträge beschreiben. Post Office bestreitet jede Systemfehler-Möglichkeit öffentlich.</div>
+      </div>
+      <div class="chrono-item">
+        <div class="chrono-year">2015</div>
+        <div class="chrono-text">Ende des Hauptzeitraums der Verurteilungen. Über 900 Filialleiter wurden verurteilt. Post Office versucht IBM als Horizon-Nachfolger einzuführen — Projekt 2015 abgebrochen, Post Office kehrt zu Fujitsu zurück.</div>
+      </div>
+      <div class="chrono-item">
+        <div class="chrono-year">2017</div>
+        <div class="chrono-text">Alan Bates und 554 weitere Filialleiter klagen gemeinsam gegen Post Office vor dem High Court.</div>
+      </div>
+      <div class="chrono-item">
+        <div class="chrono-year">2019</div>
+        <div class="chrono-text">High Court-Urteil: Horizon enthielt „bugs, errors and defects". Verträge mit Filialleitern waren unfair. Vergleich über £58 Millionen — nach Anwaltskosten bleiben den Klägern £12 Millionen.</div>
+      </div>
+      <div class="chrono-item">
+        <div class="chrono-year">2020</div>
+        <div class="chrono-text">Erste Aufhebungen von Urteilen durch Berufungsgerichte. Unabhängige Inquiry wird eingerichtet.</div>
+      </div>
+      <div class="chrono-item">
+        <div class="chrono-year">Jan. 2024</div>
+        <div class="chrono-text">ITV-Drama „Mr Bates vs The Post Office" — vier Teile. Löst Welle öffentlicher Empörung aus. Regierung kündigt Notfallgesetzgebung an.</div>
+      </div>
+      <div class="chrono-item">
+        <div class="chrono-year">Mai 2024</div>
+        <div class="chrono-text">Post Office (Horizon System) Offences Act 2024 tritt in Kraft. Massen-Aufhebung der Urteile ohne Einzelberufungsverfahren — historisch einmalig in britischer Rechtsgeschichte.</div>
+      </div>
+      <div class="chrono-item">
+        <div class="chrono-year">Dez. 2024</div>
+        <div class="chrono-text">Inquiry schließt Beweisaufnahme ab. Metropolitan Police ermittelt gegen Post Office- und Fujitsu-Personal.</div>
+      </div>
+      <div class="chrono-item">
+        <div class="chrono-year">Juli 2025</div>
+        <div class="chrono-text">Volume 1 des Inquiry-Abschlussberichts veröffentlicht. Fazit: Post Office und Fujitsu wussten oder hätten wissen müssen. Bis heute: keine strafrechtliche Verurteilung von Verantwortlichen.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- MENSCHLICHE DIMENSION -->
+  <section>
+    <div class="section-label">Block 04 — Die menschliche Dimension</div>
+    <h2>Was Daten mit Menschen gemacht haben</h2>
+
+    <div class="person-grid">
+      <div class="person-cell">
+        <div class="person-name">Seema Misra</div>
+        <div class="person-text">Zu 15 Monaten Haft verurteilt — hochschwanger. Sagte vor der Inquiry: „Wenn ich nicht schwanger gewesen wäre, hätte ich mich umgebracht." Der Post Office-Anwalt schrieb nach ihrer Verurteilung eine Jubel-E-Mail an Kollegen.</div>
+      </div>
+      <div class="person-cell">
+        <div class="person-name">Lee Castleton</div>
+        <div class="person-text">Weigerte sich, einen Fehlbetrag von £25.859 zu bezahlen. Verlor den Prozess — ohne Anwalt. Musste £321.000 Gerichtskosten zahlen. Ging bankrott. Der Post Office wollte laut eigenem Anwalt „ein Signal setzen".</div>
+      </div>
+      <div class="person-cell">
+        <div class="person-name">Alan Bates</div>
+        <div class="person-text">Filialleiter. Gründete die Justice for Subpostmasters Alliance. Trieb die Sammelklage über Jahre voran — ohne Unterstützung staatlicher Stellen. Wurde 2024 Namensgeber des ITV-Dramas das den öffentlichen Durchbruch brachte.</div>
+      </div>
+      <div class="person-cell">
+        <div class="person-name">Mindestens 13 Personen</div>
+        <div class="person-text">Suizide, die im Zusammenhang mit Horizon-Verfahren dokumentiert sind. Einige starben mit Verurteilungen — ihre Namen wurden posthum durch den Offences Act 2024 rehabilitiert.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- VERANTWORTUNG -->
+  <section>
+    <div class="section-label">Block 05 — Verantwortung</div>
+    <h2>Wer wusste was — und was folgte daraus</h2>
+
+    <table>
+      <thead>
+        <tr><th>Akteur</th><th>Dokumentiertes Wissen / Handeln</th><th>Konsequenz bis 2026</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Post Office Ltd</strong></td>
+          <td>Wusste von Horizon-Fehlern. Verschwieg sie Gerichten und Verteidigern. Nutzte private Strafverfolgungsbefugnisse für 700+ Anklagen</td>
+          <td><span class="tag tag-open">Polizeiermittlung läuft — keine Verurteilung</span></td>
+        </tr>
+        <tr>
+          <td><strong>Fujitsu</strong></td>
+          <td>Remote-Zugriff ohne Protokollierung. Interne Dokumente über Systemfehler ab 2001. Ingenieur als Gutachter in Prozessen eingesetzt — methodisch fehlerhaft</td>
+          <td><span class="tag tag-open">„Moralische Verpflichtung" erklärt — keine strafrechtl. Konsequenz</span></td>
+        </tr>
+        <tr>
+          <td><strong>Gerichte</strong></td>
+          <td>Akzeptierten Horizon-Daten als unfehlbar — gesetzliche Computervermutung. Keine kritische Prüfung der Datengrundlage</td>
+          <td><span class="tag tag-confirmed">Urteile aufgehoben — Gesetz 2024</span></td>
+        </tr>
+        <tr>
+          <td><strong>UK-Regierung</strong></td>
+          <td>Jahrelange Untätigkeit trotz bekannter Probleme. Handelte erst nach ITV-Drama Januar 2024</td>
+          <td><span class="tag tag-partial">Offences Act 2024 — Kompensation teils ausständig</span></td>
+        </tr>
+        <tr>
+          <td><strong>Fujitsu UK-Regierungsverträge</strong></td>
+          <td>Fujitsu verdient Milliarden mit UK-Staatsaufträgen. Pausierte freiwillig Ausschreibungen während der Inquiry</td>
+          <td><span class="tag tag-open">Keine strukturelle Änderung der Vergabepraxis bekannt</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- BRÜCKENTHEMA -->
+  <section>
+    <div class="section-label">Block 06 — Strukturelle Dimension</div>
+    <h2>Was dieser Fall über digitale Beweisführung aussagt</h2>
+
+    <p>Der Post Office-Skandal ist kein abgeschlossenes Kapitel britischer Justizgeschichte. Er ist ein dokumentierter Präzedenzfall für eine Frage, die mit zunehmender Digitalisierung aller Lebensbereiche an Bedeutung gewinnt.</p>
+
+    <div class="bridge-box">
+      <div class="bridge-label">Strukturelle Beobachtung — primärquellenbasiert</div>
+      <p>Britische Gerichte behandelten Computerdaten zwei Jahrzehnte lang als unwiderlegbaren Beweis — gestützt auf eine gesetzliche Vermutung der Zuverlässigkeit digitaler Systeme.</p>
+      <p>Fujitsu-Mitarbeiter hatten nachweislich Remote-Zugriff auf laufende Systeme — ohne Protokollierung, ohne Wissen der Nutzer.</p>
+      <p>Das Ergebnis: 900+ Menschen wurden auf der Grundlage von Daten verurteilt, die theoretisch von Dritten ohne Spurennachweis hätten verändert werden können.</p>
+      <p>Niemand wurde dafür strafrechtlich zur Rechenschaft gezogen.</p>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Frage</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Können digitale Buchhaltungsdaten manipuliert werden ohne Nutzerkenntnis?</td>
+          <td><span class="tag tag-confirmed">Belegt — Horizon Inquiry</span></td>
+        </tr>
+        <tr>
+          <td>Wurde Remote-Zugriff ohne Protokollierung genutzt?</td>
+          <td><span class="tag tag-confirmed">Belegt — „unrestricted and unauditable"</span></td>
+        </tr>
+        <tr>
+          <td>Haben Gerichte digitale Daten unkritisch als Beweis akzeptiert?</td>
+          <td><span class="tag tag-confirmed">Belegt — gesetzliche Computervermutung UK</span></td>
+        </tr>
+        <tr>
+          <td>Wurde das System nach Aufdeckung sofort abgeschaltet?</td>
+          <td><span class="tag tag-open">Nein — Horizon läuft weiterhin (Stand 2026)</span></td>
+        </tr>
+        <tr>
+          <td>Wurde irgendein Verantwortlicher verurteilt?</td>
+          <td><span class="tag tag-open">Nein — Ermittlungen laufen</span></td>
+        </tr>
+        <tr>
+          <td>Sind ähnliche Strukturen in anderen digitalen Systemen möglich?</td>
+          <td><span class="tag tag-partial">Technisch: ja — rechtlich ungeprüft</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Dieses Dossier stellt keine Behauptung auf, dass andere digitale Systeme — Steuerbehörden, Bankdatenbanken, digitale Identitäten — tatsächlich in gleicher Weise manipuliert werden. Es dokumentiert, dass die technischen und rechtlichen Voraussetzungen dafür im Horizon-Fall nachweislich vorhanden waren — und dass die Konsequenzen für Betroffene verheerend waren.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <div class="closing">
+    <p>900 Menschen wurden auf der Grundlage von Computerdaten verurteilt. Die Daten waren falsch. Niemand der Verantwortlichen sitzt im Gefängnis.<br><br>
+    <strong>Wenn digitale Daten als unfehlbarer Beweis gelten — wer kontrolliert dann die Daten?</strong></p>
+  </div>
+
+  <section>
+    <div class="section-label">Quellenverzeichnis</div>
+    <h2>Primärquellen dieses Dossiers</h2>
+
+    <table>
+      <thead>
+        <tr><th>Quelle</th><th>Inhalt</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Post Office Horizon IT Inquiry — Abschlussbericht Vol. 1, Juli 2025</td>
+          <td>Gesamtbefund: wussten oder hätten wissen müssen</td>
+          <td><span class="tag tag-confirmed">Postofficehorizoninquiry.org.uk</span></td>
+        </tr>
+        <tr>
+          <td>Post Office (Horizon System) Offences Act 2024</td>
+          <td>Gesetz zur Massenaufhebung der Urteile</td>
+          <td><span class="tag tag-confirmed">Legislation.gov.uk</span></td>
+        </tr>
+        <tr>
+          <td>High Court — GLO-Urteil 2019</td>
+          <td>Horizon enthielt „bugs, errors and defects"</td>
+          <td><span class="tag tag-confirmed">Gerichtsakten öffentlich</span></td>
+        </tr>
+        <tr>
+          <td>Criminal Cases Review Commission</td>
+          <td>77 referierte Fälle, 69 Urteile aufgehoben</td>
+          <td><span class="tag tag-confirmed">CCRC.gov.uk</span></td>
+        </tr>
+        <tr>
+          <td>Computer Weekly — Fujitsu Remote Access</td>
+          <td>„Unrestricted and unauditable" — mit Inquiry-Belegen</td>
+          <td><span class="tag tag-confirmed">Computerweekly.com</span></td>
+        </tr>
+        <tr>
+          <td>Fujitsu intern — EPOSS PinICL TaskForce Report 2001</td>
+          <td>Dokumentiert schlechten Softwarezustand vor Rollout</td>
+          <td><span class="tag tag-confirmed">In Inquiry veröffentlicht</span></td>
+        </tr>
+        <tr>
+          <td>YouGov / Inquiry-Umfrage, September 2024</td>
+          <td>57 % aktiver Filialleiter berichten unerklärte Fehlbeträge</td>
+          <td><span class="tag tag-confirmed">Inquiry-Auftrag, öffentlich</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="source-box">
+      <strong>Hinweis zur Methodik</strong>
+      Alle Angaben basieren auf öffentlich zugänglichen Primärquellen: Inquiry-Berichten, Gerichtsurteilen, parlamentarischen Gesetzen und investigativem Journalismus mit direktem Bezug auf Inquiry-Zeugenaussagen. Die strukturellen Schlussfolgerungen zu digitaler Beweisführung werden als Beobachtung formuliert — nicht als Behauptung über andere Systeme.
+    </div>
+  </section>
+
+  <footer>
+    <p class="footer-note">Alle dargestellten Informationen basieren auf öffentlich zugänglichen Primärquellen. Dieses Dossier erhebt keinen Anspruch auf Vollständigkeit. Leser werden ausdrücklich zur eigenständigen Überprüfung der genannten Quellen eingeladen.</p>
+    <p class="footer-brand">dunkelfeld.report — Fakten, die das Licht nicht scheuen.</p>
+  </footer>
+
+</div>
+</body>
+</html>

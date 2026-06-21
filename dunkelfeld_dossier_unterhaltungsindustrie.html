@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dossier: Machtmissbrauch in der Unterhaltungsindustrie – dunkelfeld.report</title>
+  <style>
+    :root {
+      --bg: #09090b;
+      --surface: #111113;
+      --border: #222226;
+      --amber: #e8c547;
+      --amber-dim: #b89a2f;
+      --text: #d4d4d8;
+      --text-muted: #71717a;
+      --text-bright: #f4f4f5;
+      --red-dim: #7f1d1d;
+      --red-label: #fca5a5;
+      --green-dim: #14532d;
+      --green-label: #86efac;
+      --yellow-dim: #713f12;
+      --yellow-label: #fde68a;
+      --blue-dim: #1e3a5f;
+      --blue-label: #93c5fd;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .site-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 6px;
+    }
+
+    .site-tagline {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+    }
+
+    .dossier-meta {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--amber);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-family: Georgia, serif;
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--text-bright);
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-family: Georgia, serif;
+      font-size: 14px;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+
+    .reading-info {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .intro {
+      font-family: Georgia, serif;
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 40px;
+      padding: 20px 24px;
+      background: var(--surface);
+      border-left: 3px solid var(--amber);
+    }
+
+    h2 {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin: 48px 0 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Main case table */
+    .case-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0 40px;
+      font-size: 12px;
+    }
+
+    .case-table th {
+      background: #0d0d10;
+      color: var(--amber);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 10px 12px;
+      text-align: left;
+      border: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .case-table td {
+      padding: 12px 12px;
+      border: 1px solid var(--border);
+      vertical-align: top;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .case-table tr:nth-child(even) td {
+      background: #0a0a0d;
+    }
+
+    .case-table .name {
+      color: var(--text-bright);
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 2px;
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      font-weight: bold;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .badge-red    { background: var(--red-dim);    color: var(--red-label); }
+    .badge-green  { background: var(--green-dim);  color: var(--green-label); }
+    .badge-yellow { background: var(--yellow-dim); color: var(--yellow-label); }
+    .badge-blue   { background: var(--blue-dim);   color: var(--blue-label); }
+
+    /* Kinderstar timeline */
+    .timeline {
+      margin: 20px 0 40px;
+      border-left: 2px solid var(--border);
+      padding-left: 24px;
+    }
+
+    .timeline-item {
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -30px;
+      top: 6px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--amber-dim);
+    }
+
+    .timeline-year {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--amber);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .timeline-name {
+      color: var(--text-bright);
+      font-weight: bold;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
+    .timeline-desc {
+      color: var(--text-muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .timeline-source {
+      color: #444450;
+      font-size: 10px;
+      margin-top: 4px;
+    }
+
+    /* Legend */
+    .legend {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      padding: 12px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 11px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0;
+    }
+
+    .note-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .note-box strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 6px;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--amber-dim);
+    }
+
+    .footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .footer .footer-brand { color: var(--amber); }
+
+    p { margin-bottom: 16px; color: var(--text); font-family: Georgia, serif; font-size: 14px; line-height: 1.8; }
+  
+  /* ═══════════════════════════════════════════
+     DUNKELFELD.REPORT — CSS STANDARD OVERRIDE
+     Farben, Lesbarkeit, DSGVO-konform
+     ═══════════════════════════════════════════ */
+  :root {
+    --dk-bg:       #09090b;
+    --dk-surface:  #111113;
+    --dk-border:   #27272a;
+    --dk-amber:    #e8c547;
+    --dk-amber-dim:#b89a2f;
+    --dk-text:     #d4d4d8;
+    --dk-muted:    #71717a;
+    --dk-bright:   #f4f4f5;
+    --dk-source-bg:#1a1a2e;
+  }
+
+  /* Basis-Reset auf Standard */
+  html { background: var(--dk-bg); }
+  body {
+    background: var(--dk-bg) !important;
+    color: var(--dk-text) !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    max-width: 720px !important;
+    margin: 0 auto !important;
+    padding: 48px 24px 80px !important;
+  }
+
+  /* Wrapper / Container auf 720px begrenzen */
+  .container, .content, main, article,
+  .article-body, .hero, .body-text {
+    max-width: 720px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Absätze */
+  p {
+    padding-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Überschriften */
+  h1 { color: var(--dk-bright) !important; }
+  h2, h3, h4 { color: var(--dk-bright) !important; }
+
+  /* Links */
+  a {
+    color: var(--dk-amber) !important;
+    text-decoration: none !important;
+  }
+  a:hover {
+    text-decoration: underline !important;
+  }
+
+  /* Labels / Metadaten */
+  .label, .meta, .article-meta, .dossier-id, .site-label,
+  .tag, .category, time, .date {
+    font-family: 'Courier New', Courier, monospace !important;
+  }
+
+  /* Quellenboxen */
+  .source-box, .quellen-box, .source, .sources,
+  blockquote, .zitat, .fact-box, .info-box,
+  .quelle, .source-entry, .reference {
+    background: var(--dk-source-bg) !important;
+    border-left: 3px solid var(--dk-amber) !important;
+    padding: 1rem 1.2rem !important;
+    margin-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+  }
+
+  /* Tabellen */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--dk-surface) !important;
+    color: var(--dk-amber) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.75rem !important;
+    padding: 0.6rem 0.8rem !important;
+    text-align: left;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--dk-border) !important;
+  }
+  td {
+    padding: 0.7rem 0.8rem !important;
+    border-bottom: 1px solid var(--dk-border) !important;
+    color: var(--dk-text) !important;
+    font-size: 0.95rem !important;
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+
+  /* Site-Header Breite */
+  .site-header, header, nav {
+    max-width: 100% !important;
+  }
+
+  /* Farbkorrekturen: alte Amber-Töne → Standard */
+  [style*="color: #d4a017"], [style*="color:#d4a017"] { color: var(--dk-amber) !important; }
+  [style*="color: #b8860b"], [style*="color:#b8860b"] { color: var(--dk-amber) !important; }
+
+  /* Lesbarkeit: dunkle Texte aufhellen */
+  [style*="color: #666"], [style*="color:#666"],
+  [style*="color: #555"], [style*="color:#555"] {
+    color: var(--dk-muted) !important;
+  }
+</style>
+</head>
+<body>
+
+  <div class="site-label">● dunkelfeld.report</div>
+  <div class="site-tagline">Analyse · Dokumentation · Quellenbasiert</div>
+
+  <div class="dossier-meta">Dossier · Begleitdokument zu Artikel #19 · Juni 2026</div>
+
+  <h1>Machtmissbrauch in der Unterhaltungsindustrie</h1>
+  <p class="subtitle">Dokumentierte Fälle — ausschließlich rechtskräftig Verurteiltes und öffentlich belegte Primäraussagen</p>
+
+  <div class="reading-info">
+    Stand: Juni 2026 · Nur Verurteiltes und dokumentiert Belegtes · Laufende Verfahren gesondert markiert
+  </div>
+
+  <div class="intro">
+    Dieses Dossier ist das Quellenarchiv zu Artikel #19. Es enthält ausschließlich Fälle, bei denen entweder ein rechtskräftiges Urteil vorliegt oder die Fakten durch öffentlich zugängliche Primärquellen belegt sind. Gerüchte, nicht bestätigte Vorwürfe und laufende Verfahren ohne Urteil sind als solche gekennzeichnet oder nicht aufgeführt. Das Dossier erhebt keinen Anspruch auf Vollständigkeit — es dokumentiert, was dokumentierbar ist.
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="badge badge-red">Verurteilt</span> Rechtskräftiges Strafurteil</div>
+    <div class="legend-item"><span class="badge badge-yellow">Laufend</span> Verfahren nicht abgeschlossen</div>
+    <div class="legend-item"><span class="badge badge-green">Dokumentiert</span> Primärquelle vorhanden, kein Strafverfahren</div>
+    <div class="legend-item"><span class="badge badge-blue">Zivilrecht</span> Zivilklage / Settlement</div>
+  </div>
+
+  <h2>Teil A — Strafrechtlich verurteilte Fälle</h2>
+
+  <table class="case-table">
+    <thead>
+      <tr>
+        <th>Person</th>
+        <th>Branche</th>
+        <th>Tatvorwurf (laut Anklage)</th>
+        <th>Urteil / Status</th>
+        <th>Primärquelle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="name">Harvey Weinstein</td>
+        <td>Film (Produzent)</td>
+        <td>Sexuelle Nötigung, Vergewaltigung — über mehrere Jahrzehnte, zahlreiche Betroffene</td>
+        <td><span class="badge badge-red">Verurteilt</span><br>New York 2020: 23 Jahre.<br>LA 2023: 16 Jahre (additiv).<br>NY-Urteil 2024 aufgehoben, Neuverhandlung angeordnet.</td>
+        <td>People v. Weinstein (NYSC 2020); People v. Weinstein (LA 2023). NY Court of Appeals Entscheidung April 2024.</td>
+      </tr>
+      <tr>
+        <td class="name">Robert Sylvester Kelly (R. Kelly)</td>
+        <td>Musik (Sänger, Produzent)</td>
+        <td>Sexhandel, organisierte Kriminalität, sexueller Missbrauch Minderjähriger — dokumentiert über zwei Jahrzehnte</td>
+        <td><span class="badge badge-red">Verurteilt</span><br>Federal: 30 Jahre (2022).<br>Chicago: 20 Jahre additiv (2023).</td>
+        <td>USA v. Kelly (EDNY 2022); USA v. Kelly (ND Illinois 2023). Urteilsdokumente öffentlich zugänglich.</td>
+      </tr>
+      <tr>
+        <td class="name">Ian Watkins</td>
+        <td>Musik (Lostprophets, Sänger)</td>
+        <td>Sexueller Missbrauch von Kleinkindern, Besitz und Herstellung kinderpornografischen Materials</td>
+        <td><span class="badge badge-red">Verurteilt</span><br>Wales/UK 2013: 35 Jahre, davon mind. 29 ohne Bewährung.</td>
+        <td>Crown Court Cardiff, Urteil 18. Dezember 2013. BBC News Gerichtsberichterstattung (Primärprotokoll).</td>
+      </tr>
+      <tr>
+        <td class="name">Sean Combs (P. Diddy)</td>
+        <td>Musik (Rapper, Produzent, Unternehmer)</td>
+        <td>Sexhandel, organisierte Kriminalität, sexueller Missbrauch — 5 Anklagepunkte</td>
+        <td><span class="badge badge-red">Verurteilt</span> in 2/5 Punkten (Zuführung zur Prostitution, Mann Act).<br>Freispruch: RICO, Sexhandel.<br>Strafe: 4 Jahre 2 Monate (Okt. 2025).<br><span class="badge badge-yellow">Laufend</span> Berufung eingereicht.</td>
+        <td>USA v. Combs (SDNY 2024/2025). Urteil Oktober 2025. Beck-Aktuell, April 2026 (Berufungsstand).</td>
+      </tr>
+      <tr>
+        <td class="name">Conrad Murray</td>
+        <td>Medizin (Arzt, Celebrity Physician)</td>
+        <td>Fahrlässige Tötung (Michael Jackson) durch Verabreichung von Propofol als Schlafmittel</td>
+        <td><span class="badge badge-red">Verurteilt</span><br>Los Angeles 2011: 4 Jahre (Höchststrafe für den Tatbestand). Nach 2 Jahren entlassen.</td>
+        <td>People v. Murray (LA Superior Court 2011). Urteil und Transkript öffentlich zugänglich.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Teil B — Dokumentierte Strukturfälle (kein Strafverfahren)</h2>
+
+  <table class="case-table">
+    <thead>
+      <tr>
+        <th>Fall</th>
+        <th>Dokumentierter Sachverhalt</th>
+        <th>Primärquelle</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="name">Britney Spears<br>Conservatorship</td>
+        <td>13-jährige gesetzliche Vormundschaft unter Kontrolle des Vaters Jamie Spears. Spears beschrieb vor Gericht Zwangsmedikation, fehlende Entscheidungsfreiheit, erzwungene Arbeitsverpflichtungen. Gericht beendete Vormundschaft November 2021.</td>
+        <td>Conservatorship of Britney Spears (LA Superior Court, BP108870). Gerichtsaussage 23.06.2021, Transkript via NYT archiviert.</td>
+        <td><span class="badge badge-green">Dokumentiert</span></td>
+      </tr>
+      <tr>
+        <td class="name">Michael Jackson<br>Kinderarbeitsstart</td>
+        <td>Professionelle Karriere ab Alter 6 (1964). Eigene Aussagen zu angstbesetzter Beziehung zum Vater (Oprah 1993). Klinisch: BDD, Dissoziation, Schlafstörungen dokumentiert durch Murray-Prozessunterlagen.</td>
+        <td>Oprah-Interview 10.02.1993. LaToya Jackson: "Starting Over" (1991). Murray-Prozesstranskript 2011.</td>
+        <td><span class="badge badge-green">Dokumentiert</span></td>
+      </tr>
+      <tr>
+        <td class="name">Jackie Coogan<br>Vermögensplünderung</td>
+        <td>Kinderstar 1920er: Eltern verbrauchten nahezu gesamtes Karrierevermögen (mehrere Millionen USD). Kein Straftatbestand nach damaligem Recht. Führte direkt zur Gesetzgebung des Coogan Act (1939).</td>
+        <td>Coogan v. Coogan (LA Superior Court, 1938). California Family Code §6750 (Gesetzesbegründung verweist explizit auf den Fall).</td>
+        <td><span class="badge badge-green">Dokumentiert</span></td>
+      </tr>
+      <tr>
+        <td class="name">Justin Bieber<br>Systemdruck</td>
+        <td>Bieber beschrieb öffentlich Drogenkonsum, psychische Instabilität und Isolation als direkte Folge früher Karriere. Keine strafrechtliche Komponente — dokumentierter Fall von selbst benanntem Systemversagen.</td>
+        <td>Justin Bieber: Seasons (YouTube Originals, 2020). Vogue-Interview Februar 2021. Rolling Stone Januar 2021.</td>
+        <td><span class="badge badge-green">Dokumentiert</span></td>
+      </tr>
+      <tr>
+        <td class="name">Weinstein — institutionelles Schweigen</td>
+        <td>Beschwerden über Weinstein dokumentiert ab frühen 1990ern. Mindestens ein Medienbericht auf juristischen Druck zurückgehalten (dokumentiert durch Farrow). Schweigegeldzahlungen durch Settlement-Verträge mit NDA-Klauseln.</td>
+        <td>Ronan Farrow: "Catch and Kill" (2019). NY Times, 05.10.2017. The New Yorker, 10.10.2017.</td>
+        <td><span class="badge badge-green">Dokumentiert</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Teil C — Kinderstar-Chronologie: Karrierestart unter 18</h2>
+
+  <p>Die folgende Chronologie dokumentiert ausschließlich öffentlich bekannte Fakten über den Karrierebeginn bekannter Entertainmentstars im Kindes- und Jugendalter. Sie ist keine Schuldzuweisung — sie ist Strukturdokumentation.</p>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-year">1964 — Alter: 6 Jahre</div>
+      <div class="timeline-name">Michael Jackson</div>
+      <div class="timeline-desc">Professioneller Karrierestart als Mitglied der Jackson 5. Erste Plattenaufnahmen 1967 (Steeltown Records). Motown-Vertrag 1969.</div>
+      <div class="timeline-source">Quelle: Motown Records Vertragsunterlagen (archiviert). Rolling Stone Biographie.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-year">1978 — Alter: 9 Jahre</div>
+      <div class="timeline-name">Drew Barrymore</div>
+      <div class="timeline-desc">Erste Rolle mit 11 Monaten (Werbung). Hauptrolle in E.T. mit 7 Jahren. Öffentlich dokumentierter Drogenkonsum ab 9 Jahren, Entzugsklinik mit 13. Barrymore hat dies selbst in ihrer Autobiographie beschrieben.</div>
+      <div class="timeline-source">Quelle: Drew Barrymore: "Little Girl Lost" (Autobiographie, 1990).</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-year">1989 — Alter: 7 Jahre</div>
+      <div class="timeline-name">Macaulay Culkin</div>
+      <div class="timeline-desc">Karrierestart mit 4 Jahren. Home Alone (1990) mit 10. Öffentlicher Sorgerechtsstreit der Eltern, der explizit um Kontrolle über sein Einkommen geführt wurde — dokumentiert durch Gerichtsunterlagen.</div>
+      <div class="timeline-source">Quelle: Culkin v. Culkin (NY Family Court, 1995). New York Times Gerichtsberichterstattung.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-year">1993 — Alter: 11 Jahre</div>
+      <div class="timeline-name">Britney Spears</div>
+      <div class="timeline-desc">The Mickey Mouse Club (Disney). Plattenvertrag mit 15. Durchbruch mit 16. Vormundschaft 2008–2021 — dokumentiert durch Gerichtsakten (s. Teil B).</div>
+      <div class="timeline-source">Quelle: LA Superior Court BP108870. Gerichtsaussage Juni 2021.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-year">1994 — Alter: 12 Jahre</div>
+      <div class="timeline-name">Lindsay Lohan</div>
+      <div class="timeline-desc">Modelkarriere ab 3 Jahren. The Parent Trap (1998) mit 11. Dokumentierter öffentlicher Zusammenbruch Mitte 20er, mehrfache Gerichtsverfahren wegen substanzbezogener Delikte.</div>
+      <div class="timeline-source">Quelle: Öffentliche Gerichtsdokumente (LA Superior Court, 2007–2011). People Magazine Archiv.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-year">2008 — Alter: 13 Jahre</div>
+      <div class="timeline-name">Justin Bieber</div>
+      <div class="timeline-desc">Entdeckt durch YouTube-Videos. Plattenvertrag mit 14. Weltberühmt mit 15/16. Öffentlich dokumentierter Zusammenbruch und Rekonstruktion (s. Teil B).</div>
+      <div class="timeline-source">Quelle: Justin Bieber: Seasons (YouTube Originals, 2020).</div>
+    </div>
+
+  </div>
+
+  <h2>Teil D — Rechtliche Schutzinstrumente und ihre dokumentierten Lücken</h2>
+
+  <table class="case-table">
+    <thead>
+      <tr>
+        <th>Instrument</th>
+        <th>Schutzinhalt (laut Gesetz)</th>
+        <th>Dokumentierte Lücke</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="name">Coogan Act (CA, 1939/2000)</td>
+        <td>15 % des Verdienstes Minderjähriger auf gesperrtem Treuhandkonto</td>
+        <td>85 % verbleiben ohne Rechenschaftspflicht bei Eltern/Vormund. Gilt nur in Kalifornien, nicht federal. Quelle: California Family Code §6750–6753.</td>
+      </tr>
+      <tr>
+        <td class="name">Conservatorship (CA Probate Code)</td>
+        <td>Schutz von Personen, die ihre eigenen Angelegenheiten nicht regeln können</td>
+        <td>Im Fall Spears: Instrument wurde 13 Jahre aufrechterhalten, obwohl Spears produktiv arbeitete und öffentlich auftrat. Gericht 2021: fundamentaler Interessenkonflikt. Quelle: BP108870.</td>
+      </tr>
+      <tr>
+        <td class="name">NDA / Schweigegeld-Settlements</td>
+        <td>Zivilrechtliches Instrument zur außergerichtlichen Einigung</td>
+        <td>Im Fall Weinstein: systematisch eingesetzt, um Betroffene zum Schweigen zu bringen. Farrow dokumentiert: mind. 8 Settlements mit Vertraulichkeitsklauseln vor 2017. Quelle: "Catch and Kill" (2019).</td>
+      </tr>
+      <tr>
+        <td class="name">SAG-AFTRA (Gewerkschaft)</td>
+        <td>Arbeitnehmerrechte für Schauspieler, inkl. Minderjährigenschutz</td>
+        <td>Keine dokumentierte institutionelle Intervention in den Fällen Spears, Lohan, Culkin während der kritischen Phasen. Strukturelle Passivität nicht untersucht.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note-box">
+    <strong>Methodische Eingrenzung</strong>
+    Dieses Dossier enthält ausschließlich Fälle mit rechtskräftigen Urteilen oder dokumentierten Primäraussagen. Nicht enthalten: Vorwürfe ohne Verurteilung oder belastbare Primärquelle, laufende Ermittlungen ohne Anklageerhebung, Gerüchte jeder Art. Laufende Verfahren (Stand Juni 2026) sind explizit als solche markiert. Änderungen der Rechtslage nach diesem Datum werden nicht automatisch aktualisiert — Leser werden zur eigenständigen Prüfung aktueller Quellen (Gerichtsdatenbanken, Nachrichtenagenturen) eingeladen.
+  </div>
+
+  <hr>
+
+  <h2>Quellenindex</h2>
+
+  <p style="font-family: 'Courier New', monospace; font-size: 12px; color: var(--text-muted); line-height: 2;">
+    People v. Harvey Weinstein — New York Supreme Court (2020) / LA Superior Court (2023)<br>
+    NY Court of Appeals — Aufhebung Ersturteil, April 2024<br>
+    USA v. Robert Kelly — Eastern District of New York (2022) / Northern District Illinois (2023)<br>
+    R v. Ian Watkins — Crown Court Cardiff (2013)<br>
+    USA v. Sean Combs — Southern District of New York (2024/2025)<br>
+    Beck-Aktuell: Berufungsstand Combs, April 2026<br>
+    People v. Conrad Murray — LA Superior Court (2011)<br>
+    Conservatorship of Britney Spears — LA Superior Court BP108870 (2008–2021)<br>
+    California Family Code §6750–6753 (Coogan Act)<br>
+    Coogan v. Coogan — LA Superior Court (1938)<br>
+    Ronan Farrow: "Catch and Kill" — Little, Brown and Company (2019)<br>
+    Jodi Kantor / Megan Twohey — New York Times, 05.10.2017<br>
+    Ronan Farrow — The New Yorker, 10.10.2017<br>
+    Drew Barrymore: "Little Girl Lost" — Pocket Books (1990)<br>
+    Culkin v. Culkin — NY Family Court (1995)<br>
+    Justin Bieber: Seasons — YouTube Originals (2020)<br>
+    Justin Bieber / Hailey Bieber — Vogue, Februar 2021
+  </p>
+
+  <div class="footer">
+    <span class="footer-brand">dunkelfeld.report</span> — Begleitdossier zu Artikel #19<br>
+    Juni 2026 · Nur belegtes Material · Keine Spekulation
+  </div>
+
+</body>
+</html>

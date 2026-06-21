@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quellennotiz: Lamberty / WEF — dunkelfeld.report</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #09090b;
+      color: #e2e2e8;
+      font-family: Georgia, 'Times New Roman', serif;
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+
+    a { color: #e8c547; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .site-header {
+      border-bottom: 1px solid #2a2a2e;
+      padding-bottom: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .site-header a {
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: #5a5a6a;
+      letter-spacing: 0.05em;
+    }
+
+    .site-header a:hover { color: #e8c547; }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .label {
+      font-family: monospace;
+      font-size: 0.72rem;
+      color: #e8c547;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: normal;
+      color: #e2e2e8;
+      margin-bottom: 0.5rem;
+      line-height: 1.35;
+    }
+
+    .meta {
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: #5a5a6a;
+      margin-bottom: 2rem;
+    }
+
+    .lead {
+      font-size: 1.05rem;
+      color: #b0b0be;
+      margin-bottom: 2rem;
+      border-left: 3px solid #e8c547;
+      padding-left: 1rem;
+    }
+
+    h2 {
+      font-size: 0.8rem;
+      font-family: monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #e8c547;
+      margin: 2rem 0 0.75rem;
+    }
+
+    p { margin-bottom: 1rem; color: #c8c8d4; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.88rem;
+    }
+
+    th {
+      font-family: monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #5a5a6a;
+      text-align: left;
+      padding: 0.4rem 0.75rem;
+      border-bottom: 1px solid #2a2a2e;
+    }
+
+    td {
+      padding: 0.55rem 0.75rem;
+      border-bottom: 1px solid #1e1e22;
+      vertical-align: top;
+      color: #c8c8d4;
+    }
+
+    td:first-child {
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: #5a5a6a;
+      white-space: nowrap;
+      width: 140px;
+    }
+
+    .source-box {
+      background: #111114;
+      border: 1px solid #2a2a2e;
+      border-left: 3px solid #e8c547;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: #5a5a6a;
+    }
+
+    .source-box a { color: #e8c547; word-break: break-all; }
+
+    .open-question {
+      margin-top: 2.5rem;
+      padding: 1.25rem;
+      border: 1px solid #2a2a2e;
+      background: #0d0d10;
+    }
+
+    .open-question .label { margin-bottom: 0.5rem; }
+    .open-question p { color: #b0b0be; margin: 0; }
+
+    .disclaimer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #2a2a2e;
+      font-family: monospace;
+      font-size: 0.72rem;
+      color: #3a3a4a;
+      line-height: 1.6;
+    }
+
+    .site-footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #1e1e22;
+      font-family: monospace;
+      font-size: 0.72rem;
+      color: #3a3a4a;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .site-footer a { color: #5a5a6a; }
+    .site-footer a:hover { color: #e8c547; }
+  
+  /* ═══════════════════════════════════════════
+     DUNKELFELD.REPORT — CSS STANDARD OVERRIDE
+     Farben, Lesbarkeit, DSGVO-konform
+     ═══════════════════════════════════════════ */
+  :root {
+    --dk-bg:       #09090b;
+    --dk-surface:  #111113;
+    --dk-border:   #27272a;
+    --dk-amber:    #e8c547;
+    --dk-amber-dim:#b89a2f;
+    --dk-text:     #d4d4d8;
+    --dk-muted:    #71717a;
+    --dk-bright:   #f4f4f5;
+    --dk-source-bg:#1a1a2e;
+  }
+
+  /* Basis-Reset auf Standard */
+  html { background: var(--dk-bg); }
+  body {
+    background: var(--dk-bg) !important;
+    color: var(--dk-text) !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    max-width: 720px !important;
+    margin: 0 auto !important;
+    padding: 48px 24px 80px !important;
+  }
+
+  /* Wrapper / Container auf 720px begrenzen */
+  .container, .content, main, article,
+  .article-body, .hero, .body-text {
+    max-width: 720px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Absätze */
+  p {
+    padding-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Überschriften */
+  h1 { color: var(--dk-bright) !important; }
+  h2, h3, h4 { color: var(--dk-bright) !important; }
+
+  /* Links */
+  a {
+    color: var(--dk-amber) !important;
+    text-decoration: none !important;
+  }
+  a:hover {
+    text-decoration: underline !important;
+  }
+
+  /* Labels / Metadaten */
+  .label, .meta, .article-meta, .dossier-id, .site-label,
+  .tag, .category, time, .date {
+    font-family: 'Courier New', Courier, monospace !important;
+  }
+
+  /* Quellenboxen */
+  .source-box, .quellen-box, .source, .sources,
+  blockquote, .zitat, .fact-box, .info-box,
+  .quelle, .source-entry, .reference {
+    background: var(--dk-source-bg) !important;
+    border-left: 3px solid var(--dk-amber) !important;
+    padding: 1rem 1.2rem !important;
+    margin-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+  }
+
+  /* Tabellen */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--dk-surface) !important;
+    color: var(--dk-amber) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.75rem !important;
+    padding: 0.6rem 0.8rem !important;
+    text-align: left;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--dk-border) !important;
+  }
+  td {
+    padding: 0.7rem 0.8rem !important;
+    border-bottom: 1px solid var(--dk-border) !important;
+    color: var(--dk-text) !important;
+    font-size: 0.95rem !important;
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+
+  /* Site-Header Breite */
+  .site-header, header, nav {
+    max-width: 100% !important;
+  }
+
+  /* Farbkorrekturen: alte Amber-Töne → Standard */
+  [style*="color: #d4a017"], [style*="color:#d4a017"] { color: var(--dk-amber) !important; }
+  [style*="color: #b8860b"], [style*="color:#b8860b"] { color: var(--dk-amber) !important; }
+
+  /* Lesbarkeit: dunkle Texte aufhellen */
+  [style*="color: #666"], [style*="color:#666"],
+  [style*="color: #555"], [style*="color:#555"] {
+    color: var(--dk-muted) !important;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="site-header">
+    <a href="index.html">● DUNKELFELD.REPORT</a>
+    &nbsp;&nbsp;/&nbsp;&nbsp;
+    <a href="index.html">Dossiers</a>
+    &nbsp;&nbsp;/&nbsp;&nbsp;
+    <span style="color:#e2e2e8">Quellennotiz QN-001</span>
+  </div>
+
+  <div class="label">● QUELLENNOTIZ QN-001 / JUNI 2026 / NETZWERK</div>
+
+  <h1>Pia Lamberty als WEF Agenda Contributor</h1>
+
+  <div class="meta">Veröffentlicht: Juni 2026 &nbsp;|&nbsp; Kategorie: Faktenchecker-Netzwerk &nbsp;|&nbsp; Methodik: Primärquellenarchiv</div>
+
+  <div class="lead">
+    Diese Notiz dokumentiert ausschließlich öffentlich zugängliche Primärquellen. Keine Schlussfolgerungen, keine Motive — die Quellen werden nebeneinandergestellt.
+  </div>
+
+  <h2>Dokumentierte Fakten</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Merkmal</th>
+        <th>Inhalt</th>
+        <th>Quelle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Name</td>
+        <td>Pia Lamberty</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Funktion (1)</td>
+        <td>Mitgründerin und Geschäftsführerin, CeMAS (Center für Monitoring, Analyse und Strategie)</td>
+        <td><a href="https://cemas.io/team/" target="_blank" rel="noopener">cemas.io/team/</a></td>
+      </tr>
+      <tr>
+        <td>Funktion (2)</td>
+        <td>„Agenda Contributor", World Economic Forum</td>
+        <td><a href="https://www.weforum.org/stories/authors/pia-lamberty/" target="_blank" rel="noopener">weforum.org/stories/authors/pia-lamberty/</a></td>
+      </tr>
+      <tr>
+        <td>Akad. Titel (WEF-Angabe)</td>
+        <td>PhD Researcher in Social and Legal Psychology, Johannes Gutenberg University of Mainz</td>
+        <td><a href="https://www.weforum.org/stories/authors/pia-lamberty/" target="_blank" rel="noopener">weforum.org</a></td>
+      </tr>
+      <tr>
+        <td>WEF-Artikel</td>
+        <td>„Conspiracy theories are spreading faster than the coronavirus. Here's how they impact us all" (03. März 2020)</td>
+        <td><a href="https://www.weforum.org/stories/2020/03/coronavirus-conspiracy-theories-false-information-coid19-health/" target="_blank" rel="noopener">weforum.org</a></td>
+      </tr>
+      <tr>
+        <td>Zeitpunkt</td>
+        <td>Artikel erschien in der Frühphase der COVID-19-Pandemie, drei Wochen nach WHO-Ausrufung des internationalen Gesundheitsnotstands</td>
+        <td>WHO-Chronologie</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Primärquellen (archivierbar)</h2>
+
+  <div class="source-box">
+    [1] WEF-Autorenprofil Lamberty<br>
+    <a href="https://www.weforum.org/stories/authors/pia-lamberty/" target="_blank" rel="noopener">https://www.weforum.org/stories/authors/pia-lamberty/</a><br><br>
+    [2] WEF-Artikel (03.03.2020)<br>
+    <a href="https://www.weforum.org/stories/2020/03/coronavirus-conspiracy-theories-false-information-coid19-health/" target="_blank" rel="noopener">https://www.weforum.org/stories/2020/03/coronavirus-conspiracy-theories-false-information-coid19-health/</a><br><br>
+    [3] CeMAS-Teamseite<br>
+    <a href="https://cemas.io/team/" target="_blank" rel="noopener">https://cemas.io/team/</a>
+  </div>
+
+  <h2>Einordnung</h2>
+
+  <p>CeMAS wird u.a. von der Amadeu Antonio Stiftung, dem Bundesministerium für Inneres sowie verschiedenen Landesministerien gefördert (Quellenbeleg: CeMAS-Transparenzberichte — Verlinkung folgt in Artikel #9a). Die Organisation betreibt Monitoring von Inhalten, die sie als „Desinformation" oder „Verschwörungsideologien" klassifiziert, und berät Behörden sowie Plattformen.</p>
+
+  <p>Ob und in welchem Verhältnis die WEF-Contributor-Tätigkeit zu diesen Funktionen steht, ist nicht dokumentiert. Die Verbindung wird hier ohne Wertung archiviert.</p>
+
+  <div class="open-question">
+    <div class="label">● Offene Frage</div>
+    <p>Welche weiteren deutschen Akteure im Faktenchecker- und Monitoring-Bereich sind gleichzeitig als WEF Agenda Contributors oder in WEF-Programmen (YGL, Global Shapers) registriert?</p>
+  </div>
+
+  <div class="disclaimer">
+    Methodik: Diese Seite dokumentiert ausschließlich öffentlich zugängliche Primärquellen. Alle Angaben sind mit direkten Quellenlinks belegt. Schlussfolgerungen über Motive, Absichten oder Kausalzusammenhänge werden nicht gezogen. Leser sind eingeladen, die verlinkten Primärquellen eigenständig zu prüfen.
+  </div>
+
+  <div class="site-footer">
+    <span><a href="index.html">← Zurück zur Übersicht</a></span>
+    <span>dunkelfeld.report &nbsp;|&nbsp; <a href="https://github.com/dunkelfeld-report" target="_blank" rel="noopener">GitHub</a></span>
+  </div>
+
+</div>
+</body>
+</html>

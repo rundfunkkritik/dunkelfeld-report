@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOSSIER 002 — Großbritannien: Skandal und Schweigen | dunkelfeld.report</title>
+<meta name="description" content="Grooming Gangs, institutionelles Versagen und die staatliche Antwort: Zensur, Überwachung, Digitale ID. Eine quellenbasierte Dokumentation.">
+<style>
+  :root {
+    --bg: #09090b;
+    --surface: #0f0f12;
+    --border: #1c1c22;
+    --border2: #26262e;
+    --text: #e2e2e8;
+    --muted: #5a5a6a;
+    --muted2: #3a3a48;
+    --accent: #e8c547;
+    --accent-dim: #a88d30;
+    --red: #e84747;
+    --red-dim: #8a2a2a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .header-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+  .header-title { font-family: 'Georgia', serif; font-size: 0.9rem; font-weight: 700; color: var(--text); letter-spacing: 0.05em; text-decoration: none; }
+  .header-sep { color: var(--muted); font-size: 0.8rem; }
+  .header-tagline { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; font-style: italic; }
+  .header-date { margin-left: auto; font-size: 0.7rem; color: var(--muted); font-family: monospace; }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 6rem 2rem 5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dossier-label {
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-bottom: 3rem;
+    font-family: monospace;
+  }
+
+  .dossier-label span { color: var(--accent); }
+
+  .hero h1 {
+    font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+    font-weight: 700;
+    line-height: 1.07;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero h1 .sub { color: var(--muted); }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 580px;
+    margin-bottom: 3.5rem;
+    font-style: italic;
+  }
+
+  /* ── STATS ── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 0;
+    border: 1px solid var(--border);
+  }
+
+  .stat-item { padding: 1.8rem 1.6rem; border-right: 1px solid var(--border); }
+  .stat-item:last-child { border-right: none; }
+  .stat-value { font-size: 2.2rem; font-weight: 700; color: var(--accent); line-height: 1; }
+  .stat-label { font-size: 0.82rem; color: var(--text); margin-top: 0.5rem; line-height: 1.4; }
+  .stat-source { font-size: 0.68rem; color: var(--muted); margin-top: 0.3rem; font-style: italic; }
+
+  /* ── TIMELINE ── */
+  .timeline-section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-eyebrow {
+    font-size: 0.68rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-family: monospace;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .timeline {
+    display: grid;
+    gap: 0;
+    border-left: 1px solid var(--border2);
+    margin-left: 1rem;
+  }
+
+  .timeline-item {
+    padding: 1.5rem 0 1.5rem 2rem;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .timeline-item:last-child { border-bottom: none; }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 1.9rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--muted2);
+    border: 1px solid var(--border2);
+  }
+
+  .timeline-item.highlight::before { background: var(--accent); border-color: var(--accent); }
+  .timeline-item.warning::before { background: var(--red); border-color: var(--red); }
+
+  .timeline-year {
+    font-family: monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-desc {
+    font-size: 0.87rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* ── TWO-COLUMN CONTRAST ── */
+  .contrast-section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .contrast-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    margin-top: 2rem;
+  }
+
+  .contrast-col { background: var(--surface); padding: 2rem; }
+
+  .contrast-col-title {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-family: monospace;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .contrast-col-title.left { color: var(--red); }
+  .contrast-col-title.right { color: var(--accent); }
+
+  .contrast-item {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.87rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .contrast-item:last-child { border-bottom: none; }
+
+  .contrast-item strong { color: var(--text); display: block; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.3rem; font-family: monospace; }
+
+  /* ── ACCORDION ── */
+  .accordion-section {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .accordion-header {
+    padding: 2rem 2rem 1rem;
+  }
+
+  .acc-block { border-bottom: 1px solid var(--border); }
+
+  .acc-toggle {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 1.6rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s;
+  }
+
+  .acc-toggle:hover { background: var(--surface); }
+
+  .acc-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .acc-title { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; font-family: monospace; flex: 1; }
+  .acc-icon { color: var(--muted); font-size: 0.75rem; font-family: monospace; }
+
+  .acc-content { display: none; padding: 0 2rem 2rem; gap: 0.6rem; flex-direction: column; }
+  .acc-content.open { display: flex; }
+
+  .fact-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 1.2rem 1.4rem;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+
+  .fact-card:hover { border-color: var(--border2); }
+  .fact-card.open { border-color: var(--border2); }
+
+  .fact-card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+  .fact-label { font-size: 0.78rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-family: monospace; }
+  .fact-icon { color: var(--muted); font-family: monospace; font-size: 1rem; flex-shrink: 0; }
+  .fact-body { display: none; margin-top: 0.9rem; font-size: 0.9rem; color: var(--text); line-height: 1.75; }
+  .fact-card.open .fact-body { display: block; }
+
+  /* ── STARMER BOX ── */
+  .starmer-box {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+  }
+
+  .starmer-inner {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-left: 3px solid var(--red);
+    padding: 2rem 2rem 2rem 2.4rem;
+  }
+
+  .starmer-label {
+    font-size: 0.68rem;
+    font-family: monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--red);
+    margin-bottom: 1rem;
+  }
+
+  .starmer-entries { display: grid; gap: 1rem; }
+
+  .starmer-entry { font-size: 0.87rem; color: var(--muted); line-height: 1.65; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+  .starmer-entry:last-child { border-bottom: none; padding-bottom: 0; }
+  .starmer-entry strong { color: var(--text); }
+
+  /* ── OPEN QUESTION ── */
+  .question-section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .question-text {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: var(--muted);
+    line-height: 1.7;
+    font-style: italic;
+    max-width: 720px;
+  }
+
+  .question-text em { color: var(--text); font-style: normal; }
+
+  /* ── SOURCES ── */
+  .sources-section { max-width: 960px; margin: 0 auto; padding: 2rem 2rem 0; border-top: 1px solid var(--border); }
+
+  .sources-toggle {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 0.7rem 1.6rem;
+    cursor: pointer;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: monospace;
+    border-radius: 1px;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .sources-toggle:hover { border-color: var(--border2); color: var(--text); }
+  .sources-list { display: none; margin-top: 1.5rem; gap: 0.5rem; flex-direction: column; }
+  .sources-list.open { display: flex; }
+  .source-item { display: flex; gap: 1rem; align-items: baseline; }
+  .source-arrow { color: var(--accent); font-size: 0.72rem; flex-shrink: 0; font-family: monospace; }
+  .source-text { font-size: 0.83rem; color: var(--muted); }
+
+  /* ── FOOTER ── */
+  footer {
+    max-width: 960px;
+    margin: 3rem auto 0;
+    padding: 4rem 2rem 3rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-nav {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    font-size: 0.75rem;
+    font-family: monospace;
+  }
+
+  .footer-nav a { color: var(--muted); text-decoration: none; }
+  .footer-nav a:hover { color: var(--accent); }
+  .footer-text { font-size: 0.78rem; color: var(--muted); line-height: 1.9; max-width: 600px; }
+  .footer-brand { margin-top: 2rem; font-size: 0.7rem; color: var(--muted2); font-family: monospace; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .stat-item:nth-child(odd) { border-right: 1px solid var(--border); }
+    .contrast-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2.2rem; }
+    header { padding: 1rem; }
+    .header-tagline { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+  /* ═══════════════════════════════════════════
+     DUNKELFELD.REPORT — CSS STANDARD OVERRIDE
+     Farben, Lesbarkeit, DSGVO-konform
+     ═══════════════════════════════════════════ */
+  :root {
+    --dk-bg:       #09090b;
+    --dk-surface:  #111113;
+    --dk-border:   #27272a;
+    --dk-amber:    #e8c547;
+    --dk-amber-dim:#b89a2f;
+    --dk-text:     #d4d4d8;
+    --dk-muted:    #71717a;
+    --dk-bright:   #f4f4f5;
+    --dk-source-bg:#1a1a2e;
+  }
+
+  /* Basis-Reset auf Standard */
+  html { background: var(--dk-bg); }
+  body {
+    background: var(--dk-bg) !important;
+    color: var(--dk-text) !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    max-width: 720px !important;
+    margin: 0 auto !important;
+    padding: 48px 24px 80px !important;
+  }
+
+  /* Wrapper / Container auf 720px begrenzen */
+  .container, .content, main, article,
+  .article-body, .hero, .body-text {
+    max-width: 720px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Absätze */
+  p {
+    padding-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Überschriften */
+  h1 { color: var(--dk-bright) !important; }
+  h2, h3, h4 { color: var(--dk-bright) !important; }
+
+  /* Links */
+  a {
+    color: var(--dk-amber) !important;
+    text-decoration: none !important;
+  }
+  a:hover {
+    text-decoration: underline !important;
+  }
+
+  /* Labels / Metadaten */
+  .label, .meta, .article-meta, .dossier-id, .site-label,
+  .tag, .category, time, .date {
+    font-family: 'Courier New', Courier, monospace !important;
+  }
+
+  /* Quellenboxen */
+  .source-box, .quellen-box, .source, .sources,
+  blockquote, .zitat, .fact-box, .info-box,
+  .quelle, .source-entry, .reference {
+    background: var(--dk-source-bg) !important;
+    border-left: 3px solid var(--dk-amber) !important;
+    padding: 1rem 1.2rem !important;
+    margin-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+  }
+
+  /* Tabellen */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--dk-surface) !important;
+    color: var(--dk-amber) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.75rem !important;
+    padding: 0.6rem 0.8rem !important;
+    text-align: left;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--dk-border) !important;
+  }
+  td {
+    padding: 0.7rem 0.8rem !important;
+    border-bottom: 1px solid var(--dk-border) !important;
+    color: var(--dk-text) !important;
+    font-size: 0.95rem !important;
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+
+  /* Site-Header Breite */
+  .site-header, header, nav {
+    max-width: 100% !important;
+  }
+
+  /* Farbkorrekturen: alte Amber-Töne → Standard */
+  [style*="color: #d4a017"], [style*="color:#d4a017"] { color: var(--dk-amber) !important; }
+  [style*="color: #b8860b"], [style*="color:#b8860b"] { color: var(--dk-amber) !important; }
+
+  /* Lesbarkeit: dunkle Texte aufhellen */
+  [style*="color: #666"], [style*="color:#666"],
+  [style*="color: #555"], [style*="color:#555"] {
+    color: var(--dk-muted) !important;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-dot"></div>
+  <a href="index.html" class="header-title">dunkelfeld.report</a>
+  <span class="header-sep">·</span>
+  <span class="header-tagline">Analyse · Systemkritik · Quellenbasiert</span>
+  <span class="header-date">STAND 06 / 2026</span>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="dossier-label"><span>● DOSSIER 002</span> &nbsp;/&nbsp; JUNI 2026 &nbsp;/&nbsp; GROSSBRITANNIEN</div>
+
+  <h1>
+    Jahrzehnte des Schweigens.<br>
+    <span class="sub">Und wer zum Schweigen gebracht wird.</span>
+  </h1>
+
+  <p class="hero-desc">
+    Zehntausende missbrauchte Mädchen. Behörden, die wussten und schwiegen.
+    Und eine staatliche Antwort, die nicht die Täter trifft —
+    sondern die Öffentlichkeit.
+  </p>
+
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-value">1.400+</div>
+      <div class="stat-label">Opfer allein in Rotherham (1997–2013)</div>
+      <div class="stat-source">Jay Report 2014</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">149</div>
+      <div class="stat-label">Lokalbehörden mit dokumentierter Grooming-Gang-Aktivität</div>
+      <div class="stat-source">Lowe Report, Juni 2026</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">12.000+</div>
+      <div class="stat-label">Verhaftungen wegen Social-Media-Posts (2023)</div>
+      <div class="stat-source">The Times / FOI 2025</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">£65 Mio.</div>
+      <div class="stat-label">Budget der staatlichen Untersuchungskommission</div>
+      <div class="stat-source">UK Gov, Dez. 2025</div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+  <div class="section-eyebrow">Chronologie des Versagens</div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">Frühe 1990er</div>
+      <div class="timeline-title">Erste Berichte — ignoriert</div>
+      <div class="timeline-desc">Heimleiter in Rotherham melden: Kinder werden von Taxifahrern abgeholt. Polizei und Behörden unternehmen nichts.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2002–2007</div>
+      <div class="timeline-title">Gutachterin warnt — Akten verschwinden</div>
+      <div class="timeline-desc">Forscherin Angie Heal warnt Behörden schriftlich vor systematischem Missbrauch. Laut Baroness Casey wurden Täterdaten aktiv getilgt — in einem Fall war der Begriff "Pakistani" aus einer Fallakte herausgetipext worden.</div>
+    </div>
+    <div class="timeline-item highlight">
+      <div class="timeline-year">2014</div>
+      <div class="timeline-title">Jay Report: 1.400 Opfer in Rotherham</div>
+      <div class="timeline-desc">Alexis Jay legt offiziellen Bericht vor. Fazit: Behörden wussten seit Jahrzehnten. Untätigkeit wurde mit Angst vor Rassismusvorwürfen begründet. Polizeibeamter sagte laut IOPC-Bericht, die Stadt würde "ausbrechen", wenn bekannt würde, dass südostasiatische Männer britische Mädchen missbrauchten.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2015–2022</div>
+      <div class="timeline-title">Weitere Städte — gleiches Muster</div>
+      <div class="timeline-desc">Telford (1.000+ Opfer), Rochdale, Oxford, Bradford, Oldham. Jede Untersuchung findet dasselbe: Behördenversagen, Opfer als "unzuverlässige Zeugen" abgestempelt, Täternetzwerke jahrelang geduldet.</div>
+    </div>
+    <div class="timeline-item highlight">
+      <div class="timeline-year">Juni 2025</div>
+      <div class="timeline-title">Casey-Audit: Ethnizität "systematisch verschwiegen"</div>
+      <div class="timeline-desc">Baroness Casey veröffentlicht Nationalen Audit. Kernbefund: Die Ethnizität der Täter wurde von Behörden aktiv "umgangen". In zwei Dritteln aller Fälle wurde Ethnizität überhaupt nicht erfasst. Casey empfiehlt nationale Pflichtuntersuchung.</div>
+    </div>
+    <div class="timeline-item warning">
+      <div class="timeline-year">Juni 2026</div>
+      <div class="timeline-title">Lowe Report: bis zu 250.000 Opfer national</div>
+      <div class="timeline-desc">Unabhängiger Bericht von Restore Britain (219 Seiten, 20.000+ Unterstützer). Schätzung: über 250.000 Opfer in mindestens 149 Verwaltungsbezirken. Zahl ist extrapoliert und umstritten — aber selbst Kritiker räumen ein: die wahre Zahl könnte "schockierend hoch" sein. Staatliche Untersuchungskommission läuft parallel, Budget: £65 Mio., Laufzeit: 3 Jahre.</div>
+    </div>
+    <div class="timeline-item warning">
+      <div class="timeline-year">Juli 2025</div>
+      <div class="timeline-title">Rotherham: Polizisten als Täter</div>
+      <div class="timeline-desc">Fünf Überlebende berichten, sie seien als Kinder auch von Polizisten vergewaltigt worden. Drei ehemalige Beamte verhaftet, ein weiterer verstorben. Strafverfahren laufen bis 2027.</div>
+    </div>
+  </div>
+</section>
+
+<!-- STARMER-BOX -->
+<section class="starmer-box">
+  <div class="starmer-inner">
+    <div class="starmer-label">⚠ Dokumentierte Chronologie — Keir Starmer als Director of Public Prosecutions (2008–2013)</div>
+    <div class="starmer-entries">
+      <div class="starmer-entry">
+        <strong>2008–2013 — DPP-Amtszeit:</strong>
+        Starmer war Leiter der Crown Prosecution Service (CPS) während der Jahre, in denen Fälle aus Rotherham, Rochdale und Oxford bekannt wurden und keine systematische Strafverfolgung erfolgte.
+      </div>
+      <div class="starmer-entry">
+        <strong>2013 — Öffentliche Entschuldigung:</strong>
+        Starmer entschuldigte sich öffentlich für das Versagen der CPS bei Rochdale — nachdem Fälle bereits in der Presse dokumentiert waren.
+      </div>
+      <div class="starmer-entry">
+        <strong>Januar 2025 — Widerstand gegen Untersuchung:</strong>
+        Als Premierminister lehnte Starmer zunächst eine nationale Pflichtuntersuchung ab. Der Widerstand wurde erst nach dem Casey-Audit und massivem öffentlichen Druck aufgegeben.
+      </div>
+      <div class="starmer-entry">
+        <strong>14. Juni 2025 — Ankündigung der Untersuchung:</strong>
+        Starmer kündigt nationale Pflichtuntersuchung an — mit dem Hinweis, Konservative "instrumentalisierten das Trauma der Opfer". Parlamentsprotokoll, Hansard, 14.06.2025.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTRAST: Skandal vs. Reaktion -->
+<section class="contrast-section">
+  <div class="section-eyebrow">Die staatliche Antwort — was passierte statt Aufarbeitung</div>
+
+  <div class="contrast-grid">
+    <div class="contrast-col">
+      <div class="contrast-col-title left">Aufarbeitung (verzögert / begrenzt)</div>
+      <div class="contrast-item">
+        <strong>Untersuchungskommission</strong>
+        Nationale Pflichtuntersuchung angekündigt Dezember 2025. Laufzeit: 3 Jahre. Budget: £65 Mio. Nicht alle betroffenen Gebiete werden untersucht.
+      </div>
+      <div class="contrast-item">
+        <strong>Operation Beaconport</strong>
+        NCA überprüft hunderte geschlossener Altfälle. Erste Fälle bereits an Polizei zurückverwiesen. Ergebnisse: offen.
+      </div>
+      <div class="contrast-item">
+        <strong>Casey-Audit</strong>
+        Empfiehlt bessere Erfassung von Täterdaten nach Ethnizität. Behörden hatten Daten jahrelang nicht erhoben — oder gelöscht.
+      </div>
+    </div>
+    <div class="contrast-col">
+      <div class="contrast-col-title right">Reaktion auf öffentliche Debatte (sofort / weitreichend)</div>
+      <div class="contrast-item">
+        <strong>Online Safety Act (Juli 2025)</strong>
+        Altersverifikation für weite Teile des Internets. BBC Verify dokumentiert: Parlamentsdebatten über Grooming Gangs wurden auf X für nicht verifizierte Nutzer gesperrt. Auch Gaza-Videos, Ukraine-Drohnenaufnahmen betroffen.
+      </div>
+      <div class="contrast-item">
+        <strong>12.000+ Verhaftungen (2023)</strong>
+        Wegen Social-Media-Posts unter Communications Act und Malicious Communications Act. Zahl hat sich seit 2017 mehr als verdoppelt. Weniger als 10% führten zu Verurteilungen. Quelle: The Times FOI-Anfrage 2025.
+      </div>
+      <div class="contrast-item">
+        <strong>292 Anklagen (2023–Feb. 2025)</strong>
+        Unter dem Online Safety Act wegen "falscher Information" und "bedrohlicher Kommunikation". Freedom House: Score für Internetfreiheit UK von 5 auf 4 gesenkt.
+      </div>
+      <div class="contrast-item">
+        <strong>Islamophobie-Definition</strong>
+        Ehemaliger Generalstaatsanwalt Dominic Grieve beauftragt mit neuer gesetzlicher Definition. Kritiker im House of Lords: hätte Rotherham-Berichterstattung unmöglich gemacht.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCORDION: Detailblöcke -->
+<div class="section-eyebrow" style="max-width:960px; margin: 0 auto; padding: 2rem 2rem 0;">Weitere dokumentierte Details</div>
+<div class="accordion-section">
+
+  <div class="acc-block">
+    <button class="acc-toggle" onclick="toggleAcc(this)">
+      <div class="acc-dot" style="background:#e8c547;"></div>
+      <span class="acc-title">🏛️ &nbsp; Das Behördenversagen — dokumentierte Muster</span>
+      <span class="acc-icon">[+]</span>
+    </button>
+    <div class="acc-content">
+      <div class="fact-card" onclick="toggleCard(this)">
+        <div class="fact-card-header"><span class="fact-label">Opfer als Täter</span><span class="fact-icon">+</span></div>
+        <div class="fact-body">Opfer wurden von Polizei und Sozialarbeitern als "unzuverlässige Zeugen" eingestuft, als "promiskuitiv" oder als selbst verantwortlich für die Situation. Systematisch dokumentiert in Jay Report (2014), Telford Inquiry (2022) und Casey Audit (2025).</div>
+      </div>
+      <div class="fact-card" onclick="toggleCard(this)">
+        <div class="fact-card-header"><span class="fact-label">Rassismusfurcht als Abwehrmechanismus</span><span class="fact-icon">+</span></div>
+        <div class="fact-body">Laut akademischer Studie (University of Southampton / University of Reading, 2020): 83% der verurteilten Grooming-Gang-Täter aus 498 analysierten Verurteilungen hatten muslimischen Hintergrund, überwiegend pakistanischer Herkunft. Casey Audit: Täterdaten wurden von Behörden aktiv nicht erhoben — offiziell aus Angst vor dem Vorwurf des Racial Profiling.</div>
+      </div>
+      <div class="fact-card" onclick="toggleCard(this)">
+        <div class="fact-card-header"><span class="fact-label">Polizisten als Täter (Rotherham 2025)</span><span class="fact-icon">+</span></div>
+        <div class="fact-body">Juli 2025: Fünf Überlebende berichten unabhängig voneinander, auch von Polizeibeamten vergewaltigt worden zu sein — teilweise ab dem Alter von 12 Jahren. Drei Beamte verhaftet. Einer verstorben. Strafverfahren laufen laut aktuellen Berichten bis mindestens 2027.</div>
+      </div>
+      <div class="fact-card" onclick="toggleCard(this)">
+        <div class="fact-card-header"><span class="fact-label">Parteipolitische Vertuschung</span><span class="fact-icon">+</span></div>
+        <div class="fact-body">Labour-MP Simon Danczuk erklärte öffentlich: Ein Labour-Parteivorsitzender habe ihm geraten, die Ethnizität der Täter in seinem Wahlkreis Rochdale nicht öffentlich zu thematisieren — aus Angst vor Wahlverlusten. Parlamentsprotokoll dokumentiert.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-block">
+    <button class="acc-toggle" onclick="toggleAcc(this)">
+      <div class="acc-dot" style="background:#e84747;"></div>
+      <span class="acc-title">🔒 &nbsp; Online Safety Act — was gesperrt wurde</span>
+      <span class="acc-icon">[+]</span>
+    </button>
+    <div class="acc-content">
+      <div class="fact-card" onclick="toggleCard(this)">
+        <div class="fact-card-header"><span class="fact-label">Parlamentsdebatten gesperrt</span><span class="fact-icon">+</span></div>
+        <div class="fact-body">BBC Verify dokumentierte im Juli/August 2025: Videos von Parlamentsdebatten über Grooming Gangs auf X wurden für nicht altersverifizierte Nutzer gesperrt — obwohl dieselben Videos auf der offiziellen Regierungswebsite frei zugänglich waren.</div>
+      </div>
+      <div class="fact-card" onclick="toggleCard(this)">
+        <div class="fact-card-header"><span class="fact-label">Gaza und Ukraine ebenfalls betroffen</span><span class="fact-icon">+</span></div>
+        <div class="fact-body">Unter denselben Regeln gesperrt: Ein Video eines Mannes, der in Gaza nach den Leichen seiner Familie sucht (keine expliziten Bilder). Aufnahme einer im Flug abgeschossenen ukrainischen Shahed-Drohne. Beide Inhalte nach Medienberichten teilweise wieder freigegeben.</div>
+      </div>
+      <div class="fact-card" onclick="toggleCard(this)">
+        <div class="fact-card-header"><span class="fact-label">Wikipedia unter Druck</span><span class="fact-icon">+</span></div>
+        <div class="fact-body">High Court wies im August 2025 die Klage der Wikimedia Foundation gegen die Kategorisierung als "Hochrisiko-Plattform" ab. Wikimedia warnte: Compliance würde Zensur von Inhalten erzwingen und ehrenamtliche Autoren gefährden, indem ihre echte Identität mit ihren Beiträgen verknüpft würde.</div>
+      </div>
+      <div class="fact-card" onclick="toggleCard(this)">
+        <div class="fact-card-header"><span class="fact-label">Internationale Reaktion</span><span class="fact-icon">+</span></div>
+        <div class="fact-body">EFF, Index on Censorship: gemeinsamer Brief mit Warnung vor Zensur pro-palästinensischer Inhalte. US House Judiciary Committee (Jim Jordan) reiste nach London, kritisierte Ofcom. Freedom House senkte UK-Internetfreiheitswert 2025. Techdirt: "privacy-invading, freedom-crushing, technically unworkable disaster."</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-block">
+    <button class="acc-toggle" onclick="toggleAcc(this)">
+      <div class="acc-dot" style="background:#47a3e8;"></div>
+      <span class="acc-title">📊 &nbsp; Die Zahlen — was gesichert ist, was umstritten</span>
+      <span class="acc-icon">[+]</span>
+    </button>
+    <div class="acc-content">
+      <div class="fact-card" onclick="toggleCard(this)">
+        <div class="fact-card-header"><span class="fact-label">Gesicherte Zahlen</span><span class="fact-icon">+</span></div>
+        <div class="fact-body">Rotherham: mindestens 1.400 Opfer (Jay Report 2014). Telford: mehr als 1.000 Opfer (Inquiry 2022). Operation Stovewood (Rotherham): 323 Verdächtige, 42 Verurteilungen — fast zwei Drittel pakistanischer Herkunft (Casey Audit 2025). Grooming-Gang-Aktivität in 149 Verwaltungsbezirken (Lowe Report 2026).</div>
+      </div>
+      <div class="fact-card" onclick="toggleCard(this)">
+        <div class="fact-card-header"><span class="fact-label">Die 250.000 — belastbar oder nicht?</span><span class="fact-icon">+</span></div>
+        <div class="fact-body">Die Zahl stammt aus dem Lowe Report (Juni 2026) und wird von Faktencheckern (The Journal, Full Fact) als Extrapolation kritisiert: Sie basiert auf der Übertragung der Rotherham-Rate auf die Gesamtbevölkerung. Baroness Casey selbst schreibt: die wahre Zahl sei wegen systematisch schlechter Datenlage nicht ermittelbar — könnte aber "schockierend hoch" sein. Die Zahl ist bestritten. Das Versagen ist dokumentiert.</div>
+      </div>
+      <div class="fact-card" onclick="toggleCard(this)">
+        <div class="fact-card-header"><span class="fact-label">Verhaftungen wegen Meinungen — gesicherte Zahlen</span><span class="fact-icon">+</span></div>
+        <div class="fact-body">The Times FOI-Anfrage (April 2025): über 12.000 Verhaftungen 2023 allein wegen Social-Media-Posts (Communications Act / Malicious Communications Act). Mehr als Verdoppelung seit 2017. Weniger als 10% führten zu Verurteilungen. Telegraph (Feb. 2025): 292 Anklagen unter dem Online Safety Act seit Inkrafttreten bis Februar 2025.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- OFFENE FRAGE -->
+<section class="question-section">
+  <div class="section-eyebrow">Offene Frage</div>
+  <p class="question-text">
+    Ein Staat, der <em>jahrzehntelang dokumentiert wegschaute</em>, während zehntausende Mädchen missbraucht wurden —
+    und der nach Bekanntwerden als erstes Maßnahmen einführt, die <em>die öffentliche Debatte darüber erschweren</em>:
+    Welche Schlussfolgerungen zieht der Leser?
+  </p>
+</section>
+
+<!-- SOURCES -->
+<div class="sources-section">
+  <button class="sources-toggle" onclick="toggleSources(this)">Quellen & Belege anzeigen</button>
+  <div class="sources-list" id="sources-list">
+    <div class="source-item"><span class="source-arrow">→</span><span class="source-text">Jay Report: Independent Inquiry into Child Sexual Exploitation in Rotherham (2014)</span></div>
+    <div class="source-item"><span class="source-arrow">→</span><span class="source-text">Baroness Casey: National Audit on Group-based Child Sexual Exploitation and Abuse (Juni 2025), gov.uk</span></div>
+    <div class="source-item"><span class="source-arrow">→</span><span class="source-text">Independent Inquiry into Grooming Gangs — Ankündigung, Hansard, 9. Dez. 2025</span></div>
+    <div class="source-item"><span class="source-arrow">→</span><span class="source-text">Lowe Report: Independent Inquiry into Grooming Gangs (Juni 2026), 219 Seiten</span></div>
+    <div class="source-item"><span class="source-arrow">→</span><span class="source-text">IOPC: Five-year investigation into South Yorkshire Police — Rotherham</span></div>
+    <div class="source-item"><span class="source-arrow">→</span><span class="source-text">University of Southampton / University of Reading: Studie zu 498 Grooming Gang Verurteilungen (2020)</span></div>
+    <div class="source-item"><span class="source-arrow">→</span><span class="source-text">The Times: FOI-Anfrage — 12.000+ Verhaftungen wegen Social-Media-Posts (April 2025)</span></div>
+    <div class="source-item"><span class="source-arrow">→</span><span class="source-text">The Telegraph: 292 Anklagen unter Online Safety Act (Feb. 2025)</span></div>
+    <div class="source-item"><span class="source-arrow">→</span><span class="source-text">Freedom House: Freedom on the Net 2025 — United Kingdom</span></div>
+    <div class="source-item"><span class="source-arrow">→</span><span class="source-text">BBC Verify: Analyse gesperrter Inhalte unter Online Safety Act (Juli/Aug. 2025)</span></div>
+    <div class="source-item"><span class="source-arrow">→</span><span class="source-text">UK High Court: Wikimedia Foundation v. Ofcom (Aug. 2025)</span></div>
+    <div class="source-item"><span class="source-arrow">→</span><span class="source-text">Hansard: Parlamentsdebatte — Keir Starmer Ankündigung nationale Untersuchung, 14. Juni 2025</span></div>
+    <div class="source-item"><span class="source-arrow">→</span><span class="source-text">House of Commons Library: The Independent Inquiry into Grooming Gangs (CBP-10613)</span></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-nav">
+    <a href="index.html">← DOSSIER 001</a>
+    <span style="color: var(--muted2);">DOSSIER 002 (aktuell)</span>
+    <span style="color: var(--muted2);">DOSSIER 003 (folgt)</span>
+  </div>
+  <p class="footer-text">
+    Alle Angaben basieren auf öffentlich zugänglichen Primärquellen: Parlamentsprotokollen, amtlichen Berichten, FOI-Anfragen und investigativem Journalismus.
+    Die Zahl 250.000 ist eine umstrittene Extrapolation — als solche gekennzeichnet.
+    Das institutionelle Versagen ist dokumentiert.
+  </p>
+  <p class="footer-brand">dunkelfeld.report — DOSSIER 002 — Stand 06/2026</p>
+</footer>
+
+<script>
+  function toggleAcc(btn) {
+    const content = btn.nextElementSibling;
+    const icon = btn.querySelector('.acc-icon');
+    const isOpen = content.classList.contains('open');
+    content.classList.toggle('open', !isOpen);
+    icon.textContent = isOpen ? '[+]' : '[-]';
+    btn.setAttribute('aria-expanded', !isOpen);
+  }
+
+  function toggleCard(card) {
+    const icon = card.querySelector('.fact-icon');
+    const isOpen = card.classList.contains('open');
+    card.classList.toggle('open', !isOpen);
+    icon.textContent = isOpen ? '+' : '−';
+  }
+
+  function toggleSources(btn) {
+    const list = document.getElementById('sources-list');
+    const isOpen = list.classList.contains('open');
+    list.classList.toggle('open', !isOpen);
+    btn.textContent = isOpen ? 'Quellen & Belege anzeigen' : 'Quellen ausblenden';
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>„Unsere Demokratie" — dunkelfeld.report</title>
+
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --bg-2: #111111;
+    --bg-3: #181818;
+    --signal: #f5c400;
+    --signal-dim: rgba(245,196,0,0.12);
+    --signal-border: rgba(245,196,0,0.3);
+    --text: #e8e4dc;
+    --text-muted: #888880;
+    --text-dim: #555550;
+    --red: #c0392b;
+    --red-dim: rgba(192,57,43,0.15);
+    --white: #ffffff;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'Space Grotesk', sans-serif;
+    --serif: 'Lora', serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(13,13,13,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(245,196,0,0.15);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--signal);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .nav-tag {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    border: 1px solid var(--signal-border);
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+  }
+
+  /* HERO — besonders stark für den Abschlussartikel */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 7rem 2rem 4rem;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--signal);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--signal);
+  }
+
+  .hero h1 {
+    font-family: var(--sans);
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--signal);
+  }
+
+  .hero-sub {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 640px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+    font-style: italic;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  .meta-item span { color: var(--text-muted); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 2rem;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .scroll-hint::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--text-dim), transparent);
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--signal-border), transparent);
+  }
+
+  .content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .chapter {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--signal);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .chapter-num { color: var(--text-dim); }
+
+  h2 {
+    font-family: var(--sans);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    font-family: var(--sans);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--signal);
+    margin: 2.5rem 0 1rem;
+  }
+
+  p { margin-bottom: 1.4rem; color: var(--text); }
+  p strong { color: var(--white); font-weight: 600; }
+
+  .section { margin-bottom: 6rem; }
+
+  .pull-quote {
+    border-left: 3px solid var(--signal);
+    padding: 1.5rem 2rem;
+    margin: 3rem 0;
+    background: var(--signal-dim);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .pull-quote p {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--white);
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .pull-quote cite {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-top: 0.75rem;
+    font-style: normal;
+    text-transform: uppercase;
+  }
+
+  .fact-box {
+    background: var(--bg-3);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-top: 2px solid var(--signal);
+    padding: 2rem;
+    margin: 2.5rem 0;
+    border-radius: 0 0 4px 4px;
+  }
+
+  .fact-box-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--signal);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+
+  .fact-box ul { list-style: none; padding: 0; }
+
+  .fact-box ul li {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--text);
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  .fact-box ul li::before {
+    content: '—';
+    color: var(--signal);
+    flex-shrink: 0;
+  }
+
+  .fact-box ul li:last-child { border-bottom: none; }
+
+  .warning-box {
+    background: var(--red-dim);
+    border: 1px solid rgba(192,57,43,0.3);
+    border-left: 3px solid var(--red);
+    padding: 1.5rem 2rem;
+    margin: 2.5rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .warning-box p {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .warning-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  /* VERGLEICHSTABELLE DDR vs BRD heute */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2.5rem 0;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+  }
+
+  .compare-table th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .compare-table th:first-child { color: var(--text-dim); }
+  .compare-table th:nth-child(2) { color: #888; background: rgba(255,255,255,0.02); }
+  .compare-table th:nth-child(3) { color: var(--signal); background: var(--signal-dim); }
+
+  .compare-table td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    color: var(--text-muted);
+    line-height: 1.5;
+    vertical-align: top;
+  }
+
+  .compare-table td:first-child {
+    color: var(--text-dim);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .compare-table td:nth-child(2) {
+    background: rgba(255,255,255,0.01);
+  }
+
+  .compare-table td:nth-child(3) {
+    background: var(--signal-dim);
+    color: var(--text);
+  }
+
+  .compare-table tr:last-child td { border-bottom: none; }
+
+  /* MECHANISMEN GRID */
+  .mech-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 2.5rem 0;
+  }
+
+  .mech-card {
+    background: var(--bg-3);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 1.5rem;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mech-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--signal);
+    opacity: 0.4;
+  }
+
+  .mech-icon {
+    font-family: var(--mono);
+    font-size: 1.5rem;
+    color: var(--signal);
+    opacity: 0.5;
+    margin-bottom: 0.75rem;
+    line-height: 1;
+  }
+
+  .mech-card h4 {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .mech-card p {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* SPIEGEL-ELEMENT: Zitat mit Gegenüberstellung */
+  .mirror-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+    margin: 2.5rem 0;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .mirror-cell {
+    background: var(--bg-2);
+    padding: 1.5rem;
+  }
+
+  .mirror-cell.left {
+    background: rgba(255,255,255,0.02);
+  }
+
+  .mirror-cell.right {
+    background: var(--signal-dim);
+  }
+
+  .mirror-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .mirror-cell.left .mirror-label { color: var(--text-dim); }
+  .mirror-cell.right .mirror-label { color: var(--signal); }
+
+  .mirror-cell p {
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    font-style: italic;
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .mirror-cell.left p { color: var(--text-muted); }
+  .mirror-cell.right p { color: var(--text); }
+
+  /* LÄNDERVERGLEICH */
+  .country-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 1rem;
+    align-items: start;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .country-row:last-child { border-bottom: none; }
+
+  .country-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: var(--signal);
+    text-transform: uppercase;
+    padding-top: 0.1rem;
+  }
+
+  .country-text {
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .country-text strong { color: var(--white); }
+
+  /* THESE — zentrales Element */
+  .main-thesis {
+    background: var(--bg-3);
+    border: 1px solid var(--signal-border);
+    padding: 3rem;
+    margin: 3rem 0;
+    border-radius: 4px;
+    text-align: center;
+    position: relative;
+  }
+
+  .main-thesis::before {
+    content: '◆';
+    display: block;
+    font-size: 1rem;
+    color: var(--signal);
+    opacity: 0.5;
+    margin-bottom: 1.5rem;
+  }
+
+  .main-thesis p {
+    font-family: var(--sans);
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.4;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .main-thesis .thesis-sub {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-top: 1rem;
+    font-style: italic;
+  }
+
+  .scenario {
+    margin: 1.5rem 0;
+    padding: 1.5rem 2rem;
+    background: var(--bg-3);
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scenario::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+  }
+
+  .scenario.gelb::before { background: var(--signal); }
+  .scenario.rot::before { background: var(--red); }
+  .scenario.weiss::before { background: var(--text-muted); }
+
+  .scenario-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .scenario.gelb .scenario-label { color: var(--signal); }
+  .scenario.rot .scenario-label { color: var(--red); }
+  .scenario.weiss .scenario-label { color: var(--text-muted); }
+
+  .scenario h4 {
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .scenario p {
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    margin: 0;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  /* ABSCHLUSS — Serie-Ende */
+  .series-end {
+    text-align: center;
+    padding: 4rem 2rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    margin: 4rem 0;
+  }
+
+  .series-end-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .series-end h3 {
+    font-family: var(--sans);
+    font-size: 1.3rem;
+    color: var(--white);
+    margin-bottom: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .series-end p {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 500px;
+    margin: 0 auto;
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  .series-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .series-link {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--signal-border);
+    color: var(--signal);
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+
+  .series-link:hover { background: var(--signal-dim); }
+
+  .disclaimer {
+    background: var(--bg-3);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 2rem;
+    margin-top: 5rem;
+    border-radius: 4px;
+  }
+
+  .disclaimer-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding-bottom: 0.75rem;
+  }
+
+  .disclaimer p {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 3rem 2rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-logo {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--signal);
+    text-transform: uppercase;
+  }
+
+  .footer-note {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 600px) {
+    .mech-grid,
+    .mirror-box { grid-template-columns: 1fr; }
+    .compare-table { font-size: 0.75rem; }
+    .compare-table td:first-child { white-space: normal; }
+    .hero { padding: 6rem 1.5rem 3rem; }
+    .content { padding: 3rem 1.5rem; }
+    h2 { font-size: 1.6rem; }
+    .main-thesis { padding: 2rem 1.5rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ═══════════════════════════════════════════
+     DUNKELFELD.REPORT — CSS STANDARD OVERRIDE
+     Farben, Lesbarkeit, DSGVO-konform
+     ═══════════════════════════════════════════ */
+  :root {
+    --dk-bg:       #09090b;
+    --dk-surface:  #111113;
+    --dk-border:   #27272a;
+    --dk-amber:    #e8c547;
+    --dk-amber-dim:#b89a2f;
+    --dk-text:     #d4d4d8;
+    --dk-muted:    #71717a;
+    --dk-bright:   #f4f4f5;
+    --dk-source-bg:#1a1a2e;
+  }
+
+  /* Basis-Reset auf Standard */
+  html { background: var(--dk-bg); }
+  body {
+    background: var(--dk-bg) !important;
+    color: var(--dk-text) !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    max-width: 720px !important;
+    margin: 0 auto !important;
+    padding: 48px 24px 80px !important;
+  }
+
+  /* Wrapper / Container auf 720px begrenzen */
+  .container, .content, main, article,
+  .article-body, .hero, .body-text {
+    max-width: 720px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Absätze */
+  p {
+    padding-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Überschriften */
+  h1 { color: var(--dk-bright) !important; }
+  h2, h3, h4 { color: var(--dk-bright) !important; }
+
+  /* Links */
+  a {
+    color: var(--dk-amber) !important;
+    text-decoration: none !important;
+  }
+  a:hover {
+    text-decoration: underline !important;
+  }
+
+  /* Labels / Metadaten */
+  .label, .meta, .article-meta, .dossier-id, .site-label,
+  .tag, .category, time, .date {
+    font-family: 'Courier New', Courier, monospace !important;
+  }
+
+  /* Quellenboxen */
+  .source-box, .quellen-box, .source, .sources,
+  blockquote, .zitat, .fact-box, .info-box,
+  .quelle, .source-entry, .reference {
+    background: var(--dk-source-bg) !important;
+    border-left: 3px solid var(--dk-amber) !important;
+    padding: 1rem 1.2rem !important;
+    margin-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+  }
+
+  /* Tabellen */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--dk-surface) !important;
+    color: var(--dk-amber) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.75rem !important;
+    padding: 0.6rem 0.8rem !important;
+    text-align: left;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--dk-border) !important;
+  }
+  td {
+    padding: 0.7rem 0.8rem !important;
+    border-bottom: 1px solid var(--dk-border) !important;
+    color: var(--dk-text) !important;
+    font-size: 0.95rem !important;
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+
+  /* Site-Header Breite */
+  .site-header, header, nav {
+    max-width: 100% !important;
+  }
+
+  /* Farbkorrekturen: alte Amber-Töne → Standard */
+  [style*="color: #d4a017"], [style*="color:#d4a017"] { color: var(--dk-amber) !important; }
+  [style*="color: #b8860b"], [style*="color:#b8860b"] { color: var(--dk-amber) !important; }
+
+  /* Lesbarkeit: dunkle Texte aufhellen */
+  [style*="color: #666"], [style*="color:#666"],
+  [style*="color: #555"], [style*="color:#555"] {
+    color: var(--dk-muted) !important;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">dunkelfeld.report</a>
+  <span class="nav-tag">Serie: Wer schlägt — Teil III / Finale</span>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">Synthese · Demokratieabbau · DDR-Vergleich · Das große Bild</div>
+  <h1>„<em>Unsere Demokratie</em>" —<br>und wer sie wirklich abbaut</h1>
+  <p class="hero-sub">Je lauter der Ruf nach Demokratieverteidigung, desto schneller schwindet die Demokratie selbst. Das ist keine Paranoia — das ist ein historisch belegtes Muster. Und Deutschland 2025 folgt ihm präziser, als die meisten wahrhaben wollen.</p>
+  <div class="hero-meta">
+    <div class="meta-item">Status: <span>Serie-Abschluss</span></div>
+    <div class="meta-item">Quellen: <span>Primär, verifiziert</span></div>
+    <div class="meta-item">Methode: <span>Whitney-Webb-Standard</span></div>
+    <div class="meta-item">Lesezeit: <span>~15 Min.</span></div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<div class="divider"></div>
+
+<main class="content">
+
+  <!-- SECTION 1 -->
+  <div class="section fade-in">
+    <div class="chapter"><span class="chapter-num">01</span> Die Kernthese</div>
+    <h2>Wenn Demokratie zum Markennamen wird</h2>
+
+    <p>Es gibt einen einfachen Test für den Zustand einer Demokratie: Wie oft muss sie sich selbst behaupten? Eine funktionierende Demokratie braucht ihren Namen nicht dauernd in Umlauf zu bringen. Sie funktioniert — durch Gewaltenteilung, freie Presse, unabhängige Justiz, echten Wettbewerb der Ideen.</p>
+
+    <p>Was wir in Deutschland seit etwa 2015 beobachten, ist das Gegenteil: <strong>„Demokratie" wird zum Kampfbegriff</strong> — zur Beschreibung nicht eines Systems, sondern einer Seite. „Unsere Demokratie verteidigen" bedeutet in der Praxis: bestimmte Positionen, bestimmte Parteien, bestimmte Medien verteidigen. Wer nicht dazugehört, ist demokratiefeindlich — per Definition.</p>
+
+    <div class="main-thesis">
+      <p>Das lauteste „Demokratie!" ist meistens der Vorbote ihrer Abschaffung.</p>
+      <div class="thesis-sub">Nicht weil die Rufer Lügner sind — sondern weil das Instrument, das sie verteidigen wollen, in ihren Händen zu etwas anderem wird.</div>
+    </div>
+
+    <p>Das ist keine neue Beobachtung. Die Weimarer Republik wurde im Namen der Demokratie ausgehöhlt. Die DDR nannte sich „Deutsche Demokratische Republik". Die Volksrepubliken hinter dem Eisernen Vorhang waren Volksrepubliken. Der Name schützt nie — er tarnt.</p>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section fade-in">
+    <div class="chapter"><span class="chapter-num">02</span> Der DDR-Vergleich</div>
+    <h2>Netter verpackt — aber erkennbar</h2>
+
+    <p>DDR-Vergleiche werden reflexartig als Verharmlosung abgewehrt. Das ist verständlich — die DDR hatte Mauern, Schüsse, Stasi-Verhöre, Zersetzung im klinischen Sinn. Das ist nicht das Deutschland von heute.</p>
+
+    <p>Aber der Vergleich ist kein Gleichheitszeichen. Er ist eine <strong>Strukturanalyse</strong>. Und die Strukturen sind erkennbar — netter verpackt, digitaler, mit NGO-Branding statt Stasi-Stempel.</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Merkmal</th>
+          <th>DDR 1950–1989</th>
+          <th>Deutschland 2020–2025</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Medienkontrolle</td>
+          <td>Staatliche Gleichschaltung, SED-Kader in Redaktionen, kein privater Rundfunk</td>
+          <td>ÖRR mit 10 Mrd. € Pflichtgebühren, enge Verflechtung mit Regierungsparteien, koordinierte Narrative (Corona, Klima, Migration) über alle Sender; private Medien durch Förderabhängigkeit gebunden</td>
+        </tr>
+        <tr>
+          <td>Überwachung</td>
+          <td>Stasi: ca. 90.000 hauptamtliche Mitarbeiter, flächendeckende IM-Netzwerke, Briefkontrolle</td>
+          <td>Vorratsdatenspeicherung (mehrfach gefordert), BND-Massenüberwachung (BVerfG-Urteil 2020), Chatkontrolle-EU-Entwurf, Verfassungsschutzbeobachtung von Parteien mit 20%+ Wähleranteil</td>
+        </tr>
+        <tr>
+          <td>Kritikerverfolgung</td>
+          <td>Strafverfolgung bei „staatsfeindlichen" Äußerungen, Berufsverbote, soziale Ächtung</td>
+          <td>§130 StGB-Verfahren gegen Kommentare, Kontosperrungen (Paypal, Stripe gegen politisch unerwünschte Inhalte), Berufskonsequenzen durch Social-Media-Shitstorms, koordiniert durch NGO-Netzwerke</td>
+        </tr>
+        <tr>
+          <td>Einheitsfront</td>
+          <td>SED als Führungspartei, Blockparteien ohne echte Opposition</td>
+          <td>„Brandmauer"-Beschlüsse der Parteien gegen AfD, Ausgrenzung aus Ausschüssen, Medien-Boykott, De-facto-Einheitsposition bei Kernthemen (Migration, Klima, Ukraine) in allen Parlamentsparteien außer einer</td>
+        </tr>
+        <tr>
+          <td>Sprachkontrolle</td>
+          <td>Verbotene Begriffe, Pflicht-Vokabular, Neusprech in Medien und Bildung</td>
+          <td>„Gendern" als Pflicht in Institutionen, „Klimaleugner", „Verschwörungstheoretiker", „Rechtspopulist" als Diskussionsabbrecher; Fact-Checking-Strukturen die selektiv arbeiten</td>
+        </tr>
+        <tr>
+          <td>Reisefreiheit / Kontofreiheit</td>
+          <td>Ausreiseverbot, Devisenkontrolle</td>
+          <td>EU-Entwürfe zur digitalen Identität, Diskussionen über Bargeldabschaffung, Kontoschließungen bei politisch unerwünschten Kunden (dokumentiert in UK, Australien, DE-Ansätze)</td>
+        </tr>
+        <tr>
+          <td>Legitimationsrhetorik</td>
+          <td>„Antifaschistischer Schutzwall", „Volksfeinde", „westliche Agenten"</td>
+          <td>„Unsere Demokratie", „Hass und Hetze", „Desinformation", „Rechtsextremisten" — funktional analoge Begriffe zur Delegitimierung von Opposition</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="warning-box">
+      <div class="warning-label">Methodische Einordnung</div>
+      <p>Diese Tabelle behauptet keine Gleichheit der Systeme. Die DDR war eine Diktatur mit physischem Zwang, politischen Gefangenen und Todesschüssen an der Grenze. Das ist inkommensurabel. Was verglichen wird: spezifische Steuerungsmechanismen — und deren strukturelle Ähnlichkeit. Ein Virus und eine Bakterie sind nicht dasselbe. Aber beide können denselben Wirkmechanismus haben.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section fade-in">
+    <div class="chapter"><span class="chapter-num">03</span> Die Mechanismen</div>
+    <h2>Wie Demokratieabbau ohne Panzer funktioniert</h2>
+
+    <p>Der Unterschied zwischen dem alten und dem neuen Autoritarismus ist nicht das Ziel — es ist die Methode. Offene Repression erzeugt Widerstand. <strong>Unsichtbare Steuerung erzeugt Zustimmung.</strong></p>
+
+    <div class="mech-grid">
+      <div class="mech-card">
+        <div class="mech-icon">//</div>
+        <h4>Overton-Window-Management</h4>
+        <p>Was als sagbar gilt, wird nicht per Gesetz, sondern durch mediale Koordination verschoben. Positionen, die 2015 Mainstream waren (Grenzkontrollen, Islamismuskritik, Genderskepsis), gelten 2023 als rechtsextrem. Kein Gesetz hat sich geändert — nur der soziale Preis des Aussprechens.</p>
+      </div>
+      <div class="mech-card">
+        <div class="mech-icon">$</div>
+        <h4>NGO-Finanzierung als Steuerung</h4>
+        <p>Zivilgesellschaft klingt nach Graswurzel. Tatsächlich erhalten Organisationen wie Correctiv, HateAid, Amadeu Antonio Stiftung Millionenbeträge aus Bundesministerien. Sie operieren „unabhängig" — aber ihre Finanzierung kommt von denen, die sie angeblich kontrollieren sollen.</p>
+      </div>
+      <div class="mech-card">
+        <div class="mech-icon">⟳</div>
+        <h4>Drehtür Medien–Politik–NGO</h4>
+        <p>Regierungssprecher werden Chefredakteure. ÖRR-Journalisten wechseln in Ministerien. NGO-Chefs werden Staatssekretäre. Der Informationsfluss dreht sich im Kreis — und nennt sich Pluralismus.</p>
+      </div>
+      <div class="mech-card">
+        <div class="mech-icon">∅</div>
+        <h4>Plattformzensur als Outsourcing</h4>
+        <p>Was der Staat nicht direkt verbieten kann, delegiert er. DSA (Digital Services Act), NetzDG, Druck auf Plattformen: Löschungen erfolgen durch private Unternehmen — die aber staatlichen Vorgaben folgen. Zensur ohne Zensurstempel.</p>
+      </div>
+      <div class="mech-card">
+        <div class="mech-icon">△</div>
+        <h4>Krisenproduktion als Dauerzustand</h4>
+        <p>Corona, Klimakrise, Energiekrise, Demokratiekrise, Ukraine, Migration — die Abfolge von Ausnahmezuständen verhindert demokratische Deliberation. Wer in der Krise zweifelt, gefährdet Leben. Normalzustand: wird verschoben.</p>
+      </div>
+      <div class="mech-card">
+        <div class="mech-icon">⊕</div>
+        <h4>Internationaler Gleichklang</h4>
+        <p>Dieselben Narrative, dieselben Begriffe, dieselben Feindbilder — zeitgleich in Kanada, Australien, Deutschland, UK, Frankreich. Das ist keine Koinzidenz. Es ist Koordination. Durch wen und wie: das ist Gegenstand laufender Recherche auf dunkelfeld.report.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section fade-in">
+    <div class="chapter"><span class="chapter-num">04</span> Der Balken im eigenen Auge</div>
+    <h2>Ungarn, Polen, Amerika — und der westliche Spiegel</h2>
+
+    <p>Kaum etwas erzeugt so viel moralische Empörung im deutschen Medienbetrieb wie die Demokratieentwicklung in Ungarn, Polen oder unter Trump. Orban bekommt mehr Leitartikel als der Bundesrechnungshof. Das ist aufschlussreich — nicht wegen der Länder, sondern wegen des Spiegels.</p>
+
+    <div class="mirror-box">
+      <div class="mirror-cell left">
+        <div class="mirror-label">Vorwurf gegen Ungarn / Orban</div>
+        <p>„Gleichschaltung der Medien — staatsnahe Sender dominieren, kritische Stimmen werden marginalisiert."</p>
+      </div>
+      <div class="mirror-cell right">
+        <div class="mirror-label">Deutschland — Befund</div>
+        <p>ÖRR mit Pflichtgebühr von 10,7 Mrd. € jährlich. Rundfunkräte mit Parteivertretern besetzt. ARD/ZDF-Berichterstattung zu Corona, Migration, AfD: strukturell einheitlich über alle Sender.</p>
+      </div>
+    </div>
+
+    <div class="mirror-box">
+      <div class="mirror-cell left">
+        <div class="mirror-label">Vorwurf gegen Polen (frühere PiS-Regierung)</div>
+        <p>„Justizunterwanderung — Regierung besetzt Gerichte mit loyalen Richtern, Gewaltenteilung gefährdet."</p>
+      </div>
+      <div class="mirror-cell right">
+        <div class="mirror-label">Deutschland — Befund</div>
+        <p>Bundesverfassungsrichter werden von Bundestag und Bundesrat gewählt — faktisch von den Regierungsparteien. Kein unabhängiger Nominierungsprozess. Strukturell dieselbe Logik, weniger offensichtlich.</p>
+      </div>
+    </div>
+
+    <div class="mirror-box">
+      <div class="mirror-cell left">
+        <div class="mirror-label">Vorwurf gegen Trump / USA</div>
+        <p>„Politisch motivierte Strafverfolgung — Justiz als Waffe gegen politische Gegner."</p>
+      </div>
+      <div class="mirror-cell right">
+        <div class="mirror-label">Deutschland — Befund</div>
+        <p>AfD-Beobachtung durch Verfassungsschutz trotz fehlender Gewaltakte. Hausdurchsuchungen bei Corona-Kritikern. §130-Verfahren gegen Social-Media-Nutzer. Ob politisch motiviert: Gegenstand offener Analyse.</p>
+      </div>
+    </div>
+
+    <p>Das ist kein Plädoyer für Orban, PiS oder Trump. Es ist die Anwendung <strong>eines einzigen Standards</strong> — des eigenen — auf die eigene Realität. Das nennt man Konsistenz. Und genau diese Konsistenz fehlt im deutschen Medienbetrieb systematisch.</p>
+
+    <div class="pull-quote">
+      <p>„Was du an deinem Bruder siehst, prüfe zuerst an dir selbst."</p>
+      <cite>Matthäus 7,3 — paraphrasiert · Balken und Splitter</cite>
+    </div>
+
+    <h3>Der Ländervergleich in Zahlen</h3>
+
+    <div class="country-row">
+      <div class="country-label">Ungarn</div>
+      <div class="country-text">Press Freedom Index 2024: Platz 67. Kritikwürdig. — Deutschland: Platz 10. Aber: Reporter ohne Grenzen dokumentiert 2023 mehrere Fälle von Einschüchterung und Zugangsblockaden für Journalisten bei Behörden und Polizei. <strong>Tendenz: sinkend seit 2015.</strong></div>
+    </div>
+    <div class="country-row">
+      <div class="country-label">Polen</div>
+      <div class="country-text">Unter PiS: Justizreform, EU-Verfahren. Unter Tusk: Rückbau. — Deutschland: Kein Verfahren, aber BVerfG-Besetzung ist strukturell parteienabhängig seit Jahrzehnten. <strong>Kein Medienthema.</strong></div>
+    </div>
+    <div class="country-row">
+      <div class="country-label">USA / Trump</div>
+      <div class="country-text">Angriff auf Institutionen, Personalpolitik, Medienkritik. Intensiv analysiert. — Deutschland: Verfassungsschutz-Chef Haldenwang äußert sich offen zu Wahlempfehlungen (AfD-Beobachtung als politisches Signal). <strong>Kein Äquivalent in der Berichterstattung.</strong></div>
+    </div>
+    <div class="country-row">
+      <div class="country-label">Deutschland</div>
+      <div class="country-text">V-Demokratie-Index 2024: weiterhin als liberale Demokratie geführt — aber mit <strong>messbarem Rückgang bei „deliberativer Demokratie" und „egalitärer Demokratie"</strong> seit 2017. Kein Leitartikel.</div>
+    </div>
+
+    <h3>Die eigentliche Variable: Geopolitische Compliance</h3>
+
+    <p>Es gibt eine einfachere Erklärung für das Muster als Zufall: <strong>Mediale Demokratie-Aufmerksamkeit korreliert nicht mit dem tatsächlichen Demokratieindex eines Landes — sondern mit seiner Compliance gegenüber EU, NATO und dem Konsens der westlichen Institutionen.</strong></p>
+
+    <div class="fact-box">
+      <div class="fact-box-label">Der Compliance-Test · Befunde</div>
+      <ul>
+        <li><strong>Polen unter PiS (2015–2023):</strong> Dauerthema. Wochenlange Titelseiten, EU-Verfahren, Sondersendungen. Blockiert EU-Migrationspakt, kritisch gegenüber Brüsseler Zentralisierung. — <strong>Polen unter Tusk (ab 2023):</strong> Stille. Obwohl Tusk seinerseits Staatsanwaltschaften instrumentalisiert, PiS-nahe Richter per Dekret entfernt und dabei selbst verfassungsrechtliche Grenzen überschreitet — laut polnischen Verfassungsrechtlern. EU-konform = kein Thema.</li>
+        <li><strong>Ungarn unter Orban:</strong> Dauerthema seit 2010. Förderkürzungen, Artikel-7-Verfahren, Kampagnenjournalismus. Der eigentliche Konflikt: Ungarn blockierte Ukraine-Hilfen, verweigerte NATO-Beitritt Schwedens, unterhält Wirtschaftsbeziehungen zu Russland und China. Demokratie war das saubere Narrativ — Geopolitik war der Grund.</li>
+        <li><strong>USA unter Trump (2017–2021, 2025–):</strong> Intensivste Medienbegleitung eines ausländischen Regierungschefs in der deutschen Nachkriegsgeschichte. Trump zweifelt an NATO-Verpflichtungen, torpediert multilaterale Abkommen, betreibt America First. — <strong>USA unter Biden:</strong> Kaum Demokratiekritik, obwohl Afghanistan-Abzug, Drohnenangriffe, Pressefreiheitsverletzungen (Assange) dokumentiert sind. Biden: NATO-konform.</li>
+        <li><strong>Saudi-Arabien, Katar, VAE:</strong> Autokratien ohne Pressefreiheit, mit dokumentierten Menschenrechtsverletzungen, Hinrichtungen, Unterdrückung politischer Opposition. Wirtschaftspartner, Energielieferanten, Rüstungskunden. <strong>Kein Demokratie-Dauerthema.</strong> Compliance durch wirtschaftliche Integration.</li>
+        <li><strong>Deutschland intern — Bayern vs. Thüringen:</strong> Bayern unter Söder: gelegentlich kritisch. Thüringen unter Ramelow (Linke, SED-Nachfolge): kaum Demokratiebedenken. Thüringen mit AfD-Mehrheiten: existenzielle Bedrohung. Die Variable ist nicht die Demokratiequalität — sie ist die Parteizugehörigkeit.</li>
+      </ul>
+    </div>
+
+    <div class="main-thesis">
+      <p>Demokratiekritik folgt der Geopolitik — nicht dem Demokratieindex.</p>
+      <div class="thesis-sub">Wer mit dem Westen spurt, darf seine Demokratie selbst definieren. Wer abweicht, wird zum Demokratiefeind erklärt. Das ist kein Zufall. Es ist Funktion.</div>
+    </div>
+
+    <p>Das erklärt auch, warum die Kritik an Ungarn und Polen nach Regierungswechseln so abrupt verstummt: Es ging nie um Demokratie als abstraktes Prinzip. Es ging um <strong>Kontrolle über den geopolitischen Kurs</strong>. Sobald dieser stimmt, stimmt auch die Demokratie.</p>
+
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section fade-in">
+    <div class="chapter"><span class="chapter-num">05</span> Die Spaltung als Produkt</div>
+    <h2>Wer von Links-gegen-Rechts profitiert — das große Bild</h2>
+
+    <p>Wir haben in Teil I linke Gewalt dokumentiert. In Teil II rechte Gewalt und Statistikmanipulation. Jetzt die Synthese: <strong>Die Spaltung selbst ist das Produkt.</strong> Nicht ihr Nebeneffekt, nicht ihr Versagen — ihr Ergebnis.</p>
+
+    <div class="fact-box">
+      <div class="fact-box-label">Wer profitiert — strukturelle Analyse</div>
+      <ul>
+        <li><strong>Etablierte Parteien:</strong> Solange Links-Rechts-Kampf das Hauptthema ist, müssen CDU, SPD, Grüne nicht für Versagen in Wirtschaft, Bildung, Infrastruktur einstehen. Die Spaltung ist ihre Ablenkung.</li>
+        <li><strong>ÖRR-Institutionen:</strong> Dauerkrisenmodus rechtfertigt Existenz und Gebühren. Ein befriedeter politischer Diskurs bräuchte keine „Qualitätsmedien" zur Einordnung — er bräuchte Information.</li>
+        <li><strong>NGO-Komplex:</strong> Amadeu Antonio, Correctiv, HateAid, Campact — ihre Finanzierung ist direkt an die Dramatik der Bedrohungslage gebunden. Weniger Rechtsextremismus = weniger Fördergelder.</li>
+        <li><strong>Rüstungs- und Sicherheitsindustrie:</strong> Jede Eskalation — innenpolitisch wie außenpolitisch — rechtfertigt höhere Überwachungs- und Verteidigungsbudgets.</li>
+        <li><strong>Supranationale Strukturen (EU, WEF-Netzwerke):</strong> Nationale Demokratien, die sich intern bekämpfen, sind schwächer gegenüber Kompetenzverlagerung nach Brüssel oder in globale Governance-Strukturen. Spaltung schwächt Souveränität.</li>
+        <li><strong>Niemand profitiert:</strong> Der normale Bürger. Links wie rechts wie unentschieden. Die Spaltung kostet ihn politische Handlungsmacht, mediale Orientierung und das Vertrauen in Institutionen, die er finanziert.</li>
+      </ul>
+    </div>
+
+    <div class="pull-quote">
+      <p>„Divide et impera — teile und herrsche. Das älteste Prinzip der Machterhaltung. Es funktioniert nur, wenn die Geteilten es nicht erkennen."</p>
+      <cite>Politisches Grundprinzip · Historisch belegt seit Caesar</cite>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section fade-in">
+    <div class="chapter"><span class="chapter-num">06</span> Was folgt daraus</div>
+    <h2>Drei Szenarien — und was dagegen spricht</h2>
+
+    <div class="scenario rot">
+      <div class="scenario-label">Szenario A · Autoritäre Konsolidierung</div>
+      <h4>Der sanfte Totalitarismus setzt sich durch</h4>
+      <p>Digitale Identität, Bargeldabschaffung, KI-gestützte Verhaltenssteuerung, Plattformzensur als Norm, Parteiverbote als Präzedenz. Keine Mauern, keine Schüsse — aber vollständige Steuerung des Möglichkeitsraums. China ist das Modell. Der Weg dorthin ist gepflastert mit gut gemeinten Regelungen.</p>
+    </div>
+
+    <div class="scenario gelb">
+      <div class="scenario-label">Szenario B · Demokratische Gegenbewegung</div>
+      <h4>Die Mehrheit der Mitte organisiert sich</h4>
+      <p>Wachsende Teile der Bevölkerung — jenseits von Links und Rechts — erkennen die Mechanismen. Alternativer Journalismus wächst. Rechtliche Gegenwehr (Verfassungsbeschwerden, Klagen gegen Zensur) erzeugt Präzedenzfälle. Lokalpolitik wird zur demokratischen Schule. Langsam, mühsam — aber möglich.</p>
+    </div>
+
+    <div class="scenario weiss">
+      <div class="scenario-label">Szenario C · Fragmentierung ohne Richtung</div>
+      <h4>Weder Kontrolle noch Befreiung</h4>
+      <p>Institutionen verlieren Legitimität, aber keine Alternative entsteht. Parallelgesellschaften vertiefen sich. Vertrauen kollabiert — in Medien, Parteien, Justiz, Wissenschaft. Nicht Diktatur, nicht funktionierende Demokratie. Strukturlose Verwaltetheit ohne politische Substanz. Möglicherweise das wahrscheinlichste Szenario.</p>
+    </div>
+
+    <h3>Was die Richtung bestimmt</h3>
+
+    <p>Nicht Politiker. Nicht Parteien. Nicht Institutionen — die haben Eigeninteresse am Status quo. Die Richtung bestimmt, <strong>ob genug Menschen aufhören, die Spaltung für real zu halten</strong>. Links gegen Rechts ist ein Rahmen — kein Naturgesetz. Wer ihn verlässt, verlässt das Spielfeld der anderen.</p>
+
+    <p>Das ist die eigentliche Botschaft dieser drei Artikel. Nicht: Rechts ist böse. Nicht: Links ist böse. Sondern: <strong>Die Einteilung selbst ist das Problem.</strong> Sie ist alt, sie ist importiert aus dem 18. Jahrhundert, sie dient denen, die von ihr profitieren — und sie kostet alle anderen politische Macht.</p>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="section fade-in">
+    <div class="chapter"><span class="chapter-num">07</span> Abschluss</div>
+    <h2>Was dunkelfeld.report damit meint</h2>
+
+    <p>dunkelfeld.report ist weder links noch rechts. Das ist keine Marketingaussage — es ist eine methodische Entscheidung. Wer eine Seite hat, hat Themen, die er nicht anfassen darf. Wir haben keine Seite. Wir haben nur Primärquellen.</p>
+
+    <p>Diese Serie hat versucht zu zeigen, dass politische Gewalt kein Monopol einer Seite ist. Dass Statistiken manipulierbar sind. Dass der lauteste Demokratierufer manchmal der gefährlichste Demokratieabbauer ist. Dass DDR-Vergleiche keine Verharmlosung sind, sondern Strukturanalyse. Und dass die Spaltung, in der wir leben, nicht aus dem Volk wächst — sondern von oben kultiviert wird.</p>
+
+    <p>Wer das als „rechts" liest: Dieser Artikel hat dasselbe über linke Gewalt gesagt. Wer das als „links" liest: Dieser Artikel hat rechte Gewalt und staatliche Verstrickung genauso dokumentiert. Wer beides unbequem findet — willkommen. Das ist der Punkt.</p>
+
+    <div class="main-thesis">
+      <p>Demokratie ist kein Hashtag. Sie ist ein Verfahren. Und Verfahren kann man einhalten — oder sie mit ihrem eigenen Namen aushöhlen.</p>
+      <div class="thesis-sub">dunkelfeld.report wird weiter schauen, was im Dunkeln passiert. Unabhängig davon, welche Farbe es hat.</div>
+    </div>
+  </div>
+
+  <!-- SERIE ABSCHLUSS -->
+  <div class="series-end fade-in">
+    <div class="series-end-label">Serie abgeschlossen · Wer schlägt — Teile I–III</div>
+    <h3>Das Triptychon ist vollständig</h3>
+    <p>Linke Gewalt. Rechte Gewalt. Das System dahinter. Drei Artikel, eine Methodik, keine Ideologie.</p>
+    <div class="series-links">
+      <a href="linke-gewalt.html" class="series-link">← Teil I · Linke Gewalt</a>
+      <a href="rechte-gewalt.html" class="series-link">← Teil II · Rechte Gewalt</a>
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer fade-in">
+    <div class="disclaimer-label">Redaktionelle Einordnung · Was wir ausdrücklich nicht behaupten</div>
+    <p>Dieser Artikel behauptet nicht, dass Deutschland eine Diktatur ist. Er analysiert strukturelle Mechanismen, die demokratische Qualität verringern — und vergleicht diese mit historischen und internationalen Mustern.</p>
+    <p>Er behauptet nicht, dass alle genannten Organisationen (NGOs, ÖRR, Parteien) aus böser Absicht handeln. Strukturelle Interessenkonflikte entstehen oft ohne bewusste Planung — sie sind dennoch analysierbar.</p>
+    <p>Er behauptet nicht, dass Ungarn, Polen oder die USA Vorbilder sind. Er wendet auf Deutschland denselben kritischen Maßstab an, den deutsche Medien gegenüber diesen Ländern anlegen — und hält das für methodisch korrekt.</p>
+    <p>Alle Fakten basieren auf verifizierbaren Primärquellen: V-Demokratie-Index, Press Freedom Index, parlamentarische Anfragen, Haushaltsberichte der genannten Organisationen, öffentliche Stellungnahmen der Beteiligten.</p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">dunkelfeld.report</div>
+    <div class="footer-note">Primärquellen · Keine Werbung · Keine Förderung</div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drehbuch auf Bestellung — dunkelfeld.report</title>
+  <style>
+    :root {
+      --bg:        #09090b;
+      --surface:   #111113;
+      --border:    #1e1e22;
+      --amber:     #e8c547;
+      --amber-dim: #b89a30;
+      --text:      #d4d4d8;
+      --text-muted:#71717a;
+      --text-faint:#3f3f46;
+      --red-dim:   #7f1d1d;
+      --green-dim: #14532d;
+      --yellow-dim:#713f12;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 17px;
+      line-height: 1.75;
+      padding: 0 1rem;
+    }
+
+    /* ── Layout ── */
+    .wrapper {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 3rem 0 6rem;
+    }
+
+    /* ── Site header ── */
+    .site-header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .site-name {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--amber);
+      text-transform: uppercase;
+    }
+    .site-tagline {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      margin-top: 0.25rem;
+    }
+
+    /* ── Article header ── */
+    .article-label {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--amber);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: normal;
+      line-height: 1.2;
+      color: #f4f4f5;
+      margin-bottom: 0.75rem;
+    }
+    .subtitle {
+      font-family: Georgia, serif;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+    .meta {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── Lead ── */
+    .lead {
+      font-size: 1.1rem;
+      color: #a1a1aa;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+      padding-left: 1.25rem;
+      border-left: 2px solid var(--amber-dim);
+    }
+
+    /* ── Section headings ── */
+    h2 {
+      font-family: Georgia, serif;
+      font-size: 1.3rem;
+      font-weight: normal;
+      color: var(--amber);
+      margin: 3rem 0 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #a1a1aa;
+      margin: 2rem 0 0.75rem;
+    }
+
+    /* ── Body text ── */
+    p { margin-bottom: 1.25rem; }
+
+    /* ── Source boxes ── */
+    .source-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--amber-dim);
+      padding: 0.8rem 1rem;
+      margin: 1.5rem 0;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .source-box strong {
+      color: var(--amber-dim);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.62rem;
+    }
+
+    /* ── Callout / Zitat ── */
+    .callout {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.25rem 1.5rem;
+      margin: 2rem 0;
+      font-style: italic;
+      color: #a1a1aa;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    .callout cite {
+      display: block;
+      margin-top: 0.6rem;
+      font-style: normal;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.65rem;
+      color: var(--text-faint);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── Tabellen ── */
+    .table-wrap { overflow-x: auto; margin: 2rem 0; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      font-family: 'Courier New', Courier, monospace;
+    }
+    th {
+      background: var(--surface);
+      color: var(--amber-dim);
+      text-align: left;
+      padding: 0.6rem 0.8rem;
+      border-bottom: 1px solid var(--amber-dim);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    td {
+      padding: 0.6rem 0.8rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: top;
+    }
+    tr:hover td { background: var(--surface); }
+    .tag-ja   { color: #4ade80; }
+    .tag-nein { color: #f87171; }
+    .tag-teilw{ color: #fbbf24; }
+
+    /* ── Belegt / Nicht belegt Box ── */
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    @media (max-width: 560px) { .evidence-grid { grid-template-columns: 1fr; } }
+    .evidence-box {
+      padding: 1rem;
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+    .evidence-box.yes { border-top: 3px solid #4ade80; }
+    .evidence-box.no  { border-top: 3px solid #f87171; }
+    .evidence-box h4 {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .evidence-box.yes h4 { color: #4ade80; }
+    .evidence-box.no  h4 { color: #f87171; }
+    .evidence-box ul { padding-left: 1rem; }
+    .evidence-box li { margin-bottom: 0.35rem; }
+
+    /* ── Trennlinie ── */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    /* ── Schluss-Frage ── */
+    .closing-question {
+      border: 1px solid var(--amber-dim);
+      padding: 1.5rem 2rem;
+      margin: 3rem 0;
+      text-align: center;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #d4d4d8;
+    }
+
+    /* ── Methodik-Box ── */
+    .methodik {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1rem 1.25rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.6;
+      margin-top: 3rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+    }
+
+    /* ── Quellenverzeichnis ── */
+    .sources h2 { color: var(--text-muted); }
+    .sources ul { padding-left: 1.25rem; }
+    .sources li {
+      font-size: 0.8rem;
+      font-family: 'Courier New', Courier, monospace;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+    .sources li strong { color: var(--amber-dim); }
+  
+  /* ═══════════════════════════════════════════
+     DUNKELFELD.REPORT — CSS STANDARD OVERRIDE
+     Farben, Lesbarkeit, DSGVO-konform
+     ═══════════════════════════════════════════ */
+  :root {
+    --dk-bg:       #09090b;
+    --dk-surface:  #111113;
+    --dk-border:   #27272a;
+    --dk-amber:    #e8c547;
+    --dk-amber-dim:#b89a2f;
+    --dk-text:     #d4d4d8;
+    --dk-muted:    #71717a;
+    --dk-bright:   #f4f4f5;
+    --dk-source-bg:#1a1a2e;
+  }
+
+  /* Basis-Reset auf Standard */
+  html { background: var(--dk-bg); }
+  body {
+    background: var(--dk-bg) !important;
+    color: var(--dk-text) !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    max-width: 720px !important;
+    margin: 0 auto !important;
+    padding: 48px 24px 80px !important;
+  }
+
+  /* Wrapper / Container auf 720px begrenzen */
+  .container, .content, main, article,
+  .article-body, .hero, .body-text {
+    max-width: 720px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Absätze */
+  p {
+    padding-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Überschriften */
+  h1 { color: var(--dk-bright) !important; }
+  h2, h3, h4 { color: var(--dk-bright) !important; }
+
+  /* Links */
+  a {
+    color: var(--dk-amber) !important;
+    text-decoration: none !important;
+  }
+  a:hover {
+    text-decoration: underline !important;
+  }
+
+  /* Labels / Metadaten */
+  .label, .meta, .article-meta, .dossier-id, .site-label,
+  .tag, .category, time, .date {
+    font-family: 'Courier New', Courier, monospace !important;
+  }
+
+  /* Quellenboxen */
+  .source-box, .quellen-box, .source, .sources,
+  blockquote, .zitat, .fact-box, .info-box,
+  .quelle, .source-entry, .reference {
+    background: var(--dk-source-bg) !important;
+    border-left: 3px solid var(--dk-amber) !important;
+    padding: 1rem 1.2rem !important;
+    margin-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+  }
+
+  /* Tabellen */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--dk-surface) !important;
+    color: var(--dk-amber) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.75rem !important;
+    padding: 0.6rem 0.8rem !important;
+    text-align: left;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--dk-border) !important;
+  }
+  td {
+    padding: 0.7rem 0.8rem !important;
+    border-bottom: 1px solid var(--dk-border) !important;
+    color: var(--dk-text) !important;
+    font-size: 0.95rem !important;
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+
+  /* Site-Header Breite */
+  .site-header, header, nav {
+    max-width: 100% !important;
+  }
+
+  /* Farbkorrekturen: alte Amber-Töne → Standard */
+  [style*="color: #d4a017"], [style*="color:#d4a017"] { color: var(--dk-amber) !important; }
+  [style*="color: #b8860b"], [style*="color:#b8860b"] { color: var(--dk-amber) !important; }
+
+  /* Lesbarkeit: dunkle Texte aufhellen */
+  [style*="color: #666"], [style*="color:#666"],
+  [style*="color: #555"], [style*="color:#555"] {
+    color: var(--dk-muted) !important;
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="site-name">dunkelfeld.report</div>
+    <div class="site-tagline">Analyse · Systemkritik · Quellenbasiert</div>
+  </header>
+
+  <!-- Article Header -->
+  <div class="article-label">Artikel #19</div>
+  <h1>Drehbuch auf Bestellung</h1>
+  <p class="subtitle">Wie Militär und Geheimdienste Hollywood mitschreiben — und was das mit Priming, Sloborn und der Hamburger Krankheit zu tun hat</p>
+  <div class="meta">Juni 2026 &nbsp;·&nbsp; Lesedauer: ca. 18 Minuten</div>
+
+  <!-- Lead -->
+  <p class="lead">
+    Sloborn startet im Januar 2020 auf Arte. Contagion lief 2011. Utopia warnte 2013 vor Pandemien und Bevölkerungskontrolle. Die Hamburger Krankheit zeigte bereits 1979 Mundschutzpflicht, Quarantänelager und Seuchengewinnler. Zufall? Das ist die falsche Frage. Die richtige: Wie entstehen diese Stoffe — und wer sitzt mit am Tisch?
+  </p>
+
+  <!-- BLOCK 1 -->
+  <h2>1. Das Pentagon als Drehbuchautor</h2>
+
+  <p>Wer einen Hollywood-Blockbuster mit echten Kampfjets, Flugzeugträgern oder Militärkonvois drehen will, kann das nicht einfach buchen. Er muss das Pentagon fragen.</p>
+
+  <p>Seit den 1940er Jahren unterhält das US-Verteidigungsministerium ein offizielles Büro, das Filmproduktionen mit Ausrüstung, Personal und Zugang unterstützt. Heute heißt es <strong>Entertainment Media Unit</strong> und ist auf der Website des Verteidigungsministeriums dokumentiert. Die Gegenleistung ist vertraglich geregelt: Das Drehbuch muss zur Prüfung vorgelegt werden. Änderungen sind Bedingung für die Zusammenarbeit.</p>
+
+  <p>Das ist keine Verschwörungstheorie. Es ist Verwaltungspraxis.</p>
+
+  <h3>Was die Dokumente zeigen</h3>
+
+  <p>Die Journalisten <strong>Tom Secker</strong> und <strong>Matthew Alford</strong> haben zwischen 2014 und 2017 über das Freedom of Information Act (FOIA) Hunderte von Seiten interner Kommunikation zwischen Pentagon, CIA und Filmproduktionen angefordert und ausgewertet. Ihr Buch <em>National Security Cinema</em> (2017) dokumentiert über 800 Produktionen — Spielfilme und Serien —, bei denen staatliche Stellen nachweislich inhaltlich eingegriffen haben.</p>
+
+  <p>Die Eingriffe sind konkret:</p>
+
+  <p><strong>Top Gun</strong> (1986): Das Drehbuch wurde auf Druck der Navy überarbeitet. Ein geplanter Subplot über einen Piloten, der mit seinem Dienst hadert, wurde gestrichen. Die Navy stellte danach Rekrutierungsstände direkt in Kinofoyern auf. Bewerberzahlen stiegen messbar an.</p>
+
+  <p><strong>Zero Dark Thirty</strong> (2012): Die CIA gewährte dem Produktionsteam Zugang zu geheimen Einrichtungen und Personen. Szenen, die das Folterprogramm kritisch darstellten, wurden abgemildert. Der Senat stellte später fest, dass die CIA dem Film „irreführende Informationen" zur Verfügung gestellt hatte — dokumentiert im Bericht des Senate Intelligence Committee von 2012.</p>
+
+  <p><strong>Transformers</strong> (2007): Das Pentagon verlangte laut den veröffentlichten Produktionsdokumenten, dass feindliche Charaktere nicht als US-Militär dargestellt werden. Szenen mit Militärversagen wurden überarbeitet.</p>
+
+  <p><strong>Lone Survivor</strong> (2013): Die Produktion arbeitete eng mit dem Special Operations Command zusammen. Laut Secker/Alford wurden Szenen entfernt, die Rules of Engagement in Frage stellten.</p>
+
+  <div class="source-box"><strong>Quellen</strong><br>Tom Secker &amp; Matthew Alford: <em>National Security Cinema</em> (2017) — Buch mit FOI-Dokument-Anhang · DoD Entertainment Media Unit: defense.gov · Senate Select Committee on Intelligence: Untersuchungsbericht zu Zero Dark Thirty (2012), öffentlich zugänglich</div>
+
+  <h3>Die Logik des Systems</h3>
+
+  <p>Das System funktioniert nicht durch Zwang, sondern durch Anreiz. Wer die Zusammenarbeit ablehnt, dreht ohne echtes Militärmaterial — und zahlt dafür im Budget. Wer kooperiert, bekommt Trägerflugzeuge, Hunderte Komparsen in Uniform und Zugang zu Schauplätzen, die sich kein Produktionsbudget leisten könnte.</p>
+
+  <p>Phil Strub, der das DoD-Büro von 1989 bis 2016 leitete, beschrieb das Ziel in einem Interview mit dem <em>Hollywood Reporter</em> (2011) offen: das Militär in einem Licht darzustellen, das „der Realität entspricht" und dem „Ansehen der Streitkräfte nicht schadet". Was das konkret bedeutet, entscheidet das Pentagon.</p>
+
+  <p>Eine Studie der <strong>University of Southern California</strong> (Stahl &amp; Welch, 2014) wertete öffentlich zugängliche Kooperationsverträge aus und stellte fest, dass Produktionen mit Pentagon-Beteiligung im Durchschnitt ein deutlich positiveres Militärbild zeichneten als unabhängige Produktionen.</p>
+
+  <div class="evidence-grid">
+    <div class="evidence-box yes">
+      <h4>✓ Dokumentiert</h4>
+      <ul>
+        <li>Pentagon liest Drehbücher und fordert Änderungen</li>
+        <li>Praxis seit Jahrzehnten, offiziell bestätigt</li>
+        <li>Über 800 Produktionen betroffen (Secker/Alford)</li>
+        <li>Konkrete Eingriffe bei Top Gun, Zero Dark Thirty, Transformers</li>
+      </ul>
+    </div>
+    <div class="evidence-box no">
+      <h4>✗ Nicht dokumentiert</h4>
+      <ul>
+        <li>Zentrale Steuerung von Narrativen über Militärthemen hinaus</li>
+        <li>Koordiniertes Programm zur gesellschaftlichen Vorbereitung</li>
+        <li>Pentagon-Einfluss auf Pandemie-Fiktion</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- BLOCK 2 -->
+  <h2>2. Die CIA und ihr Drehbuchbüro</h2>
+
+  <p>Während das Pentagon hauptsächlich Rekrutierung und Reputation im Blick hat, verfolgt die CIA ein anderes Ziel: Deutungshoheit.</p>
+
+  <p>Seit <strong>1996</strong> unterhält die Central Intelligence Agency ein offizielles <strong>Entertainment Industry Liaison Office</strong>. Es ist auf der Website der CIA dokumentiert. Die Aufgabe: Kontakt zu Filmemachern, Drehbuchautoren und Produzenten halten — und bei Bedarf beratend eingreifen.</p>
+
+  <p>Leiter dieses Büros war von 1996 bis 2007 <strong>Chase Brandon</strong>, ein ehemaliger verdeckter Agent. In einem Interview mit dem <em>Entertainment Weekly</em> (2001) beschrieb er seine Arbeit: Er wolle sicherstellen, dass die CIA „so dargestellt wird, wie sie wirklich ist" — und nicht als die Institution, die „immer der Bösewicht" sei.</p>
+
+  <h3>Dokumentierte Eingriffe</h3>
+
+  <p><strong>Argo</strong> (2012): Die CIA stellte dem Produktionsteam interne Akten zur Verfügung und ermöglichte Zugang zu ehemaligen Geheimdienstmitarbeitern. Der Film gewann den Oscar für den besten Film. Die kanadische Regierung kritisierte öffentlich, der Film minimiere den kanadischen Anteil an der Rettungsoperation zugunsten der CIA. Eine direkte inhaltliche Einflussnahme auf diese Verschiebung ist aus den vorliegenden Dokumenten nicht belegbar — die Kooperation selbst ist es.</p>
+
+  <p><strong>Zero Dark Thirty</strong> (2012): CIA-Vertreter gaben der Regisseurin Kathryn Bigelow und Drehbuchautor Mark Boal nach Feststellung des Senats „falsche oder irreführende Informationen" — darunter die Darstellung, dass Folter zur Auffindung Bin Ladens beigetragen habe. Dokumentiert im Senate Select Committee on Intelligence Report (2012).</p>
+
+  <p><strong>Homeland</strong> (ab 2011): Die Produzenten bestätigten öffentlich, dass CIA-Berater in die Entwicklung eingebunden waren. Was konkret geändert wurde, ist aus öffentlichen Quellen nicht vollständig rekonstruierbar.</p>
+
+  <p><strong>24</strong> (ab 2001): Der damalige CIA-Direktor <strong>George Tenet</strong> soll laut mehreren Berichten — darunter einem Artikel im <em>New Yorker</em> (2007) — persönlich Kontakt zur Produktion gehabt haben. Die Folterserie um Jack Bauer lief parallel zur öffentlichen Debatte über „Enhanced Interrogation Techniques".</p>
+
+  <h3>Das Structural Consulting-Modell</h3>
+
+  <p>Was sich aus den vorliegenden Dokumenten ergibt, ist kein Zensurapparat im klassischen Sinne. Es ist ein <strong>Zugangssystem</strong>: Wer mit der CIA kooperiert, bekommt authentisches Insider-Material, Glaubwürdigkeit und Zugang zu Schauplätzen und Personen. Wer nicht kooperiert, dreht ohne dieses Material — und riskiert, von ehemaligen Geheimdienstlern öffentlich als „unrealistisch" kritisiert zu werden.</p>
+
+  <div class="callout">
+    „Es geht nicht darum, dass die CIA Drehbücher schreibt. Es geht darum, dass niemand ein Drehbuch schreibt, ohne zumindest zu überlegen, ob eine Zusammenarbeit möglich wäre."
+    <cite>— Matthew Alford, University of Bath, Interview 2017</cite>
+  </div>
+
+  <div class="source-box"><strong>Quellen</strong><br>CIA Entertainment Industry Liaison Office: cia.gov (offiziell bestätigt) · Chase Brandon: Interview in Entertainment Weekly (2001) · Senate Select Committee on Intelligence: Report on Zero Dark Thirty (2012) · Jane Mayer: „The Predator War", The New Yorker (2007)</div>
+
+  <!-- BLOCK 3 -->
+  <h2>3. Was im Kopf passiert — die Psychologie</h2>
+
+  <p>Bevor die Frage gestellt werden kann, ob Unterhaltung gesellschaftlich vorbereitet, muss eine grundlegendere Frage beantwortet werden: Kann Fiktion überhaupt reale Wahrnehmung verändern?</p>
+
+  <p>Die Antwort der Forschung ist eindeutig: Ja. Und zwar ohne dass die betroffene Person es merkt.</p>
+
+  <h3>Priming: Der unsichtbare Vorlauf</h3>
+
+  <p><strong>John Bargh</strong>, Sozialpsychologe an der Yale University, beschreibt Priming als einen der stabilsten Befunde der kognitiven Psychologie: Wer einem Konzept ausgesetzt wird — auch unbewusst, auch in fiktivem Kontext — verarbeitet spätere reale Informationen zu diesem Konzept anders als jemand ohne diese Vorerfahrung.</p>
+
+  <p>Das klassische Experiment: Bargh et al. (1996) ließen Probanden Sätze mit Wörtern bilden, die mit Alter und Langsamkeit assoziiert waren. Anschließend gingen diese Probanden messbar langsamer den Flur entlang als die Kontrollgruppe. Kein Befehl, keine bewusste Entscheidung. Nur Voraktivierung.</p>
+
+  <p>Übertragen auf Fiktion: Wer jahrelang in Filmen und Serien Pandemien, Ausgangssperren und staatliche Notfallmaßnahmen als dramatischen Stoff verarbeitet hat, reagiert auf reale Entsprechungen mit einem anderen neuronalen Startpunkt. Das Konzept ist nicht neu — es ist vertraut. Vertrautheit aber wird vom Gehirn mit Plausibilität verwechselt. Dieser Mechanismus heißt <strong>Fluency Effect</strong>: Was sich leicht abrufen lässt, wirkt wahrer.</p>
+
+  <div class="source-box"><strong>Quelle</strong><br>Bargh, J.A., Chen, M., &amp; Burrows, L. (1996): „Automaticity of social behavior: Direct effects of trait construct and stereotype activation on action." Journal of Personality and Social Psychology, 71(2), 230–244.</div>
+
+  <h3>Kultivierungshypothese: Wer viel sieht, glaubt anders</h3>
+
+  <p><strong>George Gerbner</strong>, Kommunikationswissenschaftler an der Annenberg School der University of Pennsylvania, entwickelte ab den 1960er Jahren die Kultivierungstheorie. Sein Ausgangsbefund: Menschen, die viel Fernsehen sehen, überschätzen systematisch die Kriminalitätsrate in ihrer Umgebung — weil Kriminalität im Fernsehen überrepräsentiert ist.</p>
+
+  <p>Gerbners Erkenntnis war nicht, dass Menschen Fiktion für Realität halten. Sondern dass Fiktion die <strong>Basisannahmen über Realität</strong> verschiebt — was normal ist, was häufig vorkommt, was zu erwarten ist. Das ist ein gradueller, langfristiger Prozess. Kein einzelner Film ändert eine Weltanschauung. Aber eine konsistente Darstellung über Jahre verschiebt, was als selbstverständlich gilt.</p>
+
+  <div class="source-box"><strong>Quelle</strong><br>Gerbner, G. &amp; Gross, L. (1976): „Living with television: The violence profile." Journal of Communication, 26(2), 172–199. · Gerbner, G. et al. (1986): „Living with television: The dynamics of the cultivation process." In Bryant &amp; Zillmann (Hrsg.): Perspectives on Media Effects.</div>
+
+  <h3>Elizabeth Loftus: Erinnerungen, die nie stattfanden</h3>
+
+  <p><strong>Elizabeth Loftus</strong>, Kognitionspsychologin an der University of California Irvine, ist eine der meistzitierten Wissenschaftlerinnen in der Geschichte der Psychologie. Ihr Forschungsfeld: Wie zuverlässig sind menschliche Erinnerungen?</p>
+
+  <p>Ihre Antwort, belegt durch Jahrzehnte experimenteller Forschung: Deutlich weniger zuverlässig als allgemein angenommen. Loftus zeigte, dass Menschen durch nachträgliche Informationen — ein suggestives Interview, ein Foto, eine Erzählung — Erinnerungen an Ereignisse entwickeln können, die nie stattgefunden haben. Der <strong>False Memory Effect</strong>: Betroffene sind subjektiv überzeugt, sich wirklich zu erinnern. Ihr Gedächtnis hat eine Lücke mit plausiblem Material gefüllt.</p>
+
+  <p>Die Relevanz für Fiktion ist indirekt, aber strukturell bedeutsam: Wenn das Gehirn reale Ereignisse und emotional aufgeladene fiktive Darstellungen nicht vollständig trennt — und die Forschung legt nahe, dass es das tatsächlich nicht immer tut — dann hinterlässt intensiv erlebte Fiktion emotionale Spuren, die sich mit späteren realen Erfahrungen vermischen können. Loftus selbst hat diese Übertragung nicht auf Unterhaltungsmedien ausgedehnt. Sie ist hier als Forschungsgrundlage zitiert, nicht als Kronzeugin einer These, die sie nicht vertreten hat.</p>
+
+  <div class="source-box"><strong>Quelle</strong><br>Loftus, E.F. (1997): „Creating false memories." Scientific American, 277(3), 70–75. · Loftus, E.F. &amp; Palmer, J.C. (1974): „Reconstruction of automobile destruction." Journal of Verbal Learning and Verbal Behavior, 13, 585–589.</div>
+
+  <h3>Agenda-Setting: Was als Problem gilt</h3>
+
+  <p><strong>Maxwell McCombs</strong> und <strong>Donald Shaw</strong> veröffentlichten 1972 ihre <em>Chapel Hill Study</em>. Ihre These: Medien bestimmen nicht, was Menschen denken — aber sie bestimmen, <strong>worüber</strong> Menschen nachdenken. Wer die Agenda setzt, bestimmt, welche Themen als dringlich, welche Risiken als real und welche Szenarien als denkbar gelten. Fiktion ist in diesem Rahmen kein Nachrichtenmedium — aber ein mächtiges Instrument der Thematisierung.</p>
+
+  <h3>Das Overton-Fenster: Verschiebung durch Gewöhnung</h3>
+
+  <p><strong>Joseph Overton</strong> beschrieb in den 1990er Jahren, wie sich der Bereich des gesellschaftlich Akzeptierten graduell verschiebt. Ideen, die zunächst undenkbar erscheinen, werden durch schrittweise Exposition denkbar, dann diskutierbar, dann normal. Fiktion ist in diesem Modell ein besonders wirksames Instrument — weil sie keine politische Debatte erfordert. Eine Idee kann in einem Drama durchgespielt werden, ohne dass irgendjemand öffentlich für sie einstehen muss.</p>
+
+  <div class="source-box"><strong>Quellen</strong><br>McCombs, M. &amp; Shaw, D. (1972): „The agenda-setting function of mass media." Public Opinion Quarterly, 36(2), 176–187. · Overton, J.: Konzeptpapier „Shaping Public Policy" (Mackinac Center, ca. 1996), mackinac.org.</div>
+
+  <!-- BLOCK 4 -->
+  <h2>4. Die Chronologie — was wann kam</h2>
+
+  <p>Die folgende Übersicht dokumentiert Produktionsdaten, Sendedaten und den zeitlichen Bezug zu realen Ereignissen. Bewertet wird ausschließlich, was öffentlich belegbar ist. Staatliche Beteiligung wird nur dort als dokumentiert ausgewiesen, wo Primärquellen vorliegen.</p>
+
+  <h3>Der deutsche Sonderfall: 1979</h3>
+
+  <p>Deutschland im Ausnahmezustand: menschenleere Straßen, Mundschutzpflicht, rigorose Quarantänemaßnahmen, Suche nach „Patient Null". Das sind keine Beschreibungen aus dem Jahr 2020. Es sind Szenen aus <strong>„Die Hamburger Krankheit"</strong> — einem Film von Peter Fleischmann, produziert 1978/79, Kinostart 23. November 1979.</p>
+
+  <p>Der Entstehungskontext ist aufschlussreich: Die Hongkong-Grippe hatte Deutschland 1968–1970 heimgesucht. Krankenhäuser in Hamburg, Berlin und München waren überfüllt, Schulen wurden geschlossen, Särge mussten in Gewächshäusern zwischengelagert werden. Der Film entstand zehn Jahre nach diesem realen Pandemie-Erlebnis — und wurde vom ZDF mitproduziert. Eine inhaltliche Einflussnahme auf den Stoff ist nicht dokumentiert. Was dokumentiert ist: öffentlich-rechtliche Mitfinanzierung.</p>
+
+  <p>Als der Film im April 2020 von der Taz wiederentdeckt wurde, staunte die Kritik: Mundschutz, Quarantänelager, Seuchengewinnler, gespaltene Gesellschaft — Fleischmann hatte 41 Jahre zuvor eine Blaupause geliefert, die sich wie eine Nachrichtensendung der Gegenwart las.</p>
+
+  <h3>Chronologietabelle</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Jahr</th>
+          <th>Werk</th>
+          <th>Thema</th>
+          <th>Staatl. Beteiligung</th>
+          <th>Realer Bezug</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1979</td>
+          <td>Die Hamburger Krankheit</td>
+          <td>Pandemie, Quarantäne, Ausnahmezustand</td>
+          <td class="tag-teilw">ZDF-Mitproduktion</td>
+          <td>Hongkong-Grippe 1968–70</td>
+        </tr>
+        <tr>
+          <td>1995</td>
+          <td>Outbreak</td>
+          <td>Viruspandemie, Militärquarantäne</td>
+          <td class="tag-teilw">Pentagon: Militärmaterial</td>
+          <td>Ebola-Ausbruch Zaire 1995</td>
+        </tr>
+        <tr>
+          <td>2011</td>
+          <td>Contagion</td>
+          <td>Pandemie, WHO, Impfstoffentwicklung</td>
+          <td class="tag-ja">CDC-Berater offiziell eingebunden</td>
+          <td>H1N1-Schweinegrippe 2009</td>
+        </tr>
+        <tr>
+          <td>2013</td>
+          <td>Utopia (UK)</td>
+          <td>Laborgezüchtete Pandemie, Bevölkerungskontrolle</td>
+          <td class="tag-nein">Nicht dokumentiert</td>
+          <td>MERS-Ausbruch 2012</td>
+        </tr>
+        <tr>
+          <td>2013</td>
+          <td>Flu / Pandemie (KR)</td>
+          <td>Atemwegsvirus, Stadtabriegelung</td>
+          <td class="tag-nein">Nicht dokumentiert</td>
+          <td>SARS-Folgedebatte</td>
+        </tr>
+        <tr>
+          <td>2020</td>
+          <td>Sloborn (Sky/Arte)</td>
+          <td>Atemwegspandemie, Gesellschaftskollaps, Impfstoffrennen</td>
+          <td class="tag-nein">Nicht dokumentiert</td>
+          <td><strong>Sendebeginn Januar 2020. WHO-Notstand: 30. Januar 2020</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Sloborn: Was belegbar ist</h3>
+
+  <p>Sloborn startete im Januar 2020 auf Sky Deutschland und Arte. Die Produktion begann nachweislich 2019 — aus Pressemitteilungen von Sky Deutschland rekonstruierbar. Inhalt: Eine unbekannte Atemwegserkrankung breitet sich aus. Gesellschaftliche Strukturen kollabieren. Ein Impfstoffrennen beginnt. Staatliche Maßnahmen spalten die Bevölkerung.</p>
+
+  <p>Sendebeginn: Januar 2020. Die WHO erklärte COVID-19 am 30. Januar 2020 zum internationalen Gesundheitsnotstand.</p>
+
+  <p>Was das bedeutet — und was nicht: Der zeitliche Befund ist dokumentiert. Eine Koordination mit realen Ereignissen ist nicht belegbar und auch logisch kaum möglich — Produktionen dieser Größe laufen 18 bis 24 Monate vor Ausstrahlung. Was belegbar ist: Der Stoff wurde entwickelt, produziert und ausgestrahlt, ohne dass irgendjemand die Übereinstimmung mit der Realität als problematisch empfand — bis die Realität eintraf.</p>
+
+  <p>Das ist kein Beweis für Absicht. Es ist ein Befund über die Normalität des Themas in der Unterhaltungsindustrie.</p>
+
+  <h3>Das Muster — nüchtern beschrieben</h3>
+
+  <p>Pandemie-Fiktion ist kein Randphänomen. Sie ist seit den 1970ern ein konsistentes Motiv in westlicher Unterhaltungsproduktion — mit wachsender Frequenz ab den 2000ern. CDC-Berater arbeiten nachweislich an Drehbüchern mit. Das Pentagon stellt Militärmaterial für Quarantäne-Szenarien. Öffentlich-rechtliche Sender finanzieren entsprechende Stoffe.</p>
+
+  <!-- BLOCK 5 -->
+  <h2>5. Die strukturelle Frage</h2>
+
+  <h3>Was dieser Artikel belegt hat</h3>
+
+  <div class="evidence-grid">
+    <div class="evidence-box yes">
+      <h4>✓ Dokumentiert</h4>
+      <ul>
+        <li>Pentagon liest Drehbücher, fordert Änderungen, macht Hilfe davon abhängig</li>
+        <li>CIA-Liaison-Büro seit 1996, offiziell bestätigt</li>
+        <li>CIA-Einfluss auf Folterdarstellung in Zero Dark Thirty (Senatsbericht)</li>
+        <li>CDC-Beratung bei Contagion, öffentlich bestätigt</li>
+        <li>Pandemie-Fiktion als konsistentes Motiv seit den 1970ern</li>
+        <li>Psychologische Mechanismen (Priming, Kultivierung, False Memory, Agenda-Setting) peer-reviewed belegt</li>
+      </ul>
+    </div>
+    <div class="evidence-box no">
+      <h4>✗ Nicht dokumentiert</h4>
+      <ul>
+        <li>Zentrale Steuerung von Pandemie-Narrativen durch staatliche Stellen</li>
+        <li>Verbindung zwischen Pentagon/CIA-Mechanismus und Sloborn, Utopia oder Die Hamburger Krankheit</li>
+        <li>Koordinierte Vorbereitung der Bevölkerung auf COVID-19 durch Unterhaltungsmedien</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Die strukturelle Frage</h3>
+
+  <p>Wenn staatliche Stellen nachweislich in die Produktion von Unterhaltungsmedien eingreifen — mit institutionellen Eigeninteressen, die öffentlich beschrieben sind — und wenn Unterhaltungsmedien nachweislich die Wahrnehmung von Realität formen — was folgt daraus für die Frage, wessen Interessen in der Unterhaltungsproduktion strukturell bevorzugt werden?</p>
+
+  <p>Das ist keine Frage nach einer Verschwörung. Es ist eine Frage nach <strong>institutionellen Anreizen</strong>. Wer Zugang gewährt, bestimmt mit, welche Geschichten erzählt werden. Wer bestimmt, welche Geschichten erzählt werden, bestimmt mit, welche Szenarien als normal, welche als bedrohlich und welche als undenkbar gelten. Das ist kein geheimer Mechanismus. Es ist ein struktureller — und er ist dokumentiert.</p>
+
+  <h3>Eine Bemerkung zur Methode</h3>
+
+  <p>George Gerbner hat auf einen Umstand hingewiesen, der in der öffentlichen Debatte selten beachtet wird: Die wirksamste Form der Einflussnahme auf kollektive Wahrnehmung ist nicht Propaganda im klassischen Sinne — plump, erkennbar, ablehnbar. Sie ist die <strong>konsistente Normalität</strong> einer Erzählwelt, in der bestimmte Dinge selbstverständlich vorkommen und andere nicht.</p>
+
+  <p>Eine Gesellschaft, die seit Jahrzehnten Pandemien, Quarantänemaßnahmen und staatliche Notfallregimes als dramatischen Stoff konsumiert, ist nicht manipuliert worden. Sie ist — im Wortsinne — <strong>vorbereitet</strong>.</p>
+
+  <p>Ob das ein Nebenprodukt ist oder ein Ziel, können die vorliegenden Dokumente nicht beantworten. Das ist die Grenze dieses Artikels. Und sie ist, wie immer bei dunkelfeld.report, explizit markiert.</p>
+
+  <hr />
+
+  <div class="closing-question">
+    Hollywood braucht das Pentagon. Das Pentagon braucht Hollywood.<br />
+    Die CIA berät Drehbuchautoren. Gesundheitsbehörden begleiten Pandemie-Dramen.<br />
+    Öffentlich-rechtliche Sender finanzieren Seuchenszenarien.<br /><br />
+    Und das Publikum sitzt im Kino.<br /><br />
+    <em>Was das bedeutet — das ist Ihre Entscheidung.</em>
+  </div>
+
+  <!-- Quellenverzeichnis -->
+  <hr />
+  <div class="sources">
+    <h2>Quellenverzeichnis</h2>
+
+    <h3>Primärquellen &amp; offizielle Dokumente</h3>
+    <ul>
+      <li><strong>DoD Entertainment Media Unit</strong> — defense.gov (offiziell)</li>
+      <li><strong>CIA Entertainment Industry Liaison Office</strong> — cia.gov (offiziell)</li>
+      <li><strong>Senate Select Committee on Intelligence</strong>: Report on CIA and Zero Dark Thirty (2012) — intelligence.senate.gov</li>
+    </ul>
+
+    <h3>Investigativjournalismus &amp; FOI-Dokumente</h3>
+    <ul>
+      <li><strong>Tom Secker &amp; Matthew Alford</strong>: <em>National Security Cinema</em> (2017) — mit FOI-Dokumenten-Anhang</li>
+      <li><strong>Jane Mayer</strong>: „The Predator War", The New Yorker (2007)</li>
+      <li><strong>Robin Wigglesworth</strong>: „Aladdin: the secret world of BlackRock's AI", Financial Times (2020)</li>
+      <li><strong>Phil Strub</strong>: Interview, Hollywood Reporter (2011)</li>
+      <li><strong>Chase Brandon</strong>: Interview, Entertainment Weekly (2001)</li>
+      <li><strong>taz</strong>: „Der Film zur Epidemie — Die Hamburger Krankheit" (18. April 2020)</li>
+    </ul>
+
+    <h3>Wissenschaftliche Forschung</h3>
+    <ul>
+      <li><strong>Bargh, J.A., Chen, M. &amp; Burrows, L.</strong> (1996): „Automaticity of social behavior." Journal of Personality and Social Psychology, 71(2)</li>
+      <li><strong>Gerbner, G. &amp; Gross, L.</strong> (1976): „Living with television: The violence profile." Journal of Communication, 26(2)</li>
+      <li><strong>Loftus, E.F.</strong> (1997): „Creating false memories." Scientific American, 277(3)</li>
+      <li><strong>McCombs, M. &amp; Shaw, D.</strong> (1972): „The agenda-setting function of mass media." Public Opinion Quarterly, 36(2)</li>
+      <li><strong>Stahl &amp; Welch</strong> (2014): Studie zu DoD-Kooperationsverträgen, University of Southern California</li>
+    </ul>
+
+    <h3>Film &amp; Produktion</h3>
+    <ul>
+      <li><strong>Die Hamburger Krankheit</strong> (1979), Regie: Peter Fleischmann — Wikipedia-Eintrag mit Produktionsbelegen</li>
+      <li><strong>Sloborn</strong> (2020), Sky Deutschland / Arte — Pressemitteilungen Sky Deutschland 2019/2020</li>
+      <li><strong>Contagion</strong> (2011), Regie: Steven Soderbergh — CDC bestätigte Beratungsrolle öffentlich</li>
+    </ul>
+  </div>
+
+  <div class="methodik">
+    Alle Angaben in diesem Artikel basieren auf öffentlich zugänglichen Quellen: Primärdokumenten von Behörden, peer-reviewten Fachpublikationen und investigativem Journalismus etablierter Medien. Spekulation ist als solche gekennzeichnet. Leser werden ausdrücklich zur eigenständigen Prüfung der genannten Quellen eingeladen.
+  </div>
+
+  <footer>
+    dunkelfeld.report &nbsp;·&nbsp; Fakten, die das Licht nicht scheuen &nbsp;·&nbsp; Artikel #19
+  </footer>
+
+</div>
+</body>
+</html>

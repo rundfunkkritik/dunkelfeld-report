@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dossier 004 — Westminster & Establishment — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --surface: #111113;
+    --border: #222228;
+    --text: #e8e8f0;
+    --muted: #888899;
+    --accent: #e8c547;
+    --accent-dim: rgba(232,197,71,0.10);
+    --red: #e85447;
+    --red-dim: rgba(232,84,71,0.09);
+    --green: #47e8a0;
+    --green-dim: rgba(71,232,160,0.09);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+  .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+  .header-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+  .header-right {
+    margin-left: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+  }
+
+  .container { max-width: 740px; margin: 0 auto; padding: 0 2rem; }
+
+  .hero { padding: 4.5rem 0 3rem; }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-bottom: 1.6rem;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 700;
+    line-height: 1.08;
+    margin-bottom: 0.5rem;
+  }
+  h1 span { color: var(--muted); }
+  .subtitle {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.65;
+    margin: 1.4rem 0 2.4rem;
+    max-width: 600px;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+  }
+  .stat { background: var(--surface); padding: 1.3rem 1.1rem; }
+  .stat-num {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--accent);
+    font-family: Georgia, serif;
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 0.4rem;
+  }
+  .stat-sub { font-size: 0.76rem; color: var(--muted); margin-top: 0.3rem; line-height: 1.4; }
+
+  .divider { border-top: 1px solid var(--border); margin: 3rem 0; }
+
+  .section-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 1.3rem;
+  }
+
+  h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.1rem; line-height: 1.25; }
+  h3 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 2rem 0 0.8rem;
+  }
+  p { margin-bottom: 1.2rem; }
+
+  .source-box {
+    background: #0e0e14;
+    border-left: 3px solid var(--accent);
+    padding: 0.9rem 1.2rem;
+    margin: 1.6rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.77rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  .source-box strong { color: var(--accent); display: block; margin-bottom: 0.3rem; }
+
+  .warn-box {
+    background: var(--red-dim);
+    border-left: 3px solid var(--red);
+    padding: 1rem 1.3rem;
+    margin: 1.8rem 0;
+    font-size: 0.93rem;
+    line-height: 1.65;
+    color: var(--text);
+  }
+  .warn-box strong { color: var(--red); }
+
+  .editorial-box {
+    background: var(--accent-dim);
+    border: 1px solid rgba(232,197,71,0.2);
+    padding: 1.2rem 1.5rem;
+    margin: 1.8rem 0;
+    border-radius: 2px;
+  }
+  .editorial-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.6rem;
+  }
+  .editorial-box p { font-size: 0.93rem; line-height: 1.65; margin-bottom: 0.5rem; }
+  .editorial-box p:last-child { margin-bottom: 0; }
+
+  table { width: 100%; border-collapse: collapse; margin: 1.6rem 0; font-size: 0.87rem; }
+  th {
+    background: var(--surface);
+    color: var(--muted);
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.65rem 0.9rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 0.75rem 0.9rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.62rem;
+    padding: 0.12rem 0.45rem;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .tag-confirmed { background: var(--green-dim); color: var(--green); border: 1px solid rgba(71,232,160,0.3); }
+  .tag-partial   { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(232,197,71,0.3); }
+  .tag-open      { background: var(--red-dim); color: var(--red); border: 1px solid rgba(232,84,71,0.3); }
+  .tag-debunked  { background: #1a1a1a; color: var(--muted); border: 1px solid var(--border); }
+
+  .chrono { margin: 1.8rem 0; }
+  .chrono-item {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .chrono-item:last-child { border-bottom: none; }
+  .chrono-year {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    padding-top: 0.15rem;
+    font-weight: 700;
+  }
+  .chrono-text { font-size: 0.92rem; line-height: 1.6; color: var(--text); }
+
+  .closing {
+    background: var(--surface);
+    border-top: 3px solid var(--accent);
+    padding: 2.5rem 2rem;
+    margin: 3rem 0;
+    text-align: center;
+  }
+  .closing p {
+    font-size: 1.1rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .closing strong { color: var(--text); }
+
+  footer { border-top: 1px solid var(--border); padding: 3rem 0 2.5rem; margin-top: 3rem; }
+  .footer-note {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+  .footer-brand { font-family: 'Courier New', monospace; font-size: 0.78rem; color: var(--accent); margin-top: 1.5rem; }
+
+  @media (max-width: 600px) {
+    .stats { grid-template-columns: 1fr 1fr; }
+    .chrono-item { grid-template-columns: 70px 1fr; }
+    h1 { font-size: 1.9rem; }
+  }
+
+  /* ═══════════════════════════════════════════
+     DUNKELFELD.REPORT — CSS STANDARD OVERRIDE
+     Farben, Lesbarkeit, DSGVO-konform
+     ═══════════════════════════════════════════ */
+  :root {
+    --dk-bg:       #09090b;
+    --dk-surface:  #111113;
+    --dk-border:   #27272a;
+    --dk-amber:    #e8c547;
+    --dk-amber-dim:#b89a2f;
+    --dk-text:     #d4d4d8;
+    --dk-muted:    #71717a;
+    --dk-bright:   #f4f4f5;
+    --dk-source-bg:#1a1a2e;
+  }
+
+  /* Basis-Reset auf Standard */
+  html { background: var(--dk-bg); }
+  body {
+    background: var(--dk-bg) !important;
+    color: var(--dk-text) !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    max-width: 720px !important;
+    margin: 0 auto !important;
+    padding: 48px 24px 80px !important;
+  }
+
+  /* Wrapper / Container auf 720px begrenzen */
+  .container, .content, main, article,
+  .article-body, .hero, .body-text {
+    max-width: 720px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Absätze */
+  p {
+    padding-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Überschriften */
+  h1 { color: var(--dk-bright) !important; }
+  h2, h3, h4 { color: var(--dk-bright) !important; }
+
+  /* Links */
+  a {
+    color: var(--dk-amber) !important;
+    text-decoration: none !important;
+  }
+  a:hover {
+    text-decoration: underline !important;
+  }
+
+  /* Labels / Metadaten */
+  .label, .meta, .article-meta, .dossier-id, .site-label,
+  .tag, .category, time, .date {
+    font-family: 'Courier New', Courier, monospace !important;
+  }
+
+  /* Quellenboxen */
+  .source-box, .quellen-box, .source, .sources,
+  blockquote, .zitat, .fact-box, .info-box,
+  .quelle, .source-entry, .reference {
+    background: var(--dk-source-bg) !important;
+    border-left: 3px solid var(--dk-amber) !important;
+    padding: 1rem 1.2rem !important;
+    margin-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+  }
+
+  /* Tabellen */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--dk-surface) !important;
+    color: var(--dk-amber) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.75rem !important;
+    padding: 0.6rem 0.8rem !important;
+    text-align: left;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--dk-border) !important;
+  }
+  td {
+    padding: 0.7rem 0.8rem !important;
+    border-bottom: 1px solid var(--dk-border) !important;
+    color: var(--dk-text) !important;
+    font-size: 0.95rem !important;
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+
+  /* Site-Header Breite */
+  .site-header, header, nav {
+    max-width: 100% !important;
+  }
+
+  /* Farbkorrekturen: alte Amber-Töne → Standard */
+  [style*="color: #d4a017"], [style*="color:#d4a017"] { color: var(--dk-amber) !important; }
+  [style*="color: #b8860b"], [style*="color:#b8860b"] { color: var(--dk-amber) !important; }
+
+  /* Lesbarkeit: dunkle Texte aufhellen */
+  [style*="color: #666"], [style*="color:#666"],
+  [style*="color: #555"], [style*="color:#555"] {
+    color: var(--dk-muted) !important;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="dot"></div>
+  <span class="header-label">dunkelfeld.report — Dossier 004</span>
+  <span class="header-right">Stand: Juni 2026</span>
+</header>
+
+<div class="container">
+
+  <section class="hero">
+    <div class="kicker">Dossier 004 — Großbritannien · Establishment &amp; Missbrauch</div>
+    <h1>Westminster im Dunkelfeld<br><span>Savile, verschwundene Akten und institutioneller Schutz</span></h1>
+    <p class="subtitle">Quellenbasierte Dokumentation zu Jimmy Savile, dem Dickens-Dossier, Greville Janner und Elm Guest House — mit expliziter Trennung zwischen belegten Fakten, laufenden Ermittlungen und nicht verifizierbaren Behauptungen.</p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Savile-Opfer</div>
+        <div class="stat-sub">Dokumentiert über 6 Jahrzehnte</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">114</div>
+        <div class="stat-label">Fehlende Akten</div>
+        <div class="stat-sub">Home Office — bestätigt 2014</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">40</div>
+        <div class="stat-label">Seiten Dickens-Dossier</div>
+        <div class="stat-sub">1984 übergeben — nie wiedergefunden</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2020</div>
+        <div class="stat-label">IICSA Westminster</div>
+        <div class="stat-sub">Missbrauch bei Elm Guest House „almost certainly"</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- REDAKTIONELLE VORBEMERKUNG -->
+  <div class="editorial-box">
+    <div class="editorial-label">Redaktionelle Vorbemerkung</div>
+    <p>Dieses Dossier bewegt sich in einem Bereich, in dem belegte Fakten, laufende Ermittlungen und unverifizierbarer Spekulationen nebeneinander existieren. Die Trennung dieser drei Kategorien ist die editorielle Kernaufgabe.</p>
+    <p>Namentlich genannte Personen werden ausschließlich durch dokumentierte, öffentlich verifizierbare Fakten referenziert. Behauptungen ohne primärquellenbasierte Grundlage werden als solche gekennzeichnet — auch wenn sie weit verbreitet sind.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SAVILE -->
+  <section>
+    <div class="section-label">Fall 01 — Jimmy Savile</div>
+    <h2>Der meistdokumentierte Fall: Wie Institutionen versagten</h2>
+
+    <p>Jimmy Savile — BBC-Moderator, Charity-Fundraiser, Knight of the Realm — starb im Oktober 2011. Erst nach seinem Tod begann die systematische Aufarbeitung dessen, was Institutionen jahrzehntelang nicht gesehen haben wollten oder aktiv verdeckten.</p>
+
+    <h3>Was dokumentiert ist</h3>
+
+    <p>Der gemeinsame Bericht von Metropolitan Police und NSPCC „Giving Victims a Voice" (Januar 2013) registrierte 214 Straftaten in 28 Polizeibezirken — darunter 34 Vergewaltigungen. Jüngstes Opfer: acht Jahre alt. Über 450 Personen erstatteten Anzeige. Spätere Gesamtschätzungen gehen von über 500 Opfern aus, verteilt über sechs Jahrzehnte.</p>
+
+    <div class="source-box">
+      <strong>Primärquelle</strong>
+      „Giving Victims a Voice" — Metropolitan Police / NSPCC, Januar 2013. Abrufbar über NSPCC.org.uk und Met Police Archiv.
+    </div>
+
+    <h3>Die Institutionen — und ihr dokumentiertes Versagen</h3>
+
+    <table>
+      <thead>
+        <tr><th>Institution</th><th>Dokumentiertes Versagen</th><th>Quelle</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>BBC</strong></td>
+          <td>Mindestens 72 Opfer im BBC-Kontext. Newsnight-Recherche über Savile-Missbrauch fertiggestellt Dezember 2011 — vom Redaktionsleiter gestoppt. BBC sendete stattdessen zwei Gedenkprogramme nach Saviles Tod</td>
+          <td><span class="tag tag-confirmed">Dame Janet Smith Review 2016</span></td>
+        </tr>
+        <tr>
+          <td><strong>NHS / Krankenhäuser</strong></td>
+          <td>Missbrauch in mindestens 13 Krankenhäusern. Stoke Mandeville: 63 Opfer, Savile hatte eigenes Zimmer. Leeds General Infirmary: Missbrauch ab 1962, Savile hatte Zugang zur Pathologie. Pfleger wiesen Patienten an, zu schlafen wenn Savile die Station betrat</td>
+          <td><span class="tag tag-confirmed">Lampard Report 2014</span></td>
+        </tr>
+        <tr>
+          <td><strong>Polizei (Surrey, 2009)</strong></td>
+          <td>Interview mit Savile zu Missbrauchsvorwürfen — Savile leugnete, kein Verfahren eröffnet. Transcript 2013 über Freedom of Information Act veröffentlicht</td>
+          <td><span class="tag tag-confirmed">FOI-Veröffentlichung 2013</span></td>
+        </tr>
+        <tr>
+          <td><strong>Mehrere Institutionen</strong></td>
+          <td>Gerüchte über Savile kursierten in Medien- und Showbiz-Kreisen seit Jahrzehnten — keine Strafanzeige, kein Verfahren zu Lebzeiten</td>
+          <td><span class="tag tag-confirmed">Pollard Review 2012 / Smith Review 2016</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Operation Yewtree — Folgeermittlungen</h3>
+
+    <p>Die im Oktober 2012 gestartete Operation Yewtree der Metropolitan Police weitete die Ermittlungen auf andere Personen aus dem Umfeld Saviles und der BBC-Ära aus. Mehrere prominente Persönlichkeiten wurden verhört, einige verurteilt — darunter Rolf Harris (Haftstrafe) und Stuart Hall (Haftstrafe).</p>
+
+    <div class="source-box">
+      <strong>Primärquellen</strong>
+      Dame Janet Smith Review (BBC-Untersuchung), 2016 — bbc.co.uk/bbctrust<br>
+      Kate Lampard: „Themes and Lessons from the Investigations into Matters Relating to Jimmy Savile", Department of Health, Juni 2014<br>
+      Nick Pollard: „The Pollard Review", Dezember 2012
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- DICKENS DOSSIER -->
+  <section>
+    <div class="section-label">Fall 02 — Das Dickens-Dossier</div>
+    <h2>40 Seiten — übergeben 1984 — nie wiedergefunden</h2>
+
+    <p>Geoffrey Dickens, konservativer Abgeordneter, übergab dem damaligen Innenminister Leon Brittan 1984 in einem 30-minütigen Treffen im Home Office ein 40-seitiges Dossier. Er beschrieb es als Dokument, das „das Leben bedeutender Kinderschänder aufdecken" könnte — und das Potenzial habe, „den Deckel von der Gesellschaft zu sprengen".</p>
+
+    <h3>Was dokumentiert ist</h3>
+
+    <div class="chrono">
+      <div class="chrono-item">
+        <div class="chrono-year">1983</div>
+        <div class="chrono-text">Dickens bittet Brittan, Diplomatischen Dienst, Zivilverwaltung und den Königlichen Hof in Buckingham Palace wegen Vorwürfen des Kindesmissbrauchs zu untersuchen.</div>
+      </div>
+      <div class="chrono-item">
+        <div class="chrono-year">1984</div>
+        <div class="chrono-text">Übergabe des 40-seitigen Dossiers an Innenminister Leon Brittan. Brittan schreibt Dickens am 20. März 1984, die zuständigen Staatsanwälte seien informiert worden. Zwei Einbrüche in Dickens' Londoner Wohnung und Wahlkreisbüro — in derselben Woche der Übergabe. Nichts wird gestohlen.</div>
+      </div>
+      <div class="chrono-item">
+        <div class="chrono-year">1985</div>
+        <div class="chrono-text">Dickens erklärt im Unterhaus: „Der Strick um meinen Hals wurde enger, nachdem ich einen früheren britischen Diplomaten auf dem Boden des Hauses benannte." Berichtet von Drohungen, Einbrüchen und seinem Namen auf einer Todesliste.</div>
+      </div>
+      <div class="chrono-item">
+        <div class="chrono-year">2013</div>
+        <div class="chrono-text">Home Office erklärt: Das Dossier wurde „nicht aufbewahrt". Ein Review stellt fest: Teile als „glaubwürdig" eingestufte Inhalte wurden an Polizei weitergegeben. 114 Dokumente zu Kindesmissbrauchsvorwürfen fehlen im Home Office insgesamt.</div>
+      </div>
+      <div class="chrono-item">
+        <div class="chrono-year">2014</div>
+        <div class="chrono-text">Premierminister Cameron beauftragt Mark Sedwill (Permanent Secretary) mit Untersuchung der Umstände des verschwundenen Dossiers. Innenministerin Theresa May kündigt Überprüfung historischer Missbrauchsvorwürfe an. Leon Brittan bestätigt öffentlich den Empfang — korrigiert widersprüchliche Aussagen aus 2013.</div>
+      </div>
+      <div class="chrono-item">
+        <div class="chrono-year">2015</div>
+        <div class="chrono-text">Leon Brittan stirbt am 22. Januar 2015. Eine vollständige Untersuchung seiner Rolle ist damit nicht mehr möglich. Guardian-Recherche: Thatcher hatte handschriftliche Anmerkungen in Akten hinterlassen — trat dafür ein, einen namentlich bekannten Verdächtigen nicht zu benennen.</div>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <strong>Was nicht dokumentiert ist:</strong> Der genaue Inhalt des Dossiers ist nicht öffentlich bekannt. Alle Behauptungen über konkrete Namen — außer den von Dickens selbst im Unterhaus genannten — sind nicht primärquellenbasiert belegbar und werden in diesem Dossier nicht aufgeführt.
+    </div>
+
+    <div class="source-box">
+      <strong>Primärquellen</strong>
+      Home Office Independent Review 2013 — veröffentlicht gov.uk<br>
+      Hansard — Unterhaus-Protokoll, Geoffrey Dickens, 29. November 1985<br>
+      Channel 4 News: Interview mit Leon Brittan, 2014<br>
+      The Guardian: Thatcher-Dokumente, Februar 2015
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- GREVILLE JANNER -->
+  <section>
+    <div class="section-label">Fall 03 — Greville Janner</div>
+    <h2>Anzeigen seit 1991 — nie angeklagt zu Lebzeiten</h2>
+
+    <p>Lord Greville Janner, Labour-Abgeordneter und späterer Life Peer, war Jahrzehnte lang einer der prominentesten jüdischen Gemeinschaftsführer Großbritanniens. Missbrauchsvorwürfe gegen ihn wurden erstmals 1991 dokumentiert — er wurde zu Lebzeiten nie angeklagt.</p>
+
+    <table>
+      <thead>
+        <tr><th>Jahr</th><th>Ereignis</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1991</td>
+          <td>Frank Beck, Heimleiter, beschuldigt Janner im Zusammenhang mit Missbrauch an Kindern in seiner Obhut. Beck wird verurteilt — Janner nicht angeklagt</td>
+          <td><span class="tag tag-confirmed">Dokumentiert, Gerichtsprotokoll Beck-Verfahren</span></td>
+        </tr>
+        <tr>
+          <td>2002</td>
+          <td>Weitere Anzeige — Staatsanwaltschaft entscheidet: kein öffentliches Interesse an Strafverfolgung</td>
+          <td><span class="tag tag-confirmed">CPS-Entscheidung dokumentiert</span></td>
+        </tr>
+        <tr>
+          <td>2007</td>
+          <td>Dritte Anzeige — erneut kein Verfahren</td>
+          <td><span class="tag tag-confirmed">Dokumentiert</span></td>
+        </tr>
+        <tr>
+          <td>2015</td>
+          <td>Director of Public Prosecutions entscheidet: hinreichender Tatverdacht — aber Janner demenzkrank, nicht verhandlungsfähig. Verfahren „Trial of Facts" ohne Janner angeordnet</td>
+          <td><span class="tag tag-confirmed">CPS-Entscheidung April 2015, öffentlich</span></td>
+        </tr>
+        <tr>
+          <td>Dez. 2015</td>
+          <td>Janner stirbt. Das „Trial of Facts" findet nicht statt</td>
+          <td><span class="tag tag-confirmed">Dokumentiert</span></td>
+        </tr>
+        <tr>
+          <td>2016</td>
+          <td>Independent Review: Staatsanwaltschaft hätte Janner bereits 2002 anklagen sollen — Entscheidung von 2002 war „wrong"</td>
+          <td><span class="tag tag-confirmed">Slade Review 2016, gov.uk</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="source-box">
+      <strong>Primärquelle</strong>
+      Slade Review: „The Independent Review of the Decisions not to Prosecute Lord Janner", 2016 — abrufbar über gov.uk<br>
+      Crown Prosecution Service: Öffentliche Erklärungen 2002, 2007, 2015
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ELM GUEST HOUSE -->
+  <section>
+    <div class="section-label">Fall 04 — Elm Guest House</div>
+    <h2>Was die IICSA 2020 feststellte — und was sie nicht feststellte</h2>
+
+    <p>Das Elm Guest House in Barnes, London, wurde 1982 von der Polizei durchsucht. Die Betreiber wurden wegen Führung eines unzüchtigen Hauses verurteilt. Seither kursieren Listen mit angeblich prominenten Besuchern. Die Unabhängige Untersuchungskommission IICSA hat den Fall 2020 geprüft.</p>
+
+    <div class="editorial-box">
+      <div class="editorial-label">IICSA Westminster Report 2020 — Kernaussagen</div>
+      <p><strong>Belegt:</strong> Kindesmissbrauch im Elm Guest House hat „almost certainly occurred" — basierend auf Beweisen aus der Razzia 1982, bei der der Missbrauch eines zehnjährigen Jungen durch erwachsene Männer dokumentiert wurde.</p>
+      <p><strong>Nicht belegt:</strong> Eine koordinierte Pädophilenring-Struktur mit namentlich bekannten VIPs konnte nicht nachgewiesen werden. Die weit verbreiteten „Elm Guest House Lists" wurden von Ermittlern als Material mit „zero evidential value" eingestuft — die Herkunft gilt als „certainly dubious".</p>
+      <p><strong>Institutionelle Kritik:</strong> Institutionen haben „historically prioritizing reputational concerns over child welfare" — Reputationsschutz wurde über Kinderschutz gestellt.</p>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Behauptung</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Missbrauch fand im Elm Guest House statt</td>
+          <td><span class="tag tag-confirmed">Belegt — IICSA 2020</span></td>
+        </tr>
+        <tr>
+          <td>Polizeirazzia 1982 dokumentiert</td>
+          <td><span class="tag tag-confirmed">Belegt — Gerichtsakten</span></td>
+        </tr>
+        <tr>
+          <td>Betreiber verurteilt (9 Monate bedingt, £1.000 Geldstrafe)</td>
+          <td><span class="tag tag-confirmed">Belegt — April 1983</span></td>
+        </tr>
+        <tr>
+          <td>Kein Gast wurde identifiziert, angeklagt oder verurteilt</td>
+          <td><span class="tag tag-confirmed">Belegt — IICSA 2020</span></td>
+        </tr>
+        <tr>
+          <td>Kursierenden VIP-Listen mit Politikernamen</td>
+          <td><span class="tag tag-debunked">„Zero evidential value" — IICSA 2020</span></td>
+        </tr>
+        <tr>
+          <td>Koordinierter Establishment-Pädophilenring</td>
+          <td><span class="tag tag-open">Nicht belegt — IICSA fand keine Bestätigung</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="source-box">
+      <strong>Primärquelle</strong>
+      IICSA: „Westminster — Investigation Report", Februar 2020 — iicsa.org.uk<br>
+      Metropolitan Police: Operations Helena und Yvonne — Untersuchungen zum Elm Guest House
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- STRUKTURELLE ÜBERSICHT -->
+  <section>
+    <div class="section-label">Strukturelle Einordnung</div>
+    <h2>Das Muster hinter den Einzelfällen</h2>
+
+    <p>Jeder der vier dokumentierten Fälle zeigt ein ähnliches strukturelles Muster — unabhängig voneinander, über Jahrzehnte. Das Muster selbst ist primärquellenbasiert belegbar:</p>
+
+    <table>
+      <thead>
+        <tr><th>Strukturelement</th><th>Belegt in</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Hinweise lagen vor — wurden nicht verfolgt</td>
+          <td><span class="tag tag-confirmed">Savile (Smith Review), Janner (Slade Review), Grooming Gangs (Jay Report)</span></td>
+        </tr>
+        <tr>
+          <td>Institutionen priorisierten Reputationsschutz</td>
+          <td><span class="tag tag-confirmed">IICSA 2020, Casey Report 2015, BBC Pollard Review 2012</span></td>
+        </tr>
+        <tr>
+          <td>Akten verschwunden oder vernichtet</td>
+          <td><span class="tag tag-confirmed">Home Office: 114 Dokumente fehlend (2014)</span></td>
+        </tr>
+        <tr>
+          <td>Täter starben vor Anklage — Aufarbeitung dadurch unmöglich</td>
+          <td><span class="tag tag-confirmed">Savile (†2011), Janner (†2015), Brittan (†2015)</span></td>
+        </tr>
+        <tr>
+          <td>Whistleblower berichteten von Druck und Einschüchterung</td>
+          <td><span class="tag tag-confirmed">Dickens im Unterhaus 1985; BBC-Journalist Meirion Jones</span></td>
+        </tr>
+        <tr>
+          <td>Empfehlungen aus Inquiries nicht umgesetzt</td>
+          <td><span class="tag tag-confirmed">IICSA 2022: Keine einzige der 20 Empfehlungen umgesetzt bis Jan. 2025</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="divider"></div>
+
+  <div class="closing">
+    <p>114 Dokumente fehlen. Das einzige überlieferte Dossier ist verschwunden. Die wichtigsten Verdächtigen starben vor Anklageerhebung.<br><br>
+    <strong>Wenn die Beweislage strukturell so beschaffen ist, dass vollständige Aufklärung systematisch verhindert wird — wie lässt sich dann der Unterschied zwischen Versagen und Vertuschung dokumentieren?</strong></p>
+  </div>
+
+  <!-- QUELLENVERZEICHNIS -->
+  <section>
+    <div class="section-label">Quellenverzeichnis</div>
+    <h2>Primärquellen dieses Dossiers</h2>
+
+    <table>
+      <thead>
+        <tr><th>Quelle</th><th>Inhalt</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>„Giving Victims a Voice" — Met Police / NSPCC, Jan. 2013</td>
+          <td>214 Straftaten, 450+ Opfer Savile</td>
+          <td><span class="tag tag-confirmed">NSPCC.org.uk</span></td>
+        </tr>
+        <tr>
+          <td>Lampard Report, Dept. of Health, Juni 2014</td>
+          <td>Savile NHS-Missbrauch, ~40 Krankenhäuser</td>
+          <td><span class="tag tag-confirmed">Gov.uk</span></td>
+        </tr>
+        <tr>
+          <td>Dame Janet Smith Review, 2016</td>
+          <td>72 Savile-Opfer im BBC-Kontext</td>
+          <td><span class="tag tag-confirmed">BBC Trust</span></td>
+        </tr>
+        <tr>
+          <td>Pollard Review, Dez. 2012</td>
+          <td>Newsnight-Entscheidung zur Savile-Recherche</td>
+          <td><span class="tag tag-confirmed">BBC.co.uk</span></td>
+        </tr>
+        <tr>
+          <td>Home Office Independent Review, 2013</td>
+          <td>Dickens-Dossier „not retained", 114 fehlende Dokumente</td>
+          <td><span class="tag tag-confirmed">Gov.uk</span></td>
+        </tr>
+        <tr>
+          <td>Hansard, 29. November 1985</td>
+          <td>Dickens-Rede im Unterhaus — Drohungen, Einbrüche</td>
+          <td><span class="tag tag-confirmed">Parliament.uk</span></td>
+        </tr>
+        <tr>
+          <td>Slade Review, 2016</td>
+          <td>CPS-Entscheidung 2002 zu Janner war „wrong"</td>
+          <td><span class="tag tag-confirmed">Gov.uk</span></td>
+        </tr>
+        <tr>
+          <td>IICSA Westminster Report, Februar 2020</td>
+          <td>Elm Guest House — Missbrauch belegt, VIP-Listen wertlos</td>
+          <td><span class="tag tag-confirmed">IICSA.org.uk</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="source-box">
+      <strong>Hinweis zur Methodik</strong>
+      Dieses Dossier dokumentiert ausschließlich was durch offizielle Untersuchungsberichte, Parlamentsprotokolle und Gerichtsakten primärquellenbasiert belegbar ist. Behauptungen die in der Öffentlichkeit weit verbreitet sind, aber keiner primärquellenbasierten Überprüfung standhalten — insbesondere kursierende Namenslisten ohne evidentielle Grundlage — werden nicht reproduziert. Das Datenloch selbst ist dokumentiert und Teil der Befundlage.
+    </div>
+  </section>
+
+  <footer>
+    <p class="footer-note">Alle dargestellten Informationen basieren auf öffentlich zugänglichen Primärquellen. Dieses Dossier erhebt keinen Anspruch auf Vollständigkeit. Leser werden ausdrücklich zur eigenständigen Überprüfung der genannten Quellen eingeladen.</p>
+    <p class="footer-brand">dunkelfeld.report — Fakten, die das Licht nicht scheuen.</p>
+  </footer>
+
+</div>
+</body>
+</html>

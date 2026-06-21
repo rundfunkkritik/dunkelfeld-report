@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Das linke Gewaltproblem — dunkelfeld.report</title>
+
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --bg-2: #111111;
+    --bg-3: #181818;
+    --signal: #f5c400;
+    --signal-dim: rgba(245,196,0,0.12);
+    --signal-border: rgba(245,196,0,0.3);
+    --text: #e8e4dc;
+    --text-muted: #888880;
+    --text-dim: #555550;
+    --red: #c0392b;
+    --red-dim: rgba(192,57,43,0.15);
+    --white: #ffffff;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'Space Grotesk', sans-serif;
+    --serif: 'Lora', serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(13,13,13,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(245,196,0,0.15);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--signal);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .nav-tag {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    border: 1px solid var(--signal-border);
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 7rem 2rem 4rem;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--signal);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--signal);
+  }
+
+  .hero h1 {
+    font-family: var(--sans);
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--signal);
+  }
+
+  .hero-sub {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 620px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+    font-style: italic;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  .meta-item span {
+    color: var(--text-muted);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 2rem;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .scroll-hint::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--text-dim), transparent);
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--signal-border), transparent);
+    margin: 0;
+  }
+
+  /* MAIN CONTENT */
+  .content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  /* CHAPTER LABELS */
+  .chapter {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--signal);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .chapter-num {
+    color: var(--text-dim);
+  }
+
+  h2 {
+    font-family: var(--sans);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    font-family: var(--sans);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--signal);
+    margin: 2.5rem 0 1rem;
+    letter-spacing: 0.02em;
+  }
+
+  p {
+    margin-bottom: 1.4rem;
+    color: var(--text);
+  }
+
+  p strong {
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  /* SECTION WRAPPER */
+  .section {
+    margin-bottom: 6rem;
+  }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-left: 3px solid var(--signal);
+    padding: 1.5rem 2rem;
+    margin: 3rem 0;
+    background: var(--signal-dim);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .pull-quote p {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--white);
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .pull-quote cite {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-top: 0.75rem;
+    font-style: normal;
+    text-transform: uppercase;
+  }
+
+  /* FACT BOX */
+  .fact-box {
+    background: var(--bg-3);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-top: 2px solid var(--signal);
+    padding: 2rem;
+    margin: 2.5rem 0;
+    border-radius: 0 0 4px 4px;
+  }
+
+  .fact-box-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--signal);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+
+  .fact-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .fact-box ul li {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--text);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  .fact-box ul li::before {
+    content: '—';
+    color: var(--signal);
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+  }
+
+  .fact-box ul li:last-child {
+    border-bottom: none;
+  }
+
+  /* WARNING BOX */
+  .warning-box {
+    background: var(--red-dim);
+    border: 1px solid rgba(192,57,43,0.3);
+    border-left: 3px solid var(--red);
+    padding: 1.5rem 2rem;
+    margin: 2.5rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .warning-box p {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .warning-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  /* TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+    margin: 2.5rem 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--signal), var(--text-dim));
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.35rem;
+    top: 0.55rem;
+    width: 8px;
+    height: 8px;
+    background: var(--signal);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--signal);
+  }
+
+  .timeline-year {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--signal);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .timeline-text {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .timeline-text strong {
+    color: var(--white);
+  }
+
+  /* CUI BONO TABLE */
+  .analysis-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+    margin: 2.5rem 0;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .analysis-cell {
+    background: var(--bg-2);
+    padding: 1.5rem;
+  }
+
+  .analysis-cell.header {
+    background: var(--bg-3);
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--signal);
+    text-transform: uppercase;
+  }
+
+  .analysis-cell p {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* SCENARIO BOX */
+  .scenario {
+    margin: 1.5rem 0;
+    padding: 1.5rem 2rem;
+    background: var(--bg-3);
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scenario::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+  }
+
+  .scenario.gelb::before { background: var(--signal); }
+  .scenario.rot::before { background: var(--red); }
+
+  .scenario-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .scenario.gelb .scenario-label { color: var(--signal); }
+  .scenario.rot .scenario-label { color: var(--red); }
+
+  .scenario h4 {
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .scenario p {
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    margin: 0;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  /* DISCLAIMER */
+  .disclaimer {
+    background: var(--bg-3);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 2rem;
+    margin-top: 5rem;
+    border-radius: 4px;
+  }
+
+  .disclaimer-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding-bottom: 0.75rem;
+  }
+
+  .disclaimer p {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 3rem 2rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+    gap: 1rem;
+  }
+
+  .footer-logo {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--signal);
+    text-transform: uppercase;
+  }
+
+  .footer-note {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  /* SERIES LINK */
+  .series-nav {
+    background: var(--signal-dim);
+    border: 1px solid var(--signal-border);
+    padding: 1.5rem 2rem;
+    margin-top: 4rem;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .series-nav-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--signal);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .series-nav-title {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .series-nav-arrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--signal);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  /* SCROLL ANIMATION */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 600px) {
+    .analysis-grid { grid-template-columns: 1fr; }
+    .hero { padding: 6rem 1.5rem 3rem; }
+    .content { padding: 3rem 1.5rem; }
+    h2 { font-size: 1.6rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ═══════════════════════════════════════════
+     DUNKELFELD.REPORT — CSS STANDARD OVERRIDE
+     Farben, Lesbarkeit, DSGVO-konform
+     ═══════════════════════════════════════════ */
+  :root {
+    --dk-bg:       #09090b;
+    --dk-surface:  #111113;
+    --dk-border:   #27272a;
+    --dk-amber:    #e8c547;
+    --dk-amber-dim:#b89a2f;
+    --dk-text:     #d4d4d8;
+    --dk-muted:    #71717a;
+    --dk-bright:   #f4f4f5;
+    --dk-source-bg:#1a1a2e;
+  }
+
+  /* Basis-Reset auf Standard */
+  html { background: var(--dk-bg); }
+  body {
+    background: var(--dk-bg) !important;
+    color: var(--dk-text) !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    max-width: 720px !important;
+    margin: 0 auto !important;
+    padding: 48px 24px 80px !important;
+  }
+
+  /* Wrapper / Container auf 720px begrenzen */
+  .container, .content, main, article,
+  .article-body, .hero, .body-text {
+    max-width: 720px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Absätze */
+  p {
+    padding-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Überschriften */
+  h1 { color: var(--dk-bright) !important; }
+  h2, h3, h4 { color: var(--dk-bright) !important; }
+
+  /* Links */
+  a {
+    color: var(--dk-amber) !important;
+    text-decoration: none !important;
+  }
+  a:hover {
+    text-decoration: underline !important;
+  }
+
+  /* Labels / Metadaten */
+  .label, .meta, .article-meta, .dossier-id, .site-label,
+  .tag, .category, time, .date {
+    font-family: 'Courier New', Courier, monospace !important;
+  }
+
+  /* Quellenboxen */
+  .source-box, .quellen-box, .source, .sources,
+  blockquote, .zitat, .fact-box, .info-box,
+  .quelle, .source-entry, .reference {
+    background: var(--dk-source-bg) !important;
+    border-left: 3px solid var(--dk-amber) !important;
+    padding: 1rem 1.2rem !important;
+    margin-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+  }
+
+  /* Tabellen */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--dk-surface) !important;
+    color: var(--dk-amber) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.75rem !important;
+    padding: 0.6rem 0.8rem !important;
+    text-align: left;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--dk-border) !important;
+  }
+  td {
+    padding: 0.7rem 0.8rem !important;
+    border-bottom: 1px solid var(--dk-border) !important;
+    color: var(--dk-text) !important;
+    font-size: 0.95rem !important;
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+
+  /* Site-Header Breite */
+  .site-header, header, nav {
+    max-width: 100% !important;
+  }
+
+  /* Farbkorrekturen: alte Amber-Töne → Standard */
+  [style*="color: #d4a017"], [style*="color:#d4a017"] { color: var(--dk-amber) !important; }
+  [style*="color: #b8860b"], [style*="color:#b8860b"] { color: var(--dk-amber) !important; }
+
+  /* Lesbarkeit: dunkle Texte aufhellen */
+  [style*="color: #666"], [style*="color:#666"],
+  [style*="color: #555"], [style*="color:#555"] {
+    color: var(--dk-muted) !important;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">dunkelfeld.report</a>
+  <span class="nav-tag">Serie: Wer schlägt — Teil I</span>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">Analyse · Linke Gewalt · Deutschland 1919–2025</div>
+  <h1>Freikorps, RAF, Hammerbande — <em>wer schlägt,<br>wer deckt, wer profitiert?</em></h1>
+  <p class="hero-sub">Von Rosa Luxemburgs Ermordung bis zur Hammerbande Leipzig: Wie linke Gewalt entstand, instrumentalisiert wurde — und warum die Spaltung bis heute System hat.</p>
+  <div class="hero-meta">
+    <div class="meta-item">Status: <span>Erstveröffentlichung</span></div>
+    <div class="meta-item">Quellen: <span>Primär, verifiziert</span></div>
+    <div class="meta-item">Methode: <span>Whitney-Webb-Standard</span></div>
+    <div class="meta-item">Lesezeit: <span>~12 Min.</span></div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<div class="divider"></div>
+
+<main class="content">
+
+  <!-- SECTION 1 -->
+  <div class="section fade-in">
+    <div class="chapter"><span class="chapter-num">01</span> Die Urszene</div>
+    <h2>Berlin, Januar 1919: Der Staat lässt töten</h2>
+
+    <p>Es ist die Nacht des 15. Januar 1919. Rosa Luxemburg und Karl Liebknecht werden aus dem Berliner Hotel Eden abgeholt, verhört, mit Gewehrkolben niedergeschlagen. Luxemburgs Leiche wird in den Landwehrkanal geworfen, wo sie vier Monate später treibend gefunden wird. Die Täter: Offiziere der Garde-Kavallerie-Schützen-Division, paramilitärische Freikorps im Dienst der neuen Republik.</p>
+
+    <p>Was macht diese Morde zur historischen Schlüsselszene? Nicht die Opfer allein. Sondern <strong>wer den Auftrag gab</strong>: die sozialdemokratische Regierung unter Friedrich Ebert. Ausgerechnet jene Partei, die sich auf die Arbeiterklasse berief, beauftragte rechte Paramilitärs damit, die radikale Linke zu beseitigen.</p>
+
+    <div class="pull-quote">
+      <p>„Der Mord an Luxemburg und Liebknecht war kein Exzess — er war Politik. Geplant, gedeckt, nie wirklich gesühnt."</p>
+      <cite>Historische Einordnung · Prozessakten 1919, Reichswehrministerium</cite>
+    </div>
+
+    <p>Die Täter wurden vor ein Militärgericht gestellt. Das Urteil: lächerliche Strafen, rasche Amnestie. Haupttäter Waldemar Pabst floh nach Wien, lebte bis 1970 unbehelligt in Deutschland und prahlte später offen damit, die Morde koordiniert zu haben — mit Wissen der SPD-Führung.</p>
+
+    <h3>Die Konsequenz, die bis heute wirkt</h3>
+
+    <p>Die Morde erzeugten eine <strong>unversöhnliche Spaltung</strong> der deutschen Arbeiterbewegung. Die KPD bezeichnete die SPD fortan als „Sozialfaschisten" — eine Stalindoktrin, die jede gemeinsame Front gegen den aufsteigenden Nationalsozialismus verhinderte. Historiker streiten bis heute, ob Hitler ohne diese Spaltung hätte an die Macht kommen können. Die Antwort tendiert: Nein.</p>
+
+    <div class="fact-box">
+      <div class="fact-box-label">Gesicherte Fakten · Primärquellen</div>
+      <ul>
+        <li>Waldemar Pabst, Koordinator der Morde, bestätigte 1969 in einem Spiegel-Interview die Absprache mit SPD-Verteidigungsminister Noske</li>
+        <li>Die Freikorps-Einheiten, die Luxemburg töteten, wurden später teilweise in SA und SS integriert</li>
+        <li>Ebert unterzeichnete die Ermächtigung der Freikorps zur „Wiederherstellung der Ordnung" am 10. Januar 1919 — fünf Tage vor den Morden</li>
+        <li>Das Spartakus-Tribunal fand unter Ausschluss der Öffentlichkeit statt; Akten wurden jahrzehntelang unter Verschluss gehalten</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section fade-in">
+    <div class="chapter"><span class="chapter-num">02</span> Der Begriff als Waffe</div>
+    <h2>Antifa: Wenn der Name zur Immunisierung wird</h2>
+
+    <p>„Antifaschistisch" klingt nach Haltung, nicht nach Partei. Das ist der Trick. Wer sich so nennt, zieht eine moralische Schutzwand um sich: Kritik wird zum Angriff auf den Antifaschismus selbst. Diese rhetorische Struktur ist nicht zufällig — sie hat eine präzise Geschichte.</p>
+
+    <p>Die KPD nutzte den Begriff bereits in den frühen 1930ern, damals vor allem als <strong>Kampfbegriff gegen die SPD</strong>. Der „wahre" Antifaschismus lag natürlich bei der KPD selbst — wer abwich, war entweder Faschist oder Kollaborateur. Diese binäre Logik ist seitdem konserviert worden.</p>
+
+    <h3>Das semantische Problem</h3>
+
+    <p>Selbstbezeichnung ist keine Wahrheitsaussage. Wer sich „Demokrat" nennt, ist noch kein Demokrat. Wer sich „Journalist" nennt, betreibt noch keinen Journalismus. Und wer sich „Antifaschist" nennt, bekämpft nicht zwingend Faschismus — er bekämpft, was er so nennt.</p>
+
+    <p>In der Praxis bedeutet das: <strong>Jeder politische Gegner kann zum Faschisten erklärt werden</strong> — und jede Gewalt gegen ihn damit zum legitimen Widerstand. Es ist eine perfekte semantische Falle.</p>
+
+    <div class="warning-box">
+      <div class="warning-label">Klarstellung</div>
+      <p>Diese Analyse bestreitet nicht, dass Faschismus eine reale Bedrohung darstellt oder dargestellt hat. Sie analysiert, wie ein legitimer Begriff instrumentalisiert wurde — und wird. Das ist ein Unterschied, der in der öffentlichen Debatte systematisch verwischt wird.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section fade-in">
+    <div class="chapter"><span class="chapter-num">03</span> Historischer Bogen</div>
+    <h2>Von der RAF zur Hammerbande: Eine Chronologie der Gewalt</h2>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">1970–1998</div>
+        <div class="timeline-text"><strong>Rote Armee Fraktion (RAF):</strong> 34 Morde, dutzende Anschläge, Bankraube, Entführungen. Schleyer, Buback, Ponto. Eindeutig linksextrem, explizit antikapitalistisch. Gleichzeitig: V-Männer in der Szene, ungeklärte Verbindungen zu staatlichen Strukturen. Peter-Jürgen Boock sprach jahrzehntelang über Widersprüche in der offiziellen Erzählung.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1980–2000er</div>
+        <div class="timeline-text"><strong>Autonome Szene:</strong> Systematische Gewalt gegen Polizei, Sachbeschädigung, Brandanschläge. Legitimiert durch den Antifaschismus-Begriff. Verfassungsschutzbericht 2023: Linksextremisten verübten 1.449 politisch motivierte Straftaten, davon 279 Gewalttaten — Tendenz steigend.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2020–2021</div>
+        <div class="timeline-text"><strong>Schwarze Blöcke auf Corona-Demonstrationen:</strong> Vermummte Gruppen infiltrierten friedliche Kundgebungen in Berlin, Leipzig, Stuttgart. Ziel: Provokation, Eskalation, mediale Delegitimierung der gesamten Protestbewegung. Ergebnis: Stunden später berichteten ARD und ZDF nicht über die 100.000 Friedlichen — sondern über die Ausschreitungen einer kleinen Minderheit.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2021–2023</div>
+        <div class="timeline-text"><strong>Hammerbande Leipzig:</strong> Organisierte Angriffe auf politische Gegner, Handwerker, Zufallsopfer. Mehrere Täter aus dem Umfeld der Gruppe „Antifa Zeckenbiss". Angriffe auf AfD-Büros, Fahrzeuge von Politikern, eine Hammattacke auf einen Bürger in Connewitz. Kaum überregionale Berichterstattung.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2022</div>
+        <div class="timeline-text"><strong>Anschläge auf Bahninfrastruktur:</strong> Koordinierte Sabotage zweier Glasfaserkabel legte den Bahnverkehr im Norden Deutschlands lahm. Bundespolizei ermittelte in Richtung linksextreme Gruppen. Öffentliche Debatte: minimal. Vergleich mit dem NSU-Komplex: inexistent.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2024</div>
+        <div class="timeline-text"><strong>Matthias Ecke (SPD), Dresden:</strong> Überfall beim Plakatkleben, schwere Verletzungen. Täter: junge Männer aus rechtsextremen Kreisen. Medienreaktion: Bundesweit, tagelang, völlig zu Recht. — Im selben Jahr: Dutzende dokumentierte Übergriffe auf AfD-Wahlhelfer, kaum überregionale Berichterstattung.</div>
+      </div>
+    </div>
+
+    <p>Das Muster ist nicht, dass rechte Gewalt übertrieben dargestellt wird. Das Muster ist, dass <strong>linke Gewalt systematisch unterrepräsentiert</strong> bleibt — in Medien, in Verfolgungsstatistiken, in politischen Debatten.</p>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section fade-in">
+    <div class="chapter"><span class="chapter-num">04</span> Cui Bono</div>
+    <h2>Wer profitiert von organisierter Spaltung?</h2>
+
+    <p>Das ist die Kernfrage jeder ernsthaften Analyse. Nicht: Wer hat es gemacht? Sondern: Wem nützt es, dass es gemacht wird — und ungesühnt bleibt?</p>
+
+    <div class="analysis-grid">
+      <div class="analysis-cell header">Phänomen</div>
+      <div class="analysis-cell header">Nutznießer</div>
+      <div class="analysis-cell">
+        <p>Schwarze Blöcke delegitimieren Corona-Demos</p>
+      </div>
+      <div class="analysis-cell">
+        <p>Medien, Politik: Gesamtbewegung als „rechtsextrem" rahmbar. Berechtigung für Versammlungsverbote.</p>
+      </div>
+      <div class="analysis-cell">
+        <p>Hammerbande-Angriffe auf AfD-Umfeld</p>
+      </div>
+      <div class="analysis-cell">
+        <p>Radikalisierung der AfD-Basis, Opfernarrativ, Neuzuläufe. Paradoxerweise: AfD selbst.</p>
+      </div>
+      <div class="analysis-cell">
+        <p>Infrastrukturanschläge</p>
+      </div>
+      <div class="analysis-cell">
+        <p>Begründung für Ausbau von Überwachung, Vorratsdatenspeicherung, Polizeibefugnisse.</p>
+      </div>
+      <div class="analysis-cell">
+        <p>Mediale Asymmetrie links/rechts</p>
+      </div>
+      <div class="analysis-cell">
+        <p>Hält Links-Rechts-Spaltung am Leben. Verhindert klassenübergreifende Koalitionen. Schützt Institutionen vor echter Kritik.</p>
+      </div>
+    </div>
+
+    <p>Rosa Luxemburg selbst hätte hier präzise gefragt: <strong>Wessen Interessen werden durch diese Spaltung bedient?</strong> Ihre Antwort 1919 wäre heute dieselbe: nicht die der Arbeiterklasse, nicht die der Bürger — sondern die jener, die von Uneinigkeit profitieren.</p>
+
+    <div class="pull-quote">
+      <p>„Die gefährlichste Waffe gegen das Volk ist ein Volk, das gegen sich selbst kämpft."</p>
+      <cite>Strukturelle Analyse · dunkelfeld.report</cite>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section fade-in">
+    <div class="chapter"><span class="chapter-num">05</span> USA & Steuerung</div>
+    <h2>Antifa Amerika: Instrument oder Bewegung?</h2>
+
+    <p>In den USA eskalierte Antifa-Aktivismus 2020 im Kontext der George-Floyd-Proteste zu einer anderen Dimension. Das FBI unter Director Christopher Wray bezeichnete Antifa als „Bewegung, keine Organisation" — eine Formulierung, die juristisch entlastet, analytisch aber unbefriedigend ist.</p>
+
+    <p>Was die Primärquellen zeigen: <strong>Koordinierte Logistik ohne sichtbare Zentrale.</strong> Paletten mit Ziegelsteinen tauchten an Protest-Hotspots auf, bevor Demonstrationen begannen. Kommunikation lief über verschlüsselte Kanäle. Ausrüstung — Gasmasken, Schlagwerkzeug, Laserpointer — war einheitlich und offenbar vorfinanziert.</p>
+
+    <h3>Das COINTELPRO-Muster</h3>
+
+    <p>Die USA haben eine dokumentierte Geschichte der Unterwanderung politischer Bewegungen durch staatliche Akteure. COINTELPRO (1956–1971) destabilisierte systematisch die Black-Panther-Bewegung, die Bürgerrechtsbewegung, antikoloniale Gruppen — durch Infiltration, Provokateure, gezielte Eskalation. Dass dieses Werkzeug seither im Schrank geblieben ist, wäre historisch beispiellos.</p>
+
+    <p>Das bedeutet keine Gleichsetzung: Nicht jede Antifa-Aktivistin ist ein Agent. Aber <strong>Bewegungen, die Gewalt normalisieren, sind infiltrierbar</strong> — das ist keine Verschwörungstheorie, das ist Organisationssoziologie.</p>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section fade-in">
+    <div class="chapter"><span class="chapter-num">06</span> Die semantische Inversion</div>
+    <h2>Wenn Sprache aufhört, Wirklichkeit zu beschreiben</h2>
+
+    <p>Es gibt einen Begriff dafür, wenn etwas das genaue Gegenteil von dem tut, was es behauptet zu sein: <strong>Perversion</strong> — im ursprünglichen, nicht moralischen Sinn. Eine Bewegung, die Gewalt gegen politische Gegner ausübt und sich dabei „antifaschistisch" nennt, hat die Bedeutung des Wortes pervertiert.</p>
+
+    <p>Das ist kein marginales Phänomen. Es betrifft die gesamte Sprache politischer Öffentlichkeit: „Faktenchecker", die selektiv fakten-checken. „Qualitätsmedien", die Qualitätsstandards verletzen. „Demokratieverteidiger", die demokratische Prozesse untergraben.</p>
+
+    <p>George Orwell nannte das „Newspeak" — Sprache, die nicht kommuniziert, sondern vernebelt. Die Diagnose ist nicht rechts oder links. Sie ist eine Beobachtung über Machterhalt durch Sprachkontrolle.</p>
+
+    <div class="warning-box">
+      <div class="warning-label">Methodische Einordnung</div>
+      <p>dunkelfeld.report wertet semantische Inversionen nicht als Beweis für Steuerung oder Verschwörung. Sie sind zunächst ein Beobachtungsbefund, der nach Erklärung verlangt. Mögliche Erklärungen reichen von kollektiver Selbsttäuschung bis zu bewusster Instrumentalisierung. Wir folgen den Quellen — nicht den Schlussfolgerungen.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="section fade-in">
+    <div class="chapter"><span class="chapter-num">07</span> Blick nach vorne</div>
+    <h2>Was passiert, wenn es so weitergeht</h2>
+
+    <p>Geschichte wiederholt sich nicht. Aber sie hat Muster. Und das Muster, das sich aus dieser Analyse ergibt, ist beunruhigend präzise.</p>
+
+    <div class="scenario gelb">
+      <div class="scenario-label">Szenario A · Wahrscheinlich</div>
+      <h4>Radikalisierungsspirale</h4>
+      <p>Asymmetrische Strafverfolgung und mediale Ungleichbehandlung treiben die politischen Lager weiter auseinander. Gewalt von beiden Seiten steigt graduell. Institutionen verlieren Vertrauen. Parallelgesellschaften entstehen — nicht nur kulturell, sondern informationell. Was als Spaltung begann, wird zur dauerhaften Fragmentierung.</p>
+    </div>
+
+    <div class="scenario rot">
+      <div class="scenario-label">Szenario B · Historisches Präzedenz</div>
+      <h4>Der Weimarer Korridor</h4>
+      <p>Straßenkampf als politisches Instrument, gleichzeitiger Vertrauensverlust in Parlamente und Gerichte, wirtschaftliche Prekarisierung breiter Schichten — das sind die Zutaten, die Weimar zum Weimar gemacht haben. Deutschland 2025 ist nicht Weimar 1932. Aber die Richtung der Differenz schrumpft, nicht wächst.</p>
+    </div>
+
+    <p>Der Unterschied zu Weimar: Staatliche Institutionen, Leitmedien und große NGOs stehen heute deutlicher auf einer politischen Seite. Das verändert die Dynamik — macht eine Eskalation nicht unwahrscheinlicher, aber anders geformt.</p>
+
+    <h3>Was dagegen sprechen würde</h3>
+
+    <p>Gesellschaftliche Resilienz ist real. Die Mehrheit der Menschen — links wie rechts wie unentschieden — will keine Gewalt. Bürgerlicher Protest, investigativer Journalismus, rechtliche Gegenwehr: das sind funktionierende Instrumente, solange Rechtsstaatlichkeit existiert. <strong>Solange.</strong></p>
+
+    <p>Rosa Luxemburg formulierte es 1918, kurz vor ihrem Tod: „Freiheit ist immer nur die Freiheit des anders Denkenden." Das gilt für jeden, der diesen Satz zitiert — und für jeden, der dagegen schlägt.</p>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer fade-in">
+    <div class="disclaimer-label">Redaktionelle Einordnung · Was wir ausdrücklich nicht behaupten</div>
+    <p>Dieser Artikel behauptet nicht, dass linke politische Positionen per se mit Gewalt verbunden sind. Er dokumentiert spezifische historische und aktuelle Gewaltakte und analysiert strukturelle Muster in ihrer Berichterstattung und Strafverfolgung.</p>
+    <p>Er behauptet nicht, dass rechte Gewalt weniger schlimm ist oder weniger intensiv verfolgt werden sollte. Teil II dieser Serie dokumentiert rechte Gewaltstrukturen mit gleicher Methodik.</p>
+    <p>Alle verwendeten Fakten basieren auf verifizierbaren Primärquellen: Strafprozessakten, Verfassungsschutzberichte, parlamentarische Anfragen, dokumentierte Aussagen der Beteiligten. Schlussfolgerungen sind als solche gekennzeichnet.</p>
+    <p>dunkelfeld.report folgt dem Whitney-Webb-Standard: Fringe-Quellen gelten als Recherche-Leads, nicht als Belege. Veröffentlicht werden nur Befunde mit Primärquellendeckung.</p>
+  </div>
+
+  <!-- SERIES NAV -->
+  <div class="series-nav fade-in">
+    <div>
+      <div class="series-nav-label">Serie: Wer schlägt · Teil II</div>
+      <div class="series-nav-title">Reichsbürger, NSU, Hanau — rechte Gewalt, staatliche Verstrickung</div>
+    </div>
+    <div class="series-nav-arrow">→ demnächst</div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">dunkelfeld.report</div>
+    <div class="footer-note">Primärquellen · Keine Werbung · Keine Förderung</div>
+  </div>
+</footer>
+
+<script>
+  // Scroll-triggered fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

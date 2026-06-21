@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOSSIER 003 — UK Grooming Gangs: Jahrzehnte des Schweigens — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --surface: #111113;
+    --border: #222228;
+    --text: #e8e8f0;
+    --muted: #888899;
+    --accent: #e8c547;
+    --accent-dim: rgba(232,197,71,0.10);
+    --red: #e85447;
+    --red-dim: rgba(232,84,71,0.09);
+    --green: #47e8a0;
+    --green-dim: rgba(71,232,160,0.09);
+    --amber-dim: rgba(232,197,71,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  /* HEADER */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+  .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+  .header-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+  .header-right {
+    margin-left: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+  }
+
+  /* LAYOUT */
+  .container { max-width: 740px; margin: 0 auto; padding: 0 2rem; }
+
+  /* HERO */
+  .hero { padding: 4.5rem 0 3rem; }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-bottom: 1.6rem;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 700;
+    line-height: 1.08;
+    margin-bottom: 0.5rem;
+  }
+  h1 span { color: var(--muted); }
+  .subtitle {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.65;
+    margin: 1.4rem 0 2.4rem;
+    max-width: 600px;
+  }
+
+  /* STAT CARDS */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+  }
+  .stat { background: var(--surface); padding: 1.3rem 1.1rem; }
+  .stat-num {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--accent);
+    font-family: Georgia, serif;
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 0.4rem;
+  }
+  .stat-sub { font-size: 0.76rem; color: var(--muted); margin-top: 0.3rem; line-height: 1.4; }
+
+  /* DIVIDER */
+  .divider { border-top: 1px solid var(--border); margin: 3rem 0; }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 1.3rem;
+  }
+
+  h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.1rem; line-height: 1.25; }
+  h3 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 2rem 0 0.8rem;
+  }
+  p { margin-bottom: 1.2rem; }
+
+  /* SOURCE BOX */
+  .source-box {
+    background: #0e0e14;
+    border-left: 3px solid var(--accent);
+    padding: 0.9rem 1.2rem;
+    margin: 1.6rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.77rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  .source-box strong { color: var(--accent); display: block; margin-bottom: 0.3rem; }
+
+  /* QUOTE BOX */
+  .quote-box {
+    background: var(--amber-dim);
+    border: 1px solid rgba(232,197,71,0.2);
+    padding: 1.3rem 1.6rem;
+    margin: 1.8rem 0;
+    border-radius: 2px;
+  }
+  .quote-box-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.7rem;
+  }
+  .quote-box p { font-size: 0.98rem; line-height: 1.7; margin-bottom: 0.5rem; }
+  .quote-box p:last-child { margin-bottom: 0; }
+
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; margin: 1.6rem 0; font-size: 0.87rem; }
+  th {
+    background: var(--surface);
+    color: var(--muted);
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.65rem 0.9rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 0.75rem 0.9rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+
+  /* TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.62rem;
+    padding: 0.12rem 0.45rem;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .tag-confirmed { background: var(--green-dim); color: var(--green); border: 1px solid rgba(71,232,160,0.3); }
+  .tag-partial   { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(232,197,71,0.3); }
+  .tag-open      { background: var(--red-dim); color: var(--red); border: 1px solid rgba(232,84,71,0.3); }
+
+  /* CHRONOLOGY */
+  .chrono { margin: 1.8rem 0; }
+  .chrono-item {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .chrono-item:last-child { border-bottom: none; }
+  .chrono-year {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    padding-top: 0.15rem;
+    font-weight: 700;
+  }
+  .chrono-text { font-size: 0.92rem; line-height: 1.6; color: var(--text); }
+  .chrono-text strong { color: var(--text); }
+
+  /* KEIR BOX */
+  .keir-box {
+    background: var(--red-dim);
+    border-left: 3px solid var(--red);
+    padding: 1.2rem 1.4rem;
+    margin: 1.8rem 0;
+    font-size: 0.93rem;
+    line-height: 1.65;
+  }
+  .keir-box strong { color: var(--red); }
+
+  /* CLOSING */
+  .closing {
+    background: var(--surface);
+    border-top: 3px solid var(--accent);
+    padding: 2.5rem 2rem;
+    margin: 3rem 0;
+    text-align: center;
+  }
+  .closing p {
+    font-size: 1.1rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .closing strong { color: var(--text); }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 3rem 0 2.5rem; margin-top: 3rem; }
+  .footer-note {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+  .footer-brand { font-family: 'Courier New', monospace; font-size: 0.78rem; color: var(--accent); margin-top: 1.5rem; }
+
+  @media (max-width: 600px) {
+    .stats { grid-template-columns: 1fr 1fr; }
+    .chrono-item { grid-template-columns: 70px 1fr; }
+    h1 { font-size: 1.9rem; }
+  }
+
+  /* ═══════════════════════════════════════════
+     DUNKELFELD.REPORT — CSS STANDARD OVERRIDE
+     Farben, Lesbarkeit, DSGVO-konform
+     ═══════════════════════════════════════════ */
+  :root {
+    --dk-bg:       #09090b;
+    --dk-surface:  #111113;
+    --dk-border:   #27272a;
+    --dk-amber:    #e8c547;
+    --dk-amber-dim:#b89a2f;
+    --dk-text:     #d4d4d8;
+    --dk-muted:    #71717a;
+    --dk-bright:   #f4f4f5;
+    --dk-source-bg:#1a1a2e;
+  }
+
+  /* Basis-Reset auf Standard */
+  html { background: var(--dk-bg); }
+  body {
+    background: var(--dk-bg) !important;
+    color: var(--dk-text) !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    max-width: 720px !important;
+    margin: 0 auto !important;
+    padding: 48px 24px 80px !important;
+  }
+
+  /* Wrapper / Container auf 720px begrenzen */
+  .container, .content, main, article,
+  .article-body, .hero, .body-text {
+    max-width: 720px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Absätze */
+  p {
+    padding-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Überschriften */
+  h1 { color: var(--dk-bright) !important; }
+  h2, h3, h4 { color: var(--dk-bright) !important; }
+
+  /* Links */
+  a {
+    color: var(--dk-amber) !important;
+    text-decoration: none !important;
+  }
+  a:hover {
+    text-decoration: underline !important;
+  }
+
+  /* Labels / Metadaten */
+  .label, .meta, .article-meta, .dossier-id, .site-label,
+  .tag, .category, time, .date {
+    font-family: 'Courier New', Courier, monospace !important;
+  }
+
+  /* Quellenboxen */
+  .source-box, .quellen-box, .source, .sources,
+  blockquote, .zitat, .fact-box, .info-box,
+  .quelle, .source-entry, .reference {
+    background: var(--dk-source-bg) !important;
+    border-left: 3px solid var(--dk-amber) !important;
+    padding: 1rem 1.2rem !important;
+    margin-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+  }
+
+  /* Tabellen */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--dk-surface) !important;
+    color: var(--dk-amber) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.75rem !important;
+    padding: 0.6rem 0.8rem !important;
+    text-align: left;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--dk-border) !important;
+  }
+  td {
+    padding: 0.7rem 0.8rem !important;
+    border-bottom: 1px solid var(--dk-border) !important;
+    color: var(--dk-text) !important;
+    font-size: 0.95rem !important;
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+
+  /* Site-Header Breite */
+  .site-header, header, nav {
+    max-width: 100% !important;
+  }
+
+  /* Farbkorrekturen: alte Amber-Töne → Standard */
+  [style*="color: #d4a017"], [style*="color:#d4a017"] { color: var(--dk-amber) !important; }
+  [style*="color: #b8860b"], [style*="color:#b8860b"] { color: var(--dk-amber) !important; }
+
+  /* Lesbarkeit: dunkle Texte aufhellen */
+  [style*="color: #666"], [style*="color:#666"],
+  [style*="color: #555"], [style*="color:#555"] {
+    color: var(--dk-muted) !important;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="dot"></div>
+  <span class="header-label">dunkelfeld.report — Dossier 003</span>
+  <span class="header-right">Stand: Juni 2026</span>
+</header>
+
+<div class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="kicker">Dossier 003 — Großbritannien · Institutionelles Versagen</div>
+    <h1>Grooming Gangs UK<br><span>Jahrzehnte des Schweigens — dokumentiert</span></h1>
+    <p class="subtitle">Eine chronologische Quellensammlung zu dokumentierten Fällen, amtlichen Berichten, parlamentarischen Protokollen und institutionellen Versagensmustern in England von den 1980er Jahren bis heute.</p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">1.400+</div>
+        <div class="stat-label">Opfer Rotherham</div>
+        <div class="stat-sub">1997–2013, Jay Report 2014</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">1.000+</div>
+        <div class="stat-label">Opfer Telford</div>
+        <div class="stat-sub">Über drei Jahrzehnte</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">149</div>
+        <div class="stat-label">Lokalbehörden</div>
+        <div class="stat-sub">Lowe Report, Juni 2026</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">£65 Mio.</div>
+        <div class="stat-label">Inquiry-Budget</div>
+        <div class="stat-sub">Staatl. Untersuchung ab April 2026</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CHRONOLOGIE -->
+  <section>
+    <div class="section-label">Chronologie — Dokumentierte Ereignisse</div>
+    <h2>Was wann bekannt war — und was trotzdem nicht passierte</h2>
+
+    <div class="chrono">
+
+      <div class="chrono-item">
+        <div class="chrono-year">~1987</div>
+        <div class="chrono-text"><strong>Rotherham — Erste dokumentierte Hinweise.</strong> Betreuer von Kinderheimen melden Beobachtungen, dass Mädchen von Taxifahrern abgeholt werden. Keine systematische Reaktion.</div>
+      </div>
+
+      <div class="chrono-item">
+        <div class="chrono-year">2001</div>
+        <div class="chrono-text"><strong>Rotherham — Erste Berichte an Polizei und Gemeinderat.</strong> Mehrere Berichte nennen Namen mutmaßlicher Täter — darunter mehrere aus einer Familie. Kein Verfahren wird eingeleitet.</div>
+      </div>
+
+      <div class="chrono-item">
+        <div class="chrono-year">2002–2007</div>
+        <div class="chrono-text"><strong>Rotherham — Forscherin warnt Behörden.</strong> Angie Heal, von Kommunalbehörden beauftragt, warnt mehrfach schriftlich vor organisierter Ausbeutung. Die Warnungen werden ignoriert. Heal beschreibt den Fall später als „größten Kinderschutzskandal in der britischen Geschichte".</div>
+      </div>
+
+      <div class="chrono-item">
+        <div class="chrono-year">2003</div>
+        <div class="chrono-text"><strong>Keighley, West Yorkshire.</strong> TV-Dokumentation berichtet über 18-monatige Polizeiermittlung zu Ausbeutungsstrukturen. Trotz medialer Aufmerksamkeit: keine nationale Reaktion.</div>
+      </div>
+
+      <div class="chrono-item">
+        <div class="chrono-year">2010</div>
+        <div class="chrono-text"><strong>Rotherham — Erste Verurteilungen.</strong> Fünf Männer werden wegen Sexualstraftaten an Mädchen zwischen 12 und 16 Jahren verurteilt. Operation Central. Die Times beginnt eine Langzeitrecherche.</div>
+      </div>
+
+      <div class="chrono-item">
+        <div class="chrono-year">2012</div>
+        <div class="chrono-text"><strong>Rochdale — Verurteilungen.</strong> Neun Männer werden wegen organisierter Ausbeutung verurteilt. 74 Opfer dokumentiert — Untersuchung geht von weit größerer Dunkelziffer aus. Das Unterhaus-Innenausschuss beginnt Anhörungen.</div>
+      </div>
+
+      <div class="chrono-item">
+        <div class="chrono-year">2013</div>
+        <div class="chrono-text"><strong>House of Commons Home Affairs Committee — Bericht.</strong> Bericht „Child sexual exploitation and the response to localised grooming": Vulnerable Kinder seien vom System „ungeschützt" gelassen worden — mit „erschreckenden Kosten für die Opfer".</div>
+      </div>
+
+      <div class="chrono-item">
+        <div class="chrono-year">2014</div>
+        <div class="chrono-text"><strong>Jay Report — Rotherham.</strong> Professor Alexis Jay schätzt mindestens 1.400 Opfer zwischen 1997 und 2013. Polizei habe Opfer mit „Verachtung" behandelt. In mindestens zwei Fällen wurden Väter verhaftet, als sie ihre Töchter befreien wollten — die Täter blieben unbehelligt.</div>
+      </div>
+
+      <div class="chrono-item">
+        <div class="chrono-year">2015</div>
+        <div class="chrono-text"><strong>Casey Report — Rotherham.</strong> Louise Casey erklärt den Gemeinderat für „nicht fit for purpose" — Kultur des Wegsehens, Vertuschens und Schweigens. Gewählte Räte werden durch Kommissare ersetzt. Gleichzeitig: Start der Independent Inquiry into Child Sexual Abuse (IICSA).</div>
+      </div>
+
+      <div class="chrono-item">
+        <div class="chrono-year">2016</div>
+        <div class="chrono-text"><strong>Halifax.</strong> 18 Männer zu zusammen über 175 Jahren Haft verurteilt — damals größte CSE-Verurteilung in UK-Geschichte.</div>
+      </div>
+
+      <div class="chrono-item">
+        <div class="chrono-year">2018</div>
+        <div class="chrono-text"><strong>Telford — Untersuchungsbericht.</strong> Über 1.000 Kinder in drei Jahrzehnten betroffen. Lehrer und Sozialarbeiter wurden davon abgehalten, Missbrauch zu melden. Zeugen wurden nicht geschützt.</div>
+      </div>
+
+      <div class="chrono-item">
+        <div class="chrono-year">2022</div>
+        <div class="chrono-text"><strong>IICSA Abschlussbericht.</strong> Sieben Jahre Untersuchung, 20 Empfehlungen. Damalige Innenministerin Yvette Cooper bestätigt 2025: Keine einzige Empfehlung wurde umgesetzt.</div>
+      </div>
+
+      <div class="chrono-item">
+        <div class="chrono-year">Juni 2025</div>
+        <div class="chrono-text"><strong>Casey National Audit.</strong> Baroness Louise Casey: Ethnizität der Täter wurde systematisch „shied away from". In Archivakten wurde das Wort „Pakistani" per Tipp-Ex entfernt. In zwei Dritteln der Fälle national keine Ethnierdaten erfasst — nationale Schlussfolgerungen damit nicht möglich.</div>
+      </div>
+
+      <div class="chrono-item">
+        <div class="chrono-year">Juli 2025</div>
+        <div class="chrono-text"><strong>Rotherham — Polizeibeamte als Täter.</strong> Fünf Überlebende berichten, auch von Polizisten vergewaltigt worden zu sein. Drei Ex-Beamte verhaftet. Strafverfahren laufen voraussichtlich bis 2027.</div>
+      </div>
+
+      <div class="chrono-item">
+        <div class="chrono-year">Dez. 2025</div>
+        <div class="chrono-text"><strong>Staatliche Pflichtuntersuchung angekündigt.</strong> Innenministerin Shabana Mahmood gibt Independent Inquiry into Grooming Gangs bekannt. Vorsitz: Baroness Anne Longfield. Budget: £65 Millionen. Laufzeit: max. 3 Jahre.</div>
+      </div>
+
+      <div class="chrono-item">
+        <div class="chrono-year">Apr. 2026</div>
+        <div class="chrono-text"><strong>Inquiry nimmt Arbeit auf.</strong> Start: 13. April 2026. NCA Operation Beaconport: Erste geschlossene Fälle werden bereits an Polizeibehörden zurückverwiesen. Acht Polizeibezirke angewiesen, Ermittlungen wiederaufzunehmen.</div>
+      </div>
+
+      <div class="chrono-item">
+        <div class="chrono-year">Juni 2026</div>
+        <div class="chrono-text"><strong>Lowe Report — 219 Seiten.</strong> Rupert Lowe (MP) veröffentlicht am 16. Juni 2026 privat finanzierten Bericht (über 20.000 Unterstützer). Dokumentiert Aktivität in mindestens 149 Lokalbehörden-Bezirken. Überlebenden-Testimonials, Gerichtsprotokolle, frühere Inquiry-Ergebnisse. Nationale Opferschätzung von 250.000 gilt als nicht offiziell verifiziert.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- VERSAGENSMUSTER -->
+  <section>
+    <div class="section-label">Dokumentierte Muster</div>
+    <h2>Wie Institutionen versagten — belegt durch Inquiry-Berichte</h2>
+
+    <table>
+      <thead>
+        <tr><th>Institution</th><th>Dokumentiertes Versagen</th><th>Quelle</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>South Yorkshire Police</td>
+          <td>Ignorierte Missbrauch über Jahrzehnte aus Angst vor Rassenspannungen. Opfer wurden mit „Verachtung" behandelt. Väter, die Töchter befreien wollten, wurden verhaftet statt Täter</td>
+          <td><span class="tag tag-confirmed">Jay Report 2014 / IOPC</span></td>
+        </tr>
+        <tr>
+          <td>Rotherham Council</td>
+          <td>Kultur des Wegsehens, Vertuschens, Schweigens. Sozialarbeiter, die Fälle meldeten, wurden zurückgepfiffen. Wort „Pakistani" in Akten per Tipp-Ex entfernt</td>
+          <td><span class="tag tag-confirmed">Casey Report 2015 / Casey Audit 2025</span></td>
+        </tr>
+        <tr>
+          <td>Lokalbehörden allgemein</td>
+          <td>Opfer wurden als „Prostituierte" eingestuft statt als Missbrauchsopfer. Missbrauch als „Lifestyle-Entscheidung" bezeichnet. Zeugen nicht geschützt</td>
+          <td><span class="tag tag-confirmed">IICSA 2022 / Telford Report 2018</span></td>
+        </tr>
+        <tr>
+          <td>Crown Prosecution Service</td>
+          <td>Anzeigen aus 1970, 1998 und 1999 gegen Cyril Smith lagen vor — nie angeklagt. DPP 2008–2013: Keir Starmer</td>
+          <td><span class="tag tag-confirmed">Kronanwaltschaft, dokumentiert</span></td>
+        </tr>
+        <tr>
+          <td>Polizeibeamte (Rotherham)</td>
+          <td>Überlebende berichten von Vergewaltigungen durch Beamte. Drei Ex-Beamte verhaftet (Juli 2025). Korrupte Beamte sollen mit Gangs kooperiert haben</td>
+          <td><span class="tag tag-partial">Ermittlungen laufend bis 2027</span></td>
+        </tr>
+        <tr>
+          <td>Nationales Datenerfassungssystem</td>
+          <td>In zwei Dritteln aller Fälle national: keine Ethnierdaten erfasst. Nationale Schlussfolgerungen dadurch strukturell unmöglich</td>
+          <td><span class="tag tag-confirmed">Casey Audit 2025</span></td>
+        </tr>
+        <tr>
+          <td>Staatliche Reaktion auf IICSA</td>
+          <td>Keine einzige der 20 Empfehlungen aus 2022 bis 2025 umgesetzt — bestätigt durch Innenministerin Cooper vor Unterhaus</td>
+          <td><span class="tag tag-confirmed">Unterhaus, Januar 2025</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- KEIR STARMER -->
+  <section>
+    <div class="section-label">Dokumentierter Einzelaspekt</div>
+    <h2>Keir Starmer — Director of Public Prosecutions 2008–2013</h2>
+
+    <p>Keir Starmer war von 2008 bis 2013 Director of Public Prosecutions (DPP) — oberster Ankläger Englands und Wales. In diesen Jahren wurden mehrere der größten Grooming-Gang-Verfahren eingeleitet oder hätten eingeleitet werden können.</p>
+
+    <div class="quote-box">
+      <div class="quote-box-label">Dokumentierte Aussage — House of Commons, Januar 2025</div>
+      <p>Innenministerin Yvette Cooper bestätigt vor dem Unterhaus: Keine einzige der 20 Empfehlungen des IICSA-Berichts (2022) wurde bis Januar 2025 umgesetzt.</p>
+    </div>
+
+    <div class="keir-box">
+      <strong>Was dokumentiert ist:</strong><br>
+      Starmers Amtszeit als DPP fiel zeitlich mit dem Hochpunkt der dokumentierten Ausbeutung zusammen. Die Kronanwaltschaft (CPS) war in dieser Zeit für Entscheidungen über Strafverfolgungen zuständig.<br><br>
+      <strong>Was nicht dokumentiert ist:</strong><br>
+      Eine direkte persönliche Entscheidung Starmers in konkreten Grooming-Gang-Fällen liegt öffentlich nicht vor. Der Lowe-Report behauptet 13.000 nicht verfolgte Verdächtige — diese Zahl ist nicht unabhängig verifiziert.
+    </div>
+
+    <div class="source-box">
+      <strong>Redaktionelle Einordnung</strong>
+      Dieses Dossier dokumentiert Starmers dokumentierte Amtszeit und die zeitliche Koinzidenz — nicht eine persönliche Schuldzuweisung, die primärquellenbasiert nicht belegbar ist. Der Leser zieht seine Schlüsse.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CASEY AUDIT KERNAUSSAGEN -->
+  <section>
+    <div class="section-label">Primärquelle — Baroness Casey National Audit 2025</div>
+    <h2>Was der offizielle Audit feststellte</h2>
+
+    <p>Der National Audit von Baroness Louise Casey, veröffentlicht Juni 2025, ist die bislang umfassendste amtliche Bestandsaufnahme. Seine Kernaussagen im Wortlaut der Zusammenfassung:</p>
+
+    <div class="quote-box">
+      <div class="quote-box-label">Casey National Audit 2025 — Kernaussagen (sinngemäß übersetzt)</div>
+      <p>„Die Ethnizität der Täter wurde systematisch gemieden." — In Rotherham: Von 323 Tatverdächtigen und 42 Verurteilten waren fast zwei Drittel pakistanischer Herkunft.</p>
+      <p>„Flawed data is used repeatedly to dismiss claims about Asian grooming gangs as sensationalised, biased or untrue." — Fehlerhafte Daten werden wiederholt genutzt, um Berichte über asiatische Grooming Gangs als sensationalistisch, verzerrt oder unwahr abzutun.</p>
+      <p>„Obfuscation" statt Untersuchung. In einer Archivakte wurde das Wort „Pakistani" per Tipp-Ex entfernt.</p>
+      <p>Grooming-Muster haben sich nicht grundlegend verändert: Von Parks zu Vape-Shops und Hotels mit anonymem Check-in.</p>
+    </div>
+
+    <div class="source-box">
+      <strong>Primärquelle</strong>
+      Baroness Casey of Blackstock: „National Audit on Group-Based Child Sexual Exploitation and Abuse", Juni 2025. Veröffentlicht als PDF, abrufbar über assets.publishing.service.gov.uk
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- STÄDTE-ÜBERSICHT -->
+  <section>
+    <div class="section-label">Fallübersicht — Dokumentierte Städte</div>
+    <h2>Bekannte Fälle mit amtlichem Untersuchungsstatus</h2>
+
+    <table>
+      <thead>
+        <tr><th>Stadt</th><th>Geschätzte Opfer</th><th>Zeitraum</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Rotherham</strong></td>
+          <td>mindestens 1.400</td>
+          <td>1997–2013</td>
+          <td><span class="tag tag-confirmed">Jay Report 2014 / Operation Stovewood</span></td>
+        </tr>
+        <tr>
+          <td><strong>Telford</strong></td>
+          <td>über 1.000</td>
+          <td>~1990–2018</td>
+          <td><span class="tag tag-confirmed">Offizieller Untersuchungsbericht 2018</span></td>
+        </tr>
+        <tr>
+          <td><strong>Rochdale</strong></td>
+          <td>74 dokumentiert</td>
+          <td>2008–2012</td>
+          <td><span class="tag tag-confirmed">Verurteilungen 2012, Inquiry</span></td>
+        </tr>
+        <tr>
+          <td><strong>Oxford</strong></td>
+          <td>nicht abschließend beziffert</td>
+          <td>2004–2012</td>
+          <td><span class="tag tag-confirmed">Verurteilungen 2013</span></td>
+        </tr>
+        <tr>
+          <td><strong>Halifax</strong></td>
+          <td>nicht abschließend beziffert</td>
+          <td>–2016</td>
+          <td><span class="tag tag-confirmed">18 Verurteilte, 175+ Jahre Haft</span></td>
+        </tr>
+        <tr>
+          <td><strong>Oldham</strong></td>
+          <td>nicht abschließend beziffert</td>
+          <td>laufend</td>
+          <td><span class="tag tag-partial">Lokale Untersuchung, Antrag 2024</span></td>
+        </tr>
+        <tr>
+          <td><strong>Weitere 143 Bezirke</strong></td>
+          <td>nicht bezifferbar</td>
+          <td>–</td>
+          <td><span class="tag tag-open">Lowe Report — nicht offiziell verifiziert</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ZAHLEN-EINORDNUNG -->
+  <section>
+    <div class="section-label">Zur Einordnung der Zahlen</div>
+    <h2>Was belegt ist — was extrapoliert — was offen bleibt</h2>
+
+    <table>
+      <thead>
+        <tr><th>Angabe</th><th>Status</th><th>Anmerkung</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1.400+ Opfer Rotherham</td>
+          <td><span class="tag tag-confirmed">Belegt</span></td>
+          <td>Jay Report 2014, offizielle Schätzung</td>
+        </tr>
+        <tr>
+          <td>1.000+ Opfer Telford</td>
+          <td><span class="tag tag-confirmed">Belegt</span></td>
+          <td>Offizieller Untersuchungsbericht 2018</td>
+        </tr>
+        <tr>
+          <td>149 betroffene Lokalbehörden</td>
+          <td><span class="tag tag-partial">Privater Report</span></td>
+          <td>Lowe Report Juni 2026 — nicht staatlich verifiziert</td>
+        </tr>
+        <tr>
+          <td>250.000 Opfer national</td>
+          <td><span class="tag tag-open">Extrapoliert</span></td>
+          <td>Hochrechnung aus lokalen Daten — kein offizieller Regierungswert, methodisch bestritten</td>
+        </tr>
+        <tr>
+          <td>Nationales Datenloch</td>
+          <td><span class="tag tag-confirmed">Belegt</span></td>
+          <td>Casey Audit 2025: In 2/3 der Fälle keine Ethnierdaten — nationale Schlussfolgerungen unmöglich</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- OFFENE FRAGE -->
+  <div class="closing">
+    <p>Der Casey Audit 2025 stellt fest: „Flawed data is used repeatedly to dismiss claims."<br><br>
+    <strong>Wenn die Abwesenheit von Daten als Beweis für die Abwesenheit des Problems genutzt wird — wer hat ein Interesse daran, dass keine Daten erhoben werden?</strong></p>
+  </div>
+
+  <!-- QUELLENVERZEICHNIS -->
+  <section>
+    <div class="section-label">Primärquellen dieses Dossiers</div>
+    <h2>Quellenverzeichnis</h2>
+
+    <table>
+      <thead>
+        <tr><th>Quelle</th><th>Inhalt</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Jay Report 2014</td>
+          <td>Independent Inquiry into Child Sexual Exploitation in Rotherham — Prof. Alexis Jay</td>
+          <td><span class="tag tag-confirmed">Öffentlich</span></td>
+        </tr>
+        <tr>
+          <td>Casey Report 2015</td>
+          <td>Inspection of Rotherham Council — Louise Casey</td>
+          <td><span class="tag tag-confirmed">Gov.uk</span></td>
+        </tr>
+        <tr>
+          <td>House of Commons — Juni 2013</td>
+          <td>„Child sexual exploitation and the response to localised grooming"</td>
+          <td><span class="tag tag-confirmed">Parliament.uk</span></td>
+        </tr>
+        <tr>
+          <td>IICSA Abschlussbericht 2022</td>
+          <td>Independent Inquiry into Child Sexual Abuse — 20 Empfehlungen</td>
+          <td><span class="tag tag-confirmed">IICSA.org.uk</span></td>
+        </tr>
+        <tr>
+          <td>Casey National Audit 2025</td>
+          <td>National Audit on Group-Based Child Sexual Exploitation — Baroness Casey</td>
+          <td><span class="tag tag-confirmed">Publishing.service.gov.uk</span></td>
+        </tr>
+        <tr>
+          <td>House of Commons Library CBP-10613</td>
+          <td>Independent Inquiry into Grooming Gangs — Budget, Laufzeit, Terms of Reference</td>
+          <td><span class="tag tag-confirmed">Commonslibrary.parliament.uk</span></td>
+        </tr>
+        <tr>
+          <td>Grooming-gangs.independent-inquiry.uk</td>
+          <td>Offizielle Website der laufenden staatlichen Untersuchung</td>
+          <td><span class="tag tag-confirmed">Öffentlich</span></td>
+        </tr>
+        <tr>
+          <td>Lowe Report, 16. Juni 2026</td>
+          <td>219-seitiger privater Inquiry-Report — Rupert Lowe MP</td>
+          <td><span class="tag tag-partial">Privat, nicht staatlich verifiziert</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="source-box">
+      <strong>Hinweis zur Methodik</strong>
+      Dieses Dossier unterscheidet explizit zwischen staatlich verifizierten Primärquellen (Inquiry-Berichte, Parlamentsprotokolle, Regierungspublikationen) und privaten oder nicht staatlich verifizierten Quellen. Zahlenschätzungen werden mit ihrer jeweiligen methodischen Einschränkung ausgewiesen. Motive werden nicht zugeschrieben — dokumentierte Handlungen und Unterlassungen sprechen für sich.
+    </div>
+  </section>
+
+  <footer>
+    <p class="footer-note">Alle dargestellten Informationen basieren auf öffentlich zugänglichen Primärquellen. Dieses Dossier erhebt keinen Anspruch auf Vollständigkeit. Leser werden ausdrücklich zur eigenständigen Überprüfung der genannten Quellen eingeladen.</p>
+    <p class="footer-brand">dunkelfeld.report — Fakten, die das Licht nicht scheuen.</p>
+  </footer>
+
+</div>
+</body>
+</html>

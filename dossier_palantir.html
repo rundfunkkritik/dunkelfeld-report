@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dossier: Palantir — Infrastruktur, Manifest, Geopolitik | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --surface: #111113;
+    --surface2: #18181b;
+    --border: #27272a;
+    --amber: #e8c547;
+    --amber-dim: #c8a800;
+    --text: #e4e4e7;
+    --text-muted: #71717a;
+    --text-dim: #a1a1aa;
+    --green: #22c55e;
+    --red: #ef4444;
+    --orange: #f97316;
+    --blue: #60a5fa;
+    --serif: Georgia, 'Times New Roman', serif;
+    --mono: 'Courier New', Courier, monospace;
+    --sans: Arial, Helvetica, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.75;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* ── HEADER ── */
+  .site-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .dossier-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--amber-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .title-block {
+    border-left: 4px solid var(--amber);
+    padding-left: 24px;
+    margin-bottom: 40px;
+  }
+
+  h1 {
+    font-family: var(--sans);
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  h1 span { color: var(--amber); }
+
+  .subtitle {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* ── DIVIDER ── */
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  hr.amber {
+    border-top: 2px solid var(--amber-dim);
+    margin: 48px 0;
+  }
+
+  /* ── CHAPTER ── */
+  .chapter-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  h2 {
+    font-family: var(--sans);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--amber);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  h3 {
+    font-family: var(--sans);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 28px 0 10px;
+  }
+
+  /* ── BODY TEXT ── */
+  p {
+    margin-bottom: 16px;
+    color: var(--text-dim);
+  }
+
+  p strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ── FACT CARDS ── */
+  .fact-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber-dim);
+    padding: 20px 24px;
+    margin: 24px 0;
+    border-radius: 2px;
+  }
+
+  .fact-card.green { border-left-color: var(--green); }
+  .fact-card.red   { border-left-color: var(--red); }
+  .fact-card.blue  { border-left-color: var(--blue); }
+  .fact-card.orange{ border-left-color: var(--orange); }
+
+  .fact-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+  }
+
+  .fact-text {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+
+  .fact-source {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
+    margin-top: 8px;
+    display: block;
+  }
+
+  /* ── STATUS TABLE ── */
+  .status-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 0.88rem;
+  }
+
+  .status-table th {
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    background: var(--surface2);
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .status-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+  }
+
+  .status-table tr:hover td { background: var(--surface); }
+
+  .badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    white-space: nowrap;
+    font-weight: 700;
+  }
+
+  .badge-yes  { background: #14532d; color: #86efac; }
+  .badge-no   { background: #450a0a; color: #fca5a5; }
+  .badge-open { background: #451a03; color: #fdba74; }
+  .badge-plan { background: #1e1b4b; color: #a5b4fc; }
+
+  /* ── CHRONOLOGY ── */
+  .timeline { margin: 20px 0 28px; }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .timeline-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--amber-dim);
+    padding-top: 2px;
+    line-height: 1.4;
+  }
+
+  .timeline-text {
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+
+  .timeline-text strong { color: var(--text); }
+
+  /* ── QUOTE BLOCK ── */
+  blockquote {
+    border-left: 3px solid var(--amber);
+    margin: 24px 0;
+    padding: 16px 20px;
+    background: var(--surface);
+  }
+
+  blockquote p {
+    font-style: italic;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  blockquote cite {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    font-style: normal;
+  }
+
+  /* ── PRO/CONTRA GRID ── */
+  .pro-contra {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .pro-box, .contra-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 18px 20px;
+    border-radius: 2px;
+  }
+
+  .pro-box { border-top: 3px solid var(--green); }
+  .contra-box { border-top: 3px solid var(--red); }
+
+  .pro-box h4 {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+
+  .contra-box h4 {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+
+  .pro-box li, .contra-box li {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 8px;
+    margin-left: 16px;
+  }
+
+  /* ── COUNTRY GRID ── */
+  .country-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .country-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 14px 16px;
+    border-radius: 2px;
+  }
+
+  .country-name {
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .country-status {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  /* ── OPEN QUESTIONS ── */
+  .question-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--text-muted);
+    padding: 16px 20px;
+    margin: 12px 0;
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  /* ── SOURCE LIST ── */
+  .source-list {
+    list-style: none;
+    margin: 16px 0;
+  }
+
+  .source-list li {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.5;
+  }
+
+  .source-list li::before {
+    content: '· ';
+    color: var(--amber-dim);
+  }
+
+  /* ── INTRO BOX ── */
+  .intro-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 24px 28px;
+    margin-bottom: 40px;
+    border-radius: 2px;
+  }
+
+  .intro-box p {
+    font-size: 1.0rem;
+    line-height: 1.8;
+    color: var(--text-dim);
+    margin-bottom: 0;
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .section { margin-bottom: 56px; }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 1.7rem; }
+    .pro-contra { grid-template-columns: 1fr; }
+    .timeline-item { grid-template-columns: 1fr; gap: 4px; }
+    .dossier-meta { gap: 12px; }
+  }
+
+  /* ═══════════════════════════════════════════
+     DUNKELFELD.REPORT — CSS STANDARD OVERRIDE
+     Farben, Lesbarkeit, DSGVO-konform
+     ═══════════════════════════════════════════ */
+  :root {
+    --dk-bg:       #09090b;
+    --dk-surface:  #111113;
+    --dk-border:   #27272a;
+    --dk-amber:    #e8c547;
+    --dk-amber-dim:#b89a2f;
+    --dk-text:     #d4d4d8;
+    --dk-muted:    #71717a;
+    --dk-bright:   #f4f4f5;
+    --dk-source-bg:#1a1a2e;
+  }
+
+  /* Basis-Reset auf Standard */
+  html { background: var(--dk-bg); }
+  body {
+    background: var(--dk-bg) !important;
+    color: var(--dk-text) !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    max-width: 720px !important;
+    margin: 0 auto !important;
+    padding: 48px 24px 80px !important;
+  }
+
+  /* Wrapper / Container auf 720px begrenzen */
+  .container, .content, main, article,
+  .article-body, .hero, .body-text {
+    max-width: 720px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Absätze */
+  p {
+    padding-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Überschriften */
+  h1 { color: var(--dk-bright) !important; }
+  h2, h3, h4 { color: var(--dk-bright) !important; }
+
+  /* Links */
+  a {
+    color: var(--dk-amber) !important;
+    text-decoration: none !important;
+  }
+  a:hover {
+    text-decoration: underline !important;
+  }
+
+  /* Labels / Metadaten */
+  .label, .meta, .article-meta, .dossier-id, .site-label,
+  .tag, .category, time, .date {
+    font-family: 'Courier New', Courier, monospace !important;
+  }
+
+  /* Quellenboxen */
+  .source-box, .quellen-box, .source, .sources,
+  blockquote, .zitat, .fact-box, .info-box,
+  .quelle, .source-entry, .reference {
+    background: var(--dk-source-bg) !important;
+    border-left: 3px solid var(--dk-amber) !important;
+    padding: 1rem 1.2rem !important;
+    margin-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+  }
+
+  /* Tabellen */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--dk-surface) !important;
+    color: var(--dk-amber) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.75rem !important;
+    padding: 0.6rem 0.8rem !important;
+    text-align: left;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--dk-border) !important;
+  }
+  td {
+    padding: 0.7rem 0.8rem !important;
+    border-bottom: 1px solid var(--dk-border) !important;
+    color: var(--dk-text) !important;
+    font-size: 0.95rem !important;
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+
+  /* Site-Header Breite */
+  .site-header, header, nav {
+    max-width: 100% !important;
+  }
+
+  /* Farbkorrekturen: alte Amber-Töne → Standard */
+  [style*="color: #d4a017"], [style*="color:#d4a017"] { color: var(--dk-amber) !important; }
+  [style*="color: #b8860b"], [style*="color:#b8860b"] { color: var(--dk-amber) !important; }
+
+  /* Lesbarkeit: dunkle Texte aufhellen */
+  [style*="color: #666"], [style*="color:#666"],
+  [style*="color: #555"], [style*="color:#555"] {
+    color: var(--dk-muted) !important;
+  }
+</style>
+</head>
+<body>
+
+<div class="site-label">dunkelfeld.report</div>
+<div class="dossier-meta">
+  <span>DOSSIER · NUMMER OFFEN</span>
+  <span>STAND: JUNI 2026</span>
+  <span>KATEGORIE: ÜBERWACHUNGSINFRASTRUKTUR</span>
+</div>
+
+<div class="title-block">
+  <h1>Palantir: <span>Infrastruktur, Manifest, Geopolitik</span></h1>
+  <p class="subtitle">Ein Referenzdossier zu Verträgen, Positionen und dem Stand der Debatte in Deutschland und Europa — auf Basis primärer Dokumentenquellen</p>
+</div>
+
+<div class="intro-box">
+  <p>Dieses Dossier dokumentiert ausschließlich belegbare Fakten. Spekulation ist als solche gekennzeichnet. Schlussfolgerungen überlässt dunkelfeld.report der Leserin, dem Leser. Alle Angaben mit Quellenangabe; primäre Quellen haben Vorrang vor Sekundärquellen.</p>
+</div>
+
+<hr class="amber">
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- KAPITEL 1: GRUNDDATEN -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div class="section">
+  <div class="chapter-label">Kapitel 01</div>
+  <h2>Unternehmensstruktur und Finanzierung</h2>
+
+  <div class="fact-card">
+    <div class="fact-label">Gründung & Erstfinanzierung · Belegbar</div>
+    <p class="fact-text">
+      Palantir Technologies wurde 2003/2004 in Palo Alto gegründet. Gründer: Peter Thiel (Vorsitzender) und Alex Karp (CEO). Erstinvestor: In-Q-Tel (IQT), der Risikokapitalfonds der CIA, mit 2 Millionen USD. IQT investiert ausschließlich in Unternehmen mit strategischer Relevanz für US-Geheimdienste. Börsengang September 2020 (NYSE: PLTR). Zum Zeitpunkt des Börsengangs: rund die Hälfte des Umsatzes aus Regierungsverträgen.
+    </p>
+    <span class="fact-source">Palantir S-1 IPO Filing, SEC, 2020 · IQT Portfolio (iqt.org) · CIA.gov</span>
+  </div>
+
+  <div class="fact-card">
+    <div class="fact-label">Umsatz & Verträge 2024–2026 · Belegbar</div>
+    <p class="fact-text">
+      <strong>Q4 2024:</strong> Umsatz 827,5 Mio. USD (Schätzung: 775,9 Mio.) — davon US-Regierungsumsatz +66 % zum Vorjahreszeitraum: 570 Mio. USD.<br>
+      <strong>Q1 2026:</strong> Gesamtregierungsverträge 687 Mio. USD allein in diesem Quartal.<br>
+      <strong>Seit 2008:</strong> Dokumentierte US-Regierungsverträge gesamt: 1,9 Mrd. USD.<br>
+      <strong>CEO-Vergütung 2024:</strong> Alex Karp erhielt 6,8 Mrd. USD — höchste dokumentierte CEO-Vergütung eines börsennotierten US-Unternehmens in diesem Jahr.
+    </p>
+    <span class="fact-source">Palantir Q4 2024 Earnings Call · USASpending.gov · The Nation, 23.04.2026 · Al Jazeera, 21.04.2026</span>
+  </div>
+
+  <div class="fact-card green">
+    <div class="fact-label">China: Dokumentierter Ausschluss · Belegbar</div>
+    <p class="fact-text">
+      Palantir arbeitet <strong>nicht</strong> mit der Volksrepublik China zusammen. Das Unternehmen hat seine Ablehnung einer Zusammenarbeit mit der chinesischen Regierung explizit in seinen SEC-Börsengangsdokumenten festgehalten — als mit der Unternehmenskultur und -mission "unvereinbar" bezeichnet. Palantir-Mitarbeiter Jacob Helberg ist als aktiver China-Kritiker öffentlich dokumentiert; er hat nach eigenen Angaben über 100 Kongressabgeordnete zu TikTok-Regulierungen beraten.<br><br>
+      <strong>Strukturelle Anmerkung (nicht dokumentiert als Tatsache, als Beobachtung formuliert):</strong> Palantir profitiert finanziell von gesteigerter geopolitischer Spannung zwischen den USA und China — höhere Rüstungsbudgets bedeuten mehr Regierungsaufträge. Diese strukturelle Interessenlage ist dokumentierbar, eine direkte kausale Absicht ist nicht belegbar.<br><br>
+      <strong>China baut eigenständig:</strong> Chinas Überwachungsinfrastruktur (Social Credit System, "Safe City"-Programme, Xinjiang-Tracking) wurde von chinesischen Unternehmen wie Hikvision, Dahua, SenseTime und Huawei entwickelt — nicht von Palantir. Die Architektur ist in Grundzügen dokumentiert, Details sind schwer verifikabel.
+    </p>
+    <span class="fact-source">Palantir S-1 SEC Filing 2020 · The Intercept, 21.03.2024 (Helberg/China) · Fortune, 08.09.2023</span>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- KAPITEL 2: MANIFEST -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div class="section">
+  <div class="chapter-label">Kapitel 02</div>
+  <h2>Das Manifest — "The Technological Republic"</h2>
+
+  <p>Im April 2026 veröffentlichte Palantir auf X eine 22-Punkte-Zusammenfassung des Buches "The Technological Republic: Hard Power, Soft Belief, and the Future of the West" (2025) von Alex Karp und Nicholas Zamiska. Das Buch ist öffentlich zugänglich; die Zusammenfassung ist auf X archiviert.</p>
+
+  <h3>Dokumentierte Kernpositionen</h3>
+
+  <div class="fact-card">
+    <div class="fact-label">Position 1 — Moralische Schuld des Silicon Valley</div>
+    <p class="fact-text">"Silicon Valley owes a moral debt to the country that made its rise possible." Konkret einzulösen durch eine "affirmative obligation to participate in the defense of the nation" — also die aktive Mitwirkung beim Bau von Waffensystemen, Überwachungssystemen und KI für das Militär. Paul Nemitz (ehem. EU-Kommissions-Direktor) kommentiert auf Verfassungsblog: "Was wie eine republikanische Tugend klingt, ist in Wirklichkeit ein Aufruf, das gesamte innovative Potenzial des Silicon Valley in den Dienst der Sicherheitsapparate zu stellen — zu einer Zeit, in der Palantir selbst massiv von Aufträgen des US-Verteidigungsministeriums, der CIA und der ICE profitiert."</p>
+    <span class="fact-source">Palantir X-Post (Manifest-Zusammenfassung), April 2026 · Verfassungsblog: Nemitz, 15.06.2026</span>
+  </div>
+
+  <div class="fact-card">
+    <div class="fact-label">Position 2 — Allgemeine Dienstpflicht</div>
+    <p class="fact-text">"National service should be a universal duty. We should, as a society, consider moving away from an all-volunteer force and only fight the next war if everyone shares in the risk and the cost." — Alex Karp im Buch. Karp ist 58 Jahre alt und hat selbst keinen Militärdienst geleistet.</p>
+    <span class="fact-source">The Nation, 23.04.2026 · Palantir X-Post, April 2026</span>
+  </div>
+
+  <div class="fact-card">
+    <div class="fact-label">Position 3 — Remilitarisierung ehemaliger Achsenmächte</div>
+    <p class="fact-text">Das Manifest beschreibt Japans Pazifismus als "Bedrohung für das Kräftegleichgewicht in Asien" und Deutschlands sicherheitspolitische Zurückhaltung als "gefährliche pazifistische Überkorrektur zulasten Europas". Nemitz: "Ein Tech-CEO, der nie in ein öffentliches Amt gewählt wurde, fordert nichts Geringeres als eine Remilitarisierung ehemaliger Achsenmächte — ausgerechnet der Chef eines Unternehmens, das von höheren Rüstungsbudgets der NATO-Partner direkt profitiert."</p>
+    <span class="fact-source">Verfassungsblog: Nemitz, 15.06.2026 · Yahoo News, 25.04.2026</span>
+  </div>
+
+  <div class="fact-card">
+    <div class="fact-label">Position 4 — Kulturelle Überlegenheit</div>
+    <p class="fact-text">Das Manifest konstatiert, manche Kulturen erschaffen "wonders", andere seien "regressive and harmful". Westlicher Pluralismus wird als "hollow pluralism" bezeichnet, der "über die Tatsache hinwegtäuscht, dass manche Kulturen anderen überlegen sind".</p>
+    <span class="fact-source">Yahoo News, 25.04.2026 · Al Jazeera, 21.04.2026</span>
+  </div>
+
+  <div class="fact-card">
+    <div class="fact-label">Position 5 — Israel und pro-palästinensische Stimmen</div>
+    <p class="fact-text">Palantir schaltete im November 2023 eine ganzseitige Anzeige in der New York Times mit dem Text "Palantir stands with Israel." Karp hat öffentlich gefordert, pro-palästinensische Studierende sollten nach Nordkorea "exiliert" werden, ihr Verhalten sei "unforgivable". Palantir hat nach einem strategischen Partnerschaftsvertrag mit Israel (Januar 2024) seine Aktivitäten in Gaza und im Westjordanland ausgeweitet — inklusive Zusammenführung von Abhördaten, Satellitenmaterial und Open-Source-Daten zur Erstellung von Targeting-Datenbanken für das israelische Militär.</p>
+    <span class="fact-source">Al Jazeera, 21.04.2026 · New York Times-Anzeige, November 2023 · The Nation, 23.04.2026</span>
+  </div>
+
+  <h3>Reaktionen auf das Manifest — dokumentiert</h3>
+
+  <div class="pro-contra">
+    <div class="pro-box">
+      <h4>Zustimmung — Dokumentiert</h4>
+      <ul>
+        <li>Hessischer Innenminister Roman Poseck (CDU): "Auch wenn ich die Äußerungen von Herrn Karp nicht teile, ändert das nichts daran, dass es gegenwärtig richtig und notwendig ist, die Software von Palantir einzusetzen." (ZDFheute, 22.04.2026)</li>
+        <li>Bayerische Polizei: "Äußerungen des Unternehmens Palantir via X haben auf dieses rechtlich bindende Vertragsverhältnis keinen Einfluss."</li>
+        <li>Sequoia-Partner Shaun Maguire auf Bluesky: "Brilliant" — "Palantir repräsentiert das ideologische Zentrum mit seltener moralischer Klarheit."</li>
+      </ul>
+    </div>
+    <div class="contra-box">
+      <h4>Kritik — Dokumentiert</h4>
+      <ul>
+        <li>Al Jazeera (21.04.2026): Manifest als "AI-driven threat to humanity's existence" und "Technofaschismus" bezeichnet.</li>
+        <li>Verfassungsblog / Paul Nemitz (15.06.2026): "Marketingdokument, das die geschäftlichen Interessen des Unternehmens in den Rang einer moralischen Mission hebt."</li>
+        <li>Eliot Higgins (Bellingcat-Gründer): Palantirs Wachstum sei abhängig von einer Welt, die Karps Positionen widerspiegelt — das sei keine Tugend, sondern ein Geschäftsinteresse.</li>
+        <li>Tagesschau / internationale Medien: Verwendung des Begriffs "Technofaschismus" in der Berichterstattung.</li>
+        <li>Amnesty International: Palantir sei "in den USA systematisch in Menschenrechtsverletzungen der Trump-Administration involviert" (via CCC-Stellungnahme, Okt. 2025).</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- KAPITEL 3: DEUTSCHLAND -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div class="section">
+  <div class="chapter-label">Kapitel 03</div>
+  <h2>Deutschland — VeRA, Bundesländer, Verfassungsgericht</h2>
+
+  <p>Palantirs Software läuft in Deutschland unter dem Namen <strong>VeRA</strong> (Verfahrensübergreifende Recherche und Analyse). Die Einführung ist politisch und juristisch umstritten.</p>
+
+  <h3>Chronologie</h3>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-date">Jan. 2021</div>
+      <div class="timeline-text"><strong>Bayern schreibt europaweite Ausschreibung</strong> für eine polizeiliche Analyseplattform aus.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">März 2022</div>
+      <div class="timeline-text"><strong>Palantir gewinnt Rahmenvertrag</strong> des Bayerischen LKA für VeRA. Der Rahmenvertrag ermöglicht es theoretisch allen 16 Bundesländern und Bundesbehörden, die Software abzurufen.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">16. Feb. 2023</div>
+      <div class="timeline-text"><strong>Bundesverfassungsgericht</strong> (1 BvR 1547/19, 1 BvR 2634/20): Automatisierte Datenanalyse dem Grunde nach zulässig — aber mit detaillierten verfassungsrechtlichen Anforderungen an die Rechtsgrundlage. Bestehende Gesetze in Hessen und NRW partiell verfassungswidrig.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Juli 2023</div>
+      <div class="timeline-text"><strong>Bundesinnenministerin Nancy Faeser (SPD)</strong> untersagt BKA und Bundespolizei die Nutzung von Bundes-VeRA. Begründung: fehlende Rechtsgrundlage, Souveränitätsbedenken.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Sept. 2024</div>
+      <div class="timeline-text"><strong>Pilotbetrieb Bayern startet</strong> (2. September 2024). Verbundene Systeme: Vorgangsbearbeitungssystem, Fahndungsdatenbank INPOL-Land-Bayern, EPost-Kommunikation.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">25. Dez. 2024</div>
+      <div class="timeline-text"><strong>VeRA geht in Bayern in den Live-Betrieb</strong>. Kosten bis dahin: 25 Mio. Euro. Im Jahr 2024: 107 dokumentierte Einsätze — davon nur rund ein Drittel schwere Straftaten; ein Viertel der Einsätze betraf "Eigentums- und Vermögenswerte".</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Jan. 2025</div>
+      <div class="timeline-text"><strong>Abschlusstermin Baden-Württemberg</strong> mit Palantir GmbH (29. Januar 2025). Baden-Württemberg tritt dem Rahmenvertrag bei — plant Vertragsende 2030 ohne Verlängerung.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Feb. 2026</div>
+      <div class="timeline-text"><strong>Justizministerin Hubig (Rheinland-Pfalz / SPD)</strong> stoppt Palantir nach Kampagne von 450.000 Unterzeichnern: "Palantir werden wir nicht einsetzen." — Campact wertet dies als Erfolg.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">April 2026</div>
+      <div class="timeline-text"><strong>Nach Veröffentlichung des Manifests:</strong> ZDFheute-Umfrage in allen 16 Bundesländern. Nur Bayern, Hessen, NRW aktive Nutzer. Baden-Württemberg Vertrag aktiv, will aber aussteigen. Mehrheit der Länder lehnt Palantir ab — auch CDU-Innenministerin in Schleswig-Holstein.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Okt. 2025</div>
+      <div class="timeline-text"><strong>CCC und GFF</strong> kritisieren Dobrindts Gesetzentwurf für biometrische Überwachung (inkl. Gesichtserkennung und Palantir) als "zum Großteil verfassungswidrig". Gutachten von AlgorithmWatch belegt Europarechtswidrigkeit.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Juni 2026</div>
+      <div class="timeline-text"><strong>Verfassungsblog</strong> (Paul Nemitz, ehem. EU-Kommissions-Direktor) veröffentlicht juristische Analyse: Karps Manifest als "rhetorischer Unterbau einer beispiellosen Verquickung von Big Tech, militärischer Aufrüstung und Staatsräson".</div>
+    </div>
+
+  </div>
+
+  <h3>Status nach Bundesland — Stand Juni 2026</h3>
+
+  <table class="status-table">
+    <thead>
+      <tr>
+        <th>Bundesland</th>
+        <th>Status</th>
+        <th>Anmerkung</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Bayern</td>
+        <td><span class="badge badge-yes">AKTIV</span></td>
+        <td>Live-Betrieb seit 25.12.2024 · 25 Mio. € Kosten · 107 Einsätze 2024</td>
+      </tr>
+      <tr>
+        <td>Hessen</td>
+        <td><span class="badge badge-yes">AKTIV</span></td>
+        <td>"HessenData" · Innenminister Poseck: "Richtig und notwendig" · GFF-Verfassungsbeschwerde anhängig</td>
+      </tr>
+      <tr>
+        <td>Nordrhein-Westfalen</td>
+        <td><span class="badge badge-open">LÄUFT AUS</span></td>
+        <td>Vertrag läuft Oktober 2026 aus · Verlängerung derzeit offen</td>
+      </tr>
+      <tr>
+        <td>Baden-Württemberg</td>
+        <td><span class="badge badge-plan">AKTIV / EXIT</span></td>
+        <td>Vertrag aktiv, geplanter Ausstieg 2030 · Politisch umstritten · Grüne stimmten für Einführung</td>
+      </tr>
+      <tr>
+        <td>Berlin, Hamburg</td>
+        <td><span class="badge badge-open">PRÜFUNG</span></td>
+        <td>Optionen werden geprüft · Hamburger SPD-Innenminister warnte vor "unabsehbaren Folgen"</td>
+      </tr>
+      <tr>
+        <td>Schleswig-Holstein</td>
+        <td><span class="badge badge-no">ABGELEHNT</span></td>
+        <td>CDU-Innenministerin: "Arbeitet nicht mit Palantir" · Eigene Ausschreibung geplant Mai 2026</td>
+      </tr>
+      <tr>
+        <td>Niedersachsen</td>
+        <td><span class="badge badge-no">ABGELEHNT</span></td>
+        <td>SPD-Innenministerin Behrens: Palantir "nicht beherrschbar" · AG Kritis warnt vor Abhängigkeit</td>
+      </tr>
+      <tr>
+        <td>Rheinland-Pfalz</td>
+        <td><span class="badge badge-no">GESTOPPT</span></td>
+        <td>Justizministerin Hubig (SPD) Feb. 2026: explizite Absage nach 450.000-Petitions-Kampagne</td>
+      </tr>
+      <tr>
+        <td>Sachsen</td>
+        <td><span class="badge badge-no">KEINE ANGABE</span></td>
+        <td>Innenministerium: "Keine Bewertung der Selbstauskunft von Unternehmen"</td>
+      </tr>
+      <tr>
+        <td>BKA / Bundespolizei</td>
+        <td><span class="badge badge-no">VERBOTEN</span></td>
+        <td>Faeser-Verbot Juli 2023 · BMI entwickelt eigene Plattform · Bundesrat forderte Interim-Lösung</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Kritische Stimmen — dokumentiert</h3>
+
+  <blockquote>
+    <p>"Allein in Bayern durchkämmt die Polizei mit der Palantir-Software etwa 39 Millionen Personendatensätze. Das Analyseverfahren kann praktisch jeden betreffen: Straftäter, aber auch Geschädigte, Zeugen, Sachverständige oder Personen, die den Polizeinotruf genutzt haben."</p>
+    <cite>Datenschutzkonferenz Bund/Länder (DSK), zitiert in ZDFheute, 16.01.2026</cite>
+  </blockquote>
+
+  <blockquote>
+    <p>"Internet-Scans nach Gesichtern und Palantir bringen uns nicht mehr Sicherheit — sie sind ein Angriff auf unsere Grundrechte und ein Schritt in den Überwachungsstaat."</p>
+    <cite>Dr. Simone Ruf, Gesellschaft für Freiheitsrechte (GFF), CCC-Statement, 15.10.2025</cite>
+  </blockquote>
+
+  <blockquote>
+    <p>"Einer Demokratie ist das nicht förderlich, da es das Vertrauen in die Strafverfolgungsbehörden und in die Politik kontinuierlich unterwandert und aushöhlt."</p>
+    <cite>AG Kritis (unabhängige Expertengruppe kritische Infrastrukturen), Handelsblatt, 12.03.2026</cite>
+  </blockquote>
+
+  <div class="fact-card orange">
+    <div class="fact-label">Strukturelles Risiko — Nicht spekulativ, sondern institutionell benannt</div>
+    <p class="fact-text">
+      Mehrere unabhängige Institutionen haben öffentlich auf ein spezifisches Risiko hingewiesen, das nicht das Verhalten von Palantir betrifft, sondern die <strong>strukturelle Abhängigkeit</strong>: Wenn Palantir-Mitarbeitende in deutschen Polizeibehörden tätig sein müssen, um die Software zu warten — was vertraglich dokumentiert ist —, entsteht ein dauerhafter Zugang eines privaten US-Unternehmens zu deutschen Sicherheitsdaten. BKA-Chef Münch betonte, die Datenarchitektur müsse "souverän" aufgebaut sein. Tech-Journalist Fritz Espenlaub verwies auf den Vergleich mit Starlink in der Ukraine — als Beispiel dafür, dass technologische Abhängigkeiten als geopolitisches Druckmittel genutzt werden können.
+    </p>
+    <span class="fact-source">ZDFheute, 30.07.2025 · Campact, 22.02.2026 · BKA-Sprecher via heise online, 07.03.2025</span>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- KAPITEL 4: EUROPA -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div class="section">
+  <div class="chapter-label">Kapitel 04</div>
+  <h2>Europa — Verträge und Debatten</h2>
+
+  <div class="country-grid">
+
+    <div class="country-card">
+      <div class="country-name"><span class="badge badge-yes">UK</span> Vereinigtes Königreich</div>
+      <div class="country-status">Palantir hält NHS-Vertrag (National Health Service Data Platform). Datenschutzbehörde verhängte Geldstrafe gegen Clearview AI (Partnerunternehmen). Parliament: Petition für öffentliche Debatte zu Palantirs Rolle in Verteidigung und Sicherheit.</div>
+    </div>
+
+    <div class="country-card">
+      <div class="country-name"><span class="badge badge-yes">NATO</span> NATO / Maven AI</div>
+      <div class="country-status">NATO-Pressemitteilung 14.04.2025: Palantirs Maven AI für militärische Planungszwecke. Project Maven: DoD-Memorandum 26.04.2017 — "funktionsübergreifendes Team für algorithmische Kriegsführung".</div>
+    </div>
+
+    <div class="country-card">
+      <div class="country-name"><span class="badge badge-yes">Ukraine</span> Ukraine</div>
+      <div class="country-status">Palantir kostenlos für Kriegsverbrecherdokumentation, Minenräumung, Resettlement (TIME, 08.02.2024). Clearview AI: 1.500+ Beamte, 230.000 Identifikationen. TIME-Forscher Kaminga: "Ukraine ist ein lebendes Labor."</div>
+    </div>
+
+    <div class="country-card">
+      <div class="country-name"><span class="badge badge-open">EU</span> EU-Institutionen</div>
+      <div class="country-status">KI-Verordnung (AI Act) in Kraft — biometrische Massenüberwachung in Echtzeit grundsätzlich verboten. AlgorithmWatch-Gutachten: Dobrindt-Entwurf verstößt gegen den AI Act. EU-Parlament: keine dokumentierten Palantir-Verträge, aber Debatte läuft.</div>
+    </div>
+
+    <div class="country-card">
+      <div class="country-name"><span class="badge badge-open">Frankreich</span> Frankreich</div>
+      <div class="country-status">CNIL (Datenschutzbehörde) hat Clearview AI angewiesen, Daten zu löschen — DSGVO-Verstoß. CapGemini verkaufte US-Einheit mit ICE-Vertrag nach Kritik durch französische Parlamentarier (Feb. 2026).</div>
+    </div>
+
+    <div class="country-card">
+      <div class="country-name"><span class="badge badge-open">Österreich</span> Österreich</div>
+      <div class="country-status">Sebastian Kurz arbeitete nach Rücktritt als "Global Strategist" für Thiel — dokumentiert bis spätestens 2025. Wiener Festwochen luden Peter Thiel nach Protesten aus (Thema: Antichrist, Armageddon, Realpolitik), Juni 2026.</div>
+    </div>
+
+  </div>
+
+  <div class="fact-card blue">
+    <div class="fact-label">EU AI Act vs. Palantir-Einsatz — Rechtliche Spannung</div>
+    <p class="fact-text">
+      Der EU AI Act verbietet biometrische Massenüberwachung in Echtzeit im öffentlichen Raum grundsätzlich. Ein technisches Gutachten von AlgorithmWatch (Oktober 2025) kommt zu dem Ergebnis: Um biometrischen Abgleich mit Internetfotos so durchzuführen, wie im Dobrindt-Entwurf vorgesehen, <em>müssen</em> Gesichtserkennungsdatenbanken genutzt werden — was das Gesetz europarechtswidrig und undurchführbar mache. Matthias Marx (CCC): "Biometrische Massenüberwachung ist rechtswidrig." Die Spannung zwischen nationalen Sicherheitsbedürfnissen und EU-Recht ist dokumentiert; eine Auflösung steht politisch noch aus.
+    </p>
+    <span class="fact-source">CCC-Statement, 15.10.2025 · AlgorithmWatch-Gutachten, Oktober 2025 · EU AI Act (in Kraft seit 2024)</span>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- KAPITEL 5: THIEL — POSITIONEN UND VERHALTEN -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div class="section">
+  <div class="chapter-label">Kapitel 05</div>
+  <h2>Peter Thiel — Positionen, Verhalten, Widersprüche</h2>
+
+  <div class="fact-card">
+    <div class="fact-label">Dokumentierte Positionen (primärquellenfähig)</div>
+    <p class="fact-text">
+      <strong>2009, Cato Unbound:</strong> "I no longer believe that freedom and democracy are compatible." (primärquellenfähig)<br><br>
+      <strong>2020, Vorwort zu "The Sovereign Individual":</strong> Das libertäre Manifest von Davidson/Rees-Mogg (1997) — Kernthese: Eine kognitive Elite sollte sich vom Nationalstaat lösen, Steuern meiden, durch Technologie souverän werden. Thiel bezeichnete es als maßgeblichen Referenztext seines Denkens.<br><br>
+      <strong>2025, NYT-Podcast (Juni 2025):</strong> Thiel bezeichnete Kritiker technologischer Entwicklungen — darunter Greta Thunberg und UN-Institutionen — als "Legionäre des Antichristen". Auf die Frage, was der Antichrist für ihn bedeute: "How much time do we have?"<br><br>
+      <strong>2025, nichtöffentliche Vorträge (geleakt):</strong> Thiel argumentierte in einer Vortragsreihe für geschlossene Kreise, der Antichrist des 21. Jahrhunderts werde wie ein "Beschützer" aussehen, der Sicherheit und das Ende technologischer Risiken verspricht. Geleakte Mitschnitte wurden von Literaturwissenschaftler Adrian Daub ausgewertet (ZDFheute, Juni 2026).
+    </p>
+    <span class="fact-source">Cato Unbound, 13.04.2009 · Fortune, 04.02.2026 · ZDFheute, 05.06.2026 · The Conversation, 28.09.2025</span>
+  </div>
+
+  <h3>Private-City-Projekte — 20 Jahre dokumentierte Praxis</h3>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">2008</div>
+      <div class="timeline-text"><strong>Seasteading Institute:</strong> Thiel stiftet 500.000 USD Startkapital (gesamt ca. 1,25 Mio. USD) an das von Patri Friedman (Enkel von Milton Friedman) gegründete Institut. Ziel: autonome, schwimmende Stadtstaaten in internationalen Gewässern — außerhalb jeder staatlichen Jurisdiktion.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2011</div>
+      <div class="timeline-text"><strong>Neuseeland-Staatsbürgerschaft:</strong> Thiel erhält neuseeländische Staatsbürgerschaft über eine "Ausnahmeklausel" — nach dokumentierten 12 Tagen Aufenthalt im Land. Besitzt 193 Hektar am Lake Wānaka. Erst 2017 öffentlich bekannt geworden.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2013–heute</div>
+      <div class="timeline-text"><strong>Honduras / Próspera (ZEDE):</strong> Thiel-Netzwerk (Pronomos Capital) beteiligt. Honduras schuf per Gesetz autonome Privatzonen (ZEDEs) mit eigenem Recht, eigenen Gerichten, eigenen Steuern außerhalb honduranischer Jurisdiktion. Aktuell klagt das Projekt-Konsortium auf 11 Milliarden USD Entschädigung gegen die honduranische Regierung — fast ein Drittel des honduranischen BIP.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2021–heute</div>
+      <div class="timeline-text"><strong>Praxis (500 Mio. USD):</strong> Thiel über Pronomos Capital Frühinvestor. Praxis hat 525 Mio. USD eingesammelt und plant eine neue Stadt zur "Revitalisierung der westlichen Zivilisation". Praxis-Gründer erkundete Grönland als Standort (Sommer 2024).</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">April 2026</div>
+      <div class="timeline-text"><strong>Argentinien / Uruguay:</strong> Thiel kauft 12-Millionen-Dollar-Haus in Buenos Aires, schult Kinder dort ein, trifft Präsident Milei sowie Wirtschafts- und Deregulierungsminister. Uruguay: Grundstück bei Punta del Este. NYT (28.05.2026) berichtet von "Plan B"-Strategie.</div>
+    </div>
+  </div>
+
+  <div class="fact-card orange">
+    <div class="fact-label">Dokumentierter Widerspruch — Keine Motifattribution, strukturelle Beobachtung</div>
+    <p class="fact-text">
+      Thiel verlässt Kalifornien mit der Begründung, staatliche Steuergesetze und regulatorisches Klima seien unvereinbar mit seinen Überzeugungen. Gleichzeitig:<br><br>
+      — Palantir nimmt im Q1 2026 <strong>687 Millionen USD</strong> aus US-Regierungsverträgen ein.<br>
+      — Anduril (Thiel-Netzwerk) schließt 10-Jahres-Vertrag mit US Army: bis zu <strong>20 Milliarden USD</strong> (März 2026).<br>
+      — ImmigrationOS verfolgt Migranten — also Menschen, die das gleiche tun wie Thiel: das Land verlassen.<br><br>
+      Was belegbar ist: Die strukturelle Parallelität. Was nicht dokumentiert ist: ein bewusster Zusammenhang. Die Beobachtung formulieren wir — das Urteil überlassen wir dem Leser.
+    </p>
+    <span class="fact-source">NYT, 28.05.2026 · Yahoo Finance/AOL, 30.05.2026 · USASpending.gov · Reuters, März 2026</span>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- KAPITEL 6: OFFENE FRAGEN -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div class="section">
+  <div class="chapter-label">Kapitel 06</div>
+  <h2>Offene Fragen</h2>
+
+  <p>Dieses Dossier endet dort, wo Dokumentation endet. Die folgenden Fragen sind nicht rhetorisch — sie bezeichnen echte Wissenslücken.</p>
+
+  <div class="question-block">
+    Bayerische Polizei: 39 Millionen Personendatensätze durchsucht — unter welchen konkreten datenschutzrechtlichen Bedingungen geschieht das? Die DSK hat dies angemahnt. Eine vollständige Antwort steht aus.
+  </div>
+
+  <div class="question-block">
+    Der Rahmenvertrag Bayern/Palantir erlaubt es theoretisch allen deutschen Polizeibehörden, die Software zu nutzen. Welche Behörden haben faktisch Zugriff — jenseits der offiziell kommunizierten Nutzer?
+  </div>
+
+  <div class="question-block">
+    Palantir-Mitarbeitende müssen für Wartung und Betrieb Zugang zu deutschen Polizeisystemen haben. Welchen Umfang hat dieser Zugang konkret? Auf welche Daten kann zugegriffen werden?
+  </div>
+
+  <div class="question-block">
+    Das EU AI Act verbietet biometrische Echtzeit-Massenüberwachung. Das Dobrindt-Gesetz sieht sie vor. Wie wird dieser Widerspruch aufgelöst — rechtlich, politisch, oder gar nicht?
+  </div>
+
+  <div class="question-block">
+    Karp fordert die Remilitarisierung Deutschlands und Japans. Gleichzeitig hat Palantir Verträge mit deutschen Polizeibehörden. Gibt es dokumentierte Kommunikation zwischen Palantir und deutschen Regierungsvertretern zu diesem Thema?
+  </div>
+
+  <div class="question-block">
+    Thiel baut über ein Jahrzehnt parallele Staatsprojekte außerhalb bestehender Demokratien auf. Palantir baut zeitgleich die Infrastruktur für maximale staatliche Kontrolle innerhalb dieser Demokratien. Was ist das — Widerspruch, Absicherung oder Arbeitsteilung? Diese Frage ist nicht beantwortbar auf Basis öffentlicher Dokumente. Aber sie ist formulierbar.
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- QUELLENÜBERSICHT -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div class="section">
+  <div class="chapter-label">Quellenverzeichnis</div>
+  <h2>Primär- und Sekundärquellen</h2>
+
+  <ul class="source-list">
+    <li>Palantir Technologies S-1 IPO Filing, SEC, September 2020</li>
+    <li>USASpending.gov: Palantir-Vertragsübersicht (durchsuchbar nach Behörde und Zeitraum)</li>
+    <li>In-Q-Tel Portfolio History (iqt.org/portfolio)</li>
+    <li>Bundesverfassungsgericht: Urteil 1 BvR 1547/19 und 1 BvR 2634/20, 16.02.2023</li>
+    <li>Landtag Baden-Württemberg: Drucksache 17/9329, 11.08.2025</li>
+    <li>Bundestag: Drucksache 20/9495 (CDU/CSU-Antrag VeRA), 27.11.2023</li>
+    <li>NATO-Pressemitteilung: Maven AI, 14.04.2025</li>
+    <li>DoD-Memorandum: Project Maven, 26.04.2017</li>
+    <li>Palantir X-Post: 22-Punkte-Manifest-Zusammenfassung, April 2026</li>
+    <li>Karp, Alex / Zamiska, Nicholas: "The Technological Republic", 2025</li>
+    <li>Thiel, Peter: "The Education of a Libertarian", Cato Unbound, 13.04.2009</li>
+    <li>Thiel, Peter: Vorwort zu Davidson/Rees-Mogg: "The Sovereign Individual", 2020-Ausgabe</li>
+    <li>Nemitz, Paul: "Die Waffen des Silicon Valley", Verfassungsblog, 15.06.2026 (DOI: 10.59704/88f05b5989b2ded0)</li>
+    <li>TIME Magazine: "How Tech Giants Turned Ukraine Into an AI War Lab", 08.02.2024</li>
+    <li>New York Times: "Why Peter Thiel Is Decamping to the End of the World", 28.05.2026</li>
+    <li>Al Jazeera: "Technofascism? Why Palantir's manifesto has critics alarmed", 21.04.2026</li>
+    <li>CCC-Statement: Gesichtserkennung und Palantir / Dobrindt-Gesetzentwurf, 15.10.2025</li>
+    <li>AlgorithmWatch-Gutachten (im CCC-Statement referenziert), Oktober 2025</li>
+    <li>ZDFheute: "Wie setzt die Polizei Palantir ein?", 16.01.2026</li>
+    <li>ZDFheute: "Trotz Manifest — Länder halten an Palantir-Software fest", 22.04.2026</li>
+    <li>taz: "Fast alle Bundesländer sind gegen Palantir", 15.06.2026</li>
+    <li>Handelsblatt: "Experten sehen in Palantir eine Gefahr für die Demokratie", 12.03.2026</li>
+    <li>The Intercept: "Palantir-Berater Helberg und China", 21.03.2024</li>
+    <li>The Conversation: "The Sovereign Individual und Peter Thiel", 28.09.2025</li>
+    <li>Wikipedia: Seasteading Institute (Thiel-Beteiligung) · Palantir Technologies</li>
+    <li>InsideHook: "Peter Thiel-Linked Praxis", Feb. 2025</li>
+    <li>Amnesty International: Recherche zu Palantir/ICE (via CCC-Verweis, Oktober 2025)</li>
+    <li>ZDFheute: "Peter Thiel — Antichrist und Apokalypse", Juni 2026</li>
+    <li>Fortune: "Peter Thiel warns Antichrist links to 'end of modernity'", 04.02.2026</li>
+  </ul>
+</div>
+
+<div class="footer">
+  dunkelfeld.report · Dossier Palantir · Nummer noch offen · Stand: Juni 2026<br>
+  Dokumentation ohne Agenda. Quellen statt Urteile. Alle Angaben belegt oder als nicht belegbar ausgewiesen.<br>
+  Spekulation ist als solche gekennzeichnet. Schlussfolgerungen zieht die Leserin, der Leser.
+</div>
+
+</body>
+</html>

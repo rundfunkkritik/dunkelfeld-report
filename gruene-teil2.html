@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Die dunkle Seite der Grünen — Teil 2 | dunkelfeld.report</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #09090b;
+      color: #d4d4d8;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .site-header {
+      border-bottom: 1px solid #27272a;
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .site-header .dot { width: 8px; height: 8px; background: #e8c547; border-radius: 50%; flex-shrink: 0; }
+    .site-header .label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: #71717a;
+      text-transform: uppercase;
+    }
+    .site-header .label span { color: #e8c547; }
+
+    .hero {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 4rem 2rem 2rem;
+    }
+    .article-meta {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      color: #52525b;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .article-meta .tag { color: #e8c547; }
+
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: #fafafa;
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+    }
+    h1 .part-label {
+      display: block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: #e8c547;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+    .hero-sub {
+      font-size: 1.15rem;
+      color: #a1a1aa;
+      font-style: italic;
+      margin-bottom: 2rem;
+      border-left: 3px solid #e8c547;
+      padding-left: 1rem;
+    }
+
+    .rule { border: none; border-top: 1px solid #27272a; margin: 2.5rem 0; }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+      gap: 1rem;
+      margin: 2.5rem 0;
+    }
+    .stat-card {
+      background: #111113;
+      border: 1px solid #27272a;
+      border-top: 2px solid #e8c547;
+      padding: 1.2rem 1rem;
+    }
+    .stat-card .value {
+      font-family: 'Courier New', monospace;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #e8c547;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-card .desc { font-size: 0.75rem; color: #71717a; line-height: 1.4; }
+
+    .content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      color: #fafafa;
+      margin: 3rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #27272a;
+      font-weight: 600;
+    }
+    h2 .chapter-nr {
+      display: block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      color: #e8c547;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+      font-weight: 400;
+    }
+
+    h3 { font-size: 1.05rem; color: #e4e4e7; margin: 2rem 0 0.6rem; font-weight: 600; }
+
+    p { margin-bottom: 1.2rem; }
+
+    .quote-block {
+      background: #111113;
+      border-left: 3px solid #e8c547;
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0;
+      font-style: italic;
+      color: #e4e4e7;
+    }
+    .quote-block .source {
+      display: block;
+      margin-top: 0.6rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: #52525b;
+      font-style: normal;
+      letter-spacing: 0.08em;
+    }
+
+    /* TIMELINE */
+    .timeline { margin: 2rem 0; border-left: 2px solid #27272a; padding-left: 1.5rem; }
+    .timeline-item { margin-bottom: 1.8rem; position: relative; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -1.65rem;
+      top: 0.45rem;
+      width: 10px; height: 10px;
+      background: #e8c547;
+      border-radius: 50%;
+    }
+    .timeline-item .year {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: #e8c547;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.3rem;
+    }
+    .timeline-item .event { font-size: 0.9rem; color: #a1a1aa; line-height: 1.6; }
+    .timeline-item .event strong { color: #e4e4e7; }
+
+    /* STATUS TABLE */
+    .status-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.85rem; }
+    .status-table th {
+      font-family: 'Courier New', monospace;
+      font-size: 0.63rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #52525b;
+      text-align: left;
+      padding: 0.6rem 0.8rem;
+      border-bottom: 1px solid #27272a;
+    }
+    .status-table td {
+      padding: 0.7rem 0.8rem;
+      border-bottom: 1px solid #1c1c1e;
+      color: #a1a1aa;
+      vertical-align: top;
+    }
+    .status-table tr:hover td { background: #111113; }
+    .status-table td:first-child { color: #e4e4e7; font-weight: 500; }
+
+    .badge {
+      display: inline-block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+    }
+    .badge-confirmed { background: #14532d; color: #86efac; }
+    .badge-partial   { background: #713f12; color: #fcd34d; }
+    .badge-disputed  { background: #1e3a5f; color: #93c5fd; }
+
+    .info-box {
+      background: #111113;
+      border: 1px solid #27272a;
+      border-top: 2px solid #52525b;
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0;
+      font-size: 0.85rem;
+      color: #71717a;
+    }
+    .info-box strong { color: #a1a1aa; }
+
+    /* WIDERSPRUCHS-BOX */
+    .contrast-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: #27272a;
+      margin: 2rem 0;
+      font-size: 0.85rem;
+    }
+    .contrast-side { background: #111113; padding: 1.2rem; }
+    .contrast-side .label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .contrast-side.before .label { color: #86efac; }
+    .contrast-side.after  .label { color: #f87171; }
+    .contrast-side p { margin-bottom: 0.5rem; font-size: 0.82rem; color: #a1a1aa; }
+    .contrast-side p:last-child { margin-bottom: 0; }
+
+    .closing {
+      background: #0d0d0f;
+      border: 1px solid #27272a;
+      padding: 2rem;
+      margin-top: 3rem;
+      text-align: center;
+    }
+    .closing .label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.63rem;
+      color: #52525b;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .closing p { font-size: 1.05rem; color: #a1a1aa; font-style: italic; margin-bottom: 0; }
+
+    .sources { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #27272a; }
+    .sources h4 {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: #52525b;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .sources ul { list-style: none; font-size: 0.78rem; color: #52525b; line-height: 2; }
+    .sources ul li::before { content: '→ '; color: #e8c547; }
+    .sources a { color: #52525b; text-decoration: none; }
+    .sources a:hover { color: #e8c547; }
+
+    .part-link {
+      display: inline-block;
+      margin-top: 2rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: #e8c547;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid #e8c547;
+      padding-bottom: 2px;
+    }
+
+    .site-footer {
+      border-top: 1px solid #1c1c1e;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-family: 'Courier New', monospace;
+      font-size: 0.62rem;
+      color: #3f3f46;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 600px) {
+      .hero, .content { padding-left: 1.2rem; padding-right: 1.2rem; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+      .contrast-box { grid-template-columns: 1fr; }
+    }
+  
+  /* ═══════════════════════════════════════════
+     DUNKELFELD.REPORT — CSS STANDARD OVERRIDE
+     Farben, Lesbarkeit, DSGVO-konform
+     ═══════════════════════════════════════════ */
+  :root {
+    --dk-bg:       #09090b;
+    --dk-surface:  #111113;
+    --dk-border:   #27272a;
+    --dk-amber:    #e8c547;
+    --dk-amber-dim:#b89a2f;
+    --dk-text:     #d4d4d8;
+    --dk-muted:    #71717a;
+    --dk-bright:   #f4f4f5;
+    --dk-source-bg:#1a1a2e;
+  }
+
+  /* Basis-Reset auf Standard */
+  html { background: var(--dk-bg); }
+  body {
+    background: var(--dk-bg) !important;
+    color: var(--dk-text) !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    max-width: 720px !important;
+    margin: 0 auto !important;
+    padding: 48px 24px 80px !important;
+  }
+
+  /* Wrapper / Container auf 720px begrenzen */
+  .container, .content, main, article,
+  .article-body, .hero, .body-text {
+    max-width: 720px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Absätze */
+  p {
+    padding-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Überschriften */
+  h1 { color: var(--dk-bright) !important; }
+  h2, h3, h4 { color: var(--dk-bright) !important; }
+
+  /* Links */
+  a {
+    color: var(--dk-amber) !important;
+    text-decoration: none !important;
+  }
+  a:hover {
+    text-decoration: underline !important;
+  }
+
+  /* Labels / Metadaten */
+  .label, .meta, .article-meta, .dossier-id, .site-label,
+  .tag, .category, time, .date {
+    font-family: 'Courier New', Courier, monospace !important;
+  }
+
+  /* Quellenboxen */
+  .source-box, .quellen-box, .source, .sources,
+  blockquote, .zitat, .fact-box, .info-box,
+  .quelle, .source-entry, .reference {
+    background: var(--dk-source-bg) !important;
+    border-left: 3px solid var(--dk-amber) !important;
+    padding: 1rem 1.2rem !important;
+    margin-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+  }
+
+  /* Tabellen */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--dk-surface) !important;
+    color: var(--dk-amber) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.75rem !important;
+    padding: 0.6rem 0.8rem !important;
+    text-align: left;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--dk-border) !important;
+  }
+  td {
+    padding: 0.7rem 0.8rem !important;
+    border-bottom: 1px solid var(--dk-border) !important;
+    color: var(--dk-text) !important;
+    font-size: 0.95rem !important;
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+
+  /* Site-Header Breite */
+  .site-header, header, nav {
+    max-width: 100% !important;
+  }
+
+  /* Farbkorrekturen: alte Amber-Töne → Standard */
+  [style*="color: #d4a017"], [style*="color:#d4a017"] { color: var(--dk-amber) !important; }
+  [style*="color: #b8860b"], [style*="color:#b8860b"] { color: var(--dk-amber) !important; }
+
+  /* Lesbarkeit: dunkle Texte aufhellen */
+  [style*="color: #666"], [style*="color:#666"],
+  [style*="color: #555"], [style*="color:#555"] {
+    color: var(--dk-muted) !important;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="dot"></div>
+  <div class="label">● <span>dunkelfeld.report</span> — Dokumentation · Fakten · Quellen</div>
+</header>
+
+<section class="hero">
+  <div class="article-meta">
+    <span class="tag">ARTIKEL #19 — TEIL 2 VON 2</span>
+    <span>JUNI 2026</span>
+    <span>PRIMÄRQUELLEN VERLINKT</span>
+  </div>
+
+  <h1>
+    <span class="part-label">Teil 2 — Gegenwart</span>
+    Die dunkle Seite der Grünen
+  </h1>
+
+  <p class="hero-sub">
+    Vom Pazifismus zur Kriegsbegeisterung. WEF-Netzwerke. Vetternwirtschaft. Energiewende. Und eine Partei, deren Anhänger jeden Einwand als Angriff auf das Klima deuten.
+  </p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="value">1999</div>
+      <div class="desc">Erster Kampfeinsatz deutscher Truppen seit 1945 — unter grünem Außenminister</div>
+    </div>
+    <div class="stat-card">
+      <div class="value">0</div>
+      <div class="desc">UN-Mandate für den Kosovo-Krieg — laut UN-Charta völkerrechtswidrig</div>
+    </div>
+    <div class="stat-card">
+      <div class="value">2023</div>
+      <div class="desc">Graichen-Affäre: Trauzeuge für Spitzenposten vorgesehen, Staatssekretär in Findungskommission</div>
+    </div>
+    <div class="stat-card">
+      <div class="value">3×</div>
+      <div class="desc">Durchschnittlich höhere Strompreise in Deutschland vs. EU-Schnitt (Destatis 2024)</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule" style="max-width:780px;margin:0 auto 0;">
+
+<main class="content">
+
+  <p style="color:#71717a; font-size:0.82rem; font-family:'Courier New',monospace; margin-top:2rem;">
+    ← Teil 1 dieser Dokumentation behandelt die Gründungsgeschichte: NS-belastete Gründungsmitglieder und die Pädophilie-Debatte der 1980er Jahre.
+  </p>
+
+  <!-- KAPITEL 4 -->
+  <h2>
+    <span class="chapter-nr">Kapitel 4</span>
+    Vom Pazifismus zur Kriegsbegeisterung — eine dokumentierte Chronologie
+  </h2>
+
+  <p>
+    Die Grünen wurden 1980 als pazifistische Partei gegründet. Im ersten Wahlprogramm forderten sie die „Demontage" der Bundeswehr und „die sofortige Auflösung der NATO". Gegen den NATO-Doppelbeschluss gingen Hunderttausende auf die Straße — viele davon überzeugte Grünen-Wähler. Das ist dokumentiert.
+  </p>
+
+  <p>
+    Was ist seither geschehen?
+  </p>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="year">1980 — GRÜNDUNG</div>
+      <div class="event">
+        Erstes Wahlprogramm: <strong>„Demontage der Bundeswehr"</strong>, „sofortige Auflösung der NATO". Petra Kelly als pazifistisches Gesicht der Partei. Millionen auf Demonstrationen gegen NATO-Nachrüstung.
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="year">24. MÄRZ 1999</div>
+      <div class="event">
+        <strong>Kosovo-Krieg:</strong> NATO greift Jugoslawien an — erster Kampfeinsatz deutscher Truppen seit 1945. Kein UN-Mandat. Grüner Außenminister Joschka Fischer trägt die Entscheidung mit. Begründung: „Nie wieder Auschwitz." Der damalige Bundeskanzler Gerhard Schröder (SPD) bestätigte später: <em>kein UN-Mandat</em>. Brigadegeneral Heinz Loquai, vom Verteidigungsministerium entlassen, nannte den Auschwitz-Vergleich „eine ungeheuerliche Behauptung".
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="year">13. MAI 1999 — SONDERPARTEITAG BIELEFELD</div>
+      <div class="event">
+        Fischer hält Rede zur Rechtfertigung des Kosovo-Einsatzes. <strong>Ein Farbbeutel trifft sein Ohr</strong> — geworfen von einem Grünen-Mitglied. Die eigene Partei ist gespalten. Der Parteitag billigt dennoch Fischers Kurs.
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="year">DEZEMBER 2001</div>
+      <div class="event">
+        Bundestag beschließt auf Antrag der rot-grünen Regierung den <strong>deutschen Einsatz im Afghanistankrieg</strong>. Bis zu 5.300 deutsche Soldaten vor Ort. Einsatz endet 2021 mit Sieg der Taliban.
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="year">2021 — WAHLPROGRAMM</div>
+      <div class="event">
+        Grüne fordern im Wahlprogramm: <strong>„restriktive Ausfuhrkontrolle"</strong>, keine Rüstungsexporte in Kriegs- und Krisengebiete. Dokument öffentlich zugänglich.
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="year">JANUAR 2023</div>
+      <div class="event">
+        Außenministerin Annalena Baerbock beim Europarat: <strong>„Wir kämpfen einen Krieg gegen Russland."</strong> Originalprotokoll des Europarats zugänglich.
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="year">APRIL 2025 — ARD TALKSHOW</div>
+      <div class="event">
+        Caren Miosga (ARD) fragt Joschka Fischer: <strong>„Wie können wir diesen Code [Pazifismus] schneller überschreiben?"</strong> Fischer — einst von seiner eigenen Partei mit einem Farbbeutel beworfen — lässt die Frage unkommentiert stehen. Keine Irritation, kein Widerspruch. Das Zitat ist in 12 Sekunden Videomaterial dokumentiert, vielfach archiviert.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="quote-block">
+    „Pazifismus in der DNA der Deutschen — wie können wir diesen Code schneller überschreiben?"
+    <span class="source">Caren Miosga, ARD, April 2025 — dokumentiert, vielfach archiviert (u.a. Berliner Zeitung, Philosophia Perennis, YouTube)</span>
+  </div>
+
+  <div class="contrast-box">
+    <div class="contrast-side before">
+      <div class="label">Wahlprogramm 2021 — dokumentiert</div>
+      <p>„Restriktive Ausfuhrkontrolle europäischer Rüstungsexporte in Kriegs- und Krisengebiete"</p>
+      <p>„Keine Waffen in Kriegsgebiete"</p>
+    </div>
+    <div class="contrast-side after">
+      <div class="label">Regierungshandeln ab 2022 — dokumentiert</div>
+      <p>Leopard-Panzer-Lieferung in die Ukraine</p>
+      <p>Forderungen nach schweren Waffen, Langstreckenraketen, 100-Mrd.-Sondervermögen Bundeswehr</p>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <strong>Einordnung:</strong> Die Frage, ob Waffenlieferungen an die Ukraine richtig oder falsch sind, ist politisch umstritten und gehört nicht in eine nüchterne Dokumentation. Was dokumentiert werden kann: Die Grünen haben innerhalb einer Legislaturperiode ihre schriftlich formulierte Außenpolitik in ihr Gegenteil verkehrt. Der Abstand zwischen Wahlprogramm und Regierungshandeln ist in Primärquellen belegbar.
+  </div>
+
+  <!-- KAPITEL 5 -->
+  <h2>
+    <span class="chapter-nr">Kapitel 5</span>
+    „Egal was meine deutschen Wähler denken" — dokumentierte Aussagen
+  </h2>
+
+  <p>
+    Neben der Außenpolitik gibt es eine zweite Kategorie dokumentierter Aussagen, die in der öffentlichen Debatte wiederholt diskutiert wurden: Aussagen führender Grüner über das Verhältnis zu ihren eigenen Wählern und zu Deutschland als Standort.
+  </p>
+
+  <table class="status-table">
+    <thead>
+      <tr>
+        <th>Person</th>
+        <th>Aussage / Kontext</th>
+        <th>Quelle / Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Annalena Baerbock</td>
+        <td>„Egal was meine deutschen Wähler denken, ich will das für die Ukraine liefern." — Prag, August 2022</td>
+        <td><span class="badge badge-confirmed">Bestätigt</span><br><small style="color:#52525b;font-size:0.65rem;">Europäische Politische Gemeinschaft, Mitschnitt dokumentiert</small></td>
+      </tr>
+      <tr>
+        <td>Annalena Baerbock</td>
+        <td>„Wir kämpfen einen Krieg gegen Russland." — Europarat, Januar 2023</td>
+        <td><span class="badge badge-confirmed">Bestätigt</span><br><small style="color:#52525b;font-size:0.65rem;">Originalprotokoll Europarat</small></td>
+      </tr>
+      <tr>
+        <td>Robert Habeck</td>
+        <td>Öffentliche Äußerungen zur bewussten Transformation der deutschen Industrie („Deindustrialisierung als Chance")</td>
+        <td><span class="badge badge-partial">Teilweise belegt</span><br><small style="color:#52525b;font-size:0.65rem;">Mehrere Interviews, Kontext umstritten</small></td>
+      </tr>
+      <tr>
+        <td>Anton Hofreiter</td>
+        <td>Wiederholte Forderungen nach schweren Waffen, Leopard, Langstreckenraketen — als einer der aktivsten Befürworter im Bundestag</td>
+        <td><span class="badge badge-confirmed">Bestätigt</span><br><small style="color:#52525b;font-size:0.65rem;">Bundestagsprotokolle, öffentlich</small></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- KAPITEL 6 -->
+  <h2>
+    <span class="chapter-nr">Kapitel 6</span>
+    WEF-Netzwerk — was dokumentiert ist
+  </h2>
+
+  <p>
+    Das Weltwirtschaftsforum (WEF) unterhält ein Programm namens „Young Global Leaders" (YGL). Ziel laut eigener Beschreibung: Nachwuchsführungskräfte aus Politik, Wirtschaft und Zivilgesellschaft zu vernetzen und auf globale Führungsaufgaben vorzubereiten.
+  </p>
+
+  <p>
+    Die Mitgliedschaft im YGL-Programm ist öffentlich dokumentiert — das WEF veröffentlicht Listen. Folgende Personen mit Grünen-Hintergrund tauchen in diesen Listen auf oder werden in dokumentierten Quellen damit in Verbindung gebracht:
+  </p>
+
+  <table class="status-table">
+    <thead>
+      <tr>
+        <th>Person</th>
+        <th>WEF-Verbindung</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Annalena Baerbock</td>
+        <td>YGL-Alumni, dokumentiert in WEF-eigenen Publikationen</td>
+        <td><span class="badge badge-confirmed">Bestätigt</span></td>
+      </tr>
+      <tr>
+        <td>Robert Habeck</td>
+        <td>Teilnahme an WEF-Jahrestreffen Davos als Minister, öffentlich dokumentiert</td>
+        <td><span class="badge badge-confirmed">Bestätigt</span></td>
+      </tr>
+      <tr>
+        <td>Anton Hofreiter</td>
+        <td>Keine YGL-Mitgliedschaft dokumentiert</td>
+        <td><span class="badge badge-disputed">Nicht belegt</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-box">
+    <strong>Methodische Einordnung:</strong> Eine YGL-Mitgliedschaft belegt keine Weisungsgebundenheit gegenüber dem WEF. Was dokumentiert werden kann: Das Netzwerk existiert, die Mitgliedschaften sind öffentlich, und es gibt eine nachweisbare personelle Überlappung zwischen WEF-Alumni und führenden Grünen-Politikern. Klaus Schwab sagte 2017 öffentlich im SABC-Interview: „Wir dringen in die Kabinette ein." Dieses Zitat ist dokumentiert. Die Interpretation überlässt dunkelfeld.report dem Leser.
+  </div>
+
+  <!-- KAPITEL 7 -->
+  <h2>
+    <span class="chapter-nr">Kapitel 7</span>
+    Der Graichen-Clan — dokumentierte Vetternwirtschaft
+  </h2>
+
+  <p>
+    Im Frühjahr 2023 wurde bekannt, was Kritiker als „Amigo-Ministerium" bezeichneten. Die Fakten sind nicht umstritten — sie wurden von Staatssekretär Patrick Graichen selbst eingeräumt.
+  </p>
+
+  <h3>Was dokumentiert ist</h3>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="year">FRÜHJAHR 2023</div>
+      <div class="event">
+        Bekanntwerden: Patrick Graichen, Staatssekretär im Bundeswirtschaftsministerium unter Habeck, ist Teil einer dreiköpfigen Findungskommission für den Posten des Dena-Geschäftsführers. Der empfohlene Kandidat Michael Schäfer ist Graichens <strong>Trauzeuge</strong>. Graichen hatte dies nicht offengelegt.
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="year">GRAICHENS EINGESTÄNDNIS</div>
+      <div class="event">
+        Graichen auf Twitter: <strong>„Ich habe bei dem Besetzungsverfahren der dena-Geschäftsführung einen Fehler gemacht, den ich sehr bedaure und bereue."</strong>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="year">HABECKS ERSTE REAKTION</div>
+      <div class="event">
+        Habeck vor der Hauptstadtpresse: <strong>„Ich habe entschieden, dass Patrick Graichen wegen dieses Fehlers nicht gehen muss."</strong> Später doch Entlassung nach weiteren Enthüllungen.
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="year">WEITERER KONTEXT</div>
+      <div class="event">
+        Graichens Schwester ist mit dem Grünen Parlamentarischen Staatssekretär Michael Kellner verheiratet. Habecks Bruder Hinrich ist Chef der WTSH Schleswig-Holstein. CDU-Generalsekretär Mario Czaja bezeichnete das Netzwerk als <strong>„Familia Nostra"</strong>. Diese Verbindungen sind öffentlich dokumentiert.
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    „Außerdem versuchten die Grünen, die Angriffe gegen Graichen so darzustellen, als handele es sich um einen generellen Angriff auf seinen Kurs in der Klimapolitik."
+    <span class="source">Stuttgarter Zeitung, Mai 2023 — zur Verteidigungsstrategie des Wirtschaftsministeriums</span>
+  </div>
+
+  <!-- KAPITEL 8 -->
+  <h2>
+    <span class="chapter-nr">Kapitel 8</span>
+    Energiewende — Solarwüsten, Windräder und Versorgungsunsicherheit
+  </h2>
+
+  <p>
+    Die Grünen bezeichnen die Energiewende als ihr zentrales Projekt. Was lässt sich dazu auf Basis öffentlicher Daten dokumentieren?
+  </p>
+
+  <table class="status-table">
+    <thead>
+      <tr>
+        <th>Sachverhalt</th>
+        <th>Daten / Quelle</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Strompreise Deutschland</td>
+        <td>Deutschland hat seit Jahren einen der höchsten Haushaltsstrompreise in Europa. Destatis, Eurostat — öffentlich zugänglich.</td>
+        <td><span class="badge badge-confirmed">Bestätigt</span></td>
+      </tr>
+      <tr>
+        <td>Abschaltung Kernkraftwerke</td>
+        <td>April 2023: Abschaltung der letzten drei deutschen Kernkraftwerke — inmitten der Energiekrise. Entscheidung unter Habeck / grüner Federführung.</td>
+        <td><span class="badge badge-confirmed">Bestätigt</span></td>
+      </tr>
+      <tr>
+        <td>Flächenverbrauch Windkraft</td>
+        <td>Windkraftanlagen belegen erhebliche Flächen landwirtschaftlichen und ökologisch sensiblen Landes. Kritiker sprechen von „Verspargelung". Umfang dokumentiert durch Bundesnetzagentur.</td>
+        <td><span class="badge badge-confirmed">Bestätigt</span></td>
+      </tr>
+      <tr>
+        <td>Industrieabwanderung</td>
+        <td>IfW Kiel, DIW: Energiekosten als Faktor bei Verlagerungsentscheidungen von Industrieunternehmen ins Ausland. Mehrere Studien 2023–2024.</td>
+        <td><span class="badge badge-confirmed">Bestätigt</span></td>
+      </tr>
+      <tr>
+        <td>Versorgungssicherheit</td>
+        <td>Bundesnetzagentur warnte 2022 vor möglichen Versorgungsengpässen. Notfallpläne wurden aktiviert. Ergebnis: kein Blackout, aber erheblicher Aufwand und Abhängigkeit von Importen.</td>
+        <td><span class="badge badge-confirmed">Bestätigt</span></td>
+      </tr>
+      <tr>
+        <td>CO₂-Bilanz Kohlestrom-Rückkehr</td>
+        <td>Nach Abschaltung Atomkraft und infolge Gasmangels: temporäre Erhöhung des Kohlestromanteils. Statistisch dokumentiert durch Fraunhofer ISE.</td>
+        <td><span class="badge badge-confirmed">Bestätigt</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-box">
+    <strong>Einordnung:</strong> Die Energiewende ist ein komplexer Transformationsprozess, und über ihre Ziele lässt sich politisch streiten. Was dunkelfeld.report dokumentiert: Die Ergebnisse nach über einem Jahrzehnt grüner Energiepolitik weichen in mehreren messbaren Punkten von den proklamierten Zielen ab. Ob das an falschen Zielen, falscher Umsetzung oder externen Faktoren liegt — diese Frage beantwortet das Datenmaterial allein nicht.
+  </div>
+
+  <!-- KAPITEL 9 -->
+  <h2>
+    <span class="chapter-nr">Kapitel 9</span>
+    Die Kult-Frage — wenn Kritik zum Angriff auf das Klima wird
+  </h2>
+
+  <p>
+    Ein wiederkehrendes Muster in der grünen Kommunikationsstrategie ist in öffentlich zugänglichen Quellen dokumentiert: die Gleichsetzung von Kritik an der Grünen-Politik mit Klimaleugnung oder Angriff auf die Menschheit.
+  </p>
+
+  <div class="quote-block">
+    „Wer die Grünen kritisiert und ihnen politisch nicht alles durchgehen lässt, will in Wahrheit den Klimaschutz verhindern und setzt damit letztlich den Fortbestand der Menschheit aufs Spiel."
+    <span class="source">Cicero, Mai 2023 — zur Verteidigungsstrategie in der Graichen-Affäre</span>
+  </div>
+
+  <p>
+    Diese Rhetorik ist kein Einzelfall. Sie taucht als Muster auf: in der Debatte um das Heizungsgesetz, in der Reaktion auf Kritik an Waffenlieferungen, in der Graichen-Affäre. Wer die Politik kritisiert, kritisiert nicht die Umsetzung — sondern das Klima, den Frieden, die Demokratie.
+  </p>
+
+  <p>
+    In der Sozialpsychologie gibt es einen Begriff für Gruppen, in denen Kritik von innen und außen systematisch als Angriff auf das Gesamtsystem umgedeutet wird: geschlossene Überzeugungssysteme. Die Frage, ob dieser Begriff auf eine demokratische Partei angewendet werden kann, beantwortet dunkelfeld.report nicht.
+  </p>
+
+  <div class="quote-block">
+    „Solange Schulen und Universitäten grünen Nachwuchs am Fließband produzieren, werden die ideologisch Verblendeten weiterhin diese Filzpartei wählen."
+    <span class="source">Cicero-Kommentarspalte, Mai 2023 — Lesermeinung, keine Redaktionsposition; zitiert als Beleg für die Tonlage der öffentlichen Debatte</span>
+  </div>
+
+  <div class="info-box">
+    <strong>Methodische Anmerkung:</strong> Das letzte Zitat stammt aus einer Kommentarspalte und gibt nicht die Redaktionsposition wieder. Es wird hier als Beleg für die Schärfe der öffentlichen Reaktion zitiert — nicht als Faktum. dunkelfeld.report weist Pauschalurteile über Wählergruppen zurück.
+  </div>
+
+  <hr class="rule">
+
+  <!-- SCHLUSSFRAGE -->
+  <div class="closing">
+    <div class="label">Offene Frage — dunkelfeld.report</div>
+    <p>
+      Eine Partei, die mit dem Versprechen des Pazifismus gegründet wurde, führte Deutschland in zwei Kriege. Eine Partei, die Transparenz forderte, etablierte ein Netzwerk persönlicher Verbindungen im Wirtschaftsministerium. Eine Partei, die das Klima schützen wollte, hinterließ höhere Strompreise, mehr Kohle und eine verunsicherte Industrie.
+    </p>
+    <p style="margin-top:1.2rem;">
+      Und wer das dokumentiert — greift er das Klima an?
+    </p>
+  </div>
+
+  <!-- QUELLEN -->
+  <div class="sources">
+    <h4>Primärquellen &amp; Belege — Teil 2</h4>
+    <ul>
+      <li>Bundestagsprotokolle — Kosovo-Abstimmung 1999, Afghanistan 2001</li>
+      <li>Wikipedia — Rede Joschka Fischers zum NATO-Einsatz im Kosovo (mit Einzelnachweisen)</li>
+      <li>Europarat — Originalprotokoll Baerbock-Aussage, Januar 2023</li>
+      <li>Tichys Einblick — „Wie die Grünen von russlandverstehenden Pazifisten zu Bellizisten wurden", April 2022</li>
+      <li>Berliner Zeitung — Miosga/Fischer-Sendung, April 2025</li>
+      <li>Bundestag.de — Parlamentsprotokolle Hofreiter-Äußerungen zu Waffenlieferungen</li>
+      <li>WEF — Young Global Leaders Alumni-Listen (öffentlich zugänglich)</li>
+      <li>Das Parlament (Bundestag-Zeitung) — „Habeck schützt Graichen", Mai 2023</li>
+      <li>Stuttgarter Zeitung — „Vorwurf der Vetternwirtschaft", Mai 2023</li>
+      <li>Tagesspiegel — „Trauzeugen-Affäre", Mai 2023</li>
+      <li>Graichen auf Twitter/X — eigenes Eingeständnis, Mai 2023</li>
+      <li>Destatis / Eurostat — Strompreisvergleich Europa</li>
+      <li>Bundesnetzagentur — Versorgungssicherheitsbericht 2022</li>
+      <li>Fraunhofer ISE — Stromerzeugungsdaten Deutschland</li>
+      <li>IfW Kiel / DIW — Studien zur Industrieabwanderung 2023–2024</li>
+      <li>Cicero — Kommentar zur Graichen-Verteidigungsstrategie, Mai 2023</li>
+    </ul>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  dunkelfeld.report · Dokumentation auf Basis öffentlich zugänglicher Primärquellen · Keine Wertung — keine Agenda · Schlussfolgerungen zieht der Leser
+</footer>
+
+</body>
+</html>

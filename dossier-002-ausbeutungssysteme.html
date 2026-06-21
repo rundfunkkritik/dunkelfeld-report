@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOSSIER 002 — Jahrzehnte des Schweigens | dunkelfeld.report</title>
+  <meta name="description" content="27,6 Millionen Menschen in Zwangsarbeit. 236 Milliarden Dollar illegaler Jahresgewinn. Eine quellenbasierte Dokumentation moderner Sklaverei — Zahlen, Sektoren, Strukturen.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #09090b;
+      --bg2: #111114;
+      --bg3: #1a1a2e;
+      --accent: #e8c547;
+      --accent-dim: #b89a2e;
+      --text: #e2e2e8;
+      --muted: #5a5a6a;
+      --border: #2a2a3a;
+      --red: #e05252;
+      --green: #52b788;
+      --orange: #c87a3a;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.08rem;
+      line-height: 1.85;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .site-header {
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+    }
+    .site-logo {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .site-header nav { margin-left: auto; font-family: 'Courier New', monospace; font-size: 0.72rem; }
+    .site-header nav a { color: var(--muted); }
+    .site-header nav a:hover { color: var(--accent); }
+
+    .dossier-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 3.5rem 2rem 0.6rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem 2.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero .subtitle {
+      font-size: 1.05rem;
+      color: #a0a0b0;
+      line-height: 1.7;
+      margin-bottom: 1.8rem;
+      font-style: italic;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .stat-card {
+      background: var(--bg2);
+      padding: 1.4rem 1.1rem;
+      text-align: center;
+    }
+    .stat-card .num {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-card .label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    hr.divider {
+      max-width: 760px;
+      margin: 2.5rem auto;
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      color: var(--accent);
+      margin: 2.8rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      font-weight: 700;
+    }
+    h3 {
+      font-size: 1.05rem;
+      color: #c8c8d8;
+      margin: 1.8rem 0 0.6rem;
+      font-weight: 600;
+    }
+    p { margin-bottom: 1.2rem; }
+
+    .source-box {
+      background: var(--bg3);
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.2rem;
+      margin: 1.4rem 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.76rem;
+      color: #9090a8;
+      line-height: 1.6;
+    }
+    .source-box strong { color: var(--accent); }
+
+    .callout {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent-dim);
+      padding: 1.2rem 1.4rem;
+      margin: 1.6rem 0;
+      font-size: 0.95rem;
+      color: #b8b8c8;
+    }
+    .callout-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .callout.warn { border-left-color: var(--orange); }
+    .callout.warn .callout-label { color: var(--orange); }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.4rem 0;
+      font-size: 0.86rem;
+    }
+    .data-table th {
+      background: var(--bg3);
+      color: var(--accent);
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.7rem 0.9rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table td {
+      padding: 0.75rem 0.9rem;
+      border-bottom: 1px solid var(--border);
+      color: #c8c8d8;
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: rgba(232,197,71,0.04); }
+
+    .tag {
+      display: inline-block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.6rem;
+      padding: 0.12rem 0.4rem;
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+    }
+    .tag.g { background: rgba(82,183,136,0.15); color: var(--green); }
+    .tag.r { background: rgba(224,82,82,0.15); color: var(--red); }
+    .tag.y { background: rgba(232,197,71,0.15); color: var(--accent); }
+
+    /* PROFIT BAR CHART */
+    .bar-chart { margin: 1.6rem 0; }
+    .bar-item {
+      display: grid;
+      grid-template-columns: 160px 1fr 80px;
+      gap: 0.6rem;
+      align-items: center;
+      margin-bottom: 0.6rem;
+    }
+    .bar-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: #b0b0c0;
+      text-align: right;
+      padding-right: 0.4rem;
+    }
+    .bar-track {
+      height: 22px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background: var(--accent);
+      opacity: 0.75;
+    }
+    .bar-value {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+    }
+
+    /* SEKTOR KARTEN */
+    .sector-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      margin: 1.4rem 0;
+    }
+    .sector-card {
+      background: var(--bg2);
+      padding: 1.1rem;
+    }
+    .sector-icon {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .sector-name {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .sector-desc {
+      font-size: 0.84rem;
+      color: #9090a8;
+      line-height: 1.5;
+    }
+
+    .closing-question {
+      background: var(--bg3);
+      border-left: 3px solid var(--accent);
+      padding: 1.6rem 1.8rem;
+      margin: 3rem 0 2rem;
+      font-size: 1.05rem;
+      color: #c8c8d8;
+      font-style: italic;
+      line-height: 1.8;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-family: 'Courier New', monospace;
+      font-size: 0.67rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      line-height: 2;
+    }
+
+    @media (max-width: 600px) {
+      .site-header, main, .hero, .dossier-label { padding-left: 1rem; padding-right: 1rem; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .bar-item { grid-template-columns: 100px 1fr 60px; }
+      .sector-grid { grid-template-columns: 1fr; }
+    }
+  
+  /* ═══════════════════════════════════════════
+     DUNKELFELD.REPORT — CSS STANDARD OVERRIDE
+     Farben, Lesbarkeit, DSGVO-konform
+     ═══════════════════════════════════════════ */
+  :root {
+    --dk-bg:       #09090b;
+    --dk-surface:  #111113;
+    --dk-border:   #27272a;
+    --dk-amber:    #e8c547;
+    --dk-amber-dim:#b89a2f;
+    --dk-text:     #d4d4d8;
+    --dk-muted:    #71717a;
+    --dk-bright:   #f4f4f5;
+    --dk-source-bg:#1a1a2e;
+  }
+
+  /* Basis-Reset auf Standard */
+  html { background: var(--dk-bg); }
+  body {
+    background: var(--dk-bg) !important;
+    color: var(--dk-text) !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    max-width: 720px !important;
+    margin: 0 auto !important;
+    padding: 48px 24px 80px !important;
+  }
+
+  /* Wrapper / Container auf 720px begrenzen */
+  .container, .content, main, article,
+  .article-body, .hero, .body-text {
+    max-width: 720px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Absätze */
+  p {
+    padding-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Überschriften */
+  h1 { color: var(--dk-bright) !important; }
+  h2, h3, h4 { color: var(--dk-bright) !important; }
+
+  /* Links */
+  a {
+    color: var(--dk-amber) !important;
+    text-decoration: none !important;
+  }
+  a:hover {
+    text-decoration: underline !important;
+  }
+
+  /* Labels / Metadaten */
+  .label, .meta, .article-meta, .dossier-id, .site-label,
+  .tag, .category, time, .date {
+    font-family: 'Courier New', Courier, monospace !important;
+  }
+
+  /* Quellenboxen */
+  .source-box, .quellen-box, .source, .sources,
+  blockquote, .zitat, .fact-box, .info-box,
+  .quelle, .source-entry, .reference {
+    background: var(--dk-source-bg) !important;
+    border-left: 3px solid var(--dk-amber) !important;
+    padding: 1rem 1.2rem !important;
+    margin-bottom: 1.2rem !important;
+    color: var(--dk-text) !important;
+  }
+
+  /* Tabellen */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--dk-surface) !important;
+    color: var(--dk-amber) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.75rem !important;
+    padding: 0.6rem 0.8rem !important;
+    text-align: left;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--dk-border) !important;
+  }
+  td {
+    padding: 0.7rem 0.8rem !important;
+    border-bottom: 1px solid var(--dk-border) !important;
+    color: var(--dk-text) !important;
+    font-size: 0.95rem !important;
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+
+  /* Site-Header Breite */
+  .site-header, header, nav {
+    max-width: 100% !important;
+  }
+
+  /* Farbkorrekturen: alte Amber-Töne → Standard */
+  [style*="color: #d4a017"], [style*="color:#d4a017"] { color: var(--dk-amber) !important; }
+  [style*="color: #b8860b"], [style*="color:#b8860b"] { color: var(--dk-amber) !important; }
+
+  /* Lesbarkeit: dunkle Texte aufhellen */
+  [style*="color: #666"], [style*="color:#666"],
+  [style*="color: #555"], [style*="color:#555"] {
+    color: var(--dk-muted) !important;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-logo">● dunkelfeld.report</div>
+  <nav><a href="index.html">← Alle Dossiers</a></nav>
+</header>
+
+<div class="dossier-label">● DOSSIER 002 / JUNI 2026 / WIRTSCHAFTSKRIMINALITÄT</div>
+
+<div class="hero">
+  <h1>Globale<br><span>Ausbeutungssysteme</span></h1>
+  <p class="subtitle">27,6 Millionen Menschen in Zwangsarbeit. 236 Milliarden Dollar illegaler Jahresgewinn. Moderne Sklaverei ist kein Randphänomen — sie ist ein hochprofitables globales Geschäftsmodell.</p>
+  <div class="hero-meta">
+    <span>DOSSIER 002</span>
+    <span>STAND: JUNI 2026</span>
+    <span>QUELLENBASIERT</span>
+    <span>PRIMÄRQUELLEN: ILO · UNODC · DESTATIS · IOM · WALK FREE</span>
+  </div>
+</div>
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="num">27,6 Mio.</div>
+    <div class="label">Menschen in Zwangsarbeit weltweit (ILO 2021)</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">236 Mrd.$</div>
+    <div class="label">Illegale Jahresgewinne (ILO 2024)</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">~10.000$</div>
+    <div class="label">Illegaler Profit pro Opfer und Jahr</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">75.000</div>
+    <div class="label">Identifizierte Trafficking-Opfer 2022 (UNODC)</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<main>
+
+  <div class="callout">
+    <div class="callout-label">Methodik</div>
+    Alle Zahlen stammen aus Primärpublikationen der Internationalen Arbeitsorganisation (ILO), des UN-Büros für Drogen- und Verbrechensbekämpfung (UNODC), des Statistischen Bundesamts (Destatis) und der Internationalen Organisation für Migration (IOM). Zahlen beziehen sich auf den jeweils angegebenen Erhebungszeitraum. Schätzungen sind als solche ausgewiesen. Dunkelziffer-Aussagen basieren auf Methodikerläuterungen der Quellen selbst.
+  </div>
+
+  <h2>I. Das Ausmaß — Was die Zahlen sagen</h2>
+
+  <p>Laut dem gemeinsamen Bericht von ILO, Walk Free Foundation und IOM „Global Estimates of Modern Slavery 2022" leisteten im Jahr 2021 weltweit 27,6 Millionen Menschen Zwangsarbeit. Das sind 2,7 Millionen mehr als 2016 — ein Anstieg von rund 11 Prozent in fünf Jahren.</p>
+
+  <p>Die ILO unterteilt diese Zahl:</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Kategorie</th>
+        <th>Betroffene Personen</th>
+        <th>Anteil</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Zwangsarbeit in der Privatwirtschaft</td>
+        <td>17,3 Millionen</td>
+        <td>63 %</td>
+      </tr>
+      <tr>
+        <td>Kommerzielle sexuelle Zwangsausbeutung</td>
+        <td>6,3 Millionen</td>
+        <td>23 %</td>
+      </tr>
+      <tr>
+        <td>Staatlich angeordnete Zwangsarbeit</td>
+        <td>3,9 Millionen</td>
+        <td>14 %</td>
+      </tr>
+      <tr>
+        <td><strong>Gesamt</strong></td>
+        <td><strong>27,6 Millionen</strong></td>
+        <td><strong>100 %</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <strong>PRIMÄRQUELLE</strong><br>
+    ILO / Walk Free / IOM (2022): „Global Estimates of Modern Slavery: Forced Labour and Forced Marriage"<br>
+    → ilo.org/global/topics/forced-labour<br><br>
+    <strong>SEKUNDÄR</strong><br>
+    Statistisches Bundesamt (Destatis, 2022): „27,6 Millionen Menschen weltweit müssen Zwangsarbeit leisten"<br>
+    → destatis.de
+  </div>
+
+  <h3>Die Dunkelziffer</h3>
+  <p>Die 27,6 Millionen sind ausdrücklich eine Mindestschätzung. Das UNODC identifizierte 2022 fast 75.000 Opfer von Menschenhandel offiziell — und hält in seinem Bericht fest, dass die tatsächliche Zahl wegen inkonsistenter nationaler Datenerfassung und chronischer Untererfassung um ein Vielfaches höher liegt. Die ILO selbst bezeichnet ihr eigenes Erhebungsinstrument als „Hard to See, Harder to Count."</p>
+
+  <div class="source-box">
+    <strong>QUELLE</strong><br>
+    UNODC (2024): „Global Report on Trafficking in Persons" (GLOTIP)<br>
+    → unodc.org/unodc/data-and-analysis/glotip.html<br><br>
+    ILO (2025): „Understanding the scale of human trafficking for forced labour"<br>
+    → ilostat.ilo.org/blog/understanding-the-scale-of-human-trafficking-for-forced-labour/
+  </div>
+
+  <h2>II. Das Geld — 236 Milliarden Dollar</h2>
+
+  <p>Im Mai 2024 veröffentlichte die ILO die zweite Ausgabe ihres Berichts „Profits and Poverty: The Economics of Forced Labour". Kernbefund: Die jährlichen illegalen Gewinne aus Zwangsarbeit sind seit 2014 um 37 Prozent gestiegen — von 172 auf 236 Milliarden Dollar. Pro Opfer erwirtschaften Täter durchschnittlich knapp 10.000 Dollar jährlich.</p>
+
+  <h3>Profite nach Sektor</h3>
+  <div class="bar-chart">
+    <div class="bar-item">
+      <div class="bar-label">Sexuelle Ausbeutung</div>
+      <div class="bar-track"><div class="bar-fill" style="width:73%"></div></div>
+      <div class="bar-value">~172 Mrd.$</div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-label">Industrie</div>
+      <div class="bar-track"><div class="bar-fill" style="width:15%"></div></div>
+      <div class="bar-value">35 Mrd.$</div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-label">Dienstleistungen</div>
+      <div class="bar-track"><div class="bar-fill" style="width:9%"></div></div>
+      <div class="bar-value">20,8 Mrd.$</div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-label">Landwirtschaft</div>
+      <div class="bar-track"><div class="bar-fill" style="width:2%"></div></div>
+      <div class="bar-value">5 Mrd.$</div>
+    </div>
+  </div>
+
+  <p>Ein strukturell bedeutsames Detail: Sexuelle Zwangsausbeutung macht 27 Prozent der Opfer aus — generiert aber 73 Prozent der illegalen Gewinne. Der Profit pro Opfer liegt bei sexueller Ausbeutung bei 27.252 Dollar pro Jahr, gegenüber 3.687 Dollar bei anderen Formen. Das erklärt die Dominanz des Sektors in den Gewinnstatistiken.</p>
+
+  <h3>Profite nach Region</h3>
+  <div class="bar-chart">
+    <div class="bar-item">
+      <div class="bar-label">Europa / Zentralasien</div>
+      <div class="bar-track"><div class="bar-fill" style="width:36%"></div></div>
+      <div class="bar-value">84 Mrd.$</div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-label">Asien / Pazifik</div>
+      <div class="bar-track"><div class="bar-fill" style="width:26%"></div></div>
+      <div class="bar-value">62 Mrd.$</div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-label">Amerika</div>
+      <div class="bar-track"><div class="bar-fill" style="width:22%"></div></div>
+      <div class="bar-value">52 Mrd.$</div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-label">Afrika</div>
+      <div class="bar-track"><div class="bar-fill" style="width:8%"></div></div>
+      <div class="bar-value">20 Mrd.$</div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-label">Arabische Staaten</div>
+      <div class="bar-track"><div class="bar-fill" style="width:8%"></div></div>
+      <div class="bar-value">18 Mrd.$</div>
+    </div>
+  </div>
+
+  <p>Europa und Zentralasien generieren mit 84 Milliarden Dollar die höchsten illegalen Gewinne — obwohl die absolute Opferzahl in Asien und Afrika deutlich höher ist. Der Grund: Ein Zwangsarbeiter in Europa erwirtschaftet für die Täter durchschnittlich 35.000 Dollar jährlich, in Afrika sind es knapp 4.000 Dollar.</p>
+
+  <div class="source-box">
+    <strong>PRIMÄRQUELLE</strong><br>
+    ILO (2024): „Profits and Poverty: The Economics of Forced Labour" (2. Ausgabe)<br>
+    → ilo.org/resource/news/annual-profits-forced-labour-amount-us-236-billion-ilo-report-finds<br><br>
+    ILO Deutschland: „Jährliche Gewinne aus Zwangsarbeit steigen auf 236 Milliarden US-Dollar"<br>
+    → ilo.org/de/resource/news/jährliche-gewinne-aus-zwangsarbeit-steigen-um-236-milliarden-us-dollar-nach
+  </div>
+
+  <h2>III. Die Sektoren — Wo es passiert</h2>
+
+  <div class="sector-grid">
+    <div class="sector-card">
+      <div class="sector-icon">⚡</div>
+      <div class="sector-name">Sexuelle Ausbeutung</div>
+      <div class="sector-desc">6,3 Mio. Opfer. 98% Frauen und Mädchen. Höchster Profit pro Opfer (27.252$/Jahr). In der EU: ~30% der Zwangsarbeiter betroffen.</div>
+    </div>
+    <div class="sector-card">
+      <div class="sector-icon">🏗️</div>
+      <div class="sector-name">Bauwesen</div>
+      <div class="sector-desc">Betroffen fast ausschließlich Männer. Falsche Jobversprechen, Schuldknechtschaft durch überhöhte Rekrutierungsgebühren. Auch in Deutschland dokumentiert (ILO).</div>
+    </div>
+    <div class="sector-card">
+      <div class="sector-icon">🌾</div>
+      <div class="sector-name">Landwirtschaft</div>
+      <div class="sector-desc">Saisonarbeiter, oft ohne gültige Papiere. Unterkunft als Druckmittel. In der EU: einer der Hauptsektoren (ILO-Erhebung).</div>
+    </div>
+    <div class="sector-card">
+      <div class="sector-icon">🏠</div>
+      <div class="sector-name">Hausarbeit</div>
+      <div class="sector-desc">Weitgehend unsichtbar. Opfer leben beim Täter. Besonders Frauen aus Asien, Afrika, Lateinamerika in arabischen Staaten und Europa.</div>
+    </div>
+    <div class="sector-card">
+      <div class="sector-icon">🏭</div>
+      <div class="sector-name">Verarbeitendes Gewerbe</div>
+      <div class="sector-desc">Fleischverarbeitung, Textil, Produktion. Auch in Deutschland: Fleischindustrie explizit in ILO-Deutschlandbericht genannt.</div>
+    </div>
+    <div class="sector-card">
+      <div class="sector-icon">💻</div>
+      <div class="sector-name">Bettelei / Kriminalität</div>
+      <div class="sector-desc">Opfer werden gezwungen, Straftaten zu begehen: Diebstahl, EC-Karten-Betrug, Drogenhandel. Gewinne verbleiben bei Tätern. (KOK e.V. 2024)</div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>QUELLEN</strong><br>
+    ILO Deutschland: „Arbeitsausbeutung / Zwangsarbeit" → ilo.org/de/arbeitsausbeutung-zwangsarbeit<br>
+    ILO Berlin: „880.000 Zwangsarbeiter in der EU" → ilo.org/berlin/presseinformationen/WCMS_193689<br>
+    KOK e.V. (2024): „Bericht Datenerhebung zu Menschenhandel" → kok-gegen-menschenhandel.de<br>
+    Migrationsdatenportal (2021): „Menschenhandel" → migrationdataportal.org
+  </div>
+
+  <h2>IV. Die Struktur — Wie es funktioniert</h2>
+
+  <p>Menschenhandel und Zwangsarbeit folgen dokumentierten Mustern. Das ILO-Handbuch „Menschenhandel und Zwangsarbeit: Wie man die Anwerbung von Wanderarbeitnehmern überwacht" beschreibt die Kernmechanismen:</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Mechanismus</th>
+        <th>Beschreibung</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Falsche Jobversprechen</td>
+        <td>Rekrutierung mit erfundenen Arbeitsstellen im Ausland — Lohn, Bedingungen, Sektor entsprechen nicht der Realität</td>
+        <td><span class="tag g">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Schuldknechtschaft</td>
+        <td>Überhöhte Rekrutierungsgebühren schaffen dauerhafte Abhängigkeit — Opfer können „Schulden" nie zurückzahlen</td>
+        <td><span class="tag g">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Dokumentenentzug</td>
+        <td>Pässe und Ausweispapiere werden einbehalten — Opfer können weder fliehen noch Behörden kontaktieren</td>
+        <td><span class="tag g">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Isolierung</td>
+        <td>Unterkunft beim Täter, Sprachbarrieren, kein Zugang zu Telefon oder Außenkontakten</td>
+        <td><span class="tag g">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Drohungen</td>
+        <td>Androhung von Gewalt gegen Opfer oder Familienangehörige im Herkunftsland</td>
+        <td><span class="tag g">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Lieferketten-Integration</td>
+        <td>Zwangsarbeit in globalen Lieferketten — Produkte auf EU-Märkten aus Zwangsarbeit (EU-Verordnungsvorschlag 2022)</td>
+        <td><span class="tag g">BELEGT</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>V. Die Lücke — Was nicht funktioniert</h2>
+
+  <p>Zwischen dem dokumentierten Ausmaß des Problems und der staatlichen Reaktion klafft eine messbare Lücke:</p>
+
+  <div class="callout warn">
+    <div class="callout-label">Strukturelle Beobachtung</div>
+    Das UNODC identifizierte 2022 offiziell fast 75.000 Opfer von Menschenhandel — bei einer ILO-Schätzung von 27,6 Millionen Zwangsarbeitern. Das Verhältnis von identifizierten zu tatsächlich betroffenen Personen liegt nach ILO-eigener Einschätzung im einstelligen Promillebereich. Die Strafverfolgungsquote ist entsprechend gering.
+  </div>
+
+  <p>Die EU-Kommission schlug im September 2022 vor, alle unter Zwangsarbeit hergestellten Waren auf dem EU-Markt zu verbieten. Das Statistischem Bundesamt zufolge steht die Billigung durch Parlament und Rat noch aus (Stand der dort dokumentierten Information).</p>
+
+  <p>In Deutschland sind Zwangsarbeit und Menschenhandel in verschiedenen Sektoren dokumentiert: Fleischverarbeitung, Baugewerbe, Gastronomie, Landwirtschaft. Die ILO Deutschland hält fest, dass Arbeitsausbeutung strafrechtlich erst seit 2005 erfasst wird — sexuelle Ausbeutung seit 1973.</p>
+
+  <h2>VI. Deutschland im Bild</h2>
+
+  <p>Der KOK e.V. (Bundesweiter Koordinierungskreis gegen Menschenhandel) veröffentlichte 2024 seinen Datenbericht. In der EU sind nach ILO-Erhebungen rund 880.000 Menschen von Zwangsarbeit betroffen. Frauen stellen mit 58 Prozent die Mehrheit. Rund 30 Prozent sind von sexueller Ausbeutung betroffen, 70 Prozent von extremer Arbeitsausbeutung.</p>
+
+  <p>Hauptsektoren in der EU laut ILO: Landwirtschaft, Hausarbeit, verarbeitendes Gewerbe, Bauwesen. Die Betroffenen werden mit falschen Jobversprechen gelockt und haben oft keine Arbeitserlaubnis — was ihre Verhandlungsposition gegen null reduziert.</p>
+
+  <div class="source-box">
+    <strong>QUELLE</strong><br>
+    ILO Berlin (Pressemitteilung): „880.000 Zwangsarbeiter in der EU"<br>
+    → ilo.org/berlin/presseinformationen/WCMS_193689/lang--de/index.htm<br><br>
+    ILO Deutschland: „Hintergrund: Menschenhandel und Zwangsarbeit — Geißel der Menschheit"<br>
+    → ilo.org/de/resource/article/hintergrund-menschenhandel-und-zwangsarbeit-geissel-der-menschheit<br><br>
+    KOK e.V.: „Bericht des KOK 2024 Datenerhebung zu Menschenhandel"<br>
+    → kok-gegen-menschenhandel.de
+  </div>
+
+  <div class="closing-question">
+    27,6 Millionen Menschen in Zwangsarbeit. 236 Milliarden Dollar illegaler Jahresgewinn. 75.000 offiziell identifizierte Opfer — bei einer Dunkelziffer, die nach ILO-eigener Einschätzung im Bereich der Zehnmillionen liegt.<br><br>
+    Ein Profit von 10.000 Dollar pro Opfer und Jahr macht moderne Sklaverei zu einem der profitabelsten Geschäftsmodelle der Welt — mit einer Strafverfolgungsquote im Promillebereich.<br><br>
+    <em>Wer profitiert strukturell vom Fortbestand dieser Lücke zwischen Ausmaß und Reaktion?</em>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Verknüpfte Dossiers</div>
+    Dossier 001 — UK Grooming Scandal: Institutionelles Versagen &nbsp;|&nbsp; Dossier 003 — Dutroux, Savile, Epstein: Institutionelles Versagen auf höchster Ebene &nbsp;|&nbsp; Dossier 005 — Die Dynastien: Wer besitzt die Welt?
+  </div>
+
+  <p style="font-size: 0.73rem; color: var(--muted); font-family: 'Courier New', monospace; margin-top: 3rem; line-height: 1.7; letter-spacing: 0.03em;">
+    METHODIK — Alle Zahlen stammen aus publizierten Primärquellen der ILO, UNODC, IOM, Walk Free Foundation, Destatis und KOK e.V. Schätzungen sind als solche ausgewiesen. Dunkelziffer-Angaben basieren auf Methodikerläuterungen der Quellenorganisationen selbst. Motive werden keiner Person oder Institution zugeschrieben.
+  </p>
+
+</main>
+
+<footer>
+  <div>dunkelfeld.report · Dossier 002 · Globale Ausbeutungssysteme · Juni 2026</div>
+  <div style="margin-top: 0.4rem;">Fakten, die das Licht nicht scheuen.</div>
+  <div style="margin-top: 0.8rem;"><a href="index.html">← Zurück zur Übersicht</a></div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nav-Demo | dunkelfeld.report</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #09090b;
+      --surface: #111113;
+      --amber: #e8c547;
+      --amber-dim: #b89a2f;
+      --text: #d4d4d8;
+      --text-dim: #71717a;
+      --border: #27272a;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    /* ════════════════════════════════════════
+       NAVIGATION — Desktop + Mobile Hamburger
+       Alles zwischen den ══-Markierungen in
+       den <head> jedes Artikels kopieren.
+    ════════════════════════════════════════ */
+
+    .site-nav {
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 100;
+    }
+
+    .nav-logo {
+      color: var(--amber);
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-decoration: none;
+      margin-right: auto;
+      flex-shrink: 0;
+    }
+
+    /* Desktop-Links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--amber); }
+
+    /* Hamburger-Button (mobil) */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      cursor: pointer;
+      padding: 8px;
+      transition: border-color 0.2s;
+      flex-shrink: 0;
+    }
+    .nav-toggle:hover { border-color: var(--amber); }
+    .nav-toggle span {
+      display: block;
+      width: 20px;
+      height: 1.5px;
+      background: var(--text-dim);
+      transition: all 0.25s ease;
+      transform-origin: center;
+    }
+    .nav-toggle.open span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+      background: var(--amber);
+    }
+    .nav-toggle.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .nav-toggle.open span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+      background: var(--amber);
+    }
+
+    /* Mobile Dropdown-Menü */
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: 56px;
+      left: 0;
+      right: 0;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      z-index: 99;
+      padding: 1.5rem 2rem 2rem;
+      animation: slideDown 0.2s ease;
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .nav-mobile.open { display: block; }
+
+    .nav-mobile ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .nav-mobile ul li {
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-mobile ul li:last-child { border-bottom: none; }
+    .nav-mobile ul a {
+      display: block;
+      padding: 0.9rem 0;
+      color: var(--text);
+      text-decoration: none;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.15s;
+    }
+    .nav-mobile ul a:hover { color: var(--amber); }
+
+    .nav-mobile .nav-divider {
+      margin: 1rem 0 0.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+
+    /* Responsive-Breakpoint */
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+    }
+
+    /* Demo-Inhalt */
+    .demo-content {
+      max-width: 720px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+      color: var(--text-dim);
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+    .demo-content h2 {
+      color: var(--amber);
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<!--
+  ════════════════════════════════════════════
+  NAVIGATION HTML — in jede Artikel-Datei
+  diesen Block direkt nach <body> einfügen
+  ════════════════════════════════════════════
+-->
+<nav class="site-nav" role="navigation" aria-label="Hauptnavigation">
+
+  <a href="index.html" class="nav-logo">● DUNKELFELD</a>
+
+  <!-- Desktop-Links -->
+  <ul class="nav-links">
+    <li><a href="index.html">Startseite</a></li>
+    <li><a href="index.html#artikel">Artikel</a></li>
+    <li><a href="index.html#dossiers">Dossiers</a></li>
+    <li><a href="suche.html">Suche</a></li>
+    <li><a href="impressum.html">Impressum</a></li>
+    <li><a href="datenschutz.html">Datenschutz</a></li>
+  </ul>
+
+  <!-- Hamburger-Button (nur mobil sichtbar) -->
+  <button
+    class="nav-toggle"
+    aria-label="Menü öffnen"
+    aria-expanded="false"
+    aria-controls="mobile-menu"
+    onclick="toggleMenu(this)"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+</nav>
+
+<!-- Mobile Menü (klappt unter der Nav auf) -->
+<div id="mobile-menu" class="nav-mobile" role="dialog" aria-label="Mobilmenü">
+  <ul>
+    <li><a href="index.html" onclick="closeMenu()">Startseite</a></li>
+    <li><a href="index.html#artikel" onclick="closeMenu()">Artikel</a></li>
+    <li><a href="index.html#dossiers" onclick="closeMenu()">Dossiers</a></li>
+    <li><a href="suche.html" onclick="closeMenu()">Suche</a></li>
+    <div class="nav-divider">Rechtliches</div>
+    <li><a href="impressum.html" onclick="closeMenu()">Impressum</a></li>
+    <li><a href="datenschutz.html" onclick="closeMenu()">Datenschutz</a></li>
+  </ul>
+</div>
+<!-- ════════════════════════════════════════════ -->
+
+<div class="demo-content">
+  <h2>↑ Navigation testen — Browserfenster schmaler ziehen</h2>
+  <p>Ab 680px Breite erscheint der Hamburger-Button.<br>
+  Klick öffnet / schließt das mobile Menü.<br>
+  Klick außerhalb schließt ebenfalls.</p>
+</div>
+
+<!--
+  ════════════════════════════════════════════
+  JAVASCRIPT — vor </body> jeder Datei einfügen
+  ════════════════════════════════════════════
+-->
+<script>
+  function toggleMenu(btn) {
+    const menu = document.getElementById('mobile-menu');
+    const isOpen = menu.classList.contains('open');
+    if (isOpen) {
+      closeMenu();
+    } else {
+      menu.classList.add('open');
+      btn.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      btn.setAttribute('aria-label', 'Menü schließen');
+    }
+  }
+
+  function closeMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const btn = document.querySelector('.nav-toggle');
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', 'Menü öffnen');
+  }
+
+  // Klick außerhalb schließt Menü
+  document.addEventListener('click', e => {
+    const menu = document.getElementById('mobile-menu');
+    const btn = document.querySelector('.nav-toggle');
+    if (
+      menu.classList.contains('open') &&
+      !menu.contains(e.target) &&
+      !btn.contains(e.target)
+    ) {
+      closeMenu();
+    }
+  });
+
+  // Escape-Taste schließt Menü
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMenu();
+  });
+</script>
+
+</body>
+</html>
+
+<!--
+  ╔════════════════════════════════════════════════════════╗
+  ║  EINBAU-ANLEITUNG FÜR BESTEHENDE ARTIKEL-HTML-DATEIEN  ║
+  ╚════════════════════════════════════════════════════════╝
+
+  SCHRITT 1 — CSS in <head> einfügen:
+  Den gesamten CSS-Block zwischen den ════-Kommentaren
+  in den <style>-Tag jeder Datei kopieren.
+  (Oder als separate nav.css auslagern und per
+  <link rel="stylesheet" href="nav.css"> einbinden —
+  spart Zeit wenn viele Dateien aktualisiert werden.)
+
+  SCHRITT 2 — HTML nach <body> einfügen:
+  Den <nav class="site-nav">...</nav> Block +
+  den <div id="mobile-menu">...</div> Block
+  direkt nach <body> jeder Datei einfügen.
+  Die alte flache <nav> dabei entfernen.
+
+  SCHRITT 3 — JavaScript vor </body> einfügen:
+  Den <script>...</script>-Block vor </body> kopieren.
+
+  SCHRITT 4 — Alte Nav entfernen:
+  Die bisherige nav { display: flex; gap: 2rem } CSS
+  und den alten <nav>-Block löschen.
+
+  TIPP FÜR VIELE DATEIEN:
+  nav.css + nav-snippet.html als separate Dateien
+  anlegen, dann mit einem einfachen Python-Skript
+  alle HTML-Dateien im Repo auf einmal aktualisieren.
+  Auf Anfrage liefere ich das Skript.
+-->

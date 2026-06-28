@@ -193,6 +193,14 @@
     @media (max-width: 600px) {
       .site-header, .hero, .main, .site-footer { padding-left: 1rem; padding-right: 1rem; }
       .card-desc { display: none; }
+        /* ── SUCHLEISTE ── */
+        .search-bar { max-width: 720px; margin: 0 auto; padding: 1.5rem 2rem; border-bottom: 1px solid #1a1a1e; }
+        .search-wrapper { display: flex; border: 1px solid #27272a; overflow: hidden; transition: border-color 0.2s; }
+        .search-wrapper:focus-within { border-color: #e8c547; }
+        #search-input { flex: 1; background: #111113; border: none; outline: none; padding: 0.7rem 1rem; font-family: 'Courier New', monospace; font-size: 0.8rem; color: #d4d4d8; }
+        #search-input::placeholder { color: #3f3f46; }
+        #search-btn { background: transparent; color: #e8c547; border: none; border-left: 1px solid #27272a; padding: 0.7rem 1rem; cursor: pointer; font-family: 'Courier New', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+        #search-btn:hover { background: rgba(232,197,71,0.08); }
     }
   </style>
 </head>
@@ -222,6 +230,12 @@
       <span class="hero-stat">Stand: Juni 2026</span>
     </div>
   </section>
+    <div class="search-bar">
+          <div class="search-wrapper">
+                  <input type="text" id="search-input" placeholder="Artikel oder Dossier suchen …" autocomplete="off" oninput="filterContent(this.value)">
+                  <button id="search-btn" onclick="filterContent(document.getElementById('search-input').value)">Suchen</button>button>
+          </div>div>
+    </div>div>
 
   <main class="main">
 
@@ -584,5 +598,5 @@ Stand: Juni 2026 &nbsp;&middot;&nbsp;
 <a href="datenschutz.html">Datenschutz</a>
 </footer>
 
-</body>
+<script>
 </html>

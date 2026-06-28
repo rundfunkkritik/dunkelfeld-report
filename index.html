@@ -597,6 +597,38 @@ Stand: Juni 2026 &nbsp;&middot;&nbsp;
 <a href="impressum.html">Impressum</a> &nbsp;&middot;&nbsp;
 <a href="datenschutz.html">Datenschutz</a>
 </footer>
-
 <script>
+function filterContent(query) {
+  var q = query.trim().toLowerCase();
+  var cards = document.querySelectorAll('.article-card');
+  var blocks = document.querySelectorAll('.block');
+  var sections = document.querySelectorAll('.section-title');
+  if (!q) {
+    cards.forEach(function(c) { c.style.display = ''; });
+    blocks.forEach(function(b) { b.style.display = ''; });
+    sections.forEach(function(s) { s.style.display = ''; });
+    return;
+  }
+  cards.forEach(function(card) {
+    var text = card.textContent.toLowerCase();
+    var match = q.split(' ').every(function(w) { return text.includes(w); });
+    card.style.display = match ? '' : 'none';
+  });
+  blocks.forEach(function(block) {
+    var visible = Array.from(block.querySelectorAll('.article-card')).some(function(c) { return c.style.display !== 'none'; });
+    block.style.display = visible ? '' : 'none';
+  });
+  sections.forEach(function(st) {
+    var next = st.nextElementSibling;
+    var hasVisible = false;
+    while (next && !next.classList.contains('section-title')) {
+      if (next.style.display !== 'none') { hasVisible = true; break; }
+      next = next.nextElementSibling;
+    }
+    st.style.display = hasVisible ? '' : 'none';
+  });
+}
+</script>
+
+</body>
 </html>

@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bilderberg: Verschwörungstheorie und Praxis | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --bg-card: #111113;
+    --bg-source: #1a1a2e;
+    --amber: #e8c547;
+    --amber-dim: rgba(232,197,71,0.15);
+    --text: #d4d4d8;
+    --text-dim: #71717a;
+    --text-bright: #f4f4f5;
+    --border: #27272a;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --grey: #94a3b8;
+    --red: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .site-logo {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--amber);
+    text-transform: uppercase;
+  }
+  .site-logo span { color: var(--text-dim); }
+
+  /* MAIN */
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  /* EYEBROW */
+  .eyebrow {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .eyebrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* HEADLINE */
+  h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: normal;
+    line-height: 1.25;
+    color: var(--text-bright);
+    margin-bottom: 0.8rem;
+  }
+  h1 em {
+    color: var(--amber);
+    font-style: normal;
+  }
+
+  .subtitle {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* META */
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .meta-item {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  .meta-item strong { color: var(--amber); }
+
+  /* INTRO ALADIN BOX */
+  .aladin-box {
+    border: 1px solid var(--amber);
+    border-left: 4px solid var(--amber);
+    background: var(--amber-dim);
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 2rem;
+    border-radius: 0 4px 4px 0;
+  }
+  .aladin-box .aladin-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .aladin-box p {
+    font-size: 0.95rem;
+    color: var(--text-bright);
+    line-height: 1.7;
+  }
+
+  /* BODY TEXT */
+  p { padding-bottom: 1.2rem; color: var(--text); }
+
+  /* SECTION HEADS */
+  h2 {
+    font-family: Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: normal;
+    color: var(--amber);
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  h3 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin: 1.8rem 0 0.6rem;
+  }
+
+  /* TAG BADGES */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+  }
+  .tag-belegt   { background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid rgba(74,222,128,0.4); }
+  .tag-extra    { background: rgba(251,146,60,0.15); color: var(--orange); border: 1px solid rgba(251,146,60,0.4); }
+  .tag-offen    { background: rgba(148,163,184,0.15); color: var(--grey); border: 1px solid rgba(148,163,184,0.4); }
+  .tag-vt       { background: rgba(248,113,113,0.15); color: var(--red); border: 1px solid rgba(248,113,113,0.4); }
+
+  /* LEGENDE */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+    padding: 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+  }
+  .legend-item {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  /* SOURCE BOXES */
+  .source-box {
+    background: var(--bg-source);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 1.2rem 0 1.4rem;
+    font-size: 0.85rem;
+  }
+  .source-box .src-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .source-box p { padding-bottom: 0; color: var(--text-dim); }
+  .source-box a { color: var(--amber); text-decoration: none; }
+  .source-box a:hover { text-decoration: underline; }
+
+  /* STAT GRID */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    margin: 1.5rem 0;
+    border: 1px solid var(--border);
+  }
+  .stat-cell {
+    background: var(--bg-card);
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.6rem;
+    color: var(--amber);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  /* GEGENÜBERSTELLUNG */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+  .compare-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.7rem 1rem;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+  }
+  .compare-table th.vt-head { color: var(--red); }
+  .compare-table th.fakt-head { color: var(--green); }
+  .compare-table td {
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  .compare-table td:first-child { color: var(--text-dim); font-style: italic; }
+  .compare-table td:last-child { color: var(--text-bright); }
+  .compare-table tr:last-child td { border-bottom: none; }
+
+  /* TIMELINE */
+  .timeline { margin: 1.5rem 0; }
+  .tl-row {
+    display: flex;
+    gap: 1.2rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .tl-year {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--amber);
+    min-width: 52px;
+    padding-top: 0.15rem;
+  }
+  .tl-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text);
+  }
+  .tl-text strong { color: var(--text-bright); }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-left: 3px solid var(--amber);
+    padding: 0.8rem 1.4rem;
+    margin: 2rem 0;
+    font-size: 1.05rem;
+    color: var(--text-bright);
+    font-style: italic;
+    line-height: 1.7;
+  }
+  .pull-quote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    margin-top: 0.5rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* PERSON CARD */
+  .person-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 1rem 1.2rem;
+    margin: 0.8rem 0;
+  }
+  .person-name {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+  }
+  .person-role {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+  }
+  .person-note { font-size: 0.85rem; color: var(--text); }
+
+  /* OPEN QUESTIONS */
+  .open-questions {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 1.4rem;
+    margin-top: 2.5rem;
+  }
+  .oq-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .open-questions p {
+    font-style: italic;
+    padding-bottom: 0.6rem;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+  }
+  .open-questions p:last-child { padding-bottom: 0; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    max-width: 720px;
+    margin: 0 auto;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+  }
+
+  a { color: var(--amber); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  @media (max-width: 520px) {
+    .compare-table { font-size: 0.8rem; }
+    .compare-table td, .compare-table th { padding: 0.5rem 0.6rem; }
+    .stat-num { font-size: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-logo">dunkelfeld<span>.report</span></div>
+  <div style="font-family:'Courier New',monospace;font-size:0.65rem;color:var(--text-dim);letter-spacing:0.1em;">HIDDEN IN PLAIN SIGHT</div>
+</header>
+
+<main>
+
+  <div class="eyebrow">Machtstrukturen · Dossier</div>
+
+  <h1>Die <em>Bilderberg</em>-Konferenzen<br>Verschwörungstheorie und Praxis</h1>
+
+  <p class="subtitle">Was ist dokumentiert — und was wird daraus gemacht?<br>Ein Versuch der Trennung.</p>
+
+  <div class="meta-row">
+    <div class="meta-item">Stand <strong>Juni 2026</strong></div>
+    <div class="meta-item">Quellen <strong>Offiziell + parlamentarisch</strong></div>
+    <div class="meta-item">dunkelfeld.report</div>
+  </div>
+
+  <!-- LEGENDE -->
+  <div class="legend">
+    <div class="legend-item"><span class="tag tag-belegt">Belegt</span> Primärquelle vorhanden</div>
+    <div class="legend-item"><span class="tag tag-extra">Extrapolation</span> Strukturell plausibel, nicht beweisbar</div>
+    <div class="legend-item"><span class="tag tag-offen">Offen</span> Unbekannt, unbeantwortet</div>
+    <div class="legend-item"><span class="tag tag-vt">VT</span> Nicht belegbare Behauptung</div>
+  </div>
+
+  <!-- ALADIN INTRO -->
+  <div class="aladin-box">
+    <div class="aladin-label">Vorbemerkung · Das Aladin-Problem</div>
+    <p>In Tausendundeiner Nacht reibt Aladin eine Wunderlampe — und ein Geist erscheint. Das Bild ist verführerisch: Wer die Lampe besitzt, beherrscht die Welt. Die Bilderberg-Konferenz ist für viele genau diese Lampe. Das Problem: Die Lampe existiert tatsächlich. Sie wird nur nicht gerieben. Der Geist ist schon da — und heißt Netzwerk.</p>
+  </div>
+
+  <!-- ABSCHNITT 1: WAS IST BELEGT -->
+  <h2>Was ist dokumentiert</h2>
+
+  <p>Die Bilderberg-Konferenz findet seit 1954 jährlich statt. <span class="tag tag-belegt">Belegt</span> Gegründet auf Einladung von Prinz Bernhard der Niederlande, tagt sie seither einmal pro Jahr — mit Ausnahmen 1976 (Lockheed-Skandal), 2020 und 2021 (Pandemie). Das ist keine Behauptung alternativer Medien, sondern Eigenaussage der Veranstalter.</p>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <span class="stat-num">71</span>
+      <span class="stat-label">Konferenzen bis 2025</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">~130</span>
+      <span class="stat-label">Teilnehmer pro Jahr</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">~2.500</span>
+      <span class="stat-label">Personen seit 1954</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">23</span>
+      <span class="stat-label">Länder 2025</span>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <div class="src-label">Primärquelle · Offizielle Website</div>
+    <p><a href="https://www.bilderbergmeetings.org" target="_blank">bilderbergmeetings.org</a> — Teilnehmerlisten ab 2010 öffentlich einsehbar; Tagesordnungen werden kurz vor dem Treffen veröffentlicht.</p>
+  </div>
+
+  <h3>Struktur</h3>
+
+  <p>Es gibt keine formale Mitgliedschaft, keinen Gründungsvertrag und keine verabschiedeten Resolutionen. <span class="tag tag-belegt">Belegt</span> Ein Lenkungsausschuss (Steering Committee) von etwa 30 Personen lädt jährlich handverlesen ein. Verhandlungen laufen nach der Chatham House Rule: Inhalte dürfen weitergegeben werden, Aussagen jedoch niemals einer Person zugeordnet werden.</p>
+
+  <div class="source-box">
+    <div class="src-label">Bestätigt durch · Willy Claes (NATO-Generalsekretär a.D.)</div>
+    <p>Der belgische Politiker bestätigte in einem Interview auf Radio 1 (VRT Flandern) das Prozedere: Teilnehmer erhalten nach dem Treffen Zusammenfassungen, in denen Aussagen nur dem Herkunftsland, nie der Person zugeordnet werden. Die Protokolle sind vertraulich.</p>
+  </div>
+
+  <h3>Wer war 2024 dabei <span class="tag tag-belegt">Belegt</span></h3>
+
+  <p>Die 70. Konferenz fand vom 30. Mai bis 2. Juni 2024 in Madrid statt. Auf der offiziellen Teilnehmerliste standen unter anderem:</p>
+
+  <div class="person-card">
+    <div class="person-name">Friedrich Merz</div>
+    <div class="person-role">Vorsitzender CDU — zum Zeitpunkt der Konferenz Oppositionsführer</div>
+    <div class="person-note">Wurde im Februar 2025 Bundeskanzler. Seine Teilnahme wurde von deutschen Leitmedien weitgehend nicht berichtet.</div>
+  </div>
+  <div class="person-card">
+    <div class="person-name">Marco Buschmann</div>
+    <div class="person-role">Bundesjustizminister (FDP)</div>
+    <div class="person-note">Amtierender Minister bei Teilnahme. Auf abgeordnetenwatch.de keine öffentliche Antwort auf Bürgerfragen zur Konferenz gegeben.</div>
+  </div>
+  <div class="person-card">
+    <div class="person-name">Wolfgang Schmidt</div>
+    <div class="person-role">Kanzleramtsminister (SPD)</div>
+    <div class="person-note">Direkter Vertrauter von Olaf Scholz. Teilnahme auf offizieller Liste dokumentiert.</div>
+  </div>
+  <div class="person-card">
+    <div class="person-name">Mathias Döpfner</div>
+    <div class="person-role">Vorstandsvorsitzender Axel Springer SE</div>
+    <div class="person-note">Größter deutschsprachiger Medienkonzern. Döpfner ist regelmäßiger Teilnehmer.</div>
+  </div>
+
+  <div class="source-box">
+    <div class="src-label">Primärquelle · Bilderberg Meetings 2024</div>
+    <p><a href="https://www.bilderbergmeetings.org/meetings/meeting-2024/participants-2024" target="_blank">Offizielle Teilnehmerliste 2024</a> — abrufbar auf der Website der Konferenz.</p>
+  </div>
+
+  <h3>Wer war 2025 dabei <span class="tag tag-belegt">Belegt</span></h3>
+
+  <p>Die 71. Konferenz fand vom 12. bis 15. Juni 2025 im Grand Hôtel Stockholm statt. 121 Personen aus 23 Ländern, laut offiziellem Press Release. Auf der Agenda: Transatlantische Beziehungen, Ukraine, US-Wirtschaft, KI, Verteidigungsinnovation, Migration und — explizit genannt — „Depopulation and Migration".</p>
+
+  <div class="person-card">
+    <div class="person-name">Lars Klingbeil</div>
+    <div class="person-role">Vizekanzler, Bundesfinanzminister (SPD)</div>
+    <div class="person-note">Amtierender Vizekanzler der Bundesrepublik Deutschland bei Teilnahme.</div>
+  </div>
+  <div class="person-card">
+    <div class="person-name">Julia Klöckner</div>
+    <div class="person-role">Präsidentin des Deutschen Bundestags (CDU)</div>
+    <div class="person-note">Auf Anfrage über abgeordnetenwatch.de antwortete Klöckner zur Konferenz — ohne inhaltliche Angaben zum Agendapunkt "Depopulation".</div>
+  </div>
+  <div class="person-card">
+    <div class="person-name">Mark Rutte</div>
+    <div class="person-role">NATO-Generalsekretär</div>
+    <div class="person-note">Vielfacher Bilderberg-Teilnehmer (dokumentiert 2012, 2013, 2016, 2019, 2022, 2023, 2024, 2025).</div>
+  </div>
+  <div class="person-card">
+    <div class="person-name">Alex Karp / Peter Thiel</div>
+    <div class="person-role">CEO Palantir Technologies / Präsident Thiel Capital</div>
+    <div class="person-note">Beide prominent; Palantir liefert u.a. Datenanalysesoftware an Sicherheitsbehörden in Europa und den USA.</div>
+  </div>
+  <div class="person-card">
+    <div class="person-name">Albert Bourla</div>
+    <div class="person-role">Vorstandsvorsitzender Pfizer Inc.</div>
+    <div class="person-note">Pharmakonzern; Teilnahme auf offizieller Liste.</div>
+  </div>
+  <div class="person-card">
+    <div class="person-name">Richard Moore</div>
+    <div class="person-role">Direktor SIS/MI6 (britischer Auslandsgeheimdienst)</div>
+    <div class="person-note">Amtierender Geheimdienstchef bei Teilnahme.</div>
+  </div>
+
+  <div class="source-box">
+    <div class="src-label">Primärquelle · Bilderberg Meetings 2025</div>
+    <p><a href="https://www.bilderbergmeetings.org/meetings/meeting-2025/participants-2025" target="_blank">Offizielle Teilnehmerliste 2025</a> · <a href="https://www.bilderbergmeetings.org/meetings/meeting-2025/press-release-2025" target="_blank">Offizielles Press Release inkl. Agenda</a></p>
+  </div>
+
+  <!-- ABSCHNITT 2: MEDIENVERHALTEN -->
+  <h2>Dokumentiertes Medienverhalten</h2>
+
+  <p>Zum Zeitpunkt der Bilderberg-Konferenz 2024 berichtete laut Nachrichtenanalyse von nachdenkseiten.de kein einziges großes deutsches Leitmedium zum Zeitpunkt der Konferenz über die Teilnahme amtierender Bundesminister. <span class="tag tag-belegt">Belegt</span> Die Tagesordnung enthielt Themen wie „Zukunft der Kriegsführung" und „Ukraine und die Welt" — zu einem Zeitpunkt, an dem der russisch-ukrainische Krieg im dritten Jahr stand.</p>
+
+  <div class="pull-quote">
+    „Der Begriff ›Minister‹ taucht in der Gästeliste fünfzehn Mal auf."
+    <cite>Weltwoche, 13. Juni 2025, zur Bilderberg-Konferenz Stockholm</cite>
+  </div>
+
+  <p>Mathias Döpfner, Vorstandsvorsitzender von Axel Springer (BILD, WELT, Politico Europe), nahm 2024 als Medienvertreter an der Konferenz teil. <span class="tag tag-belegt">Belegt</span> Das Haus Springer berichtete nach Datenlage nicht über seine eigene Teilnahme seines CEOs an der Konferenz.</p>
+
+  <div class="source-box">
+    <div class="src-label">Parlamentarische Ebene · Österreich</div>
+    <p>Parlamentarische Anfragen österreichischer Abgeordneter (FPÖ) zur Teilnahme von Bundeskanzler Werner Faymann an der Bilderberg-Konferenz 2009 dokumentieren das Transparenzproblem auf parlamentarischer Ebene: Reisekosten, Gesprächsinhalte und Begleitpersonen wurden nicht offengelegt. <a href="https://www.parlament.gv.at/dokument/XXIV/J/2186/fnameorig_159472.html" target="_blank">Parlamentarische Anfrage XXIV. GP, Dok. 2186</a></p>
+  </div>
+
+  <!-- ABSCHNITT 3: GEGENÜBERSTELLUNG VT VS. FAKT -->
+  <h2>Verschwörungstheorie vs. dokumentierter Befund</h2>
+
+  <p>Eine nüchterne Gegenüberstellung: Was wird behauptet — und was ist tatsächlich belegt?</p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th class="vt-head">Verschwörungsbehauptung <span class="tag tag-vt">VT</span></th>
+        <th class="fakt-head">Dokumentierter Befund <span class="tag tag-belegt">Belegt</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Die Bilderberger treffen geheime Beschlüsse, die dann umgesetzt werden.</td>
+        <td>Keine Beschlüsse, keine Resolutionen — das ist Eigenaussage und wird von Forschern wie Prof. Thomas W. Gijswijt (Historiker, 50+ Jahre Archivanalyse) bestätigt. Einfluss auf Meinungsbildung ist belegt, Entscheidungsgewalt nicht.</td>
+      </tr>
+      <tr>
+        <td>Die Bilderberger wählen Kanzler und Präsidenten aus.</td>
+        <td>Peer Steinbrück nahm 2011 teil — Merkel blieb Kanzlerin. Merz nahm 2024 teil — wurde 2025 Kanzler. Kausalität unbeweisbar. Das Muster (Teilnahme vor Karriereschub) ist dokumentierbar, die Ursache nicht. <span class="tag tag-extra">Extrapolation</span></td>
+      </tr>
+      <tr>
+        <td>Die Konferenz ist total geheim, niemand weiß, wer dabei ist.</td>
+        <td>Seit ca. 2010 werden offizielle Teilnehmerlisten und Tagesordnungen nach dem Treffen auf der eigenen Website veröffentlicht. Die Inhalte der Gespräche bleiben unter Chatham House Rule verschwiegen.</td>
+      </tr>
+      <tr>
+        <td>Die Euro-Einführung und die deutsche Wiedervereinigung wurden bei Bilderberg beschlossen.</td>
+        <td>Keine Primärquelle belegt politische Beschlüsse. Die Konferenz diskutierte diese Themen — wie hunderte andere Foren auch. <span class="tag tag-vt">VT</span></td>
+      </tr>
+      <tr>
+        <td>Journalisten werden instruiert, nicht zu berichten.</td>
+        <td>Einige Journalisten nehmen als Teilnehmer teil (NYT, FT, Axel Springer). Eine schriftliche Anweisung zum Nicht-Berichten ist nicht dokumentiert. Das beobachtete Schweigen ist belegt — seine Ursache nicht. <span class="tag tag-offen">Offen</span></td>
+      </tr>
+      <tr>
+        <td>Die Öl-Krise 1973 wurde von Bilderberg initiiert.</td>
+        <td>Kein Beleg. Behauptung stammt aus nicht verifizierbaren Quellen. <span class="tag tag-vt">VT</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ABSCHNITT 4: DAS LEGITIMATIONSPROBLEM -->
+  <h2>Das Legitimationsproblem — unabhängig von Verschwörungstheorien</h2>
+
+  <p>Der Soziologe Rudolf Stumberger und der Politologe Detlef Grumbach (Deutschlandfunk 2010) beschrieben das strukturelle Problem unabhängig von Verschwörungsbehauptungen: <span class="tag tag-extra">Extrapolation</span> Neben den offiziellen demokratischen Strukturen gewinnen informelle Strukturen zunehmend an Gewicht. Wer als Privatperson teilnimmt, ist rechtlich nicht rechenschaftspflichtig — auch wenn er ein öffentliches Amt bekleidet.</p>
+
+  <div class="pull-quote">
+    „Tendenzen der Re-Feudalisierung. Das heißt, dass neben den offiziellen, demokratischen Strukturen die inoffiziellen Strukturen zunehmend wieder an Gewicht gewinnen."
+    <cite>Rudolf Stumberger, zitiert bei Deutschlandfunk 2010</cite>
+  </div>
+
+  <p>Das Bundeskanzleramt lehnte 2015 einen IFG-Antrag auf Herausgabe von Bilderberg-Protokollen ab. <span class="tag tag-belegt">Belegt</span> Die Ablehnung ist dokumentiert auf FragDenStaat. Begründung: nicht veröffentlicht.</p>
+
+  <div class="source-box">
+    <div class="src-label">IFG-Antrag · FragDenStaat 2015</div>
+    <p>Antrag auf Herausgabe aller dem Bundeskanzleramt vorliegenden Bilderberg-Protokolle, Einladungen und Dokumente — abgelehnt. Gebühren- und auslagenfrei beschieden. <a href="https://fragdenstaat.de/en/request/protokolle-bilderberg-konferenzen/" target="_blank">fragdenstaat.de</a></p>
+  </div>
+
+  <!-- ABSCHNITT 5: TIMELINE DES MUSTERS -->
+  <h2>Dokumentiertes Muster: Bilderberg und politische Karrieren</h2>
+
+  <p>Die folgenden Daten sind aus offiziellen Teilnehmerlisten. Die Interpretation des Musters obliegt dem Leser. <span class="tag tag-extra">Extrapolation</span></p>
+
+  <div class="timeline">
+    <div class="tl-row">
+      <span class="tl-year">2005</span>
+      <div class="tl-text"><strong>Angela Merkel</strong> nimmt an der Bilderberg-Konferenz in Rottach-Egern teil — als CDU-Vorsitzende und Oppositionsführerin. Im selben Jahr: Bundestagswahl. Merkel wird Bundeskanzlerin.</div>
+    </div>
+    <div class="tl-row">
+      <span class="tl-year">2006</span>
+      <div class="tl-text"><strong>Alfred Gusenbauer</strong> (SPÖ, Österreich) nimmt in Ottawa teil. 2007: wird Bundeskanzler.</div>
+    </div>
+    <div class="tl-row">
+      <span class="tl-year">2011</span>
+      <div class="tl-text"><strong>Peer Steinbrück</strong> nimmt teil — wurde nicht Kanzler. Merkel bleibt im Amt. <em>(Gegenbeweis zur Kausalitätsthese)</em></div>
+    </div>
+    <div class="tl-row">
+      <span class="tl-year">2023</span>
+      <div class="tl-text"><strong>Ursula von der Leyen</strong> — laut Medienberichten Teilnahme vor ihrer Nominierung als EU-Kommissionspräsidentin. Nominierung und Bestätigung erfolgten 2024.</div>
+    </div>
+    <div class="tl-row">
+      <span class="tl-year">2024</span>
+      <div class="tl-text"><strong>Friedrich Merz</strong> nimmt in Madrid teil — als CDU-Vorsitzender und Oppositionsführer. Im Februar 2025: wird Bundeskanzler.</div>
+    </div>
+    <div class="tl-row">
+      <span class="tl-year">2025</span>
+      <div class="tl-text"><strong>Lars Klingbeil</strong> (Vizekanzler) und <strong>Julia Klöckner</strong> (Bundestagspräsidentin) nehmen in Stockholm teil. Klingbeil auf Bürgeranfrage über abgeordnetenwatch: keine inhaltliche Stellungnahme.</div>
+    </div>
+  </div>
+
+  <!-- ABSCHNITT 6: DAS ALADIN-PROBLEM -->
+  <h2>Zurück zur Wunderlampe — das Aladin-Problem</h2>
+
+  <p>Das Aladin-Motiv beschreibt ein reales epistemisches Dilemma: Die Bilderberg-Konferenz ist dokumentiert genug, um legitime Fragen aufzuwerfen — und gleichzeitig undurchsichtig genug, um Projektionsfläche für jede Welterklärung zu sein.</p>
+
+  <p>Die Verschwörungstheorie benötigt die Konferenz als Schaltzentrale: Hier werden Kanzler gemacht, Kriege geplant, Währungen eingeführt. Das Problem: Genau diese Behauptungen lassen sich nicht belegen — und erzeugen damit eine Immunisierung gegen Kritik. Wer die VT ablehnt, gilt als naiv oder als Teil des Systems.</p>
+
+  <p>Die nüchterne Sicht: Eine Konferenz, bei der amtierende Finanzminister, Geheimdienstchefs, Rüstungskonzernchefs, KI-Unternehmenschefs und handverlesene Journalisten unter Schweigepflicht tagen, ist kein Stammtisch. Das ist auch ohne Weltregierungsthese ein Transparenzproblem in einer Demokratie. <span class="tag tag-extra">Extrapolation</span></p>
+
+  <div class="pull-quote">
+    „Es ist kein Skandal, dass diese Konferenz stattfindet. Es ist skandalös, dass die Medien dies totschweigen."
+    <cite>Leserkommentar, Weltwoche, 13. Juni 2025 — keine journalistische Quelle, aber symptomatisch für die Wahrnehmung</cite>
+  </div>
+
+  <h3>Was Bilderberg ist — und was nicht</h3>
+
+  <p>Bilderberg ist ein jährliches, informelles Netzwerktreffen der transatlantischen Elite ohne formale Beschlüsse, ohne demokratische Legitimation, ohne Rechenschaftspflicht. Es ist kein Geheimbund, aber auch kein normales Symposium. Die Chatham House Rule erlaubt Offenheit — auf Kosten der Nachvollziehbarkeit.</p>
+
+  <p>Die größte Wirkung der Konferenz liegt wahrscheinlich nicht in geheimen Absprachen, sondern in dem, was Soziologen als „Habitusprägung" beschreiben: Wer in diesem Kreis verkehrt, bewegt sich in einem gemeinsamen Koordinatensystem aus Annahmen, Prioritäten und Personen. Das ist schwerer zu greifen als ein Protokoll — und möglicherweise einflussreicher. <span class="tag tag-extra">Extrapolation</span></p>
+
+  <!-- OFFENE FRAGEN -->
+  <div class="open-questions">
+    <div class="oq-label">Offene Fragen · Stand Juni 2026</div>
+    <p>Was wurde zwischen amtierenden deutschen Regierungsvertretern und dem CEO von Palantir Technologies sowie dem Chef des britischen MI6 in Stockholm 2025 besprochen?</p>
+    <p>Warum berichteten ARD, ZDF und die meisten deutschen Leitmedien 2024 nicht über die Bilderberg-Teilnahme eines amtierenden Bundesjustizministers, eines Kanzleramtsministers und des späteren Bundeskanzlers?</p>
+    <p>Welche Kosten entstanden dem deutschen Steuerzahler durch die Teilnahme amtierender Minister — und wurden diese korrekt ausgewiesen?</p>
+    <p>Was genau ist unter dem Agendapunkt „Depopulation and Migration" (Stockholm 2025) zu verstehen — und warum beantwortete Julia Klöckner diese Frage auf abgeordnetenwatch.de nicht inhaltlich?</p>
+    <p>Existieren beim Bundeskanzleramt Protokolle oder Briefings zu Bilderberg-Konferenzen — und warum wurde der IFG-Antrag 2015 abgelehnt?</p>
+  </div>
+
+</main>
+
+<footer>
+  <p style="margin-bottom:0.5rem;">dunkelfeld.report — Hidden in Plain Sight</p>
+  <p>Primärquellen: bilderbergmeetings.org (offizielle Website) · fragdenstaat.de (IFG-Antrag) · parlament.gv.at (parlamentarische Anfragen) · abgeordnetenwatch.de (Bürgerfragen an Klöckner/Merz) · nachdenkseiten.de (Medienbeobachtung 2024/2025) · weltwoche.ch (Berichterstattung 2025) · Wikipedia (Teilnehmerlisten mit Quellenverweisen auf publicintelligence.net)</p>
+  <p style="margin-top:0.8rem;color:#3f3f46;">Alle Aussagen sind mit Quellangaben versehen. Interpretationen sind als EXTRAPOLATION gekennzeichnet. Keine Motive werden Personen oder Institutionen zugeschrieben.</p>
+</footer>
+
+</body>
+</html>

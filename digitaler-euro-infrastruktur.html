@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Digitale Euro | dunkelfeld.report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.85;
+    min-height: 100vh;
+  }
+
+  a { color: #e8c547; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* NAV */
+  nav {
+    border-bottom: 1px solid #27272a;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .nav-brand {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #e8c547;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .nav-sep { color: #3f3f46; font-size: 0.75rem; }
+  .nav-link { font-family: 'Courier New', monospace; font-size: 0.75rem; color: #71717a; letter-spacing: 0.08em; }
+
+  /* HERO */
+  .hero {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 2rem 2rem;
+  }
+
+  .series-tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #e8c547;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.25;
+    color: #fafafa;
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    font-size: 1.15rem;
+    color: #a1a1aa;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1rem 0;
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+    margin-bottom: 3rem;
+  }
+  .meta-item {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #71717a;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .meta-item span { color: #a1a1aa; }
+
+  /* CONTENT */
+  .content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+
+  p { margin-bottom: 1.2rem; }
+
+  h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #fafafa;
+    margin: 3rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #27272a;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e8c547;
+    margin: 2rem 0 0.75rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  /* TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 0.2em 0.6em;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-right: 0.4em;
+  }
+  .tag-belegt { background: #14532d; color: #4ade80; border: 1px solid #166534; }
+  .tag-extrapolation { background: #431407; color: #fb923c; border: 1px solid #7c2d12; }
+  .tag-offen { background: #1c1c1e; color: #71717a; border: 1px solid #3f3f46; }
+
+  /* SOURCE BOX */
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+  .source-box .source-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: #e8c547;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .source-box p { margin-bottom: 0.5rem; color: #a1a1aa; }
+  .source-box p:last-child { margin-bottom: 0; }
+
+  /* STAT GRID */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: #27272a;
+    margin: 2rem 0;
+    border: 1px solid #27272a;
+  }
+  .stat-cell {
+    background: #09090b;
+    padding: 1.25rem;
+  }
+  .stat-value {
+    font-family: 'Courier New', monospace;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #e8c547;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: #71717a;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* TIMELINE */
+  .timeline { margin: 2rem 0; }
+  .timeline-row {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #18181b;
+  }
+  .timeline-row:last-child { border-bottom: none; }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #e8c547;
+    padding-top: 0.1rem;
+  }
+  .timeline-text { font-size: 0.95rem; color: #a1a1aa; }
+  .timeline-text strong { color: #e4e4e7; }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-left: 3px solid #e8c547;
+    margin: 2.5rem 0;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #d4d4d8;
+  }
+  .pull-quote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #71717a;
+    margin-top: 0.5rem;
+    letter-spacing: 0.08em;
+  }
+
+  /* COMPARISON TABLE */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.9rem;
+  }
+  .compare-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #71717a;
+    padding: 0.6rem 1rem;
+    text-align: left;
+    border-bottom: 2px solid #27272a;
+  }
+  .compare-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #18181b;
+    vertical-align: top;
+    color: #a1a1aa;
+  }
+  .compare-table td:first-child { color: #e4e4e7; font-weight: 600; }
+  .compare-table tr:hover td { background: #0f0f12; }
+
+  /* WARNING BOX */
+  .warn-box {
+    background: #1c0e05;
+    border: 1px solid #7c2d12;
+    border-left: 3px solid #fb923c;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+  .warn-box .warn-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: #fb923c;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  /* OPEN QUESTIONS */
+  .open-questions {
+    border: 1px solid #27272a;
+    background: #0f0f12;
+    padding: 1.5rem;
+    margin: 3rem 0 1rem;
+  }
+  .oq-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: #71717a;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .open-questions ul {
+    list-style: none;
+    padding: 0;
+  }
+  .open-questions li {
+    font-style: italic;
+    color: #71717a;
+    font-size: 0.95rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #18181b;
+  }
+  .open-questions li:last-child { border-bottom: none; }
+  .open-questions li::before {
+    content: '? ';
+    color: #3f3f46;
+    font-style: normal;
+    font-family: 'Courier New', monospace;
+  }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+    border-top: 1px solid #27272a;
+    margin-top: 3rem;
+  }
+  .legend-item {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: #71717a;
+    letter-spacing: 0.05em;
+  }
+
+  /* FOOTNOTES */
+  .footnotes {
+    border-top: 1px solid #27272a;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+  }
+  .footnotes h3 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #3f3f46;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .footnote {
+    font-size: 0.8rem;
+    color: #52525b;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+  }
+  .footnote a { color: #52525b; text-decoration: underline; }
+
+  sup { font-size: 0.65em; color: #e8c547; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">dunkelfeld.report</span>
+  <span class="nav-sep">///</span>
+  <a href="#" class="nav-link">Infrastruktur der Kontrolle</a>
+  <span class="nav-sep">|</span>
+  <a href="#" class="nav-link">Monetäre Systeme</a>
+</nav>
+
+<div class="hero">
+  <div class="series-tag">// Artikel #17-A · Monetäre Infrastruktur · Juni 2026</div>
+  <h1>Der Digitale Euro: Infrastruktur, Versprechen und das ungelöste Strukturproblem</h1>
+  <p class="subtitle">Die EZB treibt das bislang ambitionierteste Zentralbankgeld-Projekt der EU voran. Gleichzeitig stellen Ökonomen die Frage, die seit 1999 unbeantwortet blieb: Kann eine einheitliche digitale Währung lösen, was ihre analoge Vorgängerin nicht lösen konnte?</p>
+
+  <div class="meta-row">
+    <div class="meta-item">Stand: <span>29. Juni 2026</span></div>
+    <div class="meta-item">Kategorie: <span>Monetäre Systeme / Digitale Infrastruktur</span></div>
+    <div class="meta-item">Quellen: <span>EUR-Lex · EZB · Bundesbank · IMK · Flossbach von Storch RI</span></div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- BLOCK 1: Status quo -->
+  <h2>Wo steht das Projekt heute</h2>
+
+  <p>Am 23. Juni 2026 stimmte der Wirtschafts- und Währungsausschuss (ECON) des Europäischen Parlaments mit 43 zu 14 Stimmen für die Verhandlungsposition zum digitalen Euro. Das ist kein abgeschlossenes Gesetz, sondern ein Mandat für den sogenannten Trilog — die Verhandlungsrunde zwischen Parlament, Rat und Kommission, die im Juli 2026 beginnt.<sup>1</sup></p>
+
+  <p>Die formale Rechtsbasis fehlt damit noch. Die EZB selbst macht deutlich: Erst wenn die Verordnung steht, entscheidet der EZB-Rat eigenständig über eine Ausgabe. Alle technischen Vorbereitungen laufen parallel — sie sind eine Wette auf den Ausgang des Gesetzgebungsverfahrens.</p>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <span class="stat-value">2026</span>
+      <span class="stat-label">Gesetz erwartet (Ende)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">H2/2027</span>
+      <span class="stat-label">Pilotphase (12 Monate)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">2029</span>
+      <span class="stat-label">Früheste Erstausgabe</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">4–5,8 Mrd. €</span>
+      <span class="stat-label">Bankensektor-Kosten (EZB-Schätzung)</span>
+    </div>
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Der aktuelle Zeitplan sieht vor: Gesetz Ende 2026, zwölfmonatiges Pilotprojekt mit ausgewählten Zahlungsdienstleistern, Händlern und Nutzern ab Mitte 2027, früheste Erstausgabe 2029.<sup>2</sup></p>
+
+  <!-- BLOCK 2: Infrastruktur -->
+  <h2>Die technische Infrastruktur</h2>
+
+  <p>Was wird technisch gebaut? Die EZB veröffentlichte im März 2026 Kooperationsverträge mit drei europäischen Standardisierungsgremien: der European Cards Stakeholders Group (ECSG), Nexo Standards und der Berlin Group. Ziel ist eine Infrastruktur auf Basis offener, nicht-proprietärer Standards — bewusst konzipiert als Alternative zu Visa, Mastercard und PayPal.<sup>3</sup></p>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Die Infrastruktur soll der öffentlichen Hand gehören. Private Unternehmen — Banken, Zahlungsdienstleister — können sie nutzen und beim Serviceangebot miteinander konkurrieren. Nutzer stehen in keiner direkten Vertragsbeziehung zur EZB, sondern ausschließlich zu den dazwischen geschalteten Zahlungsdienstleistern.<sup>4</sup></p>
+
+  <h3>// Technische Parameter (Stand Rulebook v0.9, Juni 2025)</h3>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Geplante Ausgestaltung</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Technologie</td>
+        <td>Kein Blockchain / keine DLT — zentralisierte Infrastruktur des Eurosystems</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Online-Zahlung</td>
+        <td>Ja — über Smartphone-Wallet, Karte oder Browser</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Offline-Zahlung</td>
+        <td>Ja — auch ohne Internetverbindung, ähnlich Bargeld</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Haltegrenze</td>
+        <td>Geplant, Höhe offen; 3.000 € nur EZB-Arbeitszahl, kein Beschluss</td>
+        <td><span class="tag tag-offen">OFFEN</span></td>
+      </tr>
+      <tr>
+        <td>Verzinsung</td>
+        <td>Keine — Guthaben in digitalen Euro ist unverzinst</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Waterfall-Effekt</td>
+        <td>Automatischer Aus-/Eingang vom/zum Girokonto bei Über-/Unterschreitung der Haltegrenze</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Unternehmensnutzung</td>
+        <td>Nur Transito — Unternehmen dürfen eingehende Zahlungen max. 24h halten</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>EUid-Integration</td>
+        <td>Onboarding über EU Digital Identity Wallet vorgesehen</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Nutzung außerhalb Eurozone</td>
+        <td>Geregelt in Art. 18–21 VO-E-DE; unterschiedlich für EU-Nicht-Eurostaaten und Drittstaaten</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <div class="source-label">// Primärquelle</div>
+    <p>EZB, Digital Euro Scheme Rulebook v0.9, 30.06.2025 — Entwurf, nicht final. Verordnungsentwurf der EU-Kommission vom 28.06.2023, CELEX: 52023PC0369. Änderungen durch den laufenden Trilog sind ausdrücklich vorgesehen.</p>
+  </div>
+
+  <!-- BLOCK 3: Programmierbarkeit -->
+  <h2>Die Programmierbarkeits-Frage: Was steht wirklich im Verordnungsentwurf</h2>
+
+  <p>Das am häufigsten zitierte Versprechen der EZB: Der digitale Euro werde „niemals programmierbares Geld" sein. Keine Verfallsdaten. Keine Zweckbindung. Keine CO₂-Konten. <span class="tag tag-belegt">BELEGT</span> — diese Zusage steht wörtlich im Verordnungsentwurf.<sup>5</sup></p>
+
+  <p>Allerdings enthält derselbe Text an anderer Stelle eine Bestimmung, die Wirtschaftsjournalist Norbert Häring in einer Analyse vom Juni 2026 als Widerspruch markiert:</p>
+
+  <div class="pull-quote">
+    „Der digitale Euro soll die Programmierung von Zahlungen in digitalen Euro durch Zahlungsdienstleister unterstützen."
+    <cite>— Erwägungsgrund 55, Verordnungsentwurf digitaler Euro (EU-Kommission, 2023/0212 COD)</cite>
+  </div>
+
+  <div class="warn-box">
+    <div class="warn-label">// Extrapolation — strukturell plausibel, Interpretation umstritten</div>
+    <p><span class="tag tag-extrapolation">EXTRAPOLATION</span> Häring argumentiert: Der Verordnungsentwurf definiert „programmierbares Geld" sehr eng — als Einheiten, denen Ausgabebeschränkungen <em>inhärent</em> sind, unabhängig davon, wer sie gerade besitzt. „Programmierbare Zahlungen" hingegen — automatisch ausgelöste Transaktionen, wenn vertraglich vereinbarte Bedingungen erfüllt sind — sollen ausdrücklich ermöglicht und von der EZB-Infrastruktur unterstützt werden. Der Unterschied: <em>Wer</em> die Bedingung setzt. Bei programmierbarem Geld: niemand, das Geld selbst. Bei programmierbaren Zahlungen: ein Vertragspartner — Staat, Plattform, Arbeitgeber.</p>
+    <p>Ob und wie diese technische Möglichkeit regulatorisch eingehegt bleibt, ist Gegenstand der laufenden Trilog-Verhandlungen. Primärquelle: Häring, Norbert: „Der ‚nicht-programmierbare' digitale Euro ist eine Mogelpackung", norberthaering.de, 21.06.2026 — Sekundärquelle; Erwägungsgrund 55 ist Primärquelle und unabhängig verifizierbar.</p>
+  </div>
+
+  <!-- BLOCK 4: Das Nord-Süd-Problem -->
+  <h2>Der strukturelle Schatten: Das ungelöste Nord-Süd-Problem</h2>
+
+  <p>1999 trat der Euro in Kraft. Kritiker der ersten Stunde — darunter Ökonomen wie Hans-Werner Sinn (ifo-Institut) und die Autoren der Theorie des „optimalen Währungsraums" nach Robert Mundell — wiesen auf ein Grundproblem hin: Eine einheitliche Geldpolitik für wirtschaftlich heterogene Volkswirtschaften führt zwangsläufig zu Ungleichgewichten, wenn keine fiskalischen Ausgleichsmechanismen existieren.<sup>6</sup></p>
+
+  <p>Das Messinstrument für diese Ungleichgewichte: TARGET2, das Zahlungsverrechnungssystem der nationalen Zentralbanken im Eurosystem.</p>
+
+  <h3>// Was TARGET2-Salden messen</h3>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Über TARGET2 fließen pro Tag im Durchschnitt rund 340.000 Zahlungen im Wert von rund 1,7 Billionen Euro. Wenn eine Geschäftsbank in Spanien Zentralbankgeld an eine Bank in Deutschland überweist, entsteht bei der Deutschen Bundesbank eine Forderung gegenüber der EZB — und bei der Banco de España eine entsprechende Verbindlichkeit. Diese Salden akkumulieren sich über Jahre.<sup>7</sup></p>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <span class="stat-value">~750 Mrd. €</span>
+      <span class="stat-label">Bundesbank TARGET2-Forderung (Zwischenhoch 2012)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">&gt;900 Mrd. €</span>
+      <span class="stat-label">Bundesbank TARGET2-Forderung (August 2022)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">20–30 Mio.</span>
+      <span class="stat-label">Telefonverbindungen/Datensätze aus DE täglich an NSA (BND-Kooperation, Snowden-Dokumente)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">1,7 Bio. €</span>
+      <span class="stat-label">Tägliches Transaktionsvolumen in TARGET2</span>
+    </div>
+  </div>
+
+  <h3>// Die Mechanik der Ungleichgewichte</h3>
+
+  <p>Die Bundesbank selbst formuliert es so: „Die TARGET2-Salden sind ein Symptom. Die Ursachen liegen außerhalb von TARGET2."<sup>8</sup> Die strukturellen Ursachen sind in der akademischen Literatur dokumentiert:</p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Ursache</th>
+        <th>Wirkung auf Salden</th>
+        <th>Bewertung</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Dauerhafte Leistungsbilanzüberschüsse (Deutschland, NL, FI)</td>
+        <td>Positive Salden im Norden</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Kapitalflucht aus Krisenländern (2010–2012)</td>
+        <td>Schlagartige Erhöhung der Bundesbank-Forderungen</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>EZB-Anleihekaufprogramme (QE)</td>
+        <td>Struktureller Anstieg ab 2015 — unabhängig von Vertrauenskrisen</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Fehlende Saldierungspflicht (anders als US-Fed)</td>
+        <td>Salden akkumulieren ohne periodischen Ausgleich</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <div class="source-label">// Vergleich: USA / Federal Reserve</div>
+    <p>Im US-Zentralbanksystem (Fed, Interdistrict Settlement Account) gleicht die Federal Reserve einmal jährlich Ungleichgewichte zwischen Distriktbanken aus — durch Umverteilung von Sicherheiten im System Open Market Account. Ein analoges Verfahren für TARGET2 wurde diskutiert, aber nie eingeführt.</p>
+    <p>Quelle: Wirtschaftliche Freiheit / Kölner Impuls zur Wirtschaftspolitik, „Target2-Salden im Euro System: Viel Rauch um Nichts?", 2019.</p>
+  </div>
+
+  <h3>// Löst der digitale Euro das Nord-Süd-Problem?</h3>
+
+  <p>Die EZB bewirbt den digitalen Euro u.a. als Mittel zur „Verringerung der Fragmentierung im Massenzahlungsverkehr" und zur Stärkung der europäischen Währungshoheit.<sup>9</sup> Beide Ziele sind innerhalb des Projekts operationalisiert: einheitliche Wallet-Standards, europaweite Akzeptanzpflicht, öffentliche Infrastruktur.</p>
+
+  <p>Die Frage der TARGET2-Ungleichgewichte berührt das Projekt jedoch strukturell nicht.</p>
+
+  <div class="warn-box">
+    <div class="warn-label">// Extrapolation — basierend auf dokumentierten Strukturzusammenhängen</div>
+    <p><span class="tag tag-extrapolation">EXTRAPOLATION</span> Der digitale Euro ist ein Zahlungsinstrument. Er adressiert, <em>wie</em> Geld übertragen wird — nicht, <em>warum</em> es dauerhaft in eine Richtung fließt. Die Ursachen der TARGET2-Salden — strukturelle Leistungsbilanzungleichgewichte, unterschiedliche Produktivitätsniveaus, fehlende fiskalische Ausgleichsmechanismen — bleiben unberührt. Ein einheitlicheres Zahlungssystem kann sogar die Effizienz der Kapitalabflüsse aus schwächeren Volkswirtschaften erhöhen: leichterer Kapitaltransfer bedeutet auch: leichtere Flucht in „sichere" Volkswirtschaften bei Vertrauenserschütterungen. Ob dieser Effekt durch andere Maßnahmen (Bankenunion, Kapitalmarktunion, NextGenerationEU-Transfers) ausgeglichen wird, ist eine offene politische Frage.</p>
+  </div>
+
+  <div class="source-box">
+    <div class="source-label">// Dokumentierter Ökonomen-Konsens</div>
+    <p>Flossbach von Storch Research Institute (2026): „Eine gemeinsame Geldpolitik ist nur dann effizient, wenn wirtschaftliche Strukturen und Konjunkturzyklen ähnlich sind. Oder wenn alternative Anpassungsmechanismen wie flexible Arbeitsmärkte, integrierte Kapitalmärkte und Finanztransfers zur Verfügung stehen." Der Euroraum erfülle diese Bedingungen nach über 25 Jahren Euro weiterhin nicht vollständig.</p>
+    <p>Institut für Makroökonomie und Konjunkturforschung (IMK): „Verzicht auf Risikoteilung ist eine Illusion, da die Risikoteilung lediglich an anderer Stelle vollzogen wird — beispielsweise durch die TARGET2-Salden."</p>
+  </div>
+
+  <!-- BLOCK 5: Datenschutz-Architektur -->
+  <h2>Datenschutz-Architektur: Was ist dokumentiert</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Die technischen Datenschutz-Spezifikationen sind seit Ende 2025 festgelegt. Die EZB formuliert: Weder EZB noch Eurosystem können anhand vorliegender Zahlungsdaten Rückschlüsse auf Identität oder Einkaufsverhalten einzelner Personen ziehen.<sup>10</sup></p>
+
+  <p>Offline-Zahlungen sollen so privat wie Bargeld sein — d.h. ohne Übertragung von Daten an Dritte. Online-Zahlungen laufen über Zahlungsdienstleister, die regulatorischen Pflichten unterliegen.</p>
+
+  <p><span class="tag tag-offen">OFFEN</span> Was die endgültige Verordnung nach dem Trilog an Datenzugriffsrechten für Strafverfolgungsbehörden oder Geheimdienste vorsieht, ist öffentlich nicht festgelegt. Die DSGVO gilt für den digitalen Euro — schützt aber bekanntermaßen nicht vor geheimdienstlicher Massenüberwachung durch Partnerdienste.<sup>11</sup></p>
+
+  <!-- BLOCK 6: Digitale Infrastruktur + Regulierungsrahmen -->
+  <h2>Das regulatorische Ökosystem: Digitaler Euro ist nicht allein</h2>
+
+  <p>Der digitale Euro tritt in ein sich rasch veränderndes Regulierungsumfeld ein. Parallel entstehen Infrastrukturschichten, die ihn technisch bedingen:</p>
+
+  <div class="timeline">
+    <div class="timeline-row">
+      <div class="timeline-date">12/2026</div>
+      <div class="timeline-text"><strong>EU Digital ID Wallet</strong> — Mitgliedstaaten müssen bis Ende 2026 die nationale eID-Wallet umgesetzt haben. Vorgesehen als Onboarding-Weg für den digitalen Euro.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-date">08/2026</div>
+      <div class="timeline-text"><strong>EU-KI-Gesetz</strong> — tritt weitgehend in Kraft. Reguliert KI-Systeme, die in Zahlungsinfrastrukturen eingesetzt werden können.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-date">H2/2027</div>
+      <div class="timeline-text"><strong>Digitaler Euro Pilotphase</strong> — 12 Monate mit ausgewählten Zahlungsdienstleistern und Händlern.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-date">12/2027</div>
+      <div class="timeline-text"><strong>Cyber Resilience Act</strong> — verpflichtende Cybersicherheitsanforderungen für digitale Produkte und Infrastrukturen.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-date">2029</div>
+      <div class="timeline-text"><strong>Digitaler Euro Erstausgabe</strong> — frühestmöglicher Termin, abhängig vom Gesetzgebungsabschluss 2026.</div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <div class="source-label">// Dokumentierter Widerstand</div>
+    <p>Reuters berichtete: EU-Institutionen, Banken und Kommentatoren äußerten Zweifel am Projekt, nachdem es 2023 zu einem Ausfall im EZB-eigenen TARGET2-System kam. Die Branche fordert Nachweis, dass eine Infrastruktur für den digitalen Euro sicherer und robuster als das bestehende System sein kann.</p>
+    <p>70 Ökonomen und akademische Experten — darunter Thomas Piketty und Paul de Grauwe — veröffentlichten 2026 einen offenen Brief ans EU-Parlament. Kernaussage: Ein robuster öffentlicher digitaler Euro sei „die einzige Verteidigung" gegen Europas wachsende Abhängigkeit von US-basierten Zahlungssystemen.</p>
+  </div>
+
+  <!-- OFFENE FRAGEN -->
+  <div class="open-questions">
+    <div class="oq-label">// Offene Fragen — Stand Juni 2026</div>
+    <ul>
+      <li>Welche genaue Haltegrenze wird die finale Verordnung festschreiben — und welche Interessengruppen haben diese Zahl geprägt?</li>
+      <li>Wie wird der Unterschied zwischen „programmierbarem Geld" und „programmierbaren Zahlungen" im Trilog und in der finalen Verordnung präzisiert?</li>
+      <li>Welche Datenzugriffsrechte für Strafverfolgungsbehörden und Geheimdienste enthält der finale Rechtstext?</li>
+      <li>Wie verhält sich die Integration mit der EU Digital ID Wallet zu bestehenden Datenschutzgrundrechten?</li>
+      <li>Verändert ein effizienterer europaweiter Kapitalfluss die Dynamik der TARGET2-Ungleichgewichte — und in welche Richtung?</li>
+      <li>Wie wird der Wholesale-CBDC (für den Interbankenhandel) im Verhältnis zum Retail-CBDC ausgestaltet — und welche Programmierbarkeit gilt für ersteres?</li>
+      <li>Was passiert mit dem Projekt, wenn das Gesetz 2026 nicht verabschiedet wird oder inhaltlich stark von der EZB-Planung abweicht?</li>
+    </ul>
+  </div>
+
+  <div class="legend">
+    <span class="legend-item"><span class="tag tag-belegt">BELEGT</span> Primärquelle verifiziert</span>
+    <span class="legend-item"><span class="tag tag-extrapolation">EXTRAPOLATION</span> Strukturell plausibel, interpretativ</span>
+    <span class="legend-item"><span class="tag tag-offen">OFFEN</span> Ungelöst / keine belastbare Quelle</span>
+  </div>
+
+  <!-- FOOTNOTES -->
+  <div class="footnotes">
+    <h3>// Quellen und Fußnoten</h3>
+    <p class="footnote">[1] EU-Parlament, Pressemitteilung, 23.06.2026: ECON-Ausschuss nimmt Verhandlungsposition an.</p>
+    <p class="footnote">[2] EZB, Digital Euro Pilot, ecb.europa.eu/euro/digital_euro/pilot, Stand 05.03.2026.</p>
+    <p class="footnote">[3] EZB, Pressemitteilung, 24.04.2026: Kooperationsabkommen mit ECSG, Nexo Standards und Berlin Group.</p>
+    <p class="footnote">[4] EZB, LS Partner Blog-Analyse: Digitaler Euro — EU-Verordnung und EZB-Rulebook, November 2025, basierend auf VO-Entwurf 2023/0212 (COD) und Rulebook v0.9.</p>
+    <p class="footnote">[5] EU-Kommission, Verordnungsentwurf zur Einführung des digitalen Euro, CELEX: 52023PC0369, 28.06.2023, Erwägungsgrund 55 sowie Art. zu „bedingten Zahlungen".</p>
+    <p class="footnote">[6] Flossbach von Storch Research Institute: „Der Euro als optimaler Währungsraum? Eine Bestandsaufnahme", Januar 2026. Grundlage: Robert Mundell, „A Theory of Optimum Currency Areas", American Economic Review, 1961.</p>
+    <p class="footnote">[7] Deutsche Bundesbank: „Wenn der Euro unverändert fortbesteht, ist Target kein Risiko", bundesbank.de, 2018; Angaben zu Transaktionsvolumen.</p>
+    <p class="footnote">[8] Ibid. Wörtlich: „Die TARGET2-Salden sind ein Symptom, die Ursachen für ihre Entwicklung liegen außerhalb von TARGET2."</p>
+    <p class="footnote">[9] EZB, Rede Piero Cipollone, Europäisches Parlament Brüssel, 24.03.2026, ecb.europa.eu/press/key/date/2026.</p>
+    <p class="footnote">[10] EZB, FAQ zum digitalen Euro, Stand 05.03.2026; ecb.europa.eu/euro/digital_euro/faqs.</p>
+    <p class="footnote">[11] Bundeszentrale für politische Bildung / bpb.de: „Europas Datenschutz schützt nicht vor der NSA", 2017. Die DSGVO reguliert private Akteure und staatliche EU-Akteure — nicht Geheimdienste.</p>
+  </div>
+
+</div><!-- /content -->
+</body>
+</html>

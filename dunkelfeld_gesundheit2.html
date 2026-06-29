@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Die verschwiegene Rechnung | dunkelfeld.info</title>
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --surface: #141414;
+    --surface2: #1a1a1a;
+    --border: #2a2a2a;
+    --text: #e0e0e0;
+    --muted: #888;
+    --accent: #c0392b;
+    --accent2: #e67e22;
+    --white: #f0f0f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Georgia', serif; line-height: 1.8; font-size: 17px; }
+  header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 1.2rem 2rem; }
+  .logo { font-family: 'Arial', sans-serif; font-size: 1.1rem; font-weight: 900; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; }
+  .logo span { color: var(--muted); font-weight: 400; }
+  .container { max-width: 760px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+  .tag { display: inline-block; font-family: 'Arial', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); padding: 0.2rem 0.6rem; margin-bottom: 1.2rem; }
+  h1 { font-family: 'Arial', sans-serif; font-size: 2.3rem; font-weight: 900; line-height: 1.15; color: var(--white); margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .subtitle { font-size: 1.1rem; color: var(--muted); font-style: italic; margin-bottom: 0.8rem; line-height: 1.6; }
+  .meta { font-family: 'Arial', sans-serif; font-size: 0.78rem; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+  h2 { font-family: 'Arial', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.08em; margin: 2.5rem 0 1rem; }
+  p { margin-bottom: 1.3rem; }
+  .pullquote { border-left: 4px solid var(--accent); margin: 2rem 0; padding: 1rem 1.5rem; background: var(--surface2); font-size: 1.15rem; font-style: italic; color: var(--white); line-height: 1.6; }
+  .factbox { background: var(--surface2); border: 1px solid var(--border); border-top: 3px solid var(--accent2); padding: 1.5rem; margin: 2rem 0; font-family: 'Arial', sans-serif; font-size: 0.9rem; }
+  .factbox .fb-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.8rem; }
+  .factbox ul { padding-left: 1.2rem; }
+  .factbox li { margin-bottom: 0.5rem; color: var(--text); }
+  .dangerbox { background: #1a0a0a; border: 1px solid var(--accent); padding: 1.5rem; margin: 2rem 0; font-family: 'Arial', sans-serif; font-size: 0.92rem; color: #e0b0b0; }
+  .dangerbox .db-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+  .correctionbox { background: #0a1a0a; border: 1px solid #27ae60; padding: 1.5rem; margin: 2rem 0; font-family: 'Arial', sans-serif; font-size: 0.9rem; color: #b0e0b0; }
+  .correctionbox .cb-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #27ae60; margin-bottom: 0.8rem; }
+  .bignum { font-family: 'Arial', sans-serif; font-size: 2.8rem; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 0.3rem; }
+  .bignum-label { font-family: 'Arial', sans-serif; font-size: 0.8rem; color: var(--muted); margin-bottom: 1.5rem; }
+  .numbers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0; }
+  .num-box { background: var(--surface2); border: 1px solid var(--border); padding: 1.2rem; text-align: center; }
+  .conclusion { background: var(--surface2); border-left: 4px solid var(--accent2); padding: 1.5rem; margin: 2.5rem 0; font-size: 1rem; line-height: 1.8; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+  footer { font-family: 'Arial', sans-serif; font-size: 0.78rem; color: var(--muted); padding-top: 1.5rem; border-top: 1px solid var(--border); line-height: 1.8; }
+  @media (max-width: 600px) {
+    h1 { font-size: 1.7rem; }
+    .numbers-grid { grid-template-columns: 1fr; }
+    .container { padding: 2rem 1.2rem 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">dunkelfeld<span>.info</span></div>
+</header>
+
+<div class="container">
+
+  <div class="tag">Analyse · Gesundheitspolitik · Teil 2</div>
+
+  <h1>Die verschwiegene Rechnung</h1>
+  <p class="subtitle">Corona-Milliarden, Migrationskosten, Gewalt gegen Personal — drei Themen, über die im Gesundheitsdiskurs nicht offen gesprochen wird. Eine Faktenlage.</p>
+  <div class="meta">dunkelfeld.info · Juni 2026 · Lesezeit ca. 8 Minuten · Alle Quellen: Destatis, DKG, GKV-Spitzenverband, BMG, bpb.de</div>
+
+  <p>Warum explodieren die GKV-Beiträge? Die offizielle Antwort: demografischer Wandel, steigende Arzneimittelpreise, Personalkosten. Das stimmt. Aber es ist nicht die vollständige Antwort.</p>
+
+  <p>Es gibt drei Kostendimensionen im deutschen Gesundheitssystem, die in der politischen Debatte entweder gar nicht oder nur mit erheblicher Vorsicht thematisiert werden: die Corona-Folgekosten, die Finanzierungsfrage bei migrationsbedingte Gesundheitsleistungen, und die steigende Gewalt gegen medizinisches Personal. Dunkelfeld beleuchtet alle drei — mit Zahlen, Quellen und ohne Ideologie.</p>
+
+  <h2>I. Corona: Was das Gesundheitssystem wirklich gekostet hat</h2>
+
+  <p>Die Gesundheitsausgaben Deutschlands stiegen von 413,8 Milliarden Euro (2019) auf 440,6 Milliarden Euro allein im ersten Corona-Jahr 2020 — ein Anstieg von 6,5 Prozent, der doppelt so hoch war wie in Normaljahren. Bis Ende 2022 wuchsen die Gesamtausgaben um weitere 83,1 Milliarden Euro.</p>
+
+  <div class="numbers-grid">
+    <div class="num-box">
+      <div class="bignum">83 Mrd.</div>
+      <div class="bignum-label">Zusatzausgaben 2020–2022 durch Corona (Destatis)</div>
+    </div>
+    <div class="num-box">
+      <div class="bignum">538 Mrd.</div>
+      <div class="bignum-label">Gesamte Gesundheitsausgaben 2024 — Höchstwert (Destatis)</div>
+    </div>
+    <div class="num-box">
+      <div class="bignum">12,4%</div>
+      <div class="bignum-label">Anteil am BIP 2024 — weltweit Platz 3</div>
+    </div>
+  </div>
+
+  <p>Allein über den Gesundheitsfonds wurden 2020 rund 12,2 Milliarden Euro für Pandemiebekämpfung ausgegeben — Ausgleichszahlungen an Krankenhäuser, Schutzmasken, Testungen. Die öffentlichen Haushalte erhöhten ihre Gesundheitsausgaben um 73,4 Prozent auf 30,7 Milliarden Euro.</p>
+
+  <div class="factbox">
+    <div class="fb-title">Corona-Kosten im Gesundheitswesen — belegte Positionen</div>
+    <ul>
+      <li>Ausgleichszahlungen an Krankenhäuser für freigehaltene Betten: Milliardenhöhe, exakte Summe nach Bundesland variierend</li>
+      <li>Masken, Tests, Impfkampagne 2021: maßgeblicher Treiber des weiteren Anstiegs auf 465,7 Mrd. €</li>
+      <li>Bundeszuschuss zur GKV wurde während Corona erheblich erhöht — und danach nicht vollständig zurückgenommen</li>
+      <li>GKV-Darlehen aus den Corona-Jahren 2023/2025/2026: insgesamt 5,6 Mrd. € — Rückzahlung verschoben auf 2035–2039</li>
+      <li>Strukturelle Nachwirkung: Das GKV-Defizit, das ab 2027 mit 15 Mrd. € prognostiziert wird, ist teilweise coronabedingt aufgestaut</li>
+    </ul>
+  </div>
+
+  <p>Was fehlt in der öffentlichen Diskussion: eine vollständige, transparente Gesamtrechnung. Wie viel hat die Corona-Politik das Gesundheitssystem tatsächlich gekostet — und wer hat davon profitiert? Pharmakonzerne (Impfstoffe, Schnelltests), Sicherheitsausrüstungslieferanten, Beratungsunternehmen. Die Kosten tragen die Beitragszahler — über Jahrzehnte, durch steigende Zusatzbeiträge.</p>
+
+  <div class="pullquote">
+    5,6 Milliarden Euro Corona-Darlehen an die GKV werden zwischen 2035 und 2039 zurückgezahlt. Von wem? Von den dann aktiven Beitragszahlern.
+  </div>
+
+  <h2>II. Migration und Gesundheitskosten — was die Zahlen tatsächlich sagen</h2>
+
+  <p>Dieses Thema wird politisch stark aufgeladen behandelt — von beiden Seiten. Dunkelfeld hält sich an belegbare Fakten und korrigiert dabei eine verbreitete These.</p>
+
+  <div class="factbox">
+    <div class="fb-title">Belegte Fakten · Rechtslage und Kosten</div>
+    <ul>
+      <li>Asylbewerber im laufenden Verfahren haben nach §4/6 AsylbLG nur Anspruch auf Notfallversorgung — keine Vollversorgung</li>
+      <li>Nach 18 Monaten (bis 2015: 15 Monate) erhalten sie eine elektronische Gesundheitskarte mit nahezu GKV-gleichem Leistungsumfang</li>
+      <li>Der Bund erstattet den Krankenkassen pauschal rund 125 Euro pro Person und Monat — die tatsächlichen Durchschnittskosten eines GKV-Versicherten liegen deutlich höher</li>
+      <li>Die Differenz wird vom GKV-System getragen — also von allen Beitragszahlern</li>
+      <li>Asylbewerberleistungen gesamt (alle Bundesländer) 2024: 6,7 Milliarden Euro Bruttoausgaben — davon ein Teil Gesundheitsleistungen, der Rest: Unterkunft, Verpflegung, Kleidung</li>
+    </ul>
+  </div>
+
+  <div class="correctionbox">
+    <div class="cb-title">✓ Faktische Korrektur einer verbreiteten These</div>
+    Die Behauptung, Migranten erhielten im deutschen Gesundheitssystem <em>bessere</em> Versorgung als Einheimische, ist durch Studien nicht belegbar — im Gegenteil. Die Forschungslage (u.a. Bundesgesundheitsblatt 2023, Martin-Luther-Universität Halle) dokumentiert konsistent: Asylsuchende haben erhebliche Zugangsbarrieren, häufig schlechtere Versorgungsqualität, sprachliche Hürden und eingeschränkte Leistungsansprüche. Die legitime Frage — wer trägt die Differenz zwischen Bundespauschale und tatsächlichen Kosten? — ist davon zu trennen.
+  </div>
+
+  <p>Die legitime und bisher unzureichend beantwortete Frage lautet: Wie hoch ist die tatsächliche Kostendifferenz zwischen der staatlichen Pauschale und den realen Gesundheitsausgaben pro Person mit Aufenthaltsstatus — und wer trägt diese Differenz konkret? Diese Transparenz fehlt. Nicht weil die Daten nicht existieren, sondern weil die politische Debatte sie nicht einfordert.</p>
+
+  <div class="dangerbox">
+    <div class="db-title">⚠ Strukturproblem: Datenlage</div>
+    Die Gesundheitsausgaben für Menschen nach AsylbLG werden nicht bundesweit einheitlich und getrennt von Unterkunft/Verpflegung erfasst. Das macht eine präzise Kostenbewertung politisch bequem schwer. Diese Datenlücke ist kein Zufall — sie verhindert sowohl übertriebene als auch sachliche Debatten.
+  </div>
+
+  <h2>III. Gewalt gegen medizinisches Personal — die eskalierende Realität</h2>
+
+  <p>Das ist das Thema, über das am wenigsten gesprochen wird — obwohl die Zahlen eindeutig sind.</p>
+
+  <div class="factbox">
+    <div class="fb-title">Krankenhaus-Barometer 2025 · Deutsche Krankenhausgesellschaft (DKG)</div>
+    <ul>
+      <li>70% der Klinikmitarbeitenden berichten von verbalen Übergriffen im Vorjahr</li>
+      <li>25% berichten von körperlicher Gewalt</li>
+      <li>51% der körperlichen Übergriffe treffen Pflegekräfte — hauptsächlich Frauen</li>
+      <li>12% treffen Ärztinnen und Ärzte</li>
+      <li>Hotspot: Notaufnahmen — 43% der Häuser berichten dort von häufigen Übergriffen</li>
+      <li>43% der Krankenhäuser stellten 2024 Strafanzeigen</li>
+      <li>77% schulen Mitarbeitende in Deeskalation — Tendenz stark steigend</li>
+      <li>Dunkelziffer gilt als erheblich</li>
+    </ul>
+  </div>
+
+  <p>Was treibt diese Gewalt? Laut BGW (Berufsgenossenschaft für Gesundheitsdienst) und DKI sind die Hauptfaktoren: Alkohol- und Drogenintoxikation, psychiatrische Notfallsituationen, lange Wartezeiten in überfüllten Notaufnahmen, und Angehörige in emotionalen Ausnahmezuständen.</p>
+
+  <p>Offizielle Studien schlüsseln Täter nicht nach Herkunft auf. Die Krankenhäuser in Großstädten wissen, was in ihren Notaufnahmen passiert. Die Zahlen schweigen darüber. Das Personal nicht.</p>
+
+  <p>Was dokumentiert ist: Die Gewalt steigt. Sie trifft überwiegend Frauen. Sie findet in einem System statt, das Pflegekräfte chronisch überlastet, Notaufnahmen ohne ausreichend Personal betreibt, und Sicherheitskonzepte lange als optional behandelt hat. Erst seit 2024 schulen 77 Prozent der Kliniken systematisch in Deeskalation — Bodycams in Dortmund wurden bereits getestet.</p>
+
+  <div class="pullquote">
+    Wer Pflegekräfte angreift, greift das System an, das alle brauchen. Aber das System hat diese Pflegekräfte auch jahrelang alleingelassen.
+  </div>
+
+  <h2>IV. Der Zahnarzt und der Kanzler — eine bittere Pointe</h2>
+
+  <p>September 2023. Friedrich Merz, damals CDU-Oppositionsführer, im Welt-Talk: „Die sitzen beim Arzt und lassen sich die Zähne neu machen, und die deutschen Bürger nebendran kriegen keine Termine." Er meinte abgelehnte Asylbewerber. Der Aufschrei war gewaltig. SPD-Chefin Esken: „Falschaussage", „Verleumdung". Strafanzeige wegen Volksverhetzung. Die CDU schnitt den Satz aus dem Video — und stellte ihn dann doch wieder rein.</p>
+
+  <p>April 2026. Bundeskanzler Friedrich Merz. Sein Kabinett beschließt das GKV-Stabilisierungsgesetz. Drin: Zahnersatz-Festzuschüsse für Kassenpatienten werden um 10 Prozent gekürzt. Zurück auf das Niveau vor 2020. Der deutsche Kassenpatient zahlt jetzt mehr für sein Gebiss — nicht der abgelehnte Asylbewerber.</p>
+
+  <div class="dangerbox">
+    <div class="db-title">⚠ Politische Ironie, belegbar</div>
+    Merz hat 2023 den Kassenpatienten als Opfer instrumentalisiert. 2026 hat sein Kabinett genau diesen Kassenpatienten beim Zahnersatz gekürzt. Das ist kein Widerspruch — das ist Methode: Empörung erzeugen, Kosten verlagern, Verantwortung vermeiden.
+  </div>
+
+  <h2>V. Die Verbindung: Vier Symptome, eine Diagnose</h2>
+
+  <p>Corona-Mehrkosten, Finanzierungslücken bei migrationsbedingten Gesundheitsleistungen, steigende Gewalt gegen Personal — diese drei Themen haben auf den ersten Blick nichts miteinander zu tun. Auf den zweiten schon:</p>
+
+  <p>Alle drei sind Symptome eines Systems unter Dauerdruck. Zu wenig Personal. Zu wenig Ressourcen. Zu viele Aufgaben. Zu wenig politischer Wille zur strukturellen Reform. Die Antwort der Politik auf alle drei: Kostenverschiebung zu den Beitragszahlern, Datenvermeidung wo politisch unbequem, und punktuelle Maßnahmen statt systemischer Lösungen.</p>
+
+  <p>Das Schweigen über diese Themen ist kein Zufall. Wer Corona-Kosten vollständig transparent macht, muss Verantwortung benennen. Wer Migrationskosten präzise erfasst, riskiert politische Instrumentalisierung in beide Richtungen. Wer über Gewalt gegen Personal offen spricht, muss Konsequenzen ziehen — mehr Personal, mehr Sicherheit, weniger Überlastung.</p>
+
+  <div class="conclusion">
+    <strong>Fazit:</strong> Die verschwiegene Rechnung hat vier Positionen: was Corona wirklich gekostet hat und wer es jahrzehntelang zurückzahlt, wie die Finanzierungslücke bei migrationsgebundenen Leistungen tatsächlich aussieht, wie gravierend die Gewalt gegen Personal geworden ist — und wie ein Kanzler denselben Kassenpatienten, den er 2023 als Opfer inszenierte, 2026 beim Zahnersatz kürzt. Das System funktioniert. Nur nicht für die, die es bezahlen.
+  </div>
+
+  <hr class="divider">
+
+  <footer>
+    dunkelfeld.info · Analyse · Juni 2026<br>
+    Quellen: Statistisches Bundesamt (Destatis) Gesundheitsausgaben 2020–2024 · Bundesgesundheitsministerium Kabinettsbeschluss April 2026 · GKV-Spitzenverband zu Asylsuchenden · bpb.de Asylbedingte Kosten 2024 · DKG Krankenhaus-Barometer 2025 · BGW Gewaltdokumentation · Deutsches Ärzteblatt Notaufnahme-Studie · Bundesgesundheitsblatt / Martin-Luther-Universität Halle (Studie Asylsuchende 2023)<br>
+    Alle Aussagen basieren auf öffentlich zugänglichen und belegbaren Quellen. Meinungen sind als solche gekennzeichnet.<br><br>
+    <strong>Tags:</strong> #Gesundheitssystem #Corona #Migration #AsylbLG #GKV #Gewalt #Pflegekräfte #Merz #Zahnarzt #Kassenpatient #dunkelfeld #Analyse #Transparenz #Gesundheitspolitik
+  </footer>
+
+</div>
+</body>
+</html>

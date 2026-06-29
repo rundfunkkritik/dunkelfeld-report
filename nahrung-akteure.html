@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wer taucht überall auf? — Wer kontrolliert, was wir essen? | dunkelfeld.report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .container { max-width: 720px; margin: 0 auto; }
+
+  .series-banner {
+    background: #111113;
+    border: 1px solid #27272a;
+    border-left: 4px solid #e8c547;
+    padding: 0.75rem 1.2rem;
+    margin-bottom: 2.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: #a1a1aa;
+    text-transform: uppercase;
+  }
+  .series-banner strong { color: #e8c547; }
+
+  header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #27272a;
+  }
+
+  .eyebrow {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: #e8c547;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: normal;
+    line-height: 1.25;
+    color: #fafafa;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.02em;
+  }
+
+  .subtitle {
+    font-size: 1.15rem;
+    color: #a1a1aa;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #52525b;
+    letter-spacing: 0.08em;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    padding: 0.2em 0.55em;
+    border-radius: 2px;
+    font-weight: bold;
+    vertical-align: middle;
+    margin-left: 0.3em;
+  }
+  .tag-belegt  { background: #14532d; color: #86efac; }
+  .tag-extra   { background: #7c2d12; color: #fdba74; }
+  .tag-offen   { background: #3f3f46; color: #a1a1aa; }
+
+  h2 {
+    font-size: 1.25rem;
+    color: #e8c547;
+    font-weight: normal;
+    letter-spacing: 0.04em;
+    margin: 2.5rem 0 0.9rem;
+    text-transform: uppercase;
+    font-family: 'Courier New', monospace;
+  }
+
+  p { margin-bottom: 1.2rem; }
+
+  /* Akteurs-Karte */
+  .actor-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #27272a;
+    margin: 2rem 0;
+  }
+  .actor-card {
+    background: #111113;
+    padding: 1.1rem 1rem;
+  }
+  .actor-name {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: #e8c547;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+    font-weight: bold;
+  }
+  .actor-roles {
+    font-size: 0.82rem;
+    color: #a1a1aa;
+    line-height: 1.5;
+  }
+  .actor-appearances {
+    margin-top: 0.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.62rem;
+    color: #52525b;
+    letter-spacing: 0.06em;
+  }
+
+  /* Verflechtungs-Tabelle */
+  .matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.82rem;
+    overflow-x: auto;
+    display: block;
+  }
+  .matrix-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #e8c547;
+    border-bottom: 1px solid #3f3f46;
+    padding: 0.5rem 0.6rem;
+    text-align: left;
+    white-space: nowrap;
+  }
+  .matrix-table td {
+    padding: 0.55rem 0.6rem;
+    border-bottom: 1px solid #1f1f23;
+    color: #d4d4d8;
+    vertical-align: top;
+  }
+  .matrix-table tr:hover td { background: #111113; }
+  .dot-yes { color: #e8c547; font-size: 1rem; }
+  .dot-no  { color: #27272a; font-size: 1rem; }
+  .actor-col { color: #fafafa; font-family: 'Courier New', monospace; font-size: 0.72rem; }
+
+  /* Quellbox */
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    margin: 1.8rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: #a1a1aa;
+    line-height: 1.6;
+  }
+  .source-box strong {
+    color: #e8c547;
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Pull Quote */
+  .pull-quote {
+    border-left: 4px solid #e8c547;
+    padding: 0.8rem 1.5rem;
+    margin: 2rem 0;
+    font-size: 1.1rem;
+    color: #d4d4d8;
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* Länder-Vergleich */
+  .country-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: #27272a;
+    margin: 2rem 0;
+  }
+  .country-cell {
+    background: #111113;
+    padding: 1rem;
+  }
+  .country-name {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #e8c547;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .country-stat {
+    font-size: 1.4rem;
+    color: #fafafa;
+    line-height: 1.1;
+    margin-bottom: 0.2rem;
+  }
+  .country-label {
+    font-size: 0.78rem;
+    color: #71717a;
+    line-height: 1.4;
+  }
+
+  /* Stat */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: #27272a;
+    margin: 2rem 0;
+  }
+  .stat-cell { background: #111113; padding: 1.2rem 1rem; text-align: center; }
+  .stat-number {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 1.7rem;
+    color: #e8c547;
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.62rem;
+    color: #71717a;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Highlight-Box */
+  .highlight-box {
+    background: #18181b;
+    border: 1px solid #3f3f46;
+    border-top: 3px solid #e8c547;
+    padding: 1.2rem 1.4rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+  }
+  .highlight-box-title {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: #e8c547;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+  }
+
+  /* Seriennavigation */
+  .series-nav {
+    background: #111113;
+    border: 1px solid #27272a;
+    padding: 1.4rem;
+    margin: 3rem 0 2rem;
+  }
+  .series-nav-title {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: #e8c547;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .series-nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.4rem;
+  }
+  .series-nav-item {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #a1a1aa;
+    padding: 0.3rem 0;
+  }
+  .series-nav-item.current { color: #e8c547; }
+  .series-nav-item a { color: inherit; text-decoration: none; }
+  .series-nav-item a:hover { color: #e8c547; }
+
+  /* Closing */
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #27272a;
+    font-style: italic;
+    color: #a1a1aa;
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+  .closing p { margin-bottom: 1rem; }
+
+  a { color: #e8c547; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  @media (max-width: 520px) {
+    .actor-grid { grid-template-columns: 1fr; }
+    .country-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="series-banner">
+    <strong>Serie: Wer kontrolliert, was wir essen?</strong> &nbsp;·&nbsp; Teil 11 von 11 — Serienabschluss
+  </div>
+
+  <header>
+    <div class="eyebrow">Dunkelfeld.Report &nbsp;·&nbsp; Lebensmittelsystem</div>
+    <h1>Wer taucht überall auf?</h1>
+    <p class="subtitle">Elf Teile, elf Themenfelder — von der Saatgutpatent über die Hochseefracht bis zum Retail-Media-Algorithmus. Wer sind die Akteure, die in mehr als einem dieser Felder gleichzeitig auftauchen?</p>
+    <div class="meta">Serienabschluss · Juni 2026 · Quellen: alle Primärquellen der Teile 1–10</div>
+  </header>
+
+  <p>Diese Serie hat elf Stationen durchlaufen: Marktkonzentration im Getreidehandel, Saatgutpatente, das Sterben der Höfe, Insektenprotein und Laborfleisch, Wasser als Handelsware, das Mercosur-Abkommen, die Handelsriesen und ihre Datenstrategie, neue Gentechnik und dokumentierte Lebensmittelskandale. Jeder Teil hat einen anderen Ausschnitt beleuchtet — doch bestimmte Namen, Institutionen und Strukturmuster tauchen immer wieder auf.</p>
+
+  <p>Dieser Abschlussartikel stellt keine Schlussfolgerungen auf. Er dokumentiert die Überschneidungen.</p>
+
+  <h2>Globale Konzentration — eine Bestandsaufnahme</h2>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <span class="stat-number">~70–90%</span>
+      <span class="stat-label">Globaler Getreidehandel: ABCD-Quartett</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-number">3</span>
+      <span class="stat-label">Konzerne kontrollieren Saatgutmarkt (Bayer, Corteva, Syngenta)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-number">~90%</span>
+      <span class="stat-label">Dt. LEH: Big Four Marktanteil</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-number">65%</span>
+      <span class="stat-label">Australien: Woolworths + Coles allein</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-number">~20%</span>
+      <span class="stat-label">USA: Walmart Grocery-Anteil</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-number">28%</span>
+      <span class="stat-label">UK: Tesco Marktanteil</span>
+    </div>
+  </div>
+
+  <p>Das Muster ist global: In nahezu jedem nationalen Lebensmittelmarkt, in jeder Stufe der Lieferkette, auf jedem Kontinent finden sich zwei bis vier Akteure, die die Mehrheit des Marktvolumens auf sich vereinen. Die Konzentration ist keine Folge eines einzelnen Marktversagens — sie ist das dokumentierte Ergebnis jahrzehntelanger Konsolidierung durch Übernahmen, Patentregime, Subventionsstrukturen und Handelsabkommen.</p>
+
+  <h2>Wer taucht wo auf?</h2>
+
+  <p>Die folgende Übersicht zeigt, welche Akteure in mehr als einem Themenfeld dieser Serie auftauchen — ohne Bewertung, nur als Dokumentation der Überschneidungen.</p>
+
+  <div class="actor-grid">
+    <div class="actor-card">
+      <div class="actor-name">Bayer AG (inkl. Monsanto)</div>
+      <div class="actor-roles">Saatgutpatente (weltweit führend nach Fusion 2018), Glyphosat-Zulassung (EU 2023 verlängert trotz IARC-Einstufung), NGT-Regulierung (Lobbyposition dokumentiert), Pestizidmarkt</div>
+      <div class="actor-appearances">→ Teile 1, 2, 9, 10</div>
+    </div>
+    <div class="actor-card">
+      <div class="actor-name">Bill &amp; Melinda Gates Foundation</div>
+      <div class="actor-roles">CGIAR-Finanzierung (größter privater Geldgeber), AGRA (African Green Revolution), Good Food Institute (Laborfleisch-Förderung), Svalbard Crop Trust (Mitfinanzierung), Landbesitz USA</div>
+      <div class="actor-appearances">→ Teile 2, 4, 5</div>
+    </div>
+    <div class="actor-card">
+      <div class="actor-name">Schwarz-Gruppe (Lidl/Kaufland)</div>
+      <div class="actor-roles">Marktführer Europa (175 Mrd. € Umsatz), Schwarz Digits/STACKIT (Cloud, KI, Staatsinfrastruktur), Tailwind Shipping Lines (eigene Reederei seit 2022), Retail Media, BSI-Kooperation</div>
+      <div class="actor-appearances">→ Teile 7, 8</div>
+    </div>
+    <div class="actor-card">
+      <div class="actor-name">BlackRock / Vanguard / State Street</div>
+      <div class="actor-roles">Großaktionäre bei Bayer, Cargill (indirekt), Nestlé, Walmart, Coles, Woolworths — gleichzeitig in Wasserinfrastruktur-Fonds präsent</div>
+      <div class="actor-appearances">→ Teile 1, 6, 8</div>
+    </div>
+    <div class="actor-card">
+      <div class="actor-name">Nestlé</div>
+      <div class="actor-roles">Wasserrechte und Konzessionspolitik (dokumentiert für Nordamerika, Asien, Afrika), Lebensmittelverarbeitung, Transfetteinsatz (historisch), Zucker in Säuglingsnahrung (WHO-Dokumentation 2024)</div>
+      <div class="actor-appearances">→ Teile 6, 10</div>
+    </div>
+    <div class="actor-card">
+      <div class="actor-name">Cargill</div>
+      <div class="actor-roles">ABCD-Quartett (Getreidehandel), Fleischverarbeitung (größter US-Fleischproduzent), Düngemittelhandel, Kakao, Palmöl — nicht börsennotiert, keine Offenlegungspflicht</div>
+      <div class="actor-appearances">→ Teile 1, 3, 7</div>
+    </div>
+    <div class="actor-card">
+      <div class="actor-name">WEF (World Economic Forum)</div>
+      <div class="actor-roles">„Food Innovation Hubs" (Laborfleisch-Agenda), Insektenprotein als „Future of Food" (publizierte Papiere), Stakeholder-Capitalism-Rahmensetzung für Agrar</div>
+      <div class="actor-appearances">→ Teile 4, 5</div>
+    </div>
+    <div class="actor-card">
+      <div class="actor-name">Kühne+Nagel / MSC / Maersk</div>
+      <div class="actor-roles">Seefracht-Oligopol (K+N: Nr. 1 global See+Luft), Containermarkt-Konzentration, Rotes-Meer-Krise als Preishebel, Walmart-Partner (Maersk)</div>
+      <div class="actor-appearances">→ Teil 8 (Kontext)</div>
+    </div>
+  </div>
+
+  <h2>Das Verflechtungsmuster</h2>
+
+  <p>Die nachstehende Tabelle zeigt, in welchen Bereichen der Lebensmittelkette dieselben institutionellen Akteure gleichzeitig präsent sind. Gezeigt werden nur belegte Beteiligungen — keine Vermutungen.</p>
+
+  <table class="matrix-table">
+    <thead>
+      <tr>
+        <th>Akteur</th>
+        <th>Saatgut</th>
+        <th>Handel</th>
+        <th>Verarbeitung</th>
+        <th>Einzelhandel</th>
+        <th>Wasser</th>
+        <th>Logistik</th>
+        <th>Daten/Tech</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="actor-col">Bayer/Monsanto</td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-no">·</span></td>
+      </tr>
+      <tr>
+        <td class="actor-col">Cargill</td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-no">·</span></td>
+      </tr>
+      <tr>
+        <td class="actor-col">Nestlé</td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-no">·</span></td>
+      </tr>
+      <tr>
+        <td class="actor-col">Gates Foundation</td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-no">·</span></td>
+      </tr>
+      <tr>
+        <td class="actor-col">Schwarz-Gruppe</td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-yes">●</span></td>
+      </tr>
+      <tr>
+        <td class="actor-col">BlackRock/Vanguard</td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-yes">●</span></td>
+      </tr>
+      <tr>
+        <td class="actor-col">Walmart</td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-yes">●</span></td>
+      </tr>
+      <tr>
+        <td class="actor-col">Rewe Group</td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-yes">●</span></td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-no">·</span></td>
+        <td><span class="dot-yes">●</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Die Tabelle zeigt: BlackRock und Vanguard sind als Großaktionäre in nahezu allen Bereichen gleichzeitig präsent — von Saatgutkonzernen über Wasserinfrastruktur bis zu Einzelhandelsketten. <span class="tag tag-belegt">BELEGT</span> Sie halten keine operationelle Kontrolle, aber Stimmrechte bei Hauptversammlungen in einem Ausmaß, das regulatorisch bisher kaum erfasst ist. <span class="tag tag-offen">OFFEN</span></p>
+
+  <div class="source-box">
+    <strong>Primärquellen (Übergreifend)</strong>
+    Monopolkommission DE, Sondergutachten 84 (2025) · ACCC Australia, Supermarkets Inquiry Final Report (2025) · EU-Kommission, Wettbewerbsbericht Bunge/Viterra (2024) · FAO, State of Food and Agriculture (2023) · Bundeskartellamt, Jahresrückblick 2024 · EU-Kommission, NGT-Verordnung (EU) 2024/1689, ABl. L
+  </div>
+
+  <h2>Drei strukturelle Muster</h2>
+
+  <p>Aus den elf Teilen lassen sich drei Strukturmuster herausarbeiten, die dokumentiert, nicht interpretiert sind:</p>
+
+  <div class="highlight-box">
+    <div class="highlight-box-title">Muster 1: Vertikale Integration</div>
+    <p style="font-size:0.93rem; margin-bottom:0">Akteure, die ursprünglich in einem Segment der Lebensmittelkette tätig waren, expandieren systematisch in vor- und nachgelagerte Bereiche. Schwarz-Gruppe (Handel → Logistik → Cloud → Staatsinfrastruktur), Cargill (Getreidehandel → Düngemittel → Fleisch → Logistik), Bayer (Chemie → Saatgut → Digitale Ackerdaten). <span class="tag tag-belegt">BELEGT</span></p>
+  </div>
+
+  <div class="highlight-box">
+    <div class="highlight-box-title">Muster 2: Regulierungsasymmetrie</div>
+    <p style="font-size:0.93rem; margin-bottom:0">Nationale Behörden — Bundeskartellamt, ACCC Australien, FTC USA — stellen Marktmacht fest und empfehlen Eingriffe. Die empfohlenen Sektoruntersuchungen bleiben aus, die vorhandenen Befugnisse werden nicht ausgeschöpft. Dieses Muster ist in Deutschland, Australien und den USA gleichzeitig dokumentiert. <span class="tag tag-belegt">BELEGT</span> Warum dies so ist, bleibt offen. <span class="tag tag-offen">OFFEN</span></p>
+  </div>
+
+  <div class="highlight-box">
+    <div class="highlight-box-title">Muster 3: Datenwert der Nahrungsmittelkette</div>
+    <p style="font-size:0.93rem; margin-bottom:0">Kaufverhalten, Konsummuster, Lieferkettendaten und Ackerdaten werden zu eigenständigen Vermögenswerten, die separat vom physischen Handel verwertet werden — durch Retail Media (Rewe/Schwarz), Präzisionslandwirtschaftsplattformen (Bayer FieldView, John Deere Operations Center), Lieferketten-Echtzeitplattformen (K+N seaexplorer.com). <span class="tag tag-belegt">BELEGT</span></p>
+  </div>
+
+  <h2>Der globale Vergleich: Konzentration in Zahlen</h2>
+
+  <div class="country-grid">
+    <div class="country-cell">
+      <div class="country-name">Deutschland</div>
+      <div class="country-stat">~90%</div>
+      <div class="country-label">Big Four (Edeka, Schwarz, Rewe, Aldi) Marktanteil LEH</div>
+    </div>
+    <div class="country-cell">
+      <div class="country-name">Australien</div>
+      <div class="country-stat">65%</div>
+      <div class="country-label">Woolworths + Coles allein; ACCC-Untersuchung ohne strukturelle Konsequenz</div>
+    </div>
+    <div class="country-cell">
+      <div class="country-name">USA</div>
+      <div class="country-stat">67%</div>
+      <div class="country-label">CR4 national 2023; regional bis zu 50% für einen Anbieter (Oklahoma: Walmart)</div>
+    </div>
+    <div class="country-cell">
+      <div class="country-name">UK</div>
+      <div class="country-stat">~55%</div>
+      <div class="country-label">CR3 (Tesco/Sainsbury's/Asda); Discounter-Disruption durch Aldi/Lidl</div>
+    </div>
+    <div class="country-cell">
+      <div class="country-name">Global Getreide</div>
+      <div class="country-stat">~80%</div>
+      <div class="country-label">ABCD-Quartett + ChemChina/Cofco nach Syngenta-Übernahme</div>
+    </div>
+    <div class="country-cell">
+      <div class="country-name">Global Saatgut</div>
+      <div class="country-stat">~60%</div>
+      <div class="country-label">Bayer/Monsanto, Corteva, Syngenta/ChemChina nach Konsolidierungswelle 2015–2018</div>
+    </div>
+  </div>
+
+  <h2>Was diese Serie nicht beantwortet hat</h2>
+
+  <p>Dokumentierte Fakten und offene Fragen sind nicht dasselbe. Diese Serie hat versucht, beides sauber zu trennen. Folgende Fragen sind nach elf Teilen weiterhin offen:</p>
+
+  <p>Welche Koordinationsmechanismen existieren zwischen Akteuren, die formal unabhängig agieren, aber über gemeinsame Anteilseigner (BlackRock, Vanguard, State Street) verbunden sind? <span class="tag tag-offen">OFFEN</span></p>
+
+  <p>Unter welchen vertraglichen Bedingungen stellt die Schwarz-Gruppe (Lidl/Kaufland) Cloud-Infrastruktur für deutsche Staatsbehörden bereit, und welche Datenzugangsrechte sind damit verbunden? <span class="tag tag-offen">OFFEN</span></p>
+
+  <p>Warum haben Bundeskartellamt, ACCC und FTC gleichzeitig Befugnisse für Sektoruntersuchungen des Lebensmitteleinzelhandels, und warum werden sie nicht eingesetzt? <span class="tag tag-offen">OFFEN</span></p>
+
+  <p>Wer kontrolliert, welche wissenschaftlichen Studien zu Glyphosat, Aspartam und neuer Gentechnik bei EU-Behörden eingereicht werden dürfen, und wer kontrolliert, welche nicht? <span class="tag tag-offen">OFFEN</span></p>
+
+  <p>Wie viele Generationen von Saatgutsorten sind noch vorhanden, bevor die dokumentierte Erosion der Sortenvielfalt — 75% Verlust laut FAO seit 1900 — irreversibel wird? <span class="tag tag-offen">OFFEN</span></p>
+
+  <div class="pull-quote">
+    Hidden in Plain Sight — sichtbar für alle, die hinschauen.
+  </div>
+
+  <div class="closing">
+    <p>Elf Teile, ein Muster: Die Kontrolle über das, was Menschen essen, liegt in immer weniger Händen — bei Saatgut, Boden, Wasser, Transport, Verarbeitung, Handel und nun auch bei den Daten über das Einkaufsverhalten. Jeder dieser Schritte ist dokumentiert. Keiner davon erfordert eine Verschwörungstheorie. Er erfordert nur, die öffentlich zugänglichen Quellen nebeneinanderzulegen.</p>
+    <p>Was daraus folgt, entscheiden die Leser.</p>
+  </div>
+
+  <div class="series-nav">
+    <div class="series-nav-title">Serie: Wer kontrolliert, was wir essen? — Alle 11 Teile</div>
+    <div class="series-nav-grid">
+      <div class="series-nav-item">✓ Teil 1: Marktkonzentration (ABCD)</div>
+      <div class="series-nav-item">✓ Teil 2: Saatgut &amp; Patente</div>
+      <div class="series-nav-item">✓ Teil 3: Höfesterben</div>
+      <div class="series-nav-item">✓ Teil 4: Insekten als Protein</div>
+      <div class="series-nav-item">✓ Teil 5: Laborfleisch</div>
+      <div class="series-nav-item">✓ Teil 6: Wasser &amp; Kontrolle</div>
+      <div class="series-nav-item">✓ Teil 7: Mercosur-Abkommen</div>
+      <div class="series-nav-item">✓ Teil 8: Handelsriesen &amp; Daten</div>
+      <div class="series-nav-item">✓ Teil 9: Neue Gentechnik (NGT)</div>
+      <div class="series-nav-item">✓ Teil 10: Lebensmittelskandale</div>
+      <div class="series-nav-item current">▶ Teil 11: Akteursnetzwerk (dieser Artikel)</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

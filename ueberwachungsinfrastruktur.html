@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Die Überwachungsinfrastruktur | dunkelfeld.report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.85;
+    min-height: 100vh;
+  }
+
+  a { color: #e8c547; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  nav {
+    border-bottom: 1px solid #27272a;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .nav-brand { font-family: 'Courier New', monospace; font-size: 0.85rem; color: #e8c547; letter-spacing: 0.15em; text-transform: uppercase; }
+  .nav-sep { color: #3f3f46; font-size: 0.75rem; }
+  .nav-link { font-family: 'Courier New', monospace; font-size: 0.75rem; color: #71717a; letter-spacing: 0.08em; }
+
+  .hero { max-width: 720px; margin: 0 auto; padding: 4rem 2rem 2rem; }
+
+  .series-tag { font-family: 'Courier New', monospace; font-size: 0.7rem; color: #e8c547; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem; }
+
+  h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; line-height: 1.25; color: #fafafa; margin-bottom: 1rem; }
+
+  .subtitle { font-size: 1.15rem; color: #a1a1aa; line-height: 1.6; margin-bottom: 2rem; }
+
+  .meta-row {
+    display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center;
+    padding: 1rem 0; border-top: 1px solid #27272a; border-bottom: 1px solid #27272a; margin-bottom: 3rem;
+  }
+  .meta-item { font-family: 'Courier New', monospace; font-size: 0.7rem; color: #71717a; letter-spacing: 0.08em; text-transform: uppercase; }
+  .meta-item span { color: #a1a1aa; }
+
+  .content { max-width: 720px; margin: 0 auto; padding: 0 2rem 6rem; }
+
+  p { margin-bottom: 1.2rem; }
+
+  h2 { font-size: 1.35rem; font-weight: 700; color: #fafafa; margin: 3rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #27272a; }
+
+  h3 { font-size: 1.05rem; font-weight: 600; color: #e8c547; margin: 2rem 0 0.75rem; font-family: 'Courier New', monospace; letter-spacing: 0.05em; }
+
+  .tag { display: inline-block; font-family: 'Courier New', monospace; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; padding: 0.2em 0.6em; border-radius: 2px; vertical-align: middle; margin-right: 0.4em; }
+  .tag-belegt { background: #14532d; color: #4ade80; border: 1px solid #166534; }
+  .tag-extrapolation { background: #431407; color: #fb923c; border: 1px solid #7c2d12; }
+  .tag-offen { background: #1c1c1e; color: #71717a; border: 1px solid #3f3f46; }
+
+  .source-box { background: #1a1a2e; border-left: 3px solid #e8c547; padding: 1rem 1.25rem; margin: 1.5rem 0; font-size: 0.9rem; }
+  .source-box .source-label { font-family: 'Courier New', monospace; font-size: 0.65rem; color: #e8c547; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .source-box p { margin-bottom: 0.5rem; color: #a1a1aa; }
+  .source-box p:last-child { margin-bottom: 0; }
+
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: #27272a; margin: 2rem 0; border: 1px solid #27272a; }
+  .stat-cell { background: #09090b; padding: 1.25rem; }
+  .stat-value { font-family: 'Courier New', monospace; font-size: 1.3rem; font-weight: 700; color: #e8c547; display: block; margin-bottom: 0.25rem; }
+  .stat-label { font-family: 'Courier New', monospace; font-size: 0.62rem; color: #71717a; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.4; }
+
+  .agency-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: #27272a; margin: 2rem 0; }
+  .agency-card { background: #0d0d10; padding: 1.25rem; }
+  .agency-name { font-family: 'Courier New', monospace; font-size: 0.8rem; color: #e8c547; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+  .agency-country { font-family: 'Courier New', monospace; font-size: 0.65rem; color: #3f3f46; margin-bottom: 0.75rem; }
+  .agency-detail { font-size: 0.85rem; color: #71717a; line-height: 1.6; }
+  .agency-detail strong { color: #a1a1aa; }
+
+  .pull-quote { border-left: 3px solid #e8c547; margin: 2.5rem 0; padding: 1rem 1.5rem; font-size: 1.1rem; font-style: italic; color: #d4d4d8; }
+  .pull-quote cite { display: block; font-style: normal; font-family: 'Courier New', monospace; font-size: 0.7rem; color: #71717a; margin-top: 0.5rem; letter-spacing: 0.08em; }
+
+  .compare-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.88rem; }
+  .compare-table th { font-family: 'Courier New', monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: #71717a; padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid #27272a; }
+  .compare-table td { padding: 0.7rem 0.75rem; border-bottom: 1px solid #18181b; vertical-align: top; color: #a1a1aa; }
+  .compare-table td:first-child { color: #e4e4e7; font-weight: 600; font-family: 'Courier New', monospace; font-size: 0.8rem; }
+  .compare-table tr:hover td { background: #0f0f12; }
+
+  .data-visual {
+    background: #0d0d10;
+    border: 1px solid #27272a;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+  }
+  .dv-label { color: #3f3f46; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1rem; }
+  .dv-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.6rem; }
+  .dv-name { color: #71717a; width: 4rem; flex-shrink: 0; font-size: 0.7rem; }
+  .dv-bar-wrap { flex: 1; background: #18181b; height: 1.2rem; position: relative; }
+  .dv-bar { height: 100%; background: #e8c547; opacity: 0.7; }
+  .dv-value { color: #a1a1aa; width: 6rem; text-align: right; font-size: 0.7rem; flex-shrink: 0; }
+
+  .warn-box { background: #1c0e05; border: 1px solid #7c2d12; border-left: 3px solid #fb923c; padding: 1rem 1.25rem; margin: 1.5rem 0; font-size: 0.9rem; }
+  .warn-box .warn-label { font-family: 'Courier New', monospace; font-size: 0.65rem; color: #fb923c; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; }
+
+  .open-questions { border: 1px solid #27272a; background: #0f0f12; padding: 1.5rem; margin: 3rem 0 1rem; }
+  .oq-label { font-family: 'Courier New', monospace; font-size: 0.65rem; color: #71717a; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1rem; }
+  .open-questions ul { list-style: none; padding: 0; }
+  .open-questions li { font-style: italic; color: #71717a; font-size: 0.95rem; padding: 0.4rem 0; border-bottom: 1px solid #18181b; }
+  .open-questions li:last-child { border-bottom: none; }
+  .open-questions li::before { content: '? '; color: #3f3f46; font-style: normal; font-family: 'Courier New', monospace; }
+
+  .legend { display: flex; gap: 1.5rem; flex-wrap: wrap; padding: 1rem 0; border-top: 1px solid #27272a; margin-top: 3rem; }
+  .legend-item { font-family: 'Courier New', monospace; font-size: 0.65rem; color: #71717a; letter-spacing: 0.05em; }
+
+  .footnotes { border-top: 1px solid #27272a; margin-top: 3rem; padding-top: 1.5rem; }
+  .footnotes h3 { font-family: 'Courier New', monospace; font-size: 0.7rem; color: #3f3f46; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
+  .footnote { font-size: 0.8rem; color: #52525b; margin-bottom: 0.5rem; line-height: 1.6; }
+
+  sup { font-size: 0.65em; color: #e8c547; }
+
+  .highlight-number { font-family: 'Courier New', monospace; color: #e8c547; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">dunkelfeld.report</span>
+  <span class="nav-sep">///</span>
+  <a href="#" class="nav-link">Infrastruktur der Kontrolle</a>
+  <span class="nav-sep">|</span>
+  <a href="#" class="nav-link">Digitale Überwachung</a>
+</nav>
+
+<div class="hero">
+  <div class="series-tag">// Artikel #15-B · Infrastruktur der Kontrolle · Juni 2026</div>
+  <h1>Was Geheimdienste über Sie gespeichert haben — und was das physisch bedeutet</h1>
+  <p class="subtitle">Wie oft ist eine Durchschnittsperson in den Datenbanken der Welt erfasst? Welches Datenvolumen entsteht dabei? Wie viele Festplatten, Server und Rechenzentren sind nötig — und was kostet das? Versuch einer Bestandsaufnahme auf Basis öffentlich zugänglicher Dokumente.</p>
+
+  <div class="meta-row">
+    <div class="meta-item">Stand: <span>Juni 2026</span></div>
+    <div class="meta-item">Quellen: <span>Snowden-Dokumente · SIPRI · Federation of American Scientists · Wikipedia (primärquellengestützt)</span></div>
+    <div class="meta-item">Bezug: <span>Artikel #15 (Infrastruktur der Kontrolle)</span></div>
+  </div>
+</div>
+
+<div class="content">
+
+  <h2>Das Netz — wie viele Dienste gibt es?</h2>
+
+  <p>Die Wikipedia-Liste aktiver und historischer Nachrichtendienste umfasst Einträge aus über 150 Ländern. Schätzungen über die Gesamtzahl aktiver Dienste weltweit variieren je nach Definition (Inlands-/Auslands-/Militärdienste separat gezählt) zwischen <span class="highlight-number">250 und 400</span> Organisationen.<sup>1</sup></p>
+
+  <p>Für die Frage nach dem Datenspeicherungsvolumen relevanter sind nicht alle 400, sondern die Dienste mit nachgewiesenen Massenüberwachungsprogrammen und technischer SIGINT-Kapazität. Die folgende Auswahl beschränkt sich auf Dienste, deren Datensammlungsprogramme durch parlamentarische Untersuchungen, gerichtliche Verfahren oder geleakte Primärdokumente belegt sind.</p>
+
+  <div class="agency-grid">
+    <div class="agency-card">
+      <div class="agency-name">NSA</div>
+      <div class="agency-country">USA · National Security Agency</div>
+      <div class="agency-detail"><strong>Budget 2025:</strong> Teil des NIP mit $73,3 Mrd. Gesamtbudget (16 Agenturen). NSA-Anteil nicht separat veröffentlicht. <strong>Personal:</strong> ca. 30.000–40.000 (Schätzung). <strong>Programme:</strong> PRISM, XKeyscore, MUSCULAR, MARINA, PINWALE, Boundless Informant.</div>
+    </div>
+    <div class="agency-card">
+      <div class="agency-name">GCHQ</div>
+      <div class="agency-country">UK · Government Communications Headquarters</div>
+      <div class="agency-detail"><strong>Programm Tempora:</strong> Anzapfen von ca. 200 Glasfaserkabeln weltweit, von britischer Regierung nicht bestritten. <strong>Kapazität:</strong> 600 Mio. Telefon-Ereignisse/Tag, ~50 Mrd. Metadaten/Tag (Tempora). Hauptdatenlieferant für Five Eyes.</div>
+    </div>
+    <div class="agency-card">
+      <div class="agency-name">BND</div>
+      <div class="agency-country">Deutschland · Bundesnachrichtendienst</div>
+      <div class="agency-detail"><strong>Budget:</strong> &gt;1 Mrd. Euro (Stand ca. 2023, Bundestag-Drucksachen). <strong>XKeyscore:</strong> Einsatz seit 2007 (Bad Aibling), parlamentarisch bestätigt. <strong>NSA-Kooperation:</strong> Memorandum of Agreement 2002; BND als „profiliertester Partner" der NSA bei SIGINT (Snowden-Dokumente/Der Spiegel).</div>
+    </div>
+    <div class="agency-card">
+      <div class="agency-name">FSB / GRU</div>
+      <div class="agency-country">Russland</div>
+      <div class="agency-detail">FSB: Inlands-/Sicherheitsdienst (KGB-Nachfolger). GRU: Militärischer Auslandsgeheimdienst. <strong>SORM:</strong> Gesetzlich vorgeschriebene Echtzeit-Schnittstellen aller russischen Telekommunikationsanbieter zum FSB — seit 1995, mehrfach erweitert.</div>
+    </div>
+    <div class="agency-card">
+      <div class="agency-name">MSS / Unit 61398</div>
+      <div class="agency-country">China · Ministerium für Staatssicherheit</div>
+      <div class="agency-detail">MSS: Ziviler Auslands- und Inlandsdienst. Unit 61398: PLA-Cybereinheit, durch DOJ-Anklageschriften 2014 öffentlich dokumentiert. Umfang der Massendatenspeicherung: nicht belastbar öffentlich quantifizierbar.</div>
+    </div>
+    <div class="agency-card">
+      <div class="agency-name">Five Eyes</div>
+      <div class="agency-country">USA · UK · CA · AU · NZ</div>
+      <div class="agency-detail">UKUSA-Abkommen. Datenaustausch in Echtzeit. GCHQ 2012 laut Snowden-Dokumenten größter XKeyscore-Datenzulieferer. Echelon: Abfangstellennetz für Satellitenkommunikation, seit Jahrzehnten aktiv, durch EU-Parlamentsuntersuchung 2001 bestätigt.</div>
+    </div>
+  </div>
+
+  <h2>Das Datenvolumen — was ist bekannt</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Das GCHQ-Programm Tempora sammelte laut Snowden-Dokumenten täglich rund <span class="highlight-number">50 Milliarden Metadaten-Datensätze</span>. Dieser Sachverhalt war Gegenstand eines Verfahrens vor dem Europäischen Gerichtshof für Menschenrechte und wurde von der britischen Regierung nicht bestritten.<sup>2</sup></p>
+
+  <p><span class="tag tag-belegt">BELEGT</span> XKeyscore speicherte im Jahr 2013 laut NSA-internen Dokumenten bis zu <span class="highlight-number">41 Milliarden Datensätze</span> innerhalb von 30 Tagen. Inhalte wurden drei bis fünf Tage vorgehalten, Metadaten bis zu 30 Tage — danach gelöscht, weil der Speicherplatz fehlte.<sup>3</sup></p>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Allein aus Deutschland wurden laut BND-Übermittlungsstatistik, die Der Spiegel einsehen konnte, täglich bis zu <span class="highlight-number">20 Millionen Telefonverbindungen</span> und rund <span class="highlight-number">10 Millionen Internetdatensätze</span> an die NSA übertragen.<sup>4</sup></p>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Die NSA verarbeitete laut eigenen Dokumenten täglich rund <span class="highlight-number">29 Petabytes</span> an Internetdaten — das entspricht etwa 10,6 Exabytes pro Jahr.<sup>5</sup></p>
+
+  <div class="data-visual">
+    <div class="dv-label">// Tägliche Datenströme — belegte Größenordnungen (2012–2013, Snowden-Dokumente)</div>
+    <div class="dv-row">
+      <div class="dv-name">GCHQ</div>
+      <div class="dv-bar-wrap"><div class="dv-bar" style="width:100%"></div></div>
+      <div class="dv-value">~50 Mrd. Metadaten/Tag</div>
+    </div>
+    <div class="dv-row">
+      <div class="dv-name">NSA</div>
+      <div class="dv-bar-wrap"><div class="dv-bar" style="width:58%"></div></div>
+      <div class="dv-value">~29 Petabytes/Tag</div>
+    </div>
+    <div class="dv-row">
+      <div class="dv-name">BND→NSA</div>
+      <div class="dv-bar-wrap"><div class="dv-bar" style="width:12%"></div></div>
+      <div class="dv-value">30 Mio. DE-Daten/Tag</div>
+    </div>
+    <div class="dv-row">
+      <div class="dv-name">CSE (CA)</div>
+      <div class="dv-bar-wrap"><div class="dv-bar" style="width:10%"></div></div>
+      <div class="dv-value">5 Mrd. Transfers (2012)</div>
+    </div>
+    <p style="color:#3f3f46; font-size:0.62rem; margin-top:0.75rem; font-family:'Courier New',monospace; letter-spacing:0.08em;">BALKEN: RELATIVE GRÖSSENORDNUNG · KEINE LINEAREN SKALEN · QUELLEN: SNOWDEN-DOKUMENTE / PARLAMENTARISCHE UNTERSUCHUNGEN</p>
+  </div>
+
+  <h2>Die Infrastruktur — Festplatten, Server, Rechenzentren</h2>
+
+  <h3>// NSA Utah Data Center (Bluffdale, Utah)</h3>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Das bekannteste geheimdienstliche Rechenzentrum der Welt wurde im Mai 2014 fertiggestellt, Baukosten: <span class="highlight-number">1,5 Milliarden US-Dollar</span>. Es liegt am Camp Williams nahe Bluffdale, Utah, zwischen Utah Lake und Great Salt Lake. Betrieben wird es von der NSA als Executive Agent für den Director of National Intelligence.<sup>6</sup></p>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <span class="stat-value">$1,5 Mrd.</span>
+      <span class="stat-label">Baukosten Utah Data Center (2014)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">100.000 m²</span>
+      <span class="stat-label">Rechenzentrum-Fläche (von 130.000 m² gesamt)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">65 MW</span>
+      <span class="stat-label">Elektrischer Anschlusswert (maximal)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">3–12+ Exabytes</span>
+      <span class="stat-value" style="font-size:0.75rem; color:#71717a;">Stand 2013 (Forbes-Schätzung)</span>
+      <span class="stat-label">Speicherkapazität — durch Moores Law seitdem vielfach erhöht</span>
+    </div>
+  </div>
+
+  <p>Intern trug das Projekt laut Snowden zunächst den Namen „Massive Data Repository" — intern umbenannt in „Mission Data Repository", weil das Original als zu unverblümt empfunden wurde.<sup>7</sup></p>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Ein Forbes-Analyst schätzte die Speicherkapazität 2013 anhand öffentlich zugänglicher Baupläne auf 3 bis 12 Exabytes — unter ausdrücklichem Hinweis, dass Moores Law die Kapazität seither in anderen Größenordnungen ermöglicht. Das Zentrum wurde ab 2018 durch hybride Cloud-Architekturen ergänzt: Mission-Daten werden teilweise in klassifizierte Cloud-Umgebungen ausgelagert, um Durchsatzbeschränkungen zu umgehen.<sup>8</sup></p>
+
+  <h3>// Zum Vergleich: Was bedeutet ein Exabyte physisch?</h3>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Einheit</th>
+        <th>Entspricht</th>
+        <th>Alltagsreferenz</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1 Petabyte</td>
+        <td>1.000 Terabytes</td>
+        <td>~200.000 DVDs · Alle Bücher der US Library of Congress (Text) ca. 10 Petabytes</td>
+      </tr>
+      <tr>
+        <td>1 Exabyte</td>
+        <td>1.000 Petabytes</td>
+        <td>~1 Milliarde Gigabytes · Ca. 250 Milliarden Songs in MP3-Qualität</td>
+      </tr>
+      <tr>
+        <td>10 Exabytes</td>
+        <td>NSA-Schätzbereich Utah</td>
+        <td>Rund 3% des weltweiten jährlichen Internetverkehrs (Stand 2013)</td>
+      </tr>
+      <tr>
+        <td>670 Exabytes/Jahr</td>
+        <td>Gesamter jährlicher Internetverkehr (2013, NSA-Dokument)</td>
+        <td>Würde auf ca. 670 Millionen 1-TB-Festplatten passen</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>// Weitere belegte Standorte (USA)</h3>
+
+  <p><span class="tag tag-belegt">BELEGT</span> XKeyscore bestand 2008 aus mehr als <span class="highlight-number">700 Servern an 150 Standorten</span> weltweit. Hinzu kommen: NSA-Hauptquartier Fort Meade (Maryland), NSA Georgia (Fort Gordon), NSA Texas (Lackland AFB), NSA Hawaii, sowie das Consolidated Intelligence Center in Wiesbaden (Deutschland, gebaut für NSA und US-Militärgeheimdienste).<sup>9</sup></p>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Der britische GCHQ betreibt unter dem Codenamen Tempora Deep-Dive-XKeyscore-Versionen an drei Standorten. Das US-NSA-Programm MUSCULAR wurde in Zusammenarbeit mit dem GCHQ betrieben und zapfte die internen Datenleitungen zwischen Google- und Yahoo-Rechenzentren an — innerhalb des Unternehmens, also jenseits des öffentlichen Internets.<sup>10</sup></p>
+
+  <h2>Was kostet das? — Die belegbaren Zahlen</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Der Gesamthaushalt der US-amerikanischen Nachrichtendienstgemeinschaft (16 Agenturen, National Intelligence Program + Military Intelligence Program) betrug:</p>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <span class="stat-value">$101,1 Mrd.</span>
+      <span class="stat-label">US Intelligence Community Gesamtbudget FY 2025 (NIP + MIP)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">$106,3 Mrd.</span>
+      <span class="stat-label">FY 2024 (höchster bekannter Stand)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">&gt;1 Mrd. €</span>
+      <span class="stat-label">BND-Budget Deutschland (Bundestag-Haushalt, ca. 2023)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">$100 Mio.</span>
+      <span class="stat-label">NSA-Kosten für Telefon-CDR-Programm 2015–2019 — Ergebnis: 15 Geheimdienstberichte</span>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <div class="source-label">// Primärquelle Budgetdaten</div>
+    <p>Federation of American Scientists (FAS), Intelligence Resource Program: U.S. Intelligence Budget Data, irp.fas.org/budget. Die Gesamtzahlen werden seit dem ODNI-Entscheid 2007 jährlich veröffentlicht. Die Aufschlüsselung nach Agenturen (NSA-Anteil separat) bleibt klassifiziert.</p>
+    <p>SIPRI veröffentlichte die FAS-Daten als Referenz: „$73.3 billion NIP and $28.2 billion MIP for FY 2025."</p>
+  </div>
+
+  <h2>Wie oft ist eine Person erfasst? — Was sich ableiten lässt</h2>
+
+  <p>Eine Einzelzahl „Sie sind in X Datenbanken" lässt sich aus öffentlichen Quellen nicht belegen. Was sich aus den dokumentierten Systemen ableiten lässt:</p>
+
+  <h3>// Das 3-Hop-Prinzip</h3>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Die NSA durfte bis 2015 Daten nach dem „3-Hop"-Prinzip sammeln: Ein Verdächtiger + alle seine Kontakte (Hop 1) + alle Kontakte seiner Kontakte (Hop 2) + alle Kontakte dritter Ordnung (Hop 3). In der Praxis führten laut einem veröffentlichten NSA-Oversight-Bericht <span class="highlight-number">14 FISA-Anträge im Jahr 2018</span> zu mehr als <span class="highlight-number">434 Millionen</span> gespeicherten Anruf-Datensätzen (CDRs) in NSA-Datenbanken.<sup>11</sup></p>
+
+  <div class="warn-box">
+    <div class="warn-label">// Extrapolation — strukturell ableitbar, keine Einzelfallbeleg</div>
+    <p><span class="tag tag-extrapolation">EXTRAPOLATION</span> Für eine Durchschnittsperson in Westeuropa lässt sich aus den dokumentierten Systemen folgendes Bild ableiten:</p>
+    <p><strong>Metadaten (wann, mit wem, wie lange kommuniziert):</strong> Mit hoher Wahrscheinlichkeit in mindestens 3–5 Systemen erfasst — NSA (über BND-Kooperation und direkte Glasfasel-Abschöpfung), GCHQ (Tempora), und nationale Dienste. Bei Kontakten in Five-Eyes-Ländern: zusätzliche Systeme.</p>
+    <p><strong>Inhalte:</strong> Selektiv — abhängig von Kommunikationsweg (verschlüsselt oder nicht), genutzten Plattformen (PRISM erfasste direkt Microsoft, Google, Yahoo, Facebook, Apple, Skype, YouTube, AOL), und Selektor-Listen. Klartext-E-Mails über US-Anbieter bis 2013 strukturell zugänglich.</p>
+    <p><strong>Standortdaten, Browserverlauf, Suchanfragen:</strong> Bei Nutzung nicht-verschlüsselter US-Dienste dokumentarisch abgreifbar durch PRISM-Zugang.</p>
+    <p>Russland (SORM) und China (MSS) operieren mit eigenen Systemen — deren Reichweite für europäische Nutzer ist außerhalb des eigenen Staatsgebiets deutlich geringer, aber für Kommunikation über russische/chinesische Dienste relevant.</p>
+  </div>
+
+  <h3>// XKeyscore: Was ein Analyst sehen konnte</h3>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Edward Snowden sagte in einem NDR-Interview vom 26. Januar 2014 wörtlich: „You could read anyone's email in the world, anybody you've got an email address for." XKeyscore ermöglichte laut NSA-Präsentationsfolien den Zugriff auf „nearly everything a typical user does on the internet" — E-Mails, besuchte Websites, Suchanfragen sowie Metadaten. Requests wurden dabei laut denselben Dokumenten nicht vor der Verarbeitung durch ein Gericht oder NSA-Personal überprüft.<sup>12</sup></p>
+
+  <div class="pull-quote">
+    „Was die USA an Aufklärungsmaßnahmen tun, ist zwar ganz überwiegend ihrem Sicherheitsbedürfnis geschuldet, aber sie tun es in einer übertriebenen, maßlosen Anwendung."
+    <cite>— Thomas de Maizière (CDU), damaliger Bundesinnenminister, nach den Snowden-Enthüllungen 2013</cite>
+  </div>
+
+  <h2>Was passierte nach Snowden — und was änderte sich?</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Die NSA stellte das CDR-Telefondaten-Massensammlungsprogramm offiziell Anfang 2019 ein — nachdem es zwischen 2015 und 2019 rund <span class="highlight-number">100 Millionen Dollar</span> gekostet hatte und lediglich 15 Geheimdienstberichte produzierte, davon in nur zwei Fällen „einzigartige Informationen", die dem FBI ohne dieses Programm nicht vorgelegen hätten. In einem dieser Fälle erwies sich der Hinweis als Sackgasse.<sup>13</sup></p>
+
+  <p><span class="tag tag-belegt">BELEGT</span> In Deutschland wurden die nach Snowden als rechtswidrig erkannten BND-Tätigkeiten nicht eingestellt, sondern durch eine Novelle des BND-Gesetzes legalisiert. Was zuvor als Grenzbereich galt, wurde durch Ausweitung der Befugnisse zur Rechtsgrundlage. Das Budget wuchs auf über eine Milliarde Euro.<sup>14</sup></p>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Der Europäische Gerichtshof für Menschenrechte (EGMR) urteilte im Fall Big Brother Watch v. United Kingdom: Das britische GCHQ-Programm Tempora verstieß in Teilen gegen Artikel 8 (Recht auf Privatleben) und Artikel 10 (Meinungsfreiheit) der Europäischen Menschenrechtskonvention. Das Urteil verpflichtete UK zu stärkeren Kontrollmechanismen — es änderte nichts an der grundsätzlichen Existenz des Programms.<sup>15</sup></p>
+
+  <h2>Was die DSGVO nicht schützt</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Die Datenschutz-Grundverordnung (DSGVO) reguliert private Unternehmen und staatliche Akteure innerhalb der EU. Sie gilt nicht für Geheimdienste — weder für die NSA, noch für GCHQ, noch für BND oder BfV. Die durch Tempora erfasste Kommunikation europäischer Bürger ist durch die DSGVO nicht geschützt.<sup>16</sup></p>
+
+  <div class="open-questions">
+    <div class="oq-label">// Offene Fragen — Stand Juni 2026</div>
+    <ul>
+      <li>Welches Datenvolumen speichern NSA und GCHQ nach dem Ausbau der Cloud-Infrastruktur ab 2018 tatsächlich — und für wie lange?</li>
+      <li>Wie hat sich die Reichweite der Massenüberwachung durch KI-gestützte Echtzeit-Analyse und Large Language Models verändert?</li>
+      <li>Welche Abkommen bestehen zwischen EU-Diensten und NSA/GCHQ, die über die bekannten Snowden-Dokumente hinausgehen?</li>
+      <li>Inwiefern erfasst das russische SORM-System Kommunikation europäischer Bürger, die über russische Plattformen (Telegram, VK) kommunizieren?</li>
+      <li>Was bedeutet die Integration des digitalen Euro in die EU Digital ID Wallet für zukünftige Datenzugriffsmöglichkeiten — durch Behörden, Dienste oder Drittstaaten?</li>
+      <li>Welche parlamentarische Kontrolle existiert über die Datenanfragen, die US-Behörden an europäische Tochtergesellschaften amerikanischer Konzerne stellen?</li>
+      <li>Hat der EGMR-Richterspruch zu Tempora zu einer tatsächlichen Einschränkung der GCHQ-Massendatensammlungspraxis geführt — oder nur zu einer formalrechtlichen Anpassung?</li>
+    </ul>
+  </div>
+
+  <div class="legend">
+    <span class="legend-item"><span class="tag tag-belegt">BELEGT</span> Primärquelle verifiziert</span>
+    <span class="legend-item"><span class="tag tag-extrapolation">EXTRAPOLATION</span> Strukturell plausibel, interpretativ</span>
+    <span class="legend-item"><span class="tag tag-offen">OFFEN</span> Ungelöst / keine belastbare Quelle</span>
+  </div>
+
+  <div class="footnotes">
+    <h3>// Quellen und Fußnoten</h3>
+    <p class="footnote">[1] Wikipedia: Liste der Nachrichtendienste (de.wikipedia.org/wiki/Liste_der_Nachrichtendienste). Deutsches Spionagemuseum Berlin: „Die größten und mächtigsten Geheimdienste der Welt", deutsches-spionagemuseum.de, April 2026.</p>
+    <p class="footnote">[2] netzpolitik.org: „Zehn Jahre Snowden: Den Geheimdiensten endlich Grenzen setzen", 06.06.2023. Operation Tempora: nicht bestritten von britischer Regierung in EGMR-Verfahren Big Brother Watch v. United Kingdom.</p>
+    <p class="footnote">[3] Tagesspiegel: „Ein Jahr danach: Die NSA und der schwierige Kampf der Justiz", 06.06.2014, unter Bezug auf NSA-interne Dokumente. DCSS Project: XKeyscore-Systemdokumentation (dcssproject.net), basierend auf Snowden-Dokumenten.</p>
+    <p class="footnote">[4] Der Spiegel (2013): BND-Übermittlungsstatistik, zitiert in mehreren Nachfolgeberichten. Ökolgie Politik: „Digitale Totalüberwachung: Was Snowden vor einem Jahrzehnt aufdeckte", Januar 2026.</p>
+    <p class="footnote">[5] Lux Ex Umbra Blog: „Capacity of the Utah Data Center", 2013, luxexumbra.blogspot.com — detaillierte öffentliche Analyse auf Basis von NSA-Dokumenten und Cisco-Daten.</p>
+    <p class="footnote">[6] Wikipedia: Utah Data Center (en.wikipedia.org/wiki/Utah_Data_Center), Stand Mai 2026. Kostenbetrag $1,5 Mrd.: mehrfach öffentlich bestätigt.</p>
+    <p class="footnote">[7] Ibid. Der ursprüngliche interne Name „Massive Data Repository" wurde laut Snowden umbenannt, weil er als zu unverblümt galt.</p>
+    <p class="footnote">[8] Forbes-Analyse 2013, zitiert in Wikipedia Utah Data Center; Grokipedia: „Utah Data Center" (grokipedia.com), Januar 2026, zu Cloud-Hybrid-Erweiterung ab 2018.</p>
+    <p class="footnote">[9] Wikipedia: XKeyscore (en.wikipedia.org/wiki/XKeyscore), Stand März 2026. 700+ Server an 150 Standorten (2008): aus NSA-internen Präsentationsfolien.</p>
+    <p class="footnote">[10] Wikipedia: MUSCULAR (Surveillance Program). The Washington Post, 2013. GCHQ Tempora Deep Dive: DCSS Project, Snowden-Dokument-Zusammenfassung.</p>
+    <p class="footnote">[11] netzpolitik.org: „NSA-Vorratsdatenspeicherung ist teuer und ineffektiv", 28.02.2020. Basiert auf veröffentlichtem NSA-Oversight-Bericht (103 Seiten, teilweise geschwärzt).</p>
+    <p class="footnote">[12] NDR-Interview mit Edward Snowden, 26.01.2014. XKeyscore-Foliensatz der NSA, veröffentlicht durch The Guardian, Juli 2013. DCSS Project Dokumentation.</p>
+    <p class="footnote">[13] Ibid. [11]. Kosten $100 Mio. für 2015–2019 aus NSA-Oversight-Bericht.</p>
+    <p class="footnote">[14] netzpolitik.org [2]. BND-Gesetz-Novelle nach NSA-BND-Untersuchungsausschuss des Bundestages.</p>
+    <p class="footnote">[15] EGMR: Big Brother Watch and Others v. United Kingdom (Application No. 58170/13), Urteil der Großen Kammer.</p>
+    <p class="footnote">[16] bpb.de: „Meinung: Europas Datenschutz schützt nicht vor der NSA", 2017. DSGVO Artikel 2(2)(b) schließt Tätigkeiten im Bereich der nationalen Sicherheit ausdrücklich aus.</p>
+  </div>
+
+</div>
+</body>
+</html>

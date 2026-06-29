@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aladdin — BlackRocks Wunderlampe | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --bg-card: #111113;
+    --bg-source: #1a1a2e;
+    --amber: #e8c547;
+    --amber-dim: rgba(232,197,71,0.12);
+    --text: #d4d4d8;
+    --text-dim: #71717a;
+    --text-bright: #f4f4f5;
+    --border: #27272a;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --grey: #94a3b8;
+    --red: #f87171;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .site-logo {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--amber);
+    text-transform: uppercase;
+  }
+  .site-logo span { color: var(--text-dim); }
+
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .eyebrow {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(1.7rem, 4.5vw, 2.6rem);
+    font-weight: normal;
+    line-height: 1.2;
+    color: var(--text-bright);
+    margin-bottom: 0.8rem;
+  }
+  h1 em { color: var(--amber); font-style: normal; }
+
+  .subtitle {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .meta-row {
+    display: flex; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 2.5rem;
+  }
+  .meta-item {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem; letter-spacing: 0.1em;
+    color: var(--text-dim); text-transform: uppercase;
+  }
+  .meta-item strong { color: var(--amber); }
+
+  /* MÄRCHEN-INTRO */
+  .fairy-box {
+    background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
+    border: 1px solid var(--amber);
+    border-left: 4px solid var(--amber);
+    padding: 1.4rem 1.6rem;
+    margin-bottom: 2.2rem;
+    position: relative;
+  }
+  .fairy-box::before {
+    content: '🪔';
+    font-size: 1.4rem;
+    position: absolute;
+    top: 1rem; right: 1.2rem;
+    opacity: 0.6;
+  }
+  .fairy-box .fairy-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .fairy-box p {
+    font-size: 0.97rem;
+    color: var(--text-bright);
+    line-height: 1.75;
+    padding-bottom: 0;
+  }
+
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 1rem;
+    margin: 1.5rem 0 2rem;
+    padding: 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+  }
+  .legend-item {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem; color: var(--text-dim);
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    vertical-align: middle; margin-left: 0.4rem;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid rgba(74,222,128,0.4); }
+  .tag-extra  { background: rgba(251,146,60,0.15); color: var(--orange); border: 1px solid rgba(251,146,60,0.4); }
+  .tag-offen  { background: rgba(148,163,184,0.15); color: var(--grey); border: 1px solid rgba(148,163,184,0.4); }
+
+  h2 {
+    font-family: Georgia, serif;
+    font-size: 1.25rem; font-weight: normal;
+    color: var(--amber);
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-dim);
+    margin: 1.8rem 0 0.6rem;
+  }
+
+  p { padding-bottom: 1.2rem; }
+
+  .source-box {
+    background: var(--bg-source);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 1.2rem 0 1.4rem;
+    font-size: 0.85rem;
+  }
+  .source-box .src-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem; letter-spacing: 0.15em;
+    color: var(--amber); text-transform: uppercase; margin-bottom: 0.4rem;
+  }
+  .source-box p { padding-bottom: 0; color: var(--text-dim); }
+  .source-box a { color: var(--amber); text-decoration: none; }
+  .source-box a:hover { text-decoration: underline; }
+
+  /* MEGA STAT */
+  .mega-stat {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    margin: 1.8rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .mega-stat::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--amber), transparent);
+  }
+  .mega-num {
+    font-family: 'Courier New', monospace;
+    font-size: clamp(2.8rem, 8vw, 4.5rem);
+    color: var(--amber);
+    line-height: 1;
+    display: block;
+    letter-spacing: -0.02em;
+  }
+  .mega-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem; letter-spacing: 0.15em;
+    color: var(--text-dim); text-transform: uppercase;
+    margin-top: 0.5rem; display: block;
+  }
+  .mega-sub {
+    font-size: 0.85rem; color: var(--text-dim);
+    margin-top: 0.8rem; font-style: italic;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1px; background: var(--border);
+    margin: 1.5rem 0;
+    border: 1px solid var(--border);
+  }
+  .stat-cell {
+    background: var(--bg-card);
+    padding: 1rem; text-align: center;
+  }
+  .stat-num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem; color: var(--amber);
+    display: block; line-height: 1; margin-bottom: 0.3rem;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.58rem; letter-spacing: 0.1em;
+    color: var(--text-dim); text-transform: uppercase;
+  }
+
+  /* TIMELINE */
+  .timeline { margin: 1.5rem 0; }
+  .tl-row {
+    display: flex; gap: 1.2rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .tl-year {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem; color: var(--amber);
+    min-width: 52px; padding-top: 0.15rem;
+  }
+  .tl-text { font-size: 0.9rem; line-height: 1.65; color: var(--text); }
+  .tl-text strong { color: var(--text-bright); }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-left: 3px solid var(--amber);
+    padding: 0.8rem 1.4rem;
+    margin: 2rem 0;
+    font-size: 1.05rem;
+    color: var(--text-bright);
+    font-style: italic; line-height: 1.7;
+  }
+  .pull-quote cite {
+    display: block; font-style: normal;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem; color: var(--text-dim);
+    margin-top: 0.5rem; letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* DREHTÜR */
+  .revolving-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px; background: var(--border);
+    margin: 1.5rem 0;
+    border: 1px solid var(--border);
+  }
+  .rev-cell {
+    background: var(--bg-card);
+    padding: 1rem 1.1rem;
+  }
+  .rev-name {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem; color: var(--amber);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 0.2rem;
+  }
+  .rev-from { font-size: 0.8rem; color: var(--text-dim); margin-bottom: 0.2rem; }
+  .rev-to   { font-size: 0.8rem; color: var(--text-bright); }
+
+  /* OPEN QUESTIONS */
+  .open-questions {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 1.4rem; margin-top: 2.5rem;
+  }
+  .oq-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem; letter-spacing: 0.15em;
+    color: var(--text-dim); text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .open-questions p {
+    font-style: italic;
+    padding-bottom: 0.6rem;
+    color: var(--text-dim); font-size: 0.95rem;
+  }
+  .open-questions p:last-child { padding-bottom: 0; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    max-width: 720px; margin: 0 auto;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem; color: var(--text-dim);
+    letter-spacing: 0.08em;
+  }
+  a { color: var(--amber); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  @media (max-width: 520px) {
+    .revolving-grid { grid-template-columns: 1fr; }
+    .mega-num { font-size: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-logo">dunkelfeld<span>.report</span></div>
+  <div style="font-family:'Courier New',monospace;font-size:0.65rem;color:var(--text-dim);letter-spacing:0.1em;">HIDDEN IN PLAIN SIGHT</div>
+</header>
+
+<main>
+
+  <div class="eyebrow">Finanzinfrastruktur · Dossier</div>
+
+  <h1><em>Aladdin</em> —<br>BlackRocks Wunderlampe</h1>
+
+  <p class="subtitle">Ein Algorithmus, der mehr Vermögen überwacht als jede Zentralbank der Welt.<br>Sein Name ist kein Zufall.</p>
+
+  <div class="meta-row">
+    <div class="meta-item">Stand <strong>Juni 2026</strong></div>
+    <div class="meta-item">Quellen <strong>BlackRock, Fed, Wikipedia EN, NZZ, Tagesspiegel</strong></div>
+    <div class="meta-item">dunkelfeld.report</div>
+  </div>
+
+  <!-- MÄRCHEN-EINSTIEG -->
+  <div class="fairy-box">
+    <div class="fairy-label">Vorbemerkung · Die Wunderlampe</div>
+    <p>In Tausendundeiner Nacht besitzt Aladdin eine Lampe. Wer sie reibt, ruft einen Geist — und der Geist erfüllt Wünsche. Das Märchen handelt von Macht durch verborgenes Wissen. Der weltgrößte Vermögensverwalter der Welt nennt sein zentrales Risikoanalysesystem <strong>Aladdin</strong>. Das ist kein Marketing-Zufall. Es ist ein Akronym: <strong>Asset, Liability, Debt and Derivative Investment Network</strong>. Der Geist ist die Rechenkapazität. Die Wünsche sind Renditeziele. Und die Lampe — die gehört BlackRock.</p>
+  </div>
+
+  <!-- LEGENDE -->
+  <div class="legend">
+    <div class="legend-item"><span class="tag tag-belegt">Belegt</span> Primärquelle vorhanden</div>
+    <div class="legend-item"><span class="tag tag-extra">Extrapolation</span> Strukturell plausibel, nicht beweisbar</div>
+    <div class="legend-item"><span class="tag tag-offen">Offen</span> Unbekannt, unbeantwortet</div>
+  </div>
+
+  <!-- ABSCHNITT 1 -->
+  <h2>Was Aladdin ist</h2>
+
+  <p>Aladdin ist eine Risikomanagement- und Portfoliomanagement-Plattform, entwickelt seit 1988 durch BlackRock Solutions, die Technologiesparte des Vermögensverwalters BlackRock. <span class="tag tag-belegt">Belegt</span> Das System analysiert Portfolios, berechnet Risiken und verarbeitet Transaktionen — alles in Echtzeit, auf einer einzigen Plattform.</p>
+
+  <div class="source-box">
+    <div class="src-label">Primärquelle · BlackRock GmbH, offizielles Dokument</div>
+    <p>„Über Aladdin® Institutional Business stellen wir unsere als Aladdin® bekannten Risikoanalyse- und Anlageverarbeitungssysteme institutionellen Kunden wie Vermögensverwaltern, Versicherungen, Banken, Pensionskassen und öffentlichen Einrichtungen zur Verfügung."<br>
+    — <a href="https://www.blackrock.com/corporate/literature/whitepaper/ger-blackrock-weltweit-fuehrend-im-vermoegens-und-risikomanagement.pdf" target="_blank">BlackRock, offizielles Dokument (PDF, deutsch)</a></p>
+  </div>
+
+  <p>Das System überwacht nach Eigenangaben und verfügbaren Daten Vermögenswerte in einer Größenordnung, die die meisten Staatshaushalte übersteigt. <span class="tag tag-belegt">Belegt</span> 2013 liefen etwa 11 Billionen US-Dollar über Aladdin — rund 7 % der damaligen globalen Finanzanlagen. 2020 waren es 21,6 Billionen.</p>
+
+  <div class="mega-stat">
+    <span class="mega-num">21,6 Bio. $</span>
+    <span class="mega-label">Verwaltete Assets über Aladdin (2020)</span>
+    <div class="mega-sub">Seit 2017 veröffentlicht BlackRock diese Zahl nicht mehr — das letzte bekannte Datum lag bei 20 Billionen Dollar.</div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <span class="stat-num">14 Bio.</span>
+      <span class="stat-label">BlackRock AUM gesamt 2025</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">170+</span>
+      <span class="stat-label">Externe Aladdin-Kunden</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">2,0 Mrd.</span>
+      <span class="stat-label">Aladdin-Umsatz 2025 (USD)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">200 Mio.</span>
+      <span class="stat-label">Kalkulationen pro Woche</span>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <div class="src-label">Quellen · Zahlen und Fakten</div>
+    <p>BlackRock Q4 2025 Earnings Report (AUM, Umsatz Aladdin) · <a href="https://en.wikipedia.org/wiki/Aladdin_(BlackRock)" target="_blank">Wikipedia EN: Aladdin (BlackRock)</a> · <a href="https://www.nzz.ch/gesellschaft/ealaddin-blackrocks-maechtige-super-software-ld.1786494" target="_blank">NZZ am Sonntag (2024): BlackRocks mächtige Super-Software</a></p>
+  </div>
+
+  <!-- ABSCHNITT 2: KUNDEN -->
+  <h2>Wer Aladdin nutzt <span class="tag tag-belegt">Belegt</span></h2>
+
+  <p>Aladdin wird nicht nur intern bei BlackRock eingesetzt. Über 170 externe institutionelle Kunden lizenzieren die Plattform — darunter Einrichtungen, die normalerweise als unabhängige Instanzen der Finanzkontrolle gelten.</p>
+
+  <p>Dokumentierte Nutzer (Auswahl):</p>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <span class="stat-num" style="font-size:0.9rem;line-height:1.4;">Europäische Zentralbank</span>
+      <span class="stat-label">EZB — bestätigt</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num" style="font-size:0.9rem;line-height:1.4;">Deutsche Bank / DWS</span>
+      <span class="stat-label">DE — bestätigt</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num" style="font-size:0.9rem;line-height:1.4;">Credit Suisse</span>
+      <span class="stat-label">CH — bestätigt (NZZ)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num" style="font-size:0.9rem;line-height:1.4;">UBS</span>
+      <span class="stat-label">CH — bis 2025 (Vertrag beendet)</span>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <div class="src-label">Hinweis · EZB-Nutzung</div>
+    <p>Die EZB-Nutzung von Aladdin ist in mehreren Finanzmedien dokumentiert (u.a. MSNBC.de, brutkasten.com mit Verweis auf Branchenberichte). Eine offizielle EZB-Bestätigung in einem primären Pressedokument liegt dieser Recherche nicht vor. <span class="tag tag-offen">Offen</span> Die UBS beendete ihren Aladdin-Vertrag 2025 und migrierte auf eigene Systeme — bestätigt durch <a href="https://www.dasinvestment.com/ubs-kappt-vertrag-mit-aladdin-blackrock/" target="_blank">DAS INVESTMENT (2025)</a>.</p>
+  </div>
+
+  <div class="pull-quote">
+    „Weil diese Investoren ihre Daten ständig bei Aladdin einspeisen, beherrscht BlackRock nicht nur so viel Kapital wie niemand sonst auf der Welt — das Unternehmen weiß auch, wohin es fließt und woher es kommt."
+    <cite>Aktien Magazin, 2020 — unter Bezug auf Branchenanalysen</cite>
+  </div>
+
+  <!-- ABSCHNITT 3: 2008 -->
+  <h2>Die Finanzkrise 2008 — Aladdins Stunde <span class="tag tag-belegt">Belegt</span></h2>
+
+  <p>Der entscheidende Wendepunkt für Aladdins globale Ausbreitung war die Finanzkrise 2008. In einem Märzwochenende, als die Investmentbank Bear Stearns kollabierte, rief Timothy Geithner — damals Chef der New Yorker Notenbank — persönlich bei BlackRock an. Er bat um eine Inventur der Hypothekenengagements.</p>
+
+  <div class="timeline">
+    <div class="tl-row">
+      <span class="tl-year">März 2008</span>
+      <div class="tl-text"><strong>Bear Stearns kollabiert.</strong> Die Federal Reserve übernimmt über Nacht faule Wertpapiere. Timothy Geithner (Fed New York) engagiert BlackRock für die Abwicklung. Auftrag: Inventur von Hypothekenengagements im Wert von 130 Milliarden US-Dollar.</div>
+    </div>
+    <div class="tl-row">
+      <span class="tl-year">Herbst 2008</span>
+      <div class="tl-text"><strong>AIG taumelt.</strong> US-Regierung fängt den Versicherungskonzern auf. BlackRock erhält Mandat zur Verwaltung der Kreditpapiere. Parallel: irische Zentralbank fragt an. BlackRock wird nach Tagesspiegel-Analyse „de facto die operative Abteilung der Regierung für das Krisenmanagement".</div>
+    </div>
+    <div class="tl-row">
+      <span class="tl-year">2008–09</span>
+      <div class="tl-text"><strong>Fannie Mae &amp; Freddie Mac.</strong> BlackRock bewertet die Bilanzen der verstaatlichten Hypothekenbanken und verwaltet den Rückkauf hypothekenbesicherter Wertpapiere im Auftrag der US-Regierung.</div>
+    </div>
+    <div class="tl-row">
+      <span class="tl-year">2008–09</span>
+      <div class="tl-text"><strong>TARP.</strong> BlackRock-Experten entwerfen für das US-Finanzministerium den Plan für den Bankenrettungsfonds TARP (Troubled Asset Relief Program).</div>
+    </div>
+    <div class="tl-row">
+      <span class="tl-year">Post-2008</span>
+      <div class="tl-text"><strong>Globale Ausbreitung.</strong> Notenbanken weltweit, Aufsichtsbehörden und kriselnde Finanzinstitute suchen Zuflucht bei Aladdin. Die über die Plattform laufenden Vermögen steigen sprunghaft. 2017: erstmals 20 Billionen Dollar. Danach stellt BlackRock die Veröffentlichung dieser Zahl ein.</div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <div class="src-label">Primärquellen · Finanzkrise</div>
+    <p>Tagesspiegel (2022): <a href="https://www.tagesspiegel.de/gesellschaft/ein-geldkonzern-auf-dem-weg-zur-globalen-vorherrschaft-4580071.html" target="_blank">„Ein Geldkonzern auf dem Weg zur globalen Vorherrschaft"</a> · WirtschaftsWoche (2011): <a href="https://www.wiwo.de/finanzen/finanzmarkt-wie-blackrock-von-der-grossen-krise-profitierte/4639464.html" target="_blank">„Wie BlackRock von der großen Krise profitierte"</a> · Wikipedia EN: <a href="https://en.wikipedia.org/wiki/Aladdin_(BlackRock)" target="_blank">Aladdin (BlackRock)</a> — mit Quellenangaben zu Fed/Bear Stearns</p>
+  </div>
+
+  <!-- ABSCHNITT 4: INFORMATIONSASYMMETRIE -->
+  <h2>Das Informationsproblem <span class="tag tag-extra">Extrapolation</span></h2>
+
+  <p>Aladdin aggregiert Daten von über 170 externen institutionellen Kunden. BlackRock sieht damit aggregierte Marktbewegungen, Risikopositionierungen und Portfoliostrukturen über einen erheblichen Teil des globalen Finanzsystems — in Echtzeit.</p>
+
+  <p>Diese Informationsasymmetrie ist struktureller Natur: Kein einzelner Marktteilnehmer, keine Zentralbank, keine Regulierungsbehörde verfügt über eine vergleichbare Gesamtsicht. Die Zentralbanken haben Macht über ihr jeweiliges Währungsgebiet. Aladdin hat Sicht auf das Ganze.</p>
+
+  <div class="pull-quote">
+    „Über die Analyse- und Handelsplattform Aladdin verfügt BlackRock über mehr Informationen als alle Zentralbanken zusammen."
+    <cite>Aktien Magazin, 2020 — Einschätzung basierend auf Branchendaten</cite>
+  </div>
+
+  <p>Ob und wie diese strukturelle Informationsüberlegenheit zu Handelsvorteilen genutzt wird oder werden könnte, ist regulatorisch ungeklärt. <span class="tag tag-offen">Offen</span> Die EU-Wertpapieraufsicht ESMA hat in früheren Berichten das Konzentrationsrisiko durch systemrelevante Infrastrukturdienstleister wie Aladdin thematisiert, ohne bindende Konsequenzen zu ziehen.</p>
+
+  <!-- ABSCHNITT 5: DREHTÜR -->
+  <h2>Drehtür: BlackRock und Regierungen</h2>
+
+  <p>BlackRock beriet während der Finanzkrise 2008 die US-Regierung — ohne öffentliche Ausschreibung. <span class="tag tag-belegt">Belegt</span> Dasselbe Muster wiederholte sich 2020, als die Federal Reserve BlackRock mit der Abwicklung von Anleiheankaufprogrammen im Rahmen der Corona-Hilfspakete beauftragte.</p>
+
+  <div class="revolving-grid">
+    <div class="rev-cell">
+      <div class="rev-name">Larry Fink</div>
+      <div class="rev-from">BlackRock-Gründer, CEO</div>
+      <div class="rev-to">Mehrfach als Kandidat für US-Finanzministerposten gehandelt; enger Kontakt zu mehreren US-Administrationen dokumentiert</div>
+    </div>
+    <div class="rev-cell">
+      <div class="rev-name">Timothy Geithner</div>
+      <div class="rev-from">Fed New York → US-Finanzminister</div>
+      <div class="rev-to">Engagierte BlackRock 2008 ohne Ausschreibung; wurde danach US-Finanzminister unter Obama</div>
+    </div>
+    <div class="rev-cell">
+      <div class="rev-name">Philipp Hildebrand</div>
+      <div class="rev-from">Präsident Schweizerische Nationalbank</div>
+      <div class="rev-to">Wechselte nach Rücktritt 2012 zu BlackRock als Vice Chairman; behält engen Kontakt zu Notenbankkreisen</div>
+    </div>
+    <div class="rev-cell">
+      <div class="rev-name">Mark Carney</div>
+      <div class="rev-from">Bank of England, Bank of Canada</div>
+      <div class="rev-to">Wurde nach Amtszeit Vizevorsitzender bei Brookfield Asset Management; regelmäßiger Gesprächspartner von BlackRock in Klimafragen</div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <div class="src-label">Kontext · Hildebrand</div>
+    <p>Philipp Hildebrand trat 2012 als SNB-Präsident zurück (Devisenaffäre). Kurz darauf: Eintritt bei BlackRock als Vice Chairman. Tagesspiegel 2022: „Zuvor war er Präsident der Schweizer Notenbank. Nun pflegt er guten Kontakt zu seinen früheren Kollegen bei der [SNB]." — <a href="https://www.tagesspiegel.de/gesellschaft/ein-geldkonzern-auf-dem-weg-zur-globalen-vorherrschaft-4580071.html" target="_blank">Tagesspiegel</a></p>
+  </div>
+
+  <!-- ABSCHNITT 6: TRANSPARENZ -->
+  <h2>Was BlackRock nicht mehr veröffentlicht</h2>
+
+  <p>Bis 2017 kommunizierte BlackRock das Gesamtvolumen der über Aladdin laufenden Assets aktiv. Als die Zahl erstmals die Marke von 20 Billionen US-Dollar überschritt, stellte das Unternehmen die Veröffentlichung dieser Kennzahl ein. <span class="tag tag-belegt">Belegt</span></p>
+
+  <div class="source-box">
+    <div class="src-label">Quelle · NZZ am Sonntag, 2024</div>
+    <p>„Seit 2017, als erstmals 20 Billionen Dollar über die Software liefen, veröffentlicht der Vermögensverwalter diese Zahl nicht mehr." — <a href="https://www.nzz.ch/gesellschaft/ealaddin-blackrocks-maechtige-super-software-ld.1786494" target="_blank">NZZ am Sonntag (2024)</a></p>
+  </div>
+
+  <p>Gleichzeitig wächst der Aladdin-Umsatz weiter. 2025 erzielte BlackRock mit dem Technologiebereich (Aladdin plus Preqin-Integration) einen Jahresumsatz von 2,0 Milliarden US-Dollar — ein Plus von 24 % gegenüber dem Vorjahr. <span class="tag tag-belegt">Belegt</span></p>
+
+  <!-- ABSCHNITT 7: WAS DER NAME BEDEUTET -->
+  <h2>Der Name als Programm</h2>
+
+  <p>In Tausendundeiner Nacht gehört die Wunderlampe ursprünglich nicht Aladdin — sie wird ihm durch Täuschung zugespielt. Der Besitzer der Lampe ist nicht unbedingt ihr Schöpfer. Und der Geist in der Lampe ist mächtig, aber gebunden: Er führt aus, was befohlen wird.</p>
+
+  <p>Ob der Name bewusst gewählt wurde, um dieses Bild zu evozieren, oder ob es ein nüchternes Akronym ist, dem nachträglich Bedeutung zugeschrieben wird — das bleibt offen. <span class="tag tag-offen">Offen</span> Dokumentiert ist: Ein System namens Aladdin überwacht einen bedeutenden Teil der globalen Finanzströme. Es gehört einem einzigen privaten Unternehmen. Dieses Unternehmen ist nicht demokratisch legitimiert, nicht öffentlich rechenschaftspflichtig, und die vollständigen Nutzungsdaten seiner mächtigsten Plattform sind seit 2017 der Öffentlichkeit nicht mehr zugänglich.</p>
+
+  <!-- OFFENE FRAGEN -->
+  <div class="open-questions">
+    <div class="oq-label">Offene Fragen · Stand Juni 2026</div>
+    <p>Wie viel Vermögen läuft heute tatsächlich über Aladdin — und warum wurde die Veröffentlichung dieser Zahl 2017 eingestellt?</p>
+    <p>Welche regulatorischen Auflagen gelten für ein privates Unternehmen, das die Risikomanagementsoftware für die Europäische Zentralbank und Dutzende globaler Pensionsfonds betreibt?</p>
+    <p>Welche Interessenkonflikte entstehen, wenn BlackRock als Vermögensverwalter und gleichzeitig als Datenanbieter für Wettbewerber agiert, die ihre Portfoliodaten in Aladdin einspeisen?</p>
+    <p>Auf welcher rechtlichen Grundlage beauftragte die Federal Reserve BlackRock 2008 und 2020 ohne öffentliche Ausschreibung mit der Verwaltung staatlicher Vermögenswerte?</p>
+    <p>Inwiefern verfügt die EU-Wertpapieraufsicht ESMA über Einblick in die Aladdin-Infrastruktur — und wer reguliert den Regulierer?</p>
+  </div>
+
+</main>
+
+<footer>
+  <p style="margin-bottom:0.5rem;">dunkelfeld.report — Hidden in Plain Sight</p>
+  <p>Primärquellen: BlackRock offizielles Dokument (PDF, deutsch) · Wikipedia EN: Aladdin (BlackRock) · NZZ am Sonntag (2024) · Tagesspiegel (2022) · WirtschaftsWoche (2011) · DAS INVESTMENT (2025, UBS) · BlackRock Q4 2025 Earnings</p>
+  <p style="margin-top:0.8rem;color:#3f3f46;">Alle Aussagen sind mit Quellangaben versehen. Interpretationen sind als EXTRAPOLATION gekennzeichnet. Keine Motive werden Personen oder Institutionen zugeschrieben.</p>
+</footer>
+
+</body>
+</html>

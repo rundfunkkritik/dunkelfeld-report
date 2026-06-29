@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stress als Nährstoff — Wer kontrolliert, was wir essen? | dunkelfeld.report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 2rem 1rem 4rem;
+  }
+  .container { max-width: 720px; margin: 0 auto; }
+  .series-banner {
+    background: #111113;
+    border: 1px solid #27272a;
+    border-left: 4px solid #e8c547;
+    padding: 0.75rem 1.2rem;
+    margin-bottom: 2.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: #a1a1aa;
+    text-transform: uppercase;
+  }
+  .series-banner strong { color: #e8c547; }
+  header { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid #27272a; }
+  .eyebrow {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: #e8c547;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: normal;
+    line-height: 1.25;
+    color: #fafafa;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.02em;
+  }
+  .subtitle {
+    font-size: 1.15rem;
+    color: #a1a1aa;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+  .meta { font-family: 'Courier New', monospace; font-size: 0.72rem; color: #52525b; letter-spacing: 0.08em; }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    padding: 0.2em 0.55em;
+    border-radius: 2px;
+    font-weight: bold;
+    vertical-align: middle;
+    margin-left: 0.3em;
+  }
+  .tag-belegt { background: #14532d; color: #86efac; }
+  .tag-extra  { background: #7c2d12; color: #fdba74; }
+  .tag-offen  { background: #3f3f46; color: #a1a1aa; }
+  h2 {
+    font-size: 1.25rem;
+    color: #e8c547;
+    font-weight: normal;
+    letter-spacing: 0.04em;
+    margin: 2.5rem 0 0.9rem;
+    text-transform: uppercase;
+    font-family: 'Courier New', monospace;
+  }
+  p { margin-bottom: 1.2rem; }
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    margin: 1.8rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: #a1a1aa;
+    line-height: 1.6;
+  }
+  .source-box strong {
+    color: #e8c547;
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .pull-quote {
+    border-left: 4px solid #e8c547;
+    padding: 0.8rem 1.5rem;
+    margin: 2rem 0;
+    font-size: 1.1rem;
+    color: #d4d4d8;
+    font-style: italic;
+    line-height: 1.6;
+  }
+  .pull-quote cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: #71717a;
+    font-style: normal;
+    margin-top: 0.5rem;
+  }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.88rem;
+  }
+  .data-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.63rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #e8c547;
+    border-bottom: 1px solid #3f3f46;
+    padding: 0.55rem 0.7rem;
+    text-align: left;
+  }
+  .data-table td {
+    padding: 0.65rem 0.7rem;
+    border-bottom: 1px solid #1f1f23;
+    color: #d4d4d8;
+    vertical-align: top;
+  }
+  .data-table tr:hover td { background: #111113; }
+  .hl { color: #e8c547; font-weight: bold; }
+  .plus  { color: #86efac; }
+  .minus { color: #f87171; }
+  .neutral { color: #a1a1aa; }
+  .highlight-box {
+    background: #18181b;
+    border: 1px solid #3f3f46;
+    border-top: 3px solid #e8c547;
+    padding: 1.2rem 1.4rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+  }
+  .highlight-box-title {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: #e8c547;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+  }
+  .stoff-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #27272a;
+    margin: 2rem 0;
+  }
+  .stoff-card { background: #111113; padding: 1rem; }
+  .stoff-name {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #e8c547;
+    letter-spacing: 0.06em;
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+  }
+  .stoff-funktion { font-size: 0.82rem; color: #a1a1aa; line-height: 1.5; margin-bottom: 0.3rem; }
+  .stoff-auslöser { font-family: 'Courier New', monospace; font-size: 0.65rem; color: #71717a; }
+  .series-nav {
+    background: #111113;
+    border: 1px solid #27272a;
+    padding: 1.4rem;
+    margin: 3rem 0 2rem;
+  }
+  .series-nav-title {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: #e8c547;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .series-nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.4rem;
+  }
+  .series-nav-item { font-family: 'Courier New', monospace; font-size: 0.72rem; color: #a1a1aa; padding: 0.3rem 0; }
+  .series-nav-item.current { color: #e8c547; }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #27272a;
+    font-style: italic;
+    color: #a1a1aa;
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+  .closing p { margin-bottom: 1rem; }
+  a { color: #e8c547; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  @media (max-width: 520px) { .stoff-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="series-banner">
+    <strong>Serie: Wer kontrolliert, was wir essen?</strong> &nbsp;·&nbsp; Bonus 3 — Wissenschaftlicher Exkurs
+  </div>
+
+  <header>
+    <div class="eyebrow">Dunkelfeld.Report &nbsp;·&nbsp; Lebensmittelsystem</div>
+    <h1>Stress als Nährstoff</h1>
+    <p class="subtitle">Vitamin C lässt sich messen. Curcumin, Resveratrol, Glucosinolate — die wertvollsten Inhaltsstoffe von Pflanzen — entstehen als Antwort auf Bedrohung. Eine Pflanze ohne Feinde produziert sie kaum. Was fehlt in der kontrollierten Ernte?</p>
+    <div class="meta">Bonus-Artikel 3 · Juni 2026 · Quellen: DLG Expertenbericht 2023, Heinrich-Böll-Stiftung, Frontiers in Plant Science, NCBI/PubMed</div>
+  </header>
+
+  <p>Die Frage kam direkt: Wie schaut's eigentlich mit den Nährstoffen bei so künstlichem Zeug aus? Die Antwort ist komplizierter als Ja oder Nein — und der wissenschaftlich interessanteste Teil wird in der öffentlichen Debatte über Vertical Farming kaum erwähnt.</p>
+
+  <h2>Was gemessen werden kann — und was nicht</h2>
+
+  <p>Nährstoffe lassen sich in zwei Kategorien einteilen: Primäre Inhaltsstoffe (Vitamine, Mineralstoffe, Makronährstoffe) — messbar, replizierbar, gut erforscht. Und sekundäre Pflanzenstoffe (Polyphenole, Flavonoide, Glucosinolate, Terpene, Alkaloide) — ebenfalls messbar, aber in ihrer Entstehung fundamental anders.</p>
+
+  <p>Bei primären Inhaltsstoffen schneidet Hydroponik oft gut ab: <span class="tag tag-belegt">BELEGT</span> Die Nährstofflösung wird exakt dosiert, kein Nährstoffmangel im Boden, kein Transportverlust durch lange Lieferwege. Vitamin C, Eisen, Magnesium — Studien zeigen vergleichbare oder leicht erhöhte Werte gegenüber konventionell angebautem Blattgemüse.</p>
+
+  <p>Bei sekundären Pflanzenstoffen ist die Situation eine andere. Und das ist der Kern.</p>
+
+  <h2>Die Stress-Hypothese: Warum Pflanzen Feinde brauchen</h2>
+
+  <p>Sekundäre Pflanzenstoffe sind keine Nährstoffe im klassischen Sinn — sie sind Abwehrstoffe. Pflanzen produzieren sie als Reaktion auf Bedrohungen: UV-Strahlung, Schädlinge, Pilzbefall, Temperaturstress, Nährstoffknappheit, mechanische Verletzung. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="pull-quote">
+    „Pflanzen haben in der Evolution gelernt, mit verschiedensten Herausforderungen umzugehen. Sie bilden Bitterstoffe, Gerbstoffe und Farbstoffe, um Schädlinge abzuwehren. Diese sekundären Pflanzeninhaltsstoffe sind es, die sie für den Menschen zur wertvollen Nahrung machen. Pflanzen, die ohne Stress wachsen, sind keine hochwertigen Lebensmittel."
+    <cite>— Biorama-Magazin, „Neun Argumente gegen Vertical Farming" (2018, weiterhin zitiert)</cite>
+  </div>
+
+  <p>In einer vollständig kontrollierten Umgebung — gleichmäßige Temperatur, kalibriertes Licht, sterile Nährlösung, keine Schädlinge — fehlen genau diese Stressauslöser. Die Pflanze wächst schnell und gleichmäßig. Was fehlt, ist der evolutionäre Druck, der die wertvollsten Inhaltsstoffe produziert.</p>
+
+  <div class="stoff-grid">
+    <div class="stoff-card">
+      <div class="stoff-name">Curcumin</div>
+      <div class="stoff-funktion">Antientzündlich, antioxidativ, in Forschung zu Krebsprävention. Vorkommen: Kurkuma.</div>
+      <div class="stoff-auslöser">Auslöser: UV-Stress, Schädlingsabwehr</div>
+    </div>
+    <div class="stoff-card">
+      <div class="stoff-name">Resveratrol</div>
+      <div class="stoff-funktion">Antioxidativ, kardioprotektiv. Vorkommen: Weintrauben, Beerenfrüchte.</div>
+      <div class="stoff-auslöser">Auslöser: Pilzbefall, UV-Exposition</div>
+    </div>
+    <div class="stoff-card">
+      <div class="stoff-name">Glucosinolate</div>
+      <div class="stoff-funktion">Krebsprotektiv (Sulforaphan), antimikrobiell. Vorkommen: Brokkoli, Kohl, Rucola.</div>
+      <div class="stoff-auslöser">Auslöser: mechanische Verletzung, Schädlingsfraß</div>
+    </div>
+    <div class="stoff-card">
+      <div class="stoff-name">Quercetin / Flavonoide</div>
+      <div class="stoff-funktion">Antientzündlich, antihistaminisch, antiviral. Vorkommen: Zwiebeln, Äpfel, Beeren.</div>
+      <div class="stoff-auslöser">Auslöser: UV-Strahlung, Temperaturwechsel</div>
+    </div>
+    <div class="stoff-card">
+      <div class="stoff-name">Polyphenole</div>
+      <div class="stoff-funktion">Breit antioxidativ, kardioprotektiv. Vorkommen: fast alle Früchte und Gemüse.</div>
+      <div class="stoff-auslöser">Auslöser: Nährstoffstress, Trockenheit, Lichtintensität</div>
+    </div>
+    <div class="stoff-card">
+      <div class="stoff-name">Bitterstoffe / Terpene</div>
+      <div class="stoff-funktion">Verdauungsfördernd, leberprotektiv. Vorkommen: Chicorée, Artischocke, Kräuter.</div>
+      <div class="stoff-auslöser">Auslöser: Fraßfeinde, mechanischer Stress</div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>Wissenschaftliche Grundlage</strong>
+    Frontiers in Plant Science, Editorial 2025 (Gauthier/Marcelis, Univ. Queensland / Wageningen): „Light spectrum management, plant-microbes interaction, nitrogen and phosphorus cycling" als Schlüsselvariablen für Nährstoffgehalt in Indoor-Systemen. — NCBI/PubMed: Pak-Choi-Studie (2021): Hydroponisch angebaute Pflanzen mit höherem Chlorophyll- und Phenolgehalt als Freiland-Gewächshaus — aber: entscheidend ist die UV- und Lichtspektrum-Konfiguration, nicht die Methode als solche.
+  </div>
+
+  <h2>Der Befund aus der Forschung — differenziert</h2>
+
+  <p>Die Wissenschaft ist nicht eindeutig in eine Richtung — und das ist der ehrliche Befund. <span class="tag tag-offen">OFFEN</span></p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Inhaltsstoff-Kategorie</th>
+        <th>Hydroponik vs. Freiland</th>
+        <th>Entscheidender Faktor</th>
+        <th>Bewertung</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="hl">Vitamin C</td>
+        <td class="plus">Oft höher oder gleich</td>
+        <td>Kontrollierte Nährstoffzufuhr, kein Transportverlust</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td class="hl">Polyphenole / Flavonoide</td>
+        <td class="neutral">Variabel — abhängig von Lichtspektrum</td>
+        <td>UV-Anteil im LED-Spektrum entscheidend; fehlt oft</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td class="hl">Glucosinolate (Brokkoli etc.)</td>
+        <td class="minus">Tendenziell niedriger ohne Stressauslöser</td>
+        <td>Mechanischer Stress und Schädlingsdruck fehlen</td>
+        <td><span class="tag tag-extra">EXTRAPOLATION</span> (Forschungslücke)</td>
+      </tr>
+      <tr>
+        <td class="hl">Mineralstoffe (Fe, Mg, Zn)</td>
+        <td class="plus">Präzise dosierbar, oft gleich oder besser</td>
+        <td>Nährlösung exakt steuerbar</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td class="hl">Terpene / Bitterstoffe</td>
+        <td class="minus">In stressfreier Umgebung reduziert</td>
+        <td>Fehlende Fraßfeinde und Temperaturwechsel</td>
+        <td><span class="tag tag-extra">EXTRAPOLATION</span> (wenig Direktstudien)</td>
+      </tr>
+      <tr>
+        <td class="hl">Mikrobiom-Interaktion</td>
+        <td class="minus">Fehlt strukturell</td>
+        <td>Kein Bodenmikrobiom vorhanden</td>
+        <td><span class="tag tag-offen">OFFEN</span> (kaum erforscht)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Das Bodenmikrobiom — die größte Forschungslücke</h2>
+
+  <p>Der am wenigsten erforschte Aspekt ist zugleich der fundamentalste. Pflanzen sind keine isolierten Organismen — sie existieren in einer Symbiose mit Milliarden von Bodenmikroorganismen, Pilzen (Mykorrhiza) und Bakterien. Dieses Mikrobiom beeinflusst nicht nur die Nährstoffaufnahme, sondern auch die Produktion von Abwehrstoffen und die Zusammensetzung der Sekundärmetabolite. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>In einer Hydroponik-Anlage existiert dieses System nicht. Ob und in welchem Ausmaß das die Bioverfügbarkeit von Inhaltsstoffen für den Menschen verändert — nicht nur ihre Konzentration, sondern ihre Wirksamkeit — ist wissenschaftlich noch nicht verstanden. <span class="tag tag-offen">OFFEN</span></p>
+
+  <div class="highlight-box">
+    <div class="highlight-box-title">Was die DLG 2023 feststellte</div>
+    <p style="font-size:0.92rem; margin-bottom:0.6rem">Der Expertenbericht der Deutschen Landwirtschaftlichen Gesellschaft (DLG 02/2023) untersuchte mögliche Unterschiede zwischen Indoor- und Outdoor-Produkten. Ein zentrales Ergebnis: LED-Lichteinstellungen zu Beginn des Wachstums und vor der Ernte beeinflussen Haltbarkeit, Geschmack, Erscheinungsbild und Nährstoffgehalt der Produkte erheblich.</p>
+    <p style="font-size:0.92rem; margin-bottom:0.6rem">Ein weiteres: Entgegen der Annahme, dass Vertical Farming durch die geschlossene Umgebung weniger mikrobielle Kontamination aufweist, fanden Experten für Lebensmittelhygiene keine statistischen Unterschiede im mikrobiellen Profil — Pathogene können in beiden Systemen auftreten. <span class="tag tag-belegt">BELEGT</span></p>
+    <p style="font-size:0.92rem; margin-bottom:0">Was der DLG-Bericht nicht beantwortet — weil die Forschung es noch nicht beantwortet: die langfristige Wirkung des Fehlens von Stressauslösern auf sekundäre Pflanzenstoffe im kommerziellen Maßstab. <span class="tag tag-offen">OFFEN</span></p>
+  </div>
+
+  <div class="source-box">
+    <strong>Primärquellen</strong>
+    DLG Expertenbericht 02/2023: „Vertical Farming: Possible differences between raw materials from indoor and outdoor cultivation" — dlg.org/en. Frontiers in Plant Science, 2025 (doi: 10.3389/fpls.2025.1675562): Gauthier/Marcelis, Wageningen University — Lichtspektrum, Nährstoffeffizienz, Mikrobiom-Interaktion als Forschungsfelder. NCBI/PMC12299736 (2025): Hydroponische Kräuterstudie — höhere Phenole im Freiland-Anbau; Vitamin C je nach Kulturart und System unterschiedlich.
+  </div>
+
+  <h2>Was das bedeutet — und was nicht</h2>
+
+  <p>Dieser Befund ist kein Argument gegen Vertical Farming — es ist ein Argument für differenzierte Kommunikation darüber. Ein hydroponisch angebauter Salat ist kein schlechtes Lebensmittel. Er ist ein anderes Lebensmittel — mit präzise dosierten Primärnährstoffen, aber möglicherweise reduzierten Sekundärstoffen, deren genaue Rolle für die menschliche Gesundheit selbst in der konventionellen Forschung noch nicht vollständig verstanden ist.</p>
+
+  <p>Die Industrie wirbt mit „pestizidfreier", „kontaminationsfreier", „präziser" Produktion. Was sie nicht bewirbt: dass die optimale Wachstumsbedingung für die Pflanze möglicherweise nicht die optimale Ernährungsbedingung für den Menschen ist. <span class="tag tag-extra">EXTRAPOLATION</span></p>
+
+  <p>Und: Lichtspektrum-Management kann Stressreaktion teilweise simulieren. Einige Forschungsgruppen (Wageningen, Fraunhofer) arbeiten daran, durch gezielte UV-Pulse und Lichtspektrum-Variation die Sekundärstoffproduktion in Indoor-Systemen zu erhöhen. Das Ergebnis sind höhere Polyphenolwerte — aber ob eine simulierte Stressreaktion dieselbe Wirkung erzeugt wie eine evolutionär gewachsene: <span class="tag tag-offen">OFFEN</span></p>
+
+  <div class="closing">
+    <p>Was wir nicht messen, fehlt im Versprechen. Der Salat aus der vertikalen Farm sieht makellos aus, wächst ohne Pestizide und lässt sich das ganze Jahr über ernten. Was er nicht zeigen kann, ist, wie viel Resveratrol ein Weinblatt produziert, das einem Pilzbefall ausgesetzt war — oder wie viel Sulforaphan ein Brokkoliröschen enthält, das ein Raupeneinflug gestreift hat.</p>
+    <p>Die Natur optimiert durch Bedrohung. Die kontrollierte Ernte optimiert durch Ausschluss. Ob das für die Ernährung dasselbe ist, weiß die Wissenschaft noch nicht.</p>
+  </div>
+
+  <div class="series-nav">
+    <div class="series-nav-title">Serie: Wer kontrolliert, was wir essen?</div>
+    <div class="series-nav-grid">
+      <div class="series-nav-item">✓ Teile 1–11: Hauptserie</div>
+      <div class="series-nav-item">✓ Bonus 1: Vertical Farming</div>
+      <div class="series-nav-item">✓ Bonus 2: Das BioNTech-Prinzip</div>
+      <div class="series-nav-item current">▶ Bonus 3: Stress als Nährstoff</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

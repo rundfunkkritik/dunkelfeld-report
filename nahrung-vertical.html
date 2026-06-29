@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Die kontrollierte Ernte — Wer kontrolliert, was wir essen? | dunkelfeld.report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .container { max-width: 720px; margin: 0 auto; }
+
+  .series-banner {
+    background: #111113;
+    border: 1px solid #27272a;
+    border-left: 4px solid #e8c547;
+    padding: 0.75rem 1.2rem;
+    margin-bottom: 2.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: #a1a1aa;
+    text-transform: uppercase;
+  }
+  .series-banner strong { color: #e8c547; }
+
+  header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #27272a;
+  }
+
+  .eyebrow {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: #e8c547;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: normal;
+    line-height: 1.25;
+    color: #fafafa;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.02em;
+  }
+
+  .subtitle {
+    font-size: 1.15rem;
+    color: #a1a1aa;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #52525b;
+    letter-spacing: 0.08em;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    padding: 0.2em 0.55em;
+    border-radius: 2px;
+    font-weight: bold;
+    vertical-align: middle;
+    margin-left: 0.3em;
+  }
+  .tag-belegt { background: #14532d; color: #86efac; }
+  .tag-extra  { background: #7c2d12; color: #fdba74; }
+  .tag-offen  { background: #3f3f46; color: #a1a1aa; }
+
+  h2 {
+    font-size: 1.25rem;
+    color: #e8c547;
+    font-weight: normal;
+    letter-spacing: 0.04em;
+    margin: 2.5rem 0 0.9rem;
+    text-transform: uppercase;
+    font-family: 'Courier New', monospace;
+  }
+
+  p { margin-bottom: 1.2rem; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: #27272a;
+    margin: 2rem 0;
+  }
+  .stat-cell { background: #111113; padding: 1.2rem 1rem; text-align: center; }
+  .stat-number {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 1.7rem;
+    color: #e8c547;
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.62rem;
+    color: #71717a;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    margin: 1.8rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: #a1a1aa;
+    line-height: 1.6;
+  }
+  .source-box strong {
+    color: #e8c547;
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .pull-quote {
+    border-left: 4px solid #e8c547;
+    padding: 0.8rem 1.5rem;
+    margin: 2rem 0;
+    font-size: 1.1rem;
+    color: #d4d4d8;
+    font-style: italic;
+    line-height: 1.6;
+  }
+  .pull-quote cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: #71717a;
+    font-style: normal;
+    margin-top: 0.5rem;
+    letter-spacing: 0.06em;
+  }
+
+  /* Fallkarten */
+  .fall-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #27272a;
+    margin: 2rem 0;
+  }
+  .fall-card {
+    background: #111113;
+    padding: 1.1rem 1rem;
+  }
+  .fall-name {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #e8c547;
+    font-weight: bold;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+  }
+  .fall-stat {
+    font-size: 1.3rem;
+    color: #fafafa;
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
+    font-family: 'Courier New', monospace;
+  }
+  .fall-detail {
+    font-size: 0.82rem;
+    color: #a1a1aa;
+    line-height: 1.5;
+  }
+  .fall-status {
+    margin-top: 0.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+  }
+  .status-bankrott { color: #f87171; }
+  .status-offen    { color: #fbbf24; }
+  .status-ok       { color: #86efac; }
+
+  /* Vergleichstabelle */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.88rem;
+  }
+  .data-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.63rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #e8c547;
+    border-bottom: 1px solid #3f3f46;
+    padding: 0.55rem 0.7rem;
+    text-align: left;
+  }
+  .data-table td {
+    padding: 0.65rem 0.7rem;
+    border-bottom: 1px solid #1f1f23;
+    color: #d4d4d8;
+    vertical-align: top;
+  }
+  .data-table tr:hover td { background: #111113; }
+  .hl { color: #e8c547; font-weight: bold; }
+
+  .highlight-box {
+    background: #18181b;
+    border: 1px solid #3f3f46;
+    border-top: 3px solid #e8c547;
+    padding: 1.2rem 1.4rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+  }
+  .highlight-box-title {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: #e8c547;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+  }
+
+  .series-nav {
+    background: #111113;
+    border: 1px solid #27272a;
+    padding: 1.4rem;
+    margin: 3rem 0 2rem;
+  }
+  .series-nav-title {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: #e8c547;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .series-nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.4rem;
+  }
+  .series-nav-item {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #a1a1aa;
+    padding: 0.3rem 0;
+  }
+  .series-nav-item.current { color: #e8c547; }
+
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #27272a;
+    font-style: italic;
+    color: #a1a1aa;
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+  .closing p { margin-bottom: 1rem; }
+
+  a { color: #e8c547; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  @media (max-width: 520px) {
+    .fall-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="series-banner">
+    <strong>Serie: Wer kontrolliert, was wir essen?</strong> &nbsp;·&nbsp; Bonus-Teil
+  </div>
+
+  <header>
+    <div class="eyebrow">Dunkelfeld.Report &nbsp;·&nbsp; Lebensmittelsystem</div>
+    <h1>Die kontrollierte Ernte</h1>
+    <p class="subtitle">Vertical Farming versprach eine Entkopplung von Boden, Klima und Lieferkette. Milliarden flossen — SoftBank, Bezos, Goldman Sachs. Dann kam die Realität: 14 Insolvenzen in zwei Jahren, fast zwei Milliarden Wagniskapital vernichtet. Was bleibt, und wer kontrolliert es?</p>
+    <div class="meta">Bonus-Artikel · Juni 2026 · Quellen: Unternehmensberichte, TechCrunch, Vertical Farm Daily, Fortune Business Insights</div>
+  </header>
+
+  <p>Keine Erde, kein Wetter, keine Jahreszeiten — und damit keine der klassischen Abhängigkeiten der Landwirtschaft von Boden, Wasserverfügbarkeit oder geopolitischen Lieferketten. Das war das Versprechen. Zwischen 2018 und 2022 floss globales Wagniskapital in die sogenannte vertikale Landwirtschaft wie in kaum einen anderen Agrarsektor zuvor.</p>
+
+  <p>Das Ergebnis bis Mitte 2025: <span class="tag tag-belegt">BELEGT</span> Fast zwei Milliarden US-Dollar Wagniskapital vernichtet. Vierzehn Unternehmen insolvent. Und dennoch wächst der Gesamtmarkt — denn die Technologie funktioniert, nur nicht mit dem Playbook, das die Investoren entworfen hatten.</p>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <span class="stat-number">~2 Mrd.$</span>
+      <span class="stat-label">VC vernichtet 2023–2025</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-number">14</span>
+      <span class="stat-label">Insolvenzen bis Mitte 2025</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-number">8,5 Mrd.$</span>
+      <span class="stat-label">Globaler Markt 2025</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-number">~70 Mrd.$</span>
+      <span class="stat-label">Marktprognose 2034</span>
+    </div>
+  </div>
+
+  <h2>Die Investoren und das Versprechen</h2>
+
+  <p>Das Versprechen war präzise formuliert: Nahrungsmittelanbau auf bis zu zehnfachem Ertrag pro Fläche, 95 Prozent weniger Wasserverbrauch, ohne Pestizide, unabhängig von Klima und Transportwegen, direkt in Städten. Für Investoren, die zugleich in den Rückgang verfügbarer Ackerflächen und in den Klimawandel als Renditerisiko investierten, klang das wie eine strukturelle Antwort.</p>
+
+  <p>Die Investorenliste liest sich wie ein Querschnitt globaler Kapitalkonzentration: <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="fall-grid">
+    <div class="fall-card">
+      <div class="fall-name">Plenty Unlimited</div>
+      <div class="fall-stat">940 Mio. $</div>
+      <div class="fall-detail">Investoren: SoftBank Vision Fund, Walmart, Jeff Bezos (Bezos Expeditions), Eric Schmidt. Letzter bekannter Wert: 1,9 Mrd. $ (Januar 2022)</div>
+      <div class="fall-status status-bankrott">▸ Insolvenz März 2025 (Chapter 11)</div>
+    </div>
+    <div class="fall-card">
+      <div class="fall-name">Bowery Farming</div>
+      <div class="fall-stat">700 Mio. $</div>
+      <div class="fall-detail">Investoren: First Round Capital, Google Ventures, Temasek, Fidelity (320 Mio. $ Series C, 2021). Fidelity schrieb Wert um über 99 % ab.</div>
+      <div class="fall-status status-bankrott">▸ Betrieb eingestellt November 2024</div>
+    </div>
+    <div class="fall-card">
+      <div class="fall-name">AeroFarms</div>
+      <div class="fall-stat">300+ Mio. $</div>
+      <div class="fall-detail">Pionier der Branche, Newark NJ, gegründet 2004. Nach Insolvenz 2023 restrukturiert — letztes Werk Virginia Dezember 2025 geschlossen, 173 Entlassungen.</div>
+      <div class="fall-status status-bankrott">▸ Endgültig geschlossen Dez. 2025</div>
+    </div>
+    <div class="fall-card">
+      <div class="fall-name">AppHarvest</div>
+      <div class="fall-stat">700+ Mio. $</div>
+      <div class="fall-detail">2021 mit 1-Mrd.-$-Bewertung an Börse gegangen. Investoren u.a. Martha Stewart, AON.</div>
+      <div class="fall-status status-bankrott">▸ Chapter 11 2023, vollständig liquidiert</div>
+    </div>
+    <div class="fall-card">
+      <div class="fall-name">Infarm (DE/NL)</div>
+      <div class="fall-stat">600+ Mio. $</div>
+      <div class="fall-detail">Berliner Startup, modulare Farmen in Supermärkten und Lagerhäusern. Massiver Stellenabbau 2023, internationale Standorte aufgegeben.</div>
+      <div class="fall-status status-offen">▸ Stark geschrumpft, Kernbetrieb weiter</div>
+    </div>
+    <div class="fall-card">
+      <div class="fall-name">AeroFarms (nach Restrukturierung)</div>
+      <div class="fall-stat">~70%</div>
+      <div class="fall-detail">Marktanteil Microgreens-Segment nach Fokussierung — zeigt: Nischenstrategie funktioniert, Skalierungsstrategie nicht.</div>
+      <div class="fall-status status-ok">▸ Zeitweise profitabel, dann doch geschlossen</div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>Primärquellen</strong>
+    TechCrunch, 24.03.2025: „Plenty files for bankruptcy after raising nearly $1B" — Investoren SoftBank, Walmart, Bezos Expeditions bestätigt via PitchBook Series-E-Daten (Jan. 2022, $400 Mio., $1,9 Mrd. Bewertung). Axios, 05.11.2024: „Bowery Farming is ceasing operations." Vertical Farm Daily, 18.12.2025: AeroFarms letztes Werk geschlossen. iGrow News 2025: 14 Insolvenzen bis Mitte 2025 dokumentiert.
+  </div>
+
+  <h2>Das strukturelle Problem: Strom ersetzt Sonne</h2>
+
+  <p>Das Grundproblem der vertikalen Landwirtschaft ist keine Frage der Technologie — es ist eine Frage der Physik und der Wirtschaftlichkeit. Sonnenlicht ist kostenlos. LED-Licht ist es nicht.</p>
+
+  <p>Beleuchtung macht in einer vollständig geschlossenen Vertical Farm über 50 Prozent des gesamten Energieverbrauchs aus und bis zu 40 Prozent der Produktionskosten. <span class="tag tag-belegt">BELEGT</span> Die durchschnittliche Vertical Farm verbraucht laut einer Branchenerhebung 38,8 Kilowattstunden Energie pro Kilogramm produzierter Nahrung — genug, um 17 Waschmaschinenladungen zu betreiben. Eine hydroponische Salat-Produktion in Arizona verbrauchte in einer Studie 82-mal mehr Energie pro Kilogramm als der konventionelle Anbau in der Region. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Faktor</th>
+        <th>Vertical Farm</th>
+        <th>Konventionell (Freiland)</th>
+        <th>Bewertung</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="hl">Energiebedarf/kg</td>
+        <td>10–38,8 kWh</td>
+        <td>0,5–2 kWh (je nach Kultur)</td>
+        <td><span class="tag tag-extra">EXTRAPOLATION</span> Faktor 10–80×</td>
+      </tr>
+      <tr>
+        <td class="hl">Wasserverbrauch</td>
+        <td>–95 % ggü. Freiland</td>
+        <td>Referenzwert</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td class="hl">Flächenertrag</td>
+        <td>Bis 10× höher</td>
+        <td>Referenzwert</td>
+        <td><span class="tag tag-belegt">BELEGT</span> (bei Blattgemüse)</td>
+      </tr>
+      <tr>
+        <td class="hl">CO₂-Bilanz</td>
+        <td>Höher bei Strommix fossil</td>
+        <td>Niedriger bei Freiland-Anbau</td>
+        <td><span class="tag tag-belegt">BELEGT</span> (Studie NL 2022)</td>
+      </tr>
+      <tr>
+        <td class="hl">Anwendbare Kulturen</td>
+        <td>Blattgemüse, Kräuter, Microgreens</td>
+        <td>Alle Kulturen inkl. Getreide, Wurzeln</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td class="hl">Stromkosten-Anteil</td>
+        <td>40–70% der Produktionskosten</td>
+        <td>&lt; 5%</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <strong>Primärquellen</strong>
+    Heinrich-Böll-Stiftung, „Vertical Farming: Revolution oder Illusion?" (09.01.2024): Hydroponische Salatstudie Arizona (82×), CO₂-Vergleich NL 2022. CubicFarms CEO Dave Dinesen, zit. in agfundernews (2022): 38,8 kWh/kg Durchschnitt. Agrarheute, 13.09.2022: Stromkosten bis 70% der Gesamtkosten.
+  </div>
+
+  <p>Eine niederländische Studie aus 2022 verglich die Treibhausgasemissionen konventioneller Freilandbetriebe mit einer vertikalen Farm: Solange der verwendete Strom aus fossilen Quellen stammt, produzieren Indoor-Farms deutlich höhere CO₂-Emissionen. <span class="tag tag-belegt">BELEGT</span> Die Rechnung ändert sich nur bei vollständiger Versorgung mit erneuerbaren Energien — was in keiner der insolventen Firmen realisiert wurde.</p>
+
+  <h2>Warum das Kapital trotzdem fließt</h2>
+
+  <p>Der Zusammenbruch der ersten Welle hat den Sektor nicht gestoppt — er hat ihn neu sortiert. Der globale Markt für Vertical Farming wurde 2025 auf 8,5 Milliarden US-Dollar geschätzt und wird laut Branchenprognosen bis 2034 auf rund 70 Milliarden US-Dollar wachsen. <span class="tag tag-belegt">BELEGT</span> <span class="tag tag-extra">EXTRAPOLATION</span> (Marktprognosen sind keine primären Fakten, sondern Modellrechnungen.)</p>
+
+  <p>Die Kapitallogik dahinter ist unabhängig vom operativen Erfolg einzelner Unternehmen. Wer die Technologieplattform, die Patente auf KI-gestützte Wachstumssteuerung, die Daten über optimale Lichtspektren und Nährstoffkonfigurationen oder die Lieferantenbeziehungen zu LED-Herstellern kontrolliert, kontrolliert einen zukünftigen Schlüsselprozess der Nahrungsmittelproduktion — unabhängig davon, ob das jeweilige Start-up überlebt. <span class="tag tag-extra">EXTRAPOLATION</span></p>
+
+  <div class="highlight-box">
+    <div class="highlight-box-title">Das VC-Muster: Verlust als Investition</div>
+    <p style="font-size:0.92rem; margin-bottom:0.6rem">SoftBank investierte in Plenty 200 Mio. $ (2017) und folgte mit weiteren Runden bis zu einem Gesamtengagement, das zum Chapter-11-Antrag März 2025 führte. SoftBank war gleichzeitig Großaktionär bei WeWork (Insolvenz 2023), Uber (Börsengang unter Ausgabepreis) und zahlreichen weiteren Plattformunternehmen, die nie profitabel waren.</p>
+    <p style="font-size:0.92rem; margin-bottom:0">Das Muster: Massive Kapitalzufuhr erzeugt Marktbereinigung (Wettbewerber werden verdrängt), Technologiekonsolidierung (überlebende Patente werden aufgekauft), und Infrastrukturaufbau auf Kosten der ersten Investoren — der Nutzen entsteht für die zweite und dritte Investitionsrunde. <span class="tag tag-extra">EXTRAPOLATION</span></p>
+  </div>
+
+  <h2>Die andere Abhängigkeit</h2>
+
+  <p>Vertikale Landwirtschaft löst eine Abhängigkeit — von Boden, Klima, Wasser, Transportwegen — und schafft gleichzeitig neue. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Erstens: Energieabhängigkeit. Eine Vertical Farm, die mit Netzstrom betrieben wird, ist vollständig von der Energieinfrastruktur abhängig. Ein Stromausfall von 48 Stunden vernichtet eine gesamte Ernte. Konventionelle Landwirtschaft ist resilient gegenüber kurzfristigen Energieausfällen — eine Vertical Farm nicht.</p>
+
+  <p>Zweitens: Technologieabhängigkeit. Die Steuerungssysteme für Licht, Nährstofflösungen, Klimatisierung und Erntezeitpunkte werden von spezialisierten Anbietern geliefert. Wer die Plattform kontrolliert, kontrolliert den Betrieb. <span class="tag tag-offen">OFFEN</span> Unter welchen Vertragsbedingungen Softwarelizenzen für Betriebssysteme vertikaler Farmen vergeben werden und ob proprietäre Systeme den Wechsel zu anderen Anbietern technisch ermöglichen, ist öffentlich nicht dokumentiert.</p>
+
+  <p>Drittens: Sortenbeschränkung. Vertikale Farmen sind wirtschaftlich derzeit auf Blattgemüse, Kräuter und Microgreens beschränkt. Grundnahrungsmittel — Getreide, Hülsenfrüchte, Kartoffeln, Wurzelgemüse — lassen sich nicht wirtschaftlich vertikal anbauen. <span class="tag tag-belegt">BELEGT</span> Eine Technologie, die Salat und Basilikum produziert, ersetzt keine Ackerflächen für Weizen oder Mais.</p>
+
+  <div class="pull-quote">
+    „Die durchschnittliche Indoor-Farm verbraucht 38,8 Kilowattstunden Energie, um ein Kilogramm Lebensmittel zu produzieren — das ist genug Strom, um 17 Ladungen Wäsche zu waschen."
+    <cite>— Dave Dinesen, CEO CubicFarms, zit. in agfundernews 2022</cite>
+  </div>
+
+  <h2>Wer überlebt — und mit welcher Struktur</h2>
+
+  <p>Nach der Insolvenzwelle 2023–2025 lässt sich ein Muster bei den Überlebenden erkennen. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Spread Co. (Japan): Über 200 vertikale Farmen in Betrieb, 30.000 Salatköpfe täglich aus einer einzigen hochautomatisierten Anlage. Staatlich gefördert, auf den Inlandsmarkt ausgerichtet, ohne Venture-Capital-Druckstrukturen. Infarm (Berlin): Nach massivem Schrumpfen auf Kernmärkte fokussiert. Der deutsche Staat beteiligte sich über die KfW an der Rettungsfinanzierung. AeroFarms: Nach 2023er-Insolvenz kurzzeitig profitabel im Microgreens-Segment — aber 2025 endgültig geschlossen, weil der Konzern trotz Farm-Profitabilität keinen positiven Gesamt-Cashflow erzielen konnte.</p>
+
+  <p>Die Überlebensbedingungen sind dokumentierbar: Fokus auf hochpreisige Nischenkulturen (Microgreens, Kräuter, Babyleaf), staatliche Förderung oder strategische Einbindung in Retailer-Netzwerke, keine renditegetriebenen VC-Zeitpläne. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <h2>Wer als nächstes investiert</h2>
+
+  <p>Die Insolvenzwelle hat die Investorenbasis nicht vertrieben — sie hat sie verändert. Staatsfonds aus dem Nahen Osten (Abu Dhabi ADQ, Saudi-Arabien) investieren gezielt in vertikale Farmen als Instrument der nationalen Ernährungssicherheit in Wüstenregionen. <span class="tag tag-belegt">BELEGT</span> Die Logik ist eine andere als bei SoftBank: Nicht Rendite, sondern Versorgungsunabhängigkeit.</p>
+
+  <p>Walmart, das nach Plenties Insolvenz seinen investierten Betrag verlor, ist gleichzeitig Einzelhändler für die Produkte, die vertikale Farmen liefern. <span class="tag tag-offen">OFFEN</span> Ob Walmart nach dem Insolvenzprozess Technologie-Assets oder Lieferkettenpositionen aus der Masse von Plenty übernommen hat, ist öffentlich nicht dokumentiert.</p>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    Fortune Business Insights, Vertical Farming Market Report 2025: Marktgröße 2025: 8,52 Mrd. USD; Prognose 2034: 70,89 Mrd. USD. ADQ Abu Dhabi, Pressemitteilung März 2024: Kooperation mit ZERO (IT) für vertikale Farmanlage. Fraunhofer-Institut: 78 % der vertikalen Farmen nutzen bereits erneuerbare Energien (Erhebung 2023).
+  </div>
+
+  <h2>Was offen bleibt</h2>
+
+  <p>Fast zwei Milliarden Dollar Wagniskapital sind in eine Technologie geflossen, die funktioniert — aber nicht bei den Skalierungsgeschwindigkeiten und Renditeprofilen, die Investoren erwarteten. <span class="tag tag-belegt">BELEGT</span> Welche Technologiepatente, Betriebsdaten und Lieferantenverträge im Insolvenzprozess an wen übergegangen sind, ist öffentlich nicht vollständig dokumentiert. <span class="tag tag-offen">OFFEN</span></p>
+
+  <p>Vertical Farming ist kein Ersatz für konventionelle Landwirtschaft — das ist physikalisch dokumentiert. Es ist ein Ergänzungssystem für spezifische Kulturen, spezifische Standorte und spezifische Versorgungslogiken. <span class="tag tag-belegt">BELEGT</span> Ob dieser Sektor eine weitere Konzentrationswelle — diesmal durch staatliche Akteure und strategische Retailer — erlebt, oder ob er in kleineren, dezentralen Strukturen überlebt: <span class="tag tag-offen">OFFEN</span></p>
+
+  <div class="closing">
+    <p>Das Kapital ist nicht verschwunden — es hat die Adresse gewechselt. Staatsfonds aus dem Nahen Osten, Retailer mit Lieferketten-Interessen und Technologiekonzerne mit KI-Plattform-Ambitionen stehen bereit für die zweite Runde. Wer am Ende die Saatgut-unabhängigen, bodenunabhängigen, wetter-unabhängigen Anbausysteme der Zukunft kontrolliert, ist heute noch nicht entschieden.</p>
+    <p>Oder doch schon?</p>
+  </div>
+
+  <div class="series-nav">
+    <div class="series-nav-title">Serie: Wer kontrolliert, was wir essen? — Alle Teile</div>
+    <div class="series-nav-grid">
+      <div class="series-nav-item">✓ Teil 1: Marktkonzentration</div>
+      <div class="series-nav-item">✓ Teil 2: Saatgut &amp; Patente</div>
+      <div class="series-nav-item">✓ Teil 3: Höfesterben</div>
+      <div class="series-nav-item">✓ Teil 4: Insekten als Protein</div>
+      <div class="series-nav-item">✓ Teil 5: Laborfleisch</div>
+      <div class="series-nav-item">✓ Teil 6: Wasser &amp; Kontrolle</div>
+      <div class="series-nav-item">✓ Teil 7: Mercosur-Abkommen</div>
+      <div class="series-nav-item">✓ Teil 8: Handelsriesen &amp; Daten</div>
+      <div class="series-nav-item">✓ Teil 9: Neue Gentechnik</div>
+      <div class="series-nav-item">✓ Teil 10: Lebensmittelskandale</div>
+      <div class="series-nav-item">✓ Teil 11: Akteursnetzwerk</div>
+      <div class="series-nav-item current">▶ Bonus: Vertical Farming</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

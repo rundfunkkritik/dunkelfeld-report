@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Das stille Imperium — Wer kontrolliert, was wir essen? | dunkelfeld.report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* Serienbanner */
+  .series-banner {
+    background: #111113;
+    border: 1px solid #27272a;
+    border-left: 4px solid #e8c547;
+    padding: 0.75rem 1.2rem;
+    margin-bottom: 2.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: #a1a1aa;
+    text-transform: uppercase;
+  }
+  .series-banner strong {
+    color: #e8c547;
+  }
+
+  /* Header */
+  header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #27272a;
+  }
+
+  .eyebrow {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: #e8c547;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: normal;
+    line-height: 1.25;
+    color: #fafafa;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.02em;
+  }
+
+  .subtitle {
+    font-size: 1.15rem;
+    color: #a1a1aa;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #52525b;
+    letter-spacing: 0.08em;
+  }
+
+  /* Tags */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    padding: 0.2em 0.55em;
+    border-radius: 2px;
+    font-weight: bold;
+    vertical-align: middle;
+    margin-left: 0.3em;
+  }
+  .tag-belegt    { background: #14532d; color: #86efac; }
+  .tag-extra     { background: #7c2d12; color: #fdba74; }
+  .tag-offen     { background: #3f3f46; color: #a1a1aa; }
+
+  /* Body text */
+  h2 {
+    font-size: 1.25rem;
+    color: #e8c547;
+    font-weight: normal;
+    letter-spacing: 0.04em;
+    margin: 2.5rem 0 0.9rem;
+    text-transform: uppercase;
+    font-family: 'Courier New', monospace;
+  }
+
+  p { margin-bottom: 1.2rem; }
+
+  /* Stat grid */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: #27272a;
+    margin: 2rem 0;
+    border: 1px solid #27272a;
+  }
+  .stat-cell {
+    background: #111113;
+    padding: 1.2rem 1rem;
+    text-align: center;
+  }
+  .stat-number {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 1.8rem;
+    color: #e8c547;
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: #71717a;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Source box */
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    margin: 1.8rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: #a1a1aa;
+    line-height: 1.6;
+  }
+  .source-box strong {
+    color: #e8c547;
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Pull quote */
+  .pull-quote {
+    border-left: 4px solid #e8c547;
+    padding: 0.8rem 1.5rem;
+    margin: 2rem 0;
+    font-size: 1.15rem;
+    color: #d4d4d8;
+    font-style: italic;
+    line-height: 1.6;
+  }
+  .pull-quote cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #71717a;
+    font-style: normal;
+    margin-top: 0.6rem;
+    letter-spacing: 0.08em;
+  }
+
+  /* Vergleich-Tabelle */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.9rem;
+  }
+  .data-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #e8c547;
+    border-bottom: 1px solid #3f3f46;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+  }
+  .data-table td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid #1f1f23;
+    vertical-align: top;
+    color: #d4d4d8;
+  }
+  .data-table tr:hover td { background: #111113; }
+  .data-table .hl { color: #e8c547; font-weight: bold; }
+
+  /* Timeline */
+  .timeline { margin: 2rem 0; }
+  .tl-item {
+    display: flex;
+    gap: 1.2rem;
+    padding-bottom: 1.5rem;
+    position: relative;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: 3.2rem;
+    top: 1.6rem;
+    bottom: 0;
+    width: 1px;
+    background: #27272a;
+  }
+  .tl-item:last-child::before { display: none; }
+  .tl-year {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #e8c547;
+    min-width: 2.8rem;
+    padding-top: 0.25rem;
+    letter-spacing: 0.05em;
+  }
+  .tl-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #3f3f46;
+    border: 2px solid #e8c547;
+    min-width: 10px;
+    margin-top: 0.4rem;
+  }
+  .tl-content { flex: 1; }
+  .tl-content strong { color: #fafafa; }
+  .tl-content p {
+    font-size: 0.9rem;
+    color: #a1a1aa;
+    margin-bottom: 0;
+  }
+
+  /* Serien-Navigation */
+  .series-nav {
+    background: #111113;
+    border: 1px solid #27272a;
+    padding: 1.4rem;
+    margin: 3rem 0 2rem;
+  }
+  .series-nav-title {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: #e8c547;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .series-nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.4rem;
+  }
+  .series-nav-item {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #71717a;
+    padding: 0.3rem 0;
+  }
+  .series-nav-item.current { color: #e8c547; }
+  .series-nav-item.done { color: #a1a1aa; }
+  .series-nav-item a { color: inherit; text-decoration: none; }
+  .series-nav-item a:hover { color: #e8c547; }
+
+  /* Closing */
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #27272a;
+    font-style: italic;
+    color: #a1a1aa;
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+  .closing p { margin-bottom: 1rem; }
+
+  /* Divider */
+  .divider {
+    border: none;
+    border-top: 1px solid #27272a;
+    margin: 2.5rem 0;
+  }
+
+  /* Highlight-Box */
+  .highlight-box {
+    background: #18181b;
+    border: 1px solid #3f3f46;
+    border-top: 3px solid #e8c547;
+    padding: 1.2rem 1.4rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+  }
+  .highlight-box-title {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: #e8c547;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+  }
+
+  a { color: #e8c547; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  @media (max-width: 500px) {
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="series-banner">
+    <strong>Serie: Wer kontrolliert, was wir essen?</strong> &nbsp;·&nbsp; Teil 8 von 11
+  </div>
+
+  <header>
+    <div class="eyebrow">Dunkelfeld.Report &nbsp;·&nbsp; Lebensmittelsystem</div>
+    <h1>Das stille Imperium</h1>
+    <p class="subtitle">Vier Konzerngruppen teilen 90 Prozent des deutschen Lebensmittelmarktes unter sich auf. Doch die Macht an der Kasse ist nur die sichtbare Hälfte — im Hintergrund entsteht ein zweites Geschäftsmodell, das Einkaufsdaten zu Werbeinventar macht.</p>
+    <div class="meta">Veröffentlicht Juni 2026 &nbsp;·&nbsp; Quellen: Bundeskartellamt, Monopolkommission, Unternehmensberichte, EUR-Lex</div>
+  </header>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <span class="stat-number">~90%</span>
+      <span class="stat-label">Marktanteil Big Four DE</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-number">240 Mrd.</span>
+      <span class="stat-label">Umsatz Top-25 LEH 2024 (€)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-number">6.000+</span>
+      <span class="stat-label">Hersteller vs. 4 Einkäufer</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-number">+22%</span>
+      <span class="stat-label">Retail-Media-Wachstum DE 2024</span>
+    </div>
+  </div>
+
+  <p>In keinem anderen Industriesektor Deutschlands ist die Konzentration so weit fortgeschritten wie im Lebensmitteleinzelhandel. <span class="tag tag-belegt">BELEGT</span> Noch im Jahr 1999 hielten acht Handelsunternehmen gemeinsam 70 Prozent Marktanteil. Heute teilen sich Edeka, die Schwarz-Gruppe (Lidl/Kaufland), Rewe und Aldi rund 90 Prozent des Marktes — vier Konzerne, denen mehr als 6.000 Lebensmittelhersteller gegenüberstehen.</p>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    Bundeskartellamt, Jahresrückblick 2024 (19.12.2024): Missbrauchsverfahren gegen EDEKA wegen Forderungen im Zusammenhang mit Einführung des Payback-Systems; Verfahren gegen Coca-Cola zur Prüfung von Konditionen gegenüber dem LEH. — bundeskartellamt.de
+  </div>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    Monopolkommission, Sondergutachten 84 „Wettbewerb in der Lebensmittellieferkette" (2025): „Seit 2007 Verschiebung der Preisaufschläge von der Landwirtschaft hin zu Lebensmittelherstellern und Lebensmitteleinzelhandel. Im LEH Hinweise darauf, dass Kostensenkungen nicht an Verbraucherinnen und Verbraucher weitergegeben wurden." — monopolkommission.de
+  </div>
+
+  <h2>Wer die Regale kontrolliert, kontrolliert den Preis</h2>
+
+  <p>Die strukturelle Asymmetrie ist dokumentiert: Vier Handelskonzerne entscheiden, welche Produkte überhaupt zum Verbraucher gelangen. Das Instrument heißt Listung — und wer gelistet werden möchte, zahlt.</p>
+
+  <p>Listungsgebühren (Zahlung für das Recht, beliefern zu dürfen), Regalmieten (für bevorzugte Platzierung), Werbekostenzuschüsse, Naturalrabatte und Beiträge zu Filialumbauten sind dokumentierte Konditionen, die Hersteller — insbesondere kleinere — zu leisten haben. <span class="tag tag-belegt">BELEGT</span> Das Bundeskartellamt hat dieses System als strukturell eingestuft: Der sogenannte „Angstfaktor" verhindert, dass Lieferanten rechtlich gegen ihre Abnehmer vorgehen — ein formell freier Markt mit faktisch ungleichen Machtpositionen.</p>
+
+  <div class="pull-quote">
+    „Vier Handelsunternehmen teilen sich rund 85 Prozent des Marktes, auf der anderen Seite stehen mehr als 6.000 verschiedene Hersteller. Das sind offensichtlich unterschiedliche Verhältnisse."
+    <cite>— Andreas Mundt, Präsident Bundeskartellamt</cite>
+  </div>
+
+  <p>Die Monopolkommission hält in ihrem Sondergutachten 2025 fest, dass die Marktkonzentration eine „effektivere Missbrauchsaufsicht erforderlich" mache — andernfalls bestehe „die Gefahr preislicher und nicht-preislicher missbräuchlicher Verhaltensweisen zulasten der Lieferanten von Lebensmitteln, insbesondere der Landwirtschaft." <span class="tag tag-belegt">BELEGT</span></p>
+
+  <h2>Die Big Four im Vergleich</h2>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Gruppe</th>
+        <th>Hauptmarken</th>
+        <th>Umsatz DE 2024</th>
+        <th>Strategie</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="hl">Edeka</td>
+        <td>Edeka, Netto, Marktkauf, Budni</td>
+        <td>~70 Mrd. €</td>
+        <td>Zukäufe (Real, Tegut), Payback-Integration</td>
+      </tr>
+      <tr>
+        <td class="hl">Schwarz-Gruppe</td>
+        <td>Lidl, Kaufland</td>
+        <td>51,65 Mrd. €</td>
+        <td>Tech-Transformation (Schwarz Digits/STACKIT), Cloud, KI</td>
+      </tr>
+      <tr>
+        <td class="hl">Rewe Group</td>
+        <td>Rewe, Penny, Lekkerland</td>
+        <td>43,13 Mrd. €</td>
+        <td>Retail Media, Kundenbindungsprogramme, Touristik</td>
+      </tr>
+      <tr>
+        <td class="hl">Aldi (Nord+Süd)</td>
+        <td>Aldi Nord, Aldi Süd</td>
+        <td>33,7 Mrd. €</td>
+        <td>Kernmodell Discounter; Loyalty-App in Diskussion</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    EHI Retail Institute / NIQ Trade Dimensions: Umsatzranking Lebensmittelhandel 2024/2025. Rewe Group, Jahrespressemitteilung April 2026: Investitionen 2025 von 2,5 Mrd. € mit Schwerpunkten Digitalisierung, KI und Automatisierung. — rewe-group.com
+  </div>
+
+  <h2>Zwei Modelle, eine Richtung</h2>
+
+  <p>Die Frage, ob die anderen Handelsriesen gegenüber der Schwarz-Gruppe mit ihrem 11-Milliarden-Rechenzentrum in Lübbenau „zurückhaltend" agieren, ist nur halb richtig. Die Richtung ist dieselbe — die Instrumente unterscheiden sich.</p>
+
+  <p>Schwarz (Lidl/Kaufland) vertikal integriert: eigene Cloud-Infrastruktur, eigener KI-Betrieb, eigene Datenspeicherung, Ambitionen als europäischer Hyperscaler — und als Infrastrukturanbieter für Staatsbehörden. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Rewe geht den Weg der Datenverwertung nach außen: Das Unternehmen hat im Februar 2024 eine Partnerschaft mit The Trade Desk geschlossen. <span class="tag tag-belegt">BELEGT</span> Das Kaufverhalten der Kunden aus dem Rewe-Onlineshop wird dabei als Zielgruppendaten für programmatische Werbung auf externen Plattformen eingesetzt — auf fremden Websites, in Apps, bei Connected TV und digitaler Außenwerbung.</p>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    The Trade Desk / REWE Group, Pressemitteilung 29. Februar 2024: „Die Partnerschaft ermöglicht es Markenunternehmen und Mediaagenturen, datenschutzkonform Zielgruppensegmente zu nutzen, die auf dem Kaufverhalten im REWE-Onlineshop basieren. Werbetreibende können Retail-Daten für die Aussteuerung von Werbung auf Drittplattformen einsetzen." — thetradedesk.com / rewe-group-retailmedia.de
+  </div>
+
+  <h2>Retail Media: Das zweite Geschäftsmodell</h2>
+
+  <p>Der Begriff ist noch wenig bekannt, die Struktur dahinter ist es längst. Retail Media bezeichnet die Nutzung von Kundendaten des Handels als Grundlage für zielgerichtete Werbung — sowohl im eigenen digitalen Inventar als auch auf externen Plattformen Dritter.</p>
+
+  <div class="highlight-box">
+    <div class="highlight-box-title">Retail Media — Wie es funktioniert</div>
+    <p style="font-size:0.92rem; margin-bottom:0.5rem;">Ein Kunde kauft regelmäßig Babynahrung bei Rewe online. Dieser Datenpunkt — kein Name, aber ein Verhaltensprofil — wird Markenherstellern und Werbeagenturen als Zielgruppensegment verkauft. Pampers kann damit gezielt Eltern ansprechen, die bereits bei Rewe einkaufen — auf YouTube, im Connected TV, auf Nachrichtenwebsites. Der Supermarkt wird zum Medienunternehmen.</p>
+    <p style="font-size:0.92rem; margin-bottom:0">Laut FOMA Trendmonitor stiegen die Investitionen in Retail Media in Deutschland 2024 um 22 Prozent — mehr als in jedem anderen Werbesegment. <span class="tag tag-belegt">BELEGT</span></p>
+  </div>
+
+  <p>Schwarz Media (Lidl/Kaufland) war dabei früher: Die Partnerschaft mit The Trade Desk wurde bereits im Juli 2023 geschlossen, Rewe folgte im Februar 2024. Damit existiert ein strukturell gleichartiges System bei zwei der vier Marktführer: Kassenbondaten werden zu handelbarem Werbeinventar. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <span class="tl-year">2021</span>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <strong>Schwarz erwirbt XM Cyber</strong>
+        <p>Israelisches Cybersicherheitsunternehmen für rund 700 Mio. US-Dollar — erster Schritt der IT-Diversifikation jenseits des Handels.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-year">2023</span>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <strong>Gründung Schwarz Digits; Retail-Media-Deal Schwarz/Trade Desk</strong>
+        <p>Konsolidierung von Cloud (STACKIT), Cybersicherheit und E-Commerce unter einer Digitaleinheit. Erste Retail-Media-Partnerschaft im deutschen LEH.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-year">Feb. 2024</span>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <strong>Rewe/Trade Desk: Kundendaten für programmatische Werbung</strong>
+        <p>Kaufverhalten aus dem Rewe-Onlineshop wird erstmals extern für Drittplattformen freigegeben.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-year">Nov. 2024</span>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <strong>Schwarz/Google: 575.000 Mitarbeiter zu Google Workspace via STACKIT</strong>
+        <p>Langfristige Partnerschaft, bei der Google-Dienste in Schwarz-eigenen Rechenzentren gehostet werden. Datenspeicherung in Deutschland.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-year">März 2025</span>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <strong>BSI-Kooperation: Schwarz Digits entwickelt Cloud für Staatsbehörden</strong>
+        <p>Das Bundesamt für Sicherheit in der Informationstechnik kooperiert mit der IT-Sparte eines Lebensmittelhändlers für souveräne Verwaltungsinfrastruktur.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-year">Nov. 2025</span>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <strong>Spatenstich Rechenzentrum Lübbenau: 11 Mrd. € Investition</strong>
+        <p>Größte Einzelinvestition der Unternehmensgeschichte. 200-MW-Anlage auf dem Gelände eines ehemaligen Braunkohlekraftwerks, Fertigstellung 2027.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    BSI, Pressemitteilung März 2025: Kooperation mit Schwarz Digits zur Entwicklung souveräner Cloud-Lösungen für die öffentliche Verwaltung in Deutschland. — bsi.bund.de / schwarz-digits.de
+  </div>
+
+  <h2>Eigenmarken: Die stille Verdrängung</h2>
+
+  <p>Parallel zur Datenstrategie läuft ein älteres Machtinstrument: die Eigenmarke. Die großen Handelskonzerne produzieren und vermarkten zunehmend eigene Lebensmittel — und konkurrieren damit direkt mit den Herstellern, auf deren Listungsgebühren sie gleichzeitig bestehen.</p>
+
+  <p>Der strukturelle Vorteil ist dokumentiert: Eigenmarken benötigen keine externen Werbebudgets, keine Listungsgebühren, keine Regalmieten. <span class="tag tag-belegt">BELEGT</span> Wenn ein Händler zugleich Einkäufer, Regalvermieter, Dateninhaber und Wettbewerber seiner Lieferanten ist, stellt sich die Frage nach Interessenkonflikten — eine Frage, die die Monopolkommission in ihrem Sondergutachten 2025 als regulierungsbedürftig eingestuft hat.</p>
+
+  <p>Die 11. GWB-Novelle 2023 hat dem Bundeskartellamt neue Befugnisse gegeben: Es kann nun ohne konkreten Verstoß tätig werden und Sektoruntersuchungen einleiten — mit der Möglichkeit struktureller Maßnahmen bis zur Entflechtung. <span class="tag tag-belegt">BELEGT</span> Eine Sektoruntersuchung des Lebensmitteleinzelhandels war bis Redaktionsschluss nicht angekündigt.</p>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    11. GWB-Novelle (Gesetz gegen Wettbewerbsbeschränkungen), BGBl. I 2023; Monopolkommission, Sondergutachten 84 (2025): „Rechtsdurchsetzung wird durch den sog. Angstfaktor stark eingeschränkt. Unternehmen scheuen davor zurück, vor Gericht oder durch Meldung bei Behörden gegen ihre mächtigen Vertragspartner vorzugehen." — monopolkommission.de
+  </div>
+
+  <h2>Was offen bleibt</h2>
+
+  <p>Die Schwarz-Gruppe baut Infrastruktur für Staatsbehörden — und betreibt gleichzeitig das größte Netz an Lebensmittelfilialen in Europa. <span class="tag tag-offen">OFFEN</span> Unter welchen regulatorischen Bedingungen ein Handelskonzern souveräne Verwaltungsinfrastruktur bereitstellt, ist öffentlich nicht dokumentiert.</p>
+
+  <p>Rewe und Schwarz verkaufen Einkaufsverhalten ihrer Kunden als Werbeinventar an externe Plattformen. <span class="tag tag-belegt">BELEGT</span> Welche Datenmengen dabei aggregiert werden, an wen sie außerdem fließen und welche Profilierungstiefe entsteht, ist für Endverbraucher nicht einsehbar. <span class="tag tag-offen">OFFEN</span></p>
+
+  <p>Die Monopolkommission empfiehlt eine Sektoruntersuchung. <span class="tag tag-belegt">BELEGT</span> Das Bundeskartellamt hat die Befugnis dazu seit 2023. <span class="tag tag-belegt">BELEGT</span> Eine entsprechende Untersuchung wurde bislang nicht eingeleitet. <span class="tag tag-offen">OFFEN</span></p>
+
+  <div class="closing">
+    <p>Wenn ein Lebensmittelhändler zugleich Cloud-Anbieter für Staatsbehörden ist, Kassenbondaten zu externen Werbeplattformen exportiert, eigene Produkte gegen die Lieferanten platziert, von denen er gleichzeitig Listungsgebühren erhebt — welcher Begriff beschreibt dann noch präzise, was diese Unternehmen sind?</p>
+    <p>Und wenn die Monopolkommission eine Sektoruntersuchung empfiehlt, das Kartellamt die Befugnis dazu besitzt und diese Untersuchung trotzdem ausbleibt: Welche Logik bestimmt, wann Regulierung greift und wann nicht?</p>
+  </div>
+
+  <div class="series-nav">
+    <div class="series-nav-title">Serie: Wer kontrolliert, was wir essen? — 11 Teile</div>
+    <div class="series-nav-grid">
+      <div class="series-nav-item done">✓ Teil 1: Marktkonzentration</div>
+      <div class="series-nav-item done">✓ Teil 2: Saatgut &amp; Patente</div>
+      <div class="series-nav-item done">✓ Teil 3: Höfesterben</div>
+      <div class="series-nav-item done">✓ Teil 4: Insekten als Protein</div>
+      <div class="series-nav-item done">✓ Teil 5: Laborfleisch</div>
+      <div class="series-nav-item done">✓ Teil 6: Wasser &amp; Kontrolle</div>
+      <div class="series-nav-item done">✓ Teil 7: Mercosur-Abkommen</div>
+      <div class="series-nav-item current">▶ Teil 8: Handelsriesen &amp; Daten</div>
+      <div class="series-nav-item">○ Teil 9: Neue Gentechnik (NGT)</div>
+      <div class="series-nav-item">○ Teil 10: Lebensmittelskandale</div>
+      <div class="series-nav-item">○ Teil 11: Akteursnetzwerk</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

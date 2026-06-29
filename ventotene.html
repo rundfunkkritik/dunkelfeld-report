@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Das Manifest von Ventotene — dunkelfeld.report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #09090b;
+    color: #e2e2e2;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.08rem;
+    line-height: 1.85;
+    padding: 2rem 1.2rem 4rem;
+  }
+
+  .container { max-width: 720px; margin: 0 auto; }
+
+  /* NAV */
+  .site-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #2a2a2e;
+  }
+  .site-logo {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #e8c547;
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .site-nav-links { display: flex; gap: 1.5rem; }
+  .site-nav-links a {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #888;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+  .site-nav-links a:hover { color: #e8c547; }
+
+  /* HEADER */
+  .article-meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #e8c547;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.2rem;
+  }
+  .article-meta span { color: #555; margin: 0 0.4rem; }
+
+  h1 {
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #f4f4f4;
+    margin-bottom: 1rem;
+  }
+  .subtitle {
+    font-size: 1.15rem;
+    color: #aaa;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #2a2a2e;
+    margin: 2rem 0;
+  }
+
+  /* BODY TEXT */
+  p { padding-bottom: 1.2rem; }
+  h2 {
+    font-size: 1.25rem;
+    color: #e8c547;
+    margin: 2.5rem 0 1rem;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  h3 {
+    font-size: 1.05rem;
+    color: #d4d4d4;
+    margin: 1.8rem 0 0.6rem;
+    font-weight: 600;
+  }
+
+  /* TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    vertical-align: middle;
+    margin-left: 0.3rem;
+  }
+  .tag-belegt { background: #1a3a1a; color: #5cdb5c; border: 1px solid #2d5a2d; }
+  .tag-extra   { background: #3a2a0a; color: #e8a030; border: 1px solid #5a3a0a; }
+  .tag-offen   { background: #2a2a2a; color: #888; border: 1px solid #444; }
+
+  /* SOURCE BOX */
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+  .source-box .source-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #e8c547;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+  .source-box a { color: #e8c547; text-decoration: none; }
+  .source-box a:hover { text-decoration: underline; }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #ccc;
+    background: #111116;
+  }
+  .pull-quote cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #666;
+    font-style: normal;
+    margin-top: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* TIMELINE */
+  .timeline { border-left: 2px solid #2a2a2e; margin: 1.5rem 0 2rem 0.5rem; }
+  .timeline-item { display: flex; gap: 1.5rem; padding: 0.6rem 0 0.6rem 1.5rem; position: relative; }
+  .timeline-item::before {
+    content: '';
+    width: 9px; height: 9px;
+    background: #e8c547;
+    border-radius: 50%;
+    position: absolute;
+    left: -5.5px;
+    top: 1.05rem;
+    flex-shrink: 0;
+  }
+  .timeline-year {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: #e8c547;
+    white-space: nowrap;
+    min-width: 3.5rem;
+    padding-top: 0.1rem;
+  }
+  .timeline-text { font-size: 0.93rem; color: #ccc; }
+
+  /* STAT GRID */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .stat-card {
+    background: #111116;
+    border: 1px solid #2a2a2e;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-card .stat-val {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    color: #e8c547;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .stat-card .stat-label { font-size: 0.8rem; color: #888; }
+
+  /* COMPARISON TABLE */
+  .compare-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2rem; font-size: 0.9rem; }
+  .compare-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #e8c547;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #2a2a2e;
+    text-align: left;
+  }
+  .compare-table td { padding: 0.7rem 0.8rem; border-bottom: 1px solid #1a1a1e; color: #ccc; vertical-align: top; }
+  .compare-table tr:hover td { background: #111116; }
+  .compare-table .col-orig { color: #aaa; }
+  .compare-table .col-heute { color: #e2e2e2; }
+
+  /* LINK */
+  a { color: #e8c547; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* RELATED */
+  .related-box {
+    background: #111116;
+    border: 1px solid #2a2a2e;
+    padding: 1.2rem 1.4rem;
+    margin: 3rem 0 1.5rem;
+  }
+  .related-box .related-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.8rem;
+  }
+  .related-box a { display: block; color: #e8c547; font-size: 0.92rem; margin-bottom: 0.4rem; }
+
+  /* OPEN QUESTIONS */
+  .open-questions { margin: 2.5rem 0; }
+  .open-questions h2 { margin-bottom: 0.8rem; }
+  .open-questions p { color: #999; font-style: italic; font-size: 0.97rem; padding-bottom: 0.6rem; }
+
+  /* FOOTER */
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a2e;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #444;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a class="site-logo" href="/">dunkelfeld.report</a>
+    <div class="site-nav-links">
+      <a href="/index.html">Archiv</a>
+      <a href="/ueber.html">Über</a>
+    </div>
+  </nav>
+
+  <!-- META -->
+  <div class="article-meta">
+    Slug: ventotene<span>|</span>Kategorie: EU-Institutionen / Ideengeschichte<span>|</span>2025
+  </div>
+
+  <h1>Das Manifest von Ventotene</h1>
+  <p class="subtitle">Von der Gefängnisinsel zur EU-Gründungsideologie — was das Originaldokument forderte und wie es heute verwendet wird.</p>
+
+  <hr class="divider">
+
+  <!-- INTRO -->
+  <p>Am 16. April 2020, zu Beginn der Corona-Pandemie, trat EU-Kommissionspräsidentin Ursula von der Leyen vor das Europäische Parlament. In ihrer Rede zitierte sie ein Dokument aus dem Jahr 1941: das Manifest von Ventotene. <span class="tag tag-belegt">Belegt</span></p>
+
+  <div class="source-box">
+    <div class="source-label">Primärquelle</div>
+    Rede von Präsidentin von der Leyen, EP-Plenum, 16. April 2020 — Europäische Kommission, Presscorner:<br>
+    <a href="https://ec.europa.eu/commission/presscorner/detail/de/SPEECH_20_675" target="_blank">ec.europa.eu/commission/presscorner/detail/de/SPEECH_20_675</a>
+  </div>
+
+  <p>Das Manifest gilt heute als, so von der Leyen, «Meilenstein der europäischen Integration». Das Hauptgebäude des Europäischen Parlaments in Brüssel trägt den Namen seines Hauptautors: Altiero Spinelli. <span class="tag tag-belegt">Belegt</span></p>
+
+  <p>Was steht in diesem Dokument? Wer schrieb es, unter welchen Umständen — und was forderte es konkret?</p>
+
+  <hr class="divider">
+
+  <h2>I. Die Entstehung</h2>
+
+  <p>Altiero Spinelli war 1927, mit zwanzig Jahren, verhaftet worden — als Mitglied der Kommunistischen Partei Italiens im Widerstand gegen Mussolini. Er verbrachte zehn Jahre in Haft, danach Verbannung auf die Gefängnisinseln Ponza und schließlich Ventotene im Golf von Gaeta, rund siebzig Kilometer vor Neapel. Auf Ventotene distanzierte er sich vom Stalinismus und näherte sich dem Konzept des europäischen Föderalismus. <span class="tag tag-belegt">Belegt</span></p>
+
+  <p>1941 schrieb Spinelli gemeinsam mit Ernesto Rossi (liberal, zuvor national orientiert) und Eugenio Colorni (sozialistisch-sozialreformerisch) ein Manifest — heimlich auf Zigarettenpapier. Colornys Ehefrau Ursula Hirschmann schmuggelte die Abschnitte versteckt im Bauch eines gebratenen Huhns vom Gefängnis auf das Festland. Das Dokument zirkulierte ab 1941 in der klandestinen Widerstandspresse, eine vollständige Ausgabe erschien im Januar 1944 in Rom. <span class="tag tag-belegt">Belegt</span></p>
+
+  <div class="source-box">
+    <div class="source-label">Primärquelle — Volltext deutsch</div>
+    Manifest von Ventotene (Ausgabe 1944, deutsche Übersetzung), veröffentlicht durch die Union Europäischer Föderalisten:<br>
+    <a href="https://federalists.eu/federalist-library/das-manifest-von-ventotene/" target="_blank">federalists.eu/federalist-library/das-manifest-von-ventotene/</a><br><br>
+    Universitätslizenzierte Ausgabe, CVCE der Universität Luxemburg:<br>
+    <a href="https://www.cvce.eu/obj/das_manifest_von_ventotene_1941-de-316aa96c-e7ff-4b9e-b43a-958e96afbecc/publishable_de.pdf" target="_blank">cvce.eu — Manifest von Ventotene (PDF)</a>
+  </div>
+
+  <hr class="divider">
+
+  <h2>II. Was das Original forderte</h2>
+
+  <p>Das Manifest von Ventotene ist ein antikapitalistisches Revolutionsdokument. Es erklärt die Souveränität der Nationalstaaten zur Hauptursache von Krieg, Imperialismus und Faschismus — und fordert deren «endgültige Beseitigung». <span class="tag tag-belegt">Belegt</span></p>
+
+  <div class="pull-quote">
+    «Die erste anzugehende Aufgabe, ohne deren Lösung jeglicher Fortschritt ein trügerischer Schimmer bleiben würde, ist die endgültige Beseitigung der Grenzen, die Europa in souveräne Staaten aufteilen.»
+    <cite>Manifest von Ventotene, 1941 — Originaltext</cite>
+  </div>
+
+  <p>Über den politischen Rahmen hinaus enthält das Dokument eine explizit sozialistische Wirtschaftsagenda. Der Originaltext im Wortlaut: <span class="tag tag-belegt">Belegt</span></p>
+
+  <div class="pull-quote">
+    «Die europäische Revolution muss sozialistisch sein, um unseren Bedürfnissen gerecht zu werden; sie muss sich für die Emanzipation der Arbeiterklasse und die Schaffung menschlicherer Lebensbedingungen einsetzen.»
+    <cite>Manifest von Ventotene, 1941 — Originaltext (federalists.eu)</cite>
+  </div>
+
+  <p>Konkrete wirtschaftliche Forderungen des Manifests umfassten unter anderem: <span class="tag tag-belegt">Belegt</span></p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Bereich</th>
+        <th>Forderung im Original (1941)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Monopolunternehmen</td>
+        <td class="col-orig">Verstaatlichung ohne Rücksicht auf «erworbene Rechte» — Elektrizität, Schwerindustrie, Rüstung</td>
+      </tr>
+      <tr>
+        <td>Großbanken</td>
+        <td class="col-orig">Staatliche Übernahme</td>
+      </tr>
+      <tr>
+        <td>Bodenbesitz</td>
+        <td class="col-orig">Agrarreform: Land nur an jene, die es «tatsächlich bebauen»</td>
+      </tr>
+      <tr>
+        <td>Industrie</td>
+        <td class="col-orig">Genossenschaftsverwaltung, Aktienbesitz der Arbeiter in nicht verstaatlichten Sektoren</td>
+      </tr>
+      <tr>
+        <td>Bildung</td>
+        <td class="col-orig">Öffentliche Schulen sollen «den Begabtesten statt den Reichsten» den Zugang ebnen</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <div class="source-label">Primärquelle</div>
+    Volltext Manifest von Ventotene, Abschnitt III (Gesellschaftsreform):<br>
+    <a href="https://www.jef.de/ueber-uns/geschichte/manifest-von-ventotene/" target="_blank">jef.de — Manifest von Ventotene</a><br>
+    <a href="http://www.altierospinelli.org/manifesto/de/pdf/manifesto1944de.pdf" target="_blank">altierospinelli.org — Originalausgabe 1944 (PDF)</a>
+  </div>
+
+  <hr class="divider">
+
+  <h2>III. Die Umdeutung — dokumentiert</h2>
+
+  <p>Bereits die ersten Nachkriegsveröffentlichungen des Manifests tilgten dessen antikapitalistische Dimension. Der Fokus verschob sich vollständig auf die Frage der supranationalen Staatsgründung; die wirtschaftspolitischen Forderungen traten in den Hintergrund. Dies ist historisch dokumentiert, unter anderem von der Rosa-Luxemburg-Stiftung und im Neue Deutschland (Mai 2025). <span class="tag tag-belegt">Belegt</span></p>
+
+  <div class="source-box">
+    <div class="source-label">Sekundärquelle</div>
+    Rosa-Luxemburg-Stiftung: «Das Manifest von Ventotene von 1941»<br>
+    <a href="https://www.rosalux.de/news/id/53433/" target="_blank">rosalux.de/news/id/53433</a>
+  </div>
+
+  <p>Das Ergebnis dieser Verschiebung: Das Manifest wurde zum parteiübergreifenden Referenzdokument — zitiert von Politikerinnen und Politikern aller Lager, obwohl sein Originalinhalt mit deren wirtschaftspolitischen Positionen teils unvereinbar ist. <span class="tag tag-extra">Extrapolation</span></p>
+
+  <p>Ursula von der Leyen, die das Manifest als «Meilenstein» bezeichnete, zitierte es im April 2020 im Kontext von Pandemie-Maßnahmen und europäischer Einigkeit — nicht im Kontext von Verstaatlichungen oder Agrarreformen. <span class="tag tag-belegt">Belegt</span></p>
+
+  <p>Im März 2025 zitierten bei einer Großkundgebung auf der Piazza del Popolo in Rom — mit 50.000 Teilnehmern — mehrere Redner das Manifest als «ersten Entwurf für ein geeintes Europa». Darunter Prominente wie Giorgio Armani und Architekt Renzo Piano. <span class="tag tag-belegt">Belegt</span></p>
+
+  <hr class="divider">
+
+  <h2>IV. Vom Manifest zum Vertrag — die institutionelle Linie</h2>
+
+  <p>Altiero Spinelli blieb nach dem Krieg politisch aktiv. Er beriet Italiens Ministerpräsidenten Alcide De Gasperi sowie Jean Monnet und Paul-Henri Spaak — zwei der zentralen Architekten der frühen europäischen Integration. 1970 wurde er Mitglied der Europäischen Kommission. <span class="tag tag-belegt">Belegt</span></p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">1941</div>
+      <div class="timeline-text">Manifest von Ventotene — Forderung nach europäischem Bundesstaat durch «revolutionäre Bewegung»</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1946</div>
+      <div class="timeline-text">Spinelli mitgründet Union Europäischer Föderalisten (UEF)</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1957</div>
+      <div class="timeline-text">Römische Verträge — Gründung EWG; nationale Regierungen behalten Steuerung</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1980</div>
+      <div class="timeline-text">Spinelli gründet «Club Crocodile» — Netzwerk föderalistischer EU-Parlamentarier</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1984</div>
+      <div class="timeline-text">«Spinelli-Entwurf»: Vertrag zur Gründung der Europäischen Union — EP billigt mit 237:31 Stimmen. Nationale Parlamente lehnen ab. <span class="tag tag-belegt">Belegt</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1986</div>
+      <div class="timeline-text">Einheitliche Europäische Akte — teilweise auf Spinelli-Entwurf basierend. Spinelli stirbt im Mai 1986.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1992</div>
+      <div class="timeline-text">Maastricht-Vertrag — Gründung der Europäischen Union; Unionsbürgerschaft eingeführt</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2010</div>
+      <div class="timeline-text">Spinelli-Gruppe gegründet von Guy Verhofstadt und Daniel Cohn-Bendit — über 50 MdEP für föderale EU-Reform</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2022</div>
+      <div class="timeline-text">Spinelli-Gruppe verabschiedet neues Manifest auf Ventotene — fordert europäische <em>und</em> globale Föderation</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2023</div>
+      <div class="timeline-text">Übergabe des neuen Manifests an EP-Archiv in Brüssel; Roberta Metsola und Guy Verhofstadt anwesend</div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <div class="source-label">Primärquellen</div>
+    Spinelli-Entwurf 1984, EP-Dokument (Europäische Kommission):<br>
+    <a href="https://european-union.europa.eu/system/files/2021-07/eu-pioneers-altiero-spinelli_de.pdf" target="_blank">european-union.europa.eu — Altiero Spinelli EU Pioneer (PDF)</a><br><br>
+    Spinelli-Gruppe / EP Historical Archives, 2022–2023:<br>
+    <a href="https://historicalarchives.europarl.europa.eu/home/fonds/donations.html" target="_blank">historicalarchives.europarl.europa.eu</a>
+  </div>
+
+  <hr class="divider">
+
+  <h2>V. Das neue Manifest (2022)</h2>
+
+  <p>2022 diskutierte die Spinelli-Gruppe — ein parteiübergreifendes Netzwerk von über 50 Europaabgeordneten — auf Ventotene ein neues Manifest. Es wurde im Oktober 2023 dem Archiv des Europäischen Parlaments übergeben. <span class="tag tag-belegt">Belegt</span></p>
+
+  <p>Das neue Dokument hält fest, dass «der Ausbruch der Pandemie 2020 und die russische Aggression gegen die Ukraine 2022 zu Wendepunkten auch für die europäische Integration geworden sind». Es fordert globale Integration auf Basis föderaler Prinzipien als «langfristige Strategie zur Verhinderung nationalistischer und autokratischer Aggressionen» — sowie mittelfristig ein direkt gewähltes Weltparlament im Rahmen der Vereinten Nationen. <span class="tag tag-belegt">Belegt</span></p>
+
+  <div class="source-box">
+    <div class="source-label">Primärquelle</div>
+    Neues Manifest der Spinelli-Gruppe, 2022 (Democracy Without Borders):<br>
+    <a href="https://www.democracywithoutborders.org/de/24990/neues-manifest-von-ventotene-fordert-eine-europaeische-und-globale-foederation/" target="_blank">democracywithoutborders.org — Neues Manifest Ventotene</a>
+  </div>
+
+  <hr class="divider">
+
+  <h2>VI. Zwei Lesarten — ein Dokument</h2>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Aspekt</th>
+        <th>Original 1941</th>
+        <th>Heutige Verwendung</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Wirtschaft</td>
+        <td class="col-orig">Verstaatlichung von Monopolen, Banken, Rüstung; Agrarreform; Arbeitereigentum</td>
+        <td class="col-heute">Wird nicht erwähnt</td>
+      </tr>
+      <tr>
+        <td>Nationalstaat</td>
+        <td class="col-orig">«Endgültige Beseitigung» nationaler Grenzen und Souveränität</td>
+        <td class="col-heute">Referenzrahmen für «europäische Einheit» und Krisenmanagement</td>
+      </tr>
+      <tr>
+        <td>Methode</td>
+        <td class="col-orig">«Revolutionäre Bewegung» in «kurzer intensiver Zeitspanne allgemeiner Krise»</td>
+        <td class="col-heute">Inkrementelle Vertragsreform</td>
+      </tr>
+      <tr>
+        <td>Geltungsbereich</td>
+        <td class="col-orig">Europa</td>
+        <td class="col-heute">Europa und globale Föderation (neues Manifest 2022)</td>
+      </tr>
+      <tr>
+        <td>Politisches Spektrum</td>
+        <td class="col-orig">Kommunisten, Liberale, Sozialisten im antifaschistischen Widerstand</td>
+        <td class="col-heute">Parteiübergreifend: Von der Leyen (CDU) bis Cohn-Bendit (Grüne)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <div class="source-label">Hinweis zur Einordnung</div>
+    Die Differenz zwischen Originalinhalt und heutiger Verwendung ist historisch dokumentiert — zuletzt von Wissenschaftlern der London School of Economics (The Conversation, März 2026):<br>
+    <a href="https://theconversation.com/ventotene-manifesto-why-european-politicians-are-arguing-over-a-1941-document-written-by-a-group-of-imprisoned-italian-antifascists-255237" target="_blank">theconversation.com — Ventotene Manifesto (englisch)</a><br><br>
+    Rosa-Luxemburg-Stiftung, Mai 2025:<br>
+    <a href="https://www.rosalux.de/news/id/53433/" target="_blank">rosalux.de — Das Manifest von Ventotene 1941</a>
+  </div>
+
+  <hr class="divider">
+
+  <!-- OPEN QUESTIONS -->
+  <div class="open-questions">
+    <h2>Offene Fragen</h2>
+    <p><em>Welche Passage des Originals zitierte von der Leyen 2020 konkret — und welche wirtschaftspolitischen Forderungen wurden dabei ausgelassen?</em></p>
+    <p><em>Das neue Manifest (2022) fordert ein direkt gewähltes Weltparlament. Auf welcher rechtlichen Grundlage und mit welchem Zeithorizont wird dies von der Spinelli-Gruppe konkret geplant?</em></p>
+    <p><em>Der Spinelli-Entwurf von 1984 scheiterte an der Ablehnung der nationalen Parlamente. Welche Mechanismen sehen aktuelle EU-Reformvorhaben vor, um diesen Einwand zu umgehen?</em></p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- RELATED -->
+  <div class="related-box">
+    <div class="related-label">Verwandte Artikel — dunkelfeld.report</div>
+    <a href="kontrollarchitektur.html">Artikel #15 — Infrastruktur der Kontrolle: Von Hollerith zu eIDAS 2.0 →</a>
+    <a href="artikel9.html">Artikel #9 — Zwei Seiten, eine Agenda? WEF, Russland, Ukraine, CBDC →</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    dunkelfeld.report — Hidden in Plain Sight<br>
+    Alle Behauptungen mit Primärquellen belegt. Tags: BELEGT (grün) = verifiziert | EXTRAPOLATION (orange) = strukturell plausibel, interpretativ | OFFEN (grau) = ungeklärt.<br>
+    Kein Impressum ohne Anfrage — <span id="mail-placeholder"></span>
+  </footer>
+
+</div>
+
+<script>
+// E-Mail-Obfuskierung
+(function() {
+  var u = 'ofni', d = 'trepor.dlefnelkud', tld = 'ed';
+  var el = document.getElementById('mail-placeholder');
+  if (el) {
+    var link = document.createElement('a');
+    link.href = 'mailto:' + u.split('').reverse().join('') + '@' + d.split('').reverse().join('') + '.' + tld.split('').reverse().join('');
+    link.textContent = 'Kontakt';
+    link.style.color = '#444';
+    el.appendChild(link);
+  }
+})();
+</script>
+</body>
+</html>

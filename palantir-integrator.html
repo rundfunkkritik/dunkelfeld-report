@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palantir — Der unsichtbare Integrator | dunkelfeld.report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #09090b; color: #e4e4e7; font-family: Georgia, 'Times New Roman', serif; font-size: 1.1rem; line-height: 1.85; }
+  a { color: #e8c547; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  nav { border-bottom: 1px solid #27272a; padding: 1rem 2rem; display: flex; align-items: center; gap: 1.5rem; }
+  .nav-brand { font-family: 'Courier New', monospace; font-size: 0.85rem; color: #e8c547; letter-spacing: 0.15em; text-transform: uppercase; }
+  .nav-sep { color: #3f3f46; font-size: 0.75rem; }
+  .nav-link { font-family: 'Courier New', monospace; font-size: 0.75rem; color: #71717a; letter-spacing: 0.08em; }
+
+  .hero { max-width: 720px; margin: 0 auto; padding: 4rem 2rem 2rem; }
+  .series-tag { font-family: 'Courier New', monospace; font-size: 0.7rem; color: #e8c547; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem; }
+  h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; line-height: 1.25; color: #fafafa; margin-bottom: 1rem; }
+  .subtitle { font-size: 1.15rem; color: #a1a1aa; line-height: 1.6; margin-bottom: 2rem; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; padding: 1rem 0; border-top: 1px solid #27272a; border-bottom: 1px solid #27272a; margin-bottom: 3rem; }
+  .meta-item { font-family: 'Courier New', monospace; font-size: 0.7rem; color: #71717a; letter-spacing: 0.08em; text-transform: uppercase; }
+  .meta-item span { color: #a1a1aa; }
+
+  .content { max-width: 720px; margin: 0 auto; padding: 0 2rem 6rem; }
+  p { margin-bottom: 1.2rem; }
+  h2 { font-size: 1.35rem; font-weight: 700; color: #fafafa; margin: 3rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #27272a; }
+  h3 { font-size: 1.05rem; font-weight: 600; color: #e8c547; margin: 2rem 0 0.75rem; font-family: 'Courier New', monospace; letter-spacing: 0.05em; }
+
+  .tag { display: inline-block; font-family: 'Courier New', monospace; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; padding: 0.2em 0.6em; border-radius: 2px; vertical-align: middle; margin-right: 0.4em; }
+  .tag-belegt { background: #14532d; color: #4ade80; border: 1px solid #166534; }
+  .tag-extrapolation { background: #431407; color: #fb923c; border: 1px solid #7c2d12; }
+  .tag-offen { background: #1c1c1e; color: #71717a; border: 1px solid #3f3f46; }
+
+  .source-box { background: #1a1a2e; border-left: 3px solid #e8c547; padding: 1rem 1.25rem; margin: 1.5rem 0; font-size: 0.9rem; }
+  .source-box .source-label { font-family: 'Courier New', monospace; font-size: 0.65rem; color: #e8c547; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .source-box p { margin-bottom: 0.5rem; color: #a1a1aa; }
+  .source-box p:last-child { margin-bottom: 0; }
+
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: #27272a; margin: 2rem 0; border: 1px solid #27272a; }
+  .stat-cell { background: #09090b; padding: 1.25rem; }
+  .stat-value { font-family: 'Courier New', monospace; font-size: 1.25rem; font-weight: 700; color: #e8c547; display: block; margin-bottom: 0.25rem; }
+  .stat-label { font-family: 'Courier New', monospace; font-size: 0.62rem; color: #71717a; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.4; }
+
+  .platform-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: #27272a; margin: 2rem 0; }
+  .platform-card { background: #0d0d10; padding: 1.25rem; }
+  .platform-name { font-family: 'Courier New', monospace; font-size: 0.85rem; color: #e8c547; letter-spacing: 0.1em; margin-bottom: 0.4rem; font-weight: 700; }
+  .platform-use { font-family: 'Courier New', monospace; font-size: 0.62rem; color: #3f3f46; margin-bottom: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .platform-detail { font-size: 0.85rem; color: #71717a; line-height: 1.6; }
+
+  .pull-quote { border-left: 3px solid #e8c547; margin: 2.5rem 0; padding: 1rem 1.5rem; font-size: 1.1rem; font-style: italic; color: #d4d4d8; }
+  .pull-quote cite { display: block; font-style: normal; font-family: 'Courier New', monospace; font-size: 0.7rem; color: #71717a; margin-top: 0.5rem; letter-spacing: 0.08em; }
+
+  .compare-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.88rem; }
+  .compare-table th { font-family: 'Courier New', monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: #71717a; padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid #27272a; }
+  .compare-table td { padding: 0.7rem 0.75rem; border-bottom: 1px solid #18181b; vertical-align: top; color: #a1a1aa; }
+  .compare-table td:first-child { color: #e4e4e7; font-weight: 600; font-family: 'Courier New', monospace; font-size: 0.8rem; }
+  .compare-table tr:hover td { background: #0f0f12; }
+
+  .warn-box { background: #1c0e05; border: 1px solid #7c2d12; border-left: 3px solid #fb923c; padding: 1rem 1.25rem; margin: 1.5rem 0; font-size: 0.9rem; }
+  .warn-box .warn-label { font-family: 'Courier New', monospace; font-size: 0.65rem; color: #fb923c; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; }
+
+  /* Flussdiagramm CSS */
+  .flow-diagram { margin: 2rem 0; background: #0d0d10; border: 1px solid #27272a; padding: 1.5rem; }
+  .flow-label { font-family: 'Courier New', monospace; font-size: 0.65rem; color: #3f3f46; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.25rem; }
+  .flow-row { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem; }
+  .flow-node { background: #18181b; border: 1px solid #27272a; font-family: 'Courier New', monospace; font-size: 0.72rem; color: #a1a1aa; padding: 0.4rem 0.75rem; white-space: nowrap; }
+  .flow-node.source { border-color: #3f3f46; color: #71717a; }
+  .flow-node.palantir { border-color: #e8c547; color: #e8c547; font-weight: 700; background: #1a1600; }
+  .flow-node.output { border-color: #7c2d12; color: #fb923c; }
+  .flow-arrow { color: #3f3f46; font-family: 'Courier New', monospace; font-size: 0.85rem; }
+
+  .open-questions { border: 1px solid #27272a; background: #0f0f12; padding: 1.5rem; margin: 3rem 0 1rem; }
+  .oq-label { font-family: 'Courier New', monospace; font-size: 0.65rem; color: #71717a; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1rem; }
+  .open-questions ul { list-style: none; padding: 0; }
+  .open-questions li { font-style: italic; color: #71717a; font-size: 0.95rem; padding: 0.4rem 0; border-bottom: 1px solid #18181b; }
+  .open-questions li:last-child { border-bottom: none; }
+  .open-questions li::before { content: '? '; color: #3f3f46; font-style: normal; font-family: 'Courier New', monospace; }
+
+  .related-articles { border: 1px solid #27272a; padding: 1.25rem; margin: 2rem 0; }
+  .ra-label { font-family: 'Courier New', monospace; font-size: 0.65rem; color: #3f3f46; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .ra-link { display: block; font-family: 'Courier New', monospace; font-size: 0.78rem; color: #71717a; padding: 0.3rem 0; border-bottom: 1px solid #18181b; }
+  .ra-link:last-child { border-bottom: none; }
+  .ra-link:hover { color: #e8c547; }
+
+  .legend { display: flex; gap: 1.5rem; flex-wrap: wrap; padding: 1rem 0; border-top: 1px solid #27272a; margin-top: 3rem; }
+  .legend-item { font-family: 'Courier New', monospace; font-size: 0.65rem; color: #71717a; letter-spacing: 0.05em; }
+
+  .footnotes { border-top: 1px solid #27272a; margin-top: 3rem; padding-top: 1.5rem; }
+  .footnotes h3 { font-family: 'Courier New', monospace; font-size: 0.7rem; color: #3f3f46; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
+  .footnote { font-size: 0.8rem; color: #52525b; margin-bottom: 0.5rem; line-height: 1.6; }
+
+  sup { font-size: 0.65em; color: #e8c547; }
+  .hl { font-family: 'Courier New', monospace; color: #e8c547; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">dunkelfeld.report</span>
+  <span class="nav-sep">///</span>
+  <a href="#" class="nav-link">Infrastruktur der Kontrolle</a>
+  <span class="nav-sep">|</span>
+  <a href="#" class="nav-link">Artikel #17</a>
+</nav>
+
+<div class="hero">
+  <div class="series-tag">// Artikel #17 · Infrastruktur der Kontrolle · Juni 2026</div>
+  <h1>Palantir — Der unsichtbare Integrator: Wie ein Unternehmen alle Datenbanken der Welt verbindet</h1>
+  <p class="subtitle">Palantir wurde 2003 mit CIA-Kapital gegründet und ist heute in den Kerninfrastrukturen von US-Militär, europäischen Polizeibehörden und Geheimdiensten verankert. Soziale Netzwerke liefern das Rohmaterial. Palantir verbindet die Punkte.</p>
+  <div class="meta-row">
+    <div class="meta-item">Stand: <span>Juni 2026</span></div>
+    <div class="meta-item">Quellen: <span>US-Vertragsregister · Bundesverfassungsgericht · Heise · Al Jazeera · Wikipedia (primärquellengestützt)</span></div>
+    <div class="meta-item">Artikel-Reihe: <span>#15 Infrastruktur der Kontrolle · #15-B Überwachungsinfrastruktur</span></div>
+  </div>
+</div>
+
+<div class="content">
+
+  <h2>Herkunft und Kapitalstruktur</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Palantir Technologies wurde 2003 von Alex Karp, Peter Thiel und weiteren Gründern gegründet. Die erste externe Finanzierung in Höhe von rund <span class="hl">2 Millionen US-Dollar</span> kam 2005 von In-Q-Tel — dem Venture-Capital-Arm der CIA. Diese Finanzierung war strategischer Natur: Sie öffnete die Tür zu nachrichtendienstlichen Aufträgen und validierte das Produkt für die gesamte Intelligence Community der USA.<sup>1</sup></p>
+
+  <p>Peter Thiel — Mitgründer von PayPal, früher Investor in Facebook, bekennender Unterstützer Donald Trumps — hält weiterhin Anteile an Palantir. Laut Al Jazeera (April 2026) spielt Thiel keine aktive Rolle mehr im Tagesgeschäft. CEO Alex Karp, promovierter Sozialtheoretiker der Goethe-Universität Frankfurt, ist heute das öffentliche Gesicht des Unternehmens.<sup>2</sup></p>
+
+  <h2>Was Palantir tut — die vier Plattformen</h2>
+
+  <p>Das Kernprodukt löst ein spezifisches institutionelles Problem: Behörden und Unternehmen haben Dutzende Datenbanken, die zu unterschiedlichen Zeiten, von unterschiedlichen Abteilungen, in unterschiedlichen Formaten gebaut wurden — und nicht miteinander kommunizieren. Palantir verbindet sie zu einem einheitlichen Abfrage- und Analysesystem.</p>
+
+  <div class="platform-grid">
+    <div class="platform-card">
+      <div class="platform-name">GOTHAM</div>
+      <div class="platform-use">Behörden / Militär / Polizei</div>
+      <div class="platform-detail">Geheimdienstliches Integrationswerkzeug. Verbindet Überwachungsdaten, Finanztransaktionen, Kommunikationsabschöpfung, Reisedaten, Strafverfolgungsdatenbanken. Erstkunde: CIA (2005). Heute: NSA, FBI, Pentagon, ICE, UK-Polizei, Bayerische Polizei (VeRA).</div>
+    </div>
+    <div class="platform-card">
+      <div class="platform-name">FOUNDRY</div>
+      <div class="platform-use">Unternehmen / kommerzielle Kunden</div>
+      <div class="platform-detail">Datenbetriebssystem für Unternehmen. Kunden: Morgan Stanley, AIG, Airbus, GE Aerospace, Merck. AIG: Underwriting-Prozess laut eigenem Bericht bis zu 5× beschleunigt.</div>
+    </div>
+    <div class="platform-card">
+      <div class="platform-name">AIP</div>
+      <div class="platform-use">KI-Automatisierung (seit 2023)</div>
+      <div class="platform-detail">Artificial Intelligence Platform: integriert Large Language Models in Regierungs- und Unternehmensinfrastrukturen. Ermöglicht KI-gestützte Entscheidungsautomatisierung auf Basis aller verbundenen Datensätze.</div>
+    </div>
+    <div class="platform-card">
+      <div class="platform-name">APOLLO</div>
+      <div class="platform-use">Deployment-System</div>
+      <div class="platform-detail">Stellt sicher, dass Palantir-Software auch in isolierten, klassifizierten Netzwerken (air-gapped systems) betrieben werden kann — bis hinauf zu IL5: Mission Critical National Security Systems des US-Verteidigungsministeriums.</div>
+    </div>
+  </div>
+
+  <h2>Die Vertragslandschaft — was öffentlich bekannt ist</h2>
+
+  <h3>// USA: Militär und Bundesbehörden</h3>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Im Juli 2025 schloss das US-Heer einen Enterprise Service Agreement mit Palantir im Wert von bis zu <span class="hl">10 Milliarden US-Dollar</span> — eine Zusammenfassung von 75 zuvor separaten Verträgen (15 als Hauptauftragnehmer, 60 als Subunternehmer). Die Vereinbarung läuft bis zu zehn Jahre und konsolidiert alle Army-Datensysteme unter Palantir-Infrastruktur.<sup>3</sup></p>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Das Programm Maven Smart System (MSS) — KI-gestützte Analyse von Drohnen- und Satellitenbildern, Zielidentifikation — läuft auf Palantir. Der ursprüngliche Vertrag von 480 Millionen Dollar wurde im Mai 2025 auf <span class="hl">1,3 Milliarden Dollar</span> ausgeweitet.<sup>4</sup></p>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <span class="stat-value">$10 Mrd.</span>
+      <span class="stat-label">US Army Enterprise Agreement (2025, bis 10 Jahre)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">$1,3 Mrd.</span>
+      <span class="stat-label">Maven Smart System (Drohnen-/Satelliten-KI, 2025)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">$200 Mio.+</span>
+      <span class="stat-label">ICE-Verträge (Immigration & Customs Enforcement)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">£330 Mio.</span>
+      <span class="stat-label">UK NHS-Vertrag (Patientendaten, 417/586 Seiten geschwärzt)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">£240 Mio.</span>
+      <span class="stat-label">UK Ministry of Defence (Dezember 2025, 3 Jahre)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">~€5 Mio./Jahr</span>
+      <span class="stat-label">Bayern VeRA (Rahmenvertrag 2022, Laufzeit bis 2027+)</span>
+    </div>
+  </div>
+
+  <h3>// Europa: Deutschland und Frankreich</h3>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Die Bayerische Polizei betreibt seit dem 25. Dezember 2024 Palantir's Gotham-Software unter dem Namen VeRA (Verfahrensübergreifende Recherche- und Analyseplattform) im Echtbetrieb. Pilotphase: 2. September bis 24. Dezember 2024. Eingebunden sind: das bayerische Vorgangsbearbeitungssystem (VBS), das Fallbearbeitungssystem (FBS), die INPOL-Datenbank Bayern und der polizeiliche Nachrichtenkanal EPost.<sup>5</sup></p>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Das Bundesverfassungsgericht hatte im Februar 2023 die damaligen gesetzlichen Grundlagen für den Palantir-Einsatz in Hessen und Hamburg für verfassungswidrig erklärt — wegen Verletzung von Datenschutz und Persönlichkeitsrechten. Bayern schuf daraufhin eine angepasste gesetzliche Grundlage. Das Bundesinnenministerium entschied sich gegen eine bundesweite Nutzung (sogenannte „Bundes-VeRA") und strebt eine eigene Plattform an — die Stand März 2025 noch nicht existiert.<sup>6</sup></p>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Frankreichs Inlandsgeheimdienst DGSI erneuerte im Dezember 2025 einen seit ca. 2016 bestehenden Vertrag mit Palantir für drei weitere Jahre. Frankreich gilt nach UK als Palantirs zweitgrößter europäischer Markt.<sup>7</sup></p>
+
+  <h3>// Was VeRA konkret kann</h3>
+
+  <p>Das bayerische Abgeordnete-Protokoll (Benjamin Adjei, Schriftliche Anfrage, 2025) beschreibt die Funktionsweise: Zu einem Tatverdächtigen werden vergangene Straftaten, Meldeadressen und Verkehrsverstöße verknüpft. Darüber hinaus werden Daten von <em>nahestehenden Individuen</em>, Zeugen früherer Verfahren und beteiligten Polizeibeamten angezeigt — auch diese ohne eigenen Tatverdacht.<sup>8</sup></p>
+
+  <div class="warn-box">
+    <div class="warn-label">// Strukturell dokumentiert, Bewertung umstritten</div>
+    <p><span class="tag tag-extrapolation">EXTRAPOLATION</span> Der Kriminologieprofessor Martin Thüne, zitiert in der taz: Die Software funktioniere deshalb so gut, „weil es aus einem Umfeld komme, in dem Datenschutz kaum eine Rolle spiele." Campact (2025) weist darauf hin, dass VeRA auch bei kleineren Delikten — Fahrraddiebstahl — eingesetzt wird, nicht nur bei Terrorabwehr; als Präzedenzfall für Normalisierung des Einsatzes gewertet.</p>
+  </div>
+
+  <h2>Der Cloud Act — das strukturelle Datenproblem</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Palantir Technologies ist ein US-amerikanisches Unternehmen und unterliegt dem CLOUD Act (Clarifying Lawful Overseas Use of Data Act, 2018). Dieser verpflichtet US-Unternehmen, amerikanischen Behörden auf Anordnung Zugang zu Daten zu gewähren — unabhängig davon, wo diese Daten physisch gespeichert sind.<sup>9</sup></p>
+
+  <p>Bayerns Grüne formulierten dies auf ihrem Landesparteitag 2025 explizit: Palantir „unterliegt dem US-Cloud-Act, der amerikanischen Behörden Zugriff auf alle Daten erlaubt, die von US-Firmen kontrolliert werden. Der Zugriff erfolgt unabhängig vom Standort der Speicherung."</p>
+
+  <div class="flow-diagram">
+    <div class="flow-label">// Datenfluss: Von der Quelle zur Analyse</div>
+    <div class="flow-row">
+      <span class="flow-node source">Polizeidatenbanken</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node palantir">PALANTIR GOTHAM</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node output">Ermittlerprofil / Zielperson</span>
+    </div>
+    <div class="flow-row">
+      <span class="flow-node source">Meldedaten / KFZ</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node palantir">DATENFUSION</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node output">Soziales Netz Verdächtiger</span>
+    </div>
+    <div class="flow-row">
+      <span class="flow-node source">Subpoenaed Social Media</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node palantir">KI-MUSTERERKENNUNG</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node output">„Kill Lists" (Israel/Gaza)</span>
+    </div>
+    <div class="flow-row">
+      <span class="flow-node source">Reisedaten / Biometrie</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node palantir">CLOUD ACT-PFLICHTIG</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node output">US-Behörden-Zugriff möglich</span>
+    </div>
+    <p style="color:#3f3f46; font-size:0.62rem; margin-top:1rem; font-family:'Courier New',monospace; letter-spacing:0.08em;">SCHEMA VEREINFACHT · DETAILS PRODUKT- UND VERTRAGSABHÄNGIG · QUELLEN: PRIMÄRDOKUMENTATION PALANTIR / US-VERTRAGSREGISTER</p>
+  </div>
+
+  <h2>Das Manifest: „The Technological Republic"</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Im Februar 2025 veröffentlichten Palantir-CEO Alex Karp und Head of Corporate Affairs Nicholas Zamiska das Buch „The Technological Republic: Hard Power, Soft Belief, and the Future of the West" (Penguin Random House). Es wurde sofort #1 der New York Times Bestsellerliste. Im April 2026 postete Palantir eine 22-Punkte-Zusammenfassung auf X, die medial als „Manifest" diskutiert wurde.<sup>10</sup></p>
+
+  <p>Der Kerngedanke des Buches, in eigenen Worten der Autoren: Die Softwareindustrie muss ihre Verbindung zur Regierung erneuern. Es ist die Vereinigung von Staat und Softwareindustrie — nicht ihre Trennung — die erforderlich ist, damit die USA und ihre Verbündeten dominant bleiben.</p>
+
+  <div class="pull-quote">
+    „It is the union of the state and the software industry — not their separation and disentanglement — that will be required for the United States and its allies to remain as dominant as they are today."
+    <cite>— Alexander C. Karp / Nicholas W. Zamiska, The Technological Republic, 2025</cite>
+  </div>
+
+  <p>Das Buch fordert laut Rezensionen u.a.: nationale Dienstpflicht, die „moralische" Pflicht von Technologieunternehmen zur Verteidigungsarbeit, Embrace von Religion im öffentlichen Leben und die Notwendigkeit von Hard Power. Al Jazeera bezeichnete Kritiker, die das Buch „Technofaschismus" nennen; das Times Literary Supplement schrieb, es sei „zu wichtig, um es zu ignorieren".<sup>11</sup></p>
+
+  <div class="source-box">
+    <div class="source-label">// Dokument — Wörtliche Selbstverortung</div>
+    <p>Karp/Zamiska, S. 1 (zitiert in mehreren Rezensionen): „Silicon Valley has lost its way. Our most brilliant engineering minds once collaborated with government to advance world-changing technologies. Their efforts secured the West's dominant place in the geopolitical order. But that relationship has now eroded, with perilous repercussions."</p>
+    <p>Goodreads-Zusammenfassung: „The Technological Republic is essentially a pro-Western political manifesto explaining Karp's rationale for Palantir doing business with the US government and military."</p>
+  </div>
+
+  <h2>Soziale Netzwerke als Daten-Zulieferer</h2>
+
+  <p>Palantir benötigt Daten. Soziale Netzwerke produzieren sie in industriellem Maßstab — und liefern sie auf Anfrage an Behörden. Die Verbindung ist nicht spekulativ, sondern durch Transparenzberichte und Gerichtsverfahren dokumentiert.</p>
+
+  <h3>// Was die Transparenzberichte zeigen</h3>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Google, Meta (Facebook), Microsoft und Apple veröffentlichen jährlich Transparenzberichte über staatliche Datenanfragen. Die Hauptrechtsgrundlage für US-Geheimdienste: FISA (Foreign Intelligence Surveillance Act) und National Security Letters (NSLs).<sup>12</sup></p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Plattform</th>
+        <th>Mechanismus</th>
+        <th>Bekannte Größenordnung</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Meta (Facebook)</td>
+        <td>FISA-Anfragen, NSLs, PRISM</td>
+        <td>69.400 US-Anfragen (Jan–Jun 2022) bezüglich ~126.000 Nutzerprofile</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Google</td>
+        <td>FISA, NSLs, direkt PRISM-Zugang</td>
+        <td>IP-Adressen durch Geheimdienste ausgewertet; Umfang im Transparenzbericht teilweise geschwärzt</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Microsoft</td>
+        <td>PRISM, MUSCULAR (interne Leitungen)</td>
+        <td>PRISM-Teilnehmer; interne Verbindungen zwischen Rechenzentren durch NSA/GCHQ angezapft</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Apple, Yahoo, Skype, AOL</td>
+        <td>PRISM</td>
+        <td>In den ursprünglichen NSA-PRISM-Folien (2013) als Teilnehmer gelistet</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Twitter/X</td>
+        <td>FISA-Anfragen</td>
+        <td>Konnte PRISM-Beteiligung verweigern (als einzige der ursprünglich genannten Plattformen)</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>// Subpoenaed Social Media — was Palantir nutzt</h3>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Palantirs Gotham-Plattform ermöglicht laut The Conversation (Januar 2026, Analyse eines Forschers zu Datenverwaltung und US-Bundesregierung) die Einbindung von „subpoenaed social media data" — also gerichtlich oder behördlich angeordert herausgegebenen Social-Media-Daten — einschließlich Standortdaten und privater Nachrichten. Diese werden in dieselbe Analyseoberfläche integriert wie Behördendaten, biometrische Daten und Reisedaten.<sup>13</sup></p>
+
+  <p>Palantirs ICE-Verträge umfassen explizit: „travel histories, visa records, biometric data and social media data" als verbundene Datenquellen.</p>
+
+  <h3>// Das strukturelle Problem: Keine DSGVO-Schranke</h3>
+
+  <p><span class="tag tag-belegt">BELEGT</span> US-amerikanische Plattformen müssen FISA-Anfragen nachkommen — auch wenn die betroffenen Nutzer EU-Bürger sind. Die DSGVO gilt für die Plattformbetreiber, nicht für die US-Geheimdienste, die die Daten anfordern. Der Europäische Gerichtshof (EuGH) hat zweimal Privacy-Shield-Abkommen zwischen EU und USA gekippt (2015: Safe Harbor; 2020: Privacy Shield). Ein Nachfolgeabkommen (Data Privacy Framework) ist seit Juli 2023 in Kraft — wird von Datenschützern als weiterhin unzureichend kritisiert.<sup>14</sup></p>
+
+  <h2>Gaza und die Grenze des Einsatzes</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Nach Amnesty International und Al Jazeera (April 2026) begann Palantir nach einer „strategischen Partnerschaft" mit Israel im Januar 2024, die israelische Militärinfrastruktur mit Datenanalyse zu unterstützen. Genutzt wurden: abgefangene Kommunikation, Satellitenmaterial und andere digitale Quellen zur Erstellung von Zieldatenbanken — von Kritikern als „Kill Lists" bezeichnet. Amnesty International: „Palantir has a track record of flagrantly disregarding international law and standards."<sup>15</sup></p>
+
+  <p>Palantir bestreitet diese Charakterisierung nicht grundsätzlich, sondern stellt die Arbeit als geopolitisch notwendig im Rahmen des westlichen Sicherheitssystems dar — was mit der Kernthese des Buches „The Technological Republic" übereinstimmt.</p>
+
+  <div class="open-questions">
+    <div class="oq-label">// Offene Fragen — Stand Juni 2026</div>
+    <ul>
+      <li>Welche Daten fließen in welchem Umfang aus VeRA-Anfragen an Palantir-Server in die USA — und sind diese unter dem CLOUD Act für US-Behörden zugänglich?</li>
+      <li>Wie funktioniert der Palantir-Algorithmus genau — und welche impliziten Gewichtungen führen zu welchen Profilierungen? Die Software ist eine Black Box.</li>
+      <li>Welche weiteren deutschen Bundesländer planen Palantir-Verträge, nachdem Bayern, Hessen und NRW Präzedenzfälle geschaffen haben?</li>
+      <li>Wird die angestrebte Bundes-VeRA jemals realisiert — oder ist Palantir als „Interimslösung" bereits faktisch dauerhaft installiert?</li>
+      <li>In welchem Umfang nutzt Europol Palantir-Schnittstellen — und was ist der Inhalt der Unzufriedenheit, die Europol laut bayerischen Parlamentsprotokollen über die Palantir-Kooperation geäußert hatte?</li>
+      <li>Wie verhält sich die Verbindung zwischen Palantir und Unit 8200 (israelischer Cybergeheimdienst) zu den europäischen Sicherheitspolitiken?</li>
+      <li>Wer kontrolliert demokratisch, welche Muster Palantirs KI-Systeme als verdächtig klassifizieren?</li>
+    </ul>
+  </div>
+
+  <div class="related-articles">
+    <div class="ra-label">// Verwandte Artikel in dieser Reihe</div>
+    <a href="ueberwachungsinfrastruktur.html" class="ra-link">→ #15-B: Was Geheimdienste über Sie gespeichert haben — Datenvolumen, Infrastruktur, Kosten</a>
+    <a href="digitaler-euro-infrastruktur.html" class="ra-link">→ #17-A: Der Digitale Euro — Infrastruktur, Versprechen und das ungelöste Strukturproblem</a>
+    <a href="#" class="ra-link">→ #15: Infrastruktur der Kontrolle — von Hollerith bis eIDAS 2.0</a>
+    <a href="#" class="ra-link">→ #16: PayPal Mafia / Dialog Society / Thiel / Spahn</a>
+  </div>
+
+  <div class="legend">
+    <span class="legend-item"><span class="tag tag-belegt">BELEGT</span> Primärquelle verifiziert</span>
+    <span class="legend-item"><span class="tag tag-extrapolation">EXTRAPOLATION</span> Strukturell plausibel, interpretativ</span>
+    <span class="legend-item"><span class="tag tag-offen">OFFEN</span> Ungelöst / keine belastbare Quelle</span>
+  </div>
+
+  <div class="footnotes">
+    <h3>// Quellen und Fußnoten</h3>
+    <p class="footnote">[1] Wikipedia: Palantir Technologies (en.wikipedia.org/wiki/Palantir), Stand Juni 2026. In-Q-Tel-Finanzierung 2005: mehrfach öffentlich bestätigt, u.a. Al Jazeera April 2026.</p>
+    <p class="footnote">[2] Al Jazeera: „Technofacism? Why Palantir's pro-West 'manifesto' has critics alarmed", 21.04.2026.</p>
+    <p class="footnote">[3] The Conversation / MayHem Code (April 2026): US Army $10B Enterprise Service Agreement, Juli 2025. US-Vertragsregister bestätigt Konsolidierung von 75 Verträgen.</p>
+    <p class="footnote">[4] Ibid. Maven Smart System: $480M Originalvertrag (2024), Erweiterung auf $1,3B (Mai 2025).</p>
+    <p class="footnote">[5] Heise Online: „Federal Council calls for rapid deployment for the police", 24.03.2025. Bayerisches Innenministerium, Pressemitteilung April 2025.</p>
+    <p class="footnote">[6] Bundesverfassungsgericht, Urteil Februar 2023 zu Palantir-Einsatz in Hessen und Hamburg (1 BvR 1588/22). Heise Online ibid.</p>
+    <p class="footnote">[7] Nitishastra / Substack: „The Digital Leviathan: Palantir's Expansion Across Europe", April 2026 — DGSI-Vertragsverlängerung Dezember 2025.</p>
+    <p class="footnote">[8] Benjamin Adjei MdL (Bayern): „Der Einsatz von Palantir in Bayern: Das Gegenteil von Digitaler Souveränität", benniadjei.de, April 2026. Schriftliche Anfrage an das Bayerische Innenministerium.</p>
+    <p class="footnote">[9] CLOUD Act (H.R.4943), verabschiedet 2018. Grüne Bayern, Beschluss Landesdelegiertenkonferenz 2025: CLOUD-Act-Problematik bei VeRA.</p>
+    <p class="footnote">[10] Alexander C. Karp / Nicholas W. Zamiska: „The Technological Republic: Hard Power, Soft Belief, and the Future of the West", Penguin Random House, 2025. #1 NYT Bestseller. Deutsche Ausgabe: Penguin, 2025.</p>
+    <p class="footnote">[11] Al Jazeera ibid. [2]. Times Literary Supplement-Zitat: aus Buchrezension, 2025.</p>
+    <p class="footnote">[12] Google Transparency Report: transparencyreport.google.com/user-data/us-national-security. Facebook Government Requests for User Data: transparency.fb.com. NSL-Dokument: im Google-Transparenzbericht verlinkt.</p>
+    <p class="footnote">[13] The Conversation: „When the government can see everything: How one company — Palantir — is mapping the nation's data", 20.01.2026. Autorin: Forscherin zu Data Governance und US-Bundesregierung.</p>
+    <p class="footnote">[14] EuGH: Schrems I (C-362/14, 2015, Safe Harbor); Schrems II (C-311/18, 2020, Privacy Shield). EU-US Data Privacy Framework: Europäische Kommission, Angemessenheitsbeschluss Juli 2023.</p>
+    <p class="footnote">[15] Al Jazeera ibid. [2]. Amnesty International: Stellungnahme zu Palantir und Gaza, 2024/2025.</p>
+  </div>
+
+</div>
+</body>
+</html>

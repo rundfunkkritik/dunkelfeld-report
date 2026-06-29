@@ -3,34 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Für die Auserwählten gelten andere Regeln | kurswechsel.blog</title>
+  <title>Für die Auserwählten gelten andere Regeln | dunkelfeld.report</title>
   <style>
     :root {
-      --navy: #1A3A6B;
-      --gold: #F0A500;
-      --white: #FFFFFF;
-      --offwhite: #F8F6F1;
-      --text: #1a1a2e;
-      --mid: #4a5568;
-      --red: #c0392b;
-    }
+    --bg: #09090b;
+    --surface: #111113;
+    --border: #1e1e24;
+    --text: #e8e8ec;
+    --muted: #6b6b7a;
+    --accent: #e8c547;
+    --navy: #1A3A6B;
+    --gold: #e8c547;
+    --white: #f4f4f5;
+    --offwhite: #09090b;
+    --text-dark: #e8e8ec;
+    --mid: #6b6b7a;
+    --red: #e85447;
+  }
     body {
-      font-family: 'Georgia', serif;
-      background: var(--offwhite);
-      color: var(--text);
-      margin: 0;
-      padding: 0;
-      line-height: 1.75;
-    }
+    font-family: 'Georgia', serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    line-height: 1.75;
+  }
     .header-bar {
-      background: var(--navy);
-      color: var(--white);
-      padding: 10px 0;
-      text-align: center;
-      font-size: 0.85rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
+    background: #111113;
+    color: var(--accent);
+    padding: 10px 0;
+    text-align: center;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
     .series-tag {
       background: var(--gold);
       color: var(--navy);
@@ -42,11 +49,12 @@
       text-transform: uppercase;
     }
     .article-hero {
-      background: var(--navy);
-      color: var(--white);
-      padding: 60px 20px 50px;
-      text-align: center;
-    }
+    background: #0e0e14;
+    color: var(--white);
+    padding: 60px 20px 50px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
     .article-hero .category {
       color: var(--gold);
       font-size: 0.8rem;
@@ -86,42 +94,20 @@
       border-left: 4px solid var(--gold);
       padding-left: 20px;
     }
-    h2 {
-      font-size: 1.55rem;
-      color: var(--navy);
-      margin-top: 52px;
-      margin-bottom: 14px;
-      font-weight: 800;
-    }
+    h2 { font-size: 1.55rem; color: var(--text); margin-top: 52px; margin-bottom: 14px; font-weight: 800; }
     p {
-      margin-bottom: 1.3em;
-      font-size: 1.05rem;
-      color: #2d3748;
-    }
-    .pull-quote {
-      background: var(--navy);
-      color: var(--white);
-      border-left: 5px solid var(--gold);
-      padding: 28px 32px;
-      margin: 44px 0;
-      font-size: 1.25rem;
-      font-style: italic;
-      font-weight: 600;
-      border-radius: 2px;
-    }
+    margin-bottom: 1.3em;
+    font-size: 1.05rem;
+    color: var(--text);
+  }
+    .pull-quote { background: var(--surface); color: var(--white); border-left: 5px solid var(--accent); padding: 28px 32px; margin: 44px 0; font-size: 1.25rem; font-style: italic; font-weight: 600; }
     .stat-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 16px;
       margin: 36px 0;
     }
-    .stat-card {
-      background: var(--navy);
-      color: var(--white);
-      padding: 24px 20px;
-      border-radius: 4px;
-      text-align: center;
-    }
+    .stat-card { background: var(--surface); color: var(--white); padding: 24px 20px; border: 1px solid var(--border); text-align: center; }
     .stat-card .number {
       font-size: 2.2rem;
       font-weight: 900;
@@ -135,20 +121,13 @@
       letter-spacing: 0.05em;
     }
     .fact-box {
-      background: #EBF2FF;
-      border: 1px solid #b8d0f5;
-      border-left: 5px solid var(--navy);
-      padding: 24px 28px;
-      margin: 36px 0;
-      border-radius: 2px;
-    }
-    .fact-box h4 {
-      color: var(--navy);
-      margin: 0 0 12px;
-      font-size: 0.85rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--accent);
+    padding: 24px 28px;
+    margin: 36px 0;
+  }
+    .fact-box h4 { color: var(--accent); margin: 0 0 12px; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; }
     .fact-box ul {
       margin: 0;
       padding-left: 20px;
@@ -158,28 +137,9 @@
       margin-bottom: 8px;
       font-size: 0.97rem;
     }
-    .ironie-box {
-      background: #fff8e6;
-      border: 2px dashed var(--gold);
-      padding: 24px 28px;
-      margin: 36px 0;
-      border-radius: 4px;
-      font-style: italic;
-    }
-    .ironie-box .label {
-      font-style: normal;
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #c07800;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-    .ironie-box p {
-      margin: 0;
-      color: #7a4f00;
-      font-size: 1rem;
-    }
+    .ironie-box { background: #1a1a0e; border: 2px dashed var(--accent); padding: 24px 28px; margin: 36px 0; font-style: italic; }
+    .ironie-box .label { font-style: normal; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 10px; }
+    .ironie-box p { margin: 0; color: var(--muted); font-size: 1rem; }
     .vergleich {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -194,10 +154,7 @@
     .vergleich .col-links {
       background: #e8f0fe;
     }
-    .vergleich .col-rechts {
-      background: var(--navy);
-      color: white;
-    }
+    .vergleich .col-rechts { background: #0e0e14; color: white; }
     .vergleich h4 {
       font-size: 0.78rem;
       letter-spacing: 0.12em;
@@ -213,14 +170,7 @@
     }
     .vergleich .col-rechts ul { color: rgba(255,255,255,0.88); }
     .vergleich ul li { margin-bottom: 7px; }
-    .aho-close {
-      background: var(--navy);
-      color: var(--white);
-      padding: 44px 36px;
-      margin-top: 60px;
-      border-radius: 4px;
-      text-align: center;
-    }
+    .aho-close { background: var(--surface); color: var(--white); padding: 44px 36px; margin-top: 60px; border: 1px solid var(--border); text-align: center; }
     .aho-close .aho-label {
       color: var(--gold);
       font-size: 0.8rem;
@@ -240,15 +190,7 @@
       flex-wrap: wrap;
       gap: 8px;
     }
-    .tag {
-      background: var(--navy);
-      color: var(--white);
-      font-size: 0.72rem;
-      padding: 4px 12px;
-      border-radius: 20px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+    .tag { background: var(--surface); color: var(--muted); font-size: 0.72rem; padding: 4px 12px; border-radius: 2px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--border); }
     .sources {
       margin-top: 50px;
       border-top: 1px solid #ddd;
@@ -256,16 +198,10 @@
       font-size: 0.82rem;
       color: var(--mid);
     }
-    .sources h4 {
-      color: var(--navy);
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
+    .sources h4 { color: var(--accent); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
     .sources ul { padding-left: 18px; }
     .sources li { margin-bottom: 6px; }
-    a { color: var(--navy); }
+    a { color: var(--accent); }
     @media (max-width: 500px) {
       .vergleich { grid-template-columns: 1fr; }
       .stat-grid { grid-template-columns: 1fr 1fr; }
@@ -436,33 +372,6 @@
   </div>
 
 </div>
-
-<!-- ============================================================
-  BILDBRIEFING (intern)
-  
-  TITELBILD / THUMBNAIL:
-
-  Motiv:    Zwei Szenen nebeneinander (Split-Screen-Ästhetik):
-            Links: Normaler Fluggast in Schlange, Biometrie-Scanner,
-            Koffer, müde wirkend — kaltes Neonlicht.
-            Rechts: Privatjet-Treppe, Champagner, Abend-Silhouette,
-            warmes goldenes Licht — editorial chic.
-  
-  Alternativ: Foto eines leeren Privatjets (frei verfügbar via
-            Unsplash/Pexels Suche "private jet interior") mit
-            dem Text-Overlay über dem ganzen Bild.
-  
-  Farben:   Navy #1A3A6B + Gold #F0A500 + Weiß
-  
-  Text:     Groß: "FÜR DIE AUSERWÄHLTEN GELTEN ANDERE REGELN"
-            Klein: "Privatjets. Davos. Klimakonferenzen."
-  
-  Stimmung: Provokant, aber sachlich elegant —
-            kein Populismus-Schreier, eher kalter Kommentar.
-  
-  Canva-Tipp: Vorlage "Blog Header 1200×630", dunkler Split-
-            Screen mit Text linksbündig, gold als Akzentfarbe.
-  ============================================================ -->
 
 </body>
 </html>

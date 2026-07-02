@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Das Extremismus-Geschäft | dunkelfeld.info</title>
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --surface: #141414;
+    --surface2: #1a1a1a;
+    --border: #2a2a2a;
+    --text: #e0e0e0;
+    --muted: #888;
+    --accent: #c0392b;
+    --accent2: #e67e22;
+    --white: #f0f0f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', serif;
+    line-height: 1.8;
+    font-size: 17px;
+  }
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .logo {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .logo span { color: var(--muted); font-weight: 400; }
+  .tag {
+    display: inline-block;
+    font-family: 'Arial', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.2rem 0.6rem;
+    margin-bottom: 1.2rem;
+  }
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+  }
+  h1 {
+    font-family: 'Arial', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+  .subtitle {
+    font-size: 1.1rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+  }
+  .meta {
+    font-family: 'Arial', sans-serif;
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h2 {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 2.5rem 0 1rem;
+  }
+  p { margin-bottom: 1.3rem; }
+  .pullquote {
+    border-left: 4px solid var(--accent);
+    margin: 2rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--surface2);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.6;
+  }
+  .factbox {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    font-family: 'Arial', sans-serif;
+    font-size: 0.9rem;
+  }
+  .factbox .fb-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+  .factbox ul { padding-left: 1.2rem; }
+  .factbox li { margin-bottom: 0.4rem; color: var(--text); }
+  .dangerbox {
+    background: #1a0a0a;
+    border: 1px solid var(--accent);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    font-family: 'Arial', sans-serif;
+    font-size: 0.92rem;
+    color: #e0b0b0;
+  }
+  .dangerbox .db-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .col-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 1.2rem;
+    font-family: 'Arial', sans-serif;
+    font-size: 0.88rem;
+  }
+  .col-box .col-title {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+  }
+  .col-box.left .col-title { color: #e74c3c; }
+  .col-box.right .col-title { color: #3498db; }
+  .col-box ul { padding-left: 1rem; }
+  .col-box li { margin-bottom: 0.35rem; color: var(--text); }
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+  }
+  .conclusion {
+    background: var(--surface2);
+    border-left: 4px solid var(--accent2);
+    padding: 1.5rem;
+    margin: 2.5rem 0;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+  footer {
+    font-family: 'Arial', sans-serif;
+    font-size: 0.78rem;
+    color: var(--muted);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    line-height: 1.8;
+  }
+  @media (max-width: 600px) {
+    h1 { font-size: 1.7rem; }
+    .two-col { grid-template-columns: 1fr; }
+    .container { padding: 2rem 1.2rem 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">dunkelfeld<span>.info</span></div>
+</header>
+
+<div class="container">
+
+  <div class="tag">Analyse · Gesellschaft</div>
+
+  <h1>Das Extremismus-Geschäft</h1>
+  <p class="subtitle">Russland verurteilt Queere als Extremisten. Deutschland cancelt Kritiker als Rechte. Wer profitiert davon, dass die Mitte verstummt?</p>
+  <div class="meta">dunkelfeld.info · Juni 2026 · Lesezeit ca. 6 Minuten · Alle Quellen öffentlich zugänglich</div>
+
+  <p>Am 29. Juni 2026 meldete der Spiegel: Ein russisches Gericht hat erstmals drei Menschen wegen ihrer Zugehörigkeit zur LGBTQ-Gemeinschaft als „Extremisten" verurteilt. Grundlage: ein Urteil des Obersten Gerichtshofs von 2023, das die „internationale LGBTQ-Bewegung" zur extremistischen Organisation erklärte.</p>
+
+  <p>Zur gleichen Zeit, anderes Land: In Deutschland wird jede öffentliche Nachfrage zu Genderpolitik, Frühsexualisierung oder Transprotokollen in Schulen reflexartig als rechte Agenda markiert. Keine inhaltliche Auseinandersetzung. Keine Differenzierung. Einordnung statt Argument.</p>
+
+  <p>Zwei verschiedene Systeme. Zwei verschiedene Richtungen. Eine gemeinsame Funktion: <strong>die Mitte zum Schweigen bringen.</strong></p>
+
+  <div class="pullquote">
+    „Extremismus" ist ein Begriff, der nützlich ist. Für alle, die ihn definieren dürfen.
+  </div>
+
+  <h2>I. Der russische Fall: Staatliche Verfolgung als Werkzeug</h2>
+
+  <p>Was in Russland passiert, ist eindeutig dokumentierbar. Der Oberste Gerichtshof erklärte 2023 die „internationale LGBTQ-Bewegung" zur extremistischen Organisation — ohne dass diese eine Gewaltstruktur, eine Hierarchie oder konkrete kriminelle Handlungen nachgewiesen bekam. Das Etikett reichte.</p>
+
+  <div class="factbox">
+    <div class="fb-title">Belegte Fakten · Russland</div>
+    <ul>
+      <li>2023: Russlands Oberstes Gericht erklärt „internationale LGBTQ-Bewegung" zur Extremistenorganisation</li>
+      <li>Juni 2026: Erstmals drei Verurteilungen auf dieser Grundlage (Quelle: Spiegel, 29.06.2026)</li>
+      <li>Vorwurf: Extremismus — nicht Gewalt, nicht konkretes Vergehen</li>
+      <li>Mechanismus: Identität als Straftatbestand</li>
+    </ul>
+  </div>
+
+  <p>Das ist keine neue Technik. Der Sowjetstaat pathologisierte politische Dissidenten als psychisch krank. Das Dritte Reich kriminalisierte Rassen. Wer den Straftatbestand definiert, definiert den Feind. Wer den Feind definiert, definiert sich selbst als Schützer.</p>
+
+  <p>Cui bono? Der russische Staat braucht einen innenpolitischen Feind, während außenpolitisch Krieg geführt wird. LGBTQ-Personen sind dafür geeignet: sichtbar, organisiert — und ohne politische Schutzmacht im Inland.</p>
+
+  <h2>II. Der deutsche Fall: Diskurskontrolle ohne Strafurteil</h2>
+
+  <p>In Deutschland werden keine Menschen wegen ihrer sexuellen Identität verurteilt. Das ist ein fundamentaler Unterschied, der nicht relativiert werden soll.</p>
+
+  <p>Aber: Es gibt ein anderes Instrument. Keine Gerichtsurteile — sondern soziale Sanktionen. Keine Verhaftungen — sondern Karriereenden. Keine Straftatbestände — sondern Einordnungen.</p>
+
+  <div class="factbox">
+    <div class="fb-title">Beobachtbares Muster · Deutschland</div>
+    <ul>
+      <li>Kritik an Selbstidentifikationsgesetzen → wird als „transphob" eingeordnet</li>
+      <li>Fragen zu Schulcurricula → werden als „rechte Agenda" markiert</li>
+      <li>Verweis auf biologische Realitäten → führt zu Shitstorms, Abmahnungen</li>
+      <li>Schweigen der Mehrheit → messbar: 82% sehen Deutschland auf falschem Kurs (Ipsos Mai 2026)</li>
+    </ul>
+  </div>
+
+  <p>Wer profitiert? Eine Klasse von Deutungsexperten: Aktivisten, die Sichtbarkeit gewinnen. Medien, die Empörungszyklen brauchen. Politiker, die mit Haltungssignalen Punkte sammeln, während strukturelle Probleme ungelöst bleiben.</p>
+
+  <div class="pullquote">
+    Kulturkampf ist billiger als Wirtschaftspolitik. Und er lenkt ab.
+  </div>
+
+  <h2>III. Die Symmetrie des Profits</h2>
+
+  <p>Das Frappierende: Beide Seiten brauchen einander.</p>
+
+  <div class="two-col">
+    <div class="col-box left">
+      <div class="col-title">🔴 Russisches Regime</div>
+      <ul>
+        <li>Braucht innenpolitischen Feind</li>
+        <li>LGBTQ als „westliche Dekadenz"</li>
+        <li>Stärkt Nationalismus</li>
+        <li>Lenkt von Kriegskosten ab</li>
+        <li>Gerichtliche Legitimation</li>
+      </ul>
+    </div>
+    <div class="col-box right">
+      <div class="col-title">🔵 Westlicher Aktivismus</div>
+      <ul>
+        <li>Braucht sichtbaren Unterdrücker</li>
+        <li>Russland als Beleg für Bedrohung</li>
+        <li>Stärkt eigene Deutungshoheit</li>
+        <li>Lenkt von internen Widersprüchen ab</li>
+        <li>Soziale Sanktionsmacht</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>Beide Seiten profitieren von der Eskalation. Beide Seiten brauchen das andere Extrem, um sich selbst zu legitimieren. Die Menschen in der Mitte — diejenigen, die weder verfolgen noch canceln wollen — sind für beide Seiten funktional: als Schweiger, als Zuschauer, als Masse ohne Stimme.</p>
+
+  <h2>IV. Was die Mitte kostet</h2>
+
+  <p>Die stillen Kosten dieses Dauerkonflikts werden nicht erhoben. Aber sie sind real: Soziale Erschöpfung. Rückzug aus dem öffentlichen Diskurs. Selbstzensur als Vernunftstrategie. Eine Generation, die gelernt hat, dass Denken laut gefährlich ist.</p>
+
+  <div class="dangerbox">
+    <div class="db-title">⚠ Strukturelles Problem</div>
+    Wenn die Mitte schweigt, gewinnen die Extremen nicht durch Mehrheit — sondern durch Lautstärke. Das ist keine Demokratie. Das ist akustische Herrschaft.
+  </div>
+
+  <p>Laut Ipsos-Sorgenbarometer Mai 2026 glauben 82 Prozent der Deutschen, ihr Land sei auf dem falschen Kurs. Diese 82 Prozent sind keine homogene Gruppe. Sie sind links und rechts, religiös und säkular, jung und alt. Was sie eint: Sie werden im öffentlichen Diskurs nicht repräsentiert.</p>
+
+  <h2>V. Wer darf das noch sagen?</h2>
+
+  <p>Diese Analyse wird von manchen als Relativierung russischer Verbrechen gelesen werden. Sie ist keine. Staatliche Verfolgung von Menschen wegen ihrer Identität ist falsch — ohne Bedingung.</p>
+
+  <p>Aber: Wer die russische Verurteilung zu Recht kritisiert und gleichzeitig jeden deutschen Kritiker als Rechten einordnet, benutzt denselben Mechanismus — nur sanfter. Beide Male wird eine Gruppe durch ein Etikett mundtot gemacht. Beide Male profitieren die, die das Etikett vergeben.</p>
+
+  <div class="conclusion">
+    <strong>Fazit:</strong> Extremismus ist kein politischer Inhalt. Er ist ein Werkzeug. Wer ihn definiert, hat Macht. Wer ihn fürchtet, schweigt. Wer schweigt, überlässt das Feld denen, die schreien. Die Frage ist nicht: links oder rechts? Die Frage ist: Wem nützt der Lärm?
+  </div>
+
+  <hr class="divider">
+
+  <footer>
+    dunkelfeld.info · Investigative Analyse · Juni 2026<br>
+    Quellen: Spiegel 29.06.2026 · Ipsos Sorgenbarometer Mai 2026 · Urteil Russischer Oberster Gerichtshof 2023 (dokumentiert)<br>
+    Alle Aussagen basieren auf öffentlich zugänglichen und belegbaren Quellen. Meinungen sind als solche gekennzeichnet.<br><br>
+    <strong>Tags:</strong> #Extremismus #Kulturkampf #Russland #Deutschland #Meinungsfreiheit #DieMitte #Diskurskontrolle #dunkelfeld #Analyse
+  </footer>
+
+</div>
+</body>
+</html>

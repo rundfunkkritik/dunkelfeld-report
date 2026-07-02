@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wer kontrolliert, was wir essen? Teil 3: Höfesterben | dunkelfeld.report</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #09090b;
+    color: #e2e2e2;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+  .series-banner {
+    background: #1a1a2e;
+    border: 1px solid #e8c547;
+    border-left: 4px solid #e8c547;
+    padding: 0.8rem 1.2rem;
+    margin-bottom: 2rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #e8c547;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .article-header { margin-bottom: 2.5rem; }
+  .article-header h1 {
+    font-size: 2rem;
+    line-height: 1.25;
+    color: #f4f4f5;
+    margin-bottom: 0.8rem;
+    font-weight: normal;
+  }
+  .article-header .subtitle {
+    font-size: 1.15rem;
+    color: #a1a1aa;
+    font-style: italic;
+    margin-bottom: 1.2rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: #71717a;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-top: 1px solid #27272a;
+    padding-top: 0.8rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  h2 {
+    font-size: 1.35rem;
+    color: #e8c547;
+    font-weight: normal;
+    margin: 2.2rem 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid #27272a;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    font-weight: bold;
+    padding: 0.15em 0.5em;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    vertical-align: middle;
+    margin: 0 0.1em;
+  }
+  .belegt        { background: #14532d; color: #86efac; border: 1px solid #166534; }
+  .extrapolation { background: #7c2d12; color: #fdba74; border: 1px solid #9a3412; }
+  .offen         { background: #3f3f46; color: #a1a1aa; border: 1px solid #52525b; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .stat-card {
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-top: 3px solid #e8c547;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-card .number {
+    font-size: 2rem;
+    color: #e8c547;
+    font-family: 'Courier New', monospace;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .stat-card .label {
+    font-size: 0.8rem;
+    color: #a1a1aa;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .timeline { margin: 1.5rem 0 2rem; }
+  .timeline-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #18181b;
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .tl-year {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #e8c547;
+    min-width: 4.5rem;
+    padding-top: 0.15rem;
+    flex-shrink: 0;
+  }
+  .tl-text { font-size: 0.95rem; color: #d4d4d8; }
+
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 0.9rem 1.1rem;
+    margin: 1.5rem 0;
+    font-size: 0.85rem;
+  }
+  .source-box .source-title {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 0.5rem;
+  }
+  .source-box ul { padding-left: 1.2rem; color: #a1a1aa; }
+  .source-box li { margin-bottom: 0.25rem; }
+  .source-box a { color: #7dd3fc; text-decoration: none; }
+  .source-box a:hover { text-decoration: underline; }
+
+  .pull-quote {
+    border-left: 3px solid #e8c547;
+    padding: 0.8rem 1.2rem;
+    margin: 1.8rem 0;
+    font-style: italic;
+    color: #d4d4d8;
+    font-size: 1.05rem;
+    background: #18181b;
+  }
+  .pull-quote .attribution {
+    display: block;
+    margin-top: 0.5rem;
+    font-style: normal;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #71717a;
+  }
+
+  .vergleich {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+  @media (max-width: 560px) { .vergleich { grid-template-columns: 1fr; } }
+  .vergleich-card {
+    background: #18181b;
+    border: 1px solid #27272a;
+    padding: 1rem 1.2rem;
+  }
+  .vergleich-card .vc-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #71717a;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 0.4rem;
+  }
+  .vergleich-card .vc-value {
+    font-size: 1.5rem;
+    color: #e8c547;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 0.3rem;
+  }
+  .vergleich-card .vc-detail {
+    font-size: 0.85rem;
+    color: #a1a1aa;
+    line-height: 1.5;
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0 2rem;
+    font-size: 0.9rem;
+  }
+  .data-table th {
+    background: #1a1a2e;
+    color: #e8c547;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    border-bottom: 2px solid #e8c547;
+  }
+  .data-table td {
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #27272a;
+    color: #d4d4d8;
+    vertical-align: top;
+  }
+  .data-table tr:hover td { background: #18181b; }
+
+  .series-nav {
+    background: #18181b;
+    border: 1px solid #27272a;
+    padding: 1.2rem 1.4rem;
+    margin: 2.5rem 0;
+  }
+  .series-nav .nav-title {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #e8c547;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.8rem;
+  }
+  .series-nav ol {
+    padding-left: 1.2rem;
+    color: #71717a;
+    font-size: 0.9rem;
+  }
+  .series-nav li { margin-bottom: 0.3rem; }
+  .series-nav li a { color: #7dd3fc; text-decoration: none; }
+  .series-nav li a:hover { text-decoration: underline; }
+  .series-nav li.active { color: #e8c547; font-weight: bold; list-style: none; margin-left: -1.2rem; padding-left: 1.2rem; }
+  .series-nav li.active::before { content: "▶ "; }
+
+  .closing {
+    border-top: 1px solid #27272a;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    font-style: italic;
+    color: #a1a1aa;
+    font-size: 1rem;
+  }
+  .closing p { color: #a1a1aa; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="series-banner">
+    Serie: Wer kontrolliert, was wir essen? — Teil 3 von 11
+  </div>
+
+  <header class="article-header">
+    <h1>Höfesterben, Subventionen und die stille Verdrängung</h1>
+    <div class="subtitle">Seit Mitte der 1990er Jahre hat sich die Zahl der Betriebe in Deutschland halbiert — die Fläche blieb gleich. Wer profitiert?</div>
+    <div class="meta">dunkelfeld.report &nbsp;|&nbsp; Kategorie: Strukturwandel &nbsp;|&nbsp; Quellen: Destatis, BMEL, Europäisches Parlament, taz</div>
+  </header>
+
+  <p>
+    Jedes Jahr schließen in Deutschland mehrere Tausend landwirtschaftliche Betriebe für immer. Die Felder bleiben — sie werden von wachsenden Nachbarbetrieben übernommen. Diese Umverteilung von Fläche und Marktmacht ist keine Naturkatastrophe und kein Zufall. Sie ist das Ergebnis von Subventionsmechanismen, Bodenpreisdynamiken und politischen Entscheidungen, die über Jahrzehnte getroffen wurden — und deren Wirkung in den amtlichen Statistiken des Statistischen Bundesamtes nachlesbar ist.
+  </p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="number">½</span>
+      <span class="label">Betriebe seit Mitte 1990er verschwunden (DE)</span>
+    </div>
+    <div class="stat-card">
+      <span class="number">~2.600</span>
+      <span class="label">Höfe schließen pro Jahr (Ø 2020–2023)</span>
+    </div>
+    <div class="stat-card">
+      <span class="number">14%</span>
+      <span class="label">der Betriebe bewirtschaften 63% der Fläche</span>
+    </div>
+    <div class="stat-card">
+      <span class="number">80%</span>
+      <span class="label">EU-Subventionen gehen an 20% der Betriebe</span>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <div class="source-title">Primärquellen</div>
+    <ul>
+      <li>Destatis, Pressemitteilung 16.01.2024: Agrarstrukturerhebung 2023 — <a href="https://www.destatis.de/DE/Presse/Pressemitteilungen/2024/01/PD24_021_41.html" target="_blank">destatis.de</a></li>
+      <li>BMEL-Statistik: Betriebsstruktur und Entwicklung landwirtschaftlicher Betriebe — <a href="https://www.bmel-statistik.de/landwirtschaft/landwirtschaftliche-betriebe/betriebsstruktur-und-entwicklung" target="_blank">bmel-statistik.de</a></li>
+      <li>Europäisches Parlament: Agrarpolitik der EU in Zahlen, 2023 — <a href="https://www.europarl.europa.eu/topics/de/article/20211118STO17609/agrarpolitik-der-eu-in-zahlen-infografik" target="_blank">europarl.europa.eu</a></li>
+      <li>taz-Recherche (2024): EU-Agrarsubventionen DBV-Präsidiumsmitglieder — <a href="https://taz.de/EU-Agrarsubventionen/!6015483/" target="_blank">taz.de</a> (Basis: agrarzahlungen.de / BLE)</li>
+      <li>BUND: Die Gemeinsame Agrarpolitik (GAP) in der EU — <a href="https://www.bund.net/themen/landwirtschaft/eu-agrarpolitik/" target="_blank">bund.net</a></li>
+    </ul>
+  </div>
+
+  <h2>Die Zahlen: Was Destatis dokumentiert</h2>
+
+  <p>
+    Das Statistische Bundesamt (Destatis) erhebt alle paar Jahre die Agrarstruktur in Deutschland. Die Ergebnisse der Agrarstrukturerhebung 2023 sind eindeutig: <span class="tag belegt">BELEGT</span>
+  </p>
+  <p>
+    Im Jahr 2023 wirtschafteten in Deutschland noch 255.000 landwirtschaftliche Betriebe — rund 7.800 weniger als 2020, was einem Rückgang von etwa 3 Prozent in drei Jahren entspricht. Das Bundesministerium für Ernährung und Landwirtschaft hält fest: Seit Mitte der 1990er Jahre hat sich die Anzahl landwirtschaftlicher Betriebe in Deutschland halbiert. <span class="tag belegt">BELEGT</span>
+  </p>
+  <p>
+    Die gesamte landwirtschaftlich genutzte Fläche blieb dabei seit 2010 nahezu konstant bei rund 16,6 Millionen Hektar. Weniger Betriebe, gleiche Fläche — die verbleibenden Höfe werden schlicht größer: von durchschnittlich 56 Hektar im Jahr 2010 auf 65 Hektar im Jahr 2023. <span class="tag belegt">BELEGT</span>
+  </p>
+
+  <div class="vergleich">
+    <div class="vergleich-card">
+      <div class="vc-label">Betriebe 2010</div>
+      <div class="vc-value">~299.000</div>
+      <div class="vc-detail">Ø-Größe: 56 Hektar. Noch rund 40.000 mehr Betriebe als 2023.</div>
+    </div>
+    <div class="vergleich-card">
+      <div class="vc-label">Betriebe 2023</div>
+      <div class="vc-value">255.000</div>
+      <div class="vc-detail">Ø-Größe: 65 Hektar. Gleiche Gesamtfläche, 44.000 Betriebe weniger.</div>
+    </div>
+  </div>
+
+  <p>
+    Besonders aufschlussreich ist die Verteilung nach Größenklassen: Laut BMEL bewirtschaften fast jeden siebten Betrieb — das sind etwa 14 Prozent aller Höfe — mehr als 100 Hektar. Diese Großbetriebe bearbeiten zusammen 63 Prozent der gesamten deutschen Agrarfläche. <span class="tag belegt">BELEGT</span> Es verschwinden vor allem die mittleren Betriebe zwischen 10 und 100 Hektar, während die Zahl der Großbetriebe mit über 100 Hektar steigt.
+  </p>
+
+  <h2>Das Subventionssystem: Wer bekommt was</h2>
+
+  <p>
+    Die Gemeinsame Agrarpolitik (GAP) der EU ist mit rund 387 Milliarden Euro für den Zeitraum 2021–2027 das größte Einzelprogramm des EU-Haushalts — 2023 machten die Agrarausgaben ein Viertel des gesamten EU-Budgets aus. <span class="tag belegt">BELEGT</span> Deutschland erhielt 2023 rund 6,4 Milliarden Euro aus diesen Töpfen.
+  </p>
+  <p>
+    Rund 80 Prozent dieser Gelder fließen als pauschale Flächenprämien — die sogenannte „Erste Säule" der GAP. Das Prinzip: Pro Hektar bewirtschafteter Fläche gibt es einen festen Betrag, unabhängig davon, wie der Betrieb wirtschaftet, wie viele Menschen er beschäftigt oder welche ökologischen Leistungen er erbringt. <span class="tag belegt">BELEGT</span>
+  </p>
+
+  <div class="pull-quote">
+    „EU-weit erhalten 20 Prozent der Betriebe auf diese Weise 80 Prozent der Gelder."
+    <span class="attribution">— BUND, Analyse der Gemeinsamen Agrarpolitik</span>
+  </div>
+
+  <p>
+    In konkreten Zahlen: Ein Betrieb mit 50 Hektar erhält jährlich rund 14.000 Euro EU-Subvention. Ein Großbetrieb mit 5.000 Hektar erhält 1,4 Millionen Euro — aus denselben Fördertöpfen, nach demselben Schlüssel. <span class="tag belegt">BELEGT</span>
+  </p>
+  <p>
+    Für kleine Betriebe machen staatliche Subventionen nach Angaben des baden-württembergischen Landwirtschaftsministeriums bereits 40 bis 60 Prozent ihrer Einnahmen aus — bei Nebenerwerbsbetrieben sind es sogar bis zu 90 Prozent. <span class="tag belegt">BELEGT</span> Wer wenig Fläche hat, bekommt wenig Subvention, braucht sie aber prozentual am meisten.
+  </p>
+
+  <h2>Der Mechanismus: Warum Prämien Großbetriebe begünstigen</h2>
+
+  <p>
+    Die EU-Kommission räumt den Mitgliedstaaten die Möglichkeit ein, Flächenprämien oberhalb bestimmter Beträge zu deckeln (Kappung) und kleinere Betriebe durch einen „Erste-Hektar-Aufschlag" zu bevorzugen. In Deutschland gibt es diesen Aufschlag in begrenzter Form: Für die ersten 40 Hektar werden zusätzlich 69 Euro pro Hektar gezahlt, für die nächsten 20 Hektar 41 Euro. <span class="tag belegt">BELEGT</span>
+  </p>
+  <p>
+    Die darüber hinausgehenden Möglichkeiten einer strikten Obergrenze pro Betrieb oder einer stufenweisen Degression werden in Deutschland jedoch nicht genutzt — ausdrücklich, wie der BUND festhält, „aus Rücksicht auf die ost- und norddeutschen Großbetriebe". <span class="tag belegt">BELEGT</span>
+  </p>
+  <p>
+    Eine taz-Recherche aus dem Jahr 2024 auf Basis der amtlichen Datenbank agrarzahlungen.de (Bundesanstalt für Landwirtschaft und Ernährung, BLE) stellte fest: Die etwa 20 Präsidiumsmitglieder des Deutschen Bauernverbands (DBV) oder ihre Unternehmen erhielten im Haushaltsjahr 2022/23 zusammen mehr als 2,6 Millionen Euro EU-Subventionen. Spitzenbezieher: die Universal-Agrar GmbH, bei der der Präsident des Thüringer Bauernverbands als Geschäftsführer tätig ist — rund 1 Million Euro allein in jenem Jahr. <span class="tag belegt">BELEGT</span>
+  </p>
+
+  <div class="pull-quote">
+    „Da wichtige Akteure in der Spitze des Deutschen Bauernverbandes stark von der bisherigen Flächenprämie profitieren, verwundert es nicht, dass sie so vehement die Qualifizierung dieser Gelder blockieren."
+    <span class="attribution">— Xenia Brand, AbL-Bundesgeschäftsführerin, zitiert nach taz, 2024</span>
+  </div>
+
+  <h2>Chronologie: Wie die Struktur entstand</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="tl-year">1950er–80er</div>
+      <div class="tl-text">Technisierung und „Rationalisierung" der deutschen Landwirtschaft. Traktoren ersetzen Arbeitskräfte. Zahl der Betriebe beginnt zu sinken, Produktivität steigt.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-year">Mitte 1990er</div>
+      <div class="tl-text">Ausgangspunkt der Halbierung: Rund 500.000 Betriebe in Deutschland (West + Ost nach Wiedervereinigung). Danach beginnt der beschleunigte Strukturwandel.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-year">1992 / 2003</div>
+      <div class="tl-text">GAP-Reformen entkoppeln Subventionen von der Produktion, binden sie zunehmend an Fläche. Grundprinzip der flächengebundenen Direktzahlung wird etabliert.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-year">2010</div>
+      <div class="tl-text">Destatis: 299.000 Betriebe, Ø 56 ha. Jährlich verschwinden bis 2013 noch ca. 4.700 Betriebe pro Jahr.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-year">2020</div>
+      <div class="tl-text">Landwirtschaftszählung: 263.500 Betriebe. Rückgang auf ca. 3.200 pro Jahr (2013–2020). 14% der Betriebe bewirtschaften 62% der Fläche.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-year">2023</div>
+      <div class="tl-text">Agrarstrukturerhebung Destatis: 255.000 Betriebe. Ø 65 ha. Arbeitskräfte in der Landwirtschaft: 876.000 (−7% seit 2020). Tierhaltende Betriebe: −4%.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-year">2023–2027</div>
+      <div class="tl-text">Neue GAP-Periode: 387 Mrd. € EU-Agrarhaushalt. Ökologische Mindeststandards (GLÖZ) nach Bauernprotesten 2024 weitgehend aufgeweicht. Flächenprämien bleiben zentrales Instrument.</div>
+    </div>
+  </div>
+
+  <h2>Was die Zahlen zeigen — und was sie nicht erklären</h2>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Befund</th>
+        <th>Quelle</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Seit Mitte der 1990er Jahre: Halbierung der Betriebszahl in DE</td>
+        <td>BMEL-Statistik</td>
+        <td><span class="tag belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>2023: 255.000 Betriebe, Ø 65 ha, 16,6 Mio. ha Gesamtfläche</td>
+        <td>Destatis Agrarstrukturerhebung 2023</td>
+        <td><span class="tag belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>14% der Betriebe bewirtschaften 63% der Agrarfläche</td>
+        <td>BMEL-Statistik 2023</td>
+        <td><span class="tag belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>EU-weit: 20% der Betriebe erhalten 80% der GAP-Gelder</td>
+        <td>BUND-Analyse / EU-Kommission</td>
+        <td><span class="tag belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>50-ha-Betrieb: ~14.000 €/Jahr; 5.000-ha-Betrieb: ~1,4 Mio. €/Jahr</td>
+        <td>BUND</td>
+        <td><span class="tag belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>DBV-Präsidiumsmitglieder: &gt;2,6 Mio. € Subventionen 2022/23</td>
+        <td>taz-Recherche / agrarzahlungen.de (BLE)</td>
+        <td><span class="tag belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Deutschland nutzt Kappungsmöglichkeit für Großbetriebe nicht</td>
+        <td>BUND</td>
+        <td><span class="tag belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Ob Subventionssystem kausal für Höfesterben verantwortlich ist (vs. Technisierung, Globalisierung etc.)</td>
+        <td>—</td>
+        <td><span class="tag offen">OFFEN</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Was parallel passiert: Bodenpreise und Pacht</h2>
+
+  <p>
+    Während Betriebe verschwinden, steigen die Bodenpreise. Wer verkauft, verkauft an Investoren oder wachsende Nachbarbetriebe — selten an Neueinsteiger. Laut BMEL-Statistik werden steigende Anteile der deutschen Agrarfläche nicht mehr vom Eigentümer bewirtschaftet, sondern verpachtet. Die Pacht als dominante Bewirtschaftungsform bevorzugt kapitalstarke Akteure, die mehrere Flächen pachten können. <span class="tag extrapolation">EXTRAPOLATION</span>
+  </p>
+  <p>
+    Der Trend hat eine regionale Dimension: In Ostdeutschland, wo nach der Wiedervereinigung industrielle Großstrukturen der DDR-Landwirtschaft in Kapitalgesellschaften überführt wurden, sind die Durchschnittsgrößen der Betriebe deutlich höher. Mecklenburg-Vorpommern verzeichnet bei gleichzeitig größeren Durchschnittsbetrieben höhere Einkommen pro Arbeitskraft als Baden-Württemberg mit seiner kleinteiligeren Struktur. <span class="tag belegt">BELEGT</span>
+  </p>
+
+  <div class="source-box">
+    <div class="source-title">Weiterführende Quellen</div>
+    <ul>
+      <li>BW Stiftung Perspektiven (2024): 55 Milliarden für Europas Bauern — <a href="https://www.bwstiftung.de/de/magazin/perspektiven-02-2024/55-milliarden-euro-fuer-europas-bauern-wer-bekommt-pro-jahr-wie-viel-und-wofuer" target="_blank">bwstiftung.de</a></li>
+      <li>agrarzahlungen.de — öffentliche Datenbank der BLE zu EU-Subventionsempfängern: <a href="https://www.agrar-fischerei-zahlungen.de/agrar_foerderung.html" target="_blank">agrar-fischerei-zahlungen.de</a></li>
+      <li>NABU: Wer bekommt wie viel aus dem EU-Agrarhaushalt? — <a href="https://www.nabu.de/natur-und-landschaft/landnutzung/landwirtschaft/agrarpolitik/eu-agrarreform/25173.html" target="_blank">nabu.de</a></li>
+    </ul>
+  </div>
+
+  <!-- SERIENNAVIGATION -->
+  <div class="series-nav">
+    <div class="nav-title">Serie: Wer kontrolliert, was wir essen?</div>
+    <ol>
+      <li><a href="nahrung-konzentration.html">Die unsichtbaren Händler der Welt (ABCD-Quartett, Saatgut-Oligopol)</a></li>
+      <li><a href="nahrung-saatgut.html">Wer das Saatgut kontrolliert, kontrolliert die Ernte</a></li>
+      <li class="active">Höfesterben, Subventionen und die stille Verdrängung</li>
+      <li><a href="nahrung-insekten.html">Insekten als Nahrung: Regulierung, Lobbying, Novel Food</a></li>
+      <li><a href="nahrung-laborfleisch.html">Laborfleisch: Investoren, Zulassungen, Interessen</a></li>
+      <li><a href="nahrung-wasser.html">Wasser als Ware: Nestlé, Blackrock, UN-Resolution</a></li>
+      <li><a href="nahrung-mercosur.html">Mercosur: Freihandel, Entwaldung, Geflügelexporte</a></li>
+      <li><a href="nahrung-konzerne-handel.html">Die Big Five des Lebensmittelhandels</a></li>
+      <li><a href="nahrung-gentechnik.html">Neue Gentechnik: NGT-Verordnung und das Kennzeichnungs-Rätsel</a></li>
+      <li><a href="nahrung-skandale.html">Regulierungsversagen: Transfette, Glyphosat, Aspartam</a></li>
+      <li><a href="nahrung-akteure.html">Wer taucht überall auf? Die Netzwerkkarte</a></li>
+    </ol>
+  </div>
+
+  <div class="closing">
+    <p>
+      Die Daten sind öffentlich. Destatis, BMEL, die BLE-Subventionsdatenbank — alles nachlesbar. Dass ein System, das 80 Prozent der Gelder an 20 Prozent der Betriebe verteilt, zum Verschwinden kleiner Höfe beiträgt, ist strukturell naheliegend. Ob es das primäre Ursache ist, bleibt wissenschaftlich diskutiert.
+    </p>
+    <p style="margin-top:1rem;">
+      <em>Warum nutzt Deutschland die EU-Möglichkeit zur Subventionskappung bei Großbetrieben nicht — und wer hat ein Interesse daran, dass das so bleibt? Wenn Verbandsfunktionäre, die für Kleinbauern sprechen, selbst Hauptempfänger der Großflächenprämien sind: Wessen Interessen vertreten sie dann? Und: Wer kauft die Flächen der aufgebenden Betriebe — und zu welchem Preis?</em>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>

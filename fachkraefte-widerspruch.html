@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Fachkräfte-Widerspruch — dunkelfeld.report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    background: #09090b;
+    color: #d4d4d8;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 2rem 1.2rem 4rem;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .site-header {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: #e8c547;
+    text-transform: uppercase;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .site-header a {
+    color: #e8c547;
+    text-decoration: none;
+  }
+
+  /* Article head */
+  .article-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: #e8c547;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    line-height: 1.25;
+    color: #f4f4f5;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+
+  .subtitle {
+    font-size: 1.15rem;
+    color: #a1a1aa;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #52525b;
+    letter-spacing: 0.08em;
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+    padding: 0.7rem 0;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Intro */
+  .intro {
+    font-size: 1.15rem;
+    color: #e4e4e7;
+    border-left: 3px solid #e8c547;
+    padding-left: 1.4rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.9;
+  }
+
+  /* Sections */
+  h2 {
+    font-size: 1.3rem;
+    color: #e8c547;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid #27272a;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    color: #f4f4f5;
+    margin: 1.8rem 0 0.6rem;
+    font-style: italic;
+  }
+
+  p {
+    padding-bottom: 1.2rem;
+    color: #d4d4d8;
+  }
+
+  /* Tags */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin: 0 0.15rem;
+    text-transform: uppercase;
+  }
+  .tag-belegt    { background: #14532d; color: #4ade80; border: 1px solid #166534; }
+  .tag-extra     { background: #7c2d12; color: #fb923c; border: 1px solid #9a3412; }
+  .tag-offen     { background: #450a0a; color: #f87171; border: 1px solid #7f1d1d; }
+
+  /* Source box */
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 0.9rem 1.2rem;
+    margin: 1.2rem 0 1.8rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #a1a1aa;
+    line-height: 1.6;
+  }
+
+  .source-box strong {
+    color: #e8c547;
+    display: block;
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.68rem;
+  }
+
+  /* Stat grid */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+
+  @media (max-width: 520px) {
+    .stat-grid { grid-template-columns: 1fr; }
+  }
+
+  .stat-card {
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    background: #111113;
+  }
+
+  .stat-card .number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #e8c547;
+    font-family: 'Courier New', monospace;
+    line-height: 1;
+  }
+
+  .stat-card .label {
+    font-size: 0.82rem;
+    color: #a1a1aa;
+    margin-top: 0.3rem;
+    line-height: 1.4;
+  }
+
+  .stat-card .source-note {
+    font-size: 0.68rem;
+    color: #52525b;
+    margin-top: 0.3rem;
+    font-family: 'Courier New', monospace;
+  }
+
+  /* Comparison table */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0 2rem;
+    font-size: 0.9rem;
+  }
+
+  .compare-table th {
+    background: #1a1a2e;
+    color: #e8c547;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.7rem 1rem;
+    text-align: left;
+    border-bottom: 2px solid #e8c547;
+  }
+
+  .compare-table td {
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid #1e1e24;
+    color: #d4d4d8;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .compare-table tr:nth-child(even) td {
+    background: #0f0f11;
+  }
+
+  .compare-table .highlight {
+    color: #e8c547;
+    font-weight: 700;
+  }
+
+  /* Pull quote */
+  .pull-quote {
+    margin: 2rem 0;
+    padding: 1.2rem 1.5rem;
+    border-top: 2px solid #e8c547;
+    border-bottom: 2px solid #e8c547;
+  }
+
+  .pull-quote blockquote {
+    font-size: 1.15rem;
+    color: #f4f4f5;
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  .pull-quote cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #71717a;
+    margin-top: 0.6rem;
+    font-style: normal;
+    letter-spacing: 0.05em;
+  }
+
+  /* Closing questions */
+  .closing-questions {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    border: 1px solid #27272a;
+    background: #0f0f11;
+  }
+
+  .closing-questions h3 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #e8c547;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-style: normal;
+  }
+
+  .closing-questions p {
+    font-style: italic;
+    color: #a1a1aa;
+    font-size: 0.95rem;
+    padding-bottom: 0.6rem;
+  }
+
+  /* Source list */
+  .sources-section {
+    margin-top: 3rem;
+    border-top: 1px solid #27272a;
+    padding-top: 1.5rem;
+  }
+
+  .sources-section h2 {
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .sources-section ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .sources-section li {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #52525b;
+    padding: 0.3rem 0;
+    padding-left: 1rem;
+    border-left: 2px solid #27272a;
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+  }
+
+  .sources-section li:hover {
+    border-left-color: #e8c547;
+    color: #a1a1aa;
+  }
+
+  /* Footer */
+  .article-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #3f3f46;
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+
+  /* Nav */
+  .nav-bar {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+
+  .nav-bar a {
+    color: #52525b;
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+  }
+
+  .nav-bar a:hover { color: #e8c547; }
+
+  strong { color: #e4e4e7; }
+
+  em { color: #a1a1aa; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="nav-bar">
+      <a href="/index.html">dunkelfeld.report</a>
+      <a href="/index.html#artikel">Alle Artikel</a>
+      <a href="/index.html#dossiers">Dossiers</a>
+    </div>
+    Analyse · Systemkritik · Quellenbasiert
+  </header>
+
+  <!-- Article Header -->
+  <div class="article-label">Strukturanalyse · Arbeitsmarkt · Migration</div>
+
+  <h1>Der Fachkräfte-Widerspruch</h1>
+  <p class="subtitle">Deutschland wirbt weltweit Fachkräfte an — während die Arbeitslosigkeit auf den höchsten Stand seit zehn Jahren steigt und fast 50 Milliarden Euro jährlich für Migration ausgegeben werden. Was mit diesem Geld in den Herkunftsländern möglich wäre.</p>
+
+  <div class="meta">
+    Juni 2026 &nbsp;|&nbsp; Lesedauer: ca. 10 Minuten &nbsp;|&nbsp; Slug: fachkraefte-widerspruch
+  </div>
+
+  <!-- Intro -->
+  <div class="intro">
+    Deutschland schließt im Jahrestakt Migrationsabkommen mit Ländern ab, deren Gesundheitssysteme kollabieren, weil ihre Ärzte und Pfleger bereits weg sind. Gleichzeitig verzeichnet die Bundesagentur für Arbeit knapp drei Millionen Arbeitslose — auf dem höchsten Stand seit fast einem Jahrzehnt. Dieser Artikel stellt keine Fragen nach Schuld. Er stellt eine einfachere Frage: Was sagen die Zahlen?
+  </div>
+
+  <!-- SECTION 1 -->
+  <h2>I. Die Arbeitsmarktlage in Deutschland</h2>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Im Mai 2026 waren in Deutschland 2,95 Millionen Menschen als arbeitslos gemeldet — eine Arbeitslosenquote von 6,3 Prozent. Verglichen mit Mai 2025 ist die Zahl um 31.000 gestiegen. Im Januar 2026 erreichte die Quote den höchsten Stand seit fast zehn Jahren.
+  </p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="number">2,95 Mio.</div>
+      <div class="label">Offiziell arbeitslos gemeldete Personen (Mai 2026)</div>
+      <div class="source-note">Bundesagentur für Arbeit, Pressemitteilung 29.05.2026</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">5,3 Mio.</div>
+      <div class="label">Bürgergeld-Leistungsberechtigte gesamt (2025, Jahresdurchschnitt)</div>
+      <div class="source-note">Bundesagentur für Arbeit, SGB-II-Statistik 2026</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">4,8 Mio.</div>
+      <div class="label">Personen mit ALG I oder Bürgergeld (erwerbsfähig, 2024)</div>
+      <div class="source-note">BA-Jahresbericht Arbeitsmarkt Deutschland 2024</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">3,63 Mio.</div>
+      <div class="label">Unterbeschäftigung gesamt (inkl. Maßnahmen), Mai 2026</div>
+      <div class="source-note">Bundesagentur für Arbeit</div>
+    </div>
+  </div>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Die offizielle Arbeitslosenzahl erfasst nicht alle Erwerbslosen vollständig. Personen in Qualifizierungsmaßnahmen, Kurzarbeit oder mit Pflegeverpflichtungen gelten statistisch als nicht arbeitslos. Die sogenannte Unterbeschäftigung lag im Mai 2026 bei 3,63 Millionen — und damit strukturell höher als die ausgewiesene Zahl.
+  </p>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Eine Studie der Bertelsmann-Stiftung (2025, Erhebung April–Juni 2025, n=1.006) unter erwerbsfähigen Bürgergeld-Beziehenden ergab: Mehr als die Hälfte hatte in den vorangegangenen vier Wochen nicht aktiv nach Arbeit gesucht. Knapp 43 Prozent gaben an, noch nie ein Jobangebot vom Jobcenter erhalten zu haben. 45 Prozent berichteten von psychischen oder chronischen Erkrankungen.
+  </p>
+
+  <div class="source-box">
+    <strong>Quelle</strong>
+    Bundesagentur für Arbeit: Monatsbericht Arbeitsmarkt Mai 2026 (29.05.2026) — arbeitsagentur.de · Sozialpolitik-aktuell.de: Leistungsberechtigte SGB II 2005–2025, auf Basis BA-Statistik (2026) · Bertelsmann Stiftung: Studie LEBez — Lebenssituation und Erfahrungen von Bürgergeldbeziehenden, IAW/SOKO Institut, 2025
+  </div>
+
+  <!-- SECTION 2 -->
+  <h2>II. Gleichzeitig: Globale Fachkräfteanwerbung</h2>
+
+  <p>
+    Trotz dieser Zahlen hat die Bundesregierung seit 2022 ein systematisches Netz bilateraler Migrationsabkommen aufgebaut. Der erklärte Bedarf: Das Institut für Arbeitsmarkt- und Berufsforschung (IAB) errechnet eine notwendige Nettomigration von 400.000 Fachkräften jährlich bis 2060, um das Arbeitskräfteangebot zu stabilisieren.
+  </p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Abkommen</th>
+        <th>Datum</th>
+        <th>Schwerpunkt</th>
+        <th>Typ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Indien</strong></td>
+        <td>2022</td>
+        <td>IT, Fachkräfte allgemein</td>
+        <td>Völkerrechtlich verbindlich</td>
+      </tr>
+      <tr>
+        <td><strong>Georgien</strong></td>
+        <td>Dez. 2023</td>
+        <td>Rückführung + Arbeit</td>
+        <td>Völkerrechtlich verbindlich</td>
+      </tr>
+      <tr>
+        <td><strong>Marokko</strong></td>
+        <td>Anfang 2024</td>
+        <td>Fachkräfte, Rückführung</td>
+        <td>Informelle Vereinbarung</td>
+      </tr>
+      <tr>
+        <td><strong>Kenia</strong></td>
+        <td>Sept. 2024</td>
+        <td class="highlight">Ärzte, Pfleger, Lehrer, IT — bis 250.000</td>
+        <td>Völkerrechtlich verbindlich</td>
+      </tr>
+      <tr>
+        <td><strong>Usbekistan</strong></td>
+        <td>Sept. 2024</td>
+        <td>Fachkräfte allgemein</td>
+        <td>Völkerrechtlich verbindlich</td>
+      </tr>
+      <tr>
+        <td><strong>Kolumbien</strong></td>
+        <td>2024</td>
+        <td>Arbeitsmigration</td>
+        <td>Absichtserklärung</td>
+      </tr>
+      <tr>
+        <td><strong>Philippinen</strong></td>
+        <td>laufend</td>
+        <td>Pflegekräfte (Triple-Win)</td>
+        <td>In Verhandlung</td>
+      </tr>
+      <tr>
+        <td><strong>Ghana</strong></td>
+        <td>laufend</td>
+        <td>Fachkräfte allgemein</td>
+        <td>In Verhandlung</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Zusätzlich zu den bilateralen Abkommen betreibt das Bundesministerium für Wirtschaft (BMWE) das Programm <em>African Skills 4 Germany (AS4G)</em>: gezielte Fachkräfteanwerbung in 11 afrikanischen Ländern (Ägypten, Algerien, Angola, Côte d'Ivoire, Ghana, Kenia, Marokko, Nigeria, Südafrika, Tansania, Tunesien). Laufzeit: Sommer 2024 bis Dezember 2026.
+  </p>
+
+  <div class="source-box">
+    <strong>Quelle</strong>
+    BMI: Migrationspartnerschaften (Stand Mai 2025) — bmi.bund.de · SWP Berlin: "Potentiale bilateraler Migrationsabkommen" (2024) — swp-berlin.org · Mediendienst Integration: Übersicht Migrationsabkommen (April 2025) · AHK: African Skills 4 Germany (AS4G) — ahk.de
+  </div>
+
+  <!-- SECTION 3 -->
+  <h2>III. Das Kenia-Paradox — ein Fallbeispiel</h2>
+
+  <p>
+    Das Abkommen zwischen Deutschland und Kenia vom 13. September 2024 — unterzeichnet von Bundeskanzler Olaf Scholz und Präsident William Ruto — gilt als Musterfall der neuen Migrationspolitik. Es sieht die geordnete Zuwanderung von bis zu 250.000 Fachkräften vor. Zielberufe: Ärzte, Krankenpfleger, Lehrer, IT-Spezialisten.
+  </p>
+
+  <div class="pull-quote">
+    <blockquote>„Es ist traurig, dass wir andere Länder auf Kosten unseres eigenen versorgen werden."</blockquote>
+    <cite>Ekuru Aukot, kenianischer Anwalt und Politiker, gegenüber der BBC nach Unterzeichnung des Abkommens (September 2024)</cite>
+  </div>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Gleichzeitig verlassen laut dem früheren Generalsekretär der Kenyan Medical Practitioners Union, Ouma Oluga, rund 4.000 Ärzte und Pfleger Kenia jedes Jahr. Der WHO-Bericht 2023 stellt fest: 40 von 55 afrikanischen Ländern haben kritische Engpässe im Gesundheitspersonal.
+  </p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="number">1 : 5.000</div>
+      <div class="label">Arzt-Patienten-Verhältnis in Nigeria (WHO-Empfehlung: 1:600)</div>
+      <div class="source-note">WHO Global Health Workforce Statistics 2023</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">500/Monat</div>
+      <div class="label">Krankenpfleger verlassen Ghana jeden Monat Richtung Westen</div>
+      <div class="source-note">WHO Bericht 2023, zit. n. LSE Africa at LSE (2024)</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">+1.328%</div>
+      <div class="label">Anstieg ghanaischer NHS-Pfleger im UK zwischen 2019 und 2022</div>
+      <div class="source-note">UK Home Office Visa-Daten, zit. n. LSE (2024)</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">64,4%</div>
+      <div class="label">Kenias Gesundheitsfachkräfte äußerten 2023 den Wunsch, das Land zu verlassen</div>
+      <div class="source-note">Kenya Ministry of Health Report 2023</div>
+    </div>
+  </div>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Kenias Gouverneur Muthomi Njuki anerkannte im Februar 2024 öffentlich das Dilemma: <em>„Während wir über Brain Drain klagen, können wir als Regierung die Fachkräfte selbst nicht beschäftigen, weil uns die Ressourcen fehlen."</em>
+  </p>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Der WHO empfiehlt mindestens 21,7 Ärzte pro 100.000 Einwohner als Mindeststandard. Chad verzeichnete zuletzt 0,00 Ärzte pro 1.000 Einwohner, Burundi 0,1. Afrika hat über 2 Milliarden Dollar in die Ausbildung von Ärzten investiert, die anschließend emigrierten — während afrikanische Mediziner nach Schätzungen rund 2,7 Milliarden Dollar zur britischen Wirtschaft beitragen.
+  </p>
+
+  <div class="source-box">
+    <strong>Quelle</strong>
+    Think Global Health: "Kenya's Health Worker Exodus: Brain Drain or Economic Opportunity?" (Aug. 2024) — thinkglobalhealth.org · LSE Africa at LSE: "Africa's migration and brain drain revisited" (März 2024) · Vanguard News: "Germany opens doors to 250,000 Kenyan workers" (Sept. 2024) · WHO Global Health Workforce Statistics (2023) · Mo Ibrahim Foundation: Africa's Brain Drain Report (2021)
+  </div>
+
+  <!-- SECTION 4 -->
+  <h2>IV. Was Migration Deutschland kostet</h2>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Der Bund gab 2023 rund 29,7 Milliarden Euro für asyl- und fluchtbezogene Ausgaben aus — 6,4 Prozent des Gesamthaushalts. 2024 waren es laut Finanzplanung rund 28 Milliarden Euro Bundesausgaben; zusammen mit Länder- und Kommunalkosten ergeben sich Gesamtkosten von rund 48 Milliarden Euro für 2023.
+  </p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Kostenblock (2023)</th>
+        <th>Betrag</th>
+        <th>Ebene</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Sozialtransferleistungen nach Asylverfahren</td>
+        <td class="highlight">11,8 Mrd. €</td>
+        <td>Bund</td>
+      </tr>
+      <tr>
+        <td>Bekämpfung von Fluchtursachen</td>
+        <td class="highlight">9,8 Mrd. €</td>
+        <td>Bund</td>
+      </tr>
+      <tr>
+        <td>Entlastung Länder und Kommunen</td>
+        <td class="highlight">3,9 Mrd. €</td>
+        <td>Bund</td>
+      </tr>
+      <tr>
+        <td>Integrationsleistungen</td>
+        <td class="highlight">3,0 Mrd. €</td>
+        <td>Bund</td>
+      </tr>
+      <tr>
+        <td>Asylbewerberleistungen (Länder)</td>
+        <td class="highlight">6,3 Mrd. €</td>
+        <td>Länder</td>
+      </tr>
+      <tr>
+        <td>Weitere Länder-/Kommunalkosten</td>
+        <td class="highlight">~13 Mrd. €</td>
+        <td>Länder/Kommunen</td>
+      </tr>
+      <tr>
+        <td><strong>Gesamtkosten (geschätzt)</strong></td>
+        <td class="highlight"><strong>~48 Mrd. €</strong></td>
+        <td>Gesamt</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    <span class="tag tag-extra">EXTRAPOLATION</span> Der Wirtschaftswissenschaftler Bernd Raffelhüschen (Universität Freiburg) errechnete 2024 eine gesamtwirtschaftliche Langfistbelastung von 5,8 Billionen Euro durch die bisherige Zuwanderungsstruktur. Zur methodischen Einordnung: Diese Zahl ist eine Generationenbilanzrechnung und unter Ökonomen umstritten. Andere Berechnungen (z.B. Martin Werding, Ruhr-Universität) kommen zu anderen Ergebnissen. Die jährlichen Kostengrößen aus amtlichen Quellen sind hingegen direkt belegbar.
+  </p>
+
+  <div class="source-box">
+    <strong>Quelle</strong>
+    Bundeszentrale für politische Bildung (bpb): "Asylbedingte Kosten und Ausgaben" (Stand Sept. 2025) — bpb.de · Statistisches Bundesamt: "6,8% mehr Ausgaben für Asylbewerberleistungen 2024" (Mai 2026) — destatis.de · Handelsblatt: "Sozialleistungen: Milliardenhilfen für Flüchtlings- und Integrationskosten" (Juni 2025) · Mediendienst Integration: "Was Migration den Sozialstaat kostet" (Dez. 2024)
+  </div>
+
+  <!-- SECTION 5 -->
+  <h2>V. Der Kaufkraftfaktor — was dasselbe Geld vor Ort bewirkt</h2>
+
+  <p>
+    Ein Euro hat in Subsahara-Afrika, Südasien oder Zentralamerika eine völlig andere Realwirkung als in Deutschland. Die Weltbank misst dies über Kaufkraftparitäten (PPP). In den ärmsten Ländern der Welt entspricht der Kaufkraftindex — bezogen auf Deutschland als Basiswert 100 — Werten zwischen 5 und 25. Das bedeutet: Ein Euro kauft dort zwischen 4 und 20 Mal so viel an Grundgütern wie in Deutschland.
+  </p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Land / Region</th>
+        <th>Kaufkraftfaktor vs. D</th>
+        <th>Was 1.000 € vor Ort bewirken</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Kenia</td>
+        <td class="highlight">ca. Faktor 5–7</td>
+        <td>Jahresgehalt eines Krankenpflegers im öffentlichen Dienst</td>
+      </tr>
+      <tr>
+        <td>Ghana</td>
+        <td class="highlight">ca. Faktor 6–8</td>
+        <td>Vollausstattung einer ländlichen Schulklasse</td>
+      </tr>
+      <tr>
+        <td>Nigeria</td>
+        <td class="highlight">ca. Faktor 7–10</td>
+        <td>Grundversorgung einer Familie für ca. 1 Jahr</td>
+      </tr>
+      <tr>
+        <td>Subsahara-Afrika (Ø)</td>
+        <td class="highlight">ca. Faktor 8–12</td>
+        <td>Bau eines Schulraums (einfache Ausstattung)</td>
+      </tr>
+      <tr>
+        <td>Zentralafrika (ärmste Länder)</td>
+        <td class="highlight">Faktor 20–40</td>
+        <td>Mehrjährige Grundversorgung</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    <span class="tag tag-extra">EXTRAPOLATION</span> Die Kaufkraftfaktoren basieren auf Weltbank-PPP-Daten (International Comparison Program) und Lebenshaltungskosten-Indizes. Die genaue Wirkung vor Ort hängt stark von Korruption, lokaler Infrastruktur und Projektsteuerung ab — dieser Faktor ist als Orientierungsgröße zu verstehen, nicht als Präzisionsrechnung.
+  </p>
+
+  <h3>Was die Gesamtkosten alternativ leisten könnten</h3>
+
+  <p>
+    <span class="tag tag-extra">EXTRAPOLATION</span> Die folgenden Vergleiche sind Illustrationen auf Basis von PPP-Richtwerten und dokumentierten Programmkosten internationaler Entwicklungsorganisationen. Sie dienen der Einordnung — nicht als politische Forderung.
+  </p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Szenario (auf Basis ~48 Mrd. €/Jahr, Kaufkraftfaktor 10)</th>
+        <th>Reale Wirkung vor Ort</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Primäre Gesundheitsversorgung für Subsahara-Afrika</td>
+        <td>Die Weltbank schätzt die Kosten für ein funktionierendes Basisgesundheitssystem für ein mittelgroßes afrikanisches Land auf 1–3 Mrd. USD/Jahr. 48 Mrd. € (×10 KKP) = Äquivalent von ~480 Mrd. Kaufkrafteinheiten — genug für den vollständigen Aufbau von Gesundheitsinfrastruktur in mehreren Ländern gleichzeitig über viele Jahre.</td>
+      </tr>
+      <tr>
+        <td>Lehrergehälter Subsahara-Afrika</td>
+        <td>Das durchschnittliche Jahresgehalt eines Grundschullehrers im öffentlichen Dienst liegt in vielen afrikanischen Ländern zwischen 1.500 und 4.000 USD/Jahr. Mit 48 Mrd. € (KKP-bereinigt) ließen sich theoretisch über 1 Million Lehrer-Jahresstellen finanzieren.</td>
+      </tr>
+      <tr>
+        <td>Trinkwasserversorgung</td>
+        <td>UNICEF-Schätzungen: Grundversorgung mit sauberem Trinkwasser kostet ca. 30–80 USD pro Person dauerhaft. 480 Mrd. KKP-Einheiten könnten nach dieser Logik 6–16 Milliarden Menschen erreichen — mehr als die Weltbevölkerung. Zeigt die Dimensionen.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    Diese Zahlen sind abstrakt — und genau das ist der Punkt. Sie illustrieren, dass die Kostenfrage einer vollständig anderen Größenordnung angehört, sobald Kaufkraftparität einbezogen wird. <span class="tag tag-offen">OFFEN</span> Ob tatsächlich investierte Mittel dieser Größenordnung die strukturellen Probleme in Entwicklungsländern lösen würden, hängt von Governance, Institutionen und politischem Willen ab — das ist eine separate, empirisch offene Frage.
+  </p>
+
+  <div class="source-box">
+    <strong>Quelle</strong>
+    Weltbank: International Comparison Program (ICP) — Kaufkraftparitäten, worldbank.org · Laenderdaten.info: Lebenshaltungskosten im weltweiten Vergleich (2025), auf Basis OECD, Weltbank, Eurostat, IWF · UNICEF: Water, Sanitation and Hygiene Programme Cost Estimates · Weltbank: Health Financing Country Profiles, Sub-Saharan Africa
+  </div>
+
+  <!-- SECTION 6 -->
+  <h2>VI. Die Systemlogik: Warum der Widerspruch kein Versehen ist</h2>
+
+  <p>
+    Die gleichzeitige Existenz von steigender Inlandsarbeitslosigkeit und aggressiver Auslandsanwerbung ist erklärungsbedürftig. Drei dokumentierte Mechanismen sind relevant:
+  </p>
+
+  <h3>Mechanismus 1: Sektorale Mismatch-Argumentation</h3>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Das Institut für Arbeitsmarkt- und Berufsforschung (IAB) und die Bundesregierung argumentieren konsistent mit einem <em>sektoralen Mismatch</em>: Arbeitslose und offene Stellen passen qualifikatorisch und regional nicht zusammen. Gleichzeitig sind nach BA-Angaben 89 Prozent des Beschäftigungswachstums zwischen 2018 und 2023 auf ausländische Arbeitskräfte zurückzuführen — was die Mismatch-These zugleich stützt und hinterfragt: Wenn so viele Stellen nur durch Zuwanderung zu besetzen sind, warum wurden Qualifizierungsprogramme für Inländer nicht entsprechend skaliert?
+  </p>
+
+  <h3>Mechanismus 2: Strukturelle Kostenverlagerung</h3>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Rund 47,6 Prozent der Bürgergeld-Leistungsberechtigten hatten 2025 keinen deutschen Pass — ein Wert, der seit Jahren steigt. <span class="tag tag-extra">EXTRAPOLATION</span> Daraus lässt sich kein kausaler Zusammenhang zwischen Zuwanderungspolitik und Sozialausgaben ableiten, da Ausländer als Gruppe heterogen sind und sowohl arbeitslose als auch hochproduktive Personen umfassen. Die Zahl ist dokumentiert, ihre Interpretation ist politisch umstritten.
+  </p>
+
+  <h3>Mechanismus 3: Demographischer Imperativ vs. Aktivierungspolitik</h3>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Das IAB errechnet einen Bedarf von 400.000 Nettozuwanderungen jährlich bis 2060 zur Stabilisierung des Erwerbspersonenpotenzials. <span class="tag tag-extra">EXTRAPOLATION</span> Alternativszenarien — höhere Erwerbsbeteiligung von Frauen, Älteren, stärkere Aktivierung von Bürgergeld-Empfängern — werden im politischen Diskurs diskutiert, sind aber bisher nicht in vergleichbarer Größenordnung umgesetzt worden. Die Bertelsmann-Studie 2025 zeigte, dass 43 Prozent der erwerbsfähigen Bürgergeld-Beziehenden noch nie ein Jobangebot vom Jobcenter erhalten hatten.
+  </p>
+
+  <div class="source-box">
+    <strong>Quelle</strong>
+    BMI: "Ein Jahr Fachkräfteeinwanderungsgesetz" (Dez. 2024) — bmi.bund.de · Statista/Bundesagentur für Arbeit: Ausländeranteil Bürgergeld 2025 · SWP Berlin: "Potentiale bilateraler Migrationsabkommen" (2024) · Bertelsmann Stiftung: LEBez-Studie (2025)
+  </div>
+
+  <!-- SECTION 7: WHO-Schutzliste -->
+  <h2>VII. Die WHO-Schutzliste — und was sie bedeutet</h2>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Die Weltgesundheitsorganisation veröffentlicht eine Liste von rund 50 Staaten, aus denen keine Pflegekräfte angeworben werden sollen, weil deren eigene Gesundheitssysteme bereits unter kritischem Fachkräftemangel leiden. Dazu zählen u.a. Angola, Eritrea, Sudan, Pakistan und Bangladesch. Deutschland verpflichtet sich offiziell, diese Liste einzuhalten — und untersagt privaten Vermittlern die Anwerbung aus diesen Ländern.
+  </p>
+
+  <p>
+    <span class="tag tag-offen">OFFEN</span> Ob die Schutzliste in der Praxis vollständig wirksam ist und wie private Vermittlungsagenturen operieren, die am Markt tätig sind, ist nicht vollständig dokumentiert. Die formale Existenz der Regelung ist belegt; ihre praktische Durchsetzung außerhalb staatlicher Programme ist eine offene empirische Frage.
+  </p>
+
+  <div class="source-box">
+    <strong>Quelle</strong>
+    WHO: "Health workforce support and safeguards list" (2024) — who.int · Bundesarbeitsministerium: Anlage zur Verordnung über die Beschäftigung von Ausländerinnen und Ausländern (2024) · Mediendienst Integration: "Welche Migrationsabkommen Deutschland hat" (Nov. 2025)
+  </div>
+
+  <!-- Closing questions -->
+  <div class="closing-questions">
+    <h3>Offene Fragen</h3>
+    <p>Warum wird der Qualifizierungsbedarf im Inland nicht in ähnlicher Größenordnung adressiert wie die Auslandsanwerbung?</p>
+    <p>Welche Institutionen — öffentliche oder private — profitieren strukturell vom laufenden Anwerbebetrieb?</p>
+    <p>Wie verändert sich die Abhängigkeit von Entwicklungsländern von Remittances, wenn gleichzeitig deren beste Fachkräfte abgezogen werden?</p>
+    <p>Wäre eine entwicklungspolitische Strategie, die Fachkräfte durch Aufbau lokaler Strukturen vor Ort hält, günstiger — auch für Deutschland?</p>
+    <p>Wer definiert den „Fachkräftemangel" — und welche Interessen stehen hinter dieser Definition?</p>
+  </div>
+
+  <!-- Sources -->
+  <div class="sources-section">
+    <h2>Quellenverzeichnis</h2>
+    <ul>
+      <li>Bundesagentur für Arbeit: Monatsbericht Arbeitsmarkt Mai 2026 (29.05.2026) — arbeitsagentur.de</li>
+      <li>Bundesagentur für Arbeit: Jahresbericht Arbeitsmarkt Deutschland 2024 — statistik.arbeitsagentur.de</li>
+      <li>Sozialpolitik-aktuell.de: SGB-II-Leistungsberechtigte 2005–2025 (auf Basis BA-Statistik 2026)</li>
+      <li>Bertelsmann Stiftung: LEBez-Studie — Lebenssituation und Erfahrungen von Bürgergeldbeziehenden, IAW/SOKO Institut (2025)</li>
+      <li>BMI: Migrationspartnerschaften (Stand Mai 2025) — bmi.bund.de</li>
+      <li>SWP Berlin: "Potentiale bilateraler Migrationsabkommen" (2024) — swp-berlin.org</li>
+      <li>Mediendienst Integration: "Welche Migrationsabkommen Deutschland hat" (Nov. 2025) — mediendienst-integration.de</li>
+      <li>AHK: African Skills 4 Germany (AS4G) — ahk.de</li>
+      <li>WHO: Global Health Workforce Statistics (2023) — who.int</li>
+      <li>WHO: "Health workforce support and safeguards list" (2024) — who.int</li>
+      <li>Think Global Health: "Kenya's Health Worker Exodus" (Aug. 2024) — thinkglobalhealth.org</li>
+      <li>LSE Africa at LSE: "Africa's migration and brain drain revisited" (März 2024) — blogs.lse.ac.uk</li>
+      <li>Bundeszentrale für politische Bildung: "Asylbedingte Kosten und Ausgaben" (Sept. 2025) — bpb.de</li>
+      <li>Statistisches Bundesamt: "Asylbewerberleistungen 2024" (Mai 2026) — destatis.de</li>
+      <li>Handelsblatt: "Milliardenhilfen für Flüchtlings- und Integrationskosten" (Juni 2025)</li>
+      <li>Weltbank: International Comparison Program (ICP), Kaufkraftparitäten — worldbank.org</li>
+      <li>Bundesministerium für Wirtschaft (BMWE): African Skills 4 Germany — ahk.de/fachkraefte</li>
+      <li>Bundestagsdrucksache 21/330 (02.06.2025): Unterrichtung Bundesleistungen Migration 2024</li>
+    </ul>
+  </div>
+
+  <p style="margin-top:2rem; font-style:italic; color:#52525b; font-size:0.85rem;">
+    Alle Angaben basieren auf öffentlich zugänglichen Primärquellen. Extrapolationen sind als solche ausgewiesen. Schlussfolgerungen zieht der Leser.
+  </p>
+
+  <div class="article-footer">
+    dunkelfeld.report — Fakten, die das Licht nicht scheuen müssen.
+  </div>
+
+</div>
+</body>
+</html>

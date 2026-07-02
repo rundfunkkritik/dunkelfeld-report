@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plattformkontrolle — dunkelfeld.report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #09090b;
+    --surface: #111114;
+    --surface2: #1a1a2e;
+    --border: #1e1e28;
+    --text: #e2e2e8;
+    --muted: #6b6b7a;
+    --accent: #e8c547;
+    --accent-dim: rgba(232,197,71,0.10);
+    --red: #e05252;
+    --green: #4caf80;
+    --orange: #e09042;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.85;
+    padding: 2rem 1.2rem 6rem;
+  }
+
+  .container { max-width: 720px; margin: 0 auto; }
+
+  .site-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+  .site-logo {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .site-nav-links { display: flex; gap: 1.5rem; }
+  .site-nav-links a {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .site-nav-links a:hover { color: var(--accent); }
+
+  .series-banner {
+    background: var(--surface2);
+    border-left: 3px solid var(--accent);
+    padding: 0.8rem 1.2rem;
+    margin-bottom: 2.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+  .series-banner strong { color: var(--accent); }
+
+  .article-kicker {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.2;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.2rem;
+  }
+
+  .article-subtitle {
+    font-size: 1.15rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .article-meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.7rem 0;
+    margin-bottom: 3rem;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  p { margin-bottom: 1.2rem; }
+
+  h2 {
+    font-size: 1.3rem;
+    color: var(--accent);
+    margin: 3rem 0 1rem;
+    font-weight: 700;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  h3 {
+    font-size: 1.05rem;
+    color: #c8c8d4;
+    margin: 2rem 0 0.8rem;
+    font-weight: 700;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    padding: 0.2em 0.55em;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-left: 0.3em;
+    font-weight: 700;
+  }
+  .tag-belegt   { background: rgba(76,175,128,0.15); color: var(--green);  border: 1px solid rgba(76,175,128,0.3); }
+  .tag-extrapolation { background: rgba(224,144,66,0.12); color: var(--orange); border: 1px solid rgba(224,144,66,0.25); }
+  .tag-offen    { background: rgba(224,82,82,0.10);  color: var(--red);    border: 1px solid rgba(224,82,82,0.2); }
+
+  .source-box {
+    background: var(--surface2);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.88rem;
+    color: #b8b8c8;
+    line-height: 1.6;
+  }
+  .source-box .source-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .source-box a { color: var(--accent); }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 1.2rem;
+    margin: 2rem 0;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    padding: 1.2rem;
+  }
+  .stat-value {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    font-family: Georgia, serif;
+  }
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--text);
+    margin-top: 0.4rem;
+    line-height: 1.4;
+  }
+  .stat-source {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    margin-top: 0.35rem;
+  }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.88rem;
+  }
+  .compare-table th {
+    background: var(--surface2);
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.6rem 0.9rem;
+    text-align: left;
+    border-bottom: 2px solid var(--accent);
+  }
+  .compare-table td {
+    padding: 0.65rem 0.9rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+  }
+  .compare-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+  .pull-quote {
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.4rem;
+    margin: 2rem 0;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: #d0d0dc;
+    line-height: 1.7;
+    background: var(--accent-dim);
+  }
+  .pull-quote cite {
+    display: block;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-family: 'Courier New', monospace;
+    color: var(--muted);
+    margin-top: 0.6rem;
+    letter-spacing: 0.05em;
+  }
+
+  .timeline { margin: 1.5rem 0; }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    padding-top: 0.1rem;
+  }
+  .timeline-content { font-size: 0.9rem; color: var(--text); line-height: 1.5; }
+
+  .closing-questions {
+    margin-top: 3.5rem;
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+  }
+  .closing-questions p {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .sources-section {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .sources-section h3 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .sources-list {
+    list-style: none;
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .sources-list li { padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .sources-list li::before { content: "→ "; color: var(--accent); }
+  .sources-list a { color: var(--muted); text-decoration: none; }
+  .sources-list a:hover { color: var(--accent); }
+
+  .cross-ref {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--muted);
+    padding: 0.8rem 1.2rem;
+    margin: 2rem 0;
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-family: 'Courier New', monospace;
+  }
+  .cross-ref a { color: var(--accent); text-decoration: none; }
+
+  .footer-note {
+    margin-top: 3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 600px) {
+    .timeline-item { grid-template-columns: 1fr; gap: 0.2rem; }
+    .stat-grid { grid-template-columns: 1fr; }
+    .article-meta { gap: 1rem; }
+    .site-nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <nav class="site-nav">
+    <a class="site-logo" href="/">dunkelfeld.report</a>
+    <div class="site-nav-links">
+      <a href="/archiv">Archiv</a>
+      <a href="/methodik">Methodik</a>
+      <a href="/quellen">Quellen</a>
+    </div>
+  </nav>
+
+  <div class="series-banner">
+    <strong>Dossier</strong> &nbsp;·&nbsp; Macht &amp; Kontrolle &nbsp;·&nbsp; Verwandt mit: <a href="zensurkomplex.html" style="color:var(--accent)">Der Zensurkomplex (#10)</a>
+  </div>
+
+  <div class="article-kicker">Analyse · Plattformen · Digitale Infrastruktur</div>
+
+  <h1>Plattformkontrolle</h1>
+
+  <p class="article-subtitle">
+    Wer darf sprechen, wer wird gesperrt, wer baut die Alternative — und nach welchen Regeln? Eine Dokumentation des Drucks auf digitale Infrastruktur und der Institutionen, die ihn ausüben.
+  </p>
+
+  <div class="article-meta">
+    <span>dunkelfeld.report</span>
+    <span>Stand: Juni 2026</span>
+    <span>Primärquellen</span>
+  </div>
+
+  <div class="cross-ref">
+    → Dieser Artikel ist ein Begleitdossier zu <a href="zensurkomplex.html">„Der Zensurkomplex" (#10)</a>, der die Finanzierungsstrukturen von Faktencheckern und NGOs dokumentiert.
+  </div>
+
+  <!-- INTRO -->
+  <p>
+    Zwei Plattformbetreiber, die sich weigerten zu kooperieren — einer wurde verhaftet, der andere mit 120 Millionen Euro Strafe belegt und mit dem Verbot seiner Plattform bedroht. Zwei andere Plattformen, die denselben Behörden kooperierten, blieben von Verfahren weitgehend verschont. Dieser Artikel dokumentiert die Mechanismen und die Akteure.
+  </p>
+
+  <!-- SEKTION 1: TWITTER/X CSAM -->
+  <h2>I. Twitter / X: Das dokumentierte CSAM-Problem</h2>
+
+  <p>
+    Bevor Elon Musk Twitter im Oktober 2022 übernahm, war die Plattform mit einem strukturellen Problem konfrontiert, das in internen Berichten und externen Untersuchungen dokumentiert ist. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="source-box">
+    <span class="source-label">Primärquelle</span>
+    Interner Twitter-Bericht 2021, dokumentiert durch The Verge: Die Zahl kinderpornografischer Inhalte auf der Plattform nahm zu, Twitter investierte jedoch nicht in Erkennungstechnologien. Ein zweiter interner Bericht vom April 2022 stellte fest: „Twitter ist nicht in der Lage, sexuelle Ausbeutung von Kindern und nicht einvernehmliche Nacktheit in großem Umfang genau zu erkennen."
+  </div>
+
+  <p>
+    Im September 2022 — kurz vor Musks Übernahme — veröffentlichte die Cybersicherheitsgruppe Ghost Data eine Untersuchung im Auftrag von Reuters. Ergebnis: Über 500 Accounts teilten offen Inhalte über sexuellen Kindesmissbrauch. Twitter versäumte es, über 70 Prozent dieser Konten zu entfernen. Werbepartner wie Disney, Coca-Cola und Dyson setzten ihre Kampagnen daraufhin aus. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="source-box">
+    <span class="source-label">Quelle</span>
+    Ghost Data / Reuters-Untersuchung, September 2022. Berichterstattung: basicthinking.de, 29. September 2022. Tagesspiegel, Dezember 2022: „Der Kampf gegen Kinderpornografie ist jetzt Chefsache" (nach Musk-Übernahme).
+  </div>
+
+  <p>
+    Nach der Übernahme erklärte Musk den Kampf gegen kinderpornografische Inhalte öffentlich zur Chefsache. Eine unabhängige Folgeprüfung, ob sich die Lage strukturell verbessert hat, liegt für dunkelfeld.report nicht in verifizierbarer Primärquellenform vor. <span class="tag tag-offen">OFFEN</span>
+  </p>
+
+  <p>
+    Ob Nutzer, die solche Inhalte verbreiten, nach der verstärkten Moderation auf andere Plattformen wie Bluesky oder Mastodon migrierten, ist nicht belegt. Entsprechende Behauptungen kursieren, ohne dass Primärquellen vorliegen. <span class="tag tag-offen">OFFEN</span>
+  </p>
+
+  <!-- SEKTION 2: EU vs X -->
+  <h2>II. Die EU gegen X: Dokumentierter Druck</h2>
+
+  <p>
+    Seit 2023 häufen sich öffentlich dokumentierte Maßnahmen der EU-Kommission gegen die Plattform X — in einem Ausmaß und mit einer Selektivität, die im Vergleich zur Behandlung anderer Plattformen auffällt. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">Juni 2023</div>
+      <div class="timeline-content">EU-Kommission leitet „Prüfung" der Sicherheitssysteme von X ein. Vorwurf: unzureichender Umgang mit „Hassrede" und „Desinformation".</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Okt. 2023</div>
+      <div class="timeline-content">Warnschreiben der EU: X wird beschuldigt, während des Israel-Hamas-Konflikts Fehlinformationen nicht ausreichend zu drosseln.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Aug. 2024</div>
+      <div class="timeline-content">EU-Binnenmarktkommissar Thierry Breton schreibt öffentlich an Musk und fordert ihn auf, ein geplantes Interview mit Donald Trump zu zensieren — oder mit DSA-Strafen zu rechnen. Breton wird daraufhin vom US-Justizausschuss des Repräsentantenhauses gerügt.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Aug. 2024</div>
+      <div class="timeline-content">EU-Abgeordneter Sandro Gozi (Macrons Ensemble-Koalition): „Wenn Elon Musk die europäischen Regeln nicht einhält, wird die EU-Kommission die Betreiber auffordern, X zu blockieren, oder im extremsten Fall die vollständige Demontage der Plattform auf dem Gebiet der Union durchsetzen."</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Nov./Dez. 2025</div>
+      <div class="timeline-content">EU verhängt Geldstrafe von 120 Mio. Euro gegen X wegen „Verletzung der Transparenzpflichten" beim Nutzerverifizierungssystem. Musk: Die Strafe richte sich auch persönlich gegen ihn.</div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <span class="source-label">Primärquellen</span>
+    Öffentlicher Brief Thierry Breton an Elon Musk, 12. August 2024 (EU-Kommission). · Pressemitteilung EU-Kommission zur DSA-Strafe gegen X, Nov./Dez. 2025. · Schreiben des US-Justizausschusses an Breton, August 2024 (öffentlich dokumentiert). · Statement Sandro Gozi, La Repubblica, 19. August 2024.
+  </div>
+
+  <h3>Der Geheimdeal-Vorwurf</h3>
+
+  <p>
+    Musk veröffentlichte auf X eine Aussage, die bis zum Redaktionsschluss nicht durch unabhängige Primärquellen bestätigt wurde: <span class="tag tag-offen">OFFEN</span>
+  </p>
+
+  <div class="pull-quote">
+    „Die Europäische Kommission bot X einen illegalen Geheimdeal an: Wenn wir im Stillen Inhalte zensieren, ohne jemanden darüber zu informieren, würden sie uns nicht bestrafen. Die anderen Plattformen haben den Deal angenommen."
+    <cite>— Elon Musk, auf X (Datum: 2025, genaues Datum nicht verifiziert). Einordnung: Öffentliche Aussage ohne unabhängige Bestätigung — OFFEN.</cite>
+  </div>
+
+  <h3>Der Selektivitätsvergleich</h3>
+
+  <p>
+    Was primärquellenbasiert dokumentiert ist: Die Behandlung anderer Plattformen durch dieselben EU-Behörden im selben Zeitraum. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Plattform</th>
+        <th>Verfahren</th>
+        <th>Ergebnis</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>X (Musk)</strong></td>
+        <td>Formelle DSA-Untersuchungen ab 2023, Warnschreiben, öffentliche Drohungen</td>
+        <td>120 Mio. € Strafe, Verbotsdrohungen</td>
+      </tr>
+      <tr>
+        <td><strong>TikTok</strong></td>
+        <td>Verfahren wegen intransparenter Werbung</td>
+        <td>Nach „intensiven Gesprächen" und „Zusagen" eingestellt</td>
+      </tr>
+      <tr>
+        <td><strong>Shein</strong></td>
+        <td>Sexpuppen in Kinderoptik angeboten</td>
+        <td>Auskünfte angefordert — keine Strafandrohung</td>
+      </tr>
+      <tr>
+        <td><strong>Meta/Facebook</strong></td>
+        <td>Langjährige Datenschutzverstöße</td>
+        <td>Geldbußen — keine Verbotsdrohungen</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <span class="source-label">Quelle</span>
+    Tichys Einblick, 6. Dezember 2025, „Stasi-Kommissare der EU: Elon Musk mit Kampfansage an Brüssel" (Primärquellenverweis: EU-Kommissionsmitteilungen, DSA-Verfahrensdokumentation). · CEP-Analyse (Centrum für europäische Politik), August 2024.
+  </div>
+
+  <!-- SEKTION 3: DUROV -->
+  <h2>III. Pavel Durov und Telegram: Kooperation als Anklagegrund</h2>
+
+  <p>
+    Am 24. August 2024 wurde Pavel Durov, Gründer und CEO von Telegram, am Flughafen Le Bourget in Paris festgenommen. Die Festnahme erfolgte bei der Einreise aus Aserbaidschan. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-value">12</div>
+      <div class="stat-label">Anklagepunkte gegen Durov, darunter Beihilfe zu Drogenhandel, CSAM-Verbreitung und Geldwäsche</div>
+      <div class="stat-source">Pariser Staatsanwaltschaft, 28. Aug. 2024</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">5 Mio. €</div>
+      <div class="stat-label">Kaution. Ausreiseverbot aus Frankreich bis März 2025</div>
+      <div class="stat-source">Pariser Staatsanwaltschaft, Aug. 2024</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">März 2025</div>
+      <div class="stat-label">Durov erhält gerichtliche Genehmigung zur Ausreise nach Dubai</div>
+      <div class="stat-source">AFP / CoinTelegraph, März 2025</div>
+    </div>
+  </div>
+
+  <p>
+    Der Hauptvorwurf, der strukturell von den anderen Anklagepunkten abweicht: die „Verweigerung der Übermittlung der für das gesetzlich zulässige Abhören erforderlichen Informationen". Dieser Punkt betrifft nicht, was Nutzer auf Telegram getan haben — sondern dass Durov sich weigerte, Behörden Zugang zu verschaffen. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="source-box">
+    <span class="source-label">Primärquelle</span>
+    Pressemitteilung der Pariser Staatsanwaltschaft (Parquet de Paris), 28. August 2024. Deutsche Zusammenfassung: Business Insider, 29. August 2024; Handelsblatt, 29. August 2024.
+  </div>
+
+  <h3>Durov und das WEF — eine Korrektur</h3>
+
+  <p>
+    Durov wird in manchen Darstellungen als unabhängig vom WEF-Netzwerk dargestellt. Das ist nicht vollständig korrekt. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <p>
+    2017 wurde Durov als Vertreter Finnlands für die WEF Young Global Leaders nominiert und auf der WEF-Website gelistet. Er ist jedoch nicht im offiziellen Mitgliederverzeichnis der Young Global Leaders aufgeführt — entweder weil er die Mitgliedschaft ablehnte oder weil er ausschied. Eine offizielle Erklärung dazu liegt nicht vor.
+  </p>
+
+  <div class="source-box">
+    <span class="source-label">Quellen</span>
+    WEF-Website, Archivversion 2017 (web.archive.org/web/20170629170213/http://widgets.weforum.org/ygl-2017/). · Wikispooks: „WEF/Young Global Leaders/2017": „Pavel Durov was mentioned on the WEF website as a Young Global Leader in 2017, but is not listed in the official membership directory." · Wikipedia (EN): Pavel Durov, Abschnitt YGL.
+  </div>
+
+  <h3>Das Telegram-Sicherheitsproblem</h3>
+
+  <p>
+    Telegram-Chats sind technisch nicht Ende-zu-Ende-verschlüsselt — mit Ausnahme der manuell aktivierbaren „Secret Chats". Standard-Gruppen und Kanäle laufen über Telegramms eigene Server und sind für das Unternehmen einsehbar. Das ist in der technischen Dokumentation von Telegram selbst so dokumentiert. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <p>
+    Ob und in welchem Umfang Telegram-Daten an staatliche Stellen weitergegeben wurden oder werden, ist öffentlich nicht vollständig verifizierbar. Dokumentiert sind mehrere Fälle, in denen russische Oppositionelle verhaftet wurden, nachdem ihre Telegram-Kommunikation offenbar kompromittiert war. Ob dies durch Kooperation oder durch Sicherheitslücken geschah, ist ungeklärt. <span class="tag tag-offen">OFFEN</span>
+  </p>
+
+  <!-- SEKTION 4: W SOCIAL -->
+  <h2>IV. W Social: Die institutionell geförderte Alternative</h2>
+
+  <p>
+    Am 20. Januar 2026 wurde beim Weltwirtschaftsforum in Davos eine neue Social-Media-Plattform vorgestellt: W Social. Das Projekt positioniert sich als europäische Alternative zu X. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <h3>Was hinter W Social steckt</h3>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Dokumentierter Stand (Juni 2026)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Muttergesellschaft</td>
+        <td>We Don't Have Time AB (schwedische Klimaplattform, ~25 % Anteil)</td>
+      </tr>
+      <tr>
+        <td>Startkapital</td>
+        <td>~2,5 Mio. Euro von ~80–750 privaten Investoren aus Europa</td>
+      </tr>
+      <tr>
+        <td>EU-Gelder</td>
+        <td>Offiziell keine — EU-Kommission bestätigte im Januar 2026</td>
+      </tr>
+      <tr>
+        <td>Beirat</td>
+        <td>Philipp Rösler (WEF-YGL, ehem. FDP-Vizekanzler), Sandrine Dixson-Declève (ehem. Club of Rome-Präsidentin), Cristina Caffarra (EuroStack), Pär Nuder (ehem. schwedischer Finanzminister), Louisa Specht-Riemenschneider (Bundesbeauftragte für Datenschutz)</td>
+      </tr>
+      <tr>
+        <td>Vorstellung</td>
+        <td>WEF Davos, Januar 2026 — mit Pink-Floyd-Intro und „Something is broken"-Präsentation</td>
+      </tr>
+      <tr>
+        <td>Technische Basis</td>
+        <td>AT-Protokoll (dasselbe wie Bluesky/USA) — kein eigenständiger Stack nachgewiesen</td>
+      </tr>
+      <tr>
+        <td>Nutzerverifizierung</td>
+        <td>Ausweispflicht mit Selfie (Daten werden nach Verifikation gelöscht, verschlüsselter Token bleibt)</td>
+      </tr>
+      <tr>
+        <td>Institutionelle Unterstützung</td>
+        <td>EU-Kommission, EZB und EZB-Präsidentin Christine Lagarde haben Accounts gespiegelt. Von der Leyen bewarb die Plattform persönlich.</td>
+      </tr>
+      <tr>
+        <td>Stand Beta-Start</td>
+        <td>17. Juni 2026, öffentliche Beta. 50.000 auf Warteliste. Vollöffnung: Januar 2027.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <span class="source-label">Quellen</span>
+    ZDFheute, 18. Juni 2026. · Watson.ch, 24. Januar 2026. · mrak.at, 21. Mai 2026 (technische Infrastrukturanalyse). · Wikipedia (DE): W Social, abgerufen 18. Juni 2026. · EU-Kommission-Tweet, 17. Juni 2026 (@EU_Commission).
+  </div>
+
+  <h3>Was strukturell auffällt</h3>
+
+  <p>
+    W Social wurde nicht von unabhängigen Bürgerentwicklern gegründet, sondern von einem Unternehmen, dessen größter Anteilseigner eine Klimaorganisation ist, die Partner von UNDP und WWF ist und Konzerne wie IKEA, Scania und Ericsson zu ihren Partnern zählt. Das Startcapital beträgt 2,5 Mio. Euro — für eine Plattform, die X herausfordern will, eine außerordentlich kleine Summe. <span class="tag tag-extrapolation">EXTRAPOLATION</span>
+  </p>
+
+  <p>
+    Technisch basiert W Social auf dem AT-Protokoll — derselben US-amerikanischen Infrastruktur, auf der Bluesky läuft. Eine unabhängige technische Analyse (mrak.at, Mai 2026) stellt fest, dass W Social Stand Beta für teure Relay- und Indexierungskomponenten weiterhin auf Bluesky-Infrastruktur zurückgreift. Digitale Souveränität auf einer US-abhängigen technischen Basis — das ist dokumentiert widersprüchlich. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <p>
+    Die sofortige institutionelle Unterstützung durch EU-Kommission und EZB — noch vor relevantem Nutzeraufkommen — ist ein belegbares Datum ohne öffentlich erklärten Auswahlprozess. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="pull-quote">
+    „Wenn das politische Brüssel auf W postet statt auf X, haben wir schon viel gewonnen."
+    <cite>— Anna Zeiter, CEO W Social, zitiert nach Watson.ch, Januar 2026</cite>
+  </div>
+
+  <!-- SEKTION 5: MUSTER -->
+  <h2>V. Das Muster</h2>
+
+  <p>
+    Drei Plattformbetreiber, drei unterschiedliche Verfahren durch denselben regulatorischen Rahmen: <span class="tag tag-extrapolation">EXTRAPOLATION</span>
+  </p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Betreiber</th>
+        <th>Kooperationsbereitschaft</th>
+        <th>Verfahren</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Musk / X</td>
+        <td>Öffentliche Verweigerung, Veröffentlichung interner Kommunikation (Twitter Files)</td>
+        <td>120 Mio. € Strafe, Verbotsdrohungen, persönliche Anklage</td>
+      </tr>
+      <tr>
+        <td>Durov / Telegram</td>
+        <td>Verweigerung von Abhörzugängen dokumentiert</td>
+        <td>Verhaftung, 12 Anklagepunkte, 5 Mio. Kaution</td>
+      </tr>
+      <tr>
+        <td>Meta / TikTok</td>
+        <td>Kooperation mit Behörden, Moderation nach staatlichen Vorgaben</td>
+        <td>Geringe oder keine Straffolgen, Verfahren eingestellt</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    Die Einordnung dieses Musters als kausal — d.h. als bewusste Strategie — ist eine Extrapolation. Was belegt ist: die selektive Anwendung des DSA auf Plattformen, deren Eigentümer sich öffentlich weigern zu kooperieren, und die gleichzeitige Schonung von Plattformen, die kooperieren. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <!-- SCHLUSSFRAGEN -->
+  <div class="closing-questions">
+    <p>Warum wurde das strukturell größte CSAM-Problem auf Twitter vor der Musk-Übernahme nicht zu einem Verfahren der EU gegen die damalige Twitter-Führung?</p>
+    <p>Nach welchem Auswahlprozess entschied die EU-Kommission, einen Account bei W Social zu eröffnen — noch bevor die Plattform relevantem Nutzeraufkommen hatte?</p>
+    <p>Wie verhält sich das Prinzip digitaler Souveränität zu einer Plattform, die auf US-amerikanischer AT-Protokoll-Infrastruktur basiert?</p>
+    <p>Was unterscheidet den Anklagepunkt „Verweigerung von Abhörzugängen" von dem Anspruch, eine verschlüsselte Kommunikationsplattform zu betreiben?</p>
+    <p>Warum ist Philipp Rösler — WEF Young Global Leader, ehemaliger FDP-Vizekanzler — im Beirat einer Plattform, die sich als unabhängige europäische Alternative positioniert?</p>
+  </div>
+
+  <!-- QUELLEN -->
+  <div class="sources-section">
+    <h3>Dokumentierte Primär- und Sekundärquellen</h3>
+    <ul class="sources-list">
+      <li>Ghost Data / Reuters-Untersuchung zu CSAM auf Twitter, September 2022 — dokumentiert in Reuters und basicthinking.de</li>
+      <li>Interne Twitter-Berichte 2021 und April 2022 — dokumentiert durch The Verge</li>
+      <li>Pariser Staatsanwaltschaft (Parquet de Paris): Pressemitteilung zu Anklagepunkten gegen Durov, 28. August 2024</li>
+      <li>Öffentlicher Brief Thierry Breton an Elon Musk, 12. August 2024 — EU-Kommission</li>
+      <li>EU-Kommission: DSA-Strafankündigung gegen X, Nov./Dez. 2025</li>
+      <li>Statement Sandro Gozi, La Repubblica, 19. August 2024</li>
+      <li>WEF-Website Archiv 2017: Durov als YGL-Nominierung — <a href="https://web.archive.org/web/20170629170213/http://widgets.weforum.org/ygl-2017/" target="_blank">archive.org</a></li>
+      <li>Wikispooks: „WEF/Young Global Leaders/2017" — Durov nicht im offiziellen Verzeichnis</li>
+      <li>W Social Wikipedia (DE), abgerufen 18. Juni 2026</li>
+      <li>mrak.at: „W Social, Bluesky und EuroSky: Wer betreibt welche Infrastruktur im AT Protocol?", 21. Mai 2026</li>
+      <li>EU-Kommission Twitter/@EU_Commission, 17. Juni 2026 (W Social-Beitritt)</li>
+      <li>ZDFheute: „W Social — das neue Twitter?", 18. Juni 2026</li>
+      <li>Watson.ch: „W Social: Neue Social-Media-Plattform für Europa", 24. Januar 2026</li>
+      <li>CEP (Centrum für europäische Politik): „Die EU mahnt Elon Musk zur Einhaltung der EU-Vorschriften", August 2024</li>
+      <li>Digital Services Act (DSA), EU-Verordnung 2022/2065</li>
+    </ul>
+  </div>
+
+  <div class="footer-note">
+    dunkelfeld.report dokumentiert auf Basis öffentlich zugänglicher Primärquellen. Spekulation ist als solche gekennzeichnet. Motive werden nicht zugeschrieben. Schlussfolgerungen ziehen die Leser selbst. &nbsp;·&nbsp; BELEGT = primärquellengestützt &nbsp;·&nbsp; EXTRAPOLATION = strukturell plausibel &nbsp;·&nbsp; OFFEN = nicht abschließend verifiziert.
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laborfleisch — Wer kontrolliert, was wir essen? Teil 5 | dunkelfeld.report</title>
+  <meta name="description" content="Kultiviertes Fleisch in der EU: Kein Produkt zugelassen, erste Anträge eingereicht, fötales Kälberserum als offene Frage — und wer die Agenda setzt.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #09090b;
+      color: #e4e4e7;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      padding: 2rem 1rem;
+    }
+
+    .container { max-width: 720px; margin: 0 auto; }
+
+    .series-banner {
+      background: #18181b;
+      border-left: 3px solid #e8c547;
+      padding: 0.75rem 1.25rem;
+      margin-bottom: 2.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: #a1a1aa;
+      letter-spacing: 0.04em;
+    }
+    .series-banner strong { color: #e8c547; }
+
+    h1 { font-size: 2rem; font-weight: 700; line-height: 1.25; color: #fafafa; margin-bottom: 0.75rem; }
+    .subtitle { font-size: 1.15rem; color: #a1a1aa; margin-bottom: 1.5rem; font-style: italic; }
+    .meta { font-family: 'Courier New', monospace; font-size: 0.78rem; color: #71717a; margin-bottom: 2.5rem; letter-spacing: 0.03em; }
+
+    h2 { font-size: 1.35rem; color: #e8c547; margin: 2.5rem 0 0.85rem; font-weight: 600; }
+    h3 { font-size: 1.1rem; color: #d4d4d8; margin: 1.75rem 0 0.6rem; font-weight: 600; }
+    p { margin-bottom: 1.2rem; }
+
+    .tag {
+      display: inline-block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 0.15rem 0.5rem;
+      border-radius: 2px;
+      vertical-align: middle;
+      margin-left: 0.35rem;
+      position: relative;
+      top: -1px;
+    }
+    .tag-belegt   { background: #14532d; color: #86efac; }
+    .tag-offen    { background: #3f3f46; color: #a1a1aa; }
+    .tag-extrapol { background: #7c2d12; color: #fdba74; }
+
+    .source-box {
+      background: #1a1a2e;
+      border-left: 3px solid #e8c547;
+      padding: 1rem 1.25rem;
+      margin: 1.75rem 0;
+      font-size: 0.88rem;
+    }
+    .source-box .source-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: #e8c547;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+    }
+    .source-box a { color: #93c5fd; text-decoration: none; }
+    .source-box a:hover { text-decoration: underline; }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin: 1.75rem 0;
+    }
+    .stat-item { background: #18181b; border: 1px solid #27272a; padding: 1rem 1.1rem; text-align: center; }
+    .stat-number { font-size: 1.75rem; font-weight: 700; color: #e8c547; font-family: 'Courier New', monospace; display: block; }
+    .stat-label { font-size: 0.8rem; color: #a1a1aa; margin-top: 0.25rem; line-height: 1.4; }
+
+    .data-table { width: 100%; border-collapse: collapse; margin: 1.75rem 0; font-size: 0.88rem; }
+    .data-table th {
+      background: #18181b; color: #e8c547;
+      font-family: 'Courier New', monospace; font-size: 0.72rem;
+      letter-spacing: 0.06em; padding: 0.6rem 0.85rem;
+      text-align: left; border-bottom: 1px solid #3f3f46;
+    }
+    .data-table td { padding: 0.6rem 0.85rem; border-bottom: 1px solid #27272a; vertical-align: top; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: #18181b; }
+
+    .pull-quote {
+      border-left: 3px solid #e8c547;
+      padding: 0.75rem 1.25rem;
+      margin: 1.75rem 0;
+      font-style: italic;
+      color: #d4d4d8;
+      font-size: 1.05rem;
+    }
+    .pull-quote cite {
+      display: block;
+      font-style: normal;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: #71717a;
+      margin-top: 0.5rem;
+    }
+
+    .highlight-box {
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      border-left: 3px solid #a1a1aa;
+      padding: 1rem 1.25rem;
+      margin: 1.75rem 0;
+      font-size: 0.92rem;
+    }
+    .highlight-box strong { color: #e8c547; }
+
+    .timeline { margin: 1.75rem 0; position: relative; padding-left: 1.5rem; border-left: 1px solid #3f3f46; }
+    .timeline-item { margin-bottom: 1.25rem; position: relative; }
+    .timeline-item::before {
+      content: ''; width: 8px; height: 8px; border-radius: 50%;
+      background: #e8c547; position: absolute; left: -1.85rem; top: 0.45rem;
+    }
+    .timeline-date { font-family: 'Courier New', monospace; font-size: 0.75rem; color: #e8c547; letter-spacing: 0.06em; }
+    .timeline-text { font-size: 0.9rem; color: #d4d4d8; margin-top: 0.2rem; }
+
+    .series-nav { background: #18181b; border: 1px solid #27272a; padding: 1.25rem 1.5rem; margin-top: 3rem; }
+    .series-nav-title { font-family: 'Courier New', monospace; font-size: 0.75rem; color: #e8c547; letter-spacing: 0.08em; margin-bottom: 0.85rem; }
+    .series-nav ul { list-style: none; font-size: 0.85rem; line-height: 1.9; }
+    .series-nav a { color: #93c5fd; text-decoration: none; }
+    .series-nav a:hover { text-decoration: underline; }
+    .series-nav .current { color: #e8c547; font-weight: 600; }
+    .series-nav .pending { color: #52525b; }
+
+    .closing { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid #27272a; font-style: italic; color: #a1a1aa; font-size: 0.97rem; line-height: 1.9; }
+    hr { border: none; border-top: 1px solid #27272a; margin: 2.5rem 0; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5rem; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="series-banner">
+    <strong>SERIE</strong> — Wer kontrolliert, was wir essen? &nbsp;|&nbsp; Teil 5 von 11
+  </div>
+
+  <h1>Laborfleisch</h1>
+  <p class="subtitle">Kein Produkt in der EU zugelassen — erste Anträge laufen, fötales Kälberserum ungeklärt, Investoren und Institutionen in Position</p>
+  <div class="meta">
+    DUNKELFELD.REPORT &nbsp;·&nbsp; Juni 2026 &nbsp;·&nbsp; Primärquellen: Wissenschaftlicher Dienst Bundestag (2024), EFSA, EUR-Lex, MIT Technology Review, Bill Gates „How to Avoid a Climate Disaster" (2021), GFI State of the Industry Report 2024
+  </div>
+
+  <!-- 1. Was es ist -->
+  <h2>Was kultiviertes Fleisch ist — und wie es hergestellt wird</h2>
+
+  <p>Kultiviertes Fleisch, auch bezeichnet als Laborfleisch, In-vitro-Fleisch oder zellbasiertes Fleisch, sind Nahrungsmittel, die Zellen tierischen Ursprungs enthalten, die in einem Bioreaktor künstlich vermehrt wurden. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Der Herstellungsprozess, dokumentiert im Wissenschaftlichen Dienst des Deutschen Bundestages (2024): Aus einem Nutztier werden in einer Biopsie Muskelstammzellen entnommen. Diese werden in einem Bioreaktor unter Zugabe von Nährmedien, Wachstumsfaktoren und anderen Substanzen massenhaft vermehrt. Die dabei entstehenden dünnen Fleischschichten werden dann weiterverarbeitet. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <h3>Das Problem des Nährmediums</h3>
+
+  <p>Ein zentrales, in der öffentlichen Debatte selten explizit benanntes Problem: Für die Zellkultur wird bisher üblicherweise fötales Kälberserum (FKS) benötigt. Es wird aus dem Blut bis zu drei Monate alter ungeborener Kälber mittels Herzpunktion gewonnen. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Forschende und Unternehmen suchen nach einem tierfreien Ersatz. Eine vollständig FKS-freie Massenproduktion ist Stand 2026 industriell noch nicht etabliert. <span class="tag tag-offen">OFFEN</span> Die Bundestagsrecherche hält fest: „Chemische oder biologische Prozesshilfsstoffe können Gegenstand der Risikobewertung sein, wenn sie teils im Produkt verbleiben."</p>
+
+  <div class="source-box">
+    <div class="source-label">PRIMÄRQUELLE</div>
+    Wissenschaftlicher Dienst des Deutschen Bundestages — „Fleisch aus Zellkultur" (WD 8, Dezember 2024):
+    <a href="https://www.bundestag.de/resource/blob/1033160/5474e39c5b340ae394dc6155f2f0d234/Fleisch-aus-Zellkultur.pdf" target="_blank" rel="noopener">bundestag.de (PDF)</a><br>
+    EFSA — Scientific Colloquium 27: Cell Culture-derived Foods (2024):
+    <a href="https://www.efsa.europa.eu/en/supporting/pub/en-8664" target="_blank" rel="noopener">efsa.europa.eu</a><br>
+    EFSA — Aktualisierte Leitlinien Novel Food (Oktober 2024, gültig ab Februar 2025):
+    <a href="https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2024.8961" target="_blank" rel="noopener">efsa.onlinelibrary.wiley.com</a>
+  </div>
+
+  <!-- 2. Rechtslage weltweit -->
+  <h2>Wo kultiviertes Fleisch zugelassen ist — und wo nicht</h2>
+
+  <p>In der EU ist kein Produkt aus kultiviertem Fleisch für den menschlichen Verzehr zugelassen. Stand Juni 2026 laufen erste Zulassungsanträge. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Land / Region</th>
+        <th>Status</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Singapur</strong></td>
+        <td style="color:#86efac;">Zugelassen seit 2020</td>
+        <td>Weltweit erste Zulassung — kultiviertes Hühnerfleisch (Good Meat)</td>
+      </tr>
+      <tr>
+        <td><strong>USA</strong></td>
+        <td style="color:#86efac;">Zugelassen seit Juni 2023</td>
+        <td>USDA-Zulassung für Good Meat und Upside Foods (Hühnerfleisch). Mehrere US-Bundesstaaten haben inzwischen Verbote erlassen: Florida, Alabama, Mississippi, Montana, Indiana u.a.</td>
+      </tr>
+      <tr>
+        <td><strong>Großbritannien</strong></td>
+        <td style="color:#fbbf24;">Teilweise</td>
+        <td>Juli 2024: Erste Zulassung für kultiviertes Hühnerfleisch — für Tiernahrung (Meatly)</td>
+      </tr>
+      <tr>
+        <td><strong>Australien / Neuseeland</strong></td>
+        <td style="color:#86efac;">Zugelassen 2025/26</td>
+        <td>FSANZ: Keine gesundheitlichen Bedenken nach Prüfung. Kennzeichnung „zellkultiviert" vorgeschrieben.</td>
+      </tr>
+      <tr>
+        <td><strong>EU</strong></td>
+        <td style="color:#a1a1aa;">Nicht zugelassen</td>
+        <td>Erste Anträge seit 2023/2024/2025 in Vorverfahren oder Prüfung bei EFSA. Kein Produkt verkaufsgenehmigt.</td>
+      </tr>
+      <tr>
+        <td><strong>Italien</strong></td>
+        <td style="color:#f87171;">Verboten</td>
+        <td>Nationales Verbot für Herstellung und Vermarktung. Österreich und Frankreich forderten 2024 EU-weite Folgenabschätzung vor jeder Zulassung.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 3. EU-Zulassungsverfahren -->
+  <h2>Der Stand in der EU: Erste Anträge, kein Grünes Licht</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">September 2023</div>
+      <div class="timeline-text">The Cultivated B (Heidelberg, Tochter von Infamily Foods / Bärchenwurst-Hersteller) nimmt als weltweit erstes Unternehmen Gespräche mit der EFSA über die Zulassung eines Hybrid-Hotdogs auf (Kombination aus veganen Zutaten und kultiviertem Schweinefleisch aus Bioreaktor). EFSA-Vorverfahren eingeleitet.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Juli 2024</div>
+      <div class="timeline-text">Gourmey (Frankreich) stellt ersten formellen Zulassungsantrag bei der EFSA — für kultivierte Entenleber.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Oktober 2024</div>
+      <div class="timeline-text">EFSA veröffentlicht aktualisierte Leitlinien für Novel-Food-Anträge mit spezifischen Anforderungen für zellbasierte Lebensmittel. Gültig ab Februar 2025. Die Leitlinien verlangen u.a.: Nachweis der genetischen Stabilität der Zellen über den gesamten Produktionsprozess; Sicherheitsbewertung des Spendertiers; Charakterisierung aller Nährmedienbestandteile.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Dezember 2024</div>
+      <div class="timeline-text">EFSA bestätigt: Antrag von Gourmey (Entenleber) läuft. Eignungsprüfung, ob Mindestanforderungen für eine Bewertung erfüllt sind.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Januar 2025</div>
+      <div class="timeline-text">Mosa Meat (Niederlande, eines der ersten Start-ups für kultiviertes Rindfleisch) reicht Antrag in der EU ein — für kultiviertes Fett als Zutat für pflanzliche Fleischersatzprodukte (Burger-Pattys, Fleischbällchen).</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Stand Juni 2026</div>
+      <div class="timeline-text">Kein Zulassungsverfahren in der EU abgeschlossen. Das EFSA-Verfahren dauert nach Einreichung des vollständigen Dossiers mindestens 9 Monate für die Risikobewertung — historisch oft mehrere Jahre gesamt.</div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <div class="source-label">PRIMÄRQUELLEN</div>
+    Wissenschaftlicher Dienst Bundestag — EU-Zulassungsverfahren kultiviertes Fleisch (Dezember 2024):
+    <a href="https://www.bundestag.de/resource/blob/1033160/5474e39c5b340ae394dc6155f2f0d234/Fleisch-aus-Zellkultur.pdf" target="_blank" rel="noopener">bundestag.de (PDF)</a><br>
+    Bioökonomie.de — Erstantrag The Cultivated B / EFSA:
+    <a href="https://biooekonomie.de/en/news/first-approval-laboratory-grown-meat-applied-eu" target="_blank" rel="noopener">biooekonomie.de (englisch)</a><br>
+    Top Agrar — Globaler Überblick Zulassungsstatus (Stand März 2026):
+    <a href="https://www.topagrar.com/perspektiven/news/invitro-fleisch-fisch-produkte-zulassung-staaten-weltweit-i-20002690.html" target="_blank" rel="noopener">topagrar.com</a>
+  </div>
+
+  <!-- 4. Investitionslandschaft -->
+  <h2>Wer investiert — und was das Good Food Institute ist</h2>
+
+  <p>Der Sektor kultiviertes Fleisch wird primär durch Risikokapital finanziert. Europäische Unternehmen in diesem Bereich sammelten in den ersten drei Quartalen 2023 insgesamt 124,9 Millionen US-Dollar ein — mehr als im gesamten Jahr 2022. 2024 sanken die Investitionen in kultiviertes Fleisch in Europa um 59 Prozent auf 48 Millionen Euro, während Präzisionsfermentation und Biomassefermentation wuchsen. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="stat-grid">
+    <div class="stat-item">
+      <span class="stat-number">470 Mio. €</span>
+      <div class="stat-label">Gesamtinvestitionen alternative Proteine Europa 2024 (GFI State of Industry Report)</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">48 Mio. €</span>
+      <div class="stat-label">davon: kultiviertes Fleisch Europa 2024 (−59 % vs. 2023)</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">134 Mio. €</span>
+      <div class="stat-label">Investitionen alternative Proteine Deutschland 2024 (Rekord)</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">60 Mio. €</span>
+      <div class="stat-label">Staatliche Förderung Niederlande für Ökosystem kultiviertes Fleisch</div>
+    </div>
+  </div>
+
+  <h3>Das Good Food Institute (GFI)</h3>
+
+  <p>Das Good Food Institute ist ein gemeinnütziger Think Tank mit Sitz in den USA und europäischen Büros (GFI Europe). Es bezeichnet sich selbst als Interessenvertreter für pflanzliche und kultivierte Fleischalternativen — gegenüber Wissenschaft, Regulierungsbehörden und Investoren. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Das GFI tritt in EU-Zulassungsverfahren öffentlich als Kommentator auf. Seth Roberts, Policy Manager beim GFI Europe, erklärte zum Cultivated-B-Antrag: „Die Verfügbarkeit von kultiviertem Fleisch in Europa würde einen Paradigmenwechsel für den Sektor bedeuten." <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Das GFI vergibt Forschungsstipendien an Universitäten, kaufte 2024 Zelllinien des insolventen Start-ups SCiFi Foods auf und stellt diese Forschungseinrichtungen zur Verfügung. Das GFI finanziert sich nach eigenen Angaben durch Spenden; eine vollständige öffentliche Auflistung der Geldgeber ist auf der GFI-Website nicht aufgeführt. <span class="tag tag-offen">OFFEN</span></p>
+
+  <div class="source-box">
+    <div class="source-label">PRIMÄRQUELLEN</div>
+    GFI State of the Industry Reports 2024 (alternative Proteine Europa):
+    <a href="https://www.gfi.org/resources/alt-protein-state-of-the-industry-reports/" target="_blank" rel="noopener">gfi.org</a><br>
+    GFI Europe — „A Taste of Tomorrow" (Systemiq, Februar 2024): wirtschaftliches Potenzial alternative Proteine Deutschland 2045:
+    <a href="https://gfieurope.org/reports/" target="_blank" rel="noopener">gfieurope.org</a><br>
+    GFI-Erwerb SCiFi-Foods-Zelllinien (vegconomist, Oktober 2025):
+    <a href="https://vegconomist.de/kultiviertes-fleisch-zellkultur-biotechnologie/kultiviertes-fleisch/gfi-scifi-foods-zelllinien/" target="_blank" rel="noopener">vegconomist.de</a>
+  </div>
+
+  <!-- 5. Gates -->
+  <h2>Bill Gates: Investor und Buchautor</h2>
+
+  <p>Bill Gates ist persönlich oder über seinen Investitionsfonds Breakthrough Energy Ventures in mehrere Unternehmen für alternative Proteine investiert, darunter Beyond Meat, Impossible Foods und Memphis Meats (heute Upside Foods). <span class="tag tag-belegt">BELEGT</span> Diese Beteiligungen wurden von MIT Technology Review in einem Interview mit Gates im Februar 2021 veröffentlicht.</p>
+
+  <div class="pull-quote">
+    „Rich nations should move to 100% synthetic beef."
+    <cite>— Bill Gates, MIT Technology Review, Februar 2021</cite>
+  </div>
+
+  <p>Gates ergänzte in demselben Interview: „You can get used to the taste difference, and the claim is they're going to make it taste even better over time. Eventually, that green premium is modest enough that you can sort of change the behaviour of people or use regulation to totally shift the demand." <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>In seinem 2021 erschienenen Buch „How to Avoid a Climate Disaster" schrieb Gates, pflanzliches und kultiviertes Fleisch könne konventionelles Fleisch in vielen Situationen ersetzen, ohne Treibhausgase zu erzeugen. Im selben Buch hält er fest, dass er Investor in mehrere der von ihm erwähnten Unternehmen ist. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>2022 relativierte Gates seine Empfehlung: Auf Menschen einzureden, sie sollten aufhören Fleisch zu essen, sei „zu schwierig" und nicht realistisch als zentrale Strategie. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <div class="source-label">PRIMÄRQUELLEN</div>
+    MIT Technology Review — Interview mit Bill Gates (Februar 2021):
+    <a href="https://www.technologyreview.com/2021/02/14/1018296/bill-gates-climate-change-beef-trees-microsoft/" target="_blank" rel="noopener">technologyreview.com</a><br>
+    Gates, Bill — „How to Avoid a Climate Disaster", 2021 (Investorenangaben Kapitel alternative Proteine)<br>
+    Fortune — Gates relativiert Empfehlung (September 2022):
+    <a href="https://fortune.com/2022/09/30/bill-gates-telling-people-stop-eating-meat-buying-houses-not-solve-climate-change/" target="_blank" rel="noopener">fortune.com</a><br>
+    Euronews — Übersicht Gates' Positionen zu synthetischem Fleisch (September 2023):
+    <a href="https://www.euronews.com/2023/09/01/plant-based-meat-is-the-future-billionaire-bill-gates-claims-what-has-to-change" target="_blank" rel="noopener">euronews.com</a>
+  </div>
+
+  <!-- 6. Offene Fragen / Widerstand -->
+  <h2>Politischer Widerstand in der EU — und offene Sachfragen</h2>
+
+  <p>Österreich, Frankreich und Italien forderten im Januar 2024 in einer gemeinsamen Erklärung eine EU-weite Folgenabschätzung für strategische Autonomie und Ernährungssouveränität vor jeder Zulassung von kultiviertem Fleisch. <span class="tag tag-belegt">BELEGT</span> Der EU-Agrarministerrat diskutierte das Thema im Januar 2024. Italien erließ ein nationales Verbot.</p>
+
+  <p>Die EFSA-Leitlinien von 2024 verlangen für Zulassungsanträge kultivierter Fleischprodukte: <span class="tag tag-belegt">BELEGT</span></p>
+
+  <ul style="margin: 0.5rem 0 1.5rem 1.5rem; line-height: 2; color: #d4d4d8; font-size: 0.95rem;">
+    <li>Nachweis der Identität und Herkunft des Spendertiers (Biopsie)</li>
+    <li>Sicherheitsbewertung auf biologische Risiken: Viren, Prionen, Mikroorganismen</li>
+    <li>Nachweis genetischer Stabilität der Zellen über den gesamten Produktionsprozess</li>
+    <li>Nährwertanalyse (Protein, Kohlenhydrate, Fett, ernährungsphysiologische Kennwerte)</li>
+    <li>Beantwortung, ob die Ernährung mit dem Produkt nachteilige Effekte haben kann — explizit genannt: das Risiko einer Überversorgung mit Nährstoffen</li>
+  </ul>
+
+  <div class="highlight-box">
+    <strong>Offene technische Fragen (Stand 2026):</strong><br>
+    Fötales Kälberserum: Für Massenproduktion aktuell noch keine vollständig etablierte Alternative. Was gelangt als Rückstand ins Endprodukt? Die EFSA verlangt diese Klärung. <span class="tag tag-offen">OFFEN</span><br><br>
+    Energiebedarf: Bioreaktoren benötigen erhebliche Energiemengen. Die Klimabilanz kultivierter Fleischprodukte im Vergleich zu konventionellem Fleisch ist nach vorliegender Forschung nicht eindeutig. <span class="tag tag-offen">OFFEN</span><br><br>
+    Skalierbarkeit: Die Produktion im Labormaßstab ist belegt. Massenproduktion zu wettbewerbsfähigen Preisen ist industriell noch nicht nachgewiesen. <span class="tag tag-offen">OFFEN</span>
+  </div>
+
+  <p>Das GFI Europe warnte 2025 vor einem „Brain Drain": Biotech-Talente und Kapital würden zunehmend in die USA, nach Singapur oder nach Großbritannien abwandern, weil die EU-Zulassung zu lange dauere. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <div class="source-label">PRIMÄRQUELLEN</div>
+    Wissenschaftlicher Dienst Bundestag — Zulassungsanforderungen EFSA 2024:
+    <a href="https://www.bundestag.de/resource/blob/1033160/5474e39c5b340ae394dc6155f2f0d234/Fleisch-aus-Zellkultur.pdf" target="_blank" rel="noopener">bundestag.de (PDF)</a><br>
+    Top Agrar — Österreich/Frankreich/Italien-Forderung Januar 2024:
+    <a href="https://www.topagrar.com/perspektiven/news/invitro-fleisch-fisch-produkte-zulassung-staaten-weltweit-i-20002690.html" target="_blank" rel="noopener">topagrar.com</a>
+  </div>
+
+  <hr>
+
+  <div class="closing">
+    <p>In der EU ist kein kultiviertes Fleischprodukt für den menschlichen Verzehr zugelassen. Drei Unternehmen haben erste Verfahren eingeleitet. Das EFSA-Verfahren ist eines der strengsten weltweit — und zugleich politisch umstritten. Mehrere Mitgliedstaaten fordern Moratorien, ein Mitgliedstaat hat ein Verbot erlassen. Gleichzeitig werben Branchenverbände und Think Tanks intensiv für Zulassungsbeschleunigung.</p>
+    <p><em>Was geschieht mit Zelllinien und Nährmedien-IP, wenn wenige Unternehmen die Grundtechnologien kontrollieren? Welche Produzenten profitieren, wenn konventionelle Tierhaltung durch kultivierte Fleischproduktion ersetzt wird — und welche verlieren? Wie verhält sich die Klimabilanz kultivierter Fleischprodukte bei Massenproduktion mit nicht-erneuerbarer Energie? Und: Wer haftet, wenn Risikobewertungen auf Basis von Unternehmensdata nicht vollständig unabhängig nachgeprüft werden können?</em></p>
+  </div>
+
+  <div class="series-nav">
+    <div class="series-nav-title">SERIE — WER KONTROLLIERT, WAS WIR ESSEN?</div>
+    <ul>
+      <li><a href="nahrung-konzentration.html">Teil 1 — Das ABCD-Quartett: Marktkonzentration im Agrarhandel</a></li>
+      <li><a href="nahrung-saatgut.html">Teil 2 — Wer das Saatgut kontrolliert: Bayer/Monsanto, Gates, Svalbard</a></li>
+      <li><a href="nahrung-kleinbauern.html">Teil 3 — Höfesterben: Deutschland, Niederlande, Großbritannien, Schweiz</a></li>
+      <li><a href="nahrung-insekten.html">Teil 4 — Novel Food: Insekten auf europäischen Tellern</a></li>
+      <li class="current">→ Teil 5 — Laborfleisch: Kein Produkt zugelassen, erste Anträge laufen</li>
+      <li class="pending">Teil 6 — Wasser: Nestlé, BlackRock und die UN-Resolution <em>(in Arbeit)</em></li>
+      <li><a href="nahrung-mercosur.html">Teil 7 — Das Mercosur-Abkommen: Rindfleisch gegen Autos</a></li>
+      <li class="pending">Teil 8 — Big Five: Wie Händler den Preis bestimmen <em>(in Arbeit)</em></li>
+      <li><a href="nahrung-gentechnik.html">Teil 9 — Neue Gentechnik: NGT-Verordnung und ihre Folgen</a></li>
+      <li><a href="nahrung-skandale.html">Teil 10 — Transfette, Glyphosat, Aspartam: Wie Risiken verwaltet werden</a></li>
+      <li class="pending">Teil 11 — Die Akteure: Netzwerkkarte und Abschluss <em>(in Arbeit)</em></li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

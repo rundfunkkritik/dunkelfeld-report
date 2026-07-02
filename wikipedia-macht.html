@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Die dunkle Seite der Wikipedia | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --surface: #111114;
+    --surface2: #1a1a2e;
+    --amber: #e8c547;
+    --amber-dim: #b89a2e;
+    --text: #e2e2e2;
+    --text-dim: #999;
+    --border: #2a2a3a;
+    --red: #e05a5a;
+    --green: #5aaa72;
+    --blue: #5a8ae0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.85;
+    padding: 2rem 1rem 5rem;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* NAV */
+  .nav {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.05em;
+  }
+  .nav a { color: var(--amber); text-decoration: none; }
+  .nav a:hover { text-decoration: underline; }
+
+  /* SERIES BANNER */
+  .series-banner {
+    background: var(--surface2);
+    border-left: 3px solid var(--amber);
+    padding: 0.6rem 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--amber);
+    margin-bottom: 2rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* HEADER */
+  .article-tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--amber);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+  }
+
+  .subtitle {
+    font-size: 1.15rem;
+    color: var(--text-dim);
+    margin-bottom: 1.8rem;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: 0.04em;
+  }
+
+  /* STATUS TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 0.15em 0.5em;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-left: 0.3em;
+  }
+  .tag-belegt { background: #1a3a25; color: var(--green); border: 1px solid var(--green); }
+  .tag-extra { background: #2a2a1a; color: var(--amber); border: 1px solid var(--amber-dim); }
+  .tag-offen { background: #2a1a1a; color: var(--red); border: 1px solid var(--red); }
+
+  /* SECTIONS */
+  h2 {
+    font-size: 1.35rem;
+    color: var(--amber);
+    margin: 2.8rem 0 1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  h3 {
+    font-size: 1.05rem;
+    color: #ccc;
+    margin: 2rem 0 0.7rem;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  p { margin-bottom: 1.2rem; }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-left: 3px solid var(--amber);
+    margin: 2rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--surface2);
+    font-size: 1.15rem;
+    color: #fff;
+    font-style: italic;
+    line-height: 1.6;
+  }
+  .pull-quote cite {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    font-style: normal;
+    font-family: 'Courier New', monospace;
+    margin-top: 0.6rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* SOURCE BOX */
+  .source-box {
+    background: var(--surface2);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .source-box strong { color: var(--amber); display: block; margin-bottom: 0.4rem; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .source-box a { color: var(--blue); text-decoration: none; }
+  .source-box a:hover { text-decoration: underline; }
+
+  /* STAT GRID */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .stat-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--amber);
+    padding: 1.1rem;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 2rem;
+    color: var(--amber);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+
+  /* TIMELINE */
+  .timeline { margin: 2rem 0; }
+  .timeline-row {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .timeline-row:last-child { border-bottom: none; }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--amber);
+    min-width: 90px;
+    padding-top: 0.15rem;
+    letter-spacing: 0.04em;
+  }
+  .timeline-content { font-size: 0.95rem; color: var(--text); line-height: 1.6; }
+  .timeline-content strong { color: #fff; }
+
+  /* PERSON CARD */
+  .person-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 1.1rem 1.3rem;
+    margin: 1.5rem 0;
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+  .person-initial {
+    width: 48px; height: 48px;
+    background: var(--amber);
+    color: var(--bg);
+    font-family: 'Courier New', monospace;
+    font-size: 1.3rem;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .person-info h4 { color: #fff; font-size: 1rem; margin-bottom: 0.2rem; }
+  .person-info .role { font-family: 'Courier New', monospace; font-size: 0.72rem; color: var(--amber); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem; }
+  .person-info p { font-size: 0.88rem; color: var(--text-dim); margin: 0; line-height: 1.5; }
+
+  /* COMPARISON TABLE */
+  .compare-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.92rem; }
+  .compare-table th {
+    background: var(--surface2);
+    color: var(--amber);
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.7rem 1rem;
+    text-align: left;
+    border-bottom: 2px solid var(--amber);
+  }
+  .compare-table td {
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .compare-table tr:hover td { background: var(--surface2); }
+
+  /* CLOSING QUESTIONS */
+  .closing-questions {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--amber);
+    background: var(--surface);
+  }
+  .closing-questions h3 {
+    color: var(--amber);
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .closing-questions p {
+    font-style: italic;
+    color: var(--text-dim);
+    font-size: 0.97rem;
+    line-height: 1.7;
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+  }
+
+  a { color: var(--amber); }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <nav class="nav">
+    <a href="/">dunkelfeld.report</a> &nbsp;/&nbsp; Medien &amp; Infrastruktur
+  </nav>
+
+  <div class="series-banner">Dokumentation · Medienstruktur · Wissenshoheit</div>
+
+  <div class="article-tag">Strukturanalyse</div>
+
+  <h1>Die dunkle Seite der Wikipedia</h1>
+  <p class="subtitle">Wer schreibt das Gedächtnis der Welt — und nach welchen Regeln? Eine Spurensuche durch Gründerstreit, Sperrverfahren und die Frage, wer im System wirklich entscheidet.</p>
+
+  <div class="meta">
+    Veröffentlicht: Juni 2026 &nbsp;·&nbsp; dunkelfeld.report &nbsp;·&nbsp; Alle Angaben mit Statusmarkierung versehen
+  </div>
+
+  <!-- EINSTIEG -->
+
+  <p>Es war das kürzeste Interview in der Geschichte von Jung &amp; Naiv. Weniger als eine Minute dauerte das Gespräch, das Journalist Tilo Jung im November 2025 mit Jimmy Wales führte — dem Mann, der Wikipedia nach außen als seinen Verdienst präsentiert. Die erste Frage reichte.</p>
+
+  <div class="pull-quote">
+    „Der Gründer oder Co-Gründer?" — Tilo Jung, November 2025<br><br>
+    „Das ist die dümmste Frage der Welt." — Jimmy Wales<br><br>
+    „Wissen Sie was, ich bin fertig. Stellen Sie mir keine dummen Fragen." — Wales verlässt das Studio.
+    <cite>— Jung &amp; Naiv, Folge #792, November 2025 · Wales war zur Buchvorstellung erschienen: <em>„Trust. Die 7 Regeln des Vertrauens"</em></cite>
+  </div>
+
+  <p>Der Mann, der eine Plattform für Neutralität, Faktentreue und Wissenszugang aufgebaut hat, bricht ein Interview ab — weil er nach einem Fakt gefragt wird. Der Fakt: Auf Wikipedia selbst wird Wales als <em>Co-Gründer</em> geführt. Nicht als alleiniger Gründer.</p>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    Jung &amp; Naiv, Folge #792 (14. November 2025) — YouTube-Kanal Jung &amp; Naiv. Wales stellte sein Buch vor und bezeichnete sich als „Gründer von Wikipedia". Nach mehrfacher Rückfrage verließ er das Studio. Tilo Jung kommentierte: „Die Nachfrage war journalistisch völlig korrekt."
+  </div>
+
+  <hr class="divider">
+
+  <h2>I. Der Streit, der nie endete</h2>
+
+  <p>Wikipedia wurde am 15. Januar 2001 gegründet. Daran sind zwei Namen geknüpft: Jimmy Wales und Larry Sanger. Sanger, damals Philosophie-Doktorand, führte zunächst die Redaktion und entwickelte zentrale Quellen- und Neutralitätsprinzipien, die bis heute gelten.</p>
+
+  <p>Nach dem Ausscheiden Sangers 2002 begann eine Umschreibung der Geschichte.</p>
+
+  <div class="timeline">
+    <div class="timeline-row">
+      <div class="timeline-date">2001</div>
+      <div class="timeline-content"><strong>Gründung.</strong> Wales und Sanger starten Wikipedia am 15. Januar. Frühe Pressemitteilungen nennen beide als Gründer.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-date">2002</div>
+      <div class="timeline-content"><strong>Sanger verlässt Wikipedia</strong> wegen fehlender Finanzierung und inhaltlicher Differenzen. Beginn des Streits um die Gründerrolle.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-date">nach 2002</div>
+      <div class="timeline-content"><strong>Wales ändert seine Darstellung.</strong> Er erklärt es für „lächerlich", Sanger als Mitgründer zu betrachten. Sanger widerspricht öffentlich und dokumentiert seinen Anteil.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-date">Nov. 2025</div>
+      <div class="timeline-content"><strong>Eklat bei Jung &amp; Naiv.</strong> Wales bricht Interview nach der Frage „Gründer oder Co-Gründer?" ab. Wales' Wikipedia-Eintrag: „Co-Gründer".</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-date">Juni 2026</div>
+      <div class="timeline-content"><strong>Sanger gesperrt.</strong> Die englischsprachige Wikipedia sperrt Larry Sanger unbefristet. Offizieller Grund: „Off-Wiki-Canvassing". <span class="tag tag-belegt">BELEGT</span></div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    Wikipedia-Profil Larry Sanger (Sperrlogbuch, Juni 2026): Unbefristete Sperre nach Abstimmung unter Administratoren. Begründung laut Administratoren-Noticeboard: „Es besteht allgemeiner Konsens, dass er Off-Wiki-Canvassing betrieben hat und nicht hier ist, um die Enzyklopädie konstruktiv aufzubauen."
+  </div>
+
+  <hr class="divider">
+
+  <h2>II. Der Mitgründer, der gesperrt wurde</h2>
+
+  <p>Larry Sanger kehrte im Herbst 2025 nach Jahren der Abstinenz zu Wikipedia zurück. Er initiierte das „WikiProject Intellectual Diversity" — ein offizielles Wiki-Projekt, das nach eigenen Angaben mehr Quellenpluralismus und weniger einseitige Redaktionsentscheidungen ermöglichen sollte.</p>
+
+  <div class="person-card">
+    <div class="person-initial">LS</div>
+    <div class="person-info">
+      <h4>Larry Sanger</h4>
+      <div class="role">Wikipedia-Mitgründer · Philosoph · Kritiker</div>
+      <p>Co-Gründer Wikipedia (2001), Chefredakteur bis 2002. Gründete später Citizendium und Encyclosphere als Wikipedia-Alternativen. Seit Jahren öffentliche Kritik an Wikipedia wegen struktureller Voreingenommenheit.</p>
+    </div>
+  </div>
+
+  <p>Am 22. Juni 2026 meldete Sanger auf X: Er sei unbefristet gesperrt worden — ohne ordentliches Verfahren, ohne formal benannte Ankläger, ohne unparteiische Entscheidungsinstanz.</p>
+
+  <div class="pull-quote">
+    „Es gab kein ordentliches Verfahren, keinen Ankläger, keinen unparteiischen Richter, keine Jury, keine Auslegung von Regeln. Alle meine Richter waren selbsternannt und hassten mich."
+    <cite>— Larry Sanger, X (ehemals Twitter), 22. Juni 2026</cite>
+  </div>
+
+  <p>Die Administratoren begründeten die Sperre damit, Sanger habe seine rund 91.000 Follower auf X darauf aufmerksam gemacht, dass intern über sein Projekt abgestimmt werde — ein Verstoß gegen die Wikipedia-Regel gegen sogenanntes „Canvassing": das gezielte Mobilisieren externer Unterstützer für interne Abstimmungen.</p>
+
+  <p>Sanger widerspricht: Er habe lediglich auf eine laufende Diskussion hingewiesen, ohne seine Follower zu einer bestimmten Position aufzufordern. Wikipedia verbiete Canvassing nur, wenn es auf eine bestimmte Abstimmungsrichtung abziele.</p>
+
+  <div class="source-box">
+    <strong>Strukturhinweis</strong>
+    Sanger selbst hatte in seinen neun Reformpunkten für Wikipedia die Abschaffung unbefristeter Sperren gefordert — als Instrument institutionellen Machtmissbrauchs durch selbsternannte Admin-Gruppen. Er wurde mit exakt diesem Instrument gesperrt.
+  </div>
+
+  <h3>Die „Power 62"</h3>
+
+  <p>Sanger benennt in seiner Kritik eine konkrete Machtstruktur: Eine kleine Gruppe von rund 62 besonders aktiven Administratoren — von ihm „Power 62" genannt — kontroiere die inhaltliche Ausrichtung der englischsprachigen Wikipedia ohne formale Rechenschaftspflicht nach außen.</p>
+
+  <p>Diese Behauptung ist nicht neu. Bereits frühere Analysen zur Editoren-Konzentration auf Wikipedia hatten gezeigt, dass ein verschwindend geringer Anteil der Nutzer den weit überwiegenden Teil der inhaltlich relevanten Edits auf politisch sensiblen Artikeln vornimmt. <span class="tag tag-extra">EXTRAPOLATION</span></p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-number">91.000</div>
+      <div class="stat-label">Follower Sangers auf X zum Zeitpunkt der Sperre</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">~62</div>
+      <div class="stat-label">Administratoren, die Sanger als „Power 62" bezeichnet</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">&lt;1 Min.</div>
+      <div class="stat-label">Dauer des Wales-Interviews bei Jung &amp; Naiv, Nov. 2025</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h2>III. Was Studien und Gerichte dokumentieren</h2>
+
+  <p>Die Kritik an Struktur und Neutralität der Wikipedia ist nicht auf Sanger und Wales beschränkt. Sie ist wissenschaftlich und juristisch dokumentiert.</p>
+
+  <h3>Otto-Brenner-Studie 2014</h3>
+
+  <p>Eine Studie des Journalisten Marvin Oppong im Auftrag der gewerkschaftsnahen Otto-Brenner-Stiftung untersuchte den Einfluss bezahlter Auftragsautoren auf die deutschsprachige Wikipedia. Das Ergebnis:</p>
+
+  <div class="pull-quote">
+    „PR und Manipulation" seien in der deutschsprachigen Wikipedia „allgegenwärtig". Unternehmen, Verbände, Parteien und Einzelpersonen versuchten „auf die verschiedensten Arten und Wege, ihr Bild in der Öffentlichkeit durch Eingreifen in Artikel zu schönen."
+    <cite>— Marvin Oppong, Otto-Brenner-Stiftung, 2014 (Arbeitsheft Nr. 77)</cite>
+  </div>
+
+  <p>Als Beispiel führte Oppong den Artikel über die Daimler AG an, in dem ein kritischer Abschnitt über NS-Zwangsarbeit gelöscht worden war.</p>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    Oppong, Marvin: „Bezahltes Schreiben für Wikipedia". Otto-Brenner-Stiftung, Arbeitsheft Nr. 77, Januar 2014. Öffentlich zugänglich über die OBS-Website.
+  </div>
+
+  <h3>Landgericht Hamburg 2019 — AZ 324 O 468/18</h3>
+
+  <p>Filmemacher Dirk Pohlmann und Lehrer Markus Fiedler hatten den Klarnamen eines Pseudonym-Autors veröffentlicht, der nach ihrer Recherche zahlreiche politisch relevante Wikipedia-Artikel „in meinungsgeprägter Weise" redigiert hatte. Der betroffene Autor zog vor Gericht.</p>
+
+  <p>Das Landgericht Hamburg gab Pohlmann und Fiedler recht:</p>
+
+  <div class="pull-quote">
+    Das Gericht argumentierte, der Antragsteller habe Wikipedia-Artikel „in meinungsgeprägter Weise" redigiert — damit überwiege das öffentliche Informationsinteresse das Persönlichkeitsrecht an der Anonymität.
+    <cite>— LG Hamburg, Beschluss im einstweiligen Verfügungsverfahren, AZ 324 O 468/18, 2019</cite>
+  </div>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    LG Hamburg, AZ 324 O 468/18 (einstweiliges Verfügungsverfahren). Das Urteil wurde 2019 öffentlich bekannt; die Verfügung wurde aufgehoben, nachdem das Gericht feststellte, dass das öffentliche Interesse an der Transparenz das Anonymitätsinteresse überwiegt.
+  </div>
+
+  <h3>Bundestagsadressen als Editoren</h3>
+
+  <p>Bereits 2005 wurde dokumentiert, dass Wikipedia-Artikel zu Spitzenkandidaten im nordrhein-westfälischen Wahlkampf von IP-Adressen aus dem Netzwerk des Deutschen Bundestages bearbeitet worden waren — zu Gunsten eines CDU-Kandidaten, zu Ungunsten eines SPD-Kandidaten. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    Peter Schink, Netzeitung (2005): Dokumentation manipulierter Wikipedia-Artikel im NRW-Wahlkampf. IP-Adressen führten in das Bundestagsnetzwerk in Düsseldorf. Wikipedia selbst dokumentiert diesen Fall im Artikel „Kritik an Wikipedia".
+  </div>
+
+  <hr class="divider">
+
+  <h2>IV. YouTube: Die unsichtbare Einblendung</h2>
+
+  <p>Seit 2018 blendet YouTube unter einer wachsenden Zahl von Videos automatisch eine Infobox ein — mit einem Link zur Wikipedia-Seite über den jeweiligen Kanal, die Person oder das Thema. Diese Funktion wurde ohne öffentliche Ankündigung rollout-weise eingeführt. <span class="tag tag-extra">EXTRAPOLATION</span></p>
+
+  <p>Die Konsequenz: Wer einen kritischen Kanal zu einem politisch sensiblen Thema betreibt, wird durch eine automatisierte Weiterleitung zur Wikipedia-Darstellung ergänzt — einer Darstellung, deren Redaktionsprozess nach den oben dokumentierten Befunden intransparent und potenziell voreingenommen ist.</p>
+
+  <div class="compare-table-wrapper">
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Ebene</th>
+        <th>Beobachtung</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>YouTube-Einblendung</td>
+        <td>Automatischer Wikipedia-Link unter Videos zu sensiblen Themen</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Redaktionskontrolle</td>
+        <td>Kleine Gruppe von Admins entscheidet über Artikelinhalt ohne externe Kontrolle</td>
+        <td><span class="tag tag-extra">EXTRAPOLATION</span></td>
+      </tr>
+      <tr>
+        <td>Politische Einflussnahme</td>
+        <td>Bundestagsadressen als Editoren dokumentiert (2005)</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>PR-Manipulation</td>
+        <td>Otto-Brenner-Stiftung: „allgegenwärtig" (2014)</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Gerichtlich bestätigt</td>
+        <td>LG Hamburg 2019: meinungsgeprägte Redaktion durch Pseudonym-Autor</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Gründerstreit</td>
+        <td>Wales löscht Sangers Rolle — Wikipedia eigener Eintrag widerspricht Wales</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Mitgründer gesperrt</td>
+        <td>Sanger im Juni 2026 unbefristet gesperrt nach Reformversuch</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <hr class="divider">
+
+  <h2>V. Was Wikipedia selbst sagt</h2>
+
+  <p>Wikipedia beschreibt sich als freie Enzyklopädie, die auf dem Konsensprinzip freiwilliger Autoren beruht. Der Artikel „Kritik an Wikipedia" auf der eigenen Plattform dokumentiert die Debatten über Manipulation, Neutralität und Editoren-Konzentration — einschließlich der Otto-Brenner-Studie und der Bundestagsfälle.</p>
+
+  <p>Das Modell der anonymen Freiwilligkeit schützt vor kommerzieller Vereinnahmung — ermöglicht aber auch organisierte Einflussnahme ohne Verantwortlichkeit nach außen. Beides ist strukturell angelegt. <span class="tag tag-extra">EXTRAPOLATION</span></p>
+
+  <div class="source-box">
+    <strong>Hinweis zur Einordnung</strong>
+    Dirk Pohlmann und Markus Fiedler, deren Recherchen zum „feliks"-Fall das LG Hamburg beschäftigten, sind als Sekundärquellen für diesen Artikel nicht geeignet und wurden nicht verwendet. Die oben dokumentierten Primärquellen — Gerichtsurteil, Studie, Wikipedia-Eigenbelege — stehen unabhängig davon.
+  </div>
+
+  <hr class="divider">
+
+  <!-- CLOSING -->
+  <div class="closing-questions">
+    <h3>Offene Fragen</h3>
+    <p>
+      Wer entscheidet, welche Quellen auf Wikipedia als „zuverlässig" gelten — und nach welchem Verfahren?<br><br>
+      Wenn der Mitgründer einer Plattform beim Versuch, Quellenpluralismus zu fördern, unbefristet gesperrt wird: Was sagt das über die Toleranz des Systems gegenüber interner Reformkritik?<br><br>
+      Wenn YouTube automatisch auf Wikipedia verlinkt und Wikipedia-Artikel von einer kleinen, nicht öffentlich rechenschaftspflichtigen Gruppe kontrolliert werden — wessen Wissensbild wird dann im Algorithmus verstärkt?<br><br>
+      <em>Und: Kann eine Enzyklopädie, die die Gründerrolle ihres eigenen Mitgründers kleinschreibt, glaubhaft beanspruchen, Geschichte objektiv zu dokumentieren?</em>
+    </p>
+  </div>
+
+  <div class="source-box" style="margin-top:2.5rem;">
+    <strong>Alle verwendeten Primärquellen</strong>
+    · Jung &amp; Naiv, Folge #792 (Nov. 2025) — YouTube<br>
+    · Wikipedia-Profil Larry Sanger, Sperrlogbuch Juni 2026 — de.wikipedia.org / en.wikipedia.org<br>
+    · Oppong, Marvin: „Bezahltes Schreiben für Wikipedia", OBS-Arbeitsheft Nr. 77 (Jan. 2014)<br>
+    · LG Hamburg, AZ 324 O 468/18 (2019) — einstweiliges Verfügungsverfahren<br>
+    · Wikipedia-Eigenartikel „Kritik an Wikipedia" — de.wikipedia.org (Bundestagsfälle 2005)<br>
+    · heise.de: „Lange Vorgeschichte: Wikipedia-Mitgründer auf der Online-Enzyklopädie gesperrt" (24.06.2026)<br>
+    · 404media.co: „Wikipedia Cofounder Larry Sanger Banned From Site for Canvassing" (24.06.2026)
+  </div>
+
+  <div class="meta" style="margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--border); border-bottom:none;">
+    <span class="tag tag-belegt">BELEGT</span> = Primärquelle vorhanden &nbsp;·&nbsp;
+    <span class="tag tag-extra">EXTRAPOLATION</span> = strukturell plausibel, interpretativ &nbsp;·&nbsp;
+    <span class="tag tag-offen">OFFEN</span> = nicht abschließend verifiziert
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>„Man wird Einrichtungen schaffen, viel effektiver als die Stasi" – dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --surface: #111113;
+    --surface2: #1a1a2e;
+    --amber: #e8c547;
+    --amber-dim: #c9a93a;
+    --text: #e2e2e5;
+    --text-dim: #9a9aaa;
+    --text-dimmer: #5a5a6a;
+    --green: #4caf7d;
+    --orange: #e8943a;
+    --grey: #6b7280;
+    --red: #e85447;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.05rem;
+    line-height: 1.85;
+    padding: 0 1rem;
+  }
+
+  /* HEADER */
+  .site-header {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 0 1.5rem;
+    border-bottom: 1px solid #222;
+    display: flex;
+    align-items: baseline;
+    gap: 1.2rem;
+  }
+  .site-name {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber);
+    text-decoration: none;
+  }
+  .site-tagline {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: var(--text-dimmer);
+    letter-spacing: 0.08em;
+  }
+
+  /* ARTICLE */
+  article {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 0 5rem;
+  }
+
+  .article-meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-dimmer);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .article-meta span {
+    color: var(--amber);
+    margin-right: 0.4rem;
+  }
+
+  h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+    font-weight: normal;
+    line-height: 1.25;
+    color: var(--text);
+    margin-bottom: 0.8rem;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid #2a2a3a;
+    margin: 2rem 0;
+  }
+
+  h2 {
+    font-family: Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: normal;
+    color: var(--amber);
+    margin: 2.5rem 0 1rem;
+    letter-spacing: 0.01em;
+  }
+
+  p {
+    margin-bottom: 1.2rem;
+    color: var(--text);
+  }
+
+  /* BOHLEY QUOTE BLOCK */
+  .bohley-quote {
+    background: #0e0e18;
+    border-left: 4px solid var(--amber);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+  .bohley-quote::before {
+    content: '»';
+    font-size: 3rem;
+    color: var(--amber);
+    opacity: 0.3;
+    position: absolute;
+    top: 0.5rem;
+    left: 1rem;
+    font-family: Georgia, serif;
+    line-height: 1;
+  }
+  .bohley-quote blockquote {
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text);
+    padding-left: 1rem;
+  }
+  .bohley-quote cite {
+    display: block;
+    margin-top: 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-style: normal;
+    color: var(--text-dimmer);
+    letter-spacing: 0.08em;
+    padding-left: 1rem;
+  }
+
+  /* SATIRE BLOCK */
+  .satire-block {
+    background: var(--surface2);
+    border: 1px solid #2a2a3a;
+    border-left: 4px solid var(--text-dimmer);
+    padding: 1.5rem 1.8rem;
+    margin: 2.5rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .satire-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dimmer);
+    margin-bottom: 1rem;
+  }
+  .satire-block p {
+    font-style: italic;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+  }
+  .satire-source {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: var(--text-dimmer);
+    margin-top: 1rem;
+  }
+
+  /* TAG BADGES */
+  .tag-badge {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+    border-radius: 2px;
+    margin-right: 0.4rem;
+    margin-bottom: 0.3rem;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(76,175,125,0.15); color: var(--green); border: 1px solid rgba(76,175,125,0.3); }
+  .tag-extrapolation { background: rgba(232,148,58,0.15); color: var(--orange); border: 1px solid rgba(232,148,58,0.3); }
+  .tag-offen { background: rgba(107,114,128,0.15); color: var(--grey); border: 1px solid rgba(107,114,128,0.3); }
+
+  /* SOURCE BOX */
+  .source-box {
+    background: var(--surface2);
+    border-left: 3px solid var(--amber);
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    line-height: 1.7;
+    color: var(--text-dim);
+  }
+  .source-box strong {
+    color: var(--amber);
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .source-box a { color: var(--amber); text-decoration: none; }
+  .source-box a:hover { text-decoration: underline; }
+
+  /* TIMELINE */
+  .timeline {
+    margin: 2rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+    border-left: 2px solid #2a2a3a;
+  }
+  .timeline-item {
+    margin-bottom: 1.8rem;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--amber);
+    border-radius: 50%;
+    position: absolute;
+    left: -1.95rem;
+    top: 0.45rem;
+  }
+  .timeline-year {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.3rem;
+  }
+  .timeline-text {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  /* STAT ROW */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: #1a1a2e;
+    margin: 2rem 0;
+    border: 1px solid #2a2a3a;
+  }
+  .stat-cell {
+    background: var(--bg);
+    padding: 1.2rem 1.5rem;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.6rem;
+    color: var(--amber);
+    display: block;
+    line-height: 1.2;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dimmer);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+    display: block;
+  }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-top: 2px solid var(--amber);
+    border-bottom: 1px solid #2a2a3a;
+    padding: 1.5rem 0;
+    margin: 2.5rem 0;
+  }
+  .pull-quote p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--text);
+    font-style: italic;
+    margin: 0;
+  }
+
+  /* CLOSING QUESTIONS */
+  .closing-questions {
+    border-top: 1px solid #2a2a3a;
+    padding-top: 2rem;
+    margin-top: 3rem;
+  }
+  .closing-questions p {
+    font-style: italic;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+  }
+
+  /* LINK */
+  a { color: var(--amber); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* BUNDESLAENDER MAP */
+  .bundeslaender-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+  }
+  .bl-tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid;
+    border-radius: 2px;
+  }
+  .bl-aktiv { border-color: var(--red); color: var(--red); background: rgba(232,84,71,0.1); }
+  .bl-geplant { border-color: var(--orange); color: var(--orange); background: rgba(232,148,58,0.1); }
+  .bl-none { border-color: var(--text-dimmer); color: var(--text-dimmer); background: rgba(90,90,106,0.1); }
+
+  .bl-legend {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dimmer);
+    margin-top: 0.5rem;
+  }
+  .bl-legend span { margin-right: 1rem; }
+
+  /* SERIES NAV */
+  .series-nav {
+    background: var(--surface);
+    border: 1px solid #222;
+    padding: 1.2rem 1.5rem;
+    margin-top: 3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+  }
+  .series-nav strong {
+    color: var(--amber);
+    display: block;
+    margin-bottom: 0.6rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .series-nav a {
+    color: var(--text-dim);
+    display: block;
+    padding: 0.2rem 0;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .series-nav a:last-child { border-bottom: none; }
+  .series-nav a.current { color: var(--amber); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="site-name" href="#">dunkelfeld.report</a>
+  <span class="site-tagline">Hidden in Plain Sight</span>
+</header>
+
+<article>
+
+  <div class="article-meta">
+    <span>#19</span>
+    Infrastruktur &nbsp;·&nbsp; Überwachung &nbsp;·&nbsp; Grundrechte &nbsp;·&nbsp; Juni 2026
+  </div>
+
+  <h1>„Man wird Einrichtungen schaffen, viel effektiver als die Stasi"</h1>
+  <p class="subtitle">Bärbel Bohley warnte 1991 vor der Übernahme von Kontrollmethoden durch demokratische Staaten. Eine Chronologie von der Corona-Infrastruktur zur anlasslosen KI-Verhaltensüberwachung.</p>
+
+  <hr class="divider">
+
+  <div class="bohley-quote">
+    <blockquote>
+      „Alle diese Untersuchungen, die gründliche Erforschung der Stasi-Strukturen, der Methoden, mit denen sie gearbeitet haben … all das wird in die falschen Hände geraten. Man wird sie ein wenig adaptieren, damit sie zu einer freien, westlichen Gesellschaft passen. Man wird Störer nicht unbedingt verhaften — es gibt feinere Möglichkeiten, unschädlich zu machen. Aber die geheimen Verbote, das Beobachten, der Argwohn, die Angst, das Isolieren und Ausgrenzen, das Brandmarken und Mundtotmachen wird wiederkommen … Man wird Einrichtungen schaffen, viel effektiver, viel feiner als die Stasi. Auch das ständige Lügen wird wiederkommen, die Desinformation und der Nebel, in dem alles seine Kontur verliert."
+    </blockquote>
+    <cite>— Bärbel Bohley (1945–2010), DDR-Bürgerrechtlerin, Mitbegründerin des Neuen Forums &nbsp;·&nbsp; gegenüber dem Schriftsteller Chaim Noll, ca. 1991 &nbsp;·&nbsp; Quelle: achgut.com, 03.03.2019</cite>
+  </div>
+
+  <p>Das Zitat stammt aus einem Gespräch, das wenige Jahre nach der Wiedervereinigung stattfand. Bohley hatte die Stasi aus eigenem Erleben kennengelernt: Verhöre, Inhaftierung, Zwangsexil. Sie kannte die Methodik des Ministeriums für Staatssicherheit nicht aus Akten, sondern aus dem gelebten Alltag des Überwachungsstaates. Und sie sah, wohin die systematische Aufarbeitung führen würde — nicht zur Immunisierung, sondern zur Blaupause.</p>
+
+  <p>Dieser Artikel dokumentiert eine Chronologie. Keine Theorie — eine Abfolge von Gesetzen, Pilotprojekten und Beschlüssen, die öffentlich zugänglich sind.</p>
+
+  <hr class="divider">
+
+  <!-- KAPITEL 1: CORONA -->
+  <h2>I. Das Fundament: Corona-Infrastruktur 2020–2022</h2>
+
+  <p>Im Frühjahr 2020 wurden in Deutschland innerhalb weniger Wochen Überwachungsstrukturen errichtet, für die es in der Bundesrepublik kein Vorbild gab. Die rechtliche Grundlage: das Infektionsschutzgesetz (IfSG), mehrfach novelliert unter dem Druck der Pandemie. <span class="tag-badge tag-belegt">BELEGT</span></p>
+
+  <p>Gaststätten, Friseure, Supermärkte, Fitnessstudios — Betriebe aller Art wurden verpflichtet, Kontaktdaten ihrer Kunden zu erfassen. 13 Bundesländer kauften Lizenzen für die Luca-App, Gesamtvolumen: über 20 Millionen Euro Steuergelder. 40 Millionen Bürger registrierten sich. <span class="tag-badge tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    § 28a Abs. 1 Nr. 17–18 Infektionsschutzgesetz (IfSG) — Rechtsgrundlage für die Kontaktdatenerfassung. Bundesgesundheitsministerium, Bundesgesetzblatt 2020 ff.
+  </div>
+
+  <p>Im Januar 2022 wurde öffentlich, was Datenschützer von Beginn an befürchtet hatten: Die Staatsanwaltschaft Mainz hatte ohne Rechtsgrundlage Luca-App-Daten angefordert und erhalten, um in einem Todesfall Zeugen zu identifizieren. Die Staatsanwaltschaft räumte den Vorgang ein und bezeichnete ihn als „fehlerhafte Bewertung des Infektionsschutzgesetzes". <span class="tag-badge tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    SWR Aktuell, Recherche Januar 2022; Stellungnahme Staatsanwaltschaft Mainz; § 28a Abs. 4 IfSG (Zweckbindungsgebot). Der Vorfall wurde durch den Landesdatenschutzbeauftragten Rheinland-Pfalz untersucht.
+  </div>
+
+  <p>Dabei war der Luca-Missbrauch kein Einzelfall. Entwickler der App gaben an, sie seien „fast täglich" mit Anfragen von Polizei und Staatsanwaltschaften konfrontiert worden. <span class="tag-badge tag-belegt">BELEGT</span></p>
+
+  <div class="pull-quote">
+    <p>„So soll verhindert werden, dass sich die Corona-Tracing-App still und heimlich zu einer Überwachungsinfrastruktur verselbstständigt, für die immer neue Zwecke gefunden werden könnten."</p>
+  </div>
+  <p style="font-family:'Courier New',monospace;font-size:0.72rem;color:var(--text-dimmer);margin-top:-1rem;margin-bottom:1.5rem;">— netzpolitik.org, Mai 2020, aus einem Entwurf für ein Corona-Tracing-Gesetz, der nie verabschiedet wurde</p>
+
+  <hr class="divider">
+
+  <!-- KAPITEL 2: CHATKONTROLLE -->
+  <h2>II. Die digitale Brieföffnung: EU-Chatkontrolle 2021–2026</h2>
+
+  <p>Parallel zur Pandemie-Infrastruktur entstand auf EU-Ebene ein Projekt, das alle privaten Nachrichten aller Bürger systematisch scannen würde. Die offizielle Begründung: Kinderschutz. <span class="tag-badge tag-belegt">BELEGT</span></p>
+
+  <p>Seit 2021 erlaubte eine ePrivacy-Ausnahme Anbietern wie Meta, Google und Microsoft das anlasslose Scannen privater Kommunikation. Die EU-Kommission konnte in ihrem eigenen Evaluationsbericht vom November 2025 keinen belastbaren Zusammenhang zur Verurteilung von Straftätern belegen. Microsoft gab für 2023 an, 11,7 Milliarden Dateien weltweit überwacht und dabei 32.000 CSAM-Dateien gefunden zu haben — 0,000002735 Prozent. <span class="tag-badge tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    EU-Kommission, Durchführungsbericht zur Chatkontrolle-Ausnahmeregelung, November 2025 &nbsp;·&nbsp;
+    Europäischer Datenschutzbeauftragter (EDSB), Stellungnahme zur Verlängerung, 2026 &nbsp;·&nbsp;
+    Digitale Gesellschaft e.V., Stellungnahme März 2026
+  </div>
+
+  <p>Der Anbieter Yubo meldete für 2023 eine Falsch-positiv-Fehlerquote von 20 Prozent. Das bedeutet: Jeder fünfte Alarm traf Unschuldige — Personen, deren private Kommunikation an externe Moderatoren weltweit weitergeleitet wurde. <span class="tag-badge tag-belegt">BELEGT</span></p>
+
+  <p>Im März 2026 scheiterte die Verlängerung der Ausnahmeregelung am EU-Parlament — nach einem ungewöhnlichen Vorgang: Die konservative EVP-Fraktion hatte eine erneute Abstimmung erzwungen, nachdem das Parlament bereits grundrechtskonform votiert hatte. Die Chatkontrolle 1.0 lief am 3. April 2026 aus. Bundeskanzler Friedrich Merz bezeichnete das Scheitern als „schweren Rückschlag für den Schutz unserer Kinder". <span class="tag-badge tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    EU-Parlamentsabstimmung, 26. März 2026 &nbsp;·&nbsp; 
+    Stellungnahme BK Merz, April 2026 &nbsp;·&nbsp;
+    Markéta Gregorová (Grüne/EFA), Pressemitteilung März 2026: „Die EVP nutzt Verfahrenstricks, um einen Standpunkt wieder aufzugreifen, auf den sich das Parlament bereits geeinigt hatte."
+  </div>
+
+  <p>Die Verhandlungen über die dauerhafte, verpflichtende Chatkontrolle 2.0 laufen weiter. <span class="tag-badge tag-offen">OFFEN</span></p>
+
+  <hr class="divider">
+
+  <!-- KAPITEL 3: VERHALTENSSCANNER -->
+  <h2>III. Das Auge auf der Straße: Verhaltensscanner 2018–2026</h2>
+
+  <p>Während die Chatkontrolle digital im Hintergrund lief, wurde der öffentliche Raum physisch erfasst. Seit 2018 wird in Mannheim eine Verhaltensscanner-Software an Passanten trainiert — ohne deren Wissen, unter Realbedingungen, auf öffentlichen Plätzen. <span class="tag-badge tag-belegt">BELEGT</span></p>
+
+  <p>Das System legt ein Vektoren-Strichmännchen über die Gliedmaßen abgebildeter Personen und analysiert Bewegungsabläufe. Bei vorab definierten Kategorien — Schläge, Tritte, Schubser, abwehrende Körperhaltungen — schlägt es Alarm. In Hamburg wird auch registriert, wenn jemand liegt. <span class="tag-badge tag-belegt">BELEGT</span></p>
+
+  <div class="stat-row">
+    <div class="stat-cell">
+      <span class="stat-number">2018</span>
+      <span class="stat-label">Trainingsstart Mannheim</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-number">76</span>
+      <span class="stat-label">Kameras Mannheim Innenstadt</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-number">0</span>
+      <span class="stat-label">Belegte Ermittlungserfolge Mannheim</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-number">9+</span>
+      <span class="stat-label">Bundesländer (aktiv + geplant, Stand 2026)</span>
+    </div>
+  </div>
+
+  <p>Die Polizei Mannheim kann nach acht Jahren Betrieb keinen einzigen Fall nennen, in dem die Technologie eine Ermittlung unterstützt hat. Dennoch breitet sich das System aus. <span class="tag-badge tag-belegt">BELEGT</span></p>
+
+  <div class="bundeslaender-grid">
+    <span class="bl-tag bl-aktiv">Hamburg</span>
+    <span class="bl-tag bl-aktiv">Baden-Württemberg</span>
+    <span class="bl-tag bl-aktiv">Hessen</span>
+    <span class="bl-tag bl-aktiv">Sachsen-Anhalt</span>
+    <span class="bl-tag bl-aktiv">Bremen (ÖPNV)</span>
+    <span class="bl-tag bl-geplant">Berlin</span>
+    <span class="bl-tag bl-geplant">Niedersachsen</span>
+    <span class="bl-tag bl-geplant">Schleswig-Holstein</span>
+    <span class="bl-tag bl-geplant">Thüringen</span>
+    <span class="bl-tag bl-geplant">Sachsen</span>
+  </div>
+  <div class="bl-legend">
+    <span style="color:var(--red)">■ Gesetzlich erlaubt</span>
+    <span style="color:var(--orange)">■ Gesetzentwurf in Abstimmung</span>
+    &nbsp;·&nbsp; Stand: Juni 2026 &nbsp;·&nbsp; Quellen: netzpolitik.org, Landtagsdrucksachen
+  </div>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    Koalitionsvertrag Baden-Württemberg (Grün-Schwarz), Mai 2026: doppelte KI-Videoüberwachung — Verhaltensscanner + Echtzeit-Gesichtserkennung, Pilotprojekt 3 Städte &nbsp;·&nbsp;
+    CCC-Pressemitteilung, März 2026: „großer Schritt in Richtung automatisierter Dauerbeobachtung" &nbsp;·&nbsp;
+    netzpolitik.org-Recherche Mannheim, inkl. parlamentarische Anfrage #356642 (KI Kameraüberwachung, 31.12.2025)
+  </div>
+
+  <p>Der Chaos Computer Club warnt, die Definition von „auffälligem Verhalten" bleibe intransparent: Ob längeres Verweilen, Menschenansammlungen, zwischenmenschliche Berührungen oder unregelmäßige Bewegungen als verdächtig eingestuft werden — dazu äußern sich weder Hersteller noch Behörden. <span class="tag-badge tag-belegt">BELEGT</span></p>
+
+  <p>Thüringens Innenminister Georg Maier (SPD) formulierte die Logik offen: „Es wäre fatal, wenn wir als einziges Bundesland darauf verzichten würden. Wir wären wie eine Insel für Kriminelle." Die Linken-Abgeordnete Katharina König-Preuss antwortete: „Das Problem ist, wer irgendwann in der Lage sein wird, solche Software zu nutzen." <span class="tag-badge tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    Thüringer Landtag, Debatte zur Polizeigesetz-Novelle, 05.02.2026 (Zitate: Georg Maier SPD, Katharina König-Preuss Die Linke) &nbsp;·&nbsp;
+    netzpolitik.org, 05.02.2026
+  </div>
+
+  <hr class="divider">
+
+  <!-- KAPITEL 4: WENDE -->
+  <h2>IV. Die strukturelle Verschiebung: von verdachtsabhängig zu anlasslos</h2>
+
+  <p>Das verbindende Prinzip der beschriebenen Entwicklungen ist eine juristische Verschiebung, die in öffentlichen Dokumenten sichtbar ist: von der verdachtsabhängigen zur anlasslosen Überwachung. <span class="tag-badge tag-belegt">BELEGT</span></p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">2020–2022</div>
+      <div class="timeline-text">Luca-App: Kontaktdaten für Gesundheitsämter, Zweckbindung gesetzlich verankert — und sofort von Strafverfolgungsbehörden umgangen.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2021–2026</div>
+      <div class="timeline-text">EU-Chatkontrolle: anlasslose Massenüberwachung privater Kommunikation aller Bürger, begründet mit Kinderschutz. Vorläufig gescheitert, Trilog zur dauerhaften Regelung läuft.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2018–2026</div>
+      <div class="timeline-text">Verhaltensscanner Mannheim: öffentlicher Raum als Trainingsfeld für KI, ohne nachgewiesenen Ermittlungserfolg. Ausweitung auf neun Bundesländer beschlossen oder geplant.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">März 2026</div>
+      <div class="timeline-text">Baden-Württemberg, Koalitionsvertrag Grün-Schwarz: KI-Videoüberwachung + Gesichtserkennung soll von Kriminalitätsschwerpunkten auf „strukturelle Schwerpunkte" ausgeweitet werden — definiert durch die Polizei.</div>
+    </div>
+  </div>
+
+  <p>Der Begriff „struktureller Kriminalitätsschwerpunkt" ist in keinem Gesetz definiert. Er wird durch die zuständige Polizeibehörde festgelegt. <span class="tag-badge tag-belegt">BELEGT</span> Damit entfällt das Erfordernis eines tatsächlichen Anlasses für die Überwachung. <span class="tag-badge tag-extrapolation">EXTRAPOLATION</span></p>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    netzpolitik.org, 09.03.2026: „Was ein struktureller Kriminalitätsschwerpunkt ist, entscheidet dann die Polizei." &nbsp;·&nbsp;
+    Koalitionsvertrag BW, Mai 2026: Manuel Hagel (CDU) — Kommunen sollen KI-gestützte Videoüberwachung einsetzen können „überall dort, wo sie es für notwendig halten"
+  </div>
+
+  <hr class="divider">
+
+  <!-- SATIRE ALS DOKUMENT -->
+  <h2>V. Satire als Dokument — ein Kommentar aus dem Heise-Forum</h2>
+
+  <p>Am 5. Mai 2026 veröffentlichte ein anonymer Nutzer im Kommentarbereich des IT-Nachrichtenportals heise.de einen Text unter dem Titel „Die liebevolle Gesprächs- und Verhaltenskontrolle im Jahr 2036". Der Text ist als Satire verfasst — und schließt mit dem Hinweis, er könne für Satire gehalten werden. Dann folgt der Link zur netzpolitik.org-Recherche über Verhaltensscanner. Der Verfasser schreibt dazu:</p>
+
+  <div class="satire-block">
+    <div class="satire-label">Textauszug · Heise-Forum · 05.05.2026</div>
+    <p>„Seit dem 1. Januar 2033 sind Barkeeper, Kellnerinnen, Supermarktkassiererinnen, Friseurinnen, Taxifahrer, Bäckereifachverkäuferinnen sowie alle Personen, die beruflich innerhalb von 1,5 Metern an anderen Menschen stehen, gesetzlich verpflichtet, als ‚Inoffizielle Mitarbeiter' am Schutze der Demokratie und dem Schutz der Kinder mitzuwirken."</p>
+    <p style="margin-top:0.8rem;">„Und falls das jetzt jemand für Satire hält, die Parteien inklusive der Grünen in BW wollen verdachtsunabhängige KI Verhaltenskontrolle in der Öffentlichkeit."</p>
+    <div class="satire-source">Quelle: heise.de, Forum, Posting-ID 46236142, 05.05.2026 (anonymer Nutzer)</div>
+  </div>
+
+  <p>Die Formulierung „Inoffizielle Mitarbeiter" — IM — ist eine direkte Referenz auf das Netzwerk von Informanten des Ministeriums für Staatssicherheit der DDR. Das Ministerium hatte nach Schätzungen bis zu 189.000 inoffizielle Mitarbeiter. Die Methode: soziale Nähe als Überwachungsinstrument.</p>
+
+  <p>Bärbel Bohley kannte diese Methode. Sie hatte sie erlebt. Sie hatte sie beschrieben. <span class="tag-badge tag-belegt">BELEGT</span></p>
+
+  <hr class="divider">
+
+  <!-- SCHLUSSFRAGEN -->
+  <div class="closing-questions">
+    <h2>Offene Fragen</h2>
+    <p>Welche Behörde definiert ab 2026 in Baden-Württemberg, was ein „struktureller Kriminalitätsschwerpunkt" ist — und nach welchen Kriterien?</p>
+    <p>Warum hat kein Bundesland in acht Jahren Verhaltensscanner-Betrieb einen einzigen Ermittlungserfolg dokumentiert — und warum werden die Systeme dennoch flächendeckend ausgerollt?</p>
+    <p>Welche Konsequenzen hatte der rechtswidrige Zugriff der Staatsanwaltschaft Mainz auf Luca-App-Daten für die beteiligten Beamten?</p>
+    <p>Die Chatkontrolle 1.0 ist gescheitert. Die Trilog-Verhandlungen über eine dauerhafte Regelung laufen. Wer verhandelt dort — und im Namen welcher Interessen?</p>
+  </div>
+
+  <!-- IMAGE BRIEFING -->
+  <div class="source-box" style="margin-top:3rem;">
+    <strong>Bildbriefing</strong>
+    Empfohlen: Atmosphärisches Bild — leere, nächtliche Straße mit Überwachungskamera im Vordergrund, Lichtkegel auf nassen Asphalt. Alternativ: Archivbild Stasi-Zentrale Berlin (Bundesarchiv, CC-lizenziert) kombiniert mit modernem Kamera-Motiv. Keine Gesichter. Keine erkennbaren Personen. Stil: dunkel, entsättigt, dokumentarisch.
+    <br><br>Infografik: Karte Deutschland mit Bundesländer-Status Verhaltensscanner (aktiv/geplant/offen) — geeignet für Gemini.
+  </div>
+
+  <!-- TAGS -->
+  <div class="source-box" style="margin-top:1rem;">
+    <strong>Ghost CMS Tags</strong>
+    Überwachung, Chatkontrolle, Verhaltensscanner, Grundrechte, Bärbel Bohley, Corona, Luca-App, KI, EU, Baden-Württemberg, Infrastruktur der Kontrolle, #19
+  </div>
+
+  <div class="series-nav">
+    <strong>Weitere Artikel</strong>
+    <a href="#">#15 — Infrastruktur der Kontrolle: Von Hollerith zu eIDAS 2.0</a>
+    <a href="#">#16 — PayPal Mafia / Thiel / Spahn / Dialog Society</a>
+    <a href="#">#17 — Palantir: Der technologische Staat (geplant)</a>
+    <a href="#" class="current">#19 — Bohley hatte recht: Von Corona zur KI-Verhaltensüberwachung ← aktuell</a>
+  </div>
+
+</article>
+
+</body>
+</html>

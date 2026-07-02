@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>150 Jahre Justiz — und nichts gelernt</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --ink:      #0D0D0D;
+    --paper:    #F2EDE4;
+    --red:      #8B1A1A;
+    --gold:     #C8960C;
+    --ash:      #3A3A3A;
+    --fog:      #B0A898;
+    --stamp:    #6B0F0F;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 300;
+    font-size: clamp(17px, 2vw, 20px);
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    background: var(--ink);
+    border-bottom: 1px solid #2A2A2A;
+    padding: 1.2rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--fog);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .masthead-brand { color: var(--gold); font-weight: 500; }
+  .masthead-sep { color: #2A2A2A; }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: clamp(2rem, 6vw, 5rem);
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 30%, rgba(139,26,26,0.18) 0%, transparent 70%),
+      linear-gradient(180deg, #0D0D0D 0%, #141008 60%, #0D0D0D 100%);
+    z-index: 0;
+  }
+
+  /* Scales graphic — hand drawn feel */
+  .hero-scales {
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.06;
+    width: min(600px, 90vw);
+    z-index: 0;
+  }
+
+  .hero-eyebrow {
+    position: relative; z-index: 1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    position: relative; z-index: 1;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(2.8rem, 7vw, 6rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--paper);
+    max-width: 14ch;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    position: relative; z-index: 1;
+    margin-top: 2rem;
+    max-width: 60ch;
+    color: var(--fog);
+    font-style: italic;
+    font-size: 1.1em;
+    border-left: 2px solid var(--red);
+    padding-left: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .hero-scroll {
+    position: relative; z-index: 1;
+    margin-top: 3rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: #444;
+    text-transform: uppercase;
+  }
+
+  /* ── TIMELINE SPINE ── */
+  .timeline {
+    position: relative;
+    padding: clamp(3rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: clamp(1.5rem, 5vw, 4rem);
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, #2A2A2A 10%, #2A2A2A 90%, transparent);
+  }
+
+  /* ── CHAPTER ── */
+  .chapter {
+    position: relative;
+    padding-left: clamp(2.5rem, 7vw, 5rem);
+    padding-bottom: clamp(3rem, 7vw, 5rem);
+  }
+
+  .chapter::before {
+    content: '';
+    position: absolute;
+    left: calc(clamp(1.5rem, 5vw, 4rem) - 4px);
+    top: 0.6rem;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--red);
+    box-shadow: 0 0 0 3px rgba(139,26,26,0.2);
+  }
+
+  .chapter-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .chapter h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    line-height: 1.2;
+    color: var(--paper);
+    margin-bottom: 1.2rem;
+  }
+
+  .chapter p {
+    color: #C8C0B4;
+    margin-bottom: 1.2rem;
+    max-width: 68ch;
+  }
+
+  /* ── DARK PULL QUOTE ── */
+  .pull {
+    position: relative;
+    margin: 2.5rem 0;
+    padding: 1.8rem 2rem 1.8rem 2.5rem;
+    background: rgba(139,26,26,0.08);
+    border-left: 3px solid var(--red);
+    max-width: 60ch;
+  }
+
+  .pull p {
+    font-style: italic;
+    font-size: 1.1em;
+    color: var(--paper) !important;
+    margin: 0 !important;
+    line-height: 1.6;
+  }
+
+  .pull-source {
+    display: block;
+    margin-top: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--fog);
+    text-transform: uppercase;
+  }
+
+  /* ── DARK FACT BOX ── */
+  .factbox {
+    margin: 2rem 0;
+    padding: 1.5rem 2rem;
+    background: #111;
+    border: 1px solid #2A2A2A;
+    border-top: 2px solid var(--gold);
+    max-width: 60ch;
+  }
+
+  .factbox-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .factbox p {
+    font-size: 0.9em;
+    color: #C8C0B4 !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .factbox p strong {
+    color: var(--paper);
+  }
+
+  /* ── STAMP ── */
+  .chapter-stamp {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.3rem 0.9rem;
+    border: 1px solid var(--stamp);
+    color: var(--stamp);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transform: rotate(-1.5deg);
+  }
+
+  /* ── VERDICT BLOCK ── */
+  .verdict {
+    margin: 4rem auto;
+    max-width: 900px;
+    padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 4rem);
+    background: linear-gradient(135deg, #110808, #0D0D0D);
+    border: 1px solid #2A2A2A;
+    border-top: 3px solid var(--red);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .verdict::after {
+    content: '§';
+    position: absolute;
+    right: -0.1em; bottom: -0.3em;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(8rem, 20vw, 16rem);
+    color: rgba(139,26,26,0.05);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .verdict-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+
+  .verdict h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    line-height: 1.15;
+    color: var(--paper);
+    margin-bottom: 1.5rem;
+    max-width: 20ch;
+  }
+
+  .verdict p {
+    color: #C8C0B4;
+    max-width: 62ch;
+    margin-bottom: 1rem;
+  }
+
+  .verdict-closing {
+    margin-top: 2rem;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: var(--paper);
+    line-height: 1.5;
+    max-width: 38ch;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid #1A1A1A;
+    padding: 2rem clamp(1.5rem, 5vw, 4rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #333;
+  }
+
+  footer a { color: #444; text-decoration: none; }
+  footer a:hover { color: var(--gold); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .timeline::before { left: 1.5rem; }
+    .chapter { padding-left: 2.5rem; }
+    .chapter::before { left: calc(1.5rem - 4px); }
+    .hero { padding: 2rem 1.5rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <span class="masthead-brand">dunkelfeld.info</span>
+  <span class="masthead-sep">·</span>
+  <span>Justiz &amp; Macht</span>
+  <span class="masthead-sep">·</span>
+  <span>Juni 2026</span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <!-- SVG Scales of Justice -->
+  <svg class="hero-scales" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <line x1="200" y1="20" x2="200" y2="260" stroke="white" stroke-width="2"/>
+    <line x1="80" y1="80" x2="320" y2="80" stroke="white" stroke-width="2"/>
+    <circle cx="200" cy="20" r="6" fill="white"/>
+    <!-- Left pan -->
+    <line x1="80" y1="80" x2="60" y2="140" stroke="white" stroke-width="1.5"/>
+    <line x1="80" y1="80" x2="100" y2="140" stroke="white" stroke-width="1.5"/>
+    <path d="M55 140 Q80 155 105 140" stroke="white" stroke-width="1.5" fill="none"/>
+    <!-- Right pan — tilted down (weight of history) -->
+    <line x1="320" y1="80" x2="295" y2="155" stroke="white" stroke-width="1.5"/>
+    <line x1="320" y1="80" x2="345" y2="155" stroke="white" stroke-width="1.5"/>
+    <path d="M290 155 Q320 170 350 155" stroke="white" stroke-width="1.5" fill="none"/>
+    <!-- Base -->
+    <line x1="160" y1="260" x2="240" y2="260" stroke="white" stroke-width="2"/>
+  </svg>
+
+  <div class="hero-eyebrow">Analyse — Justiz &amp; Staat</div>
+
+  <h1>150 Jahre<br>Justiz — <em>und<br>nichts gelernt</em></h1>
+
+  <p class="hero-sub">
+    Von Bismarck bis Bremen. Vier Staatsformen. Eine Konstante:<br>
+    Die Robe schützt den Staat — nicht den Bürger.
+  </p>
+
+  <p class="hero-scroll">↓ &nbsp; Weiterlesen</p>
+</section>
+
+<!-- TIMELINE -->
+<div class="timeline">
+
+  <!-- 1871 -->
+  <div class="chapter">
+    <div class="chapter-year">1871 — Kaiserreich</div>
+    <h2>Die Blaupause wird gegossen</h2>
+    <p>Mit der Reichsgründung entstand auch das moderne deutsche Justizwesen — geprägt vom Obrigkeitsstaat, durchdrungen vom Untertanengeist. Die Reichsjustizgesetze von 1879 schufen die Grundstruktur, die im Kern bis heute gilt: Staatsanwälte als weisungsgebundene Behörde der Exekutive, Richter als Karrierebeamte des Staates.</p>
+    <p>Kein echtes Gegengewicht zur politischen Macht. Kunst, Satire, politische Kritik — das war nicht Meinungsfreiheit, das war Majestätsbeleidigung. Karl Liebknecht saß wegen einer Antikriegsrede im Gefängnis. Rosa Luxemburg gleich mehrmals.</p>
+    <div class="pull">
+      <p>Die Richter sahen sich dabei nicht als Werkzeug der Macht. Sie sahen sich als Hüter der Ordnung. Genau das ist das Problem — damals wie heute.</p>
+    </div>
+    <div class="chapter-stamp">Kein Korrektiv</div>
+  </div>
+
+  <!-- 1919 -->
+  <div class="chapter">
+    <div class="chapter-year">1919 — Weimarer Republik</div>
+    <h2>Neue Republik, alte Roben</h2>
+    <p>Nach der Novemberrevolution erhoffte man sich einen Neustart. Man bekam das Gegenteil. Der Justizapparat blieb weitgehend personell und strukturell unverändert. Viele Richter und Staatsanwälte stammten noch aus der Kaiserzeit und standen der jungen Republik skeptisch bis feindlich gegenüber.</p>
+    <p>Das Ergebnis war eine Justiz mit Schlagseite: Während rechte Täter — Freikorps-Mitglieder, Putschisten — oft mit milden Strafen davonkamen, wurden linke Aktivisten mit aller Härte verfolgt.</p>
+    <div class="factbox">
+      <div class="factbox-label">Akte: München 1923</div>
+      <p><strong>Adolf Hitler</strong> putschte 1923. Das Gericht verurteilte ihn zu fünf Jahren Festungshaft — und ließ ihn nach neun Monaten frei.</p>
+      <p>Die gesetzlich vorgesehene Ausweisung als österreichischer Staatsbürger unterblieb. Was er in der Festung schrieb, durfte er behalten und veröffentlichen.</p>
+      <p><strong>Die Justiz der Weimarer Republik schützte nicht die Demokratie. Sie bereitete ihr Grab.</strong></p>
+    </div>
+    <div class="pull">
+      <p>In diesem Verfahren, in dem vom ersten ermittelnden Landgendarmen bis herunter zum Staatsanwalt alle, alle mit dem Herzen auf der Seite solcher Mörder stehen — in diesem Irrgarten des Rechts.</p>
+      <span class="pull-source">Zeitgenosse, 1922 — könnte heute geschrieben sein</span>
+    </div>
+  </div>
+
+  <!-- 1933 -->
+  <div class="chapter">
+    <div class="chapter-year">1933 — Das Dritte Reich</div>
+    <h2>Die willfährige Kaste</h2>
+    <p>Was 1933 passierte, war keine Unterwerfung unter Gewalt. Es war Zustimmung.</p>
+    <p>Die in ihrer weit überwiegenden Mehrzahl nationalkonservativen Justizjuristen gingen 1933 eine Zusammenarbeit mit der nationalsozialistischen Staatsführung ein — nicht gezwungen, nicht unter Druck, sondern erleichtert. Die als „ätzend" empfundene Kritik an der politisch einseitigen Rechtsprechung und das „Hineinregieren" sozialdemokratischer Minister sollten nun ein Ende haben.</p>
+    <div class="factbox">
+      <div class="factbox-label">Volksgerichtshof — Statistik des Terrors</div>
+      <p>Roland Freisler, Präsident des Volksgerichtshofs, schickte zwischen 1942 und 1945 <strong>über 2.600 Menschen in den Tod</strong>.</p>
+      <p>Ärzte, die dem NS-Regime den Dienst verweigerten, wurden erschossen. Widerständler wie die Geschwister Scholl: verhaftet, verurteilt, guillotiniert — innerhalb von vier Tagen.</p>
+      <p>Die Justiz war kein Korrektiv. Sie war die verlängerte Hand des Terrors. <strong>In Roben.</strong></p>
+    </div>
+    <div class="chapter-stamp">Systemversagen</div>
+  </div>
+
+  <!-- 1945 -->
+  <div class="chapter">
+    <div class="chapter-year">1945 — Bundesrepublik</div>
+    <h2>Der Neubeginn, der keiner war</h2>
+    <p>1945. Neubeginn. Stunde Null. So die offizielle Erzählung. Die Realität sah anders aus.</p>
+    <div class="factbox">
+      <div class="factbox-label">Rosenburg-Studie — Bundesjustizministerium 2016</div>
+      <p>Eine vierjährige unabhängige Untersuchung, 2016 vom Bundesjustizministerium selbst vorgestellt:</p>
+      <p><strong>Mehr als die Hälfte aller Führungskräfte</strong> des Bundesjustizministeriums in den 1950er und 1960er Jahren waren ehemalige NSDAP-Mitglieder. Jeder fünfte war Mitglied der SA.</p>
+      <p>Viele kamen direkt aus dem Reichsministerium.</p>
+    </div>
+    <p>1956 kippte der Bundesgerichtshof seine eigene frühere Linie zur NS-Rechtsprechung ins Gegenteil. Im Jahr dieser Entscheidung waren 80 Prozent der BGH-Richter zuvor in der NS-Judikatur tätig gewesen.</p>
+    <div class="pull">
+      <p>Wo Buße not tat, wurde nach Entlastung gesucht und alsbald unbefangen dort wieder angeknüpft, wo man 1933 stehengeblieben war.</p>
+      <span class="pull-source">Historische Einschätzung zur Entnazifizierung der Justiz</span>
+    </div>
+    <div class="factbox">
+      <div class="factbox-label">Das Urteil der Geschichte</div>
+      <p><strong>Kein einziger Richter</strong> eines nationalsozialistischen Sondergerichts oder des Volksgerichtshofs wurde in der Bundesrepublik rechtskräftig wegen eines Justizmords verurteilt.</p>
+      <p>Nicht einer. Nicht einer von Tausenden.</p>
+    </div>
+  </div>
+
+  <!-- 1959 -->
+  <div class="chapter">
+    <div class="chapter-year">1959 — Die Ausstellung</div>
+    <h2>„Ungesühnte Nazijustiz" — die Schau, die niemand sehen wollte</h2>
+    <p>Ein junger Jurastudent namens Reinhard Strecker reiste durch Westdeutschland mit einer Ausstellung. Der Titel: <em>„Ungesühnte Nazijustiz."</em></p>
+    <p>Er zeigte Verhandlungsprotokolle. Todesurteile. Namen von NS-Richtern — und ihre aktuellen Posten in bundesdeutschen Gerichten und Ministerien. Schwarz auf Weiß.</p>
+    <div class="pull">
+      <p>In Großbritannien präsentierte Strecker die Unterlagen vor dem Unterhaus — britische Parlamentarier waren schockiert. In Deutschland sprach man lieber nicht darüber.</p>
+    </div>
+    <p>Universitätsleitungen ließen Gebäude räumen. Die Bundesregierung lehnte es ab, die Dokumente prüfen zu lassen.</p>
+    <p>Erst die Studentenbewegung der späten 1960er Jahre riss das Schweigen auf — indem sie genau diese Frage stellte: Wer lehrt uns Jura? Wer hat diese Professoren ausgebildet? Wer sitzt in welchem Gericht?</p>
+    <p>Die Antworten waren unbequem. Und sie blieben folgenlos.</p>
+    <div class="chapter-stamp">Verdrängung</div>
+  </div>
+
+  <!-- Weisungsrecht -->
+  <div class="chapter">
+    <div class="chapter-year">Strukturproblem — bis heute</div>
+    <h2>Weisungsgebunden: Der legale Durchgriff der Politik</h2>
+    <p>Es gibt ein juristisches Detail, das die meisten Menschen nicht kennen — obwohl es die gesamte Frage der Justizunabhängigkeit in Deutschland definiert:</p>
+    <div class="factbox">
+      <div class="factbox-label">§§ 146, 147 Gerichtsverfassungsgesetz</div>
+      <p><strong>Deutsche Staatsanwälte sind weisungsgebunden.</strong></p>
+      <p>Das bedeutet: Ein Justizminister kann — rechtlich abgesichert — Einfluss nehmen. Ob ermittelt wird. Wie ein Gesetz ausgelegt wird. Was verfolgt wird. Und was nicht.</p>
+      <p><strong>2019 urteilte der Europäische Gerichtshof:</strong> Die deutschen Staatsanwaltschaften sind nicht unabhängig genug, um als „Justizbehörde" im europäischen Sinne zu gelten. Deutschland sei in Europa ein Sonderfall.</p>
+    </div>
+    <div class="pull">
+      <p>Das ministerielle, politische Weisungsrecht ist anachronistisch. Wo ein Anruf reicht, braucht es keine Anweisung auf Papier.</p>
+      <span class="pull-source">Transparency International</span>
+    </div>
+    <p>Die Reaktion der deutschen Politik? Man beließ es weitgehend beim Alten. Das Weisungsrecht besteht fort. Niemand muss dokumentieren, wenn das Justizministerium anruft.</p>
+    <div class="chapter-stamp">Kein Korrektiv</div>
+  </div>
+
+  <!-- 2026 -->
+  <div class="chapter">
+    <div class="chapter-year">18. Juni 2026 — Bremen</div>
+    <h2>Die Robe sitzt. Immer noch.</h2>
+    <p>Rudolph Bauer. Jahrgang 1939. 87 Jahre alt. Emeritierten Professor der Universität Bremen. Bildmontagen auf Instagram — politische Kunst, in der Tradition von John Heartfield, der in den 1920ern mit denselben Mitteln denselben Aufstieg des Faschismus kommentierte.</p>
+    <div class="factbox">
+      <div class="factbox-label">Akte: Landgericht Bremen 2026</div>
+      <p><strong>10. August 2023:</strong> Hausdurchsuchung, früh morgens. Bewaffnete Beamte. Schutzwesten. Für einen 87-jährigen Künstler.</p>
+      <p><strong>August 2025:</strong> Amtsgericht Bremen — 120 Tagessätze à 100 Euro. Volksverhetzung durch Bildmontagen.</p>
+      <p><strong>18. Juni 2026:</strong> Landgericht Bremen in zweiter Instanz — kein Freispruch. Verwarnung mit Strafvorbehalt.</p>
+      <p>Die Richterin: Die Montagen seien keine Kunst, sondern bloße Meinungsäußerung. <strong>Revision angekündigt.</strong></p>
+    </div>
+    <div class="pull">
+      <p>Die politische Justiz schützt nicht den Bürger vor dem Staat — sondern den Staat vor den Bürgern.</p>
+      <span class="pull-source">Prof. Rudolph Bauer, nach dem Amtsgerichtsurteil 2025</span>
+    </div>
+    <p>Ein Satz, der seit 150 Jahren wahr ist.</p>
+  </div>
+
+</div>
+
+<!-- VERDICT -->
+<div class="verdict">
+  <div class="verdict-eyebrow">Fazit</div>
+  <h2>Vier Staatsformen.<br>Eine Kontinuität.</h2>
+  <p>Das Kaiserreich verfolgte Sozialisten. Die Weimarer Republik ließ Putschisten laufen. Das Dritte Reich mordete mit Richterrobe und Stempel. Die Bundesrepublik beschäftigte dieselben Männer weiter, verurteilte keinen einzigen NS-Richter — und brauchte vier Jahre und eine Kommission, um zuzugeben: Ja, die halbe Führung unseres Justizministeriums war NSDAP.</p>
+  <p>Und heute? Heute steht ein 87-jähriger Künstler vor Gericht.</p>
+  <p>John Heartfield zeichnete Hitler. Deutschland ehrte ihn posthum. Rudolph Bauer zeichnet mit denselben Mitteln gegen dieselben Tendenzen — und steht vor Gericht. Majestätsbeleidigung heißt jetzt Volksverhetzung. Das Kostüm hat gewechselt. Der Geist nicht.</p>
+  <p class="verdict-closing">Solange Staatsanwälte weisungsgebunden sind, solange kein unabhängiges Organ Richterkarrieren kontrolliert, solange Korpsgeist wichtiger ist als Gewissen — bleibt die Justiz das, was sie seit 150 Jahren ist:</p>
+  <p class="verdict-closing"><em>Ein Instrument. Kein Korrektiv.</em></p>
+</div>
+
+<footer>
+  <span>dunkelfeld.info</span>
+  <span>·</span>
+  <span>Diagnose. Wandel. Zukunft.</span>
+  <span>·</span>
+  <a href="https://kurswechsel.blog">kurswechsel.blog</a>
+  <span>·</span>
+  <a href="https://aho-impulse.de">aho-impulse.de</a>
+</footer>
+
+</body>
+</html>

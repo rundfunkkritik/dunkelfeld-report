@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Das Mercosur-Abkommen — Wer kontrolliert, was wir essen? Teil 7 | dunkelfeld.report</title>
+  <meta name="description" content="EU-Mercosur-Freihandelsabkommen: Rindfleisch gegen Autos, Regenwald gegen Zölle, und was mit Substanzen geschieht, die in der EU verboten sind.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #09090b;
+      color: #e4e4e7;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Serienbanner */
+    .series-banner {
+      background: #18181b;
+      border-left: 3px solid #e8c547;
+      padding: 0.75rem 1.25rem;
+      margin-bottom: 2.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: #a1a1aa;
+      letter-spacing: 0.04em;
+    }
+    .series-banner strong {
+      color: #e8c547;
+    }
+
+    /* Header */
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #fafafa;
+      margin-bottom: 0.75rem;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: #a1a1aa;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .meta {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: #71717a;
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    /* Abschnitte */
+    h2 {
+      font-size: 1.35rem;
+      color: #e8c547;
+      margin: 2.5rem 0 0.85rem;
+      font-weight: 600;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      color: #d4d4d8;
+      margin: 1.75rem 0 0.6rem;
+      font-weight: 600;
+    }
+
+    p {
+      margin-bottom: 1.2rem;
+    }
+
+    /* Status-Tags */
+    .tag {
+      display: inline-block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 0.15rem 0.5rem;
+      border-radius: 2px;
+      vertical-align: middle;
+      margin-left: 0.35rem;
+      position: relative;
+      top: -1px;
+    }
+    .tag-belegt   { background: #14532d; color: #86efac; }
+    .tag-offen    { background: #3f3f46; color: #a1a1aa; }
+    .tag-extrapol { background: #7c2d12; color: #fdba74; }
+
+    /* Quell-Box */
+    .source-box {
+      background: #1a1a2e;
+      border-left: 3px solid #e8c547;
+      padding: 1rem 1.25rem;
+      margin: 1.75rem 0;
+      font-size: 0.88rem;
+    }
+    .source-box .source-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: #e8c547;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+    }
+    .source-box a {
+      color: #93c5fd;
+      text-decoration: none;
+    }
+    .source-box a:hover { text-decoration: underline; }
+
+    /* Stat Grid */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin: 1.75rem 0;
+    }
+    .stat-item {
+      background: #18181b;
+      border: 1px solid #27272a;
+      padding: 1rem 1.1rem;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #e8c547;
+      font-family: 'Courier New', monospace;
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: #a1a1aa;
+      margin-top: 0.25rem;
+      line-height: 1.4;
+    }
+
+    /* Data Table */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.75rem 0;
+      font-size: 0.9rem;
+    }
+    .data-table th {
+      background: #18181b;
+      color: #e8c547;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      padding: 0.6rem 0.85rem;
+      text-align: left;
+      border-bottom: 1px solid #3f3f46;
+    }
+    .data-table td {
+      padding: 0.6rem 0.85rem;
+      border-bottom: 1px solid #27272a;
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: #18181b; }
+
+    /* Vergleich Grid / Doppelstandard */
+    .vs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin: 1.75rem 0;
+      border: 1px solid #27272a;
+    }
+    .vs-col {
+      padding: 1rem 1.15rem;
+    }
+    .vs-col:first-child {
+      border-right: 1px solid #27272a;
+      background: #18181b;
+    }
+    .vs-col:last-child {
+      background: #1a1208;
+    }
+    .vs-header {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.09em;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+    .vs-col:first-child .vs-header { color: #86efac; }
+    .vs-col:last-child .vs-header  { color: #fbbf24; }
+    .vs-col ul {
+      list-style: none;
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: #d4d4d8;
+    }
+    .vs-col ul li::before {
+      content: "→ ";
+      color: #71717a;
+    }
+
+    /* Pull Quote */
+    .pull-quote {
+      border-left: 3px solid #e8c547;
+      padding: 0.75rem 1.25rem;
+      margin: 1.75rem 0;
+      font-style: italic;
+      color: #d4d4d8;
+      font-size: 1.05rem;
+    }
+    .pull-quote cite {
+      display: block;
+      font-style: normal;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: #71717a;
+      margin-top: 0.5rem;
+    }
+
+    /* Timeline */
+    .timeline {
+      margin: 1.75rem 0;
+      position: relative;
+      padding-left: 1.5rem;
+      border-left: 1px solid #3f3f46;
+    }
+    .timeline-item {
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #e8c547;
+      position: absolute;
+      left: -1.85rem;
+      top: 0.45rem;
+    }
+    .timeline-date {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: #e8c547;
+      letter-spacing: 0.06em;
+    }
+    .timeline-text {
+      font-size: 0.9rem;
+      color: #d4d4d8;
+      margin-top: 0.2rem;
+    }
+
+    /* Seriennavigation */
+    .series-nav {
+      background: #18181b;
+      border: 1px solid #27272a;
+      padding: 1.25rem 1.5rem;
+      margin-top: 3rem;
+    }
+    .series-nav-title {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: #e8c547;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.85rem;
+    }
+    .series-nav ul {
+      list-style: none;
+      font-size: 0.85rem;
+      line-height: 1.9;
+    }
+    .series-nav a {
+      color: #93c5fd;
+      text-decoration: none;
+    }
+    .series-nav a:hover { text-decoration: underline; }
+    .series-nav .current { color: #e8c547; font-weight: 600; }
+    .series-nav .pending { color: #52525b; }
+
+    /* Closing */
+    .closing {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid #27272a;
+      font-style: italic;
+      color: #a1a1aa;
+      font-size: 0.97rem;
+      line-height: 1.9;
+    }
+
+    /* Trennlinie */
+    hr {
+      border: none;
+      border-top: 1px solid #27272a;
+      margin: 2.5rem 0;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5rem; }
+      .vs-grid { grid-template-columns: 1fr; }
+      .vs-col:first-child { border-right: none; border-bottom: 1px solid #27272a; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Serienbanner -->
+  <div class="series-banner">
+    <strong>SERIE</strong> — Wer kontrolliert, was wir essen? &nbsp;|&nbsp; Teil 7 von 11
+  </div>
+
+  <!-- Header -->
+  <h1>Das Mercosur-Abkommen</h1>
+  <p class="subtitle">Rindfleisch gegen Autos — und was mit Substanzen geschieht, die hier verboten sind</p>
+  <div class="meta">
+    DUNKELFELD.REPORT &nbsp;·&nbsp; Zuletzt aktualisiert: Juni 2026 &nbsp;·&nbsp; Primärquellen: EU-Kommission, EU-Parlament, EFFAT, WWF/Trase Amazon Footprint Report 2025, Germanwatch/AbL, Bundesregierung
+  </div>
+
+  <!-- 1. Chronologie -->
+  <h2>25 Jahre Verhandlung — die Chronologie</h2>
+
+  <p>Das Freihandelsabkommen zwischen der Europäischen Union und den Mercosur-Staaten Argentinien, Brasilien, Paraguay und Uruguay gilt als das größte, das die EU jemals abgeschlossen hat. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">1991</div>
+      <div class="timeline-text">Gründung des Mercosur (Mercado Común del Sur) als Wirtschaftsgemeinschaft.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">1999</div>
+      <div class="timeline-text">Offizielle Aufnahme der Verhandlungen zwischen EU und Mercosur.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Juni 2019</div>
+      <div class="timeline-text">Grundsatzeinigung auf Handelskapitel; Einigung am brasilianischen Regenwald-Streit zunächst gescheitert.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">6. Dezember 2024</div>
+      <div class="timeline-text">Politische Einigung auf Partnerschaftsabkommen beim Mercosur-Gipfel.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">9. Januar 2026</div>
+      <div class="timeline-text">EU-Rat stimmt mit qualifizierter Mehrheit zu — gegen die Stimmen Frankreichs, Polens, Ungarns, Irlands und Österreichs; Belgien enthält sich.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">17. Januar 2026</div>
+      <div class="timeline-text">Unterzeichnung in Asunción (Paraguay) durch EU-Kommissionspräsidentin Ursula von der Leyen und die Mercosur-Präsidenten.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">21. Januar 2026</div>
+      <div class="timeline-text">EU-Parlament beschließt, das Abkommen vor Ratifizierung durch den Europäischen Gerichtshof prüfen zu lassen.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">1. Mai 2026</div>
+      <div class="timeline-text">Vorläufiges Inkrafttreten des Handelskapitels (Interim-Handelsabkommen). Das vollständige Partnerschaftsabkommen erfordert noch die Ratifizierung aller EU-Mitgliedstaaten.</div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <div class="source-label">PRIMÄRQUELLE</div>
+    Wikipedia-Artikel mit ausführlicher Chronologie und Ratifizierungsstand (laufend aktualisiert):
+    <a href="https://de.wikipedia.org/wiki/Freihandelsabkommen_EU-Mercosur" target="_blank" rel="noopener">de.wikipedia.org/wiki/Freihandelsabkommen_EU-Mercosur</a><br>
+    Bundesregierung zum vorläufigen Inkrafttreten (01.05.2026):
+    <a href="https://www.bundesregierung.de/breg-en/news/mercosur-launch-2403122" target="_blank" rel="noopener">bundesregierung.de — Mercosur Launch</a>
+  </div>
+
+  <!-- 2. Was das Abkommen vorsieht -->
+  <h2>Was das Abkommen konkret vorsieht</h2>
+
+  <p>Kernstück ist der schrittweise Abbau von Zöllen auf über 90 Prozent aller Handelsgüter. <span class="tag tag-belegt">BELEGT</span> Die EU-Kommission gibt an, dadurch würden europäische Unternehmen jährlich mehr als vier Milliarden Euro an Zollgebühren einsparen.</p>
+
+  <div class="stat-grid">
+    <div class="stat-item">
+      <span class="stat-number">700 Mio.</span>
+      <div class="stat-label">Menschen in der entstehenden Freihandelszone</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">91 %</span>
+      <div class="stat-label">EU-Exporte in Mercosur künftig zollfrei</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">93 %</span>
+      <div class="stat-label">Mercosur-Exporte in die EU künftig zollfrei oder begünstigt</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">111 Mrd. €</span>
+      <div class="stat-label">Handelsvolumen EU–Mercosur 2024</div>
+    </div>
+  </div>
+
+  <p>Die Logik des Tausches ist deutlich: Die EU exportiert Industrieprodukte — Fahrzeuge (auf die Mercosur derzeit bis zu 35 % Zoll erhebt), Maschinen, Chemikalien, Pharmazeutika. Der Mercosur exportiert Agrarprodukte — Rindfleisch, Geflügel, Soja, Zucker, Kaffee. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="pull-quote">
+    „Grob gesagt geht es um Rindfleisch gegen Autos."
+    <cite>— taz, 17. Januar 2026</cite>
+  </div>
+
+  <h3>Importquoten für Agrarprodukte</h3>
+
+  <p>Für sogenannte „sensible" Agrarprodukte sieht das Abkommen Quoten vor — Mengen, bis zu denen reduzierte oder Nullzölle gelten. Darüber hinaus greifen wieder höhere Tarife. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Produkt</th>
+        <th>Quote (Endmenge)</th>
+        <th>Zollsatz in der Quote</th>
+        <th>Anteil EU-Produktion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Rindfleisch</td>
+        <td>99.000 t/Jahr</td>
+        <td>7,5 %</td>
+        <td>ca. 1,5 %</td>
+      </tr>
+      <tr>
+        <td>Geflügelfleisch</td>
+        <td>180.000 t/Jahr</td>
+        <td>0 % (zollfrei)</td>
+        <td>ca. 1,3 %</td>
+      </tr>
+      <tr>
+        <td>Zucker</td>
+        <td>180.000 t + 10.000 t Industrie</td>
+        <td>0 % (zollfrei)</td>
+        <td>ca. 1,1 %</td>
+      </tr>
+      <tr>
+        <td>Honig</td>
+        <td>45.000 t/Jahr</td>
+        <td>0 % (zollfrei)</td>
+        <td>ca. 10 % des EU-Verbrauchs</td>
+      </tr>
+      <tr>
+        <td>Reis</td>
+        <td>60.000 t/Jahr</td>
+        <td>reduziert</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Ethanol (Chemie)</td>
+        <td>450.000 t/Jahr</td>
+        <td>0 % (zollfrei)</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Die 99.000 Tonnen Rindfleisch entsprechen der <strong>höchsten Marktöffnungsquote, die die EU je einem Handelspartner gewährt hat.</strong> <span class="tag tag-belegt">BELEGT</span> Bei den Rindfleischimporten handelt es sich überwiegend um sogenannte „Edelteile" — was bedeutet, dass wertmäßig deutlich mehr als 1,5 Prozent des EU-Marktes betroffen sein könnten.</p>
+
+  <div class="source-box">
+    <div class="source-label">PRIMÄRQUELLEN</div>
+    EU-Kommission FAQ zum Partnerschaftsabkommen:
+    <a href="https://germany.representation.ec.europa.eu/fragen-und-antworten-zum-partnerschaftsabkommen-eu-mercosur_de" target="_blank" rel="noopener">germany.representation.ec.europa.eu</a><br>
+    Bundesministerium für Landwirtschaft FAQ (BMLEH, Stand Mai 2026):
+    <a href="https://www.bmleh.de/SharedDocs/FAQs/DE/faq-eu-mercosur/FAQ-eu-mercosur_List.html" target="_blank" rel="noopener">bmleh.de</a><br>
+    Germanwatch / AbL Factsheet Agrarhandel:
+    <a href="https://www.germanwatch.org/sites/default/files/Factsheet_Internationalen%20Agrarhandel%20nachhaltig%20gestalten_2.pdf" target="_blank" rel="noopener">germanwatch.org (PDF)</a>
+  </div>
+
+  <!-- 3. Was das Abkommen für EU-Bauern bedeutet -->
+  <h2>Was das Abkommen für EU-Landwirte bedeutet</h2>
+
+  <p>Europäische Bauernverbände und Gewerkschaften sehen das Abkommen als strukturelle Wettbewerbsverzerrung. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Der Deutsche Bauernverband (DBV) erklärte offiziell, das Agrarkapitel begünstige eindeutig die Mercosur-Erzeuger und bringe negative Markteffekte bei Rindfleisch, Geflügel, Zucker und Ethanol. DBV-Präsident Joachim Rukwied: Zukünftig würden Lebensmittel importiert, die mit deutlich niedrigeren Tierwohl-, Umwelt- und Sozialstandards erzeugt wurden. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Der Zentralverband der Deutschen Geflügelwirtschaft (ZDG) dokumentierte: Geflügelfleischimporte aus Mercosur-Staaten machen bereits rund ein Drittel der gesamten EU-Geflügelimporte aus — sowohl mengen- als auch wertmäßig. Die geplante Zusatzquote von 180.000 Tonnen würde diesen Druck weiter erhöhen. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="pull-quote">
+    „Heimische Landwirte werden zu Tode kontrolliert, müssen jeden bürokratischen Wahnsinn ertragen — und gleichzeitig öffnet man die Schleusen für unkontrolliertes, sogar wissentlich gesundheitsgefährdendes Billigfleisch aus Übersee."
+    <cite>— FPÖ-Generalsekretär Michael Schnedlitz, Mai 2026 (im Kontext österreichischer Kontrollfunde von Antibiotika-belastetem Rindfleisch aus Brasilien, März 2026)</cite>
+  </div>
+
+  <p>Der Europäische Gewerkschaftsverband für Lebensmittel, Landwirtschaft und Tourismus (EFFAT) dokumentierte: Über 30 in Brasilien für Zuckerrohr zugelassene Wirkstoffe sind in der EU für Zuckerrüben verboten. Für Mais sind 52 Prozent der in Brasilien zugelassenen Wirkstoffe in der EU nicht zugelassen. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <div class="source-label">PRIMÄRQUELLE</div>
+    EFFAT — Gemeinsame Erklärung europäischer Agrar- und Arbeitsverbände (Copa-Cogeca, ZDG, AVEC, CEFS u.a.), November 2025:
+    <a href="https://effat.org/de/in-the-spotlight/eu-mercosur-agreement-betrays-european-farmers-workers-consumers-and-the-environment/" target="_blank" rel="noopener">effat.org</a><br>
+    Zentralverband der Deutschen Geflügelwirtschaft (ZDG), Januar 2026:
+    <a href="https://www.dgs-magazin.de/aktuelles/news/article-8345313-4627/deutsche-gefluegelwirtschaft-sagt-nein-zu-eu-mercosur-.html" target="_blank" rel="noopener">dgs-magazin.de / ZDG</a>
+  </div>
+
+  <!-- 4. Doppelstandard Pestizide -->
+  <h2>Der Doppelstandard: Was hier verboten ist, wird dort gespritzt — und kommt zurück</h2>
+
+  <p>Das Freihandelsabkommen enthält eine strukturelle Asymmetrie, die in der öffentlichen Debatte selten explizit benannt wird. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="vs-grid">
+    <div class="vs-col">
+      <div class="vs-header">IN DER EU: VERBOTEN</div>
+      <ul>
+        <li>Mancozeb (Fungizid, endokrin wirksam)</li>
+        <li>Chlorthalonil (Fungizid, krebsverdächtig)</li>
+        <li>Atrazin (Herbizid, Gewässerkontamination)</li>
+        <li>Acephat (Insektizid, neurotoxisch)</li>
+        <li>Fipronil (Insektizid, bienentoxisch)</li>
+        <li>Carbendazim (Fungizid, reproduktionstoxisch)</li>
+        <li>Glufosinat (Herbizid, neurotoxisch)</li>
+      </ul>
+    </div>
+    <div class="vs-col">
+      <div class="vs-header">IN BRASILIEN: ZUGELASSEN &amp; IM EINSATZ</div>
+      <ul>
+        <li>Alle vier erstgenannten unter den Top-10-Meistverkauften 2021</li>
+        <li>Bayer vertreibt mindestens 12–15 EU-verbotene Wirkstoffe in Brasilien</li>
+        <li>BASF vertreibt mindestens 13 EU-verbotene Wirkstoffe</li>
+        <li>Unter Bolsonaro: 818 neu zugelassene Pestizide mit mind. einem EU-verbotenen Wirkstoff</li>
+        <li>EU-Konzerne produzieren und exportieren — in der EU nicht verwendbar, im Mercosur legal</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>Die Heinrich-Böll-Stiftung dokumentierte: Von den zehn meistverkauften Pestiziden in Brasilien im Jahr 2021 sind vier in der EU verboten. Bayer-Vorstandsvorsitzender Hermann J. Strenger formulierte das zugrundeliegende Prinzip bereits 1988 ohne Umschweife: „In der Tat haben wir zum Beispiel in Brasilien nicht Gesetze wie in der Bundesrepublik." <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Das Mercosur-Abkommen erleichtert nun den Handel mit Erzeugnissen, die unter Einsatz dieser Substanzen produziert wurden. Die EU-Kommission verweist darauf, dass für alle Importe in die EU das EU-Recht bezüglich Rückstandshöchstgehalten gelte. <span class="tag tag-belegt">BELEGT</span> Das Europäische Parlament wies in seiner Prüfungsentscheidung vom 21. Januar 2026 auf einen Mangel an Kontrollen auf Pestizidrückständen bei Importen hin. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="pull-quote">
+    „In Bezug auf die gefährlichsten Pestizide, die in der EU verboten sind, wird die Kommission einen Grundsatz festlegen, wonach solche Pestizidrückstände nicht über eingeführte Erzeugnisse in die EU zurückgelassen werden dürfen. Konkrete Maßnahmen: Einleitung einer Folgenabschätzung, deren erster Teil bis Sommer 2026 abgeschlossen sein soll."
+    <cite>— EU-Kommission, Vertretung in Deutschland, FAQ zum Partnerschaftsabkommen EU-Mercosur</cite>
+  </div>
+
+  <p>Das Abkommen ist seit dem 1. Mai 2026 vorläufig in Kraft. Die Folgenabschätzung zu Pestizidrückständen soll laut EU-Kommission bis Sommer 2026 abgeschlossen sein. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <div class="source-label">PRIMÄRQUELLEN</div>
+    Heinrich-Böll-Stiftung — Pestizide: Brasilien (2024):
+    <a href="https://www.boell.de/de/2024/01/11/pestizide-brasilien-ein-profitabler-markt" target="_blank" rel="noopener">boell.de</a><br>
+    Kooperation Brasilien e.V. — Doppelstandards Pestizide (Bayer/BASF-Daten, 2022):
+    <a href="https://www.kooperation-brasilien.org/de/themen/landkonflikte-umwelt/gefaehrliche-pestizide-und-doppelstandards" target="_blank" rel="noopener">kooperation-brasilien.org</a><br>
+    Misereor — Broschüre „Gefährliche Pestizide von Bayer und BASF" (PDF):
+    <a href="https://www.misereor.de/fileadmin/user_upload/Infothek/broschuere-gefaehrliche-pestizide-von-bayer-und-basf-globales-geschaeft-mit-doppelstandards.pdf" target="_blank" rel="noopener">misereor.de (PDF)</a><br>
+    EU-Kommission zu Pestizidrückständen und geplanter Folgenabschätzung:
+    <a href="https://germany.representation.ec.europa.eu/fragen-und-antworten-zum-partnerschaftsabkommen-eu-mercosur_de" target="_blank" rel="noopener">germany.representation.ec.europa.eu</a>
+  </div>
+
+  <!-- 5. Regenwald -->
+  <h2>Der Regenwald: Was die Zahlen zeigen</h2>
+
+  <p>Das Abkommen öffnet den EU-Markt primär für Produkte, deren Erzeugung kausal mit der Zerstörung des Amazonas-Regenwaldes verknüpft ist. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="stat-grid">
+    <div class="stat-item">
+      <span class="stat-number">78 %</span>
+      <div class="stat-label">Amazonas-Entwaldung durch Rinderhaltung verursacht (Amazon Footprint Report 2025, WWF/Trase/Chalmers/SEI)</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">8,6 Mio. ha</span>
+      <div class="stat-label">Wald im Amazonas zerstört 2018–2022 — Fläche größer als Österreich</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">238 Mio.</span>
+      <div class="stat-label">Rinder auf brasilianischen Weiden 2024 (FAOSTAT)</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">14 %</span>
+      <div class="stat-label">Deutschen Entwaldungs-Fußabdrucks liegt im Amazonas (2020–2022)</div>
+    </div>
+  </div>
+
+  <p>Der Amazon Footprint Report 2025 — erstellt von WWF, Trase der Chalmers University of Technology und dem Stockholm Environment Institute, vorgestellt bei der COP30 in Belém im November 2025 — dokumentiert: Zwischen 2018 und 2022 wurden im Amazonasgebiet 8,6 Millionen Hektar Wald für die Ausweitung landwirtschaftlicher Produktion zerstört. Das entspricht 36 Prozent der weltweiten Entwaldung in diesem Zeitraum. Mit einem Anteil von 78 Prozent ist die Rinderhaltung der unangefochtene Haupttreiber. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Die EU-Kommission selbst räumte ein, dass das Freihandelsabkommen die globalen Treibhausgasemissionen nicht verringern, sondern erhöhen würde. Eine juristische Analyse im Auftrag von Umweltorganisationen kam zu dem Schluss, das Abkommen sei mit dem EU-Klimagesetz unvereinbar. Auf dieser Grundlage beschloss das EU-Parlament am 21. Januar 2026, eine Prüfung durch den Europäischen Gerichtshof einzuleiten. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Das Abkommen verpflichtet die Vertragsparteien zur Einhaltung des Pariser Klimaabkommens als „essential element". Dieser Passus ist Teil des Partnerschaftsabkommens, nicht des vorläufig in Kraft getretenen Interim-Handelsabkommens. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Parallel zum Mercosur-Abkommen trat im Juni 2023 die EU-Verordnung über entwaldungsfreie Produkte (EUDR) in Kraft — für mittlere und große Unternehmen gültig ab Dezember 2025. Sie verpflichtet Unternehmen zum Nachweis, dass Produkte wie Rindfleisch, Soja, Kakao und Kaffee nicht zur Waldumwandlung beigetragen haben. Die Vereinbarkeit der Mercosur-Handelsströme mit der EUDR ist nach Einschätzung von Umweltverbänden ungeklärt, da eine vollständige Rückverfolgbarkeit bei Rindfleischimporten aus Brasilien nicht gesichert ist. <span class="tag tag-extrapol">EXTRAPOLATION</span></p>
+
+  <div class="source-box">
+    <div class="source-label">PRIMÄRQUELLEN</div>
+    Amazon Footprint Report 2025 (WWF/Trase/Chalmers/SEI, November 2025):
+    <a href="https://www.wwf.de/2025/november/rinder-rasieren-regenwald" target="_blank" rel="noopener">wwf.de — Zusammenfassung mit Kerndaten</a><br>
+    FAOSTAT — Rinderbestand Brasilien 2024:
+    <a href="https://www.fao.org/faostat" target="_blank" rel="noopener">faostat.fao.org</a><br>
+    EU-Parlament — Beschluss zur EuGH-Prüfung, 21. Januar 2026 (über bpb):
+    <a href="https://www.bpb.de/kurz-knapp/hintergrund-aktuell/574931/das-eu-mercosur-abkommen/" target="_blank" rel="noopener">bpb.de — Hintergrund aktuell</a><br>
+    EU-Verordnung entwaldungsfreie Produkte (EUDR), ABl. EU L 150 vom 9.6.2023:
+    <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32023R1115" target="_blank" rel="noopener">eur-lex.europa.eu — VO (EU) 2023/1115</a>
+  </div>
+
+  <!-- 6. Was die EU-Kommission erklärt -->
+  <h2>Was die EU-Kommission erklärt</h2>
+
+  <p>Die offizielle Begründung der EU-Kommission für das Abkommen umfasst mehrere Dimensionen, die im öffentlichen Diskurs weniger präsent sind als die Landwirtschaftsdebatte. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <ul style="margin: 1rem 0 1.5rem 1.5rem; line-height: 1.9; color: #d4d4d8; font-size: 0.95rem;">
+    <li><strong style="color:#e4e4e7;">Rohstoffzugang:</strong> Zugang zu Lithium und anderen für die Energiewende benötigten seltenen Erden; Verringerung der Abhängigkeit von China.</li>
+    <li><strong style="color:#e4e4e7;">Exportsteigerung:</strong> EU-Exporte in den Mercosur sollen um bis zu 39 % steigen; Prognose: +200 % bei Kraftfahrzeugen (+20,7 Mrd. €).</li>
+    <li><strong style="color:#e4e4e7;">Geopolitik:</strong> Signal gegen Protektionismus und für regelbasierte internationale Kooperation — explizit im Kontext der US-Handelspolitik unter der zweiten Trump-Regierung.</li>
+    <li><strong style="color:#e4e4e7;">Schutzklauseln:</strong> Krisenfonds von 6,3 Milliarden Euro für die EU-Landwirtschaft; Schutzklausel aktivierbar wenn Importe um 5 % steigen oder Preise um 5 % sinken.</li>
+  </ul>
+
+  <p>Bundeskanzler Friedrich Merz erklärte nach der Unterzeichnung, 25 Jahre Verhandlung seien „zu lang" gewesen. Das Abkommen sei „fair und ausgewogen". <span class="tag tag-belegt">BELEGT</span> Die Bundesregierung sicherte gleichzeitig zu, es gebe keine Rechtsverletzung — das EU-Parlament hat unabhängig davon die EuGH-Prüfung eingeleitet.</p>
+
+  <!-- 7. Was offen bleibt -->
+  <h2>Was dokumentiert ist — und was nicht</h2>
+
+  <p>Die Struktur des Abkommens ist öffentlich dokumentiert. Primärquellen — Vertragstext, Anhänge, Zollabbautabellen — wurden von der EU-Kommission am 3. September 2025 veröffentlicht. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Was nicht vollständig geklärt ist: die tatsächliche Rückverfolgbarkeit von Rindfleischimporten in Bezug auf Entwaldung. EU-Audits der Generaldirektion Gesundheit und Lebensmittelsicherheit (DG SANTE) deckten Mängel bei brasilianischen Kontrollsystemen auf — unter anderem bei der Überwachung der Vogelgrippe und fehlender vollständiger Rückverfolgbarkeit. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Im März 2026 wurden laut österreichischen Parlamentsprotokollen in europäischen Supermärkten brasilianisches Rindfleisch mit Antibiotika-Belastung vorgefunden. Die zuständigen Behörden haben nach Angaben der österreichischen Bundesregierung entsprechende Maßnahmen eingeleitet. Die vollständige Dokumentation dieser Vorgänge ist öffentlich noch nicht abgeschlossen. <span class="tag tag-offen">OFFEN</span></p>
+
+  <div class="source-box">
+    <div class="source-label">PRIMÄRQUELLEN</div>
+    EU-Kommission — Vertragstext und Anhänge zum Interim-Handelsabkommen (September 2025):
+    <a href="https://policy.trade.ec.europa.eu/eu-trade-relationships-country-and-region/countries-and-regions/mercosur_en" target="_blank" rel="noopener">policy.trade.ec.europa.eu</a><br>
+    EFFAT zu DG-SANTE-Audits Brasilien (November 2025):
+    <a href="https://effat.org/de/in-the-spotlight/eu-mercosur-agreement-betrays-european-farmers-workers-consumers-and-the-environment/" target="_blank" rel="noopener">effat.org</a><br>
+    FPÖ-Parlamentsanfrage / Schnedlitz-Erklärung zu Antibiotikafunden (Mai 2026):
+    <a href="https://www.fpoe.at/aktuell/artikel-detailansicht/verbotene-antibiotika-im-fleisch-mercosur-abkommen-zeigt-erste-auswirkungen" target="_blank" rel="noopener">fpoe.at — Mai 2026</a>
+  </div>
+
+  <hr>
+
+  <!-- Closing -->
+  <div class="closing">
+    <p>Das Abkommen ist seit dem 1. Mai 2026 vorläufig in Kraft. Die Zollquoten für Rindfleisch, Geflügel, Honig und Zucker steigen über fünf Jahre schrittweise bis 2031 an. Die Folgenabschätzung zu Pestizidrückständen, angekündigt von der EU-Kommission für Sommer 2026, steht noch aus. Die Prüfung durch den Europäischen Gerichtshof auf Antrag des EU-Parlaments ist im Gange.</p>
+    <p><em>Welche Kontrollkapazitäten bestehen, um zu prüfen, ob 99.000 Tonnen Rindfleisch pro Jahr nicht aus entwaldeten Gebieten stammen — bei dokumentiert fehlender Rückverfolgbarkeit? Wie verhält sich das Interim-Handelsabkommen zur EUDR, die genau diese Rückverfolgung für Rindfleisch verlangt? Wenn EU-Konzerne in der EU verbotene Pestizide nach Brasilien exportieren dürfen und die daraus entstehenden Erzeugnisse wieder importiert werden — welcher Rechtsnorm wird in diesem Kreislauf tatsächlich entsprochen?</em></p>
+  </div>
+
+  <!-- Seriennavigation -->
+  <div class="series-nav">
+    <div class="series-nav-title">SERIE — WER KONTROLLIERT, WAS WIR ESSEN?</div>
+    <ul>
+      <li><a href="nahrung-konzentration.html">Teil 1 — Das ABCD-Quartett: Marktkonzentration im Agrarhandel</a></li>
+      <li><a href="nahrung-saatgut.html">Teil 2 — Wer das Saatgut kontrolliert: Bayer/Monsanto, Gates, Svalbard</a></li>
+      <li><a href="nahrung-kleinbauern.html">Teil 3 — Höfesterben: Deutschland, Niederlande, Großbritannien, Schweiz</a></li>
+      <li class="pending">Teil 4 — Novel Food: Insekten, WEF und die Neudefinition von Lebensmitteln <em>(in Arbeit)</em></li>
+      <li class="pending">Teil 5 — Laborfleisch: GFI, Gates und die Zulassungspolitik <em>(in Arbeit)</em></li>
+      <li class="pending">Teil 6 — Wasser: Nestlé, BlackRock und die UN-Resolution <em>(in Arbeit)</em></li>
+      <li class="current">→ Teil 7 — Das Mercosur-Abkommen: Rindfleisch gegen Autos</li>
+      <li class="pending">Teil 8 — Big Five: Wie Händler den Preis bestimmen <em>(in Arbeit)</em></li>
+      <li><a href="nahrung-gentechnik.html">Teil 9 — Neue Gentechnik: NGT-Verordnung und ihre Folgen</a></li>
+      <li><a href="nahrung-skandale.html">Teil 10 — Transfette, Glyphosat, Aspartam: Wie Risiken verwaltet werden</a></li>
+      <li class="pending">Teil 11 — Die Akteure: Netzwerkkarte und Abschluss <em>(in Arbeit)</em></li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

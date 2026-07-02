@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kinderschutz als Infrastruktur — dunkelfeld.report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #09090b;
+    --surface: #111114;
+    --surface2: #1a1a2e;
+    --border: #1e1e28;
+    --text: #e2e2e8;
+    --muted: #6b6b7a;
+    --accent: #e8c547;
+    --accent-dim: rgba(232,197,71,0.10);
+    --red: #e05252;
+    --green: #4caf80;
+    --orange: #e09042;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.85;
+    padding: 2rem 1.2rem 6rem;
+  }
+
+  .container { max-width: 720px; margin: 0 auto; }
+
+  .site-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+  .site-logo {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .site-nav-links { display: flex; gap: 1.5rem; }
+  .site-nav-links a {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .site-nav-links a:hover { color: var(--accent); }
+
+  .series-banner {
+    background: var(--surface2);
+    border-left: 3px solid var(--accent);
+    padding: 0.8rem 1.2rem;
+    margin-bottom: 2.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+  .series-banner strong { color: var(--accent); }
+
+  .article-kicker {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.2;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.2rem;
+  }
+
+  .article-subtitle {
+    font-size: 1.15rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .article-meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.7rem 0;
+    margin-bottom: 3rem;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  p { margin-bottom: 1.2rem; }
+
+  h2 {
+    font-size: 1.3rem;
+    color: var(--accent);
+    margin: 3rem 0 1rem;
+    font-weight: 700;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  h3 {
+    font-size: 1.05rem;
+    color: #c8c8d4;
+    margin: 2rem 0 0.8rem;
+    font-weight: 700;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    padding: 0.2em 0.55em;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-left: 0.3em;
+    font-weight: 700;
+  }
+  .tag-belegt        { background: rgba(76,175,128,0.15);  color: var(--green);  border: 1px solid rgba(76,175,128,0.3); }
+  .tag-extrapolation { background: rgba(224,144,66,0.12);  color: var(--orange); border: 1px solid rgba(224,144,66,0.25); }
+  .tag-offen         { background: rgba(224,82,82,0.10);   color: var(--red);    border: 1px solid rgba(224,82,82,0.2); }
+
+  .source-box {
+    background: var(--surface2);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.88rem;
+    color: #b8b8c8;
+    line-height: 1.6;
+  }
+  .source-box .source-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .source-box a { color: var(--accent); }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 1.2rem;
+    margin: 2rem 0;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    padding: 1.2rem;
+  }
+  .stat-value {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    font-family: Georgia, serif;
+  }
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--text);
+    margin-top: 0.4rem;
+    line-height: 1.4;
+  }
+  .stat-source {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    margin-top: 0.35rem;
+  }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.88rem;
+  }
+  .compare-table th {
+    background: var(--surface2);
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.6rem 0.9rem;
+    text-align: left;
+    border-bottom: 2px solid var(--accent);
+  }
+  .compare-table td {
+    padding: 0.65rem 0.9rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+  }
+  .compare-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+  .pull-quote {
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.4rem;
+    margin: 2rem 0;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: #d0d0dc;
+    line-height: 1.7;
+    background: var(--accent-dim);
+  }
+  .pull-quote cite {
+    display: block;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-family: 'Courier New', monospace;
+    color: var(--muted);
+    margin-top: 0.6rem;
+    letter-spacing: 0.05em;
+  }
+
+  .timeline { margin: 1.5rem 0; }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    padding-top: 0.1rem;
+  }
+  .timeline-content { font-size: 0.9rem; color: var(--text); line-height: 1.5; }
+
+  .cross-ref {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--muted);
+    padding: 0.8rem 1.2rem;
+    margin: 2rem 0;
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-family: 'Courier New', monospace;
+  }
+  .cross-ref a { color: var(--accent); text-decoration: none; }
+
+  .closing-questions {
+    margin-top: 3.5rem;
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+  }
+  .closing-questions p {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .sources-section {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .sources-section h3 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .sources-list {
+    list-style: none;
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .sources-list li { padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .sources-list li::before { content: "→ "; color: var(--accent); }
+  .sources-list a { color: var(--muted); text-decoration: none; }
+  .sources-list a:hover { color: var(--accent); }
+
+  .footer-note {
+    margin-top: 3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 600px) {
+    .timeline-item { grid-template-columns: 1fr; gap: 0.2rem; }
+    .stat-grid { grid-template-columns: 1fr; }
+    .article-meta { gap: 1rem; }
+    .site-nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <nav class="site-nav">
+    <a class="site-logo" href="/">dunkelfeld.report</a>
+    <div class="site-nav-links">
+      <a href="/archiv">Archiv</a>
+      <a href="/methodik">Methodik</a>
+      <a href="/quellen">Quellen</a>
+    </div>
+  </nav>
+
+  <div class="series-banner">
+    <strong>Dossier</strong> &nbsp;·&nbsp; Digitale Infrastruktur &nbsp;·&nbsp; Verwandt mit: <a href="plattformkontrolle.html" style="color:var(--accent)">Plattformkontrolle</a> · <a href="zensurkomplex.html" style="color:var(--accent)">Zensurkomplex (#10)</a>
+  </div>
+
+  <div class="article-kicker">Analyse · Gesetzgebung · Digitale Identität</div>
+
+  <h1>Kinderschutz als Infrastruktur</h1>
+
+  <p class="article-subtitle">
+    Wie Gesetze zum Schutz von Minderjährigen weltweit zur Grundlage für Ausweispflicht, biometrische Erfassung und die Abschaffung anonymer Internetnutzung werden — und warum der Deutsche Kinderschutzbund selbst dagegen ist.
+  </p>
+
+  <div class="article-meta">
+    <span>dunkelfeld.report</span>
+    <span>Stand: Juni 2026</span>
+    <span>Primärquellen</span>
+  </div>
+
+  <div class="cross-ref">
+    → Begleitartikel zu <a href="plattformkontrolle.html">„Plattformkontrolle"</a> und <a href="zensurkomplex.html">„Der Zensurkomplex" (#10)</a>
+  </div>
+
+  <p>
+    Es gibt kaum ein Argument, das schwerer zu widerlegen ist, als den Schutz von Kindern. Wer dagegen spricht, wirkt wie jemand, der dagegen spricht. Dieses Strukturprinzip ist in der Gesetzgebung bekannt — und wird, wie die folgende Dokumentation zeigt, aktiv genutzt, um Überwachungsinfrastruktur auszurollen, die weit über Kinder hinausreicht.
+  </p>
+
+  <div class="pull-quote">
+    „Wie immer ist der Kinderschutz ein beliebter Strohmann, um mehr Überwachung einzuführen."
+    <cite>— Kommentar zu netzpolitik.org, 30. Januar 2026 — exemplarisch zitiert als Lesermeinung, kein institutioneller Beleg</cite>
+  </div>
+
+  <p>
+    Was diesen Artikel von einer Meinung unterscheidet: Es sind nicht Kritiker, die das sagen. Es ist der Deutsche Kinderschutzbund selbst.
+  </p>
+
+  <!-- I -->
+  <h2>I. Der Einwand aus dem Kinderschutz selbst</h2>
+
+  <p>
+    Der Deutsche Kinderschutzbund hat 50.000 Mitglieder und ist der größte Einzelverband für Kinderschutz in Deutschland. Im Kontext der EU-Chatkontrolle-Debatte äußerte sich die Fachreferentin für Medien und Digitales, Elena Frense, gegenüber netzpolitik.org: <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="source-box">
+    <span class="source-label">Primärquelle</span>
+    Deutscher Kinderschutzbund, Elena Frense (Fachreferentin Medien und Digitales), zitiert nach netzpolitik.org, Oktober 2025: Der Verband ist gegen die „Möglichkeit zum Scan verschlüsselter privater Kommunikation". Der Handel mit kinderpornografischen Darstellungen finde nicht über Messenger-Dienste wie WhatsApp statt, sondern über File-Hosting-Dienste.
+  </div>
+
+  <p>
+    Ebenso warnte Alexandra Geese, Europaabgeordnete (Grüne/EFA), im November 2025 ausdrücklich davor, unter dem Vorwand des Kinderschutzes biometrische Überwachungssysteme zu etablieren: Altersverifikationssysteme verpflichteten Kinder und Jugendliche, Gesichtsaufnahmen, Videosequenzen, Stimmprofile oder Ausweisdaten an externe Identitätsdienstleister zu übermitteln, die mittels KI, Gesichtserkennung oder biometrischer Analyse ihr Alter einschätzten. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <p>
+    18 Fachwissenschaftler aus den Bereichen Cybersicherheit und Datenschutz wandten sich in einem offenen Brief im November 2025 gegen den EU-Gesetzentwurf. Ihr Urteil: Der Vorschlag bringe „hohe Risiken für die Gesellschaft ohne klaren Nutzen für Kinder." <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <!-- II -->
+  <h2>II. Die EU-Chatkontrolle: Chronologie eines Vorhaben</h2>
+
+  <p>
+    Seit 2022 versucht die EU-Kommission, eine Verordnung zur Prävention und Bekämpfung des sexuellen Missbrauchs von Kindern (CSA-VO) zu verabschieden, die Messenger-Dienste zur automatisierten Durchsuchung privater Nachrichten verpflichten würde — auch wenn diese Ende-zu-Ende-verschlüsselt sind. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">Mai 2022</div>
+      <div class="timeline-content">EU-Kommission legt Entwurf zur CSA-Verordnung vor. Kernpunkt: Plattformen können auf Anordnung verpflichtet werden, private Kommunikation nach Missbrauchsdarstellungen zu durchsuchen — auch verschlüsselte Nachrichten.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Dez. 2023</div>
+      <div class="timeline-content">EU-Staaten einigen sich nicht rechtzeitig. Abstimmung scheitert. Gesetz tritt vorerst nicht in Kraft.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Okt.–Nov. 2025</div>
+      <div class="timeline-content">Neue Verhandlungsrunden unter dänischer Ratspräsidentschaft. Interne Dokumente zeigen: EU-Botschafter sollen Verhandlungsmandat ohne Debatte durchwinken. Neue Version enthält zusätzlich verpflichtende Altersverifikation für App-Stores und verschlüsselte Messenger. Offener Brief von 18 Sicherheitswissenschaftlern.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">25.–26. Nov. 2025</div>
+      <div class="timeline-content">EU-Staaten einigen sich auf veränderte Version: Verpflichtende Durchsuchung verschlüsselter Kommunikation vorerst vom Tisch. Stattdessen: freiwillige Maßnahmen und Risikoanalysen. Altersverifikationspflicht bleibt Teil des Entwurfs.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">April 2026</div>
+      <div class="timeline-content">EU-Kommissionspräsidentin von der Leyen verkündet technische Fertigstellung der EU-weiten Age Verification App. Fünf Länder im Testbetrieb: Dänemark, Griechenland, Spanien, Frankreich, Italien. Integration in EU-Digital-Identity-Wallet für 2026 geplant.</div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <span class="source-label">Primärquellen</span>
+    EU-Kommission: CSA-Verordnungsentwurf, Mai 2022. · netzpolitik.org: „Interne Dokumente: EU-Staaten wollen Chatkontrolle-Gesetz ohne weitere Änderungen", 5. November 2025. · EU-Kommission, Pressemitteilung: „Kinderschutz online: EU-App zur Altersüberprüfung steht", 15. April 2026. · EU-Kommission: Age Verification Blueprint, Juli 2025.
+  </div>
+
+  <h3>Was die EU-App kann — und was gefunden wurde</h3>
+
+  <p>
+    Kurz nach Veröffentlichung der EU-eigenen Altersverifikations-App fanden Sicherheitsforscher schwere Mängel: unverschlüsselt gespeicherte biometrische Daten und Schwachstellen, die eine vollständige Umgehung des Systems ermöglichten. Die App wurde laut Telepolis „in unter zwei Minuten gehackt." <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="source-box">
+    <span class="source-label">Quelle</span>
+    Telepolis: „Die EU will VPNs regulieren — und trifft Millionen Berufstätige", 9. Mai 2026 (mit Verweis auf Sicherheitsforscherbericht zur EU Age Verification App).
+  </div>
+
+  <!-- III -->
+  <h2>III. Großbritannien: Das Modell in der Praxis</h2>
+
+  <p>
+    Am 25. Juli 2025 trat der britische Online Safety Act (OSA) in Kraft. Er verpflichtet Plattformen mit potenziell schädlichen Inhalten — von Pornoseiten bis zu sozialen Netzwerken und Foren — zur „hochwirksamen" Altersverifikation: per Ausweis-Upload, Gesichtsscan oder Kreditkarte. Die Regulierungsbehörde Ofcom kann bei Verstößen Bußgelder bis zu 10 Prozent des globalen Jahresumsatzes verhängen oder über Internetdienstanbieter vollständige Sperren durchsetzen. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-value">+1.800 %</div>
+      <div class="stat-label">Anstieg der VPN-Downloads in UK nach Inkrafttreten des OSA im Juli 2025</div>
+      <div class="stat-source">Telepolis / Mrak.at, Mai 2026</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">500.000+</div>
+      <div class="stat-label">Unterzeichner einer Parlamentspetition gegen den Online Safety Act in UK</div>
+      <div class="stat-source">Kettner-Edelmetalle / Surplusmagazin, Aug. 2025</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">46 %</div>
+      <div class="stat-label">der befragten Kinder in UK halten Alterskontrollen für leicht überwindbar. Ein 12-Jähriger überlistete eine KI-Gesichtserkennung mit einem aufgemalten Schnurrbart.</div>
+      <div class="stat-source">Britische Studie, zitiert nach Telepolis, Mai 2026</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">61 %</div>
+      <div class="stat-label">der betroffenen Jugendlichen in Australien haben nach dem Social-Media-Verbot für unter 16-Jährige weiterhin Zugriff auf ihre Konten</div>
+      <div class="stat-source">Arbeiterkammer Wien, Studie 2026</div>
+    </div>
+  </div>
+
+  <p>
+    Die praktischen Folgen des OSA: Kleinere Plattformen stellten ihre Dienste für britische Nutzer ein. Große Anbieter schränkten Funktionen massiv ein oder blockierten britische Nutzer ganz. Discord experimentierte mit automatisierten Gesichtsscans — und stellte fest, dass diese kinderleicht zu täuschen sind. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="pull-quote">
+    „Diese Bypass-Strategie führt dazu, dass auch legale Inhalte entfernt werden, was einen Chilling Effect auf die Meinungsfreiheit schafft."
+    <cite>— Open Rights Group UK, zitiert nach surplusmagazin.de, August 2025</cite>
+  </div>
+
+  <h3>Der nächste logische Schritt: VPN-Regulierung</h3>
+
+  <p>
+    Da VPN-Nutzung nach Inkrafttreten der Altersverifikation massiv anstieg, diskutieren britische und europäische Behörden nun, VPN-Zugänge selbst einer Altersverifikation zu unterwerfen. Das würde bedeuten: Jeder Erwachsene müsste sich identifizieren, bevor er ein Datenschutztool nutzen darf. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <p>
+    Stand Mai 2026: Kein formaler EU-Rechtsakt für ein VPN-Verbot. Es gibt politische Signale, ein nicht-bindendes Parlamentsdokument und nationale Initiativen. Dänemark hat einen entsprechenden Anlauf im Dezember 2025 nach öffentlicher Kritik zurückgezogen. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="source-box">
+    <span class="source-label">Primärquelle</span>
+    Mrak.at: „Was am VPN-Verbot in Europa wirklich dran ist", 10. Mai 2026 (mit Verweis auf DSA Art. 28, EU-Kommissionsleitlinien C/2025/5519 vom 7. Oktober 2025, EP-Entschließung P10_TA(2025)0299). · Proton, Mullvad, Mozilla: Offener Brief an britische Politiker gegen VPN-Altersverifikation (dokumentiert via Telepolis).
+  </div>
+
+  <!-- IV -->
+  <h2>IV. Das globale Rollout — eine Bestandsaufnahme</h2>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Land / Region</th>
+        <th>Instrument</th>
+        <th>Stand</th>
+        <th>Konsequenz</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>UK</strong></td>
+        <td>Online Safety Act</td>
+        <td>In Kraft seit Juli 2025</td>
+        <td>Ausweispflicht für weite Teile des Internets, Geoblocking, VPN-Boom</td>
+      </tr>
+      <tr>
+        <td><strong>Australien</strong></td>
+        <td>Social-Media-Verbot für unter 16-Jährige</td>
+        <td>In Kraft</td>
+        <td>61 % Umgehungsrate, Altersverifikationsinfrastruktur im Aufbau</td>
+      </tr>
+      <tr>
+        <td><strong>EU</strong></td>
+        <td>CSA-VO (Chatkontrolle), Age Verification Blueprint, DSA Art. 28, eIDAS2-Wallet</td>
+        <td>Age Verification App fertig (April 2026), eIDAS2-Integration bis Ende 2026</td>
+        <td>Ausweispflicht über EU-Digital-Identity-Wallet, 5 Länder im Testbetrieb</td>
+      </tr>
+      <tr>
+        <td><strong>Frankreich</strong></td>
+        <td>„Doppelblindes" Altersverifikationssystem</td>
+        <td>Eingeführt</td>
+        <td>Verifikationsanbieter sieht besuchte Seiten nicht, Website sieht Identität nicht — aber System umgehbar via VPN</td>
+      </tr>
+      <tr>
+        <td><strong>USA</strong></td>
+        <td>Einzelstaatliche Gesetze zur Altersverifikation</td>
+        <td>Mehrere Bundesstaaten, laufend</td>
+        <td>Keine einheitliche Bundesregelung, Flickenteppich</td>
+      </tr>
+      <tr>
+        <td><strong>China</strong></td>
+        <td>Real-Name-Pflicht</td>
+        <td>Seit Jahren in Kraft</td>
+        <td>Vollständige Pseudonymisierung abgeschafft, jede Online-Aktivität personenbezogen</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <span class="source-label">Quellen</span>
+    Arbeiterkammer Wien: „Altersfeststellung im digitalen Raum", Studie 2026. · EU-Kommission: Age Verification Blueprint, Juli 2025. · Golem/Karrierewelt: „EU-weite Altersverifikation", September 2025. · Online Safety Act 2023 (UK), Ofcom-Richtlinien Juli 2025.
+  </div>
+
+  <!-- V -->
+  <h2>V. Die Infrastruktur dahinter: eIDAS 2.0 und die EU-Wallet</h2>
+
+  <p>
+    Das eigentliche Trägermedium für Altersverifikation in der EU ist nicht die Chatkontrolle — sondern die European Digital Identity Wallet (EUDI-Wallet), die auf Basis der eIDAS-2.0-Verordnung (EU 2024/1183) bis Ende 2026 von allen Mitgliedstaaten bereitzustellen ist. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <p>
+    Die EUDI-Wallet ist der technische Container für digitale Identitätsnachweise aller Art — Personalausweis, Führerschein, Gesundheitsdaten, Bildungsnachweise. Die Altersverifikations-App der EU soll 2026 in diese Wallet integriert werden. Damit entsteht eine einheitliche digitale Identitätsinfrastruktur, die Altersverifikation, Authentifizierung und staatliche Nachweise in einem System vereint. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="source-box">
+    <span class="source-label">Primärquelle</span>
+    eIDAS 2.0, Verordnung (EU) 2024/1183, Amtsblatt der EU. · EU-Kommission: „Kinderschutz online: EU-App zur Altersüberprüfung steht", 15. April 2026 (Integration in EUDI-Wallet für 2026 angekündigt). · Golem/Karrierewelt: DSA Art. 28, Kommissionsleitlinien C/2025/5519.
+  </div>
+
+  <p>
+    Dunkelfeld-Dossier #15 dokumentiert die historische Linie von Hollerith bis eIDAS 2.0 ausführlich. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="cross-ref">
+    → Siehe auch: <a href="#">Dossier #15: „Infrastruktur der Kontrolle" — Hollerith → eIDAS 2.0</a>
+  </div>
+
+  <!-- VI -->
+  <h2>VI. Was die Gesetze tatsächlich bewirken</h2>
+
+  <p>
+    Mehrere unabhängige Befunde konvergieren: Die Altersverifikation erreicht ihr erklärtes Ziel — den Schutz von Kindern vor bestimmten Inhalten — nur marginal. Die Infrastruktur, die dabei aufgebaut wird, ist dagegen dauerhaft und erweiterbar. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Behauptetes Ziel</th>
+        <th>Dokumentiertes Ergebnis</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Kinder von schädlichen Inhalten fernhalten</td>
+        <td>61 % Umgehungsrate (Australien). 46 % der Kinder in UK halten Kontrollen für leicht überwindbar.</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Kinderpornografie bekämpfen</td>
+        <td>Deutscher Kinderschutzbund: Handel läuft über File-Hosting-Dienste, nicht über Messenger.</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Datenschutz beim Altersnachweis</td>
+        <td>EU-App in unter zwei Minuten gehackt. Biometrische Daten unverschlüsselt gespeichert.</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Anonyme Internetnutzung erhalten</td>
+        <td>Logischer Folgschritt laut Experten: VPN-Regulierung → Ende der Anonymität auch für Erwachsene.</td>
+        <td><span class="tag tag-extrapolation">EXTRAPOLATION</span></td>
+      </tr>
+      <tr>
+        <td>Begrenzung auf Kinderschutz</td>
+        <td>UK-Gesetz ermöglicht Sperren für „potenziell schädliche" Inhalte ohne engen Definitionsrahmen.</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pull-quote">
+    „Eine verpflichtende Altersverifikation kann zur weitgehenden Abschaffung der Anonymität im Netz führen. Und Berichtspflichten für Diensteanbieter schaffen Anreize, Scanning als faktisch verpflichtend durchzuführen."
+    <cite>— netzpolitik.org, 5. November 2025, zu internen EU-Ratsdokumenten</cite>
+  </div>
+
+  <!-- SCHLUSSFRAGEN -->
+  <div class="closing-questions">
+    <p>Warum richten sich die diskutierten Maßnahmen auf Infrastruktur (Verschlüsselung, Anonymität, VPN), die den Schutz aller Nutzer betrifft — und nicht auf die Strukturen, über die laut Kinderschutzbund der eigentliche Missbrauchsinhalt zirkuliert?</p>
+    <p>Warum wurde die EU-eigene Altersverifikations-App mit unverschlüsselten biometrischen Daten veröffentlicht — und in unter zwei Minuten kompromittiert?</p>
+    <p>Wer kontrolliert die Infrastruktur der European Digital Identity Wallet, wenn sie einmal für Altersverifikation, Ausweisdaten und Gesundheitsnachweise gleichermaßen genutzt wird?</p>
+    <p>Was ändert sich strukturell, wenn Altersverifikation als Standardschicht ins Internet integriert ist — auch für Menschen, die keine Kinder schützen oder schützen wollen?</p>
+    <p>Wie erklärt sich, dass Länder, die Kinderschutz als Begründung nennen, gleichzeitig Systeme einführen, die laut den eigenen Kinderschutzorganisationen keinen Kinderschutz bewirken?</p>
+  </div>
+
+  <!-- QUELLEN -->
+  <div class="sources-section">
+    <h3>Dokumentierte Primär- und Sekundärquellen</h3>
+    <ul class="sources-list">
+      <li>Deutscher Kinderschutzbund: Stellungnahme zur Chatkontrolle (Elena Frense), zitiert nach netzpolitik.org, Oktober 2025</li>
+      <li>EU-Kommission: CSA-Verordnungsentwurf, Mai 2022 — eur-lex.europa.eu</li>
+      <li>EU-Kommission: Age Verification Blueprint, Juli 2025</li>
+      <li>EU-Kommission: Pressemitteilung „Kinderschutz online: EU-App zur Altersüberprüfung steht", 15. April 2026 — <a href="https://germany.representation.ec.europa.eu/news/kinderschutz-online-eu-app-zur-altersuberprufung-steht-2026-04-15_de" target="_blank">ec.europa.eu</a></li>
+      <li>EU-Kommission: Leitlinien zu DSA Art. 28(4), C/2025/5519, 7. Oktober 2025</li>
+      <li>eIDAS 2.0, Verordnung (EU) 2024/1183, Amtsblatt der EU</li>
+      <li>netzpolitik.org: „Interne Dokumente: EU-Staaten wollen Chatkontrolle-Gesetz ohne weitere Änderungen", 5. November 2025</li>
+      <li>netzpolitik.org: „Warnung vor ‚Ausweispflicht für weite Teile des Internets'", 30. Januar 2026</li>
+      <li>Online Safety Act 2023 (UK) — legislation.gov.uk; Ofcom-Richtlinien, in Kraft ab 25. Juli 2025</li>
+      <li>Offener Brief von 18 Sicherheitswissenschaftlern, November 2025 — dokumentiert via Tichys Einblick und netzpolitik.org</li>
+      <li>Proton / Mullvad / Mozilla: Offener Brief an britische Politiker gegen VPN-Altersverifikation — dokumentiert via Telepolis, Mai 2026</li>
+      <li>EP-Entschließung P10_TA(2025)0299 zum Schutz Minderjähriger im Internet, 26. November 2025 (nicht-legislativ)</li>
+      <li>Arbeiterkammer Wien: „Altersfeststellung im digitalen Raum", Studie 2026</li>
+      <li>Mrak.at: „Was am VPN-Verbot in Europa wirklich dran ist", 10. Mai 2026</li>
+      <li>Telepolis: „Die EU will VPNs regulieren — und trifft Millionen Berufstätige", 9. Mai 2026</li>
+      <li>Alexandra Geese (Grüne/EFA): Aussendung zur Chatkontrolle, November 2025 — dokumentiert via report24.news</li>
+    </ul>
+  </div>
+
+  <div class="footer-note">
+    dunkelfeld.report dokumentiert auf Basis öffentlich zugänglicher Primärquellen. Spekulation ist als solche gekennzeichnet. Motive werden nicht zugeschrieben. Schlussfolgerungen ziehen die Leser selbst. &nbsp;·&nbsp; BELEGT = primärquellengestützt &nbsp;·&nbsp; EXTRAPOLATION = strukturell plausibel &nbsp;·&nbsp; OFFEN = nicht abschließend verifiziert.
+  </div>
+
+</div>
+</body>
+</html>

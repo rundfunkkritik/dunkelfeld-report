@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Zensurkomplex — dunkelfeld.report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #09090b;
+    --surface: #111114;
+    --surface2: #1a1a2e;
+    --border: #1e1e28;
+    --text: #e2e2e8;
+    --muted: #6b6b7a;
+    --accent: #e8c547;
+    --accent-dim: rgba(232,197,71,0.12);
+    --red: #e05252;
+    --green: #4caf80;
+    --orange: #e09042;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.85;
+    padding: 2rem 1.2rem 6rem;
+  }
+
+  .container { max-width: 720px; margin: 0 auto; }
+
+  /* NAV */
+  .site-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+  .site-logo {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .site-nav-links { display: flex; gap: 1.5rem; }
+  .site-nav-links a {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+  .site-nav-links a:hover { color: var(--accent); }
+
+  /* SERIES BANNER */
+  .series-banner {
+    background: var(--surface2);
+    border-left: 3px solid var(--accent);
+    padding: 0.8rem 1.2rem;
+    margin-bottom: 2.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+  .series-banner strong { color: var(--accent); }
+
+  /* HEADER */
+  .article-kicker {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.2;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.2rem;
+  }
+  .article-subtitle {
+    font-size: 1.15rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  .article-meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.7rem 0;
+    margin-bottom: 3rem;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  /* BODY */
+  p { margin-bottom: 1.2rem; }
+
+  h2 {
+    font-size: 1.3rem;
+    color: var(--accent);
+    margin: 3rem 0 1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  h3 {
+    font-size: 1.05rem;
+    color: #c8c8d4;
+    margin: 2rem 0 0.8rem;
+    font-weight: 700;
+  }
+
+  /* STATUS TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    padding: 0.2em 0.55em;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-left: 0.3em;
+    font-weight: 700;
+  }
+  .tag-belegt { background: rgba(76,175,128,0.15); color: var(--green); border: 1px solid rgba(76,175,128,0.3); }
+  .tag-extrapolation { background: rgba(224,144,66,0.12); color: var(--orange); border: 1px solid rgba(224,144,66,0.25); }
+  .tag-offen { background: rgba(224,82,82,0.1); color: var(--red); border: 1px solid rgba(224,82,82,0.2); }
+
+  /* SOURCE BOX */
+  .source-box {
+    background: var(--surface2);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.88rem;
+    color: #b8b8c8;
+    line-height: 1.6;
+  }
+  .source-box .source-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .source-box a { color: var(--accent); }
+
+  /* STAT GRID */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+    margin: 2rem 0;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    padding: 1.2rem;
+  }
+  .stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    font-family: Georgia, serif;
+  }
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--text);
+    margin-top: 0.4rem;
+    line-height: 1.4;
+  }
+  .stat-source {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    margin-top: 0.35rem;
+  }
+
+  /* COMPARISON TABLE */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.88rem;
+  }
+  .compare-table th {
+    background: var(--surface2);
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.6rem 0.9rem;
+    text-align: left;
+    border-bottom: 2px solid var(--accent);
+  }
+  .compare-table td {
+    padding: 0.65rem 0.9rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+  }
+  .compare-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.4rem;
+    margin: 2rem 0;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: #d0d0dc;
+    line-height: 1.7;
+    background: var(--accent-dim);
+  }
+  .pull-quote cite {
+    display: block;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-family: 'Courier New', monospace;
+    color: var(--muted);
+    margin-top: 0.6rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* TIMELINE */
+  .timeline { margin: 1.5rem 0; }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    padding-top: 0.1rem;
+  }
+  .timeline-content { font-size: 0.9rem; color: var(--text); line-height: 1.5; }
+
+  /* CLOSING QUESTIONS */
+  .closing-questions {
+    margin-top: 3.5rem;
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+  }
+  .closing-questions p {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 0.7rem;
+  }
+
+  /* SOURCES */
+  .sources-section {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .sources-section h3 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .sources-list {
+    list-style: none;
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .sources-list li { padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .sources-list li::before { content: "→ "; color: var(--accent); }
+  .sources-list a { color: var(--muted); text-decoration: none; }
+  .sources-list a:hover { color: var(--accent); }
+
+  /* FOOTER NOTE */
+  .footer-note {
+    margin-top: 3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 600px) {
+    .timeline-item { grid-template-columns: 1fr; gap: 0.2rem; }
+    .stat-grid { grid-template-columns: 1fr; }
+    .article-meta { gap: 1rem; }
+    .site-nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a class="site-logo" href="/">dunkelfeld.report</a>
+    <div class="site-nav-links">
+      <a href="/archiv">Archiv</a>
+      <a href="/methodik">Methodik</a>
+      <a href="/quellen">Quellen</a>
+    </div>
+  </nav>
+
+  <!-- SERIES BANNER -->
+  <div class="series-banner">
+    <strong>Dossier #10</strong> &nbsp;·&nbsp; Macht &amp; Kontrolle &nbsp;·&nbsp; Teil der Reihe: Strukturen des Diskurses
+  </div>
+
+  <!-- HEADER -->
+  <div class="article-kicker">Analyse · Mediensystem · Institutionen</div>
+
+  <h1>Der Zensurkomplex</h1>
+
+  <p class="article-subtitle">
+    Wie ein Netzwerk aus staatlich finanzierten NGOs, Faktencheckern und Plattformbehörden den öffentlichen Diskurs steuert — und wer es bezahlt.
+  </p>
+
+  <div class="article-meta">
+    <span>dunkelfeld.report</span>
+    <span>Stand: Juni 2026</span>
+    <span>Status: Primärquellen</span>
+  </div>
+
+  <!-- INTRO -->
+  <p>
+    Im Grundgesetz, Artikel 5, steht: „Eine Zensur findet nicht statt." Im Jahr 2025 veröffentlichte der australische Wissenschaftler Andrew Lowenthal — bekannt aus der Aufarbeitung der Twitter Files — eine vergleichende Studie zu staatlich gestützten Meinungskontrollsystemen in westlichen Demokratien. Sein Befund zu Deutschland war eindeutig: <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="pull-quote">
+    „Deutschland hat einen Zensurkomplex aufgebaut, der größer ist als alles, was wir in den USA gefunden haben."
+    <cite>— Andrew Lowenthal, „The Censorship Network: Regulation and Repression in Germany Today", liber-net.org, Nov. 2025</cite>
+  </div>
+
+  <p>
+    Die Studie kartierte rund 325 Organisationen, die in Deutschland aktiv Inhalte auf sozialen Plattformen melden, markieren oder entfernen lassen — finanziert von Bundesministerien, Landesmedienanstalten, EU-Mitteln und Stiftungen. Was entsteht, ist nach Lowenthals Analyse kein einfaches Behördensystem, sondern ein privatrechtlich ausgelagerter Kontrollapparat: Staatshandeln im Tarnkleid der Zivilgesellschaft.
+  </p>
+
+  <!-- SEKTION 1 -->
+  <h2>I. Die Architektur</h2>
+
+  <p>
+    Der Zensur-Industrie-Komplex — ein Begriff, den Lowenthal in Anlehnung an Eisenhowers militärisch-industriellen Komplex prägte — funktioniert nicht durch Verbote. Er funktioniert durch Sichtbarkeitssteuerung. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <p>
+    Der Mechanismus: Eine staatlich finanzierte NGO erhält den Status eines sogenannten „Trusted Flaggers" gemäß Digital Services Act (DSA) der EU. In dieser Rolle darf sie Inhalte bei Plattformen zur beschleunigten, bevorzugten Prüfung melden. Plattformen reagieren — aus Furcht vor milliardenschweren EU-Strafen bei Verstößen — innerhalb von Minuten mit algorithmischen Downrankings, Sichtbarkeitssperren oder Löschungen. Ein richterlicher Beschluss ist in diesem Prozess nicht vorgesehen.
+  </p>
+
+  <div class="source-box">
+    <span class="source-label">Primärquelle</span>
+    Lowenthal, Andrew: „The Censorship Network: Regulation and Repression in Germany Today". liber-net.org, November 2025. Präsentationen im Europäischen Parlament (Einladung durch MEP Ondřej Dostál) und Berlin, November 2025. — <a href="https://liber-net.org/germany/" target="_blank">liber-net.org/germany/</a>
+  </div>
+
+  <p>
+    Als institutionellen Kern des Systems identifiziert Lowenthal das Bundesprogramm <strong>„Demokratie leben!"</strong>, betrieben vom Bundesministerium für Familie, Senioren, Frauen und Jugend. Mit einem Etat von rund 280 Millionen Euro jährlich finanziert es ein ganzes Ökosystem aus NGOs, Projekten und Meldestellen. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-value">325</div>
+      <div class="stat-label">Organisationen in Deutschland, die aktiv Inhalte melden oder markieren lassen</div>
+      <div class="stat-source">Quelle: liber-net.org, Nov. 2025</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">~280 Mio. €</div>
+      <div class="stat-label">Jährlicher Etat von „Demokratie leben!" — größter staatlicher Finanzier von Meinungskontrollprojekten</div>
+      <div class="stat-source">Quelle: liber-net.org / Weltwoche, Dez. 2025</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">7,4 Mrd. €</div>
+      <div class="stat-label">EU-Gesamtmittel an NGOs — laut Friedrich Pürner „ohne systematische Prüfung, ohne Klarheit über politische Ausgewogenheit"</div>
+      <div class="stat-source">Quelle: Tichys Einblick / EU-Kommission, 2025</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">500.000 €</div>
+      <div class="stat-label">dpa-Förderung für Fact-Checking-Projekte 2026–2029 aus EU-Mitteln</div>
+      <div class="stat-source">Quelle: NIUS-Recherche, 2026</div>
+    </div>
+  </div>
+
+  <h3>Trusted Flagger: HateAid</h3>
+
+  <p>
+    Ein konkretes Beispiel: Die Organisation HateAid wird einerseits mit Millionenbeträgen aus Bundesmitteln unterstützt. Gleichzeitig agiert HateAid als zertifizierter „Trusted Flagger" nach dem Digital Services Act — und darf damit Inhalte bei Plattformen zur beschleunigten Prüfung einreichen. Finanziert wird HateAid zudem von der Alfred Landecker Foundation. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="source-box">
+    <span class="source-label">Sekundärquelle (verifiziert)</span>
+    Danisch.de: „Reimann/Landecker und CeMAS", Mai 2026: „Die Alfred Landecker Foundation hat CeMAS fast 3 Millionen Euro gegeben [...] Und in beiden Fällen, HateAid und CeMAS, fungiert die Alfred Landecker Foundation als Geldgeber."
+  </div>
+
+  <!-- SEKTION 2 -->
+  <h2>II. Correctiv: Der Fall als Fallstudie</h2>
+
+  <p>
+    Am 10. Januar 2024 veröffentlichte das Recherchenetzwerk Correctiv den Artikel „Geheimplan gegen Deutschland" — eine Dokumentation eines privaten Treffens in Potsdam. Die Veröffentlichung löste bundesweite Demonstrationen aus, Hunderttausende gingen auf die Straßen. Der Artikel beschrieb ein Treffen von 25 bis 30 Personen als Planungsgipfel für die massenhafte Ausweisung deutscher Staatsbürger. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">Jan. 2024</div>
+      <div class="timeline-content">Correctiv veröffentlicht „Geheimplan gegen Deutschland". Bundesweite Demonstrationen folgen.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Dez. 2025</div>
+      <div class="timeline-content">Landgericht Hamburg: Klage von Treffen-Teilnehmern abgewiesen. Correctiv-Berichterstattung zunächst für zulässig erklärt. Klägerseite geht in Berufung.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">17. März 2026</div>
+      <div class="timeline-content">Landgericht Berlin II, 27. Zivilkammer: Correctiv wird untersagt, zentrale Kernsätze des Artikels weiter zu verbreiten — darunter die Aussage eines „Masterplans zur Ausweisung von deutschen Staatsbürgern". Urteil: nicht rechtskräftig, Correctiv geht in Berufung.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">April 2026</div>
+      <div class="timeline-content">Urteilsbegründung wird öffentlich. NIUS publiziert Analyse: „Correctiv hat gelogen und überzogen, das ist gerichtlich bestätigt."</div>
+    </div>
+  </div>
+
+  <p>
+    Was das Berliner Gericht konkret untersagte: <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Untersagte Correctiv-Aussage</th>
+        <th>Gerichtliche Einordnung</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>„Masterplan zur Ausweisung von deutschen Staatsbürgern"</td>
+        <td>Unzulässige Tatsachenbehauptung ohne ausreichende Grundlage</td>
+      </tr>
+      <tr>
+        <td>„Ausbürgerungsidee von Staatsbürgern" in Sellners Vortrag</td>
+        <td>Untersagt — auch als Meinungsäußerung</td>
+      </tr>
+      <tr>
+        <td>Abgeordnete Huy habe vorgeschlagen, Doppelstaatlern die Staatsbürgerschaft zu entziehen</td>
+        <td>Untersagt als falsche Tatsachenbehauptung</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <span class="source-label">Primärquelle</span>
+    Landgericht Berlin II, 27. Zivilkammer, Urteil 17. März 2026 (Az. nicht rechtskräftig). Zitiert nach: NIUS, „Landgericht Berlin urteilt: Correctiv-Geschichte zu Potsdam-Treffen ‚im Wesentlichen unwahr'", 17./20. März 2026. — Correctiv-eigene Darstellung: correctiv.org, 23. April 2026.
+  </div>
+
+  <p>
+    Correctiv selbst bestreitet die Deutung: Das Urteil sei nicht rechtskräftig, betreffe nur einzelne Formulierungen, nicht den Faktenkern der Recherche. Das Landgericht Hamburg hatte im Dezember 2025 eine ähnliche Klage abgewiesen. Beide Verfahren sind offen. <span class="tag tag-offen">OFFEN</span>
+  </p>
+
+  <p>
+    Was in diesem Zusammenhang dokumentiert ist: Correctiv erhält Förderung von der Brost Foundation, dem Bundesbildungsministerium, dem Programm „Demokratie leben!", der Google News Initiative, dem Europäischen Medien- und Informationsfonds sowie dem Meta-Drittpartei-Faktencheck-Programm. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="source-box">
+    <span class="source-label">Quelle</span>
+    liber-net.org, Datenbank-Eintrag „Correctiv", abgerufen Dez. 2025. Dort: „Correctiv ist über verschiedene Konsortien mit Millionenförderung (u.a. 7,4 Mio. Euro) an EU-Berichterstattung beteiligt."
+  </div>
+
+  <!-- SEKTION 3 -->
+  <h2>III. Die EU-Ebene: Europäischer Democracy Shield</h2>
+
+  <p>
+    Parallel zur nationalen Ebene baut die EU-Kommission ein eigenständiges Kontrollsystem auf: den <strong>European Democracy Shield</strong>. Dessen Ziel ist laut offizieller Beschreibung die Bekämpfung von „Desinformation" und „FIMI" (Foreign Information Manipulation and Interference). <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <p>
+    Bestandteil dieses Systems ist das <strong>European Centre for Democratic Resilience</strong> (seit Ende Februar 2026 aktiv). Es fördert Journalisten, die dem Zentrum zuarbeiten, und baut ein Archiv von verifizierten Fakten auf, das EU-Behörden zugänglich ist. Faktenchecker sollen nach diesem Modell nicht nur Fehler korrigieren, sondern selbst Diskurse produzieren und als „Wahrheitsbehörden" gegenüber Plattformen agieren dürfen. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="source-box">
+    <span class="source-label">Primärquelle</span>
+    NIUS-Recherche zum „Generalangriff auf neue Medien", zitiert nach TKP.at, 11. Juni 2026. Norbert Häring: „Die EU verspricht, Zensur und Meinungskontrolle zu intensivieren", norberthaering.de (mit Primärquellenverweis auf EU-Kommissionsmitteilungen).
+  </div>
+
+  <p>
+    Das EU-finanzierte Netzwerk EFCSN (European Fact-Checking Standards Network) legt ein „unabhängiges Archiv" von Faktenchecks an, das EU-Behörden zuarbeitet. Mitglied dieses Netzwerks ist Correctiv. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <h3>Was als „Falschmeldung" gilt</h3>
+
+  <p>
+    Im Juni 2026 veröffentlichte die österreichische Studie „Digital Skills Austria IV" — beauftragt von der staatlichen Medienbehörde RTR — eine Liste von Aussagen, die als Desinformation eingestuft wurden. Eine davon: Die Behauptung, die EU-Kommission bezahle Umwelt-NGOs mit Steuergeldern von bis zu 700.000 Euro pro Organisation für Lobbyarbeit zugunsten des European Green Deal. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <p>
+    Diese Behauptung stammt aus einer Exklusivrecherche der <em>Welt am Sonntag</em> — gestützt auf interne Verträge aus dem Jahr 2022, in denen die EU-Kommission festgehalten hatte, welche Gegenleistungen sie von geförderten NGOs erwartete. Die Organisation ClientEarth soll demnach 350.000 Euro erhalten haben, um deutsche Kohlekraftwerke in Gerichtsverfahren zu verwickeln. Das Europäische Parlament setzte im Juni 2025 eine Arbeitsgruppe ein, um die Affäre zu untersuchen. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="pull-quote">
+    Eine von staatlicher Seite beauftragte Studie stuft eine Exklusivrecherche einer Zeitung — gestützt auf interne EU-Verträge — als „Falschmeldung" ein. Als Beleg zieht die Studie Faktenchecker heran, von denen einer selbst vor Gericht steht.
+    <cite>— Sinngemäß nach: exxpress.at, 18. Juni 2026</cite>
+  </div>
+
+  <!-- SEKTION 4 -->
+  <h2>IV. Das Dreieck: Staat — NGO — Plattform</h2>
+
+  <p>
+    Lowenthals Studie beschreibt ein Strukturmuster, das er als „Zensur-Industrie-Komplex" bezeichnet: Dieselben Organisationen und Experten tauchen immer wieder in neuen Projekten auf — finanziert von wechselnden Ministerien und EU-Programmen, eingebunden in wechselnde Konsortien, mit denselben institutionellen Netzwerken. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Akteur</th>
+        <th>Funktion</th>
+        <th>Dokumentierte Finanzierung</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Correctiv</td>
+        <td>Faktenchecker, EFCSN-Mitglied, Meta-Partner</td>
+        <td>Brost Foundation, BMBF, „Demokratie leben!", Google, Europäischer Medien- und Informationsfonds, Meta (7,4 Mio. € EU-Konsortien)</td>
+      </tr>
+      <tr>
+        <td>CeMAS</td>
+        <td>„Extremismusforschung", Medienexpertisen, ARD/ZDF-Zuarbeiten</td>
+        <td>Alfred Landecker Foundation (~3 Mio. €), weitere</td>
+      </tr>
+      <tr>
+        <td>HateAid</td>
+        <td>Rechtsberatung, DSA Trusted Flagger</td>
+        <td>Bundesmittel, Alfred Landecker Foundation</td>
+      </tr>
+      <tr>
+        <td>Amadeu Antonio Stiftung</td>
+        <td>Meldestellen, Demokratieprojekte</td>
+        <td>Bundesministerien, „Demokratie leben!"</td>
+      </tr>
+      <tr>
+        <td>dpa (Fact-Checking)</td>
+        <td>Meta-Drittpartei-Faktencheck</td>
+        <td>500.000 € EU-Mittel 2026–2029</td>
+      </tr>
+      <tr>
+        <td>COMPACT (EU-Netzwerk)</td>
+        <td>Anti-Verschwörungstheorie-Forschung, Workshops</td>
+        <td>EU-Kommission, COST-Programm</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <span class="source-label">Primärquellen</span>
+    liber-net.org, Datenbank (Nov. 2025) · Norbert Häring, norberthaering.de, „Die EU verspricht mehr Zensur" · NIUS-Recherche (Generalangriff, 2026) · Danisch.de, Mai 2026 (Alfred Landecker Foundation / CeMAS / HateAid)
+  </div>
+
+  <!-- SEKTION 5 -->
+  <h2>V. NetzDG und §188 StGB: Die rechtliche Infrastruktur</h2>
+
+  <p>
+    Das Netzwerkdurchsetzungsgesetz (NetzDG) von 2017 verpflichtet Plattformen zur schnellen Entfernung von Inhalten, die unter bestimmte Straftatbestände fallen — darunter Hassrede, Beleidigungen und Volksverhetzung. Plattformen reagieren systematisch mit Überentfernung, um Bußgelder zu vermeiden. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <p>
+    §188 StGB stellt die „üble Nachrede und Verleumdung gegen Personen des politischen Lebens" unter verschärfte Strafandrohung. In der Praxis stützen sich laut Lowenthals Studie zahlreiche Verfahren gegen Internetnutzer auf diese Vorschrift. Lowenthal dokumentiert Fälle von Hausdurchsuchungen bei Personen, die beleidigende Memes gepostet hatten — 2025 in einer US-amerikanischen Reportage (CBS, „60 Minutes") international rezipiert. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="source-box">
+    <span class="source-label">Primärquelle</span>
+    NetzDG, BGBl. 2017 I S. 3352 · §188 StGB · Liber-net-Studie, Nov. 2025, S. 14 ff. (zitiert nach mehreren Sekundärquellen) · CBS „60 Minutes", Frühjahr 2025 (international ausgestrahlt)
+  </div>
+
+  <!-- SEKTION 6 -->
+  <h2>VI. Was zuletzt als Verschwörungstheorie galt</h2>
+
+  <p>
+    Norbert Häring dokumentierte auf norberthaering.de bereits 2020 die EU-Pläne für eine koordinierte Faktenchecker-Finanzierung — damals als Randthema wahrgenommen. 2025 sind diese Strukturen institutionell verankert, rechtlich kodifiziert (DSA) und mit dreistelligen Millionensummen ausgestattet. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <p>
+    Bellingcat-CEO Elliot Higgins äußerte 2025 öffentlich, Faktenchecker hätten „versagt, weil sie keinen Diskurs erschaffen" — und plädierte dafür, ein globales Netzwerk von universitären Informatik-Fachbereichen solle künftig selbst Diskurse produzieren. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="source-box">
+    <span class="source-label">Quelle</span>
+    Tichys Einblick, 6. Juli 2025, „Universitäten für Meinungskontrolle — mit Millionengeldern aus Brüssel" (zitiert Higgins-Aussage mit Verweis auf Foundation for Freedom Online, FFO)
+  </div>
+
+  <!-- SCHLUSSFRAGEN -->
+  <div class="closing-questions">
+    <p>Wer entscheidet, was als „Desinformation" gilt — und nach welchem Verfahren?</p>
+    <p>Wie verhält sich ein System, in dem staatlich finanzierte Organisationen Inhalte bei Plattformen melden und diese Meldungen zu algorithmischen Sperren führen, zu Artikel 5 Grundgesetz?</p>
+    <p>Warum stufte eine staatlich beauftragte Studie eine durch interne EU-Verträge belegte Zeitungsrecherche als „Falschmeldung" ein?</p>
+    <p>Was bedeutet es für den Begriff der Unabhängigkeit, wenn Faktenchecker, die Medieninhalte bewerten, selbst von den Institutionen finanziert werden, deren Inhalte oder Politik sie beurteilen?</p>
+    <p>Warum tauchen in diesem System — laut Lowenthal — immer wieder dieselben Personen und Organisationen auf?</p>
+  </div>
+
+  <!-- QUELLEN -->
+  <div class="sources-section">
+    <h3>Dokumentierte Primär- und Sekundärquellen</h3>
+    <ul class="sources-list">
+      <li>Lowenthal, Andrew: „The Censorship Network: Regulation and Repression in Germany Today", liber-net.org, November 2025 — <a href="https://liber-net.org/germany/" target="_blank">liber-net.org/germany/</a></li>
+      <li>Landgericht Berlin II, 27. Zivilkammer, Urteil 17. März 2026 (Az. offen, nicht rechtskräftig) — Dokumentation via NIUS und correctiv.org/in-eigener-sache/</li>
+      <li>NIUS: „Landgericht Berlin urteilt: Correctiv-Geschichte zu Potsdam-Treffen ‚im Wesentlichen unwahr'", 17.–20. März 2026</li>
+      <li>Correctiv: „Rechtliche Auseinandersetzungen um ‚Geheimplan gegen Deutschland' — eine Einordnung", correctiv.org, 23. April 2026</li>
+      <li>Häring, Norbert: „Die EU verspricht, Zensur und Meinungskontrolle zu intensivieren", norberthaering.de (Primärquellen: EU-Kommissionsmitteilungen)</li>
+      <li>Tichys Einblick: „Universitäten für Meinungskontrolle — mit Millionengeldern aus Brüssel", 6. Juli 2025 (verweist auf Jakob Schirrmacher / Foundation for Freedom Online)</li>
+      <li>TKP.at: „Der Generalangriff auf neue Medien steht bevor", 11. Juni 2026 (NIUS-Recherche)</li>
+      <li>Danisch.de: „Reimann/Landecker und CeMAS", Mai 2026</li>
+      <li>exxpress.at: „Desinformation laut Staatsbehörde: Wenn eine unbequeme EU-Recherche zur ‚Falschmeldung' wird", 18. Juni 2026</li>
+      <li>Digital Services Act (DSA), EU-Verordnung 2022/2065 — Artikel 22 (Trusted Flaggers)</li>
+      <li>NetzDG, BGBl. 2017 I S. 3352</li>
+      <li>§188 StGB (Verleumdung gegen Personen des politischen Lebens)</li>
+      <li>Europäisches Parlament: Haushalt 2025 (Fast 200 Mrd. €, Pressemitteilung 16. November 2024)</li>
+    </ul>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-note">
+    dunkelfeld.report dokumentiert auf Basis öffentlich zugänglicher Primärquellen. Spekulation ist als solche gekennzeichnet. Motive werden nicht zugeschrieben. Schlussfolgerungen ziehen die Leser selbst. &nbsp;·&nbsp; BELEGT = primärquellengestützt &nbsp;·&nbsp; EXTRAPOLATION = strukturell plausibel &nbsp;·&nbsp; OFFEN = nicht abschließend verifiziert.
+  </div>
+
+</div>
+</body>
+</html>

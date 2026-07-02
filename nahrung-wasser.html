@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wasser — Wer kontrolliert, was wir essen? Teil 6 | dunkelfeld.report</title>
+  <meta name="description" content="Wasser als Menschenrecht oder Marktware? Nestlés Praktiken in Pakistan und Frankreich, die 2030 Water Resources Group des WEF, UN-Resolution 64/292 — und was nicht einklagbar ist.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #09090b;
+      color: #e4e4e7;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      padding: 2rem 1rem;
+    }
+
+    .container { max-width: 720px; margin: 0 auto; }
+
+    .series-banner {
+      background: #18181b;
+      border-left: 3px solid #e8c547;
+      padding: 0.75rem 1.25rem;
+      margin-bottom: 2.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: #a1a1aa;
+      letter-spacing: 0.04em;
+    }
+    .series-banner strong { color: #e8c547; }
+
+    h1 { font-size: 2rem; font-weight: 700; line-height: 1.25; color: #fafafa; margin-bottom: 0.75rem; }
+    .subtitle { font-size: 1.15rem; color: #a1a1aa; margin-bottom: 1.5rem; font-style: italic; }
+    .meta { font-family: 'Courier New', monospace; font-size: 0.78rem; color: #71717a; margin-bottom: 2.5rem; letter-spacing: 0.03em; }
+
+    h2 { font-size: 1.35rem; color: #e8c547; margin: 2.5rem 0 0.85rem; font-weight: 600; }
+    h3 { font-size: 1.1rem; color: #d4d4d8; margin: 1.75rem 0 0.6rem; font-weight: 600; }
+    p { margin-bottom: 1.2rem; }
+
+    .tag {
+      display: inline-block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 0.15rem 0.5rem;
+      border-radius: 2px;
+      vertical-align: middle;
+      margin-left: 0.35rem;
+      position: relative;
+      top: -1px;
+    }
+    .tag-belegt   { background: #14532d; color: #86efac; }
+    .tag-offen    { background: #3f3f46; color: #a1a1aa; }
+    .tag-extrapol { background: #7c2d12; color: #fdba74; }
+
+    .source-box {
+      background: #1a1a2e;
+      border-left: 3px solid #e8c547;
+      padding: 1rem 1.25rem;
+      margin: 1.75rem 0;
+      font-size: 0.88rem;
+    }
+    .source-box .source-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: #e8c547;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+    }
+    .source-box a { color: #93c5fd; text-decoration: none; }
+    .source-box a:hover { text-decoration: underline; }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin: 1.75rem 0;
+    }
+    .stat-item { background: #18181b; border: 1px solid #27272a; padding: 1rem 1.1rem; text-align: center; }
+    .stat-number { font-size: 1.75rem; font-weight: 700; color: #e8c547; font-family: 'Courier New', monospace; display: block; }
+    .stat-label { font-size: 0.8rem; color: #a1a1aa; margin-top: 0.25rem; line-height: 1.4; }
+
+    .pull-quote {
+      border-left: 3px solid #e8c547;
+      padding: 0.75rem 1.25rem;
+      margin: 1.75rem 0;
+      font-style: italic;
+      color: #d4d4d8;
+      font-size: 1.05rem;
+    }
+    .pull-quote cite {
+      display: block;
+      font-style: normal;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: #71717a;
+      margin-top: 0.5rem;
+    }
+
+    .highlight-box {
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      border-left: 3px solid #a1a1aa;
+      padding: 1rem 1.25rem;
+      margin: 1.75rem 0;
+      font-size: 0.92rem;
+    }
+    .highlight-box strong { color: #e8c547; }
+
+    .timeline { margin: 1.75rem 0; position: relative; padding-left: 1.5rem; border-left: 1px solid #3f3f46; }
+    .timeline-item { margin-bottom: 1.25rem; position: relative; }
+    .timeline-item::before {
+      content: ''; width: 8px; height: 8px; border-radius: 50%;
+      background: #e8c547; position: absolute; left: -1.85rem; top: 0.45rem;
+    }
+    .timeline-date { font-family: 'Courier New', monospace; font-size: 0.75rem; color: #e8c547; letter-spacing: 0.06em; }
+    .timeline-text { font-size: 0.9rem; color: #d4d4d8; margin-top: 0.2rem; }
+
+    .data-table { width: 100%; border-collapse: collapse; margin: 1.75rem 0; font-size: 0.88rem; }
+    .data-table th {
+      background: #18181b; color: #e8c547;
+      font-family: 'Courier New', monospace; font-size: 0.72rem;
+      letter-spacing: 0.06em; padding: 0.6rem 0.85rem;
+      text-align: left; border-bottom: 1px solid #3f3f46;
+    }
+    .data-table td { padding: 0.6rem 0.85rem; border-bottom: 1px solid #27272a; vertical-align: top; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: #18181b; }
+
+    .series-nav { background: #18181b; border: 1px solid #27272a; padding: 1.25rem 1.5rem; margin-top: 3rem; }
+    .series-nav-title { font-family: 'Courier New', monospace; font-size: 0.75rem; color: #e8c547; letter-spacing: 0.08em; margin-bottom: 0.85rem; }
+    .series-nav ul { list-style: none; font-size: 0.85rem; line-height: 1.9; }
+    .series-nav a { color: #93c5fd; text-decoration: none; }
+    .series-nav a:hover { text-decoration: underline; }
+    .series-nav .current { color: #e8c547; font-weight: 600; }
+    .series-nav .pending { color: #52525b; }
+
+    .closing { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid #27272a; font-style: italic; color: #a1a1aa; font-size: 0.97rem; line-height: 1.9; }
+    hr { border: none; border-top: 1px solid #27272a; margin: 2.5rem 0; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5rem; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="series-banner">
+    <strong>SERIE</strong> — Wer kontrolliert, was wir essen? &nbsp;|&nbsp; Teil 6 von 11
+  </div>
+
+  <h1>Wasser</h1>
+  <p class="subtitle">Menschenrecht auf dem Papier — Marktware in der Praxis</p>
+  <div class="meta">
+    DUNKELFELD.REPORT &nbsp;·&nbsp; Juni 2026 &nbsp;·&nbsp; Primärquellen: UN-Resolution A/RES/64/292 (2010), Französischer Senat Untersuchungsausschuss (Mai 2025), Le Monde / Radio France (Januar 2024), Mediapart (Juli 2024), Dokumentarfilm „Bottled Life" (2012, Urs Schnell / Res Gehriger), WEF 2030 Water Resources Group, Foodwatch Frankreich
+  </div>
+
+  <!-- Einstieg: Brabeck -->
+  <h2>Der Einstieg: Was Nestlés langjähriger Chef tatsächlich sagte</h2>
+
+  <p>Im Internet kursiert seit Jahren das Zitat „Wasser ist kein Menschenrecht" — attribuiert an Peter Brabeck-Letmathe, langjähriger CEO und Verwaltungsratspräsident von Nestlé. So hat er es nie gesagt. Was er tatsächlich sagte, ist dokumentiert und nicht weniger aufschlussreich. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="pull-quote">
+    „Die eine Meinung, die ich für extrem halte, wird von den NGOs vertreten, die sich dafür einsetzen, dass Wasser zum öffentlichen Recht erklärt wird. Das bedeutet, dass Sie als Mensch ein Recht auf Wasser haben sollten. Das ist eine extreme Lösung."
+    <cite>— Peter Brabeck-Letmathe, Nestlé-CEO, Dokumentarfilm „We Feed the World", 2005</cite>
+  </div>
+
+  <p>Brabeck ergänzte in demselben Filmausschnitt: Wasser sei „ein Lebensmittel wie jedes andere" und solle „einen Marktwert haben." <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Nach anhaltender öffentlicher Kritik präzisierte Brabeck seine Position wiederholt: Grundwasser für Trinken und minimale Hygiene — konkret 5 Liter Trinkwasser und 20 Liter für Basishygiene täglich — sei ein Menschenrecht. Alles darüber hinaus — für Swimmingpools, Golfplätze, Biotreibstoff — sei keines. Beim WEF Davos 2012: „Es gibt kein Menschenrecht auf Wasser für Swimmingpools und Golfplätze." <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Brabeck leitete zeitgleich die <strong>Wasserinitiative des Weltwirtschaftsforums</strong> und die <strong>2030 Water Resources Group (WRG)</strong> — eine öffentlich-private Partnerschaft, die Entscheidungen über Wasserressourcen koordiniert. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <div class="source-label">PRIMÄRQUELLEN</div>
+    Originalaussage Brabeck: Dokumentarfilm „We Feed the World" (2005, Regie: Erwin Wagenhofer). Ausschnitt auf YouTube dokumentiert und von dpa als authentisch bestätigt.<br>
+    dpa-Faktencheck zur Fehlattribuierung des Kurzitat-Memes (2019):
+    <a href="https://www.presseportal.de/pm/133833/4272023" target="_blank" rel="noopener">presseportal.de</a><br>
+    Brabeck beim WEF Davos 2012 — Interview Blick.ch:
+    <a href="https://www.blick.ch/wirtschaft/nestle-chef-peter-brabeck-es-gibt-kein-menschenrecht-auf-wasser-fuer-swimmingpool-id1743192.html" target="_blank" rel="noopener">blick.ch</a><br>
+    Brabeck-Letmathe — Blog-Post zur Klarstellung (18. April 2013, referenziert bei Snopes):
+    <a href="https://www.snopes.com/fact-check/nestle-ceo-water-not-human-right/" target="_blank" rel="noopener">snopes.com</a>
+  </div>
+
+  <!-- UN-Resolution -->
+  <h2>Was die UN beschlossen hat — und was das bedeutet</h2>
+
+  <p>Am 28. Juli 2010 erkannte die Generalversammlung der Vereinten Nationen mit der Resolution A/RES/64/292 den Zugang zu sauberem Wasser und Sanitärversorgung als Menschenrecht an. 122 Staaten stimmten dafür. 41 enthielten sich — darunter Kanada und die USA. Kein Staat stimmte dagegen. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="highlight-box">
+    <strong>Entscheidende Einschränkung:</strong> Die Resolution ist rechtlich nicht bindend und nicht einklagbar. Sie hat hohen politischen Stellenwert, begründet aber keine durchsetzbaren Ansprüche vor internationalen Gerichten. <span class="tag tag-belegt">BELEGT</span>
+  </div>
+
+  <p>Fünf Jahre später, 2015, erkannte die UN-Generalversammlung auch das Menschenrecht auf Sanitärversorgung ausdrücklich als eigenständiges Recht an. Die UN-Wasserdekade läuft von 2018 bis 2028. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="stat-grid">
+    <div class="stat-item">
+      <span class="stat-number">2 Mrd.</span>
+      <div class="stat-label">Menschen ohne sicheren Zugang zu Trinkwasser (UN)</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">0,03 %</span>
+      <div class="stat-label">der Erdoberfläche: als Trinkwasser verfügbares Süßwasser</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">122 : 0</span>
+      <div class="stat-label">Abstimmung UN A/RES/64/292 — für : gegen (41 Enthaltungen)</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">nicht einklagbar</span>
+      <div class="stat-label">Rechtsstatus der UN-Resolution</div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <div class="source-label">PRIMÄRQUELLE</div>
+    UN-Resolution A/RES/64/292 — „The Human Right to Water and Sanitation" (28. Juli 2010):
+    <a href="https://www.un.org/Depts/german/gv-64/band3/ar64292.pdf" target="_blank" rel="noopener">un.org (PDF, deutsche Übersetzung)</a><br>
+    Wikipedia-Artikel mit Abstimmungsprotokoll:
+    <a href="https://de.wikipedia.org/wiki/Recht_auf_Zugang_zu_sauberem_Wasser" target="_blank" rel="noopener">de.wikipedia.org</a>
+  </div>
+
+  <!-- Nestlé: Marktpraktiken -->
+  <h2>Nestlé Waters: Was dokumentiert ist</h2>
+
+  <p>Nestlé ist der weltgrößte Abfüller von Mineralwasser. Zum Konzern gehören über 70 Wassermarken, darunter Perrier, San Pellegrino, Vittel, Contrex, Hépar und — für Schwellen- und Entwicklungsländer — Pure Life. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <h3>Pakistan: Pure Life und der sinkende Grundwasserspiegel</h3>
+
+  <p>Der Schweizer Dokumentarfilm „Bottled Life" (2012, Regie Urs Schnell, Recherche Res Gehriger) dokumentierte folgende Situation rund um Nestlés Werk Sheikhupura bei Lahore: <span class="tag tag-belegt">BELEGT</span></p>
+
+  <ul style="margin: 0.5rem 0 1.5rem 1.5rem; line-height: 2; color: #d4d4d8; font-size: 0.95rem;">
+    <li>Nestlé pumpt Tiefbrunnen ab, reinigt das Grundwasser und fügt einen konzerneignen Mineralien-Mix hinzu — Produkt: „Pure Life"</li>
+    <li>Der Grundwasserspiegel in der Region ist dramatisch gesunken; das Wasser aus den weniger tiefen Brunnen der Dorfbevölkerung ist nach Angaben von Filmjouralisten zu übelriechender Brühe geworden</li>
+    <li>Nestlé zahlt laut Filmrecherche 10 US-Dollar pro Tankwagenladung Wasser; im Einzelhandel kostet dieselbe Menge als „Pure Life" 50.000 Dollar</li>
+    <li>Der damalige Gemeinderat Umar Hayat in Bhati Dilwan: „Unserer Meinung nach nimmt Nestlé uns unser Wasser weg"</li>
+  </ul>
+
+  <p>Nestlés offizielle Antwort auf den Film: Das Werk Sheikhupura fördere aus zwei Tiefbrunnen; in der Region Lahore existierten geschätzt 680.000 Brunnen, die primär für Landwirtschaft genutzt würden. Nestlé habe acht Brunnenanlagen in umliegenden Dörfern installiert und damit rund 50.000 Menschen Zugang zu sauberem Wasser verschafft. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <h3>Frankreich: Der Perrier-Skandal — „Staatsskandal"</h3>
+
+  <p>Im Januar 2024 enthüllten Le Monde und Radio France: Nestlé Waters hat jahrelang Wasser der Marken Perrier, Vittel, Contrex und Hépar mit Methoden behandelt, die nach EU-Recht für natürliches Mineralwasser ausdrücklich verboten sind — UV-Strahlung, Kohlefilter, Mikrofiltration. Das Wasser war mit Pestiziden, Bakterien und fäkalen Keimen belastet. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">Ab den 1990er Jahren</div>
+      <div class="timeline-text">Beginn der verbotenen Behandlungspraktiken an mehreren Nestlé-Waters-Quellen in Frankreich, laut Untersuchungsausschuss des französischen Senats.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Ende 2020</div>
+      <div class="timeline-text">Nestlé räumt intern ein, von den verbotenen Verfahren an den Standorten Perrier, Hépar und Contrex Kenntnis zu haben.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2022</div>
+      <div class="timeline-text">Vertraulicher französischer Behördenausschuss dokumentiert illegale Praktiken — Bericht wird nicht veröffentlicht.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2023</div>
+      <div class="timeline-text">Nestlé zahlt zwei Millionen Euro, um ein Gerichtsverfahren zu vermeiden. Französische Behörden ändern still die Vorschriften, um Mikrofiltration nachträglich zu legalisieren — ohne öffentliche Debatte. Laut Senatsbericht strich die regionale Gesundheitsbehörde ARS Ende 2023 auf Wunsch von Nestlé Waters Hinweise auf bakterielle Verunreinigungen aus einem offiziellen Gesundheitsbericht. Konkrete Textersetzungen wurden von Nestlé übermittelt. Ein Beamter verweigerte die Unterschrift; der Bericht wurde dennoch in der von Nestlé gewünschten Fassung veröffentlicht.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Januar 2024</div>
+      <div class="timeline-text">Le Monde und Radio France enthüllen den Skandal öffentlich.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">April 2024</div>
+      <div class="timeline-text">Französische Gesundheitsbehörde DGS ordnet Vernichtung von zwei Millionen Perrier-Flaschen wegen fäkaler Kontamination an.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Juli 2024</div>
+      <div class="timeline-text">Mediapart beziffert den Schaden auf rund drei Milliarden Euro in 15 Jahren. Foodwatch reicht Klagen ein.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Februar 2025</div>
+      <div class="timeline-text">Französische Justiz eröffnet offizielle Ermittlungen.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Mai 2025</div>
+      <div class="timeline-text">Untersuchungsausschuss des französischen Senats legt Abschlussbericht vor. Berichterstatter Alexandre Ouizille spricht explizit von einem „Staatsskandal" und „gefährlichen Verbindungen zwischen dem Staat und Nestlé". Nestlé-CEO Laurent Freixe hatte sich im März vor dem Senat rechtfertigen müssen. Ein Zeuge — Alexis Kohler, Generalsekretär des Élysée-Palasts und enger Macron-Vertrauter — erschien trotz Ladung nicht.</div>
+    </div>
+  </div>
+
+  <p>Nestlé prüft laut Medienberichten seit Ende 2024 den Verkauf seiner Wassersparte. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <div class="source-label">PRIMÄRQUELLEN</div>
+    Französischer Senat — Untersuchungsausschuss Abschlussbericht (Mai 2025):
+    <a href="https://www.senat.fr" target="_blank" rel="noopener">senat.fr</a><br>
+    Le Monde / Radio France — Enthüllung Januar 2024 (referenziert in ORF-Bericht):
+    <a href="https://orf.at/stories/3394291/" target="_blank" rel="noopener">orf.at — Senatsbericht Mai 2025</a><br>
+    Foodwatch Frankreich — Klagen und Ermittlungsantrag (referenziert in t-online):
+    <a href="https://www.t-online.de/leben/aktuelles/id_100732616/nestle-wasserskandal-in-frankreich-regierung-unter-vertuschungsverdacht.html" target="_blank" rel="noopener">t-online.de</a><br>
+    Dokumentarfilm „Bottled Life" (2012, Urs Schnell / Res Gehriger) — Filminformationen:
+    <a href="https://www.bottledlifefilm.com/about-the-film" target="_blank" rel="noopener">bottledlifefilm.com</a><br>
+    Nestlé Stellungnahme zu Pakistan (Nestlé Schweiz):
+    <a href="https://www.nestle.ch/de/fragen-sie-nestle/antworten/fragnestlewasser8" target="_blank" rel="noopener">nestle.ch</a>
+  </div>
+
+  <!-- Weitere Akteure -->
+  <h2>Nestlé ist nicht allein: Weitere Akteure im Wassermarkt</h2>
+
+  <p>Nestlé ist der bekannteste und am stärksten in der Kritik stehende Akteur — aber nicht der einzige. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Akteur</th>
+        <th>Position im Wassermarkt</th>
+        <th>Dokumentierte Punkte</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Nestlé Waters</strong></td>
+        <td>Größter Mineralwasserabfüller weltweit, 70+ Marken</td>
+        <td>Pakistan (Grundwasser), Frankreich (Perrier-Skandal), Maine/USA (Grundwasserkonflikte)</td>
+      </tr>
+      <tr>
+        <td><strong>Coca-Cola / PepsiCo</strong></td>
+        <td>Je einer der größten globalen Getränkehersteller mit Wassermarken (Dasani, Aquafina)</td>
+        <td>Kritik an Wasserentnahme in Dürreregionen, u.a. Kaliformien; zusammen mit Nestlé in der 2030 WRG</td>
+      </tr>
+      <tr>
+        <td><strong>Veolia / Suez</strong></td>
+        <td>Größte private Wasserversorger weltweit (Infrastruktur, Aufbereitung)</td>
+        <td>Privatisierung kommunaler Wasserversorgung in Entwicklungsländern und Europa; IWF-/Weltbank-geförderte Konzessionsvergaben</td>
+      </tr>
+      <tr>
+        <td><strong>BlackRock</strong></td>
+        <td>Größter Vermögensverwalter der Welt</td>
+        <td>Investitionen in Wasserinfrastruktur als ESG-Kategorie; Larry Fink thematisiert Wasserknappheit in jährlichen Investorenbriefen als Anlagefeld</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <div class="source-label">PRIMÄRQUELLEN / SEKUNDÄRQUELLEN</div>
+    Larry Fink Annual Letters to Investors (BlackRock) — Wasser als Investitionsthema:
+    <a href="https://www.blackrock.com/us/individual/larry-fink-annual-chairmans-letter" target="_blank" rel="noopener">blackrock.com</a><br>
+    Oxfam / Misereor zu Privatisierung kommunaler Wasserversorgung (Sekundärquelle, als Einstieg):
+    <a href="https://blog.misereor.de/2013/09/26/wasserrauber-bottled-life-ein-film-auf-den-spuren-von-nestles-schmutzigen-geschaften/" target="_blank" rel="noopener">blog.misereor.de</a>
+  </div>
+
+  <!-- WEF 2030 WRG -->
+  <h2>Die 2030 Water Resources Group: WEF, Nestlé und die Governance-Frage</h2>
+
+  <p>Die 2030 Water Resources Group (WRG) wurde vom Weltwirtschaftsforum (WEF) gegründet und wird als öffentlich-private Partnerschaft betrieben. Zu den Gründungsmitgliedern zählen Nestlé, PepsiCo und die Coca-Cola Company. Peter Brabeck-Letmathe leitete die Initiative über Jahre. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Das erklärte Ziel der WRG: „praktische Lösungen zur Bekämpfung der Wasserknappheit" in einem Multi-Stakeholder-Prozess zwischen Unternehmen, Regierungen und Zivilgesellschaft. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Was die WRG strukturell bedeutet: Entscheidungen über den Umgang mit Wasserressourcen werden in Konsortien verlagert, in denen private Unternehmen eine führende Rolle spielen. Die demokratische Legitimation dieser Gremien ist nicht durch Wahlen, sondern durch Mitgliedschaft definiert. <span class="tag tag-extrapol">EXTRAPOLATION</span></p>
+
+  <div class="source-box">
+    <div class="source-label">PRIMÄRQUELLE</div>
+    Nestlé Österreich — Brabeck-Letmathe als Leiter WEF-Wasserinitiative und 2030 WRG:
+    <a href="https://www.nestle.at/unternehmen/brabeck-letmathe-und-der-zugang-zu-wasser" target="_blank" rel="noopener">nestle.at</a><br>
+    2030 Water Resources Group — Eigendarstellung:
+    <a href="https://www.2030wrg.org" target="_blank" rel="noopener">2030wrg.org</a>
+  </div>
+
+  <!-- Was offen bleibt -->
+  <h2>Was strukturell offen ist</h2>
+
+  <p>Der französische Senat stellte in seinem Bericht von Mai 2025 fest, dass ein Regierungsbericht von 2022 bereits ergeben hatte: rund 30 Prozent der Wassermarken in Frankreich nutzen unzulässige Behandlungen. Dieser Bericht wurde nicht veröffentlicht. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Offen bleibt: In welchem Umfang ähnliche Praktiken bei anderen Marken und in anderen EU-Ländern dokumentiert oder undokumentiert sind. <span class="tag tag-offen">OFFEN</span></p>
+
+  <p>Die UN-Resolution von 2010 anerkennt Wasser als Menschenrecht. Gleichzeitig erlaubt das internationale Handelsrecht Konzessionsverträge, die kommunale Wasserversorgung an private Unternehmen übertragen. Die Frage, welches Recht im Konfliktfall Vorrang hat, ist völkerrechtlich nicht eindeutig beantwortet. <span class="tag tag-offen">OFFEN</span></p>
+
+  <hr>
+
+  <div class="closing">
+    <p>Nestlés langjähriger Chef nannte die Idee, Wasser zum öffentlichen Recht zu erklären, „extrem." Die UN erklärte es 2010 zum Menschenrecht — in einer Resolution, die nicht einklagbar ist. Nestlé verkaufte jahrzehntelang verunreinigtes Wasser als „natürlich." Die französische Regierung wusste davon und schwieg. Der Konzern leitete gleichzeitig die WEF-Initiative zur globalen Wasserpolitik.</p>
+    <p><em>Wenn ein Konzern, dessen Geschäftsmodell auf dem Zugang zu Grundwasser beruht, gleichzeitig die globale politische Agenda zur Wasserpolitik mitgestaltet — wessen Interessen werden dann vertreten? Wenn ein Menschenrecht nicht einklagbar ist — welchen Schutz bietet es gegen Akteure, die dieses Recht kommerziell aushöhlen? Und: Wenn 30 Prozent der Wassermarken eines EU-Landes verbotene Methoden nutzen und ein Bericht darüber nicht veröffentlicht wird — was wissen wir über die übrigen 70 Prozent?</em></p>
+  </div>
+
+  <div class="series-nav">
+    <div class="series-nav-title">SERIE — WER KONTROLLIERT, WAS WIR ESSEN?</div>
+    <ul>
+      <li><a href="nahrung-konzentration.html">Teil 1 — Das ABCD-Quartett: Marktkonzentration im Agrarhandel</a></li>
+      <li><a href="nahrung-saatgut.html">Teil 2 — Wer das Saatgut kontrolliert: Bayer/Monsanto, Gates, Svalbard</a></li>
+      <li><a href="nahrung-kleinbauern.html">Teil 3 — Höfesterben: Deutschland, Niederlande, Großbritannien, Schweiz</a></li>
+      <li><a href="nahrung-insekten.html">Teil 4 — Novel Food: Insekten auf europäischen Tellern</a></li>
+      <li><a href="nahrung-laborfleisch.html">Teil 5 — Laborfleisch: Kein Produkt zugelassen, erste Anträge laufen</a></li>
+      <li class="current">→ Teil 6 — Wasser: Menschenrecht auf dem Papier, Marktware in der Praxis</li>
+      <li><a href="nahrung-mercosur.html">Teil 7 — Das Mercosur-Abkommen: Rindfleisch gegen Autos</a></li>
+      <li class="pending">Teil 8 — Big Five: Wie Händler den Preis bestimmen <em>(in Arbeit)</em></li>
+      <li><a href="nahrung-gentechnik.html">Teil 9 — Neue Gentechnik: NGT-Verordnung und ihre Folgen</a></li>
+      <li><a href="nahrung-skandale.html">Teil 10 — Transfette, Glyphosat, Aspartam: Wie Risiken verwaltet werden</a></li>
+      <li class="pending">Teil 11 — Die Akteure: Netzwerkkarte und Abschluss <em>(in Arbeit)</em></li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

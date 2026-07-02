@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wind- und Solarwüsten — dunkelfeld.info</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;700&display=swap');
+
+  :root {
+    --bg:        #0a0a0a;
+    --surface:   #111111;
+    --border:    #1e1e1e;
+    --green:     #4ade80;
+    --green-dim: #16a34a;
+    --red:       #ef4444;
+    --amber:     #f59e0b;
+    --text:      #e5e5e5;
+    --muted:     #6b7280;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .site-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--green);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: 1px solid var(--green-dim);
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+  }
+  .series-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero { max-width: 860px; margin: 0 auto; padding: 5rem 2rem 3rem; }
+  .series-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--green);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .series-label::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--green); }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  h1 em { font-style: italic; color: var(--green); }
+
+  .subtitle { font-size: 1.15rem; color: var(--muted); margin-top: 1.2rem; max-width: 600px; line-height: 1.6; }
+
+  .meta {
+    margin-top: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    flex-wrap: wrap;
+  }
+  .meta span { color: var(--text); }
+
+  .lede { max-width: 860px; margin: 0 auto; padding: 0 2rem 2rem; border-bottom: 1px solid var(--border); }
+  .lede p { font-size: 1.2rem; line-height: 1.8; color: #c9c9c9; }
+  .lede p strong { color: #fff; font-weight: 700; }
+
+  .content { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+  .section { padding: 3.5rem 0; border-bottom: 1px solid var(--border); }
+
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--green);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 1.8rem 0 0.8rem;
+  }
+
+  p { margin-bottom: 1.2rem; color: #d1d5db; }
+  p:last-child { margin-bottom: 0; }
+
+  .pullquote {
+    margin: 2.5rem 0;
+    padding: 1.5rem 2rem;
+    border-left: 3px solid var(--green);
+    background: #0f1a14;
+  }
+  .pullquote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #e5e5e5;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .pullquote cite {
+    display: block;
+    margin-top: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    font-style: normal;
+    letter-spacing: 0.08em;
+  }
+
+  .factbox {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--amber);
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+  }
+  .factbox-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--amber);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .factbox p { font-size: 0.95rem; color: #c9c9c9; margin-bottom: 0.6rem; }
+  .factbox p:last-child { margin-bottom: 0; }
+
+  .dangerbox {
+    background: #1a0a0a;
+    border: 1px solid #3f1515;
+    border-left: 3px solid var(--red);
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+  }
+  .dangerbox p { color: #f3a7a7; font-size: 0.97rem; margin-bottom: 0.5rem; }
+  .dangerbox p:last-child { margin-bottom: 0; }
+  .dangerbox strong { color: #fca5a5; }
+
+  /* Fairness box - distinguishes verified vs exaggerated claims */
+  .fairnessbox {
+    background: #0a1218;
+    border: 1px solid #1a2a35;
+    border-left: 3px solid #38bdf8;
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+  }
+  .fairnessbox-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: #38bdf8;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .fairnessbox p { font-size: 0.95rem; color: #c9c9c9; margin-bottom: 0.6rem; }
+  .fairnessbox p:last-child { margin-bottom: 0; }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin: 2rem 0;
+    border: 1px solid var(--border);
+  }
+  .stat { background: var(--surface); padding: 1.5rem; text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--green);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  /* Checklist of damage categories */
+  .damage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    margin: 2rem 0;
+    border: 1px solid var(--border);
+  }
+  .damage-item {
+    background: var(--surface);
+    padding: 1.3rem 1.5rem;
+  }
+  .damage-cat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .damage-text { font-size: 0.92rem; color: #c9c9c9; line-height: 1.5; }
+
+  .graphic-wrap {
+    margin: 2.5rem 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+  }
+  .graphic-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .closing { padding: 3rem 2rem; max-width: 860px; margin: 0 auto; text-align: center; }
+  .closing-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: #e5e5e5;
+    line-height: 1.7;
+    max-width: 640px;
+    margin: 0 auto 2rem;
+  }
+  .series-nav { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+  .nav-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .nav-pill.active { border-color: var(--green); color: var(--green); }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 600px) {
+    .stats-row { grid-template-columns: 1fr; }
+    .damage-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 1.9rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="site-tag">dunkelfeld.info</span>
+  <span class="series-tag">Das grüne Kartell · Teil 2 / 4</span>
+</header>
+
+<section class="hero">
+  <div class="series-label">Serie: Das grüne Kartell</div>
+  <h1>Grün ist die<br><em>neue Betonfarbe.</em></h1>
+  <p class="subtitle">195 Jahre alte Bäume fallen für Maschinen, die mit Regenwald-Holz gebaut werden. Wer fragt, ob das wirklich Naturschutz ist, gilt schnell als Bremser des Fortschritts.</p>
+  <div class="meta">
+    <span>dunkelfeld.info</span>
+    <span style="color:var(--border)">|</span>
+    <span>Juni 2026</span>
+    <span style="color:var(--border)">|</span>
+    <span>Energiepolitik · Recherche</span>
+    <span style="color:var(--border)">|</span>
+    <span style="color:var(--muted)">Lesedauer ca. 11 Min.</span>
+  </div>
+</section>
+
+<div class="lede">
+  <p>Der Reinhardswald in Hessen wird wegen der Brüder Grimm "Märchenwald" genannt. Heute stehen dort Maschinen, die 241 Meter hoch sind — höher als der Frankfurter Messeturm. <strong>Gebaut, um das Klima zu retten. Bezahlt mit jahrhundertealten Bäumen, Beton und Bauschutt, der niemand wirklich bilanziert.</strong> Wer das hinterfragt, gilt schnell als Klimaleugner. Wir fragen trotzdem.</p>
+</div>
+
+<div class="content">
+
+  <!-- SECTION 1: REINHARDSWALD -->
+  <div class="section">
+    <div class="section-eyebrow">Fallbeispiel</div>
+    <h2>Der Reinhardswald — was wirklich passiert ist</h2>
+
+    <p>Im Reinhardswald nördlich von Kassel entsteht Hessens größter Windpark: 18 Anlagen vom Typ Vestas V150, jede 241 Meter hoch, mit einer Gesamtleistung von gut 100 Megawatt. Für die Standorte und Zufahrtswege wurden auf rund 29 Hektar Bäume gefällt — darunter Exemplare, die über 195 Jahre alt waren.</p>
+
+    <div class="stats-row">
+      <div class="stat">
+        <span class="stat-num">241m</span>
+        <span class="stat-label">Höhe der Windräder — höher als der Frankfurter Messeturm</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">29 ha</span>
+        <span class="stat-label">gerodete Waldfläche für 18 Anlagen plus Zufahrten</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">195+</span>
+        <span class="stat-label">Jahre alt waren einige der gefällten Bäume</span>
+      </div>
+    </div>
+
+    <div class="fairnessbox">
+      <div class="fairnessbox-label">Einordnung · Was übertrieben wurde</div>
+      <p>Im Umlauf war jahrelang die Zahl von 120.000 gefällten Bäumen. Diese Zahl ist nach Recherchen von Correctiv und Einschätzung des BUND Hessen falsch und stark übertrieben. Der als eigentlicher "Urwald" geltende Teil des Reinhardswalds, die Sababurg, ist als Windkraft-Standort sogar ausdrücklich ausgeschlossen.</p>
+            <p>Das ändert nichts daran, dass auf den betroffenen 29 Hektar reale, teils sehr alte Bäume gefällt wurden — aber seriöser Journalismus übertreibt nicht, wo die Fakten allein schon reichen.</p>
+    </div>
+
+    <p>Was bleibt, ist trotzdem gravierend: Der Bau läuft seit November 2024 — <strong>obwohl zu diesem Zeitpunkt am Verwaltungsgerichtshof noch Klagen anhängig waren.</strong> Im Dezember 2025 wurde der letzte große Eilantrag der Windkraftgegner zwar abgelehnt, aber gebaut wurde längst vorher, mit dem Risiko, das im Nachhinein zu rechtfertigen.</p>
+
+    <div class="dangerbox">
+      <p><strong>Dokumentiert:</strong> Zur Erschließung der Baustellen fuhren bis zu 40 Tonnen schwere Lastwagen auf Forstwegen, die ursprünglich für maximal 7,5 Tonnen zugelassen waren. Der zuständige Landkreis Kassel reagierte nach einer Anzeige nicht mit einem Bußgeld, sondern erteilte binnen 48 Stunden eine nachträgliche Sondergenehmigung.</p>
+            <p>Zusätzlich entstanden durch die tiefen Fahrspuren temporäre Wassertümpel, in denen sich geschützte Amphibien ansiedelten — die durch die fortgesetzten Bauarbeiten akut gefährdet waren, trotz gesetzlichem Tötungsverbot im Bundesnaturschutzgesetz.</p>
+    </div>
+
+    <p>Neun von elf Bürgermeistern der Region lehnten den Windpark ab. Fast alle Anwohner ebenso. Gebaut wurde trotzdem — mit dem Argument, die Klimakrise warte nicht. Das ist eine politische Entscheidung. Sie als reine Naturschutzmaßnahme zu verkaufen, ist es nicht.</p>
+  </div>
+
+  <!-- SECTION 2: THE FULL DAMAGE LEDGER -->
+  <div class="section">
+    <div class="section-eyebrow">Bilanz</div>
+    <h2>Was in der CO₂-Rechnung fehlt</h2>
+
+    <p>Windkraftanlagen werden als emissionsfrei verkauft. Das stimmt nur, wenn man den Betrieb isoliert betrachtet — und alles davor und danach ausblendet.</p>
+
+    <div class="damage-grid">
+      <div class="damage-item">
+        <div class="damage-cat">Material — Rotorblätter</div>
+        <div class="damage-text">Ein Rotorblatt enthält oft rund 2.000 kg Balsaholz als Kernmaterial. Die steigende Nachfrage treibt den Abbau in tropischen Regenwäldern voran — meist in Ecuador und Peru, mit dokumentierten Konflikten um illegalen Einschlag.</div>
+      </div>
+      <div class="damage-item">
+        <div class="damage-cat">Material — Fundament</div>
+        <div class="damage-text">Ein Windradfundament kann bis zu 1.200 Tonnen wiegen. Bei der Zementproduktion entstehen pro Tonne rund 0,9 Tonnen CO₂ — ein einzelnes Fundament verursacht damit über 1.000 Tonnen CO₂, bevor das erste Kilowatt erzeugt wird.</div>
+      </div>
+      <div class="damage-item">
+        <div class="damage-cat">Boden & Wasser</div>
+        <div class="damage-text">Fundamente und Zufahrtswege versiegeln Flächen dauerhaft und können Wasseradern unterbrechen. In Waldgebieten wird zusätzlich die natürliche Bodenstruktur durch Schwerlastverkehr verdichtet.</div>
+      </div>
+      <div class="damage-item">
+        <div class="damage-cat">Tierwelt</div>
+        <div class="damage-text">Schätzungen gehen von über 100.000 toten Vögeln und 250.000 toten Fledermäusen jährlich allein in Deutschland aus — durch Kollision oder Barotrauma, innere Verletzungen durch Druckunterschiede an den Rotoren.</div>
+      </div>
+      <div class="damage-item">
+        <div class="damage-cat">Seltene Erden</div>
+        <div class="damage-text">Permanentmagnete in modernen Turbinen benötigen Neodym und Dysprosium. Der Abbau konzentriert sich auf wenige Regionen mit dokumentiert hoher Umweltbelastung durch radioaktive Rückstände und Säureabwässer.</div>
+      </div>
+      <div class="damage-item">
+        <div class="damage-cat">Lebensdauer</div>
+        <div class="damage-text">Die technische Lebensdauer liegt bei etwa 20–25 Jahren. Danach müssen Rotorblätter aus glasfaserverstärktem Kunststoff entsorgt werden — ein Recyclingverfahren, das bis heute nicht großflächig industriell gelöst ist.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: FIRE RISK -->
+  <div class="section">
+    <div class="section-eyebrow">Sicherheitsrisiko</div>
+    <h2>Brandgefahr — das verschwiegene Kapitel</h2>
+
+    <p>Wer Windräder mitten in den Wald baut, baut auch eine Brandquelle mitten in den Wald. Das ist kein Randrisiko, sondern technisch dokumentiert und fachlich anerkannt.</p>
+
+    <div class="pullquote">
+      <p>"Eine effektive Brandbekämpfung an einer Windenergieanlage kann in aller Regel weder von innen noch von außen erfolgen."</p>
+      <cite>— Deutscher Feuerwehrverband, Fachempfehlung Nr. 1 „Einsatzstrategien an Windkraftanlagen"</cite>
+    </div>
+
+    <p>Der Grund ist simpel: Die Gondel, in der die meisten Brände entstehen, sitzt bei modernen Anlagen oft über 150 Meter hoch. Keine Feuerwehr kann dort löschen. Der Deutsche Feuerwehrverband selbst empfiehlt im Ernstfall das <strong>kontrollierte Abbrennen</strong> — also: zusehen und die Umgebung absperren.</p>
+
+    <h3>Was bereits passiert ist</h3>
+    <p>2019 brannte im baden-württembergischen Lahr zum zweiten Mal ein Rotorblatt nach technischem Defekt. 2013 fiel an derselben Anlage ein brennendes, 9 Tonnen schweres Rotorblatt in den angrenzenden Wald. Die Feuerwehren konnten wegen der Höhe nichts tun außer absperren. Auch in Niedersachsen warnte der NABU nach einem Neujahrsbrand explizit davor, was passiert wäre, hätte die Anlage mitten in trockenem Sommerwald gestanden statt auf feuchtem Grund.</p>
+
+    <div class="factbox">
+      <div class="factbox-label">Strukturproblem · Dokumentiert</div>
+      <p>Windkraftbetreiber sind gesetzlich nicht verpflichtet, eigenes Löschwasser bereitzustellen — diese Aufgabe liegt bei den Gemeinden. Doch Löschwasserteiche lassen sich auf Bergkuppen oder im Wald praktisch nicht realisieren.</p>
+      <p>Mit anderen Worten: Die Infrastruktur zur Risikominimierung wird mitgebaut — die Infrastruktur zur Schadensbegrenzung bleibt Aufgabe der Allgemeinheit.</p>
+    </div>
+
+    <p>Gerade in den ohnehin durch Sturm und Borkenkäfer geschwächten und damit besonders entzündlichen Wäldern — wie auch im Reinhardswald argumentiert wird — ist das kein theoretisches Risiko. Es ist eine Wette auf einen Sommer ohne ausreichend Regen.</p>
+  </div>
+
+  <!-- SECTION 4: SOLAR & DUNKELFLAUTE -->
+  <div class="section">
+    <div class="section-eyebrow">Das zweite Standbein</div>
+    <h2>Solarwüsten und das Problem, das niemand löst</h2>
+
+    <p>Solarparks gelten als die "sanftere" Alternative zu Windkraft. Doch Großflächenanlagen verändern ebenfalls ihre unmittelbare Umgebung: Bodentemperatur, Albedo-Effekt, lokale Verdunstung — Solarfelder sind keine neutralen Flächen, sondern verändern das Mikroklima vor Ort messbar.</p>
+
+    <p>Das größere strukturelle Problem aber ist die <strong>Dunkelflaute</strong> — Tage ohne nennenswerten Wind und ohne Sonne, die in Deutschland mehrfach im Jahr auftreten. In diesen Phasen liefern Wind und Solar fast nichts. Die Lücke wird bis heute überwiegend durch fossile Backup-Kraftwerke gefüllt — Gas, teils Kohle.</p>
+
+    <div class="dangerbox">
+      <p><strong>Der eigentliche Webfehler:</strong> Jedes zusätzliche Windrad und jeder zusätzliche Solarpark braucht ein Backup-System, das fast genauso groß dimensioniert sein muss wie die "grüne" Kapazität selbst — denn ohne Wind und Sonne fällt sie komplett aus. Diese Doppelstruktur kostet doppelt: einmal beim Bau der Erneuerbaren, einmal beim Bau und Betrieb der Reserve.</p>
+    </div>
+
+    <p>Diese Kosten — der CO₂-Ausstoß der Backup-Kraftwerke, die Herstellungsenergie der Anlagen selbst, der Materialverbrauch — taucht in den öffentlich kommunizierten Klimabilanzen meist nicht auf. Kommuniziert wird die Anlage im Betrieb, nicht der volle Lebenszyklus.</p>
+  </div>
+
+  <!-- SECTION 5: POLITICS & MONEY -->
+  <div class="section">
+    <div class="section-eyebrow">Die Geldspur</div>
+    <h2>Wer profitiert — und warum die Politik nicht zögert</h2>
+
+    <p>In Bayern will Wirtschafts- und Energieminister Hubert Aiwanger den Ausbau massiv beschleunigen. Im Gespräch sind je nach Quelle 500 bis 1.000 neue Anlagen, ein Großteil davon im Wald, ein Drittel davon auf Flächen des bayerischen Staatsforstes.</p>
+
+    <div class="factbox">
+      <div class="factbox-label">Interessenkonflikt · Dokumentiert</div>
+      <p>Das Engagement für den Windkraftausbau hat ein finanzielles Motiv mit Systemcharakter: Ein erheblicher Teil der geplanten Standorte liegt auf Flächen des bayerischen Staatsforstes. Die Pachteinnahmen aus diesen Projekten fließen direkt in den Landeshaushalt.</p>
+            <p>Pro Hektar werden dabei laut Wirtschaftsministerium teils mehrere tausend Euro Pacht pro Jahr erzielt, in Einzelfällen über 100.000 Euro für einzelne Flächen.</p>
+    </div>
+
+    <p>Das bedeutet: Der Staat ist hier nicht neutraler Genehmiger, sondern direkter wirtschaftlicher Nutznießer der eigenen Genehmigungsentscheidung. Diese Konstruktion — Genehmigungsbehörde und Vermieter in einer Hand — wäre in fast jedem anderen Verwaltungsbereich ein offensichtlicher Interessenkonflikt. Bei der Energiewende gilt sie als normale Praxis.</p>
+
+    <div class="pullquote">
+      <p>"Wir müssen jetzt mehr Windkraft in Bayern realisieren. 37 Prozent der Landesfläche sind Wald."</p>
+      <cite>— Hubert Aiwanger, Bayerischer Wirtschafts- und Energieminister</cite>
+    </div>
+
+    <p>Bemerkenswert ist, dass selbst Umweltverbände wie Greenpeace Aiwanger nicht für zu viel, sondern für zu <em>wenig</em> Tempo kritisieren — der eigentliche politische Streit verläuft also nicht zwischen Windkraftbefürwortern und -kritikern, sondern darüber, wie schnell und wo genau gebaut werden darf. Die Frage, ob der Wald selbst ein schützenswertes Gut gegenüber der Energiewende ist, kommt in dieser Debatte kaum noch vor.</p>
+  </div>
+
+  <!-- SECTION 6: CONCLUSION -->
+  <div class="section" style="border-bottom:none;">
+    <div class="section-eyebrow">Einordnung</div>
+    <h2>Was hier wirklich verkauft wird</h2>
+
+    <p>Niemand muss bestreiten, dass Deutschland seine Energieversorgung umbauen muss. Die Frage ist, ob das im Namen der Natur passiert — oder auf ihre Kosten, mit Natur als Verkaufsargument.</p>
+
+    <p>Ein 195 Jahre alter Baum lässt sich nicht nachwachsen, bevor das nächste Rotorblatt seine 20 Betriebsjahre hinter sich hat. Ein durch Schwerlastverkehr verdichteter Waldboden erholt sich über Jahrzehnte nicht. Ein totes Fledermausvolk kommt nicht durch eine Pressemitteilung zurück.</p>
+
+    <p>Die eigentliche Verschiebung, die dieser Teil der Serie zeigt: Das, was als Gegenmodell zur fossilen Zerstörung verkauft wird, erzeugt seine eigene Zerstörung — nur unter grünem Label, mit weniger Widerstand, weil die Symbolik die Substanz schlägt. Wer dagegen argumentiert, kämpft nicht gegen Fakten, sondern gegen ein Gefühl, das stärker ist als jede Bilanz.</p>
+
+    <div class="factbox" style="border-top-color: var(--green); margin-top: 2rem;">
+      <div class="factbox-label" style="color: var(--green);">Serie · Das grüne Kartell</div>
+      <p><strong>Teil 4: Die Weltverbesserer</strong> — Warum Milliardäre wie Gates und Schwab die Welt retten wollen, obwohl sie es nicht für Geld tun müssen. Becker-Prinzip, Messias-Komplex und strategische Ambiguität als Machtinstrument.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="closing">
+  <p class="closing-text">"Grün ist keine Farbe mehr. Es ist ein Label, das man auf Beton klebt, damit niemand fragt, was darunter liegt."</p>
+  <div class="series-nav">
+    <a class="nav-pill" href="#">Teil 1: Der Kodex</a>
+    <a class="nav-pill active" href="#">Teil 2: Wind & Solar</a>
+    <a class="nav-pill" href="#">Teil 3: Kinder & Propaganda</a>
+    <a class="nav-pill" href="#">Teil 4: Die Weltverbesserer (demnächst)</a>
+  </div>
+</div>
+
+<footer>
+  dunkelfeld.info — Diagnose ohne Schönfärberei · Teil der AHO-Netzwerke · aho-impulse.de
+</footer>
+
+</body>
+</html>

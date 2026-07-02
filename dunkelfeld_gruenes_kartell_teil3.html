@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Was macht Klimapropaganda mit Kindern? — dunkelfeld.info</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;700&display=swap');
+
+  :root {
+    --bg:        #0a0a0a;
+    --surface:   #111111;
+    --border:    #1e1e1e;
+    --green:     #4ade80;
+    --green-dim: #16a34a;
+    --red:       #ef4444;
+    --amber:     #f59e0b;
+    --text:      #e5e5e5;
+    --muted:     #6b7280;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .site-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--green);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: 1px solid var(--green-dim);
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+  }
+  .series-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 5rem 2rem 3rem;
+  }
+  .series-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--green);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .series-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--green);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  h1 em { font-style: italic; color: var(--green); }
+
+  .subtitle {
+    font-size: 1.15rem;
+    color: var(--muted);
+    margin-top: 1.2rem;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  .meta {
+    margin-top: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    flex-wrap: wrap;
+  }
+  .meta span { color: var(--text); }
+
+  .lede {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .lede p { font-size: 1.2rem; line-height: 1.8; color: #c9c9c9; }
+  .lede p strong { color: #fff; font-weight: 700; }
+
+  .content { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+
+  .section { padding: 3.5rem 0; border-bottom: 1px solid var(--border); }
+
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--green);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  p { margin-bottom: 1.2rem; color: #d1d5db; }
+  p:last-child { margin-bottom: 0; }
+
+  .pullquote {
+    margin: 2.5rem 0;
+    padding: 1.5rem 2rem;
+    border-left: 3px solid var(--green);
+    background: #0f1a14;
+  }
+  .pullquote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #e5e5e5;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .pullquote cite {
+    display: block;
+    margin-top: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    font-style: normal;
+    letter-spacing: 0.08em;
+  }
+
+  .factbox {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--amber);
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+  }
+  .factbox-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--amber);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .factbox p { font-size: 0.95rem; color: #c9c9c9; margin-bottom: 0.6rem; }
+  .factbox p:last-child { margin-bottom: 0; }
+
+  /* Personal voice box - distinct from fact box */
+  .personalbox {
+    background: linear-gradient(135deg, #0f1410, #0a0a0a);
+    border: 1px solid #1e2e1e;
+    border-left: 3px solid var(--green);
+    padding: 2rem;
+    margin: 2.5rem 0;
+  }
+  .personalbox-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--green);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .personalbox p {
+    font-size: 1.05rem;
+    color: #e0e0e0;
+    line-height: 1.7;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin: 2rem 0;
+    border: 1px solid var(--border);
+  }
+  .stat { background: var(--surface); padding: 1.5rem; text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: var(--green);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.63rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  /* Comparison table - 1980s vs today */
+  .compare {
+    margin: 2.5rem 0;
+    border: 1px solid var(--border);
+  }
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .compare-row + .compare-row { border-top: 1px solid var(--border); }
+  .compare-cell {
+    padding: 1.2rem 1.5rem;
+    font-size: 0.92rem;
+    color: #c9c9c9;
+  }
+  .compare-cell.old { border-right: 1px solid var(--border); }
+  .compare-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 1rem 1.5rem;
+    font-weight: 700;
+  }
+  .compare-header.old { color: var(--amber); border-right: 1px solid var(--border); background: #1a1410; }
+  .compare-header.new { color: var(--green); background: #0f1a14; }
+
+  .graphic-wrap {
+    margin: 2.5rem 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+  }
+  .graphic-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .closing {
+    padding: 3rem 2rem;
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .closing-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: #e5e5e5;
+    line-height: 1.7;
+    max-width: 640px;
+    margin: 0 auto 2rem;
+  }
+  .series-nav { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+  .nav-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .nav-pill.active { border-color: var(--green); color: var(--green); }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 600px) {
+    .stats-row { grid-template-columns: 1fr; }
+    .compare-row, .compare-header { grid-template-columns: 1fr; }
+    .compare-cell.old, .compare-header.old { border-right: none; border-bottom: 1px solid var(--border); }
+    h1 { font-size: 1.9rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="site-tag">dunkelfeld.info</span>
+  <span class="series-tag">Das grüne Kartell · Teil 3 / 4</span>
+</header>
+
+<section class="hero">
+  <div class="series-label">Serie: Das grüne Kartell</div>
+  <h1>Die Angst, die<br>man <em>vererbt.</em></h1>
+  <p class="subtitle">Atompilz oder Hitzekuppel — das Bild wechselt, der Mechanismus nicht. Was macht es mit einer Generation, wenn man ihr seit dem Kindergarten das Ende der Welt verspricht?</p>
+  <div class="meta">
+    <span>dunkelfeld.info</span>
+    <span style="color:var(--border)">|</span>
+    <span>Juni 2026</span>
+    <span style="color:var(--border)">|</span>
+    <span>Psychologie · Medienanalyse</span>
+    <span style="color:var(--border)">|</span>
+    <span style="color:var(--muted)">Lesedauer ca. 9 Min.</span>
+  </div>
+</section>
+
+<div class="lede">
+  <p>Wer in den 1980ern Kind war, kennt das Gefühl: man liegt nachts wach und stellt sich vor, wie der Atompilz über der eigenen Stadt aufsteigt. Vierzig Jahre später erzählen Kinder Forschern in Interviews fast wortgleiche Bilder — nur heißt die Bedrohung jetzt nicht Sowjetunion, sondern <strong>Klimakollaps</strong>. Das Muster hat sich nicht verändert. Nur die Verpackung.</p>
+</div>
+
+<div class="content">
+
+  <div class="section">
+    <div class="section-eyebrow">Befund</div>
+    <h2>Eine Generation mit Angst als Dauerzustand</h2>
+
+    <p>Die Zahlen sind kein Randphänomen mehr. Eine Metaanalyse aus dem Jahr 2024 belegt einen engen negativen Zusammenhang zwischen Klimaangst und psychischem Wohlbefinden — besonders bei jungen Menschen, die den Folgen des Klimawandels am längsten ausgesetzt sein werden. Bereits 2021 gaben 59 % der 16- bis 25-Jährigen an, sich große Sorgen wegen der Klimakrise zu machen.</p>
+
+    <div class="stats-row">
+      <div class="stat">
+        <span class="stat-num">59%</span>
+        <span class="stat-label">der 16–25-Jährigen weltweit machen sich große Sorgen wegen der Klimakrise (Hickman et al. 2021)</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">53%</span>
+        <span class="stat-label">Schweizer Studierende wollen wegen des Klimawandels keine eigenen Kinder (Uni Lausanne, 2022)</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">31%</span>
+        <span class="stat-label">deutscher Jugendlicher verspüren laut BARMER-Studie 2025/26 große Angst vor dem Klimawandel</span>
+      </div>
+    </div>
+
+    <p>Die BARMER-Jugendstudie zeigt zwar einen leichten Rückgang gegenüber den Vorjahren — von 37 % im Jahr 2022 auf 31 % aktuell — doch der Anteil bleibt hoch, und die Sorge betrifft längst nicht nur das Klima selbst. 53 % der Jugendlichen rechnen inzwischen mit konkreten negativen gesundheitlichen Folgen durch den Klimawandel für sich selbst.</p>
+
+    <div class="pullquote">
+      <p>"Klimaangst ist völlig rational."</p>
+      <cite>— Psychologists for Future, Positionspapier</cite>
+    </div>
+
+    <p>Diese Aussage ist gefährlich genau dort, wo sie scheinbar entlastet. Denn sie verschiebt die Frage. Es geht nicht darum, ob Sorge angesichts realer Probleme rational ist. Es geht darum, <strong>wer diese Sorge wie groß macht — und mit welcher Wiederholungsfrequenz.</strong></p>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">Geschichte</div>
+    <h2>Das Muster ist vierzig Jahre alt</h2>
+
+    <p>Es gab schon einmal eine Generation, die mit dem täglichen Gedanken an die Auslöschung der Welt aufwuchs. In Großbritannien der frühen 1980er-Jahre durchdrang „nukleare Angst" den öffentlichen Diskurs derart, dass nach der Ausstrahlung des Films „Threads" im September 1984 zahlreiche Zuschauer von Schlaflosigkeit und Albträumen berichteten.</p>
+
+    <p>Die Forschung zeigt: nukleare Angst nahm bei jungen Erwachsenen in den USA über wiederholte Befragungen während der 1980er-Jahre kontinuierlich zu — getrieben von internationalen Spannungen, die als unmittelbare Bedrohung gerahmt wurden.</p>
+
+    <div class="compare">
+      <div class="compare-row" style="border-top:none;">
+        <div class="compare-header old">1980er: Atomkriegsangst</div>
+        <div class="compare-header new">2020er: Klimaangst</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell old">Bedrohung: unsichtbar, aber jederzeit denkbar — der Knopfdruck kann jeden Moment kommen</div>
+        <div class="compare-cell">Bedrohung: unsichtbar, aber „wissenschaftlich belegt" — der Kollaps kommt schleichend, aber sicher</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell old">Bilder: Atompilz, verstrahlte Landschaften, Bunkerfilme im Schulunterricht</div>
+        <div class="compare-cell">Bilder: schmelzende Gletscher, brennende Wälder, ertrinkende Eisbären in der Dauerschleife</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell old">Institution: Friedensbewegung, Schulprogramme, „Duck and Cover"</div>
+        <div class="compare-cell">Institution: Fridays for Future, Klima-Kodex, Schulstreik als Pflichtprogramm</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell old">Psychologischer Effekt: Ohnmacht, Zukunftsangst, depressive Verstimmung bei Jugendlichen</div>
+        <div class="compare-cell">Psychologischer Effekt: Ohnmacht, Zukunftsangst, depressive Verstimmung bei Jugendlichen</div>
+      </div>
+    </div>
+
+    <p>Die letzte Zeile ist bewusst identisch. Weil sie es in der Forschung auch ist.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">Mechanik</div>
+    <h2>Warum das Muster funktioniert — und warum es schadet</h2>
+
+    <p>Kinder sind keine passiven Zuschauer von Nachrichten. Eine aktuelle Studie zeigt, dass Kinder globale Bedrohungen aktiv durch die Linse ihres eigenen Lebens verarbeiten — sie entwickeln dabei sogar ein Gefühl der Verantwortung für eine Welt, die ihrer Wahrnehmung nach von Erwachsenen falsch verwaltet wird. Kinder stellen sich das Ende der Welt nicht als ferne Science-Fiction vor, sondern als greifbare Möglichkeit.</p>
+
+    <div class="factbox">
+      <div class="factbox-label">Befund · BPB / SINUS-Jugendstudie 2024</div>
+      <p>Jugendliche nennen Klimawandel und Diskriminierung häufiger als beunruhigend als Krieg und Inflation.</p>
+      <p>Zitat aus dem Bericht: „Aus Sicht der Befragten läuft die Menschheit sehenden Auges in eine Katastrophe, jedoch tut niemand etwas dagegen." Reaktion: Angst, Ohnmacht und Frust.</p>
+    </div>
+
+    <p>Das Wort, das hier zählt, ist <strong>Ohnmacht</strong>. Nicht Sorge — Ohnmacht. Und genau das ist der Punkt, an dem Aufklärung in Schaden umschlägt. Eine Bedrohung, die man verstehen und worauf man reagieren kann, erzeugt Handeln. Eine Bedrohung, die als unausweichlich, alles umfassend und individuell unlösbar präsentiert wird, erzeugt Lähmung.</p>
+
+    <div class="pullquote">
+      <p>"Je gravierender der Klimawandel dargestellt wird, desto eher wenden sich Menschen von dem Thema ab. Dramatisierung rüttelt Menschen auf Dauer nicht auf."</p>
+      <cite>— Medienforschungsbefund, zitiert in bpb.de, Klimadiskurse</cite>
+    </div>
+
+    <p>Das ist der Kern des Verrats: Diejenigen, die behaupten, Kinder für die Zukunft wappnen zu wollen, erzeugen stattdessen genau die Resignation, die Veränderung verhindert. Nicht aus Boshaftigkeit. Aus Unwissen über die eigene Wirkung — oder aus Gleichgültigkeit gegenüber ihr, solange die Botschaft nur laut genug ankommt.</p>
+  </div>
+
+  <!-- PERSONAL VOICE -->
+  <div class="section">
+    <div class="section-eyebrow">Zeugenaussage</div>
+    <h2>Ich kenne dieses Gefühl von innen</h2>
+
+    <div class="personalbox">
+      <div class="personalbox-label">AHO-Impuls · Persönlich</div>
+      <p>Ich bin mit der Angst vor dem Atomkrieg aufgewachsen. Ich kann sie kognitiv längst einordnen — ich weiß, dass die Bedrohung von damals nicht eingetreten ist, ich kenne die Geschichte, die Entspannungspolitik, das Ende des Kalten Krieges. Trotzdem: das Gefühl ist nie ganz verschwunden. Es sitzt irgendwo tief, wie ein Reflex, der wieder anspringt, wenn die Nachrichten bestimmte Bilder zeigen.</p>
+      <p>Das ist genau der Punkt, den keine Studie besser belegen kann als die eigene Erfahrung: Diese Art von Angst verarbeitet man nicht einfach weg. Sie wird Teil der eigenen Grundausstattung. Wenn ich das mit dem vergleiche, was heute Kindern vermittelt wird — täglich, in der Schule, in den sozialen Medien, in jeder Nachrichtensendung — frage ich mich, was von dieser Generation in vierzig Jahren noch übrig ist. Nicht körperlich. Psychisch.</p>
+    </div>
+
+    <p>Das ist kein Therapiebericht. Es ist ein Zeugnis dafür, dass diese Mechanik real ist und über Jahrzehnte wirkt — unabhängig davon, ob die zugrundeliegende Bedrohung jemals eintritt oder nicht.</p>
+  </div>
+
+  <div class="section" style="border-bottom:none;">
+    <div class="section-eyebrow">Einordnung</div>
+    <h2>Was hier wirklich verhandelt wird</h2>
+
+    <p>Niemand bestreitet, dass der Klimawandel real ist. Das ist nicht die Frage. Die Frage ist, <strong>wer entscheidet, wie eine ganze Generation emotional damit konfrontiert wird</strong> — und ob diese Entscheidung jemals mit Blick auf die psychische Gesundheit der Kinder getroffen wurde, oder mit Blick auf die Wirksamkeit der Botschaft.</p>
+
+    <p>Die Forschung zum Kalten Krieg ist hier eindeutig: postwar denial und Schweigen halfen nicht — sie verstärkten die Angst und verschlechterten die Impulskontrolle bei jungen Menschen. Das bedeutet nicht, dass man Kindern nichts sagen darf. Es bedeutet, dass die Art, wie man es sagt, über Jahrzehnte nachwirkt. Genau diese Verantwortung trägt, wer Kodexe schreibt, die Dramatisierung zur Methode erklären.</p>
+
+    <p>Wer ein Kind mit Weltuntergangsbildern aufwachsen lässt, ohne ihm Handlungsfähigkeit zu vermitteln, erzeugt keinen Klimaschützer. Er erzeugt einen Erwachsenen, der mit vierzig noch nachts wach liegt — und nicht mehr genau weiß, wovor eigentlich.</p>
+
+    <div class="factbox" style="border-top-color: var(--green); margin-top: 2rem;">
+      <div class="factbox-label" style="color: var(--green);">Serie · Das grüne Kartell</div>
+      <p><strong>Teil 4: Die Weltverbesserer</strong> — Warum Milliardäre wie Gates und Schwab die Welt retten wollen, obwohl sie es nicht für Geld tun müssen. Becker-Prinzip, Messias-Komplex und strategische Ambiguität als Machtinstrument.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="closing">
+  <p class="closing-text">"Das Bild wechselt von Generation zu Generation. Der Atompilz, die Hitzekuppel. Was bleibt, ist das Kind, das nachts wach liegt."</p>
+  <div class="series-nav">
+    <a class="nav-pill" href="#">Teil 1: Der Kodex</a>
+    <a class="nav-pill" href="#">Teil 2: Wind & Solar (demnächst)</a>
+    <a class="nav-pill active" href="#">Teil 3: Kinder & Propaganda</a>
+    <a class="nav-pill" href="#">Teil 4: Die Weltverbesserer (demnächst)</a>
+  </div>
+</div>
+
+<footer>
+  dunkelfeld.info — Diagnose ohne Schönfärberei · Teil der AHO-Netzwerke · aho-impulse.de
+</footer>
+
+</body>
+</html>

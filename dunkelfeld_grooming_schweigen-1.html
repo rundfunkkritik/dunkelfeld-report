@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>250.000 Mädchen. Kein Aufschrei. | dunkelfeld.info</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;600&display=swap');
+
+    :root {
+      --bg:        #0d0d0d;
+      --surface:   #141414;
+      --border:    #1e1e1e;
+      --accent:    #c0392b;
+      --accent2:   #e67e22;
+      --dim:       #444;
+      --muted:     #888;
+      --text:      #d4d0c8;
+      --heading:   #f0ece0;
+      --mono:      'JetBrains Mono', monospace;
+      --serif:     'Source Serif 4', Georgia, serif;
+      --display:   'Bebas Neue', Impact, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    /* ── HEADER ── */
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .site-tag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1px solid var(--accent);
+      padding: 0.25rem 0.6rem;
+    }
+    .site-name {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 5rem 2rem 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .kicker {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-family: var(--display);
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      color: var(--heading);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 .number {
+      color: var(--accent);
+      display: block;
+    }
+
+    .hero-sub {
+      font-family: var(--display);
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 2.5rem;
+    }
+
+    .lead {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: var(--heading);
+      font-weight: 300;
+      font-style: italic;
+      max-width: 680px;
+      border-left: 3px solid var(--accent);
+      padding-left: 1.5rem;
+    }
+
+    /* ── BODY ── */
+    .article-body {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    /* ── CONTRAST BOX ── */
+    .contrast-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+    .contrast-box .col {
+      padding: 2rem;
+    }
+    .contrast-box .col:first-child {
+      border-right: 1px solid var(--border);
+      background: #0f0f0f;
+    }
+    .contrast-box .col-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .contrast-box .col:first-child .col-label { color: var(--accent2); }
+    .contrast-box .col:last-child .col-label { color: var(--dim); }
+
+    .contrast-box .col-title {
+      font-family: var(--display);
+      font-size: 1.8rem;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+      color: var(--heading);
+    }
+    .contrast-box .col p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── FACT BLOCK ── */
+    .fact-block {
+      background: var(--surface);
+      border-left: 4px solid var(--accent);
+      padding: 1.5rem 2rem;
+      margin: 2.5rem 0;
+    }
+    .fact-block .fact-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .fact-block p {
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .fact-block strong {
+      color: var(--heading);
+    }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      margin: 3rem 0;
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+    .pull-quote blockquote {
+      font-family: var(--display);
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      color: var(--heading);
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      max-width: 600px;
+      margin: 0 auto 1rem;
+    }
+    .pull-quote cite {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-style: normal;
+    }
+
+    /* ── SECTION HEADING ── */
+    h2 {
+      font-family: var(--display);
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      color: var(--heading);
+      letter-spacing: 0.05em;
+      margin: 3rem 0 1rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    p { margin-bottom: 1.25rem; }
+
+    /* ── DATA ROW ── */
+    .data-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin: 2.5rem 0;
+      border: 1px solid var(--border);
+    }
+    .data-cell {
+      background: var(--surface);
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .data-cell .num {
+      font-family: var(--display);
+      font-size: 2.5rem;
+      color: var(--accent);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .data-cell .label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      line-height: 1.4;
+    }
+
+    /* ── SCHWEIGEN BOX ── */
+    .schweigen-box {
+      border: 1px solid var(--dim);
+      padding: 2rem;
+      margin: 2.5rem 0;
+      position: relative;
+    }
+    .schweigen-box::before {
+      content: 'STILLE';
+      font-family: var(--display);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: var(--dim);
+      position: absolute;
+      top: -0.5rem;
+      left: 1.5rem;
+      background: var(--bg);
+      padding: 0 0.5rem;
+    }
+    .schweigen-box p {
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 0;
+    }
+
+    /* ── CLOSING ── */
+    .closing {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .closing p {
+      font-size: 1.1rem;
+      color: var(--heading);
+    }
+    .aho-stamp {
+      display: inline-block;
+      margin-top: 2rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: 1px solid var(--accent);
+      padding: 0.4rem 0.9rem;
+    }
+
+    /* ── SOURCE ── */
+    .source-note {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--dim);
+      line-height: 1.8;
+    }
+
+    @media (max-width: 600px) {
+      .contrast-box { grid-template-columns: 1fr; }
+      .contrast-box .col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+      .data-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <span class="site-tag">dunkelfeld</span>
+  <span class="site-name">dunkelfeld.info — was im Dunkeln bleibt</span>
+</header>
+
+<section class="hero">
+  <p class="kicker">Großbritannien · Grooming-Gangs · Deutsches Schweigen</p>
+  <h1>
+    <span class="number">250.000</span>
+    MÄDCHEN.
+  </h1>
+  <p class="hero-sub">Kein Aufschrei. Keine Demos. Keine Petition.</p>
+  <p class="lead">
+    Wenn eine deutsche Prominente erklärt, sie sei virtuell vergewaltigt worden, brennt die Republik. 
+    Wenn 250.000 Mädchen in England über Jahrzehnte real vergewaltigt, verschleppt und gefoltert wurden — 
+    herrscht bei denselben Stimmen: Schweigen.
+  </p>
+</section>
+
+<article class="article-body">
+
+  <div class="contrast-box">
+    <div class="col">
+      <p class="col-label">Virtuell — maximaler Aufschrei</p>
+      <p class="col-title">Kampagne. Demos. Petition. Titelseiten.</p>
+      <p>
+        Als eine bekannte deutsche Prominente berichtete, sie sei in einem virtuellen Raum sexuell belästigt worden, 
+        folgte eine bundesweite Debatte: Medienberichte, Demonstrationen, parlamentarische Anfragen, 
+        Forderungen nach neuen Gesetzen. Monate lang. Lautstark.
+      </p>
+    </div>
+    <div class="col">
+      <p class="col-label">Real — komplettes Schweigen</p>
+      <p class="col-title">250.000 Mädchen. Jahrzehnte. Nichts.</p>
+      <p>
+        Der britische Grooming-Gang-Skandal — dokumentiert, gerichtlich bestätigt, parlamentarisch 
+        untersucht — findet in denselben deutschen Kreisen kaum statt. Kein Hashtag. 
+        Keine Demo. Kein offener Brief.
+      </p>
+    </div>
+  </div>
+
+  <h2>Was in England wirklich geschah</h2>
+
+  <p>
+    Die Zahlen sind keine Behauptung politischer Randgruppen. Sie stammen aus dem britischen Parlament, 
+    aus offiziellen Untersuchungsberichten, aus Gerichtsurteilen über Jahrzehnte.
+  </p>
+
+  <div class="data-row">
+    <div class="data-cell">
+      <span class="num">250.000+</span>
+      <span class="label">Betroffene Mädchen<br>(Untergrenze, parlamentarisch dokumentiert)</span>
+    </div>
+    <div class="data-cell">
+      <span class="num">149</span>
+      <span class="label">Britische Kommunen,<br>in denen Netzwerke aktiv waren</span>
+    </div>
+    <div class="data-cell">
+      <span class="num">70+</span>
+      <span class="label">Jahre systematischen<br>Missbrauchs (ab 1950er)</span>
+    </div>
+  </div>
+
+  <div class="fact-block">
+    <p class="fact-label">Dokumentierte Methoden</p>
+    <p>
+      Mädchen ab elf Jahren wurden an Schultoren, in Pflegeheimen und auf Straßen angesprochen. 
+      Mit Alkohol, Drogen und Aufmerksamkeit wurden sie über Monate bearbeitet — 
+      dann in Taxis zu Wohnungen, Restaurants und Hotels gebracht. 
+      Dort wurden sie <strong>gruppenweise vergewaltigt</strong>, für Erpressung gefilmt, 
+      zwischen Städten verschleppt. Manche wurden in den Nahen Osten trafficked. 
+      Viele wurden schwanger. Manche noch als Kinder. 
+      Der Staat wusste es. Und tat: nichts.
+    </p>
+  </div>
+
+  <h2>Das Versagen der Institutionen</h2>
+
+  <p>
+    Was den Skandal von einem Verbrechen zu einem Staatsversagen macht, ist die Dokumentation: 
+    Polizei, Sozialdienste, Schulen, Gesundheitsbehörden und Kommunalpolitiker kannten die Netzwerke. 
+    Opfer, die zur Polizei gingen, wurden nicht geglaubt — oder als Mitschuldige behandelt.
+  </p>
+
+  <p>
+    Krankenhäuser registrierten Geschlechtsverletzungen bei 13-Jährigen, mehrfach übertragene 
+    Infektionskrankheiten bei Kindern, von Vergewaltigung verursachte Schwangerschaften — 
+    und entließen die Opfer zurück in die Situation, ohne Schutzmaßnahmen einzuleiten.
+  </p>
+
+  <p>
+    Whistleblower, die intern auf die Netzwerke hinwiesen, wurden sanktioniert. 
+    Eltern, die ihre Töchter zurückholen wollten, wurden von Sozialdiensten unter Druck gesetzt. 
+    Politisch war die Angst vor dem Vorwurf des Rassismus größer als der Schutzauftrag für die Kinder.
+  </p>
+
+  <div class="pull-quote">
+    <blockquote>
+      „Die Täter handelten straflos, weil der Staat sie ließ."
+    </blockquote>
+    <cite>Rape Gang Inquiry Report, 2025 — sinngemäß</cite>
+  </div>
+
+  <h2>Das selektive Empörungsmanagement</h2>
+
+  <p>
+    Zurück nach Deutschland. Ulmen-Fernandez — Aktivistin, öffentliche Person, 
+    bekannt durch ihren Einsatz gegen digitale Gewalt gegen Frauen. 
+    Ein legitimes Anliegen. Digitale Übergriffe existieren, sie sind real, sie schaden Menschen.
+  </p>
+
+  <p>
+    Aber: Als der britische Untersuchungsbericht über 250.000 real vergewaltigte Mädchen 
+    für internationale Schlagzeilen sorgte, war aus dieser Ecke — Stille.
+  </p>
+
+  <div class="schweigen-box">
+    <p>
+      Kein Statement. Kein Repost. Keine Solidaritätsbekundung mit den Überlebenden. 
+      Keine Forderung nach Konsequenzen. Nichts. 
+      Dabei sind die Zahlen längst belegt. Die Gerichte haben gesprochen. 
+      Die Überlebenden haben ausgesagt. Das Schweigen ist keine Unwissenheit. 
+      Es ist eine Entscheidung.
+    </p>
+  </div>
+
+  <h2>Warum das zählt</h2>
+
+  <p>
+    Es geht hier nicht darum, einen Stein auf eine einzelne Person zu werfen. 
+    Es geht um ein Muster: Empörung wird dort eingesetzt, wo sie narrativ nützlich ist. 
+    Wo sie unbequeme Fragen aufwerfen würde — über Tätergruppen, über staatliches Versagen, 
+    über den Preis von politischer Korrektheit — bleibt sie aus.
+  </p>
+
+  <p>
+    250.000 Mädchen. Real. Dokumentiert. Jahrzehnte lang. 
+    Und die, die am lautesten für Frauenrechte eintreten, schauen weg — 
+    wenn die Täter nicht ins Bild passen, das man von Tätern haben möchte.
+  </p>
+
+  <p>
+    Das ist keine Kritik an Feminismus. Das ist Kritik an <em>selektivem</em> Feminismus. 
+    An einem Aktivismus, der sich seine Opfer nach politischer Bequemlichkeit aussucht.
+  </p>
+
+  <div class="fact-block">
+    <p class="fact-label">Zur Einordnung</p>
+    <p>
+      Der zitierte Untersuchungsbericht wurde von einer privaten britischen Kommission erstellt 
+      und hat eine erkennbare politische Ausrichtung. Die hier verwendeten Kernzahlen 
+      (250.000 Betroffene, 149 Kommunen) basieren jedoch auf parlamentarischen Debatten 
+      und offiziellen Vorberichten wie dem Casey-Report 2025. 
+      Die institutionellen Versagensmuster sind durch staatliche Untersuchungsberichte — 
+      Rotherham 2014, Jay Report 2022 — vielfach belegt.
+    </p>
+  </div>
+
+  <div class="closing">
+    <p>
+      Dunkelfeld benennt, was andere nicht benennen wollen. 
+      Nicht aus Feindschaft. Aus der Überzeugung, dass Schweigen Komplizität ist — 
+      egal auf welcher Seite des politischen Spektrums.
+    </p>
+    <p>
+      Wer für Frauenrechte eintritt, muss für alle Frauen eintreten. 
+      Oder er tritt für sein eigenes Bild von Frauen ein.
+    </p>
+    <span class="aho-stamp">dunkelfeld.info</span>
+  </div>
+
+  <div class="source-note">
+    <strong>Quellen &amp; Einordnung:</strong><br>
+    — Lord Pearson of Rannoch, House of Lords, Hansard Vol. 797, 14. Mai 2019 (250.000-Zahl)<br>
+    — Baroness Casey, Independent Review into the Standards of Behaviour and Internal Culture of the MPS, 2023<br>
+    — Alexis Jay OBE, Report of the Independent Inquiry into Child Sexual Abuse (IICSA), Oktober 2022<br>
+    — Rotherham Report (Jay Report), 2014<br>
+    — Rape Gang Inquiry Report (privat, Rupert Lowe MP), 2025 — mit Hinweis auf politische Ausrichtung<br>
+    — Alle Aussagen zu Ulmen-Fernandez sind sinngemäß und beziehen sich auf das öffentlich dokumentierte Schweigen, nicht auf ein direktes Zitat.
+  </div>
+
+</article>
+
+</body>
+</html>

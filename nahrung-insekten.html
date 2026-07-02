@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novel Food: Insekten auf europäischen Tellern — Wer kontrolliert, was wir essen? Teil 4 | dunkelfeld.report</title>
+  <meta name="description" content="Vier Insektenarten sind in der EU als Lebensmittel zugelassen. Wer hat die Anträge gestellt? Wer hält die exklusiven Vermarktungsrechte? Was sagen FAO und WEF dazu — und was bleibt offen?">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #09090b;
+      color: #e4e4e7;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      padding: 2rem 1rem;
+    }
+
+    .container { max-width: 720px; margin: 0 auto; }
+
+    .series-banner {
+      background: #18181b;
+      border-left: 3px solid #e8c547;
+      padding: 0.75rem 1.25rem;
+      margin-bottom: 2.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: #a1a1aa;
+      letter-spacing: 0.04em;
+    }
+    .series-banner strong { color: #e8c547; }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #fafafa;
+      margin-bottom: 0.75rem;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: #a1a1aa;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .meta {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: #71717a;
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      color: #e8c547;
+      margin: 2.5rem 0 0.85rem;
+      font-weight: 600;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      color: #d4d4d8;
+      margin: 1.75rem 0 0.6rem;
+      font-weight: 600;
+    }
+
+    p { margin-bottom: 1.2rem; }
+
+    .tag {
+      display: inline-block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 0.15rem 0.5rem;
+      border-radius: 2px;
+      vertical-align: middle;
+      margin-left: 0.35rem;
+      position: relative;
+      top: -1px;
+    }
+    .tag-belegt   { background: #14532d; color: #86efac; }
+    .tag-offen    { background: #3f3f46; color: #a1a1aa; }
+    .tag-extrapol { background: #7c2d12; color: #fdba74; }
+
+    .source-box {
+      background: #1a1a2e;
+      border-left: 3px solid #e8c547;
+      padding: 1rem 1.25rem;
+      margin: 1.75rem 0;
+      font-size: 0.88rem;
+    }
+    .source-box .source-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: #e8c547;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+    }
+    .source-box a { color: #93c5fd; text-decoration: none; }
+    .source-box a:hover { text-decoration: underline; }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.75rem 0;
+      font-size: 0.88rem;
+    }
+    .data-table th {
+      background: #18181b;
+      color: #e8c547;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      padding: 0.6rem 0.85rem;
+      text-align: left;
+      border-bottom: 1px solid #3f3f46;
+    }
+    .data-table td {
+      padding: 0.6rem 0.85rem;
+      border-bottom: 1px solid #27272a;
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: #18181b; }
+
+    .pull-quote {
+      border-left: 3px solid #e8c547;
+      padding: 0.75rem 1.25rem;
+      margin: 1.75rem 0;
+      font-style: italic;
+      color: #d4d4d8;
+      font-size: 1.05rem;
+    }
+    .pull-quote cite {
+      display: block;
+      font-style: normal;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: #71717a;
+      margin-top: 0.5rem;
+    }
+
+    .highlight-box {
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      border-left: 3px solid #a1a1aa;
+      padding: 1rem 1.25rem;
+      margin: 1.75rem 0;
+      font-size: 0.92rem;
+    }
+    .highlight-box strong { color: #e8c547; }
+
+    .timeline {
+      margin: 1.75rem 0;
+      position: relative;
+      padding-left: 1.5rem;
+      border-left: 1px solid #3f3f46;
+    }
+    .timeline-item { margin-bottom: 1.25rem; position: relative; }
+    .timeline-item::before {
+      content: '';
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #e8c547;
+      position: absolute;
+      left: -1.85rem;
+      top: 0.45rem;
+    }
+    .timeline-date {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: #e8c547;
+      letter-spacing: 0.06em;
+    }
+    .timeline-text {
+      font-size: 0.9rem;
+      color: #d4d4d8;
+      margin-top: 0.2rem;
+    }
+
+    .series-nav {
+      background: #18181b;
+      border: 1px solid #27272a;
+      padding: 1.25rem 1.5rem;
+      margin-top: 3rem;
+    }
+    .series-nav-title {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: #e8c547;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.85rem;
+    }
+    .series-nav ul { list-style: none; font-size: 0.85rem; line-height: 1.9; }
+    .series-nav a { color: #93c5fd; text-decoration: none; }
+    .series-nav a:hover { text-decoration: underline; }
+    .series-nav .current { color: #e8c547; font-weight: 600; }
+    .series-nav .pending { color: #52525b; }
+
+    .closing {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid #27272a;
+      font-style: italic;
+      color: #a1a1aa;
+      font-size: 0.97rem;
+      line-height: 1.9;
+    }
+
+    hr { border: none; border-top: 1px solid #27272a; margin: 2.5rem 0; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="series-banner">
+    <strong>SERIE</strong> — Wer kontrolliert, was wir essen? &nbsp;|&nbsp; Teil 4 von 11
+  </div>
+
+  <h1>Novel Food: Insekten auf europäischen Tellern</h1>
+  <p class="subtitle">Vier Arten zugelassen, fünfjährige Exklusivrechte, laufende Anträge — und die Frage, wer den Rahmen setzt</p>
+  <div class="meta">
+    DUNKELFELD.REPORT &nbsp;·&nbsp; Juni 2026 &nbsp;·&nbsp; Primärquellen: EUR-Lex (Durchführungsverordnungen EU), EFSA, BVL, EU-Kommission Vertretung Deutschland, FAO 2013, WEF 2026
+  </div>
+
+  <!-- 1. Was zugelassen ist -->
+  <h2>Was zugelassen ist — und seit wann</h2>
+
+  <p>In der Europäischen Union gelten alle Insekten und Insektenbestandteile als sogenannte „neuartige Lebensmittel" (Novel Food) im Sinne der Verordnung (EU) 2015/2283. Das bedeutet: Vor der Vermarktung ist eine Zulassung durch die EU-Kommission erforderlich, der eine wissenschaftliche Sicherheitsbewertung durch die Europäische Behörde für Lebensmittelsicherheit (EFSA) vorausgeht. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Seit 2021 wurden schrittweise vier Insektenarten in verschiedenen Darreichungsformen zugelassen. Stand Juni 2026 sind sieben Einzelzulassungen in Kraft: <span class="tag tag-belegt">BELEGT</span></p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Insekt (deutsch)</th>
+        <th>Wissenschaftlicher Name</th>
+        <th>Form</th>
+        <th>Zulassung ab</th>
+        <th>EU-Verordnung</th>
+        <th>Antragsteller</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Mehlkäfer (Larve)</td>
+        <td>Tenebrio molitor</td>
+        <td>getrocknet</td>
+        <td>22.06.2021</td>
+        <td>VO (EU) 2021/882</td>
+        <td>Protifarm SA, Niederlande</td>
+      </tr>
+      <tr>
+        <td>Wanderheuschrecke</td>
+        <td>Locusta migratoria</td>
+        <td>gefroren, getrocknet, Pulver</td>
+        <td>05.12.2021</td>
+        <td>VO (EU) 2021/1975</td>
+        <td>Agronutris SAS, Frankreich</td>
+      </tr>
+      <tr>
+        <td>Mehlwurm (Larve)</td>
+        <td>Tenebrio molitor</td>
+        <td>gefroren, getrocknet, Pulver</td>
+        <td>01.03.2022</td>
+        <td>VO (EU) 2022/169</td>
+        <td>Ÿnsect (Antoine) SAS, Frankreich</td>
+      </tr>
+      <tr>
+        <td>Hausgrille</td>
+        <td>Acheta domesticus</td>
+        <td>gefroren, getrocknet, Pulver</td>
+        <td>03.03.2022</td>
+        <td>VO (EU) 2022/188</td>
+        <td>Cricket One Co. Ltd, Vietnam</td>
+      </tr>
+      <tr>
+        <td>Hausgrille (entfettet)</td>
+        <td>Acheta domesticus</td>
+        <td>teilw. entfettetes Pulver</td>
+        <td>24.01.2023</td>
+        <td>VO (EU) 2023/5</td>
+        <td>Cricket One Co. Ltd, Vietnam</td>
+      </tr>
+      <tr>
+        <td>Getreideschimmelkäfer</td>
+        <td>Alphitobius diaperinus</td>
+        <td>gefroren, Paste, getrocknet, Pulver</td>
+        <td>26.01.2023</td>
+        <td>VO (EU) 2023/58</td>
+        <td>Ynsect NL B.V., Niederlande</td>
+      </tr>
+      <tr>
+        <td>Mehlkäfer (UV-behandelt)</td>
+        <td>Tenebrio molitor</td>
+        <td>UV-behandeltes Pulver</td>
+        <td>Feb. 2025</td>
+        <td>VO (EU) 2025/—</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <div class="source-label">PRIMÄRQUELLEN — EUR-LEX</div>
+    VO (EU) 2023/5 — Hausgrille (entfettetes Pulver):
+    <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32023R0005" target="_blank" rel="noopener">eur-lex.europa.eu — CELEX:32023R0005</a><br>
+    VO (EU) 2023/58 — Getreideschimmelkäfer:
+    <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/?toc=OJ:L:2023:005:FULL&uri=uriserv:OJ.L_.2023.005.01.0010.01.DEU" target="_blank" rel="noopener">eur-lex.europa.eu — CELEX:32023R0058</a><br>
+    Unionsliste zugelassener neuartiger Lebensmittel — VO (EU) 2017/2470 (laufend aktualisiert):
+    <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32017R2470" target="_blank" rel="noopener">eur-lex.europa.eu — CELEX:32017R2470</a><br>
+    BVL — Bundesamt für Verbraucherschutz und Lebensmittelsicherheit (FAQ Insekten):
+    <a href="https://www.bvl.bund.de/SharedDocs/FAQ/DE/02_Unternehmer/01_Lebensmittel/06_FAQ_NovelFood/02_FAQ_NovelFood.html" target="_blank" rel="noopener">bvl.bund.de</a>
+  </div>
+
+  <!-- 2. Datenschutz / Exklusivrechte -->
+  <h2>Fünf Jahre Exklusivrecht: Der Datenschutzmechanismus</h2>
+
+  <p>Ein strukturelles Merkmal aller bisher erteilten Insekten-Zulassungen ist der sogenannte Datenschutz nach Artikel 26 der Novel-Food-Verordnung (EU) 2015/2283. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="highlight-box">
+    <strong>Was das bedeutet:</strong> Wenn ein Unternehmen eine Zulassung auf Basis eigener, nicht öffentlich zugänglicher Sicherheitsdaten erhält, darf es diese Daten für fünf Jahre schützen. In dieser Zeit darf <em>nur der Antragsteller</em> das zugelassene Produkt in der EU vermarkten — oder Dritte, denen der Antragsteller ausdrücklich zustimmt.
+  </div>
+
+  <p>Bei allen sieben bisher genehmigten Insekten-Zulassungsanträgen (Stand 2023) wurde Datenschutz gewährt. <span class="tag tag-belegt">BELEGT</span> Das Bundesamt für Verbraucherschutz und Lebensmittelsicherheit (BVL) hält dazu fest: „Sofern den Antragstellern Datenschutz nach Artikel 26 der Verordnung (EU) 2015/2283 gewährt wurde, dürfen die Erzeugnisse für fünf Jahre zunächst nur von diesen Antragstellern vermarktet werden."</p>
+
+  <p>In der Praxis bedeutet das: Wer nicht selbst Antragsteller ist oder keine Genehmigung des Antragstellers hat, kann das jeweilige Insekt — obwohl es europaweit zugelassen ist — für fünf Jahre nicht frei vermarkten. Die Antragsteller sind Unternehmen aus Vietnam, den Niederlanden und Frankreich.</p>
+
+  <div class="source-box">
+    <div class="source-label">PRIMÄRQUELLE</div>
+    Novel-Food-Verordnung (EU) 2015/2283, Art. 26 — Datenschutz für wissenschaftliche Daten:
+    <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32015R2283" target="_blank" rel="noopener">eur-lex.europa.eu — CELEX:32015R2283</a><br>
+    BVL FAQ — Datenschutz bei Insekten-Zulassungen:
+    <a href="https://www.bvl.bund.de/SharedDocs/FAQ/DE/02_Unternehmer/01_Lebensmittel/06_FAQ_NovelFood/02_FAQ_NovelFood.html" target="_blank" rel="noopener">bvl.bund.de</a>
+  </div>
+
+  <!-- 3. Wo dürfen Insekten eingesetzt werden -->
+  <h2>In welchen Lebensmitteln — und wie viel</h2>
+
+  <p>Jede Zulassung regelt präzise, in welchen Lebensmittelkategorien das jeweilige Insekt in welcher Menge eingesetzt werden darf. Erlaubt für Hausgrillen-Pulver (VO (EU) 2023/5) sind unter anderem: <span class="tag tag-belegt">BELEGT</span></p>
+
+  <ul style="margin: 0.5rem 0 1.5rem 1.5rem; line-height: 2; color: #d4d4d8; font-size: 0.95rem;">
+    <li>Mehrkornbrot, Mehrkornbrötchen, Cracker und Brotstangen</li>
+    <li>Kekse, Getreideriegel, trockene Vormischungen für Backwaren</li>
+    <li>Trockene Teigwarenerzeugnisse (gefüllt und ungefüllt)</li>
+    <li>Soßen, Suppen, Suppenpulver, Suppenkonzentrate</li>
+    <li>Verarbeitete Kartoffelerzeugnisse</li>
+    <li>Pizza, Fleischanaloge (vegetarische Fleischalternativen)</li>
+    <li>Snacks auf Maismehlbasis, Schokoladenerzeugnisse</li>
+    <li>Bierähnliche Getränke, Molkenpulver</li>
+    <li>Nahrungsergänzungsmittel für Erwachsene</li>
+  </ul>
+
+  <p>Mehlwürmer dürfen beispielsweise bis zu einem Anteil von zehn Prozent in Nudeln oder Keksen eingesetzt werden. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <!-- 4. Kennzeichnung -->
+  <h2>Kennzeichnung: Was Verordnungen vorschreiben</h2>
+
+  <p>Alle insektenhaltigen Lebensmittel müssen in der Zutatenliste mit dem wissenschaftlichen Namen des Insekts und einem Allergiehinweis gekennzeichnet sein. <span class="tag tag-belegt">BELEGT</span> Die EU-Kommission erklärte ausdrücklich: „Die EU mischt nicht heimlich Insektenpulver in den Kuchenteig."</p>
+
+  <p>Die EFSA kam in ihren Gutachten zu den zugelassenen Insekten zu dem Schluss, dass der Verzehr möglicherweise allergische Reaktionen auslösen kann — insbesondere bei Personen mit vorbestehenden Allergien gegen:</p>
+
+  <ul style="margin: 0.5rem 0 1.5rem 1.5rem; line-height: 2; color: #d4d4d8; font-size: 0.95rem;">
+    <li>Krebstiere (Kreuzreaktivität durch ähnliche Proteinstrukturen)</li>
+    <li>Hausstaubmilben</li>
+    <li>In einigen Fällen: Weichtiere</li>
+  </ul>
+
+  <p>Zusätzlich können Allergene aus dem Insektenfutter — etwa Gluten — in das verzehrte Insekt übergehen und damit im Endprodukt präsent sein. <span class="tag tag-belegt">BELEGT</span> Die EFSA empfahl in mehreren Gutachten, das Allergenpotenzial weiter zu erforschen.</p>
+
+  <p>Offen bleibt, ob die Kennzeichnung in der Praxis für alle Verbraucher verständlich genug ist: Die Zutatenliste muss den lateinischen Namen enthalten (z.B. „Acheta domesticus"), daneben einen Allergiehinweis. Ob die Nennung des wissenschaftlichen Namens ohne deutschen Begriff hinreichend transparent ist, ist regulatorisch nicht abschließend bewertet. <span class="tag tag-offen">OFFEN</span></p>
+
+  <div class="source-box">
+    <div class="source-label">PRIMÄRQUELLEN</div>
+    EFSA — Wissenschaftliche Gutachten zu essbaren Insekten (ab 2021):
+    <a href="https://www.efsa.europa.eu/de/news/edible-insects-science-novel-food-evaluations" target="_blank" rel="noopener">efsa.europa.eu</a><br>
+    EU-Kommission Vertretung Deutschland — Fakten zu Insekten in Lebensmitteln:
+    <a href="https://germany.representation.ec.europa.eu/insekten-lebensmitteln-die-fakten_de" target="_blank" rel="noopener">germany.representation.ec.europa.eu</a><br>
+    Lebensmittelverband Deutschland — Faktencheck Insekten (Februar 2023):
+    <a href="https://www.lebensmittelverband.de/de/aktuell/insekten-in-lebensmitteln-das-muessen-sie-jetzt-wissen" target="_blank" rel="noopener">lebensmittelverband.de</a><br>
+    BMLEH — FAQ Insekten in Lebensmitteln:
+    <a href="https://www.bmleh.de/SharedDocs/FAQs/DE/faq-insekten-lebensmittel/FAQList.html" target="_blank" rel="noopener">bmleh.de</a>
+  </div>
+
+  <!-- 5. Wer die Agenda setzt: FAO und WEF -->
+  <h2>FAO 2013, WEF 2026: Die institutionelle Rahmensetzung</h2>
+
+  <p>Die EU-Novel-Food-Zulassungen stehen in einem breiteren institutionellen Kontext. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">2003</div>
+      <div class="timeline-text">Die UN-Ernährungs- und Landwirtschaftsorganisation (FAO) beginnt, Entomophagie — den Verzehr von Insekten — offiziell wegen ökologischer Vorteile zu fördern.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2013</div>
+      <div class="timeline-text">FAO veröffentlicht „Edible Insects: Future Prospects for Food and Feed Security" — der erste umfassende internationale Bericht, der Insekten als Proteinquelle für die westliche Welt empfiehlt. Kernargument: Insekten haben eine höhere Futterverwertungseffizienz als Rinder, erzeugen weniger Treibhausgasemissionen und benötigen weniger Wasser und Ackerland.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2021–2023</div>
+      <div class="timeline-text">EU erteilt in rascher Folge sieben Einzelzulassungen für vier Insektenarten. Im Rahmen von Horizont Europa, dem EU-Forschungsprogramm, gelten insektenbasierte Proteine als einer der Schlüsselbereiche der Forschungsförderung.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">März 2026</div>
+      <div class="timeline-text">Das Weltwirtschaftsforum (WEF) veröffentlicht „50 Investitionsmöglichkeiten für eine neue Naturökonomie" (erstellt mit Oliver Wyman). Insekten- und algenbasierte Proteine werden als investierbare Möglichkeit in einem Markt gelistet, der laut WEF einen Geschäftswert von 10,1 Billionen US-Dollar hat.</div>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    „Alternative Proteine: Eine Reihe nachhaltiger Nahrungsquellen, darunter pflanzliche, fermentative, zelluläre, insekten- und algenbasierte Proteine."
+    <cite>— WEF, „50 Investitionsmöglichkeiten für eine neue Naturökonomie", März 2026 (mit Oliver Wyman)</cite>
+  </div>
+
+  <p>Das WEF-Dokument nennt als Argument für Insektenproteine: Sie benötigen weniger Land als traditionelle Tierhaltung und bedienen einen wachstumsstarken Markt für Hersteller alternativer Proteine. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Ein kausaler Zusammenhang zwischen WEF-Positionierungen und EU-Zulassungsentscheidungen ist aus öffentlichen Dokumenten nicht belegbar. <span class="tag tag-offen">OFFEN</span> Was sich belegen lässt: FAO-Empfehlung (2013) → EU-Novel-Food-Verordnung (2015/2018) → erste Zulassungen (ab 2021) → WEF-Investitionsbriefing (2026) sind zeitlich aufeinander folgende Ereignisse, die von verschiedenen institutionellen Akteuren verfolgt werden.</p>
+
+  <div class="source-box">
+    <div class="source-label">PRIMÄRQUELLEN</div>
+    FAO — „Edible Insects: Future Prospects for Food and Feed Security" (van Huis et al., 2013):
+    <a href="https://www.fao.org/fsnforum/resources/reports-and-briefs/edible-insects-future-prospects-food-and-feed-security" target="_blank" rel="noopener">fao.org</a><br>
+    WEF — „50 Investment Opportunities for a New Nature Economy" (März 2026):
+    <a href="https://www.weforum.org/publications/new-nature-economy-report-series/" target="_blank" rel="noopener">weforum.org</a><br>
+    EU-Kommission — Horizont Europa / Insektenbasierte Proteine als Forschungsbereich:
+    <a href="https://germany.representation.ec.europa.eu/insekten-lebensmitteln-die-fakten_de" target="_blank" rel="noopener">germany.representation.ec.europa.eu</a>
+  </div>
+
+  <!-- 6. Was die Forschung sagt / was offen bleibt -->
+  <h2>Was die Forschung sagt — und was ungeklärt bleibt</h2>
+
+  <p>Die EFSA-Gutachten, die Grundlage der Zulassungen sind, kommen jeweils zu dem Schluss, dass die bewerteten Insekten unter den definierten Verwendungsbedingungen als sicher gelten. Gleichzeitig enthalten alle Gutachten Hinweise auf Forschungslücken. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>EFSA-Wissenschaftler Ermolaos Ververis hielt fest: „Insekten sind komplexe Organismen, was die Charakterisierung der Zusammensetzung von aus Insekten gewonnenen Lebensmitteln zu einer Herausforderung macht. Entscheidend ist das Verständnis ihrer Mikrobiologie, wenn man bedenkt, dass das ganze Insekt verzehrt wird." <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Chitin — ein wesentlicher Bestandteil des Insekten-Exoskeletts — ist Gegenstand wissenschaftlicher Diskussion. Die EFSA hielt fest, dass der tatsächliche Proteingehalt von Insektenpräparaten überschätzt werden kann, wenn Chitin bei der Messung nicht berücksichtigt wird, da Standardmethoden Chitin-Stickstoff als Protein mitzählen können. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Zu Chitin und Immunreaktionen beim Menschen gibt es publizierte Forschung (u.a. DOI: 10.1007/s12016-017-8600-0 — „Chitin and Its Effects on Inflammatory and Immune Responses"). Die Frage, wie regelmäßiger Chitin-Konsum durch westliche Bevölkerungen wirkt, ist nach Einschätzung der EFSA weiter zu erforschen. <span class="tag tag-offen">OFFEN</span></p>
+
+  <h3>Was klar ist — was nicht</h3>
+
+  <div class="highlight-box">
+    <strong>BELEGT:</strong> Insekten sind in der EU als Novel Food zugelassen, nach EFSA-Sicherheitsbewertung, mit Kennzeichnungspflicht und Allergiehinweisen. Alle Zulassungen wurden auf Antrag von Unternehmen erteilt. Alle genehmigten Anträge unterliegen fünfjährigem Datenschutz.
+  </div>
+
+  <div class="highlight-box" style="border-left-color: #7c2d12;">
+    <strong style="color: #fdba74;">OFFEN:</strong> Langzeitwirkungen regelmäßigen Insektenverzehrs in westlichen Populationen. Marktentwicklung nach Ablauf der Datenschutzfristen. Wie sich Insektenproteine im Massenmaßstab in verarbeiteten Lebensmitteln auf Allergiker auswirken.
+  </div>
+
+  <div class="highlight-box" style="border-left-color: #3f3f46;">
+    <strong style="color: #a1a1aa;">NICHT BELEGT (und in Umlauf):</strong> Die Behauptung, Insekten würden heimlich, ohne Kennzeichnung beigemischt — sie ist falsch. Die Behauptung, Chitin verursache Morbus Gaucher — sie ist falsch (Morbus Gaucher ist eine genetische Erkrankung). Beides ist öffentlich widerlegt.
+  </div>
+
+  <div class="source-box">
+    <div class="source-label">PRIMÄRQUELLEN</div>
+    EFSA — Wissenschaftliche Gutachten Mehlwurm, Hausgrille, Getreideschimmelkäfer (2021–2023):
+    <a href="https://www.efsa.europa.eu/de/news/edible-insects-science-novel-food-evaluations" target="_blank" rel="noopener">efsa.europa.eu</a><br>
+    Peer-reviewed: „Chitin and Its Effects on Inflammatory and Immune Responses":
+    <a href="https://doi.org/10.1007/s12016-017-8600-0" target="_blank" rel="noopener">doi.org/10.1007/s12016-017-8600-0</a><br>
+    BZfR / Bayerisches LGL — Insekten als neuartige Lebensmittel (Faktenblatt):
+    <a href="https://www.lgl.bayern.de/lebensmittel/technologien/funktionelle_lebensmittel/et_insekten_nahrungsmittel.htm" target="_blank" rel="noopener">lgl.bayern.de</a>
+  </div>
+
+  <!-- 7. Marktlage -->
+  <h2>Wie der Markt tatsächlich aussieht</h2>
+
+  <p>Der Lebensmittelverband Deutschland schätzt, dass es sich bei insektenhaltigen Produkten in Deutschland derzeit um Nischenprodukte handelt. Armin Valet von der Verbraucherzentrale Hamburg ergänzte gegenüber der dpa (2023): In Deutschland seien aktuell nur wenige Produkte mit geringen Mengen an Insekten erhältlich, etwa Nudeln. Dass Insektenpulver in Kekse oder Mehl gemischt werde, liege „wirklich noch in weiter Ferne". <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Gleichzeitig befinden sich laut EU-Kommission (Stand 2024/2025) fünf weitere Anträge auf Insekten-Zulassungen bei der EFSA in der Bewertung. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <hr>
+
+  <div class="closing">
+    <p>Vier Insektenarten. Sieben Zulassungen. Alle auf Antrag privater Unternehmen. Alle mit fünfjährigem Exklusivrecht. Fünf weitere Anträge in der Pipeline. FAO empfiehlt seit 2013. WEF listet als Investitionschance 2026.</p>
+    <p><em>Wer profitiert von den fünfjährigen Datenschutzfristen — und wer nicht? Wie entwickeln sich die Marktanteile, wenn die ersten Exklusivrechte ab 2026 auslaufen? Welche der fünf noch laufenden Zulassungsanträge werden bewilligt — und auf welche Lebensmittelkategorien erstrecken sie sich? Und wie verändert sich die Marktsituation, wenn insektenbasierte Zutaten in verarbeiteten Produkten weiterverbreitet werden, die keine expliziten „Insektenprodukte" sind?</em></p>
+  </div>
+
+  <div class="series-nav">
+    <div class="series-nav-title">SERIE — WER KONTROLLIERT, WAS WIR ESSEN?</div>
+    <ul>
+      <li><a href="nahrung-konzentration.html">Teil 1 — Das ABCD-Quartett: Marktkonzentration im Agrarhandel</a></li>
+      <li><a href="nahrung-saatgut.html">Teil 2 — Wer das Saatgut kontrolliert: Bayer/Monsanto, Gates, Svalbard</a></li>
+      <li><a href="nahrung-kleinbauern.html">Teil 3 — Höfesterben: Deutschland, Niederlande, Großbritannien, Schweiz</a></li>
+      <li class="current">→ Teil 4 — Novel Food: Insekten auf europäischen Tellern</li>
+      <li class="pending">Teil 5 — Laborfleisch: GFI, Gates und die Zulassungspolitik <em>(in Arbeit)</em></li>
+      <li class="pending">Teil 6 — Wasser: Nestlé, BlackRock und die UN-Resolution <em>(in Arbeit)</em></li>
+      <li><a href="nahrung-mercosur.html">Teil 7 — Das Mercosur-Abkommen: Rindfleisch gegen Autos</a></li>
+      <li class="pending">Teil 8 — Big Five: Wie Händler den Preis bestimmen <em>(in Arbeit)</em></li>
+      <li><a href="nahrung-gentechnik.html">Teil 9 — Neue Gentechnik: NGT-Verordnung und ihre Folgen</a></li>
+      <li><a href="nahrung-skandale.html">Teil 10 — Transfette, Glyphosat, Aspartam: Wie Risiken verwaltet werden</a></li>
+      <li class="pending">Teil 11 — Die Akteure: Netzwerkkarte und Abschluss <em>(in Arbeit)</em></li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exportware Mensch — dunkelfeld.report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #09090b;
+    color: #d4d4d8;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 2rem 1.2rem 4rem;
+  }
+
+  .container { max-width: 720px; margin: 0 auto; }
+
+  .site-header {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: #e8c547;
+    text-transform: uppercase;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .site-header a { color: #e8c547; text-decoration: none; }
+  .nav-bar { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+  .nav-bar a { color: #52525b; text-decoration: none; font-size: 0.7rem; letter-spacing: 0.1em; }
+  .nav-bar a:hover { color: #e8c547; }
+
+  .article-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: #e8c547;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.2;
+    color: #f4f4f5;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+
+  .subtitle {
+    font-size: 1.15rem;
+    color: #a1a1aa;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #52525b;
+    letter-spacing: 0.08em;
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+    padding: 0.7rem 0;
+    margin-bottom: 2.5rem;
+  }
+
+  .intro {
+    font-size: 1.15rem;
+    color: #e4e4e7;
+    border-left: 3px solid #e8c547;
+    padding-left: 1.4rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.9;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    color: #e8c547;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid #27272a;
+  }
+
+  h3 {
+    font-size: 1.05rem;
+    color: #f4f4f5;
+    margin: 1.8rem 0 0.6rem;
+    font-style: italic;
+  }
+
+  p { padding-bottom: 1.2rem; color: #d4d4d8; }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin: 0 0.15rem;
+    text-transform: uppercase;
+  }
+  .tag-belegt { background: #14532d; color: #4ade80; border: 1px solid #166534; }
+  .tag-extra  { background: #7c2d12; color: #fb923c; border: 1px solid #9a3412; }
+  .tag-offen  { background: #450a0a; color: #f87171; border: 1px solid #7f1d1d; }
+
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 0.9rem 1.2rem;
+    margin: 1.2rem 0 1.8rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #a1a1aa;
+    line-height: 1.6;
+  }
+  .source-box strong {
+    color: #e8c547;
+    display: block;
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.68rem;
+  }
+  .source-box a { color: #71717a; }
+  .source-box a:hover { color: #e8c547; }
+
+  /* Stat grid */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+  @media (max-width: 520px) { .stat-grid { grid-template-columns: 1fr; } }
+
+  .stat-card {
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    background: #111113;
+  }
+  .stat-card .number {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: #e8c547;
+    font-family: 'Courier New', monospace;
+    line-height: 1;
+  }
+  .stat-card .label {
+    font-size: 0.82rem;
+    color: #a1a1aa;
+    margin-top: 0.3rem;
+    line-height: 1.4;
+  }
+  .stat-card .src {
+    font-size: 0.67rem;
+    color: #52525b;
+    margin-top: 0.3rem;
+    font-family: 'Courier New', monospace;
+  }
+
+  /* Flow diagram */
+  .flow {
+    margin: 1.5rem 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .flow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.9rem 1.2rem;
+    background: #111113;
+    border-left: 3px solid #27272a;
+    position: relative;
+  }
+  .flow-step.active { border-left-color: #e8c547; }
+  .flow-step.warn   { border-left-color: #f87171; }
+  .flow-arrow {
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #3f3f46;
+    padding: 0.2rem 0;
+  }
+  .flow-num {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #e8c547;
+    min-width: 1.5rem;
+    flex-shrink: 0;
+    padding-top: 0.1rem;
+  }
+  .flow-text {
+    font-size: 0.9rem;
+    color: #d4d4d8;
+    line-height: 1.5;
+  }
+  .flow-text strong { color: #f4f4f5; }
+
+  /* Pull quote */
+  .pull-quote {
+    margin: 2rem 0;
+    padding: 1.2rem 1.5rem;
+    border-top: 2px solid #e8c547;
+    border-bottom: 2px solid #e8c547;
+  }
+  .pull-quote blockquote {
+    font-size: 1.1rem;
+    color: #f4f4f5;
+    font-style: italic;
+    line-height: 1.7;
+  }
+  .pull-quote cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #71717a;
+    margin-top: 0.6rem;
+    font-style: normal;
+    letter-spacing: 0.05em;
+  }
+
+  /* Doc box */
+  .doc-box {
+    background: #0f0f11;
+    border: 1px solid #3f3f46;
+    border-left: 4px solid #71717a;
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .doc-box .doc-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #71717a;
+    margin-bottom: 0.8rem;
+  }
+  .doc-box blockquote {
+    font-size: 0.95rem;
+    color: #a1a1aa;
+    font-style: italic;
+    line-height: 1.7;
+  }
+  .doc-box cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: #52525b;
+    margin-top: 0.8rem;
+    font-style: normal;
+  }
+  .doc-box a { color: #e8c547; text-decoration: none; }
+
+  /* Compare table */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0 2rem;
+    font-size: 0.88rem;
+  }
+  .compare-table th {
+    background: #1a1a2e;
+    color: #e8c547;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.7rem 1rem;
+    text-align: left;
+    border-bottom: 2px solid #e8c547;
+  }
+  .compare-table td {
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid #1e1e24;
+    color: #d4d4d8;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .compare-table tr:nth-child(even) td { background: #0f0f11; }
+  .compare-table .hl { color: #e8c547; font-weight: 700; }
+  .compare-table .red { color: #f87171; font-weight: 700; }
+
+  /* Series nav */
+  .series-nav {
+    background: #111113;
+    border: 1px solid #27272a;
+    padding: 1rem 1.2rem;
+    margin-bottom: 2rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+  }
+  .series-nav .series-title {
+    color: #52525b;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.6rem;
+    font-size: 0.65rem;
+  }
+  .series-nav a {
+    color: #71717a;
+    text-decoration: none;
+    display: block;
+    padding: 0.15rem 0;
+  }
+  .series-nav a.current { color: #e8c547; }
+  .series-nav a:hover { color: #e8c547; }
+
+  /* Closing */
+  .closing-questions {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    border: 1px solid #27272a;
+    background: #0f0f11;
+  }
+  .closing-questions h3 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #e8c547;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-style: normal;
+  }
+  .closing-questions p {
+    font-style: italic;
+    color: #a1a1aa;
+    font-size: 0.95rem;
+    padding-bottom: 0.6rem;
+  }
+
+  /* Sources */
+  .sources-section {
+    margin-top: 3rem;
+    border-top: 1px solid #27272a;
+    padding-top: 1.5rem;
+  }
+  .sources-section h2 { font-size: 0.75rem; margin-bottom: 1rem; }
+  .sources-section ul { list-style: none; padding: 0; }
+  .sources-section li {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #52525b;
+    padding: 0.3rem 0 0.3rem 1rem;
+    border-left: 2px solid #27272a;
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+  }
+  .sources-section li a { color: #71717a; text-decoration: none; }
+  .sources-section li:hover { border-left-color: #e8c547; color: #a1a1aa; }
+
+  .article-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #3f3f46;
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+
+  strong { color: #e4e4e7; }
+  em { color: #a1a1aa; }
+  a { color: #e8c547; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="site-header">
+    <div class="nav-bar">
+      <a href="/index.html">dunkelfeld.report</a>
+      <a href="/index.html#artikel">Alle Artikel</a>
+      <a href="/index.html#dossiers">Dossiers</a>
+    </div>
+    Analyse · Systemkritik · Quellenbasiert
+  </header>
+
+  <!-- Series navigation -->
+  <div class="series-nav">
+    <div class="series-title">Serie: Migration &amp; Entwicklung — drei Artikel</div>
+    <a href="/fachkraefte-widerspruch.html">① Der Fachkräfte-Widerspruch — Arbeitslosigkeit trifft Anwerbepolitik</a>
+    <a href="/marokko-muster.html">② Das Marokko-Muster — 1963, 2024, dieselbe Logik</a>
+    <a href="/exportware-mensch.html" class="current">③ Exportware Mensch — Brain Drain als Systemstruktur ◀ dieser Artikel</a>
+  </div>
+
+  <div class="article-label">Systemanalyse · Brain Drain · Globale Arbeitsmärkte</div>
+
+  <h1>Exportware Mensch</h1>
+  <p class="subtitle">Entwicklungsländer bilden Ärzte, Pfleger und Ingenieure aus — und verlieren sie an Industrieländer, die gleichzeitig steigende Arbeitslosigkeit verzeichnen. Das ist kein Unfall. Es ist Systemstruktur. Dokumentiert.</p>
+
+  <div class="meta">
+    Juni 2026 &nbsp;|&nbsp; Lesedauer: ca. 12 Minuten &nbsp;|&nbsp; Slug: exportware-mensch
+  </div>
+
+  <div class="intro">
+    Kenia bildet einen Arzt aus. Das kostet den kenianischen Staat zwischen 21.000 und 59.000 US-Dollar. Der Arzt emigriert nach Deutschland. Er behandelt dort Patienten — und trägt zur britischen oder deutschen Wirtschaft Milliardenbeträge bei. Kenia hat das Humankapital finanziert. Deutschland erntet es. Das nennt sich Brain Drain. Es ist kein Randphänomen: Es ist die strukturelle Grundlage, auf der die Migrationspolitik der Industrieländer aufgebaut ist — seit Jahrzehnten, dokumentiert, und weitgehend undiskutiert.
+  </div>
+
+  <!-- SECTION 1: Die Mechanik -->
+  <h2>I. Die Mechanik — wie Brain Drain funktioniert</h2>
+
+  <p>
+    Brain Drain bezeichnet die Abwanderung hochqualifizierter Personen aus ihrem Herkunftsland in Industrieländer, in denen sie bessere Arbeitsbedingungen, höhere Gehälter und stabilere Lebensverhältnisse vorfinden. Der Mechanismus ist gut erforscht und in zahlreichen Primärquellen — WHO, Weltbank, UNCTAD, Afrikanische Union — dokumentiert.
+  </p>
+
+  <div class="flow">
+    <div class="flow-step active">
+      <div class="flow-num">01</div>
+      <div class="flow-text"><strong>Herkunftsland investiert</strong> — staatliche Mittel für Ausbildung von Ärzten, Pflegern, Ingenieuren. Kenia: 21.000–59.000 USD pro Arzt (WHO/Mo Ibrahim Foundation).</div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step active">
+      <div class="flow-num">02</div>
+      <div class="flow-text"><strong>Industrieland wirbt an</strong> — bilateral (Abkommen) oder über private Agenturen. Deutschland: 13 Zielländer, aktive Anwerbezentren in 9 afrikanischen Städten.</div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step active">
+      <div class="flow-num">03</div>
+      <div class="flow-text"><strong>Fachkraft emigriert</strong> — Gehaltsgefälle ist entscheidender Treiber. Kenianische Pflegerin in Deutschland: 3.000 €/Monat vs. ~300 € in Kenia.</div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step warn">
+      <div class="flow-num">04</div>
+      <div class="flow-text"><strong>Herkunftsland verliert doppelt</strong> — Investition in Ausbildung weg, Fachkraft weg. Kenia: 4.000 Ärzte/Pfleger verlassen das Land pro Jahr. WHO: 40 von 55 afrikanischen Ländern mit kritischem Gesundheitspersonalmangel.</div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">
+      <div class="flow-num">05</div>
+      <div class="flow-text"><strong>Remittances als Ersatz</strong> — Migranten schicken Geld zurück. 2023: 857 Mrd. USD weltweit. Aber: 6,4% Überweisungsgebühren (Weltbank). Und: Remittances ersetzen keine Gesundheitsinfrastruktur.</div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step warn">
+      <div class="flow-num">06</div>
+      <div class="flow-text"><strong>Strukturelle Abhängigkeit</strong> — Herkunftsland braucht die Emigration seiner Fachkräfte, um über Remittances zu funktionieren. Senegal: Remittances = 10% des BIP. Entwicklungshilfe = 4%. Kein Fundament für eigenständige Entwicklung.</div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>Quellen zur Mechanik</strong>
+    WHO: Global Health Workforce Statistics 2023 — who.int · Mo Ibrahim Foundation: Africa's Brain Drain (2021) · Weltbank: Remittance Prices Worldwide Q4 2023 — worldbank.org · Phys.org/UNECA: "African migrants can drive growth" (Dez. 2024) · Think Global Health: "Kenya's Health Worker Exodus" (Aug. 2024)
+  </div>
+
+  <!-- SECTION 2: Die Zahlen -->
+  <h2>II. Die Zahlen — was dokumentiert ist</h2>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="number">70.000</div>
+      <div class="label">Qualifizierte Fachkräfte verlassen Afrika jährlich — laut Afrikanischer Union eine der höchsten Raten weltweit</div>
+      <div class="src">African Union, zit. n. Geeska (2025)</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">40/55</div>
+      <div class="label">Afrikanische Länder mit kritischem Gesundheitspersonalmangel — direkte Folge der Abwanderung</div>
+      <div class="src">WHO Bericht 2023</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">$2 Mrd.</div>
+      <div class="label">Afrika hat diese Summe in die Ausbildung von Ärzten investiert, die danach emigrierten</div>
+      <div class="src">Mo Ibrahim Foundation 2021</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">$2,7 Mrd.</div>
+      <div class="label">Beitrag afrikanischer Mediziner zur britischen Wirtschaft — mehr als Afrika selbst erhält</div>
+      <div class="src">African Leadership Magazine 2025</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">+1.328%</div>
+      <div class="label">Anstieg ghanaischer Pflegerinnen im britischen NHS zwischen 2019 und 2022</div>
+      <div class="src">UK Home Office Visa-Daten, zit. n. LSE 2024</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">1 : 5.000</div>
+      <div class="label">Arzt-Patienten-Verhältnis Nigeria. WHO-Empfehlung: 1:600. 9.000 nigerianische Ärzte emigrierten 2016–2018 allein in UK/USA/Kanada.</div>
+      <div class="src">WHO 2023</div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: Das deutsche Netz -->
+  <h2>III. Das deutsche Anwerbenetzwerk — Struktur und Reichweite</h2>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Deutschland hat seit 2022 ein systematisches Netzwerk zur globalen Fachkräfteanwerbung aufgebaut. Es besteht aus bilateralen Migrationsabkommen, staatlichen Anwerbezentren und vom Bundesministerium für Wirtschaft geförderten Programmen.
+  </p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Instrument</th>
+        <th>Reichweite</th>
+        <th>Status 2025</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Bilaterale Migrationsabkommen</td>
+        <td>Indien, Georgien, Kenia, Usbekistan, Marokko, Kolumbien</td>
+        <td class="hl">Unterzeichnet</td>
+      </tr>
+      <tr>
+        <td>Abkommen in Verhandlung</td>
+        <td>Philippinen, Ghana, Kirgisistan, Moldau</td>
+        <td>Laufend</td>
+      </tr>
+      <tr>
+        <td>Anwerbezentren (ZME)</td>
+        <td>Ägypten, Ghana, Indonesien, Irak, Jordanien, Marokko, Nigeria, Pakistan, Tunesien</td>
+        <td class="hl">Operativ</td>
+      </tr>
+      <tr>
+        <td>African Skills 4 Germany (AS4G)</td>
+        <td>11 afrikanische Länder — gefördert durch BMWE</td>
+        <td>2024–2026</td>
+      </tr>
+      <tr>
+        <td>Triple-Win Pflegekräfte</td>
+        <td>7 Länder, Pflegekräfte speziell</td>
+        <td class="hl">Laufend</td>
+      </tr>
+      <tr>
+        <td>Fachkräfteeinwanderungsgesetz</td>
+        <td>Chancenkarte, Blaue Karte EU — weltweit</td>
+        <td class="hl">In Kraft seit 2023</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Im ersten Jahr nach dem neuen Fachkräfteeinwanderungsgesetz wurden rund 200.000 Visa zu Erwerbszwecken erteilt — ein Anstieg von über 10 Prozent gegenüber dem Vorjahr. 89 Prozent des gesamten Beschäftigungswachstums in Deutschland zwischen 2018 und 2023 entfiel auf ausländische Arbeitskräfte.
+  </p>
+
+  <div class="source-box">
+    <strong>Quelle</strong>
+    BMI: Migrationspartnerschaften (Mai 2025) — bmi.bund.de · BMI: "Ein Jahr Fachkräfteeinwanderungsgesetz" (Dez. 2024) · AHK: African Skills 4 Germany — ahk.de · Mediendienst Integration: Migrationsabkommen (April 2025)
+  </div>
+
+  <!-- SECTION 4: Kenia-Fallstudie -->
+  <h2>IV. Fallstudie Kenia — ein Abkommen, zwei Realitäten</h2>
+
+  <p>
+    Das deutsch-kenianische Migrationsabkommen vom 13. September 2024, unterzeichnet von Bundeskanzler Olaf Scholz und Präsident William Ruto, ist das bisher ambitionierteste bilateral: bis zu 250.000 Fachkräfte, darunter explizit Ärzte, Krankenpfleger und Lehrer.
+  </p>
+
+  <div class="pull-quote">
+    <blockquote>„Während wir über Brain Drain klagen, können wir als Regierung die Fachkräfte selbst nicht beschäftigen, weil uns die Ressourcen fehlen."</blockquote>
+    <cite>Governor Muthomi Njuki, Kenia, Februar 2024 — zit. n. Think Global Health</cite>
+  </div>
+
+  <div class="pull-quote">
+    <blockquote>„Es ist traurig, dass wir andere Länder auf Kosten unseres eigenen versorgen werden."</blockquote>
+    <cite>Ekuru Aukot, kenianischer Anwalt und Politiker, nach Unterzeichnung des Abkommens, Sept. 2024 — BBC Newsday</cite>
+  </div>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Gleichzeitig: 64,4 Prozent des kenianischen Gesundheitspersonals äußerte 2023 den Wunsch, das Land zu verlassen. 4.000 Ärzte und Pfleger verlassen Kenia jährlich. Das Arzt-Patienten-Verhältnis liegt bei 1:5.000 — das Achtfache der WHO-Mindestempfehlung.
+  </p>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Die kenianische Regierung rechtfertigt das Abkommen mit Remittances: <em>„Ihre Rücküberweisungen betreiben Fabriken und ermöglichen Landwirtschaft."</em> (Kabinettsminister Musalia Mudavadi). Gleichzeitig stellt der Gouverneur der betroffenen Provinzen fest, das Gesundheitssystem sei nicht mehr funktionsfähig.
+  </p>
+
+  <div class="source-box">
+    <strong>Quelle</strong>
+    Think Global Health: "Kenya's Health Worker Exodus" (Aug. 2024) — thinkglobalhealth.org · Vanguard News: "Germany opens doors to 250,000 Kenyan workers" (Sept. 2024) · Kenya Ministry of Health Report 2023 · IBN: Germany-Kenya Migration Agreement Analysis (2024)
+  </div>
+
+  <!-- SECTION 5: Das historische Muster -->
+  <h2>V. Das Muster — 62 Jahre dokumentiert</h2>
+
+  <p>
+    Was heute als neue Migrationspolitik präsentiert wird, hat eine lückenlos dokumentierte Geschichte — die im öffentlichen Diskurs über aktuelle Abkommen fast nie erwähnt wird.
+  </p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Jahr</th>
+        <th>Abkommen</th>
+        <th>Argument damals</th>
+        <th>Ergebnis</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="hl">1955</td>
+        <td>D-Italien</td>
+        <td>Arbeitskräftemangel — trotz 1 Mio. Arbeitslosen im Inland</td>
+        <td>Familiennachzug, keine Rotation</td>
+      </tr>
+      <tr>
+        <td class="hl">1963</td>
+        <td>D-Marokko</td>
+        <td>Bergbau-Bedarf, irreguläre Migration steuern</td>
+        <td>Rotationsprinzip funktioniert nicht</td>
+      </tr>
+      <tr>
+        <td class="hl">1964</td>
+        <td>F-Algerien</td>
+        <td>Wirtschaftswachstum, Entkolonialisierung</td>
+        <td>Sonderstatus 1968 — bis heute gültig, politisch unkündbar</td>
+      </tr>
+      <tr>
+        <td class="hl">1973</td>
+        <td>Anwerbestopp D</td>
+        <td>Ölkrise — Stopp aller Anwerbung</td>
+        <td>3,5 Mio. Migranten bleiben in D, Familiennachzug folgt</td>
+      </tr>
+      <tr>
+        <td class="hl">2024</td>
+        <td>D-Kenia, D-Marokko</td>
+        <td>Demografischer Wandel, 400.000 Fachkräfte/Jahr bis 2060</td>
+        <td><span class="tag tag-offen">OFFEN</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="doc-box">
+    <div class="doc-label">Historisches Dokument — Der Spiegel, Nr. 29/1964</div>
+    <blockquote>
+      „Anfang 1964 waren es fast 600.000 [Algerier in Frankreich]. 30.000 von ihnen sind heute arbeitslos und leben von der französischen Sozialversicherung. […] Tag für Tag verlassen an die 600 Algerier das von Arbeitslosigkeit und Inflation geplagte Land, um beim ehemaligen Kolonialherrn jenseits des Meeres Brot zu suchen. Die Pariser Regierung vermeidet alles, was nach Diskriminierung aussehen könnte — um des algerischen Erdöls und der algerischen Atombomben-Terrains willen."
+    </blockquote>
+    <cite>
+      Der Spiegel, „Frankreich/Algerier: Braune Flut" (1964) —
+      <a href="https://www.spiegel.de/spiegel/print/d-46174775.html" target="_blank" rel="noopener">spiegel.de/spiegel/print/d-46174775.html</a>
+    </cite>
+  </div>
+
+  <p>
+    Der Spiegel-Artikel von 1964 ist kein Vorbild — seine Sprache ist aus heutiger Sicht rassistisch. Er ist ein Primärbeleg dafür, dass die strukturellen Probleme des Anwerbemodells bereits damals öffentlich dokumentiert waren. Und er zeigt den politischen Mechanismus, der sich bis heute repliziert: Außenpolitische Interessen — Öl, strategische Terrains, heute: Rückführungskooperation, Tourismuswirtschaft — überlagern innenpolitische Steuerungsfragen.
+  </p>
+
+  <!-- SECTION 6: Der Widerspruch Inland -->
+  <h2>VI. Der innenpolitische Widerspruch</h2>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Im Mai 2026 waren 2,95 Millionen Menschen in Deutschland als arbeitslos gemeldet — Arbeitslosenquote 6,3 Prozent, höchster Stand seit fast zehn Jahren. 5,3 Millionen Personen bezogen Bürgergeld. 89 Prozent des Beschäftigungswachstums 2018–2023 entfiel auf ausländische Arbeitskräfte.
+  </p>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Eine Bertelsmann-Studie (2025) unter erwerbsfähigen Bürgergeld-Beziehenden ergab: 43 Prozent hatten noch nie ein Jobangebot vom Jobcenter erhalten. Die offizielle Erklärung: sektoraler Mismatch. Die strukturelle Frage: Warum wurde Qualifizierungspolitik im Inland nicht in ähnlichem Umfang skaliert wie das internationale Anwerbenetzwerk?
+  </p>
+
+  <p>
+    <span class="tag tag-extra">EXTRAPOLATION</span> Diese Frage ist keine Antwort, sondern eine empirisch offene Problemstellung. Mismatch-Argumente sind in der Fachliteratur gut belegt. Ob sie die volle Erklärung liefern, ist unter Ökonomen umstritten.
+  </p>
+
+  <!-- SECTION 7: Was das kostet - und was es vor Ort wäre -->
+  <h2>VII. Was dasselbe Geld vor Ort bewirken würde</h2>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Deutschland gab 2023 rund 48 Milliarden Euro für asyl- und migrationsbezogene Ausgaben aus (Bund und Länder). Gleichzeitig überwiesen Migranten weltweit 857 Milliarden US-Dollar in ihre Herkunftsländer — mehr als alle staatliche Entwicklungshilfe zusammen. Die Überweisungsgebühren betrugen im Durchschnitt 6,4 Prozent (Weltbank Q4 2023) — doppelt so hoch wie das UN-Nachhaltigkeitsziel von 3 Prozent.
+  </p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Referenzgröße</th>
+        <th>Betrag</th>
+        <th>Kaufkraftfaktor vor Ort</th>
+        <th>Reale Wirkung</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Ausbildungskosten Arzt (Kenia/Ghana)</td>
+        <td class="hl">21.000–59.000 USD</td>
+        <td>Faktor 5–8</td>
+        <td>Zahlt Industrieland — nutzt Industrieland</td>
+      </tr>
+      <tr>
+        <td>Beitrag afrikan. Mediziner zur britischen Wirtschaft</td>
+        <td class="hl">2,7 Mrd. USD/Jahr</td>
+        <td>—</td>
+        <td>Höher als Afrikas gesamte Brain-Drain-Verluste</td>
+      </tr>
+      <tr>
+        <td>Überweisungsgebühren global 2023</td>
+        <td class="hl">ca. 55 Mrd. USD/Jahr</td>
+        <td>—</td>
+        <td>Kartell aus Banken/Transferdiensten — SDG-Ziel verfehlt</td>
+      </tr>
+      <tr>
+        <td>Kaufkraftäquivalent 1.000 € in Subsahara-Afrika</td>
+        <td class="hl">Faktor 8–12</td>
+        <td>8.000–12.000 € Realwert</td>
+        <td>Jahresgehalt Lehrer oder Pfleger im öff. Dienst</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    <span class="tag tag-extra">EXTRAPOLATION</span> Die Kaufkraftfaktoren basieren auf Weltbank-PPP-Daten. Sie zeigen Größenordnungen — keine Präzisionsrechnungen. Die entscheidende Frage, ob investierte Mittel dieser Größe die Strukturprobleme in Herkunftsländern lösen würden, hängt von Governance, Institutionen und politischem Willen ab. Das ist eine separate, empirisch offene Frage.
+  </p>
+
+  <!-- SECTION 8: Die WHO-Grenze -->
+  <h2>VIII. Die WHO-Schutzliste — und ihre Grenzen</h2>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Die Weltgesundheitsorganisation veröffentlicht eine Liste von rund 50 Staaten, aus denen keine Gesundheitsfachkräfte angeworben werden sollen — weil ihre eigenen Systeme bereits kollabieren. Deutschland hält sich offiziell daran. Private Vermittlungsagenturen, die außerhalb staatlicher Programme operieren, sind dieser Regelung nicht in gleichem Maße unterworfen.
+  </p>
+
+  <p>
+    <span class="tag tag-offen">OFFEN</span> In welchem Umfang private Agenturen faktisch aus Schutzlistenländern anwerben und wie die Durchsetzung funktioniert, ist nicht vollständig dokumentiert.
+  </p>
+
+  <!-- SECTION 9: Was die Herkunftsländer selbst sagen -->
+  <h2>IX. Was die Herkunftsländer selbst sagen</h2>
+
+  <p>
+    Das stärkste Argument gegen das Anwerbemodell kommt nicht aus dem politischen Spektrum Deutschlands — es kommt aus den betroffenen Ländern selbst.
+  </p>
+
+  <div class="pull-quote">
+    <blockquote>„Brain Drain is not an emotionless economic discussion. When we actively entice doctors not just to come and help, but to come and stay, the effect undermines the entire health systems of the countries these doctors leave behind."</blockquote>
+    <cite>Mark Shrime, Chairman of Global Surgery, RCSI University — zit. n. Daily Nation Kenya (2024)</cite>
+  </div>
+
+  <div class="pull-quote">
+    <blockquote>„Jeder dritte marokkanische Arzt lebt im Ausland. Die Regierung kann den Exodus nicht stoppen."</blockquote>
+    <cite>Marokkos Gesundheitsminister Khalid Aït Taleb im Parlament, November 2023 — zit. n. Maghreb-Post</cite>
+  </div>
+
+  <div class="pull-quote">
+    <blockquote>„Es gibt mehr ghanaische Pfleger im britischen NHS als in Ghana selbst."</blockquote>
+    <cite>LSE Africa at LSE, März 2024 — auf Basis UK Home Office Visa-Daten</cite>
+  </div>
+
+  <!-- SECTION 10: Die Systemlogik -->
+  <h2>X. Die Systemlogik — was die Daten zeigen</h2>
+
+  <p>
+    Drei dokumentierbare Strukturmerkmale verbinden alle beschriebenen Phänomene:
+  </p>
+
+  <h3>1. Privatisierter Transfer</h3>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Remittances — die einzige strukturelle Gegenleistung für Brain Drain — fließen durch ein privatisiertes Transaktionssystem, das durchschnittlich 6,4 Prozent der überwiesenen Beträge als Gebühren einbehält. Das UN-Ziel lautet 3 Prozent bis 2030. Nach fünf Jahren Laufzeit der Agenda 2030 ist keine substanzielle Annäherung dokumentiert.
+  </p>
+
+  <h3>2. Außenpolitische Überlagering</h3>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Der Spiegel dokumentierte 1964 explizit: Frankreich verzichtete auf Steuerungsmaßnahmen gegenüber algerischen Einwanderern — wegen Erdöl und strategischer Militärgebiete. Das SWP Berlin dokumentiert 2024: In den deutschen Migrationsabkommen stehen je nach Partnerland unterschiedliche Prioritäten — bei manchen überwiegt Fachkräfteanwerbung, bei anderen Rückführungsinteressen. Die Mischung hängt von der außenpolitischen Bedeutung des jeweiligen Landes ab.
+  </p>
+
+  <h3>3. Institutionelles Vergessen</h3>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Das erste Anwerbeabkommen mit Marokko ist 62 Jahre alt. Es wird im öffentlichen Diskurs über das Abkommen von 2024 nicht erwähnt. Der Spiegel-Artikel von 1964 über die Folgen des französisch-algerischen Modells ist im Archiv öffentlich zugänglich. Er wird im aktuellen Migrationsdiskurs nicht zitiert. Die Quellenlagen ist nicht versteckt — sie wird nicht abgerufen.
+  </p>
+
+  <div class="source-box">
+    <strong>Quelle — Gesamtartikel</strong>
+    WHO: Global Health Workforce Statistics 2023 · Weltbank: Remittance Prices Worldwide (2023/24) · Afrikanische Union: Brain Drain Statistics · LSE Africa at LSE (2024) · Think Global Health (2024) · SWP Berlin: "Potentiale bilateraler Migrationsabkommen" (2024) · BMI: Migrationspartnerschaften (2025) · Spiegel Nr. 29/1964: <a href="https://www.spiegel.de/spiegel/print/d-46174775.html" target="_blank" rel="noopener">spiegel.de/spiegel/print/d-46174775.html</a> · Bundesagentur für Arbeit: Arbeitsmarkt Mai 2026 · Bertelsmann Stiftung: LEBez-Studie 2025 · Mo Ibrahim Foundation 2021 · bpb.de: Migrationsgeschichte · migrations-geschichten.de: 60 Jahre Marokko-Abkommen (2023) · Maghreb-Post: Ärzteexodus Marokko (2023)
+  </div>
+
+  <!-- Closing -->
+  <div class="closing-questions">
+    <h3>Offene Fragen</h3>
+    <p>Wenn das Anwerbemodell seit 1955 dokumentierbar dieselben Strukturprobleme produziert — warum wird es ohne Revision neu aufgelegt?</p>
+    <p>Wer profitiert strukturell vom laufenden Anwerbebetrieb — jenseits der deklarierten Ziele beider Seiten?</p>
+    <p>Welche Alternative würde aussehen, wenn Entwicklungspolitik darauf ausgerichtet wäre, Fachkräfte im Herkunftsland zu halten statt sie abzuziehen?</p>
+    <p>Warum liegt die Überweisungsgebühr 60 Jahre nach Beginn der systematischen Arbeitsmigration noch bei doppelt dem UN-Zielwert — und wer profitiert davon?</p>
+    <p>Was sagen die Zahlen in 20 Jahren über Kenia, Ghana, Marokko — und über Deutschland?</p>
+  </div>
+
+  <!-- Sources -->
+  <div class="sources-section">
+    <h2>Vollständiges Quellenverzeichnis</h2>
+    <ul>
+      <li>WHO: Global Health Workforce Statistics 2023 — who.int</li>
+      <li>WHO: Health workforce support and safeguards list 2024 — who.int</li>
+      <li>Afrikanische Union: Brain Drain Statistiken, zit. n. Geeska (Juli 2025)</li>
+      <li>Mo Ibrahim Foundation: Africa's Brain Drain Report (2021)</li>
+      <li>Weltbank: Remittance Prices Worldwide Q4 2023 — worldbank.org</li>
+      <li>Weltbank: International Comparison Program (ICP), PPP-Daten</li>
+      <li>LSE Africa at LSE: "Africa's migration and brain drain revisited" (März 2024) — blogs.lse.ac.uk</li>
+      <li>Think Global Health: "Kenya's Health Worker Exodus" (Aug. 2024) — thinkglobalhealth.org</li>
+      <li>African Leadership Magazine: "The Great Migration" (Jan. 2025) — africanleadershipmagazine.co.uk</li>
+      <li>Daily Nation Kenya: "Irony of Kenya's brain drain" (April 2024) — nation.africa</li>
+      <li>Maghreb-Post: "Marokko — Ärzteexodus" (Nov. 2023) — maghreb-post.de</li>
+      <li>Der Spiegel, Nr. 29/1964: "Frankreich/Algerier: Braune Flut" — <a href="https://www.spiegel.de/spiegel/print/d-46174775.html" target="_blank" rel="noopener">spiegel.de/spiegel/print/d-46174775.html</a></li>
+      <li>SWP Berlin: "Potentiale bilateraler Migrationsabkommen" (2024) — swp-berlin.org</li>
+      <li>BMI: Migrationspartnerschaften (Mai 2025) — bmi.bund.de</li>
+      <li>BMI: "Ein Jahr Fachkräfteeinwanderungsgesetz" (Dez. 2024) — bmi.bund.de</li>
+      <li>AHK: African Skills 4 Germany (AS4G) — ahk.de</li>
+      <li>Mediendienst Integration: Migrationsabkommen Übersicht (April 2025) — mediendienst-integration.de</li>
+      <li>Bundesagentur für Arbeit: Arbeitsmarkt Mai 2026 — arbeitsagentur.de</li>
+      <li>Bertelsmann Stiftung: LEBez-Studie 2025 — bertelsmann-stiftung.de</li>
+      <li>bpb.de: "Historische Entwicklung der Einwanderung in Frankreich" (2017)</li>
+      <li>bpb.de: "Erstes Anwerbeabkommen vor 65 Jahren" (2020)</li>
+      <li>migrations-geschichten.de: "60 Jahre Anwerbeabkommen mit Marokko" (Mai 2023)</li>
+      <li>taz.de: "Algerisch-französisches Abkommen: Migrationssonderstatus bleibt" (Dez. 2023)</li>
+      <li>Vanguard News: "Germany opens doors to 250,000 Kenyan workers" (Sept. 2024)</li>
+      <li>IBN: Germany-Kenya Migration Agreement Analysis (Okt. 2025) — ibn.co.za</li>
+    </ul>
+  </div>
+
+  <p style="margin-top:2rem; font-style:italic; color:#52525b; font-size:0.85rem;">
+    Alle Angaben basieren auf öffentlich zugänglichen Primärquellen. Extrapolationen sind als solche ausgewiesen. Schlussfolgerungen zieht der Leser.
+  </p>
+
+  <div class="article-footer">
+    dunkelfeld.report — Fakten, die das Licht nicht scheuen müssen.
+  </div>
+
+</div>
+</body>
+</html>

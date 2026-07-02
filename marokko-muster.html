@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Das Marokko-Muster — dunkelfeld.report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #09090b;
+    color: #d4d4d8;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 2rem 1.2rem 4rem;
+  }
+
+  .container { max-width: 720px; margin: 0 auto; }
+
+  .site-header {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: #e8c547;
+    text-transform: uppercase;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .site-header a { color: #e8c547; text-decoration: none; }
+
+  .nav-bar { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+  .nav-bar a { color: #52525b; text-decoration: none; font-size: 0.7rem; letter-spacing: 0.1em; }
+  .nav-bar a:hover { color: #e8c547; }
+
+  .article-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: #e8c547;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    line-height: 1.25;
+    color: #f4f4f5;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+
+  .subtitle {
+    font-size: 1.15rem;
+    color: #a1a1aa;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #52525b;
+    letter-spacing: 0.08em;
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+    padding: 0.7rem 0;
+    margin-bottom: 2.5rem;
+  }
+
+  .intro {
+    font-size: 1.15rem;
+    color: #e4e4e7;
+    border-left: 3px solid #e8c547;
+    padding-left: 1.4rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.9;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    color: #e8c547;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid #27272a;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    color: #f4f4f5;
+    margin: 1.8rem 0 0.6rem;
+    font-style: italic;
+  }
+
+  p { padding-bottom: 1.2rem; color: #d4d4d8; }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin: 0 0.15rem;
+    text-transform: uppercase;
+  }
+  .tag-belegt  { background: #14532d; color: #4ade80; border: 1px solid #166534; }
+  .tag-extra   { background: #7c2d12; color: #fb923c; border: 1px solid #9a3412; }
+  .tag-offen   { background: #450a0a; color: #f87171; border: 1px solid #7f1d1d; }
+
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 0.9rem 1.2rem;
+    margin: 1.2rem 0 1.8rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #a1a1aa;
+    line-height: 1.6;
+  }
+
+  .source-box strong {
+    color: #e8c547;
+    display: block;
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.68rem;
+  }
+
+  /* Historisches Dokument Box */
+  .doc-box {
+    background: #0f0f11;
+    border: 1px solid #3f3f46;
+    border-left: 4px solid #71717a;
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0 2rem;
+  }
+
+  .doc-box .doc-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #71717a;
+    margin-bottom: 0.8rem;
+  }
+
+  .doc-box blockquote {
+    font-size: 0.95rem;
+    color: #a1a1aa;
+    font-style: italic;
+    line-height: 1.7;
+    border: none;
+    padding: 0;
+  }
+
+  .doc-box cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: #52525b;
+    margin-top: 0.8rem;
+    font-style: normal;
+  }
+
+  .doc-box a {
+    color: #e8c547;
+    text-decoration: none;
+    font-size: 0.7rem;
+  }
+
+  .doc-box a:hover { text-decoration: underline; }
+
+  /* Timeline */
+  .timeline {
+    margin: 1.5rem 0 2rem;
+    position: relative;
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+    position: relative;
+  }
+
+  .timeline-year {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #e8c547;
+    font-weight: 700;
+    min-width: 3.5rem;
+    padding-top: 0.15rem;
+    flex-shrink: 0;
+  }
+
+  .timeline-content {
+    border-left: 2px solid #27272a;
+    padding-left: 1.2rem;
+    padding-bottom: 0.8rem;
+    flex: 1;
+  }
+
+  .timeline-content p {
+    padding-bottom: 0;
+    font-size: 0.92rem;
+    color: #d4d4d8;
+  }
+
+  .timeline-content .tl-title {
+    font-weight: 700;
+    color: #f4f4f5;
+    margin-bottom: 0.2rem;
+  }
+
+  /* Compare table */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0 2rem;
+    font-size: 0.9rem;
+  }
+
+  .compare-table th {
+    background: #1a1a2e;
+    color: #e8c547;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.7rem 1rem;
+    text-align: left;
+    border-bottom: 2px solid #e8c547;
+  }
+
+  .compare-table td {
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid #1e1e24;
+    color: #d4d4d8;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .compare-table tr:nth-child(even) td { background: #0f0f11; }
+  .compare-table .highlight { color: #e8c547; font-weight: 700; }
+
+  /* Pull quote */
+  .pull-quote {
+    margin: 2rem 0;
+    padding: 1.2rem 1.5rem;
+    border-top: 2px solid #e8c547;
+    border-bottom: 2px solid #e8c547;
+  }
+
+  .pull-quote blockquote {
+    font-size: 1.15rem;
+    color: #f4f4f5;
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  .pull-quote cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #71717a;
+    margin-top: 0.6rem;
+    font-style: normal;
+    letter-spacing: 0.05em;
+  }
+
+  /* Warning box for editorial note */
+  .editorial-note {
+    background: #1c1400;
+    border-left: 3px solid #a16207;
+    padding: 0.9rem 1.2rem;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: #a1a1aa;
+    line-height: 1.6;
+  }
+
+  .editorial-note strong { color: #ca8a04; }
+
+  /* Closing */
+  .closing-questions {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    border: 1px solid #27272a;
+    background: #0f0f11;
+  }
+
+  .closing-questions h3 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #e8c547;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-style: normal;
+  }
+
+  .closing-questions p {
+    font-style: italic;
+    color: #a1a1aa;
+    font-size: 0.95rem;
+    padding-bottom: 0.6rem;
+  }
+
+  /* Sources */
+  .sources-section {
+    margin-top: 3rem;
+    border-top: 1px solid #27272a;
+    padding-top: 1.5rem;
+  }
+
+  .sources-section h2 { font-size: 0.75rem; margin-bottom: 1rem; }
+
+  .sources-section ul { list-style: none; padding: 0; }
+
+  .sources-section li {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #52525b;
+    padding: 0.3rem 0;
+    padding-left: 1rem;
+    border-left: 2px solid #27272a;
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+  }
+
+  .sources-section li a { color: #71717a; text-decoration: none; }
+  .sources-section li a:hover { color: #e8c547; }
+  .sources-section li:hover { border-left-color: #e8c547; color: #a1a1aa; }
+
+  .article-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #3f3f46;
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+
+  strong { color: #e4e4e7; }
+  em { color: #a1a1aa; }
+
+  a { color: #e8c547; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="site-header">
+    <div class="nav-bar">
+      <a href="/index.html">dunkelfeld.report</a>
+      <a href="/index.html#artikel">Alle Artikel</a>
+      <a href="/index.html#dossiers">Dossiers</a>
+    </div>
+    Analyse · Systemkritik · Quellenbasiert
+  </header>
+
+  <div class="article-label">Historische Analyse · Migration · Strukturmuster</div>
+
+  <h1>Das Marokko-Muster</h1>
+  <p class="subtitle">Deutschland wirbt seit 1963 Arbeitskräfte aus Marokko an. Frankreich begann dasselbe Spiel mit Algerien — und ein Spiegel-Artikel aus dem Jahr 1964 dokumentiert, was dabei herauskam. Sechzig Jahre später werden dieselben Abkommen neu aufgelegt. Dieselbe Logik. Dieselben offenen Fragen.</p>
+
+  <div class="meta">
+    Juni 2026 &nbsp;|&nbsp; Lesedauer: ca. 9 Minuten &nbsp;|&nbsp; Slug: marokko-muster
+  </div>
+
+  <div class="intro">
+    Am 21. Mai 1963 unterzeichnete die Bundesrepublik Deutschland mit Marokko ein Anwerbeabkommen. Knapp ein Jahr später erschien im Spiegel ein Artikel über die Folgen eines ähnlichen Abkommens, das Frankreich mit Algerien geschlossen hatte. Der Titel lautete: <em>„Braune Flut."</em> Was der Spiegel 1964 beschrieb, war kein gesellschaftliches Randphänomen — es waren strukturelle Probleme, die sich bis heute in Frankreich nicht aufgelöst haben. Im Jahr 2024 unterzeichnete Deutschland ein neues Migrationsabkommen mit Marokko. Dieser Artikel stellt die Dokumente nebeneinander.
+  </div>
+
+  <!-- SECTION 1 -->
+  <h2>I. 1963: Das erste Abkommen — und seine Prämissen</h2>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Das Anwerbeabkommen zwischen der Bundesrepublik Deutschland und dem Königreich Marokko wurde am 21. Mai 1963 unter Kabinett Adenauer V unterzeichnet. Es war Teil einer Reihe bilateraler Abkommen, die Deutschland ab 1955 mit Ländern Südeuropas und Nordafrikas schloss.
+  </p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">1955</div>
+      <div class="timeline-content">
+        <div class="tl-title">Erstes Anwerbeabkommen: Italien</div>
+        <p>Unterzeichnet, obwohl in Westdeutschland noch knapp eine Million Menschen als arbeitslos registriert waren.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1960–61</div>
+      <div class="timeline-content">
+        <div class="tl-title">Griechenland, Spanien, Türkei</div>
+        <p>Mauerbau 1961 verschärft den wahrgenommenen Arbeitskräftebedarf — DDR-Zuzug fällt weg.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1963</div>
+      <div class="timeline-content">
+        <div class="tl-title">Marokko — erstes Abkommen</div>
+        <p>Rotationsprinzip: Aufenthalt maximal zwei Jahre, dann Rückkehr. Familienmigration nicht vorgesehen. Integration nicht geplant.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1973</div>
+      <div class="timeline-content">
+        <div class="tl-title">Anwerbestopp — Ölkrise</div>
+        <p>Bis dahin: 22.400 marokkanische Gastarbeiter in Deutschland. Familienzusammenführung folgte danach — das Rotationsprinzip hatte sich als Illusion erwiesen.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2024</div>
+      <div class="timeline-content">
+        <div class="tl-title">Marokko — neues Migrationsabkommen</div>
+        <p>Anfang 2024 schloss die Bundesregierung unter Sonderbevollmächtigtem Joachim Stamp eine neue Migrationspartnerschaft mit Marokko — Schwerpunkt: Fachkräfte und geordnete Rückführungen.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="editorial-note">
+    <strong>Redaktionelle Einordnung:</strong> Das Anwerbeabkommen von 1963 war innerhalb der deutschen Regierung stark umstritten. Laut Wikipedia-Eintrag zum Abkommen sprach dafür die Erwartung, den Arbeitskräftebedarf im Bergbau zu decken und einem bereits bestehenden irregulären Zustrom zu begegnen. Dieselben zwei Argumente — Arbeitskräftebedarf und Steuerung irregulärer Migration — werden 2024 für das neue Abkommen angeführt.
+  </div>
+
+  <div class="source-box">
+    <strong>Quelle</strong>
+    Wikipedia: Anwerbeabkommen zwischen der Bundesrepublik Deutschland und Marokko — de.wikipedia.org · bpb.de: "Erstes Anwerbeabkommen vor 65 Jahren" (2020) · migrations-geschichten.de: "60 Jahre Anwerbeabkommen mit Marokko" (Mai 2023) · BMI: Migrationspartnerschaften (Stand Mai 2025) — bmi.bund.de
+  </div>
+
+  <!-- SECTION 2 -->
+  <h2>II. 1964: Was Frankreich mit Algerien erlebte — Primärquelle Spiegel</h2>
+
+  <p>
+    Ein Jahr nach dem deutschen Marokko-Abkommen erschien im Spiegel, Ausgabe 29/1964, ein Artikel über die Situation algerischer Einwanderer in Frankreich. Frankreich hatte 1964 ein formelles Anwerbeabkommen mit dem unabhängig gewordenen Algerien geschlossen — sechs Jahre nach dem Ende eines achtjährigen Unabhängigkeitskrieges.
+  </p>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Der Artikel ist im Spiegel-Archiv öffentlich zugänglich. Der Titel — <em>„Braune Flut"</em> — und die verwendete Sprache sind aus heutiger Sicht rassistisch und wären heute nicht druckbar. Was der Artikel dennoch dokumentiert, sind konkrete Zahlen und strukturelle Probleme, die als historische Primärquelle relevant sind.
+  </p>
+
+  <div class="editorial-note">
+    <strong>Redaktionelle Einordnung:</strong> dunkelfeld.report zitiert aus diesem Artikel ausschließlich die Sachzahlen und strukturellen Beschreibungen — nicht die rassistischen Formulierungen. Der Artikel wird als historisches Dokument behandelt, nicht als Vorbild. Die Sprache von 1964 dokumentiert zugleich, wie Medien damals über Migration berichteten — ein eigenständiger medienkritischer Befund.
+  </div>
+
+  <div class="doc-box">
+    <div class="doc-label">Historisches Dokument — Der Spiegel, Ausgabe 29/1964</div>
+    <blockquote>
+      „Anfang 1964 waren es fast 600.000 [Algerier in Frankreich]. 30.000 von ihnen sind heute arbeitslos und leben von der französischen Sozialversicherung. 13.000 französische Krankenbetten sind von Algeriern belegt. […] Tag für Tag verlassen an die 600 Algerier das von Arbeitslosigkeit und Inflation geplagte Land, um beim ehemaligen Kolonialherrn jenseits des Meeres Brot zu suchen."
+    </blockquote>
+    <cite>
+      Der Spiegel, Nr. 29/1964, „Frankreich/Algerier: Braune Flut" —
+      <a href="https://www.spiegel.de/spiegel/print/d-46174775.html" target="_blank" rel="noopener">spiegel.de/spiegel/print/d-46174775.html</a>
+    </cite>
+  </div>
+
+  <p>
+    Was der Spiegel 1964 in Zahlen festhielt: <strong>600.000 Algerier</strong> in Frankreich, davon <strong>30.000 arbeitslos auf Sozialversicherung</strong> — das entspricht rund 5 Prozent. Der Artikel kommentierte das damals als alarmierend. Zum Vergleich: Der Anteil ausländischer Bürgergeldempfänger in Deutschland lag 2025 bei rund 47,6 Prozent aller Leistungsberechtigten.
+  </p>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Der Spiegel-Artikel dokumentiert zudem den damaligen politischen Mechanismus: Die Pariser Regierung vermied jede Maßnahme, die nach Diskriminierung der Algerier aussehen könnte — <em>„um des algerischen Erdöls und der algerischen Atombomben-Terrains willen."</em> Außenpolitische Interessen überlagerten innenpolitische Steuerungsfragen.
+  </p>
+
+  <div class="doc-box">
+    <div class="doc-label">Spiegel 1964 — Politische Einordnung im Originaltext</div>
+    <blockquote>
+      „Die Pariser Regierung vermeidet alles, was nach Diskriminierung der in Frankreich lebenden Algerier aussehen könnte: Um des algerischen Erdöls und der algerischen Atombomben-Terrains willen."
+    </blockquote>
+    <cite>
+      Der Spiegel, Nr. 29/1964 —
+      <a href="https://www.spiegel.de/spiegel/print/d-46174775.html" target="_blank" rel="noopener">spiegel.de/spiegel/print/d-46174775.html</a>
+    </cite>
+  </div>
+
+  <div class="source-box">
+    <strong>Quelle</strong>
+    Der Spiegel, Nr. 29/1964: „Frankreich/Algerier: Braune Flut" — <a href="https://www.spiegel.de/spiegel/print/d-46174775.html" target="_blank" rel="noopener">spiegel.de/spiegel/print/d-46174775.html</a> · bpb.de: "Historische Entwicklung der Einwanderung in Frankreich" (2017) · taz.de: "Algerisch-französisches Abkommen: Migrationssonderstatus bleibt" (Dez. 2023)
+  </div>
+
+  <!-- SECTION 3 -->
+  <h2>III. Was aus dem französisch-algerischen Modell wurde</h2>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Das Anwerbeabkommen Frankreichs mit Algerien mündete 1968 in ein Sonderabkommen, das algerischen Staatsangehörigen und ihren Familien vereinfachte Einwanderung ermöglicht — und das bis heute gilt. Es ist rechtlich und politisch faktisch unkündbar: Jede Kündigung würde die ohnehin angespannten diplomatischen Beziehungen mit Algerien belasten und die Kooperationsbereitschaft Algiers bei Rückführungen gefährden.
+  </p>
+
+  <div class="pull-quote">
+    <blockquote>„Damals brauchte Frankreich dringend Arbeitskräfte und gewährte den algerischen Staatsangehörigen und ihren Familien eine erleichterte Einwanderung. Dieser Sonderstatus gilt bis heute."</blockquote>
+    <cite>taz.de, Dezember 2023, über das algerisch-französische Abkommen von 1968</cite>
+  </div>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Frankreich stoppte 1974 alle Anwerbeprogramme — zum Zeitpunkt des Stopps lebten bereits 3,5 Millionen Migranten im Land, sieben Prozent der Gesamtbevölkerung. Das Rotationsprinzip hatte auch hier nicht funktioniert: Wer einmal da war, blieb — und holte Familien nach.
+  </p>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Die strukturellen Folgeprobleme — Banlieues, Integrationskonflikte, parallele Rechtssphären — sind bis heute Teil des öffentlichen Diskurses in Frankreich. Ob und wie sehr das Anwerbemodell der 1960er dazu beigetragen hat, ist in der Sozialwissenschaft umstritten. Dokumentiert ist: Die Probleme wurden 1964 bereits im Ansatz beschrieben — und danach jahrzehntelang ignoriert.
+  </p>
+
+  <div class="source-box">
+    <strong>Quelle</strong>
+    taz.de: "Algerisch-französisches Abkommen: Migrationssonderstatus bleibt" (Dez. 2023) · bpb.de: "Historische Entwicklung der Einwanderung und Einwanderungspolitik in Frankreich" (2017) · NZZ: "Neue Eiszeit zwischen Frankreich und Algerien" (Jan. 2025) · bpb.de: "Anwerbung türkischer Arbeitnehmer und ihre Folgen"
+  </div>
+
+  <!-- SECTION 4 -->
+  <h2>IV. Marokko heute: Urlaubsland mit Ärztemangel</h2>
+
+  <p>
+    Marokko ist für viele Deutsche der Inbegriff eines Urlaubsziels: Marrakesch, Agadir, Essaouira. Das Land zieht jährlich Millionen europäischer Touristen an. Gleichzeitig verlässt es jedes Jahr eine dreistellige Zahl an Ärzten und Pflegefachkräften — angeworben von eben jenen Ländern, in die auch die Touristen nach Hause fahren.
+  </p>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Marokkos Gesundheitsminister Khalid Aït Taleb erklärte im November 2023 im Parlament: Er könne den Exodus der Ärzte nicht stoppen. Jedes Jahr verlässt das Land mehr als 600 Ärzte — betroffen sind alle Kategorien, von Medizinstudenten bis zu Professoren. Ein Bericht zeigte: Jeder dritte marokkanische Arzt lebt im Ausland.
+  </p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Kategorie</th>
+        <th>Marokko 2023/24</th>
+        <th>Quelle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Ärzte, die jährlich emigrieren</td>
+        <td class="highlight">&gt; 600 pro Jahr</td>
+        <td>Aussage Gesundheitsminister im Parlament, Nov. 2023</td>
+      </tr>
+      <tr>
+        <td>Marokkanische Ärzte im Ausland</td>
+        <td class="highlight">ca. jeder 3. ausgebildete Arzt</td>
+        <td>Maghreb-Post, Bericht 2023</td>
+      </tr>
+      <tr>
+        <td>Deutschlands Attraktivität</td>
+        <td class="highlight">„besonders interessant" für marokk. Mediziner</td>
+        <td>Studie zit. n. Maghreb-Post, Juni 2023</td>
+      </tr>
+      <tr>
+        <td>Deutsches Migrationsabkommen</td>
+        <td class="highlight">unterzeichnet Anfang 2024</td>
+        <td>BMI, Migrationspartnerschaften 2025</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Das ZDF berichtete im Februar 2024 über Farah Mouknnaa, eine 22-jährige Marokkanerin, die ihre Pflegeausbildung — von den Eltern mit umgerechnet über 5.000 Euro finanziert — absolviert hat und nun in einem Pflegeheim bei Duisburg arbeitet. Ihr Vater ermutigt sie. Das ZDF-Zitat des befragten Ökonomen Marcel Fratzscher: <em>„Nordafrika ist eine Region, aus der viele Menschen nach Deutschland kommen wollen. Auch hier gilt es, die Zuwanderung zu lenken, so gut es geht."</em>
+  </p>
+
+  <p>
+    Die Formulierung ist strukturell identisch mit dem, was deutsche Politiker 1963 sagten — und was französische Politiker 1964 sagten, bevor der Spiegel schrieb, was dabei herausgekommen war.
+  </p>
+
+  <div class="source-box">
+    <strong>Quelle</strong>
+    Maghreb-Post: "Marokko — Ärzteexodus — Braindrain konnte nicht verringert werden" (Nov. 2023) — maghreb-post.de · Maghreb-Post: "Studie warnt vor Brain Drain im Gesundheitssektor" (Juni 2023) · ZDF: "Fachkräftemangel in Deutschland: Pflegekräfte aus Marokko" (20.02.2024) — zdf.de
+  </div>
+
+  <!-- SECTION 5 -->
+  <h2>V. Die Parallele — dokumentiert, nicht bewertet</h2>
+
+  <p>
+    Die folgende Gegenüberstellung basiert ausschließlich auf belegten Primärquellen. Sie zieht keine Schlussfolgerungen über Kausalität oder politische Bewertung.
+  </p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Merkmal</th>
+        <th>Frankreich / Algerien 1964</th>
+        <th>Deutschland / Marokko 2024</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Rechtliches Instrument</td>
+        <td>Anwerbeabkommen 1962/64, Sonderabkommen 1968</td>
+        <td>Anwerbeabkommen 1963, Migrationspartnerschaft 2024</td>
+      </tr>
+      <tr>
+        <td>Rotationsprinzip</td>
+        <td>Vorgesehen, nicht eingehalten</td>
+        <td>Vorgesehen (1963), nicht eingehalten — 2024 kein Rotationsprinzip mehr</td>
+      </tr>
+      <tr>
+        <td>Herkunftsland-Kontext</td>
+        <td>„Arbeitslosigkeit und Inflation" (Spiegel 1964)</td>
+        <td>Hohe Jugendarbeitslosigkeit, Gehaltsgefälle, Ärztemangel</td>
+      </tr>
+      <tr>
+        <td>Außenpolitische Überlagering</td>
+        <td class="highlight">Erdöl, Atombomben-Terrain (Spiegel 1964 wörtlich)</td>
+        <td class="highlight">Rückführungsinteressen, Tourismuswirtschaft, Ressourcenzugang</td>
+      </tr>
+      <tr>
+        <td>Langfristige Bindungswirkung</td>
+        <td>Sonderabkommen 1968 gilt bis heute, politisch faktisch unkündbar</td>
+        <td><span class="tag tag-offen">OFFEN</span> noch nicht absehbar</td>
+      </tr>
+      <tr>
+        <td>Abwerbung aus Gesundheitssystem</td>
+        <td>Nicht systematisch dokumentiert für 1964</td>
+        <td class="highlight">Explizit: Ärzte, Pfleger — Gesundheitsminister klagt öffentlich</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pull-quote">
+    <blockquote>„Damals, 1963, erhoffte man sich, eine Vielzahl von Problemen ausräumen zu können. Illegale Einreisen nach Deutschland, Arbeitskräftemangel und politische Instabilität sollten verschwinden. Ganz so sollte es jedoch nicht kommen."</blockquote>
+    <cite>migrations-geschichten.de, „60 Jahre Anwerbeabkommen mit Marokko" (Mai 2023)</cite>
+  </div>
+
+  <!-- SECTION 6 -->
+  <h2>VI. Was sich verändert hat — und was nicht</h2>
+
+  <h3>Was sich verändert hat</h3>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Die Sprache. Der Spiegel-Titel von 1964 — „Braune Flut" — wäre heute undenkbar und strafbar. Das ist eine reale, dokumentierbare gesellschaftliche Veränderung. Die Berichterstattung über Migration ist heute reguliert, differenzierter und in zentralen Bereichen durch den Pressekodex und Strafrecht begrenzt.
+  </p>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Das Bewusstsein für die Probleme in Herkunftsländern ist 2024 explizit in den Abkommen selbst verankert: Die WHO-Schutzliste, die Formulierung zur Vermeidung von „Care Drain" in den GIZ-Präsentationen zum Kenia-Abkommen — das gab es 1963 nicht.
+  </p>
+
+  <h3>Was sich nicht verändert hat</h3>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Die Grundstruktur: Ein Industrieland mit demografischem Problem schließt bilaterale Abkommen mit einem ärmeren Land, das eigene Fachkräfte nicht halten kann. Das Zielland profitiert kurzfristig. Das Herkunftsland verliert Humankapital. Die Remittances stabilisieren Familien — ersetzen aber keine staatliche Infrastruktur.
+  </p>
+
+  <p>
+    <span class="tag tag-extra">EXTRAPOLATION</span> Ob das neue Marokko-Abkommen von 2024 strukturell andere Ergebnisse produziert als das von 1963, ist offen. Die Rahmenbedingungen — Qualifikationsniveau der Zuwandernden, rechtlicher Rahmen, Integrationsinfrastruktur — sind heute andere. Ob sie ausreichen, ist eine empirisch offene Frage.
+  </p>
+
+  <div class="source-box">
+    <strong>Quelle</strong>
+    bpb.de: "Anwerbung türkischer Arbeitnehmer und ihre Folgen" · Wikipedia: Gastarbeiter (Historisches Lexikon Bayerns) · Mediendienst Integration: Migrationsabkommen Deutschland (April 2025) · GIZ-Präsentation zum Deutschland-Kenia-Abkommen (zit. n. ibn.co.za, 2024)
+  </div>
+
+  <!-- Closing -->
+  <div class="closing-questions">
+    <h3>Offene Fragen</h3>
+    <p>Hat Deutschland aus dem französisch-algerischen Modell strukturelle Lehren gezogen — oder werden dieselben Abkommen mit neuem Vokabular neu aufgelegt?</p>
+    <p>Welche Bindungswirkung wird das Marokko-Abkommen von 2024 in 20, 40, 60 Jahren haben?</p>
+    <p>Warum wird das Abkommen von 1963 im öffentlichen Diskurs über das Abkommen von 2024 nicht erwähnt?</p>
+    <p>Welche Interessen — außer dem deklarierten Fachkräftebedarf — stehen hinter der erneuten Migrationspartnerschaft mit Marokko?</p>
+    <p>Was sagen die Zahlen in 10 Jahren über den Gesundheitszustand Marokkos — und Deutschlands?</p>
+  </div>
+
+  <!-- Sources -->
+  <div class="sources-section">
+    <h2>Quellenverzeichnis</h2>
+    <ul>
+      <li>Der Spiegel, Nr. 29/1964: „Frankreich/Algerier: Braune Flut" — <a href="https://www.spiegel.de/spiegel/print/d-46174775.html" target="_blank" rel="noopener">spiegel.de/spiegel/print/d-46174775.html</a></li>
+      <li>Wikipedia: Anwerbeabkommen Bundesrepublik Deutschland und Marokko — de.wikipedia.org</li>
+      <li>bpb.de: "Erstes Anwerbeabkommen vor 65 Jahren" (2020) — bpb.de</li>
+      <li>migrations-geschichten.de: "60 Jahre Anwerbeabkommen mit Marokko" (Mai 2023)</li>
+      <li>bpb.de: "Historische Entwicklung der Einwanderung in Frankreich" (2017)</li>
+      <li>bpb.de: "Anwerbung türkischer Arbeitnehmer und ihre Folgen"</li>
+      <li>taz.de: "Algerisch-französisches Abkommen: Migrationssonderstatus bleibt" (Dez. 2023)</li>
+      <li>NZZ: "Neue Eiszeit zwischen Frankreich und Algerien" (Jan. 2025)</li>
+      <li>DGAP: "Frankreichs algerisches Erbe" (2013) — dgap.org</li>
+      <li>Maghreb-Post: "Marokko — Ärzteexodus" (Nov. 2023) — maghreb-post.de</li>
+      <li>Maghreb-Post: "Studie warnt vor Brain Drain im Gesundheitssektor" (Juni 2023)</li>
+      <li>ZDF: "Fachkräftemangel: Pflegekräfte aus Marokko" (Feb. 2024) — zdf.de</li>
+      <li>BMI: Migrationspartnerschaften (Stand Mai 2025) — bmi.bund.de</li>
+      <li>SWP Berlin: "Potentiale bilateraler Migrationsabkommen" (2024) — swp-berlin.org</li>
+      <li>bpb.de: "Maghreb — Migrationsmuster und -politiken" (2020)</li>
+    </ul>
+  </div>
+
+  <p style="margin-top:2rem; font-style:italic; color:#52525b; font-size:0.85rem;">
+    Alle Angaben basieren auf öffentlich zugänglichen Primärquellen. Extrapolationen sind als solche ausgewiesen. Schlussfolgerungen zieht der Leser.
+  </p>
+
+  <div class="article-footer">
+    dunkelfeld.report — Fakten, die das Licht nicht scheuen müssen.
+  </div>
+
+</div>
+</body>
+</html>

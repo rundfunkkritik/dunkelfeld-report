@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W Social — dunkelfeld.report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .site-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #71717a;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+
+  .site-label a {
+    color: #71717a;
+    text-decoration: none;
+  }
+
+  .site-label a:hover { color: #e8c547; }
+
+  /* Series nav */
+  .series-nav {
+    background: #111113;
+    border: 1px solid #27272a;
+    border-left: 3px solid #e8c547;
+    padding: 0.75rem 1rem;
+    margin-bottom: 2rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: #a1a1aa;
+  }
+
+  .series-nav span { color: #e8c547; }
+
+  /* Title block */
+  h1 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: normal;
+    line-height: 1.3;
+    color: #f4f4f5;
+    margin-bottom: 0.75rem;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    color: #a1a1aa;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #52525b;
+    letter-spacing: 0.05em;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #27272a;
+  }
+
+  /* Sections */
+  h2 {
+    font-size: 1.25rem;
+    font-weight: normal;
+    color: #e8c547;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid #27272a;
+  }
+
+  h3 {
+    font-size: 1.05rem;
+    font-weight: normal;
+    color: #d4d4d8;
+    margin: 1.8rem 0 0.6rem;
+  }
+
+  p { margin-bottom: 1.2rem; }
+
+  /* Source boxes */
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 0.9rem 1rem;
+    margin: 1.2rem 0;
+    font-size: 0.9rem;
+  }
+
+  .source-box .src-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #e8c547;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+
+  .source-box p { margin-bottom: 0.4rem; color: #a1a1aa; }
+
+  .source-box a {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #6366f1;
+    text-decoration: none;
+  }
+
+  .source-box a:hover { color: #e8c547; }
+
+  /* Status tags */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+
+  .tag-belegt { background: #14532d; color: #86efac; border: 1px solid #16a34a; }
+  .tag-offen { background: #431407; color: #fdba74; border: 1px solid #ea580c; }
+  .tag-extrapolation { background: #1e1b4b; color: #a5b4fc; border: 1px solid #6366f1; }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.88rem;
+  }
+
+  th {
+    background: #18181b;
+    color: #e8c547;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid #e8c547;
+  }
+
+  td {
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #27272a;
+    color: #d4d4d8;
+    vertical-align: top;
+  }
+
+  tr:hover td { background: #111113; }
+
+  /* Person cards */
+  .person-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  @media (max-width: 540px) { .person-grid { grid-template-columns: 1fr; } }
+
+  .person-card {
+    background: #111113;
+    border: 1px solid #27272a;
+    border-top: 3px solid #e8c547;
+    padding: 0.9rem;
+  }
+
+  .person-card .name {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #e8c547;
+    margin-bottom: 0.3rem;
+  }
+
+  .person-card .role {
+    font-size: 0.82rem;
+    color: #a1a1aa;
+    margin-bottom: 0.5rem;
+  }
+
+  .person-card .detail {
+    font-size: 0.8rem;
+    color: #71717a;
+  }
+
+  /* Pull quote */
+  .pull-quote {
+    border-left: 3px solid #52525b;
+    padding: 0.8rem 1.2rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #a1a1aa;
+    font-size: 0.95rem;
+  }
+
+  .pull-quote cite {
+    display: block;
+    font-size: 0.75rem;
+    font-family: 'Courier New', monospace;
+    color: #52525b;
+    margin-top: 0.5rem;
+    font-style: normal;
+  }
+
+  /* Highlight / warning box */
+  .highlight-box {
+    background: #1c1917;
+    border: 1px solid #44403c;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    color: #d4d4d8;
+  }
+
+  /* Network diagram (text-based) */
+  .network-box {
+    background: #0a0a0f;
+    border: 1px solid #1e1b4b;
+    padding: 1.2rem;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: #6366f1;
+    line-height: 1.9;
+    overflow-x: auto;
+  }
+
+  .network-box .node { color: #e8c547; }
+  .network-box .arrow { color: #52525b; }
+  .network-box .label { color: #a5b4fc; }
+
+  /* Closing questions */
+  .closing {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+  }
+
+  .closing p {
+    font-style: italic;
+    color: #71717a;
+    font-size: 0.95rem;
+    margin-bottom: 0.8rem;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #3f3f46;
+    line-height: 1.6;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #27272a;
+    margin: 2rem 0;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="site-label">
+    <a href="https://dunkelfeld.report">dunkelfeld.report</a> &nbsp;·&nbsp; Analyse · Systemkritik · Quellenbasiert
+  </div>
+
+  <div class="series-nav">
+    <span>DOSSIER</span> &nbsp;·&nbsp; Plattformsouveränität &nbsp;·&nbsp; Digitale Identität &nbsp;·&nbsp; Netzwerke
+  </div>
+
+  <h1>W Social — Europas Antwort auf X</h1>
+  <p class="subtitle">Ausweispflicht, WEF-Netzwerke und die stille Migration der EU-Institutionen</p>
+  <div class="meta">JUNI 2026 &nbsp;·&nbsp; LESEDAUER CA. 10 MIN &nbsp;·&nbsp; SLUG: w-social</div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <section>
+    <h2>01 · Was ist W Social?</h2>
+
+    <p>Am 17. Juni 2026 startete im Brüsseler Press Club — wenige Gehminuten von EU-Parlament, Kommission und Rat entfernt — die öffentliche Beta einer neuen Social-Media-Plattform: <strong>W Social</strong>. Das Netzwerk versteht sich als europäische Alternative zu X (ehemals Twitter). Wer aktiv posten will, muss sich mit Personalausweis oder Reisepass verifizieren und ein biometrisches Selfie erstellen.</p>
+
+    <div class="source-box">
+      <div class="src-label">Primärquelle · ZDF heute, 18. Juni 2026</div>
+      <p>„Jede Nutzerin, jeder Nutzer muss sich mit Personalausweis oder Reisepass verifizieren und ein Selfie erstellen. Die Daten werden danach gelöscht. Was bleibt, ist ein verschlüsselter Token, der verhindert, dass jemand mehrere Accounts anlegt."</p>
+      <a href="https://www.zdfheute.de/politik/deutschland/w-social-nachrichtenplattform-twitter-100.html" target="_blank">→ ZDF heute: W Social — das neue Twitter?</a>
+    </div>
+
+    <p>Auf der Warteliste stehen 50.000 Interessierte aus 180 Ländern. Die vollständige Version ist für Januar 2027 geplant. Die Plattform soll werbefrei sein und keinen personalisierenden Algorithmus einsetzen — Beiträge erscheinen in chronologischer Reihenfolge.</p>
+
+    <div class="source-box">
+      <div class="src-label">Primärquelle · Unternehmensangaben W Social AB / t-online, Juni 2026</div>
+      <p>Sämtliche Daten sollen in Finnland nach DSGVO verarbeitet werden. Automatisierte Konten (Bots) sind nicht erlaubt. Nutzerdaten werden nicht zum Training von KI-Modellen verwendet. Monetarisierung durch Werbung und Mikrozahlungen frühestens 2027.</p>
+      <a href="https://www.t-online.de/digital/aktuelles/id_101302828/w-social-europaeische-x-alternative-startet-netzwerk-mit-ausweis-pflicht.html" target="_blank">→ t-online: W Social — europäische X-Alternative</a>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ══════════════════════════════════════════ -->
+  <section>
+    <h2>02 · Wichtige Klarstellung</h2>
+
+    <div class="highlight-box">
+      <span class="tag tag-belegt">BELEGT</span> W Social ist <strong>keine EU-Plattform</strong> und wird nicht aus Steuergeldern finanziert. Ein Sprecher der EU-Kommission stellte gegenüber Euronews im Januar 2026 klar: Die EU lanciere, finanziere oder betreibe keine Social-Media-Plattform namens „W".
+    </div>
+
+    <div class="source-box">
+      <div class="src-label">Primärquelle · Euronews Fact-Check, 29. Januar 2026</div>
+      <p>Viral verbreitete Posts behaupteten, W Social werde von Brüssel finanziert und als Zensurwerkzeug betrieben. Diese Behauptung ist falsch. W Social ist ein privat finanziertes schwedisches Start-up.</p>
+      <a href="https://www.euronews.com/my-europe/2026/01/29/fact-check-is-the-eu-launching-a-social-media-platform-called-w" target="_blank">→ Euronews: Fact-Check W Social</a>
+    </div>
+
+    <p>Was jedoch dokumentierbar ist: Welche Netzwerke hinter dem Unternehmen stehen — und wie die EU-Institutionen auf die Plattform reagiert haben.</p>
+  </section>
+
+  <hr>
+
+  <!-- ══════════════════════════════════════════ -->
+  <section>
+    <h2>03 · Unternehmensstruktur &amp; Finanzierung</h2>
+
+    <p><span class="tag tag-belegt">BELEGT</span> W Social AB ist eine schwedische Aktiengesellschaft mit Sitz in Stockholm (Organisationsnummer 559544-6690). Tochtergesellschaft von <strong>We Don't Have Time AB</strong> — einer klimafokussierten schwedischen Medienplattform.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Kennzahl</th>
+          <th>Wert</th>
+          <th>Quelle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Startfinanzierung</td>
+          <td>ca. 2,5 Mio. Euro</td>
+          <td>mrak.at, Mai 2026</td>
+        </tr>
+        <tr>
+          <td>Anzahl Investoren</td>
+          <td>über 750 aus ca. 15 Ländern</td>
+          <td>Eigenangabe W Social</td>
+        </tr>
+        <tr>
+          <td>Größter Anteilseigner</td>
+          <td>We Don't Have Time AB (ca. 25%)</td>
+          <td>Mehrere Medienberichte</td>
+        </tr>
+        <tr>
+          <td>Weitere Investoren-Umfeld</td>
+          <td>Spotify, Ericsson (Skandinavien)</td>
+          <td>1e9.community, Juni 2026</td>
+        </tr>
+        <tr>
+          <td>Team</td>
+          <td>ca. 25 Personen</td>
+          <td>mrak.at</td>
+        </tr>
+        <tr>
+          <td>Mitarbeiter W Social / W Identity</td>
+          <td>gleiche Gründer, gleiche Adresse (Malmgårdsvägen 63, Stockholm)</td>
+          <td>1e9.community</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="source-box">
+      <div class="src-label">Primärquelle · Unternehmensregister Schweden / 1e9.community, Juni 2026</div>
+      <p>W Social AB und W Identity AB — zuständig für die Ausweisverifizierung — sitzen an identischer Stockholmer Adresse. Aufsichtsratsvorsitzender und Geschäftsführerin sind dieselben Personen, lediglich in umgekehrten Rollen. Wie stark die behauptete Datentrennung in der Praxis ist, bleibt laut Kritikern offen.</p>
+      <a href="https://www.1e9.community/magazin/w-social-europas-x-alternative-wirft-so-manche-frage-auf" target="_blank">→ 1e9.community: W Social — Fragen und Kritik</a>
+    </div>
+
+    <p><span class="tag tag-belegt">BELEGT</span> Ein dritter Akteur ist involviert: <strong>Trust Anchor Group AB</strong> unter Tommy Andorff — betreibt die sogenannte Neuron-Server-Infrastruktur für die Identitätsprüfung. Andorff sitzt gleichzeitig im Beirat von W Social. Er ist außerdem CEO des Unternehmens für bargeldloses Bezahlen <strong>Neuro-Pay</strong>.</p>
+
+    <div class="source-box">
+      <div class="src-label">Primärquelle · Tichys Einblick / 1e9.community, Juni 2026</div>
+      <p>Die personelle Verflechtung zwischen Identitätsprüfungs-Infrastruktur, Beirat und Payment-Technologie ist dokumentierbar. Wie sauber die entsprechenden Auftragsverarbeitungsverträge gestaltet sind, ist aus öffentlichen Quellen nicht überprüfbar.</p>
+      <a href="https://www.tichyseinblick.de/feuilleton/medien/w-social-fragwuerdige-eu-alternative-zu-x/" target="_blank">→ Tichys Einblick: Ausweis statt Anonymität</a>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ══════════════════════════════════════════ -->
+  <section>
+    <h2>04 · Die Gründer</h2>
+
+    <h3>Ingmar Rentzhog — We Don't Have Time</h3>
+
+    <p><span class="tag tag-belegt">BELEGT</span> Ingmar Rentzhog ist Gründer und CEO von We Don't Have Time AB. Schwedischer Unternehmer mit Hintergrund im Finanzsektor und Börsen-PR.</p>
+
+    <div class="source-box">
+      <div class="src-label">Primärquelle · Green Is The New Black / InfluenceWatch</div>
+      <p>Rentzhog ist ein von Al Gore persönlich ausgebildeter „Climate Reality Leader" — einer von 12.000 weltweit ausgewählten — und Mitglied der <em>European Climate Policy Task Force</em>.</p>
+      <a href="https://greenisthenewblack.com/ingmar-rentzhog-we-dont-have-time/" target="_blank">→ Green Is The New Black: Rentzhog-Profil</a>
+    </div>
+
+    <p><span class="tag tag-belegt">BELEGT</span> Im Februar 2019 berichtete die schwedische Zeitung Svenska Dagbladet: Rentzhog hatte den Namen der damals 16-jährigen Greta Thunberg ohne Wissen ihrer Familie mehr als elfmal in einem Finanzprospekt für eine Aktienemission verwendet, mit dem fast 10 Millionen SEK eingesammelt wurden.</p>
+
+    <div class="source-box">
+      <div class="src-label">Primärquelle · Svenska Dagbladet / The Local Sweden, Februar 2019</div>
+      <p>Svante Thunberg, Gretas Vater: „Nein, wir haben keine Informationen darüber erhalten. Weder hat Greta. Es ist unglücklich, wenn sie kommerziell genutzt wurde. Aber sie hat nichts davon gewusst. Keiner von uns." — Greta Thunberg trennte sich daraufhin öffentlich von We Don't Have Time. Rentzhog bestritt kommerzielle Absicht.</p>
+      <a href="https://www.thelocal.se/20190209/start-up-used-child-climate-activist-to-raise-millions" target="_blank">→ The Local Sweden: Start-up used teen climate activist</a>
+    </div>
+
+    <h3>Anna Zeiter — CEO W Social</h3>
+
+    <p><span class="tag tag-belegt">BELEGT</span> Anna Zeiter, Schweizerin, promovierte Juristin (Universität Hamburg), war ca. zehn Jahre Chief Privacy Officer bei eBay, zuletzt zuständig für Datenschutz und KI. Sie gründete W Social gemeinsam mit Rentzhog nach der Münchner Sicherheitskonferenz 2025, auf der US-Vizepräsident JD Vance europäische Zensur kritisierte.</p>
+
+    <div class="pull-quote">
+      „Europa muss aufstehen. Wir müssen digital unabhängiger werden. Europa muss aufhören, sich zu beschweren und einfach mal machen."
+      <cite>— Anna Zeiter, Geschäftsführerin W Social, Juni 2026</cite>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ══════════════════════════════════════════ -->
+  <section>
+    <h2>05 · Der Advisory Board — dokumentierte Netzwerke</h2>
+
+    <div class="person-grid">
+      <div class="person-card">
+        <div class="name">PHILIPP RÖSLER</div>
+        <div class="role">W Social Advisory Board</div>
+        <div class="detail">Ehem. Vizekanzler Deutschland (FDP, 2011–2013). Jan. 2014 – 2017: <strong>Managing Director &amp; Member of the Managing Board, World Economic Forum</strong> unter Klaus Schwab. Leiter des Centre for Regional Strategies, WEF Davos.</div>
+      </div>
+      <div class="person-card">
+        <div class="name">SANDRINE DIXSON-DECLÈVE</div>
+        <div class="role">W Social Advisory Board</div>
+        <div class="detail">Ehrenpräsidentin Club of Rome. <strong>WEF Agenda Contributor.</strong> 2019–2023: Vorsitzende des EU-Kommissions-Expertengremiums ESIR (Economic and Societal Impact of Research &amp; Innovation). Beirat: BMW, UCB, EDP. Executive Chair Earth4All.</div>
+      </div>
+      <div class="person-card">
+        <div class="name">LOUISA SPECHT-RIEMENSCHNEIDER</div>
+        <div class="role">W Social Advisory Board</div>
+        <div class="detail">Scheidende Bundesdatenschutzbeauftragte Deutschland.</div>
+      </div>
+      <div class="person-card">
+        <div class="name">ELIZABETH DENHAM</div>
+        <div class="role">W Social Advisory Board</div>
+        <div class="detail">Ehem. UK Information Commissioner.</div>
+      </div>
+      <div class="person-card">
+        <div class="name">PÄR NUDER</div>
+        <div class="role">W Social Advisory Board / Investor</div>
+        <div class="detail">Ehemaliger schwedischer Finanzminister.</div>
+      </div>
+      <div class="person-card">
+        <div class="name">KRISTINA PERSSON</div>
+        <div class="role">Investorin</div>
+        <div class="detail">Ehem. schwedische Ministerin. Gründerin Thinktank <em>Global Utmaning</em> — dieser rekrutierte Rentzhog als Chairman. Tochter des schwedischen Milliardärs Sven Olof Persson.</div>
+      </div>
+      <div class="person-card">
+        <div class="name">CRISTINA CAFFARRA</div>
+        <div class="role">W Social Advisory Board</div>
+        <div class="detail">Leiterin der <strong>EuroStack Foundation</strong> — koordiniert industriepolitische Initiativen für digitale Souveränität Europas. Über 300 europäische Unternehmenschefs als Unterstützer.</div>
+      </div>
+      <div class="person-card">
+        <div class="name">TOMMY ANDORFF</div>
+        <div class="role">W Social Beirat / Trust Anchor Group AB</div>
+        <div class="detail">CEO Trust Anchor Group AB (betreibt Neuron-Server-Infrastruktur für W Identity). Gleichzeitig CEO Neuro-Pay (bargeldlose Zahlung).</div>
+      </div>
+    </div>
+
+    <div class="source-box">
+      <div class="src-label">Quellen · Advisory Board</div>
+      <p>Wikipedia (Rösler, WEF); weforum.org/stories/authors (Dixson-Declève); mrak.at Januar 2026 (Advisory Board Gesamtliste); 1e9.community Juni 2026 (Andorff/Trust Anchor); tichyseinblick.de Juni 2026.</p>
+      <a href="https://www.mrak.at/w-eine-neue-europaische-social-media-plattform-im-kontext-bestehender-alternativen/" target="_blank">→ mrak.at: W Social Advisory Board</a>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ══════════════════════════════════════════ -->
+  <section>
+    <h2>06 · Netzwerk-Struktur: dokumentierte Verbindungen</h2>
+
+    <div class="network-box">
+<span class="node">WEF (Klaus Schwab)</span>
+  <span class="arrow">──→</span> <span class="label">Rösler: Managing Director WEF 2014–17</span>
+  <span class="arrow">──→</span> <span class="node">W Social Advisory Board</span>
+
+<span class="node">WEF</span>
+  <span class="arrow">──→</span> <span class="label">Dixson-Declève: WEF Agenda Contributor</span>
+  <span class="arrow">──→</span> <span class="node">W Social Advisory Board</span>
+
+<span class="node">Club of Rome</span>
+  <span class="arrow">──→</span> <span class="label">Dixson-Declève: Ehrenpräsidentin</span>
+  <span class="arrow">──→</span> <span class="node">W Social Advisory Board</span>
+
+<span class="node">UN / Al Gore Climate Reality</span>
+  <span class="arrow">──→</span> <span class="label">Rentzhog: persönl. ausgebildet, European Climate Policy Task Force</span>
+  <span class="arrow">──→</span> <span class="node">We Don't Have Time (25% W Social)</span>
+
+<span class="node">EU-Kommission</span>
+  <span class="arrow">──→</span> <span class="label">Dixson-Declève: ESIR-Vorsitz 2019–23</span>
+  <span class="arrow">──→</span> <span class="node">W Social Advisory Board</span>
+
+<span class="node">EU-Kommission / EZB</span>
+  <span class="arrow">──→</span> <span class="label">Migration Bluesky → W Social (beworben v. von der Leyen)</span>
+
+<span class="node">EU-Agenda (eIDAS 2.0)</span>
+  <span class="arrow">──→</span> <span class="label">Digitale ID für 100% EU-Bürger bis 2026/2030</span>
+  <span class="arrow">──→</span> <span class="node">W Social: Ausweispflicht als Kern-Feature</span>
+    </div>
+
+    <p><span class="tag tag-belegt">BELEGT</span> EU-Kommission, Europäische Zentralbank und weitere Regierungsstellen zogen ihre Bluesky-Konten zu W Social um — beworben von EU-Kommissionspräsidentin Ursula von der Leyen. Eine öffentliche Ausschreibung oder parlamentarische Debatte zu dieser Plattformwahl ist nicht dokumentiert.</p>
+
+    <div class="source-box">
+      <div class="src-label">Primärquelle · mrak.at, Juni 2026</div>
+      <p>„Die EU-Kommission, die Europäische Zentralbank und einige Regierungsstellen haben ihre Bluesky-Konten [...] zu W Social umgezogen, beworben von Ursula von der Leyen." Der Ort des Beta-Starts — Press Club Brussels Europe, wenige Minuten von Parlament und Kommission entfernt — war laut Eigenangabe „mit Bedacht gewählt".</p>
+      <a href="https://www.mrak.at/w-social-bluesky-und-eurosky-wer-betreibt-welche-infrastruktur-im-at-protocol/" target="_blank">→ mrak.at: W Social Infrastruktur-Analyse</a>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ══════════════════════════════════════════ -->
+  <section>
+    <h2>07 · Technische Kritik</h2>
+
+    <p><span class="tag tag-belegt">BELEGT</span> W Social basiert auf dem <strong>AT Protocol</strong> — derselben technischen Grundlage wie die US-Plattform Bluesky. Nutzer beider Plattformen können miteinander interagieren, ohne Ausweisverifizierung zu durchlaufen.</p>
+
+    <div class="source-box">
+      <div class="src-label">Primärquelle · 1e9.community / mrak.at, Mai–Juni 2026</div>
+      <p>Techniker-Kommentar in öffentlichen Foren: „Es ist keine Zauberei. Es ist AT Protocol mit Branding." — Die App von W Social wurde von IT-Experten als modifizierte Fork der Open-Source-Bluesky-App identifiziert. Anfänglich kommunizierte W Social die AT-Protocol-Basis nicht aktiv; sie ist erst nach Druck auf der offiziellen Website unter „Built on the open AT-Protocol" vermerkt. Als Cloud-Anbieter ist US-Dienst <strong>Sentry</strong> eingebunden.</p>
+      <a href="https://www.1e9.community/magazin/w-social-europas-x-alternative-wirft-so-manche-frage-auf" target="_blank">→ 1e9.community: Technische Analyse</a>
+    </div>
+
+    <h3>Datenschutz-Struktur: W Identity</h3>
+
+    <p>Die Identitätsprüfung läuft über eine separate App (<strong>W Identity</strong>) der W Identity AB. Der Onboarding-Prozess:</p>
+
+    <table>
+      <thead>
+        <tr><th>Schritt</th><th>Daten</th><th>Verbleib laut Eigenangabe</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1. Erfassung</td>
+          <td>Telefonnummer, E-Mail, Geburtsdatum</td>
+          <td>In App gespeichert</td>
+        </tr>
+        <tr>
+          <td>2. Ausweisscan</td>
+          <td>Reisepass/Ausweis (Foto oder NFC)</td>
+          <td>Serverseitig max. ~1 Minute, dann gelöscht (Eigenangabe)</td>
+        </tr>
+        <tr>
+          <td>3. Selfie / Face-Match</td>
+          <td>Biometrisches Gesichtsbild</td>
+          <td>Serverseitig max. ~1 Minute, dann gelöscht (Eigenangabe)</td>
+        </tr>
+        <tr>
+          <td>4. Token-Ausgabe</td>
+          <td>Verschlüsselter Nachweis</td>
+          <td>Verbleibt — verhindert Mehrfachaccounts</td>
+        </tr>
+        <tr>
+          <td>5. Offenlegung</td>
+          <td>Alle Daten</td>
+          <td>Bei „rechtlicher Verpflichtung, Gerichtsbeschluss oder bindender Behördenanfrage" (Datenschutzerklärung)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="source-box">
+      <div class="src-label">Primärquelle · Datenschutzerklärung W Identity AB / mrak.at DSGVO-Analyse</div>
+      <p>Sicherheitsforscher: Biometrische Daten können im Unterschied zu Passwörtern nicht ausgetauscht werden — ein einmal kompromittiertes biometrisches Merkmal bleibt dauerhaft kompromittiert.</p>
+      <a href="https://www.mrak.at/w-social-und-w-identity-wie-aus-einem-selfie-verifizierte-souveranitat-werden-soll/" target="_blank">→ mrak.at: DSGVO-Analyse W Identity</a>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ══════════════════════════════════════════ -->
+  <section>
+    <h2>08 · Schwedens Rolle — digitale Identität als Normalzustand</h2>
+
+    <p><span class="tag tag-belegt">BELEGT</span> Schweden führte <strong>BankID</strong> bereits im Jahr 2003 ein — mehr als zwei Jahrzehnte vor dem Rest Europas. Schwedische Bürger nutzen BankID täglich mehrfach für Banking, Behördengänge und Vertragsabschlüsse. Die digitale Identitätsprüfung ist in Schweden gesellschaftlich normalisiert.</p>
+
+    <div class="source-box">
+      <div class="src-label">Primärquelle · EU-Digitalpolitik-Analyse, neosfer.de, November 2025</div>
+      <p>„Andere EU-Länder sind bereits sehr weit voraus: Belgien führte itsme 2019 ein, Schweden sein BankID bereits 2003. In beiden Ländern nutzen Bürger die digitale Identität mehrmals täglich." — Die EU-Agenda 2030 sieht vor, dass 100% der EU-Bürger eine digitale ID besitzen.</p>
+      <a href="https://neosfer.de/en/digital-identity/" target="_blank">→ neosfer.de: EU Digital Identity</a>
+    </div>
+
+    <p><span class="tag tag-belegt">BELEGT</span> Das WEF veröffentlichte 2023 den Report <em>„Reimagining Digital ID"</em>, 2018 <em>„Identity in a Digital World: A new chapter in the social contract"</em>. Darin heißt es: <em>„Diese digitale Identität bestimmt, auf welche Produkte, Dienstleistungen und Informationen wir Zugang haben — oder was uns umgekehrt verschlossen bleibt."</em></p>
+
+    <div class="source-box">
+      <div class="src-label">Primärquelle · WEF, „Identity in a Digital World", September 2018</div>
+      <p>Das WEF-Dokument definiert digitale Identität als zentralen Mechanismus zur Steuerung von Zugängen. Über 100 Experten aus öffentlichem und privatem Sektor wirkten am 2023er Report mit.</p>
+      <a href="https://www.weforum.org/publications/reimagining-digital-id/" target="_blank">→ WEF: Reimagining Digital ID (2023)</a>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ══════════════════════════════════════════ -->
+  <section>
+    <h2>09 · Juxtaposition: Was nebeneinander steht</h2>
+
+    <table>
+      <thead>
+        <tr><th>Fakt A</th><th>Fakt B</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>W Social ist offiziell kein EU-Projekt</td>
+          <td>EU-Kommission und EZB migrieren sofort — ohne öffentliche Ausschreibung</td>
+          <td><span class="tag tag-belegt">BELEGT</span></td>
+        </tr>
+        <tr>
+          <td>Beiratsmitglied Rösler: WEF Managing Director 2014–17</td>
+          <td>WEF 2018: digitale ID bestimmt, welche Dienste zugänglich sind</td>
+          <td><span class="tag tag-belegt">BELEGT</span></td>
+        </tr>
+        <tr>
+          <td>Beiratsmitglied Dixson-Declève: EU-Kommissions-Expertengremium ESIR-Vorsitz</td>
+          <td>Dieselbe Person: W Social Advisory Board &amp; Club of Rome &amp; WEF</td>
+          <td><span class="tag tag-belegt">BELEGT</span></td>
+        </tr>
+        <tr>
+          <td>Rentzhog: Al-Gore-Netzwerk, European Climate Policy Task Force</td>
+          <td>We Don't Have Time: Partner UNDP, WWF, Ikea, Scania, Ericsson</td>
+          <td><span class="tag tag-belegt">BELEGT</span></td>
+        </tr>
+        <tr>
+          <td>eIDAS 2.0: alle EU-Länder müssen Bürgern bis Ende 2026 digitale ID anbieten</td>
+          <td>W Social: Ausweispflicht als Kern-Feature seit Tag 1</td>
+          <td><span class="tag tag-belegt">BELEGT</span></td>
+        </tr>
+        <tr>
+          <td>Schweden: BankID (digitale ID) seit 2003, gesellschaftlich normalisiert</td>
+          <td>W Social: schwedische Gründer, schwedische AG, schwedische Investoren</td>
+          <td><span class="tag tag-belegt">BELEGT</span></td>
+        </tr>
+        <tr>
+          <td>W Identity AB und W Social AB: gleiche Adresse, gleiche Gründer</td>
+          <td>Datenschutzerklärung: Offenlegung bei Behördenanfrage</td>
+          <td><span class="tag tag-belegt">BELEGT</span></td>
+        </tr>
+        <tr>
+          <td>Technische Basis: US-Plattform Bluesky (AT Protocol)</td>
+          <td>Kommuniziertes Versprechen: „europäische Unabhängigkeit"</td>
+          <td><span class="tag tag-belegt">BELEGT</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <hr>
+
+  <!-- ══════════════════════════════════════════ -->
+  <section>
+    <h2>10 · Was nicht belegt ist</h2>
+
+    <p><span class="tag tag-offen">NICHT BELEGT</span> Eine direkte Koordination zwischen W Social und EU-Institutionen vor dem Launch. <span class="tag tag-offen">NICHT BELEGT</span> Dass die EU-Migration zu W Social politisch angeordnet wurde. <span class="tag tag-extrapolation">EXTRAPOLATION</span> Dass die Ausweispflicht als Pilotprojekt für eine breitere EU-weite Identitätspflicht im digitalen Raum konzipiert ist. <span class="tag tag-offen">NICHT BELEGT</span> Ob und wie W Social langfristig mit EUDI Wallet (EU Digital Identity Wallet) interoperieren soll.</p>
+  </section>
+
+  <hr>
+
+  <!-- ══════════════════════════════════════════ -->
+  <section>
+    <h2>11 · EuroSky — die Alternative, die niemand kennt</h2>
+
+    <p>Parallel zu W Social existiert eine zweite europäische Initiative auf derselben technischen Grundlage: <strong>EuroSky</strong>. Sie wird kaum erwähnt.</p>
+
+    <div class="source-box">
+      <div class="src-label">Primärquelle · eurosky.tech / Stichting Modal, Den Haag</div>
+      <p>EuroSky ist eine Initiative der <strong>Stichting Modal</strong>, einer niederländischen gemeinnützigen Stiftung mit Sitz in Den Haag. Hervorgegangen aus der Kampagne „Free Our Feeds". Hosting: Hetzner-Rechenzentrum Falkenstein, Deutschland. Keine ID-Verifizierung, kein biometrisches Selfie. Vollständig Open Source (MIT-Lizenz). Ca. 20.000 Konten — zweitgrößter AT-Protocol-Server weltweit (Stand Juni 2026).</p>
+      <a href="https://eurosky.tech/de/faq/" target="_blank">→ EuroSky: FAQ / Stichting Modal</a>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Merkmal</th>
+          <th>EuroSky</th>
+          <th>W Social</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Träger</td>
+          <td>Gemeinnützige Stiftung (NL)</td>
+          <td>Private Aktiengesellschaft (SE)</td>
+        </tr>
+        <tr>
+          <td>Finanzierung</td>
+          <td>Spenden, Stiftungsbeiträge</td>
+          <td>750+ Privatinvestoren, 2,5 Mio. €</td>
+        </tr>
+        <tr>
+          <td>ID-Pflicht</td>
+          <td>Keine</td>
+          <td>Ausweis + biometrisches Selfie</td>
+        </tr>
+        <tr>
+          <td>Quellcode</td>
+          <td>Open Source (MIT)</td>
+          <td>Closed Source</td>
+        </tr>
+        <tr>
+          <td>Hosting</td>
+          <td>Hetzner, Deutschland (EU)</td>
+          <td>Finnland + US-Cloud-Dienst Sentry</td>
+        </tr>
+        <tr>
+          <td>Advisory Board</td>
+          <td>Nicht dokumentiert</td>
+          <td>WEF, Club of Rome, EU-Kommission</td>
+        </tr>
+        <tr>
+          <td>EU-Institutionen</td>
+          <td>Nicht beworben</td>
+          <td>Von der Leyen bewirbt Beta-Start</td>
+        </tr>
+        <tr>
+          <td>Medienecho (DACH)</td>
+          <td>Minimal</td>
+          <td>Massiv</td>
+        </tr>
+        <tr>
+          <td>Davos-Auftritt</td>
+          <td>Keiner</td>
+          <td>Januar 2026 — Ausgangspunkt der Kampagne</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="source-box">
+      <div class="src-label">Primärquelle · Heise Online / Republik.ch, Juni 2026</div>
+      <p>Heise Online: „Während der Start der öffentlichen Beta von W Social von EU-Kommissionspräsidentin Ursula von der Leyen beworben wurde, muss ein ähnliches Projekt mit deutlich weniger Werbung auskommen: EuroSky." — Republik.ch: „EuroSky hat bisher deutlich weniger Medienaufmerksamkeit erhalten als W Social. Das hat sicher auch mit der Marketing- und Influencer-Arbeit zu tun, die bei W Social bemerkenswert ist."</p>
+      <a href="https://www.heise.de/en/news/After-Eurosky-W-Social-connects-social-network-for-Europe-to-Bluesky-technology-11335783.html" target="_blank">→ Heise Online: EuroSky vs. W Social</a>
+    </div>
+
+    <p><span class="tag tag-belegt">BELEGT</span> EuroSky und Mastodon (Deutschland) bewerben gemeinsam die Deklaration „European Social" für dezentrale, interoperable, quelloffene europäische Netzwerke — ohne Ausweispflicht. <span class="tag tag-offen">NICHT BELEGT</span> Warum EU-Institutionen W Social bevorzugen und EuroSky nicht erwähnen.</p>
+  </section>
+
+  <hr>
+
+  <!-- ══════════════════════════════════════════ -->
+  <div class="closing">
+    <p>Eine Social-Media-Plattform, deren Beirat einen ehemaligen WEF-Managing Director, eine EU-Kommissions-Expertengruppen-Vorsitzende und die Ehrenpräsidentin des Club of Rome umfasst — und die von EU-Kommission und EZB unmittelbar nach dem Launch bezogen wird: Was sagt das über die Entstehung dieser Plattform?</p>
+
+    <p>Die technische Grundlage stammt aus den USA. Das Datenschutzversprechen lautet: Ausweis-Daten werden nach maximal einer Minute gelöscht. Was bleibt, ist ein Token. Wer kontrolliert die Token-Infrastruktur — und unter welchen Bedingungen werden sie einer Behörde zugänglich gemacht?</p>
+
+    <p>Schweden hat die digitale Alltagsidentität seit 2003 normalisiert. Die EU will sie bis 2030 für alle 450 Millionen Bürger einführen. W Social verlangt sie für das Posten von Kurznachrichten. Wie verhält sich das zu Artikel 5 Grundgesetz — „Eine Zensur findet nicht statt" — wenn die Voraussetzung für Teilnahme am öffentlichen Diskurs die vorherige Identifikation gegenüber einem privaten Unternehmen ist?</p>
+
+    <p>Über 54 Abgeordnete des Europäischen Parlaments forderten im Januar 2026 europäische Alternativen zu dominanten Social-Media-Plattformen. W Social startete wenige Monate später. Wer hat mit wem wann gesprochen?</p>
+  </div>
+
+  <div class="footer">
+    dunkelfeld.report &nbsp;·&nbsp; Alle Behauptungen sind mit Primärquellen belegt oder explizit als EXTRAPOLATION / NICHT BELEGT gekennzeichnet. &nbsp;·&nbsp; Stand: Juni 2026
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sexualisierte Gewalt gegen Kinder — dunkelfeld.report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #0C0C0C;
+    --bg-card:   #141414;
+    --bg-source: #111111;
+    --text:      #E0DCD4;
+    --text-dim:  #7A766E;
+    --text-mid:  #B0AA9F;
+    --accent:    #A81C1C;
+    --accent-lt: #C8382A;
+    --border:    #242220;
+    --border-mid:#383430;
+    --stamp:     #1E0A0A;
+    --trend-up:  #7A1A1A;
+    --trend-eq:  #1A2A1A;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 300;
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.25rem 0;
+  }
+  .site-header .inner {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .site-name {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--accent-lt);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .site-tagline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  /* ── META BAR ── */
+  .meta-bar {
+    border-bottom: 1px solid var(--border);
+    padding: 0.65rem 0;
+  }
+  .meta-bar .inner {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .meta-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  .meta-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-mid);
+  }
+  .meta-bar .dot {
+    color: var(--border-mid);
+    font-size: 0.5rem;
+  }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 2rem 5rem;
+  }
+
+  /* ── ARTICLE HEADER ── */
+  .article-header {
+    padding: 3.5rem 0 2.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+  }
+  .article-kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--accent-lt);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .article-kicker::before {
+    content: '';
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: var(--accent);
+  }
+  .article-title {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 300;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    line-height: 1.25;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+  .article-intro {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-mid);
+    font-style: italic;
+    max-width: 640px;
+  }
+  .article-meta {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .article-meta span {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    margin-bottom: 3rem;
+  }
+  .section-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    color: var(--accent-lt);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-heading {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 1rem;
+    line-height: 1.35;
+  }
+  p {
+    margin-bottom: 1rem;
+    font-size: 0.975rem;
+    color: var(--text-mid);
+  }
+  p:last-of-type { margin-bottom: 0; }
+
+  strong {
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  /* ── STAT BLOCK ── */
+  .stat-block {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 1.75rem 0;
+  }
+  .stat-item {
+    background: var(--bg-card);
+    padding: 1.25rem 1rem;
+  }
+  .stat-number {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+  .stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+  .stat-trend {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    padding: 0.15rem 0.4rem;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+  }
+  .trend-up {
+    background: var(--trend-up);
+    color: #E8857A;
+  }
+  .trend-stable {
+    background: var(--trend-eq);
+    color: #7AB07A;
+  }
+
+  /* ── CALLOUT ── */
+  .callout {
+    border-left: 2px solid var(--accent);
+    padding: 0.85rem 1.25rem;
+    background: var(--stamp);
+    margin: 1.75rem 0;
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.65;
+  }
+
+  /* ── SOURCE BOX ── */
+  details {
+    margin-top: 1.25rem;
+    border: 1px solid var(--border);
+    background: var(--bg-source);
+  }
+  details summary {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 0.55rem 0.85rem;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    user-select: none;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before {
+    content: '▸';
+    font-size: 0.5rem;
+    color: var(--accent);
+    transition: transform 0.15s ease;
+  }
+  details[open] summary::before { transform: rotate(90deg); }
+  details summary:hover { color: var(--text-mid); }
+  .source-content {
+    padding: 0.75rem 0.85rem 1rem;
+    border-top: 1px solid var(--border);
+  }
+  .source-content p {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    line-height: 1.65;
+    color: var(--text-dim);
+    margin-bottom: 0.4rem;
+  }
+  .source-content p:last-child { margin-bottom: 0; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+  }
+
+  /* ── EINORDNUNG ── */
+  .einordnung-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    align-items: flex-start;
+  }
+  .einordnung-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--accent);
+    padding-top: 0.35rem;
+    flex-shrink: 0;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── QUELLENVERZEICHNIS ── */
+  .quellen-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .quellen-list li {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+    padding-left: 1rem;
+    position: relative;
+  }
+  .quellen-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--border-mid);
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 0;
+    margin-top: 4rem;
+  }
+  .site-footer .inner {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .footer-note {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+    font-style: italic;
+  }
+  .footer-brand {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--accent-lt);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── CONTENT WARNING ── */
+  .content-warning {
+    border: 1px solid var(--border-mid);
+    border-left: 2px solid var(--text-dim);
+    padding: 0.75rem 1.1rem;
+    margin-bottom: 2.5rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    line-height: 1.7;
+    color: var(--text-dim);
+  }
+  .cw-label {
+    display: inline-block;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    margin-right: 0.6rem;
+    padding: 0.1rem 0.35rem;
+    border: 1px solid var(--border-mid);
+    vertical-align: middle;
+  }
+  .content-warning strong {
+    color: var(--text-mid);
+    font-weight: 500;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .site-header .inner,
+    .meta-bar .inner,
+    main,
+    .site-footer .inner { padding: 0 1.25rem; }
+    .meta-bar .inner { flex-wrap: wrap; gap: 0.5rem; }
+    .site-header .inner { flex-direction: column; gap: 0.25rem; }
+    .stat-block { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="inner">
+    <a class="site-name" href="#">dunkelfeld.report</a>
+    <span class="site-tagline">Analyse · Systemkritik · Quellenbasiert</span>
+  </div>
+</header>
+
+<!-- META BAR -->
+<div class="meta-bar">
+  <div class="inner">
+    <span class="meta-label">Thema</span>
+    <span class="meta-value">Kinderschutz / Kriminalstatistik</span>
+    <span class="dot">●</span>
+    <span class="meta-label">Stand</span>
+    <span class="meta-value">Mai 2026</span>
+    <span class="dot">●</span>
+    <span class="meta-label">Lesedauer</span>
+    <span class="meta-value">ca. 8 Min.</span>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main>
+
+  <!-- ARTICLE HEADER -->
+  <header class="article-header">
+    <div class="article-kicker">Dokumentation</div>
+    <h1 class="article-title">Sexualisierte Gewalt gegen Kinder:<br>Hellfeld, Dunkelfeld, globale Trends</h1>
+    <p class="article-intro">Zahlen zu sexualisierter Gewalt gegen Kinder werden oft entweder verharmlost oder dramatisiert. Dieser Text verzichtet auf beides. Er stellt nebeneinander, was Behörden registrieren, was Studien schätzen — und wie sich beides über Zeit verändert.</p>
+    <div class="article-meta">
+      <span>BKA · UNODC · PKS 2025</span>
+      <span>Alle Quellen öffentlich zugänglich</span>
+    </div>
+  </header>
+
+  <!-- HINWEIS -->
+  <div class="content-warning">
+    <span class="cw-label">Hinweis</span>
+    Dieser Artikel enthält statistische Daten zu sexualisierter Gewalt gegen Kinder. Wer das Thema aus eigener Betroffenheit kennt, kann die Lektüre jederzeit unterbrechen. Hilfsangebote: <strong>Telefonseelsorge 0800 111 0 111</strong> (kostenlos, 24/7) · <strong>Hilfetelefon Sexueller Missbrauch 0800 22 55 530</strong>
+  </div>
+
+  <!-- ABSCHNITT 1 -->
+  <section class="section">
+    <div class="section-title">01 — Deutschland</div>
+    <h2 class="section-heading">Was die Polizei registriert</h2>
+    <p>Im Jahr 2024 erfasste das BKA 16.354 Fälle sexuellen Missbrauchs bei Kindern und 1.191 Fälle bei Jugendlichen zwischen 14 und 17 Jahren. Nach Jahren des Anstiegs blieb die Zahl 2024 nahezu konstant — bewegt sich aber weiterhin über dem Fünfjahresdurchschnitt. Die Zahl der Tatverdächtigen stieg dabei um 3,9 Prozent auf 12.368.</p>
+    <p>In der PKS 2025 zeigt sich bei den eigentlichen Missbrauchsdelikten (§§ 176–176e StGB) ein weiterer Anstieg von 4,7 Prozent. Bei Verbreitung pornografischer Inhalte beträgt der Anstieg 2,7 Prozent.</p>
+
+    <div class="stat-block">
+      <div class="stat-item">
+        <div class="stat-number">16.354</div>
+        <div class="stat-label">Fälle sexueller<br>Kindesmissbrauch 2024</div>
+        <div class="stat-trend trend-stable">→ Stagnierend</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">12.368</div>
+        <div class="stat-label">Tatverdächtige<br>Kinder (2024)</div>
+        <div class="stat-trend trend-up">↑ +3,9%</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">+4,7%</div>
+        <div class="stat-label">Missbrauchsdelikte<br>§§176–176e (2025)</div>
+        <div class="stat-trend trend-up">↑ Steigend</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">1.191</div>
+        <div class="stat-label">Fälle bei Jugend-<br>lichen 14–17 Jahre</div>
+        <div class="stat-trend trend-stable">→ −0,8%</div>
+      </div>
+    </div>
+
+    <details>
+      <summary>Quellen zu Abschnitt 1</summary>
+      <div class="source-content">
+        <p>BKA: Bundeslagebild Sexualdelikte gegen Kinder und Jugendliche 2024 — bka.de, 21.08.2025</p>
+        <p>BKA: Polizeiliche Kriminalstatistik 2025 — bka.de</p>
+        <p>BMI: Pressemitteilung PKS 2025 — bmi.bund.de</p>
+      </div>
+    </details>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ABSCHNITT 2 -->
+  <section class="section">
+    <div class="section-title">02 — Digitaler Kanal</div>
+    <h2 class="section-heading">NCMEC-Meldungen als eigener Indikator</h2>
+    <p>Das US-amerikanische National Center for Missing and Exploited Children (NCMEC) meldet dem BKA täglich Verdachtsfälle aus dem Internet. 2024 gingen 205.728 solcher Hinweise ein — gut die Hälfte (106.353) war nach deutschem Recht strafrechtlich relevant.</p>
+    <p>Diese Zahl ist von der Anzeigebereitschaft von Opfern unabhängig und gilt als verlässlicherer Indikator für die tatsächliche Verbreitung von Missbrauchsdarstellungen im Netz.</p>
+
+    <div class="callout">
+      205.728 NCMEC-Hinweise allein 2024 an das BKA — 106.353 davon nach deutschem Recht strafrechtlich relevant. Das entspricht rund <strong>290 strafbaren Hinweisen pro Tag</strong>, die gesichtet werden müssen.
+    </div>
+
+    <details>
+      <summary>Quelle zu Abschnitt 2</summary>
+      <div class="source-content">
+        <p>BMI/BKA: Pressemitteilung Bundeslagebild Sexualdelikte gegen Kinder und Jugendliche — 21.08.2025</p>
+      </div>
+    </details>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ABSCHNITT 3 -->
+  <section class="section">
+    <div class="section-title">03 — Unbequeme Zahl</div>
+    <h2 class="section-heading">Minderjährige als Tatverdächtige</h2>
+    <p>Von insgesamt 35.550 Tatverdächtigen im Bereich von Kindesmissbrauchsdarstellungen waren 7.001 Kinder und 8.412 Jugendliche selbst — zusammen knapp 45 Prozent. Bei Missbrauchsdarstellungen von Jugendlichen lag der Anteil minderjähriger Tatverdächtiger sogar noch höher.</p>
+    <p>Diese Entwicklung wird von Fachleuten mit Cybergrooming, ungewolltem Sexting und der zunehmenden digitalen Vernetzung Minderjähriger untereinander erklärt — nicht mit klassischen Tätertypen.</p>
+
+    <div class="stat-block">
+      <div class="stat-item">
+        <div class="stat-number">35.550</div>
+        <div class="stat-label">Tatverdächtige bei<br>Missbrauchsdarstellungen</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">7.001</div>
+        <div class="stat-label">Davon:<br>Kinder</div>
+        <div class="stat-trend trend-up">↑ Steigend</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">8.412</div>
+        <div class="stat-label">Davon:<br>Jugendliche</div>
+        <div class="stat-trend trend-up">↑ Steigend</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">~45%</div>
+        <div class="stat-label">Minderjährige<br>unter Tatverdächtigen</div>
+      </div>
+    </div>
+
+    <details>
+      <summary>Quelle zu Abschnitt 3</summary>
+      <div class="source-content">
+        <p>Unabhängige Bundesbeauftragte gegen sexuellen Missbrauch (UBSKM): Zahlen und Fakten — beauftragte-missbrauch.de, 21.08.2025</p>
+      </div>
+    </details>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ABSCHNITT 4 -->
+  <section class="section">
+    <div class="section-title">04 — Dunkelfeld</div>
+    <h2 class="section-heading">Was die Statistik nicht zeigt</h2>
+    <p>Die Polizeiliche Kriminalstatistik bildet nur das sogenannte Hellfeld ab — Fälle, von denen die Polizei durch Anzeige erfährt. Eine Studie aus dem Jahr 2004 zeigt, dass bei sexueller Gewalt gegen Frauen nur etwa fünf Prozent der Betroffenen überhaupt Anzeige erstatten.</p>
+    <p>Bei Kindern gilt das Dunkelfeld als noch größer, weil Täter überwiegend aus dem nahen sozialen Umfeld stammen und Abhängigkeitsverhältnisse die Offenlegung erschweren. Ergänzend erfassen Jugendämter eigene Daten: 2023 wurden 3.683 Verfahren mit der Gefährdungskategorie „sexuelle Gewalt" geführt — ein Anstieg von 8,7 Prozent gegenüber dem Vorjahr.</p>
+
+    <div class="callout">
+      Hellfeld ≠ Realität. Die PKS-Zahlen sind der <strong>sichtbare Teil des Eisbergs</strong> — nicht das Ausmaß des Problems.
+    </div>
+
+    <details>
+      <summary>Quellen zu Abschnitt 4</summary>
+      <div class="source-content">
+        <p>bpb.de: Dossier Innere Sicherheit — Sexualkriminalität (Studie 2004 zur Anzeigequote)</p>
+        <p>UBSKM: Zahlen und Fakten, Sexualisierte Gewalt gegen Kinder und Jugendliche — 21.08.2025</p>
+        <p>Statistisches Bundesamt: Kindeswohlgefährdungsmeldungen (§8a SGB VIII), 2023</p>
+      </div>
+    </details>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ABSCHNITT 5 -->
+  <section class="section">
+    <div class="section-title">05 — Global</div>
+    <h2 class="section-heading">UNODC Trafficking-Report 2024</h2>
+    <p>Der UNODC-Bericht (Datenbasis 2019–2022, veröffentlicht Dezember 2024) erfasst 156 Länder und zeigt für Kinder einen deutlichen Anstieg.</p>
+
+    <div class="stat-block">
+      <div class="stat-item">
+        <div class="stat-number">+25%</div>
+        <div class="stat-label">Erkannte Trafficking-<br>Opfer weltweit 2022 vs. 2019</div>
+        <div class="stat-trend trend-up">↑ Steigend</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">+31%</div>
+        <div class="stat-label">Erkannte Kinder-<br>opfer 2022 vs. 2019</div>
+        <div class="stat-trend trend-up">↑ Steigend</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">+38%</div>
+        <div class="stat-label">Davon Mädchen<br>(ggü. 2019)</div>
+        <div class="stat-trend trend-up">↑ Steigend</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">~40%</div>
+        <div class="stat-label">Anteil Kinder an<br>allen Opfern (2022)</div>
+        <div class="stat-trend trend-up">↑ War 2009 noch 20%</div>
+      </div>
+    </div>
+
+    <p>Zwangsarbeit mit Kinderbeteiligung: +47 Prozent im selben Zeitraum. Im ersten UNODC-Report (2009) lag der Kinderanteil an allen erkannten Opfern weltweit noch bei rund 20 Prozent.</p>
+
+    <div class="callout">
+      <strong>Wichtige Einschränkung (UNODC selbst):</strong> Ein Anstieg „erkannter" Fälle kann auch eine verbesserte Erkennung und mehr Meldewege bedeuten — nicht zwangsläufig nur mehr tatsächliche Taten. Beide Faktoren wirken vermutlich zusammen, lassen sich aber mit den vorliegenden Daten nicht trennen.
+    </div>
+
+    <details>
+      <summary>Quelle zu Abschnitt 5</summary>
+      <div class="source-content">
+        <p>UNODC: Global Report on Trafficking in Persons 2024 — unodc.org, Dezember 2024</p>
+        <p>Datenbasis: 156 Länder, erfasste Fälle 2019–2023, ergänzt durch Analyse von 1.000+ Gerichtsverfahren 2012–2023</p>
+      </div>
+    </details>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ABSCHNITT 6 -->
+  <section class="section">
+    <div class="section-title">06 — Einordnung</div>
+    <h2 class="section-heading">Was sich aus den Daten ablesen lässt</h2>
+
+    <div class="einordnung-item">
+      <div class="einordnung-num">01</div>
+      <p style="margin:0; color: var(--text-mid);">Die digitale Verbreitung von Missbrauchsdarstellungen wächst schneller als die direkten Hands-on-Delikte — das verschiebt den Schwerpunkt der Kriminalität ins Netz.</p>
+    </div>
+    <div class="einordnung-item">
+      <div class="einordnung-num">02</div>
+      <p style="margin:0; color: var(--text-mid);">Ein wachsender Teil der Tatverdächtigen bei digitalen Delikten ist selbst minderjährig — ein Phänomen, das eher mit Mediennutzungsverhalten als mit klassischer Täterschaft zu erklären ist.</p>
+    </div>
+    <div class="einordnung-item">
+      <div class="einordnung-num">03</div>
+      <p style="margin:0; color: var(--text-mid);">Die globalen Zahlen zu Kindertrafficking steigen seit anderthalb Jahrzehnten kontinuierlich, parallel zu Konflikten, Klimakrisen und Migrationsbewegungen — UNODC nennt diese Faktoren explizit als Treiber.</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- QUELLENVERZEICHNIS -->
+  <section class="section">
+    <div class="section-title">Quellenverzeichnis</div>
+    <ul class="quellen-list">
+      <li>BKA: Bundeslagebild Sexualdelikte gegen Kinder und Jugendliche 2024 — bka.de, 21.08.2025</li>
+      <li>BKA: Polizeiliche Kriminalstatistik 2025 — bka.de</li>
+      <li>BMI: Pressemitteilung PKS 2025 — bmi.bund.de</li>
+      <li>Unabhängige Bundesbeauftragte gegen sexuellen Missbrauch (UBSKM): Zahlen und Fakten — beauftragte-missbrauch.de, 21.08.2025</li>
+      <li>bpb.de: Dossier Innere Sicherheit — Sexualkriminalität</li>
+      <li>UNODC: Global Report on Trafficking in Persons 2024 — unodc.org, Dezember 2024</li>
+    </ul>
+    <p style="margin-top: 1.5rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--text-dim); line-height: 1.7; font-style: italic;">Hinweis zur Methodik: Alle Angaben basieren auf öffentlich zugänglichen Quellen von Behörden und internationalen Organisationen. Hellfeld- und Dunkelfeld-Zahlen sind unterschiedliche Messgrößen und werden hier bewusst nicht vermischt. Leser werden zur eigenständigen Prüfung der verlinkten Quellen eingeladen.</p>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="inner">
+    <span class="footer-note">Fakten, die das Licht nicht scheuen müssen.</span>
+    <span class="footer-brand">dunkelfeld.report</span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DOSSIER — Nanotechnologie & Robotik: Zivile Nutzung, militärische Strukturen, klassifizierter Vorlauf</title>
+<meta name="description" content="Eine quellenbasierte Dokumentation zur Dual-Use-Problematik von Nanotechnologie und Robotik — von DARPA-Programmen über UN-Verhandlungen zu autonomen Waffen bis zum strukturellen Zeitversatz zwischen öffentlicher und klassifizierter Forschung." />
+<style>
+  :root {
+    --bg: #09090b;
+    --surface: #1a1a2e;
+    --accent: #e8c547;
+    --text: #e8e8ec;
+    --muted: #9a9aa8;
+    --border: #2a2a3a;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --red: #ef4444;
+    --grey: #71717a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+  header.top {
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  header.top .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+  .hero { padding: 3.5rem 0 2rem; }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+  }
+  h1 { font-size: 2.1rem; line-height: 1.25; margin: 0 0 0.8rem; font-weight: 700; }
+  .subtitle { color: var(--muted); font-size: 1.15rem; line-height: 1.6; margin-bottom: 0; }
+  h2 {
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.6rem;
+  }
+  p { padding-bottom: 1.2rem; margin: 0; }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-left: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.12); color: var(--green); border: 1px solid rgba(74,222,128,0.35); }
+  .tag-extra { background: rgba(251,146,60,0.12); color: var(--orange); border: 1px solid rgba(251,146,60,0.35); }
+  .tag-offen { background: rgba(239,68,68,0.1); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
+  .source-box {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+    border-radius: 2px;
+  }
+  .source-label {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+  .source-box p { padding-bottom: 0.5rem; font-size: 1rem; }
+  .source-box a { color: var(--muted); font-size: 0.85rem; word-break: break-all; }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    margin: 1.5rem 0;
+  }
+  .stat-cell { background: var(--surface); padding: 1.3rem; }
+  .stat-num { font-size: 1.9rem; font-weight: 700; color: var(--accent); display: block; line-height: 1; }
+  .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem; line-height: 1.4; }
+  .timeline-row {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 1rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .timeline-row .year { font-family: 'Courier New', monospace; color: var(--accent); font-size: 0.9rem; }
+  .timeline-row .event { font-size: 0.95rem; color: var(--text); }
+  .warn-box {
+    background: rgba(251,146,60,0.06);
+    border: 1px solid rgba(251,146,60,0.25);
+    border-radius: 4px;
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+  }
+  .warn-box p { padding-bottom: 0; font-size: 1rem; }
+  .pull-quote {
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--text);
+    border-left: 3px solid var(--accent);
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+    line-height: 1.6;
+  }
+  .open-questions {
+    margin-top: 3rem;
+    padding: 1.8rem 1.6rem;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 1px solid var(--border);
+  }
+  .open-questions h3 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0 0 1rem;
+  }
+  .open-questions p { font-style: italic; color: var(--muted); padding-bottom: 0.9rem; font-size: 1rem; }
+  .source-list { margin-top: 3rem; padding-bottom: 2rem; }
+  .source-list h3 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+  .source-list ul { list-style: none; margin: 0; padding: 0; }
+  .source-list li {
+    font-size: 0.85rem;
+    color: var(--muted);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .source-list a { color: var(--muted); }
+  footer.bottom {
+    border-top: 1px solid var(--border);
+    margin-top: 3rem;
+    padding: 2rem 1.5rem 3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--grey);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="dot"></div>
+  <span>dunkelfeld.report — Dokumentation · Fakten · Quellen</span>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="kicker">Dossier — Dual-Use-Technologie</div>
+    <h1>Nanotechnologie & Robotik: Was wir sehen, ist nicht, was entwickelt wird</h1>
+    <p class="subtitle">Zivile Anwendung, militärische Programme und der strukturelle Zeitversatz zwischen klassifizierter Forschung und öffentlicher Freigabe — dokumentiert anhand von DoD-Haushaltsdokumenten, UN-Verhandlungsprotokollen und Behördenangaben.</p>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <span class="stat-num">156:5</span>
+      <div class="stat-label">UN-Abstimmung Nov. 2025 für Regulierung autonomer Waffensysteme — gegen: Belarus, Nordkorea, Russland u.a.</div>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">2014</span>
+      <div class="stat-label">Beginn der CCW-Verhandlungen in Genf — bis heute kein verbindliches Ergebnis</div>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">~7%</span>
+      <div class="stat-label">Geschätzter Anteil des "Black Budget" am US-Militärhaushalt</div>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">2026</span>
+      <div class="stat-label">Von UN-Generalsekretär gesetzte Frist für ein Verbotsabkommen — bislang nicht erreicht</div>
+    </div>
+  </div>
+
+  <h2>I. Die zivile Seite — dokumentiert und unstrittig</h2>
+  <p>Der überwiegende Teil der Nanotechnologie- und Robotikforschung verläuft offen und zivil: gezielte Medikamentenfreisetzung in der Onkologie, Materialforschung für Solarzellen und Batterien, Industrierobotik, Pflegerobotik vor dem Hintergrund des demografischen Wandels. Diese Anwendungen sind über Patentregister, Förderprogramme und Industriestatistiken nachvollziehbar. <span class="tag tag-belegt">BELEGT</span></p>
+  <p>Das Dual-Use-Problem entsteht dort, wo sich zivile und militärische Forschung dieselbe Grundlagentechnologie teilen — etwa Materialforschung, die gleichzeitig in Flugzeugbau und Tarntechnologie einfließt. Eine klare Trennlinie existiert in der Praxis oft nicht. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <h2>II. DARPA — die dokumentierte militärische Nanotech-Linie</h2>
+  <p>Das US-Verteidigungsministerium führt seit Jahrzehnten ein eigenständiges Nanotechnologieprogramm. Bereits 2009 dokumentierte der "Defense Nanotechnology Research and Development Program"-Bericht an den Kongress Anwendungen in Tarnschutzgeweben, Filtrationsmethoden ohne Verbrauchsmedien und nanoelektromechanischen Systemen für das DoD. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <span class="source-label">Primärquelle — DARPA, laufendes Programm</span>
+    <p>Das aktuelle DARPA-Programm "Atoms to Product" (A2P) entwickelt eine Technik zur präzisen atomaren Materialfertigung — beschrieben als Werkzeug für "abstimmbare optische Metamaterialien" für das "photonische Schlachtfeld", mit dem erklärten Ziel, Tarnung und optische Täuschung im sichtbaren Spektrum zu ermöglichen, analog zur Funktion von Stealth-Technologie im Radarbereich.</p>
+    <a href="https://www.darpa.mil/research/programs/atoms-to-product" target="_blank">darpa.mil — Atoms to Product (A2P)</a>
+  </div>
+
+  <p>Dieses Programm ist nicht geheim — es ist eine öffentlich einsehbare DARPA-Programmseite. Das verweist auf einen wichtigen Punkt: Was öffentlich kommuniziert wird, ist in der Regel bereits mehrere Entwicklungsstufen hinter dem, was intern läuft. <span class="tag tag-extra">EXTRAPOLATION</span></p>
+
+  <h2>III. Robotik & autonome Waffensysteme — der aktuelle UN-Verhandlungsstand</h2>
+  <p>Bei Robotik liegt der dokumentierte Konfliktpunkt nicht in der Technik selbst, sondern in der Frage der menschlichen Kontrolle über Waffensysteme, die Ziele auf Basis von Sensordaten statt menschlicher Befehle auswählen und angreifen. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="timeline-row">
+    <div class="year">2014</div>
+    <div class="event">Beginn der Verhandlungen zu Lethal Autonomous Weapons Systems (LAWS) im Rahmen der UN-Waffenkonvention (CCW) in Genf — Konsensprinzip blockiert seither verbindliche Ergebnisse.</div>
+  </div>
+  <div class="timeline-row">
+    <div class="year">2024</div>
+    <div class="event">UN-Generalversammlung verlangt per Resolution (166:3, Gegenstimmen: Belarus, Nordkorea, Russland) die Aufnahme internationaler Konsultationen zu autonomen Waffen.</div>
+  </div>
+  <div class="timeline-row">
+    <div class="year">Mai 2025</div>
+    <div class="event">Erstes UN-Generalversammlungstreffen zu autonomen Waffensystemen mit Vertretern aus 96 Staaten; UN-Generalsekretär Guterres fordert verbindliches Verbotsabkommen bis 2026.</div>
+  </div>
+  <div class="timeline-row">
+    <div class="year">Nov. 2025</div>
+    <div class="event">Dritte UN-Resolution zu autonomen Waffen verabschiedet: 156 Staaten dafür, 5 dagegen, 8 Enthaltungen. Verhandlungsmandat der CCW-Expertengruppe läuft 2026 aus.</div>
+  </div>
+
+  <p>Bemerkenswert: Eine kleine Gruppe militärisch führender Staaten — namentlich Indien, Israel, Russland und die USA werden in HRW-Berichten genannt — nutzt das Konsensprinzip der CCW, um verbindliche Verhandlungen wiederholt zu blockieren, obwohl mehr als 120 Staaten ein Verbotsabkommen unterstützen. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <span class="source-label">Primärquelle — Human Rights Watch / Stop Killer Robots</span>
+    <p>Stop Killer Robots beschreibt autonome Waffensysteme als Systeme, die nach menschlicher Aktivierung selbstständig Ziel, Zeitpunkt und Ort eines Angriffs auf Basis von Sensordaten bestimmen — ohne weitere menschliche Freigabe im konkreten Einzelfall.</p>
+    <a href="https://www.stopkillerrobots.org/wp-content/uploads/2025/05/WEB-Policy-Brief_Autonomous-Weapons-Systems_Key-issues-and-path-to-a-treaty_Stop-Killer-Robots.pdf" target="_blank">stopkillerrobots.org — Policy Brief (Mai 2025)</a>
+  </div>
+
+  <h2>IV. Resteverwertung — der strukturelle Zeitversatz</h2>
+  <p>Eine zentrale, oft übersehene Struktur: Was öffentlich als "neueste" Nanotechnologie oder Robotik präsentiert wird, ist in der Regel nicht der aktuelle Entwicklungsstand, sondern eine nachgelagerte, freigegebene Version davon. Der eigentliche Vorlauf findet im klassifizierten Bereich statt. <span class="tag tag-extra">EXTRAPOLATION</span></p>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <span class="stat-num">&gt;50 Mrd. $</span>
+      <div class="stat-label">Geschätztes jährliches "Black Budget" der USA für klassifizierte Programme (Wikipedia/CNAS-Aggregation öffentlicher Haushaltsdaten)</div>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">36 Mrd. $</span>
+      <div class="stat-label">Historischer Höchststand des Black Budget 1988/89 (Tim Weiner, "Blank Check")</div>
+    </div>
+  </div>
+
+  <p>Dieser Mechanismus ist nicht spekulativ, sondern strukturell durch das Haushaltsverfahren selbst belegt: Klassifizierte Budgetposten werden in offiziellen Pentagon-Haushaltsdokumenten als Sammelposten ("classified") ausgewiesen, ohne Einzelaufschlüsselung — selbst für große Teile des Kongresses nicht im Detail einsehbar. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <span class="source-label">Primärquelle — wissenschaftliche Untersuchung zu Geheimhaltungsstrukturen</span>
+    <p>Eine rechtswissenschaftliche Untersuchung (Golden Gate University) hält fest, dass proprietäre, aber sicherheitsrelevante Daten zu klassifizierten Programmen teilweise außerhalb des Verteidigungsministeriums bei privaten Unternehmen liegen können — als Teil eines kollaborativen, öffentlich-privaten Netzwerks außerhalb regulärer parlamentarischer Kontrolle.</p>
+    <a href="https://digitalcommons.law.ggu.edu/cgi/viewcontent.cgi?article=1372&context=capstones" target="_blank">digitalcommons.law.ggu.edu — Untersuchung zu Geheimhaltung und Transparenz</a>
+  </div>
+
+  <p>Die Schlussfolgerung daraus ist keine Verschwörungstheorie, sondern eine nüchterne strukturelle Beobachtung: Klassifizierungsverfahren und Patentsperren (Stichwort: "Secrecy Orders" nach dem US Invention Secrecy Act) führen dazu, dass ziviler Zugang zu bestimmten Technologien grundsätzlich zeitversetzt erfolgt — wie lange dieser Zeitversatz im Einzelfall ist, bleibt naturgemäß unbelegbar. <span class="tag tag-offen">OFFEN/NICHT BELEGT</span></p>
+
+  <div class="pull-quote">
+    "Machines that have the power and discretion to take human lives without human control should be prohibited by international law." — UN-Generalsekretär António Guterres, Mai 2025
+  </div>
+
+  <div class="warn-box">
+    <p><strong>Einordnung:</strong> Dieses Dossier trifft keine Aussage über die Motive einzelner Institutionen oder Personen. Es dokumentiert ausschließlich nachweisbare Verfahrensstrukturen — Haushaltsklassifizierung, Verhandlungsblockaden, Programmlaufzeiten — und benennt explizit, wo die Beleglage endet.</p>
+  </div>
+
+  <div class="open-questions">
+    <h3>Offene Fragen</h3>
+    <p>Wie groß ist der reale Zeitversatz zwischen klassifizierter und ziviler Nanotech-Forschung — und lässt sich das jemals seriös schätzen?</p>
+    <p>Wird das UN-Verbotsabkommen 2026 zustande kommen, oder wiederholt sich das Blockademuster der letzten zehn Jahre?</p>
+    <p>Welche Rolle spielen private Rüstungskonzerne als Schnittstelle zwischen offener und klassifizierter Forschung?</p>
+  </div>
+
+  <div class="source-list">
+    <h3>Quellen</h3>
+    <ul>
+      <li>DARPA — "Atoms to Product" (A2P) Programmseite, darpa.mil</li>
+      <li>Department of Defense — "Defense Nanotechnology Research and Development Program", Report to Congress, 2009/2010, nano.gov</li>
+      <li>DARPA Budget Justification FY2025, comptroller.war.gov</li>
+      <li>Human Rights Watch — "A Hazard to Human Rights: Autonomous Weapons Systems and Digital Decision-Making", April 2025</li>
+      <li>Human Rights Watch — "UN: Start Talks on Treaty to Ban 'Killer Robots'", Mai 2025</li>
+      <li>Stop Killer Robots — "156 states support UNGA resolution on autonomous weapons", November 2025</li>
+      <li>Arms Control Association — "UN Moves to Expand Autonomous Weapons Discussions", Dezember 2024</li>
+      <li>UN News — "'Politically unacceptable, morally repugnant': UN chief calls for global ban on 'killer robots'", Mai 2025</li>
+      <li>Wikipedia — "Black budget" (mit Verweis auf öffentliche Haushaltsaggregationen)</li>
+      <li>Center for a New American Security (CNAS) — "Go Inside The $56 Billion 'Black' Budget"</li>
+      <li>Golden Gate University School of Law — Capstone-Arbeit zu Geheimhaltungsstrukturen und UAP-Transparenz</li>
+      <li>Tim Weiner — "Blank Check: The Pentagon's Black Budget" (Buch)</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer class="bottom">
+  DUNKELFELD.REPORT — Primärquellen statt Meinungen. Keine Motivunterstellung. Leser ziehen eigene Schlüsse.
+</footer>
+
+</body>
+</html>

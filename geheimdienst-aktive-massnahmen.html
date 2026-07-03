@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aktive Maßnahmen: Wenn der Staat selbst zur Quelle wird | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --box-bg: #1a1a2e;
+    --text: #e4e4e7;
+    --text-dim: #a1a1aa;
+    --belegt: #4ade80;
+    --extra: #fb923c;
+    --offen: #71717a;
+    --vt: #ef4444;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 6rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    color: #fff;
+    margin: 0 0 0.5rem;
+  }
+  .subtitle {
+    font-size: 1.25rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 2.5rem;
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    color: #fff;
+    font-size: 1.1rem;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-top: 2rem;
+  }
+  p { margin: 1.2rem 0; }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag-extra  { background: rgba(251,146,60,0.15); color: var(--extra); border: 1px solid var(--extra); }
+  .tag-offen  { background: rgba(113,113,122,0.15); color: var(--offen); border: 1px solid var(--offen); }
+  .tag-vt     { background: rgba(239,68,68,0.15); color: var(--vt); border: 1px solid var(--vt); }
+
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .src-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    border: 1px solid #27272a;
+    padding: 0.7rem 0.8rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--box-bg);
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  td.center, th.center { text-align: center; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat-card {
+    background: var(--box-bg);
+    padding: 1rem;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.6rem;
+    color: var(--accent);
+    font-weight: bold;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-top: 0.3rem;
+  }
+
+  .timeline {
+    border-left: 2px solid var(--accent);
+    margin: 2rem 0 2rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.8rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.94rem;
+    top: 0.4rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline-year {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 0.95rem;
+  }
+
+  .warn-box {
+    background: rgba(232,197,71,0.08);
+    border: 1px solid var(--accent);
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+    border-radius: 4px;
+  }
+  .warn-box .warn-label {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #fff;
+    border-left: 3px solid var(--accent);
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+  }
+
+  .closing {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-style: italic;
+    color: var(--text-dim);
+  }
+
+  .legend {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin: 2rem 0;
+    padding: 1rem;
+    background: var(--box-bg);
+    border-radius: 4px;
+  }
+  .legend span { margin-right: 1rem; }
+
+  a { color: var(--accent); }
+
+  @media (max-width: 600px) {
+    .stat-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="meta">Dunkelfeld.report · Hidden in Plain Sight · Geheimdienstrecht / Kontrolle</div>
+
+  <h1>Aktive Maßnahmen: Wenn der Staat selbst zur Quelle wird</h1>
+  <div class="subtitle">Ein Gesetzentwurf erlaubt deutschen Geheimdiensten künftig, gezielt Falschinformationen zu verbreiten, fremde Infrastruktur zu stören und 16-Jährige als Informanten anzuwerben. Zeitgleich baut die EU ihre Regeln gegen Desinformation aus — nur nicht für diesen Fall.</div>
+
+  <div class="legend">
+    <span class="tag tag-belegt">BELEGT</span> verifiziert, Primärquelle
+    <span class="tag tag-extra">EXTRAPOLATION</span> strukturell plausibel, gekennzeichnet
+    <span class="tag tag-offen">OFFEN</span> ungeklärte Frage
+  </div>
+
+  <h2>Der Gesetzentwurf</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Die Bundesregierung hat einen Gesetzentwurf zur Reform des Nachrichtendienstrechts auf den Weg gebracht. Das Bundesamt für Verfassungsschutz (BfV) und der Bundesnachrichtendienst (BND) sollen künftig nicht mehr nur aufklären, sondern bei definierten Bedrohungslagen auch verdeckt eingreifen dürfen — sogenannte aktive Maßnahmen.</p>
+
+  <div class="source-box">
+    <span class="src-label">Quelle</span>
+    Reuters-Vorlage des Gesetzentwurfs, zitiert nach Tagesspiegel und Handelsblatt, 02.07.2026. Hintergrund laut Regierung: mehrere Urteile des Bundesverfassungsgerichts, die eine präzisere gesetzliche Regelung der Befugnisse verlangen, sowie eine "verschärfte Sicherheitslage" durch Cyberangriffe und hybride Einflussnahme aus dem Ausland.
+  </div>
+
+  <h3>Die neuen Befugnisse im Einzelnen</h3>
+
+  <table>
+    <tr><th>Befugnis</th><th>Inhalt</th><th>Status</th></tr>
+    <tr>
+      <td>Infrastruktur stören</td>
+      <td>Gezielte Störung gegnerischer IT-Infrastruktur</td>
+      <td class="center"><span class="tag tag-belegt">BELEGT</span></td>
+    </tr>
+    <tr>
+      <td>Falschinformationen</td>
+      <td>Gezielte Verbreitung von Desinformation durch die Dienste selbst</td>
+      <td class="center"><span class="tag tag-belegt">BELEGT</span></td>
+    </tr>
+    <tr>
+      <td>Zugriff auf fremde IT-Systeme</td>
+      <td>"Unter engen Voraussetzungen" zur Aufklärung von Infrastruktur und Vorgehen von Angreifern</td>
+      <td class="center"><span class="tag tag-belegt">BELEGT</span></td>
+    </tr>
+    <tr>
+      <td>Staatstrojaner</td>
+      <td>Online-Durchsuchung und Quellen-TKÜ (Überwachung an der Quelle) werden neu geregelt</td>
+      <td class="center"><span class="tag tag-belegt">BELEGT</span></td>
+    </tr>
+    <tr>
+      <td>V-Personen ab 16 Jahren</td>
+      <td>Ausnahmeregelung erlaubt Einsatz Minderjähriger ab 16 zur Aufklärung "schwerster Bedrohungen"</td>
+      <td class="center"><span class="tag tag-belegt">BELEGT</span></td>
+    </tr>
+    <tr>
+      <td>Neue Bedrohungskategorien</td>
+      <td>Abgestufte Befugnisse geknüpft an "erheblich beobachtungsbedürftig" / "besonders erheblich beobachtungsbedürftig"</td>
+      <td class="center"><span class="tag tag-belegt">BELEGT</span></td>
+    </tr>
+  </table>
+
+  <h3>Das Gegengewicht</h3>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Parallel zur Befugniserweiterung soll ein neuer Unabhängiger Kontrollrat (UKRat) entstehen — eine oberste Bundesbehörde, die die bisherigen Aufgaben der G10-Kommission sowie die datenschutzrechtliche Kontrolle der operativen Tätigkeiten übernimmt. Ein mit Richtern besetztes Gremium innerhalb des Rates muss besonders eingriffsintensive Maßnahmen künftig vorab genehmigen.</p>
+
+  <p><span class="tag tag-offen">OFFEN</span> Das Gesetzgebungsverfahren ist nicht abgeschlossen. Innenminister Dobrindt blockiert nach Berichten die BND-Reform, weil er sie mit der noch nicht abgestimmten Novelle des Verfassungsschutzgesetzes koppeln will — aus Sorge, das BfV könnte sonst nach einer öffentlichen Debatte weniger Befugnisse erhalten als geplant. Kanzleramt und Justizministerium sehen darin unnötige Verzögerung. Wie das Verfahren ausgeht und in welcher Form das Gesetz den Bundestag erreicht, ist zum jetzigen Zeitpunkt nicht absehbar.</p>
+
+  <h2>Strukturvergleich: Vor 1990 und heute</h2>
+
+  <p><span class="tag tag-extra">EXTRAPOLATION</span> Zwei Sätze aus der Berichterstattung lösten die Assoziation mit dem Ministerium für Staatssicherheit aus: die Ankündigung staatlich verbreiteter Falschinformationen und die Anwerbung 16-Jähriger als Informanten. Die folgende Gegenüberstellung dokumentiert beide Systeme nebeneinander — als strukturellen Vergleich, nicht als Gleichsetzung. Die Unterschiede werden im Anschluss benannt.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-num">189.000</span>
+      <div class="stat-label">Inoffizielle Mitarbeiter (IM) der Stasi, Stand 1989 — bei ca. 16,4 Mio. DDR-Einwohnern</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">1.300</span>
+      <div class="stat-label">Minderjährige (meist 16–17 J.), die vor der NVA-Rekrutierung als IM eingesetzt wurden</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">40 Mio.</span>
+      <div class="stat-label">Personenkarteikarten der Stasi insgesamt</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">624.000</span>
+      <div class="stat-label">Personen, die zwischen 1950–1989 insgesamt als IM registriert waren</div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <span class="src-label">Quelle</span>
+    Helmut Müller-Enbergs, "Inoffizielle Mitarbeiter des Ministeriums für Staatssicherheit, Teil 3: Statistiken", BStU-Nachfolgeforschung; NZZ "Die Stasi in Zahlen"; Wikipedia/BStU-Lexikon zu "Inoffizieller Mitarbeiter".
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">DDR, bis 1989</div>
+      <p>MfS wirbt systematisch auch Minderjährige (16–17 Jahre) als IM an, meist im Vorfeld der Musterung zur Nationalen Volksarmee. Motiv laut Forschung: politische Ideale und Druck, seltener Geld oder Erpressung. Kein gerichtliches Genehmigungsverfahren, keine externe Kontrollinstanz.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2026, Gesetzentwurf</div>
+      <p>Ausnahmeregelung erlaubt Einsatz von V-Personen ab 16 Jahren zur Aufklärung "schwerster Bedrohungen". Vorgesehen: Genehmigungspflicht durch ein mit Richtern besetztes Gremium des neuen UKRat bei besonders eingriffsintensiven Maßnahmen.</p>
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <span class="warn-label">Strukturelle Unterschiede — der Vollständigkeit halber</span>
+    Die Gegenüberstellung markiert eine Parallele in der Methode (Minderjährige als Quellen), nicht in System oder Zweck. Unterschiede, die dokumentiert werden müssen: (1) Die DDR kannte keine unabhängige Gerichtsbarkeit zur Kontrolle des MfS — der geplante UKRat mit richterlicher Vorabgenehmigung existiert als Institution im Entwurf. (2) Das MfS diente der Absicherung eines Einparteiensystems gegen die eigene Bevölkerung; der Gesetzentwurf richtet sich nach Regierungsangaben gegen "Angreifer" von außen. (3) Die Verhältnismäßigkeit und der tatsächliche Anwendungsbereich der neuen Befugnisse sind noch nicht durch Praxis oder Rechtsprechung konkretisiert — hier bleibt vieles <span class="tag tag-offen">OFFEN</span>.
+  </div>
+
+  <h2>Die EU-Leerstelle bei Desinformation</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Während der deutsche Gesetzentwurf den eigenen Diensten die "gezielte Verbreitung von Falschinformationen" erlauben will, baut die EU parallel ihr Regelwerk gegen Desinformation aus: Der Digital Services Act (DSA) verpflichtet Plattformen zur Risikoanalyse und Bekämpfung von Desinformation, ein Verhaltenskodex gegen Desinformation wurde 2025 offiziell in den DSA-Rahmen integriert, ergänzt durch den Europäischen Aktionsplan für Demokratie und das "Paket zur Verteidigung der Demokratie" gegen ausländische Einflussnahme.</p>
+
+  <h3>Wer darf Desinformation einsetzen — wer wird reguliert?</h3>
+
+  <table>
+    <tr><th>Akteur</th><th>EU-Regulierung</th><th>Status</th></tr>
+    <tr>
+      <td>Bürger / Nutzer auf Plattformen</td>
+      <td>DSA: Plattformpflichten zur Moderation, Faktenchecker-Kooperation, Transparenz von Empfehlungssystemen</td>
+      <td class="center"><span class="tag tag-belegt">BELEGT</span></td>
+    </tr>
+    <tr>
+      <td>Ausländische Akteure / Drittstaaten</td>
+      <td>Aktionsplan für Demokratie, Transparenzregeln für Interessenvertretung im Auftrag Dritter, Sanktionsmechanismen</td>
+      <td class="center"><span class="tag tag-belegt">BELEGT</span></td>
+    </tr>
+    <tr>
+      <td>Eigener Mitgliedstaat / eigene Dienste</td>
+      <td>Kein Instrument identifiziert. DSA reguliert Plattformpflichten, nicht hoheitliches Handeln nationaler Nachrichtendienste.</td>
+      <td class="center"><span class="tag tag-offen">OFFEN</span></td>
+    </tr>
+  </table>
+
+  <p><span class="tag tag-extra">EXTRAPOLATION</span> Diese Lücke ist keine Aussage über Absicht, sondern eine strukturelle Beobachtung: Die Architektur der europäischen Desinformationsbekämpfung ist auf Plattformen und externe Akteure ausgerichtet. Ob und wie ein EU-Mitgliedstaat reguliert würde, wenn er über seine eigenen Dienste gezielt Falschinformationen einsetzt, ist in den bestehenden Rahmenwerken nicht erkennbar adressiert.</p>
+
+  <div class="pull-quote">
+    Der Verhaltenskodex gegen Desinformation verpflichtet Plattformen. Der Gesetzentwurf verpflichtet niemanden, wenn der Staat selbst zur Quelle wird.
+  </div>
+
+  <div class="closing">
+    <em>Offene Fragen: Wie wird "gezielte Falschinformation" durch einen Nachrichtendienst rechtlich von Desinformation im Sinne des DSA abgegrenzt? Wer entscheidet im Einzelfall, ob eine Maßnahme "erheblich" oder "besonders erheblich beobachtungsbedürftig" ist — und nach welchen Kriterien? Und: Wird der UKRat in der Praxis die Kontrollfunktion erfüllen, die die frühere G10-Kommission nach überwiegender Einschätzung nicht in vollem Umfang leisten konnte?</em>
+  </div>
+
+</div>
+</body>
+</html>

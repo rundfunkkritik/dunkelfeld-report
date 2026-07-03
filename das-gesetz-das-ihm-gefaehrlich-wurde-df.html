@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Das Gesetz, das ihm gefährlich wurde — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #0d0f12;
+    --bg-card: #15181d;
+    --ink: #e4e2dc;
+    --ink-dim: #9a9690;
+    --accent: #b3312c;
+    --accent-2: #7a8a9a;
+    --line: #2a2d33;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    line-height: 1.75;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 64px 24px 96px; }
+  .kicker {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-family: Georgia, serif;
+    font-size: 2.3rem;
+    line-height: 1.2;
+    margin: 0 0 14px;
+    color: #fff;
+  }
+  .subtitle {
+    font-style: italic;
+    color: var(--ink-dim);
+    font-size: 1.1rem;
+    margin: 0 0 40px;
+    border-left: 3px solid var(--accent);
+    padding-left: 16px;
+  }
+  h2 {
+    font-family: Georgia, serif;
+    color: #fff;
+    font-size: 1.4rem;
+    margin: 48px 0 18px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  p { margin: 0 0 20px; font-size: 1.05rem; }
+  ul { margin: 0 0 20px; padding-left: 22px; }
+  li { margin-bottom: 10px; }
+  strong { color: #fff; }
+
+  .gegenueber {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    margin: 32px 0;
+    border: 1px solid var(--line);
+  }
+  .gegenueber > div { background: var(--bg-card); padding: 22px; }
+  .gegenueber .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .gegenueber .damals .label { color: var(--accent-2); }
+  .gegenueber .heute .label { color: var(--accent); }
+  .gegenueber p { font-size: 0.95rem; margin: 0; }
+  @media (max-width: 600px) {
+    .gegenueber { grid-template-columns: 1fr; }
+  }
+
+  .faktenbox {
+    background: var(--bg-card);
+    border-left: 3px solid var(--accent);
+    padding: 20px 24px;
+    margin: 28px 0;
+  }
+  .faktenbox .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .muster-box {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    padding: 26px;
+    margin: 32px 0;
+  }
+  .muster-box h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 16px;
+  }
+
+  .hoffnung {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--ink);
+  }
+  .hoffnung .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .quellen {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 0.85rem;
+    color: var(--ink-dim);
+  }
+  .quellen .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+    display: block;
+    margin-bottom: 14px;
+  }
+  .quellen ol { padding-left: 20px; }
+  .quellen li { margin-bottom: 10px; }
+
+  footer {
+    margin-top: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-dim);
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <span class="kicker">dunkelfeld.report · 03.07.2026</span>
+  <h1>Das Gesetz, das ihm gefährlich wurde</h1>
+  <p class="subtitle">SPD und Union wollen das Informationsfreiheitsgesetz entkernen. Mit am Tisch, der über diese Entscheidung befand: der Mann, dessen Maskenaffäre erst durch dieses Gesetz öffentlich wurde.</p>
+
+  <p>Am 2. Juli 2026 beschließt der Koalitionsausschuss von Union und SPD, das Informationsfreiheitsgesetz umzubauen. Offiziell soll es "verständlicher und transparenter" werden. Zivilgesellschaftliche Organisationen — von foodwatch über den Deutschen Journalisten-Verband bis zur Bundesdatenschutzbeauftragten — lesen den Beschluss anders: als faktisches Ende eines zwanzig Jahre alten Auskunftsrechts.</p>
+
+  <h2>Was das IFG bisher konnte</h2>
+  <p>Seit 2006 durfte jeder Mensch in Deutschland Bundesbehörden befragen, ohne einen Grund nennen zu müssen. Kein besonderes Interesse, keine Vorprüfung, keine Staatsangehörigkeitsprüfung. Nur die Anfrage.</p>
+
+  <div class="faktenbox">
+    <span class="label">Was durch IFG-Anfragen öffentlich wurde</span>
+    <ul style="margin-bottom:0;">
+      <li>Interne E-Mails aus dem Bundesgesundheitsministerium zur Maskenbeschaffung — die sogenannte Maskenaffäre um den damaligen Minister Jens Spahn</li>
+      <li>Der Augustus-Intelligence-Skandal um CDU-Abgeordneten Philipp Amthor, der einem US-Unternehmen Zugang zum Bundeswirtschaftsministerium verschaffte</li>
+      <li>Vorgänge, die letztlich zum Rücktritt von Bundesministerin Franziska Giffey führten</li>
+    </ul>
+  </div>
+
+  <h2>Damals / Heute</h2>
+
+  <div class="gegenueber">
+    <div class="damals">
+      <span class="label">Damals — 2020/2021</span>
+      <p>IFG-Anfragen von Journalisten und Organisationen bringen interne Kommunikation des Gesundheitsministeriums zur Maskenbeschaffung ans Licht. Öffentlicher Druck, parlamentarische Aufarbeitung.</p>
+    </div>
+    <div class="heute">
+      <span class="label">Heute — 02.07.2026</span>
+      <p>Derselbe Politiker sitzt im Koalitionsausschuss, der beschließt: Anfragen künftig nur noch mit nachgewiesenem "berechtigtem Interesse", Organisationen als Antragsteller ausgeschlossen, Behördennamen pauschal geschwärzt.</p>
+    </div>
+  </div>
+
+  <h2>Was konkret geplant ist</h2>
+  <ul>
+    <li>Anfragen nur noch mit nachgewiesenem <strong>"berechtigtem Interesse"</strong> — der bisherige voraussetzungslose Zugang entfällt</li>
+    <li>Juristische Personen (FragDenStaat, Umweltverbände, Redaktionen) dürfen <strong>keine Anfragen mehr stellen</strong></li>
+    <li>Menschen ohne deutsche oder EU-Staatsangehörigkeit werden faktisch ausgeschlossen</li>
+    <li>Namen von Behördenmitarbeitenden — auch von Führungskräften — werden künftig <strong>pauschal geschwärzt</strong></li>
+    <li>Die bisherige Gebührenobergrenze von 500 Euro fällt; Kostendeckungsprinzip statt Deckel</li>
+  </ul>
+
+  <div class="muster-box">
+    <h3>Das Muster</h3>
+    <p style="margin-bottom:0;">Gesetze, die Kontrolle ermöglichen, geraten unter Druck, sobald sie diejenigen treffen, die über ihre Zukunft entscheiden dürfen. Das IFG hat in den letzten Jahren keine abstrakte Institution beschädigt — es hat konkrete Karrieren beschädigt, konkrete Rücktritte erzwungen. Wer das erlebt hat, sitzt jetzt am Tisch, an dem über sein Fortbestehen verhandelt wird. Bereits 2019 gab es einen vergleichbaren Vorstoß, der nach öffentlichem Protest zurückgenommen wurde. Neu ist diesmal nicht die Absicht — neu ist, wie offen sie zwischen Rente und Steuern versteckt wird.</p>
+  </div>
+
+  <div class="hoffnung">
+    <span class="label">Einordnung</span>
+    <p>Der Beschluss ist kein Gesetz. Er muss den Bundestag durchlaufen — mit Anhörungen und der Möglichkeit öffentlicher Einflussnahme. 2019 hat genau das gereicht, um eine vergleichbare Verschärfung zu stoppen. Innerhalb weniger Stunden nach Bekanntwerden positionierten sich diesmal DJV, dju, foodwatch, Reporter ohne Grenzen und die Bundesdatenschutzbeauftragte gegen das Vorhaben — eine Bandbreite, die zeigt: Die Frage ist nicht ideologisch sortiert. Sie lässt sich noch entscheiden.</p>
+  </div>
+
+  <div class="quellen">
+    <span class="label">Quellen</span>
+    <ol>
+      <li>FragDenStaat (Arne Semsrott), Mitteilung vom 02.07.2026 — fragdenstaat.de</li>
+      <li>taz.de, zwei Berichte vom 02./03.07.2026 zum Koalitionsausschuss-Beschluss</li>
+      <li>netzpolitik.org, Bericht vom 03.07.2026, inkl. Hinweis auf zurückgenommene Pläne von 2019</li>
+      <li>ZDFheute, 02.07.2026 — u.a. Zitat der Bundesdatenschutzbeauftragten Louisa Specht-Riemenschneider</li>
+      <li>foodwatch.org, Stellungnahme Dr. Chris Methmann, 02.07.2026</li>
+      <li>datensicherheit.de, 03.07.2026</li>
+    </ol>
+  </div>
+
+  <footer>dunkelfeld.report — Rohbefund, nicht RE-Sourcing-Standard</footer>
+
+</div>
+</body>
+</html>

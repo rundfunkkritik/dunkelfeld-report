@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Die 15-Minuten-Stadt: Leitbild, Umsetzung, Einordnung | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --text: #e4e4e7;
+    --muted: #8b8b96;
+    --accent: #e8c547;
+    --border: #27272a;
+    --box-bg: #1a1a2e;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --grey: #71717a;
+    --red: #f87171;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .mono {
+    font-family: 'Courier New', monospace;
+  }
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+  header .dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  header .label {
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .kicker {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Courier New', monospace;
+  }
+  h1 {
+    font-size: clamp(2rem, 6vw, 2.8rem);
+    line-height: 1.15;
+    margin: 0 0 1rem 0;
+    font-weight: 700;
+  }
+  .subtitle {
+    font-size: 1.2rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2rem;
+    margin-bottom: 2.5rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+    border-left: 3px solid var(--accent);
+    padding-left: 0.8rem;
+  }
+  p { margin: 0 0 1.3rem 0; }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    padding: 0.15rem 0.6rem;
+    border-radius: 3px;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.12); color: var(--green); border: 1px solid rgba(74,222,128,0.35); }
+  .tag-extra { background: rgba(251,146,60,0.12); color: var(--orange); border: 1px solid rgba(251,146,60,0.35); }
+  .tag-offen { background: rgba(113,113,122,0.15); color: var(--grey); border: 1px solid rgba(113,113,122,0.4); }
+  .tag-vt { background: rgba(248,113,113,0.12); color: var(--red); border: 1px solid rgba(248,113,113,0.35); }
+
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.3rem;
+    margin: 1.2rem 0 2rem 0;
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+  .source-box strong { color: var(--text); }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    margin: 2rem 0;
+  }
+  .stat-cell {
+    background: var(--bg);
+    padding: 1.3rem 1rem;
+  }
+  .stat-num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.8rem;
+    color: var(--accent);
+    font-weight: bold;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0 2rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 0.7rem 0.9rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--box-bg);
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+  }
+
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--text);
+    border-left: 3px solid var(--accent);
+    padding-left: 1.3rem;
+    margin: 2.5rem 0;
+    line-height: 1.6;
+  }
+
+  .warn-box {
+    border: 1px solid rgba(248,113,113,0.35);
+    background: rgba(248,113,113,0.06);
+    padding: 1.2rem 1.3rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+  }
+  .warn-box .warn-title {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.6rem;
+    font-weight: bold;
+  }
+
+  .timeline {
+    margin: 2rem 0;
+    border-left: 2px solid var(--border);
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.94rem;
+    top: 0.4rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 0.2rem;
+  }
+
+  .open-question {
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+
+  footer {
+    max-width: 720px;
+    margin: 4rem auto 3rem auto;
+    padding: 2rem 1.5rem 0 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.75rem;
+    color: var(--muted);
+    line-height: 1.8;
+    font-family: 'Courier New', monospace;
+  }
+  footer .qlist { margin-top: 1rem; }
+  footer .qlist div { margin-bottom: 0.4rem; }
+
+  .series-nav {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-family: 'Courier New', monospace;
+    margin-top: 3rem;
+  }
+  .series-nav a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="dot"></div>
+  <div class="label">Dokumentation · Fakten · Quellen</div>
+</header>
+
+<div class="wrap">
+  <div class="kicker">dunkelfeld.report · Dossier · Stadtplanung & Kontrolle</div>
+  <h1>Die 15-Minuten-Stadt: Leitbild, Umsetzung, Einordnung</h1>
+  <div class="subtitle">Zwischen Sorbonne-Konzept, Oxford-Realität und deutschem Faktencheck-Rahmen — was dokumentiert ist und was nicht.</div>
+  <div class="meta">
+    STAND: JULI 2026 &nbsp;|&nbsp; LESEDAUER: CA. 9 MINUTEN
+  </div>
+
+  <p>Ein Stadtplanungskonzept aus dem Jahr 2016 hat sich zu einem der umstrittensten Themen der öffentlichen Debatte entwickelt. Die einen sehen darin ein pragmatisches Werkzeug gegen Verkehrslast und Klimawandel. Die anderen sehen darin den Einstieg in Bewegungskontrolle. Dieser Artikel dokumentiert, was in den offiziellen Dokumenten steht, was in der Praxis tatsächlich beschlossen wurde — und wie der öffentlich-rechtliche Rundfunk das Thema einordnet.</p>
+
+  <span class="tag tag-belegt">BELEGT</span>
+  <span class="tag tag-extra">EXTRAPOLATION</span>
+  <span class="tag tag-offen">OFFEN</span>
+  <span class="tag tag-vt">VT — WIDERLEGT</span>
+
+  <h2>I. Das Ursprungskonzept</h2>
+  <p><span class="tag tag-belegt">BELEGT</span> Carlos Moreno, Professor an der Sorbonne, stellte das Konzept der "Ville du quart d'heure" 2016 vor. Grundidee: Alltägliche Ziele — Wohnen, Arbeit, Einkauf, Bildung, Gesundheit, Freizeit — sollen innerhalb von 15 Minuten zu Fuß oder mit dem Rad erreichbar sein. 2020 machte Bürgermeisterin Anne Hidalgo das Konzept zum Bestandteil ihrer Pariser Wahlkampagne.</p>
+  <p>Moreno selbst hat wiederholt öffentlich erklärt, dass sein Konzept keinerlei Bewegungseinschränkung vorsieht: Menschen könnten sich frei bewegen, wohin und wann sie wollen. Ziel sei "gewählte Mobilität" statt erzwungener Pendelwege.</p>
+
+  <div class="source-box">
+    <strong>Quelle:</strong> Carlos Moreno, Sorbonne-Publikationen 2016 ff.; AFP-Interview März 2023; Wahlkampfprogramm Anne Hidalgo 2020.
+  </div>
+
+  <h2>II. C40 Cities — das globale Netzwerk</h2>
+  <p><span class="tag tag-belegt">BELEGT</span> C40 Cities ist ein 2005 gegründetes Netzwerk von Bürgermeistern großer Weltstädte, das sich auf Klimaschutzmaßnahmen verständigt. Das Netzwerk veröffentlicht öffentlich zugängliche Leitfäden zur Umsetzung der 15-Minuten-Stadt als eine von mehreren empfohlenen Klimamaßnahmen. C40 selbst bezeichnet seine Vorschläge als "Ideen und Ratschläge", nicht als bindende Vorgaben. Für London ist der amtierende Bürgermeister Sadiq Khan im Netzwerk vertreten.</p>
+
+  <div class="source-box">
+    <strong>Quelle:</strong> C40 Cities, öffentliche Publikationen (c40.org); Mimikama-Faktencheck August 2025, der die C40-Dokumente einsehbar zitiert.
+  </div>
+
+  <h2>III. Oxford — vom Leitbild zur Durchsetzung</h2>
+  <p><span class="tag tag-belegt">BELEGT</span> Der Stadtrat von Oxford hat einen Verkehrsplan ("Traffic Filters") beschlossen, der über reine Empfehlung hinausgeht: Anwohner benötigen eine behördliche Genehmigung, um mehr als 100 Tage im Jahr mit dem Auto aus ihrem zugewiesenen Stadtbezirk auszufahren. Bei Überschreitung drohen Bußgelder in Höhe von rund 70 Pfund (ca. 78 Euro). Durchgesetzt wird dies über automatisierte Kennzeichenerfassung.</p>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <div class="stat-num">100</div>
+      <div class="stat-label">Tage/Jahr zulässige Ausfahrt ohne Genehmigung</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">70£</div>
+      <div class="stat-label">Bußgeld bei Überschreitung</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">6</div>
+      <div class="stat-label">geplante Bezirke in Oxford</div>
+    </div>
+  </div>
+
+  <p>Die Stadtverwaltung Oxford hat öffentlich klargestellt, dass niemand physisch am Verlassen seines Bezirks gehindert wird — die Kontrolle erfolgt ausschließlich über das Genehmigungs- und Bußgeldsystem, nicht über physische Barrieren. Gegen das Vorhaben gab es öffentliche Demonstrationen vor Ort.</p>
+
+  <div class="source-box">
+    <strong>Quelle:</strong> Oxfordshire County Council, offizielle Ratsbeschlüsse zu "Connecting Oxford" / Traffic Filters; Berichterstattung derStandard.at (Februar 2023), euronews (März 2023), GADMO-Faktencheck.
+  </div>
+
+  <h2>IV. Deutschland: Leitbild ohne Sanktionsmechanik</h2>
+  <p><span class="tag tag-belegt">BELEGT</span> Das Bundesinstitut für Bau-, Stadt- und Raumforschung (BBSR) hat 2024 200 deutsche Groß- und Mittelstädte befragt: 15 davon hatten das Leitbild der 15-Minuten-Stadt explizit in ihr Stadtentwicklungskonzept aufgenommen. Ein eigens entwickelter "X-Minuten-Stadt-Indikator" des BBSR stuft rein auf Basis von Siedlungsstruktur und Erreichbarkeit rund 2.100 deutsche Gemeinden strukturell als 10- oder 15-Minuten-Städte ein — unabhängig davon, ob dort bewusst danach geplant wurde.</p>
+
+  <table>
+    <tr><th>Ort</th><th>Status</th></tr>
+    <tr><td>Hamburg</td><td>Leitbild in Standortstrategie 2040 integriert; Pilotquartier Ottensen weitgehend autofrei</td></tr>
+    <tr><td>Freiburg-Vauban</td><td>Weitgehende bauliche Umsetzung der Prinzipien seit den 1990ern</td></tr>
+    <tr><td>Tübinger Südstadt</td><td>Gilt als Best-Practice-Beispiel kurzer Wege</td></tr>
+    <tr><td>Berlin, München, Köln</td><td>Erfüllen laut internationaler Studie (Nature Cities, 2024) die Kriterien faktisch, ohne sich offiziell auf das Konzept zu berufen</td></tr>
+  </table>
+
+  <p><span class="tag tag-offen">OFFEN</span> Ein Oxford-vergleichbares Genehmigungs- und Bußgeldsystem für das Verlassen von Stadtbezirken ist für Deutschland nach aktuellem Kenntnisstand nicht dokumentiert. Die deutsche Umsetzung bewegt sich bislang im Bereich freiwilliger Stadtplanung, nicht im Bereich ordnungsrechtlicher Durchsetzung.</p>
+
+  <p>Die BBSR-Studie selbst benennt Kritikpunkte am Konzept — etwa das Risiko der Gentrifizierung durch steigende Attraktivität gut versorgter Quartiere. Laut Studienautoren hat sich diese Sorge in den untersuchten Daten allerdings nicht bestätigt.</p>
+
+  <div class="source-box">
+    <strong>Quelle:</strong> BBSR-Ressortforschung "Die Stadt der Viertelstunde" (2024/2025); Haufe-Zusammenfassung der BBSR-Studie im Auftrag des BMWSB; Nature Cities (2024), globale Städtestudie.
+  </div>
+
+  <h2>V. Die Einordnung durch ARD Faktenfinder und BR24 Faktenfuchs</h2>
+  <p><span class="tag tag-belegt">BELEGT</span> Sowohl der ARD Faktenfinder als auch der BR24 Faktenfuchs haben das Thema 15-Minuten-Stadt unter dem Rahmen "Verschwörungstheorie" behandelt. Im Zentrum der Einordnungen standen jeweils die widerlegbaren Zusatzbehauptungen — Kalorienkontrollsysteme, eingefrorene Bankkonten, physische Einsperrung — die tatsächlich keine Grundlage in den Originaldokumenten haben und mehrfach von dpa, AFP und Mimikama zurückgewiesen wurden.</p>
+
+  <div class="warn-box">
+    <div class="warn-title">VT — nachweislich falsch</div>
+    Behauptungen zu Kalorienkontrollsystemen per SMS, automatischem Einfrieren von Bankkonten bei "Regelverstößen" oder physischer Einsperrung in Wohnvierteln sind durch keine Primärquelle gedeckt und wurden von mehreren unabhängigen Faktencheck-Stellen (dpa, AFP, Mimikama, GADMO) zurückgewiesen.
+  </div>
+
+  <p><span class="tag tag-extra">EXTRAPOLATION</span> In der öffentlich zugänglichen Berichterstattung der Faktencheck-Formate liegt der Schwerpunkt auf der Widerlegung dieser Zusatzbehauptungen. Der konkrete, unbestrittene Oxford-Mechanismus — Genehmigungspflicht und Bußgeld bei Überschreitung der Bezirksgrenze — wird in den eingesehenen Einordnungen nicht als eigenständiger, von den übrigen Behauptungen unabhängiger Fakt hervorgehoben.</p>
+
+  <div class="pull-quote">
+    "Bei wenigen Zielen, die üblicherweise seltener aufgesucht werden … das Leitbild ist auch zum Feindbild von Verschwörungsideologen geworden."<br>
+    <span style="font-size: 0.85rem; color: var(--muted);">— aus einer 2025 im Auftrag des BBSR/BMWSB erstellten Studie</span>
+  </div>
+
+  <h2>Zeitleiste</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">2016</div>
+      Carlos Moreno stellt das Konzept an der Sorbonne vor.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2020</div>
+      Anne Hidalgo macht das Konzept zum Bestandteil ihres Pariser Wahlkampfs.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Januar 2023</div>
+      Oxfordshire County Council beschließt Traffic-Filter-Zonen mit Genehmigungspflicht.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Februar–März 2023</div>
+      Virale Fehlinformationen (Kalorienkontrolle, Bankkonten-Sperrung) verbreiten sich; erste Faktenchecks (AFP, GADMO, euronews).
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2024</div>
+      BBSR-Befragung: 15 von 200 deutschen Städten mit explizitem Leitbild.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2025</div>
+      Mimikama-Faktencheck zu C40-Dokumenten; BBSR/BMWSB-Studie mit Kritikpunkte-Kapitel.
+    </div>
+  </div>
+
+  <div class="open-question">
+    Wird die Einordnung als "Verschwörungstheorie" der Tatsache gerecht, dass in Oxford ein reales, per Ratsbeschluss verabschiedetes Genehmigungs- und Bußgeldsystem existiert — unabhängig davon, wie stark die begleitenden Falschbehauptungen im Netz waren?
+  </div>
+</div>
+
+<div class="series-nav">
+  <span>← dunkelfeld.report</span>
+  <span>Dossier · Stadtplanung & Kontrolle</span>
+</div>
+
+<footer>
+  <div>QUELLENVERZEICHNIS</div>
+  <div class="qlist">
+    <div>→ Carlos Moreno, Sorbonne-Publikationen 2016 ff.</div>
+    <div>→ C40 Cities, offizielle Publikationen (c40.org)</div>
+    <div>→ Oxfordshire County Council, Ratsbeschlüsse "Connecting Oxford" / Traffic Filters</div>
+    <div>→ derStandard.at, "Wie die 15-Minuten-Stadt zur Verschwörungstheorie wurde" (Feb. 2023)</div>
+    <div>→ euronews, "Wie das Konzept der 15-Minuten-Stadt im Internet Verwirrung stiftete" (März 2023)</div>
+    <div>→ GADMO, "Vorsicht vor diesen Falschbehauptungen zur 15-Minuten-Stadt"</div>
+    <div>→ Mimikama, "Erfundene Verbote zur 15-Minuten-Stadt entlarvt" (Aug. 2025)</div>
+    <div>→ BBSR-Ressortforschung, "Die Stadt der Viertelstunde" (2024/2025)</div>
+    <div>→ Haufe, Zusammenfassung BBSR/BMWSB-Studie (2025)</div>
+    <div>→ Nature Cities (2024), globale Städtestudie zu Erreichbarkeit</div>
+  </div>
+  <div style="margin-top: 1.5rem; color: var(--accent);">
+    dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.
+  </div>
+  <div style="margin-top: 0.5rem;">
+    Alle Angaben basieren auf öffentlich zugänglichen Quellen. Spekulation ist als solche gekennzeichnet. Motive werden nicht zugeschrieben. Schlussfolgerungen ziehen die Leser selbst.
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transparenz gegen Netzausbau: Das Koalitionspaket im Detail | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --text: #e4e4e7;
+    --muted: #8b8b96;
+    --accent: #e8c547;
+    --border: #27272a;
+    --box-bg: #1a1a2e;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --grey: #71717a;
+    --red: #f87171;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+  header .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+  header .label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+  .kicker {
+    font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.15em;
+    margin-top: 3rem; margin-bottom: 1.5rem; font-family: 'Courier New', monospace;
+  }
+  h1 { font-size: clamp(1.9rem, 6vw, 2.7rem); line-height: 1.15; margin: 0 0 1rem 0; font-weight: 700; }
+  .subtitle { font-size: 1.2rem; color: var(--muted); font-style: italic; margin-bottom: 2rem; line-height: 1.6; }
+  .meta {
+    font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--muted);
+    border-bottom: 1px solid var(--border); padding-bottom: 2rem; margin-bottom: 2.5rem;
+  }
+  h2 {
+    font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem; color: var(--text);
+    border-left: 3px solid var(--accent); padding-left: 0.8rem;
+  }
+  p { margin: 0 0 1.3rem 0; }
+  .tag {
+    display: inline-block; font-family: 'Courier New', monospace; font-size: 0.7rem; font-weight: bold;
+    letter-spacing: 0.08em; padding: 0.15rem 0.6rem; border-radius: 3px; margin-right: 0.5rem; margin-bottom: 0.5rem;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.12); color: var(--green); border: 1px solid rgba(74,222,128,0.35); }
+  .tag-extra { background: rgba(251,146,60,0.12); color: var(--orange); border: 1px solid rgba(251,146,60,0.35); }
+  .tag-offen { background: rgba(113,113,122,0.15); color: var(--grey); border: 1px solid rgba(113,113,122,0.4); }
+  .tag-vt { background: rgba(248,113,113,0.12); color: var(--red); border: 1px solid rgba(248,113,113,0.35); }
+  .source-box {
+    background: var(--box-bg); border-left: 3px solid var(--accent); padding: 1rem 1.3rem;
+    margin: 1.2rem 0 2rem 0; font-size: 0.95rem; color: var(--muted);
+  }
+  .source-box strong { color: var(--text); }
+  .stat-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1px;
+    background: var(--border); margin: 2rem 0;
+  }
+  .stat-cell { background: var(--bg); padding: 1.3rem 1rem; }
+  .stat-num { font-family: 'Courier New', monospace; font-size: 1.7rem; color: var(--accent); font-weight: bold; }
+  .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.3rem; }
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2rem 0; font-size: 0.93rem; }
+  th, td { border: 1px solid var(--border); padding: 0.7rem 0.9rem; text-align: left; vertical-align: top; }
+  th {
+    background: var(--box-bg); font-family: 'Courier New', monospace; font-size: 0.72rem;
+    text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent);
+  }
+  .pull-quote {
+    font-size: 1.3rem; font-style: italic; color: var(--text); border-left: 3px solid var(--accent);
+    padding-left: 1.3rem; margin: 2.5rem 0; line-height: 1.6;
+  }
+  .warn-box {
+    border: 1px solid rgba(248,113,113,0.35); background: rgba(248,113,113,0.06);
+    padding: 1.2rem 1.3rem; margin: 2rem 0; font-size: 0.95rem;
+  }
+  .warn-box .warn-title {
+    font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--red);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6rem; font-weight: bold;
+  }
+  .compare {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); margin: 2rem 0;
+  }
+  .compare-col { background: var(--bg); padding: 1.2rem; }
+  .compare-head {
+    font-family: 'Courier New', monospace; font-size: 0.72rem; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.8rem;
+  }
+  .compare-col p { font-size: 0.92rem; margin-bottom: 0.7rem; }
+  @media (max-width: 560px) { .compare { grid-template-columns: 1fr; } }
+  .timeline { margin: 2rem 0; border-left: 2px solid var(--border); padding-left: 1.5rem; }
+  .timeline-item { margin-bottom: 1.5rem; position: relative; }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -1.94rem; top: 0.4rem; width: 8px; height: 8px;
+    border-radius: 50%; background: var(--accent);
+  }
+  .timeline-date { font-family: 'Courier New', monospace; font-size: 0.8rem; color: var(--accent); margin-bottom: 0.2rem; }
+  .open-question {
+    margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--border);
+    font-style: italic; color: var(--muted); font-size: 1.1rem; line-height: 1.7;
+  }
+  footer {
+    max-width: 720px; margin: 4rem auto 3rem auto; padding: 2rem 1.5rem 0 1.5rem;
+    border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted);
+    line-height: 1.8; font-family: 'Courier New', monospace;
+  }
+  footer .qlist { margin-top: 1rem; }
+  footer .qlist div { margin-bottom: 0.4rem; }
+  .series-nav {
+    max-width: 720px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between;
+    font-size: 0.8rem; color: var(--muted); font-family: 'Courier New', monospace; margin-top: 3rem;
+  }
+  .series-nav a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="dot"></div>
+  <div class="label">Dokumentation · Fakten · Quellen</div>
+</header>
+
+<div class="wrap">
+  <div class="kicker">dunkelfeld.report · Dossier · Transparenz & Infrastruktur</div>
+  <h1>Transparenz gegen Netzausbau: Das Koalitionspaket im Detail</h1>
+  <div class="subtitle">Ein Beschluss, zwei Geschwindigkeiten — was beim Informationszugang wegfällt, während bei Smart Metern und Netzausbau aufgerüstet wird.</div>
+  <div class="meta">STAND: JULI 2026 &nbsp;|&nbsp; LESEDAUER: CA. 10 MINUTEN</div>
+
+  <p>Am 2. Juli 2026 hat der Koalitionsausschuss von CDU/CSU und SPD ein Reformpaket mit dem Titel "Ein Programm für Aufschwung und Beschäftigung" vorgelegt. Zwei Stränge laufen darin zusammen, die selten gemeinsam betrachtet werden: der Zugang der Bürger zu staatlichen Informationen wird eingeschränkt, während gleichzeitig der Ausbau von Stromnetzen und die flächendeckende Erfassung von Verbrauchsdaten beschleunigt werden. Dieser Artikel dokumentiert beide Stränge nebeneinander.</p>
+
+  <span class="tag tag-belegt">BELEGT</span>
+  <span class="tag tag-extra">EXTRAPOLATION</span>
+  <span class="tag tag-offen">OFFEN</span>
+
+  <h2>I. Der Beschluss zum Informationsfreiheitsgesetz</h2>
+  <p><span class="tag tag-belegt">BELEGT</span> Das Informationsfreiheitsgesetz (IFG) besteht seit 20 Jahren und erlaubt bislang jeder Person, ohne Angabe von Gründen Einsicht in amtliche Dokumente zu verlangen. Der Koalitionsausschuss hat folgende Änderungen beschlossen bzw. zur Prüfung vorgesehen:</p>
+
+  <table>
+    <tr><th>Bisher</th><th>Beschlossen / geprüft</th></tr>
+    <tr><td>Kein Grund für Anfrage nötig</td><td>Nachweis eines "berechtigten Interesses" erforderlich</td></tr>
+    <tr><td>Jede Person antragsberechtigt</td><td>Prüfung einer Beschränkung auf in Deutschland lebende Deutsche und EU-Bürger</td></tr>
+    <tr><td>Nur Namen von Leitungspersonal ggf. geschwärzt</td><td>Pauschale Schwärzung aller Mitarbeiternamen</td></tr>
+    <tr><td>Gebührendeckel bei 500 €</td><td>Gebühren nach Kostendeckungsprinzip — Deckel entfällt</td></tr>
+  </table>
+
+  <div class="source-box">
+    <strong>Quelle:</strong> Koalitionsausschuss-Beschluss "Ein Programm für Aufschwung und Beschäftigung" (2. Juli 2026), Punkt 32; heise online, 3. Juli 2026; netzpolitik.org, 3. Juli 2026.
+  </div>
+
+  <h2>II. Ankündigung vs. Beschluss</h2>
+  <p><span class="tag tag-belegt">BELEGT</span> Im Koalitionsvertrag von 2025 hatten CDU/CSU und SPD festgehalten, das IFG "mit einem Mehrwert für Bürgerinnen und Bürger und Verwaltung" reformieren zu wollen. Der jetzige Beschluss lässt sich damit direkt vergleichen.</p>
+
+  <div class="compare">
+    <div class="compare-col">
+      <div class="compare-head">Koalitionsvertrag 2025</div>
+      <p>"Wir werden das IFG mit einem Mehrwert für Bürgerinnen und Bürger und Verwaltung reformieren."</p>
+      <p>Keine Einschränkung des Antragsrechts vorgesehen.</p>
+    </div>
+    <div class="compare-col">
+      <div class="compare-head">Koalitionsbeschluss Juli 2026</div>
+      <p>Antragsrecht wird an "berechtigtes Interesse" geknüpft, Gebührendeckel entfällt, Namensschwärzung wird pauschal.</p>
+      <p>Organisationen (Correctiv, FragDenStaat, Greenpeace, Presse) droht der faktische Ausschluss von Anfragen.</p>
+    </div>
+  </div>
+
+  <p><span class="tag tag-extra">EXTRAPOLATION</span> Die Transparenzplattform FragDenStaat bezeichnet dies als "größten Angriff auf staatliche Transparenz in der Geschichte der Bundesrepublik" und als Bruch des Koalitionsvertrags. Diese Bewertung stammt von einer der von der Reform unmittelbar betroffenen Organisationen und ist entsprechend einzuordnen — die zugrundeliegenden Fakten zum Beschlussinhalt sind davon unabhängig dokumentiert.</p>
+
+  <div class="source-box">
+    <strong>Quelle:</strong> Koalitionsvertrag CDU/CSU–SPD 2025, S. 12 (zit. n. Verfassungsblog); FragDenStaat, Artikel vom 2./3. Juli 2026; Greenpeace Deutschland, Stellungnahme 2. Juli 2026.
+  </div>
+
+  <h2>III. Smart-Meter-Rollout und Netzausbau</h2>
+  <p><span class="tag tag-belegt">BELEGT</span> Parallel zu den IFG-Einschnitten beschließt das Paket eine Beschleunigung des Netzausbaus: Ein noch 2026 geplantes Verteilnetzpaket soll die Realisierungszeit für Netzprojekte halbieren. Der Smart-Meter-Rollout soll bis Ende 2030 für über 90 Prozent der relevanten Messstellen abgeschlossen sein. Für Haushalte ohne gesetzliche Einbaupflicht wird ein kostengünstiges "Smart Meter Light" eingeführt.</p>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <div class="stat-num">90%</div>
+      <div class="stat-label">Ziel-Abdeckung Smart Meter bis Ende 2030</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">15 Min.</div>
+      <div class="stat-label">Takt der Lastprofil-Erfassung (Standard MsbG)</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">§49–75</div>
+      <div class="stat-label">MsbG regelt Zugriffsrechte auf Messdaten</div>
+    </div>
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Smart Meter erfassen im Regelfall viertelstündliche Lastprofile — ein deutlich feineres Bild des Stromverbrauchs als beim klassischen Zähler, der nur den Jahresstand zeigt. Die Datenschutzkonferenz (DSK) der deutschen Aufsichtsbehörden hat in ihrer Orientierungshilfe selbst festgehalten, dass detaillierte Verbrauchsdaten Rückschlüsse auf individuelles Verhalten erlauben und das "Risiko einer stärkeren Überwachung der eigenen Nutzungs- und Lebensgewohnheiten" steigt. Das Messstellenbetriebsgesetz (MsbG) begrenzt Zugriff und Zweckbindung; der Messstellenbetreiber erhält dabei Zugang zum vollständigen Lastprofil, Netzbetreiber und Stromlieferant nur zweckgebundene Teilmengen.</p>
+
+  <div class="source-box">
+    <strong>Quelle:</strong> Datenschutzkonferenz (DSK), Orientierungshilfe Smart Meter; Messstellenbetriebsgesetz (MsbG) §§49–75; Bundesamt für Sicherheit in der Informationstechnik (BSI), Schutzprofile für Smart-Meter-Gateways.
+  </div>
+
+  <p><span class="tag tag-offen">OFFEN</span> Die technischen Schutzmaßnahmen (Verschlüsselung, Pseudonymisierung, Datensparsamkeitsprinzip) sind unabhängig von diesem Beschluss bereits gesetzlich verankert und gelten laut BSI als vergleichsweise hoch. Offen ist, wer die Einhaltung dieser Vorgaben in Zukunft wirksam extern überprüfen kann, wenn zeitgleich das Instrument sinkt, mit dem Bürger und Organisationen bislang Einsicht in Verwaltungshandeln verlangen konnten.</p>
+
+  <h2>IV. Die strukturelle Gegenüberstellung</h2>
+  <p>Zwei Prozesse laufen im selben Beschlusspaket, aber mit unterschiedlicher Geschwindigkeit: Die DSGVO-Lockerung für Vereine und Kleinbetriebe hängt von einer EU-Gesetzesänderung ab und wird sich laut Fachbeobachtern über Jahre hinziehen. Die IFG-Einschränkung dagegen kann der Bundestag im nationalen Alleingang beschließen — und ebenso der forcierte Smart-Meter-Rollout, der bereits terminiert ist (2030).</p>
+
+  <div class="pull-quote">
+    "Das Zuckerl ist ungewiss, die bittere Pille konkret."<br>
+    <span style="font-size: 0.85rem; color: var(--muted);">— aus einer Analyse des Koalitionsbeschlusses, Juli 2026</span>
+  </div>
+
+  <h2>Zeitleiste</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">2005</div>
+      Einführung des Informationsfreiheitsgesetzes auf Bundesebene.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2025</div>
+      Koalitionsvertrag: angekündigte IFG-Reform "mit Mehrwert für Bürger"; CDU-Vorstoß zur Abschaffung des IFG scheitert zuvor knapp in den Koalitionsverhandlungen.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Februar 2026</div>
+      Berlin legt einen eigenen IFG-Einschränkungsentwurf vor (Drs. 19/2999) — nach Protest zunächst verschoben.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2. Juli 2026</div>
+      Koalitionsausschuss beschließt Bundes-Reformpaket: IFG-Einschränkung, DSGVO-Lockerung, Verteilnetzpaket, Smart-Meter-Rollout.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Ende 2030</div>
+      Zielmarke: 90 % Smart-Meter-Abdeckung der relevanten Messstellen.
+    </div>
+  </div>
+
+  <div class="open-question">
+    Wenn der Zugriffsradius auf feingranulare Verbrauchsdaten von über 90 % der Haushalte wächst, während gleichzeitig das Instrument geschwächt wird, mit dem Bürger und Organisationen die Aufsicht über staatliches und behördliches Handeln kontrollieren konnten — wer beaufsichtigt dann die neue Dateninfrastruktur, und mit welchen Mitteln?
+  </div>
+</div>
+
+<div class="series-nav">
+  <span>← dunkelfeld.report</span>
+  <span>Dossier · Infrastruktur der Kontrolle</span>
+</div>
+
+<footer>
+  <div>QUELLENVERZEICHNIS</div>
+  <div class="qlist">
+    <div>→ heise online, "Koalitionspaket: Kahlschlag bei Transparenz und Datenschutz, Turbo für die Netze" (2./3. Juli 2026)</div>
+    <div>→ netzpolitik.org, "Informationsfreiheit: Schwarz-Rot plant Frontalangriff auf Journalismus und Transparenz" (3. Juli 2026)</div>
+    <div>→ FragDenStaat, "SPD und Union planen Abschaffung des IFG" (2./3. Juli 2026)</div>
+    <div>→ Greenpeace Deutschland, "Massiver Schlag gegen Transparenz und Beteiligungsrechte" (2. Juli 2026)</div>
+    <div>→ Koalitionsausschuss-Beschluss "Ein Programm für Aufschwung und Beschäftigung" (2. Juli 2026), Punkte 14 und 32</div>
+    <div>→ Datenschutzkonferenz (DSK), Orientierungshilfe Smart Meter</div>
+    <div>→ Messstellenbetriebsgesetz (MsbG), §§49–75</div>
+    <div>→ Bundesamt für Sicherheit in der Informationstechnik (BSI), Schutzprofile Smart-Meter-Gateway</div>
+  </div>
+  <div style="margin-top: 1.5rem; color: var(--accent);">
+    dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.
+  </div>
+  <div style="margin-top: 0.5rem;">
+    Alle Angaben basieren auf öffentlich zugänglichen Quellen. Spekulation ist als solche gekennzeichnet. Motive werden nicht zugeschrieben. Schlussfolgerungen ziehen die Leser selbst.
+  </div>
+</footer>
+
+</body>
+</html>

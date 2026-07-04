@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baader-Meinhof International: Die RAF und ihre palästinensische Allianz — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --amber: #e8c547;
+    --box-bg: #1a1a2e;
+    --text: #e4e4e7;
+    --text-dim: #a1a1aa;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --grey: #9ca3af;
+    --red: #f87171;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 6rem;
+  }
+
+  .kicker {
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin: 0 0 1rem;
+    color: #fafafa;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+
+  .meta {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+    padding: 0.75rem 0;
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    color: var(--amber);
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--amber);
+    padding-left: 0.75rem;
+  }
+
+  h3 {
+    font-size: 1.15rem;
+    color: #fafafa;
+    margin-top: 2rem;
+  }
+
+  p { margin: 0 0 1.3rem; }
+
+  a { color: var(--amber); }
+
+  .tag {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.72rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.1rem 0.45rem;
+    border-radius: 3px;
+    white-space: nowrap;
+    display: inline-block;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.12); color: var(--green); border: 1px solid rgba(74,222,128,0.4); }
+  .tag-extrapolation { background: rgba(251,146,60,0.12); color: var(--orange); border: 1px solid rgba(251,146,60,0.4); }
+  .tag-offen { background: rgba(156,163,175,0.12); color: var(--grey); border: 1px solid rgba(156,163,175,0.4); }
+  .tag-vt { background: rgba(248,113,113,0.12); color: var(--red); border: 1px solid rgba(248,113,113,0.4); }
+
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--amber);
+    padding: 1.2rem 1.4rem;
+    margin: 1.8rem 0;
+    font-size: 0.95rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--amber);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .timeline {
+    margin: 2rem 0;
+    border-left: 2px solid #3f3f46;
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.8rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.95rem;
+    top: 0.35rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+  .timeline-date {
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--amber);
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .person-card {
+    background: var(--box-bg);
+    border: 1px solid #3f3f46;
+    border-radius: 4px;
+    padding: 1rem 1.2rem;
+    margin: 1.2rem 0;
+  }
+  .person-card .name {
+    font-weight: bold;
+    color: #fafafa;
+    font-size: 1.05rem;
+  }
+  .person-card .role {
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--amber);
+    font-size: 0.8rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1.8rem 0;
+  }
+  .stat {
+    background: var(--box-bg);
+    border: 1px solid #3f3f46;
+    border-radius: 4px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat .num {
+    font-size: 1.7rem;
+    color: var(--amber);
+    font-weight: bold;
+    display: block;
+  }
+  .stat .label {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 0.3rem;
+  }
+
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #fafafa;
+    border-left: 3px solid var(--amber);
+    padding-left: 1.3rem;
+    margin: 2rem 0;
+  }
+  .pull-quote .attr {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    font-style: normal;
+    display: block;
+    margin-top: 0.6rem;
+  }
+
+  .warn-box {
+    background: rgba(248,113,113,0.08);
+    border: 1px solid rgba(248,113,113,0.35);
+    border-radius: 4px;
+    padding: 1rem 1.3rem;
+    margin: 1.8rem 0;
+    font-size: 0.95rem;
+  }
+  .warn-box .label {
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--red);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #27272a;
+  }
+  .closing p {
+    font-style: italic;
+    color: var(--text-dim);
+  }
+
+  .footnotes {
+    margin-top: 3rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    border-top: 1px solid #27272a;
+    padding-top: 1.5rem;
+  }
+  .footnotes ol {
+    padding-left: 1.2rem;
+  }
+  .footnotes li {
+    margin-bottom: 0.6rem;
+  }
+
+  @media (max-width: 480px) {
+    .stat-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">Dossier · Linksterrorismus &amp; internationale Vernetzung</div>
+  <h1>Baader-Meinhof International: Die RAF und ihre palästinensische Allianz</h1>
+  <div class="subtitle">Wie aus Stadtguerilla-Anfängern in Westberlin eine international ausgebildete und logistisch unterstützte Terrororganisation wurde — und was das über den Begriff „gemeinsame Sache“ verrät.</div>
+  <div class="meta">
+    <span>dunkelfeld.report</span>
+    <span>Primärquellen: bpb, Bundestag, Wikipedia/Standardliteratur</span>
+    <span>Lesezeit ca. 9 Min.</span>
+  </div>
+
+  <p>Wenn heute über die Rote Armee Fraktion gesprochen wird, dominiert meist das nationale Bild: Schleyer-Entführung, Stammheim, Deutscher Herbst. Was in der öffentlichen Erinnerung oft in den Hintergrund tritt, ist die internationale Infrastruktur, ohne die die RAF in ihrer bekannten Form nicht hätte operieren können. <span class="tag tag-belegt">BELEGT</span> Von der ersten Generation an unterhielt die RAF eine enge, funktionierende Kooperation mit palästinensischen Gruppen — allen voran der Volksfront zur Befreiung Palästinas (PFLP). Diese Zusammenarbeit war keine Randnotiz, sondern nach Einschätzung von Historikern für die Handlungsfähigkeit der deutschen Gruppe „crucially important"<sup>[1]</sup>.</p>
+
+  <h2>Der Anfang: Jordanien, Sommer 1970</h2>
+
+  <p>Nur wenige Wochen nach der gewaltsamen Befreiung Andreas Baaders aus der Haft — dem inoffiziellen Gründungsdatum der RAF — reisten Baader, Gudrun Ensslin, Ulrike Meinhof, Horst Mahler und rund ein Dutzend weitere Personen nach Jordanien. <span class="tag tag-belegt">BELEGT</span> Dort, in einem Ausbildungslager der Fatah, erhielten sie eine militärische Grundausbildung: Waffenkunde, Schießen, waffenloser Kampf, Handgranatenwurf, Sprengstoffherstellung, Kampftaktik<sup>[2]</sup>.</p>
+
+  <div class="source-box">
+    <span class="label">Primärquelle</span>
+    Die Bundeszentrale für politische Bildung bewertet dieses Training als „Meilenstein in der Entwicklung des Terrorismus", da hier erstmals eine Terrorgruppe eine andere mit abweichenden Zielen und abweichender Nationalität ausgebildet habe<sup>[2]</sup>.
+  </div>
+
+  <p>Die Vorgeschichte reicht noch etwas weiter zurück: Die Vorläuferorganisation „Tupamaros Westberlin" wurde von der palästinensischen Befreiungsbewegung faktisch mitbegründet. Ihr Anführer Rainer Kunzelmann hatte bereits im September 1969 zusammen mit anderen bei der Fatah in Jordanien den Umgang mit Waffen erlernt — ein Kontakt, der die Ideologie der Gruppe messbar verschob: Der israelisch-palästinensische Konflikt rückte für sie vor den Vietnamkrieg<sup>[2]</sup>.</p>
+
+  <h2>Die Ausbaustufe: PFLP, Wadi Haddad und der KGB</h2>
+
+  <p>Nach den ersten Kontakten zur Fatah suchte die RAF gezielt die Nähe zur PFLP — insbesondere zu deren Chef für Auslandsoperationen, Wadi Haddad, der wiederum vom sowjetischen KGB unterstützt wurde. <span class="tag tag-belegt">BELEGT</span> In palästinensischen Lagern — zunächst in Jordanien, nach dem „Schwarzen September" 1970 im Südjemen, zuletzt im Libanon — wurden RAF-Mitglieder neben Angehörigen der ETA, der IRA und der Irischen Nationalen Befreiungsarmee ausgebildet<sup>[2]</sup>.</p>
+
+  <div class="stat-grid">
+    <div class="stat">
+      <span class="num">≥ 10 %</span>
+      <span class="label">geschätzter Anteil deutscher Terroristen mit Palästinenser-Training (Schätzung 1981)<sup>[2]</sup></span>
+    </div>
+    <div class="stat">
+      <span class="num">3</span>
+      <span class="label">Länder mit RAF-Ausbildungslagern: Jordanien, Südjemen, Libanon<sup>[2]</sup></span>
+    </div>
+  </div>
+
+  <p><span class="tag tag-extrapolation">EXTRAPOLATION</span> Die bpb selbst merkt an, dass der tatsächliche Anteil der in palästinensischen Lagern ausgebildeten deutschen Linksterroristen „weit höher" gelegen haben dürfte als die zeitgenössische Schätzung von 1981<sup>[2]</sup> — eine plausible, aber nicht abschließend quantifizierbare Einordnung.</p>
+
+  <h3>Personen im Zentrum der Kooperation</h3>
+
+  <div class="person-card">
+    <span class="name">Wadi Haddad</span>
+    <span class="role">Leiter Auslandsoperationen, PFLP</span>
+    Zentrale Kontaktperson der RAF innerhalb der palästinensischen Befreiungsbewegung; koordinierte Ausbildung und Logistik für internationale Partnergruppen, unterstützt vom KGB<sup>[2]</sup>.
+  </div>
+
+  <div class="person-card">
+    <span class="name">Ali Hassan Salameh</span>
+    <span class="role">Dolmetscher im RAF-Ausbildungslager, später Drahtzieher des Olympia-Attentats 1972</span>
+    Fungierte im jordanischen Trainingslager als Dolmetscher für Ulrike Meinhof; war später an der Planung des Anschlags von München beteiligt<sup>[3]</sup>.
+  </div>
+
+  <h2>Der Preis der Hilfe: München 1972</h2>
+
+  <p>Die Kooperation war keine Einbahnstraße wohlwollender Gastfreundschaft. <span class="tag tag-belegt">BELEGT</span> Im Mai 1972 kam es Berichten zufolge zu einer Übereinkunft zwischen RAF und palästinensischen sowie japanischen Terroristen, sich künftig gegenseitig zu unterstützen<sup>[2]</sup>. Als die Gruppe „Schwarzer September" wenig später die israelische Olympiamannschaft in München überfiel, forderte sie neben der Freilassung von 234 in Israel inhaftierten Palästinensern ausdrücklich auch die Freilassung von Baader und Meinhof<sup>[2]</sup>.</p>
+
+  <div class="pull-quote">
+    Ulrike Meinhof rechtfertigte das Attentat von München in einem eigenen Text im Namen der RAF — Teile davon werden von Historikern und Zeitzeugen bis heute als eindeutig antisemitisch eingeordnet.
+    <span class="attr">— eingeordnet nach Sekundärquellen zur RAF-Rezeption<sup>[3]</sup></span>
+  </div>
+
+  <div class="warn-box">
+    <span class="label">Einordnung</span>
+    Diese Position war innerhalb der eigenen linken Szene keineswegs unumstritten: Der Politiker und ehemalige Realo-Grüne Thomas Ebermann bezeichnete Meinhofs Text Jahrzehnte später öffentlich als „grauenhaft"<sup>[3]</sup>.
+  </div>
+
+  <h2>Chronik der Eskalation</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-date">1970</span>
+      Ausbildung von Baader, Ensslin, Meinhof, Mahler u.a. im Fatah-Lager in Jordanien. Erste Kontaktaufnahme Meinhofs mit dem DDR-Ministerium für Staatssicherheit kurz vor der Abreise<sup>[4]</sup>.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">September 1970</span>
+      „Schwarzer September": Bürgerkriegsähnliche Kämpfe zwischen jordanischer Armee und PLO-Milizen. RAF-Kooperation verlagert sich in der Folge zunehmend zur PFLP und in andere Länder<sup>[2]</sup>.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Mai 1972</span>
+      Vereinbarung gegenseitiger Unterstützung zwischen RAF, palästinensischen und japanischen Gruppen<sup>[2]</sup>.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">September 1972</span>
+      Anschlag von „Schwarzer September" auf die israelische Olympiamannschaft in München; Forderung nach Freilassung von Baader und Meinhof als Nebenbedingung<sup>[2]</sup>.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Februar 1975</span>
+      Entführung des Berliner CDU-Vorsitzenden Peter Lorenz durch die „Bewegung 2. Juni". Freigepresste Häftlinge werden anschließend in den Südjemen ausgeflogen — möglich durch bestehende PFLP-Kontakte<sup>[2]</sup>.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">1976</span>
+      Geplanter, nicht ausgeführter Abschuss eines israelischen Flugzeugs in Nairobi durch ein gemischt deutsch-palästinensisches Kommando<sup>[2]</sup>.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">13.–18. Oktober 1977</span>
+      Entführung der Lufthansa-Maschine „Landshut" durch ein mit der RAF kooperierendes PFLP-Kommando, um die inhaftierte RAF-Führung freizupressen. Geiselbefreiung durch GSG 9 in Mogadischu; parallel dazu die „Todesnacht von Stammheim"<sup>[5]</sup>.
+    </div>
+  </div>
+
+  <h2>Die zweite Schiene: Kontakte zum MfS</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Parallel zur palästinensischen Verbindung unterhielt die RAF Kontakte zum ostdeutschen Ministerium für Staatssicherheit — erstmals dokumentiert am 17. August 1970, als Ulrike Meinhof einen MfS-Mitarbeiter kontaktierte, kurz bevor sie nach Jordanien aufbrach<sup>[4]</sup>. Historiker verweisen auf drei gemeinsame Nenner: die Ablehnung des „euroamerikanischen Neofaschismus", eine antizionistische, teils antisemitische Grundhaltung gegenüber Israel, sowie freundschaftliche Beziehungen beider Seiten zu „antiimperialistischen" und „nationalen Befreiungsbewegungen", insbesondere palästinensischen Gruppen<sup>[4]</sup>.</p>
+
+  <p><span class="tag tag-offen">OFFEN</span> Trotz dieser ideologischen Nähe kam es laut Forschungsstand nur zögerlich zu konkreter operativer Kooperation zwischen MfS und RAF — die DDR-Führung fürchtete, selbst zum Anschlagsziel westeuropäischer Stadtguerilla-Gruppen zu werden<sup>[4]</sup>.</p>
+
+  <h2>Was bleibt — und was nicht belegt ist</h2>
+
+  <p>Die RAF erklärte 1998 ihre Selbstauflösung. <span class="tag tag-belegt">BELEGT</span> 2011 wurde das letzte inhaftierte Mitglied aus der Haft entlassen. 2024 wurde mit Daniela Klette nach jahrzehntelanger Fahndung eine der letzten untergetauchten Angehörigen gefasst; nach zwei weiteren wird weiterhin gesucht<sup>[5]</sup>. Diese Fahndungserfolge sind Aufarbeitung einer historisch abgeschlossenen Organisation — kein Hinweis auf eine bestehende Struktur.</p>
+
+  <div class="warn-box">
+    <span class="label">Klare Abgrenzung</span>
+    Für eine bis heute fortbestehende organisatorische Verbindung zwischen ehemaligen RAF-Kreisen und palästinensischen Gruppen gibt es keine belegte Quellenlage. Was existiert, ist etwas anderes: eine lose ideologische Anschlussfähigkeit zwischen Teilen der heutigen linksextremen Szene und propalästinensischen Positionen. Das ist ein eigenständiges, aktuelles Phänomen — keine Fortsetzung der historischen RAF-PFLP-Achse der 1970er und 80er Jahre. Beides zu vermischen wäre eine nicht durch Quellen gedeckte Verkürzung.
+  </div>
+
+  <div class="closing">
+    <p><em>Wie viele weitere westeuropäische Terrorgruppen der 1970er Jahre verdanken ihre operative Handlungsfähigkeit palästinensischer Ausbildungsinfrastruktur — und wie ist es zu bewerten, dass diese internationale Dimension des deutschen Linksterrorismus in der öffentlichen Erinnerung heute so viel weniger Raum einnimmt als die nationalen Ereignisse des Deutschen Herbstes?</em></p>
+  </div>
+
+  <div class="footnotes">
+    <ol>
+      <li>His-Online, Forschungsprojekt „Die RAF und der internationale Terrorismus. Eine Chronik" — his-online.de</li>
+      <li>Bundeszentrale für politische Bildung, „Baader-Meinhof international?", Geschichte der RAF — bpb.de</li>
+      <li>Zeitgeschichtliche Sekundärliteratur zur RAF-Rezeption und zum Schwarzer-September-Attentat</li>
+      <li>Zeitgeschichte-online, „Die Beziehungen zwischen der Roten Armee Fraktion (RAF) und dem Ministerium für Staatssicherheit (MfS) in der DDR" — zeitgeschichte-online.de</li>
+      <li>Wikipedia, „Rote Armee Fraktion" (mit Verweis auf Standardliteratur, u.a. Klaus Pflieger, Butz Peters) — de.wikipedia.org</li>
+    </ol>
+  </div>
+
+</div>
+</body>
+</html>

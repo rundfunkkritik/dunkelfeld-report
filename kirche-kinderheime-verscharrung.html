@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Die verscharrten Kinder | dunkelfeld.report</title>
+<style>
+  :root{
+    --bg:#09090b;
+    --surface:#111114;
+    --surface2:#1a1a2e;
+    --border:#1e1e24;
+    --text:#e8e8ec;
+    --muted:#8a8a96;
+    --accent:#e8c547;
+    --belegt:#4caf50;
+    --extrapolation:#e8974a;
+    --offen:#8a8a96;
+    --vt:#e05a5a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:Georgia,'Times New Roman',serif;
+    margin:0;
+    padding:0;
+    line-height:1.8;
+    font-size:1.1rem;
+  }
+  header.top{
+    border-bottom:1px solid var(--border);
+    padding:1.2rem 1.5rem;
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    position:sticky;
+    top:0;
+    background:rgba(9,9,11,0.95);
+    backdrop-filter:blur(6px);
+    z-index:100;
+  }
+  header.top .dot{width:8px;height:8px;background:var(--accent);border-radius:50%;flex-shrink:0;}
+  header.top .label{
+    font-family:'Courier New',monospace;
+    font-size:0.72rem;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+  }
+  header.top .stand{margin-left:auto;font-family:'Courier New',monospace;font-size:0.68rem;color:var(--muted);}
+
+  main{max-width:720px;margin:0 auto;padding:0 1.5rem;}
+
+  .kicker{
+    font-family:'Courier New',monospace;
+    font-size:0.75rem;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    margin-top:3rem;
+  }
+  h1{
+    font-size:clamp(2.2rem,6vw,3.1rem);
+    line-height:1.15;
+    margin:1rem 0 0.5rem;
+    font-weight:700;
+  }
+  .subtitle{
+    color:var(--muted);
+    font-size:1.2rem;
+    margin-bottom:2.5rem;
+    max-width:600px;
+  }
+
+  h2{
+    font-size:1.6rem;
+    margin-top:3.5rem;
+    margin-bottom:1rem;
+    border-left:3px solid var(--accent);
+    padding-left:0.9rem;
+  }
+  h2 .flag{font-size:1.1rem;margin-right:0.3rem;}
+  h3{
+    color:var(--accent);
+    font-family:'Courier New',monospace;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    font-size:0.95rem;
+    margin-top:2rem;
+  }
+  p{margin:1.1rem 0;}
+  strong{color:var(--text);}
+
+  .tag{
+    display:inline-block;
+    font-family:'Courier New',monospace;
+    font-size:0.68rem;
+    font-weight:700;
+    letter-spacing:0.06em;
+    padding:0.15rem 0.5rem;
+    border-radius:3px;
+    vertical-align:middle;
+    margin-right:0.4rem;
+  }
+  .tag-belegt{ background:rgba(76,175,80,0.15); color:var(--belegt); border:1px solid rgba(76,175,80,0.4);}
+  .tag-extrapolation{ background:rgba(232,151,74,0.15); color:var(--extrapolation); border:1px solid rgba(232,151,74,0.4);}
+  .tag-offen{ background:rgba(138,138,150,0.15); color:var(--offen); border:1px solid rgba(138,138,150,0.4);}
+
+  .source-box{
+    background:var(--surface2);
+    border-left:3px solid var(--accent);
+    padding:1.1rem 1.3rem;
+    margin:1.6rem 0;
+    font-size:0.95rem;
+  }
+  .source-box .src-label{
+    font-family:'Courier New',monospace;
+    font-size:0.7rem;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    margin-bottom:0.4rem;
+    display:block;
+  }
+
+  .stat-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:1.5rem;
+    margin:2rem 0;
+  }
+  .stat{ border-left:3px solid var(--accent); padding-left:1rem; }
+  .stat .value{ font-size:1.7rem; font-weight:700; color:var(--accent); line-height:1.1; }
+  .stat .label{ font-size:0.85rem; color:var(--text); margin-top:0.4rem; }
+  .stat .src{ font-family:'Courier New',monospace; font-size:0.68rem; color:var(--muted); margin-top:0.3rem; }
+
+  .timeline{ margin:2rem 0; border-left:2px solid var(--border); padding-left:1.5rem; }
+  .timeline-item{ position:relative; margin-bottom:1.6rem; }
+  .timeline-item::before{
+    content:""; position:absolute; left:-1.62rem; top:0.35rem;
+    width:9px; height:9px; border-radius:50%; background:var(--accent);
+  }
+  .timeline-year{ font-family:'Courier New',monospace; color:var(--accent); font-size:0.85rem; font-weight:700; }
+  .timeline-text{ font-size:0.98rem; margin-top:0.2rem; }
+
+  table{ width:100%; border-collapse:collapse; margin:1.8rem 0; font-size:0.95rem; }
+  th,td{ text-align:left; padding:0.6rem 0.8rem; border-bottom:1px solid var(--border); }
+  th{ font-family:'Courier New',monospace; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent); }
+
+  blockquote{
+    border-left:3px solid var(--accent);
+    margin:2rem 0;
+    padding:0.2rem 0 0.2rem 1.3rem;
+    font-style:italic;
+    color:var(--text);
+    font-size:1.15rem;
+  }
+
+  .warn-box{
+    background:rgba(224,90,90,0.08);
+    border:1px solid rgba(224,90,90,0.3);
+    border-radius:4px;
+    padding:1rem 1.3rem;
+    margin:1.8rem 0;
+    font-size:0.95rem;
+  }
+  .warn-box .warn-label{
+    font-family:'Courier New',monospace; color:var(--vt); font-size:0.72rem;
+    text-transform:uppercase; letter-spacing:0.08em; display:block; margin-bottom:0.4rem;
+  }
+
+  .closing{ margin-top:3.5rem; padding-top:2rem; border-top:1px solid var(--border); }
+  .closing p{ font-style:italic; color:var(--muted); }
+
+  footer.foot{
+    max-width:720px; margin:4rem auto 3rem; padding:2rem 1.5rem 0;
+    border-top:1px solid var(--border);
+    font-family:'Courier New',monospace; font-size:0.75rem; color:var(--muted); line-height:1.9;
+  }
+  footer.foot a{ color:var(--accent); text-decoration:none; }
+
+  .crossref{ margin-top:2.5rem; font-family:'Courier New',monospace; font-size:0.8rem; color:var(--muted); }
+  .crossref span{ color:var(--accent); }
+
+  .country-nav{
+    display:flex; gap:0.5rem; flex-wrap:wrap; margin:2rem 0;
+    font-family:'Courier New',monospace; font-size:0.75rem;
+  }
+  .country-nav a{
+    color:var(--muted); text-decoration:none; border:1px solid var(--border);
+    padding:0.4rem 0.8rem; border-radius:3px;
+  }
+  .country-nav a:hover{ color:var(--accent); border-color:var(--accent); }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="dot"></div>
+  <div class="label">dunkelfeld.report · dokumentation</div>
+  <div class="stand">Stand: Juli 2026</div>
+</header>
+
+<main>
+
+  <div class="kicker">Kirche &amp; Macht — Teil 2</div>
+  <h1>Die verscharrten Kinder</h1>
+  <p class="subtitle">Irland, Kanada, Deutschland: In den letzten Jahren wurden in mehreren Ländern staatliche und kirchliche Untersuchungskommissionen eingesetzt, um kirchlich betriebene Kinderheime aufzuarbeiten. Die Ergebnisse unterscheiden sich stark in Schwere und Beweislage — eine saubere Trennung zwischen amtlich festgestellten Fakten und noch ungeklärten Vorwürfen ist hier wichtiger als bei fast jedem anderen Thema dieser Reihe.</p>
+
+  <div class="warn-box">
+    <span class="warn-label">Hinweis zur Quellenlage</span>
+    Dieser Artikel behandelt drei rechtlich und faktisch sehr unterschiedliche Fallkomplexe. Popkulturelle Begriffe wie "böse Nonnen" verwischen diese Unterschiede. Wo Zahlen zwischen Erstberichten, Medien und offiziellen Abschlussberichten voneinander abweichen, wird dies explizit ausgewiesen.
+  </div>
+
+  <div class="country-nav">
+    <a href="#irland">→ Irland</a>
+    <a href="#kanada">→ Kanada</a>
+    <a href="#deutschland">→ Deutschland</a>
+    <a href="#muster">→ Strukturmuster</a>
+  </div>
+
+  <h2 id="irland"><span class="flag">🇮🇪</span>1. Irland: Tuam und die Magdalenen-Wäschereien</h2>
+
+  <h3>Bon Secours Mother and Baby Home, Tuam</h3>
+  <p><span class="tag tag-belegt">BELEGT</span>Von 1925 bis 1961 betrieb der katholische Orden der Bon-Secours-Schwestern im Auftrag des Galway County Council ein Heim für unverheiratete Mütter und ihre Kinder in Tuam, Irland. Die Historikerin Catherine Corless deckte 2014 auf Basis von Sterbeurkunden auf, dass in dieser Zeit <strong>796 Kinder</strong> im Heim gestorben waren, ohne dass entsprechende Begräbnisstätten dokumentiert waren. Die 2014 eingesetzte staatliche <em>Mother and Baby Homes Commission of Investigation</em> kam in ihrem Abschlussbericht 2021 zu einer höheren, amtlich festgestellten Zahl: <strong>978 verstorbene Kinder</strong> zwischen 1921 und Schließung 1961.</p>
+
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="value">978</div>
+      <div class="label">amtlich festgestellte Todesfälle im Tuam-Heim (Commission-Abschlussbericht 2021)</div>
+      <div class="src">Quelle: Irish Times, Bericht der Commission of Investigation</div>
+    </div>
+    <div class="stat">
+      <div class="value">80%</div>
+      <div class="label">der verstorbenen Kinder waren jünger als ein Jahr</div>
+      <div class="src">Quelle: Commission of Investigation, Abschlussbericht</div>
+    </div>
+    <div class="stat">
+      <div class="value">2017–2026</div>
+      <div class="label">Exhumierung und forensische Untersuchung des Grabungsorts laufend</div>
+      <div class="src">Quelle: Irish Times, Feb. 2026</div>
+    </div>
+  </div>
+
+  <p>Eine amtliche Ausgrabung 2016/17 bestätigte menschliche Überreste in einem stillgelegten Klärgruben-Komplex auf dem Gelände; die Altersbestimmung reichte von 35 Fötalwochen bis 2–3 Jahren. Eine vollständige forensische Exhumierung begann 2023/2025 und läuft bis heute (Stand Februar 2026: weitere 22 Überreste identifiziert). Die Todesursachen waren laut Kommission überwiegend Frühgeburtlichkeit und Atemwegsinfektionen — entgegen der zuvor dominanten öffentlichen Annahme, Mangelernährung sei die Hauptursache gewesen (nur 1,9 % der Todesfälle wurden mit Marasmus in Verbindung gebracht).</p>
+
+  <div class="source-box">
+    <span class="src-label">Quelle</span>
+    Mother and Baby Homes Commission of Investigation, Abschlussbericht 2021; Irish Times, "Commission finds that 978 children died at Tuam facility" (Jan. 2021); Irish Times, "22 more sets of infant remains found" (Feb. 2026)
+  </div>
+
+  <h3>Magdalenen-Wäschereien</h3>
+  <p><span class="tag tag-belegt">BELEGT</span>Parallel dazu betrieben vier katholische Ordensgemeinschaften in Irland bis 1996 sogenannte Magdalenen-Wäschereien — Einrichtungen, in denen Frauen (oft unverheiratete Mütter, aber auch als "unangepasst" geltende Frauen und Mädchen) unbezahlte oder gering bezahlte Zwangsarbeit verrichteten. Der 2013 veröffentlichte <strong>McAleese-Report</strong>, eine staatliche Untersuchung nach einer Rüge des UN-Ausschusses gegen Folter, stellte <strong>direkte staatliche Beteiligung in allen fünf untersuchten Bereichen</strong> fest: Aufnahmewege, Arbeitsbedingungen, staatliche Finanzierung, Entlassungswege sowie Tod, Bestattung und Exhumierung.</p>
+
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="value">10.012</div>
+      <div class="label">Frauen zwischen 1922–1996 in den 10 untersuchten Wäschereien registriert</div>
+      <div class="src">Quelle: McAleese-Report 2013</div>
+    </div>
+    <div class="stat">
+      <div class="value">&gt;25%</div>
+      <div class="label">der Aufnahmen erfolgten direkt über staatliche Stellen (Sozialdienste, Justiz, Psychiatrie)</div>
+      <div class="src">Quelle: Dáil Éireann, Debatte 19.2.2013</div>
+    </div>
+    <div class="stat">
+      <div class="value">50%</div>
+      <div class="label">der Frauen waren bei Einweisung unter 23 Jahre alt</div>
+      <div class="src">Quelle: McAleese-Report 2013</div>
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <span class="warn-label">Kontroverse Einordnung</span>
+    Der McAleese-Report selbst ist umstritten: Überlebendenverbände (Justice for Magdalenes) kritisieren, der Bericht habe Zeugenaussagen zu harten Haftbedingungen und Zwangsarbeit sprachlich verharmlost und die vollständige Erfassung des Ausmaßes verfehlt. Kirchennahe Stimmen (z. B. Catholic League) verweisen umgekehrt darauf, dass frühere Schätzungen von bis zu 30.000 betroffenen Frauen durch die amtlich belegten 10.012 widerlegt seien. <span class="tag tag-offen">OFFEN</span> bleibt damit die Bewertung der Schwere der Bedingungen; <span class="tag tag-belegt">BELEGT</span> ist die direkte staatliche Beteiligung und die fehlende Einhaltung von Lohn- und Sozialversicherungsstandards bei den staatlichen Aufträgen an die Wäschereien.
+  </div>
+
+  <div class="source-box">
+    <span class="src-label">Quelle</span>
+    Report of the Inter-Departmental Committee to establish the facts of State involvement with the Magdalen Laundries (McAleese Report), 5.2.2013; Dáil Éireann Debatte 19.2.2013; TheJournal.ie, 5.2.2013
+  </div>
+
+  <h2 id="kanada"><span class="flag">🇨🇦</span>2. Kanada: Residential Schools</h2>
+  <p><span class="tag tag-belegt">BELEGT</span>Von den 1880er-Jahren bis 1996 betrieb der kanadische Staat gemeinsam mit mehreren Kirchen ein System von rund 130–150 "Residential Schools", in die über <strong>150.000 indigene Kinder</strong> zwangsweise eingewiesen wurden, um sie zu assimilieren. Rund 60–70 % dieser Schulen wurden von katholischen Orden und Diözesen betrieben, der Rest von anglikanischen, presbyterianischen, methodistischen und United-Church-Trägern — finanziert und angeordnet vom Staat.</p>
+
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="value">150.000+</div>
+      <div class="label">indigene Kinder in Residential Schools, 1880er–1996</div>
+      <div class="src">Quelle: Truth and Reconciliation Commission (TRC)</div>
+    </div>
+    <div class="stat">
+      <div class="value">3.200–4.100+</div>
+      <div class="label">von der TRC dokumentierte Todesfälle (Register wächst mit neuen Archivfunden)</div>
+      <div class="src">Quelle: TRC Final Report, Vol. 4 (2015)</div>
+    </div>
+    <div class="stat">
+      <div class="value">×5</div>
+      <div class="label">Sterblichkeitsrate indigener Kinder in den Schulen gegenüber dem nationalen Durchschnitt</div>
+      <div class="src">Quelle: TRC-Untersuchung, zit. in America Magazine</div>
+    </div>
+  </div>
+
+  <p>Die kanadische Truth and Reconciliation Commission (TRC, 2008–2015) stufte das System 2015 als "kulturellen Genozid" ein; das kanadische Unterhaus stimmte 2022 einstimmig für die Einordnung als Genozid. In 32 % der dokumentierten Todesfälle war der Name des Kindes nicht erfasst, in 49 % fehlte die Todesursache — ein Beleg für systematische Nachlässigkeit in der Aktenführung, nicht notwendigerweise für vorsätzliche Tötung.</p>
+
+  <div class="warn-box">
+    <span class="warn-label">Wichtige Differenzierung: "Gräber" vs. "Anomalien"</span>
+    Ab Mai 2021 meldeten mehrere First Nations mittels Bodenradar (Ground Penetrating Radar, GPR) hunderte "wahrscheinliche" oder "mögliche" Grabstellen an ehemaligen Schulstandorten (u. a. Kamloops: ~200, Marieval: ~600–751). Diese GPR-Befunde sind <span class="tag tag-offen">OFFEN</span>: Es handelt sich um Bodenanomalien, keine bestätigten, exhumierten menschlichen Überreste — mit Stand 2024/2026 wurden an den meisten dieser Standorte noch keine Exhumierungen durchgeführt. Das ändert nichts an den amtlich <span class="tag tag-belegt">BELEGT</span>en TRC-Zahlen zu tatsächlich registrierten Todesfällen (3.200–4.100+), die auf Archivmaterial beruhen. Beide Fakten stehen nebeneinander: Die dokumentierte Zahl der Todesfälle ist gesichert: die genaue Lage aller Gräber ist es an vielen Standorten noch nicht.
+  </div>
+
+  <div class="source-box">
+    <span class="src-label">Quelle</span>
+    Truth and Reconciliation Commission of Canada, Final Report Vol. 4 "Missing Children and Unmarked Burials" (2015); CBC News, 22.7.2021; America Magazine, 27.9.2021; National Catholic Register, 18.10.2024 (zur GPR-Kontroverse); Al Jazeera, 27.6.2021</div>
+
+  <p>2022 sprach Papst Franziskus bei einem Besuch in Kanada eine Entschuldigung für das Verhalten kirchlicher Mitglieder aus, ohne die "Massengräber"-Behauptungen direkt zu adressieren. Die Canadian Conference of Catholic Bishops richtete 2021 einen mit 30 Mio. CAD dotierten Indigenous Reconciliation Fund ein (Stand 2025: ca. 21,2 Mio. CAD eingesammelt).</p>
+
+  <h2 id="deutschland"><span class="flag">🇩🇪</span>3. Deutschland: Konfessionelle Heimerziehung</h2>
+  <p><span class="tag tag-belegt">BELEGT</span>In der Bundesrepublik existiert kein Tuam- oder Kamloops-Äquivalent hinsichtlich Massenbestattungen — aber ein gut dokumentiertes, eigenständiges Kapitel systematischen Missbrauchs in <strong>konfessionellen Kinderheimen</strong>. Auslöser der öffentlichen Aufarbeitung war 2006 das Buch <em>"Schläge im Namen des Herrn"</em> von Peter Wensierski. Die 2011 veröffentlichte Studie <strong>"Konfessionelle Heimerziehung in der frühen Bundesrepublik (1949–1972)"</strong> der Ruhr-Universität Bochum lieferte die erste wissenschaftlich fundierte Gesamtbewertung.</p>
+
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="value">300 Mio. €</div>
+      <div class="label">Hilfsfonds "Heimerziehung in der BRD 1949–1975"</div>
+      <div class="src">Quelle: Diakonie Deutschland</div>
+    </div>
+    <div class="stat">
+      <div class="value">364 Mio. €</div>
+      <div class="label">Hilfsfonds "Heimerziehung in der DDR 1949–1975"</div>
+      <div class="src">Quelle: Diakonie Deutschland</div>
+    </div>
+    <div class="stat">
+      <div class="value">~1/6</div>
+      <div class="label">Anteil der evangelischen Kirche an der Finanzierung beider Fonds</div>
+      <div class="src">Quelle: Diakonie Deutschland</div>
+    </div>
+  </div>
+
+  <p>Die Bochum-Studie attestierte den kirchlichen Heimen sowohl "Fälle eklatanten Versagens und großer Schuld" als auch "ein überdurchschnittliches Maß an Engagement der Mitarbeitenden" — eine differenzierte Einordnung, die im öffentlichen Diskurs oft verkürzt wiedergegeben wird. 2011 bat die evangelische Kirche mit ihrer Diakonie die Betroffenen offiziell um Vergebung. Der "Runde Tisch Heimerziehung" richtete 2012 die beiden genannten Hilfsfonds ein, aus denen Betroffene bis 2014 Anträge stellen konnten.</p>
+
+  <div class="warn-box">
+    <span class="warn-label">Klare Trennung notwendig</span>
+    Die in Deutschland ebenfalls dokumentierten Zwangsadoptionen betrafen überwiegend zwei getrennte Komplexe: (1) politisch motivierte Zwangsadoptionen in der DDR — ein <strong>staatliches</strong>, nicht kirchliches Vorhaben des SED-Regimes, seit 2019 Gegenstand eines vom Bundestag beauftragten Forschungsprojekts; (2) Adoptionsdruck auf unverheiratete Mütter in der alten Bundesrepublik der 1950er–70er-Jahre, teils über kirchlich getragene Heime vermittelt, aber rechtlich durch weltliche Familiengerichte vollzogen. Eine dem irischen oder kanadischen Fall vergleichbare, spezifisch kirchlich verantwortete Aufdeckung systematischer, verheimlichter Kindstode ist für Deutschland <span class="tag tag-offen">OFFEN</span> — es liegen dazu keine amtlichen Untersuchungsberichte vor, die eine solche Aussage stützen würden.
+  </div>
+
+  <div class="source-box">
+    <span class="src-label">Quelle</span>
+    Diakonie Deutschland, "Heimerziehung in West- und Ostdeutschland zwischen 1949 und 1990"; Ruhr-Universität Bochum, Studie "Konfessionelle Heimerziehung in der frühen Bundesrepublik" (2011); Deutsche Bischofskonferenz / Caritas, Aufarbeitungsprojekte seit 2010; Bundestag hib, "Aufarbeitung der Zwangsadoption in der SBZ/DDR 1945–1989"
+  </div>
+
+  <h2 id="muster">4. Gemeinsames Strukturmuster</h2>
+  <p><span class="tag tag-extrapolation">EXTRAPOLATION</span>Trotz sehr unterschiedlicher Schwere und Beweislage lässt sich ein wiederkehrendes strukturelles Muster über alle drei Länder hinweg erkennen:</p>
+
+  <table>
+    <tr><th>Merkmal</th><th>Irland</th><th>Kanada</th><th>Deutschland</th></tr>
+    <tr><td>Staatliche Finanzierung</td><td>Ja (Grafschaftsräte)</td><td>Ja (Bundesregierung)</td><td>Ja (Jugendämter/Länder)</td></tr>
+    <tr><td>Kirchliche Trägerschaft</td><td>Ja (kath. Orden)</td><td>Ja (überw. kath.)</td><td>Ja (kath. + ev.)</td></tr>
+    <tr><td>Externe, unabhängige Aufsicht</td><td>Faktisch minimal</td><td>Faktisch minimal</td><td>Teilweise vorhanden</td></tr>
+    <tr><td>Amtliche Untersuchung</td><td>Ja (2014–2021)</td><td>Ja (2008–2015)</td><td>Ja (2010–2016)</td></tr>
+    <tr><td>Bestätigte Massengräber</td><td>Ja (Tuam)</td><td><span class="tag tag-offen">OFFEN</span> (GPR, nicht exhumiert)</td><td>Nein / nicht dokumentiert</td></tr>
+  </table>
+
+  <p>Die wiederkehrende Konstellation ist damit weniger "böse Kirche" als eine spezifische <strong>Governance-Lücke</strong>: Der Staat delegierte hoheitliche Fürsorgeaufgaben an kirchliche Träger, finanzierte diese, verzichtete aber über Jahrzehnte auf wirksame externe Kontrolle. Diese Struktur — staatliche Finanzierung ohne staatliche Aufsicht — findet sich in allen drei untersuchten Ländern und ist unabhängig von der jeweiligen Konfession.</p>
+
+  <div class="closing">
+    <p><em>Warum wurde die Aufsichtspflicht des Staates über delegierte Fürsorgeeinrichtungen über Jahrzehnte in mehreren Ländern gleichermaßen vernachlässigt? Und warum unterscheidet sich das öffentliche Aufarbeitungstempo so stark — Irland und Kanada mit vollständigen Kommissionsberichten und Exhumierungen, Deutschland bislang ohne vergleichbare forensische Untersuchung von Kinderfriedhöfen an ehemaligen Heimstandorten?</em></p>
+  </div>
+
+  <div class="crossref">
+    Vorheriger Teil: <span>„Wie die Kirche zu Macht und Reichtum kam"</span> · Nächster Teil: <span>„Vatikanbank"</span> (geplant) · Querverweis: <span>„Kinderschutz-Infrastruktur"</span>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div><strong style="color:var(--text);">Über diese Dokumentation:</strong> BELEGT kennzeichnet Aussagen, die auf amtlichen Untersuchungsberichten, Gerichtsakten oder mehrfach unabhängig bestätigter Primärforschung beruhen. EXTRAPOLATION kennzeichnet strukturell plausible, aber nicht exakt belegbare Verallgemeinerungen. OFFEN kennzeichnet Sachverhalte, zu denen keine forensische Bestätigung oder amtliche Feststellung vorliegt bzw. die zwischen Quellen umstritten sind.</div>
+  <div style="margin-top:1rem;">dunkelfeld.report — Hidden in Plain Sight</div>
+</footer>
+
+</body>
+</html>

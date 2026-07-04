@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wie die Kirche zu Macht und Reichtum kam | dunkelfeld.report</title>
+<style>
+  :root{
+    --bg:#09090b;
+    --surface:#111114;
+    --surface2:#1a1a2e;
+    --border:#1e1e24;
+    --text:#e8e8ec;
+    --muted:#8a8a96;
+    --accent:#e8c547;
+    --belegt:#4caf50;
+    --extrapolation:#e8974a;
+    --offen:#8a8a96;
+    --vt:#e05a5a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:Georgia,'Times New Roman',serif;
+    margin:0;
+    padding:0;
+    line-height:1.8;
+    font-size:1.1rem;
+  }
+  .mono{ font-family:'Courier New',monospace; }
+  header.top{
+    border-bottom:1px solid var(--border);
+    padding:1.2rem 1.5rem;
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    position:sticky;
+    top:0;
+    background:rgba(9,9,11,0.95);
+    backdrop-filter:blur(6px);
+    z-index:100;
+  }
+  header.top .dot{width:8px;height:8px;background:var(--accent);border-radius:50%;flex-shrink:0;}
+  header.top .label{
+    font-family:'Courier New',monospace;
+    font-size:0.72rem;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+  }
+  header.top .stand{margin-left:auto;font-family:'Courier New',monospace;font-size:0.68rem;color:var(--muted);}
+
+  main{max-width:720px;margin:0 auto;padding:0 1.5rem;}
+
+  .kicker{
+    font-family:'Courier New',monospace;
+    font-size:0.75rem;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    margin-top:3rem;
+  }
+  h1{
+    font-size:clamp(2.2rem,6vw,3.1rem);
+    line-height:1.15;
+    margin:1rem 0 0.5rem;
+    font-weight:700;
+  }
+  .subtitle{
+    color:var(--muted);
+    font-size:1.2rem;
+    margin-bottom:2.5rem;
+    max-width:600px;
+  }
+
+  h2{
+    font-size:1.6rem;
+    margin-top:3.5rem;
+    margin-bottom:1rem;
+    border-left:3px solid var(--accent);
+    padding-left:0.9rem;
+  }
+  h3{
+    font-size:1.2rem;
+    margin-top:2rem;
+    color:var(--accent);
+    font-family:'Courier New',monospace;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    font-size:0.95rem;
+  }
+  p{margin:1.1rem 0;}
+  strong{color:var(--text);}
+
+  /* Evidence tags */
+  .tag{
+    display:inline-block;
+    font-family:'Courier New',monospace;
+    font-size:0.68rem;
+    font-weight:700;
+    letter-spacing:0.06em;
+    padding:0.15rem 0.5rem;
+    border-radius:3px;
+    vertical-align:middle;
+    margin-right:0.4rem;
+  }
+  .tag-belegt{ background:rgba(76,175,80,0.15); color:var(--belegt); border:1px solid rgba(76,175,80,0.4);}
+  .tag-extrapolation{ background:rgba(232,151,74,0.15); color:var(--extrapolation); border:1px solid rgba(232,151,74,0.4);}
+  .tag-offen{ background:rgba(138,138,150,0.15); color:var(--offen); border:1px solid rgba(138,138,150,0.4);}
+
+  /* Source box */
+  .source-box{
+    background:var(--surface2);
+    border-left:3px solid var(--accent);
+    padding:1.1rem 1.3rem;
+    margin:1.6rem 0;
+    font-size:0.95rem;
+  }
+  .source-box .src-label{
+    font-family:'Courier New',monospace;
+    font-size:0.7rem;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    margin-bottom:0.4rem;
+    display:block;
+  }
+
+  /* Stat grid */
+  .stat-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:1.5rem;
+    margin:2rem 0;
+  }
+  .stat{
+    border-left:3px solid var(--accent);
+    padding-left:1rem;
+  }
+  .stat .value{
+    font-size:1.8rem;
+    font-weight:700;
+    color:var(--accent);
+    line-height:1;
+  }
+  .stat .label{
+    font-size:0.85rem;
+    color:var(--text);
+    margin-top:0.4rem;
+  }
+  .stat .src{
+    font-family:'Courier New',monospace;
+    font-size:0.68rem;
+    color:var(--muted);
+    margin-top:0.3rem;
+  }
+
+  /* Timeline */
+  .timeline{
+    margin:2rem 0;
+    border-left:2px solid var(--border);
+    padding-left:1.5rem;
+  }
+  .timeline-item{
+    position:relative;
+    margin-bottom:1.6rem;
+  }
+  .timeline-item::before{
+    content:"";
+    position:absolute;
+    left:-1.62rem;
+    top:0.35rem;
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:var(--accent);
+  }
+  .timeline-year{
+    font-family:'Courier New',monospace;
+    color:var(--accent);
+    font-size:0.85rem;
+    font-weight:700;
+  }
+  .timeline-text{font-size:0.98rem;margin-top:0.2rem;}
+
+  /* Comparison table */
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:1.8rem 0;
+    font-size:0.95rem;
+  }
+  th,td{
+    text-align:left;
+    padding:0.6rem 0.8rem;
+    border-bottom:1px solid var(--border);
+  }
+  th{
+    font-family:'Courier New',monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--accent);
+  }
+
+  blockquote{
+    border-left:3px solid var(--accent);
+    margin:2rem 0;
+    padding:0.2rem 0 0.2rem 1.3rem;
+    font-style:italic;
+    color:var(--text);
+    font-size:1.15rem;
+  }
+
+  .warn-box{
+    background:rgba(224,90,90,0.08);
+    border:1px solid rgba(224,90,90,0.3);
+    border-radius:4px;
+    padding:1rem 1.3rem;
+    margin:1.8rem 0;
+    font-size:0.95rem;
+  }
+  .warn-box .warn-label{
+    font-family:'Courier New',monospace;
+    color:var(--vt);
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    display:block;
+    margin-bottom:0.4rem;
+  }
+
+  .closing{
+    margin-top:3.5rem;
+    padding-top:2rem;
+    border-top:1px solid var(--border);
+  }
+  .closing p{font-style:italic;color:var(--muted);}
+
+  footer.foot{
+    max-width:720px;
+    margin:4rem auto 3rem;
+    padding:2rem 1.5rem 0;
+    border-top:1px solid var(--border);
+    font-family:'Courier New',monospace;
+    font-size:0.75rem;
+    color:var(--muted);
+    line-height:1.9;
+  }
+  footer.foot a{color:var(--accent);text-decoration:none;}
+
+  .crossref{
+    margin-top:2.5rem;
+    font-family:'Courier New',monospace;
+    font-size:0.8rem;
+    color:var(--muted);
+  }
+  .crossref span{color:var(--accent);}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="dot"></div>
+  <div class="label">dunkelfeld.report · dokumentation</div>
+  <div class="stand">Stand: Juli 2026</div>
+</header>
+
+<main>
+
+  <div class="kicker">Kirche &amp; Macht — Teil 1</div>
+  <h1>Wie die Kirche zu Macht und Reichtum kam</h1>
+  <p class="subtitle">Der Ablasshandel ist die bekannteste Antwort auf diese Frage — und die unvollständigste. Die eigentliche Grundlage kirchlicher Macht wurde Jahrhunderte früher gelegt: durch Staatsanbindung, verpflichtende Abgaben und eine Erbschaftspraxis, die die Kirche zum größten Grundbesitzer Europas machte. Ein Teil dieser Struktur wirkt bis heute fort — in Form von Zahlungen, die deutsche Steuerzahler auch 2026 noch leisten.</p>
+
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="value">~581 Mio. €</div>
+      <div class="label">jährliche Staatsleistungen an die Kirchen in Deutschland (2023/24)</div>
+      <div class="src">Quelle: Bundestag / Experteninitiative Religionspolitik</div>
+    </div>
+    <div class="stat">
+      <div class="value">12,6 Mrd. €</div>
+      <div class="label">Kirchensteuer-Einnahmen beider großen Kirchen, 2024</div>
+      <div class="src">Quelle: DBK / EKD-Kirchensteuerstatistik 2025</div>
+    </div>
+    <div class="stat">
+      <div class="value">223 Jahre</div>
+      <div class="label">seit dem verfassungsrechtlichen Auftrag zur Ablösung der Staatsleistungen (1803 → 2026)</div>
+      <div class="src">Quelle: Weimarer Reichsverfassung Art. 138 / GG Art. 140</div>
+    </div>
+  </div>
+
+  <h2>1. Die kurze Antwort reicht nicht</h2>
+  <p>Fragt man nach dem Reichtum der katholischen Kirche, fällt fast reflexhaft das Stichwort <strong>Ablasshandel</strong>. Das ist historisch korrekt, aber zeitlich und strukturell nur ein Kapitel unter mehreren — und ein spätes dazu. Der Ablasshandel erreichte seinen Höhepunkt im 15. und frühen 16. Jahrhundert und war der Auslöser der Reformation. Die eigentliche Vermögens- und Machtbasis der Kirche war zu diesem Zeitpunkt aber bereits seit rund 700 Jahren etabliert — über drei andere Mechanismen: <strong>Staatsanbindung, verpflichtende Steuer und Erbschaftspraxis.</strong></p>
+
+  <h2>2. Staatsreligion: Die Konstantinische Wende</h2>
+  <p><span class="tag tag-belegt">BELEGT</span>Mit dem Mailänder Edikt 313 n. Chr. beendete Kaiser Konstantin die Christenverfolgung im Römischen Reich, 380 n. Chr. erhob Kaiser Theodosius I. das Christentum per Edikt von Thessaloniki zur alleinigen Staatsreligion. Ab diesem Zeitpunkt war die Kirche keine verfolgte Minderheitenreligion mehr, sondern Teil der Staatsstruktur — mit allem, was das an Landschenkungen, Steuerprivilegien und politischem Einfluss auf Bischofsstühle mit sich brachte. Dieser Schritt, nicht der Ablasshandel, ist der eigentliche Ursprungspunkt kirchlicher Machtakkumulation im Westen.</p>
+
+  <h2>3. Der Zehnt: Aus freiwilliger Gabe wird Pflichtsteuer</h2>
+  <p><span class="tag tag-belegt">BELEGT</span>Der kirchliche Zehnt — ursprünglich eine freiwillige, biblisch begründete Abgabe — wurde 585 n. Chr. per Synodalbeschluss in eine kirchenrechtliche Pflicht verwandelt. 779 erhob Karl der Große den Zehnt per Reichsgesetz zur staatlich durchsetzbaren Abgabe im gesamten Frankenreich, verpflichtend für alle Grundbesitzer — geistliche wie weltliche. Wer nicht zahlte, riskierte Exkommunikation, Geldstrafe oder im dritten Grad die Zwangsversteigerung des eigenen Hauses.</p>
+
+  <div class="source-box">
+    <span class="src-label">Quelle</span>
+    Erzbistum Köln, Geschichte der Kirchensteuer; KirchensteuerInfo.de, "Vom Kirchenzehnt bis zur Säkularisation"; bpb.de, "Der Zehnte — ein Streifzug durch die Steuergeschichte"
+  </div>
+
+  <p>Das ist der entscheidende Unterschied zum Ablasshandel: Der Zehnt war keine Transaktion, die man umgehen konnte, indem man einfach nicht sündigte oder nicht kaufte. Er war eine <strong>staatlich sanktionierte Zwangsabgabe</strong>, die über Jahrhunderte lief — von 585 bis 1803, also fast 1.220 Jahre.</p>
+
+  <h2>4. "Pro anima": Wie die Kirche zum größten Grundbesitzer wurde</h2>
+  <p><span class="tag tag-extrapolation">EXTRAPOLATION</span>Neben dem Zehnt trug ein zweiter Mechanismus zur Vermögensbildung bei, der in der öffentlichen Wahrnehmung noch stärker unterbelichtet ist als der Zehnt selbst: die Praxis der Landschenkungen und testamentarischen Zuwendungen <em>„pro anima"</em> — für das Seelenheil. Wohlhabende Gläubige vermachten der Kirche im Mittelalter regelmäßig Land, um sich Fürbitten und einen kürzeren Aufenthalt im Fegefeuer zu sichern. Kombiniert mit der wirtschaftlichen Organisationskraft der Klöster — die als „autarke Großbetriebe" auch unwirtliches Land urbar machten und ab dem 11. Jahrhundert zu den ersten Bankinstituten Europas wurden — entstand über Jahrhunderte der größte zusammenhängende Landbesitz des Kontinents.</p>
+
+  <div class="source-box">
+    <span class="src-label">Quelle</span>
+    Haus der Bayerischen Geschichte, "Klöster in Bayern"; Museum Joanneum, "Kirchen und Klöster im Mittelalter" (zur wirtschaftlichen Funktion der Klöster als Grundbesitzer)
+  </div>
+
+  <p>Diese Aussage — die Kirche als größter Grundbesitzer Europas im Hochmittelalter — lässt sich nicht auf eine einzelne Fläche in Hektar beziffern, da flächendeckende Kataster aus dieser Zeit fehlen. Sie ist aber die durchgehende Einschätzung der historischen Forschung zur Grundherrschaft im Mittelalter und wird bis heute auch kirchenintern nicht bestritten.</p>
+
+  <h2>5. Der Bruch: Säkularisation und Reichsdeputationshauptschluss 1803</h2>
+  <p><span class="tag tag-belegt">BELEGT</span>Der entscheidende Einschnitt kam nicht durch die Reformation — die zunächst nur einzelne Territorien betraf —, sondern durch den <strong>Reichsdeputationshauptschluss vom 25. Februar 1803</strong>. Als Ausgleich für linksrheinische Gebietsverluste an Napoleon wurden den betroffenen weltlichen Fürsten rechtsrheinisch kirchliche Territorien zugeschlagen: <strong>vier Erzbistümer, 18 Bistümer und rund 300 Abteien, Stifte und Klöster</strong> wurden enteignet. Insgesamt verloren 25 Fürstbistümer und 44 Reichsabteien ihre staatliche Eigenständigkeit und ihr Vermögen.</p>
+
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="value">4 + 18</div>
+      <div class="label">enteignete Erzbistümer und Bistümer 1803</div>
+      <div class="src">Quelle: fowid.de, Reichsdeputationshauptschluss</div>
+    </div>
+    <div class="stat">
+      <div class="value">~300</div>
+      <div class="label">aufgelöste Abteien, Stifte und Klöster</div>
+      <div class="src">Quelle: fowid.de</div>
+    </div>
+    <div class="stat">
+      <div class="value">×4 / ×2</div>
+      <div class="label">Flächenzuwachs Baden (vervierfacht) bzw. Württemberg (verdoppelt) durch Säkularisation</div>
+      <div class="src">Quelle: Wikipedia/Fachliteratur zur Säkularisation</div>
+    </div>
+  </div>
+
+  <p>Artikel 35 des Reichsdeputationshauptschlusses ging dabei über eine reine Gebietsentschädigung hinaus: Er stellte auch das gesamte bewegliche und unbewegliche Vermögen der aufgehobenen Klöster den neuen Landesherren zur „freien und vollen Disposition". Baden vervierfachte dadurch seine Fläche, Württemberg verdoppelte sie. Die Kirche verlor mit einem Federstrich den Großteil ihrer weltlichen Machtbasis.</p>
+
+  <h2>6. Die Kontinuität: Staatsleistungen bis heute</h2>
+  <p><span class="tag tag-belegt">BELEGT</span>Hier beginnt der Teil der Geschichte, der am wenigsten bekannt ist — obwohl er hochaktuell ist. Als Ausgleich für die 1803 verlorenen Erträge wurden den Kirchen sogenannte <strong>Staatsleistungen</strong> zugesagt: laufende Zahlungen der Bundesländer, die bis heute — 223 Jahre später — nicht abgelöst wurden.</p>
+
+  <blockquote>„Seit mehr als 100 Jahren fordern deutsche Verfassungen die Ablösung der Staatsleistungen an die Kirchen — doch passiert ist bisher nichts."</blockquote>
+
+  <p>Bereits Artikel 138 der Weimarer Reichsverfassung von 1919 verpflichtete den Staat zur endgültigen Ablösung dieser Zahlungen. Über Artikel 140 des Grundgesetzes gilt dieser Verfassungsauftrag unverändert fort. Passiert ist bis 2026 nichts:</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">1803</div>
+      <div class="timeline-text">Reichsdeputationshauptschluss: Enteignung, im Gegenzug Zusage laufender Ausgleichszahlungen der neuen Landesherren.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1919</div>
+      <div class="timeline-text">Weimarer Reichsverfassung Art. 138: verfassungsrechtlicher Auftrag zur Ablösung der Staatsleistungen.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1949</div>
+      <div class="timeline-text">Grundgesetz Art. 140 übernimmt den Ablösungsauftrag unverändert — ohne Frist.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2012</div>
+      <div class="timeline-text">Erster Gesetzentwurf (Die Linke) zur Ablösung im Bundestag — abgelehnt.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2021</div>
+      <div class="timeline-text">Gemeinsamer Entwurf von FDP, Grünen und Linken für ein „Grundsätzegesetz" scheitert im Bundestag (179 dafür, 443 dagegen).</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2022–2024</div>
+      <div class="timeline-text">Ampel-Koalitionsvertrag verspricht neuen Anlauf „im Dialog mit Ländern und Kirchen" — Umsetzung bleibt aus.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2026</div>
+      <div class="timeline-text">AfD legt eigenen Gesetzentwurf vor (Ablösung zum 18,6-fachen der Jahreszahlung, 657 Mio. € Basis); Verfahren offen.</div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <span class="src-label">Quelle</span>
+    Deutscher Bundestag, Dokumentation Plenardebatte 6. Mai 2021 (bundestag.de); Deutscher Bundestag, Wissenschaftlicher Dienst, "Historische Aspekte der Staatsleistungen an die Kirchen" (WD 10-013-10); idea.de, AfD-Gesetzentwurf 2026; Experteninitiative Religionspolitik
+  </div>
+
+  <p>Bemerkenswert an der laufenden Debatte: Selbst der Jurist Johann-Albrecht Haupt (Bündnis altrechtliche Staatsleistungen abschaffen) vertritt die Position, dass für Vorgänge aus der Reformationszeit oder von 1803 im Jahr 2026 überhaupt keine Rechtsansprüche mehr abgeleitet werden könnten — eine Position, der die herrschende Staatskirchenrechtslehre widerspricht. Es bleibt <span class="tag tag-offen">OFFEN</span>, ob und wann eine Ablösung tatsächlich erfolgt; mehrere Gesetzentwürfe seit 2012 sind an fehlenden Mehrheiten und am Widerstand der Bundesländer gescheitert.</p>
+
+  <h3>Kirchensteuer heute — zur Einordnung</h3>
+  <p>Von den Staatsleistungen strikt zu trennen ist die Kirchensteuer, die vom Staat treuhänderisch für die Kirchen eingezogen wird (der Staat behält dafür rund 3 % der Summe). 2024 nahmen die 27 katholischen Bistümer <strong>6,62 Mrd. €</strong> ein, die 20 evangelischen Landeskirchen <strong>5,97 Mrd. €</strong> — zusammen <strong>12,6 Mrd. €</strong>, trotz anhaltender Austrittswellen.</p>
+
+  <table>
+    <tr><th>Jahr</th><th>Kath. Kirche</th><th>Ev. Kirche</th><th>Gesamt</th></tr>
+    <tr><td>2021</td><td>6,73 Mrd. €</td><td>—</td><td>—</td></tr>
+    <tr><td>2022</td><td>6,84 Mrd. € (Rekord)</td><td>—</td><td>~13 Mrd. €</td></tr>
+    <tr><td>2023</td><td>6,51 Mrd. €</td><td>5,90 Mrd. €</td><td>~12,4 Mrd. €</td></tr>
+    <tr><td>2024</td><td>6,62 Mrd. €</td><td>5,97 Mrd. €</td><td>12,6 Mrd. €</td></tr>
+  </table>
+  <div class="source-box">
+    <span class="src-label">Quelle</span>
+    Deutsche Bischofskonferenz, Kirchensteuerstatistik 2025; EKD-Kirchensteuerstatistik, veröffentlicht April 2025 (via katholisch.de, evangelisch.de)
+  </div>
+
+  <h3>Kirchlicher Grundbesitz heute</h3>
+  <p><span class="tag tag-belegt">BELEGT</span>Auch der historische Landbesitz wirkt strukturell fort: Laut Thünen-Institut halten Religionsgemeinschaften heute noch <strong>2,3 % der gesamten landwirtschaftlichen Nutzfläche Deutschlands</strong> — rund 381.455 Hektar. In einzelnen rheinland-pfälzischen Gemeinden liegt der kirchliche Flächenanteil bei über 21 %. Die evangelische Kirche allein verwaltet nach eigenen Angaben rund 325.000 Hektar Grundbesitz, der laut Kirchenfinanzen.de größtenteils <strong>nicht</strong> von der Säkularisation 1803 betroffen war, weil es sich um örtlichen Gemeindebesitz handelte.</p>
+
+  <div class="source-box">
+    <span class="src-label">Quelle</span>
+    agrarheute.com, Thünen-Institut-Untersuchung zu Eigentumsverhältnissen in der Landwirtschaft; kirchenfinanzen.de, "Grundbesitz"
+  </div>
+
+  <h2>7. Was das für die heutige Debatte bedeutet</h2>
+  <p>Die Genese kirchlichen Reichtums lässt sich damit in drei klar unterscheidbare Phasen gliedern:</p>
+  <ol>
+    <li><strong>313–1803:</strong> Aufbau durch Staatsanbindung, Zehntpflicht und Erbschaftspraxis — die Kirche wird größter Grundbesitzer Europas.</li>
+    <li><strong>1803:</strong> Enteignung durch den Reichsdeputationshauptschluss — im Gegenzug Zusage dauerhafter Ausgleichszahlungen.</li>
+    <li><strong>1803–heute:</strong> Diese Ausgleichszahlungen (Staatsleistungen) laufen unvermindert weiter, obwohl der Verfassungsauftrag zu ihrer Ablösung seit 1919 besteht — parallel zur konfessionell begründeten, aber staatlich eingezogenen Kirchensteuer und einem bis heute bestehenden Grundbesitz von über 600.000 Hektar (Kirche gesamt, ev. + kath., grobe Schätzung auf Basis der genannten Einzelwerte).</li>
+  </ol>
+
+  <p>Der Ablasshandel ist historisch wahr, aber er erklärt nur ein kurzes, spätmittelalterliches Kapitel einer Vermögensgeschichte, die zwölf Jahrhunderte umfasst und deren letzter ungelöster Punkt — die Ablösung der Staatsleistungen — im Jahr 2026 weiterhin auf der politischen Agenda steht, ohne dass ein Ende absehbar wäre.</p>
+
+  <div class="closing">
+    <p><em>Warum gelang es der Kirche über zwölf Jahrhunderte hinweg, Zwangsabgabe und Erbschaftspraxis zu Machtbasis zu verdichten, während vergleichbare weltliche Strukturen daran scheiterten? Und warum bleibt ein 1919 verfassungsrechtlich fixierter Ablösungsauftrag über hundert Jahre lang folgenlos, obwohl er in nahezu jeder Legislaturperiode neu diskutiert wird?</em></p>
+  </div>
+
+  <div class="crossref">
+    Fortsetzung dieser Reihe: <span>„Die verscharrten Kinder"</span> (Kinderheime, Mutter-Kind-Heime, Vertuschung) · <span>„Vatikanbank"</span> (geplant) · Querverweis: <span>„Reich zu Bund"</span> — NS-BRD-Kontinuität staatlicher Strukturen
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div><strong style="color:var(--text);">Über diese Dokumentation:</strong> Alle mit BELEGT gekennzeichneten Aussagen stützen sich auf Primärquellen (Bundestag, Gesetzestexte, Behördenstatistiken) oder mehrfach unabhängig bestätigte Fachliteratur. EXTRAPOLATION kennzeichnet historisch plausible, aber nicht exakt bezifferbare Zusammenhänge. OFFEN kennzeichnet ungeklärte oder politisch umstrittene Fragen.</div>
+  <div style="margin-top:1rem;">dunkelfeld.report — Hidden in Plain Sight</div>
+</footer>
+
+</body>
+</html>

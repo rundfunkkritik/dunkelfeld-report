@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Konkordate — Die Staatsverträge der Kirche mit der Macht | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --amber: #e8c547;
+    --box-bg: #1a1a2e;
+    --belegt: #4ade80;
+    --extrapolation: #fb923c;
+    --offen: #9ca3af;
+    --vt: #f87171;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: #e5e5e0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 6rem;
+  }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    color: #fff;
+    margin: 0 0 0.5rem;
+  }
+  .subtitle {
+    color: #b0b0a8;
+    font-size: 1.15rem;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #7a7a72;
+    border-top: 1px solid #2a2a3a;
+    border-bottom: 1px solid #2a2a3a;
+    padding: 0.8rem 0;
+    margin-bottom: 2.5rem;
+  }
+  h2 {
+    color: var(--amber);
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--amber);
+    padding-left: 0.8rem;
+  }
+  h3 {
+    color: #f0d97a;
+    font-size: 1.1rem;
+    margin-top: 2rem;
+  }
+  p { margin: 1rem 0; }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin: 0 0.3rem 0.3rem 0;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag-extrapolation { background: rgba(251,146,60,0.15); color: var(--extrapolation); border: 1px solid var(--extrapolation); }
+  .tag-offen { background: rgba(156,163,175,0.15); color: var(--offen); border: 1px solid var(--offen); }
+  .tag-vt { background: rgba(248,113,113,0.15); color: var(--vt); border: 1px solid var(--vt); }
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.98rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+  .timeline {
+    border-left: 2px solid #3a3a4a;
+    margin: 1.5rem 0 1.5rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.3rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.85rem;
+    top: 0.4rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+  .timeline-year {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-weight: bold;
+    font-size: 0.95rem;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat-card {
+    background: var(--box-bg);
+    padding: 1rem;
+    text-align: center;
+    border-radius: 4px;
+  }
+  .stat-num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    color: var(--amber);
+    font-weight: bold;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: #b0b0a8;
+    margin-top: 0.3rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #2a2a3a;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .pull-quote {
+    font-style: italic;
+    font-size: 1.25rem;
+    color: #f0d97a;
+    border-left: 3px solid var(--amber);
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+  }
+  .warn-box {
+    background: rgba(251,146,60,0.08);
+    border: 1px solid var(--extrapolation);
+    border-radius: 4px;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .warn-box .label {
+    font-family: 'Courier New', monospace;
+    color: var(--extrapolation);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+  .cross-ref {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #8888a0;
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #2a2a3a;
+  }
+  .closing p {
+    font-style: italic;
+    color: #c0c0b8;
+  }
+  a { color: var(--amber); }
+  .footer-nav {
+    margin-top: 3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #7a7a72;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">dunkelfeld.report — Serie: Kirche, Macht, Geld — Teil 4</div>
+  <h1>Konkordate: Die Staatsverträge der Kirche mit der Macht</h1>
+  <div class="subtitle">Wie ein völkerrechtlicher Vertrag von 1933 bis heute deutsches Recht ist — und was das mit Bayern, Preußen und der Bundeswehr zu tun hat</div>
+  <div class="meta">BELEGT = dokumentiert &nbsp;·&nbsp; EXTRAPOLATION = strukturell plausibel &nbsp;·&nbsp; OFFEN = ungeklärt &nbsp;·&nbsp; VT = widerlegte Verschwörungstheorie</div>
+
+  <p>Ein Konkordat ist ein völkerrechtlicher Vertrag zwischen dem Heiligen Stuhl und einem Staat. Deutschland hat mehr davon als fast jedes andere Land der Welt — und eines davon, das <strong>Reichskonkordat von 1933</strong>, ist nach übereinstimmender Rechtsprechung des Bundesverfassungsgerichts bis heute in Kraft. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Dieser Teil der Serie folgt der Papierspur: von den ersten Länderkonkordaten der Weimarer Republik über den Vertrag mit Hitler-Deutschland bis zu den Staatskirchenverträgen, die deutsche Bundesländer noch in den 2000er-Jahren unterschrieben haben — und zu der Frage, warum ein katholischer Militärseelsorger in der Bundeswehr seine Rechtsgrundlage in einem Vertrag von 1933 hat.</p>
+
+  <div class="cross-ref">→ Anschluss an Teil: „Reich zu Bund" (NS-BRD-Kontinuität) und „Wie die Kirche zu Macht und Reichtum kam"</div>
+
+  <h2>1. Die Vorgeschichte: Länderkonkordate 1924–1932</h2>
+
+  <p>Ein Reichskonkordat scheiterte in der Weimarer Republik mehrfach an fehlenden Mehrheiten im Reichstag. Der Heilige Stuhl wich deshalb auf einzelne deutsche Länder aus — verhandelt maßgeblich von einem Mann, der später als Papst Pius XII. in die Geschichte einging: Eugenio Pacelli, ab 1917 Apostolischer Nuntius in München, ab 1925 in Berlin. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">1924</div>
+      Bayerisches Konkordat — Vorreiter und spätere Vorlage für die übrigen Länderverträge. Vier Jahre Verhandlung unter dem bayerischen Kultusminister Franz Matt (BVP).
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1929</div>
+      Preußenkonkordat — geschlossen mit dem mit Abstand größten deutschen Land.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1932</div>
+      Badisches Konkordat — letzter Länderabschluss vor der nationalsozialistischen Machtübernahme.
+    </div>
+  </div>
+
+  <p>Alle drei Verträge blieben nach 1933 explizit in Kraft — das Reichskonkordat erklärte sie in Artikel 2 für unverändert fortbestehend. Für zukünftige Länderkonkordate wurde dagegen ein Einvernehmen mit der Reichsregierung zur Bedingung gemacht: Kirchenrecht wurde damit erstmals systematisch an die Reichsebene rückgebunden. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <h2>2. Das Reichskonkordat: 20. Juli 1933</h2>
+
+  <p>Am 20. Juli 1933 unterzeichneten in Rom Kardinalstaatssekretär Eugenio Pacelli für den Heiligen Stuhl und Vizekanzler Franz von Papen für die Reichsregierung das Konkordat zwischen dem Heiligen Stuhl und dem Deutschen Reich. Ratifiziert wurde es am 10. September 1933, veröffentlicht im Reichsgesetzblatt am 18. September 1933. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <div class="label">Zeitliche Einordnung</div>
+    30. Januar 1933: Hitler wird Reichskanzler. 23. März 1933: Der Reichstag billigt das Ermächtigungsgesetz, das die parlamentarische Demokratie faktisch abschafft. 5. Juli 1933: Selbstauflösung der Zentrumspartei. 20. Juli 1933: Unterzeichnung des Reichskonkordats. Alle vier Ereignisse liegen innerhalb von sechs Monaten. <span class="tag tag-belegt">BELEGT</span>
+  </div>
+
+  <h3>Die ungeklärte Frage: Handel oder Zufall?</h3>
+
+  <p>Ob zwischen der Zustimmung der katholischen Zentrumspartei zum Ermächtigungsgesetz, ihrer Selbstauflösung und dem Zustandekommen des Konkordats ein ursächlicher Zusammenhang bestand, ist unter Historikern seit den 1970er-Jahren umstritten — bekannt als <strong>Scholder-Repgen-Kontroverse</strong>. <span class="tag tag-offen">OFFEN</span></p>
+
+  <table>
+    <tr><th>Position</th><th>These</th></tr>
+    <tr><td>Klaus Scholder (evangelisch)</td><td>Pacelli habe den NS-Unterhändlern die Zustimmung des Zentrums zum Ermächtigungsgesetz als Gegenleistung für das Konkordat in Aussicht gestellt und Hitler damit den „legalen" Weg in die Diktatur geebnet.</td></tr>
+    <tr><td>Konrad Repgen / Rudolf Morsey</td><td>Es gebe keinen belegten kausalen Zusammenhang. Die Entwicklungen in Rom und Berlin seien „doppelsträngig" verlaufen. Die Aussicht auf ein Konkordat habe parteiintern zur Legitimation der Zustimmung gedient — sei aber nicht deren Ursache gewesen.</td></tr>
+    <tr><td>Hubert Wolf (neuere Forschung)</td><td>Pacelli habe auf die Entscheidung der Zentrumspartei keinen Einfluss genommen und sei über die Zustimmung sogar verärgert gewesen — sie habe ihm eines seiner Verhandlungspfänder gegenüber Hitler genommen.</td></tr>
+  </table>
+
+  <p>Was unstrittig ist: Zentrumsführer Ludwig Kaas, ein enger Mitarbeiter Pacellis, hatte bereits an den Verhandlungen zum badischen und preußischen Konkordat mitgewirkt und war an der Aushandlung des Reichskonkordats direkt beteiligt — als Vorsitzender der Partei, die sich wenige Tage nach der Ermächtigungsgesetz-Abstimmung selbst auflöste. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="pull-quote">Die Frage, ob die Selbstauflösung eine „vorweggenommene Gegenleistung" für das Konkordat war, gilt als bis heute nicht endgültig aufgelöst.</div>
+
+  <h2>3. Fortgeltung: Das Konkordatsurteil von 1957</h2>
+
+  <p>Nach 1945 war umstritten, ob das Reichskonkordat als Vertrag eines untergegangenen Unrechtsregimes überhaupt noch Bestand hatte. Die Bundesregierung unter Konrad Adenauer rief deshalb 1956 das Bundesverfassungsgericht an — im Streit um ein niedersächsisches Schulgesetz, das nach Auffassung des Bundes gegen die im Konkordat verbrieften katholischen Schulrechte verstieß. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <div class="label">BVerfGE 6, 309 — Urteil vom 26. März 1957 (Az. 2 BvG 1/55)</div>
+    Das Gericht stellte fest: Das Reichskonkordat vom 20. Juli 1933 ist in der Bundesrepublik Deutschland unverändert fortgeltendes Recht. Zugleich urteilten die Richter, dass sich aus Art. 123 Abs. 2 GG keine Bindung der <em>Länder</em> an die Konkordatsvorgaben ableiten lasse — Schulrecht sei nach dem Grundgesetz ausschließlich Ländersache. Niedersachsen musste sein Schulgesetz also nicht ändern, obwohl der Vertrag als solcher weitergilt. <span class="tag tag-belegt">BELEGT</span>
+  </div>
+
+  <p>Diese Konstruktion — völkerrechtlich bindend für den Bund, aber praktisch folgenlos gegenüber den Ländern — bezeichnen Staatskirchenrechtler bis heute als eine der eigentümlichsten Volten der bundesdeutschen Rechtsprechung. Am Prinzip selbst hat sich seither nichts geändert: Als katholische Bischöfe ernannt werden, leisten sie ihren Amtseid noch heute nach der im Konkordat vorgesehenen Formel. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <h2>4. Die zweite Welle: Neue Staatskirchenverträge nach 1990</h2>
+
+  <p>Das Preußenkonkordat von 1929 wurde nach 1945 von den auf ehemals preußischem Gebiet neu gegründeten westdeutschen Ländern anerkannt — nicht jedoch von der DDR. Erst nach der Wiedervereinigung lebten die Konkordatsbestimmungen in den neuen Bundesländern wieder auf, ergänzt durch eine ganze Serie neuer Staatskirchenverträge: <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-num">1963</div><div class="stat-label">Hessen</div></div>
+    <div class="stat-card"><div class="stat-num">1965</div><div class="stat-label">Niedersachsen</div></div>
+    <div class="stat-card"><div class="stat-num">1996</div><div class="stat-label">Sachsen</div></div>
+    <div class="stat-card"><div class="stat-num">1997</div><div class="stat-label">Thüringen / M-V</div></div>
+    <div class="stat-card"><div class="stat-num">1998</div><div class="stat-label">Sachsen-Anhalt</div></div>
+    <div class="stat-card"><div class="stat-num">2003</div><div class="stat-label">Brandenburg / Bremen</div></div>
+    <div class="stat-card"><div class="stat-num">2005</div><div class="stat-label">Hamburg</div></div>
+  </div>
+
+  <p>Über acht Jahrzehnte hinweg — von Bayern 1924 bis Hamburg 2005 — entstand so ein lückenloses Netz vertraglicher Bindungen zwischen deutschen Staaten und der katholischen Kirche, das älter ist als die Bundesrepublik selbst und in seinen Grundzügen den nationalsozialistischen Systembruch von 1933 unbeschadet überstanden hat. Parallel dazu bestehen vergleichbare Staatskirchenverträge mit der evangelischen Kirche und dem Zentralrat der Juden in Deutschland. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <h2>5. Gelebte Konkordatspraxis: Die Militärseelsorge</h2>
+
+  <p>Das konkreteste Beispiel dafür, dass das Reichskonkordat kein historisches Dokument, sondern geltendes Recht ist, findet sich in der Bundeswehr. Für die katholische Militärseelsorge gilt bis heute unmittelbar <strong>Artikel 27 des Reichskonkordats von 1933</strong>. Die evangelische Militärseelsorge basiert auf einem eigenen Militärseelsorgevertrag von 1957. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <div class="label">Wer zahlt wofür</div>
+    Der Staat trägt laut Militärseelsorgevertrag (Art. 2 Abs. 2) den organisatorischen Aufbau und die Kosten der Militärseelsorge — die Militärgeistlichen sind Beamte auf Zeit, besoldet aus dem Verteidigungshaushalt. Zusätzlich fließt ein Teil der Kirchensteuer der Soldatinnen und Soldaten in kirchliche Sonderhaushalte für die Militärseelsorge. Der vertraglich vorgesehene Schlüssel liegt bei einem Militärgeistlichen pro 1.500 Soldaten des jeweiligen Bekenntnisses. <span class="tag tag-belegt">BELEGT</span>
+  </div>
+
+  <div class="warn-box">
+    <div class="label">Umstrittener Punkt</div>
+    Der Humanistische Pressedienst dokumentierte bereits 2010/2012, dass die tatsächliche Zahl der Militärgeistlichen den vertraglichen Schlüssel von 1:1.500 deutlich überschritt (rund 1 Geistlicher pro 650–800 Soldaten). Diese Angaben stammen aus einer einzelnen, religionskritisch positionierten Quelle und sind hier als Einzelbeleg, nicht als amtliche Statistik zu verstehen. <span class="tag tag-extrapolation">EXTRAPOLATION</span>
+  </div>
+
+  <p>Für rund 300 jüdische Soldatinnen und Soldaten wurde erst 2019 ein Staatsvertrag mit dem Zentralrat der Juden geschlossen, der Militärrabbiner ermöglicht. Für die etwa 1.500 bis 3.000 muslimischen Soldatinnen und Soldaten existiert bis heute — Stand der zugrunde liegenden Quellen: 2025 — keine institutionalisierte, vertraglich geregelte Militärseelsorge, obwohl Wehrbeauftragte dies seit fast einem Jahrzehnt anmahnen und mehrere Verteidigungsministerinnen eine zeitnahe Lösung in Aussicht gestellt hatten. Ein Leistungsvertrag war für Ende 2025 angekündigt. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p><em>Ob und wann eine muslimische Militärseelsorge auf vergleichbarer vertraglicher Grundlage eingeführt wird, ist offen.</em> <span class="tag tag-offen">OFFEN</span></p>
+
+  <h2>6. Die strukturelle Linie</h2>
+
+  <p>Was diese Kette von Verträgen — Bayern 1924 bis Hamburg 2005 — verbindet, ist nicht eine bestimmte Motivation der handelnden Personen, sondern eine juristische Kontinuität: Ein Vertrag, der unter demokratischen Vorzeichen begann (Bayern, Preußen, Baden), unter den Bedingungen der Zerstörung der Demokratie zum Reichsvertrag wurde (1933), von der Nachkriegsjustiz für fortgeltend erklärt wurde (1957) und in den 1990er- und 2000er-Jahren durch neue Landesverträge in den wiedervereinigten Bundesländern fortgeschrieben wurde. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Diese Kontinuität ist rechtlich unstrittig dokumentiert. Was sie <em>bedeutet</em> — ob als Kontinuität des Rechtsstaats über Diktatur und Nachkriegszeit hinweg, oder als ungewöhnlich lange Halbwertszeit eines in einem Unrechtsstaat geschlossenen Vertrags — bleibt eine Frage der Bewertung, die diese Serie bewusst offenlässt.</p>
+
+  <div class="closing">
+    <h2 style="border:none; padding:0; color:#f0d97a;">Offene Fragen</h2>
+    <p>Warum wurde ein 1933 unter den Bedingungen einer bereits zerstörten Demokratie geschlossener Vertrag nie neu verhandelt, sondern nur durch Gerichtsurteil bestätigt?</p>
+    <p>Warum dauerte es bis 2019, um für jüdische Soldaten eine dem katholischen und evangelischen Modell vergleichbare vertragliche Regelung zu schaffen — und warum gibt es sie für muslimische Soldaten bis heute nicht?</p>
+    <p>Wie viele der heute geltenden Staatskirchenverträge sind der Öffentlichkeit außerhalb der Fachjurisprudenz überhaupt bekannt?</p>
+  </div>
+
+  <div class="footer-nav">
+    dunkelfeld.report — Serie „Kirche, Macht, Geld" — Teil 4 von n<br>
+    Vorherige Teile: Wie die Kirche zu Macht und Reichtum kam · Kinderheime und Verscharrung · Die Vatikanbank<br>
+    Querverweis: „Reich zu Bund" (NS-BRD-Kontinuität)
+  </div>
+
+</div>
+</body>
+</html>

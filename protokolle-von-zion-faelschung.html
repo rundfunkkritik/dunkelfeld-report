@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Die "Protokolle der Weisen von Zion" — Anatomie einer Fälschung | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --amber: #e8c547;
+    --box-bg: #1a1a2e;
+    --text: #e4e4e7;
+    --text-dim: #a1a1aa;
+    --belegt: #4ade80;
+    --extrapolation: #fb923c;
+    --offen: #9ca3af;
+    --vt: #f87171;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    color: #fff;
+    margin: 0 0 0.5rem;
+  }
+  h2 {
+    color: var(--amber);
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    border-bottom: 1px solid #2a2a3a;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    color: var(--text);
+    font-size: 1.15rem;
+    margin-top: 2rem;
+  }
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 1.15rem;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  a { color: var(--amber); }
+
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--amber);
+    padding: 1.2rem 1.5rem;
+    margin: 1.8rem 0;
+    font-size: 0.98rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-weight: bold;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+    display: inline-block;
+    letter-spacing: 0.03em;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--belegt); border: 1px solid rgba(74,222,128,0.4); }
+  .tag-extrapolation { background: rgba(251,146,60,0.15); color: var(--extrapolation); border: 1px solid rgba(251,146,60,0.4); }
+  .tag-offen { background: rgba(156,163,175,0.15); color: var(--offen); border: 1px solid rgba(156,163,175,0.4); }
+  .tag-vt { background: rgba(248,113,113,0.15); color: var(--vt); border: 1px solid rgba(248,113,113,0.4); }
+
+  .timeline {
+    border-left: 2px solid #2a2a3a;
+    margin: 2rem 0 2rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.6rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.63rem;
+    top: 0.4rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+  .timeline-year {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-weight: bold;
+    font-size: 0.95rem;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .stat {
+    background: var(--box-bg);
+    padding: 1.2rem;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.6rem;
+    color: var(--amber);
+    font-weight: bold;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+  }
+
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #fff;
+    border-left: 3px solid var(--amber);
+    padding-left: 1.5rem;
+    margin: 2.5rem 0;
+  }
+  .pull-quote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 0.6rem;
+  }
+
+  .warn-box {
+    background: rgba(248,113,113,0.08);
+    border: 1px solid rgba(248,113,113,0.3);
+    border-radius: 4px;
+    padding: 1.2rem 1.5rem;
+    margin: 1.8rem 0;
+    font-size: 0.95rem;
+  }
+  .warn-box .label {
+    font-family: 'Courier New', monospace;
+    color: var(--vt);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.8rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #2a2a3a;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #2a2a3a;
+    font-style: italic;
+    color: var(--text-dim);
+  }
+
+  footer {
+    margin-top: 4rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    text-align: center;
+  }
+
+  @media (max-width: 500px) {
+    .stat-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="meta">dunkelfeld.report — dossier · faktenchecker &amp; desinformation</div>
+  <h1>Die "Protokolle der Weisen von Zion"<br>Anatomie einer Fälschung</h1>
+  <p class="subtitle">Wie ein plagiiertes Pamphlet der zaristischen Geheimpolizei zur meistverbreiteten Verschwörungserzählung der Moderne wurde — und warum sie bis heute zirkuliert, obwohl sie seit über hundert Jahren widerlegt ist.</p>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Kaum ein Text hat mehr Blut an den Händen als dieser: Die "Protokolle der Weisen von Zion" geben vor, das Sitzungsprotokoll eines geheimen jüdischen Weltverschwörungsplans zu sein. Sie sind vollständig erfunden. Ihre Entstehung, ihre Fälschung und ihre Wirkungsgeschichte sind so lückenlos dokumentiert wie bei kaum einem anderen Propagandatext der Geschichte — durch Gerichte, durch Archive, durch internationale Forschung.</p>
+
+  <h2>Was der Text behauptet</h2>
+  <p>Die "Protokolle" geben vor, die Mitschrift geheimer Sitzungen jüdischer "Weiser" zu sein, die dort einen Plan zur schrittweisen Unterwerfung der Welt entwickeln: künstliche Verknappung von Geld, gezielte Staatsverschuldung, Kontrolle der Presse, Zersetzung von Moral und Religion, am Ende die Errichtung einer totalitären Weltherrschaft unter einem jüdischen König. Angeblich soll dieser Plan 1897 am Rande des Ersten Zionistischen Weltkongresses in Basel besprochen worden sein.</p>
+
+  <div class="warn-box">
+    <span class="label">Vorab-Einordnung</span>
+    Nichts davon ist verbürgt. Es gibt keinen Hinweis auf ein solches Treffen, keine Originalquelle, keinen Autor, der je zu diesem Text stand. Was es gibt, ist eine über hundert Jahre alte, in mehreren Gerichtsprozessen und durch internationale Forschung bestätigte Fälschungsgeschichte.
+  </div>
+
+  <h2>Herkunft: ein Plagiat aus zwei fremden Texten</h2>
+  <p><span class="tag tag-belegt">BELEGT</span> Die "Protokolle" tauchten erstmals 1903 in russischen Zeitungen auf, 1905 als vollständige Fassung durch den russischen Mystiker Sergei Nilus. Ihre wahre Herkunft ist ein Flickwerk aus mindestens zwei fremden, älteren Werken, die mit Juden ursprünglich nichts zu tun hatten:</p>
+
+  <div class="source-box">
+    <span class="label">Quelle 1 · Maurice Joly (1864)</span>
+    Der französische Jurist Maurice Joly veröffentlichte 1864 die politische Satire <em>"Dialogue aux enfers entre Machiavel et Montesquieu"</em> — eine Kritik am Machtstreben Napoleons III. Große Passagen der "Protokolle" sind wörtliche oder leicht abgewandelte Übernahmen aus diesem Text, wobei "Napoleon" durch "die jüdischen Weisen" ersetzt wurde.
+  </div>
+
+  <div class="source-box">
+    <span class="label">Quelle 2 · Hermann Goedsche, "Biarritz" (1868)</span>
+    Ein Kapitel des antisemitischen Romans eines preußischen Postbeamten (Pseudonym "Sir John Retcliffe") schildert eine fiktive nächtliche Geheimversammlung jüdischer Stammesvertreter auf dem jüdischen Friedhof in Prag, bei der ein Weltherrschaftsplan besprochen wird. Diese literarische Erfindung lieferte die erzählerische Rahmenhandlung für die spätere Fälschung.
+  </div>
+
+  <p><span class="tag tag-extrapolation">EXTRAPOLATION</span> Die genauen Umstände der Zusammenstellung sind bis heute nicht vollständig rekonstruiert. Der Historiker Michael Hagemeister, der über 30 Jahre lang Archive auf drei Kontinenten ausgewertet hat, betont, dass selbst nach jahrzehntelanger Forschung nicht abschließend geklärt ist, wer genau den Text zusammenstellte — nur dass er eine Fälschung ist, ist unstrittig. Als wahrscheinlichster institutioneller Rahmen gilt ein Umfeld der zaristischen Geheimpolizei Ochrana in Paris um die Jahrhundertwende.</p>
+
+  <h2>Die Aufdeckung 1921: Philip Graves und die Times</h2>
+  <p><span class="tag tag-belegt">BELEGT</span> Bereits 1920 hatte der britisch-jüdische Journalist Lucien Wolf in einer Schrift des Jewish Board of Deputies auf die Plagiatsquellen hingewiesen. Den öffentlichkeitswirksamen Durchbruch brachte im August 1921 eine Artikelserie des Times-Korrespondenten Philip Graves in Konstantinopel. Graves stellte Passagen der "Protokolle" und Jolys Satire von 1864 Zeile für Zeile nebeneinander — die strukturellen und teils wortgleichen Übernahmen ließen keinen Zweifel an einem Plagiat zu.</p>
+
+  <div class="pull-quote">
+    Die Times bezeichnete die "Protokolle" nach Graves' Nachweis öffentlich als plumpe Fälschung.
+    <cite>The Times (London), 17. August 1921</cite>
+  </div>
+
+  <h2>Der Berner Prozess 1933–1937: gerichtliche Bestätigung</h2>
+  <p><span class="tag tag-belegt">BELEGT</span> Den bis heute detailliertesten juristischen Beweis lieferte der sogenannte Berner Prozess. Der Schweizerische Israelitische Gemeindebund und die Israelitische Kultusgemeinde Bern erstatteten 1933 Anzeige gegen Schweizer Verbreiter der "Protokolle" — offiziell wegen Verstoßes gegen ein kantonales Gesetz gegen "Schundliteratur", tatsächlich ging es den Klägern darum, die Fälschung ein für alle Mal gerichtlich feststellen zu lassen.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-year">1933</span> — Strafanzeige beim Amtsgericht Bern gegen fünf Verbreiter der "Protokolle", darunter Mitglieder der Schweizer NS-Bewegung "Nationale Front".
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-year">Okt. 1934</span> — Zeugenbefragung: u. a. Chaim Weizmann (späterer erster israelischer Staatspräsident) sowie mehrere im Pariser Exil lebende russische Zeitzeugen zur Entstehung im Umfeld der Ochrana.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-year">1935</span> — Gutachten dreier Sachverständiger. Zwei von ihnen (Carl Albert Loosli, Arthur Baumgarten) bestätigen: Plagiat und Fälschung, hergestellt im Umfeld der zaristischen Geheimpolizei. Der dritte, von den Beklagten benannte Gutachter Ulrich Fleischhauer — selbst NS-naher Aktivist — legt keine Belege vor.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-year">14. Mai 1935</span> — Urteil: Die "Protokolle" werden als "übles Machwerk, Plagiat und Fälschung" sowie als "Schundliteratur" eingestuft. Zwei der fünf Angeklagten werden zu geringen Geldstrafen verurteilt.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-year">1937</span> — Das Berner Obergericht hebt die Verurteilung aus rein formaljuristischen Gründen auf (die "Wirkung" der Protokolle sei politischer, nicht moralischer Natur im Sinne des angewandten Gesetzes) — bestätigt aber ausdrücklich, dass die Angeklagten die Echtheit des Textes zu keinem Zeitpunkt beweisen konnten.
+    </div>
+  </div>
+
+  <p><span class="tag tag-extrapolation">EXTRAPOLATION</span> Die formaljuristische Aufhebung des Urteils 1937 wurde in der Folgezeit von Verbreitern der "Protokolle" wiederholt fälschlich als inhaltlicher Freispruch dargestellt. Historisch belegt ist das Gegenteil: Die zweite Instanz änderte nichts an der Feststellung, dass es sich um eine Fälschung handelt — sie stufte lediglich das angewandte Gesetz als nicht einschlägig ein.</p>
+
+  <h2>Politische Instrumentalisierung</h2>
+  <p><span class="tag tag-belegt">BELEGT</span> Trotz frühzeitiger Aufdeckung entfalteten die "Protokolle" enorme politische Wirkung:</p>
+
+  <div class="stat-grid">
+    <div class="stat">
+      <span class="stat-num">1920</span>
+      <span class="stat-label">Henry Ford veröffentlicht in den USA ein auf den "Protokollen" basierendes Buch in Großauflage (u. a. über seine Zeitung "The Dearborn Independent")</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">1925</span>
+      <span class="stat-label">Adolf Hitler beruft sich in "Mein Kampf" affirmativ auf die "Protokolle"</span>
+    </div>
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Im nationalsozialistischen Deutschland propagierte insbesondere Alfred Rosenberg den Text als zentrales ideologisches Fundament der antisemitischen Weltverschwörungserzählung, die in der Folge zur Legitimation der Verfolgung und Vernichtung europäischer Juden diente. Bereits während des russischen Bürgerkriegs nach 1917 nutzten die "Weißen Armeen" den Text zur Aufstachelung von Pogromen.</p>
+
+  <h2>Warum die Fälschung bis heute zirkuliert</h2>
+  <p><span class="tag tag-offen">OFFEN</span> Trotz gerichtlicher und wissenschaftlicher Aufklärung sind die "Protokolle" bis heute im Internet frei verfügbar und werden in Teilen der Welt — insbesondere in Teilen der arabischen Medienlandschaft, aber auch in westlichen Verschwörungsmilieus — weiterhin als vermeintlich "innere Wahrheit" verbreitet. Verteidiger des Textes argumentierten schon im Berner Prozess nicht mehr mit dessen Echtheit, sondern mit einer angeblichen "inneren Wahrheit", die sich etwa durch die russische Revolution "bestätigt" habe — ein zirkuläres Argumentationsmuster, das sich jeder faktischen Widerlegung entzieht.</p>
+
+  <div class="warn-box">
+    <span class="label">Strukturelles Muster</span>
+    Genau dieses Muster — reale oder scheinbar plausible Einzelbeobachtungen werden nachträglich in einen vorab feststehenden Verschwörungsrahmen eingepasst — findet sich bis heute in Neuauflagen und Anverwandlungen der "Protokolle"-Logik, etwa wenn komplexen geopolitischen Ereignissen pauschal eine gesteuerte, ethnisch oder religiös definierte Urheberschaft unterstellt wird, ohne dass diese Zuschreibung selbst belegt wird.
+  </div>
+
+  <h2>Zentrale Forschungsliteratur</h2>
+  <table>
+    <tr><th>Werk</th><th>Bedeutung</th></tr>
+    <tr><td>Norman Cohn: <em>Warrant for Genocide</em> (1967)</td><td>Erste umfassende wissenschaftliche Gesamtdarstellung der Fälschungs- und Wirkungsgeschichte</td></tr>
+    <tr><td>Hadassa Ben-Itto: <em>Die Protokolle der Weisen von Zion — Anatomie einer Fälschung</em> (1998)</td><td>Detaillierte Aufarbeitung u. a. des Berner Prozesses durch eine israelische Richterin</td></tr>
+    <tr><td>Michael Hagemeister: <em>Die "Protokolle der Weisen von Zion" vor Gericht</em> (2017)</td><td>Über 30 Jahre Archivrecherche auf drei Kontinenten, über 1.000 Fußnoten, bislang umfassendste Chronik des Berner und Basler Prozesses</td></tr>
+  </table>
+
+  <div class="closing">
+    <p>Die "Protokolle der Weisen von Zion" sind kein Grenzfall zwischen Wahrheit und Interpretation. Sie sind der am besten dokumentierte Fälschungsfall der modernen Verschwörungsgeschichte — nachgewiesen durch Literaturvergleich, durch Gerichte zweier Instanzen, durch Archivfunde auf drei Kontinenten. Was bleibt, ist die Frage, die jede Fälschung dieser Art aufwirft: <em>Warum entfaltet ein derart lückenlos widerlegter Text bis heute politische Wirkung — und was sagt das über die Mechanismen aus, mit denen Desinformation Beweisführung überlebt?</em></p>
+  </div>
+
+  <footer>
+    dunkelfeld.report — hidden in plain sight<br>
+    BELEGT · EXTRAPOLATION · OFFEN · VT
+  </footer>
+
+</div>
+</body>
+</html>

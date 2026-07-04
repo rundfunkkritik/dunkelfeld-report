@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flüchtlingslager: Was hinter dem Fernsehbild wirklich passiert | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --amber: #e8c547;
+    --box-bg: #1a1a2e;
+    --text: #e4e4e7;
+    --text-dim: #9a9aa5;
+    --belegt: #4ade80;
+    --extra: #f59e0b;
+    --offen: #9ca3af;
+    --vt: #ef4444;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .masthead {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 2rem;
+  }
+  .masthead .brand {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    letter-spacing: 0.15em;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+  }
+  .masthead .tagline {
+    font-family: 'Courier New', monospace;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    margin-top: 0.4rem;
+    font-style: italic;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    margin: 1.5rem 0 0.5rem;
+  }
+  h1.title {
+    font-size: 1.9rem;
+    line-height: 1.3;
+    margin: 0.5rem 0 1rem;
+    color: #fff;
+  }
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  h2 {
+    color: var(--amber);
+    font-size: 1.35rem;
+    margin-top: 3rem;
+    border-left: 3px solid var(--amber);
+    padding-left: 0.8rem;
+  }
+  h3 {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-top: 2rem;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: 0.95rem;
+    color: var(--text-dim);
+  }
+  p { margin: 1.1rem 0; }
+  a { color: var(--amber); }
+  strong { color: #fff; }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag-extra { background: rgba(245,158,11,0.15); color: var(--extra); border: 1px solid var(--extra); }
+  .tag-offen { background: rgba(156,163,175,0.15); color: var(--offen); border: 1px solid var(--offen); }
+  .tag-vt { background: rgba(239,68,68,0.15); color: var(--vt); border: 1px solid var(--vt); }
+
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+  }
+  .source-box .label {
+    color: var(--amber);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+    margin: 1.5rem 0;
+  }
+  .stat-card {
+    background: var(--box-bg);
+    padding: 1rem;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .stat-card .num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    color: var(--amber);
+    font-weight: bold;
+    display: block;
+  }
+  .stat-card .label {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    font-family: 'Courier New', monospace;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    border: 1px solid #27272a;
+    padding: 0.6rem 0.7rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--box-bg);
+    color: var(--amber);
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  .pullquote {
+    border-left: 3px solid var(--amber);
+    padding: 0.5rem 0 0.5rem 1.2rem;
+    margin: 2rem 0;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #fff;
+  }
+  .pullquote .src {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-style: normal;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 0.5rem;
+  }
+
+  .person-card {
+    background: var(--box-bg);
+    border-radius: 4px;
+    padding: 1rem 1.2rem;
+    margin: 1.2rem 0;
+    font-size: 0.95rem;
+  }
+  .person-card .name {
+    color: var(--amber);
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .warn-box {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.4);
+    border-radius: 4px;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .warn-box .label {
+    color: var(--vt);
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.8rem;
+  }
+
+  .timeline {
+    margin: 1.5rem 0;
+    border-left: 2px solid #27272a;
+    padding-left: 1.2rem;
+  }
+  .timeline .entry {
+    margin-bottom: 1.2rem;
+    position: relative;
+  }
+  .timeline .entry::before {
+    content: '';
+    position: absolute;
+    left: -1.55rem;
+    top: 0.4rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+  .timeline .year {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.85rem;
+    display: block;
+  }
+
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #27272a;
+  }
+  .closing p {
+    font-style: italic;
+    color: var(--text-dim);
+  }
+
+  .footer {
+    margin-top: 4rem;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    border-top: 1px solid #27272a;
+    padding-top: 1.5rem;
+  }
+
+  .legend {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin: 1.5rem 0;
+    padding: 0.8rem;
+    background: var(--box-bg);
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="brand">dunkelfeld.report</div>
+    <div class="tagline">Hidden in Plain Sight — Analyse · Systemkritik · Quellenbasiert</div>
+  </div>
+
+  <div class="meta">Juli 2026 · Lesedauer: ca. 18 Minuten · Dossier</div>
+  <h1 class="title">Flüchtlingslager: Was hinter dem Fernsehbild wirklich passiert</h1>
+  <p class="subtitle">Zwischen Marktökonomie, Machtvakuum und bewaffneten Gruppen — ein Blick hinter die Kamera, die immer nur die Frau mit dem Kind zeigt.</p>
+
+  <div class="legend">
+    <span class="tag tag-belegt">BELEGT</span> dokumentiert durch Primärquelle &nbsp;
+    <span class="tag tag-extra">EXTRAPOLATION</span> strukturell plausibel &nbsp;
+    <span class="tag tag-offen">OFFEN</span> ungeklärt &nbsp;
+    <span class="tag tag-vt">VT</span> widerlegte Behauptung
+  </div>
+
+  <p>Das Fernsehbild ist immer dasselbe: eine erschöpfte Frau, ein Kind auf dem Arm, ein Zelt im Hintergrund. Es ist nicht falsch — aber es ist unvollständig. Wer fragt, was in den rund 40 Millionen Menschen fassenden Lager-Systemen der Welt tagsüber tatsächlich passiert, wenn die Kamera weg ist, bekommt eine deutlich komplexere Antwort: Marktwirtschaft und Wartezeit, informelle Herrschaft und bewaffnete Konkurrenz, Hoffnung und organisierte Kriminalität — oft alles gleichzeitig, im selben Lager, auf derselben Straße.</p>
+
+  <p>Dieser Artikel unterscheidet bewusst zwischen zwei Kategorien von Lagern, die medial und politisch ständig vermischt werden, aber komplett unterschiedliche Realitäten abbilden: den <strong>Langzeit-Großlagern des globalen Südens</strong> (Jordanien, Kenia, Bangladesch), in denen über 80 Prozent der weltweit registrierten Flüchtlinge leben — und den <strong>Ankunfts- und Erstaufnahmestrukturen in Europa</strong>, deren Demografie strukturell anders ist. Wer das nicht trennt, kommt zu falschen Schlüssen.</p>
+
+  <h2>1. Das Zahlenbild: Warum die Kamera eine Frau mit Kind zeigt</h2>
+
+  <p>Weltweit ist das Geschlechterverhältnis unter Menschen auf der Flucht nahezu ausgeglichen: <span class="tag tag-belegt">BELEGT</span> laut UNHCR waren Ende 2023 rund 49 Prozent aller Flüchtlinge und Asylsuchenden weltweit Frauen und Mädchen, weitere rund 40 Prozent Kinder. Das ergibt in der Gesamtsumme genau das Bild, das die Kamera einfängt — weil es in den großen Lagern des globalen Südens schlicht die Mehrheit ist.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card"><span class="num">51/49</span><span class="label">Männer/Frauen weltweit unter Vertriebenen (UNHCR)</span></div>
+    <div class="stat-card"><span class="num">~40%</span><span class="label">Anteil Kinder an weltweiter Flüchtlingsbevölkerung</span></div>
+    <div class="stat-card"><span class="num">65–69%</span><span class="label">männliche Erstantragsteller (Erwachsene) in Deutschland, 2022/23</span></div>
+    <div class="stat-card"><span class="num">250.000</span><span class="label">Bewohner Lager Kakuma, Kenia (seit 1992)</span></div>
+  </div>
+
+  <p>Der Unterschied entsteht durch die <strong>Route</strong>, nicht durch eine einheitliche globale Realität. Menschen, die über die gefährlichere zentrale Mittelmeerroute (Libyen–Italien) fliehen, sind laut einer Weltbank-Studie von 2019 überwiegend junge Männer aus Subsahara-Afrika. Wer über die Balkanroute oder Griechenland kommt — überwiegend aus Syrien, Afghanistan, Irak — zeigt einen höheren Frauen- und Kinderanteil. Das BAMF wies zudem selbst methodische Kritik auf: die eigene Statistik zählte lange Zeit männliche Jugendliche unter 18 pauschal zu den "Männern", was den wahrgenommenen Männeranteil künstlich erhöhte — ein Fehler, den die taz 2017 öffentlich nachwies und das BAMF einräumte.</p>
+
+  <div class="source-box">
+    <span class="label">QUELLEN</span>
+    UNHCR Global Trends Report (2024) · bpb.de: "Frauen in der Migration" · Schweizerische Flüchtlingshilfe: "Flucht ist weder männlich noch weiblich" (2022), zit. Weltbank-Studie 2019 · Bundestag-Drucksache 20/7823 · taz.de: "Bundesbehörde täuscht mit Statistik" (23.08.2017)
+  </div>
+
+  <h2>2. Der Alltag: Warten, Handeln, Überleben — was Männer in den Großlagern tatsächlich tun</h2>
+
+  <p>In den Langzeit-Lagern, die im TV kaum vorkommen, weil dort keine akute Katastrophe stattfindet, hat sich seit Jahrzehnten ein eigenes ökonomisches Ökosystem entwickelt. <span class="tag tag-belegt">BELEGT</span> Das jordanische Lager Zaatari — mit rund 80.000 Bewohnern das größte im Nahen Osten — verfügt über eine knapp drei Kilometer lange Marktstraße, von den Bewohnern selbst "Sham Elysees" genannt, ein Wortspiel aus "ash-Sham" (arabisch für Damaskus/Syrien) und Champs-Élysées. Über 3.000 von Syrern selbst betriebene Geschäfte reihen sich dort aneinander: Gemüsehändler, Fahrradwerkstätten, Brautmoden, Frisöre, Handy-Reparaturen, Wechselstuben. Laut einer Recherche von Business of Fashion (2024) hat diese Mikro-Ökonomie ein monatliches Umsatzvolumen von geschätzt 12,7 Millionen US-Dollar.</p>
+
+  <p>Der Grund für diese Parallelwirtschaft ist so banal wie strukturell entscheidend: <span class="tag tag-belegt">BELEGT</span> Nur rund 4 Prozent der Menschen im arbeitsfähigen Alter in Zaatari besitzen eine offizielle jordanische Arbeitserlaubnis (UNHCR, Stand 2022). Formelle Arbeit außerhalb des Lagers ist Syrern in den meisten Sektoren rechtlich verwehrt oder stark reglementiert. Was bleibt, ist informeller Handel innerhalb des Lagers — von UNHCR geduldet, teils sogar unterstützt (die Stände auf der Sham Elysees zahlen keine Miete), weil ohne diese Eigenwirtschaft das Versorgungssystem selbst kollabieren würde.</p>
+
+  <div class="pullquote">
+    "Wenn wir zum ersten Mal ankamen, lebten wir in Zelten, Leute verkauften Grundlegendes direkt aus dem Zelt heraus. Es gab keine Extras, nur das Nötigste wie Shampoo. Jetzt hat sich das entwickelt."
+    <span class="src">— Tabarak, 16, Bewohnerin von Zaatari, zit. nach Al Jazeera (2018)</span>
+  </div>
+
+  <p>Ähnliches zeigt sich in Kakuma, Kenia, einem der ältesten Lager der Welt (seit 1992, rund 250.000 Bewohner): Kioske, Schneidereien, Mobile-Money-Stationen (M-Pesa), Motorrad-Taxis. Eine Studie der International Finance Corporation ("Kakuma as a Marketplace") bezifferte das wirtschaftliche Potenzial der Lagerregion so hoch, dass die deutsche KfW-Entwicklungsbank dort seit Jahren einen eigenen Förderfonds (Kakuma Kalobeyei Challenge Fund) betreibt.</p>
+
+  <h3>Was das bedeutet: drei Kategorien von Tätigkeit</h3>
+
+  <table>
+    <tr><th>Tätigkeit</th><th>Status</th><th>Beispiel</th></tr>
+    <tr><td>Informeller Handel / Kleingewerbe</td><td>faktisch geduldet, rechtlich meist illegal</td><td>Sham Elysees (Zaatari), Kakuma-Marktökonomie</td></tr>
+    <tr><td>Warten / Erwerbslosigkeit</td><td>strukturell erzwungen (keine Arbeitserlaubnis)</td><td>96% der Erwerbsfähigen in Zaatari ohne Arbeitspapiere</td></tr>
+    <tr><td>Camp-interne Ordnungsfunktionen</td><td>informell, teils von Hilfsorganisationen anerkannt</td><td>Ältestenräte, Blockvertreter, Sicherheitspatrouillen</td></tr>
+  </table>
+
+  <p>Diese dritte Kategorie — informelle Ordnungsfunktionen — ist der Übergang zum eigentlich heiklen Teil des Themas: Macht innerhalb der Lager entsteht nicht im luftleeren Raum. Sie füllt ein Vakuum, das internationale Organisationen aus rechtlichen und personellen Gründen nicht vollständig ausfüllen können.</p>
+
+  <h2>3. Wenn Struktur zu Macht wird: informelle Herrschaft in den Lagern</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Wissenschaftliche Camp-Forschung (u.a. bpb, Netzwerk Fluchtforschung) beschreibt das Entstehen von "Autoritätsnischen" — informellen Machtstrukturen, die den Lageralltag mitregieren, oft entlang von Herkunft, Ethnie oder familiärer Zugehörigkeit organisiert. Das ist kein neues Phänomen: Bereits in den afghanischen Flüchtlingslagern in Pakistan der 1980er-Jahre nutzten pakistanische Behörden, die USA und Saudi-Arabien die Versorgungsstruktur der Lager gezielt zur Alimentierung politisch-militärischer Gruppierungen — das Verteilungssystem wurde laut Forschung (Terry 2002, Stedman/Tanner 2003) so gestaltet, dass es bewaffneten Widerstand gegen die Sowjetunion unterstützte.</p>
+
+  <p>In Kakuma leben Menschen aus zehn Herkunftsländern und rund 20 ethnischen Gruppen auf engstem Raum — ruandische Hutu und Tutsi, äthiopische Amharas und Oromos, sudanesische Christen neben somalischen Muslimen. <span class="tag tag-belegt">BELEGT</span> Das führte wiederholt zu gewaltsamen Konflikten: Im November 2014 eskalierten Spannungen zwischen südsudanesischen Nuer und Dinka im Lager mit mehreren Todesopfern (Crisp 2000, dokumentiert im Netzwerk Fluchtforschung).</p>
+
+  <div class="warn-box">
+    <span class="label">WICHTIGE UNTERSCHEIDUNG</span>
+    Diese ethnisch-strukturierten Konfliktlinien in Lagern wie Kakuma sind ein anderes Phänomen als das, was in Deutschland unter "Clankriminalität" verhandelt wird. Beide vermischen ist ein Kategorienfehler — siehe Abschnitt 5.
+  </div>
+
+  <h3>Der Extremfall: bewaffnete Gruppen als Lagermacht</h3>
+
+  <p>Am deutlichsten zeigt sich, wie aus einem Machtvakuum organisierte Gewaltherrschaft werden kann, in den Rohingya-Lagern von Cox's Bazar, Bangladesch — mit rund 1 Million Menschen die größte Flüchtlingssiedlung der Welt. <span class="tag tag-belegt">BELEGT</span> Laut International Crisis Group (Dezember 2023) und einem Verteidigungsministeriums-Bericht Bangladeschs sind mindestens elf bewaffnete Gruppen in den Lagern aktiv, angeführt von der Arakan Rohingya Salvation Army (ARSA) und der konkurrierenden Rohingya Solidarity Organisation (RSO). Sie kämpfen um die Kontrolle über Drogenhandel, Erpressung und Menschenhandel.</p>
+
+  <div class="timeline">
+    <div class="entry"><span class="year">2017</span> Militärische Vertreibung aus Myanmar, ca. 750.000 Rohingya fliehen nach Bangladesch. Erste Phase: relative Sicherheit in den neu errichteten Lagern.</div>
+    <div class="entry"><span class="year">2018–2021</span> ARSA etabliert faktische Kontrolle über weite Teile der Lager, beginnt laut Fortify Rights mit Entführung und Folter camp-interner Kritiker.</div>
+    <div class="entry"><span class="year">seit 2022</span> Offene Konkurrenz zwischen ARSA und RSO. 2022: 42 Tötungen in den Lagern (2021: 22). Bangladeschs Grenzpolizei laut International Crisis Group teils selbst an Erpressung und Folter beteiligt.</div>
+    <div class="entry"><span class="year">2023–2026</span> Laufende Machtkämpfe um informelle Regierungsstrukturen: Moschee-Komitees, Gemeindevorsteher und Hilfsnetzwerke werden gezielt angegriffen, weil sie Zugang zu Ressourcen und Einfluss über die Bevölkerung bedeuten (epardafas.com, Mai 2026).</div>
+  </div>
+
+  <p>Ärzte ohne Grenzen (MSF) beschreibt die Folgen aus medizinischer Perspektive: <span class="tag tag-belegt">BELEGT</span> regelmäßige Behandlung von Schuss-, Stich- und Explosionsverletzungen, Familien, die nachts wach bleiben, um sich gegenseitig zu bewachen, eine Bevölkerung, die selbst in den eigenen Bambushütten nicht sicher ist. Im September 2024 mussten allein in einer MSF-Klinik in Jamtoli 40 Verletzte behandelt werden, darunter Kinder.</p>
+
+  <div class="pullquote">
+    "Das Lager ist nie mehr friedlich, nie mehr sicher für irgendjemanden."
+    <span class="src">— ein Imam aus Cox's Bazar, zit. nach International Crisis Group Report 335 (2023)</span>
+  </div>
+
+  <p>Wichtig für die Einordnung: Diese bewaffneten Gruppen sind keine "Männer, die aus Langeweile Clans gründen" — es handelt sich um organisierte militärisch-kriminelle Netzwerke, die gezielt ein Machtvakuum besetzen, das durch fehlende Rechtsstaatlichkeit, Perspektivlosigkeit, restriktive Bewegungsfreiheit und den Zusammenbruch internationaler Finanzierung entsteht. Die International Crisis Group betont ausdrücklich: die überwiegende Mehrheit der Rohingya sind Opfer dieser Strukturen, nicht Teil davon.</p>
+
+  <div class="source-box">
+    <span class="label">QUELLEN</span>
+    International Crisis Group, Report 335: "Crisis Mounts for Rohingya Refugees in Bangladesh" (Dez. 2023) · ACAPS Briefing Note (Mai 2023) · Doctors Without Borders/MSF: "Echoes of violence in the Rohingya camps of Cox's Bazar" (2024) · Prothom Alo, zit. Verteidigungsministerium Bangladesch (Feb. 2023) · IISS Myanmar Conflict Map · epardafas.com (Mai 2026)
+  </div>
+
+  <h2>4. Was Kakuma und Zaatari NICHT sind: die Gegenprobe</h2>
+
+  <p>Um Ausgewogenheit herzustellen: Nicht jedes Großlager kippt in bewaffnete Anarchie. Zaatari und Kakuma zeigen trotz dokumentierter Spannungen überwiegend zivile Selbstorganisation — Marktwirtschaft, Kunstprojekte (das "Jasmine Necklace"-Künstlerkollektiv in Zaatari), eine von Bewohnern selbst redigierte Lagerzeitung ("The Road", 20.000 verteilte Exemplare), Solarkraftwerk-Infrastruktur. <span class="tag tag-extra">EXTRAPOLATION</span> Der entscheidende Unterschied zu Cox's Bazar dürfte in der Kombination aus Bewegungsfreiheit, Dauer der Aufnahme, Aufnahmestaat-Kapazität und dem Fehlen einer bewaffneten Vorgeschichte (die Rohingya-Krise ist untrennbar mit der ARSA als vor-existierender militanter Organisation verknüpft) liegen — eine kausale Vollklärung, warum manche Lager kippen und andere nicht, ist wissenschaftlich nicht abschließend geklärt und wird hier entsprechend nicht behauptet.</p>
+
+  <h2>5. Die Clan-These und Deutschland: eine notwendige Trennung</h2>
+
+  <p>Der Reflex, informelle Machtstrukturen in Lagern mit dem deutschen Begriff "Clankriminalität" zu verknüpfen, liegt nahe — ist aber sachlich nicht haltbar. Hier die dokumentierten Fakten:</p>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Was in Deutschland als "Clankriminalität" polizeilich erfasst wird, geht laut BKA-Bundeslagebild und Fachliteratur (Kriminalpolizei-Zeitschrift, 2020) überwiegend auf Großfamilien der sogenannten Mhallamiye-Kurden zurück — Menschen aus der türkischen Provinz Mardin sowie libanesisch-arabische Familien, die in den <strong>1980er- und 1990er-Jahren</strong> im Kontext des libanesischen Bürgerkriegs nach Deutschland flohen. Das BKA schätzt die Gesamtgröße dieser Großfamilien-Communities auf rund 200.000 Menschen — von denen nur ein Teil kriminell aktiv ist.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card"><span class="num">0,6%</span><span class="label">Anteil "Clankriminalität" an allen erfassten Straftaten in Deutschland</span></div>
+    <div class="stat-card"><span class="num">0,2%</span><span class="label">Anteil in Berlin, einem der Hauptschwerpunkte</span></div>
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Es gibt bis heute keine bundesweit einheitliche Definition von "Clankriminalität" — das räumt das BKA in seinen eigenen Bundeslagebildern (2019, 2020) offen ein. Kritische Analysen (u.a. Komitee für Grundrechte und Demokratie, 2022) zeigen zudem methodische Inkonsistenzen: Verfahren werden teils anhand von Nachnamen zugeordnet, mehrfach gezählt, oder Gruppen ethnisch zugerechnet, obwohl sie nicht zum eigentlichen Fokus gehören. Bemerkenswert: Im Bundeslagebild 2019 dominierten in den mit "Clankriminalität" verknüpften Verfahren teils <strong>deutsche Staatsangehörige</strong> das kriminelle Handeln, vor libanesischen, türkischen und syrischen Tatverdächtigen.</p>
+
+  <div class="warn-box">
+    <span class="label">EINORDNUNG</span>
+    Die für Deutschland dokumentierte "Clankriminalität" ist ein historisch gewachsenes, sozioökonomisch erklärtes Phänomen bestimmter, seit Jahrzehnten ansässiger Großfamilien-Communities — kein Vorgang, der sich aktuell "in Flüchtlingslagern" neu bildet. Wer beides kausal verknüpft, verlässt den Boden der Primärquellen. Was in aktuellen Lagern wie Kakuma oder Cox's Bazar an Gruppenbildung dokumentiert ist (siehe Abschnitt 3), folgt anderen Mechanismen: akutes Machtvakuum, fehlende Rechtsstaatlichkeit vor Ort, teils vor-existierende militante Organisationen — nicht familiäre Parallelstrukturen nach deutschem Muster.
+  </div>
+
+  <p>Der frühere BKA-Präsident Holger Münch selbst benannte die Entstehungsgeschichte so: deutsche Behörden hätten in den 1980er/90er-Jahren Fehler gemacht, als arabische Familien aus dem Libanon und der Türkei nach Deutschland kamen und sich — aus dokumentierter Perspektivlosigkeit, jahrelanger ungeklärter Aufenthaltsstatus, fehlendem Arbeitsmarktzugang — zu kriminellen Strukturen entwickeln konnten. Das ist eine Aussage über gescheiterte deutsche Integrations- und Aufenthaltspolitik von vor vier Jahrzehnten, keine Aussage über heutige Camp-Bevölkerungen in Jordanien, Kenia oder Bangladesch.</p>
+
+  <div class="source-box">
+    <span class="label">QUELLEN</span>
+    BKA: Bundeslagebild Organisierte Kriminalität 2019 und 2020 · Wikipedia/Kriminalpolizei-Zeitschrift (2020): "Clankriminalität" · Mediendienst Integration: "Factsheet Clankriminalität" · Komitee für Grundrechte und Demokratie: "Clankriminalität in Lagebildern — Unklare Definitionen" (2022)
+  </div>
+
+  <h2>6. Fazit: zwei Wahrheiten, die nebeneinander bestehen</h2>
+
+  <p>Erstens: Das TV-Bild der Frau mit Kind ist statistisch korrekt für die großen Langzeitlager des globalen Südens, wo die Mehrheit der Weltbevölkerung auf der Flucht tatsächlich lebt — es ist aber unvollständig, weil es die parallel existierende, oft unsichtbare männliche Realität aus Marktwirtschaft, Warten und teils informeller Machtausübung ausblendet.</p>
+
+  <p>Zweitens: Wo Männer in Lagern "den ganzen Tag machen", hängt vollständig vom jeweiligen Lagertyp ab — von blühender Kleinunternehmer-Ökonomie (Zaatari, Kakuma) bis zu bewaffneter Kontrolle durch militante Gruppen (Cox's Bazar). Eine pauschale These ("es bilden sich Clans") verfehlt diese Bandbreite und riskiert, ein in Deutschland historisch anders gewachsenes Phänomen unzulässig mit aktuellen globalen Lagerrealitäten zu vermengen.</p>
+
+  <div class="closing">
+    <p><em>Was bedeutet es für die internationale Gemeinschaft, wenn Finanzierungskürzungen (laut UNHCR/ACAPS nur 63% Deckung des humanitären Bedarfs in Cox's Bazar 2022) direkt mit steigender Gewalt in Lagern korrelieren? Und welche Verantwortung tragen Aufnahmestaaten, die durch jahrzehntelange Arbeitsverbote — wie im Fall der Mhallamiye-Familien in den 1980ern oder heute in Zaatari — genau jene Perspektivlosigkeit strukturell erzeugen, die informellen Machtstrukturen erst den Nährboden bietet?</em></p>
+  </div>
+
+  <div class="footer">
+    dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.<br>
+    Alle Angaben basieren auf öffentlich zugänglichen Primärquellen: UNHCR, BKA, International Crisis Group, MSF, wissenschaftlicher Camp-Forschung sowie investigativem Journalismus. Leser sind zur eigenständigen Prüfung der genannten Quellen eingeladen.
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Die Vatikanbank | dunkelfeld.report</title>
+<style>
+  :root{
+    --bg:#09090b; --surface:#111114; --surface2:#1a1a2e; --border:#1e1e24;
+    --text:#e8e8ec; --muted:#8a8a96; --accent:#e8c547;
+    --belegt:#4caf50; --extrapolation:#e8974a; --offen:#8a8a96; --vt:#e05a5a;
+  }
+  *{box-sizing:border-box;}
+  body{ background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif; margin:0; padding:0; line-height:1.8; font-size:1.1rem; }
+  header.top{
+    border-bottom:1px solid var(--border); padding:1.2rem 1.5rem; display:flex; align-items:center; gap:1rem;
+    position:sticky; top:0; background:rgba(9,9,11,0.95); backdrop-filter:blur(6px); z-index:100;
+  }
+  header.top .dot{width:8px;height:8px;background:var(--accent);border-radius:50%;flex-shrink:0;}
+  header.top .label{ font-family:'Courier New',monospace; font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.14em; }
+  header.top .stand{margin-left:auto;font-family:'Courier New',monospace;font-size:0.68rem;color:var(--muted);}
+  main{max-width:720px;margin:0 auto;padding:0 1.5rem;}
+  .kicker{ font-family:'Courier New',monospace; font-size:0.75rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.16em; margin-top:3rem; }
+  h1{ font-size:clamp(2.2rem,6vw,3.1rem); line-height:1.15; margin:1rem 0 0.5rem; font-weight:700; }
+  .subtitle{ color:var(--muted); font-size:1.2rem; margin-bottom:2.5rem; max-width:600px; }
+  h2{ font-size:1.6rem; margin-top:3.5rem; margin-bottom:1rem; border-left:3px solid var(--accent); padding-left:0.9rem; }
+  h3{ color:var(--accent); font-family:'Courier New',monospace; text-transform:uppercase; letter-spacing:0.04em; font-size:0.95rem; margin-top:2rem; }
+  p{margin:1.1rem 0;} strong{color:var(--text);}
+  .tag{ display:inline-block; font-family:'Courier New',monospace; font-size:0.68rem; font-weight:700; letter-spacing:0.06em; padding:0.15rem 0.5rem; border-radius:3px; vertical-align:middle; margin-right:0.4rem; }
+  .tag-belegt{ background:rgba(76,175,80,0.15); color:var(--belegt); border:1px solid rgba(76,175,80,0.4);}
+  .tag-extrapolation{ background:rgba(232,151,74,0.15); color:var(--extrapolation); border:1px solid rgba(232,151,74,0.4);}
+  .tag-offen{ background:rgba(138,138,150,0.15); color:var(--offen); border:1px solid rgba(138,138,150,0.4);}
+  .tag-vt{ background:rgba(224,90,90,0.15); color:var(--vt); border:1px solid rgba(224,90,90,0.4);}
+  .source-box{ background:var(--surface2); border-left:3px solid var(--accent); padding:1.1rem 1.3rem; margin:1.6rem 0; font-size:0.95rem; }
+  .source-box .src-label{ font-family:'Courier New',monospace; font-size:0.7rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.4rem; display:block; }
+  .stat-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1.5rem; margin:2rem 0; }
+  .stat{ border-left:3px solid var(--accent); padding-left:1rem; }
+  .stat .value{ font-size:1.6rem; font-weight:700; color:var(--accent); line-height:1.15; }
+  .stat .label{ font-size:0.85rem; color:var(--text); margin-top:0.4rem; }
+  .stat .src{ font-family:'Courier New',monospace; font-size:0.68rem; color:var(--muted); margin-top:0.3rem; }
+  .timeline{ margin:2rem 0; border-left:2px solid var(--border); padding-left:1.5rem; }
+  .timeline-item{ position:relative; margin-bottom:1.6rem; }
+  .timeline-item::before{ content:""; position:absolute; left:-1.62rem; top:0.35rem; width:9px; height:9px; border-radius:50%; background:var(--accent); }
+  .timeline-year{ font-family:'Courier New',monospace; color:var(--accent); font-size:0.85rem; font-weight:700; }
+  .timeline-text{ font-size:0.98rem; margin-top:0.2rem; }
+  table{ width:100%; border-collapse:collapse; margin:1.8rem 0; font-size:0.95rem; }
+  th,td{ text-align:left; padding:0.6rem 0.8rem; border-bottom:1px solid var(--border); }
+  th{ font-family:'Courier New',monospace; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent); }
+  blockquote{ border-left:3px solid var(--accent); margin:2rem 0; padding:0.2rem 0 0.2rem 1.3rem; font-style:italic; color:var(--text); font-size:1.15rem; }
+  .warn-box{ background:rgba(224,90,90,0.08); border:1px solid rgba(224,90,90,0.3); border-radius:4px; padding:1rem 1.3rem; margin:1.8rem 0; font-size:0.95rem; }
+  .warn-box .warn-label{ font-family:'Courier New',monospace; color:var(--vt); font-size:0.72rem; text-transform:uppercase; letter-spacing:0.08em; display:block; margin-bottom:0.4rem; }
+  .closing{ margin-top:3.5rem; padding-top:2rem; border-top:1px solid var(--border); }
+  .closing p{ font-style:italic; color:var(--muted); }
+  footer.foot{ max-width:720px; margin:4rem auto 3rem; padding:2rem 1.5rem 0; border-top:1px solid var(--border); font-family:'Courier New',monospace; font-size:0.75rem; color:var(--muted); line-height:1.9; }
+  .crossref{ margin-top:2.5rem; font-family:'Courier New',monospace; font-size:0.8rem; color:var(--muted); }
+  .crossref span{ color:var(--accent); }
+  .person-card{ background:var(--surface); border:1px solid var(--border); border-radius:4px; padding:1rem 1.3rem; margin:1.2rem 0; }
+  .person-card .name{ font-family:'Courier New',monospace; color:var(--accent); font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.3rem; }
+  .person-card .role{ font-size:0.9rem; color:var(--muted); margin-bottom:0.5rem; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="dot"></div>
+  <div class="label">dunkelfeld.report · dokumentation</div>
+  <div class="stand">Stand: Juli 2026</div>
+</header>
+
+<main>
+
+  <div class="kicker">Kirche &amp; Macht — Teil 3</div>
+  <h1>Die Vatikanbank</h1>
+  <p class="subtitle">Vom "Institut für die Werke der Religion" zur Chiffre für Finanzskandale: Seit den 1970er-Jahren begleiten Bankenzusammenbrüche, ungeklärte Todesfälle und Strafprozesse das IOR — bis hin zur bislang schwersten Verurteilung, einem 2023 verurteilten Kardinal. Ein chronologischer Überblick, sauber getrennt zwischen Gerichtsfeststellungen und bis heute ungelösten Fragen.</p>
+
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="value">1942</div>
+      <div class="label">Gründung des IOR durch Papst Pius XII.</div>
+      <div class="src">Quelle: katholisch.de</div>
+    </div>
+    <div class="stat">
+      <div class="value">~240 Mio. $</div>
+      <div class="label">Zahlung des Vatikans 1984 an Gläubigerbanken der Banco Ambrosiano ("moralische Mitverantwortung")</div>
+      <div class="src">Quelle: DOMRADIO.DE / Wikipedia</div>
+    </div>
+    <div class="stat">
+      <div class="value">5,5 Jahre</div>
+      <div class="label">Haftstrafe für Kardinal Becciu, Dezember 2023 — erstmals ein Kardinal vor Vatikan-Gericht</div>
+      <div class="src">Quelle: Vatican News, 16.12.2023</div>
+    </div>
+  </div>
+
+  <h2>1. Was das IOR eigentlich ist</h2>
+  <p><span class="tag tag-belegt">BELEGT</span>Das "Istituto per le Opere di Religione" (IOR), umgangssprachlich Vatikanbank genannt, wurde am 27. Juni 1942 von Papst Pius XII. gegründet — als Nachfolgeinstitut einer bereits im 19. Jahrhundert unter Leo XIII. eingerichteten Verwaltungsstelle für fromme Schenkungen und Testamente. Formal ist das IOR keine Geschäftsbank im klassischen Sinn: Es vergibt keine klassischen Kredite, sondern verwaltet laut Statut Kapital, dessen Erträge kirchlichen und karitativen Zwecken dienen sollen. Diese Sonderstellung — kirchliche Vermögensverwaltung mit Bankstruktur, aber ohne die Aufsicht einer regulären Zentralbank — ist die strukturelle Wurzel aller folgenden Skandale.</p>
+
+  <h2>2. Die Skandalkette 1971–1984</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">1971</div>
+      <div class="timeline-text">Papst Paul VI. macht den US-Priester Paul Casimir Marcinkus zum IOR-Chef. Unter seiner Führung gerät das Institut wiederholt wegen undurchsichtiger Geschäfte in die Schlagzeilen.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1975</div>
+      <div class="timeline-text">Zusammenbruch des Bankenkonsortiums um den mutmaßlichen Mafia-Geldwäscher Michele Sindona. Das IOR verliert als Anteilseigner rund 50 Mio. US-Dollar. Sindona stirbt 1986 in italienischer Haft, vergiftet.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1978</div>
+      <div class="timeline-text">Die Banca d'Italia stellt in einem Bericht illegale Kapitalabflüsse der Banco Ambrosiano fest — Beginn strafrechtlicher Ermittlungen gegen deren Chef Roberto Calvi ("Bankier Gottes").</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1981–1982</div>
+      <div class="timeline-text">Zusammenbruch der Banco Ambrosiano mit einem Fehlbetrag von 700 Mio.–1,5 Mrd. US-Dollar, größtenteils über das IOR verschoben. Das IOR hatte Marcinkus zufolge "Bürgschaftsbriefe" für Calvis Geschäfte ausgestellt.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">18. Juni 1982</div>
+      <div class="timeline-text">Calvi wird erhängt unter der Blackfriars Bridge in London gefunden — einen Tag zuvor war seine Sekretärin Graziella Corrocher aus dem 5. Stock der Bankzentrale in Mailand gesprungen. Erste Untersuchung: Suizid. Zweite Untersuchung (1983): offener Befund. Erst nach jahrelangen weiteren Ermittlungen italienischer Behörden gilt Mord als wahrscheinlichste Ursache — 2007 werden fünf Angeklagte mangels Beweisen freigesprochen.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">Juli 1984</div>
+      <div class="timeline-text">Der Vatikan bestreitet jede rechtliche Schuld, zahlt aber als Geste "moralischer Mitverantwortung" rund 224–240 Mio. US-Dollar an 88–120 Gläubigerbanken der Banco Ambrosiano.</div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <span class="src-label">Quelle</span>
+    DOMRADIO.DE, "Die Vatikanbank IOR und ihre Geschichte"; katholisch.de, "Sagen- und skandalumwoben: Die Vatikanbank IOR wird 80"; Wikipedia (EN), "Roberto Calvi" und "Banco Ambrosiano"; Der Tagesspiegel, "Der Bankier des Herrn"
+  </div>
+
+  <div class="warn-box">
+    <span class="warn-label">Was ungeklärt bleibt</span>
+    <span class="tag tag-offen">OFFEN</span> Ob das IOR bzw. Erzbischof Marcinkus direkt an den kriminellen Geschäften der Banco Ambrosiano beteiligt war oder nur als formaler Anteilseigner instrumentalisiert wurde, ist bis heute nicht abschließend geklärt — Marcinkus genoss diplomatische Immunität und wurde nie vor Gericht gestellt (die USA lehnten 1994 ein Auslieferungsersuchen ab). Auch Calvis Todesumstände sind trotz zweier Leichenschauen und mehrerer Strafverfahren nicht lückenlos aufgeklärt.
+  </div>
+
+  <div class="person-card">
+    <div class="name">Erzbischof Paul C. Marcinkus</div>
+    <div class="role">IOR-Chef 1971–1989</div>
+    Wurde nach dem Ambrosiano-Skandal 1989 als Bankchef entlassen, verließ den Vatikan aber erst 1990 in die USA — solange bestand gegen ihn ein italienischer Haftbefehl, dem er sich durch den diplomatischen Status im Vatikanstaat entzog.
+  </div>
+
+  <h2>3. Reformversuche 2010–2020</h2>
+  <p><span class="tag tag-belegt">BELEGT</span>Nach der globalen Finanzkrise 2008/09 gerieten Steueroasen und intransparente Finanzplätze verstärkt ins Visier von EU und OECD — auch der Vatikan. Benedikt XVI. berief 2009 den italienischen Bankier Ettore Gotti Tedeschi zum IOR-Chef, der Vatikan unterzeichnete Finanzabkommen mit der EU. Die OECD verweigerte dennoch zunächst die Aufnahme in die "weiße Liste" transparenter Finanzplätze. Gotti Tedeschi wurde 2012 selbst wegen Geldwäscheverdachts entlassen — infolgedessen richtete der Vatikan mit der AIF (heute ASIF) erstmals eine unabhängige Finanzaufsichtsbehörde ein, die auch die Vermögensverwaltung APSA kontrollieren soll.</p>
+
+  <p>2013 wurde der frühere IOR-Präsident Angelo Caloia gemeinsam mit seinem Rechtsberater wegen Geldwäsche und Unterschlagung zu jeweils 8 Jahren 11 Monaten Haft verurteilt — ein erster sichtbarer Erfolg der neuen internen Rechtsstaatlichkeit.</p>
+
+  <h2>4. Der Becciu-Prozess: Der bisherige Höhepunkt</h2>
+  <p><span class="tag tag-belegt">BELEGT</span>Ab 2019 ermittelte der Vatikan gegen sein eigenes Staatssekretariat wegen eines verlustreichen Immobiliengeschäfts in London (Sloane Avenue, Chelsea). Zwischen 2013 und 2014 hatte das Staatssekretariat rund 200 Mio. US-Dollar — etwa ein Drittel seiner damals verfügbaren Mittel — in einen Hochrisiko-Hedgefonds investiert, um Anteile an der Immobilie zu erwerben, ohne sich dabei Mitspracherechte zu sichern. Als der Deal scheiterte, musste sich der Vatikan für 15 Mio. Euro freikaufen und verkaufte die Immobilie schließlich mit Verlust — Gesamtschaden rund 150–200 Mio. Euro.</p>
+
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="value">10</div>
+      <div class="label">Angeklagte (+ 4 Firmen) im größten Finanzprozess der Vatikangeschichte</div>
+      <div class="src">Quelle: Vatican News, katholisch.de</div>
+    </div>
+    <div class="stat">
+      <div class="value">86</div>
+      <div class="label">Verhandlungstage über 2,5 Jahre</div>
+      <div class="src">Quelle: SRF, 16.12.2023</div>
+    </div>
+    <div class="stat">
+      <div class="value">&gt;200 Mio. €</div>
+      <div class="label">vom Gericht festgestellter Gesamtschaden, Schadensersatz angeordnet</div>
+      <div class="src">Quelle: Vatican News, 16.12.2023</div>
+    </div>
+  </div>
+
+  <p>Am 16. Dezember 2023 verurteilte das Vatikan-Gericht Kardinal Giovanni Angelo Becciu — ehemaliger Substitut (Nr. 2) im Staatssekretariat und einst als möglicher künftiger Papst gehandelt — zu <strong>5 Jahren und 6 Monaten Haft</strong> wegen Veruntreuung. Es war das erste Mal in der Geschichte des Vatikanstaats, dass ein Kardinal vor einem Vatikan-Gericht verurteilt wurde. Neben dem Immobiliengeschäft wurde Becciu auch für schuldig befunden, gemeinsam mit einer "Beraterin" rund 570.000 Euro unter dem Vorwand einer Geiselbefreiung in Mali veruntreut zu haben, sowie für eine kleinere Unterschlagung zugunsten einer Genossenschaft seines Bruders. Becciu bestreitet die Vorwürfe und ist in Berufung gegangen.</p>
+
+  <div class="source-box">
+    <span class="src-label">Quelle</span>
+    Vatican News, "Kard. Becciu zu fünf Jahren und sechs Monaten Haft verurteilt" (16.12.2023); katholisch.de, "Prozess vor Abschluss: Becciu und die verlorenen Millionen des Papstes"; SRF, "Historisches Urteil: Kardinal Becciu zu Haftstrafe verurteilt"
+  </div>
+
+  <p>Papst Franziskus zog bereits im Dezember 2020 — vor dem Urteil — strukturelle Konsequenzen: Er entzog dem Staatssekretariat und anderen Kurienbehörden die eigenständige Verfügungsgewalt über Vermögenswerte. Seither dürfen nur noch die Güterverwaltung APSA und das IOR selbst Vermögen anlegen — eine direkte institutionelle Reaktion auf den Fall.</p>
+
+  <h2>5. Muster über 50 Jahre</h2>
+  <p><span class="tag tag-extrapolation">EXTRAPOLATION</span>Von Sindona (1975) über Calvi/Marcinkus (1982) bis Becciu (2023) wiederholt sich ein struktureller Kern: Kirchliche Vermögensverwaltung mit hohem Diskretionsgrad, verknüpft mit externen Finanzakteuren, bei minimaler externer Kontrolle über Jahrzehnte. Neu am Becciu-Fall ist, dass der Vatikan diesmal <strong>selbst</strong> ermittelte, anklagte und verurteilte — ein Bruch mit dem historischen Muster aus Vertuschung und diplomatischer Immunität der 1970er/80er-Jahre.</p>
+
+  <table>
+    <tr><th>Fall</th><th>Zeitraum</th><th>Ausgang</th></tr>
+    <tr><td>Sindona</td><td>1975</td><td>50 Mio. $ IOR-Verlust; Sindona 1986 in Haft vergiftet</td></tr>
+    <tr><td>Calvi / Banco Ambrosiano</td><td>1981–1984</td><td>Calvi tot (Mord wahrscheinlich, ungeklärt); Vatikan zahlt ~240 Mio. $ ohne Schuldanerkenntnis</td></tr>
+    <tr><td>Gotti Tedeschi</td><td>2009–2012</td><td>Entlassung wegen Geldwäscheverdachts; AIF/ASIF-Aufsicht eingeführt</td></tr>
+    <tr><td>Caloia</td><td>2013 (Urteil)</td><td>8 Jahre 11 Monate Haft wegen Geldwäsche/Unterschlagung</td></tr>
+    <tr><td>Becciu</td><td>2019–2023</td><td>5,5 Jahre Haft, erstmals Kardinal verurteilt, Berufung läuft</td></tr>
+  </table>
+
+  <div class="closing">
+    <p><em>Der Becciu-Prozess wird von manchen als Beweis echter Rechtsstaatlichkeit im Vatikan gewertet, von anderen als kontrollierte Aufarbeitung, die strukturelle Fragen zur Vermögensverwaltung der Kirche insgesamt unangetastet lässt. Wird die 2020 eingeführte Zentralisierung der Vermögensverwaltung bei APSA und IOR künftige Skandale tatsächlich verhindern — oder nur die Kontrolle an einer anderen Stelle konzentrieren?</em></p>
+  </div>
+
+  <div class="crossref">
+    Vorherige Teile: <span>„Wie die Kirche zu Macht und Reichtum kam"</span> · <span>„Die verscharrten Kinder"</span> · Querverweis: Anfrage zum "33-Tage-Papst" Johannes Paul I. — als <span class="tag tag-vt">VT</span> eingeordnete Verschwörungstheorie um dessen Tod 1978, siehe Chat-Notiz
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div><strong style="color:var(--text);">Über diese Dokumentation:</strong> BELEGT kennzeichnet gerichtlich festgestellte oder mehrfach unabhängig bestätigte Fakten. EXTRAPOLATION kennzeichnet strukturell plausible Muster ohne exakte Beweisführung im Einzelfall. OFFEN kennzeichnet bis heute ungeklärte Sachverhalte. VT kennzeichnet Verschwörungstheorien, die einem Faktencheck nicht standhalten.</div>
+  <div style="margin-top:1rem;">dunkelfeld.report — Hidden in Plain Sight</div>
+</footer>
+
+</body>
+</html>

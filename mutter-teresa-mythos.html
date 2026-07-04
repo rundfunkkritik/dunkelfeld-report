@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mutter Teresa — Mythos und Aktenlage | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --amber: #e8c547;
+    --box-bg: #1a1a2e;
+    --belegt: #4ade80;
+    --extra: #f97316;
+    --offen: #9ca3af;
+    --vt: #ef4444;
+    --text: #e4e4e7;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 5rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--amber);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin: 0.2rem 0 0.3rem;
+    color: #fff;
+  }
+  .subtitle {
+    font-size: 1.15rem;
+    color: #b8b8c0;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  h2 {
+    font-family: 'Courier New', monospace;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--amber);
+    border-bottom: 1px solid #333;
+    padding-bottom: 0.5rem;
+    margin-top: 3rem;
+  }
+  h3 {
+    font-size: 1.3rem;
+    color: #fff;
+    margin-top: 2rem;
+  }
+  p { margin: 1rem 0; }
+  .intro {
+    font-size: 1.15rem;
+    color: #d4d4d8;
+    border-left: 3px solid var(--amber);
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+  }
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--amber);
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--amber);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.04em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag-extra { background: rgba(249,115,22,0.15); color: var(--extra); border: 1px solid var(--extra); }
+  .tag-offen { background: rgba(156,163,175,0.15); color: var(--offen); border: 1px solid var(--offen); }
+  .tag-vt { background: rgba(239,68,68,0.15); color: var(--vt); border: 1px solid var(--vt); }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #333;
+    margin: 1.5rem 0;
+    border: 1px solid #333;
+  }
+  .stat {
+    background: var(--bg);
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat .num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.6rem;
+    color: var(--amber);
+    font-weight: bold;
+    display: block;
+  }
+  .stat .label {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    margin-top: 0.3rem;
+  }
+  .timeline {
+    margin: 2rem 0;
+    border-left: 2px solid #333;
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    margin-bottom: 1.3rem;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -1.94rem;
+    top: 0.3rem;
+    width: 9px;
+    height: 9px;
+    background: var(--amber);
+    border-radius: 50%;
+  }
+  .timeline-year {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-weight: bold;
+    font-size: 0.95rem;
+  }
+  .pull-quote {
+    font-size: 1.25rem;
+    font-style: italic;
+    color: #fff;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    padding: 1.5rem 0;
+    margin: 2rem 0;
+    text-align: center;
+  }
+  .pull-quote cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-style: normal;
+    color: #9ca3af;
+    margin-top: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .person-card {
+    display: flex;
+    gap: 1rem;
+    background: var(--box-bg);
+    padding: 1.2rem;
+    margin: 1.5rem 0;
+    border: 1px solid #2a2a40;
+  }
+  .person-card .initial {
+    font-family: 'Courier New', monospace;
+    font-size: 1.4rem;
+    color: var(--amber);
+    background: #09090b;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--amber);
+    border-radius: 50%;
+  }
+  .person-card .name {
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 0.3rem;
+  }
+  .person-card .role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .comparison-table th, .comparison-table td {
+    border: 1px solid #333;
+    padding: 0.7rem;
+    text-align: left;
+  }
+  .comparison-table th {
+    background: var(--box-bg);
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+  .warn-box {
+    background: rgba(249,115,22,0.08);
+    border: 1px solid var(--extra);
+    padding: 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .warn-box .label {
+    color: var(--extra);
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #333;
+  }
+  .closing p {
+    font-style: italic;
+    color: #b8b8c0;
+  }
+  a { color: var(--amber); }
+  .footnotes {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #333;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #9ca3af;
+    line-height: 1.6;
+  }
+  .footnotes li { margin-bottom: 0.6rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="meta">dunkelfeld.report — dossier · religion &amp; medienmacht</div>
+  <h1>Mutter Teresa: Mythos und Aktenlage</h1>
+  <div class="subtitle">Wie aus einer unbekannten Ordensschwester binnen weniger Jahre eine globale Ikone wurde — und was dokumentiert ist, sobald man hinter das Bild schaut.</div>
+
+  <div class="intro">
+    Dieses Dossier stellt keine Motive infrage und behauptet keine Verschwörung. Es dokumentiert fünf Stränge — Medienereignis, medizinische Versorgung, Finanzen, politische Allianzen, Heiligsprechungsverfahren —, jeweils mit Primärquellen. Die Einordnung überlässt dunkelfeld.report der Leserschaft.
+  </div>
+
+  <h2>01 · Die Entstehung des Mythos</h2>
+  <p>Bis 1969 war die Ordensschwester Teresa außerhalb Kalkuttas praktisch unbekannt. Das änderte sich mit einem einzigen Fernsehereignis.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">1968/69</div>
+      <p>Der britische Journalist Malcolm Muggeridge, ehemaliger Moskau-Korrespondent des <em>Guardian</em> und zu diesem Zeitpunkt bekennender Agnostiker, dreht für die BBC die Dokumentation <em>Something Beautiful for God</em> über Teresas Arbeit im "Home for the Dying" in Kalkutta. <span class="tag tag-belegt">BELEGT</span></p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1969</div>
+      <p>Beim Dreh im schwach beleuchteten Innenraum des Sterbehauses hält Kameramann Ken Macmillan die Aufnahmen zunächst für technisch unbrauchbar. Nach der Entwicklung zeigt sich das Material jedoch von "einem besonders schönen, weichen Licht" durchflutet. <span class="tag tag-belegt">BELEGT</span></p>
+    </div>
+    <div class="source-box">
+      <span class="label">Zwei Erklärungen im Vergleich</span>
+      Muggeridge deutete das Licht öffentlich als "jenes Kindly Light", also als göttliches Zeichen, und baute darauf den Titel seines späteren Buchs auf. <span class="tag tag-extra">EXTRAPOLATION</span> Sein eigener Kameramann erklärte hingegen technisch, dass neu entwickeltes Kodak-Filmmaterial ungewöhnlich lichtempfindlich war — ein Effekt, den er bei einem späteren Dreh im Nahen Osten unter ähnlichen Bedingungen zu reproduzieren versuchte. <span class="tag tag-belegt">BELEGT</span>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1971</div>
+      <p>Muggeridge verarbeitet die Erfahrung zum Buch <em>Something Beautiful for God</em>. Er tritt 1982 offiziell der katholischen Kirche bei — eine Konversion, die er selbst auf die Begegnung mit Teresa zurückführt. <span class="tag tag-belegt">BELEGT</span></p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1979</div>
+      <p>Friedensnobelpreis für Teresa — zehn Jahre nach der BBC-Ausstrahlung. In ihrer Dankesrede bezeichnet sie Abtreibung als "die größte Zerstörerin des Friedens heute". <span class="tag tag-belegt">BELEGT</span></p>
+    </div>
+  </div>
+
+  <p>Der Wikipedia-Eintrag zur Dokumentation hält fest, dass Journalist Christopher Hitchens Muggeridges Lichterklärung später als "lächerlich" bezeichnete und sie als "alten Schwindler und Scharlatan" attackierte — während unabhängige Kritiker wie auch wohlwollende Kommentatoren übereinstimmend datieren, dass Teresas globale Bekanntheit direkt aus diesem einen Medienereignis resultierte, bevor überhaupt eine unabhängige Prüfung ihrer Arbeit stattfand. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="pull-quote">
+    "Sie war zu dieser Zeit außerhalb Indiens praktisch unbekannt — und dieser Film änderte das."
+    <cite>Zeitgenössische Einordnung zur BBC-Doku von 1969</cite>
+  </div>
+
+  <h2>02 · Sterbehäuser Kalkutta: Die medizinische Aktenlage</h2>
+  <p>Die gravierendste fachliche Kritik kam nicht von Aktivisten, sondern von der medizinischen Fachpresse selbst.</p>
+
+  <div class="person-card">
+    <div class="initial">RF</div>
+    <div>
+      <div class="name">Dr. Robin Fox</div>
+      <div class="role">Damaliger Chefredakteur, The Lancet</div>
+      <p style="margin:0;">Besuchte 1994 das "Home for Dying Destitutes" in Kalkutta und veröffentlichte seine Beobachtungen im Fachjournal selbst — unter dem Titel "Mother Theresa's care for the dying" (The Lancet 344, 17. September 1994). <span class="tag tag-belegt">BELEGT</span></p>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <span class="label">Fox' dokumentierte Beobachtungen</span>
+    Die Versorgung bezeichnete er als "haphazard" (planlos). Diagnostische Basisverfahren wie Blutbilder wurden nicht routinemäßig durchgeführt. Starke Schmerzmittel fehlten in der Arzneiliste. Spritzen wurden in kaltem Wasser gespült und wiederverwendet. Ein Patient mit hohem Fieber wurde zunächst mit Paracetamol und einem Antibiotikum behandelt, bis ein zugezogener Arzt Malaria diagnostizierte und Chloroquin verordnete. <span class="tag tag-belegt">BELEGT</span> Fox hielt zugleich fest, dass die Bewohner gut ernährt waren und Schwestern wie Freiwillige sich um Sauberkeit und Zuwendung bemühten. <span class="tag tag-belegt">BELEGT</span>
+  </div>
+
+  <p>Die britische Ärztin Mary Loudon kam in einer Rezension im <em>British Medical Journal</em> (1996) zu ähnlichen Befunden. Die kanadische Studie von Serge Larivée, Carole Sénéchal und Geneviève Chénard (Universität Montreal, 2013, "Les côtés ténébreux de Mère Teresa", <em>Studies in Religion/Sciences Religieuses</em>) fasste vorliegende Berichte aus mehreren Jahrzehnten zusammen und kam zum Schluss, dass die Diskrepanz zwischen Spendenvolumen und dokumentiertem Versorgungsstandard erklärungsbedürftig sei. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="warn-box">
+    <span class="label">Gegenposition — ebenfalls dokumentiert</span>
+    Verteidiger verweisen darauf, dass Fox selbst die Reinlichkeit und liebevolle Zuwendung lobte, dass die restriktive indische Opiumgesetzgebung starke Schmerzmittel erschwerte, und dass die Häuser sich explizit als Sterbebegleitung ("Houses of the Dying"), nicht als Krankenhäuser verstanden. Ordensvertreterin Sr. Mary Prema Pierick bestritt öffentlich, dass Leiden absichtlich verlängert worden sei. <span class="tag tag-belegt">BELEGT</span> Ob die fehlende medizinische Standardversorgung strukturell notwendig oder eine bewusste Entscheidung war, bleibt <span class="tag tag-offen">OFFEN</span>.
+  </div>
+
+  <h2>03 · Finanzen: Spendenvolumen vs. dokumentierte Ausgaben</h2>
+
+  <div class="stat-grid">
+    <div class="stat">
+      <span class="num">~100 Mio. $</span>
+      <div class="label">geschätztes Spendenaufkommen bis 1980 (kumulativ)</div>
+    </div>
+    <div class="stat">
+      <span class="num">~7%</span>
+      <div class="label">laut Stern-Recherche 1991 für karitative Zwecke verwendet</div>
+    </div>
+    <div class="stat">
+      <span class="num">610</span>
+      <div class="label">Niederlassungen in 123 Ländern (Spätphase)</div>
+    </div>
+    <div class="stat">
+      <span class="num">~5 Mio. $</span>
+      <div class="label">von Insidern genannter Kontostand trotz weit höherer Einnahmen</div>
+    </div>
+  </div>
+
+  <p>Das deutsche Magazin <em>Stern</em> veröffentlichte 1991 eine vielzitierte Recherche, wonach nur rund sieben Prozent der Spendengelder tatsächlich für karitative Aktivitäten verwendet worden seien. <span class="tag tag-extra">EXTRAPOLATION</span> — die genaue Methodik der Stern-Berechnung ist heute nicht mehr im Volltext einsehbar und wird in Sekundärquellen unterschiedlich wiedergegeben; ein vollständiger, geprüfter Rechenschaftsbericht des Ordens wurde nie veröffentlicht, was eine unabhängige Verifikation bis heute verhindert. <span class="tag tag-offen">OFFEN</span></p>
+
+  <p>Susan Shields, eine ehemalige Ordensschwester, beschrieb in einem später vielzitierten Manuskript, dass aus Sparsamkeitsgründen selbst stumpf gewordene Injektionsnadeln in Haiti wiederverwendet wurden, obwohl Freiwillige anboten, neue zu beschaffen. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <span class="label">Auffällige Einzelbeobachtung</span>
+    Als Teresa selbst medizinische Behandlung benötigte, erfolgte diese in modernen US-amerikanischen Krankenhäusern — nicht in einer der eigenen Einrichtungen. <span class="tag tag-belegt">BELEGT</span> Ob dies auf eine bewusste Doppelstandard-Praxis oder auf pragmatische Notfallversorgung zurückzuführen ist, bleibt <span class="tag tag-offen">OFFEN</span>.
+  </div>
+
+  <h2>04 · Politische Allianzen und Spender</h2>
+
+  <table class="comparison-table">
+    <tr><th>Person / Regime</th><th>Verbindung</th><th>Status</th></tr>
+    <tr><td>Jean-Claude &amp; Michèle Duvalier (Haiti)</td><td>Bei Besuch 1981 öffentlich als "Freunde der Armen" gelobt, Spenden angenommen — trotz dokumentierter Plünderung des Staatshaushalts durch das Duvalier-Regime</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+    <tr><td>Charles Keating (USA)</td><td>Ca. 1,25 Mio. US-Dollar Spenden erhalten; nutzte zeitweise sein Privatflugzeug; schrieb während seines Betrugsprozesses einen Gnadenbrief an Richter Lance Ito</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+  </table>
+
+  <div class="source-box">
+    <span class="label">Der Keating-Briefwechsel im Wortlaut der Aktenlage</span>
+    Keating wurde 1991/92 wegen Betrugs, Erpressung und Verschwörung im Zusammenhang mit dem Zusammenbruch der Lincoln Savings and Loan verurteilt — rund 17.000 Kleinanleger verloren Ersparnisse. <span class="tag tag-belegt">BELEGT</span> Teresa schrieb an den Prozessrichter, sie wisse nichts über Keatings Geschäfte, und bat um Nachsicht. <span class="tag tag-belegt">BELEGT</span> Der stellvertretende Bezirksstaatsanwalt Paul Turley antwortete ihr schriftlich mit der Bitte, die Spendengelder an die geschädigten Anleger zurückzugeben. Eine Rückgabe oder öffentliche Antwort Teresas ist nicht dokumentiert. <span class="tag tag-belegt">BELEGT</span>
+  </div>
+
+  <p>Kritiker wie Hitchens ordneten diese Fälle als Muster: konservative bis autoritäre Geldgeber, deren gesellschaftspolitische Positionen (u. a. strikte Ablehnung von Abtreibung und Verhütung) sich mit Teresas eigenen deckten. <span class="tag tag-extra">EXTRAPOLATION</span> Ein direkter kausaler Zusammenhang zwischen Spendenhöhe und politischer Rückendeckung ist nicht belegt — die zeitliche und thematische Nähe ist jedoch dokumentiert. <span class="tag tag-offen">OFFEN</span></p>
+
+  <h2>05 · Das Heiligsprechungsverfahren</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">1983</div>
+      <p>Papst Johannes Paul II. schafft das jahrhundertealte Amt des "Advocatus Diaboli" (Anwalt des Teufels) faktisch ab — jene Instanz, die Heiligsprechungskandidaten systematisch kritisch prüfen sollte. <span class="tag tag-belegt">BELEGT</span></p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1999</div>
+      <p>Die reguläre fünfjährige Wartefrist nach dem Tod wird für Teresas Verfahren verkürzt; die Kongregation für die Selig- und Heiligsprechungsprozesse erteilt bereits am 21. April 1999 ihr "nihil obstat". <span class="tag tag-belegt">BELEGT</span></p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2002/2003</div>
+      <p>Erstes anerkanntes Wunder: die Heilung von Monica Besra (Bengalen) von einem Bauchtumor nach Auflegen eines von Teresa berührten Medaillons. Seligsprechung im Oktober 2003. <span class="tag tag-belegt">BELEGT</span></p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2015/2016</div>
+      <p>Zweites anerkanntes Wunder: Heilung eines brasilianischen Mannes von multiplen Hirntumoren nach Fürbitte seiner Frau. Kanonisierung am 4. September 2016 durch Papst Franziskus. <span class="tag tag-belegt">BELEGT</span></p>
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <span class="label">Gegenläufige Zeugenaussagen zum ersten Wunder</span>
+    Besras behandelnder Arzt Dr. Ranjan Mustafi erklärte gegenüber der <em>New York Times</em>, es habe sich nicht um einen Krebstumor, sondern um eine tuberkulöse Zyste gehandelt, die durch reguläre Medikation zurückgegangen sei. <span class="tag tag-belegt">BELEGT</span> Mitarbeiter des behandelnden Balurghat-Krankenhauses gaben laut Presseberichten an, vom Orden unter Druck gesetzt worden zu sein, die Heilung als wunderhaft zu bestätigen. <span class="tag tag-belegt">BELEGT</span> Die Vatikan-Kommission kam dennoch zum Schluss, es gebe keine medizinische Erklärung. <span class="tag tag-offen">OFFEN</span>
+  </div>
+
+  <p>Hitchens und der Autor Aroup Chatterjee wurden während des Verfahrens von der Kongregation angehört — eine Ersatzhandlung für den abgeschafften Advocatus-Diaboli-Posten. Die Kongregation fand laut eigener Aussage jedoch keinen Hinderungsgrund für die Seligsprechung. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="closing">
+    <h2 style="border:none; margin-top:1rem;">Offene Fragen</h2>
+    <p><em>Wie hätte die öffentliche Wahrnehmung ausgesehen, wenn 1969 kein einzelnes Fernsehereignis mit einem technisch erklärbaren Lichteffekt zusammengefallen wäre?</em></p>
+    <p><em>Warum wurde nie ein vollständiger, extern geprüfter Rechenschaftsbericht über Jahrzehnte an Spendengeldern veröffentlicht?</em></p>
+    <p><em>Verändert die Abschaffung des Advocatus Diaboli 1983 systematisch die Beweislast bei modernen Heiligsprechungsverfahren — unabhängig vom Einzelfall Teresa?</em></p>
+  </div>
+
+  <div class="footnotes">
+    <strong>Quellen (Auswahl, primär):</strong>
+    <ul>
+      <li>Fox, R.: "Mother Theresa's care for the dying." The Lancet 344(8925), 17.9.1994, S. 807–808. PMID 7818649</li>
+      <li>Loudon, M.: Rezension "The Missionary Position". British Medical Journal 312(7022), 1996, S. 64–66.</li>
+      <li>Larivée, S., Sénéchal, C., Chénard, G.: "Les côtés ténébreux de Mère Teresa." Studies in Religion/Sciences Religieuses 42(3), 2013, S. 319–345.</li>
+      <li>Wikipedia: "Something Beautiful for God" (BBC-Dokumentation 1969) — Produktionshintergrund, Kameramann-Aussage</li>
+      <li>Wikipedia: "Mother Teresa" — Kanonisierungsverfahren, Wunder, Vatikan-Anhörungen</li>
+      <li>Wikipedia: "Missionaries of Charity" — Fox-Zitate, Pflegestandards</li>
+      <li>Hitchens, C.: "The Missionary Position: Mother Teresa in Theory and Practice", Verso 1995</li>
+      <li>NPR: "Who Is The 'Devil's Advocate'?", 3.3.2013 — Abschaffung des Amtes 1983</li>
+      <li>New York Times: Rohde, D., "Her Legacy: Acceptance And Doubts Of a Miracle", 20.10.2003</li>
+      <li>Charles Keating / Wikipedia — Prozessverlauf, Verurteilung 1991</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

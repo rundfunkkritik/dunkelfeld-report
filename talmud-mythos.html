@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Talmud: Geschichte, Inhalt und die Fälschungsindustrie | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --amber: #e8c547;
+    --box-bg: #1a1a2e;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --grey: #9ca3af;
+    --red: #f87171;
+    --text: #e4e4e7;
+    --text-dim: #a1a1aa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 6rem;
+  }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.3;
+    margin: 0 0 1rem;
+    color: #fff;
+  }
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+    padding: 0.8rem 0;
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+  }
+  h2 {
+    color: var(--amber);
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--amber);
+    padding-left: 0.8rem;
+  }
+  h3 {
+    color: #fff;
+    font-size: 1.15rem;
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+  }
+  p { margin: 0 0 1.3rem; }
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--amber);
+    padding: 1.2rem 1.4rem;
+    margin: 1.8rem 0;
+    font-size: 0.98rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.55rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid var(--green); }
+  .tag-extra { background: rgba(251,146,60,0.15); color: var(--orange); border: 1px solid var(--orange); }
+  .tag-offen { background: rgba(156,163,175,0.15); color: var(--grey); border: 1px solid var(--grey); }
+  .tag-vt { background: rgba(248,113,113,0.15); color: var(--red); border: 1px solid var(--red); }
+
+  .timeline {
+    border-left: 2px solid #3f3f46;
+    margin: 2rem 0;
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.6rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.94rem;
+    top: 0.35rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+  .timeline-year {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-weight: bold;
+    font-size: 0.95rem;
+  }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .compare-table th, .compare-table td {
+    border: 1px solid #3f3f46;
+    padding: 0.7rem 0.8rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  .compare-table th {
+    background: var(--box-bg);
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+
+  .warn-box {
+    background: rgba(248,113,113,0.08);
+    border-left: 3px solid var(--red);
+    padding: 1.2rem 1.4rem;
+    margin: 1.8rem 0;
+    font-size: 0.98rem;
+  }
+  .warn-box .label {
+    font-family: 'Courier New', monospace;
+    color: var(--red);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #fff;
+    border-left: 3px solid var(--amber);
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+    line-height: 1.5;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.8rem 0;
+  }
+  .stat-card {
+    background: var(--box-bg);
+    padding: 1rem;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 1.6rem;
+    font-weight: bold;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+  }
+
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #27272a;
+  }
+  .closing p { font-style: italic; color: var(--text-dim); }
+
+  .footnotes {
+    margin-top: 3rem;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    font-family: 'Courier New', monospace;
+    line-height: 1.7;
+  }
+  .footnotes h3 {
+    font-family: Georgia, serif;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+  }
+  .footnotes ol { padding-left: 1.2rem; }
+  .footnotes li { margin-bottom: 0.5rem; }
+
+  a { color: var(--amber); }
+
+  .legend {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin: 1.5rem 0 2.5rem;
+    padding: 1rem;
+    background: rgba(255,255,255,0.02);
+    border-radius: 4px;
+  }
+  .legend span { margin-right: 1rem; display: inline-block; margin-bottom: 0.4rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">Dossier · Verschwörungsmythen-Dekonstruktion</div>
+  <h1>Der Talmud: Was drinsteht, was erfunden wurde — und warum das seit 800 Jahren verwechselt wird</h1>
+  <div class="subtitle">Von der Pariser Talmudverbrennung 1242 bis zu den Facebook-Fälschungen von heute: die Geschichte eines Textes, der nie gelesen, aber ständig zitiert wird.</div>
+
+  <div class="meta">
+    <span>dunkelfeld.report</span>
+    <span>Kategorie: Verschwörungsmythen / Religionsgeschichte</span>
+    <span>Lesezeit: ca. 16 Min.</span>
+  </div>
+
+  <div class="legend">
+    <span class="tag tag-belegt">BELEGT</span> dokumentiert, primärquellenbasiert
+    <span class="tag tag-extra">EXTRAPOLATION</span> strukturell plausibel, nicht abschließend belegt
+    <span class="tag tag-offen">OFFEN</span> ungeklärt / wissenschaftlich umstritten
+    <span class="tag tag-vt">VT</span> widerlegter Verschwörungsmythos
+  </div>
+
+  <p>Kaum ein religiöser Text wird so häufig zitiert und so selten gelesen wie der Talmud. Seit dem Mittelalter dient er als Projektionsfläche für Feindbilder — von der Pariser Talmudverbrennung 1242 über die NS-Propaganda bis zu den Facebook-Postings von heute, in denen angebliche Talmud-Zitate über Kindesmissbrauch oder die Tötung von Nichtjuden kursieren. Dieses Dossier trennt drei Dinge, die in der öffentlichen Debatte notorisch vermischt werden: was der Talmud tatsächlich ist, was erfunden wurde — und was real, aber aus dem Zusammenhang gerissen ist. Letzteres ist der schwierigste und wichtigste Teil, weil er nicht mit einem simplen "alles Fake" beantwortet werden kann.</p>
+
+  <h2>1. Was der Talmud tatsächlich ist</h2>
+
+  <p>Der Talmud ist kein Gesetzbuch und keine geheime Schrift, sondern das Protokoll einer jahrhundertelangen Debatte. Er besteht aus zwei Schichten: der <strong>Mischna</strong>, einer um 200 n. Chr. unter Federführung von Jehuda ha-Nasi schriftlich fixierten Sammlung mündlich überlieferter Rechtstraditionen, und der <strong>Gemara</strong>, den Diskussionen und Kommentaren späterer Gelehrter (Amoräer) zu dieser Mischna. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <span class="label">Struktur</span>
+    Die Mischna gliedert sich in sechs "Ordnungen" (Sedarim): Saaten (Landwirtschaft), Festzeit, Frauen (Ehe-/Familienrecht), Schädigung (Zivil-/Strafrecht), Heilige Dinge (Tempelkult) und Reinheit. Jede Ordnung enthält mehrere Traktate — insgesamt 63. Von diesen haben 37 einen zugehörigen Gemara-Teil. Es gibt zwei Fassungen: den kürzeren Jerusalemer Talmud (Talmud Jeruschalmi, entstanden in Palästina) und den umfangreicheren, als autoritativer geltenden Babylonischen Talmud (Talmud Bavli), abgeschlossen etwa im 5.–8. Jahrhundert.
+  </div>
+
+  <p>Entscheidend für das Verständnis ist der <strong>dialektische Stil</strong>: Eine Frage wird aufgeworfen, eine These formuliert, eine Gegenposition (Antithese) angeführt, diskutiert, teilweise verworfen, teilweise weiterentwickelt. Minderheitsmeinungen werden nicht gelöscht, sondern mitüberliefert — auch wenn sie später als nicht bindend gelten. Der Talmud enthält zudem nicht nur Rechtsmaterial (Halacha), sondern auch Erzählungen, Gleichnisse, medizinische und naturkundliche Exkurse, Ethik und Aggada (erbauliche Legenden). <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Diese Debattenstruktur ist der Kern dessen, was in Fälschungen fast immer verlorengeht: Ein Satz, der im Original als abgelehnte Zwischenposition markiert ist, wird als "das, was der Talmud lehrt" präsentiert.</p>
+
+  <h2>2. Beispiele: Was tatsächlich drinsteht</h2>
+
+  <p>Um die Fälschungsindustrie von Kapitel 3 einordnen zu können, hilft ein Blick auf reale, unspektakuläre Talmud-Inhalte — sie machen den Großteil des Textes aus:</p>
+
+  <table class="compare-table">
+    <tr><th>Traktat</th><th>Thema</th><th>Beispielinhalt</th></tr>
+    <tr><td>Bava Metzia</td><td>Zivilrecht</td><td>Wie verlorenes Eigentum zurückgegeben werden muss; Regeln für faire Löhne und Verträge</td></tr>
+    <tr><td>Sanhedrin</td><td>Strafrecht</td><td>Extrem hohe Beweisanforderungen für Todesurteile; ein Gericht, das mehr als einmal in sieben Jahren ein Todesurteil fällt, gilt als "blutrünstig"</td></tr>
+    <tr><td>Ketubot</td><td>Eherecht</td><td>Vertragliche Absicherung der Frau im Scheidungsfall — historisch ein Schutzinstrument</td></tr>
+    <tr><td>Pirkej Avot</td><td>Ethik</td><td>Aphorismen über Bescheidenheit, Gerechtigkeit, Umgang mit Mitmenschen ("Wer ein Leben rettet, rettet eine ganze Welt")</td></tr>
+    <tr><td>Berachot</td><td>Alltag/Ritual</td><td>Segenssprüche für praktisch jede Alltagssituation, von Nahrung bis Naturphänomenen</td></tr>
+  </table>
+
+  <p>Der weit überwiegende Teil des Talmud behandelt also Vertragsrecht, Ritualfragen, Familienrecht und Ethik — Themen, die in keiner viralen Zitatsammlung aus dem Netz auftauchen, weil sie sich nicht als Feindbild eignen. Genau diese Auswahlverzerrung ist selbst Teil des Problems: Wer aus zehntausend Seiten zwölf dekontextualisierte Sätze herauspickt, konstruiert zwangsläufig ein verzerrtes Bild — unabhängig davon, ob die Sätze echt sind oder nicht.</p>
+
+  <h2>3. Die Fälschungsgeschichte: 800 Jahre Feindbildkonstruktion</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">1240</div>
+      Der zum Christentum konvertierte Nikolaus Donin erhebt vor Papst Gregor IX. 35 Anklagepunkte gegen den Talmud und erwirkt eine öffentliche Disputation am Hof Ludwigs IX. in Paris. Rabbi Jechiel ben Josef verteidigt den Text. <span class="tag tag-belegt">BELEGT</span>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1242</div>
+      Als Folge der Disputation werden in Paris 24 Wagenladungen hebräischer Bücher öffentlich verbrannt — die erste große Talmudverbrennung der europäischen Geschichte. <span class="tag tag-belegt">BELEGT</span>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1871</div>
+      Der österreichische Theologe August Rohling prägt mit seiner Hetzschrift "Der Talmudjude" den Begriff als antisemitisches Schimpfwort und unterstellt dem Text pauschal Christenfeindlichkeit — eine Schrift, die bis heute in einschlägigen Kreisen zitiert wird. <span class="tag tag-belegt">BELEGT</span>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1923–1945</div>
+      Julius Streichers Hetzblatt "Der Stürmer" instrumentalisiert mittelalterliche Ritualmordlegenden und angebliche Talmud-Zitate zur Konstruktion eines "jüdischen Mordplans gegen die nichtjüdische Menschheit". Streicher wird 1946 in Nürnberg wegen Verbrechen gegen die Menschlichkeit hingerichtet. <span class="tag tag-belegt">BELEGT</span>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2000er–heute</div>
+      Digitalisierung antisemitischer Zitatsammlungen; identische Fake-Zitate zirkulieren unverändert seit Jahrzehnten in Foren, auf Telegram, Facebook und einschlägigen Websites — Faktencheck-Organisationen wie Mimikama dokumentieren die immer gleichen Fälschungen. <span class="tag tag-belegt">BELEGT</span>
+    </div>
+  </div>
+
+  <p>Bemerkenswert an dieser Zeitlinie: Die Angriffsmuster von 1240 (Talmud als "gotteslästerliche Fortsetzung", die die "Halsstarrigkeit der Juden" gegenüber dem Christentum erkläre) und die Angriffsmuster von 2024 (virale Facebook-Zitate) folgen strukturell demselben Schema — ein aus dem Kontext gelöster Text wird zum Beweisstück für eine bereits feststehende Feindbild-These gemacht.</p>
+
+  <h2>4. Konkrete Fälschungen im Faktencheck</h2>
+
+  <div class="warn-box">
+    <span class="label">VT — Widerlegter Verschwörungsmythos</span>
+    In sozialen Medien kursieren unter anderem folgende angebliche Talmud-Zitate: Aussagen, die Gewalt gegen Nichtjuden legitimieren sollen, sowie Aussagen, die sexuelle Handlungen an Kindern normalisieren sollen. Faktenchecker wie Mimikama haben diese Zitate systematisch überprüft: Sie sind entweder frei erfunden, keiner realen Talmud-Stelle zuzuordnen, oder beruhen auf bewussten Fehlübersetzungen einzelner aramäischer Begriffe. <span class="tag tag-vt">VT</span>
+  </div>
+
+  <p>Die Judaistin Katrin Kogman-Appel stellt dazu klar: Der Talmud ist ein Diskussionswerk, kein Gesetzbuch mit bindenden Einzelsätzen — ein Sammelsurium widersprüchlicher Positionen kann nicht wie ein Strafgesetzbuch "zitiert" werden, ohne die jeweilige Diskussionsposition zu benennen. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Ein Sonderfall, der die Mechanik der Verzerrung besonders gut zeigt: Bei einer 2012 veröffentlichten arabischen Talmud-Übersetzung eines jordanischen Forschungszentrums kritisierten die israelische Nationalbibliothek und die Anti-Defamation League, dass ein Einleitungskapitel den Titel "Rassismus im Talmud" trug. Die Übersetzung selbst wurde von Fachleuten nicht als grob fehlerhaft eingestuft — kritisiert wurde die selektive Rahmung: unschmeichelhafte Passagen wurden bewusst hervorgehoben, während der dialektische Gesamtkontext ausgeblendet blieb. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <h2>5. Gibt es auch reale, unbequeme Passagen?</h2>
+
+  <p>Eine ehrliche Dekonstruktion darf diese Frage nicht umgehen — und die Antwort ist differenzierter als ein einfaches Ja oder Nein. Es lassen sich drei Kategorien unterscheiden:</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-num">1</span>
+      <span class="stat-label">Komplett erfundene Zitate — im Text nicht auffindbar</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">2</span>
+      <span class="stat-label">Reale, aber dialektisch eingebettete Passagen</span>
+    </div>
+  </div>
+
+  <p><strong>Kategorie 1</strong> wurde in Kapitel 4 behandelt: frei erfunden oder auf Fehlübersetzung beruhend.</p>
+
+  <p><strong>Kategorie 2</strong> ist die eigentlich interessante: Der Talmud enthält, wie jeder Text aus der Spätantike, Passagen mit einer scharfen oder abwertenden Haltung gegenüber Nichtjuden ("Nichtjuden" im damaligen Sprachgebrauch meinte dabei oft konkret: Angehörige der verfolgenden römischen bzw. später christlichen Mehrheitsgesellschaft, nicht "Nichtjuden" im heutigen abstrakten Sinn). Solche Stellen entstanden zu einem erheblichen Teil in Zeiten aktiver Verfolgung — nach der Zerstörung des Jerusalemer Tempels 70 n. Chr. und während wiederkehrender römischer Repression. <span class="tag tag-extra">EXTRAPOLATION</span></p>
+
+  <p>Entscheidend ist der bereits erwähnte dialektische Aufbau: Solche Positionen werden im selben Traktat häufig als Minderheitsmeinung markiert, mit einer Gegenposition konfrontiert oder in späteren Kommentarschichten (etwa bei Raschi oder den Tosafisten) relativiert und historisch kontextualisiert. Die Glossare der Stiftung gegen Rassismus und Antisemitismus (GRA) fassen die Verzerrungsmechanik so zusammen: Diffamierungen beruhen zum einen auf falschen Übersetzungen, zum anderen darauf, dass Aussagen aus dem dialektischen Zusammenhang gerissen und zu vermeintlich autoritativen Talmudzitaten gemacht werden, obwohl sie im Text selbst diskutiert und häufig verworfen werden. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="pull-quote">
+    Die Trennlinie verläuft nicht zwischen "gefälscht" und "echt" — sondern zwischen Vollständigkeit und Amputation eines Textes, der sich selbst widerspricht, um zu einem Ergebnis zu kommen.
+  </div>
+
+  <p>Für die Einordnung heißt das konkret: Wer eine einzelne harte Formulierung zitiert, ohne zu erwähnen, dass derselbe Talmud-Abschnitt sie diskutiert, verwirft oder relativiert, betreibt dieselbe Amputationstechnik wie bei den Fake-Zitaten aus Kapitel 4 — nur mit real existierendem Ausgangsmaterial. Beide Techniken kommen zum selben propagandistischen Ergebnis, deshalb werden sie in der Praxis oft ununterscheidbar vermischt.</p>
+
+  <h3>Kategorie 3: Selektive, aber nicht erfundene Übersetzung</h3>
+
+  <p>Der bereits erwähnte Fall der arabischen Talmud-Ausgabe zeigt eine dritte Variante: kein Fake-Zitat, keine Fehlübersetzung im engeren Sinn, sondern eine tendenziöse Auswahl und Rahmung von real vorhandenem, aber unrepräsentativem Material. Diese Form ist am schwersten zu widerlegen, weil jeder Einzelbeleg "stimmt" — nur die Gesamtdarstellung nicht.</p>
+
+  <div class="source-box">
+    <span class="label">Einordnung</span>
+    Wissenschaftlich fundierte Talmudkritik — etwa zu historisch-kontextuellen Passagen über Nichtjuden, zur Rolle der Frau im Eherecht oder zu Sklaverei-Regelungen der Spätantike — ist legitim und wird auch von jüdischen Gelehrten selbst betrieben. Sie unterscheidet sich von Instrumentalisierung durch drei Kriterien: (1) Nennung der Gegenposition im selben Text, (2) historische Einordnung statt zeitloser Übertragung, (3) Verzicht auf die Konstruktion eines geschlossenen "Plans" aus Einzelstellen. <span class="tag tag-extra">EXTRAPOLATION</span>
+  </div>
+
+  <h2>6. Warum diese Mythen bis heute funktionieren</h2>
+
+  <p>Die strukturelle Funktion der Talmud-Fälschung unterscheidet sich nicht von anderen Feindbildkonstruktionen, die dieses Dossier-Archiv bereits dokumentiert hat: Ein komplexer, unzugänglicher Text (lang, fremdsprachig, dialektisch) wird zur Projektionsfläche, weil kaum jemand ihn selbst liest und prüft. Das Bild der "Wahrheit über die Anderen, die man selbst nicht lesen muss" bedient einen kognitiven Abkürzungsreflex — ein Mechanismus, der auch bei anderen dekonstruierten Mythen dieses Archivs eine Rolle spielt (siehe <em>Kalergi-Zitat-Verifizierung</em>, <em>Faktenchecker-Business</em>).</p>
+
+  <p>Zwei Faktoren verstärken das beim Talmud besonders:</p>
+
+  <ul>
+    <li><strong>Sprachbarriere:</strong> Aramäisch und Hebräisch sind für die weit überwiegende Mehrheit der Zitierenden nicht zugänglich — Fälschungen sind praktisch nicht durch Gegenlesen des Originals zu widerlegen, es sei denn, man vertraut Fachleuten.</li>
+    <li><strong>Textmenge:</strong> Rund 10.000 Seiten bieten genug Rohmaterial, dass sich für jede beliebige These irgendeine dekontextualisierbare Einzelstelle finden lässt — ein Effekt, der bei jedem sehr umfangreichen historischen Textkorpus auftritt, nicht spezifisch beim Talmud.</li>
+  </ul>
+
+  <div class="closing">
+    <h2>Offene Fragen</h2>
+    <p><em>Warum verschwinden identische Fake-Zitate trotz jahrzehntelanger Faktenchecks nie vollständig aus dem Umlauf, sondern werden bei jeder neuen politischen Spannung erneut reaktiviert?</em></p>
+    <p><em>Wie lässt sich wissenschaftlich fundierte, historisch-kritische Talmudforschung – die auch unbequeme Passagen benennt – von propagandistischer Instrumentalisierung unterscheiden, ohne dass die Unterscheidung selbst zur Waffe im jeweils anderen Lager wird?</em></p>
+  </div>
+
+  <div class="footnotes">
+    <h3>Quellen (Auswahl)</h3>
+    <ol>
+      <li>Mimikama: Faktencheck zu missbrauchten Talmud-Zitaten, mimikama.org</li>
+      <li>Stiftung gegen Rassismus und Antisemitismus (GRA), Glossareinträge "Talmud" und "Talmudjude", gra.ch</li>
+      <li>Robert Chazan: "The Trial of the Talmud, Paris 1240", Pontifical Institute of Mediaeval Studies, Ontario</li>
+      <li>Historisches Lexikon Bayerns: "Der Stürmer. Deutsches Wochenblatt zum Kampf um die Wahrheit"</li>
+      <li>Jüdische Allgemeine: Bericht zur arabischen Talmud-Übersetzung und ADL-Kritik</li>
+      <li>Encyclopaedia Judaica, Einträge Mischna / Gemara / Talmud Bavli</li>
+    </ol>
+  </div>
+
+</div>
+</body>
+</html>

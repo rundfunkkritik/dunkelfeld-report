@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Missbrauch in beiden großen Kirchen — Zahlen, Vertuschung, Aufarbeitung | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --amber: #e8c547;
+    --box-bg: #1a1a2e;
+    --belegt: #4ade80;
+    --extrapolation: #fb923c;
+    --offen: #9ca3af;
+    --vt: #f87171;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: #e5e5e0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 6rem;
+  }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    color: #fff;
+    margin: 0 0 0.5rem;
+  }
+  .subtitle {
+    color: #b0b0a8;
+    font-size: 1.15rem;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #7a7a72;
+    border-top: 1px solid #2a2a3a;
+    border-bottom: 1px solid #2a2a3a;
+    padding: 0.8rem 0;
+    margin-bottom: 2.5rem;
+  }
+  h2 {
+    color: var(--amber);
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--amber);
+    padding-left: 0.8rem;
+  }
+  h3 {
+    color: #f0d97a;
+    font-size: 1.1rem;
+    margin-top: 2rem;
+  }
+  p { margin: 1rem 0; }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin: 0 0.3rem 0.3rem 0;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag-extrapolation { background: rgba(251,146,60,0.15); color: var(--extrapolation); border: 1px solid var(--extrapolation); }
+  .tag-offen { background: rgba(156,163,175,0.15); color: var(--offen); border: 1px solid var(--offen); }
+  .tag-vt { background: rgba(248,113,113,0.15); color: var(--vt); border: 1px solid var(--vt); }
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.98rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+  .timeline {
+    border-left: 2px solid #3a3a4a;
+    margin: 1.5rem 0 1.5rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.3rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.85rem;
+    top: 0.4rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+  .timeline-year {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-weight: bold;
+    font-size: 0.95rem;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat-card {
+    background: var(--box-bg);
+    padding: 1rem;
+    text-align: center;
+    border-radius: 4px;
+  }
+  .stat-num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.4rem;
+    color: var(--amber);
+    font-weight: bold;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: #b0b0a8;
+    margin-top: 0.3rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #2a2a3a;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .pull-quote {
+    font-style: italic;
+    font-size: 1.25rem;
+    color: #f0d97a;
+    border-left: 3px solid var(--amber);
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+  }
+  .warn-box {
+    background: rgba(251,146,60,0.08);
+    border: 1px solid var(--extrapolation);
+    border-radius: 4px;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .warn-box .label {
+    font-family: 'Courier New', monospace;
+    color: var(--extrapolation);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+  .cross-ref {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #8888a0;
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #2a2a3a;
+  }
+  .closing p {
+    font-style: italic;
+    color: #c0c0b8;
+  }
+  a { color: var(--amber); }
+  .footer-nav {
+    margin-top: 3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #7a7a72;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">dunkelfeld.report — Serie: Kirche, Macht, Geld — Teil 8</div>
+  <h1>Missbrauch in beiden großen Kirchen: Zahlen, Vertuschung, Aufarbeitung</h1>
+  <div class="subtitle">Zwei unabhängige Studien, zwei Institutionen, ein wiederkehrendes Muster: Täterschutz durch Versetzung, Aufarbeitung erst unter öffentlichem Druck</div>
+  <div class="meta">BELEGT = dokumentiert &nbsp;·&nbsp; EXTRAPOLATION = strukturell plausibel &nbsp;·&nbsp; OFFEN = ungeklärt &nbsp;·&nbsp; VT = widerlegte Verschwörungstheorie</div>
+
+  <p>Beide großen deutschen Kirchen haben inzwischen unabhängige wissenschaftliche Studien zu sexualisierter Gewalt in ihrem Verantwortungsbereich in Auftrag gegeben: die katholische MHG-Studie (2018) und die evangelische ForuM-Studie (2024). Beide kommen zu strukturell ähnlichen Befunden — und beide betonen, dass ihre Zahlen nur einen Ausschnitt eines vermutlich deutlich größeren Dunkelfelds abbilden.</p>
+
+  <div class="cross-ref">→ Anschluss an Teil 2: „Kirche, Kinderheime, Verscharrung" und Teil 7: „Arbeitsrecht"</div>
+
+  <h2>1. Die katholische Kirche: MHG-Studie 2018</h2>
+
+  <p>Die Deutsche Bischofskonferenz beauftragte 2014 ein Forschungskonsortium der Universitäten Mannheim, Heidelberg und Gießen (daher „MHG-Studie") mit der Auswertung von mehr als 38.000 kirchlichen Personalakten aus den Jahren 1946 bis 2014. Die Ergebnisse wurden am 25. September 2018 vorgestellt. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-num">1.670</div><div class="stat-label">beschuldigte Kleriker (2018-Studie)</div></div>
+    <div class="stat-card"><div class="stat-num">3.677</div><div class="stat-label">betroffene Kinder/Jugendliche (2018-Studie)</div></div>
+    <div class="stat-card"><div class="stat-num">62,8 %</div><div class="stat-label">der Betroffenen männlich</div></div>
+    <div class="stat-card"><div class="stat-num">4,4 %</div><div class="stat-label">der untersuchten Kleriker beschuldigt</div></div>
+  </div>
+
+  <div class="warn-box">
+    <div class="label">Zahlen sind seither weiter gestiegen</div>
+    Eine ARD-Abfrage in allen 27 deutschen Bistümern kam Anfang 2026 auf 6.529 bekannte Betroffene — fast das Doppelte der 2018 ermittelten Zahl. Grund ist nicht ein neuer Anstieg an Taten, sondern die Kombination aus zusätzlichen Wortmeldungen Betroffener und eigenen, tiefergehenden Bistumsstudien (u. a. Erzbistum Köln 2022: 610 namentlich bekannte Betroffene und mindestens 5.700 dokumentierte Einzeltaten). <span class="tag tag-belegt">BELEGT</span>
+  </div>
+
+  <h2>2. Die evangelische Kirche: ForuM-Studie 2024</h2>
+
+  <p>Die EKD beauftragte 2020 einen Forschungsverbund unter Leitung der Hochschule Hannover mit einer vergleichbaren unabhängigen Untersuchung für den evangelischen Bereich einschließlich der Diakonie. Der über 870-seitige Abschlussbericht wurde am 25. Januar 2024 vorgestellt. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-num">1.259</div><div class="stat-label">identifizierte Beschuldigte</div></div>
+    <div class="stat-card"><div class="stat-num">511</div><div class="stat-label">davon Pfarrpersonen</div></div>
+    <div class="stat-card"><div class="stat-num">2.225</div><div class="stat-label">mindestens erfasste Betroffene</div></div>
+    <div class="stat-card"><div class="stat-num">20</div><div class="stat-label">Landeskirchen mit uneinheitlicher Aufarbeitung</div></div>
+  </div>
+
+  <p>Die Forschenden selbst bezeichneten die ermittelten Zahlen ausdrücklich als „Spitze des Eisbergs" und wiesen auf eine unzureichende Aktenlage in mehreren Landeskirchen hin. Als strukturelles Kernproblem benannte die Studie die „Verantwortungsdiffusion" im föderalen Aufbau der evangelischen Kirche: Bei 20 eigenständigen Landeskirchen mit jeweils eigenen Verfahren gab und gibt es keine einheitlichen Standards für Anerkennungsleistungen an Betroffene. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="pull-quote">„Es ist ein rabenschwarzer Tag für die Kirche und die Diakonie." — Detlev Zander, Betroffenensprecher im Beteiligungsforum der EKD, bei der Vorstellung der ForuM-Studie</div>
+
+  <h2>3. Das wiederkehrende Muster: Vertuschung durch Versetzung</h2>
+
+  <p>Beide Studien beschreiben ein strukturell vergleichbares institutionelles Verhalten: Beschuldigte wurden nicht konsequent aus dem Dienst entfernt, sondern in andere Gemeinden versetzt — häufig ohne Information der neuen Gemeinde oder der zuständigen Strafverfolgungsbehörden. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <div class="label">Beispiel Bistum Osnabrück (eigene Aufarbeitung im Zuge der MHG-Studie)</div>
+    Der Generalvikar räumte öffentlich ein: Täter seien von einer Gemeinde in eine andere versetzt worden, wobei „vor allem darauf geachtet [wurde], das Ansehen der kirchlichen Institution nicht zu beschädigen". Täter seien nicht ernsthaft belangt oder sanktioniert worden, Mitwissende hätten geschwiegen. <span class="tag tag-belegt">BELEGT</span>
+  </div>
+
+  <h2>4. Die Institutionenspitze gerät ins Visier: München und Köln</h2>
+
+  <p>Ab 2020/2021 verschob sich die öffentliche Debatte von der Ebene einzelner Täter zur Frage institutioneller Verantwortung von Bischöfen und Kardinälen. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">2020</div>
+      Kardinal Woelki hält ein von ihm selbst in Auftrag gegebenes erstes Missbrauchsgutachten der Kanzlei WSW für sein Erzbistum Köln unter Verschluss — mit Verweis auf angebliche methodische Mängel. Die Nichtveröffentlichung löst wochenlange öffentliche Proteste im Erzbistum aus.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">18.3.2021</div>
+      Ein zweites, von Woelki beauftragtes Gutachten des Strafrechtlers Björn Gercke wird veröffentlicht und lastet zahlreichen Verantwortungsträgern im Erzbistum Fehlverhalten an — nicht jedoch dem amtierenden Erzbischof Woelki selbst.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">4.6.2021</div>
+      Kardinal Reinhard Marx (München-Freising) bietet Papst Franziskus überraschend seinen Rücktritt an, um „Mitverantwortung für die Katastrophe des sexuellen Missbrauchs durch Amtsträger der Kirche" zu übernehmen. Kirchenrechtler werten den Schritt auch als indirekte Kritik am Kölner Umgang mit dem Thema.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">10.6.2021</div>
+      Papst Franziskus lehnt das Rücktrittsangebot ab. Ein Sprecher der Betroffenenorganisation „Eckiger Tisch" kritisiert, der Papst nehme dem Angebot damit „die Wucht" und entlaste zugleich sein eigenes Amt.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">Januar 2022</div>
+      Das Münchner Missbrauchsgutachten der Kanzlei WSW ermittelt 235 mutmaßliche Täter und 497 Betroffene im Zeitraum 1945–2019. Belastet werden auch die früheren Erzbischöfe Joseph Ratzinger (später Papst Benedikt XVI., Fehlverhalten in vier Fällen während seiner Amtszeit 1977–1982) und Friedrich Wetter (21 Fälle) sowie der amtierende Kardinal Marx (2 Fälle).
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <div class="label">Einordnung</div>
+    Die beiden Kölner Gutachten kamen bei vergleichbarer Aktenlage zu unterschiedlichen Ergebnissen bezüglich der persönlichen Verantwortung des amtierenden Erzbischofs — ein Umstand, der in der öffentlichen Debatte selbst zum Streitpunkt wurde. Ob die methodischen Einwände gegen das erste Gutachten sachlich begründet waren oder der Vermeidung persönlicher Konsequenzen dienten, ist unter Fachleuten bis heute nicht abschließend geklärt. <span class="tag tag-offen">OFFEN</span>
+  </div>
+
+  <h2>5. Die strukturelle Linie</h2>
+
+  <p>Beide Konfessionen zeigen dasselbe Grundmuster: Jahrzehntelanges systemisches Schweigen, gebrochen erst durch externen öffentlichen Druck (2010 erste große Missbrauchswelle in den Medien) und anschließend durch selbst beauftragte, aber methodisch unabhängige Studien. In beiden Fällen betonen die Forschenden selbst, dass die ermittelten Zahlen die untere Grenze eines tatsächlich größeren Dunkelfelds darstellen. Die föderale Struktur beider Kirchen — 27 katholische Bistümer, 20 evangelische Landeskirchen — erschwerte und erschwert bis heute eine einheitliche Aufarbeitung und einheitliche Entschädigungsleistungen für Betroffene.</p>
+
+  <div class="closing">
+    <h2 style="border:none; padding:0; color:#f0d97a;">Offene Fragen</h2>
+    <p>Warum divergierten die beiden im Erzbistum Köln beauftragten Gutachten in der Bewertung der persönlichen Verantwortung des amtierenden Erzbischofs, obwohl beide dieselbe Aktenlage auswerteten?</p>
+    <p>Wie hoch ist das tatsächliche Dunkelfeld, wenn selbst die Forschenden der ForuM-Studie ihre eigenen Zahlen ausdrücklich nur als „Spitze des Eisbergs" bezeichnen?</p>
+    <p>Werden die seit 2024 von EKD-Synode und Bischofskonferenz beschlossenen Maßnahmenpläne zu einheitlichen, verbindlichen Entschädigungsstandards führen — oder bleibt die föderale Uneinheitlichkeit bestehen?</p>
+  </div>
+
+  <div class="footer-nav">
+    dunkelfeld.report — Serie „Kirche, Macht, Geld" — Teil 8 von n<br>
+    Vorherige Teile: Wie die Kirche zu Macht und Reichtum kam · Kinderheime und Verscharrung · Die Vatikanbank · Konkordate · Politik-Einfluss · Mafia-Verbindungen · Arbeitsrecht<br>
+    Querverweis: „Kinderheime und Verscharrung" (Irland, Kanada, Deutschland)
+  </div>
+
+</div>
+</body>
+</html>

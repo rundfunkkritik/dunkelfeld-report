@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kirchentage und Queer-Theologie — Eine Kontroverse in Etappen | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --amber: #e8c547;
+    --box-bg: #1a1a2e;
+    --belegt: #4ade80;
+    --extrapolation: #fb923c;
+    --offen: #9ca3af;
+    --vt: #f87171;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: #e5e5e0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 6rem;
+  }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    color: #fff;
+    margin: 0 0 0.5rem;
+  }
+  .subtitle {
+    color: #b0b0a8;
+    font-size: 1.15rem;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #7a7a72;
+    border-top: 1px solid #2a2a3a;
+    border-bottom: 1px solid #2a2a3a;
+    padding: 0.8rem 0;
+    margin-bottom: 2.5rem;
+  }
+  h2 {
+    color: var(--amber);
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--amber);
+    padding-left: 0.8rem;
+  }
+  h3 {
+    color: #f0d97a;
+    font-size: 1.1rem;
+    margin-top: 2rem;
+  }
+  p { margin: 1rem 0; }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin: 0 0.3rem 0.3rem 0;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag-extrapolation { background: rgba(251,146,60,0.15); color: var(--extrapolation); border: 1px solid var(--extrapolation); }
+  .tag-offen { background: rgba(156,163,175,0.15); color: var(--offen); border: 1px solid var(--offen); }
+  .tag-vt { background: rgba(248,113,113,0.15); color: var(--vt); border: 1px solid var(--vt); }
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.98rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+  .timeline {
+    border-left: 2px solid #3a3a4a;
+    margin: 1.5rem 0 1.5rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.3rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.85rem;
+    top: 0.4rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+  .timeline-year {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-weight: bold;
+    font-size: 0.95rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #2a2a3a;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .pull-quote {
+    font-style: italic;
+    font-size: 1.25rem;
+    color: #f0d97a;
+    border-left: 3px solid var(--amber);
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+  }
+  .warn-box {
+    background: rgba(251,146,60,0.08);
+    border: 1px solid var(--extrapolation);
+    border-radius: 4px;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .warn-box .label {
+    font-family: 'Courier New', monospace;
+    color: var(--extrapolation);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+  .cross-ref {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #8888a0;
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #2a2a3a;
+  }
+  .closing p {
+    font-style: italic;
+    color: #c0c0b8;
+  }
+  a { color: var(--amber); }
+  .footer-nav {
+    margin-top: 3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #7a7a72;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">dunkelfeld.report — Serie: Kirche, Macht, Geld — Teil 9</div>
+  <h1>Kirchentage und Queer-Theologie: Eine Kontroverse in Etappen</h1>
+  <div class="subtitle">Wie drei Worte aus einer Predigt 2023 eine Debatte auslösten, die 2025 zum festen Programmpunkt wurde — und wer innerhalb der Kirche selbst widerspricht</div>
+  <div class="meta">BELEGT = dokumentiert &nbsp;·&nbsp; EXTRAPOLATION = strukturell plausibel &nbsp;·&nbsp; OFFEN = ungeklärt &nbsp;·&nbsp; VT = widerlegte Verschwörungstheorie</div>
+
+  <p>Der Deutsche Evangelische Kirchentag ist rechtlich eine von der EKD unabhängige Laienbewegung, finanziert aus öffentlichen Mitteln, Landeskirchen-Zuschüssen und Ticketverkäufen. Queere Themen sind dort keine neue Erscheinung — ein „Zentrum Geschlechterwelten/Regenbogen" gehört seit Jahren zum festen Programm. Öffentlich eskaliert ist das Thema jedoch erst 2023, als eine einzelne Predigt drei Worte in die Schlagzeilen brachte.</p>
+
+  <h2>1. Nürnberg 2023: „Gott ist queer"</h2>
+
+  <p>Beim Abschlussgottesdienst des 38. Deutschen Evangelischen Kirchentags auf dem Nürnberger Hauptmarkt sagte der aus Südafrika stammende Pfarrer Quinton Ceasar vor rund 25.000 Menschen: „Jetzt ist die Zeit zu sagen: Gott ist queer." Der Satz löste bundesweite mediale Aufmerksamkeit und eine Welle teils rassistischer und beleidigender Angriffe gegen den Prediger in sozialen Medien aus. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <div class="label">Reaktionen im Anschluss</div>
+    Kirchentagspräsident Thomas de Maizière und Generalsekretärin Kristin Jahn verurteilten den Hass gegen Ceasar sowie die Mitprediger Alexander Brandl und Constanze Pott „aufs Schärfste". Ceasar selbst erklärte im Deutschlandfunk, er würde die Predigt „genauso wieder halten": „Gott sprengt selbst die Zweigeschlechtlichkeit in vielen Stellen der Bibel." Innerhalb der evangelischen Kirche reagierte man uneinheitlich — der Kirchenpräsident der Landeskirche Anhalts, Joachim Liebig, widersprach öffentlich: „Gott ist natürlich nicht 'queer', das ist eine Einschränkung, die Gott in keiner Weise gerecht wird." Die sächsische Landeskirche wollte die Predigt dagegen nicht bewerten und verwies auf die Eigenständigkeit des Kirchentags. <span class="tag tag-belegt">BELEGT</span>
+  </div>
+
+  <p>Theologisch war die Aussage nicht neu: Queere Theologien, die biblische und dogmatische Gottesbilder mit den Lebenserfahrungen marginalisierter Gruppen verbinden, existieren im deutschsprachigen Raum seit rund 30 Jahren als akademische Strömung. Neu war der Grad öffentlicher Aufmerksamkeit, den eine einzelne, aus dem Kontext gelöste Kernaussage erzeugte. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <h2>2. Hannover 2025: Vom Aufreger zum Programmpunkt</h2>
+
+  <p>Zwei Jahre später war queere Theologie kein Randthema mehr, sondern fester, ausgebauter Bestandteil des offiziellen Kirchentagsprogramms in Hannover. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <table>
+    <tr><th>Programmpunkt</th><th>Inhalt</th></tr>
+    <tr><td>Zentrum Geschlechterwelten/Regenbogen</td><td>Erstmals dezentral statt an einem festen Ort organisiert, mit vier großen Podiumsveranstaltungen sowohl in Kirchen als auch in den Messehallen. Workshops u. a. zu queerer mündlicher Geschichte, queerer Bibelexegese und queersensibler Seelsorge.</td></tr>
+    <tr><td>Namensfeier-Gottesdienst</td><td>Segnung von rund 50 nicht-binären und trans Personen in einer Stadtkirche in Hannover.</td></tr>
+    <tr><td>Forum der EKD</td><td>Programmpunkt „Somewhere over the Rainbow – Was ist Queer-Theologie?" als Einführungsformat für ein allgemeines Publikum.</td></tr>
+    <tr><td>Open-Air-Gottesdienst</td><td>Predigt der US-Theologin Hanna Reichel, deutlich zurückhaltender im Ton als Ceasar 2023, mit Fokus auf Streitkultur zwischen politischen Lagern statt auf pointierte Thesen.</td></tr>
+  </table>
+
+  <p>Die Kirchentagsleitung selbst begründete die verstärkte Sichtbarkeit mit dem Kampagnenmotto: „Wir alle, alt und jung, arm und reich, weiß oder PoC, hetero oder queer, sind das Ebenbild Gottes." <span class="tag tag-belegt">BELEGT</span></p>
+
+  <h2>3. Die kritische Gegenperspektive</h2>
+
+  <p>Konservative und kirchenkritische Stimmen werteten die programmatische Ausweitung als Symptom eines inhaltlichen Bedeutungsverlusts der traditionellen Verkündigung. Die NZZ kommentierte das Hannoveraner Programm als „Sammelsurium identitätspolitischer Ideen" und verwies unter anderem auf Einzelveranstaltungen wie „Queer in der Klimakrise", „gendersensible Liturgie" sowie einen Workshop, der sich laut Programmheft „ausschließlich an Black, Indigenous und Kinder of Color" richtete. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="pull-quote">„Die Amtskirchen verlieren jährlich Hunderttausende Mitglieder, Konfessionslose stellen inzwischen in Deutschland die relative Mehrheit." — NZZ-Kommentar zum Kirchentag 2025, im Kontext der Mitgliederentwicklung</div>
+
+  <div class="warn-box">
+    <div class="label">Einordnung</div>
+    Ob der parallel zur programmatischen Öffnung anhaltende Mitgliederschwund der evangelischen Kirche kausal mit der queeren Ausrichtung des Kirchentags zusammenhängt oder unabhängig davon primär demografische und gesellschaftliche Ursachen hat (allgemeine Säkularisierung, sinkende Kirchgangsquoten insgesamt), ist empirisch nicht belegt und wird von verschiedenen Seiten unterschiedlich gedeutet. <span class="tag tag-offen">OFFEN</span>
+  </div>
+
+  <h2>4. Die strukturelle Linie</h2>
+
+  <p>Der Deutsche Evangelische Kirchentag ist organisatorisch unabhängig von der EKD und ihren 20 Landeskirchen — seine Themensetzung entscheiden eigene, ehrenamtlich besetzte Gremien, nicht die Kirchenleitungen selbst. Diese Konstruktion erklärt, warum queere Programmpunkte auf Kirchentagsebene deutlich präsenter sind als die offiziellen Positionen einzelner Landeskirchen, die – wie im Fall Anhalts – teilweise öffentlich widersprechen. Der Konflikt verläuft damit nicht zwischen „der Kirche" und einer äußeren Bewegung, sondern quer durch die evangelische Kirche selbst: zwischen einer unabhängigen Laienbewegung mit eigener Programmhoheit und einzelnen Landeskirchen, die sich davon ausdrücklich distanzieren oder neutral verhalten.</p>
+
+  <div class="closing">
+    <h2 style="border:none; padding:0; color:#f0d97a;">Offene Fragen</h2>
+    <p>Wie repräsentativ ist das Kirchentagsprogramm für die tatsächliche innerkirchliche Meinungsverteilung, wenn der Kirchentag organisatorisch unabhängig von den Landeskirchen über seine eigenen Inhalte entscheidet?</p>
+    <p>Wird die zunehmende Sichtbarkeit queerer Theologie auf Kirchentagen mittelfristig auch die offiziellen Grundordnungen und Bekenntnistexte der Landeskirchen beeinflussen, oder bleiben beide Ebenen dauerhaft getrennt?</p>
+    <p>Wie lässt sich der Mitgliederschwund der evangelischen Kirche ursächlich einordnen, wenn gleichzeitig sowohl progressive als auch konservative Beobachter ihn jeweils der anderen Ausrichtung zuschreiben?</p>
+  </div>
+
+  <div class="footer-nav">
+    dunkelfeld.report — Serie „Kirche, Macht, Geld" — Teil 9 von n<br>
+    Vorherige Teile: Wie die Kirche zu Macht und Reichtum kam · Kinderheime und Verscharrung · Die Vatikanbank · Konkordate · Politik-Einfluss · Mafia-Verbindungen · Arbeitsrecht · Missbrauch<br>
+    Querverweis: „Arbeitsrecht" (Loyalitätsobliegenheiten, #OutInChurch)
+  </div>
+
+</div>
+</body>
+</html>

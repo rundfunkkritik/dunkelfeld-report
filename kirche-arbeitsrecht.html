@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kirchliches Arbeitsrecht — Der zweitgrößte Arbeitgeber Deutschlands | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --amber: #e8c547;
+    --box-bg: #1a1a2e;
+    --belegt: #4ade80;
+    --extrapolation: #fb923c;
+    --offen: #9ca3af;
+    --vt: #f87171;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: #e5e5e0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 6rem;
+  }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    color: #fff;
+    margin: 0 0 0.5rem;
+  }
+  .subtitle {
+    color: #b0b0a8;
+    font-size: 1.15rem;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #7a7a72;
+    border-top: 1px solid #2a2a3a;
+    border-bottom: 1px solid #2a2a3a;
+    padding: 0.8rem 0;
+    margin-bottom: 2.5rem;
+  }
+  h2 {
+    color: var(--amber);
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--amber);
+    padding-left: 0.8rem;
+  }
+  h3 {
+    color: #f0d97a;
+    font-size: 1.1rem;
+    margin-top: 2rem;
+  }
+  p { margin: 1rem 0; }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin: 0 0.3rem 0.3rem 0;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag-extrapolation { background: rgba(251,146,60,0.15); color: var(--extrapolation); border: 1px solid var(--extrapolation); }
+  .tag-offen { background: rgba(156,163,175,0.15); color: var(--offen); border: 1px solid var(--offen); }
+  .tag-vt { background: rgba(248,113,113,0.15); color: var(--vt); border: 1px solid var(--vt); }
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.98rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+  .timeline {
+    border-left: 2px solid #3a3a4a;
+    margin: 1.5rem 0 1.5rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.3rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.85rem;
+    top: 0.4rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+  .timeline-year {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-weight: bold;
+    font-size: 0.95rem;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat-card {
+    background: var(--box-bg);
+    padding: 1rem;
+    text-align: center;
+    border-radius: 4px;
+  }
+  .stat-num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.4rem;
+    color: var(--amber);
+    font-weight: bold;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: #b0b0a8;
+    margin-top: 0.3rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #2a2a3a;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .pull-quote {
+    font-style: italic;
+    font-size: 1.25rem;
+    color: #f0d97a;
+    border-left: 3px solid var(--amber);
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+  }
+  .warn-box {
+    background: rgba(251,146,60,0.08);
+    border: 1px solid var(--extrapolation);
+    border-radius: 4px;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .warn-box .label {
+    font-family: 'Courier New', monospace;
+    color: var(--extrapolation);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+  .cross-ref {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #8888a0;
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #2a2a3a;
+  }
+  .closing p {
+    font-style: italic;
+    color: #c0c0b8;
+  }
+  a { color: var(--amber); }
+  .footer-nav {
+    margin-top: 3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #7a7a72;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">dunkelfeld.report — Serie: Kirche, Macht, Geld — Teil 7</div>
+  <h1>Kirchliches Arbeitsrecht: Der zweitgrößte Arbeitgeber Deutschlands und sein Sonderrecht</h1>
+  <div class="subtitle">Kein Streikrecht, eigene Loyalitätsregeln, Kündigung wegen Wiederheirat — bis vor kurzem Alltag für fast zwei Millionen Beschäftigte</div>
+  <div class="meta">BELEGT = dokumentiert &nbsp;·&nbsp; EXTRAPOLATION = strukturell plausibel &nbsp;·&nbsp; OFFEN = ungeklärt &nbsp;·&nbsp; VT = widerlegte Verschwörungstheorie</div>
+
+  <p>Nach dem öffentlichen Dienst sind die beiden großen Kirchen mit ihren Wohlfahrtsverbänden Caritas (katholisch) und Diakonie (evangelisch) die größten Arbeitgeber Deutschlands. Für ihre Beschäftigten gilt aber nicht das allgemeine Arbeitsrecht, sondern ein kirchliches Sonderrecht, das auf dem grundgesetzlich verankerten Selbstbestimmungsrecht der Religionsgesellschaften beruht (Art. 140 GG i. V. m. Art. 137 Abs. 3 Weimarer Reichsverfassung). <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="cross-ref">→ Anschluss an Teil 1: „Wie die Kirche zu Macht und Reichtum kam" und Teil 5: „Politik-Einfluss"</div>
+
+  <h2>1. Die Größenordnung</h2>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-num">~1,8 Mio.</div><div class="stat-label">Beschäftigte bei Kirche, Caritas, Diakonie (ver.di)</div></div>
+    <div class="stat-card"><div class="stat-num">771.000</div><div class="stat-label">Mitarbeitende Caritas (Stichtag 31.12.2024)</div></div>
+    <div class="stat-card"><div class="stat-num">687.000</div><div class="stat-label">Mitarbeitende Diakonie (Stichtag 1.1.2024)</div></div>
+    <div class="stat-card"><div class="stat-num">1,7 %</div><div class="stat-label">Anteil der Caritas an allen Erwerbstätigen in Deutschland</div></div>
+  </div>
+
+  <p>Die Caritas ist mit ihren rund 771.000 Mitarbeitenden in über 25.000 Einrichtungen der größte Arbeitgeber innerhalb der freien Wohlfahrtspflege — fast 40 Prozent aller dort Beschäftigten arbeiten unter ihrem Dach. Gemeinsam mit der Diakonie beschäftigen die beiden konfessionellen Wohlfahrtsverbände mehr Menschen als die gesamte deutsche Automobilindustrie. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <h2>2. Der „Dritte Weg": Arbeitsrecht ohne Streik</h2>
+
+  <p>Kirchliche Arbeitgeber begründen ihren Sonderweg mit dem Leitbild der „Dienstgemeinschaft": Arbeitgeber und Beschäftigte gestalten den kirchlichen Auftrag gemeinsam, weshalb ein klassischer Interessenkonflikt zwischen Kapital und Arbeit — und damit auch Streik und Aussperrung — als unvereinbar mit dem kirchlichen Selbstverständnis gilt. Löhne und Arbeitsbedingungen werden stattdessen in paritätisch besetzten arbeitsrechtlichen Kommissionen ausgehandelt; bei Uneinigkeit entscheidet eine ebenfalls paritätische, für beide Seiten bindende Schlichtungskommission. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">2009</div>
+      Verdi ruft trotz des Streikverbots zu Warnstreiks in Diakonie-Einrichtungen in Bielefeld auf. Der folgende Rechtsstreit läuft über mehrere Instanzen.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">20.11.2012</div>
+      Das Bundesarbeitsgericht bestätigt den „Dritten Weg" grundsätzlich als verfassungsrechtlich zulässig, mahnt aber eine bessere Einbindung der Gewerkschaften in die Kommissionen an.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">15.7.2015</div>
+      Das Bundesverfassungsgericht weist eine Verfassungsbeschwerde von Verdi für ein volles Streikrecht als derzeit unzulässig zurück. Kirchen dürfen beim Dritten Weg bleiben, müssen aber Gewerkschaftsbeteiligung und Verbindlichkeit der Schlichtung sicherstellen.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">27.4.2015 / seither laufend</div>
+      Katholische Kirche und evangelische Landeskirchen passen ihre Regelwerke entsprechend an — u. a. wird in der katholischen Grundordnung erstmals ausdrücklich die Mitwirkung der Gewerkschaften verankert.
+    </div>
+  </div>
+
+  <p>Bis heute gibt es in kirchlichen Einrichtungen faktisch kein Streikrecht im klassischen Sinn — ein Alleinstellungsmerkmal unter den großen deutschen Arbeitgebern, das seit Jahren zwischen Verdi und den Kirchen umstritten bleibt. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <h2>3. Loyalitätsobliegenheiten: Das Privatleben als Kündigungsgrund</h2>
+
+  <p>Über Jahrzehnte konnten katholische Arbeitgeber Beschäftigten aus „kirchenspezifischen Gründen" kündigen, wenn deren private Lebensführung nach kirchlichem Verständnis einen schwerwiegenden Loyalitätsverstoß darstellte — insbesondere zivile Wiederheirat nach Scheidung oder eine gleichgeschlechtliche Partnerschaft. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <div class="label">Der Fall, der die Reform ins Rollen brachte: Der katholische Chefarzt</div>
+    2009 kündigte ein katholisches Krankenhaus in Nordrhein-Westfalen einem Chefarzt, der nach seiner Scheidung ein zweites Mal zivil geheiratet hatte, ohne die erste Ehe kirchenrechtlich annullieren zu lassen. Die Arbeitsgerichte gaben zunächst dem Arzt recht — auch weil das Krankenhaus wiederverheiratete evangelische Chefärzte nicht entlassen hatte. Das Bundesverfassungsgericht hob dieses Urteil 2014 auf und stärkte das kirchliche Selbstbestimmungsrecht. Der EuGH entschied 2018 (Rechtssache C-68/17) in die entgegengesetzte Richtung: Die Kündigung stelle eine verbotene Diskriminierung wegen der Religion dar. <span class="tag tag-belegt">BELEGT</span>
+  </div>
+
+  <p>Parallel dazu urteilte der EuGH im „Egenberger"-Fall (C-414/16, 2018), dass auch die Nichteinstellung einer konfessionslosen Bewerberin für eine nicht-verkündigungsnahe Stelle EU-Diskriminierungsrecht verletzen kann. Beide Urteile setzten das kirchliche Selbstbestimmungsrecht erstmals unter direkten europarechtlichen Vorbehalt. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <h3>#OutInChurch: Der Auslöser der zweiten Reform</h3>
+
+  <p>Im Januar 2022 outeten sich 125 haupt- und ehrenamtliche Mitarbeitende der katholischen Kirche öffentlich als queer und forderten unter dem Namen „#OutInChurch" ein Ende der arbeitsrechtlichen Diskriminierung aufgrund sexueller Identität. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">2015</div>
+      Erste große Reform der Grundordnung: Wiederheirat gilt nur noch bei tatsächlichem „scandalum" in der Dienstgemeinschaft als schwerer Loyalitätsverstoß — der Loyalitätsbegriff selbst bleibt aber bestehen.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">Januar 2022</div>
+      #OutInChurch-Aktion; Druck auf die Bischofskonferenz wächst zusätzlich durch einen Brief von elf Generalvikaren.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2022/2023</div>
+      Neue „Grundordnung des kirchlichen Dienstes": Der Begriff „Loyalitätsobliegenheiten" wird gestrichen. Gleichgeschlechtliche Partnerschaften und zivile Wiederheirat sind in der Regel kein Kündigungsgrund mehr. Kirchenaustritt bleibt weiterhin ein Kündigungsgrund.
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <div class="label">Was bleibt</div>
+    Auch nach der Reform 2022/2023 gilt: Bei Beschäftigten in „verkündigungsnahen" Positionen (Pastoral, Religionsunterricht mit Missio Canonica) bleibt eine engere Bindung an die katholische Glaubens- und Sittenlehre bestehen. Der Kirchenaustritt ist nach wie vor ein anerkannter Kündigungsgrund — Kritiker bezeichnen die Grundordnung deshalb weiterhin als in einer „Sanktionslogik" verhaftet. <span class="tag tag-belegt">BELEGT</span>
+  </div>
+
+  <h2>4. Die evangelische Seite</h2>
+
+  <p>Für die evangelische Kirche stellten Wiederheirat, Homosexualität oder Scheidung schon vor den katholischen Reformen in der Regel keine Kündigungsgründe dar — die beiden großen Kirchen verfügen über eigenständige, unterschiedlich strenge Grundordnungen, obwohl sie arbeitsrechtlich unter demselben verfassungsrechtlichen Prinzip des „Dritten Wegs" operieren. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <h2>5. Die strukturelle Linie</h2>
+
+  <p>Kirchliches Arbeitsrecht in Deutschland beruht auf einer einzigen verfassungsrechtlichen Grundentscheidung von 1919 (Art. 137 WRV), die nahezu unverändert ins Grundgesetz von 1949 übernommen wurde: Religionsgesellschaften ordnen und verwalten ihre Angelegenheiten selbstständig. Diese Kontinuität — ähnlich wie bei den in Teil 4 beschriebenen Konkordaten — erklärt, warum ein Prinzip aus der Weimarer Republik noch heute für knapp zwei Millionen Beschäftigte gilt, obwohl sich die gesellschaftlichen Wertvorstellungen über Ehe, Familie und sexuelle Identität seither grundlegend verändert haben. Die zentralen Korrekturen kamen in den vergangenen zehn Jahren nicht aus dem parlamentarischen Gesetzgeber, sondern aus dem EuGH und aus dem öffentlichen Druck einer internen Protestbewegung.</p>
+
+  <div class="closing">
+    <h2 style="border:none; padding:0; color:#f0d97a;">Offene Fragen</h2>
+    <p>Warum wurde der aus der Weimarer Verfassung übernommene kirchliche Sonderstatus im Arbeitsrecht nie grundlegend neu verhandelt, sondern nur schrittweise durch Gerichtsurteile und internen Druck korrigiert?</p>
+    <p>Wie viele Kündigungen wegen Loyalitätsverstößen wurden vor der Reform 2022/2023 tatsächlich ausgesprochen — eine bundesweit belastbare Statistik dazu existiert öffentlich nicht.</p>
+    <p>Bleibt der Kirchenaustritt als Kündigungsgrund langfristig haltbar, nachdem der EuGH bereits zwei zentrale Säulen des kirchlichen Sonderrechts europarechtlich eingeschränkt hat?</p>
+  </div>
+
+  <div class="footer-nav">
+    dunkelfeld.report — Serie „Kirche, Macht, Geld" — Teil 7 von n<br>
+    Vorherige Teile: Wie die Kirche zu Macht und Reichtum kam · Kinderheime und Verscharrung · Die Vatikanbank · Konkordate · Politik-Einfluss · Mafia-Verbindungen<br>
+    Querverweis: „Politik-Einfluss" (Lobbybüros, Rundfunkräte, Konkordatslehrstühle)
+  </div>
+
+</div>
+</body>
+</html>

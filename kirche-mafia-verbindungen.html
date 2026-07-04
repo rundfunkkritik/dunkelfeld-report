@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kirche und Mafia — Zwischen Verstrickung und Widerstand | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --amber: #e8c547;
+    --box-bg: #1a1a2e;
+    --belegt: #4ade80;
+    --extrapolation: #fb923c;
+    --offen: #9ca3af;
+    --vt: #f87171;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: #e5e5e0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 6rem;
+  }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    color: #fff;
+    margin: 0 0 0.5rem;
+  }
+  .subtitle {
+    color: #b0b0a8;
+    font-size: 1.15rem;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #7a7a72;
+    border-top: 1px solid #2a2a3a;
+    border-bottom: 1px solid #2a2a3a;
+    padding: 0.8rem 0;
+    margin-bottom: 2.5rem;
+  }
+  h2 {
+    color: var(--amber);
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--amber);
+    padding-left: 0.8rem;
+  }
+  h3 {
+    color: #f0d97a;
+    font-size: 1.1rem;
+    margin-top: 2rem;
+  }
+  p { margin: 1rem 0; }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin: 0 0.3rem 0.3rem 0;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag-extrapolation { background: rgba(251,146,60,0.15); color: var(--extrapolation); border: 1px solid var(--extrapolation); }
+  .tag-offen { background: rgba(156,163,175,0.15); color: var(--offen); border: 1px solid var(--offen); }
+  .tag-vt { background: rgba(248,113,113,0.15); color: var(--vt); border: 1px solid var(--vt); }
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.98rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+  .timeline {
+    border-left: 2px solid #3a3a4a;
+    margin: 1.5rem 0 1.5rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.3rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.85rem;
+    top: 0.4rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+  .timeline-year {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-weight: bold;
+    font-size: 0.95rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #2a2a3a;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .pull-quote {
+    font-style: italic;
+    font-size: 1.25rem;
+    color: #f0d97a;
+    border-left: 3px solid var(--amber);
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+  }
+  .warn-box {
+    background: rgba(251,146,60,0.08);
+    border: 1px solid var(--extrapolation);
+    border-radius: 4px;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .warn-box .label {
+    font-family: 'Courier New', monospace;
+    color: var(--extrapolation);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+  .cross-ref {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #8888a0;
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #2a2a3a;
+  }
+  .closing p {
+    font-style: italic;
+    color: #c0c0b8;
+  }
+  a { color: var(--amber); }
+  .footer-nav {
+    margin-top: 3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #7a7a72;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">dunkelfeld.report — Serie: Kirche, Macht, Geld — Teil 6</div>
+  <h1>Kirche und Mafia: Zwischen Verstrickung und Widerstand</h1>
+  <div class="subtitle">Warum sich Mafiosi als gute Katholiken verstehen — und warum ein Priester dafür mit dem Leben bezahlte, das infrage zu stellen</div>
+  <div class="meta">BELEGT = dokumentiert &nbsp;·&nbsp; EXTRAPOLATION = strukturell plausibel &nbsp;·&nbsp; OFFEN = ungeklärt &nbsp;·&nbsp; VT = widerlegte Verschwörungstheorie</div>
+
+  <p>Süditalienische Mafia-Organisationen — Cosa Nostra in Sizilien, 'Ndrangheta in Kalabrien, Camorra in Kampanien — verstehen sich traditionell nicht als areligiös, sondern als Teil einer katholisch geprägten Ordnung. Diese Serie hat in Teil 3 bereits die institutionelle Ebene beleuchtet — die Vatikanbank und ihre Verbindungen zu Michele Sindona und Roberto Calvi. Dieser Teil dokumentiert die andere, lokale Ebene: das Verhältnis zwischen Gemeindekirche und organisiertem Verbrechen in Sizilien und Kalabrien — und den Priester, der dieses Verhältnis öffentlich infrage stellte und dafür starb.</p>
+
+  <div class="cross-ref">→ Anschluss an Teil 3: „Die Vatikanbank" (Sindona, Calvi, Banco Ambrosiano)</div>
+
+  <h2>1. Selbstverständnis: Mafiosi als „gute Katholiken"</h2>
+
+  <p>Mehrere historisch dokumentierte Fälle zeigen eine enge persönliche und rituelle Verflechtung führender Mafia-Figuren mit dem kirchlichen Leben ihrer Gemeinden: <span class="tag tag-belegt">BELEGT</span></p>
+
+  <table>
+    <tr><th>Person</th><th>Dokumentierte Verbindung</th></tr>
+    <tr><td>Calogero Vizzini (Nachkriegs-„Pate" der sizilianischen Mafia)</td><td>Neffe des Bischofs Giuseppe Scarlata; zwei seiner Brüder waren katholische Priester.</td></tr>
+    <tr><td>Michele Greco (genannt „der Papst der Cosa Nostra")</td><td>Eröffnete traditionell die Fronleichnamsprozession seiner Gemeinde; bei seiner Verhaftung trug er eine Bibel bei sich.</td></tr>
+    <tr><td>Pietro Aglieri (wegen mehrfachen Mordes angeklagt, 1997)</td><td>Betete regelmäßig in einer eigens eingerichteten Privatkapelle auf seinem Anwesen; ein Priester zelebrierte dort die Messe und nahm ihm die Beichte ab.</td></tr>
+  </table>
+
+  <p>Diese Fälle sind einzeln dokumentiert und stammen aus unterschiedlichen Jahrzehnten. Sie belegen eine kulturelle Verwobenheit von Religiosität und organisiertem Verbrechen in bestimmten süditalienischen Milieus — nicht eine systematische institutionelle Zusammenarbeit der katholischen Kirche als Ganzes mit der Mafia. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <h2>2. Prozessionen als Bühne: Die Vorfälle von 2014</h2>
+
+  <p>Im Sommer 2014 — wenige Wochen nach der öffentlichen Verurteilung der Mafia durch Papst Franziskus (siehe Abschnitt 4) — dokumentierten italienische Ermittlungsbehörden und mehrere internationale Medien gleich zwei Vorfälle, bei denen traditionelle katholische Prozessionen vor den Häusern verurteilter Mafia-Bosse haltmachten. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <div class="label">Oppido Mamertina, Kalabrien, 2. Juli 2014</div>
+    Bei der traditionellen Marienprozession trugen rund zwanzig Männer eine barocke Marienstatue durch den Ort. Der Umzug hielt vor dem Haus des zu lebenslanger Haft verurteilten 'Ndrangheta-Bosses Peppe Mazzagatti — der sich dort aus gesundheitlichen Gründen im Hausarrest befand — an; die Träger verneigten die Statue in Richtung des Gebäudes. Anwesende Carabinieri filmten den Vorgang, der örtliche Polizeichef verließ aus Protest die Prozession. Ein Maresciallo der Carabinieri gab an, die Priester der Prozession vorab ausdrücklich vor einer solchen Geste gewarnt zu haben. Italiens Innenminister Angelino Alfano bezeichnete den Vorfall öffentlich als „widerlich". Der zuständige Bischof kündigte Konsequenzen an. Vertreter des lokalen Klerus bestritten eine bewusste Ehrerbietung und verwiesen auf eine seit über 30 Jahren unveränderte Route. <span class="tag tag-belegt">BELEGT</span>
+  </div>
+
+  <div class="source-box">
+    <div class="label">Palermo, Stadtteil Ballarò, Juli 2014</div>
+    Laut Berichten der Tageszeitung La Repubblica hielt eine weitere Marienprozession vor dem Bestattungsinstitut eines inhaftierten Clan-Chefs (Alessandro D'Ambrogio) an; Angehörige reichten den Trägern zwei Kinder, die die Statue küssen sollten. <span class="tag tag-belegt">BELEGT</span>
+  </div>
+
+  <p>Beide Vorfälle stehen nicht isoliert. Bereits im April 2014 hatte der Bischof von Reggio Calabria die 'Ndrangheta explizit vom traditionellen Tragen der Heiligenfiguren bei der Osterprozession in Sant'Onofrio ausgeschlossen — eine Praxis, die zuvor lokalen Mafia-Größen als Prestigeaufgabe vorbehalten war. Bereits bei einem ersten Versuch, diese Praxis 2010 zu beenden, wurden Schüsse auf das Haus des Vereinsvorsitzenden abgefeuert, der die traditionellen Träger ersetzen sollte. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="warn-box">
+    <div class="label">Einordnung</div>
+    Diese Vorfälle sind einzeln und mehrfach unabhängig (NZZ, ORF, Tagesspiegel, Badische Zeitung) belegt. Sie zeigen ein wiederkehrendes lokales Muster in Teilen Kalabriens und Siziliens — nicht eine Anordnung oder Duldung durch die kirchliche Hierarchie in Rom, die im gleichen Zeitraum ausdrücklich den gegenteiligen Kurs vorgab.
+  </div>
+
+  <h2>3. Der Gegenpol: Priester, die sich der Mafia entgegenstellten</h2>
+
+  <p>Der bekannteste Fall eines offenen kirchlichen Widerstands gegen die Mafia endete tödlich. <strong>Don Pino Puglisi</strong>, Pfarrer im von der Cosa Nostra kontrollierten Palermer Stadtteil Brancaccio, prangerte die dort herrschende Mafia-Familie Graviano öffentlich in seinen Predigten an und gründete 1993 ein Jugendzentrum, das Kindern eine Alternative zur Rekrutierung durch die Mafia bieten sollte. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">Mai 1993</div>
+      Papst Johannes Paul II. richtet bei einem Besuch in Agrigent, Sizilien, einen direkten öffentlichen Appell an Mafiosi zur Umkehr — die erste derart unmissverständliche Verurteilung der Mafia durch ein katholisches Kirchenoberhaupt.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2. Juni 1993</div>
+      Unbekannte vermauern in der Nacht das von Puglisi gegründete Jugendzentrum „Centro Padre Nostro" mit Mörtel und Schutt — eine Warnung.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">15. September 1993</div>
+      An seinem 56. Geburtstag wird Puglisi vor seinem Pfarrhaus von vier im Auftrag der Familie Graviano handelnden Killern erschossen. Sein letzter dokumentierter Satz gegenüber den Tätern: „Ich habe euch schon erwartet."
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1994</div>
+      Die sizilianischen Bischöfe erklären erstmals gemeinsam: Mitgliedschaft in der Mafia sei „unheilbarer Gegensatz zum Evangelium".
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2012–2013</div>
+      Papst Benedikt XVI. erklärt Puglisi zum Märtyrer „in odium fidei" (aus Hass auf den Glauben) — ohne das kirchenrechtlich sonst erforderliche Wunder. 2013 folgt die Seligsprechung im Fußballstadion von Palermo vor rund 100.000 Teilnehmern.
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <div class="label">Kritischer Unterton innerhalb der Kirche selbst</div>
+    Puglisis Bruder Gaetano kritisierte öffentlich, die Kirche habe Don Pino zu Lebzeiten allein gelassen: Weder Bischof noch Kardinal seien seinem von ihm gegründeten Zentrum je zur Seite gesprungen. Der Leiter des Vater-Unser-Zentrums, Maurizio Artale, bemängelte noch zur Seligsprechung 2013, die Erzdiözese Palermo erwähne das von Puglisi gegründete Zentrum auf ihrer eigenen Website nicht. Der damals neue Erzbischof von Monreale, Michele Pennisi, räumte selbst ein: „Das Bewusstsein, dass Mafia und christliche Lebensweise unvereinbar sind, hat sich bei uns erst Schritt für Schritt entwickelt." <span class="tag tag-belegt">BELEGT</span>
+  </div>
+
+  <h2>4. Rom positioniert sich: Von Johannes Paul II. bis Franziskus</h2>
+
+  <p>Alle drei Päpste seit 1993 äußerten sich öffentlich und in wachsender Deutlichkeit gegen die Mafia: <span class="tag tag-belegt">BELEGT</span></p>
+
+  <table>
+    <tr><th>Papst</th><th>Anlass und Aussage</th></tr>
+    <tr><td>Johannes Paul II., 1993</td><td>Reagierte in Agrigent auf die kurz zuvor erfolgten Mordanschläge auf die Ermittlungsrichter Giovanni Falcone und Paolo Borsellino mit dem direkten Appell zur „Bekehrung"; die Mafia beantwortete die Predigt mit Sprengstoffanschlägen vor mehreren Kirchen in Rom, darunter der Lateranbasilika.</td>
+    <tr><td>Benedikt XVI., 2010</td><td>Erklärte in Palermo in ruhigerem Ton, die Mafia sei „unvereinbar mit dem Evangelium".</td></tr>
+    <tr><td>Franziskus, 21. Juni 2014</td><td>Erklärte bei einer Freiluftmesse vor rund 250.000 Gläubigen in Cassano allo Ionio, Kalabrien, Mafiosi seien „nicht in Gemeinschaft mit Gott" und „exkommuniziert" — laut Vatikan-Beobachtern das erste Mal, dass ein Papst diesen konkreten kirchenrechtlichen Begriff im Zusammenhang mit der Mafia verwendete.</td></tr>
+  </table>
+
+  <p>Vatikanexperten wiesen darauf hin, dass ein entsprechender Passus zur „Exkommunikation" von Mafiosi bereits 2010 in einem Dokument zu Süditalien vorgeschlagen, von der Mehrheit der italienischen Bischofskonferenz zu diesem Zeitpunkt jedoch abgelehnt worden war. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="pull-quote">„Bisweilen gibt es in der Kirche Mitwisser von Straftaten der Mafia, die ihre Hände in Unschuld waschen." — Don Luigi Ciotti, Gründer der Anti-Mafia-Opferorganisation Libera, zur Erklärung von Papst Franziskus</div>
+
+  <h2>5. Die strukturelle Linie</h2>
+
+  <p>Was die dokumentierten Fälle dieses Teils verbindet, ist kein einheitliches Bild einer „Kirche, die mit der Mafia kooperiert" — die Fakten zeigen ein gespaltenes Verhältnis: auf der einen Seite lokale Priester und Gemeinden, die über Jahrzehnte mafiöse Rituale duldeten oder mit ihnen kooperierten, auf der anderen Seite eine seit den 1990er-Jahren zunehmend explizite römische Verurteilung — durchgesetzt und bezahlt von Einzelnen wie Pino Puglisi, nicht von der Institution als Ganzes.</p>
+
+  <p>Der Vatikan selbst hatte über die Vatikanbank (siehe Teil 3) eine andere, finanzielle Berührung mit organisiertem Verbrechen — über Bankiers wie Michele Sindona, der nachweislich Verbindungen zur sizilianischen Mafia unterhielt. Diese beiden Ebenen — lokale rituelle Verstrickung und institutionelle Finanzverstrickung — verliefen weitgehend getrennt voneinander und sind hier bewusst nicht vermischt.</p>
+
+  <div class="closing">
+    <h2 style="border:none; padding:0; color:#f0d97a;">Offene Fragen</h2>
+    <p>Warum lehnte die Mehrheit der italienischen Bischofskonferenz 2010 einen Exkommunikations-Passus ab, den Papst Franziskus vier Jahre später selbst öffentlich aussprach?</p>
+    <p>Warum ignorierte die Erzdiözese Palermo nach eigener Aussage von Zeitzeugen das Vermächtnis Puglisis noch zum Zeitpunkt seiner eigenen Seligsprechung?</p>
+    <p>Wie viele der 2014 dokumentierten lokalen Prozessionspraktiken bestehen heute, mehr als zehn Jahre später, in abgewandelter Form fort?</p>
+  </div>
+
+  <div class="footer-nav">
+    dunkelfeld.report — Serie „Kirche, Macht, Geld" — Teil 6 von n<br>
+    Vorherige Teile: Wie die Kirche zu Macht und Reichtum kam · Kinderheime und Verscharrung · Die Vatikanbank · Konkordate · Politik-Einfluss<br>
+    Querverweis: „Die Vatikanbank" (Sindona, Calvi, Banco Ambrosiano)
+  </div>
+
+</div>
+</body>
+</html>

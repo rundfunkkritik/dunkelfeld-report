@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Das stille Imperium — Wer kontrolliert, was wir essen? | dunkelfeld.report</title>
+<meta name="description" content="Vier Konzerne, kaum jemand kennt ihre Namen — und doch bestimmen sie, was durch die globalen Getreidehäfen der Welt fließt. Teil 1 der Serie.">
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --belegt: #14532d;
+    --belegt-text: #86efac;
+    --extra: #7c2d12;
+    --extra-text: #fdba74;
+    --offen: #3f3f46;
+    --offen-text: #d4d4d8;
+    --box-bg: #1a1a2e;
+    --text: #e4e4e7;
+    --text-dim: #a1a1aa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .mono { font-family: 'Courier New', Courier, monospace; }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 5rem;
+  }
+  .series-banner {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    border: 1px solid #2a2a35;
+    padding: 0.7rem 1rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin: 0 0 0.3rem;
+    color: #fff;
+  }
+  .subtitle {
+    font-size: 1.15rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 1.8rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid #2a2a35;
+    padding-bottom: 1.2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-top: 3rem;
+    border-left: 3px solid var(--accent);
+    padding-left: 0.8rem;
+  }
+  h3 {
+    font-size: 1.15rem;
+    color: #fff;
+    margin-top: 2rem;
+  }
+  p { margin: 1.1rem 0; }
+  a { color: var(--accent); }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: var(--belegt); color: var(--belegt-text); }
+  .tag-extra  { background: var(--extra); color: var(--extra-text); }
+  .tag-offen  { background: var(--offen); color: var(--offen-text); }
+
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.3rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .source-box .mono { color: var(--accent); font-size: 0.72rem; display: block; margin-bottom: 0.4rem; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: #2a2a35;
+    margin: 2rem 0;
+    border: 1px solid #2a2a35;
+  }
+  .stat-card {
+    background: var(--bg);
+    padding: 1.3rem 1rem;
+    text-align: center;
+  }
+  .stat-card .num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.9rem;
+    color: var(--accent);
+    display: block;
+  }
+  .stat-card .label {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-top: 0.4rem;
+  }
+
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.8rem 0;
+    font-size: 0.92rem;
+  }
+  table.data-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-align: left;
+    padding: 0.6rem 0.7rem;
+    border-bottom: 2px solid var(--accent);
+  }
+  table.data-table td {
+    padding: 0.6rem 0.7rem;
+    border-bottom: 1px solid #2a2a35;
+  }
+  table.data-table tr:last-child td { font-weight: bold; color: #fff; }
+
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #fff;
+    border-left: 3px solid var(--accent);
+    padding-left: 1.3rem;
+    margin: 2.2rem 0;
+    line-height: 1.6;
+  }
+  .pull-quote .cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-style: normal;
+    color: var(--text-dim);
+    margin-top: 0.6rem;
+  }
+
+  .timeline {
+    margin: 2rem 0;
+    border-left: 2px solid #2a2a35;
+    padding-left: 1.5rem;
+  }
+  .timeline-item { margin-bottom: 1.5rem; position: relative; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.94rem;
+    top: 0.3rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline-item .year {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+  }
+
+  .fall-card {
+    background: var(--box-bg);
+    border: 1px solid #2a2a35;
+    margin: 1.8rem 0;
+    padding: 1.4rem 1.5rem;
+  }
+  .fall-card-header {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.03em;
+  }
+  .fall-line { margin: 0.4rem 0; font-size: 0.95rem; }
+  .fall-line b { color: #fff; }
+
+  .series-nav {
+    background: var(--box-bg);
+    border: 1px solid #2a2a35;
+    padding: 1.3rem 1.5rem;
+    margin: 3rem 0;
+    font-size: 0.88rem;
+  }
+  .series-nav .mono-title {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .series-nav ol { margin: 0; padding-left: 1.3rem; }
+  .series-nav li { margin-bottom: 0.35rem; color: var(--text-dim); }
+  .series-nav li.active { color: #fff; font-weight: bold; }
+  .series-nav li.active::marker { color: var(--accent); }
+
+  .closing {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a35;
+    font-style: italic;
+    color: var(--text-dim);
+  }
+
+  .site-footer {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-align: center;
+    border-top: 1px solid #2a2a35;
+  }
+  .site-footer a { color: var(--text-dim); text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<main>
+
+  <div class="series-banner">Serie „Wer kontrolliert, was wir essen?" — Teil 1 von 11</div>
+
+  <h1>Das stille Imperium</h1>
+  <div class="subtitle">Vier Namen, die kaum jemand kennt — und der Griff nach dem Weltgetreidemarkt</div>
+
+  <div class="meta">
+    dunkelfeld.report · Serie: Wer kontrolliert, was wir essen? · Teil 1/11<br>
+    Struktur &amp; Marktdaten · Stand: Juli 2026
+  </div>
+
+  <p>
+    Wenn Brot im Supermarktregal liegt, denkt niemand an ein Unternehmen namens Louis Dreyfus. Wenn Sojaöl in der Pfanne brutzelt, denkt niemand an Cargill. Und doch führt der Weg vom Feld zum Teller in den meisten Fällen durch die Hände von vier Konzernen, die zusammen so viel Getreide, Ölsaaten und Eiweißfrüchte bewegen wie kaum eine andere Gruppe von Unternehmen weltweit. Branchenintern nennt man sie das „ABCD-Quartett": <b>A</b>rcher-Daniels-Midland, <b>B</b>unge, <b>C</b>argill, <b>D</b>reyfus.
+  </p>
+
+  <p>
+    Sie alle wurden zwischen 1818 und 1902 gegründet — größtenteils als Familienunternehmen, drei davon stehen bis heute unter dem Einfluss ihrer Gründerfamilien. <span class="tag tag-belegt">BELEGT</span> Sie besitzen keine Ackerflächen im nennenswerten Umfang. Sie besitzen etwas Mächtigeres: die Infrastruktur dazwischen — Silos, Häfen, Hochseeschiffe, Eisenbahnen, Ölmühlen, Raffinerien. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="stat-grid">
+    <div class="stat-card"><span class="num">50–90%</span><span class="label">geschätzter Weltmarktanteil am Agrarrohstoffhandel, je nach Studie und Rohstoff</span></div>
+    <div class="stat-card"><span class="num">1818–1902</span><span class="label">Gründungsjahre der vier Konzerne</span></div>
+    <div class="stat-card"><span class="num">4</span><span class="label">Konzerne kontrollieren einen Großteil des globalen Getreidehandels</span></div>
+  </div>
+
+  <h2>Wie groß ist „groß"?</h2>
+
+  <p>
+    Die genaue Zahl variiert je nach Quelle und Rohstoff erheblich — und genau diese Unschärfe ist Teil des Problems: Die Konzerne sind größtenteils nicht börsennotiert oder legen ihre Handelsvolumina nicht offen. <span class="tag tag-offen">OFFEN</span> Verlässliche, unabhängig geprüfte Marktanteilszahlen existieren kaum. Was existiert, sind Schätzungen aus wissenschaftlichen Studien, NGO-Berichten und einer 2023 im Auftrag des Agrarausschusses des EU-Parlaments erstellten Untersuchung.
+  </p>
+
+  <div class="source-box">
+    <span class="mono">QUELLE: Studie für den Agrarausschuss des EU-Parlaments, zitiert bei agrarheute.com</span>
+    Das ABCD-Quartett hält demnach heute einen geschätzten Anteil von <b>50 bis 60 Prozent</b> am internationalen Handel mit Agrarrohstoffen wie Weizen, Soja oder Mais — vor rund zehn Jahren waren es Schätzungen zufolge noch 70 bis 90 Prozent. Neue Konkurrenten, allen voran der chinesische Staatskonzern Cofco International und die niederländische Viterra (damals noch eigenständig, mit rund 100 Millionen Tonnen Handelsvolumen), haben die Dominanz etwas zurückgedrängt. <span class="tag tag-belegt">BELEGT</span>
+  </div>
+
+  <p>
+    Andere Quellen — etwa die Oxfam-Studie „Cereal Secrets" oder landwirtschaftliche Fachverbände — nennen für den reinen Getreidehandel Anteile von bis zu 90 Prozent. Die Zahlen widersprechen sich nicht zwangsläufig: Sie messen unterschiedliche Dinge (Gesamt-Agrarrohstoffhandel vs. reiner Getreidehandel, unterschiedliche Zeiträume, unterschiedliche Länder). Was sich durch alle Quellen zieht, ist die strukturelle Grundaussage: eine Handvoll Unternehmen kontrolliert einen unverhältnismäßig großen Teil eines Marktes, von dem die Ernährung von Milliarden Menschen abhängt. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <h2>Die Fusion, die den Markt neu ordnete</h2>
+
+  <p>
+    Im Juni 2023 kündigten Bunge und Viterra ihre Fusion an — ein Zusammenschluss im Volumen von rund 34 Milliarden US-Dollar. <span class="tag tag-belegt">BELEGT</span> Es dauerte über zwei Jahre und mehrere kartellrechtliche Prüfungen, bis der Deal am 2. Juli 2025 endgültig abgeschlossen wurde.
+  </p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="year">Juni 2023</span><br>
+      Bunge und Viterra (Tochterunternehmen der Schweizer Glencore-Gruppe) geben Fusionspläne bekannt. <span class="tag tag-belegt">BELEGT</span>
+    </div>
+    <div class="timeline-item">
+      <span class="year">1. August 2024</span><br>
+      Die EU-Kommission genehmigt die Fusion — unter Auflagen: Bunge und Viterra müssen das gesamte Ölsaatengeschäft von Viterra in Ungarn und Polen sowie zugehörige Logistikanlagen verkaufen, um Wettbewerbsbedenken bei Raps und Sonnenblumenkernen in Mitteleuropa auszuräumen. <span class="tag tag-belegt">BELEGT</span>
+    </div>
+    <div class="timeline-item">
+      <span class="year">Juni 2025</span><br>
+      Chinas Kartellbehörde erteilt als letzte große Regulierungsinstanz ihre Zustimmung. <span class="tag tag-belegt">BELEGT</span>
+    </div>
+    <div class="timeline-item">
+      <span class="year">2. Juli 2025</span><br>
+      Die Fusion wird offiziell vollzogen. Glencore erhält 900 Millionen US-Dollar in bar sowie einen Anteil von 16,4 Prozent am fusionierten Unternehmen. Bunge steigt mit geschätzt über 100 Milliarden US-Dollar Jahresumsatz zur Nummer zwei hinter Cargill auf — vor ADM. <span class="tag tag-belegt">BELEGT</span>
+    </div>
+  </div>
+
+  <p>
+    Die kanadische Wettbewerbsbehörde und der Verband landwirtschaftlicher Erzeuger von Saskatchewan (APAS) hatten vor der Fusion Bedenken geäußert, dass sich die Marktmacht bei Getreide- und Rapsankäufen in Westkanada weiter konzentrieren könnte. <span class="tag tag-belegt">BELEGT</span> Ob und wie sich diese Sorge nach Vollzug der Fusion konkret bestätigt hat, ist bislang nicht unabhängig ausgewertet. <span class="tag tag-offen">OFFEN</span>
+  </p>
+
+  <h3>Umsatzvergleich: Die neuen Größenordnungen</h3>
+
+  <table class="data-table">
+    <tr><th>Konzern</th><th>Jahresumsatz (ca.)</th><th>Position im Ranking</th></tr>
+    <tr><td>Cargill</td><td>160 Mrd. USD (2024)</td><td>1</td></tr>
+    <tr><td>Bunge (nach Viterra-Fusion)</td><td>über 100 Mrd. USD</td><td>2</td></tr>
+    <tr><td>ADM</td><td>ca. 85 Mrd. USD (2024)</td><td>3</td></tr>
+    <tr><td>Louis Dreyfus</td><td>nicht öffentlich beziffert</td><td>–</td></tr>
+  </table>
+  <p style="font-size:0.85rem; color:var(--text-dim); margin-top:-1rem;">
+    Quelle: Unternehmensangaben, zitiert bei topagrar.com und ORF. Cargill ist als Privatunternehmen nicht zur vollständigen Offenlegung verpflichtet — Umsatzzahlen basieren teils auf Selbstauskunft. <span class="tag tag-offen">OFFEN</span>
+  </p>
+
+  <h2>Mehr als Handel: die vertikale Kette</h2>
+
+  <p>
+    Was die ABCD-Konzerne von reinen Rohstoffhändlern unterscheidet, ist ihre vertikale Integration. Sie verkaufen Saatgut und Dünger an Landwirte, kaufen deren Ernte auf, lagern sie in eigenen Silos, verschiffen sie über eigene oder gecharterte Hochseeflotten, verarbeiten sie in eigenen Ölmühlen zu Nahrungsmitteln, Tierfutter oder Biokraftstoff weiter — und sind zunehmend auch im Finanzhandel mit Agrarrohstoff-Derivaten aktiv. <span class="tag tag-belegt">BELEGT</span> Ein Landwirt, der Saatgut von einem dieser Konzerne bezieht, kann am Ende der Kette an denselben Konzern verkaufen, der wiederum an einen Verarbeiter verkauft, der ebenfalls zu einem der vier gehören kann.
+  </p>
+
+  <div class="pull-quote">
+    „Sie handeln und transportieren, und sie verarbeiten auch viele Rohstoffe. Die Konzerne besitzen Hochseeschiffe, Häfen, Eisenbahnen, Raffinerien, Silos, Ölmühlen und Fabriken."
+    <span class="cite">— Branchenbeschreibung, zitiert nach Bauernstimme / BUND-Regionalgruppe Stuttgart</span>
+  </div>
+
+  <h2>Warnung aus Brüssel</h2>
+
+  <p>
+    Die eingangs erwähnte Studie für den Agrarausschuss des EU-Parlaments beschränkt sich nicht auf Marktanteilsschätzungen. Sie warnt explizit davor, dass die Rohstoffhändler ihre Marktposition und ihre detaillierten Kenntnisse über Angebot und Nachfrage für exzessive Spekulationen missbrauchen könnten — zulasten von Landwirten und Verbrauchern. Die Studie empfiehlt der Politik, mehr Markttransparenz zu schaffen, und regt an, eine Übergewinnsteuer zu prüfen. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <p>
+    Die Reaktionen deutscher Abgeordneter auf die Studie fielen gemischt aus. <span class="tag tag-belegt">BELEGT</span> Eine konkrete regulatorische Konsequenz — etwa eine tatsächlich eingeführte Übergewinnsteuer auf Agrarhandelsgewinne — ist bislang nicht dokumentiert. <span class="tag tag-offen">OFFEN</span>
+  </p>
+
+  <h2>Was das für den nächsten Teil bedeutet</h2>
+
+  <p>
+    Wer Getreide handelt, braucht Saatgut, das angebaut wird. Und hier beginnt eine zweite, noch stärker konzentrierte Ebene der Kontrolle: Patente auf genetisches Material, das am Anfang jeder Ernte steht — bevor ein Landwirt überhaupt einen Vertrag mit einem der Handelskonzerne unterschreibt. Davon handelt Teil 2 dieser Serie.
+  </p>
+
+  <div class="series-nav">
+    <div class="mono-title">Serie: Wer kontrolliert, was wir essen?</div>
+    <ol>
+      <li class="active">Teil 1 — Das stille Imperium (ABCD-Quartett, Marktkonzentration)</li>
+      <li>Teil 2 — Saatgut und Patente</li>
+      <li>Teil 3 — Das Höfesterben</li>
+      <li>Teil 4 — Insekten als Nahrung</li>
+      <li>Teil 5 — Laborfleisch</li>
+      <li>Teil 6 — Wasser als Ware</li>
+      <li>Teil 7 — Mercosur</li>
+      <li>Teil 8 — Konzerne &amp; Handel</li>
+      <li>Teil 9 — Gentechnik ohne Kennzeichnung</li>
+      <li>Teil 10 — Skandale: Gestern gesund, heute gefährlich</li>
+      <li>Teil 11 — Wer taucht überall auf? (Abschluss)</li>
+    </ol>
+  </div>
+
+  <div class="closing">
+    <p>
+      <i>Vier Familienunternehmen, gegründet im 19. Jahrhundert, kontrollieren heute einen Markt, von dem die Welternährung abhängt — ohne dass die meisten Verbraucher ihre Namen je gehört haben. Ist das ein Naturgesetz freier Märkte, oder das Ergebnis von 150 Jahren ungestörter Konsolidierung? Und was bedeutet es, wenn eine Studie des EU-Parlaments selbst vor Marktmachtmissbrauch warnt — ohne dass daraus bislang Konsequenzen gefolgt sind?</i>
+    </p>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>dunkelfeld.report — Fakten brauchen kein Dunkel.<br>
+  <a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a> · <a href="mailto:kontakt@dunkelfeld.com">Kontakt</a></p>
+  <p style="margin-top:0.8rem; font-size:0.72rem;">Teil der Serie „Wer kontrolliert, was wir essen?" — Teil 1 von 11</p>
+</footer>
+
+</body>
+</html>

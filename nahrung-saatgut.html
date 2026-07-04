@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wer die Saat hat — Wer kontrolliert, was wir essen? | dunkelfeld.report</title>
+<meta name="description" content="Patente auf Leben, ein Tresor im Eis von Spitzbergen, und ein Markt, der sich auf wenige Konzerne konzentriert hat. Teil 2 der Serie.">
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --belegt: #14532d;
+    --belegt-text: #86efac;
+    --extra: #7c2d12;
+    --extra-text: #fdba74;
+    --offen: #3f3f46;
+    --offen-text: #d4d4d8;
+    --box-bg: #1a1a2e;
+    --text: #e4e4e7;
+    --text-dim: #a1a1aa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .mono { font-family: 'Courier New', Courier, monospace; }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 5rem;
+  }
+  .series-banner {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    border: 1px solid #2a2a35;
+    padding: 0.7rem 1rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin: 0 0 0.3rem;
+    color: #fff;
+  }
+  .subtitle {
+    font-size: 1.15rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 1.8rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid #2a2a35;
+    padding-bottom: 1.2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-top: 3rem;
+    border-left: 3px solid var(--accent);
+    padding-left: 0.8rem;
+  }
+  h3 {
+    font-size: 1.15rem;
+    color: #fff;
+    margin-top: 2rem;
+  }
+  p { margin: 1.1rem 0; }
+  a { color: var(--accent); }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: var(--belegt); color: var(--belegt-text); }
+  .tag-extra  { background: var(--extra); color: var(--extra-text); }
+  .tag-offen  { background: var(--offen); color: var(--offen-text); }
+
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.3rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .source-box .mono { color: var(--accent); font-size: 0.72rem; display: block; margin-bottom: 0.4rem; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: #2a2a35;
+    margin: 2rem 0;
+    border: 1px solid #2a2a35;
+  }
+  .stat-card {
+    background: var(--bg);
+    padding: 1.3rem 1rem;
+    text-align: center;
+  }
+  .stat-card .num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.9rem;
+    color: var(--accent);
+    display: block;
+  }
+  .stat-card .label {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-top: 0.4rem;
+  }
+
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.8rem 0;
+    font-size: 0.92rem;
+  }
+  table.data-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-align: left;
+    padding: 0.6rem 0.7rem;
+    border-bottom: 2px solid var(--accent);
+  }
+  table.data-table td {
+    padding: 0.6rem 0.7rem;
+    border-bottom: 1px solid #2a2a35;
+  }
+  table.data-table tr:last-child td { font-weight: bold; color: #fff; }
+
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #fff;
+    border-left: 3px solid var(--accent);
+    padding-left: 1.3rem;
+    margin: 2.2rem 0;
+    line-height: 1.6;
+  }
+  .pull-quote .cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-style: normal;
+    color: var(--text-dim);
+    margin-top: 0.6rem;
+  }
+
+  .timeline {
+    margin: 2rem 0;
+    border-left: 2px solid #2a2a35;
+    padding-left: 1.5rem;
+  }
+  .timeline-item { margin-bottom: 1.5rem; position: relative; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.94rem;
+    top: 0.3rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline-item .year {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+  }
+
+  .fall-card {
+    background: var(--box-bg);
+    border: 1px solid #2a2a35;
+    margin: 1.8rem 0;
+    padding: 1.4rem 1.5rem;
+  }
+  .fall-card-header {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.03em;
+  }
+  .fall-line { margin: 0.4rem 0; font-size: 0.95rem; }
+  .fall-line b { color: #fff; }
+
+  .series-nav {
+    background: var(--box-bg);
+    border: 1px solid #2a2a35;
+    padding: 1.3rem 1.5rem;
+    margin: 3rem 0;
+    font-size: 0.88rem;
+  }
+  .series-nav .mono-title {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .series-nav ol { margin: 0; padding-left: 1.3rem; }
+  .series-nav li { margin-bottom: 0.35rem; color: var(--text-dim); }
+  .series-nav li.active { color: #fff; font-weight: bold; }
+  .series-nav li.active::marker { color: var(--accent); }
+
+  .closing {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a35;
+    font-style: italic;
+    color: var(--text-dim);
+  }
+
+  .site-footer {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-align: center;
+    border-top: 1px solid #2a2a35;
+  }
+  .site-footer a { color: var(--text-dim); text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<main>
+
+  <div class="series-banner">Serie „Wer kontrolliert, was wir essen?" — Teil 2 von 11</div>
+
+  <h1>Wer die Saat hat</h1>
+  <div class="subtitle">Patente auf Leben, ein Tresor im arktischen Eis, und ein Markt in wenigen Händen</div>
+
+  <div class="meta">
+    dunkelfeld.report · Serie: Wer kontrolliert, was wir essen? · Teil 2/11<br>
+    Struktur &amp; Marktdaten · Stand: Juli 2026
+  </div>
+
+  <p>
+    Bevor ein Konzern wie Cargill oder Bunge auch nur eine Tonne Weizen handeln kann, muss dieser Weizen angebaut worden sein. Und am Anfang jeder Ernte steht das Saatgut. Wer das Saatgut kontrolliert — genauer: wer die Patente auf die genetischen Eigenschaften dieses Saatguts hält — kontrolliert eine noch grundlegendere Ebene der Nahrungsmittelkette als der Handel selbst. „Wer die Saat hat, hat das Sagen", lautet ein Bonmot aus der Agrarpolitik. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <h2>Die Fusionswelle von 2016 bis 2018</h2>
+
+  <p>
+    Innerhalb weniger Jahre verschmolzen die wichtigsten Saatgut- und Agrarchemiekonzerne der Welt zu einem Oligopol aus nur noch drei großen Einheiten: Bayer kaufte Monsanto, Dow Chemical und DuPont fusionierten zu DowDuPont (später Corteva), und der chinesische Staatskonzern ChemChina übernahm den Schweizer Konzern Syngenta. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="source-box">
+    <span class="mono">QUELLE: Offener Brief von rund 200 zivilgesellschaftlichen Organisationen an EU-Wettbewerbskommissarin Margrethe Vestager, zitiert bei Stuttgarter Nachrichten</span>
+    Die Organisationen warnten bereits im Vorfeld, dass die drei fusionierten Konzerne zusammen rund <b>70 Prozent des weltweiten Pestizidmarkts</b> und gut <b>60 Prozent des kommerziellen Saatgutmarkts</b> kontrollieren würden — eine Oligopolstellung, die den Konzernen „einen viel zu großen Einfluss auf die Ausgestaltung des Landwirtschafts- und Ernährungssystems" verschaffe. <span class="tag tag-belegt">BELEGT</span>
+  </div>
+
+  <p>
+    Die Fusionen wurden trotz dieser Warnungen von den zuständigen Kartellbehörden in den USA, der EU und China genehmigt — teils mit Auflagen zum Verkauf einzelner Geschäftsbereiche. <span class="tag tag-belegt">BELEGT</span> Bayer musste im Zuge der Monsanto-Übernahme etwa Teile seines eigenen Saatgutgeschäfts an BASF verkaufen.
+  </p>
+
+  <h3>Marktanteile im Überblick — je nach Quelle und Methodik</h3>
+
+  <p>
+    Die genauen Zahlen schwanken zwischen den Studien erheblich, da unterschiedliche Marktsegmente (Gesamtsaatgut vs. gentechnisch verändertes Saatgut vs. einzelne Kulturpflanzen) und unterschiedliche Erhebungsjahre zugrunde liegen. <span class="tag tag-offen">OFFEN</span> Im Folgenden mehrere unabhängig erhobene Schätzungen zur Einordnung:
+  </p>
+
+  <table class="data-table">
+    <tr><th>Quelle / Jahr</th><th>Aussage</th></tr>
+    <tr><td>Arche Noah (Bezug: Übernahmezeitpunkt)</td><td>Bayer-Monsanto zusammen ca. 30% Marktanteil bei Saatgut (konventionell + gentechnisch); über 90% bei gentechnisch verändertem Saatgut</td></tr>
+    <tr><td>BUND / Friends of the Earth Europe</td><td>Bayer-Monsanto würde allein rund ein Drittel des globalen Marktes für kommerzielles Saatgut kontrollieren</td></tr>
+    <tr><td>ETC Group, „Foodbarons"-Bericht (Umsätze 2020)</td><td>Bayer 23%, Corteva 17%, ChemChina/Syngenta und BASF folgen mit Abstand — zusammen ca. 50% des Weltsaatgutmarkts</td></tr>
+    <tr><td>IG Saatgut, Patente-Report</td><td>Corteva und Bayer/Monsanto kontrollieren gemeinsam 40% des globalen industriellen Saatgutmarkts (Bezug: NGT-Patentkontext)</td></tr>
+  </table>
+  <p style="font-size:0.85rem; color:var(--text-dim); margin-top:-1rem;">
+    Die Bandbreite von 30 bis über 60 Prozent (je nach Marktsegment) zeigt: Unabhängig von der exakten Zahl beherrschen drei bis vier Konzerne einen dominierenden Anteil des Weltsaatgutmarkts. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <h2>Patente auf Pflanzen — und auf Rechtsstreitigkeiten</h2>
+
+  <p>
+    Seit den 1980er-Jahren ist es in vielen Rechtsräumen möglich, Patente nicht nur auf gentechnische Verfahren, sondern auf konkrete genetische Eigenschaften von Pflanzen anzumelden — teils sogar auf Ergebnisse konventioneller Züchtung. <span class="tag tag-belegt">BELEGT</span> Zwischen 1978 und 2016 wurden europaweit 9.039 Patente auf Pflanzen angemeldet, von denen rund ein Drittel (3.083) tatsächlich erteilt wurde. Allein auf Bayer entfielen 471 Anträge (244 erteilt), auf Monsanto 616 Anträge (246 erteilt). <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="fall-card">
+    <div class="fall-card-header">Fall: Patentklagen gegen Landwirte</div>
+    <div class="fall-line"><b>Zeitraum:</b> 1997–2011</div>
+    <div class="fall-line"><b>Akteur:</b> Monsanto (heute Teil von Bayer)</div>
+    <div class="fall-line"><b>Fakt:</b> Monsanto brachte in den USA in diesem Zeitraum <b>144 Patentrechtsverletzungsklagen</b> gegen Landwirte ein. <span class="tag tag-belegt">BELEGT</span></div>
+    <div class="fall-line"><b>Quelle:</b> IG Saatgut, Patente-Report, unter Berufung auf dokumentierte Gerichtsverfahren</div>
+  </div>
+
+  <p>
+    Für Züchterinnen, Landwirte und Produzenten entsteht dadurch nach Einschätzung mehrerer NGOs erhebliche Rechtsunsicherheit: Welche Pflanzeneigenschaften patentiert sind, ist oft schwer zu ermitteln, da die genauen Patentinhalte kaum öffentlich zugänglich aufbereitet sind. <span class="tag tag-extra">EXTRAPOLATION</span> — die grundsätzliche Existenz dieser Unsicherheit ist dokumentiert, ihr konkretes Ausmaß für einzelne Betriebe lässt sich pauschal nicht beziffern.
+  </p>
+
+  <h2>Konzentration auf wenige Kulturpflanzen</h2>
+
+  <p>
+    Die Forschung der Saatgutkonzerne konzentriert sich nach Angaben von Arche Noah auf jene Pflanzenarten, mit denen sich kurzfristig die größten Profite erzielen lassen: weltweit betrachtet vor allem Mais (rund 40% der Patentanmeldungen), Soja (13%) und Reis (10%). <span class="tag tag-belegt">BELEGT</span> Kulturpflanzen, die für die Ernährungssicherheit ärmerer Regionen zentral sind, aber wirtschaftlich weniger attraktiv erscheinen, erhalten entsprechend weniger Forschungsaufmerksamkeit. <span class="tag tag-extra">EXTRAPOLATION</span>
+  </p>
+
+  <h2>Der Tresor im Eis: Svalbard Global Seed Vault</h2>
+
+  <p>
+    Parallel zur Konzentration des kommerziellen Saatgutmarkts existiert seit 2008 eine globale „Sicherheitskopie" der Pflanzenvielfalt: der Svalbard Global Seed Vault auf der norwegischen Insel Spitzbergen, tief im arktischen Permafrost. Er kann Berichten zufolge bis zu 4,5 Millionen Saatgutproben aufnehmen und soll auch bei globalen Katastrophen ohne Stromversorgung funktionieren. <span class="tag tag-belegt">BELEGT</span> Betrieben wird er in einem Dreiparteien-Abkommen zwischen dem norwegischen Staat, der nordischen Genressourcen-Organisation NordGen und dem in Bonn ansässigen Crop Trust (offiziell: Global Crop Diversity Trust). <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="stat-grid">
+    <div class="stat-card"><span class="num">2008</span><span class="label">Eröffnung des Svalbard Global Seed Vault</span></div>
+    <div class="stat-card"><span class="num">4,5 Mio.</span><span class="label">maximale Kapazität an Saatgutproben</span></div>
+    <div class="stat-card"><span class="num">720 Mio. $</span><span class="label">Gates-Foundation-Förderung an CGIAR seit 2003</span></div>
+  </div>
+
+  <p>
+    Der Crop Trust finanziert sich über einen „Donor Council", dem neben Regierungen und Stiftungen auch Agrarkonzerne angehören. Laut Recherchen des Center for Food Safety gehörten zu den frühen privaten Geldgebern unter anderem DuPont/Pioneer Seeds und Syngenta, die jeweils rund eine Million US-Dollar spendeten. <span class="tag tag-belegt">BELEGT</span> Die Bill &amp; Melinda Gates Foundation ist mit Abstand der größte nichtstaatliche Förderer: Sie unterstützte unter anderem eine 2007 angekündigte Initiative mit 37,5 Millionen US-Dollar zur Sicherung von 21 wichtigen Nutzpflanzen und zur Finanzierung von Saatgut-Transporten nach Svalbard, und hat seit 2003 mehr als 720 Millionen US-Dollar in die CGIAR-Forschungszentren investiert, die einen Großteil der weltweiten Genbanken verwalten. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="source-box">
+    <span class="mono">EINORDNUNG: Zwei dokumentierte Perspektiven auf dieselbe Struktur</span>
+    Kritische NGOs wie das Center for Food Safety und die journalistische Plattform Inf'OGM verweisen auf einen offensichtlichen Interessenkonflikt: Konzerne, die durch Patentierung und Gentechnik zur Reduktion genetischer Vielfalt beitragen, finanzieren zugleich die Institution, die diese Vielfalt bewahren soll — und diskutieren, ob dies ihnen bevorzugten Zugriff auf genetisches Material verschaffen könnte. <span class="tag tag-belegt">BELEGT</span> (Interessenkonflikt dokumentiert)<br><br>
+    Cary Fowler, langjähriger Direktor des Crop Trust, widerspricht dieser Lesart öffentlich: Das Saatgut verbleibe rechtlich im Eigentum der einliefernden Institution oder des einliefernden Staats („Black-Box-Prinzip"), werde nie geöffnet ohne Zustimmung des Eigentümers, und es gebe in der gesamten Betriebsgeschichte keinen dokumentierten Fall, in dem Saatgut an Konzerne oder Einzelpersonen weitergegeben wurde. <span class="tag tag-belegt">BELEGT</span> (Gegenposition dokumentiert)<br><br>
+    Ob das vertragliche „Black-Box"-Prinzip in der Praxis tatsächlich jeden bevorzugten Zugriff ausschließt, ist zwischen den Positionen strittig und nicht abschließend extern geprüft. <span class="tag tag-offen">OFFEN</span>
+  </div>
+
+  <p>
+    Eine rechtliche Analyse des Center for Food Safety kam zu dem Schluss, dass die Einlagerungsverträge von Svalbard komplex, an mehreren Stellen unklar formuliert und in ihrer Gesamtwirkung schwer zu durchschauen seien — was die Bewertung möglicher struktureller Vorteile für patentierende Konzerne zusätzlich erschwert. <span class="tag tag-offen">OFFEN</span>
+  </p>
+
+  <p style="font-size:0.85rem; color:var(--text-dim);">
+    Hinweis zur Quellenlage: Zu diesem Thema kursieren im Internet zahlreiche Beiträge, die den Seed Vault mit unbelegten Verschwörungserzählungen (u.a. zu Bevölkerungskontrolle oder gezielter Krisenausnutzung) verknüpfen. Diese Erzählungen sind nicht Teil dieser Darstellung und werden hier ausdrücklich nicht als Quelle verwendet. Was oben steht, stützt sich auf dokumentierte Förderbeträge, offizielle Vertragsstrukturen und die rechtliche Analyse einer etablierten NGO.
+  </p>
+
+  <h2>Was das für die Serie bedeutet</h2>
+
+  <p>
+    Handelskonzentration (Teil 1) und Saatgutkonzentration (dieser Teil) betreffen zwei unterschiedliche Glieder derselben Kette — doch sie verstärken sich strukturell: Wer sowohl das Saatgut als auch den globalen Handel dominiert, hat theoretisch Einfluss auf beiden Enden der Wertschöpfungskette. Ob und in welchem Umfang sich diese beiden Ebenen in der Praxis überschneiden, ist bislang nicht systematisch untersucht. <span class="tag tag-offen">OFFEN</span> Am unmittelbarsten zu spüren bekommen die Konzentration jene, die am Anfang der Kette stehen: die landwirtschaftlichen Betriebe selbst. Davon handelt Teil 3.
+  </p>
+
+  <div class="series-nav">
+    <div class="mono-title">Serie: Wer kontrolliert, was wir essen?</div>
+    <ol>
+      <li>Teil 1 — Das stille Imperium (ABCD-Quartett, Marktkonzentration)</li>
+      <li class="active">Teil 2 — Saatgut und Patente</li>
+      <li>Teil 3 — Das Höfesterben</li>
+      <li>Teil 4 — Insekten als Nahrung</li>
+      <li>Teil 5 — Laborfleisch</li>
+      <li>Teil 6 — Wasser als Ware</li>
+      <li>Teil 7 — Mercosur</li>
+      <li>Teil 8 — Konzerne &amp; Handel</li>
+      <li>Teil 9 — Gentechnik ohne Kennzeichnung</li>
+      <li>Teil 10 — Skandale: Gestern gesund, heute gefährlich</li>
+      <li>Teil 11 — Wer taucht überall auf? (Abschluss)</li>
+    </ol>
+  </div>
+
+  <div class="closing">
+    <p>
+      <i>Ein Tresor im arktischen Eis, mitfinanziert von genau jenen Konzernen, die durch Patentierung zur Verringerung genetischer Vielfalt beitragen — Zufall oder Strategie? Und was bedeutet es für die globale Ernährungssicherheit, wenn drei Konzerne über die Hälfte des kommerziellen Saatguts der Welt kontrollieren, während gleichzeitig das Bewahren der genetischen Restvielfalt in den Händen derselben Akteure liegt?</i>
+    </p>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>dunkelfeld.report — Fakten brauchen kein Dunkel.<br>
+  <a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a> · <a href="mailto:kontakt@dunkelfeld.com">Kontakt</a></p>
+  <p style="margin-top:0.8rem; font-size:0.72rem;">Teil der Serie „Wer kontrolliert, was wir essen?" — Teil 2 von 11</p>
+</footer>
+
+</body>
+</html>

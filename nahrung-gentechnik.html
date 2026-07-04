@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ohne Kennzeichnung — Die stille Gentechnik-Revolution | dunkelfeld.report</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #09090b;
+      color: #e4e4e7;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    /* ── SITE HEADER ── */
+    .site-header {
+      border-bottom: 1px solid #27272a;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .site-logo {
+      font-family: 'Courier New', monospace;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #e8c547;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+    .site-nav {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .site-nav a {
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      color: #a1a1aa;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .site-nav a:hover { color: #e8c547; }
+
+    /* ── SERIE BANNER ── */
+    .serie-banner {
+      background: #16161a;
+      border-bottom: 2px solid #e8c547;
+      padding: 0.6rem 2rem;
+      text-align: center;
+    }
+    .serie-banner span {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: #e8c547;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .serie-banner .teil {
+      color: #a1a1aa;
+      margin-left: 1rem;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 720px;
+      margin: 4rem auto 3rem;
+      padding: 0 2rem;
+    }
+    .dossier-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: #e8c547;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.25;
+      color: #fafafa;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 em {
+      color: #e8c547;
+      font-style: normal;
+    }
+    .hero .subtitle {
+      font-size: 1.2rem;
+      color: #a1a1aa;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    .meta {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: #71717a;
+      letter-spacing: 0.05em;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .meta span { color: #e8c547; }
+
+    /* ── STAT GRID ── */
+    .stat-grid {
+      max-width: 720px;
+      margin: 0 auto 3rem;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .stat-card {
+      background: #16161a;
+      border: 1px solid #27272a;
+      border-top: 3px solid #e8c547;
+      padding: 1.2rem 1.4rem;
+    }
+    .stat-card .number {
+      font-family: 'Courier New', monospace;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #e8c547;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .stat-card .label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: #a1a1aa;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      max-width: 720px;
+      margin: 0 auto 3rem;
+      padding: 0 2rem;
+      border: none;
+      border-top: 1px solid #27272a;
+    }
+
+    /* ── CONTENT ── */
+    .content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+    .content h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #e8c547;
+      margin: 3rem 0 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #27272a;
+      font-family: Georgia, serif;
+    }
+    .content h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fafafa;
+      margin: 2rem 0 0.8rem;
+    }
+    .content p {
+      padding-bottom: 1.2rem;
+      color: #d4d4d8;
+    }
+
+    /* ── SOURCE BOX ── */
+    .source-box {
+      background: #1a1a2e;
+      border-left: 3px solid #e8c547;
+      padding: 1rem 1.2rem;
+      margin: 1.5rem 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: #a1a1aa;
+      line-height: 1.6;
+    }
+    .source-box .source-label {
+      color: #e8c547;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    /* ── DATA TABLE ── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0 2rem;
+      font-size: 0.92rem;
+    }
+    .data-table thead th {
+      background: #16161a;
+      color: #e8c547;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.8rem 1rem;
+      text-align: left;
+      border-bottom: 2px solid #e8c547;
+    }
+    .data-table tbody td {
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid #27272a;
+      color: #d4d4d8;
+      vertical-align: top;
+    }
+    .data-table tbody tr:hover { background: #16161a; }
+
+    /* ── STATUS TAGS ── */
+    .tag {
+      display: inline-block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 0.15rem 0.5rem;
+      border-radius: 2px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .tag-belegt    { background: #14532d; color: #86efac; border: 1px solid #16a34a; }
+    .tag-offen     { background: #1c1917; color: #a8a29e; border: 1px solid #57534e; }
+    .tag-extra     { background: #431407; color: #fdba74; border: 1px solid #c2410c; }
+
+    /* ── CHRONOLOGIE ── */
+    .timeline {
+      margin: 1.5rem 0 2rem;
+      border-left: 2px solid #27272a;
+      padding-left: 1.5rem;
+    }
+    .timeline-item {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -1.6rem;
+      top: 0.45rem;
+      width: 10px;
+      height: 10px;
+      background: #e8c547;
+      border-radius: 50%;
+    }
+    .timeline-date {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: #e8c547;
+      letter-spacing: 0.08em;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .timeline-text {
+      color: #d4d4d8;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* ── CLOSING QUESTION ── */
+    .closing {
+      margin-top: 3rem;
+      padding: 1.5rem 1.5rem;
+      border: 1px solid #27272a;
+      border-left: 3px solid #e8c547;
+      background: #111114;
+    }
+    .closing p {
+      font-style: italic;
+      color: #a1a1aa;
+      padding-bottom: 0;
+    }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      border-top: 1px solid #27272a;
+      padding: 2rem;
+      text-align: center;
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: #52525b;
+    }
+    .site-footer a { color: #71717a; text-decoration: none; }
+    .site-footer a:hover { color: #e8c547; }
+
+    /* ── SERIE NAV ── */
+    .serie-nav {
+      max-width: 720px;
+      margin: 0 auto 2rem;
+      padding: 0 2rem;
+      background: #16161a;
+      border: 1px solid #27272a;
+      padding: 1.2rem 1.5rem;
+    }
+    .serie-nav-title {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: #e8c547;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.8rem;
+    }
+    .serie-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .serie-nav-list li {
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      color: #71717a;
+    }
+    .serie-nav-list li.active {
+      color: #e8c547;
+    }
+    .serie-nav-list li.active::before {
+      content: '▶ ';
+    }
+
+    a { color: #e8c547; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .site-header { padding: 1rem; }
+      .hero, .content, .stat-grid, .divider { padding-left: 1rem; padding-right: 1rem; }
+      .serie-nav { margin-left: 1rem; margin-right: 1rem; padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- SITE HEADER -->
+<header class="site-header">
+  <a href="/" class="site-logo">dunkelfeld.report</a>
+  <nav class="site-nav">
+    <a href="/dossiers.html">Dossiers</a>
+    <a href="/artikel.html">Artikel</a>
+    <a href="/methodik.html">Methodik</a>
+    <a href="/impressum.html">Impressum</a>
+  </nav>
+</header>
+
+<!-- SERIE BANNER -->
+<div class="serie-banner">
+  <span>SERIE: Wer kontrolliert, was wir essen?</span>
+  <span class="teil">— Teil 9 von 11</span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="dossier-label">Dossier · Lebensmittel &amp; Macht · Juni 2026</div>
+  <h1>Ohne Kennzeichnung — Die stille <em>Gentechnik-Revolution</em></h1>
+  <p class="subtitle">Am 17. Juni 2026 stimmte das EU-Parlament für die NGT-Verordnung. Was Getreide, Obst und Gemüse im Supermarkt fortan enthält, müssen Hersteller nicht mehr auf dem Etikett angeben. Wer hat dafür gesorgt — und wer profitiert?</p>
+  <div class="meta">
+    <span>Juni 2026</span>
+    <span>Lesedauer: ca. 14 Minuten</span>
+    <span>Quellenbasiert</span>
+  </div>
+</section>
+
+<!-- STAT GRID -->
+<div class="stat-grid">
+  <div class="stat-card">
+    <span class="number">17.06.2026</span>
+    <span class="label">EU-Parlament beschließt NGT-Verordnung</span>
+  </div>
+  <div class="stat-card">
+    <span class="number">NGT-1</span>
+    <span class="label">Keine Kennzeichnungspflicht für Endprodukte</span>
+  </div>
+  <div class="stat-card">
+    <span class="number">20</span>
+    <span class="label">DNA-Eingriffe erlaubt ohne Zulassungsverfahren</span>
+  </div>
+  <div class="stat-card">
+    <span class="number">60 %</span>
+    <span class="label">Saatgutmarkt in der Hand von Bayer, BASF, Syngenta</span>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SERIE NAVIGATION -->
+<div class="serie-nav">
+  <div class="serie-nav-title">Alle Teile der Serie</div>
+  <ul class="serie-nav-list">
+    <li>Teil 1 · Vier Konzerne, eine Ernte — ABCD-Quartett, Bayer/Monsanto</li>
+    <li>Teil 2 · Das Patent auf die Pflanze — Saatgut, Svalbard, FAO</li>
+    <li>Teil 3 · Das stille Höfesterben — Subventionen, Strukturwandel</li>
+    <li>Teil 4 · Protein der Zukunft — EU Novel Food, Insekten-Lobby</li>
+    <li>Teil 5 · Good Food Institute — Laborfleisch, Gates, Zulassung</li>
+    <li>Teil 6 · Wasser als Ware — Nestlé, UN-Resolution, Blackrock</li>
+    <li>Teil 7 · Mercosur — Freihandel, Entwaldung, Bauernproteste</li>
+    <li>Teil 8 · Big Five und der Supermarkt — Konzentration, Eigenmarken</li>
+    <li class="active">Teil 9 · Ohne Kennzeichnung — Die NGT-Verordnung 2026</li>
+    <li>Teil 10 · Einst empfohlen, heute bekannt — Lebensmittelskandale</li>
+    <li>Teil 11 · Wer taucht überall auf? — Akteure, Netzwerke, Muster</li>
+  </ul>
+</div>
+
+<!-- CONTENT -->
+<main class="content">
+
+  <h2>I. Was ist passiert — und warum jetzt?</h2>
+
+  <p>Am 17. Juni 2026 stimmte das Europäische Parlament mit einer Mehrheit aus Konservativen, Rechten und Liberalen für die Verordnung über Neue Genomische Techniken (NGT). Der EU-Rat der Mitgliedstaaten hatte bereits am 21. April 2026 zugestimmt. Die Verordnung tritt zwanzig Tage nach ihrer Veröffentlichung im Amtsblatt der Europäischen Union in Kraft, die meisten Bestimmungen gelten ab voraussichtlich Mitte 2028 nach einer zweijährigen Übergangsfrist.</p>
+
+  <p>Die Kernentscheidung lautet: Lebensmittel, die aus gentechnisch veränderten Pflanzen der Kategorie NGT-1 hergestellt werden, müssen im Supermarkt nicht mehr als Gentechnik gekennzeichnet werden. Getreide, Gemüse, Obst, Speiseöle und alle weiteren Folgeprodukte dieser Pflanzen erscheinen im Regal ohne Hinweis auf genomische Veränderungen. Nur das Saatgut, das Landwirte kaufen, muss weiterhin gekennzeichnet werden.</p>
+
+  <div class="source-box">
+    <span class="source-label">Quelle — BELEGT</span>
+    EU-Rat der Europäischen Union, Pressemitteilung vom 21. April 2026: „NGT-1-Pflanzen und -Produkte werden nicht gekennzeichnet, wobei der Grundsatz der Gleichwertigkeit zu berücksichtigen ist." — consilium.europa.eu
+  </div>
+
+  <p>Österreich, Ungarn und einzelne andere Mitgliedstaaten lehnten die Verordnung ab. Der österreichische Grünen-Europaparlamentarier Thomas Waitz fasste die Kritik knapp zusammen: „Eine Kennzeichnung ist nur noch für Saatgut vorgesehen" — für Folgeprodukte im Handel jedoch nicht mehr. Der SPÖ-Europaparlamentarier Günther Sidl ergänzte öffentlich: „Wo Gentechnik drinnen ist, muss auch Gentechnik draufstehen. Mit diesem Grundsatz wird nun gebrochen."</p>
+
+  <div class="source-box">
+    <span class="source-label">Quelle — BELEGT</span>
+    APA/OTS-Presseaussendung, GLOBAL 2000, 17. Juni 2026: Zitat Thomas Waitz und Günther Sidl. ots.at/presseaussendung/OTS_20260617_OTS0136
+  </div>
+
+  <h2>II. Alte Gentechnik — Neue Gentechnik: Was ist der Unterschied?</h2>
+
+  <p>Das Argument der Befürworter lautet, NGT und klassische Gentechnik seien grundlegend verschieden. Das stimmt technisch — die rechtliche und gesellschaftliche Frage, die sich daraus ergibt, ist eine andere.</p>
+
+  <h3>Klassische Gentechnik (GVO)</h3>
+  <p>Bei herkömmlicher Gentechnik wird artfremdes Erbgut in den Organismus einer Pflanze eingebracht — etwa Bakteriengene in Mais. Solche Pflanzen sind als GVO kennzeichnungspflichtig, durchlaufen ein aufwändiges Zulassungsverfahren und unterliegen strikter Rückverfolgbarkeit in der gesamten Lebensmittelkette.</p>
+
+  <h3>Neue Genomische Techniken (NGT)</h3>
+  <p>NGT-Verfahren wie die Genschere CRISPR/Cas9 verändern das Erbgut der Pflanze selbst — ohne artfremdes Material einzubringen. DNA-Bausteine werden an gezielten Stellen ausgeschaltet, umgeschrieben oder neu kombiniert. Das Ergebnis kann einer Veränderung ähneln, die theoretisch auch durch natürliche Mutation entstehen könnte — allerdings in Zeiträumen von Generationen, nicht innerhalb eines Laborzyklus.</p>
+
+  <p>Der Europäische Gerichtshof hatte 2018 entschieden, dass CRISPR-veränderte Pflanzen unter das bestehende strenge GVO-Recht fallen, weil es sich um eine neue Technik handle, mit der wenig Erfahrung vorliege — und das Vorsorgeprinzip daher anzuwenden sei. Die neue NGT-Verordnung hebelt dieses Urteil durch Gesetzgebung aus.</p>
+
+  <div class="source-box">
+    <span class="source-label">Quelle — BELEGT</span>
+    EuGH, Urteil C-528/16 vom 25. Juli 2018: Organismen aus neuen Mutagenesetechniken fallen unter die GVO-Richtlinie 2001/18/EG. curia.europa.eu
+  </div>
+
+  <h2>III. Die NGT-Kategorien — was konkret beschlossen wurde</h2>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Kategorie</th>
+        <th>Eingriffe erlaubt</th>
+        <th>Kennzeichnung Endprodukt</th>
+        <th>Zulassungsverfahren</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>NGT-1</strong></td>
+        <td>Bis zu 20 DNA-Veränderungen; kein artfremdes Material</td>
+        <td>Keine Pflicht</td>
+        <td>Vereinfacht (Anmeldung, EFSA-Prüfung)</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td><strong>NGT-2</strong></td>
+        <td>Komplexere Veränderungen; auch artfremdes Material</td>
+        <td>Kennzeichnungspflicht bleibt</td>
+        <td>Vollständiges GVO-Verfahren</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td><strong>Ausnahmen NGT-1</strong></td>
+        <td colspan="3">Herbizidtoleranz und Insektizidproduktion sind von NGT-1 ausgeschlossen — fallen automatisch unter NGT-2</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td><strong>Bio-Landbau</strong></td>
+        <td colspan="3">Beide NGT-Kategorien bleiben für Bio ausgeschlossen. Technisch unvermeidbare Beimischung von NGT-1 gilt nicht als Bio-Verstoß.</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td><strong>Patente</strong></td>
+        <td colspan="3">Konzerne können sowohl NGT-Pflanzen als auch einzelne Erbgutveränderungen patentieren. Offenlegungspflicht in öffentlicher Datenbank vorgesehen.</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <span class="source-label">Primärquelle — BELEGT</span>
+    EU-Rat, Pressemitteilung 21. April 2026: „New genomic techniques: Council adopts new rules." Volltext: consilium.europa.eu — Anhang I der Verordnung: Kriterien für NGT-1-Gleichwertigkeit.
+  </div>
+
+  <h2>IV. Wer hat die Verordnung vorangetrieben? — Lobbying im Transparenzregister</h2>
+
+  <p>Die Bayer AG betreibt in Brüssel ein Verbindungsbüro mit einem dokumentierten Jahresetat von rund 6,5 Millionen Euro und 79 Beschäftigten. Das Europäische Transparenzregister weist Meetings von Bayer-Vertretern mit hochrangigen EU-Beamten nach, darunter Lukas Visek aus dem Kabinett von Kommissionsvizepräsident Frans Timmermans sowie Mitarbeiter des Kabinetts des Agrarkommissars. Die NGT-Verordnung war laut Transparenzregister und eigenem Bundestags-Lobbyregistereintrag ein erklärter Schwerpunkt der politischen Einflussarbeit von Bayer.</p>
+
+  <div class="source-box">
+    <span class="source-label">Quelle — BELEGT</span>
+    Lobbyregister Deutscher Bundestag, Eintrag Bayer AG (R002249): „Modernisierung des Regulierungsrahmens auf EU-Ebene (NGT Verordnungsentwurf)." lobbyregister.bundestag.de — Europäisches Transparenzregister: Meetings Bayer AG mit EU-Kommission, ec.europa.eu/transparencyregister
+  </div>
+
+  <p>Bayer-Head of Public Affairs Matthias Berninger — ehemaliger Grünen-Politiker — äußerte sich öffentlich in Brüssel zum Thema: „Wer übernimmt die Verantwortung für die Krisen der Ernährungssicherheit, wenn wir das Potenzial dieser neuen Technologien ungenutzt lassen?" Die Aussage ist im Wortlaut dokumentiert.</p>
+
+  <div class="source-box">
+    <span class="source-label">Quelle — BELEGT</span>
+    German Foreign Policy, 12. Juli 2023: „Eine Stärkung der strategischen Autonomie." Dokumentation der Lobbying-Aktivitäten von Bayer und BASF zur NGT-Verordnung mit Quellenangaben zum Transparenzregister. german-foreign-policy.com
+  </div>
+
+  <h3>Patentanmeldungen — wer steht vorne?</h3>
+  <p>Die Nichtregierungsorganisation Testbiotech e.V. hat die NGT-Patentanmeldungen bei europäischen und US-amerikanischen Patentbehörden ausgewertet. Die Ergebnisse zeigen eine konzentrierte Antragstellung durch wenige Konzerne.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Konzern</th>
+        <th>NGT-Patentanmeldungen (Stand 2023)</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Corteva (USA)</td>
+        <td>Knapp unter 100</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Bayer (DE)</td>
+        <td>Über 60</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>KWS (DE)</td>
+        <td>38</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>BASF (DE)</td>
+        <td>30</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Syngenta (CH/CN)</td>
+        <td>Rang 7</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <span class="source-label">Quelle — BELEGT</span>
+    Testbiotech e.V.: Auswertung NGT-Patentanmeldungen, 2023. testbiotech.org — Testbiotech spricht in diesem Zusammenhang von einem „Minenfeld von Patent-Monopolen", da Konzerne teils auch natürlich vorkommende Gensequenzen beanspruchen.
+  </div>
+
+  <h2>V. Chronologie — acht Jahre bis zur Entscheidung</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-date">2018</span>
+      <span class="timeline-text">EuGH-Urteil C-528/16: CRISPR-Pflanzen fallen unter das strenge GVO-Recht. EU-Gesetzgeber wird zum Handeln gezwungen.</span>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2023 · Juli</span>
+      <span class="timeline-text">EU-Kommission legt Verordnungsentwurf vor. Bayer, BASF, Syngenta, Corteva haben im Vorfeld intensiv Lobbyarbeit betrieben (dokumentiert im EU-Transparenzregister).</span>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2024 · Januar</span>
+      <span class="timeline-text">35 Nobelpreisträger und 1.500 Forschende wenden sich in offenem Brief an das EU-Parlament — sie sprechen sich für den Kommissionsentwurf aus.</span>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2024 · Februar</span>
+      <span class="timeline-text">EU-Parlament stimmt in erster Lesung zu (307 dafür, 263 dagegen). Das Parlament beschließt dabei ursprünglich: Kennzeichnungspflicht durch die gesamte Lebensmittelkette und Patentierungsverbot für NGT-Pflanzen.</span>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2024 · Sommer</span>
+      <span class="timeline-text">EU-Parlamentswahl. Neue Mehrheit aus Konservativen und Rechten — die im Februar 2024 beschlossenen Parlamentspositionen (Kennzeichnung, Patentverbot) werden in den Trilog-Verhandlungen nicht mehr vertreten.</span>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2025 · Dezember</span>
+      <span class="timeline-text">Trilog-Einigung zwischen Kommission, Rat und Parlament. Ergebnis: Keine Kennzeichnung für NGT-1-Endprodukte. Patente erlaubt mit Transparenzpflicht. Parlamentsberichterstatterin Jessica Polfjärd (EVP/Schweden) erklärt vor der Abstimmung: „The amendments would kill the deal!"</span>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2026 · 21. April</span>
+      <span class="timeline-text">EU-Rat der Mitgliedstaaten nimmt die Verordnung formal an.</span>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2026 · 17. Juni</span>
+      <span class="timeline-text">EU-Parlament nimmt die Verordnung formal an. Änderungsanträge von Linken, Sozialdemokraten und Grünen scheitern. Inkrafttreten: 20 Tage nach Veröffentlichung im EU-Amtsblatt. Anwendung: voraussichtlich Mitte 2028.</span>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <span class="source-label">Quelle — BELEGT</span>
+    Europäisches Parlament: Protokoll der namentlichen Abstimmung vom 17. Juni 2026. europarl.europa.eu — Keine-Gentechnik.de: „EU-Parlament weicht Regeln für neue Gentechnik auf", 17. Juni 2026. keine-gentechnik.de
+  </div>
+
+  <h2>VI. Wer verliert — wer gewinnt?</h2>
+
+  <h3>Verbraucher</h3>
+  <p>Mit Inkrafttreten der Verordnung ist es für Konsumenten nicht mehr erkennbar, ob ein Lebensmittel aus NGT-1-Pflanzen hergestellt wurde. Es existieren derzeit keine standardisierten Nachweisverfahren, um NGT-1-Pflanzen im Endprodukt von konventionell gezüchteten Pflanzen zu unterscheiden — dies hält auch die Verordnung selbst implizit fest. Eine aktive Kaufentscheidung gegen genomisch veränderte Lebensmittel ist damit für Endverbraucher faktisch nicht mehr möglich, sofern sie nicht auf zertifizierte Bio-Produkte zurückgreifen.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Akteur</th>
+        <th>Auswirkung</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Verbraucher (Endprodukte)</td>
+        <td>Keine Kennzeichnungspflicht. Wahlfreiheit für NGT-freie Konventionalware entfällt.</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Bio-Landwirte</td>
+        <td>NGT bleibt ausgeschlossen. Aber: technisch unvermeidbare Beimischung gilt nicht als Verstoß.</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Konventionelle Landwirte</td>
+        <td>Zugang zu NGT-Sorten. Aber: Patente können Lizenzzwang erzeugen.</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Kleinzüchter / mittelständische Saatgutbetriebe</td>
+        <td>Patentierbarkeit von Eigenschaften, die auch natürlich entstehen können, gefährdet Rechtssicherheit.</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Bayer, BASF, Corteva, Syngenta</td>
+        <td>Marktführer bei NGT-Patentanmeldungen. Vereinfachte Marktzulassung, keine Kennzeichnung.</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Österreich / Ungarn (Anbauverbote)</td>
+        <td>Können NGT-2-Anbau auf ihrem Territorium untersagen — NGT-1 nicht.</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <span class="source-label">Quelle — BELEGT</span>
+    GLOBAL 2000 / Friends of the Earth Europe, Mute Schimpf: „Selbst bei Schäden, die durch unerwünschte Mutationen in der Natur auftreten und die Artenvielfalt gefährden, müssen Unternehmen nicht mehr haften, können aber gleichzeitig durch Patente zusätzliche Einnahmen erzielen." ots.at/presseaussendung/OTS_20260617_OTS0136
+  </div>
+
+  <h3>Marktkonzentration als Systemfrage</h3>
+  <p>Bereits vor der NGT-Verordnung kontrollierten Bayer-Monsanto, BASF und Syngenta rund 60 Prozent des europäischen Saatgutmarktes. Die neue Verordnung eröffnet diesen Konzernen die Möglichkeit, Merkmale zu patentieren, die auch als Ergebnis natürlicher Mutationen auftreten können. Der Rechtswissenschaftler Prof. Kai Purnhagen von der Universität Bayreuth verwies darauf, dass Wettbewerbsrecht — nicht Patentrecht — der geeignete Rahmen sei, um Marktkonzentrationen zu verhindern. Ob und wie dieser Rahmen angewendet wird, bleibt offen.</p>
+
+  <div class="source-box">
+    <span class="source-label">Quelle — BELEGT</span>
+    nd-aktuell.de, 18. Juni 2026: „Noch 'ne Deregulierung." Marktanteilsangabe (60 %) mit Verweis auf Konzentrationsanalysen. — Agrarheute.com, 6. Dezember 2025: Interview Prof. Kai Purnhagen. agrarheute.com
+  </div>
+
+  <h2>VII. Rechtliche Anfechtung — was kommt als nächstes?</h2>
+
+  <p>Die Umweltschutzorganisation GLOBAL 2000 hat Österreich aufgefordert, alle rechtlichen Schritte einzuleiten und eine Klage vor dem EuGH zu unterstützen. Die Chancen für eine erfolgreiche Klage werden von Rechtsexperten als nicht gering eingeschätzt: Der EuGH hatte 2018 das Vorsorgeprinzip und die geringe Erfahrung mit NGT-Techniken als Begründung für strenge Regulierung angeführt. Die neue Verordnung versucht, dieses Urteil durch Sekundärrecht auszuhebeln — ob das mit dem Primärrecht der EU-Verträge vereinbar ist, wird möglicherweise erneut der EuGH zu entscheiden haben.</p>
+
+  <p>Innerhalb eines Jahres nach Inkrafttreten ist die EU-Kommission vertraglich verpflichtet, eine Studie über die Patentauswirkungen zu veröffentlichen und gegebenenfalls Folgemaßnahmen vorzuschlagen. Diese Verpflichtung ist Teil der Verordnung selbst.</p>
+
+  <div class="source-box">
+    <span class="source-label">Quelle — BELEGT</span>
+    EU-Rat, Pressemitteilung 21. April 2026: „Within one year of the regulation's entry into force, the Commission will publish a study on patenting effects on innovation, seed availability and sector competitiveness." consilium.europa.eu
+  </div>
+
+  <h2>VIII. Was dokumentiert ist — und was noch offen bleibt</h2>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Frage</th>
+        <th>Befund</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>NGT-1-Produkte ohne Kennzeichnung ab 2028</td>
+        <td>Verordnung beschlossen, Amtsblatt-Veröffentlichung ausstehend</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Bayer und BASF haben für NGT-Deregulierung gelobbyt</td>
+        <td>Im Transparenzregister und im Bundestagslobbyregister dokumentiert</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Patente auf natürlich vorkommende Gensequenzen möglich</td>
+        <td>Testbiotech-Analyse bestätigt; Verordnung sieht keine Ausnahme vor</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Langzeitfolgen für Gesundheit und Ökosysteme</td>
+        <td>Keine Langzeitstudien vorhanden; Verordnung reduziert Sicherheitsprüfungen für NGT-1</td>
+        <td><span class="tag tag-offen">OFFEN</span></td>
+      </tr>
+      <tr>
+        <td>Praktischer Lizenzzwang für kleine Züchter</td>
+        <td>Strukturell möglich; Auswirkungen abhängig von Patentdichte — noch nicht einschätzbar</td>
+        <td><span class="tag tag-extra">EXTRAPOLATION</span></td>
+      </tr>
+      <tr>
+        <td>EuGH-Klage erfolgreich</td>
+        <td>Verfahren noch nicht eingeleitet; Ausgang unbekannt</td>
+        <td><span class="tag tag-offen">OFFEN</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- CLOSING QUESTION -->
+  <div class="closing">
+    <p>Die NGT-Verordnung schafft einen rechtlichen Rahmen, der Pflanzen mit bis zu zwanzig gezielten Eingriffen ins Erbgut als „konventionell gleichwertig" behandelt — und damit von der Kennzeichnungspflicht befreit. Das Europäische Parlament hatte in seiner ersten Lesung 2024 selbst für Kennzeichnung und ein Patentverbot gestimmt. Beide Positionen wurden nach der Europawahl im Trilog nicht mehr vertreten. Welche Interessen in dieser Zeit die Verhandlungsposition des Parlaments bestimmt haben, lässt sich dem Transparenzregister entnehmen — die dort aufgeführten Beträge gelten offiziell als selbst gemeldete Schätzwerte.</p>
+  </div>
+
+  <h2>Quellenverzeichnis</h2>
+
+  <p><strong>Primärquellen (EU-Institutionen):</strong></p>
+  <p>EU-Rat: „New genomic techniques: Council adopts new rules", 21. April 2026 — consilium.europa.eu<br>
+  EU-Rat: Trilog-Einigung, 4. Dezember 2025 — consilium.europa.eu<br>
+  Europäisches Parlament: Abstimmungsprotokoll 17. Juni 2026 — europarl.europa.eu<br>
+  EuGH: Urteil C-528/16, 25. Juli 2018 — curia.europa.eu<br>
+  EU-Kommission: NGT-Verordnungsvorschlag, Juli 2023 — eur-lex.europa.eu</p>
+
+  <p><strong>Lobbyregister (öffentlich zugänglich):</strong></p>
+  <p>Lobbyregister Deutscher Bundestag, Bayer AG (R002249) — lobbyregister.bundestag.de<br>
+  Europäisches Transparenzregister, Meetings Bayer AG mit EU-Kommission — ec.europa.eu/transparencyregister</p>
+
+  <p><strong>Wissenschaft / Zivilgesellschaft:</strong></p>
+  <p>Testbiotech e.V.: NGT-Patentanalyse, 2023 — testbiotech.org<br>
+  GLOBAL 2000 / Friends of the Earth Europe: Pressemitteilung 17. Juni 2026 — ots.at<br>
+  Transgen.de: Verfahrenschronologie NGT, laufend aktualisiert — transgen.de</p>
+
+  <p><strong>Fachjournalismus:</strong></p>
+  <p>German Foreign Policy: „Eine Stärkung der strategischen Autonomie", 12. Juli 2023 — german-foreign-policy.com<br>
+  Keine-Gentechnik.de: „EU-Parlament weicht Regeln auf", 17. Juni 2026 — keine-gentechnik.de<br>
+  Agrarheute.com: Reaktionen Forscher, Landwirte, Züchter, 6. Dezember 2025 — agrarheute.com</p>
+
+  <div class="source-box">
+    <span class="source-label">Hinweis zur Methodik</span>
+    Alle Angaben basieren auf öffentlich zugänglichen Primärquellen: EU-Institutionen, Parlamentsprotokollen, Transparenzregistern sowie dokumentiertem Fachjournalismus. Offene Fragen sind als solche gekennzeichnet. Extrapolationen sind markiert. Leser werden zur eigenständigen Prüfung der genannten Quellen eingeladen.
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p>dunkelfeld.report — Fakten brauchen kein Dunkel.<br>
+  <a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a> · <a href="mailto:kontakt@dunkelfeld.com">Kontakt</a></p>
+  <p style="margin-top:0.8rem; font-size:0.72rem;">Teil der Serie „Wer kontrolliert, was wir essen?" — Teil 9 von 11</p>
+</footer>
+
+</body>
+</html>

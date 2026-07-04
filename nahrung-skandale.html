@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Einst empfohlen, heute bekannt — Die Akte der Kehrtwenden | dunkelfeld.report</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #09090b;
+      color: #e4e4e7;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .site-header {
+      border-bottom: 1px solid #27272a;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .site-logo {
+      font-family: 'Courier New', monospace;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #e8c547;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+    .site-nav {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .site-nav a {
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      color: #a1a1aa;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .site-nav a:hover { color: #e8c547; }
+
+    .serie-banner {
+      background: #16161a;
+      border-bottom: 2px solid #e8c547;
+      padding: 0.6rem 2rem;
+      text-align: center;
+    }
+    .serie-banner span {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: #e8c547;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .serie-banner .teil {
+      color: #a1a1aa;
+      margin-left: 1rem;
+    }
+
+    .hero {
+      max-width: 720px;
+      margin: 4rem auto 3rem;
+      padding: 0 2rem;
+    }
+    .dossier-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: #e8c547;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.25;
+      color: #fafafa;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 em {
+      color: #e8c547;
+      font-style: normal;
+    }
+    .hero .subtitle {
+      font-size: 1.15rem;
+      color: #a1a1aa;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    .meta {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: #71717a;
+      letter-spacing: 0.05em;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-grid {
+      max-width: 720px;
+      margin: 0 auto 3rem;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .stat-card {
+      background: #16161a;
+      border: 1px solid #27272a;
+      border-top: 3px solid #e8c547;
+      padding: 1.2rem 1.4rem;
+    }
+    .stat-card .number {
+      font-family: 'Courier New', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #e8c547;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .stat-card .label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.73rem;
+      color: #a1a1aa;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .divider {
+      max-width: 720px;
+      margin: 0 auto 3rem;
+      padding: 0 2rem;
+      border: none;
+      border-top: 1px solid #27272a;
+    }
+
+    .content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+    .content h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #e8c547;
+      margin: 3rem 0 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #27272a;
+    }
+    .content h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fafafa;
+      margin: 2.2rem 0 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .content p {
+      padding-bottom: 1.2rem;
+      color: #d4d4d8;
+    }
+
+    .source-box {
+      background: #1a1a2e;
+      border-left: 3px solid #e8c547;
+      padding: 1rem 1.2rem;
+      margin: 1.5rem 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: #a1a1aa;
+      line-height: 1.6;
+    }
+    .source-box .source-label {
+      color: #e8c547;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    /* FALLKARTE */
+    .fall-card {
+      background: #111114;
+      border: 1px solid #27272a;
+      border-left: 4px solid #e8c547;
+      margin: 2rem 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    .fall-header {
+      background: #16161a;
+      padding: 0.9rem 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      border-bottom: 1px solid #27272a;
+    }
+    .fall-name {
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #e8c547;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .fall-zeitraum {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: #71717a;
+    }
+    .fall-body {
+      padding: 1.2rem 1.4rem;
+    }
+    .fall-row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 0.5rem 1rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.92rem;
+    }
+    .fall-key {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: #71717a;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding-top: 0.15rem;
+    }
+    .fall-val {
+      color: #d4d4d8;
+      line-height: 1.5;
+    }
+    .fall-val strong { color: #fafafa; }
+
+    .tag {
+      display: inline-block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 0.15rem 0.5rem;
+      border-radius: 2px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .tag-belegt    { background: #14532d; color: #86efac; border: 1px solid #16a34a; }
+    .tag-offen     { background: #1c1917; color: #a8a29e; border: 1px solid #57534e; }
+    .tag-extra     { background: #431407; color: #fdba74; border: 1px solid #c2410c; }
+
+    /* MUSTER-TABELLE */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0 2rem;
+      font-size: 0.9rem;
+    }
+    .data-table thead th {
+      background: #16161a;
+      color: #e8c547;
+      font-family: 'Courier New', monospace;
+      font-size: 0.73rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.8rem 1rem;
+      text-align: left;
+      border-bottom: 2px solid #e8c547;
+    }
+    .data-table tbody td {
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid #27272a;
+      color: #d4d4d8;
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .data-table tbody tr:hover { background: #16161a; }
+
+    /* PULL QUOTE */
+    .pull-quote {
+      border-left: 4px solid #e8c547;
+      margin: 2rem 0;
+      padding: 0.8rem 1.4rem;
+      background: #111114;
+    }
+    .pull-quote p {
+      font-size: 1.1rem;
+      font-style: italic;
+      color: #d4d4d8;
+      padding-bottom: 0.4rem;
+    }
+    .pull-quote cite {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: #71717a;
+      font-style: normal;
+    }
+
+    .serie-nav {
+      max-width: 720px;
+      margin: 0 auto 2rem;
+      padding: 1.2rem 1.5rem;
+      background: #16161a;
+      border: 1px solid #27272a;
+    }
+    .serie-nav-title {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: #e8c547;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.8rem;
+    }
+    .serie-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .serie-nav-list li {
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      color: #71717a;
+    }
+    .serie-nav-list li.active { color: #e8c547; }
+    .serie-nav-list li.active::before { content: '▶ '; }
+
+    .closing {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      border: 1px solid #27272a;
+      border-left: 3px solid #e8c547;
+      background: #111114;
+    }
+    .closing p {
+      font-style: italic;
+      color: #a1a1aa;
+      padding-bottom: 0.6rem;
+    }
+    .closing p:last-child { padding-bottom: 0; }
+
+    .site-footer {
+      border-top: 1px solid #27272a;
+      padding: 2rem;
+      text-align: center;
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: #52525b;
+    }
+    .site-footer a { color: #71717a; text-decoration: none; }
+    .site-footer a:hover { color: #e8c547; }
+
+    a { color: #e8c547; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .site-header { padding: 1rem; }
+      .hero, .content, .stat-grid, .divider { padding-left: 1rem; padding-right: 1rem; }
+      .serie-nav { margin-left: 1rem; margin-right: 1rem; padding: 1rem; }
+      .fall-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/" class="site-logo">dunkelfeld.report</a>
+  <nav class="site-nav">
+    <a href="/dossiers.html">Dossiers</a>
+    <a href="/artikel.html">Artikel</a>
+    <a href="/methodik.html">Methodik</a>
+    <a href="/impressum.html">Impressum</a>
+  </nav>
+</header>
+
+<div class="serie-banner">
+  <span>SERIE: Wer kontrolliert, was wir essen?</span>
+  <span class="teil">— Teil 10 von 11</span>
+</div>
+
+<section class="hero">
+  <div class="dossier-label">Dossier · Lebensmittel &amp; Macht · Juni 2026</div>
+  <h1>Einst empfohlen, heute bekannt — <em>Die Akte der Kehrtwenden</em></h1>
+  <p class="subtitle">Transfette galten als herzgesund. Zucker war kein Risiko. Glyphosat war unbedenklich. Aspartam war sicher. Wann wusste die Industrie, was die Öffentlichkeit erst Jahrzehnte später erfuhr — und wer sorgte dafür, dass es so lange dauerte?</p>
+  <div class="meta">
+    <span>Juni 2026</span>
+    <span>Lesedauer: ca. 15 Minuten</span>
+    <span>Quellenbasiert</span>
+  </div>
+</section>
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <span class="number">~50 Jahre</span>
+    <span class="label">Zeitraum zwischen erstem Wissensstand und regulatorischer Reaktion — Fall Transfette</span>
+  </div>
+  <div class="stat-card">
+    <span class="number">50.000 $</span>
+    <span class="label">Bezahlung an Harvard-Forscher durch die Sugar Research Foundation, 1961</span>
+  </div>
+  <div class="stat-card">
+    <span class="number">500.000</span>
+    <span class="label">Geschätzte jährliche Todesfälle weltweit durch Transfettekonsum (WHO 2024)</span>
+  </div>
+  <div class="stat-card">
+    <span class="number">25 Jahre</span>
+    <span class="label">Bis zur Rückziehung: zentrale Glyphosat-Studie 2000–2025 zurückgezogen wegen Monsanto-Verbindungen</span>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="serie-nav">
+  <div class="serie-nav-title">Alle Teile der Serie</div>
+  <ul class="serie-nav-list">
+    <li>Teil 1 · Vier Konzerne, eine Ernte — ABCD-Quartett, Bayer/Monsanto</li>
+    <li>Teil 2 · Das Patent auf die Pflanze — Saatgut, Svalbard, FAO</li>
+    <li>Teil 3 · Das stille Höfesterben — Subventionen, Strukturwandel</li>
+    <li>Teil 4 · Protein der Zukunft — EU Novel Food, Insekten-Lobby</li>
+    <li>Teil 5 · Good Food Institute — Laborfleisch, Gates, Zulassung</li>
+    <li>Teil 6 · Wasser als Ware — Nestlé, UN-Resolution, Blackrock</li>
+    <li>Teil 7 · Mercosur — Freihandel, Entwaldung, Bauernproteste</li>
+    <li>Teil 8 · Big Five und der Supermarkt — Konzentration, Eigenmarken</li>
+    <li>Teil 9 · Ohne Kennzeichnung — Die NGT-Verordnung 2026</li>
+    <li class="active">Teil 10 · Einst empfohlen, heute bekannt — Die Akte der Kehrtwenden</li>
+    <li>Teil 11 · Wer taucht überall auf? — Akteure, Netzwerke, Muster</li>
+  </ul>
+</div>
+
+<main class="content">
+
+  <h2>I. Das Muster — bevor die Fälle</h2>
+
+  <p>Dieser Artikel dokumentiert keine Einzelfälle von Wissenschaftsirrtümern. Er dokumentiert ein wiederkehrendes strukturelles Muster: Ein Stoff wird als unbedenklich oder gesundheitsförderlich eingestuft und vermarktet. Unabhängige Forscher stellen Gegenevidenz zusammen. Die Industrie finanziert Gegenstudien, diskreditiert unbequeme Wissenschaftler und verzögert regulatorische Reaktionen — oft über Jahrzehnte. Am Ende kommt die Wende. Der Schaden ist dann bereits angerichtet.</p>
+
+  <p>Dieses Muster ist für Tabak erstmals vollständig dokumentiert worden. Interne Industriedokumente, die in US-Gerichtsverfahren öffentlich wurden, belegten, dass Tabakunternehmen Jahrzehnte lang über eigene Studien verfügten, die den Zusammenhang zwischen Rauchen und Lungenkrebs nachwiesen — und diese intern zurückhielten. Die UCSF Industry Documents Library archiviert heute Millionen solcher Dokumente aus Tabak-, Zucker-, Chemie- und Lebensmittelindustrie.</p>
+
+  <div class="source-box">
+    <span class="source-label">Primärquelle — BELEGT</span>
+    UCSF Industry Documents Library: Archiv von Industriedokumenten aus Tabak-, Zucker-, und Lebensmittelindustrie. Öffentlich zugänglich: industrydocuments.ucsf.edu — Grundlage zahlreicher peer-reviewter Aufarbeitungen.
+  </div>
+
+  <p>Die folgenden vier Fälle sind quellenbasiert dokumentiert. Sie werden einzeln dargestellt — mit Chronologie, belegten Akteuren und offenem Status wo immer Fragen ungeklärt bleiben.</p>
+
+  <h2>II. Fall 1 — Transfette: Das herzgesunde Industriefett</h2>
+
+  <div class="fall-card">
+    <div class="fall-header">
+      <span class="fall-name">Transfette / Industriell gehärtete Fette</span>
+      <span class="fall-zeitraum">ca. 1910 – 2021</span>
+    </div>
+    <div class="fall-body">
+      <div class="fall-row">
+        <span class="fall-key">Empfehlung</span>
+        <span class="fall-val"><strong>„Herzgesund", „cholesterinfrei", modern — das gesunde Gegenteil der Butter"</strong></span>
+      </div>
+      <div class="fall-row">
+        <span class="fall-key">Zeitraum Werbung</span>
+        <span class="fall-val">1950er–1990er Jahre</span>
+      </div>
+      <div class="fall-row">
+        <span class="fall-key">Erste Gegenevidenz</span>
+        <span class="fall-val">Frühe 1990er: Harvard-Ernährungsforscher Walter Willett — Studie an Zehntausenden Krankenschwestern. Befund: signifikant erhöhtes Herzinfarktrisiko durch Transfettkonsum</span>
+      </div>
+      <div class="fall-row">
+        <span class="fall-key">Regulatorische Reaktion</span>
+        <span class="fall-val">Dänemark: Verbot 2003. EU: Grenzwert 2 g/100 g Fett ab 2. April 2021 (Verordnung EU 2019/649) — kein vollständiges Verbot, keine Kennzeichnungspflicht</span>
+      </div>
+      <div class="fall-row">
+        <span class="fall-key">Geschätzter Schaden</span>
+        <span class="fall-val">WHO (2024): ca. 500.000 Todesfälle jährlich weltweit durch Transfettkonsum</span>
+      </div>
+      <div class="fall-row">
+        <span class="fall-key">Status</span>
+        <span class="fall-val"><span class="tag tag-belegt">BELEGT</span></span>
+      </div>
+    </div>
+  </div>
+
+  <p>Transfette entstehen, wenn ungesättigte Pflanzenfette industriell gehärtet werden — ein Verfahren, das Ende des 19. Jahrhunderts entwickelt wurde, um pflanzliche Öle haltbar und streichfähig zu machen. Das Resultat war billiger als Butter, länger haltbar und chemisch stabil. In den 1950er Jahren wurde Margarine — damals noch mit hohem Transfettanteil von bis zu 20 Prozent — aktiv als herzgesunde Alternative zur „arterienverstopfenden" tierischen Butter beworben.</p>
+
+  <p>Bereits in den frühen 1990er Jahren begann Walter Willett von der Harvard School of Public Health damit, die Langzeitwirkung von Transfetten systematisch zu untersuchen. Die Ergebnisse seiner Nurses' Health Study waren eindeutig: Wer viele Transfette konsumierte, hatte ein deutlich erhöhtes Herzinfarktrisiko. Transfette erhöhen das schädliche LDL-Cholesterin, senken das schützende HDL-Cholesterin und fördern systemische Entzündungen.</p>
+
+  <div class="source-box">
+    <span class="source-label">Quelle — BELEGT</span>
+    Willett WC et al.: „Intake of trans fatty acids and risk of coronary heart disease among women." The Lancet, 1993. — WHO: „REPLACE: Trans fat elimination" (2024). who.int — EU-Verordnung 2019/649 vom 24. April 2019: eur-lex.europa.eu
+  </div>
+
+  <p>Dänemark war weltweit das erste Land mit einem faktischen Verbot industrieller Transfette — im Jahr 2003. Die Folge war dokumentiert: In den Jahren nach dem Verbot gingen kardiovaskuläre Todesfälle in Dänemark messbar zurück. Die EU benötigte weitere 18 Jahre, um einen Grenzwert — kein Verbot — einzuführen. Eine Kennzeichnungspflicht für Transfette existiert in Deutschland und der EU bis heute nicht.</p>
+
+  <div class="source-box">
+    <span class="source-label">Quelle — BELEGT</span>
+    Restrepo BJ, Rieger M.: „Denmark's policy on artificial trans fat and cardiovascular disease." American Journal of Preventive Medicine, 2016. — Bundeszentrale für gesundheitliche Aufklärung: Transfette in Lebensmitteln, bzga.de
+  </div>
+
+  <h2>III. Fall 2 — Zucker: Die gekaufte Wissenschaft</h2>
+
+  <div class="fall-card">
+    <div class="fall-header">
+      <span class="fall-name">Zucker / Sugar Research Foundation</span>
+      <span class="fall-zeitraum">1960er – heute</span>
+    </div>
+    <div class="fall-body">
+      <div class="fall-row">
+        <span class="fall-key">Empfehlung</span>
+        <span class="fall-val"><strong>Zucker als kalorische Energie ohne Herzrisiko; Fett als eigentlicher Schuldiger</strong></span>
+      </div>
+      <div class="fall-row">
+        <span class="fall-key">Finanzierung</span>
+        <span class="fall-val">Sugar Research Foundation (heute: Sugar Association) zahlt 1961–1967 Harvard-Forschern 50.000 US-Dollar für „Projekt 226"</span>
+      </div>
+      <div class="fall-row">
+        <span class="fall-key">Ergebnis Projekt 226</span>
+        <span class="fall-val">Veröffentlichung im New England Journal of Medicine, 1967: Herzerkrankungen durch Fett, Rolle des Zuckers heruntergespielt</span>
+      </div>
+      <div class="fall-row">
+        <span class="fall-key">Aufdeckung</span>
+        <span class="fall-val">2016: Cristin Kearns, UCSF — Analyse von über 300 Archivdokumenten der Universitäten Harvard und Illinois. Veröffentlicht in JAMA Internal Medicine</span>
+      </div>
+      <div class="fall-row">
+        <span class="fall-key">Reaktion Harvard</span>
+        <span class="fall-val">Schuldeingeständnis gegenüber University of California. Drei der damaligen Forscher sind verstorben.</span>
+      </div>
+      <div class="fall-row">
+        <span class="fall-key">Status</span>
+        <span class="fall-val"><span class="tag tag-belegt">BELEGT</span></span>
+      </div>
+    </div>
+  </div>
+
+  <p>In den 1950er Jahren begannen Wissenschaftler, einen Zusammenhang zwischen Zuckerkonsum und Herzerkrankungen zu dokumentieren. Der britische Ernährungswissenschaftler John Yudkin sammelte Belege, die Zucker als wesentlichen Faktor für koronare Herzkrankheiten auswiesen. Gleichzeitig propagierte Ancel Keys, ein US-amerikanischer Ernährungswissenschaftler, eine Gegenhypothese: Das Herzinfarktrisiko stamme primär aus Fett. Keys' Sieben-Länder-Studie, die auf dem Titelblatt der New York Times erschien, wurde später kritisiert, weil von 22 untersuchten Ländern nur die sieben mit passenden Ergebnissen veröffentlicht wurden.</p>
+
+  <div class="pull-quote">
+    <p>„Die Forscher hatten sich vom SRF bestechen lassen."</p>
+    <cite>Analyse von Cristin Kearns et al., JAMA Internal Medicine, 2016 — nach Auswertung von über 300 Archivdokumenten</cite>
+  </div>
+
+  <p>Die Sugar Research Foundation finanzierte unter dem internen Namen „Projekt 226" eine Übersichtsstudie, die 1967 im renommierten New England Journal of Medicine erschien. Die Studie schrieb Herzinfarkte überwiegend dem Fettkonsum zu und spielte die Rolle des Zuckers herunter. Dass die Forscher — darunter der spätere Harvard-Professor Mark Hegsted — für diese Schlussfolgerungen bezahlt worden waren, wurde in den Archivdokumenten erst 2016 nachgewiesen.</p>
+
+  <div class="source-box">
+    <span class="source-label">Primärquelle — BELEGT</span>
+    Kearns CE, Schmidt LA, Glantz SA: „Sugar Industry and Coronary Heart Disease Research." JAMA Internal Medicine, 2016. DOI: 10.1001/jamainternmed.2016.5394 — Originalarchivdokumente: industrydocuments.ucsf.edu
+  </div>
+
+  <p>John Yudkin, der unabhängige Forscher, der schon in den 1960ern auf Zucker als Herzrisikofaktor hingewiesen hatte, wurde durch eine koordinierte Kampagne der Zuckerlobby systematisch diskreditiert. Er starb 1995 als weitgehend vergessener Wissenschaftler. Sein Buch „Pure, White and Deadly" von 1972 wurde erst nach seiner Rehabilitation durch die JAMA-Studie von 2016 wieder breit rezipiert.</p>
+
+  <h2>IV. Fall 3 — Glyphosat: Die zurückgezogene Studie</h2>
+
+  <div class="fall-card">
+    <div class="fall-header">
+      <span class="fall-name">Glyphosat / Roundup (Monsanto/Bayer)</span>
+      <span class="fall-zeitraum">1974 – heute</span>
+    </div>
+    <div class="fall-body">
+      <div class="fall-row">
+        <span class="fall-key">Offizielle Position</span>
+        <span class="fall-val"><strong>BfR und EFSA: „Bei sachgemäßer Anwendung kein krebserregendes Risiko"</strong></span>
+      </div>
+      <div class="fall-row">
+        <span class="fall-key">IARC 2015</span>
+        <span class="fall-val">Klassifizierung: „wahrscheinlich krebserregend für Menschen" (Gruppe 2A). Gleichzusetzen mit Schichtarbeit, rotem Fleisch und Emissionen aus Hochtemperatur-Bratprozessen</span>
+      </div>
+      <div class="fall-row">
+        <span class="fall-key">Schlüssel-Kontroverse</span>
+        <span class="fall-val">BfR übernahm für seinen EU-Bewertungsbericht Teile aus Monsanto-eigenen Unterlagen — dokumentiert durch Plagiatsgutachten, publiziert durch Heinrich-Böll-Stiftung</span>
+      </div>
+      <div class="fall-row">
+        <span class="fall-key">Rückzug Schlüsselstudie</span>
+        <span class="fall-val">Dezember 2025: Fachzeitschrift „Regulatory Toxicology and Pharmacology" zieht zentrale Unbedenklichkeitsstudie aus dem Jahr 2000 zurück — wegen schwerer ethischer Mängel und Monsanto-Verbindungen der Autoren</span>
+      </div>
+      <div class="fall-row">
+        <span class="fall-key">US-Klagen</span>
+        <span class="fall-val">Bayer hat seit Monsanto-Übernahme 2018 rund 10 Milliarden US-Dollar für Vergleiche in Glyphosat-Klagen aufgewendet</span>
+      </div>
+      <div class="fall-row">
+        <span class="fall-key">Status Karzinogenität</span>
+        <span class="fall-val"><span class="tag tag-offen">WISSENSCHAFTLICH OFFEN</span></span>
+      </div>
+    </div>
+  </div>
+
+  <p>Glyphosat ist der meistverkaufte Herbizidwirkstoff weltweit, ursprünglich entwickelt von Monsanto unter dem Markennamen Roundup. Seit 1974 zugelassen, wurde er in den Folgejahrzehnten zunehmend im Verbund mit gentechnisch veränderten, glyphosatresistenten Pflanzen verwendet — ein Geschäftsmodell, das beide Produkte wechselseitig abhängig machte.</p>
+
+  <p>Im März 2015 stufte die Internationale Agentur für Krebsforschung (IARC), eine Unterorganisation der WHO, Glyphosat als „wahrscheinlich krebserregend für Menschen" ein — Gruppe 2A, die zweithöchste Risikokategorie. Zur selben Kategorie zählen unter anderem rotes Fleisch, Emissionen von Hochtemperaturprozessen und Schichtarbeit.</p>
+
+  <div class="source-box">
+    <span class="source-label">Primärquelle — BELEGT</span>
+    IARC Monograph 112 (2015): „Glyphosate." Volltext: monographs.iarc.who.int — BfR: FAQ vom 11. Dezember 2015 zur abweichenden Bewertung. bfr.bund.de
+  </div>
+
+  <p>Gleichzeitig kamen BfR (Deutschland) und EFSA (EU) zu einem anderen Ergebnis: Bei sachgerechter Anwendung sei kein krebserregendes Risiko ableitbar. Die Heinrich-Böll-Stiftung veröffentlichte 2022 ein Plagiatsgutachten, demzufolge das BfR für seinen EU-Bewertungsbericht ganze Absätze und Bewertungen unabhängiger Studien aus Monsanto-eigenen Dokumenten übernommen habe — ohne Kennzeichnung als Industriequelle.</p>
+
+  <div class="source-box">
+    <span class="source-label">Quelle — BELEGT</span>
+    Heinrich-Böll-Stiftung: „Glyphosat-Zulassung: Copy &amp; Paste der Behörden", Januar 2022. boell.de — Plagiatsgutachten: Ganze Absätze des BfR-Berichts stammen aus Monsanto-Unterlagen.
+  </div>
+
+  <p>Im Dezember 2025 zog das Fachjournal „Regulatory Toxicology and Pharmacology" eine Schlüsselstudie aus dem Jahr 2000 zurück — nach 25 Jahren Zirkulation als zentrales Sicherheitsargument. Begründung des Verlags Elsevier: schwere ethische Mängel und nicht ordnungsgemäß offengelegte Verbindungen der Autoren zu Monsanto. Bayer wies die Kritik zurück.</p>
+
+  <div class="source-box">
+    <span class="source-label">Quelle — BELEGT</span>
+    Pharmazeutische Zeitung: „Umstrittene Glyphosat-Studie nach 25 Jahren zurückgezogen", Dezember 2025. pharmazeutische-zeitung.de — Deutsches Ärzteblatt: Gleiche Meldung, Dezember 2025. aerzteblatt.de
+  </div>
+
+  <p>Die wissenschaftliche Frage der Karzinogenität bei üblicher Nahrungsexposition ist zum aktuellen Zeitpunkt nicht abschließend beantwortet. Was dokumentiert ist: Eine zentrale Studie, auf die Zulassungsbehörden sich jahrelang stützten, wurde wegen Industrie-Verbindungen zurückgezogen. Die Behörde, die den EU-Bewertungsbericht verfasste, übernahm nachweislich Formulierungen aus Monsanto-Dokumenten.</p>
+
+  <h2>V. Fall 4 — Aspartam: Möglicherweise krebserregend — und trotzdem zugelassen</h2>
+
+  <div class="fall-card">
+    <div class="fall-header">
+      <span class="fall-name">Aspartam (E951) — Süßstoff</span>
+      <span class="fall-zeitraum">1981 – heute</span>
+    </div>
+    <div class="fall-body">
+      <div class="fall-row">
+        <span class="fall-key">Einsatz</span>
+        <span class="fall-val">Light- und Zero-Getränke, Kaugummi, Joghurt, Vitamintabletten, Hustensaft, Zahnpasta</span>
+      </div>
+      <div class="fall-row">
+        <span class="fall-key">Zulassung EU</span>
+        <span class="fall-val">Seit 1994 (RL 94/35/EG), bestätigt durch EFSA-Neubewertung 2013</span>
+      </div>
+      <div class="fall-row">
+        <span class="fall-key">IARC Juni 2023</span>
+        <span class="fall-val">Einstufung „möglicherweise krebserregend für Menschen" (Gruppe 2B) — auf Basis begrenzter Hinweise auf hepatozelluläres Karzinom (Leberkrebs)</span>
+      </div>
+      <div class="fall-row">
+        <span class="fall-key">JECFA Juli 2023</span>
+        <span class="fall-val">Gleichzeitig: WHO-Risikokomitee bestätigt bestehenden ADI-Wert (40 mg/kg Körpergewicht/Tag) — sieht keine überzeugenden Beweise für Krebsrisiko bei üblicher Aufnahme</span>
+      </div>
+      <div class="fall-row">
+        <span class="fall-key">Widerspruch</span>
+        <span class="fall-val">IARC bewertet Gefahrenpotenzial. JECFA bewertet Risiko bei realer Exposition. Beide Aussagen sind methodisch verschieden — beide stammen von WHO-Unterorganisationen</span>
+      </div>
+      <div class="fall-row">
+        <span class="fall-key">Status</span>
+        <span class="fall-val"><span class="tag tag-extra">EXTRAPOLATION bzgl. Langzeitwirkung</span> <span class="tag tag-belegt">BELEGT: IARC 2B-Einstufung</span></span>
+      </div>
+    </div>
+  </div>
+
+  <p>Aspartam ist seit über vier Jahrzehnten einer der meistverwendeten Süßstoffe weltweit. Im Juni 2023 stufte die IARC ihn in die Risikogruppe 2B ein — „möglicherweise krebserregend" — auf Basis begrenzter Hinweise auf hepatozelluläres Karzinom (Leberkrebs). Die Klassifizierung basiert auf der Stärke der Evidenz, nicht auf dem konkreten Risiko bei normaler Konsummenge.</p>
+
+  <p>Zur Einordnung: Gruppe 2B umfasst auch Kaffee (bis 2016 in Kalifornien), Aloe-vera-Extrakte und Pickles. Gruppe 1 (nachweislich krebserregend) umfasst Alkohol, verarbeitetes Fleisch und Tabak. Aspartam steht damit auf einer mittleren Warnstufe — aber es ist die erste offizielle WHO-Unterorganisation, die eine solche Einstufung vorgenommen hat, nachdem der Stoff jahrzehntelang als vollständig unbedenklich galt.</p>
+
+  <div class="source-box">
+    <span class="source-label">Primärquelle — BELEGT</span>
+    WHO/IARC: „Carcinogenicity of aspartame, methyleugenol, and isoeugenol." The Lancet Oncology, DOI: 10.1016/S1470-2045(23)00341-8, Juli 2023. — DKFZ Krebsinformationsdienst: Einordnung der IARC-Einstufung. krebsinformationsdienst.de
+  </div>
+
+  <p>Gleichzeitig bestätigte das WHO-Risikokomitee JECFA den bestehenden ADI-Wert und sah keinen Anlass zur Änderung der Zulassung. Die WHO räumte offen ein, dass die Ergebnisse beider Ausschüsse nicht widerspruchsfrei sind und weitere Langzeitstudien erforderlich sind. Der Stoff ist weiterhin zugelassen. Verbrauchern ist es nicht möglich, ohne aktives Etikettenlesen zu erkennen, ob ein Produkt Aspartam enthält.</p>
+
+  <h2>VI. Das Muster — strukturell betrachtet</h2>
+
+  <p>Die vier Fälle weisen trotz unterschiedlicher Substanzen und Branchen dieselbe Grundstruktur auf. Diese Tabelle dokumentiert das Muster — ohne Motive zu unterstellen.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Schritt</th>
+        <th>Transfette</th>
+        <th>Zucker</th>
+        <th>Glyphosat</th>
+        <th>Aspartam</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1. Einführung</strong></td>
+        <td>~1910</td>
+        <td>Massenkonsum ab 1950ern</td>
+        <td>1974</td>
+        <td>1981 (EU: 1994)</td>
+      </tr>
+      <tr>
+        <td><strong>2. Gesundheitsversprechen</strong></td>
+        <td>„Herzgesund, cholesterinfrei"</td>
+        <td>„Kalorienquelle, kein Herzrisiko"</td>
+        <td>„Sicher bei sachgerechter Anwendung"</td>
+        <td>„Sicherer Zuckerersatz"</td>
+      </tr>
+      <tr>
+        <td><strong>3. Erste Gegenevidenz</strong></td>
+        <td>Frühe 1990er (Willett/Harvard)</td>
+        <td>1960er (Yudkin)</td>
+        <td>2015 (IARC)</td>
+        <td>2023 (IARC)</td>
+      </tr>
+      <tr>
+        <td><strong>4. Industrie-Reaktion</strong></td>
+        <td>Stillschweigende Neuformulierung</td>
+        <td>Harvard-Studie finanziert, Yudkin diskreditiert</td>
+        <td>BfR-Plagiat, Studie zurückgezogen</td>
+        <td>Süßstoffindustrie kritisiert IARC-Methodik</td>
+      </tr>
+      <tr>
+        <td><strong>5. Regulatorische Reaktion</strong></td>
+        <td>EU-Grenzwert 2021 (kein Verbot)</td>
+        <td>WHO <5%-Empfehlung 2015</td>
+        <td>Weiterhin zugelassen (EU bis 2033)</td>
+        <td>Weiterhin zugelassen</td>
+      </tr>
+      <tr>
+        <td><strong>6. Verzögerung</strong></td>
+        <td>~30 Jahre zwischen Willett-Studie und EU-Reaktion</td>
+        <td>~50 Jahre zwischen Yudkin und JAMA-Aufdeckung</td>
+        <td>Bewertung offen seit 2015</td>
+        <td>Langzeitstudien fehlen laut WHO</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <span class="source-label">Methodik-Hinweis</span>
+    Die Tabelle dokumentiert zeitliche Abläufe und belegte Ereignisse — keine Motive. Die Frage, warum Regulierung verzögert wurde, ist eine strukturelle, nicht eine personale. Industriefinanzierte Forschung ist in allen vier Fällen nachgewiesen oder dokumentiert. Kausalaussagen über Absicht werden nicht getroffen.
+  </div>
+
+  <h2>VII. Die Tabakstrategie als Referenzdokument</h2>
+
+  <p>Für die Tabakindustrie existiert der stärkste Beleg für die systematische Unterdrückung und Verzögerung von Gesundheitsforschung. Interne Dokumente, die in US-Zivilprozessen publik wurden, belegten: Die Industrie wusste spätestens in den 1950er Jahren von der karzinogenen Wirkung des Rauchens und entwickelte intern eine Strategie, Zweifel an der Wissenschaft zu säen — lange vor dem öffentlichen Eingeständnis.</p>
+
+  <p>Der Wissenschaftshistoriker Robert Proctor prägte dafür den Begriff „Agnotologie" — die organisierte Produktion von Unwissenheit. Das Muster, das er für Tabak beschrieb, wurde in den Folgejahrzehnten in Peer-reviewed-Studien für die Zucker-, Transfett- und Pestizidbranche nachgewiesen.</p>
+
+  <div class="source-box">
+    <span class="source-label">Quelle — BELEGT</span>
+    Robert N. Proctor: „Golden Holocaust. Origins of the Cigarette Catastrophe and the Case for Abolition." University of California Press, 2012. — Oreskes N, Conway EM: „Merchants of Doubt." Bloomsbury Press, 2010 — dokumentiert dieselbe Strategie für Tabak, sauren Regen, Ozonloch.
+  </div>
+
+  <h2>VIII. Was dokumentiert ist — und was offen bleibt</h2>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Aussage</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Transfette erhöhen das Herzinfarktrisiko und wurden jahrzehntelang als herzgesund vermarktet</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Sugar Research Foundation finanzierte 1961 Harvard-Forscher mit 50.000 USD für Projekt 226</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>BfR übernahm für EU-Glyphosat-Bericht Passagen aus Monsanto-Dokumenten</td>
+        <td><span class="tag tag-belegt">BELEGT (Plagiatsgutachten)</span></td>
+      </tr>
+      <tr>
+        <td>Zentrale Glyphosat-Studie (2000) nach 25 Jahren wegen Monsanto-Verbindungen zurückgezogen</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>IARC stuft Aspartam als „möglicherweise krebserregend" ein (Gruppe 2B)</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Langzeitwirkung von Aspartam bei üblicher Dosierung</td>
+        <td><span class="tag tag-offen">OFFEN — laut WHO weiterer Forschungsbedarf</span></td>
+      </tr>
+      <tr>
+        <td>Ob Verzögerungen auf koordinierte Industriestrategie zurückgehen</td>
+        <td><span class="tag tag-extra">EXTRAPOLATION — für Zucker nachgewiesen, für andere Fälle strukturell naheliegend, nicht vollständig belegt</span></td>
+      </tr>
+      <tr>
+        <td>Ob Regulierungsbehörden aktiv beeinflusst wurden</td>
+        <td><span class="tag tag-extra">EXTRAPOLATION — für BfR/Glyphosat dokumentiert, systematisch nicht nachgewiesen</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="closing">
+    <p>John Yudkin hatte in den 1960er Jahren nachgewiesen, dass Zucker ein Herzrisikofaktor ist. Er wurde diskreditiert. Die Studie, die seine Arbeit in Fachkreisen widerlegte, war von der Zuckerindustrie bezahlt. Das wurde erst 2016 bekannt — 21 Jahre nach seinem Tod.</p>
+    <p>Walter Willett zeigte 1993 die Schädlichkeit von Transfetten. Die EU reagierte 2021 — mit einem Grenzwert, keinem Verbot, und ohne Kennzeichnungspflicht.</p>
+    <p>Eine Glyphosat-Studie, die als Sicherheitsbeleg für Zulassungsbehörden diente, wurde im Dezember 2025 wegen nicht offengelegter Monsanto-Verbindungen zurückgezogen.</p>
+    <p>Welche Substanzen, die heute als unbedenklich gelten, in zwanzig oder dreißig Jahren in einer ähnlichen Tabelle stehen werden — ist eine offene Frage.</p>
+  </div>
+
+  <h2>Quellenverzeichnis</h2>
+
+  <p><strong>Peer-reviewed Primärstudien:</strong></p>
+  <p>Willett WC et al.: „Intake of trans fatty acids and risk of coronary heart disease." The Lancet, 1993.<br>
+  Kearns CE, Schmidt LA, Glantz SA: „Sugar Industry and Coronary Heart Disease Research." JAMA Internal Medicine, 2016. DOI: 10.1001/jamainternmed.2016.5394<br>
+  IARC Monograph 112 (2015): Glyphosate. monographs.iarc.who.int<br>
+  Riboli E et al.: „Carcinogenicity of aspartame." The Lancet Oncology, 2023. DOI: 10.1016/S1470-2045(23)00341-8</p>
+
+  <p><strong>Behörden und Institutionen:</strong></p>
+  <p>WHO: „REPLACE Trans fat elimination" (2024) — who.int<br>
+  EU-Verordnung 2019/649 (Transfette-Grenzwert) — eur-lex.europa.eu<br>
+  BfR: FAQ Glyphosat, Dezember 2015 — bfr.bund.de<br>
+  DKFZ Krebsinformationsdienst: Aspartam-Einordnung — krebsinformationsdienst.de</p>
+
+  <p><strong>Investigativ / Aufarbeitung:</strong></p>
+  <p>Heinrich-Böll-Stiftung: „Glyphosat-Zulassung: Copy &amp; Paste der Behörden", 2022 — boell.de<br>
+  Pharmazeutische Zeitung: Rückzug Glyphosat-Studie, Dezember 2025 — pharmazeutische-zeitung.de<br>
+  Deutsches Ärzteblatt: Zucker-Industrie und Harvard, September 2016 — aerzteblatt.de</p>
+
+  <p><strong>Wissenschaftsgeschichte:</strong></p>
+  <p>Robert N. Proctor: „Golden Holocaust." UC Press, 2012.<br>
+  Oreskes N, Conway EM: „Merchants of Doubt." Bloomsbury, 2010.<br>
+  UCSF Industry Documents Library: industrydocuments.ucsf.edu</p>
+
+  <div class="source-box">
+    <span class="source-label">Hinweis zur Methodik</span>
+    Alle Angaben basieren auf öffentlich zugänglichen Primärquellen, peer-reviewten Studien und dokumentiertem Fachjournalismus. Wo Kausalzusammenhänge nicht abschließend belegt sind, wird dies explizit als OFFEN oder EXTRAPOLATION gekennzeichnet. Motive werden nicht unterstellt. Strukturen werden dokumentiert.
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>dunkelfeld.report — Fakten brauchen kein Dunkel.<br>
+  <a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a> · <a href="mailto:kontakt@dunkelfeld.com">Kontakt</a></p>
+  <p style="margin-top:0.8rem; font-size:0.72rem;">Teil der Serie „Wer kontrolliert, was wir essen?" — Teil 10 von 11</p>
+</footer>
+
+</body>
+</html>

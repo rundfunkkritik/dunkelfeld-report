@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epstein-Netzwerk — dunkelfeld.report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #09090b;
+    --surface: #111114;
+    --surface2: #1a1a2e;
+    --amber: #e8c547;
+    --amber-dim: rgba(232,197,71,0.12);
+    --amber-border: rgba(232,197,71,0.3);
+    --text: #e2e2e5;
+    --muted: #888;
+    --green: #4caf7d;
+    --orange: #e8a030;
+    --red: #e05252;
+    --border: rgba(255,255,255,0.07);
+  }
+
+  html { font-size: 17px; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.85;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--muted); }
+
+  /* HEADER */
+  header {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 4rem 2rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .article-meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--amber);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .article-meta span { color: var(--muted); }
+  h1 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  .deck {
+    font-size: 1.15rem;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+  }
+  .lead-statement {
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.5rem;
+    background: var(--amber-dim);
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 0;
+  }
+
+  /* MAIN CONTENT */
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3rem 2rem 6rem;
+  }
+
+  h2 {
+    font-size: 1.35rem;
+    color: var(--amber);
+    font-weight: 700;
+    margin: 3.5rem 0 1.2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--amber-border);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  h3 {
+    font-size: 1.05rem;
+    color: #ccc;
+    font-weight: 600;
+    margin: 2rem 0 0.7rem;
+  }
+
+  p { margin-bottom: 1.2rem; }
+
+  /* TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 2px 7px;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-left: 4px;
+    position: relative;
+    top: -1px;
+  }
+  .tag-belegt   { background: rgba(76,175,125,0.18); color: var(--green); border: 1px solid rgba(76,175,125,0.4); }
+  .tag-extra    { background: rgba(232,160,48,0.15); color: var(--orange); border: 1px solid rgba(232,160,48,0.4); }
+  .tag-offen    { background: rgba(224,82,82,0.15); color: var(--red); border: 1px solid rgba(224,82,82,0.4); }
+
+  /* SOURCE BOXES */
+  .source-box {
+    background: var(--surface2);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.88rem;
+  }
+  .source-box .src-label {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .source-box p { margin-bottom: 0.4rem; color: #bbb; }
+  .source-box a {
+    color: var(--amber);
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    word-break: break-all;
+  }
+  .source-box a:hover { text-decoration: underline; }
+
+  /* STAT GRID */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    margin: 2rem 0;
+    border: 1px solid var(--border);
+  }
+  .stat-cell {
+    background: var(--surface);
+    padding: 1.2rem;
+  }
+  .stat-value {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    color: var(--amber);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* PERSON CARD */
+  .person-card {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 1.2rem 1.4rem;
+    margin: 1rem 0;
+  }
+  .person-name {
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.2rem;
+    font-size: 1rem;
+  }
+  .person-role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+  .person-fact {
+    font-size: 0.88rem;
+    color: #aaa;
+    margin-bottom: 0;
+  }
+
+  /* TIMELINE */
+  .timeline { margin: 1.5rem 0; }
+  .tl-row {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 0 1.2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .tl-row:last-child { border-bottom: none; }
+  .tl-date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--amber);
+    padding-top: 2px;
+  }
+  .tl-text { font-size: 0.92rem; color: #bbb; }
+  .tl-text strong { color: var(--text); }
+
+  /* DELETE BOX — highlight für nachträgliche Löschungen */
+  .delete-box {
+    background: rgba(224,82,82,0.08);
+    border: 1px solid rgba(224,82,82,0.3);
+    border-left: 3px solid var(--red);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+  .delete-box .del-label {
+    font-family: 'Courier New', monospace;
+    color: var(--red);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-top: 2px solid var(--amber);
+    border-bottom: 1px solid var(--border);
+    margin: 2.5rem 0;
+    padding: 1.5rem 0 1.2rem;
+    font-size: 1.1rem;
+    color: #ddd;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .pull-quote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    margin-top: 0.7rem;
+  }
+
+  /* OPEN QUESTIONS */
+  .open-questions {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.5rem 1.8rem;
+    margin-top: 3rem;
+  }
+  .open-questions .oq-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .open-questions p {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 0.7rem;
+  }
+  .open-questions p:last-child { margin-bottom: 0; }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin: 2rem 0 0;
+    padding: 1rem 0;
+    border-top: 1px solid var(--border);
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    header, main, footer { padding-left: 1.2rem; padding-right: 1.2rem; }
+    .tl-row { grid-template-columns: 70px 1fr; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">● DUNKELFELD<span>.REPORT</span></a>
+  <span style="font-family:'Courier New',monospace;font-size:0.72rem;color:var(--muted);">DOSSIER · epstein-netzwerk</span>
+</nav>
+
+<header>
+  <div class="article-meta">
+    <span>INVESTIGATIV</span>
+    <span style="color:var(--muted);">·</span>
+    <span>JUNI 2026</span>
+    <span style="color:var(--muted);">·</span>
+    <span>STRUKTURANALYSE</span>
+  </div>
+  <h1>Macht, Geld und Schweigen</h1>
+  <p class="deck">Das Epstein-Netzwerk als Strukturdokument: Wie Präsidenten, Bankchefs, Geheimdienstler und Ministerialbeamte in einem System operieren, in dem niemand fragt — dokumentiert aus Gerichtsakten, DOJ-Primärquellen und parlamentarischen Protokollen.</p>
+  <div class="lead-statement">
+    Nicht die Frage nach Epsteins Identität steht im Zentrum dieser Dokumentation — sondern die nach der Architektur: Welche Institutionen ermöglichten das System? Welche Mechanismen schützten es? Und warum tauchen in denselben Dokumenten, die sexuellen Missbrauch belegen, gleichzeitig Pandemiepläne, Zentralbankstrukturen und Regierungsberater auf?
+  </div>
+</header>
+
+<main>
+
+  <div class="legend">
+    <div class="legend-item"><span class="tag tag-belegt">BELEGT</span> Primärquelle verfügbar</div>
+    <div class="legend-item"><span class="tag tag-extra">EXTRAPOLATION</span> Interpretation belegter Fakten</div>
+    <div class="legend-item"><span class="tag tag-offen">NICHT BELEGT / OFFEN</span> Nicht verifiziert</div>
+  </div>
+
+  <!-- BLOCK 1: RECHTLICHE GRUNDLAGE -->
+  <h2>01 — Was die Akten sind</h2>
+
+  <p>Im November 2025 verabschiedete das US-Repräsentantenhaus den <em>Epstein Files Transparency Act</em> mit 427 Ja- zu einer Nein-Stimme. Das Ergebnis ist das umfangreichste öffentlich zugängliche Primärquellen-Konvolut zu einem Macht- und Missbrauchsnetzwerk in der Geschichte der USA. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <span class="stat-value">3,5 Mio.</span>
+      <span class="stat-label">Seiten freigegeben (DOJ, Stand Feb. 2026)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">2.000</span>
+      <span class="stat-label">Videos in den Akten</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">180.000</span>
+      <span class="stat-label">Bilder in den Akten</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">427 : 1</span>
+      <span class="stat-label">Abstimmung im Repräsentantenhaus</span>
+    </div>
+  </div>
+
+  <p>Das Justizministerium der Trump-Regierung gab an, von 6 Millionen relevanten Seiten lediglich 3,5 Millionen veröffentlicht zu haben. Der demokratische Abgeordnete Ro Khanna erklärte öffentlich: „Die Nichtveröffentlichung dieser Akten schützt nur die mächtigen Personen, die daran beteiligt waren." <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="delete-box">
+    <span class="del-label">⚠ Dokumentierter Vorgang — Nachträgliche Löschungen</span>
+    Zeitweise wurden bis zu 76.000 Dokumente nach der Veröffentlichung wieder offline genommen. E-Mails zu Philippa Sigl-Glöckner wurden nach Erscheinen einer Analyse-Sendung vom DOJ-Server gelöscht — Kopien sind im Webarchiv gesichert. Das Justizministerium bezeichnete zurückgehaltene Dokumente als „duplikativ" und musste sie nach Presseanfragen nachreichen. <span class="tag tag-belegt">BELEGT</span>
+  </div>
+
+  <!-- BLOCK 2: DAS ERPRESSUNGSSYSTEM -->
+  <h2>02 — Das Erpressungssystem</h2>
+
+  <p>Ghislaine Maxwell wurde 2021 wegen Menschenhandels mit Minderjährigen rechtskräftig zu 20 Jahren Haft verurteilt. Damit ist die operative Grundlage des Netzwerks gerichtlich festgestellt. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="pull-quote">
+    „Er war der beste Erpresser aller Zeiten. Er hat Menschen erpresst. So ist er an sein Geld gekommen."
+    <cite>— Howard Lutnick, US-Handelsminister (Trump-Administration), Pod Force One, 2025</cite>
+  </div>
+
+  <p>Lutnick beschrieb dabei ein System aus Massagen, heimlichen Filmaufnahmen und anschließender Erpressung — als Erklärung dafür, warum prominente Persönlichkeiten das Netzwerk nicht öffentlich verlassen hätten. Der Staatsanwalt Alexander Acosta, der 2008 den Strafnachlass-Deal mit Epstein aushandelte, erklärte in einem transkribierten Gespräch: <em>„Mir wurde gesagt, Epstein gehört zu Geheimdiensten."</em> <span class="tag tag-belegt">BELEGT</span></p>
+
+  <h3>Banken als Infrastruktur <span class="tag tag-belegt">BELEGT</span></h3>
+
+  <div class="timeline">
+    <div class="tl-row">
+      <div class="tl-date">2008</div>
+      <div class="tl-text"><strong>Deutsche Bank</strong> eröffnet Epstein-Konten — obwohl seine Verurteilung wegen Missbrauchs Minderjähriger seit diesem Jahr dokumentiert ist. Konten bleiben bis 2018 bestehen.</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">2023</div>
+      <div class="tl-text"><strong>Deutsche Bank</strong> zahlt 75 Millionen USD Settlement an Opfer. Klage: Unterstützung von Menschenhandel. Quelle: n-tv.de, tagesschau.de.</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">2023</div>
+      <div class="tl-text"><strong>JPMorgan Chase</strong> zahlt 290 Millionen USD Settlement. Interne E-Mails zeigen: CEO Jamie Dimon war informiert. JPMorgan klagte anschließend seinen Ex-Private-Banking-Chef Jes Staley.</div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <span class="src-label">Primärquelle · DOJ · BELEGT</span>
+    <p>Staatsanwalt Acosta-Transkript: Gespräch mit dem Journalisten Vicky Ward (2019), transkribiert und veröffentlicht im Miami Herald und in Kongressanhörungen zitiert.</p>
+    <a href="https://www.justice.gov/epstein-files" target="_blank">https://www.justice.gov/epstein-files</a>
+  </div>
+
+  <!-- BLOCK 3: PANDEMIE ALS INVESTMENTKATEGORIE -->
+  <h2>03 — Pandemie als Investmentkategorie</h2>
+
+  <p>Die Akten enthalten Korrespondenz, die Epstein als aktiven Berater im Bereich globale Gesundheitsfinanzierung zeigt — nicht peripher, sondern als strategischen Intermediär zwischen Wall Street und Stiftungswelt. Die Frage ist nicht: War Epstein für die Pandemie verantwortlich? Die Frage, die die Dokumente aufwerfen: Wurden Pandemien über Jahre als plan- und investierbare Kategorien behandelt — und unter welchen Kontrollstrukturen? <span class="tag tag-extra">EXTRAPOLATION</span></p>
+
+  <div class="person-card">
+    <div class="person-name">Boris Nikolic</div>
+    <span class="person-role">Wissenschafts- und Technologie-Chefberater von Bill Gates (Gates Ventures)</span>
+    <p class="person-fact">Juli 2011 — E-Mail von Epstein an Nikolic, belegt durch DOJ-Akten: <em>„Ein isolierter Vorschlag, der Bill mehr Geld für Impfstoffe verschaffen wird."</em> Nikolic wurde nach Epsteins Tod 2019 als Nachlassverwalter in dessen Testament eingesetzt — und lehnte ab. <span class="tag tag-belegt">BELEGT</span></p>
+  </div>
+
+  <h3>Project Molecule — JPMorgan / Gates Foundation <span class="tag tag-belegt">BELEGT</span></h3>
+
+  <p>In den Akten findet sich ein 14-seitiges Dokument von JPMorgan mit dem internen Titel <em>Project Molecule</em>. Es trägt Bates-Stempel beider Verfahrensproduktionen: JPM-SDNY (JPMorgan-Zivilverfahren) und EFTA (Epstein Files Transparency Act). Es handelt sich um Version 13 vom 31. August 2011 — das bedeutet: mindestens zwölf Überarbeitungen vor dieser Fassung.</p>
+
+  <div class="source-box">
+    <span class="src-label">Primärquelle · DOJ EFTA · JPM-SDNY · BELEGT</span>
+    <p>Project Molecule: Formeller JPMorgan-Partnerschaftsvorschlag für die Bill & Melinda Gates Foundation. Ziel: Schaffung eines transnationalen, privat kontrollierten Investmentvehikels für Pandemievorsorge, Impfstoffbeschaffung und globale Gesundheitsfinanzierung. Offshore-Strukturen mit minimaler öffentlicher Kontrolle explizit vorgesehen.</p>
+    <a href="https://www.justice.gov/epstein-files" target="_blank">https://www.justice.gov/epstein-files</a>
+  </div>
+
+  <p>Aus den Dokumenten: Der Global Health Investment Fund (2013, Gates Foundation) beschreibt eine Zielrendite von 5–7 % auf Medikamente und Impfstoffe. Im Oktober 2019, kurz vor Beginn der COVID-19-Pandemie, gab Gates eine Spende von 100 Millionen USD an das NIH bekannt. <span class="tag tag-belegt">BELEGT</span> Ob zwischen diesen Strukturen und der späteren Pandemiepolitik ein kausaler Zusammenhang besteht, ist durch die vorliegenden Dokumente nicht belegt. <span class="tag tag-offen">NICHT BELEGT / OFFEN</span></p>
+
+  <div class="person-card">
+    <div class="person-name">Prof. Roland Wiesendanger</div>
+    <span class="person-role">Physiker, Universität Hamburg — bekannt durch Forschung zum Laborursprung von SARS-CoV-2</span>
+    <p class="person-fact">Wiesendanger berichtet, in den Akten E-Mails gefunden zu haben, in denen Virologen Epstein proaktiv anboten, zur Vorbereitung der Pandemiepolitik beizutragen — als Geschäftsmodell, nicht als Gesundheitsvorsorge. Darunter sollen Personen sein, die 2020 gemeinsam mit Christian Drosten die Laborthese zur Verschwörungstheorie erklärten. <span class="tag tag-extra">EXTRAPOLATION</span> — Wiesendangers Interpretation belegter Dokumente; die Dokumente selbst sind primärquellenfähig, die Schlussfolgerung nicht unabhängig verifiziert.</p>
+  </div>
+
+  <!-- BLOCK 4: DEUTSCHLAND-SPUR -->
+  <h2>04 — Die Deutschland-Spur</h2>
+
+  <h3>Philippa Sigl-Glöckner <span class="tag tag-belegt">BELEGT</span> (Name in Akten) / <span class="tag tag-offen">OFFEN</span> (Inhalt der Fremdbeschreibung)</h3>
+
+  <p>Philippa Sigl-Glöckner taucht in den 2026 freigegebenen DOJ-Akten (EFTA) in E-Mails aus dem Zeitraum 2013–2014 auf. Ein geschwärzter Absender bezeichnet sie in einer Mail an Epstein als <em>„wonderful young staff member"</em> mit Informatik-Master, die im Bundesfinanzministerium Geldflüsse überwache und zugleich für den BND tätig sei. <span class="tag tag-belegt">BELEGT</span> als Dokumenteninhalt — der Wahrheitsgehalt der Fremdbeschreibung ist nicht unabhängig verifiziert. <span class="tag tag-offen">OFFEN</span></p>
+
+  <div class="timeline">
+    <div class="tl-row">
+      <div class="tl-date">2013</div>
+      <div class="tl-text"><strong>Sigl-Glöckner</strong> beginnt als Analystin bei der Weltbank (New York), im Alter von 23 Jahren.</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">Sept. 2014</div>
+      <div class="tl-text">DOJ-Dokument EFTA01618140: SMS-Kontakt zwischen Sigl-Glöckner und Epsteins Assistentin Lesley Groff. Inhalt: Dankesnachricht für einen Friseurtermin in New York. <span class="tag tag-belegt">BELEGT</span></div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">2018</div>
+      <div class="tl-text"><strong>Sigl-Glöckner</strong> wechselt ins Bundesfinanzministerium als persönliche Referentin und Büroleiterin von Staatssekretär Wolfgang Schmidt (SPD, später Kanzleramtsminister). Gleichzeitig Master-Studium in Informatik am Imperial College London — ohne vorherigen Informatik-Bachelor. <span class="tag tag-belegt">BELEGT</span></div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">Juni 2018</div>
+      <div class="tl-text">E-Mail im DOJ-Datensatz: Unbekannter Absender (geschwärzt) empfiehlt Sigl-Glöckner gegenüber Epstein als <em>„wunderbare junge Mitarbeiterin"</em> mit BND-Verbindung. <span class="tag tag-belegt">BELEGT</span> als Dokument — Inhalt <span class="tag tag-offen">NICHT BELEGT</span></div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">Feb. 2026</div>
+      <div class="tl-text">DOJ löscht E-Mails zu Sigl-Glöckner nach Erscheinen einer deutschen Analyse-Sendung. Webarchiv-Versionen gesichert. <span class="tag tag-belegt">BELEGT</span></div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">Feb. 2026</div>
+      <div class="tl-text">Fabio De Masi (BSW, ehem. MdEP) bestätigt auf X: Sigl-Glöckner habe das Abkommen zum deutsch-chinesischen Finanzdialog für Staatssekretär Schmidt und Minister Scholz federführend vorbereitet. <span class="tag tag-belegt">BELEGT</span></div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">März 2026</div>
+      <div class="tl-text">Parlamentarische Anfrage im Deutschen Bundestag zu Verbindungen zwischen Sigl-Glöckner und Epstein während ihrer Tätigkeit im Bundesfinanzministerium. Dip.bundestag.de, Vorgang 332738. <span class="tag tag-belegt">BELEGT</span></div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <span class="src-label">Parlamentarische Anfrage · Bundestag · BELEGT</span>
+    <p>Vorgang 332738 — Verbindungen zwischen Philippa Sigl-Glöckner und Jeffrey Epstein während ihrer Tätigkeit im Bundesfinanzministerium.</p>
+    <a href="https://dip.bundestag.de/vorgang/verbindungen-zwischen-philippa-sigl-gl%C3%B6ckner-und-jeffrey-epstein-w%C3%A4hrend-ihrer-t%C3%A4tigkeit/332738" target="_blank">dip.bundestag.de · Vorgang 332738</a>
+  </div>
+
+  <p>Belege für Beteiligung an Straftaten, Missbrauch oder aktiver Rekrutierung finden sich in den bislang veröffentlichten Akten nicht. <span class="tag tag-belegt">BELEGT</span> — Das Dokument belegt einen netzwerkartigen Kontakt, keine Täterschaft.</p>
+
+  <h3>Henry Jarecki — Heidelberg <span class="tag tag-belegt">BELEGT</span></h3>
+
+  <div class="person-card">
+    <div class="person-name">Henry Jarecki</div>
+    <span class="person-role">US-Finanzier · Ehrensenator Ruprecht-Karls-Universität Heidelberg seit 2014 · Träger des Bundesverdienstkreuzes (2016)</span>
+    <p class="person-fact">DOJ-Dokument EFTA01816382: Mailkorrespondenz zwischen Jarecki und Epstein, unmittelbar nach Epsteins Haftentlassung 2009. Jarecki an Epstein: <em>„Der König ist zurück! Ich hoffe, Du kommst nicht zur Besinnung."</em> Jareckis Privatinsel Guana liegt ca. 60 km von Epsteins Little Saint James entfernt. Das Bundesverdienstkreuz wurde ihm von der damaligen Wissenschaftsministerin Theresia Bauer (Grüne) verliehen. <span class="tag tag-belegt">BELEGT</span></p>
+  </div>
+
+  <h3>Deutsche Bank und Wirecard <span class="tag tag-belegt">BELEGT</span></h3>
+
+  <p>In den Akten findet sich eine Präsentation von Leon Blacks Apollo-Gruppe, in der die Deutsche Bank als Kooperationspartner auftaucht. Die Deutsche Bank zahlte 75 Millionen USD wegen ihrer Kontoführung für Epstein nach seiner ersten Verurteilung. Gleichzeitig agierte Sigl-Glöckner im Bundesfinanzministerium in der Zeit, in der der Wirecard-Skandal entstand — für den ihr Vorgesetzter Staatssekretär Schmidt sich aktiv eingesetzt hatte. <span class="tag tag-extra">EXTRAPOLATION</span> — Zeitliche Nähe, kein belegter kausaler Zusammenhang.</p>
+
+  <!-- BLOCK 5: WARUM PRÄSIDENTEN -->
+  <h2>05 — Warum sich Präsidenten verdingen</h2>
+
+  <p>Die Frage ist berechtigt — und die Akten geben keine direkte Antwort. Was sie geben, sind strukturelle Datenpunkte.</p>
+
+  <div class="timeline">
+    <div class="tl-row">
+      <div class="tl-date">2008</div>
+      <div class="tl-text">Staatsanwalt Acosta verhandelt Strafnachlass-Deal: 18 Monate statt Bundesanklage mit möglicher lebenslanger Haft. Acosta erklärt später, er sei angewiesen worden, Epstein zu schützen, weil er zu Geheimdiensten gehöre. <span class="tag tag-belegt">BELEGT</span></div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">2019</div>
+      <div class="tl-text">Nach Epsteins Tod beschließt das FBI, zehn mutmaßliche Mittäter vor eine Grand Jury zu bringen. Das Verfahren wird nach seinem Tod eingestellt. <span class="tag tag-belegt">BELEGT</span> (DOJ-interne E-Mails, veröffentlicht 2026)</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">Juli 2025</div>
+      <div class="tl-text">FBI-Mitarbeiter erstellen interne Listen mit „anstößigen" Hinweisen zu 14 prominenten Männern aus den Akten — auf Anweisung der Vorgesetzten. Trump führt die Namensliste an. Hinweise stammen überwiegend von anonymen Quellen; die meisten wurden nicht verifizierbar. <span class="tag tag-belegt">BELEGT</span> (New York Times, interne FBI-E-Mails)</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">2013</div>
+      <div class="tl-text">Audioaufnahme (DOJ): Epstein empfiehlt dem israelischen Ex-Premierminister Ehud Barak, sich <em>Palantir</em> anzuschauen — das Datenanalyse-Unternehmen von Peter Thiel. Barak investiert später in Epsteins Beteiligung Carbyne (Notfallkommunikation, israelische Geheimdienstverbindungen). <span class="tag tag-belegt">BELEGT</span></div>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    Das Modell ist dokumentierbar ohne Motiv-Zuschreibung: Jemand, der Zugang zu kompromittierendem Material hat, ist in einem Netzwerk aus Macht, Kapital und Institutionen keine Randerscheinung — er ist eine Funktion.
+    <cite>— Strukturelle Einordnung · dunkelfeld.report</cite>
+  </div>
+
+  <!-- OFFENE FRAGEN -->
+  <div class="open-questions">
+    <span class="oq-label">Offene Fragen</span>
+    <p><em>Wer ist der geschwärzte Absender der E-Mail, in der Sigl-Glöckner als BND-Verbindung gegenüber Epstein beschrieben wird?</em></p>
+    <p><em>Warum wurden Dokumente zu deutschen Verbindungen nachträglich vom DOJ-Server gelöscht — und auf wessen Veranlassung?</em></p>
+    <p><em>Welche der in Project Molecule geplanten Investmentstrukturen wurden nach 2020 tatsächlich aktiviert, und durch wen?</em></p>
+    <p><em>Existieren weitere Dokumente zu deutschen Staatsbediensteten in den noch nicht veröffentlichten 2,5 Millionen Seiten?</em></p>
+    <p><em>Wie erklärt die Bundesregierung, dass parlamentarische Anfragen zu Sigl-Glöckner unbeantwortet blieben?</em></p>
+  </div>
+
+  <!-- QUELLENVERZEICHNIS -->
+  <h2>Quellenverzeichnis</h2>
+
+  <div class="source-box">
+    <span class="src-label">DOJ · Primärarchiv · EFTA</span>
+    <p>Epstein Files Transparency Act — Gesamtarchiv des US-Justizministeriums</p>
+    <a href="https://www.justice.gov/epstein-files" target="_blank">https://www.justice.gov/epstein-files</a>
+  </div>
+
+  <div class="source-box">
+    <span class="src-label">Bundestag · Parlamentarische Anfrage</span>
+    <p>Vorgang 332738 — Verbindungen Sigl-Glöckner / Epstein / Bundesfinanzministerium (5. März 2026)</p>
+    <a href="https://dip.bundestag.de/vorgang/332738" target="_blank">dip.bundestag.de</a>
+  </div>
+
+  <div class="source-box">
+    <span class="src-label">Gerichtsurteil · Maxwell-Verurteilung</span>
+    <p>US District Court SDNY: United States v. Ghislaine Maxwell — 20 Jahre Haft, rechtskräftig 2022</p>
+    <a href="https://www.justice.gov/usao-sdny/pr/ghislaine-maxwell-sentenced-20-years-prison" target="_blank">justice.gov · Maxwell-Urteil</a>
+  </div>
+
+  <div class="source-box">
+    <span class="src-label">Settlement · Deutsche Bank</span>
+    <p>Deutsche Bank zahlt 75 Millionen USD wegen Kontoführung für Epstein nach Verurteilung 2008</p>
+    <a href="https://www.tagesschau.de/wirtschaft/deutsche-bank-epstein-100.html" target="_blank">tagesschau.de · Deutsche Bank Epstein</a>
+  </div>
+
+  <div class="source-box">
+    <span class="src-label">Project Molecule · DOJ EFTA · JPM-SDNY</span>
+    <p>14-seitiger JPMorgan-Partnerschaftsvorschlag für Gates Foundation, Version 13, 31.8.2011. Mit Bates-Stempel aus beiden Verfahrensproduktionen.</p>
+    <a href="https://www.justice.gov/epstein-files" target="_blank">https://www.justice.gov/epstein-files</a>
+  </div>
+
+  <div class="source-box">
+    <span class="src-label">Webarchiv · PSG-Dokumente (nach DOJ-Löschung gesichert)</span>
+    <p>Archivierte Versionen der nachträglich gelöschten DOJ-Dokumente zu Sigl-Glöckner</p>
+    <a href="https://web.archive.org" target="_blank">web.archive.org (Einzellinks in homburgshintergrund®-Sendungsbeschreibung)</a>
+  </div>
+
+  <div class="source-box">
+    <span class="src-label">Fabio De Masi · X · Primäraussage</span>
+    <p>De Masi (BSW) bestätigt Sigl-Glöckners Rolle beim deutsch-chinesischen Finanzdialog unter Scholz/Schmidt</p>
+    <a href="https://x.com/FabioDeMasi/status/2024559050256441655" target="_blank">x.com/FabioDeMasi</a>
+  </div>
+
+  <div class="source-box">
+    <span class="src-label">DOJ · Palantir/Barak-Audioaufnahme</span>
+    <p>Aufnahme 2013: Epstein empfiehlt Barak Palantir. Barak investiert später in Carbyne (Notfallkommunikation).</p>
+    <a href="https://www.justice.gov/epstein-files" target="_blank">https://www.justice.gov/epstein-files</a>
+  </div>
+
+</main>
+
+<footer>
+  <p>Alle in diesem Artikel genannten Fakten basieren auf öffentlich zugänglichen Primärquellen: DOJ-Gerichtsakten (EFTA), parlamentarischen Protokollen, rechtskräftigen Urteilen und zitierten Primäraussagen.</p>
+  <p style="margin-top:0.5rem;">Motive werden keiner Person oder Institution zugeschrieben. Schlussfolgerungen werden dem Leser überlassen.</p>
+  <p style="margin-top:1rem;color:var(--amber);">dunkelfeld.report · Strukturelle Dokumentation · 2026</p>
+</footer>
+
+</body>
+</html>

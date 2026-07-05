@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Du sollst nicht reisen | kurswechsel.blog</title>
+  <style>
+    :root {
+      --navy: #1A3A6B;
+      --gold: #F0A500;
+      --white: #FFFFFF;
+      --offwhite: #F8F6F1;
+      --text: #1a1a2e;
+      --mid: #4a5568;
+    }
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--offwhite);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      line-height: 1.75;
+    }
+    .header-bar {
+      background: var(--navy);
+      color: var(--white);
+      padding: 10px 0;
+      text-align: center;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .article-hero {
+      background: var(--navy);
+      color: var(--white);
+      padding: 60px 20px 50px;
+      text-align: center;
+    }
+    .article-hero .category {
+      color: var(--gold);
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .article-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      margin: 0 0 20px;
+      line-height: 1.15;
+      max-width: 780px;
+      margin: 0 auto 20px;
+    }
+    .article-hero .deck {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.82);
+      max-width: 640px;
+      margin: 0 auto 30px;
+      font-style: italic;
+    }
+    .meta {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.05em;
+    }
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 50px 24px 80px;
+    }
+    .lead {
+      font-size: 1.22rem;
+      color: var(--navy);
+      font-weight: 600;
+      margin-bottom: 28px;
+      border-left: 4px solid var(--gold);
+      padding-left: 20px;
+    }
+    h2 {
+      font-size: 1.55rem;
+      color: var(--navy);
+      margin-top: 52px;
+      margin-bottom: 14px;
+      font-weight: 800;
+    }
+    h3 {
+      font-size: 1.15rem;
+      color: var(--navy);
+      margin-top: 36px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    p {
+      margin-bottom: 1.3em;
+      font-size: 1.05rem;
+      color: #2d3748;
+    }
+    .pull-quote {
+      background: var(--navy);
+      color: var(--white);
+      border-left: 5px solid var(--gold);
+      padding: 28px 32px;
+      margin: 44px 0;
+      font-size: 1.25rem;
+      font-style: italic;
+      font-weight: 600;
+      border-radius: 2px;
+    }
+    .fact-box {
+      background: #EBF2FF;
+      border: 1px solid #b8d0f5;
+      border-left: 5px solid var(--navy);
+      padding: 24px 28px;
+      margin: 36px 0;
+      border-radius: 2px;
+    }
+    .fact-box h4 {
+      color: var(--navy);
+      margin: 0 0 12px;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .fact-box ul {
+      margin: 0;
+      padding-left: 20px;
+      color: #2d3748;
+    }
+    .fact-box ul li {
+      margin-bottom: 7px;
+      font-size: 0.97rem;
+    }
+    .danger-box {
+      background: #fff3cd;
+      border: 1px solid #f0a500;
+      border-left: 5px solid #c07800;
+      padding: 24px 28px;
+      margin: 36px 0;
+      border-radius: 2px;
+    }
+    .danger-box h4 {
+      color: #7a4f00;
+      margin: 0 0 10px;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .aho-close {
+      background: var(--navy);
+      color: var(--white);
+      padding: 44px 36px;
+      margin-top: 60px;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .aho-close .aho-label {
+      color: var(--gold);
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .aho-close p {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.08rem;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .tags {
+      margin-top: 48px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tag {
+      background: var(--navy);
+      color: var(--white);
+      font-size: 0.72rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .sources {
+      margin-top: 50px;
+      border-top: 1px solid #ddd;
+      padding-top: 28px;
+      font-size: 0.82rem;
+      color: var(--mid);
+    }
+    .sources h4 {
+      color: var(--navy);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .sources ul {
+      padding-left: 18px;
+    }
+    .sources li {
+      margin-bottom: 6px;
+    }
+    a { color: var(--navy); }
+
+    /* BILDBRIEFING — nur für interne Verwendung, nicht im Ghost-Draft sichtbar */
+    .briefing-note {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="header-bar">Kurswechsel.blog — Diagnose. Wandel. Zukunft.</div>
+
+<div class="article-hero">
+  <div class="category">Gesellschaft · Freiheit · Kontrolle</div>
+  <h1>Du sollst nicht reisen</h1>
+  <div class="deck">Gebühren, Biometrie, Verbote, Krisengebiete: Wie das Reisen systematisch zum Privileg der Gehorsamen wird.</div>
+  <div class="meta">kurswechsel.blog · Juni 2026 · Lesezeit: ca. 6 Minuten</div>
+</div>
+
+<div class="article-body">
+
+  <p class="lead">Das zehnte Gebot lautet nicht so. Aber irgendwie verhält sich die Welt gerade so, als wäre es ergänzt worden. Wer reisen will, zahlt mehr, wartet länger, meldet sich vorher digital an — und wird biometrisch erfasst. Willkommen in der neuen Reisefreiheit.</p>
+
+  <p>Reisen galt einmal als Inbegriff von Freiheit. Rucksack. Zug. Passabstempel. Fremde Städte, fremde Gerüche, das Gefühl, einfach woanders sein zu können. Dieses Bild gehört zunehmend der Vergangenheit an — nicht weil die Welt unsicherer geworden wäre, sondern weil der Zugang zu ihr neu geregelt, verteuert und überwacht wird.</p>
+
+  <p>Die Signale kommen von überall und gleichzeitig. Sie kommen aus Brüssel, aus Barcelona, aus Venedig und Washington. Und wer sie einzeln betrachtet, sieht Sachzwänge. Wer sie zusammen liest, sieht ein Muster.</p>
+
+  <h2>Die Gebühren-Welle: Reisen als Luxusgut</h2>
+
+  <p>Venedig hat Anfang 2024 als erste Großstadt der Welt einen Eintrittspreis für Tagestouristen eingeführt. Fünf Euro, zehn Euro bei kurzfristiger Buchung. Klingt nach kleiner Kurtaxe. Ist aber Grundsatz: Eine Stadt, die jahrtausendelang öffentlicher Raum war, wird zum ticketpflichtigen Erlebnis.</p>
+
+  <p>2026 gilt die Gebühr bereits an 60 Tagen im Jahr — 2024 waren es noch 29. Die Zahl verdoppelt sich fast jährlich. Und das soll erst der Anfang sein.</p>
+
+  <div class="fact-box">
+    <h4>Neue Reisegebühren 2026 — ein Überblick</h4>
+    <ul>
+      <li><strong>Venedig:</strong> 5–10 € Tagestouristen-Eintritt, 60 Tage im Jahr</li>
+      <li><strong>Barcelona:</strong> 10–15 € pro Nacht Touristensteuer (ab April 2026), Ferienwohnungen 12,50 € — geplantes Komplettverbot für Kurzzeitmieten bis 2028</li>
+      <li><strong>Griechenland:</strong> Kreuzfahrtgebühr seit Juli 2025</li>
+      <li><strong>Norwegen:</strong> Neue 3%-Abgabe auf Übernachtungen (kommunal)</li>
+      <li><strong>Teneriffa:</strong> Öko-Steuer für den Teide-Nationalpark, bis 25 € pro Person</li>
+      <li><strong>Österreich:</strong> Jahresvignette 106,80 € (+2,9%), Brenner-Mehrfachvignette 75 €</li>
+      <li><strong>Deutschland:</strong> CO₂-Preiserhöhung: +4 Cent pro Liter Benzin/Diesel</li>
+    </ul>
+  </div>
+
+  <p>Der Rhetorik nach geht es um "Qualitätstourismus" — eine charmante Umschreibung dafür, dass Reisen für Wohlhabendere reserviert werden soll. Wer 15 Euro pro Nacht in Barcelona locker zahlt, ist offenbar der richtige Tourist. Wer's dreimal überlegt, ist das Problem.</p>
+
+  <div class="pull-quote">
+    „An erster Stelle steht das Regulieren, Begrenzen und Verbieten — bis hin zur Verbannung von Rollkoffern aus Innenstädten."
+    <br><small style="font-size:0.75rem; font-weight:400; opacity:0.75">— Preußische Allgemeine Zeitung, April 2026</small>
+  </div>
+
+  <p>Rollkoffer verboten. Das klingt absurd, ist aber Realität in einigen historischen Altstädten. Wer mit falschem Gepäck reist, zahlt Buße. Wer zur falschen Zeit am falschen Ort flaniert, stört. Und das Lustige: Die Orte, die sich über zu viele Touristen beklagen, leben zu mindestens 50 Prozent vom Tourismus — wie die Balearen. Die Gratwanderung heißt: Nehmen, aber begrenzen. Verdienen, aber meckern.</p>
+
+  <h2>Die digitale Grenze: Du wirst registriert</h2>
+
+  <p>Seit dem 10. April 2026 ist das europäische Einreise-/Ausreise-System (EES) vollständig in Betrieb. An allen Schengen-Außengrenzen werden Nicht-EU-Bürger jetzt digital erfasst — nicht mehr mit Stempelfarbe, sondern mit Gesichtsscan und Fingerabdruck.</p>
+
+  <p>Das EES ist das Ende einer Ära. Der Passabstempel war analog, menschlich, manchmal chaotisch. Das neue System ist automatisiert, lückenlos und gnadenlos präzise: Datum und Uhrzeit jedes Ein- und Ausreisevorgangs, biometrische Daten, Reisedokument — alles gespeichert, alles vernetzt, bis zu fünf Jahre lang.</p>
+
+  <div class="danger-box">
+    <h4>Was das EES bedeutet</h4>
+    <p style="margin:0; font-size:0.97rem;">Wer als Nicht-EU-Bürger die erlaubte Aufenthaltsdauer auch nur um einen Tag überschreitet, wird automatisch erfasst — und riskiert langfristige Einreiseverbote. Das System ist nicht auf menschliches Ermessen ausgelegt. Es zählt. Automatisch. Ohne Ausnahme.</p>
+  </div>
+
+  <p>Das ist erst der Anfang. Ende 2026 soll ETIAS folgen: das Europäische Reiseinformations- und -genehmigungssystem. Wer aus einem der 59 visumfreien Drittstaaten — darunter USA, Kanada, Australien, Japan — nach Europa reisen will, braucht dann eine vorab beantragte, kostenpflichtige digitale Genehmigung. Ähnlich wie das amerikanische ESTA. Ähnlich — aber europäisch.</p>
+
+  <p>Die Daten, die ETIAS erhebt, gehen weit über den Reisepass hinaus: Bildungsabschluss, Beruf, Vorstrafen, frühere Einreiseablehnungen, Gesundheitsfragen. Alles wird automatisch mit Europol und Interpol abgeglichen. Wer einen Treffer hat — oder wessen Antworten Fragen aufwerfen —, wartet bis zu vier Wochen auf Entscheidung.</p>
+
+  <div class="pull-quote">
+    "Das EES ist weit mehr als eine digitale Datenbank; es ist ein automatisiertes Überwachungssystem, das die manuelle Passkontrolle weitgehend ersetzt."
+    <br><small style="font-size:0.75rem; font-weight:400; opacity:0.75">— visaguard.berlin, April 2026</small>
+  </div>
+
+  <h2>Die Krisengebiete: Ein Drittel der Welt gesperrt</h2>
+
+  <p>Geopolitik hat Reisen schon immer beeinflusst. Aber 2026 ist das Muster besonders dicht. Das Auswärtige Amt hat im Mai 2026 die Sicherheitshinweise für 14 Länder aktualisiert — darunter Dubai, Katar, Bahrain und Kuwait. Die Golfregion, jahrelang der meistgenutzte Umsteigehub der Welt, ist zur Risikozone geworden.</p>
+
+  <p>Der Nahost-Konflikt, der Ende Februar 2026 erneut eskalierte, hat Lufträume gesperrt, Kreuzfahrten abgesagt und Hunderttausende Urlauber in Planungschaos gestürzt. Wer über Dubai nach Asien wollte, musste umdisponieren — oft ohne automatisches Stornorecht, weil das Auswärtige Amt "dringendes Abraten" ausspricht, aber keine formelle Reisewarnung.</p>
+
+  <div class="fact-box">
+    <h4>Einreisebeschränkungen weltweit — Auswahl 2026</h4>
+    <ul>
+      <li><strong>USA:</strong> Einreiseverbote für Bürger aus 39 Staaten (seit Januar 2026)</li>
+      <li><strong>UK:</strong> Elektronische Reisegenehmigung (ETA) seit April 2025 Pflicht</li>
+      <li><strong>Tunesien:</strong> Nur noch Reisepass anerkannt, kein Personalausweis</li>
+      <li><strong>Namibia:</strong> Verpflichtendes e-Visum, ~80 €</li>
+      <li><strong>China:</strong> Visumfreiheit für Kurzaufenthalte Ende 2025 ausgelaufen</li>
+      <li><strong>VAE, Katar, Bahrain, Kuwait:</strong> Risikostufe "hoch" (orange) — Nahost-Eskalation</li>
+      <li><strong>Venezuela, Iran:</strong> Reisewarnung Stufe 4 (mehrere Staaten)</li>
+    </ul>
+  </div>
+
+  <p>In den USA hat die Trump-Regierung seit Januar 2026 Einreiseverbote oder starke Restriktionen für Bürger aus rund 39 Staaten eingeführt. Für europäische Reisende mit Doppelstaatsbürgerschaften kann das zur Falle werden — auch wenn man eigentlich "nur" touristische Absichten hat.</p>
+
+  <h2>Das Muster hinter den Einzelfällen</h2>
+
+  <p>Jede dieser Maßnahmen hat eine plausible Einzelerklärung. Venedigs Eintrittsgebühr soll die Altstadt schützen. Das EES soll irreguläre Migration bekämpfen. Barcelonas Steuererhöhung soll die Wohnungsnot lindern. US-Einreisebeschränkungen sollen die "nationale Sicherheit" gewährleisten.</p>
+
+  <p>Und ja: Massentourismus hat echte Schäden angerichtet. Ja: Irreguläre Migration ist ein reales politisches Problem. Ja: Wohnraum in Touristenstädten wird knapp.</p>
+
+  <p>Aber die Antwort auf diese Probleme folgt in auffälliger Regelmäßigkeit dem gleichen Muster: mehr Registrierung, mehr Gebühren, mehr Kontrolle, mehr Daten. Und wer kontrolliert wird, wer Daten hinterlässt, wer sich vorab genehmigen lassen muss — der ist nicht mehr frei. Der ist geduldet.</p>
+
+  <div class="pull-quote">
+    Reisen war einmal ein Recht. Es wird gerade zum Privileg umgebaut — für jene, die zahlen können, sich registrieren lassen und keine unbequemen Antworten auf Sicherheitsfragen haben.
+  </div>
+
+  <p>Die Weltorganisation für Tourismus der Vereinten Nationen verzeichnete 2025 anderthalb Milliarden Touristinnen und Touristen — ein Rekord. Und gleichzeitig wurden noch nie so viele Reisende kontrolliert, registriert, biometrisch erfasst, mit Gebühren belegt und mit Warnungen beschallt.</p>
+
+  <p>Das ist kein Widerspruch. Es ist das Geschäftsmodell.</p>
+
+  <h2>Was das bedeutet</h2>
+
+  <p>Es wäre billig, das als Verschwörung zu lesen. Niemand hat in einem Hinterzimmer beschlossen: "Wir schaffen die Reisefreiheit ab." Aber viele Akteure — Nationalstaaten, supranationale Institutionen, kommunale Behörden, Sicherheitsbehörden — lösen ihre jeweiligen Probleme auf eine Art, die in Summe dasselbe Ergebnis hat: Wer reist, muss sich rechtfertigen. Wer sich nicht rechtfertigt, kommt nicht rein.</p>
+
+  <p>Die Digitalisierung macht das möglich. Das EES wäre vor zwanzig Jahren undenkbar gewesen — nicht technisch, sondern politisch. Heute wird es als selbstverständliche Modernisierung verkauft. Der EU-Kommissar für Migration nennt es den "digitalen Rückgrat" des europäischen Grenzsystems.</p>
+
+  <p>Rückgrat. Ein starkes Wort für eine Infrastruktur, die jeden Schritt über eine Staatsgrenze protokolliert.</p>
+
+  <div class="aho-close">
+    <div class="aho-label">Kurswechsel · Diagnose. Wandel. Zukunft.</div>
+    <p>Freiheit ist nicht nur das Recht, etwas zu sagen. Es ist auch das Recht, einfach woanders hinzugehen — ohne Genehmigung, ohne Gebühr, ohne Fingerabdruck. Wer das für selbstverständlich hält, sollte anfangen, genauer hinzusehen. Wer es für verlierbar hält — der hat recht.</p>
+  </div>
+
+  <div class="tags">
+    <span class="tag">Reisefreiheit</span>
+    <span class="tag">Überwachung</span>
+    <span class="tag">EES</span>
+    <span class="tag">ETIAS</span>
+    <span class="tag">Tourismus</span>
+    <span class="tag">Gebühren</span>
+    <span class="tag">Bürgerrechte</span>
+    <span class="tag">Digitale Kontrolle</span>
+    <span class="tag">Europa</span>
+    <span class="tag">Kurswechsel</span>
+  </div>
+
+  <div class="sources">
+    <h4>Quellen &amp; Belege</h4>
+    <ul>
+      <li>Auswärtiges Amt: Reise- und Sicherheitshinweise Mai 2026, 14 Länder (infranken.de, 16.5.2026)</li>
+      <li>EU-Kommission: EES vollständig in Betrieb seit 10. April 2026 (germany.representation.ec.europa.eu)</li>
+      <li>ETIAS: Start Q4 2026 geplant (bfdi.bund.de, europarl.europa.eu)</li>
+      <li>Venedig: Tagestouristen-Eintritt, 60 Tage 2026 (travelbook.de, hallo-venedig.com)</li>
+      <li>Barcelona: Touristensteuer bis 15 €/Nacht ab April 2026 (t-online.de, euronews.com)</li>
+      <li>Preußische Allgemeine Zeitung: "Overtourism"-Analyse, April 2026 (paz.de)</li>
+      <li>A3M Risk Map 2026: Neubewertung Golfstaaten (stuttgarter-zeitung.de, März 2026)</li>
+      <li>reisebuch.de: Änderungen beim Reisen 2026 (Dezember 2025)</li>
+      <li>tripplanner.at: Spannungen und Reiseeinschränkungen, Januar 2026</li>
+      <li>UNWTO: 1,5 Milliarden Touristen 2025 (paz.de)</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ============================================================
+  BILDBRIEFING (intern, nicht im Live-Artikel)
+  
+  TITELBILD / THUMBNAIL:
+  
+  Motiv:    Passagier von hinten an einem Flughafengate — 
+            großes Fenster, Flugzeug draußen, Silhouette allein.
+            Alternativ: Nahaufnahme einer Hand, die einen Pass 
+            über einen Biometrie-Scanner hält (blau-kaltes Licht).
+  
+  Farben:   Navy #1A3A6B als Basis, Gold #F0A500 als Akzent,
+            kühle Blautöne für die Szenerie (Flughafen/Grenze)
+  
+  Text:     Groß: "DU SOLLST NICHT REISEN"
+            Klein darunter: "Gebühren. Biometrie. Verbote."
+  
+  Stimmung: Bedrückend, aber sachlich — kein Hysterie-Schreier.
+            Eher wie ein nüchterner Weckruf.
+            Keine fröhlichen Urlaubsfotos.
+  
+  Tools:    Canva (kostenlos, Vorlage "Blog Header 1200x630px")
+            oder Midjourney Prompt:
+            "airport gate silhouette traveler looking out window,
+            dark navy blue cinematic lighting, documentary style,
+            moody atmosphere, no people visible, lone figure --ar 2:1"
+  ============================================================ -->
+
+</body>
+</html>

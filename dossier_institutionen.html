@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auf wessen Schultern stehen wir? — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --bg2: #111113;
+    --bg3: #1a1a1d;
+    --border: #2a2a2e;
+    --amber: #e8c547;
+    --amber-dim: #a88a2a;
+    --text: #d4d4d8;
+    --text-dim: #71717a;
+    --text-muted: #52525b;
+    --green: #4a7c4e;
+    --orange: #8a5c1e;
+    --red: #7c2d2d;
+    --white: #f4f4f5;
+    --max: 760px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.05rem;
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .site-logo {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  .site-logo span { color: var(--amber); }
+  .site-tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.5rem;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 5rem 2rem 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-eyebrow {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: normal;
+    line-height: 1.2;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+  .hero-meta-item span { color: var(--text-dim); }
+
+  /* ── LEITFRAGE ── */
+  .leitfrage {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    border-left: 3px solid var(--amber);
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+  .leitfrage p {
+    font-size: 1.2rem;
+    color: var(--white);
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .content {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .section-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    color: var(--amber-dim);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .section h2 {
+    font-family: Georgia, serif;
+    font-size: 1.55rem;
+    font-weight: normal;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+  }
+  .section h3 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin: 2rem 0 0.8rem;
+  }
+
+  p { margin-bottom: 1rem; color: var(--text); }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── BLOCKQUOTE ── */
+  blockquote {
+    border-left: 3px solid var(--amber);
+    margin: 1.5rem 0;
+    padding: 0.8rem 0 0.8rem 1.5rem;
+  }
+  blockquote p {
+    font-style: italic;
+    color: var(--white);
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+  blockquote cite {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    font-style: normal;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── SOURCE TAGS ── */
+  .source {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    margin: 0.3rem 0 0.8rem;
+    padding-left: 0.8rem;
+    border-left: 1px solid var(--border);
+    letter-spacing: 0.03em;
+  }
+  .source::before { content: "→ "; color: var(--amber-dim); }
+
+  /* ── EVIDENCE TAGS ── */
+  .tag-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin: 0.4rem 0 0.2rem;
+    flex-wrap: wrap;
+  }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    padding: 0.15rem 0.5rem;
+    border: 1px solid;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .tag-belegt { color: #5a9e60; border-color: #3a6e40; background: rgba(74,124,78,0.08); }
+  .tag-extrapolation { color: #c48a30; border-color: #8a5c1e; background: rgba(138,92,30,0.08); }
+  .tag-nichtbelegt { color: #c45050; border-color: #7c2d2d; background: rgba(124,45,45,0.08); }
+  .tag-text {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    line-height: 1.4;
+    padding-top: 0.1rem;
+  }
+
+  /* ── TABLES ── */
+  .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    font-family: 'Courier New', monospace;
+  }
+  thead th {
+    background: var(--bg3);
+    color: var(--amber);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 0.55rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.5;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+  }
+  tbody tr:nth-child(even) td { background: var(--bg2); }
+  tbody td.year { color: var(--amber-dim); white-space: nowrap; }
+  tbody td.name { color: var(--white); }
+  tbody td.status-belegt { color: #5a9e60; font-size: 0.6rem; letter-spacing: 0.08em; }
+  tbody td.status-extra { color: #c48a30; font-size: 0.6rem; letter-spacing: 0.08em; }
+
+  /* ── PERSON CARDS ── */
+  .person-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber-dim);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .person-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .person-name {
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    color: var(--white);
+  }
+  .person-role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    color: var(--amber);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 0.2rem;
+  }
+
+  /* ── DIVIDER ── */
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 3rem 0;
+  }
+
+  /* ── OPEN QUESTIONS ── */
+  .questions-block {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    margin: 2rem 0;
+  }
+  .questions-block h4 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--amber-dim);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .questions-block li {
+    color: var(--text);
+    margin-bottom: 0.7rem;
+    padding-left: 1.2rem;
+    list-style: none;
+    position: relative;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .questions-block li::before {
+    content: "?";
+    position: absolute;
+    left: 0;
+    color: var(--amber-dim);
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    margin-top: 4rem;
+  }
+  footer p {
+    font-family: 'Courier New', monospace;
+    font-size: 0.62rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    line-height: 1.8;
+  }
+  footer p span { color: var(--amber-dim); }
+
+  /* ── NAV TOC ── */
+  .toc {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    margin: 2rem 0 3rem;
+  }
+  .toc-title {
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .toc ol {
+    list-style: none;
+    counter-reset: toc-counter;
+  }
+  .toc li {
+    counter-increment: toc-counter;
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+  }
+  .toc li::before {
+    content: counter(toc-counter, upper-roman);
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    color: var(--amber-dim);
+    min-width: 1.5rem;
+    text-align: right;
+  }
+  .toc a {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+  }
+  .toc a:hover { color: var(--amber); }
+
+  @media (max-width: 600px) {
+    .site-header { padding: 1rem; }
+    .hero { padding: 3rem 1rem 2rem; }
+    .content { padding: 0 1rem 3rem; }
+    .leitfrage { padding: 2rem 1rem; }
+    .hero-meta { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-logo"><span>dunkelfeld</span>.report</div>
+  <div class="site-tag">DOSSIER</div>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">Dossier · Institutionen</div>
+  <h1>Auf wessen Schultern stehen wir?</h1>
+  <p class="hero-sub">Wie aus Behördenversagen Vertrauensinstitutionen wurden — und was die Geschichte darüber sagt. RKI · PEI · Leopoldina · BIÖG · 1891–2025</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">Zeitraum <span>1891–2025</span></div>
+    <div class="hero-meta-item">Quellen <span>Primär</span></div>
+    <div class="hero-meta-item">Stand <span>Juni 2026</span></div>
+    <div class="hero-meta-item">Format <span>Dossier</span></div>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="leitfrage">
+    <p>Wann wurde aus einer Behörde eine Institution des Vertrauens — und warum sollte man das hinterfragen?</p>
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">Inhalt</div>
+    <ol>
+      <li><a href="#gruender">Die Gründer</a></li>
+      <li><a href="#rki-ns">RKI im Nationalsozialismus</a></li>
+      <li><a href="#versagen">Aus dem Versagen geboren</a></li>
+      <li><a href="#muster">Wiederkehrende Muster</a></li>
+      <li><a href="#personen">Ausgewählte Personen</a></li>
+      <li><a href="#fuehrung">Leopoldina-Führung: Chronologie</a></li>
+      <li><a href="#bmi">Das BMI-Panikpapier</a></li>
+      <li><a href="#biog">Lauterbachs Erbe: BIÖG</a></li>
+      <li><a href="#chronologie">Gesamtchronologie</a></li>
+      <li><a href="#fragen">Offene Fragen</a></li>
+    </ol>
+  </div>
+
+  <!-- ═══════════════════════════════ I. GRÜNDER ═══════════════════════════════ -->
+  <div class="section" id="gruender">
+    <div class="section-label">I</div>
+    <h2>Die Gründer</h2>
+    <p>Institutionen tragen Namen. Namen tragen Geschichte.</p>
+
+    <h3>Robert Koch (1843–1910) — Namensgeber RKI</h3>
+    <p>Robert Koch gilt als Begründer der modernen Bakteriologie. Er identifizierte den Erreger der Tuberkulose (1882), des Milzbrands und der Cholera. 1905 erhielt er den Nobelpreis für Medizin. Das sind unbestrittene wissenschaftliche Leistungen.</p>
+
+    <p>Ab 1905 unternahm Koch im Auftrag des Deutschen Reichs Forschungsreisen nach Ostafrika zur Bekämpfung der Schlafkrankheit. Was dort geschah, hat das RKI selbst als „das dunkelste Kapitel seiner Laufbahn" bezeichnet.</p>
+
+    <blockquote>
+      <p>Koch hat Verbrechen in Auftrag gegeben, für die er sich nie rechtfertigen musste.</p>
+      <cite>Philipp Osten, Leiter des Instituts für Geschichte und Ethik der Medizin Hamburg — Tagesspiegel, 2020</cite>
+    </blockquote>
+
+    <p>Koch ließ Patienten auf den Sese-Inseln im Viktoriasee gegen ihren Willen mit dem hochgiftigen Mittel Atoxyl behandeln. Viele der inhaftierten Patienten erblindeten, jeder zehnte starb. Koch selbst beschrieb diese Zeit als „glückliche Tage" und „ungestörte Forschungsbedingungen".</p>
+
+    <p>Der politische Auftrag ist dokumentiert: Koch sollte die Arbeitskraft der einheimischen Bevölkerung für die koloniale Wirtschaft sicherstellen. Koch forderte laut historischen Quellen die Einrichtung von „Concentration Camps, wie sie die Engländer nennen".</p>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">Menschenversuche mit Atoxyl in Ostafrika, Erblindungen und Todesfälle</span>
+    </div>
+    <div class="source">RKI-Eigenaussage „dunkelste Kapitel"; Historiker Philipp Osten und Jürgen Zimmerer, Tagesspiegel 09.08.2020; Reichsarchiv R 1001/5889</div>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">Kein informiertes Einverständnis der Patienten — koloniale Machthierarchie dokumentiert</span>
+    </div>
+    <div class="source">Historischer Augenblick, Oktober 2024; Akademische Quellenforschung zu Kochs Ostafrika-Reisen</div>
+
+    <p>Seit 2020 gibt es Forderungen von Historikern nach einer Umbenennung des Instituts. Das RKI trägt den Namen bis heute.</p>
+
+    <h3>Paul Ehrlich (1854–1915) — Namensgeber PEI</h3>
+    <p>Paul Ehrlich erhielt 1908 den Nobelpreis für Medizin. Mit der Arsenverbindung Salvarsan entwickelte er das erste gezielte Chemotherapeutikum — das erste wirksame Mittel gegen Syphilis und Grundlage aller modernen Antibiotika.</p>
+
+    <p>Die klinische Prüfung von Salvarsan umfasste nach zeitgenössischen Quellen Versuche mit den Insassen von Irrenanstalten. Ein informiertes Einverständnis existierte nicht.</p>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">Klinische Tests mit Insassen psychiatrischer Anstalten dokumentiert</span>
+    </div>
+    <div class="source">Medizinhistorische Quellen; Hoechst-Firmengeschichte; Apotheken-Umschau 2024</div>
+
+    <p>Ehrlich war Jude. In der NS-Zeit wurde sein Werk unterdrückt, sein Name aus deutschen Publikationen getilgt. Das Paul-Ehrlich-Institut trägt seinen Namen seit 1947 — als bewusste Rehabilitierung nach dem Nationalsozialismus.</p>
+
+    <h3>Die Leopoldina (gegr. 1652) — 370 Jahre, drei Regime</h3>
+    <p>Gegründet 1652 in Schweinfurt — älteste dauerhaft existierende Wissenschaftsakademie der Welt. Seit 2008 „Nationale Akademie der Wissenschaften". Bundesfinanziert (80% Bund, 20% Sachsen-Anhalt).</p>
+
+    <p>Die Frage, ob die Leopoldina in ihrer 370-jährigen Geschichte „sauber" war, lässt sich mit einem Wort beantworten: nein. Die Institution überlebte das Heilige Römische Reich, das Kaiserreich, die Weimarer Republik, den Nationalsozialismus, die DDR und die Bundesrepublik. Jede Epoche hinterließ Spuren.</p>
+
+    <h3>Leopoldina-Präsident Emil Abderhalden: Wissenschaft, NS und ein Jahrzehnte-Betrug</h3>
+    <p>Emil Abderhalden (1877–1950) war von 1932 bis 1950 Präsident der Leopoldina — der am längsten amtierende Präsident der Akademiegeschichte. Sein Name steht für zwei parallele Skandale.</p>
+
+    <p><strong style="color:var(--white)">Die Abwehrfermente:</strong> Ab 1909 behauptete Abderhalden, spezifische Enzyme nachgewiesen zu haben, die bei immunologischen Reaktionen entstehen. Die „Abderhaldensche Reaktion" wurde jahrzehntelang in der klinischen Diagnostik angewandt — für Schwangerschaftstests, für die Diagnose psychischer Erkrankungen, für die Unterscheidung zwischen „arischen" und „nichtarischen" Blutproben im Dritten Reich.</p>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">Abderhaldens Theorie war bereits in den 1910er Jahren international nicht reproduzierbar — in Deutschland hielt sie sich bis nach seinem Tod</span>
+    </div>
+    <div class="source">Wikipedia: Emil Abderhalden; Fattahi: „Die Abwehrfermente: Ein langer Irrweg oder wissenschaftlicher Betrug?" (Diss. 2006)</div>
+
+    <p>Der Zeitzeuge Otto Westphal beschrieb Abderhaldens Werk gegenüber der Historikerin Ute Deichmann: „The whole Abwehrfermente story was a fraud from beginning to end." Ob vorsätzlicher Betrug oder wissenschaftliche Selbsttäuschung ist bis heute Gegenstand der Forschung. Eindeutig belegt ist: Wer Abderhaldens Ergebnisse nicht reproduzieren konnte, riskierte seine Karriere.</p>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">Leonor Michaelis musste Deutschland verlassen nachdem er Abderhaldens Schwangerschaftstest als nicht reproduzierbar beschrieb — 1922</span>
+    </div>
+    <div class="source">Wikipedia: Emil Abderhalden; HandWiki: Biography Emil Abderhalden</div>
+
+    <p><strong style="color:var(--white)">Die NS-Verbindung:</strong> Abderhaldens Theorie wurde von Otmar von Verschuer und Josef Mengele für Menschenversuche genutzt — um einen Bluttest zur Unterscheidung von „Ariern" und „Nicht-Ariern" zu entwickeln. Abderhalden selbst lieferte 1940 Blutproben von Zwillingen an Verschuer. Gleichzeitig war er als Leopoldina-Präsident für die Streichung jüdischer Mitglieder mitverantwortlich.</p>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">Abderhaldens Reaktion wurde für Rassendiagnostik durch Mengele/Verschuer eingesetzt</span>
+    </div>
+    <div class="source">HandWiki: Biography Emil Abderhalden; Wikipedia: Emil Abderhalden</div>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">Abderhalden lieferte 1940 Zwillingsblut an Verschuer für „Abwehrfermente"-Versuche</span>
+    </div>
+    <div class="source">Wikipedia: Emil Abderhalden (Englisch)</div>
+
+    <h3>NS-Zeit: Streichungen und Ausmaß</h3>
+    <p>Im Oktober/November 1938 erging ein Erlass des Reichserziehungsministers zur konsequenten Anwendung der Rassegesetze. In der Leopoldina erfolgte mehr als die Hälfte der Streichungen jüdischer Mitglieder am 30. November 1938 — ohne diese selbst zu verständigen.</p>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">Insgesamt 94 Mitglieder aus politischen oder rassischen Gründen ausgeschlossen</span>
+    </div>
+    <div class="source">Wikipedia: Deutsche Akademie der Naturforscher Leopoldina; neueste Forschungen laut Wikipedia-Artikel</div>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">Elf Leopoldina-Mitglieder verloren durch NS-Gewaltherrschaft ihr Leben — fast alle jüdischer Herkunft</span>
+    </div>
+    <div class="source">Wikipedia: Deutsche Akademie der Naturforscher Leopoldina</div>
+
+    <h3>DDR: Überleben durch Anpassung</h3>
+    <p>Die Leopoldina überlebte auch die DDR — als einzige gesamtdeutsche Wissenschaftsakademie mit Sitz in der SBZ/DDR. Wie das gelang, ist Teil der unabhängigen Studie, die die Leopoldina 2010 selbst in Auftrag gab.</p>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">Leopoldina-Studie untersucht Geschichte in Weimarer Republik, NS, SBZ und früher DDR — finanziert durch Krupp-Stiftung, 2016 veröffentlicht</span>
+    </div>
+    <div class="source">Leopoldina.org, Pressemitteilung 29.02.2016; Rüdiger vom Bruch, Sibylle Gerstengarbe, Jens Thiel: „Die Leopoldina" (be.bra Verlag, 2016)</div>
+
+    <p>Die Studie untersuchte, wie die Akademie durch die Systembrüche des 20. Jahrhunderts navigierte — ohne die Forschungsergebnisse hier vollständig wiedergeben zu können.</p>
+
+    <h3>Aufarbeitung: Eigen-Initiative mit Grenzen</h3>
+    <p>Die Leopoldina hat ihre NS-Geschichte mehrfach in Auftrag gegeben aufzuarbeiten — 1991 erste Abbitte durch Präsident Parthier, 2009 Gedenkstele, 2021 laufendes Forschungsprojekt. Das Aufarbeitungsprojekt 2021 ist noch nicht abgeschlossen.</p>
+
+    <div class="tag-row">
+      <span class="tag tag-extrapolation">EXTRAPOLATION</span>
+      <span class="tag-text">Vollständiges Ausmaß der Verstrickung einzelner Mitglieder — laufende Forschung, nicht abgeschlossen</span>
+    </div>
+    <div class="source">Leopoldina.org: Projekt „Biographische Studien im Nationalsozialismus" (VolkswagenStiftung, seit 2021)</div>
+  </div>
+
+  <!-- RKI NS-AUFARBEITUNG als eigener Block -->
+  <div class="section" id="rki-ns">
+    <div class="section-label">I b</div>
+    <h2>RKI im Nationalsozialismus: Eigene Aufarbeitung</h2>
+    <p>Das RKI ist die einzige der betrachteten Institutionen, die ihre NS-Geschichte aktiv und extern aufarbeiten ließ — finanziert aus eigenen Mitteln, durchgeführt von unabhängigen Historikern der Charité Berlin.</p>
+
+    <h3>Das Forschungsprojekt 2006–2008</h3>
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">2006–2008: Charité-Historiker untersuchten RKI-Geschichte im NS im Auftrag des RKI selbst</span>
+    </div>
+    <div class="source">erinnerungszeichen-rki.de/en/the-story/; Springer NTM Zeitschrift für Geschichte der Wissenschaften 2012</div>
+
+    <p>Was die Forschung ergab, formulierte das RKI selbst:</p>
+
+    <blockquote>
+      <p>Vor Projektbeginn war bekannt, dass einzelne RKI-Wissenschaftler an inhumanen Menschenversuchen in Konzentrationslagern und psychiatrischen Einrichtungen beteiligt waren. Durch das Forschungsprojekt kam eine Reihe neuer Namen und Taten ans Licht. Deutlich wurde vor allem die damalige fast vollständige Durchdringung des RKI mit der NS-Ideologie — forschungsthematisch und personell.</p>
+      <cite>RKI-Broschüre „Erinnerungszeichen", erinnerungszeichen-rki.de (Primärquelle)</cite>
+    </blockquote>
+
+    <h3>RKI-Präsident Gildemeister: Treibende Kraft bei KZ-Versuchen</h3>
+    <p>Die schwerwiegendste Einzelfeststellung betrifft den damaligen Institutsleiter direkt:</p>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">RKI-Präsident Eugen Gildemeister stimmte für Infektionsversuche mit einkalkuliertem tödlichem Ausgang — und kann als treibende Kraft bezeichnet werden</span>
+    </div>
+    <div class="source">RKI-Broschüre „Erinnerungszeichen" (Primärquelle, rki.de)</div>
+
+    <blockquote>
+      <p>Eugen Gildemeister, der damalige Präsident des Robert Koch-Instituts, gehörte zu den Entscheidungsträgern und kann durchaus als treibende Kraft der Experimente bezeichnet werden. Gildemeister stimmte nicht nur für die Infektionsversuche mit einkalkuliertem tödlichem Ausgang, sondern stellte auch das zur künstlichen Infektion notwendige Erregermaterial zur Verfügung.</p>
+      <cite>RKI-Broschüre „Erinnerungszeichen" — Eigenaussage des RKI (Primärquelle)</cite>
+    </blockquote>
+
+    <p>Zwölf Wissenschaftler und Mitarbeiter wurden identifiziert, die 1933 wegen ihrer jüdischen Herkunft aus dem Institut entlassen wurden.</p>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">12 namentlich identifizierte Entlassene jüdischer Herkunft 1933</span>
+    </div>
+    <div class="source">erinnerungszeichen-rki.de — Podcast-Serie „Erinnerungszeichen" (Primärquelle)</div>
+
+    <h3>Was das bedeutet</h3>
+    <p>Das RKI trägt den Namen eines Mannes, dessen afrikanische Menschenversuche das Institut selbst als „dunkelste Kapitel" bezeichnet. Und sein NS-zeitlicher Präsident wird vom Institut selbst als „treibende Kraft" bei Todesexperimenten beschrieben. Beide Feststellungen stammen aus institutionseigenen Primärquellen.</p>
+    <div class="source">RKI-Eigenaussagen: erinnerungszeichen-rki.de; Hinz-Wessels: „Das Robert Koch-Institut im Nationalsozialismus" (Kulturverlag Kadmos, 2008)</div>
+  </div>
+
+  <!-- ═══════════════════════════════ II. VERSAGEN ═══════════════════════════════ -->
+  <div class="section" id="versagen">
+    <div class="section-label">II</div>
+    <h2>Aus dem Versagen geboren</h2>
+    <p>Das heutige Robert Koch-Institut und das Paul-Ehrlich-Institut existieren in ihrer gegenwärtigen Form, weil eine Vorgängerbehörde versagte — so gravierend, dass ihre Auflösung unausweichlich wurde.</p>
+
+    <h3>Das Bundesgesundheitsamt und der HIV-Blutskandal</h3>
+    <p>Das Bundesgesundheitsamt (BGA) war die zentrale Gesundheitsbehörde der Bundesrepublik. In den frühen 1980er Jahren war bekannt, dass HIV durch Blut und Blutderivate übertragen werden kann — und dass Hämophile (Bluter) besonders gefährdet waren, weil ihre Gerinnungsfaktoren aus dem Blut von 2.000 bis 5.000 Spendern hergestellt wurden.</p>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">BGA wusste ab 1982 von erhöhtem HIV-Risiko für Hämophile — keine Schutzmaßnahmen ergriffen</span>
+    </div>
+    <div class="source">Bundesgesundheitsblatt, 12.12.1982; Wikipedia: Infektionen durch HIV-kontaminierte Blutprodukte</div>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">BGA verschwieg dem Bundesgesundheitsministerium mindestens 373 Verdachtsfälle HIV-infizierter Blutprodukte</span>
+    </div>
+    <div class="source">Ärzte Zeitung, Oktober 1993; Bundestagsuntersuchungsausschuss 1993/94</div>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">1.500 Bluter mit HIV infiziert, über 1.000 gestorben</span>
+    </div>
+    <div class="source">Ärzte Zeitung, 12.07.2019</div>
+
+    <p>Dem tödlichen Drama war ein Jahrzehnt des Missmanagements in der obersten deutschen Gesundheitsbehörde vorausgegangen.</p>
+
+    <h3>Die Konsequenz: Zerschlagung 1994</h3>
+    <p>Am 9. Oktober 1993 kündigte Bundesgesundheitsminister Horst Seehofer auf einer Sondersitzung des Bundestags-Gesundheitsausschusses die Auflösung des BGA an. Zum 1. Juli 1994 hörte das BGA auf zu existieren.</p>
+
+    <p>Aus seiner Zerschlagung entstanden vier neue Institute: das Robert Koch-Institut, das Paul-Ehrlich-Institut, das BfArM und das BgVV.</p>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">RKI und PEI direkte Nachfolgebehörden des BGA nach dem HIV-Blutskandal</span>
+    </div>
+    <div class="source">Ärzte Zeitung, 01.07.2019; RKI-Institutsgeschichte</div>
+
+    <blockquote>
+      <p>Eine Umbenennung ist keine Reform.</p>
+    </blockquote>
+
+    <p>Die institutionellen Mechanismen, die das Versagen des BGA ermöglichten — nachgeordnete Behörde des Gesundheitsministeriums, politische Weisungsgebundenheit, fehlende externe Kontrolle — wurden in den Nachfolgeinstitutionen strukturell fortgeschrieben.</p>
+
+    <div class="tag-row">
+      <span class="tag tag-extrapolation">EXTRAPOLATION</span>
+      <span class="tag-text">Strukturelle Kontinuität zwischen BGA-Versagen und späteren Problemen — als Systemfrage dokumentierbar, nicht direkt beweisbar</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ III. MUSTER ═══════════════════════════════ -->
+  <div class="section" id="muster">
+    <div class="section-label">III</div>
+    <h2>Wiederkehrende Muster</h2>
+
+    <h3>STIKO: Interessenkonflikte</h3>
+    <p>Die Ständige Impfkommission (STIKO) am Robert Koch-Institut berät die Bundesländer in Impffragen.</p>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">Von 16 STIKO-Mitgliedern nur 3 ohne Pharma-Verbindungen (Stand: Schweinegrippe-Ära)</span>
+    </div>
+    <div class="source">Frankfurter Rundschau; RKI-Eigenveröffentlichung Interessenkonflikte</div>
+
+    <p>Der Rest unterhielt dokumentierte Verbindungen: Mitgliedschaft in von Impfstoffherstellern unterstützten Gremien, gemeinsame Impfstudien mit Herstellern, bezahlte Vorträge, Publikationen in teilweise herstellerfinanzierten Medien.</p>
+
+    <h3>Schweinegrippe 2009: Pandemiestufe 6</h3>
+    <p>2009 rief die WHO die Pandemiestufe 6 aus — die höchste Stufe. RKI und andere Institutionen kommunizierten entsprechende Warnungen. Das Ergebnis:</p>
+
+    <blockquote>
+      <p>Wäre die Pandemiestufe 6 nicht ausgerufen worden, dann hätten wir nichts davon bemerkt. Und wir hätten gesagt: Das war aber jetzt ein milder Verlauf.</p>
+      <cite>Prof. Dr. Ulrich Keil, Epidemiologe Universität Münster — ARD-Dokumentation</cite>
+    </blockquote>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">Schwere Nebenwirkungen Schweinegrippe-Impfung nachträglich bestätigt</span>
+    </div>
+    <div class="source">Der Spiegel, 13.05.2016: „Schaden nach Schweineimpfung"</div>
+
+    <h3>Leopoldina: Lockdown-Empfehlungen 2020/21</h3>
+    <p>Die Leopoldina veröffentlichte mehrere Ad-hoc-Stellungnahmen, die direkt in politische Entscheidungen zu Lockdowns und Schulschließungen einflossen.</p>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">Autorenschaft der Lockdown-Stellungnahmen nicht transparent kommuniziert</span>
+    </div>
+    <div class="source">Leopoldina.org: keine vollständige Autorenliste in den Ad-hoc-Stellungnahmen</div>
+
+    <div class="tag-row">
+      <span class="tag tag-nichtbelegt">NICHT BELEGT</span>
+      <span class="tag-text">Bewusste politische Steuerung der Empfehlungen — aus öffentlichen Quellen nicht belegbar</span>
+    </div>
+
+    <h3>RKI-Protokolle 2024</h3>
+    <p>Nach einem OVG-Urteil 2024 wurden interne Protokolle des RKI-Krisenstabes veröffentlicht. Sie dokumentieren Diskrepanzen zwischen internen Lageeinschätzungen und öffentlicher Kommunikation.</p>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">OVG-Urteil 2024 erzwang Veröffentlichung interner RKI-Protokolle</span>
+    </div>
+    <div class="source">OVG-Urteil 2024; FragDenStaat.de</div>
+
+    <div class="tag-row">
+      <span class="tag tag-extrapolation">EXTRAPOLATION</span>
+      <span class="tag-text">Bewertung des Ausmaßes und der Ursachen der Diskrepanzen — noch nicht abschließend geklärt</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ IV. PERSONEN ═══════════════════════════════ -->
+  <div class="section" id="personen">
+    <div class="section-label">IV</div>
+    <h2>Ausgewählte Personen</h2>
+    <p>Positionen — vorher, während, nachher. Keine Kommentare.</p>
+
+    <div class="person-card">
+      <div class="person-card-header">
+        <div>
+          <div class="person-name">Joachim Sauer</div>
+          <div class="person-role">Quantenchemiker · Leopoldina-Mitglied seit 2007</div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Zeitraum</th><th>Position / Funktion</th></tr></thead>
+          <tbody>
+            <tr><td class="year">1977–1991</td><td>Akademie der Wissenschaften der DDR, Berlin-Adlershof</td></tr>
+            <tr><td class="year">1993–2017</td><td>Professor Humboldt-Universität Berlin, Physikalische und Theoretische Chemie</td></tr>
+            <tr><td class="year">1998</td><td>Heirat Angela Merkel</td></tr>
+            <tr><td class="year">2005–2021</td><td>Ehefrau: Bundeskanzlerin der Bundesrepublik Deutschland</td></tr>
+            <tr><td class="year" style="color:#e8c547">2007</td><td class="name">Aufnahme Leopoldina, Sektion Chemie</td></tr>
+            <tr><td class="year">2007–</td><td>Kuratoriumsmitglied Bundesanstalt für Materialforschung (BAM)</td></tr>
+            <tr><td class="year">2011–</td><td>Kuratoriumsmitglied Friede-Springer-Stiftung</td></tr>
+            <tr><td class="year">2017–</td><td>Emeritus / Senior Researcher Humboldt-Universität</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="source">Leopoldina-Mitgliederverzeichnis; Chemie-Schule.de; Wikipedia</div>
+      <p style="font-size:0.8rem;margin-top:0.8rem;">Angela Merkel öffentlich über Sauer: „ein wirklich guter Ratgeber"</p>
+    </div>
+
+    <div class="person-card">
+      <div class="person-card-header">
+        <div>
+          <div class="person-name">George Fu Gao</div>
+          <div class="person-role">Direktor China CDC · Leopoldina-Mitglied seit Juli 2020</div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Zeitraum</th><th>Position / Funktion</th></tr></thead>
+          <tbody>
+            <tr><td class="year">2008–</td><td>Direktor, CAS Key Laboratory of Pathogenic Microbiology, Peking</td></tr>
+            <tr><td class="year">2010–</td><td>Visiting Professor, University of Oxford</td></tr>
+            <tr><td class="year">2011–2017</td><td>Stellvertretender Generaldirektor, China CDC</td></tr>
+            <tr><td class="year">2017–2022</td><td class="name">Generaldirektor, China CDC, Peking</td></tr>
+            <tr><td class="year">2018–</td><td>Vizepräsident, National Natural Science Foundation of China (NSFC)</td></tr>
+            <tr><td class="year">Okt. 2019</td><td class="name">Einziger China-Vertreter bei Event 201 (Johns Hopkins / Gates-Stiftung / WEF)</td></tr>
+            <tr><td class="year">Jan. 2020</td><td>Einer der ersten Forscher in Wuhan</td></tr>
+            <tr><td class="year" style="color:#e8c547">Juli 2020</td><td class="name">Aufnahme Leopoldina — während laufender Pandemie</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="source">Leopoldina.org/mitgliederverzeichnis; Yicai Global, 08.07.2020; reitschuster.de, 07.03.2021</div>
+      <div class="tag-row" style="margin-top:0.8rem;">
+        <span class="tag tag-belegt">BELEGT</span>
+        <span class="tag-text">Leopoldina-Mitgliedschaft und alle genannten Positionen verifizierbar über offizielle Quellen</span>
+      </div>
+    </div>
+
+    <div class="person-card">
+      <div class="person-card-header">
+        <div>
+          <div class="person-name">Heinz Bude</div>
+          <div class="person-role">Soziologe · Mitautor BMI-Panikpapier 2020</div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Zeitraum</th><th>Position / Funktion</th></tr></thead>
+          <tbody>
+            <tr><td class="year">–2020</td><td>Professor für Makrosoziologie, Universität Kassel</td></tr>
+            <tr><td class="year" style="color:#e8c547">14.03.2020</td><td class="name">Anruf von Staatssekretär Markus Kerber (BMI) — Beitritt zur Taskforce</td></tr>
+            <tr><td class="year" style="color:#e8c547">März 2020</td><td class="name">Mitautor BMI-Strategiepapier „Wie wir COVID-19 unter Kontrolle bekommen"</td></tr>
+            <tr><td class="year">2020–2022</td><td>Fortlaufende Regierungsberatung Corona</td></tr>
+            <tr><td class="year">Aug. 2020</td><td>Gründungsdirektor documenta-Institut Kassel</td></tr>
+            <tr><td class="year">2022</td><td>Fachaufsatz: „Aus dem Maschinenraum der Beratung" — Soziologie, Heft 3</td></tr>
+            <tr><td class="year" style="color:#e8c547">Jan. 2024</td><td class="name">Öffentliche Aussage, Universität Graz (s.u.)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <blockquote style="margin-top:1rem;">
+        <p>Wir mussten ein Modell finden, um Folgebereitschaft herzustellen, das so ein bisschen wissenschaftsähnlich ist.</p>
+        <cite>Heinz Bude, Podiumsdiskussion Universität Graz, 24. Januar 2024</cite>
+      </blockquote>
+
+      <blockquote>
+        <p>Man wird Zwang ausüben müssen auf Leute, die sagen: 'Ich hab aber andere Informationen.'</p>
+        <cite>Heinz Bude, 2024</cite>
+      </blockquote>
+
+      <div class="tag-row">
+        <span class="tag tag-belegt">BELEGT</span>
+        <span class="tag-text">Beide Zitate: öffentliche Veranstaltungen, nicht dementiert</span>
+      </div>
+      <div class="source">Hintergrund.de, 27.03.2024; Corrigenda.online, 03.03.2024; Wikipedia: Strategiepapier des BMI</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ V. FÜHRUNG ═══════════════════════════════ -->
+  <div class="section" id="fuehrung">
+    <div class="section-label">V</div>
+    <h2>Leopoldina-Führung: Wer war wann</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Amtszeit</th><th>Name</th><th>Fachrichtung</th><th>Anmerkung</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="year">2010–2020</td><td class="name">Jörg Hacker</td><td>Mikrobiologe</td><td>2 Amtszeiten</td></tr>
+          <tr><td class="year" style="color:#e8c547">1. März 2020</td><td class="name">Gerald Haug</td><td>Paläoklimatologe, ETH Zürich / Max-Planck</td><td>Amtsantritt = WHO-Pandemienotstand</td></tr>
+          <tr><td class="year">1. März 2025</td><td class="name">Bettina Rockenbach</td><td>Verhaltensökonomin, Uni Köln</td><td>Erste Frau an der Spitze</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:1rem;">Gerald Haug: <a href="https://de.wikipedia.org/wiki/Gerald_H._Haug" style="color:var(--amber-dim)">Anfang 2026 wurde er in den Rat für Nachhaltige Entwicklung berufen, zu dessen Vorsitzendem er am 11. Februar 2026 gewählt wurde.</a></p>
+
+    <h3>Vizepräsidenten — Wechsel September 2025</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Amt</th><th>Neu (ab 2025)</th><th>Vorgänger</th></tr></thead>
+        <tbody>
+          <tr><td>Vizepräsident</td><td class="name">Thomas Lengauer (Mathematik/Informatik)</td><td>Robert Schlögl (Chemiker, 5 Jahre)</td></tr>
+          <tr><td>Vizepräsident</td><td class="name">Thomas Boehm (Immunbiologie)</td><td>Ulla Bonas (Pflanzengenetik, seit 2015)</td></tr>
+          <tr><td>Präsidium</td><td class="name">Ferdi Schüth (Chemie/Katalyse)</td><td>—</td></tr>
+          <tr><td>Vizepräsident Medizin</td><td class="name">Thomas Krieg (bis 2029 bestätigt)</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="source">Leopoldina-Pressemitteilung, 25.09.2025</div>
+
+    <h3>Strukturelle Beobachtung</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Zeitpunkt</th><th>Ereignis</th></tr></thead>
+        <tbody>
+          <tr><td class="year">1. März 2020</td><td>Haug übernimmt Präsidentschaft — selber Monat wie WHO-Pandemienotstand</td></tr>
+          <tr><td class="year">Juli 2020</td><td>Georg Fu Gao (China CDC) wird Leopoldina-Mitglied — während laufender Pandemie</td></tr>
+          <tr><td class="year">2020/21</td><td>Leopoldina gibt Lockdown-Empfehlungen — Haug als Präsident</td></tr>
+          <tr><td class="year">Feb. 2025</td><td>Haug gibt Präsidentschaft ab — kurz nach Lauterbachs BIÖG-Erlass</td></tr>
+          <tr><td class="year">März 2025</td><td>Rockenbach übernimmt</td></tr>
+          <tr><td class="year">Feb. 2026</td><td>Haug wird Vorsitzender Rat für Nachhaltige Entwicklung</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ VI. BMI-PAPIER ═══════════════════════════════ -->
+  <div class="section" id="bmi">
+    <div class="section-label">VI</div>
+    <h2>Das BMI-Panikpapier</h2>
+    <p>März 2020: Das Bundesinnenministerium (Minister: Horst Seehofer, CSU) ließ ein vertrauliches Strategiepapier ausarbeiten. Titel: „Wie wir COVID-19 unter Kontrolle bekommen". Klassifizierung: VS – Nur für den Dienstgebrauch. Am 1. April 2020 durch FragDenStaat veröffentlicht.</p>
+
+    <h3>Offiziell bestätigte Autorenliste</h3>
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">Autorenliste aus offizieller Bundesregierungsantwort auf Kleine Anfrage der AfD (Drucksache 19/28063)</span>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Name</th><th>Institution</th></tr></thead>
+        <tbody>
+          <tr><td class="name">Prof. Dr. Boris Augurzky</td><td>RWI – Leibniz-Institut für Wirtschaftsforschung</td></tr>
+          <tr><td class="name">Dr. Hubertus Bardt</td><td>Institut der Wirtschaft Köln</td></tr>
+          <tr><td class="name">Prof. Dr. Heinz Bude</td><td>Universität Kassel (Soziologie)</td></tr>
+          <tr><td class="name">Roland Döhrn</td><td>RWI – Leibniz-Institut für Wirtschaftsforschung</td></tr>
+          <tr><td class="name">Prof. Dr. Michael Hüther</td><td>Institut der Wirtschaft Köln</td></tr>
+          <tr><td class="name">Otto Kölbl</td><td>Universität Lausanne (Germanistik-Doktorand)</td></tr>
+          <tr><td class="name">Dr. Maximilian Mayer</td><td>University of Nottingham China (UNNC)</td></tr>
+          <tr><td class="name">Prof. Dr. Christoph M. Schmidt</td><td>RWI – Leibniz-Institut für Wirtschaftsforschung</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="source">BMI-IFG-Antwort, FragDenStaat.de; Bundestagsdrucksache 19/28063</div>
+
+    <p>Otto Kölbl wurde in der Welt als „Mao-Fan" bezeichnet; er verfasste insbesondere Passagen zur „Schockwirkung" und Angstkommunikation. Die Bundesregierung distanzierte sich von diesem Abschnitt — ohne die Veröffentlichung zurückzuziehen.</p>
+
+    <p>Laut Bundesregierung handelte es sich um Wissenschaftler, die „auf Anregung aus dem BMI und pro bono in eigener inhaltlicher Verantwortung" tätig wurden.</p>
+  </div>
+
+  <!-- ═══════════════════════════════ VII. BIÖG ═══════════════════════════════ -->
+  <div class="section" id="biog">
+    <div class="section-label">VII</div>
+    <h2>Lauterbachs Erbe: Das BIÖG</h2>
+    <p>Februar 2025, zwei Wochen vor der Bundestagswahl: Bundesgesundheitsminister Karl Lauterbach schafft ein neues Institut.</p>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">Gesetz zur BIÖG-Gründung scheiterte durch Ampelbruch — Institut dann per Ministererlass realisiert</span>
+    </div>
+    <div class="source">Deutsches Ärzteblatt, 11.02.2025 und 13.02.2025</div>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">BIÖG = umbenannte BZgA + Kooperationsvereinbarung mit RKI — keine echte Neugründung</span>
+    </div>
+    <div class="source">Apotheke Adhoc, 13.02.2025; AOK-Pressedienst</div>
+
+    <blockquote>
+      <p>Das ist ein Schlag ins Gesicht der Beschäftigten von BZgA und RKI. Minister Lauterbach will am Parlament vorbei Tatsachen schaffen.</p>
+      <cite>Tino Sorge, gesundheitspolitischer Sprecher CDU/CSU — Deutsches Ärzteblatt, 11.02.2025</cite>
+    </blockquote>
+
+    <div class="tag-row">
+      <span class="tag tag-belegt">BELEGT</span>
+      <span class="tag-text">Finanzierung des BIÖG zum Zeitpunkt der Gründung ungeklärt</span>
+    </div>
+    <div class="source">CDU/CSU-Fraktionserklärung; Deutsches Ärzteblatt, 11.02.2025</div>
+
+    <p>1994: BGA wird nach Skandal zerschlagen — neue Behörden entstehen. 2025: BZgA wird per Ministererlass umbenannt. Die Strukturfrage stellt sich erneut.</p>
+  </div>
+
+  <!-- ═══════════════════════════════ VIII. CHRONOLOGIE ═══════════════════════════════ -->
+  <div class="section" id="chronologie">
+    <div class="section-label">VIII</div>
+    <h2>Gesamtchronologie</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Jahr</th><th>Ereignis</th><th>Institution</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="year">1891</td><td>Gründung Kaiserliches Gesundheitsamt (RKI-Vorläufer)</td><td>RKI-Vorläufer</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">1905–07</td><td>Kochs Menschenversuche mit Atoxyl in Ostafrika — Erblindungen, Tote</td><td>Koch / RKI-Namensgeber</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">1909</td><td>Abderhalden (Leopoldina-Präsident ab 1932) publiziert nicht reproduzierbare „Abwehrfermente"-Theorie</td><td>Abderhalden / Leopoldina</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">1910</td><td>Salvarsan-Tests mit Insassen psychiatrischer Anstalten</td><td>Ehrlich / PEI-Namensgeber</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">1922</td><td>Leonor Michaelis muss Deutschland verlassen nach Kritik an Abderhaldens Ergebnissen</td><td>Leopoldina-Umfeld</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">1932</td><td>Abderhalden wird Leopoldina-Präsident</td><td>Leopoldina</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">1933</td><td>RKI: 12 Mitarbeiter wegen jüdischer Herkunft entlassen</td><td>RKI</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">1938</td><td>Leopoldina streicht 94 Mitglieder aus politischen/rassischen Gründen</td><td>Leopoldina</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">1940</td><td>Abderhalden liefert Zwillingsblut an Verschuer für Rassendiagnostik-Versuche</td><td>Leopoldina / Abderhalden</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">1941</td><td>RKI-Präsident Gildemeister: treibende Kraft bei KZ-Infektionsversuchen mit einkalkuliertem Tod</td><td>RKI</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">1938</td><td>Leopoldina streicht jüdische Mitglieder per NS-Erlass — ohne Benachrichtigung</td><td>Leopoldina</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">1947</td><td>Umbenennung in Paul-Ehrlich-Institut als Rehabilitierung</td><td>PEI</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">1982</td><td>BGA informiert über HIV-Risiko für Bluter — keine Maßnahmen</td><td>BGA</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">1993</td><td>HIV-Blutskandal publik — 1.500 Infizierte, 1.000+ Tote</td><td>BGA</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">1994</td><td>BGA aufgelöst → RKI + PEI als Nachfolger gegründet</td><td>RKI / PEI</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">2007</td><td>Joachim Sauer (Ehemann Merkels) wird Leopoldina-Mitglied</td><td>Leopoldina</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">2009</td><td>Schweinegrippe: Pandemiestufe 6 — nachträglich als unverhältnismäßig bewertet</td><td>WHO / RKI</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">1. März 2020</td><td>Gerald Haug übernimmt Leopoldina-Präsidentschaft</td><td>Leopoldina</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">März 2020</td><td>BMI-Panikpapier — 8 Autoren, darunter Bude und Kölbl</td><td>BMI</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">Juli 2020</td><td>Georg Fu Gao (China CDC) wird Leopoldina-Mitglied</td><td>Leopoldina</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">2020/21</td><td>Leopoldina-Lockdown-Empfehlungen ohne transparente Autorenschaft</td><td>Leopoldina</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">2021</td><td>Leopoldina startet NS-Aufarbeitungsprojekt (VolkswagenStiftung)</td><td>Leopoldina</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">2024</td><td>OVG-Urteil: RKI-Protokolle müssen veröffentlicht werden</td><td>RKI</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">Jan. 2024</td><td>Bude öffentlich: „Folgebereitschaft durch wissenschaftsähnliches Modell"</td><td>—</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">1. März 2025</td><td>Haug übergibt an Rockenbach</td><td>Leopoldina</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">13. Feb. 2025</td><td>BIÖG per Ministererlass — 2 Wochen vor Bundestagswahl</td><td>BIÖG</td><td class="status-belegt">BELEGT</td></tr>
+          <tr><td class="year">Feb. 2026</td><td>Haug wird Vorsitzender Rat für Nachhaltige Entwicklung</td><td>—</td><td class="status-belegt">BELEGT</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ IX. OFFENE FRAGEN ═══════════════════════════════ -->
+  <div class="section" id="fragen">
+    <div class="section-label">IX</div>
+    <h2>Offene Fragen</h2>
+    <p>Dieses Dossier endet nicht mit Antworten.</p>
+
+    <div class="questions-block">
+      <h4>Zur Institutionsgeschichte</h4>
+      <ul>
+        <li>Warum trägt das Robert Koch-Institut den Namen eines Mannes, dessen eigene Nachfolgebehörde dessen Vorgehen als „dunkelste Kapitel" bezeichnet?</li>
+        <li>Wann ist eine Aufarbeitung abgeschlossen — und wer entscheidet das?</li>
+        <li>Ist eine Behörde, die aus dem Versagen ihrer Vorgängerin entstand, strukturell in der Lage, das Versagen zu vermeiden, das jene Vorgängerin kennzeichnete?</li>
+      </ul>
+    </div>
+
+    <div class="questions-block">
+      <h4>Zur Unabhängigkeit</h4>
+      <ul>
+        <li>Wie unabhängig ist eine nachgeordnete Bundesbehörde von dem Ministerium, dem sie nachgeordnet ist?</li>
+        <li>Wie unabhängig ist ein Expertengremium, dessen Mehrheit dokumentierte Verbindungen zur Industrie unterhält, deren Produkte es empfehlen soll?</li>
+        <li>Wie unabhängig ist eine Akademie, deren Empfehlungen direkt in politische Entscheidungen einfließen, wenn die Zusammensetzung der Autorengruppen nicht öffentlich kommuniziert wird?</li>
+      </ul>
+    </div>
+
+    <div class="questions-block">
+      <h4>Zur Gegenwart</h4>
+      <ul>
+        <li>Was unterscheidet die Umbenennung des BGA in RKI und PEI 1994 von der Umbenennung der BZgA in BIÖG 2025?</li>
+        <li>Was sind die inhaltlichen Unterschiede zwischen den internen RKI-Protokollen 2020/21 und der öffentlichen Kommunikation — und wer trägt dafür Verantwortung?</li>
+        <li>Welche Lehren hat Deutschland aus dem HIV-Blutskandal institutionell gezogen — und sind diese Lehren strukturell verankert oder personenabhängig?</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- QUELLENVERZEICHNIS -->
+  <div class="section">
+    <div class="section-label">Quellen</div>
+    <h2>Quellenverzeichnis</h2>
+    <p>Alle verwendeten Quellen sind primär oder zeithistorisch belegt. Meinungsbeiträge sind als solche gekennzeichnet.</p>
+
+    <h3>RKI / Koch / NS-Aufarbeitung</h3>
+    <div class="source">erinnerungszeichen-rki.de/en/the-story/ — RKI-Erinnerungszeichen (Primärquelle)</div>
+    <div class="source">rki.de: „Erinnerungszeichen" Broschüre (PDF, Primärquelle — enthält Gildemeister-Zitat)</div>
+    <div class="source">Hinz-Wessels, Annette: „Das Robert Koch-Institut im Nationalsozialismus" (Kulturverlag Kadmos, Berlin 2008)</div>
+    <div class="source">Hulverscheidt/Laukötter (Hg.): „Infektion und Institution" (2009)</div>
+    <div class="source">Tagesspiegel, 09.08.2020: „Die zwielichtige Karriere des Dr. Robert Koch"</div>
+    <div class="source">Historischer Augenblick, Oktober 2024: „Robert Koch in Ostafrika"</div>
+    <div class="source">Reichsarchiv R 1001/5889 (Kolonialamt-Dokumente)</div>
+
+    <h3>BGA / HIV-Blutskandal</h3>
+    <div class="source">Ärzte Zeitung, Oktober 1993: „HIV-Skandal um Blutprodukte"</div>
+    <div class="source">Ärzte Zeitung, 12.07.2019: „Der Aids-Skandal und die Zerschlagung des BGA"</div>
+    <div class="source">Wikipedia: Infektionen durch HIV-kontaminierte Blutprodukte (mit Quellenapparat)</div>
+    <div class="source">Bundestagsuntersuchungsausschuss 1993/94</div>
+
+    <h3>Leopoldina</h3>
+    <div class="source">Wikipedia: Emil Abderhalden (Deutsch + Englisch)</div>
+    <div class="source">HandWiki: Biography Emil Abderhalden (Mengele/Verschuer-Verbindung)</div>
+    <div class="source">Fattahi: „Die Abwehrfermente: Ein langer Irrweg oder wissenschaftlicher Betrug?" (Diss. 2006)</div>
+    <div class="source">Rüdiger vom Bruch, Sibylle Gerstengarbe, Jens Thiel: „Die Leopoldina" (be.bra Verlag, 2016)</div>
+    <div class="source">Akademien der Wissenschaften in der NS-Zeit, Wikipedia (Tagungsband „Die Elite der Nation")</div>
+    <div class="source">Gerstengarbe/Hallmann/Berg in: 350 Jahre Leopoldina (2002)</div>
+    <div class="source">leopoldina.org: Projekt „Biographische Studien im Nationalsozialismus" (VolkswagenStiftung, 2021)</div>
+    <div class="source">leopoldina.org: Ad-hoc-Stellungnahmen 2020/2021 (öffentlich archiviert)</div>
+    <div class="source">leopoldina.org/mitgliederverzeichnis — Joachim Sauer, George F. Gao, Emil Abderhalden</div>
+    <div class="source">Leopoldina-Pressemitteilung, 25.09.2025: Neue Vizepräsidenten</div>
+    <div class="source">Yicai Global, 08.07.2020: „Germany's National Academy Makes China's CDC Director a Member"</div>
+
+    <h3>Schweinegrippe / STIKO</h3>
+    <div class="source">ARD Monitor: „Milliardengrab Schweinegrippe: Wer steuert die WHO?"</div>
+    <div class="source">Frankfurter Rundschau: STIKO-Interessenkonflikte</div>
+    <div class="source">Spiegel, 13.05.2016: „Schaden nach Schweineimpfung"</div>
+
+    <h3>RKI-Protokolle 2024</h3>
+    <div class="source">OVG-Urteil 2024 — recherchierbar über FragDenStaat.de</div>
+    <div class="source">FragDenStaat.de: Veröffentlichte RKI-Protokolle</div>
+
+    <h3>BMI-Panikpapier</h3>
+    <div class="source">FragDenStaat.de/dokumente/4123 — Strategiepapier (Primärdokument)</div>
+    <div class="source">Bundestagsdrucksache 19/28063 — Antwort der Bundesregierung (Autorenliste)</div>
+    <div class="source">Wikipedia: Strategiepapier des Bundesinnenministeriums zur Corona-Pandemie</div>
+    <div class="source">Hintergrund.de, 27.03.2024: Bude räumt Angstkommunikation ein</div>
+
+    <h3>BIÖG</h3>
+    <div class="source">Deutsches Ärzteblatt, 11.02.2025 und 13.02.2025</div>
+    <div class="source">Apotheke Adhoc, 13.02.2025</div>
+    <div class="source">AOK-Pressedienst: „Lauterbach setzt Präventionsinstitut per Erlass durch"</div>
+  </div>
+
+</div>
+
+<footer>
+  <p><span>DUNKELFELD.REPORT</span> — Dokumentation auf Basis öffentlich zugänglicher Primärquellen.</p>
+  <p>Spekulation ist als solche gekennzeichnet. Motive werden nicht zugeschrieben.</p>
+  <p>Schlussfolgerungen ziehen die Leser selbst.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Das grüne Kartell — dunkelfeld.info</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;700&display=swap');
+
+  :root {
+    --bg:        #0a0a0a;
+    --surface:   #111111;
+    --border:    #1e1e1e;
+    --green:     #4ade80;
+    --green-dim: #16a34a;
+    --red:       #ef4444;
+    --amber:     #f59e0b;
+    --text:      #e5e5e5;
+    --muted:     #6b7280;
+    --accent:    #22c55e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  /* ── HEADER ── */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .site-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--green);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: 1px solid var(--green-dim);
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+  }
+  .series-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 5rem 2rem 3rem;
+  }
+  .series-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--green);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .series-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--green);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--green);
+  }
+
+  .subtitle {
+    font-size: 1.15rem;
+    color: var(--muted);
+    margin-top: 1.2rem;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  .meta {
+    margin-top: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    flex-wrap: wrap;
+  }
+  .meta span { color: var(--text); }
+
+  /* ── LEDE ── */
+  .lede {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .lede p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #c9c9c9;
+  }
+  .lede p strong {
+    color: #fff;
+    font-weight: 700;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--green);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  p { margin-bottom: 1.2rem; color: #d1d5db; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── PULL QUOTE ── */
+  .pullquote {
+    margin: 2.5rem 0;
+    padding: 1.5rem 2rem;
+    border-left: 3px solid var(--green);
+    background: #0f1a14;
+  }
+  .pullquote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #e5e5e5;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .pullquote cite {
+    display: block;
+    margin-top: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    font-style: normal;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── FACT BOX ── */
+  .factbox {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--amber);
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+  }
+  .factbox-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--amber);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .factbox p { font-size: 0.95rem; color: #c9c9c9; margin-bottom: 0.6rem; }
+  .factbox p:last-child { margin-bottom: 0; }
+
+  /* ── DANGER BOX ── */
+  .dangerbox {
+    background: #1a0a0a;
+    border: 1px solid #3f1515;
+    border-left: 3px solid var(--red);
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+  }
+  .dangerbox p { color: #f3a7a7; font-size: 0.97rem; margin-bottom: 0.5rem; }
+  .dangerbox p:last-child { margin-bottom: 0; }
+  .dangerbox strong { color: #fca5a5; }
+
+  /* ── SVG NETWORK GRAPHIC ── */
+  .graphic-wrap {
+    margin: 2.5rem 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+  }
+  .graphic-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  svg text { font-family: 'Space Grotesk', sans-serif; }
+
+  /* ── STATS ROW ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin: 2rem 0;
+    border: 1px solid var(--border);
+  }
+  .stat {
+    background: var(--surface);
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--green);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline { margin: 2rem 0; }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    align-items: start;
+  }
+  .tl-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--green);
+    font-weight: 700;
+    padding-top: 0.2rem;
+    text-align: right;
+    border-right: 1px solid var(--green-dim);
+    padding-right: 1rem;
+  }
+  .tl-text { font-size: 0.95rem; color: #c9c9c9; line-height: 1.6; }
+  .tl-text strong { color: #fff; }
+
+  /* ── CLOSING ── */
+  .closing {
+    padding: 3rem 2rem;
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .closing-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: #e5e5e5;
+    line-height: 1.7;
+    max-width: 640px;
+    margin: 0 auto 2rem;
+  }
+  .series-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+  .nav-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .nav-pill.active { border-color: var(--green); color: var(--green); }
+  .nav-pill:hover { border-color: var(--text); color: var(--text); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 600px) {
+    .stats-row { grid-template-columns: 1fr; }
+    .tl-item { grid-template-columns: 60px 1fr; gap: 1rem; }
+    .tl-year { font-size: 0.7rem; }
+    h1 { font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="site-tag">dunkelfeld.info</span>
+  <span class="series-tag">Das grüne Kartell · Teil 1 / 3</span>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="series-label">Serie: Das grüne Kartell</div>
+  <h1>Sie haben es<br><em>unterschrieben.</em></h1>
+  <p class="subtitle">Wie Hunderte Journalisten sich schriftlich zur Gesinnungspflege verpflichtet haben — und es Pressefreiheit nennen.</p>
+  <div class="meta">
+    <span>dunkelfeld.info</span>
+    <span style="color:var(--border)">|</span>
+    <span>Juni 2026</span>
+    <span style="color:var(--border)">|</span>
+    <span>Medienanalyse</span>
+    <span style="color:var(--border)">|</span>
+    <span style="color:var(--muted)">Lesedauer ca. 8 Min.</span>
+  </div>
+</section>
+
+<!-- LEDE -->
+<div class="lede">
+  <p>Es gibt Verschwörungen, die im Verborgenen bleiben. Und dann gibt es diese hier: <strong>öffentlich, stolz präsentiert, mit Logos versehen, auf Websites dokumentiert.</strong> Über 450 Journalisten in Deutschland und Österreich haben eine Charta unterzeichnet. Darin steht, was sie berichten sollen — und wie. Wer das eine Verschwörung nennt, bekommt zur Antwort: Nein, das ist ein <em>Kodex.</em> Als ob das besser wäre.</p>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- SECTION 1 -->
+  <div class="section">
+    <div class="section-eyebrow">Befund</div>
+    <h2>Der Kodex, den niemand Gleichschaltung nennen darf</h2>
+
+    <p>2021 gründete sich das „Netzwerk Klimajournalismus". Klingt unschuldig. Ist es nicht. Zwei Jahre später, im Mai 2023, veröffentlichte das Netzwerk den sogenannten <strong>Klima-Kodex</strong> — ein Dokument, das Redaktionen zur Unterzeichnung einlädt und ihre Berichterstattung auf eine bestimmte Linie verpflichtet.</p>
+
+    <div class="stats-row">
+      <div class="stat">
+        <span class="stat-num">450+</span>
+        <span class="stat-label">Journalisten haben die Klimacharta unterschrieben</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">2021</span>
+        <span class="stat-label">Gründung des Netzwerks Klimajournalismus</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">0</span>
+        <span class="stat-label">Gegenstimmen in unterzeichnenden Redaktionen dokumentiert</span>
+      </div>
+    </div>
+
+    <p>Unterzeichnet haben unter anderem die <strong>APA</strong> — Österreichs größte Nachrichtenagentur, deren Meldungen von Dutzenden Medien täglich ungeprüft übernommen werden. Dazu der ORF-nahe Medienapparat, Tageszeitungen, Branchenmagazine. Die Dominoeffekte einer solchen Verpflichtung durch eine Nachrichtenagentur sind kaum zu überschätzen.</p>
+
+    <div class="pullquote">
+      <p>"Der Klima-Kodex ist kein Eingriff in die redaktionelle Unabhängigkeit."</p>
+      <cite>— Netzwerk Klimajournalismus Österreich, Selbstbeschreibung, 2023</cite>
+    </div>
+
+    <p>Man beachte den Satz. Er steht im Kodex selbst. Als Schutzbehauptung. Wer einen Eingriff in die redaktionelle Unabhängigkeit verneinen muss, hat in der Regel gerade einen vorgenommen.</p>
+  </div>
+
+  <!-- NETWORK SVG -->
+  <div class="section" style="border-bottom: none; padding-bottom: 1rem;">
+    <div class="section-eyebrow">Struktur</div>
+    <h2>Das Netzwerk der Verpflichteten</h2>
+    <p>So verbreitet sich eine koordinierte Sprachregelung durch den Medienbetrieb — nicht durch Zensur, sondern durch freiwillige Selbstverpflichtung.</p>
+
+    <div class="graphic-wrap">
+      <div class="graphic-label">Propagationsweg · Klima-Kodex-Netzwerk</div>
+      <svg viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:360px;">
+        <defs>
+          <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#4ade80" opacity="0.6"/>
+          </marker>
+          <marker id="arr-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#ef4444" opacity="0.6"/>
+          </marker>
+        </defs>
+
+        <!-- Center: Kodex -->
+        <rect x="290" y="140" width="180" height="56" rx="4" fill="#0f1a14" stroke="#4ade80" stroke-width="1.5"/>
+        <text x="380" y="162" text-anchor="middle" fill="#4ade80" font-size="11" font-weight="700" letter-spacing="1">KLIMA-KODEX</text>
+        <text x="380" y="182" text-anchor="middle" fill="#6b7280" font-size="10">450+ Unterzeichner</text>
+
+        <!-- Nodes -->
+        <!-- APA -->
+        <rect x="30" y="60" width="130" height="44" rx="3" fill="#111" stroke="#1e1e1e"/>
+        <text x="95" y="78" text-anchor="middle" fill="#e5e5e5" font-size="11" font-weight="600">APA</text>
+        <text x="95" y="96" text-anchor="middle" fill="#6b7280" font-size="9">Nachrichtenagentur AT</text>
+
+        <!-- ORF -->
+        <rect x="30" y="150" width="130" height="44" rx="3" fill="#111" stroke="#1e1e1e"/>
+        <text x="95" y="168" text-anchor="middle" fill="#e5e5e5" font-size="11" font-weight="600">ORF-Netzwerk</text>
+        <text x="95" y="186" text-anchor="middle" fill="#6b7280" font-size="9">Öffentlich-rechtlich AT</text>
+
+        <!-- Netzwerk -->
+        <rect x="30" y="240" width="130" height="44" rx="3" fill="#111" stroke="#1e1e1e"/>
+        <text x="95" y="258" text-anchor="middle" fill="#e5e5e5" font-size="11" font-weight="600">Netzwerk KJ</text>
+        <text x="95" y="276" text-anchor="middle" fill="#6b7280" font-size="9">DE + AT, gegr. 2021</text>
+
+        <!-- Redaktionen -->
+        <rect x="600" y="60" width="130" height="44" rx="3" fill="#111" stroke="#1e1e1e"/>
+        <text x="665" y="78" text-anchor="middle" fill="#e5e5e5" font-size="11" font-weight="600">Tageszeitungen</text>
+        <text x="665" y="96" text-anchor="middle" fill="#6b7280" font-size="9">Std, Heute, Falter …</text>
+
+        <!-- WDR / ZDF -->
+        <rect x="600" y="150" width="130" height="44" rx="3" fill="#111" stroke="#1e1e1e"/>
+        <text x="665" y="168" text-anchor="middle" fill="#e5e5e5" font-size="11" font-weight="600">ÖRR Deutschland</text>
+        <text x="665" y="186" text-anchor="middle" fill="#6b7280" font-size="9">WDR, ZDF-Terli …</text>
+
+        <!-- Publikum -->
+        <rect x="600" y="240" width="130" height="44" rx="3" fill="#1a0a0a" stroke="#3f1515"/>
+        <text x="665" y="258" text-anchor="middle" fill="#f3a7a7" font-size="11" font-weight="600">Leser · Zuschauer</text>
+        <text x="665" y="276" text-anchor="middle" fill="#6b7280" font-size="9">Empfangen Einheitslinie</text>
+
+        <!-- Lines from left to center -->
+        <line x1="160" y1="82" x2="288" y2="158" stroke="#4ade80" stroke-width="1" opacity="0.4" marker-end="url(#arr)"/>
+        <line x1="160" y1="172" x2="288" y2="172" stroke="#4ade80" stroke-width="1" opacity="0.4" marker-end="url(#arr)"/>
+        <line x1="160" y1="262" x2="288" y2="182" stroke="#4ade80" stroke-width="1" opacity="0.4" marker-end="url(#arr)"/>
+
+        <!-- Lines from center to right -->
+        <line x1="472" y1="158" x2="598" y2="82" stroke="#ef4444" stroke-width="1" opacity="0.4" marker-end="url(#arr-red)"/>
+        <line x1="472" y1="172" x2="598" y2="172" stroke="#ef4444" stroke-width="1" opacity="0.4" marker-end="url(#arr-red)"/>
+        <line x1="472" y1="182" x2="598" y2="262" stroke="#ef4444" stroke-width="1.5" opacity="0.5" marker-end="url(#arr-red)"/>
+
+        <!-- Label -->
+        <text x="215" y="140" text-anchor="middle" fill="#4ade80" font-size="9" opacity="0.7">unterzeichnen</text>
+        <text x="548" y="140" text-anchor="middle" fill="#ef4444" font-size="9" opacity="0.7">verbreiten</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section">
+    <div class="section-eyebrow">Analyse</div>
+    <h2>Aktivismus mit Presseausweis</h2>
+
+    <p>Das Netzwerk lässt wenig Interpretationsspielraum über seine eigentliche Natur. Sein Handbuch „Klimajournalismus" formuliert das Ziel explizit: Journalisten sollen übers Klima so berichten, <strong>„dass Menschen zum Handeln motiviert werden."</strong> Das ist kein journalistisches Ziel. Das ist ein PR-Briefing.</p>
+
+    <div class="factbox">
+      <div class="factbox-label">Dokumentiert · Netzwerk Klimajournalismus DE</div>
+      <p>Das Netzwerk bietet ein Handbuch, das Journalisten helfen soll, „übers Klima so ins Gespräch zu kommen, dass Menschen zum Handeln motiviert werden."</p>
+      <p>Zusätzlich stellt es eine kuratierte Expertenliste bereit — mit Personen, von denen garantiert Aussagen „im Sinne der Leitlinien" zu erhalten sind.</p>
+      <p>Kurz: ein Redaktionsleitfaden mit vorausgewählten Zitatlieferanten.</p>
+    </div>
+
+    <p>Noch deutlicher wird es beim Blick auf die Gründer. Ein bekannter Mitbegründer des Netzwerks, Raphael Thelen, hat den Journalismus inzwischen verlassen — und klebt sich für die „Letzte Generation" auf Straßen. Eine weitere Mitgründerin wird in ihrer Biographie beim Tagesspiegel als <em>„Campaignerin und Journalistin"</em> bezeichnet. In dieser Reihenfolge.</p>
+
+    <div class="pullquote">
+      <p>"Klimajournalismus ist kein Aktivismus."</p>
+      <cite>— Klima-Kodex, Artikel 1 sinngemäß — als wäre die Verneinung nicht selbst das Geständnis</cite>
+    </div>
+
+    <p>Wer in einem Kodex eigens festschreiben muss, was etwas <em>nicht</em> ist, hat in der Regel gerade beschrieben, was es <em>ist</em>.</p>
+  </div>
+
+  <!-- SECTION 3: TIMELINE -->
+  <div class="section">
+    <div class="section-eyebrow">Chronologie</div>
+    <h2>Wie es dazu kam</h2>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">2019</div>
+        <div class="tl-text"><strong>„Covering Climate Now"</strong> — Medien weltweit, darunter taz, Stern und Spiegel, schließen sich einer Initiative an, die Klimaberichterstattung koordiniert maximieren soll. Übermedien nennt es offen: eine Homogenisierung der Berichterstattung.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2019</div>
+        <div class="tl-text">Die taz veröffentlicht einen <strong>Leitfaden für klimagerechte Sprache</strong>. Der Stern produziert eine Titelgeschichte in Kooperation mit Fridays for Future. Die Grenze zwischen Redaktion und Aktivismus wird fließend.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2021</div>
+        <div class="tl-text"><strong>Gründung Netzwerk Klimajournalismus</strong> in Deutschland und Österreich. Selbstbeschreibung: Vernetzung und „klimakrisenfit machen" des Journalismus.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2023</div>
+        <div class="tl-text"><strong>Der Klima-Kodex</strong> wird veröffentlicht. APA, Heute, Wiener Zeitung, DATUM unterzeichnen. Chefredakteur der APA auf dem Podium bei der Präsentation. Der ORF schickt seine Nachhaltigkeitsbeauftragte.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2024</div>
+        <div class="tl-text">Weitere Unterzeichner. Pocket Guides für Schnellberichterstattung. Psychologische Leitfäden, wie Klimaberichterstattung <strong>„Akzeptanz von Klimaschutz erhöhen"</strong> kann. Journalismus als Verhaltenssteuerungsinstrument.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: THE PARADOX -->
+  <div class="section">
+    <div class="section-eyebrow">Das Paradox</div>
+    <h2>Sie schaden dem, was sie schützen wollen</h2>
+
+    <p>Das Bitterste an dieser Geschichte ist nicht der Verrat am Journalismus. Es ist, dass die Strategie nachweislich <em>kontraproduktiv</em> ist — für den Klimaschutz selbst.</p>
+
+    <div class="dangerbox">
+      <p><strong>Forschungsbefund (Medienwissenschaft):</strong> Je dramatischer der Klimawandel dargestellt wird, desto eher wenden sich Menschen vom Thema ab. Immer neue Horrorszenarien erzeugen Handlungsohnmacht, nicht Handlungsbereitschaft.</p>
+      <p>Soziologen nennen es den „Doom-Effekt": Apokalyptische Rahmung schützt nicht — sie lähmt.</p>
+    </div>
+
+    <p>Das ist keine rechte Gegenerzählung. Das ist ein Befund aus der Kommunikationsforschung, dokumentiert in Fachzeitschriften, zitiert in der Bundeszentrale für politische Bildung. Wer dauerhaft mit Untergang argumentiert, verliert sein Publikum — nicht an die Fakten, sondern an die Erschöpfung.</p>
+
+    <p>Die Journalisten des Kodex wissen das. Einige thematisieren es intern. Und machen trotzdem weiter. Denn der Kodex ist kein journalistisches Instrument mehr. Er ist ein <strong>Loyalitätssignal innerhalb eines Milieus.</strong></p>
+
+    <div class="pullquote">
+      <p>"Wer den Verdacht auslöst, Risiken des Klimawandels relativieren zu wollen, zieht Kritik auf sich. Wer Unsicherheiten ignoriert, hat nichts zu befürchten."</p>
+      <cite>— Bundeszentrale für politische Bildung, Analyse Klimajournalismus</cite>
+    </div>
+
+    <p>Das ist die eigentliche Mechanik: Nicht Lüge. Nicht Zensur. Sondern <strong>asymmetrisches Risiko</strong>. Kritische Fragen kosten Karriere. Alarmismus nicht. Das Ergebnis ist keine Verschwörung im Hinterzimmer — es ist das rationale Verhalten von Menschen in einem System mit falschen Anreizen.</p>
+  </div>
+
+  <!-- SECTION 5: FAZIT -->
+  <div class="section" style="border-bottom: none;">
+    <div class="section-eyebrow">Einordnung</div>
+    <h2>Was das bedeutet</h2>
+
+    <p>Eine Verschwörung braucht keine geheimen Treffen. Sie braucht nur Dokumente, die niemand liest. Einen Kodex, der stolz auf der Website steht und trotzdem nie in der Tagesschau thematisiert wird. Ein Netzwerk, das sich selbst „Klimajournalismus" nennt und damit jeden Kritiker zum Klimaleugner macht, bevor er den Mund aufgemacht hat.</p>
+
+    <p>Über 450 Journalisten haben unterschrieben. Die APA verbreitet es täglich in Hunderte Redaktionen. ZDF-Meteorologe Özden Terli schrieb das Vorwort zum Handbuch. Und niemand sagt: Das ist ein Problem.</p>
+
+    <p>Wir sagen es.</p>
+
+    <div class="factbox" style="border-top-color: var(--green); margin-top: 2rem;">
+      <div class="factbox-label" style="color: var(--green);">Nächster Teil der Serie</div>
+      <p><strong>Teil 2: Wind- und Solarwüsten</strong> — Das Geschäftsmodell hinter der grünen Erzählung. Subventionen, Lobbystrukturen und was der ehemalige Greenpeace-Chef dazu sagt.</p>
+      <p><strong>Teil 3: Was macht Klimapropaganda mit Kindern?</strong> — Von der Atomkriegsangst der 80er bis zur Eco-Anxiety heute. Ein Muster, das sich wiederholt.</p>
+    </div>
+  </div>
+
+</div><!-- /content -->
+
+<!-- CLOSING -->
+<div class="closing">
+  <p class="closing-text">"Sie haben es unterschrieben. Es steht auf ihrer Website. Und trotzdem heißt es Journalismus."</p>
+  <div class="series-nav">
+    <a class="nav-pill active" href="#">Teil 1: Der Kodex</a>
+    <a class="nav-pill" href="#">Teil 2: Wind & Solar (demnächst)</a>
+    <a class="nav-pill" href="#">Teil 3: Kinder & Propaganda (demnächst)</a>
+  </div>
+</div>
+
+<footer>
+  dunkelfeld.info — Diagnose ohne Schönfärberei · Teil der AHO-Netzwerke · aho-impulse.de
+</footer>
+
+</body>
+</html>

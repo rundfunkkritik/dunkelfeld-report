@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entwicklungshilfe: Mythos und Mechanik | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --source-bg: #1a1a2e;
+    --text: #e4e4e7;
+    --text-dim: #a1a1aa;
+    --belegt: #4ade80;
+    --extra: #fb923c;
+    --offen: #9ca3af;
+    --vt: #ef4444;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0 1.2rem 4rem;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin: 0.3rem 0 0.6rem;
+    color: #fff;
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 1rem;
+  }
+  .subtitle {
+    color: var(--text-dim);
+    font-style: italic;
+    font-size: 1.15rem;
+    margin-bottom: 2.5rem;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    border-left: 3px solid var(--accent);
+    padding-left: 0.8rem;
+  }
+  h3 {
+    color: #fff;
+    font-size: 1.15rem;
+    margin-top: 2rem;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: 0.95rem;
+    color: var(--text-dim);
+  }
+  p {
+    padding-bottom: 1.2rem;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag-extra  { background: rgba(251,146,60,0.15); color: var(--extra); border: 1px solid var(--extra); }
+  .tag-offen  { background: rgba(156,163,175,0.15); color: var(--offen); border: 1px solid var(--offen); }
+  .tag-vt     { background: rgba(239,68,68,0.15); color: var(--vt); border: 1px solid var(--vt); text-decoration: line-through; }
+  .source-box {
+    background: var(--source-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .source-box ul {
+    margin: 0.5rem 0 0;
+    padding-left: 1.2rem;
+  }
+  .source-box li {
+    margin-bottom: 0.4rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+  }
+  th, td {
+    border: 1px solid #2a2a3e;
+    padding: 0.5rem 0.6rem;
+    text-align: left;
+  }
+  th {
+    background: var(--source-bg);
+    color: var(--accent);
+  }
+  .quote-box {
+    border-left: 3px solid var(--extra);
+    background: rgba(251,146,60,0.06);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--text-dim);
+  }
+  a { color: var(--accent); }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a3e;
+    font-style: italic;
+    color: var(--text-dim);
+  }
+  .footer-note {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #52525b;
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid #1a1a2e;
+  }
+  hr.sep {
+    border: none;
+    border-top: 1px solid #2a2a3e;
+    margin: 3rem 0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="meta">Dossier · Entwicklungspolitik</div>
+  <h1>Entwicklungshilfe: Mythos und Mechanik</h1>
+  <p class="subtitle">Zwischen Radweg-Mythos und echter Kontrolllücke — was von der Kritik an der deutschen Entwicklungshilfe Bestand hat, und was nicht.</p>
+
+  <p>Kaum ein Politikfeld wird so zuverlässig mit Symbolbildern verhandelt wie die deutsche Entwicklungszusammenarbeit. Ein Radweg in Lima, eine Straße im Senegal, ein Klimaprojekt in China — jedes Beispiel wird zum Beweisstück für ein größeres Narrativ gemacht, je nach politischem Standpunkt. Was dabei regelmäßig untergeht: die tatsächlichen Zahlen, die dokumentierten Kontrollprobleme und die Fälle, in denen Kritik zwar berechtigt ist, aber an der falschen Stelle ansetzt.</p>
+
+  <h2>Die Zahlen</h2>
+
+  <p>Der Haushalt des Bundesministeriums für wirtschaftliche Zusammenarbeit und Entwicklung (BMZ) ist zwischen 2022 und 2026 um rund 27 Prozent gekürzt worden — von 13,8 Milliarden auf gut 10 Milliarden Euro. Im gleichen Zeitraum ist der Verteidigungsetat um knapp 15 Prozent gestiegen. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <span class="label">Quelle: BMZ, Bundestag (hib)</span>
+    <ul>
+      <li>BMZ-Haushalt 2022: 13,8 Mrd. € → 2026: 10,06 Mrd. € (–27 %)</li>
+      <li>ODA-Quote 2025: 0,56 % des BNE (Ziel: 0,7 %) — ohne Inlands-Flüchtlingskosten nur 0,46 %</li>
+      <li>Gesamte deutsche ODA 2025: ca. 26 Mrd. €, davon 17 % für Unterbringung von Geflüchteten <em>in Deutschland</em></li>
+    </ul>
+  </div>
+
+  <p>Wichtig für die Einordnung: Der BMZ-Haushalt ist nicht identisch mit der gesamten "Entwicklungshilfe". Die international gemeldete ODA-Summe (Official Development Assistance) ist regelmäßig zwei- bis dreimal so hoch wie der reine BMZ-Etat, weil sie auch humanitäre Hilfe des Auswärtigen Amts, EU-Beiträge und eben die Kosten für Geflüchtete im ersten Aufenthaltsjahr in Deutschland einschließt. Ein Teil der öffentlich diskutierten "Entwicklungshilfe" fließt also nie ins Ausland. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <h2>Der Mythos: 315 Millionen für Radwege in Peru</h2>
+
+  <p>Das bekannteste Beispiel für vermeintliche Verschwendung ist zugleich das am besten widerlegte. Die Zahl "315 Millionen Euro für Radwege in Peru" stammt aus einer Bundestagsrede der damaligen AfD-Abgeordneten Joana Cotar vom Dezember 2023 — und ist frei erfunden. Tagesschau-Recherchen fanden dafür keine Grundlage. <span class="tag tag-vt">VT</span></p>
+
+  <div class="source-box">
+    <span class="label">Was tatsächlich belegt ist</span>
+    <ul>
+      <li>Realer Zuschuss für Radwege in Lima: 44 Mio. € (20 Mio. 2020, 24 Mio. 2022)</li>
+      <li>Die kolportierten 529 Mio. € aus 2022 waren eine <strong>Gesamtzusage</strong> für viele Projekte in Peru — der Großteil davon Kredite, die zurückgezahlt werden müssen</li>
+      <li>Hintergrund: paralleles U-Bahn-Großprojekt in Lima mit Beteiligung von Siemens und Herrenknecht — die damalige Entwicklungsministerin Svenja Schulze bezeichnete die Förderung offen als Wirtschafts- und Exportförderung, nicht als reinen Altruismus</li>
+    </ul>
+  </div>
+
+  <p>Der Fall zeigt ein wiederkehrendes Muster: Ein einzelnes, kleines und oft falsch beziffertes Projekt wird zum Symbol für die gesamte Entwicklungspolitik erklärt — während die eigentlich interessante Struktur dahinter (Kredit versus Zuschuss, Exportinteresse des Geberlandes) unbeachtet bleibt.</p>
+
+  <hr class="sep">
+
+  <h2>Der neue Fall: Senegal, eine Mine und BlackRock</h2>
+
+  <p>Am 4. Juli 2026 veröffentlichte Tichys Einblick einen Artikel mit der Kernaussage: Deutschland subventioniere über Entwicklungshilfe eine Straße im Senegal, von der vor allem ein Bergbaukonzern profitiere — und am Ende „streiche BlackRock die Gewinne ein". <span class="tag tag-belegt">BELEGT</span> (Grundstruktur) <span class="tag tag-extra">EXTRAPOLATION</span> (Zuspitzung)</p>
+
+  <div class="source-box">
+    <span class="label">Was belegt ist</span>
+    <ul>
+      <li>118 Mio. € Budgethilfe an den Senegal, teils gebunden an Infrastrukturprojekte</li>
+      <li>Größtes Infrastrukturprojekt: die 240 km lange Fernstraße Labé–Fongolembi, die einen Bergbaukorridor erschließt</li>
+      <li>Betreiber der angeschlossenen Minen: Endeavour Mining Plc. (London)</li>
+      <li>BlackRock hält daran, Stand Juli 2026, rund 13 % der Stimmrechte — größter Einzelaktionär, aber kein Mehrheitseigentümer</li>
+    </ul>
+  </div>
+
+  <p>Die Formulierung "die Gewinne streicht am Ende BlackRock ein" ist eine journalistische Zuspitzung. Korrekt wäre: BlackRock ist als Vermögensverwalter — größtenteils für Indexfonds-Kunden, nicht auf eigene Rechnung — mit knapp 13 Prozent der größte einzelne Nutznießer unter vielen. Die übrigen 87 Prozent verteilen sich auf andere Aktionäre. Der strukturelle Kern der Kritik — öffentlich finanzierte Infrastruktur erschließt privaten Bergbaugewinn, an dem der Senegal selbst nicht beteiligt ist — bleibt davon unberührt und ist sauber belegbar. Die Zuspitzung auf einen einzelnen Konzernnamen ist die vereinfachte, aber nicht falsche Version einer komplexeren Eigentümerstruktur.</p>
+
+  <hr class="sep">
+
+  <h2>Reale Kontrolllücken: Der Fall Jemen</h2>
+
+  <p>Während der Peru- und Senegal-Fall vor allem Fragen der Zielsetzung aufwerfen, zeigt der Fall Jemen ein handfestes Kontrollproblem. Die GIZ setzte seit 2015 über 100 Millionen Euro im Jemen ein, verteilt auf 14 Projekte mit einem Gesamtvolumen von gut 124 Millionen Euro. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <span class="label">Quelle: Business Insider, WELT, GIZ-Bestätigung</span>
+    <ul>
+      <li>Systematischer Betrug durch Mitarbeiter: gefälschte Tankabrechnungen, Wechselkursmanipulation, fingierte Seminare</li>
+      <li>Schaden: zweistelliger Millionenbereich, 24 Mitarbeiter freigestellt</li>
+      <li>Erste Hinweise bereits 2022 — bis Mitte 2026 nicht vollständig aufgeklärt</li>
+      <li>Strukturursache: GIZ steuerte die Jemen-Projekte aus Eschborn per Fernkontrolle, ohne deutsches Personal vor Ort; Prüfung erfolgte im Wesentlichen über eingereichte Belege</li>
+      <li>Beim Rückzug aus dem von den Huthis kontrollierten Nordjemen 2025 sollen Teile der Projektakten vernichtet worden sein</li>
+    </ul>
+  </div>
+
+  <p>Der Bundesrechnungshof hatte das BMZ bereits 2021 und 2023 in mehreren Berichten kritisiert — unter anderem, weil die GIZ eine eigene "Steuerungskennzahl" verwendet, die nach Einschätzung der Prüfer wenig über tatsächliche Wirtschaftlichkeit aussagt, und weil eine unabhängige Wirkungskontrolle der Projekte strukturell schwach ausgebaut ist. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Ein Beleg für ein weiteres, kleineres, aber dokumentiertes Muster: Der Integritätsbericht des Bundesinnenministeriums für die Bundesverwaltung nennt explizit einen Fall bei der GIZ, in dem Gutachteraufträge gegen „Rückvergütungen" — also Kickbacks — vergeben wurden. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="quote-box">
+    „Viele Gutachter-Büros sind auf die Aufträge der Förderbank KfW und der GIZ wirtschaftlich angewiesen. Sie können es sich nicht erlauben, kritisch zu evaluieren, sonst verlieren sie den Auftrag."<br>
+    — Hans F. Illy, Politikwissenschaftler und Afrika-Experte, zitiert in der taz
+  </div>
+
+  <hr class="sep">
+
+  <h2>Elite Capture: Wenn Hilfsgelder in Steueroasen landen</h2>
+
+  <p>Eine 2020 veröffentlichte Weltbank-Studie ("Elite Capture of Foreign Aid: Evidence from Offshore Bank Accounts", Andersen/Johannesen/Rijkers) untersuchte 22 besonders hilfeabhängige Länder zwischen 1990 und 2010 und fand einen klaren statistischen Zusammenhang: Sobald Tranchen der Weltbank-Entwicklungshilfe ausgezahlt wurden, stiegen zeitgleich die Bankguthaben von Eliten dieser Länder in bekannten Steueroasen — allen voran der Schweiz. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <span class="label">Kernzahlen der Studie</span>
+    <ul>
+      <li>Im Durchschnitt der 22 untersuchten Länder: 7,5 % der Hilfsgelder mit messbarem Zufluss zu Offshore-Konten</li>
+      <li>Bei den sieben am stärksten hilfeabhängigen Staaten: bis zu 15 %</li>
+      <li>Die Studie kann keinen direkten Cent-für-Cent-Nachweis liefern (kein Empfänger-Tracking), aber einen robusten statistischen Zusammenhang</li>
+      <li>Die Publikation löste innerhalb der Weltbank selbst Widerstand aus — laut „The Economist" gab es Versuche, sie zu verwässern</li>
+    </ul>
+  </div>
+
+  <p>Die in manchen Sekundärquellen kursierenden Schätzungen von „10 bis 30 Prozent Korruptionsverlust" oder konkret „3,3 bis 12 Milliarden Euro" für die deutsche ODA 2022 beruhen auf älteren, allgemeineren Studien (Alesina/Weder 2002, Svensson 2000) und sind nicht direkt auf deutsche Zahlungsströme validiert. Die belastbarste, länderübergreifend nachvollziehbare Zahl bleibt die 7,5-Prozent-Marke der Weltbank-Studie. <span class="tag tag-extra">EXTRAPOLATION</span> für die höheren Schätzungen, <span class="tag tag-belegt">BELEGT</span> für die Weltbank-Zahl.</p>
+
+  <p>Ob und in welchem Umfang das speziell für <em>deutsche</em> bilaterale Gelder gilt, ist bislang nicht eigenständig untersucht worden. <span class="tag tag-offen">OFFEN</span></p>
+
+  <hr class="sep">
+
+  <h2>Das Schwellenländer-Paradox: Indien</h2>
+
+  <p>Deutschland sagte Indien 2022 bilaterale Entwicklungszusammenarbeit in Höhe von 987,52 Millionen Euro zu — größtenteils als Kredite. Im selben Zeitraum betrieb Indien ein eigenes Raumfahrtprogramm (Mondlandung Chandrayaan-3, geschätzte Kosten rund 75 Mio. €), baute Atomwaffenarsenal und Flugzeugträger aus und bezog in erheblichem Umfang Rüstungsgüter und Energie aus Russland. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <span class="label">Zur Einordnung</span>
+    <ul>
+      <li>Für China gibt es laut KfW inzwischen keine "klassische" Entwicklungshilfe mehr, nur noch reguläre Finanzkooperation</li>
+      <li>Für Indien läuft die reguläre Entwicklungszusammenarbeit unverändert weiter</li>
+      <li>Der Großteil der deutschen Indien-Hilfe sind rückzahlbare, teils zinsvergünstigte Kredite — keine verlorenen Zuschüsse</li>
+    </ul>
+  </div>
+
+  <p>Warum zwei vergleichbare BRICS-Schwellenländer entwicklungspolitisch unterschiedlich behandelt werden, ist politisch nicht einheitlich begründet. <span class="tag tag-offen">OFFEN</span></p>
+
+  <hr class="sep">
+
+  <h2>Der CO2-Zertifikate-Betrug: Kein Entwicklungshilfe-Fall, aber ständig damit verwechselt</h2>
+
+  <p>Ein Skandal, der in der öffentlichen Debatte häufig fälschlich unter "Entwicklungshilfe an China" verbucht wird, ist tatsächlich etwas anderes: das deutsche UER-Zertifikatesystem (Upstream Emission Reduction), über das Ölkonzerne ihre gesetzlichen Klimaschutz-Verpflichtungen erfüllen können. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <span class="label">Quelle: ZDF frontal, Bloomberg, Umweltbundesamt</span>
+    <ul>
+      <li>66 vom Umweltbundesamt genehmigte China-Klimaprojekte, geschätzter Zertifikat-Marktwert über 1,5 Mrd. €</li>
+      <li>Bloomberg-Reporter fanden an den angegebenen Projektstandorten teils nur frische Baugruben statt der behaupteten Gasrückgewinnungsanlagen</li>
+      <li>UBA selbst stufte 45 von 56 geprüften Projekten als Teil eines „Schattensystems" ein</li>
+      <li>Bezahlt wird dieses Geld nicht aus Steuermitteln, sondern von Verbrauchern über den Kraftstoffpreis an der Tankstelle</li>
+    </ul>
+  </div>
+
+  <p>Der Fall ist real und schwerwiegend — aber kein Entwicklungshilfe-Fall im engeren Sinn. Die Vermischung mit ODA-Zahlen in der öffentlichen Debatte ist selbst Teil des Problems: Sie verschleiert, dass es sich um zwei getrennte Finanzierungssysteme mit unterschiedlichen Kontrollmechanismen handelt.</p>
+
+  <hr class="sep">
+
+  <h2>Die Migrationskopplung: schwächer als behauptet, stärker als offiziell zugegeben</h2>
+
+  <p>Offiziell sind EU-Entwicklungsinstrumente laut Europäischem Rechnungshof nicht an Rückübernahme-Kooperation gekoppelt. De facto verfolgt die EU seit dem Valletta-Gipfel 2015 eine "Hebelwirkungs"-Politik: Der EU-Nothilfe-Treuhandfonds für Afrika (EUTF) wurde explizit mit dem Ziel aufgelegt, Migrationssteuerung zu stärken. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Deutschland verhandelt seit 2023 über einen eigens berufenen Sonderbevollmächtigten "Migrationspartnerschaften", die Entwicklungshilfe-Elemente mit Rückführungskooperation verknüpfen — unter anderem mit Indien, Georgien, Marokko, Kolumbien und Kenia. Fachleute wie der Mediendienst Integration bewerten den messbaren Effekt solcher Abkommen auf tatsächliche Rückführungszahlen bislang als gering. <span class="tag tag-belegt">BELEGT</span> (Existenz der Abkommen) <span class="tag tag-offen">OFFEN</span> (tatsächliche Wirksamkeit)</p>
+
+  <hr class="sep">
+
+  <h2>Der eigentliche Rückfluss: gebundene Hilfe statt Bestechung</h2>
+
+  <p>Auf die Frage, ob Entwicklungshilfegelder in nennenswertem Umfang direkt in die Taschen deutscher Politiker oder Beamter zurückfließen, gibt es keine dokumentierte Grundlage. <span class="tag tag-offen">OFFEN</span> Was hingegen klar belegt ist: Ein erheblicher Teil der Gelder fließt über einen legalen, politisch gewollten Mechanismus nach Deutschland zurück — über die Vergabe von Aufträgen an deutsche Unternehmen im Rahmen der sogenannten gebundenen Hilfe. Das Peru-Beispiel mit Siemens und Herrenknecht ist dafür ein offen kommuniziertes Beispiel, keine verdeckte Praxis. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Der einzige belegte Fall von Rückvergütungen innerhalb des Systems selbst betrifft die bereits erwähnten Gutachteraufträge bei der GIZ — Kickbacks an Auftragnehmer, nicht an Amtsträger. Politische Versorgungsposten an der Spitze von GIZ oder KfW (etwa für gescheiterte Landtagswahlkandidaten) sind branchenüblich und rechtlich unauffällig, aber ein strukturelles Muster, das eigene kritische Betrachtung verdient — ohne dass daraus automatisch Korruption folgt.</p>
+
+  <hr class="sep">
+
+  <div class="closing">
+    <p>Was von alldem bleibt: Der lauteste Vorwurf — 315 Millionen für Radwege — ist frei erfunden. Die leiseren, besser belegten Fälle — Kontrollverlust im Jemen, Elite Capture in Steueroasen, die widersprüchliche Behandlung von Schwellenländern — finden in der öffentlichen Debatte deutlich weniger Beachtung als die Symbolfälle.</p>
+    <p><em>Ist es Zufall, dass die falschen Zahlen mehr Aufmerksamkeit finden als die belegten? Und was würde sich ändern, wenn die Debatte bei den Kontrollmechanismen ansetzte statt bei einzelnen Radwegen?</em></p>
+  </div>
+
+  <div class="footer-note">
+    dunkelfeld.report · Stand: Juli 2026 · Alle Angaben nach bestem Kenntnisstand mit Primärquellen (BMZ, Bundestag/hib, Bundesrechnungshof, Business Insider, ZDF frontal, Weltbank-Working-Paper). Bewertung nach BELEGT / EXTRAPOLATION / OFFEN / VT.
+  </div>
+
+</div>
+</body>
+</html>

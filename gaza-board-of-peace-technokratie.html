@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Das Reißbrett von Gaza — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --surface: #1a1a2e;
+    --accent: #e8c547;
+    --text: #e4e4e7;
+    --muted: #9a9aa8;
+    --border: #27272e;
+    --green: #6fcf7a;
+    --orange: #e0a24d;
+    --grey: #8a8a94;
+    --red: #d16060;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 6rem;
+  }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.05em;
+  }
+  h1 {
+    font-size: 2.3rem;
+    line-height: 1.2;
+    margin: 0 0 0.6rem;
+    color: var(--text);
+  }
+  h1 .sub {
+    display: block;
+    font-size: 1.3rem;
+    color: var(--muted);
+    font-weight: normal;
+    margin-top: 0.6rem;
+  }
+  .lead {
+    font-size: 1.15rem;
+    color: var(--muted);
+    margin: 2rem 0 3rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h2 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 3.5rem 0 1.5rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h2 .nr { color: var(--muted); margin-right: 0.6rem; }
+  p { padding-bottom: 1.2rem; margin: 0; }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    font-weight: bold;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+  .tag.belegt { background: rgba(111,207,122,0.15); color: var(--green); border: 1px solid rgba(111,207,122,0.4); }
+  .tag.extrapolation { background: rgba(224,162,77,0.15); color: var(--orange); border: 1px solid rgba(224,162,77,0.4); }
+  .tag.offen { background: rgba(138,138,148,0.15); color: var(--grey); border: 1px solid rgba(138,138,148,0.4); }
+  .tag.vt { background: rgba(209,96,96,0.15); color: var(--red); border: 1px solid rgba(209,96,96,0.4); }
+  .source-box {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0 2rem;
+    font-size: 0.95rem;
+  }
+  .source-box .src-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .source-box p { padding-bottom: 0.6rem; color: var(--text); }
+  .source-box p:last-child { padding-bottom: 0; }
+  .source-box a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
+  .source-box a:hover { border-bottom-style: solid; }
+  .vote-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0 2rem;
+    font-size: 0.95rem;
+  }
+  .vote-table th, .vote-table td {
+    border: 1px solid var(--border);
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+  }
+  .vote-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--surface);
+  }
+  .quote {
+    font-style: italic;
+    color: var(--text);
+    border-left: 2px solid var(--border);
+    padding-left: 1.2rem;
+    margin: 1.2rem 0;
+    color: var(--muted);
+  }
+  .figure-list {
+    list-style: none;
+    margin: 0 0 2rem;
+    padding: 0;
+  }
+  .figure-list li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 1rem;
+  }
+  .figure-list .role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    min-width: 150px;
+    flex-shrink: 0;
+    padding-top: 0.15rem;
+  }
+  .closing {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .closing p {
+    font-style: italic;
+    color: var(--muted);
+  }
+  .nav-series {
+    margin-top: 4rem;
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+  }
+  .nav-series .nav-title {
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.7rem;
+    margin-bottom: 0.8rem;
+  }
+  .nav-series a { color: var(--muted); text-decoration: none; display: block; padding: 0.3rem 0; }
+  .nav-series a:hover { color: var(--text); }
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">dunkelfeld.report · Infrastruktur der Kontrolle</div>
+  <div class="meta">DOSSIER · STAND JULI 2026 · LESEDAUER CA. 14 MIN</div>
+
+  <h1>Das Reißbrett von Gaza
+    <span class="sub">Board of Peace, Gas und die Architektur eines Musterlandes</span>
+  </h1>
+
+  <div class="lead">
+    Ein Waffenstillstand, eine UN-Resolution ohne Gegenstimme, ein Gremium ohne Wahllegitimation, ein Gasfeld, ein Tokenisierungsplan und ein Technologie-Stack, der bereits im Überwachungsapparat der Region im Einsatz ist. Einzeln betrachtet sind das fünf dokumentierte Vorgänge. Zusammengelegt ergeben sie die Blaupause für etwas, das es in dieser Form noch nicht gegeben hat. Dieses Dossier legt die Bausteine nebeneinander — und trennt, was belegt ist, von dem, was Deutung bleibt.
+  </div>
+
+  <!-- BLOCK 1 -->
+  <h2><span class="nr">01</span>Die Legitimation</h2>
+  <p><span class="tag belegt">BELEGT</span> Am 17. November 2025 verabschiedete der UN-Sicherheitsrat Resolution 2803. Sie begrüßt den von US-Präsident Donald Trump am 29. September 2025 vorgestellten "Comprehensive Plan to End the Gaza Conflict" und autorisiert eine internationale Stabilisierungstruppe (ISF) sowie ein "Board of Peace" (BoP) als Übergangsverwaltung mit eigener Rechtspersönlichkeit.</p>
+
+  <table class="vote-table">
+    <tr><th>Abstimmung</th><th>Ergebnis</th></tr>
+    <tr><td>Dafür</td><td>13</td></tr>
+    <tr><td>Dagegen</td><td>0</td></tr>
+    <tr><td>Enthaltung</td><td>2 (China, Russland)</td></tr>
+  </table>
+
+  <p>Kein Veto der beiden ständigen Mitglieder — aber auch keine Zustimmung. Russland hatte zunächst einen eigenen Resolutionsentwurf eingebracht, zog ihn dann zurück, nachdem acht arabisch-muslimische Staaten sowie die Palästinensische Autonomiebehörde den US-Entwurf öffentlich unterstützt hatten.</p>
+
+  <div class="source-box">
+    <div class="src-label">Quelle · Erklärung Russlands zur Stimmenthaltung</div>
+    <p>Botschafter Nebenzia begründete die Enthaltung damit, Moskau habe die Position Ramallahs sowie zahlreicher arabisch-muslimischer Staaten respektieren wollen, die sich für den amerikanischen Entwurf aussprachen, um ein erneutes Blutvergießen im Gazastreifen zu vermeiden. Zugleich kritisierte er, der Rat erteile damit im Grunde einer US-Initiative seinen Segen, gestützt allein auf Zusagen aus Washington, und übertrage dem Board of Peace und der Stabilisierungstruppe die vollständige Kontrolle über den Gazastreifen, deren genaue Ausgestaltung unbekannt sei.</p>
+    <p>China bemängelte laut Sitzungsprotokoll, die Resolution bleibe "vage und unklar" hinsichtlich Struktur, Zusammensetzung und Mandat des Boards. (UN Meetings Coverage SC/16225, 17.11.2025 · Chatham House, 21.11.2025)</p>
+  </div>
+
+  <p><span class="tag belegt">BELEGT</span> Mehrere truppenstellende Staaten (Ägypten, Katar, VAE, Indonesien, Pakistan, Jordanien, Türkei, Saudi-Arabien) machten ihre Beteiligung an der Stabilisierungstruppe von einem UN-Mandat abhängig. Ohne Resolution hätte die Truppenpräsenz als Besatzung ohne völkerrechtliche Grundlage gelten können — ein Kapitel-VII-Mandat war damit die Voraussetzung für die Umsetzbarkeit des gesamten Plans, nicht nur seine Absegnung.</p>
+
+  <!-- BLOCK 2 -->
+  <h2><span class="nr">02</span>Die Personen</h2>
+  <p><span class="tag belegt">BELEGT</span> Im ursprünglichen 20-Punkte-Dokument wird neben Trump nur eine einzige Person namentlich genannt: Tony Blair. Das Executive Board des Board of Peace wurde im Januar 2026 offiziell besetzt.</p>
+
+  <ul class="figure-list">
+    <li><span class="role">Vorsitz</span> Donald Trump</li>
+    <li><span class="role">Executive Board</span> Tony Blair, Jared Kushner, Steve Witkoff, Marco Rubio</li>
+    <li><span class="role">Wirtschaft</span> Marc Rowan (CEO Apollo Global Management), Ajay Banga (Weltbank-Präsident)</li>
+    <li><span class="role">Operative Leitung</span> Nickolay Mladenov, "High Representative for Gaza"</li>
+    <li><span class="role">Gaza Executive Board</span> zusätzlich u.a. türkischer Außenminister Hakan Fidan, katarischer Diplomat Ali Al-Thawadi, VAE-Ministerin Reem Al-Hashimy</li>
+  </ul>
+
+  <p><span class="tag belegt">BELEGT</span> Blairs Rolle ist keine neue Personalie. Er war bereits als Nahost-Vertreter des sogenannten Quartetts sowie in Trumps erster Amtszeit in Wiederaufbaukonzepte für Gaza eingebunden — eine Kontinuität von rund 15 Jahren, die bis zur "Gaza Riviera"-Idee vom Februar 2025 reicht.</p>
+
+  <div class="source-box">
+    <div class="src-label">Quelle · Kritik am Auswahlverfahren</div>
+    <p>Ein Palästina-Kommentator bezeichnete das Auswahlverfahren des Boards als intransparent; die UN-Sonderberichterstatterin für die besetzten palästinensischen Gebiete, Francesca Albanese, äußerte sich öffentlich ablehnend zu Blairs Beteiligung. Ein Vertreter der politischen Führung von Hamas lehnte Blairs Rolle scharf ab. (NPR, 03.10.2025 · Al Jazeera, 16.01.2026)</p>
+  </div>
+
+  <!-- BLOCK 3 -->
+  <h2><span class="nr">03</span>Das Geld — zwei unabhängige Stränge</h2>
+
+  <p><span class="tag belegt">BELEGT</span> <strong>Strang A — Erdgas:</strong> Das Gasfeld Gaza Marine, 30–35 Mrd. m³, liegt seit dem Jahr 2000 unentwickelt vor der Küste. Im Dezember 2025 wurde bekannt, dass die USA, Israel und die Vereinigten Arabischen Emirate Gespräche darüber führen, dem staatlichen Ölkonzern Adnoc eine Beteiligung an der Entwicklung einzuräumen — die Erlöse sollen in den Wiederaufbau fließen. Die Gespräche gelten laut den befragten Quellen als unverbindlich.</p>
+
+  <p><span class="tag belegt">BELEGT</span> <strong>Strang B — Tokenisierung:</strong> Im September 2025 gelangte ein 38-seitiges Prospekt an die Öffentlichkeit, das den "Gaza Reconstitution, Economic Acceleration and Transformation Trust" (GREAT Trust) beschreibt. Es sah vor, palästinensischen Grundbesitz in handelbare Blockchain-Token umzuwandeln; Bewohner sollten 5.000 US-Dollar Bargeld, vier Jahre Mietzuschuss und ein Jahr Nahrungsmittelhilfe im Tausch gegen ihre Eigentumsrechte erhalten. Das Papier bezifferte das Umsatzpotenzial für Investoren auf rund 185 Milliarden Dollar über zehn Jahre.</p>
+
+  <p><span class="tag belegt">BELEGT</span> Im Dezember 2025 wurde ein weiteres, überlappendes Konzept publik: "Project Sunrise", entworfen von Kushner, Witkoff und zwei Mitarbeitern des Weißen Hauses — ein 112-Milliarden-Dollar-Plan über zehn Jahre mit Luxusresorts, Hochgeschwindigkeitsbahn und einer eigens vorgesehenen Position als "Chief Digital Officer" für die künftige Verwaltung.</p>
+
+  <div class="source-box">
+    <div class="src-label">Quelle · Umfang der Pläne</div>
+    <p>Vorgesehen waren laut den geleakten Unterlagen zehn Großprojekte, darunter Häfen, eine Eisenbahnlinie, ein Rechenzentrum für Künstliche Intelligenz sowie eine nach Elon Musk benannte "Smart Manufacturing Zone". (Washington Post, zit. n. AInvest, 02.09.2025 · GV Wire, 24.12.2025)</p>
+  </div>
+
+  <!-- BLOCK 4 -->
+  <h2><span class="nr">04</span>Die Infrastruktur</h2>
+
+  <p><span class="tag belegt">BELEGT</span> Der GREAT-Trust-Plan wurde maßgeblich vom Tony Blair Institute for Global Change (TBI) mitentworfen. Größter Geldgeber des TBI ist Larry Ellison, Mitgründer und Executive Chairman von Oracle. Seit 2021 erhielt das Institut Spenden oder Zusagen von mindestens 257 Millionen Pfund von der Larry Ellison Foundation — mehr als alle anderen Geldgeber zusammen.</p>
+
+  <div class="source-box">
+    <div class="src-label">Quelle 1 · Byline Times, 16.10.2025</div>
+    <p>Eine Auswertung geleakter Dokumente zum "Gaza International Transitional Authority"-Rahmenwerk (GITA) ergab, dass dessen digitale Verwaltungsarchitektur — Identität, Grenzkontrolle, Hilfslogistik, Geberkoordination — dem Oracle-Palantir-Technologie-Stack entspricht, der bereits im israelischen Verteidigungsnetzwerk eingesetzt wird. Die Struktur des GITA-Boards sei so angelegt, dass dieser Stack einen leichten Zugang zu Wiederaufbau-Aufträgen erhalte. Das Leak-Dokument wurde ursprünglich von der israelischen Zeitung Haaretz veröffentlicht.</p>
+  </div>
+
+  <div class="source-box">
+    <div class="src-label">Quelle 2 · Drop Site News, 04.03.2026</div>
+    <p>Palantir betreibt seine Systeme auf Oracle-Cloud-Infrastruktur unter Larry Ellison, der zugleich ein bedeutender Förderer des israelischen Militärs ist. Das Unternehmen unterhält einen festen Arbeitsplatz im US-geführten "Civil-Military Coordination Center", wo Konvoi- und Verteilungsdaten zur Überwachung der Hilfslieferungen eingespeist werden.</p>
+  </div>
+
+  <p><span class="tag offen">OFFEN</span> Ob der Oracle-Palantir-Stack tatsächlich zum Vergabeschlüssel künftiger GITA-Aufträge wird, ist zum Stand dieses Dossiers nicht ausgeschrieben und daher nicht abschließend belegbar — die zitierten Quellen stützen sich auf Leak-Dokumente und Procurement-Kategorien, nicht auf finale Verträge.</p>
+
+  <!-- EINORDNUNG -->
+  <h2><span class="nr">05</span>Die Einordnung</h2>
+  <p><span class="tag extrapolation">EXTRAPOLATION</span> Jeder der vier Bausteine — Legitimationsverfahren ohne Vetoeinsatz, ein Führungsgremium ohne Wahllegitimation, zwei parallele Finanzierungsmodelle über Rohstoff und Tokenisierung, sowie eine digitale Verwaltungsinfrastruktur aus der Überwachungsbranche — ist für sich genommen dokumentiert. Die Zusammenführung dieser Bausteine zu einem kohärenten "Technokraten-Musterland" ist keine von einer der zitierten Quellen selbst so benannte Kategorie, sondern eine Verdichtung, die sich aus der zeitlichen und personellen Überschneidung ergibt.</p>
+
+  <p>Ein Beobachter kommt der These am nächsten, wenn er den Ansatz als "increasingly technocratic and market-driven approach to post-conflict reconstruction" beschreibt — allerdings in einem Meinungsbeitrag, nicht in einem Primärdokument.</p>
+
+  <div class="closing">
+    <p>Wird hier eine Verwaltung wiederaufgebaut — oder ein Betriebssystem installiert?</p>
+    <p>Und wenn Letzteres zutrifft: Für wen wird es geschrieben, und wer entscheidet, wann ein Update ansteht?</p>
+  </div>
+
+  <footer>
+    STAND: JULI 2026 · QUELLEN: UN NEWS · UN MEETINGS COVERAGE SC/16225 · CHATHAM HOUSE · ASIL · CARNEGIE ENDOWMENT · NPR · AL JAZEERA · MIDDLE EAST EYE · NBC NEWS · MIDDLE EAST COUNCIL ON GLOBAL AFFAIRS · BYLINE TIMES · DROP SITE NEWS · GV WIRE · WASHINGTON POST (ZIT.) · WIKIPEDIA (GAZA MARINE, STAND FEB. 2026)<br>
+    ALLE ANGABEN NACH BESTEM RECHERCHESTAND. FÜR AKTUALISIERUNGEN UND KORREKTUREN: SIEHE KONTAKT.
+  </footer>
+
+</div>
+</body>
+</html>

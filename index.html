@@ -189,6 +189,45 @@
       .site-header, .hero, .main, .site-footer { padding-left: 1rem; padding-right: 1rem; }
       .card-desc { display: none; }
     }
+
+    /* ── SUCHE ── */
+    .search-bar {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid #1a1a1e;
+      display: flex;
+      gap: 0;
+    }
+    .search-bar input {
+      flex: 1;
+      background: #111113;
+      border: 1px solid #27272a;
+      border-right: none;
+      border-radius: 3px 0 0 3px;
+      padding: 0.65rem 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: #d4d4d8;
+      outline: none;
+      letter-spacing: 0.05em;
+    }
+    .search-bar input::placeholder { color: #3f3f46; }
+    .search-bar input:focus { border-color: #e8c547; }
+    .search-bar button {
+      background: #e8c547;
+      color: #09090b;
+      border: none;
+      border-radius: 0 3px 3px 0;
+      padding: 0.65rem 1.25rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      font-weight: bold;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .search-bar button:hover { background: #b89a2f; }
   </style>
 </head>
 <body>
@@ -197,6 +236,10 @@
     <div><span class="site-dot"></span><span class="site-name">dunkelfeld.report</span></div>
     <div class="site-tagline">Fakten · Quellen · Dokumentation — keine Schlussfolgerungen</div>
   </header>
+  <div class="search-bar">
+    <input type="text" id="q" placeholder="Volltext durchsuchen … (z.B. Palantir, WHO, BlackRock)" onkeydown="if(event.key==='Enter')doSearch()">
+    <button onclick="doSearch()">Suchen</button>
+  </div>
 
   <section class="hero">
     <h1>Was öffentlich belegt ist —<br>aber selten nebeneinandersteht.</h1>
@@ -567,8 +610,4 @@
     dunkelfeld.report &nbsp;·&nbsp; Keine Cookies · Kein Tracking · DSGVO-konform &nbsp;·&nbsp;
     Alle Angaben quellenbasiert — Unschuldsvermutung gilt bei laufenden Verfahren &nbsp;·&nbsp;
     Stand: Juni 2026 &nbsp;·&nbsp;
-    <a href="impressum.html">Impressum</a> &nbsp;·&nbsp; <a href="datenschutz.html">Datenschutz</a>
-  </footer>
-
-</body>
-</html>
+    <a href="

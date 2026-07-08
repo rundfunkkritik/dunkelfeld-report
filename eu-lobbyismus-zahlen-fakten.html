@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lobbyismus in der EU – Zahlen, Fakten, Mechanismen | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --source-bg: #1a1a2e;
+    --belegt: #4caf6b;
+    --extrapolation: #e07b39;
+    --offen: #9a9aa5;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: #e5e5e5;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 6rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.3;
+    margin: 0 0 0.6rem;
+    color: #fff;
+  }
+  .subtitle {
+    font-size: 1.25rem;
+    color: #b8b8c0;
+    font-style: italic;
+    margin-bottom: 2.5rem;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    border-bottom: 1px solid #2a2a35;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    color: #f0d878;
+    font-size: 1.15rem;
+    margin-top: 2rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  a { color: var(--accent); }
+
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+  }
+  .tag-belegt { background: rgba(76,175,107,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag-extrapolation { background: rgba(224,123,57,0.15); color: var(--extrapolation); border: 1px solid var(--extrapolation); }
+  .tag-offen { background: rgba(154,154,165,0.15); color: var(--offen); border: 1px solid var(--offen); }
+  .tag-vt { background: rgba(154,154,165,0.1); color: #6a6a75; border: 1px solid #6a6a75; text-decoration: line-through; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+  @media (max-width: 500px) { .stat-grid { grid-template-columns: 1fr; } }
+  .stat-box {
+    background: var(--source-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+  }
+  .stat-num {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
+    font-family: Georgia, serif;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #b8b8c0;
+    margin-top: 0.3rem;
+  }
+
+  .source-box {
+    background: var(--source-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .person-card {
+    background: var(--source-bg);
+    border-left: 3px solid var(--extrapolation);
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+  }
+  .person-card .name {
+    font-weight: bold;
+    color: #fff;
+    font-size: 1.05rem;
+  }
+  .person-card .role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline {
+    margin: 1.5rem 0;
+    padding-left: 0;
+    list-style: none;
+  }
+  .timeline li {
+    position: relative;
+    padding: 0 0 1.3rem 1.5rem;
+    border-left: 2px solid #2a2a35;
+  }
+  .timeline li:last-child { border-left: 2px solid transparent; }
+  .timeline li::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline .date {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #2a2a35;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #f0d878;
+    border-left: 3px solid var(--accent);
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    margin: 2rem 0;
+  }
+  .pull-quote .attr {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-style: normal;
+    color: #b8b8c0;
+    margin-top: 0.5rem;
+  }
+
+  .aside {
+    background: rgba(232,197,71,0.05);
+    border: 1px solid #2a2a35;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  .closing {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a35;
+    font-style: italic;
+    color: #b8b8c0;
+  }
+
+  .sources-list {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a35;
+    font-size: 0.85rem;
+    color: #9a9aa5;
+  }
+  .sources-list .label {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+  .sources-list ul { padding-left: 1.2rem; }
+  .sources-list li { padding-bottom: 0.4rem; }
+  .sources-list a { color: #9a9aa5; text-decoration: underline; }
+
+  footer.series-nav {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a35;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #6a6a75;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="meta">dunkelfeld.report · Hidden in Plain Sight</div>
+  <h1>Lobbyismus in der EU – Zahlen, Fakten, Mechanismen</h1>
+  <div class="subtitle">Wie Einflussnahme in Brüssel organisiert ist – und was sie bewirkt</div>
+
+  <p>Brüssel gilt neben Washington als die zweite Lobby-Hauptstadt der Welt. Anders als in den USA gibt es kein verpflichtendes Register, keine systematische Terminveröffentlichung und keine wirksamen Sanktionen. Was folgt, sind die dokumentierten Zahlen, die etablierten Mechanismen und die belegten Fälle – ohne Bewertung der Motive einzelner Akteure.</p>
+
+  <h2>Die Zahlen</h2>
+
+  <div class="stat-grid">
+    <div class="stat-box">
+      <div class="stat-num">382 Mio. €</div>
+      <div class="stat-label">Jahresbudget der 173 größten Lobbyakteure (Stichtag 11.5.2026) <span class="tag tag-belegt">BELEGT</span></div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">+50 %</div>
+      <div class="stat-label">Anstieg der Ausgaben seit 2020 <span class="tag tag-belegt">BELEGT</span></div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">151 Mio. €</div>
+      <div class="stat-label">Gesamt-Lobbybudget der Tech-Branche, größter Einzelsektor <span class="tag tag-belegt">BELEGT</span></div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">~25.000–30.000</div>
+      <div class="stat-label">Geschätzte Zahl der Lobbyisten in Brüssel <span class="tag tag-extrapolation">SCHÄTZUNG</span></div>
+    </div>
+  </div>
+
+  <p>Die Grundlage dieser Zahlen ist das <strong>EU-Transparenzregister</strong>, das seit 2011 von Parlament und Kommission und seit 2021 zusätzlich vom Rat geführt wird. Über 12.000 Organisationen sind eingetragen. Die Registrierung ist freiwillig – wer sich aber nicht einträgt, verliert bestimmte Privilegien wie Treffen mit Kommissionsmitgliedern. Kernstück sind Selbstangaben zu jährlichen Lobbyausgaben in groben Bandbreiten – nicht auf den Euro genau, sondern in Stufen. Belastbare Auswertungen wie die von LobbyControl und Corporate Europe Observatory (CEO) rechnen deshalb grundsätzlich mit dem jeweils niedrigsten Wert einer angegebenen Spanne. Die tatsächlichen Ausgaben dürften also höher liegen als ausgewiesen.</p>
+
+  <div class="source-box">
+    <div class="label">Quelle</div>
+    Die Zahl von 382 Mio. € stammt aus einer gemeinsamen Analyse von LobbyControl und Corporate Europe Observatory vom Juni 2026, die auf Daten des offiziellen EU-Transparenzregisters basiert (ausgewertet über die Plattform LobbyFacts). Einbezogen wurden alle Unternehmen und Verbände mit einem angegebenen Jahresbudget von mindestens einer Million Euro – insgesamt 173 Akteure. Das entspricht einem Plus von rund 27,5 Mio. € gegenüber dem Vorjahr.
+  </div>
+
+  <h3>Die Tech-Branche führt das Feld an</h3>
+  <p>Innerhalb von zwei Jahren stieg das gesamte Lobbybudget der Digitalindustrie von 113 auf 151 Mio. € – ein Zuwachs von rund 34 Prozent. Verglichen mit 2021, dem ersten Jahr einer vergleichbaren Auswertung, beträgt der Anstieg sogar 56 Prozent. Allein zehn Konzerne sind für 48 Mio. € davon verantwortlich; das entspricht etwa einem Drittel der gesamten Branchenausgaben.</p>
+
+  <table>
+    <tr><th>Unternehmen</th><th>Jährliche EU-Lobbyausgaben</th><th>Veränderung seit 2020</th></tr>
+    <tr><td>Meta</td><td>&gt;10 Mio. €</td><td>größter Einzelakteur in der EU</td></tr>
+    <tr><td>Amazon</td><td>~9 Mio. €</td><td>+7,3 Mio. €</td></tr>
+    <tr><td>Apple</td><td>~8 Mio. €</td><td>+6 Mio. €</td></tr>
+    <tr><td>Microsoft</td><td>4,5–5 Mio. €</td><td>+2 Mio. €</td></tr>
+    <tr><td>Google</td><td>~4 Mio. €</td><td>414 Treffen mit EU-Spitzenbeamten seit 2014</td></tr>
+    <tr><td>Fleishman-Hillard (PR-Agentur)</td><td>&gt;11 Mio. €</td><td>größter Einzel-Lobbyist in Brüssel insgesamt</td></tr>
+  </table>
+  <p style="font-size:0.85rem;color:#9a9aa5;">Alle Werte <span class="tag tag-belegt">BELEGT</span> nach LobbyControl/CEO bzw. offiziellem EU-Transparenzregister. Werte sind Selbstangaben der Unternehmen und gelten als Mindestwerte.</p>
+
+  <p>Bezogen auf einzelne Herkunftsländer war zuletzt die Bayer AG der ausgabenstärkste deutsche EU-Lobbyist, gefolgt von BASF, Siemens, Volkswagen und E.ON.</p>
+
+  <h2>Wie wird's gemacht – die Mechanismen</h2>
+
+  <h3>1. Direkter Zugang</h3>
+  <p>Seit dem 1. Dezember 2014 veröffentlicht die EU-Kommission alle Treffen von Kommissionsmitgliedern, deren Kabinettsmitgliedern und Generaldirektoren mit Interessenvertretern. Erfasst wird dabei ausschließlich das Spitzenpersonal – Treffen mit nachgeordneten Referatsleitungen bleiben unsichtbar. Nach Auswertungen, auf die sich LobbyControl beruft, erreichte die Zahl der Treffen mit Unternehmen und Wirtschaftsverbänden 2025 den höchsten Stand seit Beginn der Erfassung, während der Anteil der Treffen mit zivilgesellschaftlichen Organisationen weiter zurückging.</p>
+
+  <h3>2. Finanzierung von Thinktanks</h3>
+  <p>Ergänzend zu direkten Kontakten investieren große Konzerne zunehmend in die Finanzierung von Denkfabriken und Politikinstituten, die Studien und Positionspapiere liefern, ohne selbst als Unternehmenslobby aufzutreten. Laut LobbyControl-Auswertung ist diese Praxis in den vergangenen Jahren deutlich gewachsen, ebenso wie Zahlungen an Beratungsfirmen und PR-Büros, die inzwischen bei über 9 Mio. € jährlich liegen (Tech-Branche).</p>
+
+  <h3>3. Der Drehtür-Effekt</h3>
+  <p>Als "Revolving Door" wird der Wechsel von Politikern und hochrangigen Beamten aus dem EU-Apparat in bezahlte Positionen bei genau jenen Branchen bezeichnet, die sie zuvor reguliert haben. Der Verhaltenskodex der Kommission sieht eine Karenzzeit vor – seit einer Reform 2018 von 18 auf 24 Monate für Kommissare und auf 36 Monate für Kommissionspräsidenten verlängert. Verstöße werden vom hauseigenen Ethikausschuss geprüft, der aber nur eine beratende Funktion hat und praktisch nie ein Veto einlegt: In der ersten Barroso-Kommission wechselte nur ein einziger von rund der Hälfte aller ausscheidenden Kommissionsmitglieder überhaupt in einen untersagten Job.</p>
+
+  <div class="person-card">
+    <div class="name">José Manuel Barroso</div>
+    <div class="role">Kommissionspräsident 2004–2014 → Goldman Sachs International</div>
+    Wechselte rund 20 Monate nach Ende seiner Amtszeit als Berater und späterer Chairman zur Investmentbank Goldman Sachs – jener Branche, deren Regulierung er als Kommissionspräsident mitgestaltet hatte. Drei Jahre nach seinem Ausscheiden arbeiteten laut einer Studie von Transparency International sechs seiner ehemaligen Kommissionsmitglieder für im EU-Lobbyregister eingetragene Konzerne. <span class="tag tag-belegt">BELEGT</span>
+  </div>
+
+  <div class="person-card">
+    <div class="name">Neelie Kroes</div>
+    <div class="role">Digitalkommissarin 2010–2014 → Uber Public Policy Advisory Board</div>
+    Wurde offiziell zwei Jahre nach Amtsende als bezahltes Mitglied (rund 200.000 US-$/Jahr) des Uber-Beirats vorgestellt. Interne Uber-Dokumente aus den 2022 veröffentlichten "Uber Files" zeigen, dass die Zusammenarbeit bereits vorher informell bestand und aktiv geheim gehalten wurde. Zusätzlich geriet Kroes wegen einer nicht gemeldeten Funktion als Direktorin einer Bahamas-Firma in die Kritik. <span class="tag tag-belegt">BELEGT</span>
+  </div>
+
+  <div class="person-card">
+    <div class="name">Weitere dokumentierte Fälle</div>
+    <div class="role">Drehtürwechsel im Überblick</div>
+    Connie Hedegaard (Klimakommissarin) → Volkswagen · Karel de Gucht (Handelskommissar) → ArcelorMittal · Jonathan Hill (Finanzkommissar) → UBS, Beratung zu Brexit-Folgen für Bankkunden. Alle Wechsel erfolgten nach Ablauf der jeweils geltenden Karenzzeit, wurden aber von Transparency International, Corporate Europe Observatory und der Europäischen Ombudsfrau Emily O'Reilly als Interessenkonflikt kritisiert. <span class="tag tag-belegt">BELEGT</span>
+  </div>
+
+  <div class="aside">
+    <strong>Zur Einordnung:</strong> Die EU-Kommission prüft nach eigenen Angaben jährlich rund 700 mögliche Fälle von Interessenkonflikten wegen externer Tätigkeiten ihrer Mitarbeiter. Das zeigt: Der Drehtür-Effekt ist kein Randphänomen einzelner Personen, sondern ein strukturelles Merkmal des Systems.
+  </div>
+
+  <h3>Fallstudie: Die Uber Files (2022)</h3>
+  <p>Im Juli 2022 veröffentlichte ein internationales Journalistenkonsortium (ICIJ) auf Basis eines Leaks des ehemaligen Uber-Cheflobbyisten Mark MacGann tausende interne E-Mails, SMS und Dokumente aus den Jahren 2013 bis 2017. Sie zeigen im Detail, wie Uber seine Marktexpansion in Europa organisierte: durch gezielte Kontakte zu amtierenden Spitzenpolitikern, verdeckte Lobbyarbeit und den bewussten Umgang mit Regulierungsbehörden als Gegner statt als Aufsicht.</p>
+
+  <ul class="timeline">
+    <li><span class="date">März 2015</span>Polizeirazzia gegen Uber in Amsterdam. Laut den geleakten Dokumenten kontaktiert Neelie Kroes daraufhin niederländische Regierungsmitglieder, um auf die Ermittlungsbehörden einzuwirken.</li>
+    <li><span class="date">2015</span>Als damaliger französischer Wirtschaftsminister setzt sich Emmanuel Macron laut SMS-Auswertung auf Bitten Ubers gegen eine unternehmenskritische Verordnung eines Pariser Polizeipräfekten ein – die Verordnung wird noch am selben Abend entschärft.</li>
+    <li><span class="date">Mai 2016</span>Kroes wird einen Tag nach Ablauf ihrer 18-monatigen Karenzzeit offiziell Mitglied im "Public Policy Advisory Board" von Uber. Ihre Aufnahme war laut internen Uber-Mails bereits während ihrer aktiven Amtszeit als Kommissarin eingefädelt worden.</li>
+    <li><span class="date">Juli 2022</span>Veröffentlichung der Uber Files. Die EU-Kommission kündigt an, von Kroes eine Stellungnahme einzuholen; Frankreich diskutiert eine parlamentarische Untersuchung zu Macrons Rolle.</li>
+    <li><span class="date">2022</span>Das EU-Betrugsbekämpfungsamt OLAF leitet eine Untersuchung gegen Kroes wegen möglicher verdeckter Lobbytätigkeit während der Sperrfrist ein.</li>
+  </ul>
+  <p style="font-size:0.85rem;color:#9a9aa5;">Quellen: ICIJ, The Guardian, ORF, Lobbypedia. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <h3>Extremfall: Cash-for-Influence ("Katargate")</h3>
+  <p>Am 9. Dezember 2022 durchsuchte die belgische Polizei mehrere Wohnungen in Brüssel und nahm die damalige EP-Vizepräsidentin Eva Kaili, ihren Vater und ihren Partner sowie Mitarbeiter Francesco Giorgi fest. Insgesamt wurden rund 1,5 Mio. € Bargeld gefunden. Die Ermittlungen richten sich gegen ein Netzwerk um den früheren Europaabgeordneten Pier Antonio Panzeri, das über eine als Menschenrechtsorganisation auftretende, nicht im Lobbyregister eingetragene Struktur gegen Bezahlung EU-Politik im Sinne der Regierungen von Katar, Marokko und Mauretanien beeinflusst haben soll. Giorgi kooperiert seither mit der Staatsanwaltschaft.</p>
+  <p>Kaili bestreitet sämtliche Vorwürfe der Korruption, Geldwäsche und Bildung einer kriminellen Organisation. Im Februar 2026 wies das Brüsseler Berufungsgericht ihre Klage ab, die Ermittlungen selbst seien rechtswidrig zustande gekommen ("Belgiangate"). Das eigentliche Strafverfahren ist zum Stand dieses Artikels weiterhin nicht rechtskräftig abgeschlossen.</p>
+  <p><span class="tag tag-belegt">BELEGT</span>: Festnahmen, gefundene Bargeldsummen, laufendes Verfahren. <span class="tag tag-offen">OFFEN</span>: strafrechtliche Schuld einzelner Beschuldigter – hierzu gilt bis zu einem rechtskräftigen Urteil die Unschuldsvermutung.</p>
+
+  <h2>Auswirkungen</h2>
+
+  <p>Die zweite Kommission Ursula von der Leyens hat seit ihrem Amtsantritt unter den Stichworten "Wettbewerbsfähigkeit" und "Bürokratieabbau" eine Reihe von Deregulierungsinitiativen auf den Weg gebracht – unter anderem bei Chemikaliengesetzgebung, Landwirtschaft, Digitalpolitik, Industrieemissionen und Genehmigungsverfahren. LobbyControl und CEO ordnen dies als Ergebnis langjähriger Forderungen einflussreicher Industrieverbände ein.</p>
+
+  <div class="pull-quote">
+    Die mächtigsten Branchen prägen zunehmend die EU-Politikgestaltung, während die Öffentlichkeit weitgehend außen vor bleibt.
+    <span class="attr">— sinngemäß Vicky Cann, Corporate Europe Observatory, Juni 2026</span>
+  </div>
+
+  <p>Konkret im Fokus der aktuellen Deregulierungsdebatte stehen laut Berichten von LobbyControl auch die Datenschutzgrundverordnung (DSGVO) und der AI Act, die von EU-Kommissionsberater Mario Draghi unter Verweis auf ein angebliches Spannungsverhältnis zwischen Regulierung und Innovation infrage gestellt wurden. Gleichzeitig übt die US-Regierung nach Medienberichten diplomatischen Druck aus, um die Umsetzung des Digital Services Act zu erschweren.</p>
+
+  <div class="source-box">
+    <div class="label">Zur Einordnung</div>
+    Ob eine kausale Linie von einzelnen Lobbyausgaben zu konkreten Gesetzesänderungen führt, lässt sich im Einzelfall selten lückenlos beweisen. Belegt ist der zeitliche und thematische Zusammenhang zwischen steigenden Lobbybudgets, der dokumentierten Zugangsasymmetrie zwischen Wirtschaft und Zivilgesellschaft, sowie der parallel laufenden Deregulierungsagenda. Die Bewertung, wie stark der kausale Einfluss im Einzelfall war, bleibt <span class="tag tag-extrapolation">EXTRAPOLATION</span>.
+  </div>
+
+  <h2>Regelungslücken</h2>
+  <ul>
+    <li>Das EU-Transparenzregister bleibt <strong>freiwillig</strong> – Sanktionen bei falschen oder fehlenden Angaben existieren praktisch nicht.</li>
+    <li>Finanzangaben werden nur in <strong>groben Bandbreiten</strong> gemacht, nicht exakt beziffert.</li>
+    <li>Erfasst werden nur Treffen mit <strong>Spitzenpersonal</strong> (Kommissionsmitglieder, Kabinette, Generaldirektoren) – die Arbeitsebene bleibt unsichtbar.</li>
+    <li>Karenzzeiten für Kommissare (24 Monate) und Kommissionspräsidenten (36 Monate) werden vom hauseigenen Ethikausschuss geprüft, der nur beratende Funktion hat.</li>
+    <li>LobbyControl und CEO fordern seit Jahren ein <strong>verbindliches, sanktionsbewehrtes Register</strong> sowie klare Regeln gegen privilegierten Branchenzugang.</li>
+  </ul>
+
+  <div class="closing">
+    Offene Fragen bleiben: Wie viele der laufenden Deregulierungsvorhaben lassen sich direkt auf identifizierbare Lobbykontakte zurückführen? Und würde ein verbindliches Register, wie es die USA seit 1995 kennen, die dokumentierte Zugangsasymmetrie tatsächlich verringern – oder nur die Sichtbarkeit verändern, ohne die Machtverhältnisse selbst zu berühren? Die Fakten liegen vor. Die Schlussfolgerungen zieht der Leser.
+  </div>
+
+  <div class="sources-list">
+    <div class="label">Quellen</div>
+    <ul>
+      <li>LobbyControl / Corporate Europe Observatory: "Mächtigste Konzerne geben Rekordsumme für Lobbyarbeit in der EU aus", Juni 2026 – lobbycontrol.de</li>
+      <li>LobbyControl: "Lobbyausgaben der Digitalkonzerne explodieren", November 2025 – lobbycontrol.de</li>
+      <li>LobbyControl: "Katargate – oder wie man den Kopf aus der Schlinge zieht", Dezember 2023 – lobbycontrol.de</li>
+      <li>EU-Transparenzregister – transparency-register.europa.eu</li>
+      <li>ICIJ: "The Uber Files", Juli 2022 – icij.org</li>
+      <li>netzpolitik.org: "Drehtüreffekte: Wie ein EU-Beamter zum Lobbyisten wurde", 2019</li>
+      <li>Euractiv DE: diverse Berichte zum Drehtür-Effekt, 2016–2018</li>
+      <li>Lobbypedia: "Uber", "Lobbyregister EU", "Seitenwechsler auf EU-Ebene"</li>
+      <li>Wikipedia (EN): "Qatar corruption scandal at the European Parliament", Stand Mai 2026</li>
+      <li>Statista: "Lobbyismus in Deutschland und der EU – Daten & Fakten"</li>
+      <li>taz.de, Berliner Zeitung, epochtimes.de: Berichterstattung zur LobbyControl/CEO-Studie Juni 2026</li>
+    </ul>
+  </div>
+
+  <footer class="series-nav">dunkelfeld.report · Hidden in Plain Sight</footer>
+
+</div>
+</body>
+</html>

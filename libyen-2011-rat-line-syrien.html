@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vom Feind zum Verbündeten zum Feind — Libyen 2011 und die Rat-Line nach Syrien | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --box-bg: #1a1a2e;
+    --text: #e4e4e7;
+    --text-dim: #a1a1aa;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --grey: #a1a1aa;
+    --red: #f87171;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin: 0 0 0.5rem;
+    color: #fff;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    border-bottom: 1px solid #2a2a3d;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    color: var(--text);
+    font-size: 1.15rem;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--text-dim);
+  }
+  .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid var(--green); }
+  .tag-extra { background: rgba(251,146,60,0.15); color: var(--orange); border: 1px solid var(--orange); }
+  .tag-offen { background: rgba(161,161,170,0.15); color: var(--grey); border: 1px solid var(--grey); }
+  .tag-vt { background: rgba(248,113,113,0.15); color: var(--red); border: 1px solid var(--red); }
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+  }
+  .person-card {
+    background: var(--box-bg);
+    border: 1px solid #2a2a3d;
+    border-radius: 6px;
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+  }
+  .person-card .name {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+  }
+  .person-card .role {
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .timeline {
+    margin: 2rem 0;
+    padding-left: 0;
+    list-style: none;
+    border-left: 2px solid #2a2a3d;
+  }
+  .timeline li {
+    position: relative;
+    padding: 0 0 1.5rem 1.5rem;
+  }
+  .timeline li::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .timeline .date {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat {
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat .num {
+    font-size: 1.6rem;
+    color: var(--accent);
+    font-weight: bold;
+    display: block;
+  }
+  .stat .label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    font-family: 'Courier New', monospace;
+  }
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #fff;
+    border-left: 3px solid var(--accent);
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+  }
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .comparison-table th, .comparison-table td {
+    border: 1px solid #2a2a3d;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  .comparison-table th {
+    background: var(--box-bg);
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a3d;
+    font-style: italic;
+    color: var(--text-dim);
+  }
+  .series-nav {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: var(--box-bg);
+    border-radius: 6px;
+    font-size: 0.95rem;
+  }
+  .series-nav .label {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .series-nav ol {
+    padding-left: 1.2rem;
+    margin: 0;
+  }
+  .series-nav li {
+    margin-bottom: 0.4rem;
+    color: var(--text-dim);
+  }
+  .series-nav li.current {
+    color: var(--accent);
+    font-weight: bold;
+  }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="meta">dunkelfeld.report — geopolitische instrumentalisierung von islamismus — teil 8</div>
+  <h1>Vom Feind zum Verbündeten zum Feind</h1>
+  <div class="subtitle">Libyen 2011: Wie NATO und LIFG-Islamisten gemeinsam Gaddafi stürzten — und was danach mit den Waffen geschah</div>
+
+  <p>2004 lässt die CIA mit Hilfe des MI6 einen libyschen Islamisten in Bangkok verhaften, foltern und nach Tripolis überstellen — als Geschenk an Gaddafi, der sich gerade dem Westen annähert. 2011 kämpft derselbe Mann als Kommandeur des Tripoli Military Council an der Seite der NATO gegen ebendiesen Gaddafi. 2012 organisiert er, glaubt man einem Pulitzer-Preisträger, den Transport von Kriegswaffen aus libyschen Beständen in Richtung syrischer Rebellen. Diese Karriere ist kein Einzelfall, sondern der rote Faden dieses Artikels.</p>
+
+  <h2>I. Der Bruch: UNSCR 1973 und die Bombardierung</h2>
+
+  <p>Am 17. März 2011 verabschiedet der UN-Sicherheitsrat Resolution 1973 mit zehn Ja-Stimmen und fünf Enthaltungen (Russland, China, Indien, Deutschland, Brasilien). <span class="tag tag-belegt">BELEGT</span> Das Mandat autorisiert <cite index="6-1">Mitgliedstaaten, "alle notwendigen Maßnahmen" zu ergreifen, um Zivilisten und von Zivilisten bewohnte Gebiete unter Angriffsdrohung in Libyen zu schützen</cite>, und führt eine Flugverbotszone ein.</p>
+
+  <p>Am 19. März beginnt die militärische Intervention. <span class="tag tag-belegt">BELEGT</span> <cite index="2-1">Kampfjets der französischen Luftwaffe zerstören zunächst mehrere Gaddafi-treue Fahrzeuge, die auf die Rebellenhochburg Bengasi vorrücken; US- und britische U-Boote feuern anschließend über 110 Tomahawk-Marschflugkörper auf Ziele im ganzen Land ab</cite>. Am 31. März übernimmt die NATO das Kommando.</p>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="num">26.500</span><span class="label">NATO-Einsätze gesamt</span></div>
+    <div class="stat"><span class="num">9.700</span><span class="label">Angriffseinsätze</span></div>
+    <div class="stat"><span class="num">5.900+</span><span class="label">zerstörte Militärziele</span></div>
+  </div>
+  <p style="font-size:0.85rem;color:var(--text-dim)"><span class="tag tag-belegt">BELEGT</span> <cite index="1-1">Während der Kampagne flog die NATO über 26.500 Einsätze, darunter rund 9.700 Angriffseinsätze am Boden, und zerstörte mehr als 5.900 militärische Ziele</cite>.</p>
+
+  <p>Der Streit, ob das Mandat "Schutz von Zivilisten" bereits einen "Regimewechsel" einschloss, ist bis heute nicht abgeschlossen. <span class="tag tag-offen">OFFEN</span> <cite index="9-1">Manche argumentierten, die libysche Intervention sei von Verfechtern eines "Regimewechsels" gekapert worden; die Gegenposition lautete, "alle notwendigen Maßnahmen" seien ausschließlich zum Schutz von Zivilisten eingesetzt worden — nicht mehr und nicht weniger</cite>.</p>
+
+  <h2>II. Der Mann in der Mitte: Abdelhakim Belhadj</h2>
+
+  <div class="person-card">
+    <div class="name">Abdelhakim Belhadj (Abu Abdullah al-Sadiq)</div>
+    <div class="role">geb. 1966, Tripolis · Ingenieur · Gründer der Libyan Islamic Fighting Group (LIFG)</div>
+    <p style="margin:0">1988 Kämpfer im Afghanistan-Krieg gegen die Sowjetunion. 1992 Rückkehr nach Libyen, Gründung der LIFG mit dem Ziel, Gaddafi zu stürzen. Von der UN 2001 als mit al-Qaida verbunden gelistet. 2004 durch CIA/MI6 in Malaysia gefasst, nach Libyen überstellt und gefoltert. 2010 freigelassen. 2011 Kommandeur des Tripoli Military Council, engster militärischer Verbündeter der NATO-gestützten Rebellen in der Hauptstadt.</p>
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Die UN stufte die LIFG 2001 offiziell als Terrororganisation ein: <cite index="18-1">Die Verbindung zwischen LIFG und al-Qaida wurde durch die Finanzierung, Planung, Vorbereitung oder Durchführung von Handlungen im Namen von oder zur Unterstützung von al-Qaida, Bin Laden und den Taliban belegt, ebenso durch die Lieferung von Waffen an diese</cite>.</p>
+
+  <div class="source-box">
+    <div class="label">Rendition-Akte, Tripolis-Dokumente</div>
+    <p style="margin:0"><span class="tag tag-belegt">BELEGT</span> <cite index="21-1">Ein zweites Memo vom 6. März 2004 mit dem Titel "Zeitplan für die Überstellung von Abdullah al-Sadiq" listete die Flugpläne für die Rendition auf, einschließlich einer Übernachtung auf den Seychellen und eines Zwischenstopps zur Betankung in Diego Garcia auf dem Rückflug aus Thailand mit den Häftlingen an Bord</cite>. Die nach dem Sturz Gaddafis in einem Tripolis-Gebäude gefundenen Dokumente belegen die direkte Zusammenarbeit von CIA, MI6 und libyschem Geheimdienst unter Moussa Koussa bei Belhadjs Verhaftung, Verhör und Überstellung.</p>
+  </div>
+
+  <p>2018 entschuldigte sich die britische Regierung offiziell bei Belhadj. <span class="tag tag-belegt">BELEGT</span> <cite index="20-1">Im April 2019 wurde bekannt, dass die britische Regierung mehr als 11 Millionen Pfund an öffentlichen Geldern aufgewendet hatte, um Forderungen nach einer Entschuldigung, Entschädigung und Strafverfolgung wegen der Rendition des libyschen Dissidenten Abdelhakim Belhadj und seiner Frau Fatima Boudchar durch den MI6 im Jahr 2004 abzuwehren</cite>.</p>
+
+  <p>Sieben Jahre nach seiner Folter durch dieselben Dienste, die ihn nach Libyen überstellt hatten, kämpft Belhadj 2011 faktisch an der Seite der NATO. <span class="tag tag-belegt">BELEGT</span> <cite index="19-1">Belhadj schloss sich Ende der 1980er Jahre dem von der CIA gesponserten Dschihad gegen das sowjetisch gestützte Regime an, als al-Qaida entstand und Verbindungen zwischen tausenden ausländischen Kämpfern geknüpft wurden. Nach seiner Rückkehr nach Libyen wurde er Emir der LIFG, die in den 1990er Jahren gegen Gaddafi kämpfte und vom US-Außenministerium als "Terrororganisation" gebrandmarkt wurde. 2011 spielte Belhadj als Kommandeur des Tripoli Military Council eine prominente Rolle in der von den USA unterstützten neuen Regierung Libyens</cite>. <span class="tag tag-offen">OFFEN</span> Ob und in welchem Umfang westliche Dienste die Rolle der rund 800 LIFG-Kämpfer im Rebellenverband aktiv koordinierten, ist nicht abschließend dokumentiert — wohl aber, dass sie bekannt war und toleriert wurde.</p>
+
+  <h2>III. Die Rat-Line: Von Bengasi nach Syrien</h2>
+
+  <p>Im September 2012 wird das US-Konsulat in Bengasi angegriffen, Botschafter J. Christopher Stevens und drei weitere Amerikaner sterben. Um den Vorfall rankt sich seither ein Streit über die tatsächliche Funktion der CIA-Präsenz vor Ort.</p>
+
+  <div class="timeline">
+    <li><span class="date">Herbst 2011</span>US-Sonderermittler und Delta-Force-Personal beginnen, in Bengasi Waffen aus Gaddafis Beständen zu identifizieren und einzusammeln, vor allem tragbare Flugabwehrraketen (MANPADS). <span class="tag tag-belegt">BELEGT</span></li>
+    <li><span class="date">Frühjahr 2012</span>Laut Investigativjournalist Seymour Hersh vereinbaren die Regierungen Obama und Erdoğan eine geheime Übereinkunft: Finanzierung durch Türkei, Saudi-Arabien und Katar, Durchführung durch CIA mit Unterstützung des MI6, Deckfirmen in Libyen. <span class="tag tag-extra">EXTRAPOLATION</span> (auf Basis einer einzelnen anonymen Quelle)</li>
+    <li><span class="date">6. September 2012</span>Ein Schiff, organisiert vom Kommandeur des Tripoli Military Council — Abdelhakim Belhadj — legt mit rund 400 Tonnen Waffen für die syrische Opposition in der Südtürkei an. <span class="tag tag-belegt">BELEGT</span></li>
+    <li><span class="date">11. September 2012</span>Angriff auf das US-Konsulat in Bengasi. Stevens soll sich laut Fox-News-Quelle kurz zuvor mit einem türkischen Diplomaten getroffen haben, um SA-7-Raketen aus den Händen libyscher Extremisten herauszuverhandeln. <span class="tag tag-offen">OFFEN</span></li>
+    <li><span class="date">27. November 2012</span>Rebellen bei Aleppo schießen mit einem MANPAD einen syrischen Transporthubschrauber ab — laut Hersh Folge der "Rat-Line". <span class="tag tag-extra">EXTRAPOLATION</span></li>
+    <li><span class="date">Januar 2014</span>Der republikanisch geführte House Intelligence Committee kommt nach zweijähriger Untersuchung zu dem Schluss, es gebe keine Beweise für CIA-Waffenlieferungen von Libyen nach Syrien. <span class="tag tag-belegt">BELEGT</span></li>
+  </div>
+
+  <div class="comparison-table">
+    <table>
+      <tr><th>Behauptet von</th><th>Position</th></tr>
+      <tr><td>Seymour Hersh (LRB, April 2014)</td><td><span class="tag tag-extra">EXTRAPOLATION</span> <cite index="12-1">Nach dem Anschlag beendete Washington abrupt die Rolle der CIA beim Waffentransfer aus Libyen — doch die Rat-Line lief weiter. Die USA hatten keine Kontrolle mehr darüber, was die Türken an die Dschihadisten weiterleiteten</cite>, so eine anonyme frühere Geheimdienstquelle.</td></tr>
+      <tr><td>House Permanent Select Committee on Intelligence (2014)</td><td><span class="tag tag-belegt">BELEGT</span> <cite index="11-1">"Alle CIA-Aktivitäten in Bengasi waren rechtmäßig und autorisiert. Aussagen unter Eid belegen, dass die CIA keine Waffen — einschließlich MANPADS — von Libyen nach Syrien schickte oder andere Organisationen oder Staaten dabei unterstützte, Waffen von Libyen nach Syrien zu transferieren."</cite></td></tr>
+      <tr><td>Defense Intelligence Agency (laut Judicial Watch)</td><td><span class="tag tag-offen">OFFEN</span> <cite index="15-1">Ein von Judicial Watch erlangter DIA-Bericht deutet darauf hin, dass die Behörde wusste, dass Scharfschützengewehre, Panzerfäuste und Haubitzengeschosse zwischen Oktober 2011 und September 2012 von Bengasi zu Häfen in Syrien verschifft wurden</cite> — ohne Verantwortliche zu benennen.</td></tr>
+    </table>
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Unabhängig vom Streit um CIA-Beteiligung ist die spätere US-Politik dokumentiert: Ab 2013 lief das Programm "Timber Sycamore", <cite index="16-1">ein verdecktes, von der CIA geleitetes Programm mit dem Ziel, den syrischen Präsidenten Baschar al-Assad durch die Lieferung von Waffen, Geld und Training an Oppositionsgruppen von der Macht zu entfernen, hauptsächlich unterstützt von Großbritannien, Jordanien und Saudi-Arabien</cite>. <cite index="16-1">Ein Teil dieser Waffen landete schließlich in den Händen extremistischer Gruppen, allen voran des IS und der al-Nusra-Front</cite>.</p>
+
+  <p class="pull-quote">"Es ist sehr vernünftig anzunehmen, dass Stevens genau wusste, was im Land vor sich ging." — Fred Burton, ehem. State-Department-Sicherheitsbeamter, zur Frage, ob der Botschafter von den Waffentransfers wusste.</p>
+
+  <h2>IV. Der Kollateralschaden: Von Bengasi in die Sahelzone</h2>
+
+  <p>Unabhängig von der Syrien-Frage ist die regionale Verbreitung der libyschen Waffenbestände nach 2011 in UN-Berichten dokumentiert. <span class="tag tag-belegt">BELEGT</span> <cite index="24-1">Ein UN-Bericht über die regionalen Auswirkungen des libyschen Bürgerkriegs zeigt, dass Waffen aus Gaddafis Arsenal durch die Sahelzone, einschließlich Tschad, Niger und Nigeria, geschmuggelt und von Terrorgruppen wie Boko Haram und al-Qaida im islamischen Maghreb (AQIM) erworben wurden</cite>.</p>
+
+  <p>Die Führung von AQIM bestätigte dies selbst öffentlich. <span class="tag tag-belegt">BELEGT</span> <cite index="28-1">Im November 2011 sagte Mokhtar Belmokhtar von AQIM der mauretanischen Nachrichtenagentur ANI, man sei "einer der Hauptnutznießer der Revolutionen in der arabischen Welt"</cite> gewesen.</p>
+
+  <p><span class="tag tag-belegt">BELEGT</span> <cite index="25-1">Im Januar 2012 warnte ein UN-Bericht, Regierungen in der Sahelzone kämpften mit einem "Anstieg von Waffenproliferation, organisierter Kriminalität und Terrorismus". Drei Monate später inszenierten Militante, bewaffnet mit den aus Libyen strömenden Waffen, einen Putsch in Mali</cite>, dem eine islamistisch-separatistische Herrschaft über den Norden des Landes folgte, bis eine französische Intervention im Januar 2013 eingriff.</p>
+
+  <div class="source-box">
+    <div class="label">Gegenstimme — CAR-Studie 2025</div>
+    <p style="margin:0"><span class="tag tag-offen">OFFEN</span> Eine 2025 von der EU finanzierte Studie der Conflict Armament Research relativiert das Ausmaß: <cite index="30-1">Nur 7 Prozent der in der Sahelzone bei Milizen sichergestellten Waffen ließen sich tatsächlich auf libysche Bestände zurückführen; die meisten Waffen seien deutlich älter und stammten aus den Beständen regionaler Armeen</cite>. Dies widerspricht nicht der frühen Proliferation direkt nach 2011, verweist aber darauf, dass ihre langfristige Bedeutung in späteren Jahren überschätzt worden sein könnte.</p>
+  </div>
+
+  <h2>V. Die Ironie davor: Gaddafi als Verbündeter im "Krieg gegen den Terror"</h2>
+
+  <p>Der Bruch von 2011 wirkt umso schärfer vor dem Hintergrund der Jahre davor. <span class="tag tag-belegt">BELEGT</span> <cite index="19-1">Die meisten Rendition-Dokumente konzentrieren sich auf den Zeitraum ab Ende 2003/2004, als sich die Beziehungen zu Großbritannien und den USA nach Gaddafis Entscheidung 2003, das libysche Nuklearprogramm aufzugeben, deutlich verbesserten</cite>. In genau dieser Phase der Annäherung liefert der Westen Gaddafi seine eigenen islamistischen Gegner — darunter Belhadj — direkt ins Foltergefängnis.</p>
+
+  <h2>Offene Fragen</h2>
+
+  <div class="closing">
+    <p><em>War die Rat-Line nach Syrien eine formell abgesegnete CIA-Operation, ein von Verbündeten wie der Türkei außer Kontrolle geratenes Nebenprodukt der Libyen-Intervention, oder — wie der Kongressausschuss 2014 feststellte — eine Legende ohne belastbare Grundlage?</em></p>
+    <p><em>Wie viel wusste Botschafter Stevens tatsächlich über die Rolle seines eigenen Konsulats — und starb er, weil er dieses Wissen besaß, oder war er ein zufälliges Opfer eines chaotischen Milizangriffs?</em></p>
+    <p><em>Wäre die Proliferation libyscher Waffen in die Sahelzone durch eine robustere Nachkriegsstabilisierung vermeidbar gewesen — oder war das "light footprint"-Modell der NATO von Anfang an mit diesem Risiko kalkuliert?</em></p>
+  </div>
+
+  <div class="series-nav">
+    <div class="label">Serie: Geopolitische Instrumentalisierung von Islamismus</div>
+    <ol>
+      <li>Operation Ajax — Iran 1953</li>
+      <li>Operation Cyclone — Afghanistan-Falle</li>
+      <li>Israel/Hamas — Blowback</li>
+      <li>Bin-Laden-Mythos und Beleg</li>
+      <li>Syrien — Vom Terroristen zum Staatsgast</li>
+      <li>Ägypten — Sadat, Bruderschaft, Sisi</li>
+      <li>IS/Camp Bucca — Ursprung</li>
+      <li class="current">Libyen 2011 — Rat-Line nach Syrien</li>
+    </ol>
+  </div>
+
+</div>
+</body>
+</html>

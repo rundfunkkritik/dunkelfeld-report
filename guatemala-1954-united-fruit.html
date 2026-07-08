@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guatemala 1954 — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --box-bg: #1a1a2e;
+    --text: #e4e4e7;
+    --text-dim: #a1a1aa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin: 0.3rem 0 0.6rem;
+    color: #fff;
+  }
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 1.15rem;
+    font-style: italic;
+    margin-bottom: 2.5rem;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 0.5rem;
+  }
+  p { margin: 1.1rem 0; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: #1e3a2e; color: #4ade80; border: 1px solid #4ade80; }
+  .tag-extra { background: #3a2e1e; color: #fb923c; border: 1px solid #fb923c; }
+  .tag-offen { background: #27272a; color: #a1a1aa; border: 1px solid #a1a1aa; }
+  .tag-vt { background: #3a1e1e; color: #f87171; border: 1px solid #f87171; text-decoration: line-through; text-decoration-color: #f87171; }
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat {
+    background: var(--box-bg);
+    padding: 1rem;
+    text-align: center;
+    border-radius: 4px;
+  }
+  .stat .num {
+    font-size: 1.6rem;
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+  }
+  .stat .label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 0.3rem;
+  }
+  .timeline {
+    border-left: 2px solid #3f3f46;
+    margin: 2rem 0 2rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.6rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.94rem;
+    top: 0.4rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .person-card {
+    display: flex;
+    gap: 1rem;
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 1rem 1.3rem;
+    margin: 1.2rem 0;
+    align-items: flex-start;
+  }
+  .person-card .role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .aside-box {
+    background: #16161d;
+    border: 1px solid #3f3f46;
+    border-radius: 6px;
+    padding: 1.3rem 1.5rem;
+    margin: 2rem 0;
+  }
+  .aside-box h3 {
+    margin-top: 0;
+    color: var(--text-dim);
+    font-size: 1rem;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #27272a;
+    font-style: italic;
+    color: var(--text-dim);
+  }
+  .series-nav {
+    margin-top: 3.5rem;
+    padding: 1.5rem;
+    background: var(--box-bg);
+    border-radius: 6px;
+  }
+  .series-nav .label {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+  .series-nav ol {
+    margin: 0;
+    padding-left: 1.3rem;
+  }
+  .series-nav li {
+    margin-bottom: 0.4rem;
+    color: var(--text-dim);
+  }
+  .series-nav li.current {
+    color: var(--accent);
+    font-weight: bold;
+  }
+  .series-nav li.pending::after {
+    content: ' (in Vorbereitung)';
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+  a { color: var(--accent); }
+  .footnote {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-top: 2.5rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="meta">Dunkelfeld.report · Serie: US-Einmischung Lateinamerika · Teil 2</div>
+  <h1>Guatemala 1954: Der Sturz Arbenz’ und United Fruit</h1>
+  <div class="subtitle">Wie eine Landreform, ein Bananenkonzern und eine CIA-Propagandaoperation die erste demokratisch gewählte Regierung Guatemalas zu Fall brachten</div>
+
+  <p>
+    Am 27. Juni 1954 trat der demokratisch gewählte guatemaltekische Präsident Jacobo Árbenz Guzmán per Radioansprache zurück und bat um Asyl in der mexikanischen Botschaft. Vorausgegangen war eine monatelange verdeckte Operation der CIA mit dem Codenamen PBSUCCESS — die erste ihrer Art in Lateinamerika und Vorlage für spätere Operationen, darunter die gescheiterte Invasion in der Schweinebucht 1961.
+    <span class="tag tag-belegt">BELEGT</span>
+    Die CIA selbst veröffentlichte 1994 eine interne historische Aufarbeitung der Operation, verfasst vom hauseigenen Historiker Nicholas Cullather; große Teile der operativen Akten wurden 1997 und 2003 deklassifiziert.
+  </p>
+
+  <h2>Der Auslöser: Landreform gegen United Fruit</h2>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Árbenz hatte 1952 mit dem Dekret 900 eine Agrarreform eingeleitet, die brachliegendes Großgrundbesitzland enteignete und gegen Entschädigung an Landlose verteilte. Betroffen war in erheblichem Umfang die United Fruit Company, ein US-Konzern mit ausgedehntem Bananenland in Guatemala.
+  </p>
+  <div class="person-card">
+    <div>
+      <span class="role">Verflechtung</span>
+      Außenminister John Foster Dulles war früher Anwalt für United Fruit gewesen. Sein Bruder Allen Dulles, CIA-Direktor, hatte zuvor im Board der United Fruit Company gesessen. Die PR-Chefin des Konzerns, Ed Whitman, war mit der persönlichen Sekretärin von Präsident Eisenhower verheiratet.
+    </div>
+  </div>
+  <p>
+    <span class="tag tag-extra">EXTRAPOLATION</span>
+    Historiker wie Stephen Schlesinger und Stephen Kinzer ("Bitter Fruit", Harvard University Press) ordnen diese personellen Überschneidungen als zentralen Erklärungsfaktor für das amerikanische Engagement ein. Die genaue Gewichtung zwischen wirtschaftlichem Interesse und Kalter-Kriegs-Kommunismusfurcht bleibt in der Forschung umstritten — die CIA-eigene Darstellung von 1994 betont primär die Furcht vor kommunistischer Unterwanderung, kritische Historiker die ökonomische Motivlage.
+  </p>
+
+  <h2>Operation PBSUCCESS: Ablauf</h2>
+  <div class="stat-grid">
+    <div class="stat"><span class="num">5–7 Mio. $</span><span class="label">Geschätztes CIA-Budget</span></div>
+    <div class="stat"><span class="num">100+</span><span class="label">Eingesetzte CIA-Agenten</span></div>
+    <div class="stat"><span class="num">1.725</span><span class="label">An CIA-Lagern in Nicaragua/Honduras trainierte Exil-Kämpfer</span></div>
+    <div class="stat"><span class="num">Aug. 1953</span><span class="label">Offizieller Planungsbeginn unter Eisenhower</span></div>
+  </div>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Die Operation wurde von CIA-Vizedirektor für Operationen Frank Wisner geleitet, das Feldkommando lag beim früheren Colonel Albert Haney, der zuvor die CIA-Station in Südkorea geführt hatte. Hauptquartier war ein getarnter Gebäudekomplex in Opa-locka, Florida, mit dem Codenamen "Lincoln". Die CIA schloss vor der Invasion Militärabkommen mit Nicaragua und Honduras, um schwere Waffen frei transportieren zu können, und richtete Trainingslager in beiden Ländern ein.
+  </p>
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-date">Januar 1954</span>
+      <span class="tag tag-belegt">BELEGT</span> Beginn einer psychologischen Kriegsführungskampagne über den Sender "Radio Liberación" — koordiniert aus Florida, mit Sendemasten in Nachbarländern und einem sogar innerhalb der US-Botschaft in Guatemala.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">30. Januar 1954</span>
+      <span class="tag tag-belegt">BELEGT</span> Die guatemaltekische Regierung veröffentlicht ein "Weißbuch", das laut New-York-Times-Bericht in CIA-eigenen Akten eine Verschwörung unter Beteiligung Nicaraguas, El Salvadors, der Dominikanischen Republik und Venezuelas sowie Waffenlieferungen der United Fruit Company an die Putschisten anprangert. Das State Department weigerte sich, die Vorwürfe zu kommentieren.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">März 1954</span>
+      <span class="tag tag-belegt">BELEGT</span> Auf einer Konferenz der Organisation Amerikanischer Staaten in Caracas erreichen die USA eine nahezu einstimmige Resolution gegen "kommunistische Unterwanderung" auf dem Kontinent — diplomatische Isolierung Guatemalas vor der Invasion.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">18. Juni 1954</span>
+      <span class="tag tag-belegt">BELEGT</span> Carlos Castillo Armas, ein von der CIA ausgewählter guatemaltekischer Exil-Offizier, überschreitet mit einigen hundert Mann die Grenze von Honduras aus, unterstützt durch US-Logistik und Luftaufklärung.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">27. Juni 1954</span>
+      <span class="tag tag-belegt">BELEGT</span> Der Generalstabschef der guatemaltekischen Armee, Oberst Carlos Enrique Díaz, teilt Árbenz mit, es sei Zeit zu gehen. Árbenz tritt zurück und geht ins mexikanische Botschaftsasyl.
+    </div>
+  </div>
+
+  <div class="source-box">
+    <span class="label">Primärquelle · CIA-Selbstdarstellung, 1994</span>
+    Das offizielle Ziel der Operation lautete laut CIA-Unterlagen, verdeckt die von der Agency als "kommunistisch kontrolliert" eingestufte Regierung Guatemalas zu beseitigen. Der militärische Erfolg von Castillo Armas' kleiner Truppe beruhte nach CIA-eigener Analyse weniger auf Kampfstärke als auf der psychologischen Wirkung der begleitenden Propagandakampagne.
+  </div>
+
+  <h2>Attentatspläne</h2>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Zu den 1997 und 2003 deklassifizierten Dokumenten gehören Listen von Regierungsmitgliedern, die im Falle des Putsches liquidiert werden sollten, sowie eigens erstellte Handbücher zu Attentatstechniken. Der CIA-Historiker Gerald K. Haines dokumentierte 1995 in einer eigenen Studie ("CIA and Guatemala Assassination Proposals 1952–1954") das Ausmaß, in dem gezielte Tötungen als Operationsmethode erwogen wurden. Das undatierte Trainingsdokument "A Study of Assassination" — vom National Security Archive öffentlich gemacht — beschreibt verschiedene Tötungstechniken und wurde nach Einschätzung der Archivare vermutlich für den Einsatz gegen guatemaltekische Kommunisten erstellt.
+  </p>
+  <p>
+    <span class="tag tag-offen">OFFEN</span>
+    Ob und in welchem Umfang diese Handbücher tatsächlich zur Anwendung kamen oder primär als Drohkulisse und Vorbereitung dienten, lässt sich aus den bislang freigegebenen Akten nicht abschließend klären. Dieselben Attentatsmanuale wurden nach Angaben der Archivare in späteren CIA-Operationen wiederverwendet.
+  </p>
+
+  <h2>Das Erbe: Vorlage für spätere Operationen</h2>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Der argentinische Exilant Ernesto "Che" Guevara war Augenzeuge des Sturzes von Árbenz und zog daraus Lehren, die er nach der kubanischen Revolution 1959 umsetzte — unter anderem die vollständige Auflösung der vorrevolutionären Streitkräfte. Als dasselbe CIA-Personal 1960/61 eine vergleichbare Operation gegen Fidel Castro plante — mit Guatemala selbst als Trainingsbasis für die Exilkämpfer — scheiterte der Versuch an der Schweinebucht: Ohne loyale Armee gab es diesmal niemanden, der Castro zum Rücktritt hätte drängen können.
+  </p>
+  <p>
+    <span class="tag tag-extra">EXTRAPOLATION</span>
+    Der spätere Bürgerkrieg in Guatemala (1960–1996) mit hunderttausenden Toten, überwiegend indigener Zivilbevölkerung, wird von Historikern in eine Kontinuitätslinie mit dem 1954 installierten Militärregime unter Castillo Armas gestellt. Diese Einordnung ist historiografisch breit anerkannt, stellt aber eine langfristige Ursachenzuschreibung dar und keinen direkt dokumentierten Einzelbeleg.
+  </p>
+
+  <div class="aside-box">
+    <h3>Bezug zu Operation Condor (Teil 1 der Serie)</h3>
+    <p style="margin-bottom:0;">
+      Guatemala 1954 gilt in der historischen Forschung als früher Prototyp für das Muster, das zwei Jahrzehnte später in der Operation Condor institutionalisiert wurde: verdeckte Aktion statt offener Intervention, psychologische Kriegsführung, enge Abstimmung zwischen CIA und lokalen Militärs, sowie ökonomische Interessen US-amerikanischer Unternehmen als Hintergrundfaktor. Eine direkte organisatorische Verbindung zwischen PBSUCCESS und Condor ist nicht dokumentiert — die Parallelen liegen auf der Ebene der angewandten Methode, nicht einer durchgehenden Struktur.
+    </p>
+  </div>
+
+  <div class="closing">
+    <p>
+      <em>Offen bleibt: Wie viele der in den 1997/2003 freigegebenen Akten enthaltenen Namen auf den Attentatslisten wurden je öffentlich bekannt gemacht — und was verbirgt sich noch in den Teilen des Archivs, die weiterhin geschwärzt sind?</em>
+    </p>
+  </div>
+
+  <div class="series-nav">
+    <span class="label">Serie: US-Einmischung Lateinamerika</span>
+    <ol>
+      <li>Teil 1 — Operation Condor</li>
+      <li class="current">Teil 2 — Guatemala 1954: Der Sturz Arbenz’ und United Fruit</li>
+      <li class="pending">Teil 3 — Chile 1973: Track II und der Putsch gegen Allende</li>
+      <li class="pending">Teil 4 — Panama: Vom CIA-Asset zum Feindbild Noriega</li>
+      <li class="pending">Teil 5 — Venezuela: Guaidó, Sanktionen, PDVSA</li>
+      <li class="pending">Teil 6 — Venezuela heute</li>
+    </ol>
+  </div>
+
+  <div class="footnote">
+    Quellen (Auswahl): CIA Center for the Study of Intelligence — Nicholas Cullather, "Operation PBSUCCESS: The United States and Guatemala, 1952–1954" (1994, deklassifiziert); National Archives (U.S.), "Records Relating to Activities in Guatemala, 1949–1996", RG 263; National Security Archive, GWU — "CIA and Assassinations: The Guatemala 1954 Documents"; Gerald K. Haines, "CIA and Guatemala Assassination Proposals 1952–1954" (1995); Stephen Schlesinger &amp; Stephen Kinzer, "Bitter Fruit" (Harvard University Press); Piero Gleijeses, "Shattered Hope" (Princeton University Press); U.S. Department of State, Foreign Relations of the United States 1952–1954, Guatemala.
+  </div>
+
+</div>
+</body>
+</html>

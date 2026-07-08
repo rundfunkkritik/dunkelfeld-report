@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geschäfte über Grenzen: Konzerne und NS-Deutschland | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --source-bg: #1a1a2e;
+    --belegt: #4caf82;
+    --extrapolation: #e8974a;
+    --offen: #9a9aa5;
+    --vt: #b04040;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: #e8e8ec;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0 1.2rem 4rem;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  header.masthead {
+    text-align: center;
+    padding: 2.5rem 0 1.5rem;
+    border-bottom: 1px solid #27272f;
+  }
+  .brand {
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    font-size: 0.95rem;
+    text-transform: lowercase;
+  }
+  .subbrand {
+    font-family: 'Courier New', monospace;
+    color: #6f6f7a;
+    font-size: 0.75rem;
+    margin-top: 0.4rem;
+    letter-spacing: 0.08em;
+  }
+  .series-tag {
+    display: inline-block;
+    margin-top: 1.2rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.2rem 0.7rem;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+  }
+  h1.title {
+    font-size: 1.9rem;
+    line-height: 1.3;
+    margin: 1.3rem 0 0.6rem;
+    color: #f5f5f0;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #6f6f7a;
+    margin-bottom: 0;
+  }
+  .lede {
+    font-size: 1.15rem;
+    color: #cfcfd6;
+    margin: 1.8rem 0;
+    font-style: italic;
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.35rem;
+    margin-top: 3rem;
+    border-bottom: 1px solid #27272f;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    color: #f5f5f0;
+    font-size: 1.1rem;
+    margin-top: 2rem;
+  }
+  p { margin: 1rem 0; }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.55rem;
+    border-radius: 2px;
+    margin-right: 0.5rem;
+    margin-bottom: 0.3rem;
+    vertical-align: middle;
+  }
+  .tag.belegt { background: rgba(76,175,130,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag.extrapolation { background: rgba(232,151,74,0.15); color: var(--extrapolation); border: 1px solid var(--extrapolation); }
+  .tag.offen { background: rgba(154,154,165,0.15); color: var(--offen); border: 1px solid var(--offen); }
+  .source-box {
+    background: var(--source-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    margin: 1.2rem 0;
+    font-size: 0.95rem;
+    color: #c9c9d4;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    border: 1px solid #27272f;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: #14141a;
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    font-weight: normal;
+  }
+  .person-card {
+    display: flex;
+    gap: 1rem;
+    background: #101018;
+    border: 1px solid #27272f;
+    border-radius: 4px;
+    padding: 1rem 1.2rem;
+    margin: 1.2rem 0;
+  }
+  .person-card .role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+  }
+  .pull-quote {
+    font-size: 1.25rem;
+    color: #f5f5f0;
+    border-left: 3px solid var(--accent);
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+    font-style: italic;
+  }
+  .timeline {
+    border-left: 2px solid #27272f;
+    margin: 1.5rem 0 1.5rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item { margin-bottom: 1.3rem; position: relative; }
+  .timeline-item .date {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .closing-questions {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272f;
+    font-style: italic;
+    color: #b3b3bc;
+  }
+  .closing-questions p { margin: 0.8rem 0; }
+  .series-nav {
+    margin-top: 3rem;
+    padding: 1.2rem;
+    background: #101018;
+    border: 1px solid #27272f;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+  }
+  .series-nav .label { color: var(--accent); display: block; margin-bottom: 0.5rem; }
+  footer {
+    margin-top: 3rem;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #6f6f7a;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272f;
+  }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="brand">dunkelfeld.report</div>
+  <div class="subbrand">Analyse · Systemkritik · Quellenbasiert</div>
+  <div class="series-tag">SERIE: WAS SCHULBÜCHER AUSLASSEN — TEIL 2 / 2</div>
+  <h1 class="title">Geschäfte über Grenzen: Wie US-Konzerne und Banken während des Zweiten Weltkriegs mit NS-Deutschland verbunden blieben</h1>
+  <p class="meta">Juli 2026 · Lesedauer ca. 13 Minuten</p>
+</header>
+
+<p class="lede">Das Schulbuch-Bild vom Zweiten Weltkrieg kennt klare Fronten: Alliierte gegen Achsenmächte. Was selten vermittelt wird: Mehrere große US-Konzerne und Banken unterhielten Kartellabkommen und Geschäftsbeziehungen mit NS-Deutschland, die teils bis weit in den Krieg hinein bestanden — dokumentiert durch US-Kongressanhörungen, die Nürnberger Prozesse und freigegebene Akten des National Archives. Dieser Artikel stellt zusammen, was belegt ist.</p>
+
+<h2>1. Standard Oil und I.G. Farben: Das Kartell, das den Krieg überdauerte</h2>
+
+<span class="tag belegt">BELEGT</span>
+<p>1929 schlossen Standard Oil of New Jersey (heute ExxonMobil) und der deutsche Chemiekonzern I.G. Farben ein Kartellabkommen: die "Joint American Study Company" (Jasco). Die Aufteilung war klar geregelt — I.G. Farben sollte die Weltrechte an der Chemie behalten, Standard Oil die an Erdölprodukten und synthetischem Benzin.</p>
+
+<p>Der US-Kongressausschuss unter Senator Harry Truman stellte in Anhörungen 1942 fest, dass diese Vereinbarung bis in den Krieg hinein fortgeführt wurde — inklusive einer 1939 getroffenen Zusatzabsprache, wie beide Seiten "während des Krieges zusammenarbeiten" könnten, "unabhängig davon, ob die USA eintreten" würden. Standard Oil gab sein Patent für synthetisches Butyl-Gummi an I.G. Farben weiter, hielt es aber gleichzeitig von der eigenen US-Industrie zurück — was laut Kongressausschuss die amerikanische Gummiproduktion während einer kriegsbedingten Rohstoffknappheit erheblich behinderte.</p>
+
+<div class="source-box">
+  <span class="label">QUELLE</span>
+  Anhörungsprotokolle des Truman Committee (Senate Special Committee to Investigate the National Defense Program), 1942, U.S. National Archives. Assistant Attorney General Thurman Arnold: Kartelldokumentation zum Standard-Oil/I.G.-Farben-Abkommen. Nachdruck der Anhörungsdetails u. a. in: Michael Straight, "Standard Oil: Axis Ally", The New Republic, 1942.
+</div>
+
+<h2>2. Die Auschwitz-Verbindung: I.G. Farben vor dem Nürnberger Militärtribunal</h2>
+
+<span class="tag belegt">BELEGT</span>
+<p>I.G. Farben errichtete in Monowitz eine eigene Buna-Kautschuk-Fabrik direkt neben dem Konzentrationslager Auschwitz und nutzte dort Zwangsarbeit von KZ-Häftlingen. Im sogenannten IG-Farben-Prozess (1947/48, einem der zwölf Nürnberger Nachfolgeprozesse) wurden 13 von 23 angeklagten Farben-Managern verurteilt — allein im Fall Auschwitz sah das Gericht die Beweislage für ausreichend an, um eine Verantwortung aus eigener Initiative festzustellen.</p>
+
+<p>Bemerkenswert für die Einordnung: US-Konzerne wie Standard Oil, Dow Chemical, DuPont und General Electric hatten selbst erhebliche Geschäftsbeziehungen zu genau jenen Firmen, deren Manager nun angeklagt wurden — was die US-Ermittler bei der Vorbereitung der Prozesse laut Recherchen vor ein politisches Dilemma stellte.</p>
+
+<div class="source-box">
+  <span class="label">QUELLE</span>
+  "United States of America vs. Carl Krauch et al." (IG-Farben-Prozess), Militärtribunal VI, Nürnberg, 1947–1948, Prozessdokumente im Harvard Law School Nuremberg Trials Project (nuremberg.law.harvard.edu). Boston Review: "The Other Nuremberg Trials, Seventy-Five Years On" (2022), zur Verflechtung mit US-Konzernen.
+</div>
+
+<h2>3. Union Banking Corporation: Die Beschlagnahmung 1942</h2>
+
+<span class="tag belegt">BELEGT</span>
+<p>Die Union Banking Corporation (UBC) war eine New Yorker Investmentbank, gegründet 1924. Ihre Anteile wurden treuhänderisch für die niederländische Bank voor Handel en Scheepvaart gehalten, die wiederum zum Firmenimperium des deutschen Stahlmagnaten Fritz Thyssen gehörte — einem frühen Unterstützer und Finanzier der NSDAP.</p>
+
+<p>Unter den sieben Direktoren der UBC war der spätere US-Senator Prescott Bush (Großvater von George H. W. Bush, Urgroßvater von George W. Bush). Am 20. Oktober 1942 beschlagnahmte die US-Regierung unter dem "Trading with the Enemy Act" die Vermögenswerte der UBC per Vesting Order Nr. 248 — offiziell dokumentiert im Federal Register. Kurz darauf wurden weitere mit Bush verbundene Firmen beschlagnahmt, darunter die Silesian-American Corporation.</p>
+
+<div class="person-card">
+  <div>
+    <span class="role">DIREKTOR</span><br>
+    <strong>Prescott Bush</strong> (1895–1972), Partner bei Brown Brothers Harriman & Co., später US-Senator für Connecticut (1952–1963). Hielt einen von 4.000 Anteilen der UBC als Direktor.
+  </div>
+</div>
+
+<div class="source-box">
+  <span class="label">QUELLE</span>
+  Vesting Order Number 248, Office of Alien Property Custodian, Federal Register (7 F.R. 5205), 1942 — U.S. National Archives, Records of the Office of the Alien Property Custodian. Bericht des Office of Alien Property Custodian vom 5. Oktober 1942.
+</div>
+
+<span class="tag offen">OFFEN</span>
+<p>Ob Prescott Bush und die anderen Direktoren aktiv wussten, wofür die treuhänderisch gehaltenen Gelder im Detail verwendet wurden, oder ob sie — wie die spätere Untersuchung nahelegte — überwiegend als "Frontmänner" ohne direkte operative Kontrolle fungierten, ist historisch nicht abschließend geklärt und wird in der Forschung unterschiedlich bewertet.</p>
+
+<h2>4. Weitere dokumentierte Verbindungen im Überblick</h2>
+
+<table>
+  <tr><th>Unternehmen</th><th>Dokumentierte Verbindung</th></tr>
+  <tr><td>Ford Motor Company</td><td>Deutsche Tochtergesellschaft Ford-Werke produzierte während des Kriegs für die Wehrmacht; Gegenstand von US-Nachkriegsuntersuchungen und späteren Zwangsarbeiter-Entschädigungsklagen</td></tr>
+  <tr><td>General Motors (Opel)</td><td>Opel-Werke unter deutscher Kontrolle nach Kriegseintritt der USA; Fahrzeugproduktion für die Wehrmacht dokumentiert in Nachkriegsuntersuchungen des US-Finanzministeriums</td></tr>
+  <tr><td>ITT Corporation</td><td>Beteiligungen an deutschen Telekommunikationsfirmen, die während des Kriegs weiterbestanden; Gegenstand von Kongressanhörungen der Nachkriegszeit</td></tr>
+  <tr><td>Royal Dutch Shell</td><td>Deutsche Tochter Rhenania-Ossag belieferte die Wehrmacht; von Shell selbst historisch aufgearbeitet und öffentlich dokumentiert</td></tr>
+</table>
+
+<p><span class="tag extrapolation">EXTRAPOLATION</span> Der Detailgrad der Dokumentation variiert zwischen diesen Fällen erheblich — bei Ford-Werke und Opel ist die Produktionsrolle für die Wehrmacht gut belegt, das genaue Ausmaß der Kontrolle durch die US-Mutterkonzerne nach 1941 bleibt in Teilen Gegenstand historischer Debatte, da die deutschen Tochterfirmen nach Kriegseintritt formal von der NS-Verwaltung übernommen wurden.</p>
+
+<h2>Zeitlinie: Kartelle, Krieg und Nachkriegsaufarbeitung</h2>
+
+<div class="timeline">
+  <div class="timeline-item">
+    <span class="date">1929</span>
+    Standard Oil und I.G. Farben schließen das Jasco-Kartellabkommen
+  </div>
+  <div class="timeline-item">
+    <span class="date">1939</span>
+    Zusatzabsprache: Zusammenarbeit soll "während des Krieges" fortgesetzt werden
+  </div>
+  <div class="timeline-item">
+    <span class="date">1942</span>
+    Truman Committee deckt Standard-Oil/Farben-Kartell öffentlich auf; UBC wird per Vesting Order 248 beschlagnahmt
+  </div>
+  <div class="timeline-item">
+    <span class="date">1947–1948</span>
+    IG-Farben-Prozess vor dem Nürnberger Militärtribunal VI
+  </div>
+  <div class="timeline-item">
+    <span class="date">seit 1990er</span>
+    Zwangsarbeiter-Entschädigungsklagen gegen mehrere beteiligte Konzerne
+  </div>
+</div>
+
+<div class="pull-quote">
+  "Standard Oil hat durch das Farben-Abkommen die amerikanischen Kriegsvorbereitungen ernsthaft gefährdet." — sinngemäß nach Feststellungen des Truman Committee, 1942
+</div>
+
+<div class="closing-questions">
+  <p><em>Warum blieben diese Kartellstrukturen trotz öffentlicher Kongressanhörungen weitgehend folgenlos für die beteiligten Konzerne selbst — während die Beschlagnahmungen einzelner Banken und Vermögenswerte sichtbarer wurden?</em></p>
+  <p><em>Was sagt es über die Nachkriegsordnung aus, dass mehrere der hier genannten Konzerne innerhalb weniger Jahre wieder zu zentralen Akteuren der US-Wirtschaft und -Politik wurden?</em></p>
+</div>
+
+<div class="series-nav">
+  <span class="label">SERIE: WAS SCHULBÜCHER AUSLASSEN</span>
+  Teil 1: Erster Weltkrieg — Griff nach der Weltmacht<br>
+  Teil 2: Zweiter Weltkrieg — Geschäfte über Grenzen (dieser Artikel)
+</div>
+
+<footer>
+  dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.
+</footer>
+
+</div>
+</body>
+</html>

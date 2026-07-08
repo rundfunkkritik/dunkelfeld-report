@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exkurs: Warum Manager mitmachen – Subventionen, Boni und die ESG-Industrie | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --source-bg: #1a1a2e;
+    --belegt: #4caf6b;
+    --extrapolation: #e07b39;
+    --offen: #9a9aa5;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: #e5e5e5;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  h1 { font-size: 2rem; line-height: 1.3; margin: 0 0 0.6rem; color: #fff; }
+  .subtitle { font-size: 1.2rem; color: #b8b8c0; font-style: italic; margin-bottom: 2.5rem; }
+  h2 {
+    color: var(--accent);
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    border-bottom: 1px solid #2a2a35;
+    padding-bottom: 0.5rem;
+  }
+  h3 { color: #f0d878; font-size: 1.1rem; margin-top: 2rem; }
+  p { padding-bottom: 1.2rem; }
+  a { color: var(--accent); }
+
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+  }
+  .tag-belegt { background: rgba(76,175,107,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag-extrapolation { background: rgba(224,123,57,0.15); color: var(--extrapolation); border: 1px solid var(--extrapolation); }
+  .tag-offen { background: rgba(154,154,165,0.15); color: var(--offen); border: 1px solid var(--offen); }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+  @media (max-width: 500px) { .stat-grid { grid-template-columns: 1fr; } }
+  .stat-box {
+    background: var(--source-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+  }
+  .stat-num { font-size: 1.6rem; font-weight: bold; color: #fff; }
+  .stat-label { font-family: 'Courier New', monospace; font-size: 0.78rem; color: #b8b8c0; margin-top: 0.3rem; }
+
+  .source-box {
+    background: var(--source-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .person-card {
+    background: var(--source-bg);
+    border-left: 3px solid var(--extrapolation);
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+  }
+  .person-card .name { font-weight: bold; color: #fff; font-size: 1.05rem; }
+  .person-card .role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.92rem; }
+  th, td { text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid #2a2a35; }
+  th { font-family: 'Courier New', monospace; color: var(--accent); font-size: 0.78rem; text-transform: uppercase; }
+
+  .aside {
+    background: rgba(232,197,71,0.05);
+    border: 1px solid #2a2a35;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  .closing {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a35;
+    font-style: italic;
+    color: #b8b8c0;
+  }
+
+  .sources-list {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a35;
+    font-size: 0.85rem;
+    color: #9a9aa5;
+  }
+  .sources-list .label {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+  .sources-list ul { padding-left: 1.2rem; }
+  .sources-list li { padding-bottom: 0.4rem; }
+
+  footer.series-nav {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a35;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #6a6a75;
+    text-align: center;
+  }
+  footer.series-nav a { color: #8a8a95; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="meta">dunkelfeld.report · Exkurs zu "Lobbyismus in der EU"</div>
+  <h1>Warum Manager mitmachen</h1>
+  <div class="subtitle">Subventionen, Vorstandsboni und eine Industrie, die von der Transformation selbst lebt – Auto, Stahl und Energie im Vergleich</div>
+
+  <p>Der Eindruck, die Industrie kämpfe gegen ihre eigene Regulierung und verliere dabei strukturell, greift zu kurz. Der Umstieg wird auf zwei Ebenen finanziell attraktiv gemacht: durch staatliche Subventionen an die Unternehmen – und durch eine Vergütungsstruktur, die das Management persönlich am Umstieg verdienen lässt. Eine dritte Ebene kommt hinzu: eine ganze Industrie aus Ratingagenturen, Standardsetzern und Beratungsfirmen, die von der wachsenden Komplexität der ESG-Regulierung selbst lebt.</p>
+
+  <h2>Drei Branchen, ein Muster</h2>
+
+  <table>
+    <tr><th>Branche</th><th>Unternehmen</th><th>Staatliche Förderung</th></tr>
+    <tr><td>Automobil</td><td>VW-Konzern</td><td>CO2-Regelflexibilisierung erspart ~1,5–1,7 Mrd. € Strafzahlung (2025)</td></tr>
+    <tr><td>Stahl</td><td>Thyssenkrupp</td><td>~2 Mrd. € Bund/Land NRW für Wasserstoff-Direktreduktion, zusätzlich bis zu 1,45 Mrd. € Betriebskostenausgleich</td></tr>
+    <tr><td>Stahl</td><td>Salzgitter AG</td><td>1,3 Mrd. € Bund/Land Niedersachsen für "SALCOS"-Umstieg</td></tr>
+    <tr><td>Energie</td><td>RWE</td><td>2,6 Mrd. € Entschädigung für vorgezogenen Braunkohleausstieg (EU-Kommission bestätigt)</td></tr>
+    <tr><td>Energie</td><td>LEAG</td><td>1,75 Mrd. € Entschädigung, gleiche Regelung</td></tr>
+  </table>
+  <p style="font-size:0.85rem;color:#9a9aa5;">Alle Werte <span class="tag tag-belegt">BELEGT</span> (EU-Kommission, Bundesministerien, offizielle Förderbescheide).</p>
+
+  <div class="aside">
+    <strong>Zur Einordnung RWE-Fall:</strong> Der Ökoenergie-Anbieter Green Planet Energy legte gegen die RWE-Entschädigung Beschwerde bei der EU-Kommission ein – mit dem Argument, die Braunkohlekraftwerke wären angesichts steigender CO2-Preise ohnehin unrentabel geworden. Die Kommission genehmigte die Zahlung trotzdem, mit der Begründung, der Barwert entgangener Gewinne rechtfertige die Summe. <span class="tag tag-belegt">BELEGT</span> (EU-Kommission, taz, energiezukunft.eu)
+  </div>
+
+  <h2>Ebene 2: Die persönliche Vergütung des Managements</h2>
+  <p>Seit 2023 sind die Vorstandsvergütungen aller 40 DAX-Konzerne ohne Ausnahme an ESG-Kriterien gekoppelt. 98 Prozent der DAX-Unternehmen nutzen ESG-Kennzahlen in den kurzfristigen Bonusplänen, 45 Prozent inzwischen auch in den langfristigen (Anstieg von 22 Prozentpunkten binnen eines Jahres). Im Schnitt hängen 8 Prozent der Vorstandsvergütung direkt von ESG-Zielen ab.</p>
+
+  <div class="stat-grid">
+    <div class="stat-box">
+      <div class="stat-num">98 %</div>
+      <div class="stat-label">DAX-Unternehmen mit ESG-Zielen im Kurzfrist-Bonus</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">45 %</div>
+      <div class="stat-label">DAX-Unternehmen mit ESG-Zielen im Langfrist-Bonus (LTI)</div>
+    </div>
+  </div>
+  <p style="font-size:0.85rem;color:#9a9aa5;margin-top:-1rem;"><span class="tag tag-belegt">BELEGT</span> (WTW-Studie, Russell Reynolds Associates)</p>
+
+  <p>Damit ist die Anreizstruktur des Managements teilweise von der Anreizstruktur des Gesamtunternehmens entkoppelt: Ein Vorstand kann persönlich von einer Transformation profitieren, die dem Konzern strukturell schadet oder ihn zumindest im internationalen Wettbewerb schwächt – solange die vereinbarten ESG-Kennzahlen erreicht werden.</p>
+
+  <h2>Ebene 3: Die ESG-Industrie selbst</h2>
+  <p>Wer legt eigentlich fest, was als "nachhaltig" gilt und wie es gemessen wird? Zwei Ebenen sind zu unterscheiden: Standards (was muss berichtet werden) und Ratings (wie gut schneidet ein Unternehmen dabei ab).</p>
+
+  <h3>Die Standards: EFRAG</h3>
+  <p>Die europäischen Nachhaltigkeitsberichtsstandards (ESRS), auf denen die EU-Berichtspflicht CSRD beruht, wurden von der European Financial Reporting Advisory Group (EFRAG) im Auftrag der EU-Kommission entwickelt – einem Gremium, das nach eigener Beschreibung "verschiedene Stakeholder" zusammenbringt. Ursprünglich sollten ab 2024 rund 50.000 Unternehmen EU-weit berichtspflichtig werden (vorher: knapp 12.000). Im Zuge des "Omnibus"-Vereinfachungspakets 2025 wurde der Kreis der Berichtspflichtigen um rund 90 Prozent reduziert, die Pflichtdatenpunkte um 57–68 Prozent gekürzt. <span class="tag tag-belegt">BELEGT</span> (EU-Kommission, EFRAG, ESG Today)</p>
+
+  <div class="source-box">
+    <div class="label">Zur Einordnung</div>
+    Die gleiche Behörde, die 2020–2023 ein umfangreiches, datenpunktreiches Berichtssystem aufbaute, wurde 2025 damit beauftragt, dieses System wieder drastisch zu verschlanken. Für die Wirtschaft ergibt das laut einer von EFRAG selbst in Auftrag gegebenen Kosten-Nutzen-Analyse eine geschätzte Ersparnis von 3,7–4,7 Mrd. € allein zwischen 2027 und 2031. <span class="tag tag-belegt">BELEGT</span> (ESG Today, EFRAG-Studie)
+  </div>
+
+  <h3>Die Ratings: ein unübersichtlicher Milliardenmarkt</h3>
+  <p>Parallel zu den Berichtspflichten ist ein eigener Markt für ESG-Bewertungen entstanden. Marktführer sind MSCI, Sustainalytics (seit 2020 Teil von Morningstar), ISS ESG und S&P Global – die fünf größten Anbieter vereinen rund 65 Prozent des Marktvolumens auf sich.</p>
+
+  <div class="stat-grid">
+    <div class="stat-box">
+      <div class="stat-num">12,7 Mrd. $</div>
+      <div class="stat-label">Marktvolumen ESG-Ratingdienste 2026, wachsend auf 18,9 Mrd. $ bis 2031</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">59</div>
+      <div class="stat-label">Aktive ESG-Ratinganbieter allein in der EU</div>
+    </div>
+  </div>
+  <p style="font-size:0.85rem;color:#9a9aa5;margin-top:-1rem;"><span class="tag tag-belegt">BELEGT</span> (Mordor Intelligence, Deloitte)</p>
+
+  <p>Problematisch: Die Ratings verschiedener Anbieter korrelieren nur schwach miteinander – Studien finden Korrelationskoeffizienten zwischen 0,3 und 0,55 (bei Bonitätsratings von Moody's/S&P liegt die Vergleichsgröße bei 0,99). Ein und dasselbe Unternehmen kann bei MSCI top und bei Sustainalytics durchfallen, oder umgekehrt. Volkswagen etwa erhielt sowohl von MSCI (Klasse CCC, "Laggard") als auch von Sustainalytics (Kategorie "Severe") die jeweils schlechteste Bewertung im DAX. <span class="tag tag-belegt">BELEGT</span> (netfed.de, MIT-Sloan-Studie, Mordor Intelligence)</p>
+
+  <div class="aside">
+    <strong>Interessenkonflikt anerkannt:</strong> Die EU selbst hat das Problem struktureller Interessenkonflikte bei Ratingagenturen erkannt: Seit 2025 verbietet die EU-ESG-Ratings-Verordnung Anbietern wie ISS ESG und Sustainalytics, gleichzeitig Beratungsleistungen für die von ihnen bewerteten Unternehmen anzubieten. Geschätzte Compliance-Kosten: 2–5 Mio. € jährlich pro großem Anbieter. <span class="tag tag-belegt">BELEGT</span> (Mordor Intelligence, EU-Verordnung 2024/3005)
+  </div>
+
+  <h2>Wer profitiert – unabhängig von Motiven</h2>
+  <p>Ohne einzelnen Akteuren eine Absicht zu unterstellen, lässt sich strukturell festhalten, wer an der wachsenden Komplexität des ESG-Systems verdient:</p>
+  <ul>
+    <li><strong>Ratingagenturen</strong> (MSCI, Sustainalytics, ISS ESG, S&P Global): Milliardenmarkt, konsolidiert durch Übernahmen (S&P kaufte RobecoSAM 2019, Moody's übernahm Mehrheit an Vigeo Eiris 2019, Morningstar übernahm Sustainalytics 2020)</li>
+    <li><strong>Prüf- und Beratungsgesellschaften</strong> (Deloitte, EY, KPMG, PwC): bieten sowohl CSRD-Pflichtprüfungen als auch Beratung zur "Verbesserung des ESG-Ratings" an</li>
+    <li><strong>Vergütungsberatungen</strong> (WTW, Kienbaum, Russell Reynolds): verkaufen die Konzeption ESG-gekoppelter Vorstandsvergütungssysteme, deren Verbreitung sie gleichzeitig in eigenen Studien dokumentieren</li>
+    <li><strong>Standardsetzer</strong> (EFRAG): wird von der EU beauftragt, ein System aufzubauen – und wenig später beauftragt, dasselbe System wieder zurückzubauen</li>
+  </ul>
+
+  <h2>Dummheit oder Absicht?</h2>
+  <p>Die Frage lässt sich mit den vorliegenden Fakten nicht abschließend beantworten – und dunkelfeld.report unterstellt grundsätzlich keine Motive ohne direkte Beleglage. Was sich aber sagen lässt:</p>
+  <ul>
+    <li>Es gibt <strong>keine Belege</strong> für eine koordinierte Absicht einzelner Akteure, die eigene Industrie gezielt zu schädigen.</li>
+    <li>Es gibt <strong>strukturell belegte</strong> Interessenkonflikte: Wer Standards entwirft, Ratings vergibt oder Vergütungssysteme berät, verdient an der Komplexität dieses Systems – unabhängig davon, ob die Regeln der Sache dienen oder nicht.</li>
+    <li>Manager reagieren auf die Anreize, die ihnen vorgelegt werden. Wenn diese Anreize (Bonus, Karriere, Reputation) nicht mit der langfristigen Wettbewerbsfähigkeit des eigenen Unternehmens übereinstimmen, ist das kein Beleg für Dummheit oder Absicht der Manager – sondern für ein Anreizsystem, das von anderen (Aufsichtsräten, Beratungsfirmen, Regulierern) gestaltet wurde.</li>
+  </ul>
+
+  <div class="closing">
+    Die Schlussfolgerung, ob es sich um Kurzsichtigkeit, Selbstbedienung einer Beraterindustrie oder eine gewollte Umverteilung von Wettbewerbsfähigkeit handelt, liegt beim Leser. Was belegt ist: Ein System, das gleichzeitig bestraft, subventioniert, verkompliziert und wieder vereinfacht wird, produziert für alle Beteiligten außer dem Kerngeschäft selbst – Standardsetzer, Ratingagenturen, Berater – ein stabiles Auskommen.
+  </div>
+
+  <div class="sources-list">
+    <div class="label">Quellen</div>
+    <ul>
+      <li>electrive.net: Berichterstattung zu CO2-Flottengrenzwerten, Januar 2026</li>
+      <li>BMWK/BMWE: Elektromobilität und Batteriezellfertigung, Förderprogramme</li>
+      <li>EU-Kommission: Pressemitteilung Beihilfegenehmigung RWE, Dezember 2023</li>
+      <li>taz.de, energiezukunft.eu: Kritik an RWE-Entschädigung</li>
+      <li>IG Metall, h2-news.de, haufe.de: Thyssenkrupp/Salzgitter-Förderung grüner Stahl</li>
+      <li>Russell Reynolds Associates, WTW: Studien zu ESG-gekoppelter Vorstandsvergütung 2023–2025</li>
+      <li>ESG Today: Berichterstattung EFRAG/CSRD/Omnibus-Vereinfachung 2025–2026</li>
+      <li>Mordor Intelligence: "ESG Rating Services Market Size & Share Outlook to 2031"</li>
+      <li>EY, Deloitte, netfed.de: Übersicht ESG-Ratingagenturen und Methodik</li>
+      <li>MIT Sloan / Journal of Financial Economics: Divergenz zwischen ESG-Ratinganbietern</li>
+    </ul>
+  </div>
+
+  <footer class="series-nav">
+    dunkelfeld.report · Exkurs zu <a href="eu-lobbyismus-zahlen-fakten.html">"Lobbyismus in der EU – Zahlen, Fakten, Mechanismen"</a>
+  </footer>
+
+</div>
+</body>
+</html>

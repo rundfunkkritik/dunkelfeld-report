@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ethereum – der Favorit des WEF? Teil 2 | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --source-bg: #1a1a2e;
+    --belegt: #4ade80;
+    --extrapolation: #fb923c;
+    --offen: #9ca3af;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: #e5e5e5;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.2rem 5rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  h1 {
+    font-size: 2rem;
+    line-height: 1.25;
+    margin: 0.3rem 0 1rem;
+    color: #fff;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    color: #fff;
+    font-size: 1.15rem;
+    margin-top: 2rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  .lead {
+    font-size: 1.2rem;
+    color: #fff;
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+    margin-right: 0.4rem;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag-extra { background: rgba(251,146,60,0.15); color: var(--extrapolation); border: 1px solid var(--extrapolation); }
+  .tag-offen { background: rgba(156,163,175,0.15); color: var(--offen); border: 1px solid var(--offen); }
+  .source-box {
+    background: var(--source-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .source-box .src-title {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat {
+    background: var(--source-bg);
+    padding: 1rem;
+    text-align: center;
+    border-radius: 4px;
+  }
+  .stat .num {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: block;
+  }
+  .stat .label {
+    font-size: 0.8rem;
+    color: #aaa;
+  }
+  .person-card {
+    background: var(--source-bg);
+    border-radius: 4px;
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+  }
+  .person-card .name {
+    color: #fff;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+  }
+  .timeline {
+    border-left: 2px solid var(--accent);
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+  }
+  .timeline-item { margin-bottom: 1.2rem; position: relative; }
+  .timeline-item .date {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    display: block;
+  }
+  .aside {
+    background: rgba(232,197,71,0.06);
+    border: 1px solid rgba(232,197,71,0.3);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    border-radius: 4px;
+  }
+  .aside .aside-title {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .comparison {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .comparison th, .comparison td {
+    border: 1px solid #333;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+  }
+  .comparison th {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #333;
+    font-style: italic;
+    color: #bbb;
+  }
+  .series-nav {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #333;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+  }
+  .series-nav a { color: var(--accent); text-decoration: none; }
+  .series-nav .current { color: #fff; }
+  a { color: var(--accent); }
+  ul { padding-left: 1.3rem; }
+  li { padding-bottom: 0.5rem; }
+</style>
+</head>
+<body>
+
+<div class="meta">dunkelfeld.report · Infrastruktur der Kontrolle · Teil 2/3</div>
+<h1>Ethereum – der Favorit von WEF & Co.?<br>Warum "programmierbares Geld" für Institutionen interessanter ist als Bitcoin</h1>
+
+<p class="lead">Wenn Institutionen wie das World Economic Forum über die Zukunft des Geldes sprechen, fällt selten der Name Bitcoin. Häufiger ist von "Blockchain-Technologie", "digitalen Vermögenswerten" und "programmierbarem Geld" die Rede – Begriffen, die viel eher zu Ethereum passen. Ein Blick auf die personellen Verbindungen zeigt, warum.</p>
+
+<span class="tag tag-belegt">BELEGT</span><span class="tag tag-extra">EXTRAPOLATION</span><span class="tag tag-offen">OFFEN</span>
+
+<h2>1. Bitcoin vs. Ethereum: zwei unterschiedliche Versprechen</h2>
+
+<p>Bitcoin wurde 2008/2009 explizit als Alternative zum staatlich kontrollierten Finanzsystem konzipiert: ein festes, unveränderliches Angebot von 21 Millionen Coins, kein zentraler Herausgeber, keine Möglichkeit für irgendeine Institution, die Regeln nachträglich zu ändern. <span class="tag tag-belegt">BELEGT</span> <cite index="27-1">Ethereum wurde 2015 gestartet und ist, anders als Bitcoin, in erster Linie eine Plattform: Es erlaubt Entwicklern, Programme ("Smart Contracts") direkt auf der Blockchain laufen zu lassen.</cite></p>
+
+<table class="comparison">
+<tr><th>Merkmal</th><th>Bitcoin</th><th>Ethereum</th></tr>
+<tr><td>Zweck</td><td>Zahlungsmittel / Wertspeicher</td><td>Programmierbare Plattform</td></tr>
+<tr><td>Geldmenge</td><td>Fest limitiert (21 Mio.)</td><td>Kein festes Maximum</td></tr>
+<tr><td>Governance</td><td>Dezentral, sehr konservativ</td><td>Stiftung mit klarer Führungsstruktur (Ethereum Foundation)</td></tr>
+<tr><td>Institutionelle Anbindung</td><td>Kaum offizielle Kooperationen</td><td>Enterprise Ethereum Alliance u.a. mit JPMorgan, Microsoft</td></tr>
+</table>
+
+<p><span class="tag tag-belegt">BELEGT</span> <cite index="27-1">Bereits 2017 zählte die Enterprise Ethereum Alliance, die sich um Unternehmensanwendungen von Ethereum kümmert, 86 Mitgliedsfirmen, darunter JPMorgan und Microsoft.</cite> Diese Nähe zu etablierten Finanzinstitutionen unterscheidet Ethereum von Bitcoins bewusst dezentraler, institutionenfeindlicher Grundhaltung.</p>
+
+<h2>2. Die personellen Verbindungen zum WEF</h2>
+
+<div class="person-card">
+<span class="name">Aya Miyaguchi</span> — Executive Director, Ethereum Foundation<br>
+<span class="tag tag-belegt">BELEGT</span> <cite index="28-1">Miyaguchi begann ihre Karriere 2013 bei der Krypto-Börse Kraken und wurde 2019 in den Blockchain Global Council des WEF berufen.</cite>
+</div>
+
+<div class="person-card">
+<span class="name">Sheila Warren</span> — ehem. Head of Data, Blockchain & Digital Assets, WEF<br>
+<span class="tag tag-belegt">BELEGT</span> <cite index="28-1">Warren wechselte anschließend als CEO zum Crypto Council for Innovation (CCI), einem Zusammenschluss von Krypto-Unternehmen, der Gesetzgeber in Fragen der Krypto-Regulierung berät.</cite>
+</div>
+
+<div class="source-box">
+<div class="src-title">Institutionelles Netzwerk (BELEGT)</div>
+<cite index="28-1">Über Sheila Warren bestehen dokumentierte Verbindungen zwischen dem World Economic Forum und der Weltbank, über Aya Miyaguchi zwischen der Ethereum Foundation und der Börse Kraken, und über den Crypto Council for Innovation zu Unternehmen wie Coinbase, Block, Gemini und diversen Venture-Capital-Firmen.</cite>
+</div>
+
+<p><span class="tag tag-extra">EXTRAPOLATION</span> Personelle Verbindungen zwischen Institutionen und Unternehmen sind für sich genommen kein Beweis für eine koordinierte Agenda – Fachwechsel zwischen Beratungsgremien, Stiftungen und Unternehmen sind im Technologiesektor üblich. Bemerkenswert ist dennoch die Konzentration: Zentrale Ethereum-nahe Positionen sind wiederholt mit denselben WEF-nahen Personen besetzt, während für Bitcoin keine vergleichbare institutionelle Anbindung dokumentiert ist.</p>
+
+<h2>3. Vitalik Buterin: zwischen Kreml und Kritik an "Politiker-Coins"</h2>
+
+<p>Der Ethereum-Mitgründer selbst lässt sich nicht auf eine einfache politische Zuordnung festlegen. <span class="tag tag-belegt">BELEGT</span> <cite index="25-1">Am Rande des St. Petersburg International Economic Forum traf sich Buterin mit Wladimir Putin und erläuterte ihm Einsatzmöglichkeiten der Ethereum-Technologie in Russland; Putin unterstützte laut offizieller Mitteilung die Idee, Verbindungen zu möglichen russischen Partnern aufzubauen.</cite></p>
+
+<p><span class="tag tag-belegt">BELEGT</span> <cite index="31-1">Nach dem russischen Angriff auf die Ukraine 2022 positionierte sich Buterin jedoch öffentlich gegen Russland und bezeichnete den Angriff als Verbrechen gegen das ukrainische wie das russische Volk; er unterstützte zudem pro-ukrainische Kryptoprojekte.</cite></p>
+
+<div class="aside">
+<div class="aside-title">Kein Widerspruch, sondern Komplexität</div>
+<span class="tag tag-offen">OFFEN</span> Das Bild eines einheitlich "WEF-treuen" Krypto-Vordenkers lässt sich anhand der Faktenlage nicht halten. Buterin bewegt sich zwischen Kreml-Kontakten, Kritik an Wladimir Putins Krieg und – wie Teil 3 dieser Serie zeigen wird – deutlicher öffentlicher Kritik an politisch instrumentalisierten Kryptowährungen. Die Einordnung "Institution versus Individuum" greift hier zu kurz.
+</div>
+
+<h2>4. Warum "programmierbares Geld" für Behörden attraktiv ist</h2>
+
+<p><span class="tag tag-extra">EXTRAPOLATION</span> Der entscheidende technische Unterschied zu Bitcoin liegt nicht in der Blockchain-Transparenz – die haben beide Systeme gemeinsam –, sondern in der Programmierbarkeit. Ethereums Smart Contracts erlauben es, Geld mit eingebauten Bedingungen zu versehen: Ablaufdaten, Verwendungsbeschränkungen, automatische Rückbuchungen, regionale Sperren. Genau diese Eigenschaften werden in Diskussionen über digitale Zentralbankwährungen (CBDC) regelmäßig als wünschenswerte Funktionen genannt – etwa um Sozialleistungen zweckgebunden auszuzahlen oder Negativzinsen technisch durchzusetzen.</p>
+
+<p><span class="tag tag-offen">OFFEN</span> Ob eine konkrete CBDC-Architektur direkt auf Ethereum aufbauen wird, ist derzeit nicht abschließend dokumentiert und unterscheidet sich von Land zu Land. Belegbar ist lediglich, dass die technischen Prinzipien – programmierbare Bedingungen, zentrale Ausgabestelle, vollständige Transaktionstransparenz gegenüber Behörden – bei Ethereum-artigen Systemen bereits heute existieren, während Bitcoins Grundarchitektur bewusst so gestaltet wurde, dass sich derartige Bedingungen nicht nachträglich einbauen lassen.</p>
+
+<h2>Zwischenfazit</h2>
+
+<p>Bitcoin und Ethereum werden in der öffentlichen Debatte oft als austauschbare "Kryptowährungen" behandelt. Die institutionellen Netzwerke rund um Ethereum – von der Enterprise Ethereum Alliance bis zu den personellen Verflechtungen mit dem WEF – zeigen jedoch einen Unterschied in der strukturellen Nähe zu etablierten Machtzentren. Ob daraus eine koordinierte Agenda folgt oder schlicht die Konsequenz technischer Eignung ist, bleibt eine offene, aber lohnende Frage.</p>
+
+<p>Im dritten und letzten Teil geht es um zwei sehr unterschiedliche, aber strukturell verwandte Projekte: Sam Altmans Worldcoin, das Kryptowährung gegen biometrische Daten tauscht, und den Trump Coin, der einen amtierenden US-Präsidenten direkt an den Kursverläufen seines eigenen Coins verdienen lässt.</p>
+
+<div class="closing">
+Offene Fragen: Wie unabhängig agieren Berater wie Sheila Warren tatsächlich zwischen WEF, Weltbank und privatwirtschaftlichen Lobby-Organisationen? Welche Rolle spielen die Enterprise-Partner der Ethereum-Plattform bei künftigen CBDC-Pilotprojekten? Der Leser zieht seine eigenen Schlüsse.
+</div>
+
+<div class="series-nav">
+Serie "Infrastruktur der Kontrolle": Teil 1: Bitcoin – eine Mausefalle? · <span class="current">Teil 2: Ethereum & WEF</span> · Teil 3: Worldcoin & Trump Coin (folgt)
+</div>
+
+</body>
+</html>

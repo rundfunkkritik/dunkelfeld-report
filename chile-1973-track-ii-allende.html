@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chile 1973 — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --box-bg: #1a1a2e;
+    --text: #e4e4e7;
+    --text-dim: #a1a1aa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin: 0.3rem 0 0.6rem;
+    color: #fff;
+  }
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 1.15rem;
+    font-style: italic;
+    margin-bottom: 2.5rem;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 0.5rem;
+  }
+  p { margin: 1.1rem 0; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: #1e3a2e; color: #4ade80; border: 1px solid #4ade80; }
+  .tag-extra { background: #3a2e1e; color: #fb923c; border: 1px solid #fb923c; }
+  .tag-offen { background: #27272a; color: #a1a1aa; border: 1px solid #a1a1aa; }
+  .tag-vt { background: #3a1e1e; color: #f87171; border: 1px solid #f87171; text-decoration: line-through; text-decoration-color: #f87171; }
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat {
+    background: var(--box-bg);
+    padding: 1rem;
+    text-align: center;
+    border-radius: 4px;
+  }
+  .stat .num {
+    font-size: 1.6rem;
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+  }
+  .stat .label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 0.3rem;
+  }
+  .timeline {
+    border-left: 2px solid #3f3f46;
+    margin: 2rem 0 2rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.6rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.94rem;
+    top: 0.4rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .person-card {
+    display: flex;
+    gap: 1rem;
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 1rem 1.3rem;
+    margin: 1.2rem 0;
+    align-items: flex-start;
+  }
+  .person-card .role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .aside-box {
+    background: #16161d;
+    border: 1px solid #3f3f46;
+    border-radius: 6px;
+    padding: 1.3rem 1.5rem;
+    margin: 2rem 0;
+  }
+  .aside-box h3 {
+    margin-top: 0;
+    color: var(--text-dim);
+    font-size: 1rem;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #27272a;
+    font-style: italic;
+    color: var(--text-dim);
+  }
+  .series-nav {
+    margin-top: 3.5rem;
+    padding: 1.5rem;
+    background: var(--box-bg);
+    border-radius: 6px;
+  }
+  .series-nav .label {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+  .series-nav ol {
+    margin: 0;
+    padding-left: 1.3rem;
+  }
+  .series-nav li {
+    margin-bottom: 0.4rem;
+    color: var(--text-dim);
+  }
+  .series-nav li.current {
+    color: var(--accent);
+    font-weight: bold;
+  }
+  .series-nav li.pending::after {
+    content: ' (in Vorbereitung)';
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+  a { color: var(--accent); }
+  .footnote {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-top: 2.5rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="meta">Dunkelfeld.report · Serie: US-Einmischung Lateinamerika · Teil 3</div>
+  <h1>Chile 1973: Track II und der Putsch gegen Allende</h1>
+  <div class="subtitle">Wie zwei parallele US-Operationen — eine politische, eine verdeckte militärische — den Weg zum 11. September 1973 ebneten</div>
+
+  <p>
+    Am 4. September 1970 gewann Salvador Allende mit knapper relativer Mehrheit die chilenische Präsidentschaftswahl. Acht Tage später sagte US-Außenminister Henry Kissinger dem damaligen CIA-Direktor Richard Helms am Telefon, man werde Chile nicht "den Bach runtergehen lassen".
+    <span class="tag tag-belegt">BELEGT</span>
+    Diese Aussage stammt aus einem deklassifizierten Telefonmitschnitt, den das National Security Archive veröffentlicht hat.
+  </p>
+
+  <h2>Zwei parallele Spuren: Track I und Track II</h2>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Am 15. September 1970 ordnete Präsident Richard Nixon in einem Treffen mit Helms an, die Wahl Allendes im Kongress zu verhindern oder rückgängig zu machen. Handschriftliche Notizen von Helms aus diesem Treffen — heute deklassifiziert — listen unter anderem ein Budget von 10 Millionen Dollar sowie die Order, "die besten Männer" für diese Aufgabe abzustellen.
+  </p>
+  <p>
+    Aus diesem Auftrag entstanden zwei parallel laufende, voneinander getrennte Operationen:
+  </p>
+  <div class="person-card">
+    <div>
+      <span class="role">Track I</span>
+      Eine Initiative des State Department, um Allendes Bestätigung durch den chilenischen Kongress auf verfassungsmäßigem Weg zu verhindern — unter Einbindung von Präsident Eduardo Frei Montalva, ohne direkte CIA-Beteiligung an dieser Spur.
+    </div>
+  </div>
+  <div class="person-card">
+    <div>
+      <span class="role">Track II</span>
+      Eine ausschließlich der CIA unterstellte verdeckte Operation unter Aufsicht von Kissinger und CIA-Verdeckte-Operationen-Direktor Thomas Karamessines, unter Ausschluss von State Department und Verteidigungsministerium — mit dem Ziel, putschbereite chilenische Militärs zu finden und zu unterstützen.
+    </div>
+  </div>
+
+  <h2>Die Ermordung General Schneiders</h2>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Zentrales Hindernis für einen Putsch war General René Schneider, Oberbefehlshaber der chilenischen Streitkräfte und überzeugter Verfassungstreuer. Am 22. Oktober 1970 wurde er im Rahmen eines von der CIA mitfinanzierten Entführungsversuchs angeschossen und starb wenig später an seinen Verletzungen. Nach CIA-eigenen Akten sollte er entführt, nicht getötet werden.
+  </p>
+  <div class="source-box">
+    <span class="label">Primärquelle · Zivilklage Schneider v. Kissinger, 2001/2002</span>
+    Die Söhne Schneiders reichten 2001 Klage gegen Kissinger ein. Die Klageschrift stützte sich auf deklassifizierte Dokumente und stellte fest, dass die US-Regierung an verdeckten wie offenen Aktivitäten zur Verhinderung von Allendes Amtsantritt direkt beteiligt gewesen sei oder davon eng gewusst habe. Ein State-Department-Beamter hatte zeitgleich einen Kondolenzbrief für Nixon entworfen — ohne Kenntnis davon, dass CIA und Weißes Haus den Angriff mit Druck, Waffen und Geld unterstützt hatten.
+  </div>
+  <p>
+    <span class="tag tag-offen">OFFEN</span>
+    Der Mordanschlag festigte paradoxerweise zunächst die Unterstützung für Allende in der chilenischen Öffentlichkeit und stärkte den Rückhalt für die verfassungsmäßige Ordnung — ein von der CIA selbst in zeitgenössischen Einschätzungen dokumentierter unbeabsichtigter Effekt.
+  </p>
+
+  <h2>Nach der Amtseinführung: Wirtschaftlicher Druck</h2>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Nach Allendes Amtsantritt am 3. November 1970 wurden Wirtschaftshilfe gekürzt und über diplomatischen Druck auch Weltbank- und IWF-Kredite blockiert. Die CIA finanzierte rechte Parteien und Medien, insbesondere die Zeitung "El Mercurio", um wirtschaftliche Verunsicherung und Anti-Allende-Stimmung zu verstärken. Der multinationale Telekommunikationskonzern ITT koordinierte laut historischer Forschung eigene Sabotagebemühungen mit der CIA.
+  </p>
+  <p>
+    <span class="tag tag-extra">EXTRAPOLATION</span>
+    Historiker Peter Kornbluh ("The Pinochet File", auf CIA-Akten gestützt) beschreibt das Ergebnis dieser kombinierten Maßnahmen als ein bewusst herbeigeführtes "Klima der Unregierbarkeit" — Versorgungsengpässe, Schwarzmärkte, Streiks. Diese zusammenfassende Bewertung ist eine historiografische Einordnung mehrerer Einzelmaßnahmen, keine wörtliche Zieldefinition aus einem einzelnen Dokument.
+  </p>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="num">10 Mio. $</span><span class="label">Von Nixon autorisiertes Budget, September 1970</span></div>
+    <div class="stat"><span class="num">22.10.1970</span><span class="label">Attentat auf General Schneider</span></div>
+    <div class="stat"><span class="num">1999</span><span class="label">Clinton-Deklassifizierungsauftrag zu Menschenrechtsverletzungen in Chile</span></div>
+    <div class="stat"><span class="num">11.09.1973</span><span class="label">Militärputsch, Pinochet an der Macht</span></div>
+  </div>
+
+  <h2>Der Putsch und danach</h2>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Am 11. September 1973 stürzte das chilenische Militär unter Führung von Augusto Pinochet die Regierung Allende. Ein CIA-eigener Bericht aus dem Jahr 2000, gestützt auf deklassifizierte Dokumente, kam zu dem Schluss, die Agency habe den Putsch "wahrscheinlich geduldet", es gebe aber "keinen Beweis" für eine direkte Beteiligung am Putsch selbst. Diese Einschätzung wird von einem Teil der Forschung als zu zurückhaltend kritisiert.
+  </p>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Im Februar 1974 entsandte Kissinger den stellvertretenden CIA-Direktor Vernon Walters zu einem geheimen Treffen mit Pinochet in Santiago, um diesem laut freigegebenem Kabel "Freundschaft und Unterstützung" sowie diskrete Hilfe anzubieten. Ein CIA-Ausbilderteam unterstützte im Frühjahr 1974 den Aufbau des chilenischen Geheimdienstes DINA unter Oberst Manuel Contreras, der 1975 zeitweise auf der CIA-Gehaltsliste geführt wurde.
+  </p>
+  <div class="source-box">
+    <span class="label">Primärquelle · Kissinger–Pinochet, Juni 1976, Santiago</span>
+    Bei einem Treffen mit Pinochet sagte Kissinger laut freigegebenem Gesprächsprotokoll, man wolle helfen, nicht untergraben, und würdigte den Putsch gegen Allende als Dienst am Westen.
+  </div>
+
+  <div class="aside-box">
+    <h3>Bezug zu Operation Condor (Teil 1 der Serie)</h3>
+    <p style="margin-bottom:0;">
+      <span class="tag tag-belegt">BELEGT</span>
+      Chile unter Pinochet und der von der CIA mit aufgebaute Geheimdienst DINA bildeten das organisatorische Zentrum der 1975/76 gegründeten Operation Condor. Historikerin J. Patrice McSherry bezeichnet Chile in diesem Zusammenhang als "Condors Kommandozentrale". Die 1976 in Washington D.C. verübte Ermordung des chilenischen Ex-Botschafters Orlando Letelier — Thema von Teil 1 dieser Serie — wurde nach deklassifizierten US-Kabeln direkt von DINA-Chef Contreras mit Billigung Pinochets angeordnet.
+    </p>
+  </div>
+
+  <div class="closing">
+    <p>
+      <em>Offen bleibt: Wie genau ist die Formulierung zu bewerten, mit der Kissinger 1975 vor einem Kongressausschuss aussagte, Track II sei "nie wirklich beendet" worden — sondern man sei angewiesen worden, die Bemühungen fortzusetzen? Welche Konsequenzen hatte diese Fortsetzung über 1970 hinaus konkret?</em>
+    </p>
+  </div>
+
+  <div class="series-nav">
+    <span class="label">Serie: US-Einmischung Lateinamerika</span>
+    <ol>
+      <li>Teil 1 — Operation Condor</li>
+      <li>Teil 2 — Guatemala 1954: Der Sturz Arbenz’ und United Fruit</li>
+      <li class="current">Teil 3 — Chile 1973: Track II und der Putsch gegen Allende</li>
+      <li class="pending">Teil 4 — Panama: Vom CIA-Asset zum Feindbild Noriega</li>
+      <li class="pending">Teil 5 — Venezuela: Guaidó, Sanktionen, PDVSA</li>
+      <li class="pending">Teil 6 — Venezuela heute</li>
+    </ol>
+  </div>
+
+  <div class="footnote">
+    Quellen (Auswahl): National Security Archive, GWU — "Kissinger and Chile: The Declassified Record on Regime Change"; National Security Archive — "The CIA and Chile: Anatomy of an Assassination" (2020); CIA, Studies in Intelligence Vol. 47 No. 3 (2003) — "CIA Machinations in Chile in 1970"; Wikipedia/Project FUBELT (Quellenangaben zu NSA-Dokumenten); Peter Kornbluh, "The Pinochet File" (New Press, 2003); U.S. Department of State, Foreign Relations of the United States 1969–1976, Vol. XXI, Chile; Nixon Presidential Library, "Pinochet Files"; Schneider v. Kissinger, Zivilklage, U.S. District Court D.C. (2001/2002).
+  </div>
+
+</div>
+</body>
+</html>

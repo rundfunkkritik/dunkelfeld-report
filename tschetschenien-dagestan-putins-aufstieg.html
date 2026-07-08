@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Preis der Macht — Dagestan, die Wohnhaus-Anschläge und Putins Aufstieg | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --box-bg: #1a1a2e;
+    --text: #e4e4e7;
+    --text-dim: #a1a1aa;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --grey: #a1a1aa;
+    --red: #f87171;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin: 0 0 0.5rem;
+    color: #fff;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    border-bottom: 1px solid #2a2a3d;
+    padding-bottom: 0.5rem;
+  }
+  .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid var(--green); }
+  .tag-extra { background: rgba(251,146,60,0.15); color: var(--orange); border: 1px solid var(--orange); }
+  .tag-offen { background: rgba(161,161,170,0.15); color: var(--grey); border: 1px solid var(--grey); }
+  .tag-vt { background: rgba(248,113,113,0.15); color: var(--red); border: 1px solid var(--red); }
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+  }
+  .person-card {
+    background: var(--box-bg);
+    border: 1px solid #2a2a3d;
+    border-radius: 6px;
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+  }
+  .person-card .name {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+  }
+  .person-card .role {
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .timeline {
+    margin: 2rem 0;
+    padding-left: 0;
+    list-style: none;
+    border-left: 2px solid #2a2a3d;
+  }
+  .timeline li {
+    position: relative;
+    padding: 0 0 1.5rem 1.5rem;
+  }
+  .timeline li::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .timeline .date {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat {
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat .num {
+    font-size: 1.6rem;
+    color: var(--accent);
+    font-weight: bold;
+    display: block;
+  }
+  .stat .label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    font-family: 'Courier New', monospace;
+  }
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #fff;
+    border-left: 3px solid var(--accent);
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+  }
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .comparison-table th, .comparison-table td {
+    border: 1px solid #2a2a3d;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  .comparison-table th {
+    background: var(--box-bg);
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a3d;
+    font-style: italic;
+    color: var(--text-dim);
+  }
+  .series-nav {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: var(--box-bg);
+    border-radius: 6px;
+    font-size: 0.95rem;
+  }
+  .series-nav .label {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .series-nav ol {
+    padding-left: 1.2rem;
+    margin: 0;
+  }
+  .series-nav li {
+    margin-bottom: 0.4rem;
+    color: var(--text-dim);
+  }
+  .series-nav li.current {
+    color: var(--accent);
+    font-weight: bold;
+  }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="meta">dunkelfeld.report — geopolitische instrumentalisierung von islamismus — teil 10</div>
+  <h1>Der Preis der Macht</h1>
+  <div class="subtitle">Dagestan 1999, die Wohnhaus-Anschläge und der Aufstieg eines unbekannten Ministerpräsidenten namens Putin</div>
+
+  <p>Diese Serie hat bisher vor allem eine Richtung gezeigt: westliche Dienste, die Islamisten für eigene Zwecke einsetzen oder ihren Aufstieg zumindest tolerieren. Der Fall Tschetschenien/Dagestan 1999 zeigt dasselbe Muster mit umgekehrten Vorzeichen — und mit dem Verdacht, dass am Ende nicht nur Islamisten instrumentalisiert wurden, sondern die eigene Bevölkerung selbst zum Mittel wurde.</p>
+
+  <h2>I. 1994–96: Ein säkularer Krieg</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Der Erste Tschetschenienkrieg (1994–1996) begann als klassischer Unabhängigkeitskonflikt ohne religiöses Vorzeichen. <cite index="64-1">Während sich die Tschetschenen Anfang der 1990er Jahre den "nationalen Freiheitskampf" gegen Russland ohne konfessionellen Bezug auf die Fahnen geschrieben hatten, rückte erst ab 1996 die radikale Islamisierung in den Vordergrund der medialen Berichterstattung</cite>. Im Mai 1997 unterzeichneten Präsident Jelzin und der gewählte tschetschenische Präsident Aslan Maschadow ein Friedensabkommen.</p>
+
+  <h2>II. 1996–99: Die Radikalisierung</h2>
+
+  <div class="person-card">
+    <div class="name">Ibn al-Chattab</div>
+    <div class="role">saudischer Kämpfer, Wahhabit, Verbündeter Bassajews</div>
+    <p style="margin:0"><span class="tag tag-belegt">BELEGT</span> Maschadow gelang es nach dem Friedensschluss nicht, das staatliche Gewaltmonopol durchzusetzen. <cite index="60-1">Ihm standen islamistische Rebellengruppen unter Führung von Schamil Bassajew gegenüber, der sich mit dem aus Saudi-Arabien stammenden Kämpfer Ibn al-Chattab verbündete</cite>. <cite index="61-1">In Dagestan wurde 1997–99 mit Unterstützung wahhabitischer Glaubensanhänger ein eigenes "schariatisches Territorium" mit vier Siedlungen ausgerufen</cite>.</p>
+  </div>
+
+  <p style="font-size:0.9rem;color:var(--text-dim)">Anzumerken: Die traditionelle Islam-Praxis im Nordkaukasus ist überwiegend sufistisch geprägt und stand dem importierten Wahhabismus historisch ablehnend gegenüber. <span class="tag tag-belegt">BELEGT</span> <cite index="56-1">Die sufischen Orden waren strikte Gegner des sich seit den 1990er Jahren ausbreitenden Wahhabismus</cite> — die Radikalisierung war also auch innertschetschenisch umstritten, nicht nur ein russisch-tschetschenischer Gegensatz.</p>
+
+  <h2>III. August 1999: Dagestan — und eine offene Finanzierungsfrage</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> <cite index="59-1">Im August 1999 begannen Bassajew und Chattab eine Rebellion in der russischen Republik Dagestan — ohne Zustimmung des tschetschenischen Staatsoberhaupts Maschadow, den Bassajew dabei überging</cite>. <cite index="56-1">Wahhabitische Einheiten unter ihrer Führung marschierten am 7. August 1999 ein, um Dagestan einem islamisch-fundamentalistischen Kalifatstaat anzuschließen</cite>. Bis Ende September wurden sie von der russischen Armee zurückgedrängt.</p>
+
+  <div class="source-box">
+    <div class="label">Die offene Frage: Wer finanzierte den Einfall?</div>
+    <p style="margin:0"><span class="tag tag-offen">OFFEN</span> <cite index="63-1">Ermittlungen von Journalisten legten nahe, dass möglicherweise die russische Seite selbst diesen Überfall geplant und für den Krieg instrumentalisiert hatte. Bassajew soll dafür vom damals eng mit dem Kreml verbundenen Oligarchen Boris Beresowskij 30 Millionen Dollar erhalten haben</cite>. Belastbare gerichtsfeste Beweise für diese Zahlung existieren nicht — es handelt sich um eine in mehreren journalistischen und wissenschaftlichen Quellen wiederholte, aber nie abschließend verifizierte These.</p>
+  </div>
+
+  <h2>IV. September 1999: Die Wohnhaus-Anschläge</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Zwischen dem 4. und 16. September 1999 explodierten vier Wohnhäuser in Buinaksk, Moskau (zweimal) und Wolgodonsk. <cite index="65-1">367 Menschen kamen ums Leben, über 1000 wurden verletzt</cite>. <cite index="65-1">Die russische Regierung machte tschetschenische Separatisten verantwortlich; mehrere Verdächtige wurden später verurteilt</cite>.</p>
+
+  <div class="timeline">
+    <li><span class="date">4./9./13./16. September 1999</span>Vier Sprengungen in Buinaksk, zweimal Moskau, Wolgodonsk. <span class="tag tag-belegt">BELEGT</span></li>
+    <li><span class="date">22. September 1999, Rjasan</span>Bewohner beobachten zwei Männer, die Säcke in den Keller eines Wohnhauses schleppen. <span class="tag tag-belegt">BELEGT</span> <cite index="65-1">Der örtliche Sprengmeister stellte fest, dass die Säcke denselben Sprengstoff (Hexogen/RDX) enthielten wie bei den vorherigen Anschlägen</cite>.</li>
+    <li><span class="date">23. September 1999</span>Die beiden Männer werden festgenommen — sie weisen sich als FSB-Mitarbeiter aus und werden nach Intervention aus Moskau freigelassen. <span class="tag tag-belegt">BELEGT</span> <cite index="71-1">Zwei Ungereimtheiten: Männer mit FSB-Ausweisen wurden nach ihrer Festnahme auf Weisung aus Moskau freigelassen</cite>.</li>
+    <li><span class="date">24. September 1999</span>FSB-Chef Nikolai Patruschew erklärt den Vorfall zur "Übung" — die Säcke hätten nur Zucker enthalten. <span class="tag tag-belegt">BELEGT</span> <cite index="67-1">Laut David Satter änderte der FSB seine Version, da schwer zu erklären war, wie große Mengen des in nur einer streng bewachten Fabrik hergestellten Sprengstoffs RDX verschwunden sein sollten</cite>.</li>
+    <li><span class="date">23.–24. September 1999</span>Russische Kampfjets beginnen mit der Bombardierung Grosnys — noch bevor öffentlich klar war, dass es sich bei Rjasan um keinen "echten" Anschlag handelte. <span class="tag tag-belegt">BELEGT</span></li>
+  </div>
+
+  <div class="comparison-table">
+    <table>
+      <tr><th>Position</th><th>Kernargument</th></tr>
+      <tr><td>Offizielle russische Version</td><td><span class="tag tag-belegt">BELEGT</span> <cite index="70-1">Die russische Generalstaatsanwaltschaft benannte den saudischen Feldkommandeur Chattab und einen Komplizen als Organisatoren; mehrere Verdächtige wurden nach Auslieferung aus Georgien 2004 zu lebenslanger Haft verurteilt</cite>. Rjasan sei tatsächlich eine Übung gewesen.</td></tr>
+      <tr><td>David Satter, Alexander Litvinenko, Yuri Felshtinsky</td><td><span class="tag tag-extra">EXTRAPOLATION</span> <cite index="68-1">Nach ihrer Rekonstruktion waren die Anschläge eine erfolgreiche False-Flag-Operation der russischen Staatssicherheit, um öffentliche Unterstützung für einen neuen Tschetschenienkrieg zu gewinnen und Putin an die Macht zu bringen</cite>.</td></tr>
+      <tr><td>Historikerinnen Amy Knight, Karen Dawisha</td><td><span class="tag tag-extra">EXTRAPOLATION</span> <cite index="68-1">Amy Knight schrieb, es sei "vollkommen klar", dass der FSB die Anschläge durchführte, und Putins "Schuld erscheine klar", da es unvorstellbar sei, dass der FSB dies ohne Zustimmung seines ehemaligen Direktors getan hätte. Karen Dawisha bezeichnete die Beweise für eine FSB-Beteiligung an Rjasan als "unwiderlegbar"</cite>.</td></tr>
+      <tr><td>US-Senatsbericht 2018 (Ben Cardin)</td><td><span class="tag tag-offen">OFFEN</span> <cite index="67-1">Laut dem Bericht wurden von russischen Behörden keine glaubwürdigen Beweise vorgelegt, die tschetschenische Terroristen mit den Anschlägen in Moskau in Verbindung bringen</cite> — eine Negativfeststellung, kein positiver Beweis für die Gegenthese.</td></tr>
+    </table>
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Unabhängig von der Frage der Urheberschaft ist die politische Blockade der Aufklärung dokumentiert: <cite index="65-1">Der Versuch einer unabhängigen parlamentarischen Untersuchung wurde von der russischen Regierung blockiert und verlief ergebnislos; untersuchende Duma-Abgeordnete wurden ermordet</cite>. Kommissionsmitglied Michail Trepaschkin, ein ehemaliger FSB-Mann, wurde 2003 in einem von Amnesty International als fragwürdig bezeichneten Verfahren zu vier Jahren Lagerhaft verurteilt — kurz bevor er einen Bericht zu den Anschlägen veröffentlichen wollte.</p>
+
+  <h2>V. Der Nutznießer</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> <cite index="69-1">Hätte es keine Terroranschläge und keinen zweiten Tschetschenienkrieg gegeben, hätte Putin keine Chance gehabt, Präsident Russlands zu werden</cite>, schreibt der Russland-Analyst Yury Fedorov. <cite index="66-1">Im Verlauf des Krieges in Tschetschenien konnte der ehemalige FSB-Direktor Wladimir Putin, der im August 1999 mit rund 2 Prozent Bekanntheit zum Ministerpräsidenten ernannt worden war, seine Position an der Staatsspitze konsolidieren</cite> und gewann im März 2000 die Präsidentschaftswahl deutlich.</p>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="num">~2%</span><span class="label">Putins Bekanntheit vor Ernennung (Aug. 1999)</span></div>
+    <div class="stat"><span class="num">367</span><span class="label">Tote bei den Anschlägen</span></div>
+    <div class="stat"><span class="num">7 Mon.</span><span class="label">bis zur Präsidentschaftswahl</span></div>
+  </div>
+
+  <p style="font-size:0.9rem;color:var(--text-dim)"><span class="tag tag-offen">OFFEN</span> Auch Boris Beresowskij selbst — derselbe Oligarch, dem die Dagestan-Finanzierung nachgesagt wird — änderte später seine Einschätzung: <cite index="69-1">2019 erklärte er, er habe die Explosion 1999 zunächst nicht als geheime Operation verstanden, sei aber später aufgrund gesammelter Beweise davon überzeugt gewesen, dass der FSB dahintersteckte</cite>. Ein Kronzeuge, der selbst Teil der ursprünglichen Verdachtskette ist — was seine spätere Aussage weder automatisch glaubwürdiger noch unglaubwürdiger macht, aber zur Vorsicht mahnt.</p>
+
+  <h2>Offene Fragen</h2>
+
+  <div class="closing">
+    <p><em>War Rjasan tatsächlich eine "Übung", wie der FSB nachträglich behauptete — oder der vierte, misslungene Anschlag einer Serie? Die zeitliche Nähe zur Bombardierung Grosnys, die begann, bevor der "Übungs"-Charakter öffentlich klargestellt war, bleibt ungeklärt.</em></p>
+    <p><em>Wenn Bassajews Dagestan-Einfall tatsächlich mit Kreml-nahem Geld mitfinanziert wurde — wusste Bassajew selbst, wofür er instrumentalisiert wurde, oder war er ebenso Werkzeug wie später die Opfer der Wohnhaus-Anschläge?</em></p>
+    <p><em>Was unterscheidet diesen Fall grundsätzlich von den westlichen Beispielen dieser Serie — die Bereitschaft, im eigenen Land zu handeln statt nur im Ausland? Oder ist das nur ein gradueller, kein kategorialer Unterschied?</em></p>
+  </div>
+
+  <div class="series-nav">
+    <div class="label">Serie: Geopolitische Instrumentalisierung von Islamismus</div>
+    <ol>
+      <li>Operation Ajax — Iran 1953</li>
+      <li>Operation Cyclone — Afghanistan-Falle</li>
+      <li>Israel/Hamas — Blowback</li>
+      <li>Bin-Laden-Mythos und Beleg</li>
+      <li>Syrien — Vom Terroristen zum Staatsgast</li>
+      <li>Ägypten — Sadat, Bruderschaft, Sisi</li>
+      <li>IS/Camp Bucca — Ursprung</li>
+      <li>Libyen 2011 — Rat-Line nach Syrien</li>
+      <li>Irak — Der doppelte Sturz</li>
+      <li class="current">Dagestan/Tschetschenien — Putins Aufstieg</li>
+    </ol>
+  </div>
+
+</div>
+</body>
+</html>

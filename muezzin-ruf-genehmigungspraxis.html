@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Muezzin-Ruf: Wer beantragt, wer genehmigt | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --source-bg: #1a1a2e;
+    --belegt: #4ade80;
+    --extrapolation: #fb923c;
+    --offen: #9ca3af;
+    --vt: #ef4444;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+  h1 {
+    font-size: 2rem;
+    line-height: 1.3;
+    color: #fff;
+    margin: 0.5rem 0 1.5rem;
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 1rem;
+  }
+  h2 {
+    font-size: 1.4rem;
+    color: var(--accent);
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-weight: normal;
+  }
+  p { margin: 0 0 1.3rem; }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.6rem;
+    border-radius: 3px;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag-extrapolation { background: rgba(251,146,60,0.15); color: var(--extrapolation); border: 1px solid var(--extrapolation); }
+  .tag-offen { background: rgba(156,163,175,0.15); color: var(--offen); border: 1px solid var(--offen); }
+  .source-box {
+    background: var(--source-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.3rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.8rem 0;
+  }
+  .stat-card {
+    background: var(--source-bg);
+    border: 1px solid #2a2a40;
+    border-radius: 6px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    color: var(--accent);
+    font-weight: bold;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.85rem;
+    color: #a1a1aa;
+    margin-top: 0.3rem;
+  }
+  .timeline {
+    border-left: 2px solid #2a2a40;
+    margin: 2rem 0 2rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.95rem;
+    top: 0.4rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #2a2a40;
+    font-style: italic;
+    color: #a1a1aa;
+  }
+  a { color: var(--accent); }
+  .footnote-list {
+    font-size: 0.85rem;
+    color: #71717a;
+    margin-top: 2.5rem;
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+  }
+  .series-nav {
+    margin-top: 3rem;
+    padding: 1.2rem;
+    background: var(--source-bg);
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+  }
+  .series-nav .series-title {
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    margin-bottom: 0.8rem;
+  }
+  .series-nav ol {
+    margin: 0;
+    padding-left: 1.3rem;
+  }
+  .series-nav li { margin-bottom: 0.4rem; }
+  .series-nav .current { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="meta">Dunkelfeld.report — Serie: Religiöse Organisation &amp; ausländischer Einfluss (Teil 3/3)</div>
+  <h1>Der Muezzin-Ruf: Wer beantragt, wer genehmigt</h1>
+
+  <p>Anders als bei DITIB-Struktur und Golf-Finanzierung ist der Muezzin-Ruf kein verstecktes Einflussphänomen, sondern ein öffentlich sichtbares, lokal ausgehandeltes Symbol. Genau das macht ihn interessant: Er zeigt exemplarisch, wie Initiative, Verwaltungspraxis und politische Rahmung zusammenwirken – und wer welche Rolle spielt.</p>
+
+  <h2>Wer stellt den Antrag</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+  <p>In den dokumentierten Fällen geht die Initiative von den Moscheegemeinden selbst aus – meist DITIB-nahen Gemeinden. In Göttingen kündigte die DITIB-Gemeinde für Februar 2026 erstmals einen Muezzin-Ruf zum Fastenbrechen an, nachdem das Thema zuvor an einem von der Stadtverwaltung organisierten "Runden Tisch der Religionen" besprochen worden war. In Köln bekundeten zehn Gemeinden Interesse, bevor die Stadt den Ruf zum Freitagsgebet erlaubte.</p>
+
+  <h2>Die Rechtslage: Kein echtes Genehmigungsverfahren</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+  <p>Bundesrechtlich gibt es für den Muezzin-Ruf – ebenso wenig wie für Kirchengeläut – ein eigenes Genehmigungsverfahren. Der Ruf fällt unter die durch Art. 4 Grundgesetz geschützte Religionsfreiheit. Städte wie Göttingen behandeln ihn verwaltungstechnisch wie jede andere Schallquelle: Bei regelmäßigem Ruf ist ein Lärmgutachten einzureichen; werden Immissionsgrenzwerte überschritten, gibt es nur eine eingeschränkte oder keine Genehmigung. Das Prinzip: Gleiche Maßstäbe für alle Religionsgemeinschaften.</p>
+
+  <div class="source-box">
+    <span class="label">Beispiel Göttingen 2026</span>
+    Genehmigter Rahmen: einmal im Monat, freitagmittags, zu einer "lärmtoleranten Zeit". Auflagen betreffen ausschließlich Häufigkeit, Dauer und Lautstärke – nicht den religiösen Inhalt des Rufs.
+  </div>
+
+  <h2>Wo Politik aktiv rahmt</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+  <p>Über die reine Verwaltungsentscheidung hinaus positionieren sich einzelne Kommunalpolitiker:innen öffentlich befürwortend. Göttingens Oberbürgermeisterin Petra Broistedt erklärte 2026, die Religionsfreiheit gelte "für alle Glaubensgemeinschaften gleichermaßen" und schütze auch die "sicht- und hörbare Ausübung von Religion". Frankfurts Bürgermeisterin Nargess Eskandari-Grünberg (Grüne), zuständig auch für Diversität und gesellschaftlichen Zusammenhalt, betonte das "friedliche und nachbarschaftliche Miteinander". Diese Wortmeldungen sind aktive politische Flankierung der Genehmigungspraxis, keine bloße Verwaltungsroutine.</p>
+
+  <h2>Die Gegenbewegung</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+  <p>Lokale AfD-Kreisverbände organisieren dokumentiert Mahnwachen und Demonstrationen gegen genehmigte oder vermeintlich genehmigte Rufe – etwa in Hechingen (Baden-Württemberg) im Mai 2025, wo die Stadtverwaltung öffentlich klarstellte, dass gar keine Genehmigung nötig war, weil der Ruf vom Privatgrundstück ausging. Der Fall zeigt: Auch Falschdarstellungen über angeblich erteilte Genehmigungen sind Teil der öffentlichen Debatte.</p>
+
+  <h2>Fakten zur Verbreitung</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+  <p>Von rund 3.000 Moscheen in Deutschland lässt nach Medienrecherchen nur etwa ein Prozent den Muezzin-Ruf per Lautsprecher ertönen. Der erste genehmigte Ruf in Deutschland erfolgte bereits 1985 in Düren – das Thema ist also keineswegs neu, erreicht aber periodisch neue mediale Aufmerksamkeit, wenn einzelne Städte (zuletzt Köln, Göttingen) es einführen.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-number">1985</span>
+      <div class="stat-label">erster genehmigter Ruf (Düren)</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">~1%</span>
+      <div class="stat-label">der ca. 3.000 Moscheen mit Lautsprecher-Ruf</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">2026</span>
+      <div class="stat-label">Göttingen: 1× monatlich genehmigt</div>
+    </div>
+  </div>
+
+  <h2>Einordnung</h2>
+  <span class="tag tag-extrapolation">EXTRAPOLATION</span>
+  <p>Die Genehmigungspraxis folgt in den dokumentierten Fällen konsequent dem Gleichbehandlungsprinzip, nicht einer gezielten politischen Förderung des Islam. Die sichtbare politische Flankierung durch einzelne Bürgermeister:innen dürfte jedoch die öffentliche Wahrnehmung verstärken, es handle sich um eine aktiv geförderte Entwicklung – während die rechtliche Grundlage (Art. 4 GG, Gleichbehandlung mit Kirchengeläut) tatsächlich seit Jahrzehnten unverändert besteht.</p>
+
+  <h2>Was offen bleibt</h2>
+  <span class="tag tag-offen">OFFEN</span>
+  <p>Ob die mediale Sichtbarkeit einzelner neuer Genehmigungen (Köln, Göttingen) die tatsächliche Verbreitung beschleunigt oder ob die Ein-Prozent-Quote über Jahre stabil bleibt, lässt sich mit den vorliegenden Daten nicht seriös prognostizieren.</p>
+
+  <div class="closing">
+    <em>Ein religiöses Symbol, rechtlich behandelt wie Kirchengeläut, politisch gerahmt wie ein Statement zum Zusammenhalt, öffentlich diskutiert wie ein Kulturkampf – wie viel davon ist Verwaltungsroutine, wie viel Symbolpolitik?</em>
+  </div>
+
+  <div class="series-nav">
+    <div class="series-title">Serie: Religiöse Organisation &amp; ausländischer Einfluss</div>
+    <ol>
+      <li>Teil 1: DITIB und Diyanet — staatliche Einflussnahme mit System</li>
+      <li>Teil 2: Golfstaaten-Finanzierung deutscher Moscheen</li>
+      <li class="current">Teil 3: Der Muezzin-Ruf — wer beantragt, wer genehmigt</li>
+    </ol>
+  </div>
+
+  <div class="footnote-list">
+    Quellen: Stadt Göttingen (Pressemitteilungen 02–03/2026, FAQ-Seite), Evangelisches Frankfurt und Offenbach (EFO-Magazin, 11/2021), Tagesspiegel (08/2025), AfD Zollernalb Kreisverband (Bericht Hechingen).
+  </div>
+
+</div>
+</body>
+</html>

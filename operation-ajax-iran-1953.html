@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operation Ajax: Der Ursprung | dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .container { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: #71717a;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.3;
+    color: #f4f4f5;
+    margin: 0.3rem 0 1.5rem;
+  }
+  .subtitle {
+    color: #a1a1aa;
+    font-size: 1.15rem;
+    font-style: italic;
+    margin-bottom: 2.5rem;
+    border-left: 3px solid #e8c547;
+    padding-left: 1rem;
+  }
+  h2 {
+    color: #e8c547;
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    color: #f4f4f5;
+    font-size: 1.15rem;
+    margin-top: 2rem;
+  }
+  p { margin: 1rem 0; }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.6rem;
+    border-radius: 3px;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(74, 222, 128, 0.15); color: #4ade80; border: 1px solid #4ade80; }
+  .tag-extrapolation { background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid #fb923c; }
+  .tag-offen { background: rgba(161, 161, 170, 0.15); color: #a1a1aa; border: 1px solid #a1a1aa; }
+  .tag-vt { background: rgba(248, 113, 113, 0.15); color: #f87171; border: 1px solid #f87171; text-decoration: line-through; }
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.3rem;
+    margin: 1.2rem 0;
+    font-size: 0.95rem;
+    color: #c4c4cc;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .quote {
+    font-style: italic;
+    color: #d4d4d8;
+    border-left: 3px solid #52525b;
+    padding-left: 1.3rem;
+    margin: 1.5rem 0;
+  }
+  .timeline {
+    margin: 1.5rem 0;
+    padding-left: 0;
+    list-style: none;
+  }
+  .timeline li {
+    position: relative;
+    padding-left: 1.8rem;
+    margin-bottom: 1rem;
+    border-left: 2px solid #3f3f46;
+  }
+  .timeline li::before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #e8c547;
+  }
+  .timeline .date {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .comparison-table th, .comparison-table td {
+    border: 1px solid #27272a;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+  }
+  .comparison-table th {
+    background: #18181b;
+    color: #e8c547;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+  }
+  .closing-questions {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-style: italic;
+    color: #a1a1aa;
+  }
+  .series-nav {
+    margin-top: 3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+  }
+  .footer {
+    margin-top: 4rem;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #52525b;
+  }
+  a { color: #e8c547; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="meta">dunkelfeld.report · Analyse · Quellenbasiert</div>
+  <h1>Operation Ajax: Der Ursprung</h1>
+  <div class="subtitle">Wie ein Ölstreit 1953 die Weichen für die Islamische Revolution von 1979 stellte — dokumentiert in CIA-eigenen Akten.</div>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Am 19. August 1953 wurde der demokratisch gewählte iranische Ministerpräsident Mohammad Mossadegh in einem von CIA und britischem Geheimdienst orchestrierten Putsch gestürzt. Sechzig Jahre lang bestritt Washington offiziell jede Beteiligung. 2013, zum 60. Jahrestag, veröffentlichte die CIA selbst Dokumente, die das Gegenteil belegen.</p>
+
+  <p>Dieser Artikel folgt der Kette von der Ölverstaatlichung 1951 über den Putsch bis zur SAVAK-Diktatur — und zeigt, warum viele Historiker die Ereignisse von 1979 nicht ohne 1953 erklären.</p>
+
+  <h2>1. Der Auslöser: Ein Ölvertrag, der nicht mehr passte</h2>
+
+  <p>Nach seiner Wahl 1951 verstaatlichte Mossadegh die Anglo-Iranian Oil Company (AIOC, heute BP) — eine britische Gesellschaft, die jahrzehntelang den Großteil der iranischen Ölgewinne einbehalten hatte. Die Nettogewinne der AIOC zwischen 1945 und 1950 lagen fast beim Dreifachen der an Iran gezahlten Lizenzgebühren.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Wikipedia-Zusammenfassung auf Basis CIA-/State-Department-Dokumente: Mossadegh <em>"sought to audit the documents of the Anglo-Iranian Oil Company... to verify that AIOC was paying the contracted royalties to Iran."</em> Motiv des Putsches laut Wilber-Report: Schutz der britischen Ölinteressen.
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Großbritannien versuchte ab November 1952 wiederholt, die USA für einen gemeinsamen Umsturz zu gewinnen — mit dem Argument, Mossadegh öffne die Tür für eine kommunistische Machtübernahme durch die Tudeh-Partei. Diese Einschätzung wird von US-eigenen Dokumenten als zentrales Motiv genannt: die Sorge, Iran könne "hinter den Eisernen Vorhang fallen".</p>
+
+  <h2>2. Der Plan: TPAJAX</h2>
+
+  <p>Die CIA benannte die Operation intern <strong>TPAJAX</strong> (Operation Ajax), MI6 nannte ihre Beteiligung <strong>Operation Boot</strong>. Laut einem 1954 verfassten internen CIA-Bericht (dem sogenannten "Wilber-Report", benannt nach dem Planer Donald N. Wilber) war das erklärte Ziel:</p>
+
+  <div class="quote">"To cause the fall of the Mossadeq government; to reestablish the prestige and power of the Shah."</div>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Donald N. Wilber, CIA-interner Bericht "The Battle for Iran" (verfasst 1954, teilfreigegeben 2000/2013). Original einsehbar über das National Security Archive der George Washington University.
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Zur Umsetzung reiste CIA-Agent Kermit Roosevelt Jr. — Enkel Theodore Roosevelts — unter dem Decknamen "James Lockwood" nach Teheran. Dokumentierte Methoden laut CIA-eigenen Akten:</p>
+
+  <ul>
+    <li>Bezahlung von Redakteuren und Zeitungen für Anti-Mossadegh-Propaganda</li>
+    <li>Anmietung bekannter Teheraner Schlägertrupps zur Inszenierung pro-Schah-Krawalle</li>
+    <li>Bestechung von Geistlichen und Nutzung der Teheraner Klerus-Netzwerke für die Kampagne gegen Mossadegh</li>
+    <li>Von den Putschisten vorbereitete Königsdekrete (Firmane) zur Absetzung Mossadeghs, vom Schah unterschrieben</li>
+  </ul>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    CNN (2013) zitiert freigegebene CIA-Dokumente: <em>"CIA and SIS propaganda assets were to conduct an increasingly intensified effort through the press, handbills and the Tehran clergy."</em> National Security Archive, März 2018: freigegebenes britisches Memo zu Zahlungen an einflussreiche Personen, namentlich hohe schiitische Geistliche.
+  </div>
+
+  <h2>3. Der Beinahe-Fehlschlag</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Der erste Putschversuch am 15./16. August 1953 scheiterte: Mossadegh erfuhr vom Plan, ließ die Verschwörer verhaften, der Schah floh nach Rom. Die CIA-Zentrale in Langley funkte daraufhin an Roosevelt:</p>
+
+  <div class="quote">"Operation has been tried and failed and we should not participate in any operation against Mossadegh which could be traced back to US. Operations against Mossadegh should be discontinued."</div>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Freigegebenes CIA-Kabel vom 18. August 1953, zitiert nach Foreign Policy (2017) unter Berufung auf Malcolm Byrne, National Security Archive, George Washington University.
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Roosevelt ignorierte den Abbruchbefehl eigenmächtig. Am 19. August ließ er Zahedi öffentlich auf einem Panzer auftreten, bezahlte weitere Straßenmobs — binnen neun Stunden kippte die Lage. Bei den Kämpfen starben zwischen 200 und 300 Menschen. Mossadegh wurde verhaftet, später wegen Hochverrats zu drei Jahren Haft verurteilt und verbrachte den Rest seines Lebens unter Hausarrest.</p>
+
+  <h2>4. Die Folge: 25 Jahre Schah-Herrschaft und der Aufbau der SAVAK</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> General Fazlollah Zahedi wurde als neuer Ministerpräsident eingesetzt und säuberte die Regierung systematisch von Mossadegh-Anhängern. Der Schah, nun ohne demokratisches Gegengewicht, regierte 25 Jahre – gestützt auf den mit US-Hilfe aufgebauten Geheimdienst SAVAK, der Dissidenten überwachte, folterte und Opposition jeder Couleur unterdrückte.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    NPR (2013): Der Putsch <em>"served as the template for future Cold War covert operations worldwide."</em> Zahlreiche Standardwerke zur SAVAK-Geschichte dokumentieren die Rolle von CIA und Mossad beim Aufbau des Geheimdienstapparats in den 1950er-Jahren.
+  </div>
+
+  <h2>Zeitstrahl</h2>
+  <ul class="timeline">
+    <li><span class="date">1951</span>Mossadegh wird Ministerpräsident, verstaatlicht die Anglo-Iranian Oil Company</li>
+    <li><span class="date">Nov. 1952</span>Großbritannien wirbt bei den USA erstmals für einen gemeinsamen Putsch</li>
+    <li><span class="date">Aug. 1953</span>TPAJAX/Operation Boot: erster Versuch scheitert, zweiter Versuch am 19.8. gelingt</li>
+    <li><span class="date">1953–1979</span>Schah Mohammad Reza Pahlavi regiert autoritär, gestützt auf SAVAK</li>
+    <li><span class="date">1979</span>Islamische Revolution; Geiselnahme in der US-Botschaft — Studenten berufen sich explizit auf den Putsch von 1953</li>
+    <li><span class="date">2013/2017</span>CIA gibt Dokumente frei, bestätigt erstmals offiziell die eigene Rolle</li>
+  </ul>
+
+  <h2>Was offen bleibt</h2>
+  <p><span class="tag tag-offen">OFFEN</span> Wie stark der Klerus 1953 tatsächlich durch US-/UK-Zahlungen mobilisiert wurde, ist teils noch durch Schwärzungen in britischen Akten verdeckt — einige Dokumente bleiben trotz der 2013er-Freigabe klassifiziert. Auch die genaue Kausalstärke zwischen 1953 und der Radikalisierung 1979 wird in der Forschung unterschiedlich gewichtet: Manche Historiker sehen den Putsch als zentralen Auslöser des antiwestlichen Ressentiments, andere betonen zusätzlich innenpolitische Faktoren der 1970er-Jahre (Ölboom-Ungleichheit, Repression durch den Schah selbst).</p>
+
+  <div class="closing-questions">
+    <em>Hätte eine demokratisch gewählte Regierung Irans andere geopolitische Allianzen gesucht — und wäre die Islamische Revolution 1979 ohne die 25 Jahre SAVAK-Repression in dieser Form überhaupt entstanden?</em>
+  </div>
+
+  <h2>Quellenverzeichnis</h2>
+  <p style="font-size:0.9rem; color:#a1a1aa;">
+    Donald N. Wilber, "The Battle for Iran" (CIA-interner Bericht, 1954, freigegeben 2000/2013) — National Security Archive, George Washington University · CNN Politics (19.08.2013): "In declassified document, CIA acknowledges role in '53 Iran coup" · NPR (01.09.2013): "Declassified Documents Reveal CIA Role In 1953 Iranian Coup" · Foreign Policy (20.06.2017): "64 Years Later, CIA Finally Releases Details of Iranian Coup" · National Security Archive (März 2018): freigegebenes britisches Memo zu Zahlungen an iranische Geistliche · Wikipedia, Artikel "1953 Iranian coup d'état" (Stand 2026), als Aggregator mit Verweisen auf Primärquellen.
+  </p>
+
+  <div class="series-nav">→ Teil dieser Recherchereihe: "Operation Cyclone: Der Afghan Trap" (in Vorbereitung)</div>
+
+  <div class="footer">dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.</div>
+
+</div>
+</body>
+</html>

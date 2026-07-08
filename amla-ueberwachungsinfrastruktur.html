@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Die AMLA — Infrastruktur der Kontrolle, Teil II | dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+  .mono {
+    font-family: 'Courier New', Courier, monospace;
+  }
+  header {
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+  }
+  .kicker {
+    font-family: 'Courier New', Courier, monospace;
+    color: #e8c547;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  h1 {
+    font-size: 2rem;
+    line-height: 1.25;
+    color: #f4f4f5;
+    margin-bottom: 14px;
+  }
+  .subtitle {
+    color: #a1a1aa;
+    font-size: 1.05rem;
+    font-style: italic;
+  }
+  .meta {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    color: #71717a;
+    margin-top: 16px;
+  }
+  h2 {
+    color: #e8c547;
+    font-size: 1.4rem;
+    margin-top: 44px;
+    margin-bottom: 18px;
+    border-left: 3px solid #e8c547;
+    padding-left: 14px;
+  }
+  h3 {
+    color: #d4d4d8;
+    font-size: 1.1rem;
+    margin-top: 28px;
+    margin-bottom: 12px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  p {
+    padding-bottom: 1.2rem;
+  }
+  a { color: #e8c547; }
+
+  /* Evidence tags */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(74, 222, 128, 0.15); color: #4ade80; border: 1px solid rgba(74,222,128,0.4); }
+  .tag-extra { background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid rgba(251,146,60,0.4); }
+  .tag-offen { background: rgba(161, 161, 170, 0.15); color: #a1a1aa; border: 1px solid rgba(161,161,170,0.4); }
+
+  /* Stat grid */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin: 28px 0;
+  }
+  .stat-box {
+    background: #1a1a2e;
+    border-top: 3px solid #e8c547;
+    padding: 16px;
+  }
+  .stat-num {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.6rem;
+    color: #e8c547;
+    font-weight: bold;
+    line-height: 1.1;
+  }
+  .stat-label {
+    font-size: 0.85rem;
+    color: #a1a1aa;
+    margin-top: 4px;
+  }
+
+  /* Timeline */
+  .timeline {
+    margin: 28px 0;
+    border-left: 2px solid #3f3f46;
+    padding-left: 20px;
+  }
+  .timeline-item {
+    position: relative;
+    padding-bottom: 22px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -25px;
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #e8c547;
+  }
+  .timeline-date {
+    font-family: 'Courier New', Courier, monospace;
+    color: #e8c547;
+    font-size: 0.85rem;
+    font-weight: bold;
+  }
+  .timeline-text {
+    color: #d4d4d8;
+    font-size: 0.98rem;
+    margin-top: 2px;
+  }
+
+  /* Source box */
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 16px 18px;
+    margin: 24px 0;
+    font-size: 0.95rem;
+  }
+  .source-box .source-title {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.75rem;
+    color: #e8c547;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+
+  /* Pull quote */
+  .pull-quote {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: #f4f4f5;
+    font-style: italic;
+    border-left: 3px solid #e8c547;
+    padding: 6px 0 6px 20px;
+    margin: 32px 0;
+  }
+  .pull-quote-source {
+    display: block;
+    font-family: 'Courier New', Courier, monospace;
+    font-style: normal;
+    font-size: 0.8rem;
+    color: #71717a;
+    margin-top: 8px;
+  }
+
+  /* Comparison table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 0.92rem;
+  }
+  th, td {
+    border: 1px solid #27272a;
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    font-family: 'Courier New', Courier, monospace;
+    background: #1a1a2e;
+    color: #e8c547;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  /* Aside box */
+  .aside-box {
+    background: #16161d;
+    border: 1px solid #27272a;
+    padding: 16px 18px;
+    margin: 24px 0;
+    font-size: 0.95rem;
+    color: #a1a1aa;
+  }
+  .aside-box .aside-title {
+    font-family: 'Courier New', Courier, monospace;
+    color: #71717a;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  /* Open questions closing */
+  .open-questions {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #27272a;
+  }
+  .open-questions p {
+    font-style: italic;
+    color: #a1a1aa;
+  }
+
+  /* Series nav footer */
+  footer.series-nav {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+  }
+  footer.series-nav .nav-title {
+    color: #e8c547;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+  }
+  footer.series-nav ul {
+    list-style: none;
+  }
+  footer.series-nav li {
+    padding: 4px 0;
+  }
+  footer.series-nav .current {
+    color: #e8c547;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="kicker">Infrastruktur der Kontrolle — Teil II</div>
+  <h1>Die AMLA: Europas neue Datenzentrale gegen Geldwäsche</h1>
+  <div class="subtitle">Eine EU-Behörde in Frankfurt baut die zentrale Dateninfrastruktur für 450 Millionen Menschen — offiziell gegen Geldwäsche, faktisch mit Zugriff weit über Banken hinaus.</div>
+  <div class="meta">dunkelfeld.report · Serie: Infrastruktur der Kontrolle · Stand: Juli 2026</div>
+</header>
+
+<p><span class="tag tag-belegt">BELEGT</span>Am 31. Mai 2024 verabschiedeten Europäisches Parlament und Rat die <em>Authority for Anti-Money Laundering and Countering the Financing of Terrorism</em> (AMLA) — eine neue EU-Behörde mit Sitz in Frankfurt am Main, veröffentlicht als Verordnung (EU) 2024/1620 im Amtsblatt der EU. Zusammen mit zwei weiteren Rechtsakten, der EU-Geldwäscheverordnung (EU) 2024/1624 und der sechsten Geldwäscherichtlinie (EU) 2024/1640, bildet sie das größte Umbauprojekt der europäischen Geldwäschebekämpfung seit den 1990er-Jahren.</p>
+
+<p><span class="tag tag-belegt">BELEGT</span>Die AMLA ist keine reine Aufsichtsbehörde für Banken. Sie ist der Aufbau einer zentralen, EU-weiten Dateninfrastruktur — mit Zugriff auf Kontodaten, wirtschaftlich Berechtigte (UBO), Risikoprofile und grenzüberschreitenden Echtzeitaustausch zwischen nationalen Financial Intelligence Units (FIU). Was als Werkzeug gegen Kriminelle verkauft wird, erfasst strukturell jeden, der ein Konto hat, eine Firma gründet oder Vermögen besitzt.</p>
+
+<div class="stat-grid">
+  <div class="stat-box">
+    <div class="stat-num">40</div>
+    <div class="stat-label">Finanzinstitute unter AMLA-Direktaufsicht ab 2028</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">~120</div>
+    <div class="stat-label">Mitarbeiter der AMLA (Stand 2026)</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">80+</div>
+    <div class="stat-label">geplante technische Standards & Guidelines bis 2028</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">27</div>
+    <div class="stat-label">Mitgliedstaaten, ab Juli 2027 einheitlich erfasst</div>
+  </div>
+</div>
+
+<h2>Zeitschiene einer Zentralisierung</h2>
+
+<p><span class="tag tag-belegt">BELEGT</span>Der Aufbau folgt keinem plötzlichen Schritt, sondern einer über Jahre gestreckten, schrittweisen Übertragung von Kompetenzen von nationalen auf eine zentrale EU-Ebene:</p>
+
+<div class="timeline">
+  <div class="timeline-item">
+    <div class="timeline-date">2021</div>
+    <div class="timeline-text">Europäische Kommission legt das AML-Gesetzespaket vor.</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-date">31. Mai 2024</div>
+    <div class="timeline-text">Parlament und Rat verabschieden AMLA-Verordnung, AML-Verordnung und AMLD6. Frankfurt wird nach Bewerbung von neun Städten (u.a. Brüssel, Paris, Dublin, Wien) als Sitz bestimmt.</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-date">Sommer 2025</div>
+    <div class="timeline-text">AMLA nimmt operativen Betrieb auf, bezieht Büro in Frankfurt.</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-date">Januar 2026</div>
+    <div class="timeline-text">Sämtliche AML/CFT-Mandate der Europäischen Bankenaufsicht (EBA) werden vollständig auf die AMLA übertragen.</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-date">10. Juli 2027</div>
+    <div class="timeline-text">Das "Single Rulebook" gilt unmittelbar in allen 27 Mitgliedstaaten — ohne nationalen Umsetzungsspielraum.</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-date">2028</div>
+    <div class="timeline-text">AMLA übernimmt Direktaufsicht über 40 grenzüberschreitend tätige Institute. Zentrale AML/CFT-Datenbank soll voll funktionsfähig sein.</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-date">2029</div>
+    <div class="timeline-text">Bank-Konten-Register-Vernetzungssystem (BARIS) soll durch die Kommission fertiggestellt sein.</div>
+  </div>
+</div>
+
+<h2>Das Herzstück: die zentrale Datenbank</h2>
+
+<p><span class="tag tag-belegt">BELEGT</span>Kern des neuen Systems ist eine zentrale EU-AML/CFT-Datenbank. Sie soll Informationen über Verpflichtete, Risikobewertungen, Ergebnisse von "Fit-and-proper"-Prüfungen, aufsichtliche Maßnahmen, Sanktionen und Lizenzentzüge zusammenführen. Bereits 2026 bereitet die AMLA den Rollout vor und finalisiert die zugehörigen technischen Standards; ab 2027 soll die Datenbank vollständig operativ sein.</p>
+
+<p><span class="tag tag-belegt">BELEGT</span>Parallel dazu soll das bestehende FIU.net-System, über das nationale Financial Intelligence Units Verdachtsmeldungen austauschen, bis 2027 auf Echtzeit-Datenaustausch umgestellt und anschließend unter die Verwaltung der AMLA überführt werden. Ergänzt wird dies durch BARIS — ein System zur Vernetzung nationaler Bankkontenregister, mit dem sich Kontoinhaber EU-weit zeitnah identifizieren lassen sollen.</p>
+
+<div class="source-box">
+  <div class="source-title">Quelle</div>
+  Verordnung (EU) 2024/1620 des Europäischen Parlaments und des Rates vom 31. Mai 2024, ABl. L, 2024/1620, 19.6.2024 (EUR-Lex, CELEX 32024R1620) · Verordnung (EU) 2024/1624 (CELEX 32024R1624) · Richtlinie (EU) 2024/1640 (AMLD6)
+</div>
+
+<h3>Wer erfasst wird: die Ausweitung der "Verpflichteten"</h3>
+
+<p><span class="tag tag-belegt">BELEGT</span>Der Kreis der zur Datenerhebung verpflichteten Akteure wächst mit dem neuen Regelwerk erheblich. Neu als "obliged entities" hinzugekommen sind unter anderem nichtfinanzielle gemischte Holdinggesellschaften, Fußballagenten und Profivereine sowie Kreditvermittler und Anbieter von Investitionsmigration ("Golden Visa"). Auch der Schwellenwert für die Identifikation wirtschaftlich Berechtigter (UBO) wurde verschärft: von "mehr als 25 %" der Anteile auf "25 % oder mehr" — eine kleine Formulierungsänderung mit großer Wirkung, da dadurch etwa vier Gesellschafter mit exakt 25 % Anteil an einer GmbH gleichzeitig als UBO gelten und vollständig identifiziert werden müssen.</p>
+
+<table>
+  <tr><th>Vorher (AMLD4)</th><th>Nachher (AML-Verordnung 2024/1624)</th></tr>
+  <tr><td>UBO-Schwelle: mehr als 25 %</td><td>UBO-Schwelle: 25 % oder mehr</td></tr>
+  <tr><td>Nationale Register, uneinheitlich</td><td>EU-weit vernetzte Register, zentrale Plattform</td></tr>
+  <tr><td>Richtlinie — nationale Umsetzung nötig</td><td>Verordnung — unmittelbar geltendes EU-Recht</td></tr>
+  <tr><td>Verpflichtete: primär Banken, Notare</td><td>Zusätzlich: Fußballagenten, Immobilien-Investoren, NPOs, Kreditvermittler</td></tr>
+</table>
+
+<h2>Dokumentierte Kritik: "weiter als nötig"</h2>
+
+<p><span class="tag tag-belegt">BELEGT</span>Kritik an der Ausweitung kommt nicht nur von Bürgerrechtsorganisationen, sondern auch von staatlicher Seite selbst. Die niederländische Organisation Privacy First dokumentierte in einer Eingabe zu einer Regierungskonsultation im August 2025, dass es in den Niederlanden für bestimmte Wirtschaftszweige und Non-Profit-Organisationen bereits schwierig geworden sei, überhaupt ein Bankkonto zu eröffnen, und dass Menschen teilweise von Banken diskriminiert würden. Verpflichtete Unternehmen würden zudem oft weit mehr vertrauliche, privatsphärerelevante Daten von Kunden verlangen, als rechtlich nötig wäre — aus Angst vor staatlichen Sanktionen.</p>
+
+<div class="pull-quote">
+  Der niederländische Finanzminister räumte in einem Schreiben ein, dass das Geldwäscheregime zu weit gegangen sei, und versprach Abhilfe — Privacy First bezweifelt, ob dieses Versprechen noch eingehalten werden kann, sobald die EU-weite Vereinheitlichung greift.
+  <span class="pull-quote-source">— zusammengefasst nach Statewatch, Sept. 2025</span>
+</div>
+
+<p><span class="tag tag-belegt">BELEGT</span>Die europäische Bürgerrechtsorganisation European Digital Rights (EDRi) fasst die strukturelle Verschiebung so zusammen: Über das letzte Jahrzehnt habe die EU die Aufgabe der Kriminalitätsbekämpfung zunehmend von staatlichen Behörden auf private Unternehmen — Banken, Buchhalter, andere "Verpflichtete" — verlagert. Mit dem 2027 in Kraft tretenden AML-Paket werde dieses System weiter ausgebaut und mache damit gewöhnliche Bürger und zivilgesellschaftliche Organisationen zu Subjekten eines Systems finanzieller Überwachung.</p>
+
+<div class="source-box">
+  <div class="source-title">Quelle</div>
+  Statewatch, "More profiling and surveillance under new EU anti-money laundering rules", September 2025 · European Digital Rights (EDRi), "How EU anti-money laundering rules threaten financial privacy", März 2026
+</div>
+
+<p><span class="tag tag-extra">EXTRAPOLATION</span>Auch aus der Finanzbranche selbst — etwa in einer Befragung von EY unter Compliance-Verantwortlichen — wird eingeräumt, dass die verstärkte Datensammlung und -weitergabe für die AML/CFT-Compliance erhebliche Datenschutzbedenken aufwerfe und ein sorgfältiges Design sowie Aufsicht der Datenverarbeitungssysteme erfordere. Ob diese Aufsicht in der Praxis ausreichend ausgestaltet wird, ist zum jetzigen Zeitpunkt nicht abschließend zu beurteilen.</p>
+
+<h2>Einordnung in die Kontroll-Architektur</h2>
+
+<p><span class="tag tag-extra">EXTRAPOLATION</span>Die AMLA-Datenbank entsteht zeitlich parallel zu anderen zentralisierten EU-Dateninfrastrukturen — etwa eIDAS 2.0 und der EU-Brieftaschen-Identität (siehe Teil I dieser Serie). Eine direkte technische oder rechtliche Verknüpfung zwischen beiden Systemen ist auf Basis der vorliegenden Dokumente nicht belegt. Belegt ist jedoch die parallele Entwicklung: beide Systeme zielen auf EU-weit einheitliche, zentral abrufbare Identitäts- und Finanzdaten von Bürgern — mit jeweils eigener Rechtsgrundlage, eigenem Zeitplan, aber ähnlicher struktureller Logik der Zentralisierung.</p>
+
+<div class="aside-box">
+  <div class="aside-title">Zum Vergleich</div>
+  Die AMLD6 sieht vor, dass Zugriff auf die vernetzten Register wirtschaftlich Berechtigter nicht nur zentralen Aufsichtsbehörden und der AMLA vorbehalten ist, sondern auch Personen mit "nachweisbarem berechtigtem Interesse" gewährt werden kann. Was genau als "berechtigtes Interesse" zählt, wird von den Mitgliedstaaten näher ausgestaltet.
+</div>
+
+<div class="open-questions">
+  <h3 style="color:#71717a;">Offene Fragen</h3>
+  <p>Wie wird "berechtigtes Interesse" für den Zugriff auf UBO-Register in der Praxis definiert — und von wem?</p>
+  <p>Welche technischen und rechtlichen Kontrollmechanismen bestehen, um Missbrauch des Echtzeit-Datenaustauschs zwischen FIUs zu verhindern?</p>
+  <p>Wie wirkt sich die Ausweitung der Verpflichteten auf Vereine, NGOs und Kleinunternehmen aus, die keine Compliance-Abteilungen unterhalten?</p>
+  <p>Wird die im Aufbau befindliche Dateninfrastruktur der AMLA künftig mit anderen zentralen EU-Systemen (eIDAS 2.0, Europol-Datenbanken) verknüpft — und falls ja, unter welcher Rechtsgrundlage?</p>
+</div>
+
+<footer class="series-nav">
+  <div class="nav-title">Serie: Infrastruktur der Kontrolle</div>
+  <ul>
+    <li>Teil I — Hollerith zu eIDAS 2.0 (#15)</li>
+    <li class="current">→ Teil II — Die AMLA: Europas neue Datenzentrale (dieser Artikel)</li>
+    <li>Teil III — folgt</li>
+  </ul>
+</footer>
+
+</body>
+</html>

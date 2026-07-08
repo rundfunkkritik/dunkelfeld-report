@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Worldcoin & Trump Coin – Wenn Krypto zur Kontrollinfrastruktur wird | Teil 3 | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --source-bg: #1a1a2e;
+    --belegt: #4ade80;
+    --extrapolation: #fb923c;
+    --offen: #9ca3af;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: #e5e5e5;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.2rem 5rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  h1 {
+    font-size: 2rem;
+    line-height: 1.25;
+    margin: 0.3rem 0 1rem;
+    color: #fff;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    color: #fff;
+    font-size: 1.15rem;
+    margin-top: 2rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  .lead {
+    font-size: 1.2rem;
+    color: #fff;
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+    margin-right: 0.4rem;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag-extra { background: rgba(251,146,60,0.15); color: var(--extrapolation); border: 1px solid var(--extrapolation); }
+  .tag-offen { background: rgba(156,163,175,0.15); color: var(--offen); border: 1px solid var(--offen); }
+  .source-box {
+    background: var(--source-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .source-box .src-title {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat {
+    background: var(--source-bg);
+    padding: 1rem;
+    text-align: center;
+    border-radius: 4px;
+  }
+  .stat .num {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: block;
+  }
+  .stat .label {
+    font-size: 0.8rem;
+    color: #aaa;
+  }
+  .person-card {
+    background: var(--source-bg);
+    border-radius: 4px;
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+  }
+  .person-card .name {
+    color: #fff;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+  }
+  .timeline {
+    border-left: 2px solid var(--accent);
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+  }
+  .timeline-item { margin-bottom: 1.2rem; position: relative; }
+  .timeline-item .date {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    display: block;
+  }
+  .aside {
+    background: rgba(232,197,71,0.06);
+    border: 1px solid rgba(232,197,71,0.3);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    border-radius: 4px;
+  }
+  .aside .aside-title {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .pull-quote {
+    font-size: 1.3rem;
+    color: #fff;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    margin: 2rem 0;
+    border-top: 1px solid var(--accent);
+    border-bottom: 1px solid var(--accent);
+    font-style: italic;
+  }
+  .pull-quote .attr {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-top: 0.6rem;
+    font-style: normal;
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #333;
+    font-style: italic;
+    color: #bbb;
+  }
+  .series-nav {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #333;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+  }
+  .series-nav a { color: var(--accent); text-decoration: none; }
+  .series-nav .current { color: #fff; }
+  a { color: var(--accent); }
+  ul { padding-left: 1.3rem; }
+  li { padding-bottom: 0.5rem; }
+</style>
+</head>
+<body>
+
+<div class="meta">dunkelfeld.report · Infrastruktur der Kontrolle · Teil 3/3</div>
+<h1>Worldcoin & Trump Coin<br>Wenn Kryptowährung zur Kontrollinfrastruktur wird</h1>
+
+<p class="lead">Zwei Projekte, zwei völlig unterschiedliche Herkunftsgeschichten – und doch dasselbe Grundmuster: Ein Freiheits- oder Wohlstandsversprechen wird genutzt, um im Gegenzug etwas weit Wertvolleres einzusammeln als Geld. Bei Worldcoin sind es biometrische Daten von Millionen Menschen. Beim Trump Coin ist es politischer Einfluss, direkt monetarisiert durch einen amtierenden US-Präsidenten.</p>
+
+<span class="tag tag-belegt">BELEGT</span><span class="tag tag-extra">EXTRAPOLATION</span><span class="tag tag-offen">OFFEN</span>
+
+<h2>1. Worldcoin: Iris gegen Krypto</h2>
+
+<p><span class="tag tag-belegt">BELEGT</span> <cite index="23-1">2019 gründeten Sam Altman, Max Novendstern und der deutsche Physiker Alexander Blania ein Unternehmen, das mittels fußballgroßer Geräte ("Orbs") die Iris von Menschen scannt, daraus einen Code erzeugt und diesen in einer Blockchain speichert.</cite> <cite index="20-1">Als Belohnung erhalten Nutzer rund 25 Token der Kryptowährung Worldcoin (WLD), umgerechnet zeitweise rund 50 US-Dollar.</cite></p>
+
+<div class="stat-grid">
+  <div class="stat"><span class="num">12 Mio.+</span><span class="label">gescannte Menschen weltweit (2025)</span></div>
+  <div class="stat"><span class="num">$240 Mio.</span><span class="label">eingesammeltes Investorenkapital</span></div>
+  <div class="stat"><span class="num">8 Mrd.</span><span class="label">erklärtes Fernziel: alle Menschen weltweit</span></div>
+</div>
+
+<p><span class="tag tag-belegt">BELEGT</span> <cite index="20-1">Sam Altman möchte über die World ID langfristig ein bedingungsloses Grundeinkommen ausschütten und dafür im Idealfall die Iris von acht Milliarden Menschen erfassen.</cite> <cite index="16-1">Eine Recherche deckte zudem auf, dass World neben den Iris-Scans auch weitere persönliche Daten wie Herzschlag und Atmung sammelte – ohne informierte Zustimmung im eigentlichen Sinn einzuholen.</cite></p>
+
+<div class="source-box">
+<div class="src-title">Regulatorische Reaktionen weltweit (BELEGT)</div>
+<cite index="16-1">Brasilien verbot 2025 die Erfassung von Iris-Scans gegen Bezahlung, da finanzielle Anreize gegen das Datenschutzrecht des Landes verstoßen; Indonesien setzte die Datensammlung vorübergehend aus; die Philippinen ordneten einen sofortigen Stopp an; Thailand ließ die biometrische Datensammlung durch Behörden einstellen und die Löschung der Daten fordern.</cite> <cite index="21-1">Thailand ordnete konkret die Löschung von über 1,2 Millionen erfassten Iris-Scans an, nachdem ein Expertengremium den Tausch biometrischer Daten gegen Kryptowährung als Gesetzesverstoß einstufte.</cite> <cite index="22-1">Auch Hongkong und Kenia untersagten das Projekt; Kenia bereits seit August 2023.</cite>
+</div>
+
+<p><span class="tag tag-extra">EXTRAPOLATION</span> Das Geschäftsmodell ist bemerkenswert direkt: Ein irreversibles biometrisches Merkmal – die Iris kann, anders als ein Passwort, niemals ausgetauscht werden – wird gegen einen vergleichsweise geringen Krypto-Betrag getauscht. <span class="tag tag-belegt">BELEGT</span> <cite index="18-1">Ein Cybersicherheitsexperte bezeichnete das System als "das ultimative Honigtopf für Überwachung", sobald ein unveränderliches biometrisches Merkmal einmal an eine globale Identitätsplattform gekoppelt ist.</cite></p>
+
+<h2>2. Trump Coin: Ein US-Präsident als Coin-Emittent</h2>
+
+<p><span class="tag tag-belegt">BELEGT</span> <cite index="38-1">Nur wenige Tage vor seiner zweiten Amtseinführung im Januar 2025 lancierte Donald Trump den Meme Coin $TRUMP auf der Solana-Blockchain.</cite> <cite index="37-1">80 Prozent der insgesamt einer Milliarde ausgegebenen Token blieben bei zwei Trump-nahen Firmen, CIC Digital LLC und Fight Fight Fight LLC.</cite></p>
+
+<div class="stat-grid">
+  <div class="stat"><span class="num">$1,4 Mrd.</span><span class="label">Krypto-Einnahmen Trumps 2025</span></div>
+  <div class="stat"><span class="num">$3,81 Mrd.</span><span class="label">Verluste von ca. 1 Mio. Kleinanlegern</span></div>
+  <div class="stat"><span class="num">–97%</span><span class="label">Kursverfall seit Allzeithoch</span></div>
+</div>
+
+<p><span class="tag tag-belegt">BELEGT</span> <cite index="34-1">Laut Trumps gesetzlich vorgeschriebener Finanzoffenlegung für 2025 nahm er über 1,4 Milliarden US-Dollar aus Krypto-Geschäften ein – mehr als 60 Prozent seines gesamten gemeldeten Einkommens von rund 2,2 Milliarden US-Dollar.</cite> <cite index="34-1">Rund 635 Millionen Dollar davon stammen aus Lizenzgebühren des $TRUMP-Coins, mindestens 525 Millionen Dollar aus Token-Verkäufen von World Liberty Financial, einem Krypto-Unternehmen von Trumps Söhnen.</cite></p>
+
+<p><span class="tag tag-belegt">BELEGT</span> <cite index="35-1">Nach Daten der Analysefirma Nansen haben knapp eine Million Menschen, die den Trump-Meme-Coin gekauft haben, bis Ende Juni 2025 zusammen 3,81 Milliarden US-Dollar verloren.</cite> <cite index="36-1">Frühe Käufer nahe am Launch erzielten dagegen schätzungsweise vier Milliarden Dollar Gewinn, während der Grossteil der späteren Käufer nach einem Kursverfall von rund 97 Prozent gegenüber dem Hoch von etwa 75 Dollar deutliche Verluste erlitt.</cite></p>
+
+<div class="source-box">
+<div class="src-title">Politische Reaktionen (BELEGT)</div>
+<cite index="38-1">Als bekannt wurde, dass das US-Finanzministerium eine 1-Dollar-Münze mit Trumps Konterfei und dem Slogan "Fight, Fight, Fight" plante – dem Namen der Firma hinter dem Trump-Coin –, kritisierte Senator Chris Van Hollen dies scharf und erklärte, es sei bereits illegal, das Konterfei des Präsidenten auf eine offizielle Münze zu setzen.</cite> <cite index="34-1">Ethics-Gruppen und Aufsichtsbehörden prüfen inzwischen das 927-seitige Offenlegungsdokument gezielt auf mögliche Interessenkonflikte zwischen Trumps Kryptoeinnahmen und regulatorischen Entscheidungen seiner eigenen Regierung.</cite>
+</div>
+
+<p>Bemerkenswert: Ausgerechnet der Ethereum-Mitgründer aus Teil 2 dieser Serie gehört zu den prominentesten Kritikern.</p>
+
+<div class="pull-quote">
+"Das Risiko von Politiker-Coins ist, dass sie ein perfektes Instrument für Bestechung darstellen … das alles ist riskant für die Demokratie."
+<span class="attr">— Vitalik Buterin, Mitgründer Ethereum <cite index="39-1"></cite></span>
+</div>
+
+<h2>3. Zwei Modelle, ein Muster</h2>
+
+<table style="width:100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem;">
+<tr style="border-bottom:1px solid #333;"><th style="text-align:left; padding:0.6rem 0; color: var(--accent); font-family: 'Courier New', monospace; font-size:0.8rem;">MERKMAL</th><th style="text-align:left; color: var(--accent); font-family: 'Courier New', monospace; font-size:0.8rem;">WORLDCOIN</th><th style="text-align:left; color: var(--accent); font-family: 'Courier New', monospace; font-size:0.8rem;">TRUMP COIN</th></tr>
+<tr style="border-bottom:1px solid #222;"><td style="padding:0.6rem 0;">Versprechen</td><td>Digitale Identität, Grundeinkommen</td><td>Zugehörigkeit, Spekulationsgewinn</td></tr>
+<tr style="border-bottom:1px solid #222;"><td style="padding:0.6rem 0;">Was der Nutzer gibt</td><td>Unveränderliches biometrisches Merkmal</td><td>Kapital, meist zu Höchstkursen</td></tr>
+<tr style="border-bottom:1px solid #222;"><td style="padding:0.6rem 0;">Wer profitiert strukturell</td><td>Betreiberfirma (Tools for Humanity)</td><td>Emittent selbst (Trump-Familie, 80% Token-Anteil)</td></tr>
+<tr><td style="padding:0.6rem 0;">Regulatorische Reaktion</td><td>Verbote in zahlreichen Ländern</td><td>Ethik-Prüfungen, Kritik von Gesetzgebern</td></tr>
+</table>
+
+<p><span class="tag tag-extra">EXTRAPOLATION</span> In beiden Fällen wird die Erzählung von Dezentralisierung und individueller Ermächtigung genutzt, um eine hochgradig zentralisierte Gegenleistung einzusammeln: bei Worldcoin unveränderliche biometrische Daten in den Händen eines einzelnen Unternehmens, beim Trump Coin direkten finanziellen Vorteil für einen Amtsträger, dessen eigene Regierung gleichzeitig über die Krypto-Regulierung entscheidet. Beide Projekte nutzen damit exakt die Sprache – Freiheit, Teilhabe, finanzielle Selbstbestimmung –, mit der Bitcoin einst antrat, um das genaue Gegenteil zu erreichen: eine engere Verzahnung von Individuum, Konzern und Staat.</p>
+
+<h2>Fazit der Serie</h2>
+
+<p>Über drei Teile hinweg zeigt sich ein wiederkehrendes Muster: Bitcoin versprach Anonymität und lieferte das transparenteste Zahlungssystem der Geschichte (Teil 1). Ethereum positionierte sich als "neutrale" Plattform und ist zugleich institutionell enger mit WEF-nahen Netzwerken verwoben als jede andere große Kryptowährung (Teil 2). Worldcoin und Trump Coin schließlich zeigen, wie weit sich das ursprüngliche Cypherpunk-Versprechen inzwischen von der Praxis entfernt hat: Statt Menschen von zentralisierter Kontrolle zu befreien, liefern manche der prominentesten Krypto-Projekte heute genau die Infrastruktur, die eine solche Kontrolle erst möglich macht – biometrische Totalerfassung auf der einen, direkte Monetarisierung politischer Macht auf der anderen Seite.</p>
+
+<div class="closing">
+Offene Fragen: Ist diese Entwicklung ein bewusst gesteuerter Prozess oder das nachvollziehbare Ergebnis dessen, was passiert, wenn Freiheitstechnologie auf bestehende Machtstrukturen trifft? Wo verläuft die Grenze zwischen technischer Innovation und der Schaffung neuer Abhängigkeiten? Der Leser zieht seine eigenen Schlüsse.
+</div>
+
+<div class="series-nav">
+Serie "Infrastruktur der Kontrolle": Teil 1: Bitcoin – eine Mausefalle? · Teil 2: Ethereum & WEF · <span class="current">Teil 3: Worldcoin & Trump Coin</span>
+</div>
+
+</body>
+</html>

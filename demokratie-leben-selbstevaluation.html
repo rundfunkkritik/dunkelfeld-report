@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Die Evaluation evaluiert sich selbst | dunkelfeld.report</title>
+<style>
+  :root{
+    --bg:#09090b;
+    --accent:#e8c547;
+    --box:#1a1a2e;
+    --belegt:#4ade80;
+    --extra:#fb923c;
+    --offen:#9ca3af;
+    --vt:#ef4444;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:#e5e5e5;
+    font-family:Georgia,'Times New Roman',serif;
+    font-size:1.1rem;
+    line-height:1.8;
+    margin:0;
+    padding:0;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:3rem 1.5rem 5rem;}
+  .meta{
+    font-family:'Courier New',monospace;
+    color:var(--accent);
+    font-size:0.85rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    margin-bottom:1rem;
+  }
+  h1{
+    font-size:2.1rem;
+    line-height:1.25;
+    margin:0 0 1.5rem;
+    color:#fff;
+  }
+  h2{
+    font-size:1.4rem;
+    color:var(--accent);
+    margin-top:3rem;
+    border-bottom:1px solid #333;
+    padding-bottom:0.5rem;
+  }
+  p{margin:1.2rem 0;}
+  .lead{
+    font-size:1.25rem;
+    color:#fff;
+    border-left:3px solid var(--accent);
+    padding-left:1.2rem;
+    margin:2rem 0;
+  }
+  .tag{
+    display:inline-block;
+    font-family:'Courier New',monospace;
+    font-size:0.75rem;
+    font-weight:bold;
+    letter-spacing:0.05em;
+    padding:0.2rem 0.6rem;
+    border-radius:3px;
+    margin-right:0.4rem;
+    margin-bottom:0.3rem;
+  }
+  .tag-belegt{background:rgba(74,222,128,0.15);color:var(--belegt);border:1px solid var(--belegt);}
+  .tag-extra{background:rgba(251,146,60,0.15);color:var(--extra);border:1px solid var(--extra);}
+  .tag-offen{background:rgba(156,163,175,0.15);color:var(--offen);border:1px solid var(--offen);}
+  .source-box{
+    background:var(--box);
+    border-left:3px solid var(--accent);
+    padding:1.2rem 1.5rem;
+    margin:1.5rem 0;
+    font-size:1rem;
+  }
+  .source-box .src-label{
+    font-family:'Courier New',monospace;
+    font-size:0.75rem;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    margin-bottom:0.5rem;
+  }
+  .stat-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:1rem;
+    margin:2rem 0;
+  }
+  .stat{
+    background:var(--box);
+    border:1px solid #333;
+    border-radius:6px;
+    padding:1.2rem;
+    text-align:center;
+  }
+  .stat .num{
+    font-family:'Courier New',monospace;
+    font-size:1.6rem;
+    color:var(--accent);
+    font-weight:bold;
+    display:block;
+  }
+  .stat .label{
+    font-size:0.85rem;
+    color:#aaa;
+    margin-top:0.3rem;
+  }
+  .timeline{
+    border-left:2px solid #333;
+    margin:2rem 0 2rem 0.5rem;
+    padding-left:1.5rem;
+  }
+  .tl-item{
+    position:relative;
+    margin-bottom:1.5rem;
+  }
+  .tl-item::before{
+    content:'';
+    position:absolute;
+    left:-1.8rem;
+    top:0.4rem;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:var(--accent);
+  }
+  .tl-date{
+    font-family:'Courier New',monospace;
+    color:var(--accent);
+    font-size:0.85rem;
+    display:block;
+    margin-bottom:0.2rem;
+  }
+  .closing{
+    margin-top:3rem;
+    padding-top:1.5rem;
+    border-top:1px solid #333;
+    font-style:italic;
+    color:#bbb;
+  }
+  .closing p{margin:0.8rem 0;}
+  .cross-ref{
+    margin-top:2.5rem;
+    font-family:'Courier New',monospace;
+    font-size:0.85rem;
+    color:#888;
+  }
+  a{color:var(--accent);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="meta">dunkelfeld.report — Faktencheck- &amp; Förderstrukturen — Juli 2026</div>
+  <h1>Die Evaluation evaluiert sich selbst: Wie "Demokratie leben!" sich seine eigenen Prüfer bezahlt</h1>
+
+  <p class="lead">Ein Förderprogramm lässt sich von Organisationen prüfen, die selbst aus diesem Programm bezahlt werden. Als das öffentlich wird, beauftragt das zuständige Ministerium ein weiteres Institut damit, die Prüfer zu prüfen — und bezahlt auch dieses aus demselben Topf.</p>
+
+  <span class="tag tag-belegt">BELEGT</span>
+  <h2>Die Ausgangslage: Wer prüft "Demokratie leben!"?</h2>
+  <p>Das Bundesprogramm „Demokratie leben!" existiert seit 2015 und wird vom Bundesfamilienministerium verantwortet, seit Kurzem unter Ministerin Karin Prien (CDU). Seit Beginn des Programms wird es in regelmäßigen Abständen evaluiert — offiziell, um die Wirksamkeit der geförderten Projekte zu überprüfen.</p>
+  <p>Seit der dritten Förderperiode, die 2025 begann, sind vier Organisationen mit dieser Evaluation beauftragt: die Camino Werkstatt für Fortbildung, Praxisbegleitung und Forschung im sozialen Bereich gGmbH, das Deutsche Zentrum für Integration und Migration e.V., das Deutsche Jugendinstitut e.V. sowie das Institut für Sozialarbeit und Sozialpädagogik e.V.</p>
+
+  <div class="source-box">
+    <div class="src-label">Primärquelle: Antwort der Bundesregierung auf Kleine Anfrage (Abgeordnete Kerstin Przygodda, AfD)</div>
+    Die mit der Evaluation beauftragten Organisationen haben seit 2015 insgesamt fast 400 Millionen Euro an Steuergeld aus dem Bundesfamilienministerium erhalten.
+  </div>
+
+  <p>Das bedeutet: Die Institutionen, die das Programm auf seine Wirksamkeit hin bewerten sollen, sind zugleich langjährige Empfänger von Fördergeldern aus genau diesem Programm.</p>
+
+  <span class="tag tag-belegt">BELEGT</span>
+  <h2>Die Meta-Evaluation: Ein Institut prüft die Prüfer</h2>
+  <p>Seit dem 1. Februar 2026 ist zusätzlich das Leibniz-Institut für Friedens- und Konfliktforschung in Frankfurt am Main damit beauftragt, die bisherigen Evaluationen selbst zu evaluieren — laut Regierungsantwort mit dem Ziel, "Erkenntnisse aus den bisherigen Teilevaluationen zu gewinnen und Vorschläge zu deren Weiterentwicklung zu unterbreiten".</p>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="num">~400 Mio. €</span><div class="label">Fördergeld an die vier Haupt-Evaluatoren seit 2015</div></div>
+    <div class="stat"><span class="num">250.000 €</span><div class="label">Direktzahlung an Leibniz-Institut aus "Demokratie leben!" 2026</div></div>
+    <div class="stat"><span class="num">~11,6 Mio. €</span><div class="label">Gesamtförderung Leibniz-Institut, 2 Jahre</div></div>
+  </div>
+
+  <p>Das Leibniz-Institut erhielt für seine Meta-Evaluation 250.000 Euro — direkt aus dem Programm "Demokratie leben!", also aus dem Topf, den es mitbewerten soll. Zusätzlich bekam das Institut aus dem allgemeinen Bundeshaushalt rund 4,5 Millionen Euro (2026) und rund 6,9 Millionen Euro (2025) — macht in Summe etwa 11,6 Millionen Euro staatliche Förderung in zwei Jahren.</p>
+
+  <span class="tag tag-belegt">BELEGT</span>
+  <h2>Die stille Zahlenkorrektur</h2>
+  <p>Ein zusätzliches Detail wirft Fragen auf: Die schriftliche Antwort des Parlamentarischen Staatssekretärs Michael Brand (CDU) vom 5. Juni 2026 nannte bestimmte Fördersummen. Drei Tage später wurde dasselbe Schreiben als Bundestagsdrucksache veröffentlicht — mit abweichenden, höheren Zahlen, ohne dass diese Änderung kommentiert oder erklärt wurde.</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <span class="tl-date">2015</span>
+      Start des Programms "Demokratie leben!" und der ersten Evaluationsrunden.
+    </div>
+    <div class="tl-item">
+      <span class="tl-date">2025</span>
+      Beginn der dritten Förderperiode; vier Organisationen mit der Evaluation beauftragt.
+    </div>
+    <div class="tl-item">
+      <span class="tl-date">1. Februar 2026</span>
+      Leibniz-Institut für Friedens- und Konfliktforschung mit der Meta-Evaluation der drei Teilevaluationen beauftragt.
+    </div>
+    <div class="tl-item">
+      <span class="tl-date">5. Juni 2026</span>
+      Schriftliche Antwort der Bundesregierung auf die Kleine Anfrage nennt bestimmte Fördersummen.
+    </div>
+    <div class="tl-item">
+      <span class="tl-date">8. Juni 2026</span>
+      Veröffentlichung als Bundestagsdrucksache — mit höheren, unkommentiert geänderten Zahlen.
+    </div>
+  </div>
+
+  <span class="tag tag-extra">EXTRAPOLATION</span>
+  <h2>Der strukturelle Interessenkonflikt</h2>
+  <p>Aus den belegten Fakten lässt sich ein struktureller Befund ableiten, der über den Einzelfall hinausgeht: Wenn Evaluatoren aus demselben Programm bezahlt werden, das sie bewerten sollen, entsteht ein Anreizkonflikt — unabhängig davon, ob im konkreten Fall tatsächlich Ergebnisse verzerrt wurden. Dass nun ausgerechnet ein weiteres staatlich finanziertes Institut beauftragt wurde, diese Struktur zu prüfen, löst den Konflikt nicht auf, sondern verlagert ihn auf eine weitere Ebene.</p>
+  <p>Das Leibniz-Institut ist dabei keine "NGO" im engeren Sinn, sondern ein Institut der Leibniz-Gemeinschaft — die Nähe zum Fördergeber besteht dennoch, da ein Teil seiner Finanzierung direkt aus dem zu bewertenden Programm stammt.</p>
+
+  <span class="tag tag-offen">OFFEN</span>
+  <h2>Der politische Kontext</h2>
+  <p>Die Selbstevaluierungsschleife läuft parallel zu einem größeren Umbau des Programms: Prien kündigte an, ab 2027 Antragsteller einzeln auf Verfassungstreue prüfen zu lassen, notfalls mit Unterstützung des Verfassungsschutzes. Grüne und Teile der SPD kritisierten dies als "Generalverdacht gegen die Zivilgesellschaft"; die AfD wiederum wirft dem Programm seit Jahren vor, überwiegend linke Projekte zu finanzieren. Mehr als 200 Projekte sollen laut Ministerium bis Jahresende auslaufen.</p>
+
+  <div class="closing">
+    <p><em>Warum wurde für die Meta-Evaluation kein Institut ohne finanzielle Verbindung zum Programm beauftragt?</em></p>
+    <p><em>Warum wurden die Fördersummen zwischen Antwortschreiben und Drucksachen-Veröffentlichung stillschweigend nach oben korrigiert?</em></p>
+    <p><em>Wird die für 2027 angekündigte "unabhängige" Neuevaluierung tatsächlich ohne Beteiligung geförderter Institutionen erfolgen?</em></p>
+  </div>
+
+  <div class="cross-ref">
+    Verwandtes Thema in Vorbereitung: "Divide et Impera 2.0" — Faktenchecker-Business (CeMAS/Correctiv/NewsGuard/IFCN)
+  </div>
+
+</div>
+</body>
+</html>

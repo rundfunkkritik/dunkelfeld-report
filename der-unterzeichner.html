@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Unterzeichner | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b; --bg-alt: #131316; --text: #e4e4e7; --text-dim: #a1a1aa;
+    --accent: #e8c547; --belegt: #4ade80; --extrapolation: #fb923c; --offen: #9ca3af; --vt: #f87171; --border: #27272a;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: Georgia, 'Times New Roman', serif; font-size: 1.1rem; line-height: 1.8; max-width: 720px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  header.masthead { text-align: center; margin-bottom: 3rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+  header.masthead .brand { font-family: 'Courier New', monospace; letter-spacing: 0.15em; color: var(--accent); font-size: 0.95rem; text-transform: uppercase; }
+  header.masthead .tagline { font-family: 'Courier New', monospace; color: var(--text-dim); font-size: 0.8rem; margin-top: 0.4rem; }
+  .series-nav { font-family: 'Courier New', monospace; font-size: 0.8rem; color: var(--text-dim); background: var(--bg-alt); border: 1px solid var(--border); border-radius: 4px; padding: 0.9rem 1.1rem; margin-bottom: 2.5rem; }
+  .series-nav .series-title { color: var(--accent); display: block; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .series-nav ol { margin: 0; padding-left: 1.3rem; }
+  .series-nav li { margin-bottom: 0.25rem; }
+  .series-nav li.current { color: var(--text); font-weight: bold; }
+  .series-nav a { color: var(--text-dim); text-decoration: none; border-bottom: 1px dotted var(--text-dim); }
+  .series-nav a:hover { color: var(--accent); }
+  h1.title { font-size: 1.9rem; line-height: 1.3; margin-bottom: 0.5rem; }
+  .meta { font-family: 'Courier New', monospace; font-size: 0.8rem; color: var(--text-dim); margin-bottom: 2rem; }
+  .lede { font-size: 1.2rem; color: var(--text); border-left: 3px solid var(--accent); padding-left: 1rem; margin-bottom: 2.5rem; font-style: italic; }
+  h2 { font-size: 1.4rem; margin-top: 3rem; margin-bottom: 1rem; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+  h3 { font-size: 1.15rem; margin-top: 2rem; color: var(--text); }
+  p { margin-bottom: 1.3rem; }
+  .tag { font-family: 'Courier New', monospace; font-size: 0.7rem; font-weight: bold; letter-spacing: 0.05em; padding: 0.15rem 0.5rem; border-radius: 3px; display: inline-block; vertical-align: middle; margin: 0 0.2rem; }
+  .tag-belegt { background: rgba(74,222,128,0.12); color: var(--belegt); border: 1px solid rgba(74,222,128,0.4); }
+  .tag-extrapolation { background: rgba(251,146,60,0.12); color: var(--extrapolation); border: 1px solid rgba(251,146,60,0.4); }
+  .tag-offen { background: rgba(156,163,175,0.12); color: var(--offen); border: 1px solid rgba(156,163,175,0.4); }
+  .tag-vt { background: rgba(248,113,113,0.12); color: var(--vt); border: 1px solid rgba(248,113,113,0.4); }
+  .source-box { background: var(--bg-alt); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 4px; padding: 1rem 1.2rem; margin: 1.5rem 0; font-size: 0.95rem; }
+  .source-box .label { font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.4rem; }
+  .stat-grid { display: grid; grid-template-columns: 1fr; gap: 0.8rem; margin: 1.8rem 0; }
+  .stat-card { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 4px; padding: 0.9rem 1.1rem; }
+  .stat-card .stat-num { font-family: 'Courier New', monospace; color: var(--accent); font-size: 1.1rem; font-weight: bold; display: block; }
+  .stat-card .stat-label { font-size: 0.9rem; color: var(--text-dim); }
+  .person-card { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 4px; padding: 1rem 1.2rem; margin: 1.2rem 0; }
+  .person-card .name { font-weight: bold; color: var(--text); font-size: 1.05rem; }
+  .person-card .role { font-family: 'Courier New', monospace; font-size: 0.78rem; color: var(--accent); display: block; margin-bottom: 0.5rem; }
+  .timeline { border-left: 2px solid var(--border); margin: 1.8rem 0 1.8rem 0.5rem; padding-left: 1.5rem; }
+  .timeline .entry { position: relative; margin-bottom: 1.3rem; }
+  .timeline .entry::before { content: ''; position: absolute; left: -1.83rem; top: 0.3rem; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .timeline .date { font-family: 'Courier New', monospace; font-size: 0.8rem; color: var(--accent); display: block; }
+  .aside { background: var(--bg-alt); border: 1px dashed var(--border); border-radius: 4px; padding: 1rem 1.2rem; font-size: 0.95rem; color: var(--text-dim); margin: 1.8rem 0; }
+  .aside .label { font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; display: block; margin-bottom: 0.4rem; }
+  .pull-quote { font-size: 1.3rem; font-style: italic; color: var(--accent); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.2rem 0; margin: 2rem 0; text-align: center; }
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+  th, td { border: 1px solid var(--border); padding: 0.6rem 0.7rem; text-align: left; }
+  th { background: var(--bg-alt); color: var(--accent); font-family: 'Courier New', monospace; font-size: 0.8rem; text-transform: uppercase; }
+  .closing { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-style: italic; color: var(--text-dim); }
+  footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--text-dim); text-align: center; }
+  .quellenverzeichnis { margin-top: 3rem; font-size: 0.9rem; }
+  .quellenverzeichnis h2 { color: var(--text); }
+  .quellenverzeichnis ul { padding-left: 1.3rem; }
+  .quellenverzeichnis li { margin-bottom: 0.5rem; color: var(--text-dim); }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="brand">dunkelfeld.report</div>
+  <div class="tagline">Analyse · Systemkritik · Quellenbasiert</div>
+</header>
+
+<nav class="series-nav">
+  <span class="series-title">Serie: Vernetzt, nicht verschworen</span>
+  <ol>
+    <li><a href="sdg-pin-mythos.html">Teil 1 — Die 17 Ziele und der Pin-Mythos</a></li>
+    <li class="current">Teil 2 — Der Unterzeichner</li>
+    <li><a href="der-fonds-der-nie-kam.html">Teil 3 — Der Fonds, der nie kam</a></li>
+  </ol>
+</nav>
+
+<h1 class="title">Der Unterzeichner</h1>
+<div class="meta">Juli 2026 &nbsp;|&nbsp; Lesedauer: ca. 8 Minuten &nbsp;|&nbsp; Teil 2 von 3</div>
+
+<p class="lede">Ein Name taucht in Teil 1 nur am Rande auf: Børge Brende, der 2019 im Namen des WEF die Partnerschaft mit den Vereinten Nationen unterzeichnete. Sieben Jahre später ist er zurückgetreten — im Zusammenhang mit einer ganz anderen Geschichte.</p>
+
+<h2>1. Wer Børge Brende ist</h2>
+<p>Norwegischer Politiker, von 2013–2017 norwegischer Außenminister, seit 2017 Präsident bzw. CEO des Weltwirtschaftsforums. In dieser Funktion unterzeichnete er am 13. Juni 2019 gemeinsam mit Klaus Schwab das "Strategic Partnership Framework" mit den Vereinten Nationen (siehe Teil 1). <span class="tag tag-belegt">BELEGT</span></p>
+
+<div class="person-card">
+  <span class="name">Børge Brende</span>
+  <span class="role">WEF-PRÄSIDENT 2017–2026</span>
+  Unterzeichner des UN-WEF-Abkommens 2019 · Rücktritt 26. Februar 2026
+</div>
+
+<h2>2. Der Rücktritt: Was dokumentiert ist</h2>
+<p>Am 26. Februar 2026 trat Brende zurück, nachdem im Zuge der Ende Dezember 2025 vom US-Justizministerium freigegebenen Epstein-Akten dokumentierte Kontakte zwischen ihm und Jeffrey Epstein bekannt wurden. <span class="tag tag-belegt">BELEGT</span> (mehrere unabhängige Quellen: The Hill, Al Jazeera, CNN)</p>
+
+<div class="timeline">
+  <div class="entry"><span class="date">2018–2019</span>Mehrere "business dinners" zwischen Brende und Epstein, dazu E-Mail-/SMS-Austausch, u. a. ein Foto, das Epstein Brende 2019 schickte</div>
+  <div class="entry"><span class="date">Ende Dezember 2025</span>DOJ gibt weitere Tranchen der Epstein-Akten frei</div>
+  <div class="entry"><span class="date">26.2.2026</span>Brende tritt als WEF-Präsident zurück</div>
+</div>
+
+<p>Brendes eigene Darstellung: Er habe von Epsteins Vorgeschichte nichts gewusst, bedauere aber, sich nicht genauer informiert zu haben. Eine vom WEF beauftragte unabhängige Prüfung ("outside counsel") kam zu dem Ergebnis, dass keine zusätzlichen Befunde über das bereits Offengelegte hinaus vorliegen. <span class="tag tag-belegt">BELEGT</span></p>
+
+<div class="source-box">
+  <span class="label">Quelle</span>
+  BBC (26.2.2026); The Hill, Al Jazeera, CNN — Berichterstattung zum Rücktritt und zur WEF-internen Prüfung.
+</div>
+
+<h2>3. Schwab: die parallele Geschichte</h2>
+<p>Klaus Schwab, WEF-Gründer und Mitunterzeichner des 2019er-Abkommens, verließ das Forum bereits 2025 nach Whistleblower-Vorwürfen. Eine im August 2025 abgeschlossene interne Untersuchung fand nach WEF-Angaben "keine Beweise für materielles Fehlverhalten". <span class="tag tag-belegt">BELEGT</span></p>
+
+<div class="source-box">
+  <span class="label">Quelle</span>
+  Financial Times (15.8.2025): "WEF clears Klaus Schwab of material wrongdoing"
+</div>
+
+<h2>4. Der größere Kontext: die Epstein-Akten-Freigabe 2025/26</h2>
+<p>Die DOJ-Freigabe betraf nicht nur WEF-Personal. Mehrere international bekannte Personen wurden im selben Zeitraum genannt, traten zurück oder wurden angeklagt. <span class="tag tag-belegt">BELEGT</span></p>
+
+<table>
+  <tr><th>Person</th><th>Funktion</th><th>Folge</th></tr>
+  <tr><td>Prinz Andrew</td><td>Britisches Königshaus</td><td>Verhaftet</td></tr>
+  <tr><td>Peter Mandelson</td><td>Ehem. britischer Minister/Botschafter</td><td>Verhaftet</td></tr>
+  <tr><td>Thorbjørn Jagland</td><td>Ehem. norwegischer Premierminister</td><td>Angeklagt ("aggravated corruption")</td></tr>
+  <tr><td>Miroslav Lajčák</td><td>Ehem. UN-Generalversammlungspräsident</td><td>Zurückgetreten</td></tr>
+</table>
+
+<div class="aside">
+  <span class="label">Redaktionelle Einordnung</span>
+  Diese Liste zeigt die Reichweite der Akten-Freigabe, nicht eine gemeinsame Verschwörung. Die Fälle unterscheiden sich stark in Schwere und Beleglage — von "Dinner-Kontakt ohne weitere Befunde" (Brende) bis "strafrechtliche Anklage" (Jagland). Nebeneinanderstellen heißt nicht Gleichsetzen.
+</div>
+
+<h2>5. Was das für das UN-WEF-Abkommen bedeutet — und was nicht</h2>
+<p>Wichtig für die Einordnung: Das 2019 unterzeichnete "Strategic Partnership Framework" selbst ist von den Rücktritten unberührt — es handelt sich um eine institutionelle Vereinbarung zwischen zwei Organisationen, nicht um ein persönliches Projekt Brendes oder Schwabs. <span class="tag tag-belegt">BELEGT</span> Die Kooperationsfelder (Finanzierung, Klima, Gesundheit, digitale Kooperation, Gleichstellung, Bildung) laufen unabhängig von den handelnden Personen weiter.</p>
+
+<p class="pull-quote">Der Rücktritt eines Unterzeichners macht aus einem echten Abkommen keine Verschwörung — aber er zeigt, wie eng persönliche und institutionelle Netzwerke tatsächlich verflochten sind.</p>
+
+<h2>Zusammenfassung: Was BELEGT ist, was nicht</h2>
+<div class="stat-grid">
+  <div class="stat-card"><span class="stat-num tag tag-belegt" style="display:inline-block;">BELEGT</span><span class="stat-label">Brende-Rücktritt 26.2.2026 · Epstein-Kontakt 2018–2019 · Schwab-Abgang 2025 · unabhängige Prüfungen ohne zusätzliche Befunde</span></div>
+  <div class="stat-card"><span class="stat-num tag tag-offen" style="display:inline-block;">OFFEN</span><span class="stat-label">Ob und welche weiteren Details zur Causa Brende/Epstein noch folgen</span></div>
+</div>
+
+<div class="closing">
+<em>Wir haben geprüft, ob sich aus dem Brende-Rücktritt eine größere, verborgene Geschichte konstruieren lässt. Das Ergebnis ist unspektakulärer als das Gerücht: dokumentierte Kontakte, ein Rücktritt, eine Prüfung ohne zusätzliche Befunde. Manchmal ist das Fehlen einer dramatischen Enthüllung selbst das Ergebnis, das man festhalten sollte.</em>
+</div>
+
+<div class="quellenverzeichnis">
+<h2>Quellenverzeichnis</h2>
+<ul>
+<li>BBC News (26.2.2026): Rücktritt Børge Brende</li>
+<li>The Hill, Al Jazeera, CNN: Berichterstattung zu Brende und den Epstein-Akten</li>
+<li>Financial Times (15.8.2025): "WEF clears Klaus Schwab of material wrongdoing"</li>
+<li>UN–WEF Strategic Partnership Framework (13.6.2019) — siehe Teil 1 dieser Serie</li>
+</ul>
+</div>
+
+<footer>
+dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.<br>
+Teil 2 von 3 · Serie "Vernetzt, nicht verschworen"
+</footer>
+
+</body>
+</html>

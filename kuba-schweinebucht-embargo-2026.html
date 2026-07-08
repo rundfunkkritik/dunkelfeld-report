@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuba — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --box-bg: #1a1a2e;
+    --text: #e4e4e7;
+    --text-dim: #a1a1aa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin: 0.3rem 0 0.6rem;
+    color: #fff;
+  }
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 1.15rem;
+    font-style: italic;
+    margin-bottom: 2.5rem;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 0.5rem;
+  }
+  p { margin: 1.1rem 0; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: #1e3a2e; color: #4ade80; border: 1px solid #4ade80; }
+  .tag-extra { background: #3a2e1e; color: #fb923c; border: 1px solid #fb923c; }
+  .tag-offen { background: #27272a; color: #a1a1aa; border: 1px solid #a1a1aa; }
+  .tag-vt { background: #3a1e1e; color: #f87171; border: 1px solid #f87171; text-decoration: line-through; text-decoration-color: #f87171; }
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat {
+    background: var(--box-bg);
+    padding: 1rem;
+    text-align: center;
+    border-radius: 4px;
+  }
+  .stat .num {
+    font-size: 1.6rem;
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+  }
+  .stat .label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 0.3rem;
+  }
+  .timeline {
+    border-left: 2px solid #3f3f46;
+    margin: 2rem 0 2rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.6rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.94rem;
+    top: 0.4rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .aside-box {
+    background: #16161d;
+    border: 1px solid #3f3f46;
+    border-radius: 6px;
+    padding: 1.3rem 1.5rem;
+    margin: 2rem 0;
+  }
+  .aside-box h3 {
+    margin-top: 0;
+    color: var(--text-dim);
+    font-size: 1rem;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .aside-box.highlight {
+    border-color: var(--accent);
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #27272a;
+    font-style: italic;
+    color: var(--text-dim);
+  }
+  .series-nav {
+    margin-top: 3.5rem;
+    padding: 1.5rem;
+    background: var(--box-bg);
+    border-radius: 6px;
+  }
+  .series-nav .label {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+  .series-nav ol {
+    margin: 0;
+    padding-left: 1.3rem;
+  }
+  .series-nav li {
+    margin-bottom: 0.4rem;
+    color: var(--text-dim);
+  }
+  .series-nav li.current {
+    color: var(--accent);
+    font-weight: bold;
+  }
+  .series-nav li.pending::after {
+    content: ' (in Vorbereitung)';
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+  a { color: var(--accent); }
+  .footnote {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-top: 2.5rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="meta">Dunkelfeld.report · Serie: US-Einmischung Lateinamerika · Teil 7</div>
+  <h1>Kuba: Vom Schweinebucht-Fiasko zum Öl-Blockade-Winter 2026</h1>
+  <div class="subtitle">65 Jahre verdeckte Aktionen, ein gescheiterter Invasionsversuch, Hunderte Attentatspläne — und ein Embargo, das 2026 seine bislang härteste Zuspitzung erlebt</div>
+
+  <p>
+    Am 17. April 1961 landeten rund 1.500 von der CIA ausgebildete kubanische Exilanten an der Bucht der Schweine (Playa Girón) an Kubas Südküste, um die Regierung Fidel Castros zu stürzen. Innerhalb von drei Tagen war die Invasion niedergeschlagen.
+    <span class="tag tag-belegt">BELEGT</span>
+    Der von CIA-Generalinspekteur Lyman Kirkpatrick nach sechsmonatiger Untersuchung verfasste interne Untersuchungsbericht — jahrzehntelang unter Verschluss, erst in den späten 1990er-Jahren freigegeben — bezeichnete die zentrale Prämisse der Operation, eine spontane Volkserhebung werde die Invasion tragen, als durch keinerlei nachrichtendienstliche Erkenntnisse gestützt.
+  </p>
+
+  <h2>Vorgeschichte und Ablauf</h2>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Bereits 1960 hatte Präsident Eisenhower den von CIA-Vizedirektor Richard Bissell entwickelten Plan zur Ausbildung einer paramilitärischen Exilantentruppe gebilligt. Parallel begann am 13. Oktober 1960 ein weitgehendes US-Exportverbot gegen Kuba — der Beginn des bis heute andauernden Embargos. Kuba reagierte mit der Verstaatlichung von 383 privaten Unternehmen, ein Großteil davon in US-Besitz.
+  </p>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Am 15. April 1961 griffen von der CIA bereitgestellte B-26-Bomber kubanische Flugplätze an; zwei Tage später erfolgte die Hauptlandung. Als international bekannt wurde, dass die USA hinter der Operation standen, zog Präsident Kennedy die zugesagte weitere Luftunterstützung zurück — ein zentraler Streitpunkt in der bis heute geführten Debatte über die Verantwortung für das Scheitern.
+  </p>
+  <div class="source-box">
+    <span class="label">Primärquelle · CIA-Untersuchungsbericht, Oktober 1961 (deklassifiziert)</span>
+    Der Bericht hält fest, die Operation sei über die Grenzen "glaubhafter Abstreitbarkeit" hinausgewachsen, ohne dass die Agency dies erkannt habe — eine Feststellung, die der damalige CIA-Direktor John McCone als so brisant einstufte, dass er den Großteil der zwanzig existierenden Kopien verbrennen ließ.
+  </p>
+
+  <h2>Was danach kam: Operation Mongoose und Attentatspläne</h2>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Die vollständige Freigabe der JFK-Akten (abgeschlossen per Präsidialverfügung 2025) bestätigte das Ausmaß der fortgesetzten verdeckten Kampagne gegen Kuba: Allein 1961 wurden über 41 Millionen Dollar für Kuba-Operationen ausgegeben — fast das Vierfache des Budgets für den Rest Lateinamerikas zusammen. Bis Mitte 1963 unterhielt die CIA ein Agentennetz von über 1.000 Personen gegen Kuba.
+  </p>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Im August 1960 kontaktierte die CIA das Chicagoer Cosa-Nostra-Netzwerk mit dem Ziel, gleichzeitige Attentate auf Fidel Castro, Raúl Castro und Che Guevara vorzubereiten — im Gegenzug für ein zugesagtes Glücksspiel-, Prostitutions- und Drogenmonopol nach einem erfolgreichen Regimewechsel. Ein dokumentiertes Beispiel wirtschaftlicher Sabotage: Im Spätsommer 1962 ließ die CIA im Rahmen von Operation Mongoose 800 Säcke kubanischen Rohzuckers auf einem britischen Frachter mit einer Chemikalie kontaminieren.
+  </p>
+  <p>
+    <span class="tag tag-offen">OFFEN</span>
+    Die genaue Gesamtzahl der von der CIA erwogenen oder initiierten Attentatsversuche auf Castro ist bis heute nicht abschließend quantifiziert; spätere Untersuchungen des Church Committee (1975) sprachen von mehreren dokumentierten Plänen, ohne dass alle Details bis heute freigegeben wären.
+  </p>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="num">17.04.1961</span><span class="label">Landung Schweinebucht</span></div>
+    <div class="stat"><span class="num">41 Mio. $</span><span class="label">CIA-Kuba-Budget allein 1961</span></div>
+    <div class="stat"><span class="num">1.000+</span><span class="label">CIA-Agentennetz gegen Kuba, Stand 1963</span></div>
+    <div class="stat"><span class="num">64 Jahre</span><span class="label">Andauer des US-Embargos (seit 1960)</span></div>
+  </div>
+
+  <h2>Das Embargo als Dauerzustand</h2>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Das 1960 begonnene Embargo wurde nie aufgehoben, in seiner Ausgestaltung aber wiederholt verschärft oder gelockert — je nach US-Administration. Amnesty International und die Washington Office on Latin America (WOLA) haben die sozialen und wirtschaftlichen Auswirkungen des Embargos wiederholt dokumentiert, wobei die Bewertung von dessen Wirksamkeit und Verhältnismäßigkeit politisch umstritten bleibt.
+  </p>
+
+  <div class="aside-box highlight">
+    <h3>Aktueller Bezug: Der Öl-Blockade-Winter 2026</h3>
+    <p>
+      <span class="tag tag-belegt">BELEGT</span>
+      Unmittelbar nach der Gefangennahme Maduros (Teil 6 dieser Serie) stoppte die Trump-Administration im Januar 2026 die venezolanischen Öllieferungen an Kuba — Kubas wichtigste Energiequelle seit den frühen 2000er-Jahren. Am 29. Januar 2026 erklärte Trump per Executive Order (14380) einen nationalen Notstand gegenüber Kuba und drohte Drittstaaten, die Kuba mit Öl beliefern, mit Zöllen. Die Folge waren nach übereinstimmenden Berichten mehrfache landesweite Stromausfälle, ein Brand in einer Raffinerie in Havanna (Februar 2026) und laut kubanischem Energieminister ein zeitweiliger vollständiger Ausfall von Öl- und Diesellieferungen (Mai 2026).
+    </p>
+    <p>
+      <span class="tag tag-belegt">BELEGT</span>
+      Am 9. Juni 2026 warnte der UN-Menschenrechtskommissar öffentlich, Kinder in Kuba stürben infolge der verschärften US-Sanktionen. Die USA boten im Mai 2026 gleichzeitig 100 Millionen Dollar humanitäre Hilfe sowie kostenloses Starlink-Internet an — verbunden mit politischen Bedingungen, die von der kubanischen Regierung bislang weder klar angenommen noch abgelehnt wurden.
+    </p>
+    <p style="margin-bottom:0;">
+      <span class="tag tag-belegt">BELEGT</span>
+      Im Mai/Juni 2026 bereitete das US-Justizministerium zudem eine Anklage gegen den ehemaligen kubanischen Machthaber Raúl Castro vor. Außenminister Marco Rubio erklärte gleichzeitig, man suche nach einem kubanischen Äquivalent zu Delcy Rodríguez — also einer Übergangsfigur aus dem bestehenden System, vergleichbar dem venezolanischen Modell — habe innerhalb der kubanischen Führung aber noch keine passende Person identifiziert.
+    </p>
+  </div>
+
+  <p>
+    <span class="tag tag-offen">OFFEN</span>
+    Ob die 2026 verschärfte Öl- und Sanktionsstrategie tatsächlich, wie von Trump wiederholt angekündigt, zu einem "freundlichen Übernahme"-Szenario oder einem inneren Kollaps der kubanischen Regierung führt, war zum Zeitpunkt der Veröffentlichung dieses Artikels offen. Experten äußerten sich in mehreren zitierten Quellen skeptisch, unter anderem wegen fehlender organisierter politischer Opposition auf der Insel.
+  </p>
+
+  <div class="closing">
+    <p>
+      <em>Offen bleibt: Wiederholt sich in Kuba das venezolanische Muster — wirtschaftliche Erdrosselung, Anerkennung einer Übergangsfigur aus dem bestehenden Machtapparat, schließlich eine wie auch immer geartete Entmachtung der Führungsspitze? Oder hält das kubanische System, gestützt durch russische und chinesische Hilfslieferungen, dem Druck stand? Und wie viele der seit 1960 gegen Kuba unternommenen verdeckten Aktionen liegen noch immer vollständig unter Verschluss?</em>
+    </p>
+  </div>
+
+  <div class="series-nav">
+    <span class="label">Serie: US-Einmischung Lateinamerika</span>
+    <ol>
+      <li>Teil 1 — Operation Condor</li>
+      <li>Teil 2 — Guatemala 1954: Der Sturz Arbenz’ und United Fruit</li>
+      <li>Teil 3 — Chile 1973: Track II und der Putsch gegen Allende</li>
+      <li>Teil 4 — Panama: Vom CIA-Asset zum Feindbild Noriega</li>
+      <li>Teil 5 — Venezuela: Guaidó, Sanktionen, PDVSA</li>
+      <li>Teil 6 — Venezuela heute</li>
+      <li class="current">Teil 7 — Kuba: Vom Schweinebucht-Fiasko zum Öl-Blockade-Winter 2026</li>
+    </ol>
+  </div>
+
+  <div class="footnote">
+    Quellen (Auswahl): National Security Archive, GWU — "Cuba: The Bay of Pigs Invasion 65 Years Later" (April 2026); Peter Kornbluh, "Bay of Pigs Declassified" (The New Press); CIA FOIA Electronic Reading Room, Bay of Pigs Release Collection; Wikipedia, "Bay of Pigs Invasion" und "2026 Cuban Crisis" (mit Quellenangaben); Cigar Aficionado, "Kennedy And Cuba: The Final Secrets" (März 2026, zu JFK-Akten-Volldeklassifizierung); The White House, Executive Order 14380 "Addressing Threats to the United States by the Government of Cuba" (29. Januar 2026) und Fact Sheet vom 1. Mai 2026; Congressional Research Service, "U.S. Policy Toward Cuba: Recent Developments" (IN12650); Council on Foreign Relations, "Trump's 'Maximum Pressure' Campaign on Cuba, Explained" (März/Juli 2026); CNN, "Trump administration imposes sanctions on Cuban president" (Juni 2026); PBS News, Zeitleiste US-Kuba-Spannungen (Mai 2026); UN-Menschenrechtsbüro, Erklärung vom 9. Juni 2026.
+  </div>
+
+</div>
+</body>
+</html>

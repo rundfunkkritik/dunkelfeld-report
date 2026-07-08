@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der doppelte Sturz — Irak zwischen Bollwerk und zwei Kriegslügen | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --box-bg: #1a1a2e;
+    --text: #e4e4e7;
+    --text-dim: #a1a1aa;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --grey: #a1a1aa;
+    --red: #f87171;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin: 0 0 0.5rem;
+    color: #fff;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    border-bottom: 1px solid #2a2a3d;
+    padding-bottom: 0.5rem;
+  }
+  .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid var(--green); }
+  .tag-extra { background: rgba(251,146,60,0.15); color: var(--orange); border: 1px solid var(--orange); }
+  .tag-offen { background: rgba(161,161,170,0.15); color: var(--grey); border: 1px solid var(--grey); }
+  .tag-vt { background: rgba(248,113,113,0.15); color: var(--red); border: 1px solid var(--red); }
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+  }
+  .person-card {
+    background: var(--box-bg);
+    border: 1px solid #2a2a3d;
+    border-radius: 6px;
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+  }
+  .person-card .name {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+  }
+  .person-card .role {
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .timeline {
+    margin: 2rem 0;
+    padding-left: 0;
+    list-style: none;
+    border-left: 2px solid #2a2a3d;
+  }
+  .timeline li {
+    position: relative;
+    padding: 0 0 1.5rem 1.5rem;
+  }
+  .timeline li::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .timeline .date {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat {
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat .num {
+    font-size: 1.6rem;
+    color: var(--accent);
+    font-weight: bold;
+    display: block;
+  }
+  .stat .label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    font-family: 'Courier New', monospace;
+  }
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #fff;
+    border-left: 3px solid var(--accent);
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+  }
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .comparison-table th, .comparison-table td {
+    border: 1px solid #2a2a3d;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  .comparison-table th {
+    background: var(--box-bg);
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a3d;
+    font-style: italic;
+    color: var(--text-dim);
+  }
+  .series-nav {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: var(--box-bg);
+    border-radius: 6px;
+    font-size: 0.95rem;
+  }
+  .series-nav .label {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .series-nav ol {
+    padding-left: 1.2rem;
+    margin: 0;
+  }
+  .series-nav li {
+    margin-bottom: 0.4rem;
+    color: var(--text-dim);
+  }
+  .series-nav li.current {
+    color: var(--accent);
+    font-weight: bold;
+  }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="meta">dunkelfeld.report — geopolitische instrumentalisierung von islamismus — teil 9</div>
+  <h1>Der doppelte Sturz</h1>
+  <div class="subtitle">Irak: Erst Bollwerk gegen den islamistischen Iran, dann zweimal gestürzt — beide Male mit einer erfundenen Geschichte</div>
+
+  <p>Kein Land dieser Serie wurde so oft neu erfunden wie der Irak unter Saddam Hussein. In den 1980ern ist er der vom Westen gestützte säkulare Schutzwall gegen das islamistische Khomeini-Regime im Iran. 1990/91 wird er mit einer frei erfundenen Gräuelgeschichte über tote Säuglinge zum Kriegsgrund. 2003 wird er ein zweites Mal gestürzt — diesmal mit einer ebenso haltlosen Behauptung: einer angeblichen Verbindung zu al-Qaida, der Terrororganisation, die er selbst intern bekämpfte. Zwei Kriege, zwei Lügen, ein Muster.</p>
+
+  <h2>I. Die 1980er: Bollwerk gegen Khomeini</h2>
+
+  <p>Nach der iranischen Revolution 1979 wird Saddam Husseins säkulares Baath-Regime für Washington zum bevorzugten Instrument gegen den islamistischen Gottesstaat in Teheran. <span class="tag tag-belegt">BELEGT</span> <cite index="53-1">US-Geheimdienstinformationen halfen Saddams Baath-Partei bereits 1963 erstmals an die Macht; Hinweise deuten darauf hin, dass Saddam bereits 1959 auf der Gehaltsliste der CIA stand</cite>. Die Beziehung war also älter als der Krieg gegen Iran — aber erst dieser Krieg macht sie strategisch.</p>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Am 26. November 1983 unterzeichnet Reagan die National Security Decision Directive 114: <cite index="51-1">Diese Direktive änderte die US-Politik von neutralem Beobachter zu aktivem Lieferanten militärischer Versorgung, Gefechtsfeld-Aufklärung und, am umstrittensten, jener Dual-Use-Technologie, die es Saddam erlaubte, Massenvernichtungswaffen herzustellen</cite>. Wenige Wochen später, am 20. Dezember 1983, reist Reagans Sondergesandter für den Nahen Osten nach Bagdad und schüttelt Saddam Hussein die Hand: Donald Rumsfeld.</p>
+
+  <div class="person-card">
+    <div class="name">Donald Rumsfeld als Nahost-Sondergesandter, 1983/84</div>
+    <div class="role">später US-Verteidigungsminister 2001–2006, Architekt der Irak-Invasion 2003</div>
+    <p style="margin:0"><span class="tag tag-belegt">BELEGT</span> <cite index="51-1">Während seiner Zeit als Reagans Sondergesandter für den Nahen Osten (November 1983 – Mai 1984) war Rumsfeld der zentrale Kanal für entscheidende amerikanische Militäraufklärung, Ausrüstung und strategische Beratung an Saddam Hussein, während der Irak gegen Iran Krieg führte</cite>. Zu einer Zeit, in der Washington bereits wusste, dass der Irak fast täglich Chemiewaffen gegen Iran einsetzte.</p>
+  </div>
+
+  <p>Manche Reagan-Beamte sahen in Saddam sogar ein Vorbild-Projekt. <span class="tag tag-belegt">BELEGT</span> <cite index="55-1">Einige Reagan-Beamte sahen in Saddam einen weiteren Anwar Sadat, fähig, den Iran in einen modernen säkularen Staat zu verwandeln, so wie Sadat versucht hatte, Ägypten zu heben, bevor er 1981 ermordet wurde</cite>. Nach Rumsfelds Besuch begann US-Geheimdienstunterstützung mit Satellitenaufnahmen iranischer Truppenbewegungen. <span class="tag tag-belegt">BELEGT</span> <cite index="50-1">Es gibt Belege, dass die dem Irak zur Verfügung gestellte Gefechtsfeld-Aufklärung den Irakern half, ihre Giftgasangriffe gegen die Iraner besser zu kalibrieren</cite>.</p>
+
+  <p>Als der Irak 1988 Giftgas gegen die eigene kurdische Bevölkerung in Halabdscha einsetzte, deckte Washington das Regime weiterhin. <span class="tag tag-belegt">BELEGT</span> <cite index="50-1">Die USA verhinderten zu dieser Zeit eine Bewegung bei den Vereinten Nationen, Wirtschaftssanktionen gegen den Irak zu verhängen, mit der Begründung, Sanktionen wären nutzlos oder kontraproduktiv — dieses Verhältnis hielt bis zum Tag der irakischen Invasion Kuwaits im August 1990 an</cite>.</p>
+
+  <h2>II. 1990/91: Die Brutkasten-Lüge</h2>
+
+  <p>Nach der irakischen Invasion Kuwaits im August 1990 kippt das Verhältnis abrupt. Die entscheidende Wendung in der öffentlichen Meinung liefert nicht ein Fakt, sondern eine Inszenierung.</p>
+
+  <div class="person-card">
+    <div class="name">"Nayirah" — Aussage vor dem US-Kongress, 10. Oktober 1990</div>
+    <div class="role">tatsächlich: Nayirah as-Sabah, Tochter des kuwaitischen Botschafters in den USA</div>
+    <p style="margin:0"><span class="tag tag-belegt">BELEGT</span> <cite index="48-1">In ihrer Aussage, zwei Monate nach der Invasion, behauptete sie, Zeugin geworden zu sein, wie irakische Soldaten Frühgeborene aus Brutkästen in einer Entbindungsstation nahmen, die Brutkästen plünderten und die Babys zum Sterben auf dem Boden liegen ließen</cite>. Die Geschichte war frei erfunden.</p>
+  </div>
+
+  <div class="source-box">
+    <div class="label">Aufklärung — New York Times, Januar 1992</div>
+    <p style="margin:0"><span class="tag tag-belegt">BELEGT</span> <cite index="48-1">Im Januar 1992 wurde bekannt, dass Nayirah nie als Krankenschwester gearbeitet hatte und die Tochter von Saud Nasser Al-Sabah war, dem damaligen kuwaitischen Botschafter in den USA. Sie und ihr Vater waren Mitglieder des Hauses Sabah, der Herrscherfamilie Kuwaits</cite>. <cite index="48-1">Ihre Aussage war Teil einer breiteren PR-Kampagne der kuwaitischen Exilregierungs-Organisation "Citizens for a Free Kuwait" in Zusammenarbeit mit der amerikanischen PR-Firma Hill &amp; Knowlton</cite>, die dafür zwischen zehn und zwölf Millionen US-Dollar erhielt.</p>
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span> <cite index="40-1">Präsident Bush erwähnte die Lügengeschichte innerhalb weniger Wochen mindestens zehnmal</cite>. <cite index="40-1">Amnesty International übernahm die Behauptung zunächst in einem Bericht vom 19. Dezember 1990 und wiederholte sie noch am 8. Januar 1991 vor dem Komitee für auswärtige Angelegenheiten</cite>. <span class="tag tag-belegt">BELEGT</span> <cite index="40-1">Der US-Senat stimmte am 12. Januar 1991 mit 52 zu 47 Stimmen für die Intervention — eine denkbar knappe Mehrheit</cite>. Der Krieg begann am 19. Januar 1991.</p>
+
+  <p style="font-size:0.9rem;color:var(--text-dim)">Anzumerken: Die Erfindung der Brutkasten-Geschichte bedeutet nicht, dass die irakische Besatzung Kuwaits ohne Gräueltaten verlief — dokumentierte Berichte über Folter, Plünderung und Exekutionen existieren unabhängig davon. <span class="tag tag-offen">OFFEN</span> Die PR-Inszenierung ersetzte damit reale, aber weniger bildgewaltige Fakten durch eine wirksamere Erzählung.</p>
+
+  <h2>III. 2002/03: Die Powell-Lüge</h2>
+
+  <p>Zwölf Jahre später wiederholt sich das Muster — diesmal mit dem Etikett "Terrorismus" statt "Gräueltat". Am 5. Februar 2003 präsentiert US-Außenminister Colin Powell dem UN-Sicherheitsrat den Kriegsgrund für die zweite Irak-Invasion.</p>
+
+  <div class="pull-quote">"Jede Aussage, die ich heute mache, ist durch Quellen belegt, solide Quellen. Das sind keine Behauptungen. Was wir Ihnen geben, sind Fakten und Schlussfolgerungen, die auf soliden Erkenntnissen beruhen." — Colin Powell, UN-Sicherheitsrat, 5. Februar 2003</div>
+
+  <p><span class="tag tag-belegt">BELEGT</span> <cite index="31-1">Powell behauptete, der Irak beherberge ein Terrornetzwerk unter der Führung von al-Qaida-Verbindungen</cite>. Zentrales "Beweisstück": das kurdisch-islamistische Ansar al-Islam und dessen angebliche "Giftfabrik" im Nordirak.</p>
+
+  <p><span class="tag tag-belegt">BELEGT</span> <cite index="39-1">Der einzige Grund, warum Ansar al-Islam in jenem Teil des kurdischen Irak überhaupt existieren konnte, war, dass die US-Luftwaffe dort seit über einem Jahrzehnt eine Flugverbotszone durchsetzte — das Pentagon hatte in diesem Teil Kurdistans mehr Kontrolle als Saddam selbst</cite>. Powell präsentierte eine Gruppe als Beweis für Saddams Terror-Netzwerk, die außerhalb von Saddams Kontrollbereich operierte.</p>
+
+  <div class="comparison-table">
+    <table>
+      <tr><th>Behauptet von Powell (2003)</th><th>Spätere Einordnung</th></tr>
+      <tr><td>Saddam unterhält Verbindungen zu al-Qaida, "Nexus" aus Ambition und Hass</td><td><span class="tag tag-belegt">BELEGT</span> <cite index="36-1">Die CIA war bereits 2003 intern zu dem Schluss gekommen, dass Kontakte zwischen Saddam Husseins Regime und al-Qaida-Mitgliedern keine formelle Beziehung darstellten</cite></td></tr>
+      <tr><td>Mobile Biowaffenlabore, UAVs zur Verbreitung biologischer Kampfstoffe</td><td><span class="tag tag-belegt">BELEGT</span> <cite index="33-1">Vor der US-Invasion waren bei mehr als 70 UN-Inspektionen keine Massenvernichtungswaffen gefunden worden; auch danach fand das US-Militär keine</cite></td></tr>
+      <tr><td>Zeugenaussage al-Libis über Giftausbildung für al-Qaida im Irak</td><td><span class="tag tag-belegt">BELEGT</span> <cite index="36-1">Der Senatsbericht stellte die Verlässlichkeit der Aussage des gefangenen al-Qaida-Anführers Ibn al-Shaykh al-Libi infrage, dessen Behauptungen Powell dennoch in seiner Rede zitierte</cite></td></tr>
+    </table>
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Powell selbst distanzierte sich später von seiner eigenen Rede: <cite index="35-1">"Ich fühlte mich schrecklich... Es ist ein Makel. Ich bin derjenige, der sie im Namen der Vereinigten Staaten der Welt präsentiert hat, und das wird immer Teil meiner Akte bleiben"</cite>, sagte er 2005. Sein damaliger Stabschef Lawrence Wilkerson formulierte es später drastischer: er habe unwissentlich an einem Betrug am amerikanischen Volk mitgewirkt.</p>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Eine überparteiliche Untersuchung des US-Repräsentantenhauses kam später zu einem vernichtenden Ergebnis: <cite index="36-1">In 125 einzelnen Auftritten machten Bush, Cheney, Powell, Rumsfeld und Rice zusammen 61 irreführende Aussagen über die Beziehung des Irak zu al-Qaida</cite>.</p>
+
+  <h2>IV. Die Volte: Derselbe Rumsfeld</h2>
+
+  <p>Die Pointe der Geschichte ist personell, nicht nur politisch. <span class="tag tag-belegt">BELEGT</span> Derselbe Donald Rumsfeld, der 1983 Saddam als Bollwerk gegen den islamistischen Iran die Hand schüttelte und ihm bei der Chemiewaffenproduktion half zu schweigen, ist 2001–2006 US-Verteidigungsminister und einer der Hauptarchitekten des Sturzes desselben Mannes — diesmal mit dem gegenteiligen Vorwurf: zu enger Nähe zum islamistischen Terrorismus. <span class="tag tag-offen">OFFEN</span> Ob dies Ausdruck von Prinzipienlosigkeit, sich wandelnder geostrategischer Interessen oder schlicht der bekannten Logik "der Feind meines Feindes" ist, bleibt der Bewertung der Leserin überlassen.</p>
+
+  <h2>Offene Fragen</h2>
+
+  <div class="closing">
+    <p><em>Was verbindet die Brutkasten-Lüge von 1990 und die al-Qaida-Lüge von 2003 strukturell — abgesehen davon, dass beide funktionierten? Ist eine solche Inszenierung ein Ausrutscher des jeweiligen Systems, oder ein wiederkehrendes Werkzeug westlicher Kriegsvorbereitung?</em></p>
+    <p><em>Hätte der Irak-Krieg 2003 ohne die konstruierte Terror-Verbindung stattgefunden — trug die Lüge die Entscheidung, oder lieferte sie nur die Rechtfertigung für eine bereits getroffene?</em></p>
+    <p><em>Der Sturz Saddams beseitigte einen säkularen Diktator und schuf im selben Zug — durch De-Baathifizierung und Machtvakuum — die Bedingungen für einen echten islamistischen Aufstand (Zarqawi, Camp Bucca, IS). Wäre dieser Ausgang vorhersehbar gewesen, wenn man die Ansar-al-Islam-Episode ernster genommen hätte, statt sie propagandistisch zu instrumentalisieren?</em></p>
+  </div>
+
+  <div class="series-nav">
+    <div class="label">Serie: Geopolitische Instrumentalisierung von Islamismus</div>
+    <ol>
+      <li>Operation Ajax — Iran 1953</li>
+      <li>Operation Cyclone — Afghanistan-Falle</li>
+      <li>Israel/Hamas — Blowback</li>
+      <li>Bin-Laden-Mythos und Beleg</li>
+      <li>Syrien — Vom Terroristen zum Staatsgast</li>
+      <li>Ägypten — Sadat, Bruderschaft, Sisi</li>
+      <li>IS/Camp Bucca — Ursprung</li>
+      <li>Libyen 2011 — Rat-Line nach Syrien</li>
+      <li class="current">Irak — Der doppelte Sturz</li>
+    </ol>
+  </div>
+
+</div>
+</body>
+</html>

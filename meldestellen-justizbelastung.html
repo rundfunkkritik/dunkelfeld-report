@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Meldungstrichter | dunkelfeld.report</title>
+<style>
+  :root{
+    --bg:#09090b;
+    --accent:#e8c547;
+    --box:#1a1a2e;
+    --belegt:#4ade80;
+    --extra:#fb923c;
+    --offen:#9ca3af;
+    --vt:#ef4444;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:#e5e5e5;
+    font-family:Georgia,'Times New Roman',serif;
+    font-size:1.1rem;
+    line-height:1.8;
+    margin:0;
+    padding:0;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:3rem 1.5rem 5rem;}
+  .meta{
+    font-family:'Courier New',monospace;
+    color:var(--accent);
+    font-size:0.85rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    margin-bottom:1rem;
+  }
+  h1{font-size:2.1rem;line-height:1.25;margin:0 0 1.5rem;color:#fff;}
+  h2{font-size:1.4rem;color:var(--accent);margin-top:3rem;border-bottom:1px solid #333;padding-bottom:0.5rem;}
+  h3{font-size:1.1rem;color:#fff;margin-top:2rem;}
+  p{margin:1.2rem 0;}
+  .lead{font-size:1.25rem;color:#fff;border-left:3px solid var(--accent);padding-left:1.2rem;margin:2rem 0;}
+  .tag{
+    display:inline-block;font-family:'Courier New',monospace;font-size:0.75rem;font-weight:bold;
+    letter-spacing:0.05em;padding:0.2rem 0.6rem;border-radius:3px;margin-right:0.4rem;margin-bottom:0.3rem;
+  }
+  .tag-belegt{background:rgba(74,222,128,0.15);color:var(--belegt);border:1px solid var(--belegt);}
+  .tag-extra{background:rgba(251,146,60,0.15);color:var(--extra);border:1px solid var(--extra);}
+  .tag-offen{background:rgba(156,163,175,0.15);color:var(--offen);border:1px solid var(--offen);}
+  .source-box{
+    background:var(--box);border-left:3px solid var(--accent);padding:1.2rem 1.5rem;margin:1.5rem 0;font-size:1rem;
+  }
+  .source-box .src-label{
+    font-family:'Courier New',monospace;font-size:0.75rem;color:var(--accent);
+    text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;
+  }
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin:2rem 0;}
+  .stat{background:var(--box);border:1px solid #333;border-radius:6px;padding:1.2rem;text-align:center;}
+  .stat .num{font-family:'Courier New',monospace;font-size:1.5rem;color:var(--accent);font-weight:bold;display:block;}
+  .stat .label{font-size:0.82rem;color:#aaa;margin-top:0.3rem;}
+  .funnel{margin:2rem 0;}
+  .funnel-step{
+    background:var(--box);border:1px solid #333;border-radius:6px;padding:1rem 1.5rem;margin-bottom:0.6rem;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .funnel-step .fn-label{font-size:0.95rem;color:#ddd;}
+  .funnel-step .fn-num{font-family:'Courier New',monospace;color:var(--accent);font-weight:bold;font-size:1.1rem;white-space:nowrap;margin-left:1rem;}
+  .funnel-arrow{text-align:center;color:#555;margin:0.2rem 0;font-size:0.9rem;}
+  .timeline{border-left:2px solid #333;margin:2rem 0 2rem 0.5rem;padding-left:1.5rem;}
+  .tl-item{position:relative;margin-bottom:1.5rem;}
+  .tl-item::before{content:'';position:absolute;left:-1.8rem;top:0.4rem;width:10px;height:10px;border-radius:50%;background:var(--accent);}
+  .tl-date{font-family:'Courier New',monospace;color:var(--accent);font-size:0.85rem;display:block;margin-bottom:0.2rem;}
+  .closing{margin-top:3rem;padding-top:1.5rem;border-top:1px solid #333;font-style:italic;color:#bbb;}
+  .closing p{margin:0.8rem 0;}
+  .cross-ref{margin-top:2.5rem;font-family:'Courier New',monospace;font-size:0.85rem;color:#888;}
+  a{color:var(--accent);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="meta">dunkelfeld.report — Infrastruktur der Kontrolle — Juli 2026</div>
+  <h1>Der Meldungstrichter: Wie das Meldestellen-Netzwerk die Justiz belastet</h1>
+
+  <p class="lead">Dutzende staatliche und zivilgesellschaftliche Meldestellen sammeln Hinweise auf "Hass im Netz" und leiten sie an Staatsanwaltschaften weiter. Parallel meldet die Strafjustiz Rekordüberlastung — und benennt genau diese Fallkategorie explizit als einen der Gründe.</p>
+
+  <span class="tag tag-belegt">BELEGT</span>
+  <h2>Die Architektur: Wer meldet an wen?</h2>
+  <p>Seit dem 1. Februar 2022 betreibt das Bundeskriminalamt die "Zentrale Meldestelle für strafbare Inhalte im Internet" (ZMI). Nach eigener Darstellung des BKA führt die ZMI keine eigenen Ermittlungen und trifft keine strafrechtlichen Entscheidungen; sie bündelt Hinweise und leitet sie zur einheitlichen Bearbeitung an die zuständigen Länderbehörden weiter.</p>
+
+  <div class="source-box">
+    <div class="src-label">Primärquelle: BKA, offizielle Selbstdarstellung der ZMI</div>
+    Die ZMI führt im Rahmen dieses Prozesses keine eigenen Ermittlungen und trifft keine strafrechtlichen Entscheidungen. Sie unterstützt die Aktivitäten der Strafverfolgungsbehörden der Länder, ohne in deren originäre Zuständigkeiten einzugreifen, und sorgt für bundesweit einheitlichere Bewertungsmaßstäbe.
+  </div>
+
+  <p>Mit der ZMI kooperiert ein Netzwerk ziviler Meldestellen, das explizit als Zuarbeit für die Behörden fungiert — darunter "REspect!" der Jugendstiftung Baden-Württemberg. Parallel dazu haben mehrere Bundesländer eigene Strukturen aufgebaut: Baden-Württemberg richtete 2022 an allen Staatsanwaltschaften Spezialdezernate für "Hasskriminalität im Internet" ein. Niedersachsen betreibt seit 2020 die "Zentralstelle zur Bekämpfung von Hasskriminalität im Internet" (ZHIN) bei der Staatsanwaltschaft Göttingen, die mit der Plattform hassanzeigen.de eine eigene Meldeseite für Redaktionen und Bürger unterhält. Hessen startete im Januar 2020 das Aktionsprogramm "#HESSENGEGENHETZE" mit einer eigenen Meldeplattform beim Hessen CyberCompetenceCenter.</p>
+
+  <span class="tag tag-belegt">BELEGT</span>
+  <h2>Der Trichter: Was aus den Meldungen wird</h2>
+  <p>Die hessische Landesregierung hat für ihr Programm detaillierte Zahlen veröffentlicht, die den Weg einer Meldung durch das System nachzeichnen lassen — von der Bürgermeldung bis zum tatsächlich in Hessen geführten Ermittlungsverfahren:</p>
+
+  <div class="funnel">
+    <div class="funnel-step"><span class="fn-label">Meldungen aus der Zivilgesellschaft (2020–2022)</span><span class="fn-num">&gt; 30.000</span></div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step"><span class="fn-label">Vorgänge mit möglicher strafrechtlicher Relevanz</span><span class="fn-num">≈ 5.750</span></div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step"><span class="fn-label">Bundesweit identifizierte Tatverdächtige</span><span class="fn-num">≈ 3.400</span></div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step"><span class="fn-label">Davon: Ermittlungsverfahren in Hessen selbst</span><span class="fn-num">231</span></div>
+  </div>
+
+  <p>Die übrigen mehr als 3.150 identifizierten Tatverdächtigen wurden an die jeweils zuständigen Staatsanwaltschaften und Polizeidienststellen der anderen Bundesländer abgegeben — dort fließen sie in die dortige Verfahrensstatistik ein, losgelöst vom ursprünglichen Meldeprogramm.</p>
+
+  <div class="source-box">
+    <div class="src-label">Weiterer Datenpunkt: Staatsanwaltschaft Göttingen (ZHIN)</div>
+    Für den Zeitraum Juli 2024 bis Juni 2025 wurden bei der ZHIN rund 6.498 Anzeigen aus dem Bereich Hasskriminalität im Internet registriert. Die zuständige Abteilung wurde 2024 personell aufgestockt.
+  </div>
+
+  <span class="tag tag-belegt">BELEGT</span>
+  <h2>Die Justiz meldet Rekordüberlastung</h2>
+  <p>Parallel zum Ausbau der Meldeinfrastruktur meldet der Deutsche Richterbund (DRB) seit Jahren wachsende Überlastungszahlen — zuletzt einen historischen Höchststand.</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <span class="tl-date">Ende 2020</span>
+      Rund 700.000 offene Strafverfahren bundesweit.
+    </div>
+    <div class="tl-item">
+      <span class="tl-date">2023</span>
+      Über 5,5 Millionen neue Verfahren bei den Staatsanwaltschaften — Rekordwert. Zum Jahresende 923.000 offene Verfahren, ein Viertel mehr als im Vorjahr. Die Anklagequote sinkt seit Jahren; 2023 wird nur noch etwa jeder 15. Fall angeklagt (2013: jeder 10.).
+    </div>
+    <div class="tl-item">
+      <span class="tl-date">2024</span>
+      Bundesweit fehlen rund 2.000 Staatsanwälte und Strafrichter. Die durchschnittliche Verfahrensdauer von Anzeigeneingang bis Urteil liegt bei über 21 Monaten.
+    </div>
+    <div class="tl-item">
+      <span class="tl-date">Ende 2025</span>
+      Im dritten Jahr in Folge rund 5,5 Millionen neue Strafverfahren. Die Zahl offener Fälle überschreitet erstmals die Marke von einer Million — eine Steigerung von knapp 50 % gegenüber 2020. Bundesweit werden 2025 fünfzig dringend Tatverdächtige aus der Untersuchungshaft entlassen, weil Fristen nicht eingehalten werden konnten.
+    </div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="num">&gt; 1 Mio.</span><div class="label">offene Strafverfahren, Ende 2025 (Rekord)</div></div>
+    <div class="stat"><span class="num">~5,5 Mio.</span><div class="label">neue Verfahren pro Jahr, drei Jahre in Folge</div></div>
+    <div class="stat"><span class="num">~2.000</span><div class="label">fehlende Staatsanwälte / Strafrichter bundesweit</div></div>
+    <div class="stat"><span class="num">21+ Monate</span><div class="label">durchschnittliche Verfahrensdauer</div></div>
+  </div>
+
+  <span class="tag tag-belegt">BELEGT</span>
+  <h2>Der Richterbund benennt Hasskriminalität als Belastungsfaktor</h2>
+  <p>Der DRB hat die Verfolgung von Hass und Hetze im Netz wiederholt explizit als einen der Gründe für die Überlastung genannt. Bereits bei Einführung verschärfter Straftatbestände hatte der Verband gewarnt, dass dies bis zu 150.000 zusätzliche Verfahren pro Jahr bei den Staatsanwaltschaften erzeugen könnte, wofür rund 400 zusätzliche Staatsanwälte und Strafrichter nötig wären. 2023 bestätigte der DRB erneut, dass die "wachsende Zahl von Anzeigen wegen Hass und Hetze im Netz" neben Drogendelikten und Verfahren im Zusammenhang mit der Cannabis-Legalisierung zu den Ursachen des Verfahrensstaus zählt.</p>
+
+  <div class="source-box">
+    <div class="src-label">Zitat (paraphrasiert nach DRB-Bundesgeschäftsführer Sven Rebehn)</div>
+    Der DRB beschreibt die Strafjustiz als zunehmenden "Flaschenhals" der Kriminalitätsbekämpfung und benennt die intensivierte Verfolgung von Hasskriminalität im Netz ausdrücklich als einen mitursächlichen Faktor für den wachsenden Verfahrensstau.
+  </div>
+
+  <span class="tag tag-extra">EXTRAPOLATION</span>
+  <h2>Ein System mit eingebautem Volumenwachstum</h2>
+  <p>Aus den belegten Zahlen lässt sich eine strukturelle Beobachtung ableiten: Die Meldestellen-Architektur ist auf Volumen ausgelegt — mehr Anlaufstellen erzeugen mehr Meldungen, unabhängig davon, wie viele davon am Ende zu einer tatsächlichen Anklage führen. Das hessische Beispiel zeigt eine Konversionsrate von deutlich unter einem Prozent zwischen ursprünglicher Meldung und im selben Bundesland geführtem Ermittlungsverfahren. Gleichzeitig sinkt die bundesweite Anklagequote insgesamt. Die Kombination aus wachsendem Meldeaufkommen und schrumpfender Durchsetzungsfähigkeit erzeugt tendenziell mehr unbearbeitete Akten, nicht mehr rechtskräftige Urteile.</p>
+  <p>Diese Dynamik betrifft nicht nur Hasskriminalität, sondern ist Teil eines größeren Musters, das auch bei anderen Verfahrenskategorien beobachtet wird (Cannabis-Altfälle, Wirtschafts- und Betrugsdelikte). Innerhalb dieses Gesamtbilds ist die Meldestellen-Infrastruktur jedoch der einzige Bereich, in dem der Staat selbst aktiv neue Meldewege schafft, statt lediglich auf bestehende Kriminalität zu reagieren.</p>
+
+  <span class="tag tag-offen">OFFEN</span>
+  <h2>Offene Fragen</h2>
+  <div class="closing">
+    <p><em>Wie hoch ist die tatsächliche Anklage- und Verurteilungsquote der über Meldestellen generierten Verfahren, bundesweit und pro Meldestelle?</em></p>
+    <p><em>Existiert eine Kosten-Nutzen-Bilanz, die den Ausbau der Meldeinfrastruktur der zusätzlichen Belastung der Staatsanwaltschaften gegenüberstellt?</em></p>
+    <p><em>Werden Ressourcen, die für die Bearbeitung geringfügiger Fälle (z.B. Beleidigung, üble Nachrede) gebunden sind, an anderer Stelle — etwa bei Organisierter Kriminalität — spürbar eingespart?</em></p>
+  </div>
+
+  <div class="cross-ref">
+    Verwandtes Thema: "Divide et Impera 2.0" — Faktenchecker-Business (CeMAS/Correctiv/NewsGuard/IFCN) · Vgl. auch: Demokratie-leben-Selbstevaluation
+  </div>
+
+</div>
+</body>
+</html>

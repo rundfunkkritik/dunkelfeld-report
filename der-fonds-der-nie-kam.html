@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Fonds, der nie kam | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b; --bg-alt: #131316; --text: #e4e4e7; --text-dim: #a1a1aa;
+    --accent: #e8c547; --belegt: #4ade80; --extrapolation: #fb923c; --offen: #9ca3af; --vt: #f87171; --border: #27272a;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: Georgia, 'Times New Roman', serif; font-size: 1.1rem; line-height: 1.8; max-width: 720px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  header.masthead { text-align: center; margin-bottom: 3rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+  header.masthead .brand { font-family: 'Courier New', monospace; letter-spacing: 0.15em; color: var(--accent); font-size: 0.95rem; text-transform: uppercase; }
+  header.masthead .tagline { font-family: 'Courier New', monospace; color: var(--text-dim); font-size: 0.8rem; margin-top: 0.4rem; }
+  .series-nav { font-family: 'Courier New', monospace; font-size: 0.8rem; color: var(--text-dim); background: var(--bg-alt); border: 1px solid var(--border); border-radius: 4px; padding: 0.9rem 1.1rem; margin-bottom: 2.5rem; }
+  .series-nav .series-title { color: var(--accent); display: block; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .series-nav ol { margin: 0; padding-left: 1.3rem; }
+  .series-nav li { margin-bottom: 0.25rem; }
+  .series-nav li.current { color: var(--text); font-weight: bold; }
+  .series-nav a { color: var(--text-dim); text-decoration: none; border-bottom: 1px dotted var(--text-dim); }
+  .series-nav a:hover { color: var(--accent); }
+  h1.title { font-size: 1.9rem; line-height: 1.3; margin-bottom: 0.5rem; }
+  .meta { font-family: 'Courier New', monospace; font-size: 0.8rem; color: var(--text-dim); margin-bottom: 2rem; }
+  .lede { font-size: 1.2rem; color: var(--text); border-left: 3px solid var(--accent); padding-left: 1rem; margin-bottom: 2.5rem; font-style: italic; }
+  h2 { font-size: 1.4rem; margin-top: 3rem; margin-bottom: 1rem; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+  h3 { font-size: 1.15rem; margin-top: 2rem; color: var(--text); }
+  p { margin-bottom: 1.3rem; }
+  .tag { font-family: 'Courier New', monospace; font-size: 0.7rem; font-weight: bold; letter-spacing: 0.05em; padding: 0.15rem 0.5rem; border-radius: 3px; display: inline-block; vertical-align: middle; margin: 0 0.2rem; }
+  .tag-belegt { background: rgba(74,222,128,0.12); color: var(--belegt); border: 1px solid rgba(74,222,128,0.4); }
+  .tag-extrapolation { background: rgba(251,146,60,0.12); color: var(--extrapolation); border: 1px solid rgba(251,146,60,0.4); }
+  .tag-offen { background: rgba(156,163,175,0.12); color: var(--offen); border: 1px solid rgba(156,163,175,0.4); }
+  .tag-vt { background: rgba(248,113,113,0.12); color: var(--vt); border: 1px solid rgba(248,113,113,0.4); }
+  .source-box { background: var(--bg-alt); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 4px; padding: 1rem 1.2rem; margin: 1.5rem 0; font-size: 0.95rem; }
+  .source-box .label { font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.4rem; }
+  .stat-grid { display: grid; grid-template-columns: 1fr; gap: 0.8rem; margin: 1.8rem 0; }
+  .stat-card { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 4px; padding: 0.9rem 1.1rem; }
+  .stat-card .stat-num { font-family: 'Courier New', monospace; color: var(--accent); font-size: 1.1rem; font-weight: bold; display: block; }
+  .stat-card .stat-label { font-size: 0.9rem; color: var(--text-dim); }
+  .person-card { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 4px; padding: 1rem 1.2rem; margin: 1.2rem 0; }
+  .person-card .name { font-weight: bold; color: var(--text); font-size: 1.05rem; }
+  .person-card .role { font-family: 'Courier New', monospace; font-size: 0.78rem; color: var(--accent); display: block; margin-bottom: 0.5rem; }
+  .timeline { border-left: 2px solid var(--border); margin: 1.8rem 0 1.8rem 0.5rem; padding-left: 1.5rem; }
+  .timeline .entry { position: relative; margin-bottom: 1.3rem; }
+  .timeline .entry::before { content: ''; position: absolute; left: -1.83rem; top: 0.3rem; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .timeline .date { font-family: 'Courier New', monospace; font-size: 0.8rem; color: var(--accent); display: block; }
+  .aside { background: var(--bg-alt); border: 1px dashed var(--border); border-radius: 4px; padding: 1rem 1.2rem; font-size: 0.95rem; color: var(--text-dim); margin: 1.8rem 0; }
+  .aside .label { font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; display: block; margin-bottom: 0.4rem; }
+  .pull-quote { font-size: 1.3rem; font-style: italic; color: var(--accent); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.2rem 0; margin: 2rem 0; text-align: center; }
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+  th, td { border: 1px solid var(--border); padding: 0.6rem 0.7rem; text-align: left; }
+  th { background: var(--bg-alt); color: var(--accent); font-family: 'Courier New', monospace; font-size: 0.8rem; text-transform: uppercase; }
+  .closing { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-style: italic; color: var(--text-dim); }
+  footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--text-dim); text-align: center; }
+  .quellenverzeichnis { margin-top: 3rem; font-size: 0.9rem; }
+  .quellenverzeichnis h2 { color: var(--text); }
+  .quellenverzeichnis ul { padding-left: 1.3rem; }
+  .quellenverzeichnis li { margin-bottom: 0.5rem; color: var(--text-dim); }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="brand">dunkelfeld.report</div>
+  <div class="tagline">Analyse · Systemkritik · Quellenbasiert</div>
+</header>
+
+<nav class="series-nav">
+  <span class="series-title">Serie: Vernetzt, nicht verschworen</span>
+  <ol>
+    <li><a href="sdg-pin-mythos.html">Teil 1 — Die 17 Ziele und der Pin-Mythos</a></li>
+    <li><a href="der-unterzeichner.html">Teil 2 — Der Unterzeichner</a></li>
+    <li class="current">Teil 3 — Der Fonds, der nie kam</li>
+  </ol>
+</nav>
+
+<h1 class="title">Der Fonds, der nie kam</h1>
+<div class="meta">Juli 2026 &nbsp;|&nbsp; Lesedauer: ca. 11 Minuten &nbsp;|&nbsp; Teil 3 von 3</div>
+
+<p class="lede">Bill Gates ist einer der bekanntesten "gern gesehenen Gäste" bei WEF-Treffen, sein Zitat über die "beste Investition seines Lebens" wird gern zitiert. Weniger bekannt: Zwischen 2011 und 2014 stand er in engem, dokumentiertem Kontakt zu Jeffrey Epstein — wegen eines Fonds-Projekts, das am Ende scheiterte. Hier ist, was die Akten tatsächlich zeigen.</p>
+
+<h2>1. Das "beste Investment" — Kontext statt Bühnenzitat</h2>
+<p>Das oft zitierte Gates-Zitat stammt aus einem Wall-Street-Journal-Essay vom 16. Januar 2019, betitelt "The Best Investment I've Ever Made". Gemeint sind darin die rund 10 Milliarden US-Dollar, die die Gates Foundation in Gavi (Impfallianz), den Global Fund und die Polio-Eradication-Initiative investiert hat — mit einem behaupteten Return von 20:1. <span class="tag tag-belegt">BELEGT</span></p>
+<p>Eine Woche später wiederholte Gates die Aussage in einem CNBC-Interview am Rande des WEF-Jahrestreffens 2019 in Davos. Kein WEF-Bühnenzitat also, sondern ein Interview am Konferenzrand.</p>
+
+<h2>2. Der eigentliche Fund: die Donor-Advised-Fund-Idee</h2>
+<p>Laut Justizministeriums-Dokumenten arbeitete Epstein bereits seit rund 2010/2011 mit JPMorgan Chase an einem <strong>Donor-Advised Fund (DAF)</strong> — einer steuerbegünstigten Spendenstruktur für Milliardäre. Ziel: Gates sollte als Mitverwalter fungieren und das Vermögen anderer neu geadelter Milliardäre in globale Gesundheitsprojekte lenken, gegen Gebühren für die Vermittler. <span class="tag tag-belegt">BELEGT</span></p>
+
+<div class="timeline">
+  <div class="entry"><span class="date">2010</span>Epstein beginnt, in Gates' Umfeld für ein Treffen zu werben</div>
+  <div class="entry"><span class="date">2011</span>Erstes Treffen Gates–Epstein, vermittelt über Boris Nikolic; Epstein arbeitet mit JPMorgan an der DAF-Struktur</div>
+  <div class="entry"><span class="date">Mai 2011</span>Dinner bei Epstein: Gates, Epstein, JPMorgan-Manager Jes Staley, Ex-Finanzminister Larry Summers, Nikolic</div>
+  <div class="entry"><span class="date">Sommer 2013</span>Erste dokumentierte E-Mail Epstein→Gates zum Thema DAF ("$10 Mrd. in Kunst...")</div>
+  <div class="entry"><span class="date">2014</span>Gates unterstützt das Projekt aktiv ("could be a great thing"); Gates Foundation General Counsel arbeitet an der Rechtsstruktur; Gates bietet an, den Fonds bei einem Dinner mit Ray Dalio und Paul Tudor Jones vorzustellen</div>
+  <div class="entry"><span class="date">Ende 2014</span>Projekt scheitert: "Ich glaube nicht, dass wir aktuell Leute haben, die sich kurzfristig bewegen" (Gates)</div>
+</div>
+
+<div class="source-box">
+  <span class="label">Quelle</span>
+  Fortune (10.3.2026 & 23.4.2026); CBS News (Gates-Kongressaussage, Juni 2026); Inside Philanthropy; Forbes — sämtlich auf Basis der freigegebenen DOJ-Epstein-Akten.
+</div>
+
+<h2>3. Die drei Kernpersonen</h2>
+
+<div class="person-card">
+  <span class="name">Jes Staley</span>
+  <span class="role">2011: JPMORGAN-MANAGER (INVESTMENT BANK)</span>
+  Später CEO von Barclays (2015–2021). Trat 2021 zurück, nachdem britische Aufsichtsbehörden seine frühere Epstein-Beziehung untersuchten; 2023 von der FCA mit Berufsverbot belegt. <span class="tag tag-belegt">BELEGT</span>
+</div>
+
+<div class="person-card">
+  <span class="name">Larry Summers</span>
+  <span class="role">EX-US-FINANZMINISTER, EX-HARVARD-PRÄSIDENT</span>
+  Trat im Oktober 2025 von Harvard-Lehrstuhl und mehreren Vorstandsposten zurück, nachdem E-Mail-Korrespondenz mit Epstein öffentlich wurde — auch nach dessen Verurteilung 2008. <span class="tag tag-belegt">BELEGT</span>
+</div>
+
+<div class="person-card">
+  <span class="name">Boris Nikolic</span>
+  <span class="role">DAMALS CHIEF SCIENCE ADVISOR, GATES FOUNDATION</span>
+  Vermittelte das erste Gates-Epstein-Treffen. Wurde 2019 in Epsteins zwei Tage vor dessen Tod unterzeichnetem Testament als Ersatz-Nachlassverwalter benannt — eine reine Auffangposition, die er nach eigener Aussage nie ausüben wollte und rechtlich folgenlos ablehnte. <span class="tag tag-belegt">BELEGT</span>
+</div>
+
+<h2>4. Was Gates selbst vor dem US-Kongress sagte (Juni 2026)</h2>
+<p>Gates bezeichnete das Treffen mit Epstein als "grave error in judgment". Er habe zwischen 2011 und 2014 "potenzielle Spendenstrukturen" mit Epstein besprochen, die Gespräche seien aber "a dead-end" gewesen. Er habe Epsteins Insel, Ranch oder Florida-Anwesen nie besucht, niemals jemanden viktimisiert und nie eine persönliche Beziehung zu Epstein erwidert. <span class="tag tag-belegt">BELEGT</span></p>
+
+<div class="source-box">
+  <span class="label">Quelle</span>
+  CBS News: Gates-Kongressaussage vor dem House Oversight Committee, Juni 2026.
+</div>
+
+<h2>5. Was nicht belegt ist — und wo Vorsicht geboten ist</h2>
+<div class="aside">
+  <span class="label">Unbestätigt in seriösen Quellen</span>
+  Weitere in Zusammenhang mit dieser Geschichte kursierende Namen — u. a. Josh Harris, Mark Zuckerberg, Reid Hoffman, Kathy Ruemmler, Mortimer Zuckerman, Tom Pritzker — tauchen im breiteren Epstein-Akten-Kontext auf, aber ich habe keine seriöse Quelle gefunden, die sie <strong>spezifisch mit Gates-Treffen</strong> verknüpft. <span class="tag tag-offen">OFFEN</span> Vor einer Veröffentlichung mit diesen Namen wäre eine gezielte Einzelprüfung nötig.
+</div>
+
+<div class="aside">
+  <span class="label">Quellenwarnung</span>
+  Mehrere im Netz kursierende Seiten (u. a. Crowd-Datenbanken, private Wikis, Social-Media-Threads) verweben reale Einzelfakten — etwa ein zweideutiges "seed"-Zitat Nikolics oder eine unvollständige, redigierte Drittanbieter-E-Mail — zu großen Erzählungen über eine "20-jährige Architektur von Pandemien als Geschäftsmodell". <span class="tag tag-vt">VT–WIDERLEGT</span> als zusammenhängende These — die zitierten Einzelfakten mögen stimmen, die verbindende Erzählung ist Interpretation, keine Primärquellen-Aussage, und wird hier bewusst nicht übernommen.
+</div>
+
+<p class="pull-quote">Ein gescheitertes Fundraising-Projekt, drei prominente Namen, keine belegte Straftat — und trotzdem der Stoff, aus dem im Netz eine ganz andere Geschichte gestrickt wird.</p>
+
+<h2>Zusammenfassung: Was BELEGT ist, was nicht</h2>
+<div class="stat-grid">
+  <div class="stat-card"><span class="stat-num tag tag-belegt" style="display:inline-block;">BELEGT</span><span class="stat-label">DAF-Projekt 2011–2014 · Treffen Mai 2011 (Staley, Summers, Nikolic) · Scheitern Ende 2014 · Gates-Kongressaussage Juni 2026 · Staley-Berufsverbot · Summers-Rücktritt Okt. 2025 · Nikolics Rolle als abgelehnter Ersatz-Executor</span></div>
+  <div class="stat-card"><span class="stat-num tag tag-offen" style="display:inline-block;">OFFEN</span><span class="stat-label">Weitere kursierende Namen ohne spezifische Gates-Verknüpfung in seriösen Quellen</span></div>
+  <div class="stat-card"><span class="stat-num tag tag-vt" style="display:inline-block;">VT–WIDERLEGT</span><span class="stat-label">"Pandemie-als-Geschäftsmodell"-Gesamterzählung aus Nebenquellen</span></div>
+</div>
+
+<div class="closing">
+<em>Wir haben nach der "großen Geschichte" hinter Gates und Epstein gesucht. Gefunden haben wir: ein gescheitertes Fundraising-Projekt, schlechtes Urteilsvermögen bei der Wahl der Kontakte, und drei Karrieren, die durch die Nähe zu Epstein beschädigt wurden — Staley, Summers, in geringerem Maß Nikolic. Keine Straftat von Gates, keine bewiesene "Architektur". Ist das Fehlen einer Sensation nicht selbst eine Aussage über die Grenzen dessen, was sich tatsächlich belegen lässt?</em>
+</div>
+
+<div class="quellenverzeichnis">
+<h2>Quellenverzeichnis</h2>
+<ul>
+<li>Fortune (10.3.2026, 23.4.2026, 10.6.2026): Investigativserie zu Gates/Epstein auf Basis der DOJ-Akten</li>
+<li>CBS News (Juni 2026): Gates-Kongressaussage</li>
+<li>Forbes (8.4.2026): "What We Know About Bill Gates' Connection to Jeffrey Epstein"</li>
+<li>Inside Philanthropy: "Bill Gates and Jeffrey Epstein's billionaire DAF idea"</li>
+<li>Bloomberg (20.8.2019), Fox Business (20.8.2019): Boris Nikolic als Ersatz-Executor</li>
+</ul>
+</div>
+
+<footer>
+dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.<br>
+Teil 3 von 3 · Serie "Vernetzt, nicht verschworen"
+</footer>
+
+</body>
+</html>

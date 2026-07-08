@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DITIB und Diyanet: Staatliche Einflussnahme mit System | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --source-bg: #1a1a2e;
+    --belegt: #4ade80;
+    --extrapolation: #fb923c;
+    --offen: #9ca3af;
+    --vt: #ef4444;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+  h1 {
+    font-size: 2rem;
+    line-height: 1.3;
+    color: #fff;
+    margin: 0.5rem 0 1.5rem;
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 1rem;
+  }
+  h2 {
+    font-size: 1.4rem;
+    color: var(--accent);
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-weight: normal;
+  }
+  p { margin: 0 0 1.3rem; }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.6rem;
+    border-radius: 3px;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag-extrapolation { background: rgba(251,146,60,0.15); color: var(--extrapolation); border: 1px solid var(--extrapolation); }
+  .tag-offen { background: rgba(156,163,175,0.15); color: var(--offen); border: 1px solid var(--offen); }
+  .source-box {
+    background: var(--source-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.3rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.8rem 0;
+  }
+  .stat-card {
+    background: var(--source-bg);
+    border: 1px solid #2a2a40;
+    border-radius: 6px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.6rem;
+    color: var(--accent);
+    font-weight: bold;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.85rem;
+    color: #a1a1aa;
+    margin-top: 0.3rem;
+  }
+  .timeline {
+    border-left: 2px solid #2a2a40;
+    margin: 2rem 0 2rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.95rem;
+    top: 0.4rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .person-card {
+    background: var(--source-bg);
+    border: 1px solid #2a2a40;
+    border-radius: 6px;
+    padding: 1.2rem;
+    margin: 1.5rem 0;
+  }
+  .person-card .role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #2a2a40;
+    font-style: italic;
+    color: #a1a1aa;
+  }
+  a { color: var(--accent); }
+  .footnote-list {
+    font-size: 0.85rem;
+    color: #71717a;
+    margin-top: 2.5rem;
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+  }
+  .series-nav {
+    margin-top: 3rem;
+    padding: 1.2rem;
+    background: var(--source-bg);
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+  }
+  .series-nav .series-title {
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    margin-bottom: 0.8rem;
+  }
+  .series-nav ol {
+    margin: 0;
+    padding-left: 1.3rem;
+  }
+  .series-nav li { margin-bottom: 0.4rem; }
+  .series-nav .current { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="meta">Dunkelfeld.report — Serie: Religiöse Organisation &amp; ausländischer Einfluss (Teil 1/3)</div>
+  <h1>DITIB und Diyanet: Staatliche Einflussnahme mit System</h1>
+
+  <p>Rund 900 Moscheegemeinden, ein höherer Jahresetat als jedes türkische Ministerium, Imame, die formal Beamte eines fremden Staates sind: Die DITIB ist der mit Abstand größte islamische Dachverband in Deutschland – und zugleich der am dichtesten dokumentierte Fall struktureller ausländischer Einflussnahme auf eine Religionsgemeinschaft hierzulande.</p>
+
+  <h2>Die Struktur</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+  <p>Die Türkisch-Islamische Union der Anstalt für Religion e.V. (DITIB) ist nach eigenen Angaben Bezugspunkt für rund 860 Moscheegemeinden und 200.000 ordentliche Mitglieder in Deutschland. Die strukturelle und personelle Anbindung an das türkische Präsidium für religiöse Angelegenheiten (Diyanet) ist seit Jahren Gegenstand mehrerer Kleiner Anfragen im Bundestag. Diyanet ist direkt dem türkischen Ministerpräsidentenamt unterstellt und verfügt über einen höheren Jahresetat als die meisten Ministerien der Türkei.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle: Bundestagsdrucksache 19/154</span>
+    Die Bundesregierung stellte bereits 2018 fest, seit dem Putschversuch 2016 in der Türkei lasse sich "eine Intensivierung der Versuche des türkischen Staates feststellen, Einfluss auf die türkische Diaspora und Türkeistämmige Deutsche in Deutschland auszuüben" – unter anderem über DITIB.
+  </div>
+
+  <h2>Die Imame</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+  <p>Bis 2023 wurden DITIB-Imame regulär aus der Türkei entsandt, blieben türkische Staatsbedienstete und wurden von Diyanet bezahlt und fachlich beaufsichtigt – nicht von den örtlichen Gemeinden. Die türkischen Auslandsvertretungen üben laut Bundesregierung die Dienstaufsicht über die entsandten Imame aus. Ende 2023 kündigte das Bundesinnenministerium eine Reform an: DITIB sollte die Entsendung von Imamen aus der Türkei beenden und stattdessen Imame in Deutschland ausbilden.</p>
+
+  <div class="person-card">
+    <span class="role">Aktueller DITIB-Vorsitzender</span>
+    <p style="margin:0.5rem 0 0;">Ramazan Ilikhan war laut Bundestagsdrucksache 21/4291 (Februar 2026) zuvor Beamter der Religionsbehörde Diyanet sowie Religionsattaché am türkischen Generalkonsulat Düsseldorf – ein Beleg für die fortbestehende personelle Nähe zur Türkei trotz der angekündigten Reformen.</p>
+  </div>
+
+  <h2>Der Diyanet-Chef und Gaza</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+  <p>Im August 2025 rief der damalige Diyanet-Vorsitzende Ali Erbas auf einer Konferenz zu Gaza in einem Abschlusspapier dazu auf, "die Umma zu allen Formen des Dschihad auf dem Weg Allahs zu mobilisieren". Das Zitat ist durch deutsche Medienberichterstattung dokumentiert. Da Diyanet die vorgesetzte Behörde von DITIB ist, wirft die Aussage die Frage auf, mit welcher Instanz deutsche Politik im "kritischen Dialog" tatsächlich verhandelt.</p>
+
+  <h2>Der Umgang der deutschen Politik</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+  <p>Die Bundesregierung führt nach eigenen Angaben einen "kritischen Dialog" mit DITIB fort, unter anderem im Rahmen der Deutschen Islamkonferenz – trotz der dokumentierten Diyanet-Anbindung. Gleichzeitig lehnte der Bundestag im Februar 2026 mit breiter Mehrheit (577 Abgeordnete, alle Fraktionen außer AfD, Linke und BSW stimmten dagegen) einen Antrag ab, der unter anderem schärfer gegen islamistische Organisationen und den Verein "Muslim interaktiv" vorgehen wollte – auch weil der Antrag von der AfD kam und DITIB darin thematisiert wurde.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-number">~900</span>
+      <div class="stat-label">DITIB-Moscheegemeinden in Deutschland</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">200.000</span>
+      <div class="stat-label">ordentliche Mitglieder (Eigenangabe)</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">2023</span>
+      <div class="stat-label">offizielles Ende der Imam-Entsendung</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">2026</span>
+      <div class="stat-label">Vorsitzender weiterhin ex-Diyanet-Beamter</div>
+    </div>
+  </div>
+
+  <h2>Einordnung</h2>
+  <span class="tag tag-extrapolation">EXTRAPOLATION</span>
+  <p>Die Kombination aus formal beendeter Imam-Entsendung und einem Vorsitzenden mit Diyanet-Vergangenheit legt nahe, dass sich die strukturelle Nähe zur Türkei trotz der 2023 angekündigten Reform nicht grundlegend aufgelöst hat, sondern sich die Form der Anbindung verschiebt – von direkter Entsendung zu personellen Kontinuitäten in der Führungsebene. Eine abschließende Bewertung, ob die Reform substanziell greift, lässt sich mit den öffentlich verfügbaren Daten derzeit nicht treffen.</p>
+
+  <h2>Was offen bleibt</h2>
+  <span class="tag tag-offen">OFFEN</span>
+  <p>Wie viele der ab 2023 in Deutschland ausgebildeten Imame tatsächlich unabhängig von Diyanet-Lehrinhalten arbeiten, ist öffentlich nicht belegt. Ebenso offen: ob und wie der Bundestag auf die Erbas-Aussage vom August 2025 institutionell reagiert hat.</p>
+
+  <div class="closing">
+    <em>Eine Religionsgemeinschaft mit fast 900 Gebetsstätten, geführt von einem ehemaligen Beamten der Religionsbehörde eines anderen Staates – wo verläuft die Grenze zwischen Religionsfreiheit und ausländischer Einflussnahme, und wer zieht sie?</em>
+  </div>
+
+  <div class="series-nav">
+    <div class="series-title">Serie: Religiöse Organisation &amp; ausländischer Einfluss</div>
+    <ol>
+      <li class="current">Teil 1: DITIB und Diyanet — staatliche Einflussnahme mit System</li>
+      <li>Teil 2: Golfstaaten-Finanzierung deutscher Moscheen (in Arbeit)</li>
+      <li>Teil 3: Der Muezzin-Ruf — wer beantragt, wer genehmigt (in Arbeit)</li>
+    </ol>
+  </div>
+
+  <div class="footnote-list">
+    Quellen: Bundestagsdrucksache 19/154, Bundestagsdrucksache 21/4291 (24.02.2026), BMI-Pressemitteilung zur Imamausbildung (12/2023), Frankfurter Rundschau (Erbas-Zitat, 08/2025), AJC Germany Publikation "Die DITIB in Deutschland – Religion und Politik im Namen des türkischen Staates".
+  </div>
+
+</div>
+</body>
+</html>

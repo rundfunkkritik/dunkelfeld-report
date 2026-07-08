@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuba 2026: Anklage, Ölblockade, Invasionsfrage — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --box-bg: #1a1a2e;
+    --text: #e4e4e7;
+    --muted: #9a9aa5;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 5rem;
+  }
+  .mono {
+    font-family: 'Courier New', monospace;
+    color: var(--muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+  }
+  h1 {
+    font-size: 1.9rem;
+    line-height: 1.3;
+    color: #fff;
+    margin-bottom: 0.3rem;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.35rem;
+    margin-top: 2.8rem;
+    border-bottom: 1px solid #2a2a3a;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    color: var(--text);
+    font-size: 1.1rem;
+    margin-top: 1.8rem;
+  }
+  a { color: var(--accent); }
+  .meta {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #2a2a3a;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-weight: bold;
+    padding: 0.15rem 0.55rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+    letter-spacing: 0.05em;
+  }
+  .tag-belegt { background: #1a3a1a; color: #6fce6f; border: 1px solid #2f5f2f; }
+  .tag-extra { background: #3a2a10; color: #e8a547; border: 1px solid #6f4f1f; }
+  .tag-offen { background: #2a2a2a; color: #b0b0b0; border: 1px solid #4a4a4a; }
+  .tag-vt { background: #3a1a1a; color: #ce6f6f; border: 1px solid #5f2f2f; text-decoration: line-through; }
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .source-box .mono { margin-bottom: 0.4rem; }
+  .cross-ref {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1.2rem 1.4rem;
+    margin: 2rem 0;
+  }
+  .cross-ref h3 { margin-top: 0; color: var(--accent); }
+  .timeline {
+    margin: 1.5rem 0;
+  }
+  .timeline-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid #23232f;
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    min-width: 90px;
+    flex-shrink: 0;
+    padding-top: 0.15rem;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat-card {
+    background: var(--box-bg);
+    padding: 1rem;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .stat-number {
+    font-size: 1.6rem;
+    color: var(--accent);
+    font-weight: bold;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+  .person-card {
+    background: var(--box-bg);
+    padding: 1rem 1.25rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+  }
+  .person-card .name { color: var(--accent); font-weight: bold; }
+  .closing-questions {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a3a;
+    font-style: italic;
+    color: var(--muted);
+  }
+  .closing-questions p { margin-bottom: 1rem; }
+  .series-nav {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a3a;
+  }
+  .series-nav .mono { margin-bottom: 0.8rem; }
+  .series-nav ol {
+    padding-left: 1.4rem;
+  }
+  .series-nav li {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+  .series-nav .current {
+    color: var(--accent);
+    font-weight: bold;
+  }
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a3a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<div class="meta">
+  <div class="mono">DUNKELFELD.REPORT — SERIE: US-EINMISCHUNG LATEINAMERIKA — TEIL 8 VON 8</div>
+  <h1>Kuba 2026: Die Anklage gegen Raúl Castro, die Ölblockade und die Frage nach der Invasion</h1>
+  <div class="mono">Stand: Juli 2026</div>
+</div>
+
+<p><span class="tag tag-belegt">BELEGT</span> Seit der Festnahme Nicolás Maduros am 3. Januar 2026 (siehe Teil 6) befindet sich Kuba im schärfsten Konflikt mit den USA seit der Kubakrise 1962. Was als Kollateraleffekt der Venezuela-Operation begann, hat sich zu einer eigenständigen Eskalationsspirale entwickelt: Ölblockade, eine historische Anklage gegen einen ehemaligen Staatschef, Kriegsschiffe vor der Küste — und eine US-Regierung, die offen über eine "Übernahme" der Insel spricht.</p>
+
+<h2>Die Ausgangslage: Kollateralschaden Venezuela</h2>
+
+<p><span class="tag tag-belegt">BELEGT</span> Kuba bezog historisch rund 100.000 Barrel Öl täglich aus Venezuela, zuletzt durch die wirtschaftliche Krise Venezuelas nur noch etwa 35.000 Barrel. Mit der Festnahme Maduros und der Übernahme der venezolanischen Ölproduktion durch die USA am 3. Januar 2026 versiegte auch dieser Rest vollständig. Bei der Militäroperation kamen zudem 32 kubanische Sicherheitskräfte ums Leben, die im Dienst des venezolanischen Präsidenten standen — ein direktes Blutopfer Kubas für die Verbündetschaft mit Caracas.</p>
+
+<p><span class="tag tag-belegt">BELEGT</span> Die letzte reguläre Öllieferung vor der faktischen Blockade erfolgte am 9. Dezember 2025. Ab Februar 2026 begannen die USA gezielt, Öltanker Richtung Kuba abzufangen — darunter auch Lieferungen der mexikanischen Pemex — und drohten Drittstaaten mit Strafzöllen, sollten sie Kuba beliefern. Die New York Times bezeichnete dies als die erste wirksame Kuba-Blockade seit der Kubakrise von 1962.</p>
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="stat-number">22h</div>
+    <div class="stat-label">TÄGLICHE STROMAUSFÄLLE (MAI 2026)</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">0</div>
+    <div class="stat-label">ÖLLIEFERUNGEN IN 3+ MONATEN</div>
+  </div>
+</div>
+
+<h2>Die Timeline der Eskalation 2026</h2>
+
+<div class="timeline">
+  <div class="timeline-item">
+    <div class="timeline-date">JAN 2026</div>
+    <div><span class="tag tag-belegt">BELEGT</span> Trump fordert Kuba per Truth Social auf, "einen Deal zu machen, bevor es zu spät ist". Erste Andeutung einer möglichen "freundlichen Übernahme".</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-date">FEB 2026</div>
+    <div><span class="tag tag-belegt">BELEGT</span> Beginn der systematischen Tanker-Blockade. Trump spricht öffentlich von einer "friendly takeover" der Insel.</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-date">13. MÄRZ 2026</div>
+    <div><span class="tag tag-belegt">BELEGT</span> Kubas Präsident Miguel Díaz-Canel bestätigt erstmals offiziell Gespräche mit der Trump-Regierung — nachdem Kuba dies zuvor bestritten hatte.</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-date">APRIL 2026</div>
+    <div><span class="tag tag-belegt">BELEGT</span> Kuba beginnt, im Zuge der Verhandlungen mehr als 2.000 Gefangene freizulassen — ein Zugeständnis unter wirtschaftlichem Druck.</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-date">13. MAI 2026</div>
+    <div><span class="tag tag-belegt">BELEGT</span> Kubas Energieminister Vicente de la O Levy erklärt im Staatsfernsehen, dem Land sei das Öl vollständig ausgegangen ("run out").</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-date">20. MAI 2026</div>
+    <div><span class="tag tag-belegt">BELEGT</span> Das US-Justizministerium klagt den 94-jährigen Raúl Castro an — wegen des Abschusses zweier ziviler "Brothers to the Rescue"-Flugzeuge im Jahr 1996. Gleichzeitig meldet die US-Marine die Ankunft der Nimitz Carrier Strike Group in der Karibik. Rubio wendet sich in einem spanischsprachigen Video direkt an das kubanische Volk.</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-date">11. JUNI 2026</div>
+    <div><span class="tag tag-belegt">BELEGT</span> Die staatliche Ölgesellschaft Unión Cuba-Petróleo (Cupet) wird sanktioniert — offizielle Begründung: Energie werde als Waffe zur Unterdrückung des eigenen Volkes eingesetzt. Russland, China und Mexiko verurteilen die Blockade, eine geplante mexikanische Öllieferung wird dennoch kurzfristig storniert.</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-date">JULI 2026</div>
+    <div><span class="tag tag-offen">OFFEN</span> Laut Prognosemarkt Polymarket (Stand 3. Juli 2026, Handelsvolumen über 3 Mio. US-Dollar) liegt die eingepreiste Wahrscheinlichkeit einer US-Invasion 2026 bei rund 14 Prozent — Analysten verweisen auf hohe operative Kosten ohne auslösenden Zwischenfall.</div>
+  </div>
+</div>
+
+<div class="cross-ref">
+  <h3>Cross-Referenz: Die Barr-Doktrin</h3>
+  <p><span class="tag tag-belegt">BELEGT</span> Die rechtliche Argumentation, mit der die Trump-Regierung im Januar 2026 Maduro festnehmen ließ, geht auf ein Rechtsgutachten des Office of Legal Counsel zurück, dessen Grundprinzip erstmals 1989 im Kontext der Noriega-Invasion in Panama formuliert wurde (siehe <strong>Teil 4</strong>: US-Präsidenten können ausländische Staatschefs, die als Drogenkriminelle eingestuft werden, per Militäroperation festnehmen lassen, unabhängig von deren völkerrechtlichem Immunitätsstatus). <span class="tag tag-extra">EXTRAPOLATION</span> Die Anklage gegen Raúl Castro — mit dem Vorwurf des Flugzeugabschusses statt Drogenhandels — folgt einer anderen rechtlichen Konstruktion, dient aber erkennbar demselben Zweck: eine juristische Handhabe zu schaffen, die im Bedarfsfall eine Festnahme oder Auslieferung ermöglichen würde. Der Kongressabgeordnete Carlos Gimenez äußerte gegenüber CNN, die Anklage gebe den USA "die rechtliche Grundlage, um [Castro] aus Kuba zu entfernen".</p>
+</div>
+
+<h2>Die gesuchte "kubanische Delcy Rodríguez"</h2>
+
+<p><span class="tag tag-belegt">BELEGT</span> Nach übereinstimmenden Berichten (u.a. Deutsche Welle, Wikipedia-Dokumentation) sucht die US-Regierung explizit nach einer kubanischen Entsprechung zu Delcy Rodríguez — jener venezolanischen Vizepräsidentin, die nach der Entführung Maduros das Land im Sinne der neuen Verhältnisse "ruhig hielt", ohne selbst gestürzt zu werden. US-Botschafter Mike Hammer bestätigte die Suche nach einer solchen Übergangsfigur, ohne konkrete Namen zu nennen.</p>
+
+<div class="person-card">
+  <span class="name">Alejandro Castro Espín</span><br>
+  Sohn Raúl Castros, gilt als möglicher Kandidat für eine Übergangsrolle. <span class="tag tag-offen">OFFEN</span> Keine offizielle Bestätigung von kubanischer oder US-Seite.
+</div>
+<div class="person-card">
+  <span class="name">Raúl Guillermo Rodríguez Castro</span><br>
+  Enkel Raúl Castros, ehemaliger Chef von dessen Leibgarde. <span class="tag tag-offen">OFFEN</span> Ebenfalls nur als Gerücht kursierend, keine offizielle Nennung.
+</div>
+
+<p><span class="tag tag-belegt">BELEGT</span> Ende Februar 2026 sprach Trump vom Ziel einer "friedlichen Übernahme" Kubas. Die kubanische Regierung bestritt zunächst direkte Gespräche und sprach lediglich von "normaler zwischenstaatlicher Kommunikation" — eine Position, die im März revidiert wurde, als Díaz-Canel bestätigte, Raúl Castro sei selbst in die Gespräche involviert.</p>
+
+<h2>Die menschliche Bilanz</h2>
+
+<p><span class="tag tag-belegt">BELEGT</span> Der UN-Menschenrechtskommissar warnte am 9. Juni 2026 öffentlich, dass "Kinder sterben", während US-Sanktionen Kuba an den Rand drängen. Der Resident Coordinator der Vereinten Nationen in Kuba, Francisco Pichon, sprach bereits im März von einer drohenden "humanitären Krise". Zwei landesweite Stromausfälle in einer einzigen Woche im Mai 2026 legten das Land phasenweise vollständig lahm.</p>
+
+<div class="source-box">
+  <div class="mono">EINORDNUNG — RUBIOS GEGENDARSTELLUNG</div>
+  <p><span class="tag tag-belegt">BELEGT</span> US-Außenminister Marco Rubio bestreitet öffentlich einen Zusammenhang zwischen Blockade und Stromausfällen und macht ausschließlich kubanisches Missmanagement verantwortlich. Der Faktencheck-Dienst PolitiFact ordnet dies als irreführend ein: Kubas Energiesystem war strukturell bereits geschwächt, doch die Blockade habe die Krise nachweislich verschärft — laut dem Kuba-Experten William LeoGrande (American University) suchten kubanische Offizielle aktiv nach Öllieferanten, fänden aber wegen der angedrohten US-Sanktionen niemanden.</p>
+</div>
+
+<h2>Militärische Präsenz und Rhetorik</h2>
+
+<p><span class="tag tag-belegt">BELEGT</span> Neben der Nimitz Carrier Strike Group meldete die New York Times im Mai 2026 eine verstärkte Überwachung Kubas durch US-Spionageflugzeuge und Drohnen. Trump erklärte gegenüber Reportern in Florida, Rubio "kümmere sich" um Kuba: "Es mag eine freundliche Übernahme sein, es mag keine sein. Es würde eigentlich keine Rolle spielen, weil sie wirklich auf dem letzten Loch pfeifen." Die Äußerung fiel während des zweiten Kriegs zwischen Israel/USA und Iran — ein zeitliches Zusammentreffen, das die Kubakrise medial zeitweise überlagerte.</p>
+
+<p><span class="tag tag-offen">OFFEN</span> Kubanische Berichte (NPR, März 2026) beschreiben Mobilisierungsdirektiven an Reservisten in Havanna-Vororten seit Mitte Januar — ein Rückgriff auf das seit den 1990er Jahren bestehende "Zero-Option"-Verteidigungskonzept Fidel Castros. Ob dies eine reale Verteidigungsvorbereitung oder primär symbolische Abschreckung darstellt, lässt sich von außen nicht verifizieren.</p>
+
+<div class="closing-questions">
+  <p><em>Wird die angeklagte Person eines 30 Jahre zurückliegenden Vorfalls tatsächlich vor einem US-Gericht erscheinen — oder dient die Anklage ausschließlich als Verhandlungsdruckmittel?</em></p>
+  <p><em>Was geschieht, wenn keine kubanische "Delcy Rodríguez" gefunden wird?</em></p>
+  <p><em>Wie weit lässt sich eine Bevölkerung durch Energie-Entzug in Verhandlungsbereitschaft drängen, bevor die humanitäre Lage selbst zum politischen Faktor wird?</em></p>
+</div>
+
+<div class="series-nav">
+  <div class="mono">SERIE: US-EINMISCHUNG LATEINAMERIKA</div>
+  <ol>
+    <li>Operation Condor — Gründung, CIA-Dokumente, Kissinger</li>
+    <li>Guatemala 1954 — PBSUCCESS, Árbenz-Sturz, United Fruit</li>
+    <li>Chile 1973 — Track I/II, Allende, Pinochet</li>
+    <li>Panama 1989 — Noriega, Just Cause, Barr-Doktrin</li>
+    <li>Venezuela 2019 — Guaidó, PDVSA-Sanktionen</li>
+    <li>Venezuela 2026 — Maduro-Festnahme, Ölmotiv</li>
+    <li>Kuba: Schweinebucht bis Ölblockade 2026</li>
+    <li class="current">Kuba 2026: Anklage, Invasionsfrage (dieser Artikel)</li>
+  </ol>
+</div>
+
+<footer>
+  QUELLEN: CNN Politics (20.05.2026) · Euronews (15.05.2026) · Al Jazeera (26.03., 10.03.2026) · Wikipedia: 2026 Cuban Crisis / Ölblockade der Vereinigten Staaten gegen Kuba · PolitiFact (22.05.2026) · NPR Fresh Air (24.03.2026) · Polymarket (Stand 03.07.2026)<br><br>
+  dunkelfeld.report — investigative Dokumentation. Keine Motivunterstellung. Primärquellen-Standard.
+</footer>
+
+</body>
+</html>

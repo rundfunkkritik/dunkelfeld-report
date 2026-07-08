@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operation Condor — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --box-bg: #1a1a2e;
+    --text: #e4e4e7;
+    --text-dim: #a1a1aa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin: 0.3rem 0 0.6rem;
+    color: #fff;
+  }
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 1.15rem;
+    font-style: italic;
+    margin-bottom: 2.5rem;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 0.5rem;
+  }
+  p { margin: 1.1rem 0; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: #1e3a2e; color: #4ade80; border: 1px solid #4ade80; }
+  .tag-extra { background: #3a2e1e; color: #fb923c; border: 1px solid #fb923c; }
+  .tag-offen { background: #27272a; color: #a1a1aa; border: 1px solid #a1a1aa; }
+  .tag-vt { background: #3a1e1e; color: #f87171; border: 1px solid #f87171; text-decoration: line-through; text-decoration-color: #f87171; }
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat {
+    background: var(--box-bg);
+    padding: 1rem;
+    text-align: center;
+    border-radius: 4px;
+  }
+  .stat .num {
+    font-size: 1.6rem;
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+  }
+  .stat .label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 0.3rem;
+  }
+  .timeline {
+    border-left: 2px solid #3f3f46;
+    margin: 2rem 0 2rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.6rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.94rem;
+    top: 0.4rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .aside-box {
+    background: #16161d;
+    border: 1px solid #3f3f46;
+    border-radius: 6px;
+    padding: 1.3rem 1.5rem;
+    margin: 2rem 0;
+  }
+  .aside-box h3 {
+    margin-top: 0;
+    color: var(--text-dim);
+    font-size: 1rem;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #27272a;
+    font-style: italic;
+    color: var(--text-dim);
+  }
+  .series-nav {
+    margin-top: 3.5rem;
+    padding: 1.5rem;
+    background: var(--box-bg);
+    border-radius: 6px;
+  }
+  .series-nav .label {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+  .series-nav ol {
+    margin: 0;
+    padding-left: 1.3rem;
+  }
+  .series-nav li {
+    margin-bottom: 0.4rem;
+    color: var(--text-dim);
+  }
+  .series-nav li.current {
+    color: var(--accent);
+    font-weight: bold;
+  }
+  .series-nav li.pending::after {
+    content: ' (in Vorbereitung)';
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+  a { color: var(--accent); }
+  .footnote {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-top: 2.5rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="meta">Dunkelfeld.report · Serie: US-Einmischung Lateinamerika · Teil 1</div>
+  <h1>Operation Condor</h1>
+  <div class="subtitle">Wie sechs südamerikanische Geheimdienste ein grenzüberschreitendes System der Verfolgung aufbauten — und was die CIA davon wusste</div>
+
+  <p>
+    Im November 1975 trafen sich hochrangige Geheimdienstoffiziere aus Chile, Argentinien, Uruguay, Paraguay und Bolivien in Santiago de Chile. Gastgeber war die chilenische Geheimpolizei DINA. Das Ergebnis dieses Treffens war ein Name, ein Codewort und ein System, das über ein Jahrzehnt lang die Verfolgung politischer Gegner über nationale Grenzen hinweg koordinierte.
+    <span class="tag tag-belegt">BELEGT</span>
+    Die Gründungsurkunde — das "Schlussdokument des Ersten Interamerikanischen Treffens der Nationalen Nachrichtendienste" — wurde im Januar 1976 formalisiert und ist heute deklassifiziert einsehbar.
+  </p>
+
+  <h2>Der Vorlauf: School of the Americas</h2>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Bereits in den 1960er- und frühen 1970er-Jahren entwickelten Sicherheitsoffiziere aus mehreren südamerikanischen Ländern gemeinsam mit US-Militärs an der School of the Americas (Panama) und auf der Conference of American Armies Konzepte gegen "subversive" Bewegungen. Der Historiker J. Patrice McSherry stützt diese Rekonstruktion auf freigegebene CIA-Dokumente aus dem Jahr 1976.
+  </p>
+  <p>
+    Ein dokumentiertes Beispiel: Dan Mitrione, US-Ausbilder für Verhörtechniken, trainierte an der School of the Americas Polizeikräfte in Uruguay — Jahre vor dem Militärputsch 1973, der das Land in eine Diktatur verwandelte, die zu den aktivsten Condor-Mitgliedern zählte.
+  </p>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="num">6</span><span class="label">Gründungs- &amp; Kernländer (Chile, Argentinien, Uruguay, Paraguay, Bolivien, Brasilien)</span></div>
+    <div class="stat"><span class="num">1976–78</span><span class="label">Beitritt Peru &amp; Ecuador</span></div>
+    <div class="stat"><span class="num">500.000+</span><span class="label">Dokumentseiten im paraguayischen "Terror-Archiv" (Entdeckung 1993)</span></div>
+    <div class="stat"><span class="num">1999/2000</span><span class="label">US-Deklassifizierung tausender Akten unter Clinton</span></div>
+  </div>
+
+  <h2>Struktur und Arbeitsweise</h2>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Laut einem CIA-Dokument vom 23. Juni 1976 organisierten die beteiligten Dienste ein eigenes Kommunikationsnetz namens "Condortel" — dessen zentrale Basisstation sich auf einer US-Einrichtung am Panama-Kanal befand. Die Datenbank mit Informationen zu tausenden als politisch verdächtig eingestuften Personen wurde mit von der CIA bereitgestellten Computern betrieben, da zu dieser Zeit kein anderes Land der Region über vergleichbare technische Mittel verfügte.
+  </p>
+  <div class="source-box">
+    <span class="label">Primärquelle · CIA-Memo, 24. Juli 1976</span>
+    Der damalige CIA-Abteilungsleiter für Lateinamerika, Raymond A. Warren, warnte in einem internen Memo an den stellvertretenden CIA-Direktor, dass die Condor-Staaten Mordkommandos organisierten, und äußerte Sorge, die Agency könne fälschlich mit dieser Art von Aktivität in Verbindung gebracht werden.
+  </div>
+
+  <h2>Drei Phasen der Repression</h2>
+  <p>
+    Nach Auswertung deklassifizierter Dokumente durch das Center for Legal and Social Studies (CELS) in Buenos Aires lässt sich die Entwicklung in drei Phasen gliedern:
+  </p>
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-date">Phase 1</span>
+      <span class="tag tag-belegt">BELEGT</span> Aufbau einer zentralisierten Datenbank zu Guerillabewegungen, linken Parteien, Gewerkschaftern, religiösen Gruppen und liberalen Politikern.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Phase 2</span>
+      <span class="tag tag-belegt">BELEGT</span> Identifizierung und gezielte Verfolgung politischer "Gegner" auf regionaler Ebene innerhalb der Mitgliedsstaaten.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Phase 3</span>
+      <span class="tag tag-belegt">BELEGT</span> Grenzüberschreitende Operationen zur Aufspürung und Tötung von Zielpersonen in anderen amerikanischen Staaten und in Europa.
+    </div>
+  </div>
+  <p>
+    <span class="tag tag-extra">EXTRAPOLATION</span>
+    Laut CELS-Analyse hatten verschiedene US-Behörden schon früh Kenntnis vom Ausmaß der Koordination, unternahmen aber wenig, um sie zu stoppen — bis zum Erreichen der dritten Phase, die durch ihre internationale Sichtbarkeit am schwersten geheim zu halten war. Diese Einschätzung stammt aus der Auswertung der deklassifizierten Akten selbst und ist damit dokumentengestützt, bleibt aber eine historiografische Interpretation.
+  </p>
+
+  <h2>Die Ausweitung nach Europa</h2>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Ein CIA-Kabel vom 28. Juli 1976 beschreibt Pläne, Teams nach Frankreich zu entsenden, mit dem Ziel, "hochrangige Terroristenführer" zu liquidieren. Das Dokument hält fest, dass der Großteil dieses Einsatzes von Argentinien, Chile und Uruguay getragen werden sollte, während Brasilien Kommunikationstechnik für das Condor-Netz in Lateinamerika lieferte.
+  </p>
+  <p>
+    In diesen Kontext fällt die Ermordung des chilenischen Ex-Generals Carlos Prats 1974 in Buenos Aires sowie die Ermordung des chilenischen Oppositionspolitikers Orlando Letelier 1976 — nicht in Europa, sondern in Washington D.C. selbst, durch eine Autobombe. Ermittlungen der argentinischen Justiz stützten sich später unter anderem auf das Geständnis des US-Bürgers Michael Townley, der für den chilenischen Geheimdienst gearbeitet hatte.
+  </p>
+
+  <h2>Kissinger und die US-Regierung</h2>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Patricia Derian, von 1977 bis 1981 zuständige Staatssekretärin für Menschenrechte im US-Außenministerium, beschrieb später öffentlich ihr Entsetzen darüber, wie US-Außenminister Henry Kissinger mit einer Handbewegung über Leben und Tod habe entscheiden können. Während der Carter-Administration gratulierte Kissinger dem argentinischen Militär zur "Auslöschung des Terrorismus" und besuchte das Land 1978 als Gast von Diktator Jorge Videla während der Fußball-Weltmeisterschaft.
+  </p>
+  <p>
+    <span class="tag tag-offen">OFFEN</span>
+    Wie weit Kissingers persönliche Rolle über diplomatische Signale hinaus in die operative Ausgestaltung von Condor hineinreichte, ist unter Historikern nicht abschließend geklärt und lässt sich aus den bisher freigegebenen Dokumenten nicht eindeutig rekonstruieren.
+  </p>
+
+  <h2>Aufdeckung</h2>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    1993 entdeckte ein paraguayischer Richter bei Ermittlungen zu einem Menschenrechtsfall ein Archiv von schätzungsweise 500.000 bis 700.000 Dokumentseiten der paraguayischen politischen Polizei — das bis heute umfangreichste unzensierte Archiv zur inneren Funktionsweise von Condor.
+  </p>
+  <p>
+    1999 ordnete Präsident Bill Clinton, ausgelöst durch Anschläge auf US-Bürger in Argentinien und ein explizites Kongressverbot von 1990, die Freigabe tausender Akten des US-Außenministeriums zu US-argentinischen Aktivitäten seit 1954 an. Diese Dokumente belegten erstmals öffentlich die Mitwisserschaft der USA am "Schmutzigen Krieg" und an Operation Condor.
+  </p>
+
+  <div class="aside-box">
+    <h3>Namensverwirrung: Kein Zusammenhang mit dem Redford-Film</h3>
+    <p style="margin-bottom:0;">
+      <span class="tag tag-offen">EINORDNUNG</span>
+      Der Hollywood-Thriller <em>"Three Days of the Condor"</em> (1975, Regie: Sydney Pollack, mit Robert Redford) wird gelegentlich mit der realen Operation Condor in Verbindung gebracht. Es gibt dafür keine Belege. Der Filmtitel basiert auf James Gradys Roman "Six Days of the Condor" (1974); "Condor" ist dort lediglich ein fiktiver CIA-Tarnname, die Handlung dreht sich um eine erfundene Ölfeld-Operation im Nahen Osten und hat keinen Lateinamerika-Bezug. Die reale Operation Condor wurde laut den zitierten CIA-Dokumenten erst im November 1975 gegründet und im Januar 1976 formalisiert — zu diesem Zeitpunkt lagen Roman und Film bereits vor. Die Operation blieb zudem bis zur Deklassifizierung Ende der 1990er-Jahre vollständig geheim; eine Kenntnis der Autoren davon ist nicht plausibel. Die zeitliche Nähe ist damit Zufall, keine dokumentierte Verbindung.
+    </p>
+  </div>
+
+  <div class="closing">
+    <p>
+      <em>Offene Fragen bleiben: Wie viele der insgesamt geschätzt tausenden Verschwundenen und Ermordeten Condors sind bis heute nicht identifiziert? Und welche Akten liegen noch immer unter Verschluss — in Washington ebenso wie in den Archiven der beteiligten südamerikanischen Staaten?</em>
+    </p>
+  </div>
+
+  <div class="series-nav">
+    <span class="label">Serie: US-Einmischung Lateinamerika</span>
+    <ol>
+      <li class="current">Teil 1 — Operation Condor</li>
+      <li>Teil 2 — Guatemala 1954: Der Sturz Arbenz’ und United Fruit</li>
+      <li class="pending">Teil 3 — Chile 1973: Track II und der Putsch gegen Allende</li>
+      <li class="pending">Teil 4 — Panama: Vom CIA-Asset zum Feindbild Noriega</li>
+      <li class="pending">Teil 5 — Venezuela: Guaidó, Sanktionen, PDVSA</li>
+      <li class="pending">Teil 6 — Venezuela heute</li>
+    </ol>
+  </div>
+
+  <div class="footnote">
+    Quellen (Auswahl): National Security Archive, George Washington University — "Operation Condor: A Network of Transnational Repression" (2025); CELS Buenos Aires — Dokumentation zu Operation Condor; deklassifizierte CIA- und State-Department-Akten (Chile Declassification Project 1999/2000, Argentina Declassification Project 2002); J. Patrice McSherry, Forschung zu Condor und School of the Americas.
+  </div>
+
+</div>
+</body>
+</html>

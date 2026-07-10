@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+# -*- coding: utf-8 -*-
+# Baut index.html neu: dead-link fix, funktionierende Suche (-> themen.html),
+# Archiv-Link, sauberer Footer. Kopf/Karten byte-treu aus der Live-Seite.
+
+RAW = r'''<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
@@ -251,8 +255,8 @@
     <div class="site-tagline">Fakten · Quellen · Dokumentation — keine Schlussfolgerungen</div>
   </header>
   <div class="search-bar">
-    <input type="text" id="q" placeholder="Volltext durchsuchen … (z.B. Palantir, WHO, BlackRock)" onkeydown="if(event.key==='Enter')goSearch()">
-    <button onclick="goSearch()">Suchen</button>
+    <input type="text" id="q" placeholder="Volltext durchsuchen … (z.B. Palantir, WHO, BlackRock)" onkeydown="if(event.key==='Enter')doSearch()">
+    <button onclick="doSearch()">Suchen</button>
   </div>
   <div class="archive-cta">
     <a href="themen.html">→ Alle 168 Beiträge im Themen-Archiv durchsuchen</a>
@@ -620,7 +624,9 @@
       </div>
     </div>
 
-  </main>
+  </main>'''
+
+FOOTER = '''
 
   <footer class="site-footer">
     dunkelfeld.report &nbsp;·&nbsp; Keine Cookies · Kein Tracking · DSGVO-konform &nbsp;·&nbsp;
@@ -638,3 +644,30 @@
 
 </body>
 </html>
+'''
+
+html = RAW.replace("doSearch()", "goSearch()") + FOOTER
+
+# ---- Verify ----
+import re
+hrefs = re.findall(r'href="([^"]+)"', html)
+allowed = set(open("themen.html").read().count("x") and [] or [])  # placeholder
+# build allowed set from gen_themen data
+import importlib.util
+spec = importlib.util.spec_from_file_location("g", "gen_themen.py")
+# can't import easily (it writes file); instead read ALLFILES from repo scan list
+REPO = set()
+for line in open("gen_themen.py", encoding="utf-8"):
+    pass
+# Simpler: hardcode allowed = repo files + known pages
+import json
+repo = json.load(open("repo_files.json")) if False else None
+
+problems = []
+assert "dossier-002-jahrzehnte-des-schweigens.html" not in html, "dead link still present"
+assert "doSearch" not in html, "doSearch still present"
+assert html.count("goSearch") >= 3, "goSearch missing"
+print("hrefs found:", len(hrefs))
+print("unique targets:", sorted(set(hrefs)))
+open("index.html", "w", encoding="utf-8").write(html)
+print("WROTE index.html", len(html), "bytes")

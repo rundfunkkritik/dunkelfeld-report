@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Themen &amp; Archiv — dunkelfeld.report</title>
+<meta name="description" content="Vollständiges Archiv aller Artikel und Dossiers von dunkelfeld.report. Nach Themen sortiert, mit lokaler Volltextsuche ohne Datenabfluss.">
+<link rel="stylesheet" href="fonts.css">
+<style>
+:root{
+  --bg:#09090b; --surface:#111113; --text:#d4d4d8; --head:#f4f4f5;
+  --gold:#e8c547; --gold-dim:#b89a2f; --border:#1f1f24; --border2:#2a2a30;
+  --muted:#8a8a92; --rot:#e5675b; --gruen:#5cb87a;
+  --serif:"Crimson Pro",Georgia,"Times New Roman",serif;
+  --display:"Playfair Display",Georgia,serif;
+  --mono:"JetBrains Mono","Courier New",monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--serif);font-size:1.05rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}
+.wrap{max-width:860px;margin:0 auto;padding:0 1.25rem}
+header.site{border-bottom:1px solid var(--border);padding:1.6rem 0 1.2rem}
+.site-name{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.dot{display:inline-block;width:8px;height:8px;background:var(--gold);border-radius:50%;margin-right:8px;vertical-align:middle}
+.site-tag{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;color:#52525b;margin-top:5px}
+.hero{padding:2.4rem 0 1.4rem;border-bottom:1px solid var(--border)}
+.hero h1{font-family:var(--display);font-weight:700;font-size:clamp(1.9rem,5vw,2.7rem);color:var(--head);line-height:1.15;letter-spacing:-.01em}
+.hero p{color:var(--muted);margin-top:.9rem;max-width:620px}
+.stats{margin-top:1.2rem;display:flex;gap:.5rem;flex-wrap:wrap}
+.stat{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--gold);background:rgba(232,197,71,.08);padding:.3rem .65rem;border:1px solid var(--border2)}
+.searchbox{position:sticky;top:0;z-index:20;background:linear-gradient(var(--bg) 78%,rgba(9,9,11,0));padding:1.1rem 0 .9rem}
+.searchbox .inner{display:flex;border:1px solid var(--border2);border-radius:4px;overflow:hidden;background:var(--surface)}
+#q{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:var(--mono);font-size:.9rem;padding:.8rem 1rem;letter-spacing:.02em}
+#q::placeholder{color:#4b4b52}
+#clear{background:transparent;border:none;color:var(--muted);font-family:var(--mono);font-size:1.1rem;padding:0 1rem;cursor:pointer}
+#clear:hover{color:var(--gold)}
+.searchbox .inner:focus-within{border-color:var(--gold)}
+.count{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;color:var(--muted);margin-top:.55rem;min-height:1em}
+main{padding:1rem 0 4rem}
+.cat{margin:2.2rem 0}
+.cat-h{font-family:var(--mono);font-size:.7rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--border);padding-bottom:.5rem;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
+.cat-n{color:#52525b;font-size:.62rem}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.card{display:flex;flex-direction:column;gap:3px;padding:.7rem .85rem;background:var(--surface);border:1px solid var(--border);border-radius:3px;color:inherit;transition:border-color .12s,background .12s}
+.card:hover{border-color:var(--gold);background:#16161a}
+.ct{font-family:var(--display);color:var(--head);font-size:1rem;line-height:1.25}
+.cf{font-family:var(--mono);font-size:.6rem;color:#4b4b52;letter-spacing:.02em;word-break:break-all}
+.neu{display:inline-block;font-family:var(--mono);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gruen);border:1px solid var(--gruen);border-radius:3px;padding:1px 5px;margin-left:.4rem;vertical-align:middle}
+.noresult{display:none;color:var(--muted);font-family:var(--mono);font-size:.8rem;padding:2rem 0;text-align:center}
+footer.site{border-top:1px solid var(--border);padding:1.8rem 0 3rem;font-family:var(--mono);font-size:.62rem;color:#3f3f46;letter-spacing:.06em;line-height:1.9}
+footer.site a{color:var(--gold-dim)}
+.back{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase}
+@media(max-width:640px){
+  .grid{grid-template-columns:1fr}
+  .cf{display:none}
+  body{font-size:1rem}
+}
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div><span class="dot"></span><span class="site-name">dunkelfeld.report</span></div>
+    <div class="site-tag">Fakten · Quellen · Dokumentation — keine Schlussfolgerungen</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <h1>Themen &amp; Archiv</h1>
+    <p>Das vollständige Verzeichnis aller Artikel und Dossiers — nach Themen geordnet. Die Suche läuft vollständig in deinem Browser, es werden keine Daten übertragen.</p>
+    <div class="stats">
+      <span class="stat">168 Beiträge</span>
+      <span class="stat">14 Rubriken</span>
+      <span class="stat">Lokale Volltextsuche</span>
+    </div>
+  </section>
+
+  <div class="searchbox">
+    <div class="inner">
+      <input type="text" id="q" placeholder="Suchen … (z. B. Palantir, WHO, BlackRock, Kirche, Kuba)" autocomplete="off" autofocus>
+      <button id="clear" title="Leeren" aria-label="Leeren">×</button>
+    </div>
+    <div class="count" id="count"></div>
+  </div>
+
+  <main>
+    <section class="cat" data-cat="geld"><h2 class="cat-h">Geld, Digitalwährung &amp; Wirtschaftsmacht <span class="cat-n">20</span></h2><div class="grid"><a class="card" href="artikel-007-geld-herrschaftsinstrument.html" data-s="geld als herrschaftsinstrument artikel-007-geld-herrschaftsinstrument"><span class="ct">Geld als Herrschaftsinstrument</span><span class="cf">artikel-007-geld-herrschaftsinstrument.html</span></a><a class="card" href="artikel-009-great-taking-wem-gehoert-depot.html" data-s="wem gehoert dein depot? (the great taking) artikel-009-great-taking-wem-gehoert-depot"><span class="ct">Wem gehört dein Depot? (The Great Taking)</span><span class="cf">artikel-009-great-taking-wem-gehoert-depot.html</span></a><a class="card" href="artikel-010-reich-zu-bund.html" data-s="reich zu bund artikel-010-reich-zu-bund"><span class="ct">Reich zu Bund</span><span class="cf">artikel-010-reich-zu-bund.html</span></a><a class="card" href="blackrock-aladdin.html" data-s="aladdin - blackrocks wunderlampe blackrock-aladdin"><span class="ct">Aladdin – BlackRocks Wunderlampe</span><span class="neu">neu</span><span class="cf">blackrock-aladdin.html</span></a><a class="card" href="bitcoin-mausefalle.html" data-s="bitcoin - eine mausefalle? bitcoin-mausefalle"><span class="ct">Bitcoin – eine Mausefalle?</span><span class="neu">neu</span><span class="cf">bitcoin-mausefalle.html</span></a><a class="card" href="ethereum-wef-favorit.html" data-s="ethereum - der favorit von wef &amp; co.? ethereum-wef-favorit"><span class="ct">Ethereum – der Favorit von WEF &amp; Co.?</span><span class="neu">neu</span><span class="cf">ethereum-wef-favorit.html</span></a><a class="card" href="worldcoin-trump-coin.html" data-s="worldcoin &amp; trump coin worldcoin-trump-coin"><span class="ct">Worldcoin &amp; Trump Coin</span><span class="neu">neu</span><span class="cf">worldcoin-trump-coin.html</span></a><a class="card" href="digitaler-euro-infrastruktur.html" data-s="der digitale euro: infrastruktur &amp; strukturproblem digitaler-euro-infrastruktur"><span class="ct">Der digitale Euro: Infrastruktur &amp; Strukturproblem</span><span class="neu">neu</span><span class="cf">digitaler-euro-infrastruktur.html</span></a><a class="card" href="amla-ueberwachungsinfrastruktur.html" data-s="die amla: europas datenzentrale gegen geldwaesche amla-ueberwachungsinfrastruktur"><span class="ct">Die AMLA: Europas Datenzentrale gegen Geldwäsche</span><span class="neu">neu</span><span class="cf">amla-ueberwachungsinfrastruktur.html</span></a><a class="card" href="schuldenfalle-hitman-vs-struktur.html" data-s="die schuldenfalle: hitman-erzaehlung vs. struktur schuldenfalle-hitman-vs-struktur"><span class="ct">Die Schuldenfalle: Hitman-Erzählung vs. Struktur</span><span class="neu">neu</span><span class="cf">schuldenfalle-hitman-vs-struktur.html</span></a><a class="card" href="der-fonds-der-nie-kam.html" data-s="der fonds, der nie kam der-fonds-der-nie-kam"><span class="ct">Der Fonds, der nie kam</span><span class="neu">neu</span><span class="cf">der-fonds-der-nie-kam.html</span></a><a class="card" href="ppp-gewinne-privat-verluste-sozial.html" data-s="ppp: gewinne privatisiert, verluste sozialisiert ppp-gewinne-privat-verluste-sozial"><span class="ct">PPP: Gewinne privatisiert, Verluste sozialisiert</span><span class="neu">neu</span><span class="cf">ppp-gewinne-privat-verluste-sozial.html</span></a><a class="card" href="eu-lobbyismus-zahlen-fakten.html" data-s="lobbyismus in der eu - zahlen, fakten, mechanismen eu-lobbyismus-zahlen-fakten"><span class="ct">Lobbyismus in der EU – Zahlen, Fakten, Mechanismen</span><span class="neu">neu</span><span class="cf">eu-lobbyismus-zahlen-fakten.html</span></a><a class="card" href="eu-lobbyismus-exkurs-esg-management.html" data-s="warum manager mitmachen (esg) eu-lobbyismus-exkurs-esg-management"><span class="ct">Warum Manager mitmachen (ESG)</span><span class="neu">neu</span><span class="cf">eu-lobbyismus-exkurs-esg-management.html</span></a><a class="card" href="cui-bono-kriegswirtschaft.html" data-s="cui bono? wer an der aufruestung verdient cui-bono-kriegswirtschaft"><span class="ct">Cui bono? Wer an der Aufrüstung verdient</span><span class="neu">neu</span><span class="cf">cui-bono-kriegswirtschaft.html</span></a><a class="card" href="grossprojekte-strategische-kostenluege.html" data-s="grossprojekte: unfaehigkeit oder system? grossprojekte-strategische-kostenluege"><span class="ct">Großprojekte: Unfähigkeit oder System?</span><span class="neu">neu</span><span class="cf">grossprojekte-strategische-kostenluege.html</span></a><a class="card" href="superklasse-machtzirkel.html" data-s="superklasse &amp; machtzirkel superklasse-machtzirkel"><span class="ct">Superklasse &amp; Machtzirkel</span><span class="neu">neu</span><span class="cf">superklasse-machtzirkel.html</span></a><a class="card" href="bilderberg-vt-praxis.html" data-s="die bilderberg-konferenzen: vt und praxis bilderberg-vt-praxis"><span class="ct">Die Bilderberg-Konferenzen: VT und Praxis</span><span class="neu">neu</span><span class="cf">bilderberg-vt-praxis.html</span></a><a class="card" href="bevoelkerung.html" data-s="sie haben es uns gesagt - philanthropen &amp; die zahl bevoelkerung"><span class="ct">Sie haben es uns gesagt – Philanthropen &amp; die Zahl</span><span class="neu">neu</span><span class="cf">bevoelkerung.html</span></a><a class="card" href="der-unterzeichner.html" data-s="der unterzeichner der-unterzeichner"><span class="ct">Der Unterzeichner</span><span class="neu">neu</span><span class="cf">der-unterzeichner.html</span></a></div></section>
+</main></div></body></html>

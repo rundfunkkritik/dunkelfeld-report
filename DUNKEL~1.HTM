@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ===== TITEL & META · pro Artikel anpassen ===== -->
+  <title>ARTIKEL-TITEL — dunkelfeld.report</title>
+  <meta name="description" content="KURZE BESCHREIBUNG (1-2 Sätze, ca. 150 Zeichen).">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="ARTIKEL-TITEL">
+  <meta property="og:description" content="KURZE BESCHREIBUNG.">
+  <meta property="og:url" content="https://dunkelfeld.report/DATEINAME.html">
+
+  <!-- ===== Lokale Schriften (DSGVO). Kein Google Fonts! ===== -->
+  <link rel="stylesheet" href="/fonts.css">
+
+  <style>
+    :root {
+      --bg:        #09090b;   /* Seiten-Hintergrund (fast schwarz) */
+      --surface:   #111113;   /* Karten / Kästen */
+      --surface-2: #16161a;
+      --text:      #d7d7db;   /* Fließtext */
+      --heading:   #f4f4f5;   /* Überschriften */
+      --muted:     #8a8a92;   /* Nebentext, Labels */
+      --gold:      #e8c547;   /* Akzent */
+      --gold-dim:  #b89a2f;
+      --border:    #1f1f24;
+      --border-mid:#2a2a30;
+      --red:       #e5675b;   /* Warnung / Widerspruch */
+      --green:     #5cb87a;   /* Beleg / bestätigt */
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+      font-size: 1.18rem;            /* große, ruhige Leseschrift */
+      line-height: 1.75;
+      max-width: 720px;              /* optimale Zeilenlänge fürs Lesen */
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 6rem;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* --- Kopf --- */
+    .site-header {
+      display: flex; align-items: baseline; gap: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem; margin-bottom: 2rem;
+    }
+    .site-header a { color: var(--muted); text-decoration: none; }
+    .site-header .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); display: inline-block; }
+    .site-header .name { color: var(--heading); letter-spacing: 0.18em; }
+
+    /* --- Rubrik-Zeile --- */
+    .kicker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold);
+      border-left: 2px solid var(--gold); padding-left: 0.7rem;
+      margin-bottom: 1.1rem;
+    }
+
+    /* --- Überschriften --- */
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700; font-size: 2.15rem; line-height: 1.22;
+      color: var(--heading); margin-bottom: 1.2rem;
+    }
+    h1 em { font-style: italic; color: var(--gold); }
+    h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700; font-size: 1.5rem; color: var(--heading);
+      margin: 2.8rem 0 1rem; padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border-mid);
+    }
+    h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700; font-size: 1.18rem; color: var(--gold);
+      margin: 2rem 0 0.6rem;
+    }
+
+    p { margin-bottom: 1.15rem; }
+    a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--gold-dim); }
+    a:hover { color: #f2d968; }
+    strong { color: var(--heading); font-weight: 600; }
+
+    /* --- Lead / Anriss --- */
+    .intro {
+      font-size: 1.28rem; color: #c3c3c9; line-height: 1.65;
+      border-left: 3px solid var(--gold); padding-left: 1.1rem;
+      margin-bottom: 2.2rem;
+    }
+
+    /* --- Quellenhinweis-Kasten oben --- */
+    .quellstandard {
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 3px solid var(--green);
+      padding: 0.9rem 1.1rem; margin: 1.6rem 0;
+      font-size: 0.92rem; color: var(--muted); line-height: 1.6;
+    }
+    .quellstandard strong { color: var(--green); }
+
+    /* --- Aufzählung mit Gold-Strich --- */
+    ul { list-style: none; margin: 0 0 1.15rem; padding: 0; }
+    ul li { position: relative; padding: 0.25rem 0 0.25rem 1.4rem; }
+    ul li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+
+    /* --- Zitat --- */
+    .zitat {
+      border-left: 3px solid var(--gold); background: var(--surface);
+      padding: 1rem 1.4rem; margin: 1.8rem 0;
+    }
+    .zitat p { font-style: italic; color: #e6e6ea; margin-bottom: 0.5rem; }
+    .zitat .quelle {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
+      letter-spacing: 0.06em; color: var(--muted); font-style: normal;
+    }
+
+    /* --- Faktenkasten --- */
+    .fact-box {
+      background: var(--surface-2); border: 1px solid var(--border-mid);
+      border-left: 3px solid var(--gold); padding: 1.1rem 1.3rem; margin: 1.8rem 0;
+    }
+    .fact-box p:last-child { margin-bottom: 0; }
+
+    /* --- Quellen-Liste --- */
+    .quellen-box { border: 1px solid var(--border-mid); margin: 2rem 0; }
+    .quellen-label {
+      background: var(--surface); border-bottom: 1px solid var(--border-mid);
+      padding: 0.55rem 1.1rem; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dim);
+    }
+    .quellen-body { padding: 0.9rem 1.1rem; }
+    .quellen-body ul li { padding-left: 0; font-size: 0.92rem; color: var(--muted);
+      border-bottom: 1px solid var(--border); }
+    .quellen-body ul li::before { content: ''; }
+    .quellen-body ul li:last-child { border-bottom: none; }
+
+    /* --- Weiterlesen (Querverlinkung) --- */
+    .weiter { border-top: 1px solid var(--border-mid); margin-top: 3.5rem; padding-top: 1.8rem; }
+    .weiter h3 { color: var(--heading); font-style: normal; margin-bottom: 1.1rem; }
+    .weiter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 0.9rem; }
+    .weiter-link {
+      display: block; padding: 0.9rem 1.1rem; background: var(--surface);
+      border: 1px solid var(--border-mid); border-left: 3px solid var(--gold);
+      text-decoration: none; transition: border-color .15s, background .15s;
+    }
+    .weiter-link:hover { border-left-color: var(--heading); background: var(--surface-2); }
+    .weiter-link .wl-label { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; }
+    .weiter-link .wl-title { font-family: 'Crimson Pro', serif; font-size: 1.02rem; color: var(--heading); line-height: 1.4; }
+
+    /* --- Fußzeile --- */
+    .site-footer {
+      border-top: 1px solid var(--border); margin-top: 3.5rem; padding-top: 1.4rem;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; line-height: 1.9;
+      color: var(--muted); letter-spacing: 0.03em;
+    }
+    .site-footer a { color: var(--gold-dim); text-decoration: none; }
+    .site-footer a:hover { color: var(--gold); }
+    .site-footer .foot-nav { margin-bottom: 0.6rem; }
+    .site-footer .foot-nav a { margin-right: 0.9rem; }
+
+    /* --- Mobil: Lesbarkeit --- */
+    @media (max-width: 600px) {
+      body { font-size: 1.08rem; padding: 1.8rem 1.15rem 4.5rem; }
+      h1 { font-size: 1.7rem; }
+      h2 { font-size: 1.3rem; }
+      .intro { font-size: 1.15rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== KOPF ===== -->
+  <div class="site-header">
+    <span class="dot"></span>
+    <a href="index.html"><span class="name">DUNKELFELD.REPORT</span></a>
+    <span>· Fakten · Quellen · Dokumentation</span>
+  </div>
+
+  <!-- ===== RUBRIK ===== -->
+  <div class="kicker">Rubrik · Unterthema · Stand MONAT JAHR</div>
+
+  <!-- ===== ÜBERSCHRIFT (Gold-Akzent in <em>) ===== -->
+  <h1>Hauptüberschrift des Artikels: <em>der pointierte Teil</em></h1>
+
+  <!-- ===== LEAD ===== -->
+  <div class="intro">
+    Ein bis drei Sätze, die den dokumentierten Kern benennen — ohne Wertung, ohne Schlussfolgerung.
+  </div>
+
+  <!-- OPTIONAL: Quellstandard-Hinweis (passt zum dunkelfeld-Prinzip) -->
+  <div class="quellstandard">
+    <strong>Quellstandard:</strong> Ausschließlich Primärquellen — Gerichtsurteile,
+    Parlamentsprotokolle, Behördenberichte, peer-reviewte Studien. Keine Motive, keine Spekulation.
+  </div>
+
+  <!-- ===== FLIESSTEXT ===== -->
+  <h2>Erster Abschnitt</h2>
+  <p>Fließtext. Querverweis auf einen anderen Artikel so:
+     <a href="artikel-0XX-dateiname.html">verweisender Text</a>.</p>
+
+  <ul>
+    <li>Belegter Punkt eins.</li>
+    <li>Belegter Punkt zwei.</li>
+  </ul>
+
+  <!-- OPTIONAL: Zitat -->
+  <div class="zitat">
+    <p>„Wörtliches Zitat aus einer Primärquelle."</p>
+    <div class="quelle">Quelle · Dokument, Datum, Aktenzeichen</div>
+  </div>
+
+  <h2>Zweiter Abschnitt</h2>
+  <p>Weiterer Fließtext.</p>
+
+  <!-- OPTIONAL: Faktenkasten -->
+  <div class="fact-box">
+    <p><strong>Zahl / Fakt.</strong> Kurze, belegte Einordnung.</p>
+  </div>
+
+  <!-- OPTIONAL: Quellenverzeichnis -->
+  <div class="quellen-box">
+    <div class="quellen-label">Quellen</div>
+    <div class="quellen-body">
+      <ul>
+        <li>Quelle 1 – Titel, Herausgeber, Datum, ggf. <a href="#">Link</a></li>
+        <li>Quelle 2 – Titel, Herausgeber, Datum</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== WEITERLESEN (thematische Querverlinkung) ===== -->
+  <div class="weiter">
+    <h3>Weiterlesen</h3>
+    <div class="weiter-grid">
+      <a class="weiter-link" href="artikel-0XX-dateiname.html">
+        <div class="wl-label">Rubrik</div>
+        <div class="wl-title">Titel des verwandten Artikels</div>
+      </a>
+      <a class="weiter-link" href="dossier-XXX-dateiname.html">
+        <div class="wl-label">Dossier</div>
+        <div class="wl-title">Titel des verwandten Dossiers</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ===== FUSSZEILE (Pflichtangaben nicht entfernen) ===== -->
+  <footer class="site-footer">
+    <div class="foot-nav">
+      <a href="index.html">Start</a>
+      <a href="themen.html">Themen</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </div>
+    © 2026 dunkelfeld.report · Fakten · Quellen · Dokumentation — keine Schlussfolgerungen
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Holzhäcksler-Effekt: USAID zwischen Getöse und Bilanz | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --amber: #e8c547;
+    --box-bg: #1a1a2e;
+    --belegt: #4caf50;
+    --extrapolation: #ff9800;
+    --offen: #9e9e9e;
+    --widerlegt: #e84747;
+    --text: #e4e4e7;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0 1.2rem 4rem;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  header.masthead {
+    text-align: center;
+    padding: 2.5rem 0 1.5rem;
+    border-bottom: 1px solid #27272a;
+  }
+  header.masthead .brand {
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.15em;
+    color: var(--amber);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+  }
+  header.masthead .tagline {
+    font-family: 'Courier New', monospace;
+    color: #71717a;
+    font-size: 0.8rem;
+    margin-top: 0.4rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: #a1a1aa;
+    font-size: 0.85rem;
+    text-align: center;
+    margin: 1.2rem 0 0.5rem;
+  }
+  h1.title {
+    font-size: 1.9rem;
+    line-height: 1.3;
+    text-align: center;
+    margin: 0.8rem 0 0.3rem;
+    color: #fafafa;
+  }
+  h2.subtitle {
+    font-size: 1.15rem;
+    font-weight: normal;
+    font-style: italic;
+    text-align: center;
+    color: #a1a1aa;
+    margin: 0 0 2rem;
+  }
+  p { padding-bottom: 1.2rem; margin: 0; }
+  h3.section {
+    color: var(--amber);
+    font-family: 'Courier New', monospace;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-left: 3px solid var(--amber);
+    padding-left: 0.7rem;
+    margin: 2.5rem 0 1.2rem;
+  }
+  h4.subsection {
+    color: #fafafa;
+    font-size: 1.15rem;
+    margin: 1.5rem 0 0.8rem;
+  }
+
+  /* Tag badges */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(76,175,80,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag-extrapolation { background: rgba(255,152,0,0.15); color: var(--extrapolation); border: 1px solid var(--extrapolation); }
+  .tag-offen { background: rgba(158,158,158,0.15); color: var(--offen); border: 1px solid var(--offen); }
+  .tag-widerlegt { background: rgba(232,71,71,0.15); color: var(--widerlegt); border: 1px solid var(--widerlegt); text-decoration: line-through; }
+
+  /* Source box */
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 1.2rem 0 1.8rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #d4d4d8;
+  }
+  .source-box .label {
+    color: var(--amber);
+    display: block;
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.75rem;
+  }
+
+  /* Pull quote */
+  blockquote.pullquote {
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--amber);
+    border: none;
+    text-align: center;
+    margin: 2.5rem 0;
+    padding: 0 0.5rem;
+    line-height: 1.5;
+  }
+  blockquote.pullquote cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    font-style: normal;
+    color: #71717a;
+    margin-top: 0.8rem;
+  }
+
+  /* Stat grid */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .stat-card {
+    background: var(--box-bg);
+    border: 1px solid #27272a;
+    border-top: 3px solid var(--amber);
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-card .value {
+    font-size: 1.6rem;
+    color: var(--amber);
+    font-weight: bold;
+    display: block;
+  }
+  .stat-card .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: #a1a1aa;
+    margin-top: 0.4rem;
+    display: block;
+  }
+
+  /* Comparison table */
+  table.compare {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0 2rem;
+    font-size: 0.95rem;
+  }
+  table.compare th {
+    font-family: 'Courier New', monospace;
+    background: var(--box-bg);
+    color: var(--amber);
+    text-align: left;
+    padding: 0.7rem 0.8rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  table.compare td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid #27272a;
+    vertical-align: top;
+  }
+  table.compare tr:nth-child(odd) td { background: rgba(255,255,255,0.02); }
+
+  /* Timeline */
+  .timeline {
+    border-left: 2px solid #27272a;
+    margin: 1.5rem 0 2rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    position: relative;
+    padding-bottom: 1.5rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.86rem;
+    top: 0.3rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  /* Person card */
+  .person-card {
+    background: var(--box-bg);
+    border: 1px solid #27272a;
+    padding: 1.2rem;
+    margin: 1.5rem 0;
+  }
+  .person-card .name {
+    color: var(--amber);
+    font-size: 1.05rem;
+    font-weight: bold;
+    display: block;
+  }
+  .person-card .role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: #a1a1aa;
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+
+  ul.list, ol.list { padding-left: 1.4rem; margin: 0 0 1.2rem; }
+  ul.list li, ol.list li { padding-bottom: 0.5rem; }
+
+  .conclusion-box {
+    background: var(--box-bg);
+    border: 1px solid var(--amber);
+    padding: 1.5rem;
+    margin: 2.5rem 0;
+  }
+  .conclusion-box h4 {
+    color: var(--amber);
+    margin-top: 0;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+  }
+
+  footer.site-footer {
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #52525b;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+  }
+
+  .methodik {
+    font-size: 0.85rem;
+    color: #a1a1aa;
+    font-style: italic;
+    border-top: 1px solid #27272a;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="brand">dunkelfeld.report</div>
+    <div class="tagline">Analyse · Systemkritik · Quellenbasiert</div>
+  </header>
+
+  <div class="meta">Juli 2026 &nbsp;|&nbsp; Lesedauer: ca. 11 Minuten</div>
+  <h1 class="title">Der Holzhäcksler-Effekt</h1>
+  <h2 class="subtitle">USAID zwischen Getöse und Bilanz</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span>Am 3. Februar 2025 schrieb Elon Musk auf X einen Satz, der zum Symbol einer ganzen Ära wurde: <em>"We spent the weekend feeding USAID into the wood chipper."</em> Innerhalb weniger Wochen wurde eine 63 Jahre alte Behörde mit 10.000 Mitarbeitern und einem Jahresbudget von rund 43 Milliarden US-Dollar faktisch zerschlagen.</p>
+
+  <p>Die Rechtfertigung dafür war laut: Geldwäsche, Kondome in Gaza, Millionengehälter für Funktionäre, Zahlungen an Terrorgruppen. Was von diesem Getöse übrig bleibt, wenn man es mit Gerichtsakten, Prüfberichten und unabhängigen Faktenchecks abgleicht, ist Gegenstand dieses Artikels. Fakten und Quellen stehen nebeneinander — Bewertung bleibt bei der Leserin, dem Leser.</p>
+
+  <blockquote class="pullquote">
+    "We spent the weekend feeding USAID into the wood chipper."
+    <cite>— Elon Musk, X, 3. Februar 2025</cite>
+  </blockquote>
+
+  <h3 class="section">1. Was tatsächlich zerschlagen wurde</h3>
+
+  <p><span class="tag tag-belegt">BELEGT</span>Innerhalb weniger Tage wurden 60 der ranghöchsten Karrierebeamten von USAID beurlaubt, kurz darauf die überwiegende Mehrheit der übrigen rund 10.000 Mitarbeiter. Der Zugriff auf E-Mail- und interne Systeme wurde gekappt — teils ohne Zustimmung der eigenen politischen Führung der Behörde, wie der damalige oberste Gesundheitsbeamte der Behörde, Nicholas Enrich, in seinem Buch <em>"Into the Wood Chipper"</em> dokumentiert.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card"><span class="value">~10.000</span><span class="label">Mitarbeiter vor der Zerschlagung</span></div>
+    <div class="stat-card"><span class="value">43 Mrd. USD</span><span class="label">Budget FY 2023</span></div>
+    <div class="stat-card"><span class="value">130</span><span class="label">unterstützte Länder</span></div>
+    <div class="stat-card"><span class="value">230.000</span><span class="label">gelöschte Berichte/Studien im Archiv</span></div>
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span>Das "Development Experience Clearinghouse" — ein über Jahrzehnte aufgebautes Archiv mit rund 230.000 Berichten, Studien und Auswertungen — wurde eliminiert. Interne E-Mails wurden laut Enrich automatisch mit dem Vermerk "Sensitive But Unclassified" versehen — was Anfragen nach dem Freedom of Information Act erschwert hätte, die die Vorgänge um die Zerschlagung hätten aufklären können.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Nicholas Enrich: "Into the Wood Chipper: A Whistleblower's Account of How the Trump Administration Shredded USAID" (2026). Current Affairs, Interview mit Enrich, 2026. Axios: Berichterstattung zu Deposition-Anordnung, Feb. 2026.
+  </div>
+
+  <h3 class="section">2. Die Behauptungen, die das rechtfertigen sollten</h3>
+
+  <p>Parallel zur Zerschlagung häuften sich öffentliche Behauptungen über angebliche Missstände. Der Faktencheck im Einzelnen:</p>
+
+  <table class="compare">
+    <tr><th>Behauptung</th><th>Status</th></tr>
+    <tr><td>USAID habe 50 Mio. USD für Kondome in Gaza ausgegeben</td><td><span class="tag tag-widerlegt">WIDERLEGT</span>ohne jeden Beleg vorgebracht</td></tr>
+    <tr><td>USAID sei "Geldwäsche in linke Organisationen"</td><td><span class="tag tag-widerlegt">WIDERLEGT</span>Repost ohne Quellenangabe</td></tr>
+    <tr><td>Ex-USAID-Chefin Samantha Power habe 23 Mio. USD verdient</td><td><span class="tag tag-widerlegt">WIDERLEGT</span>belegtes Gehalt: 183.100 USD/Jahr</td></tr>
+    <tr><td>Mitarbeiter erhielten "Kickbacks", seien "Fraudsters"</td><td><span class="tag tag-offen">OFFEN</span>keine Namen, keine Fälle genannt</td></tr>
+    <tr><td>Treasury habe Zahlungen an Terrorgruppen autorisiert</td><td><span class="tag tag-offen">OFFEN</span>nie mit konkretem Fall unterlegt</td></tr>
+  </table>
+
+  <p><span class="tag tag-belegt">BELEGT</span>Musk selbst räumte im Weißen Haus ein: <em>"Some of the things that I say will be incorrect. Nobody's going to bat 1.000."</em> — als Reaktion auf die Nachfrage eines Reporters zur unbelegten Kondom-Behauptung.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Forbes: "The Biggest Hoaxes Spread By Elon Musk And DOGE, Debunked" (2025). FactCheck.org: "Sorting Out the Facts on 'Waste and Abuse' at USAID" (Feb. 2025).
+  </div>
+
+  <h3 class="section">3. Der Gegen-Check der eigenen Zahlen</h3>
+
+  <p><span class="tag tag-belegt">BELEGT</span>Auch die von DOGE selbst veröffentlichte "Wall of Receipts" hielt einer unabhängigen Prüfung nicht stand. Eine Wirtschaftsexpertin des Manhattan Institute, ehemalige Chefökonomin eines republikanischen Senators, kam nach eigener Prüfung zu folgendem Schluss:</p>
+
+  <blockquote class="pullquote">
+    "I have not found any legitimate evidence of fraud in the spending that Elon Musk has highlighted."
+    <cite>— Jessica Riedl, Manhattan Institute, PBS NewsHour</cite>
+  </blockquote>
+
+  <p>Konkrete Fehler in den eigenen "Savings"-Angaben, die von mehreren Medien unabhängig voneinander aufgedeckt wurden:</p>
+
+  <ul class="list">
+    <li>Ein USAID-Vertrag über 650 Mio. USD wurde <strong>dreifach</strong> in der Liste gezählt</li>
+    <li>Ein Social-Security-Vertrag wurde mit 232 Mio. USD statt korrekt 560.000 USD beziffert</li>
+    <li>Ein ICE-Vertrag wurde mit 8 Mrd. USD statt tatsächlich 8 Mio. USD angegeben — dabei handelte es sich zudem nur um eine Kreditlinie, nicht um tatsächlich ausgezahltes Geld</li>
+  </ul>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    PBS NewsHour: "A look at the misleading and incorrect claims on DOGE's 'wall of receipts'" (Feb. 2025). The New York Times, CBS News, The Intercept — jeweils zitierte Erstberichterstattung zu einzelnen Fehlern.
+  </div>
+
+  <h4 class="subsection">Was tatsächlich an fragwürdigen Mittelflüssen dokumentiert ist</h4>
+
+  <p><span class="tag tag-extrapolation">EXTRAPOLATION</span>Der einzige Fall mit belastbarer Substanz betrifft Afghanistan: Ein — mittlerweile aus dem Netz genommener — Bericht des Generalinspekteurs für den Wiederaufbau Afghanistans (SIGAR) hatte bereits 2023/24 unter der Vorgängerregierung festgestellt, dass rund 10,9 Mio. USD aus von USAID und dem Außenministerium finanzierten Hilfsorganisationen indirekt an die Taliban gelangt sein könnten. Dieser Fall war also vor DOGE bekannt — er wurde nicht durch die Zerschlagung "aufgedeckt".</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Forbes: "Musk Escalates Unproven USAID Claims In Fiery Posts" (2026), inkl. Verweis auf SIGAR-Bericht. USAID Office of Inspector General: Warnungen zu Afghanistan, 2023.
+  </div>
+
+  <h3 class="section">4. Macht ohne Mandat</h3>
+
+  <p><span class="tag tag-belegt">BELEGT</span>Im Februar 2026 ordnete US-Bundesrichter Theodore Chuang an, dass sowohl Musk als auch Beamte des Außenministeriums unter Eid zu ihrer Rolle bei der Zerschlagung aussagen müssen. Chuang begründete dies unter anderem damit, dass es "keine Alternative" gebe, da die Kläger — anonyme ehemalige USAID-Mitarbeiter — über Dokumente allein keine ausreichende Aufklärung erhalten könnten.</p>
+
+  <div class="person-card">
+    <span class="name">Theodore D. Chuang</span>
+    <span class="role">US-Bundesrichter, District of Maryland</span>
+    Verwies in früheren Urteilen bereits darauf, dass Musk Entscheidungen zur Zerschlagung von USAID traf, obwohl ihm dafür weder formale Autorität noch offizielle Genehmigung vorlag. Musk habe laut Gericht eine "führende Rolle" gespielt — unter anderem belegt durch Tweets, die Ereignissen vorausgingen, welche erst Tage später den offiziellen Entscheidungsweg durchliefen.
+  </div>
+
+  <p><span class="tag tag-offen">OFFEN</span>Juristen sind sich uneins, wie weit Musks tatsächliche Entscheidungsmacht formal reichte. Rechtswissenschaftler John Yoo argumentierte, die Einordnung Musks als bloßer "presidential advisor" könne ihm rechtliche Absicherung verschaffen; ein anderer Jurist, Josh Blackman, hielt dagegen, dass Musk keine substantielle eigene Autorität besessen habe, solange formal ein Regierungsbeamter den "Cancel"-Knopf drückte.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Axios: "Judge orders Musk to sit for deposition over DOGE, USAID shutdown" (Feb. 2026). Wikipedia (Sekundärquelle mit Primärverweisen): "Department of Government Efficiency" — Abschnitt zu Chuang-Urteilen.
+  </div>
+
+  <h3 class="section">5. Die Folgenabschätzung: Zahlen mit Vorsicht behandeln</h3>
+
+  <p>Hier ist die Quellenlage am stärksten umstritten — und am wichtigsten, sauber zu trennen.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-date">März 2025</span>
+      <span class="tag tag-extrapolation">EXTRAPOLATION</span>Eine im Lancet veröffentlichte Studie schätzt, der Wegfall der Ernährungshilfe für unterernährte Kinder in Ländern mit niedrigem/mittlerem Einkommen könnte 1 Million Kinder von Behandlung abschneiden — mit geschätzten 163.000 Kindstoten pro Jahr.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Juli 2025</span>
+      <span class="tag tag-extrapolation">EXTRAPOLATION</span>Eine weitere Lancet-Studie beziffert die möglichen Folgen bis 2030 auf über 4,5 Mio. tote Kinder und mehr als 14 Mio. Tote insgesamt.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2025/26</span>
+      <span class="tag tag-belegt">BELEGT</span>Zimbabwes Gesundheitsministerium meldete einen Anstieg der Malariafälle um 180 % und der malariabedingten Todesfälle um 218 % (von 45 auf 143) im Jahresvergleich der ersten vier Monate 2025. USAID hatte 2024 rund 270 Mio. USD für Gesundheits- und Landwirtschaftsprogramme in Zimbabwe bereitgestellt.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Juni 2026</span>
+      <span class="tag tag-belegt">BELEGT</span>Musk auf X: <em>"They cannot cite a single name of someone who died out of the 'millions' they falsely claim have died. Not a single name!"</em> NYT-Kolumnist Nicholas Kristof antwortete postwendend mit vier konkreten Namen, darunter ein 8-jähriges Mädchen in Südsudan, das laut Kristof durch den Wegfall HIV-Medikamente verlor.
+    </div>
+  </div>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Forbes: "Musk Escalates Unproven USAID Claims In Fiery Posts—As Studies Link DOGE Cuts To Child Deaths" (Juni 2026). Lancet-Studien (März/Juli 2025). Refugees International: Rückgang der US-Humanitärhilfe von 14 auf 3,7 Mrd. USD 2024–2025.
+  </div>
+
+  <p><span class="tag tag-offen">OFFEN</span>Die genaue Kausalkette zwischen dem Wegfall einzelner Programme und konkreten Todesfällen lässt sich epidemiologisch nur modellhaft schätzen, nicht individuell beweisen — das gilt in beide Richtungen: weder für die Millionen-Schätzungen noch für Musks Gegenbehauptung, wonach die Sterblichkeit in Afrika sogar gesunken sei. Für letztere Behauptung fand sich in der Recherche keine unterstützende Evidenz; die verfügbaren Einzeldaten (z. B. Zimbabwe) zeigen das Gegenteil.</p>
+
+  <h3 class="section">6. Bilanz: Wer hatte am Ende recht?</h3>
+
+  <div class="stat-grid">
+    <div class="stat-card"><span class="value">215 Mrd. USD</span><span class="label">von DOGE beanspruchte Einsparungen</span></div>
+    <div class="stat-card"><span class="value">~2 Mrd. USD</span><span class="label">von unabhängigen Ökonomen bestätigte Einsparungen (Stand Feb. 2025)</span></div>
+    <div class="stat-card"><span class="value">200.000</span><span class="label">Bundesangestellte verließen ihre Stellen</span></div>
+    <div class="stat-card"><span class="value">4. Juli 2026</span><span class="label">selbstgesetztes Enddatum von DOGE</span></div>
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span>DOGE endete zum selbstgesetzten Termin 4. Juli 2026. Musk selbst bilanzierte das Projekt zuvor nur als <em>"a little bit successful"</em> und erklärte, er würde ein solches Projekt nicht wieder übernehmen. Das ursprüngliche Versprechen von 2 Billionen USD Einsparung wurde um Größenordnungen verfehlt.</p>
+
+  <div class="conclusion-box">
+    <h4>Fazit</h4>
+    <p style="padding-bottom:0;">Kein Sturm im Wasserglas — sondern zwei getrennte Phänomene, die im öffentlichen Getöse verschmolzen wurden. Die Zerschlagung selbst ist gerichtlich dokumentiert und in ihrer Kompetenzüberschreitung belegt. Die angeblich "aufgedeckten" bizarren Geldflüsse dagegen sind größtenteils unbelegte Behauptungen, die einer Prüfung nicht standhielten. Das Getöse war lauter als die tatsächliche Beweislage für Betrug — während die dokumentierten Konsequenzen der Zerschlagung selbst leiser verhandelt wurden, als es ihrem Ausmaß entspricht.</p>
+  </div>
+
+  <div class="methodik">
+    Hinweis zur Methodik: Alle Angaben in diesem Artikel basieren auf öffentlich zugänglichen Quellen — Gerichtsdokumenten, Studien in Fachjournalen, offiziellen Statements und Berichterstattung etablierter, unabhängig voneinander recherchierender Medien. Die Klassifizierung BELEGT / EXTRAPOLATION / OFFEN / WIDERLEGT folgt dem Grundsatz: Keine Zuschreibung von Absicht ohne dokumentarischen Beleg. Leserinnen und Leser sind ausdrücklich zur eigenständigen Prüfung der genannten Quellen eingeladen.
+  </div>
+
+  <footer class="site-footer">
+    dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.
+  </footer>
+
+</div>
+</body>
+</html>

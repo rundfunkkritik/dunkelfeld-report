@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Chatkontrolle: Wem nützt der Ausnahmezustand?</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap');
+
+  :root {
+    --bg: #0a0a0c;
+    --bg-panel: #131316;
+    --text: #d8d8dc;
+    --text-dim: #85858c;
+    --accent: #c8102e;
+    --accent-dim: #7a0d1f;
+    --line: #2a2a30;
+    --warn: #e0a000;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+  }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+  }
+
+  .kicker {
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    font-weight: 800;
+    color: #f2f2f2;
+    margin: 0 0 20px;
+  }
+
+  .lede {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    border-left: 3px solid var(--accent);
+    padding-left: 18px;
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    color: #f2f2f2;
+    margin-top: 52px;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  h2 .num {
+    color: var(--accent);
+    margin-right: 10px;
+  }
+
+  p { margin: 0 0 18px; }
+
+  a { color: var(--warn); text-decoration: none; border-bottom: 1px dotted var(--warn); }
+
+  .pullquote {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #f2f2f2;
+    border-left: 4px solid var(--accent);
+    padding: 6px 0 6px 22px;
+    margin: 36px 0;
+  }
+
+  .factbox, .dangerbox, .fairness {
+    border-radius: 4px;
+    padding: 22px 24px;
+    margin: 30px 0;
+    font-size: 0.95rem;
+  }
+
+  .factbox {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-left: 4px solid #3d8bfd;
+  }
+  .factbox .label { color: #3d8bfd; font-weight: 700; text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.1em; margin-bottom: 10px; }
+
+  .dangerbox {
+    background: #1a0e0e;
+    border: 1px solid var(--accent-dim);
+    border-left: 4px solid var(--accent);
+  }
+  .dangerbox .label { color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.1em; margin-bottom: 10px; }
+
+  .fairness {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--warn);
+  }
+  .fairness .label { color: var(--warn); font-weight: 700; text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.1em; margin-bottom: 10px; }
+
+  ul { margin: 0 0 10px; padding-left: 22px; }
+  li { margin-bottom: 8px; }
+
+  .divider { display: flex; align-items: center; gap: 12px; margin: 48px 0; }
+  .divider svg { flex-shrink: 0; }
+  .divider span { color: var(--text-dim); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .divider .rule { flex: 1; height: 1px; background: var(--line); }
+
+  .sources {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 0.82rem;
+    color: var(--text-dim);
+  }
+  .sources .label { color: var(--text); font-weight: 700; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; }
+
+  .cross-ref {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">Cui Bono · Überwachung</div>
+  <h1>Chatkontrolle: Wem nützt der Ausnahmezustand?</h1>
+  <p class="lede">
+    Zwei Ablehnungen, ein Verfahrenstrick, ein Beschluss. Am 9. Juli 2026 hat das EU-Parlament die Chatkontrolle 1.0 gegen den erkennbaren Mehrheitswillen der anwesenden Abgeordneten reaktiviert. Interessant wird die Geschichte nicht bei der Abstimmung selbst — sondern bei der Frage, wer in den Monaten davor am lautesten dafür geworben hat, wer trotz fehlender Rechtsgrundlage einfach weitergemacht hat, und wer am Ende die Rechnung zahlt.
+  </p>
+
+  <h2><span class="num">01</span>Wer verdient daran?</h2>
+  <p>
+    Die offizielle Begründung für die Chatkontrolle ist der Schutz von Kindern vor sexualisierter Gewalt im Netz — ein Ziel, das niemand ernsthaft bestreitet. Weniger bekannt ist, wer im Hintergrund für die Verlängerung lobbyiert hat. Nach Recherchen des Bürgerrechtlers und ehemaligen EU-Abgeordneten Patrick Breyer wurden Parlamentarier in den entscheidenden Tagen gezielt von der Tech-Industrie-Lobbyorganisation DOT Europe sowie von bestimmten Kinderschutzorganisationen mit der Warnung vor einem angeblich "rechtsfreien Raum" unter Druck gesetzt.
+  </p>
+  <p>
+    Zentral dabei: die US-Organisation Thorn, die selbst Scan-Software für genau diesen Zweck verkauft und laut Breyers Angaben hohe sechsstellige Summen für Lobbyarbeit in Brüssel aufwendet. Wer eine Verordnung mitschreibt, die den eigenen Kunden — den Plattformbetreibern — den Einsatz der eigenen Software vorschreibt oder nahelegt, hat ein handfestes kommerzielles Interesse an deren Fortbestand.
+  </p>
+
+  <div class="factbox">
+    <div class="label">Faktbox — Was die Zahlen zeigen</div>
+    <ul>
+      <li>Nach BKA-Angaben ist fast die Hälfte aller aus den USA übermittelten Verdachtsmeldungen strafrechtlich irrelevant.</li>
+      <li>Rund 99 Prozent der Meta-Meldungen betreffen bereits bekanntes, längst erfasstes Material — keine neuen Taten.</li>
+      <li>Über 60 Prozent aller Verdachtsmeldungen stammen laut EU-Zahlen ohnehin aus dem Scannen öffentlicher Posts und Cloud-Speicher, nicht aus privaten Chats.</li>
+      <li>Das BKA registrierte nach dem Auslaufen der Verordnung im April 2026 keinen Einbruch bei den Verdachtsmeldungen.</li>
+    </ul>
+  </div>
+
+  <p class="pullquote">
+    Wer die Datenmenge mit Wirksamkeit verwechselt, verkauft Symbolpolitik als Kinderschutz.
+  </p>
+
+  <h2><span class="num">02</span>Scannen ohne Mandat — Big Tech ignoriert das Parlament</h2>
+  <p>
+    Als die Übergangsregelung am 3. April 2026 auslief, hätte die Massenscannerei privater Kommunikation eigentlich enden müssen. Google, Meta, Microsoft und Snapchat erklärten jedoch bereits am 4. April gemeinsam, ihre "freiwilligen Maßnahmen" ungeachtet der fehlenden Rechtsgrundlage fortzusetzen. Wie genau, ließen die Konzerne offen.
+  </p>
+  <p>
+    Der Vorgang zeigt eine bemerkenswerte Asymmetrie: Ein demokratisch gewähltes Parlament lehnt eine Überwachungsmaßnahme zweimal ab — vier US-Konzerne erklären öffentlich, sich daran nicht gebunden zu fühlen, und tun es einfach trotzdem. Über die tatsächliche Kontrolle dieser fortgesetzten Praxis ist bislang wenig bekannt.
+  </p>
+
+  <h2><span class="num">03</span>Die Verschlüsselungs-Lücke</h2>
+  <p>
+    Ein Änderungsantrag der liberalen Renew-Fraktion, der Ende-zu-Ende-verschlüsselte Dienste wie Signal, Threema oder WhatsApp-Verschlüsselung von den Scans ausnimmt, wurde in der Abstimmung angenommen. Wie diese Ausnahme technisch sauber umgesetzt werden soll, ist bislang nicht geklärt.
+  </p>
+
+  <div class="dangerbox">
+    <div class="label">Dangerbox — Warum das kein Detail ist</div>
+    <p style="margin-bottom:0;">
+      Die von der EU-Kommission favorisierte dauerhafte Lösung setzt auf sogenanntes Client-Side-Scanning: Inhalte werden direkt auf dem Gerät geprüft, bevor sie verschlüsselt werden. Technisch bedeutet das: Die Verschlüsselung selbst bleibt zwar intakt — aber der Inhalt wird vorher gelesen. Einmal als Standard etabliert, ist der Unterschied zwischen "verschlüsselt" und "geschützt" nur noch semantisch. Genau diese Architektur steht im Zentrum der parallel laufenden Verhandlungen zur permanenten CSA-Verordnung — der "Chatkontrolle 2.0".
+    </p>
+  </div>
+
+  <h2><span class="num">04</span>Der Verfahrenstrick — wer kontrolliert das Verfahren, kontrolliert das Ergebnis</h2>
+  <p>
+    Im März hatte das Parlament die Verlängerung mit 311 zu 228 Stimmen klar abgelehnt. Parlamentspräsidentin Roberta Metsola (EVP) setzte dennoch, unterstützt von Rat und Kommission, einen Dringlichkeitsantrag durch, der eine dritte Abstimmung ermöglichte — diesmal unter Bedingungen, die eine absolute statt eine einfache Mehrheit zur Ablehnung verlangten. Diplomaten bezeichneten den Vorgang laut Berichten als "beispiellos", die zuständige Berichterstatterin selbst warnte vor einem "unlauteren Manöver".
+  </p>
+  <p>
+    Am 9. Juli, dem letzten Sitzungstag vor der Sommerpause — wenn ein Teil der Abgeordneten bereits im Urlaubsmodus ist —, stimmten 314 Abgeordnete für den Ratstext, 276 dagegen. Für ein endgültiges Aus wären 360 Gegenstimmen nötig gewesen. Die Mehrheit der im Saal Anwesenden votierte gegen die Vorlage — durchgesetzt wurde sie trotzdem, weil das Verfahren die Beweislast umkehrt.
+  </p>
+  <p>
+    Auch die Rolle der Bundesregierung wirft Fragen auf: In Berlin wurde wiederholt betont, anlasslose Chatkontrolle sei in einem Rechtsstaat "ein absolutes Tabu" — im Rat der EU stimmte die Bundesregierung dem Eilverfahren dennoch zu. Italien ging einen ähnlichen Weg: Rom warnte in einer offiziellen Erklärung scharf vor Massenüberwachung und Verschlüsselungsgefährdung — und stimmte dem Text trotzdem zu.
+  </p>
+
+  <div class="cross-ref">
+    → Zum Muster von Verfahrenstricks gegen erkennbare Mehrheiten siehe unsere Serie "Wer kontrolliert wen?" (KIVI, LFM NRW, GFF-Gutachten).
+  </div>
+
+  <p style="margin-top:24px;">
+    Auf juristischer Ebene regt sich bereits Widerstand: Der Rechtsanwalt Martin Weigele reichte am 3. Juli 2026 eine Verfassungsbeschwerde beim Bundesverfassungsgericht gegen die Mitwirkung der Bundesregierung an der Wiederbelebung der Chatkontrolle ein. Sein Argument: Die "freiwilligen" Scans seien de facto nicht freiwillig, weil der Staat den Anbietern die Durchsuchung privater Nachrichten ermöglicht — die Überwachung werde lediglich ausgelagert.
+  </p>
+
+  <h2><span class="num">05</span>Chatkontrolle 2.0 — das eigentliche Ziel</h2>
+  <p>
+    Die Abstimmung vom 9. Juli betrifft nur die befristete Übergangsregelung. Parallel verhandeln Parlament, Rat und Kommission über eine dauerhafte CSA-Verordnung, die eine verpflichtende statt freiwillige Überwachung vorsehen könnte. Genau hier liegt der eigentliche Einsatz: Anders als bei "1.0" ginge es künftig nicht mehr um eine zeitlich befristete Ausnahme, sondern um einen dauerhaften rechtlichen Rahmen.
+  </p>
+  <p>
+    Deutschland positionierte sich im Oktober 2025 offiziell gegen eine verpflichtende Lösung. Ob diese Linie den Trilog übersteht, nachdem dieselbe Regierung dem Eilverfahren zur "1.0"-Version bereits zugestimmt hat, bleibt abzuwarten.
+  </p>
+
+  <div class="fairness">
+    <div class="label">Fairnessbox — Die Gegenposition</div>
+    <p style="margin-bottom:10px;">
+      Befürworter der Regelung — darunter Teile der EVP-Fraktion, die Innenkommission sowie einige Kinderschutzorganisationen — argumentieren, ein Auslaufen der Ausnahmeregelung schaffe eine "Regelungslücke", die Ermittler blind mache, solange keine dauerhafte Lösung steht. Sie verweisen darauf, dass auch bekanntes Material aktiv gemeldet und entfernt werden müsse, um Weiterverbreitung zu verhindern, und dass jede einzelne verhinderte Verbreitung zählt.
+    </p>
+    <p style="margin-bottom:0;">
+      Kritiker wie Breyer halten dem entgegen, dass das Scannen öffentlicher Posts, gehosteter Dateien und nutzerbasierte Meldungen auch ohne die Ausnahmeregelung uneingeschränkt weiterlaufen — die eigentliche Lücke betreffe nur private Kommunikation, deren Massenscan bislang keinen nachweisbaren Effekt auf laufende Missbrauchsfälle gezeigt habe.
+    </p>
+  </div>
+
+  <div class="divider">
+    <span>Fazit</span>
+    <div class="rule"></div>
+  </div>
+
+  <p>
+    Am Ende bleibt ein Muster, das sich wiederholt: Eine Maßnahme mit unbestreitbar legitimem Ziel wird zum Vehikel für Interessen, die mit diesem Ziel nur lose verbunden sind — kommerzielle Interessen von Scan-Software-Anbietern, die Bequemlichkeit von Plattformkonzernen, die sich ohnehin nicht an ablehnende Parlamentsvoten halten, und ein Verfahrensmechanismus, der es einer Institution erlaubt, eine bereits gefallene demokratische Entscheidung so lange neu aufzurollen, bis das gewünschte Ergebnis erreicht ist. Die eigentliche Frage lautet nicht, ob Kinderschutz wichtig ist. Sondern: Warum braucht ein derart unstrittiges Ziel einen derart umstrittenen Weg dorthin?
+  </p>
+
+  <div class="sources">
+    <div class="label">Quellen</div>
+    netzpolitik.org (07.07. &amp; 09.07.2026) · heise online (09.07.2026) · tarnkappe.info (05.07.2026) · journalistenwatch.com (07.07.2026) · Dr. Web Fachportal (07.07.2026) · inside-digital.de (08.04.2026) · patrick-breyer.de (Pressemitteilungen 2026) · Bundeskriminalamt (Statistiken, zitiert nach o.g. Quellen)
+  </div>
+
+</div>
+</body>
+</html>

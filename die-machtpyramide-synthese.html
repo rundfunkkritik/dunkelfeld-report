@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Die Machtpyramide: Fünf Fälle, ein Bauplan | dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b; color: #e4e4e7; font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem; line-height: 1.8; padding: 2rem 1rem 5rem;
+  }
+  .container { max-width: 720px; margin: 0 auto; }
+  .meta {
+    font-family: 'Courier New', monospace; color: #71717a; font-size: 0.85rem;
+    letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1rem;
+  }
+  h1 { font-size: 2.1rem; line-height: 1.25; color: #f4f4f5; margin-bottom: 0.5rem; }
+  .subtitle { color: #a1a1aa; font-size: 1.2rem; font-style: italic; margin-bottom: 2rem; }
+  h2 {
+    color: #e8c547; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem;
+    border-bottom: 1px solid #27272a; padding-bottom: 0.5rem;
+  }
+  h3 { color: #f4f4f5; font-size: 1.15rem; margin-top: 1.8rem; margin-bottom: 0.8rem; }
+  p { padding-bottom: 1.2rem; }
+  strong { color: #f4f4f5; }
+  .lead {
+    font-size: 1.2rem; color: #d4d4d8; border-left: 3px solid #e8c547;
+    padding-left: 1.2rem; margin-bottom: 2rem;
+  }
+  .tag {
+    display: inline-block; font-family: 'Courier New', monospace; font-size: 0.7rem;
+    font-weight: bold; letter-spacing: 0.05em; padding: 0.15rem 0.5rem; border-radius: 3px;
+    margin-right: 0.4rem; vertical-align: middle;
+  }
+  .tag-belegt { background: #14532d; color: #86efac; }
+  .tag-extrapolation { background: #713f12; color: #fde68a; }
+  .tag-offen { background: #1e3a5f; color: #93c5fd; }
+
+  /* Pyramid visual built in pure CSS */
+  .pyramid { margin: 2.5rem 0 3rem; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .pyramid-layer {
+    position: relative;
+    background: #1a1a2e;
+    border: 1px solid #3f3f46;
+    border-top: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    text-align: center;
+    border-radius: 3px;
+  }
+  .pyramid-layer .layer-title {
+    font-family: 'Courier New', monospace; color: #e8c547; font-size: 0.8rem;
+    text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem;
+  }
+  .pyramid-layer .layer-desc { font-size: 0.92rem; color: #d4d4d8; line-height: 1.5; }
+  .p1 { width: 100%; }
+  .p2 { width: 84%; }
+  .p3 { width: 66%; }
+  .p4 { width: 46%; background: #241a10; border-top-color: #f4d576; }
+  .p4 .layer-title { color: #f4d576; }
+
+  .source-box {
+    background: #1a1a2e; border-left: 3px solid #e8c547; padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0; border-radius: 4px; font-size: 0.95rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace; font-size: 0.75rem; color: #e8c547;
+    text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; display: block;
+  }
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2rem; font-size: 0.92rem; }
+  th, td { text-align: left; padding: 0.55rem 0.7rem; border-bottom: 1px solid #27272a; vertical-align: top; }
+  th { font-family: 'Courier New', monospace; font-size: 0.72rem; text-transform: uppercase; color: #e8c547; letter-spacing: 0.05em; }
+  .closing-questions { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #27272a; }
+  .closing-questions p { font-style: italic; color: #a1a1aa; }
+  .footer-note {
+    margin-top: 3rem; font-family: 'Courier New', monospace; font-size: 0.8rem; color: #52525b;
+    border-top: 1px solid #27272a; padding-top: 1.5rem;
+  }
+  a { color: #e8c547; }
+  .series-nav {
+    font-family: 'Courier New', monospace; font-size: 0.85rem; color: #71717a;
+    margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid #27272a;
+  }
+  .series-nav span { color: #e8c547; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="series-nav">
+    Serie: Infrastruktur der Einflussnahme &mdash; Teil 6 (Abschluss) &middot; <span>Die Machtpyramide</span>
+  </div>
+
+  <div class="meta">dunkelfeld.report &middot; Hidden in Plain Sight &middot; Juli 2026</div>
+
+  <h1>Die Machtpyramide: Fünf Fälle, ein Bauplan</h1>
+  <div class="subtitle">Arabella Advisors, Bertelsmann, Quandt/Schwarz/Albrecht, Bosch/VW/KENFO und die deutschen Parteistiftungen — auf den ersten Blick fünf getrennte Geschichten. Zusammengelegt ergeben sie einen einzigen, wiederkehrenden Bauplan.</div>
+
+  <p class="lead">Diese Serie hat fünf scheinbar unabhängige Fälle untersucht: ein US-Dark-Money-Netzwerk, eine deutsche Medienstiftung, drei Familienimperien des Einzelhandels und der Automobilindustrie, einen weiteren Industriekonzern samt Staatsfonds, und schließlich die staatliche Finanzierung politischer Bildungsarbeit. Legt man alle fünf übereinander, verschwindet der Eindruck von Zufälligkeit. Es bleibt ein dreistufiger Bauplan — vom Kapital zur Kontrolle zum öffentlichen Diskurs.</p>
+
+  <h2>Die drei Ebenen</h2>
+
+  <div class="pyramid">
+    <div class="pyramid-layer p1">
+      <div class="layer-title">Ebene 1 &middot; Kapitalbasis</div>
+      <div class="layer-desc">Milliardenvermögen in Unternehmen: Bertelsmann SE, Schwarz-Gruppe (Lidl/Kaufland), Aldi Nord/Süd, BMW, Robert Bosch GmbH, Volkswagen. Erwirtschaftet im operativen Geschäft, oft über Generationen akkumuliert.</div>
+    </div>
+    <div class="pyramid-layer p2">
+      <div class="layer-title">Ebene 2 &middot; Rechtliche Entkopplung</div>
+      <div class="layer-desc">Stiftungs- und Treuhandkonstruktionen trennen Kapitalbesitz von Stimmrecht (Bertelsmann, Schwarz, Bosch); Sondergesetze sichern staatlichen Einfluss unabhängig vom Kapitalanteil (VW-Gesetz); der Staat selbst wird zum größten Stiftungsträger (KENFO). Ergebnis: Kontrolle wird von Eigentum abgekoppelt und in wenigen Händen konzentriert.</div>
+    </div>
+    <div class="pyramid-layer p3">
+      <div class="layer-title">Ebene 3 &middot; Institutionalisierter Einfluss</div>
+      <div class="layer-desc">Aus den Kapitalerträgen finanzierte Stiftungsarbeit wirkt direkt in Politik und Gesellschaft: der Bertelsmann-Bürgerrat berät ein Bundesministerium zu Desinformationspolitik; die Parteistiftungen erhalten über 687 Mio. € Steuergeld jährlich für politische Bildungsarbeit weltweit; Arabella Advisors bündelt in den USA hunderte Millionen Dollar für koordinierte Advocacy-Kampagnen.</div>
+    </div>
+    <div class="pyramid-layer p4">
+      <div class="layer-title">Spitze &middot; Öffentlicher Diskurs</div>
+      <div class="layer-desc">Politikempfehlungen, Deutungsrahmen, mediale Reichweite</div>
+    </div>
+  </div>
+
+  <h2>Die fünf Fälle im direkten Vergleich</h2>
+
+  <table>
+    <tr><th>Fall</th><th>Ebene-2-Mechanismus</th><th>Ebene-3-Wirkung</th></tr>
+    <tr><td>Arabella Advisors</td><td>Fiscal-Sponsorship-Netzwerk, 2025 zu Sunflower Services/Vital Impact restrukturiert</td><td>Koordinierte politische Kampagnen in den USA ohne einheitliche Dachmarke</td></tr>
+    <tr><td>Bertelsmann-Stiftung</td><td>80,9% Kapital bei Stiftungen, 100% Stimmrecht bei privater BVG</td><td>Bürgerrat "Forum gegen Fakes" berät das Bundesinnenministerium</td></tr>
+    <tr><td>Schwarz-Gruppe</td><td>99,9% Kapital bei Stiftung, 100% Stimmrecht bei Treuhand-KG</td><td>Milliardeninvestition in KI-Infrastruktur (IPAI Heilbronn)</td></tr>
+    <tr><td>Robert Bosch GmbH</td><td>94% Kapital bei Stiftung (0% Stimmrecht), 93,2% Stimmrecht bei 0,01%-Treuhand</td><td>Größte gemeinnützige Unternehmensstiftung Deutschlands, 2,7 Mrd. € seit 1964</td></tr>
+    <tr><td>VW / Land Niedersachsen</td><td>VW-Gesetz sichert 20%-Stimmanteil ein faktisches Veto (80%-Mehrheitsklausel)</td><td>Staatlicher Einfluss auf Standort- und Beschäftigungspolitik eines Weltkonzerns</td></tr>
+    <tr><td>Parteistiftungen</td><td>StiftFinG regelt Zugang zu Steuermitteln über Drei-Perioden-Klausel + FDGO-Prüfung</td><td>687 Mio. €/Jahr politische Bildungsarbeit; ein Akteur strukturell ausgeschlossen (DES/AfD)</td></tr>
+  </table>
+
+  <div class="source-box">
+    <span class="label">Beleg-vor-Motiv-Prinzip: Was die Pyramide zeigt — und was nicht</span>
+    Die Pyramide beschreibt einen strukturellen Mechanismus, keine Verschwörung: In keinem der fünf Fälle handelt es sich um eine zentral koordinierte Absprache zwischen den Akteuren. Bertelsmann, Schwarz, Bosch, die Familie Albrecht und die sechs Parteistiftungen verfolgen jeweils eigene, unabhängige Interessen und haben nachweislich keine gemeinsame Führung. Was diese Serie zeigt, ist ein wiederkehrendes <em>rechtliches Muster</em>: Die Trennung von Kapitalbesitz und Entscheidungsmacht lässt sich in Deutschland auf vielfältige Weise herstellen (Stiftung & Co. KG, Industrietreuhand, Sondergesetz, StiftFinG-Kriterien) — und dieses Muster wiederholt sich unabhängig von Branche, politischer Ausrichtung oder Rechtsform auffällig oft.
+  </div>
+
+  <h2>Was noch offen ist</h2>
+  <p><span class="tag tag-offen">OFFEN</span> Diese Serie hat sich auf dokumentierte Struktur beschränkt. Offen bleiben unter anderem: eine systematische Auswertung der Parteispenden von Quandt/Klatten; eine detaillierte Analyse der NRW-Stiftungsrechtsreform von 2005; und die Frage, ob und wie die 39 nicht-gemeinnützigen Dresdner Stiftungen der Schwarz-Gruppe tatsächlich operieren. Diese Punkte eignen sich für eigenständige Vertiefungsartikel.</p>
+
+  <div class="closing-questions">
+    <p><em>Ist die wiederkehrende Trennung von Kapitalbesitz und Stimmrecht ein spezifisch deutsches Phänomen des Stiftungs- und Gesellschaftsrechts, oder findet sich dasselbe Muster in vergleichbarer Form auch in anderen Ländern?</em></p>
+    <p><em>Wenn Kontrolle systematisch von Eigentum entkoppelt werden kann — wer genau ist dann noch Adressat demokratischer und öffentlicher Rechenschaftspflicht?</em></p>
+    <p><em>Welche der in dieser Serie dokumentierten Konstruktionen ließen sich durch eine Reform des deutschen Stiftungs- oder Gesellschaftsrechts wirksam begrenzen, ohne legitime gemeinnützige Arbeit zu beschädigen?</em></p>
+  </div>
+
+  <div class="footer-note">
+    dunkelfeld.report &middot; Serie: Infrastruktur der Einflussnahme, Teil 6 (Abschluss) &middot; Slug: die-machtpyramide-synthese &middot; Diese Serie fasst zusammen: arabella-advisors-dark-money, bertelsmann-stiftung-machtarchitektur, familienstiftungen-quandt-schwarz-albrecht, bosch-vw-kenfo-machtarchitektur, parteistiftungen-staatsfinanzierung-und-der-afd-fall
+  </div>
+
+</div>
+</body>
+</html>

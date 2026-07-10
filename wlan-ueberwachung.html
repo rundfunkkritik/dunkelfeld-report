@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Router als Auge – Wie WLAN zur Überwachungsinfrastruktur wird | dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .meta a {
+    color: #e8c547;
+    text-decoration: none;
+    border-bottom: 1px dotted #e8c547;
+  }
+  h1 {
+    font-size: 2rem;
+    line-height: 1.3;
+    color: #f4f4f5;
+    margin: 0 0 0.5rem;
+    font-weight: normal;
+  }
+  .subtitle {
+    color: #a1a1aa;
+    font-size: 1.15rem;
+    font-style: italic;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+  h2 {
+    color: #e8c547;
+    font-size: 1.35rem;
+    font-weight: normal;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 0.5rem;
+  }
+  p {
+    padding-bottom: 1.2rem;
+    margin: 0;
+  }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.5rem;
+    display: inline-block;
+  }
+  .tag-belegt { background: #14532d; color: #86efac; }
+  .tag-extrapolation { background: #713f12; color: #fde68a; }
+  .tag-offen { background: #1e3a5f; color: #93c5fd; }
+  .tag-vt { background: #450a0a; color: #fca5a5; }
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #e8c547;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+  .source-box p { padding-bottom: 0.6rem; }
+  .source-box p:last-child { padding-bottom: 0; }
+  .source-box a { color: #e8c547; }
+  blockquote {
+    border-left: 3px solid #52525b;
+    margin: 1.5rem 0;
+    padding: 0.2rem 0 0.2rem 1.5rem;
+    color: #d4d4d8;
+    font-style: italic;
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-style: italic;
+    color: #a1a1aa;
+  }
+  .closing p { padding-bottom: 1rem; }
+  .footer-nav {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+  }
+  .footer-nav a { color: #e8c547; text-decoration: none; }
+  a { color: #e8c547; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="meta">dunkelfeld.report · Hidden in Plain Sight · Infrastruktur der Kontrolle</div>
+  <h1>Der Router als Auge</h1>
+  <div class="subtitle">Wie ein Feature namens WiFi-Sensing das eigene WLAN in ein Instrument zur Personenerkennung verwandelt — beworben von den Herstellern selbst, ohne dass ein Gerät dafür benötigt wird.</div>
+
+  <p><span class="tag tag-belegt">BELEGT</span>Die Deutsche Telekom hat im Februar 2025 eine Technologie namens WiFi-Sensing vorgestellt, die zukünftig in WLAN-Routern der Hausmarke „Speedport" integriert werden soll. Die Ankündigung erfolgte offen und öffentlich, unter anderem in einem YouTube-Video des Unternehmens selbst — kein internes Dokument, keine Enthüllung, sondern aktive Bewerbung eines kommenden Produktmerkmals.</p>
+
+  <p>Die Funktionsweise: Sobald sich etwas zwischen Router und einem Empfängergerät bewegt, verändern sich die Funksignale messbar. Ein Router kann diese Veränderungen per Software analysieren — ganz ohne Kamera, ganz ohne zusätzliche Sensorik. Die Technik soll dabei nicht nur Bewegung erkennen, sondern auch unterscheiden können, ob sich ein Kind, ein Erwachsener oder ein Haustier durch den Raum bewegt, und sogar durch Wände „blicken".</p>
+
+  <h2>Was als Komfort verkauft wird</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span>Die Telekom positioniert WiFi-Sensing explizit als Alternative zu Kameras und klassischen Alarmanlagen: Einbrucherkennung ohne Videoüberwachung, automatische Licht- und Heizungssteuerung je nach Raumnutzung, und — als besonders sensibles Anwendungsbeispiel genannt — die Erkennung von Stürzen bei Senioren. Der Konzern betont dabei ausdrücklich, dass „weder Fotos noch Videos aufgenommen werden" und die Daten dadurch geschützt blieben.</p>
+
+  <div class="source-box">
+    <span class="label">Einordnung</span>
+    <p>Diese Argumentation ist technisch korrekt und zugleich unvollständig: Es werden keine Bilder im klassischen Sinn erzeugt — wohl aber Bewegungs- und Identifikationsmuster, die funktional Ähnliches leisten können. Der Unterschied liegt im Format der Daten, nicht zwingend in der Aussagekraft.</p>
+  </div>
+
+  <h2>Was die Wissenschaft dazu zeigt</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span>Parallel zur Produktankündigung veröffentlichte ein Forschungsteam um Professor Thorsten Strufe vom KASTEL — dem Institut für Informationssicherheit und Verlässlichkeit des Karlsruher Instituts für Technologie (KIT) — eine Studie, die zeigt, dass sich Personen allein anhand von WLAN-Signalen aus gewöhnlichen Internet-Routern identifizieren lassen. In einer Studie mit 197 Teilnehmenden gelang die Erkennung mit nahezu hundertprozentiger Genauigkeit, unabhängig von Gehweise oder Blickwinkel.</p>
+
+  <p>Entscheidend ist ein Detail, das über das Marketing-Framing hinausgeht: Die Methode benötigt keine Spezialhardware. Sie funktioniert mit handelsüblichen WLAN-Geräten und nutzt legitime, im Netzwerk ohnehin unverschlüsselt übertragene Rückmeldesignale (Beamforming Feedback Information, BFI). Und sie erfasst auch Personen, die selbst kein WLAN-fähiges Gerät bei sich tragen — es genügt, dass andere Geräte in der Umgebung aktiv sind.</p>
+
+  <div class="source-box">
+    <span class="label">Zitat der Forscher (KIT, KASTEL)</span>
+    <p>Julian Todt von KASTEL warnt, dass diese Technik aus jedem Router ein potenzielles Überwachungsgerät macht: Wer regelmäßig an einem Café mit WLAN vorbeigeht, könnte dort unbemerkt identifiziert und später wiedererkannt werden — etwa von staatlichen Stellen oder Unternehmen. Das Forschungsteam fordert deshalb dringend Datenschutzmechanismen für den kommenden WLAN-Standard IEEE 802.11bf.</p>
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span>Die KIT-Forscher weisen selbst darauf hin, dass diese Überwachungsfähigkeit besonders kritisch in autoritären Staaten wäre, wo sie zur Erkennung von Protestierenden eingesetzt werden könnte. Diese Einschätzung stammt nicht von Kritikern der Technik, sondern von den Wissenschaftlern, die sie erforscht und dokumentiert haben.</p>
+
+  <h2>Die Reichweite: Kein Opt-out für Dritte</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span>WLAN-Netzwerke existieren heute in nahezu jeder Wohnung, jedem Büro, Restaurant und öffentlichen Raum. Anders als bei einer Kamera gibt es kein sichtbares Signal, das auf die Erfassung hinweist — keine LED, kein Hinweisschild. Und anders als beim eigenen Smartphone kann eine Person, die sich lediglich im Empfangsbereich eines fremden Routers befindet, der Erfassung nicht widersprechen oder sie durch eigenes Verhalten verhindern.</p>
+
+  <p><span class="tag tag-extrapolation">EXTRAPOLATION</span>Daraus ergibt sich ein Muster, das in der Geschichte von Überwachungstechnologien wiederkehrt: Eine Fähigkeit wird zunächst als freiwilliges Komfort- oder Sicherheitsmerkmal für den Endkunden eingeführt. Die zugrundeliegende Infrastruktur — in diesem Fall: WLAN-Signalanalyse zur Personenerkennung — bleibt jedoch bestehen und ist grundsätzlich für andere Anwendungszwecke nutzbar, sobald Zugriff, Auswertung oder Regulierung sich ändern. Diese Verbindung ist strukturell angelegt, nicht unterstellt: Die technische Fähigkeit existiert unabhängig davon, wofür sie im Einzelfall tatsächlich genutzt wird.</p>
+
+  <h2>Öffentliche Reaktion</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span>Bereits die Ankündigung selbst löste in Online-Diskussionen spürbares Unbehagen aus. Nutzerkommentare unter der Berichterstattung formulierten die Sorge unverblümt — etwa die Frage, ob Nachbarn Personen in fremden Wohnungen orten könnten, oder ob Geschäfte künftig noch stärker überwacht würden. Ein Kommentar bat ausdrücklich um „kritische Überlegung", wie es um den Datenschutz bei dieser Technik bestellt sei.</p>
+
+  <h2>Was noch offen ist</h2>
+
+  <p><span class="tag tag-offen">OFFEN</span>Ein konkretes Startdatum für die Einführung von WiFi-Sensing in Speedport-Routern wurde von der Telekom bislang nicht genannt. Auch ist unklar, welche Modelle die Funktion erhalten werden und ob und wann Wettbewerber wie AVM (FritzBox) nachziehen — laut eigener Aussage befindet sich der zugrundeliegende Standard dort noch in der Forschungsphase.</p>
+
+  <p><span class="tag tag-offen">OFFEN</span>Ebenfalls ungeklärt: Wie granular lässt sich die Funktion durch Endnutzer deaktivieren, und gilt eine Deaktivierung auch für Personen, die sich lediglich im Empfangsbereich befinden, aber nicht selbst Kunde oder Nutzer des jeweiligen Routers sind? Öffentlich zugängliche Angaben der Telekom zu diesem Punkt liegen nicht vor.</p>
+
+  <div class="closing">
+    <p><em>Wird eine Technologie durch ihre Nützlichkeit gerechtfertigt, unabhängig davon, wer später Zugriff auf ihre Daten erhält?</em></p>
+    <p><em>Und: Wenn dieselbe Signalanalyse in autoritären Kontexten zur Protestüberwachung dienen kann — was rechtfertigt, wo dieselbe Infrastruktur trotzdem als „nur Komfort" beworben wird?</em></p>
+  </div>
+
+  <div class="footer-nav">
+    <a href="index.html">← Zurück zur Übersicht</a> · Teil der Reihe „Infrastruktur der Kontrolle"
+  </div>
+
+</div>
+</body>
+</html>

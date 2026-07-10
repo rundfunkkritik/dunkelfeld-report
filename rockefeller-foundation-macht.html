@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rockefeller Foundation: Von Standard Oil zur globalen Gesundheitspolitik | dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 2rem 1.2rem 5rem;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  .brand {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    color: #a1a1aa;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+  }
+  .series-tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #71717a;
+    border: 1px solid #3f3f46;
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-family: Georgia, serif;
+    font-size: 1.9rem;
+    line-height: 1.3;
+    color: #f4f4f5;
+    margin-bottom: 0.6rem;
+  }
+  .subtitle {
+    color: #d4d4d8;
+    font-size: 1.05rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #71717a;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 1.5rem;
+  }
+  h2 {
+    font-family: Georgia, serif;
+    color: #e8c547;
+    font-size: 1.35rem;
+    margin-top: 2.8rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid #e8c547;
+    padding-left: 0.8rem;
+  }
+  h3 {
+    font-family: Georgia, serif;
+    color: #f4f4f5;
+    font-size: 1.1rem;
+    margin-top: 1.8rem;
+    margin-bottom: 0.7rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  strong { color: #f4f4f5; }
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    color: #c4c4cc;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+    margin-right: 0.4rem;
+    margin-bottom: 0.5rem;
+  }
+  .tag.belegt { background: rgba(74,222,128,0.12); color: #4ade80; border: 1px solid rgba(74,222,128,0.35); }
+  .tag.extrapolation { background: rgba(232,197,71,0.12); color: #e8c547; border: 1px solid rgba(232,197,71,0.35); }
+  .tag.offen { background: rgba(161,161,170,0.15); color: #a1a1aa; border: 1px solid rgba(161,161,170,0.35); }
+  .tag.vt { background: rgba(248,113,113,0.12); color: #f87171; border: 1px solid rgba(248,113,113,0.35); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #27272a;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat {
+    background: #131316;
+    border: 1px solid #27272a;
+    border-radius: 4px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat .num {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 1.5rem;
+    display: block;
+  }
+  .stat .lbl {
+    font-size: 0.8rem;
+    color: #a1a1aa;
+    margin-top: 0.3rem;
+  }
+  .timeline {
+    margin: 1.5rem 0;
+    border-left: 2px solid #3f3f46;
+    padding-left: 1.2rem;
+  }
+  .timeline .item { margin-bottom: 1.2rem; position: relative; }
+  .timeline .year {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-style: italic;
+    color: #a1a1aa;
+  }
+  .closing p { padding-bottom: 0.8rem; }
+  a { color: #e8c547; }
+  .nav-series {
+    margin-top: 3rem;
+    padding: 1rem 1.2rem;
+    background: #131316;
+    border: 1px solid #27272a;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+  .nav-series .label {
+    font-family: 'Courier New', monospace;
+    color: #71717a;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .nav-series ul { list-style: none; padding-left: 0; }
+  .nav-series li { padding: 0.2rem 0; }
+  .nav-series .current { color: #e8c547; }
+  .nav-series .pending { color: #52525b; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand">dunkelfeld.report</div>
+  <div class="kicker">Analyse · Systemkritik · Quellenbasiert</div>
+  <div class="series-tag">SERIE: INFRASTRUKTUR DER EINFLUSSNAHME · TEIL 2</div>
+
+  <h1>Rockefeller Foundation: Vom Ölvermögen zur globalen Gesundheitsarchitektur</h1>
+  <div class="subtitle">Wie aus Standard-Oil-Kapital eine Institution wurde, die WHO, UN und globale Impfpolitik mitprägte — und warum die Fakten allein schon Stoff genug sind, ohne Verschwörungsmythen.</div>
+  <div class="meta">Juli 2026 &nbsp;|&nbsp; Lesedauer: ca. 11 Minuten &nbsp;|&nbsp; Teil 2 der Serie: Arabella Advisors → Rockefeller Foundation → Ford Foundation → Gates Foundation → Open Society → ...</div>
+
+  <p>Wenn heute über "Stiftungsmacht" gesprochen wird, fällt fast immer zuerst ein Name: Rockefeller. Kaum eine andere Institution hat die Blaupause geliefert, nach der globale Gesundheits- und Entwicklungspolitik bis heute organisiert wird. Dieser Artikel trennt bewusst zwei Ebenen: die dokumentierte Geschichte — Standard Oil, Eugenik-Vergangenheit, WHO-Vorbildfunktion, ID2020 — und die daran andockenden Verschwörungsmythen, allen voran "Operation Lockstep". Nach dem Beleg-vor-Motiv-Prinzip gilt: Struktur wird dokumentiert, Motive werden nicht unterstellt.</p>
+
+  <h2>1. Der Ursprung: Standard Oil und die Erfindung der "wissenschaftlichen Philanthropie"</h2>
+
+  <p>John D. Rockefeller Sr. baute mit Standard Oil ab 1870 ein Unternehmen auf, das zeitweise über 90 Prozent der US-Ölraffinierung kontrollierte — bis der Oberste Gerichtshof der USA 1911 die Zerschlagung wegen Kartellverstößen anordnete. Zwei Jahre später, 1913, gründete Rockefeller mit einer Ersteinlage von 50 Millionen Dollar in Standard-Oil-Aktien die Rockefeller Foundation. Sein Berater Frederick Taylor Gates prägte dabei explizit das Ziel, eine "permanente Unternehmensphilanthropie" zu schaffen, die groß genug sei, um "die Aufmerksamkeit und Intelligenz der Welt" zu binden.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Rockefeller Archive Center, "Evolution of a Foundation: an Institutional History of the Rockefeller Foundation"; Library of Congress, "Standard Oil Established"; Rockefeller Foundation Charter, New York, 1913.
+  </div>
+
+  <p><span class="tag belegt">BELEGT</span> Bereits die Gründung selbst war 1910 im US-Senat umstritten: Ein erster Versuch, einen Bundeskongress-Charter zu erhalten, scheiterte am Widerstand gegen die Machtkonzentration eines Öl-Monopolisten in einer scheinbar gemeinnützigen Struktur. Rockefeller wich daraufhin auf eine Gründung nach New Yorker Landesrecht aus.</p>
+
+  <h2>2. Die Blaupause: Wie Rockefeller globale Gesundheitsinstitutionen vorformte</h2>
+
+  <p>Die "International Health Division" der Stiftung entsandte ab den 1910er-Jahren Ärzte in dutzende Länder, um Krankheiten wie Gelbfieber und Malaria zu erforschen und zu behandeln. Genau dieses Modell diente später als strukturelle Vorlage für die Weltgesundheitsorganisation (WHO) selbst — ebenso wie für die US-amerikanische National Science Foundation und die National Institutes of Health.</p>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="num">$22 Mrd.</span><span class="lbl">seit 1913 ausgeschüttete Fördersumme (Stand 2020)</span></div>
+    <div class="stat"><span class="num">$6,4 Mrd.</span><span class="lbl">Stiftungsvermögen 2023</span></div>
+  </div>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Rockefeller Foundation, "The Rockefeller Foundation Commits to Divesting from Fossil Fuels", Dez. 2020; Wikipedia/Rockefeller Foundation (Vermögensangabe 2023, mit Primärquellenverweis auf Jahresberichte).
+  </div>
+
+  <p><span class="tag belegt">BELEGT</span> Die Rolle als institutionelles Vorbild wird auch von der Stiftung selbst nicht bestritten, sondern aktiv als Teil der eigenen Erfolgsgeschichte kommuniziert.</p>
+
+  <h3>2.1 Eugenik: Eine Vergangenheit, die die Stiftung selbst einräumt</h3>
+
+  <p>Ein weniger bekanntes, aber gut dokumentiertes Kapitel: Die Rockefeller Foundation finanzierte in den 1920er- bis 1970er-Jahren die Bevölkerungskontrollbewegung mit, unter anderem über den 1953 gegründeten Population Council. Dessen erster Präsident, Frederick Osborn, war zugleich Gründer der American Eugenics Society. Mehrere Mitglieder der wissenschaftlichen Gremien des Council waren mit der Eugenik-Bewegung verbunden.</p>
+
+  <p>2021 reagierte die Stiftung öffentlich auf Kritik an dieser Historie: Präsident Rajiv Shah erklärte, die Institution "arbeite ihre eigene Geschichte im Zusammenhang mit Eugenik auf" und kondemnierte die Bewegung ausdrücklich.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Influence Watch, "Rockefeller Foundation" (mit Verweis auf Robert E. Kohler und Linda Gordon als Fachhistoriker); Statement von Dr. Rajiv J. Shah, Rockefeller Foundation, 2021.
+  </div>
+
+  <p><span class="tag belegt">BELEGT</span> Diese Selbstauskunft ist bemerkenswert, weil sie zeigt: Hier geht es nicht um eine externe, unbelegte Anschuldigung, sondern um eine von der Institution selbst eingeräumte historische Tatsache.</p>
+
+  <h2>3. Der Bruch mit dem eigenen Ursprung: Divestment 2020</h2>
+
+  <p>Im Dezember 2020 kündigte die Stiftung an, ihr komplettes 5-Milliarden-Dollar-Vermögen aus fossilen Energien abzuziehen — eine Institution, deren gesamtes Kapital ursprünglich aus Öl stammt, wendet sich damit offiziell von ihrer eigenen Kapitalquelle ab. Gleichzeitig verkündete sie eine Milliarde Dollar für den "grünen Wiederaufbau" nach der Corona-Pandemie, die größte Einzelzusage in der 107-jährigen Geschichte der Stiftung.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    CNN Business, "Exclusive: A $5 billion foundation literally founded on oil money is saying goodbye to fossil fuels", 18. Dez. 2020; Rockefeller Foundation Pressemitteilung, Dez. 2020.
+  </div>
+
+  <h2>4. ID2020: Digitale Identität als reales, dokumentiertes Projekt</h2>
+
+  <p>2017 leistete die Rockefeller Foundation die Anschubfinanzierung für ID2020 — eine Initiative mit dem erklärten Ziel, bis 2030 jedem Menschen weltweit eine digitale biometrische Identität zu verschaffen. Partner sind Microsoft, die Impfallianz GAVI und Accenture. Das Projekt ist real, öffentlich dokumentiert und wurde unter anderem zur Erfassung Vertriebener im Flüchtlingslager Mae La (Thailand) eingesetzt.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    ID2020 Alliance, offizielle Projektdokumentation, id2020.org; Rockefeller Foundation, Förderhistorie 2017.
+  </div>
+
+  <p><span class="tag belegt">BELEGT</span> Die Existenz und Finanzierung von ID2020 ist Fakt. <span class="tag offen">OFFEN</span> Wie weit die tatsächliche globale Umsetzung bis 2030 fortgeschritten ist und welche Länder verbindlich teilnehmen, ist different zu bewerten und sollte projektspezifisch recherchiert werden — das gehört nicht in diese Stiftungsübersicht, sondern in ein eigenes Dossier zu digitalen ID-Systemen.</p>
+
+  <h2>5. Der Fall "Lock Step": Wo dokumentierte Fakten enden und Mythos beginnt</h2>
+
+  <p>2010 veröffentlichten die Rockefeller Foundation und das Beratungsunternehmen Global Business Network gemeinsam den Bericht "Scenarios for the Future of Technology and International Development". Das 54-seitige Dokument entwirft vier hypothetische Zukunftsszenarien, benannt "Lock Step", "Clever Together", "Hack Attack" und "Smart Scramble" — Standard-Methodik der Szenarioplanung, wie sie auch von Unternehmensberatungen und Sicherheitsbehörden verwendet wird. "Lock Step" beschreibt eine Welt mit strafferer staatlicher Kontrolle nach einer fiktiven Grippepandemie.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Rockefeller Foundation &amp; Global Business Network, "Scenarios for the Future of Technology and International Development", Mai 2010 (Originaldokument frei abrufbar); PolitiFact, Snopes, Full Fact — unabhängige Faktenchecks, 2020/2021.
+  </div>
+
+  <p><span class="tag belegt">BELEGT</span> Das Dokument existiert, ist öffentlich einsehbar und beschreibt genau das, was der Titel sagt: Szenarien, keine Handlungsanweisungen. Die Einleitung des Berichts stellt ausdrücklich klar, dass es sich nicht um Vorhersagen handelt.</p>
+
+  <p><span class="tag vt">VT-WIDERLEGT</span> Die im Netz kursierende Version "Operation Lockstep — from the Rockefeller Playbook" ist ein separat erfundener Text, der dem echten Dokument angehängt wurde. Er enthält Formulierungen zu 5G, manipulierten Sterbeurkunden und Testverfahren, die im Originalbericht von 2010 schlicht nicht vorkommen. Mehrere unabhängige Faktencheck-Organisationen (Snopes, PolitiFact, Full Fact) haben diese Version explizit als Fälschung identifiziert.</p>
+
+  <p>Dieser Fall ist lehrbuchhaft für das Beleg-vor-Motiv-Prinzip: Es gibt ein reales Dokument mit realem Inhalt — und eine erfundene Zusatzschicht, die dem Original untergeschoben wurde, um es dramatischer wirken zu lassen. Wer beides vermischt, diskreditiert die berechtigte strukturelle Kritik an Stiftungsmacht, die sich auch ohne Erfindungen tragen lässt.</p>
+
+  <h2>6. Rockefeller heute: WEF-Partnerschaft und Klimapolitik</h2>
+
+  <p>Die Rockefeller Foundation ist heute offizieller Partner des World Economic Forum und wird dort mit eigenem Organisationsprofil geführt. Ihr aktueller Schwerpunkt liegt auf Klima, Energiezugang und wirtschaftlicher Teilhabe — finanziert aus einem Vermögen, das ursprünglich vollständig aus fossilen Energien stammte.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    World Economic Forum, Organisationsprofil "Rockefeller Foundation", weforum.org.
+  </div>
+
+  <table>
+    <tr><th>Jahr</th><th>Ereignis</th></tr>
+    <tr><td>1870</td><td>Gründung Standard Oil</td></tr>
+    <tr><td>1911</td><td>Zerschlagung durch US-Kartellrecht</td></tr>
+    <tr><td>1913</td><td>Gründung Rockefeller Foundation</td></tr>
+    <tr><td>1920er–1970er</td><td>Förderung der Bevölkerungskontrollbewegung / Eugenik-Nähe</td></tr>
+    <tr><td>1946</td><td>Schenkung des UN-Grundstücks am East River (dokumentiert, eigenständiges Thema)</td></tr>
+    <tr><td>2010</td><td>Veröffentlichung "Scenarios for the Future of Technology"</td></tr>
+    <tr><td>2017</td><td>Anschubfinanzierung ID2020</td></tr>
+    <tr><td>2020</td><td>Divestment aus fossilen Energien, $1 Mrd. Klimazusage</td></tr>
+    <tr><td>2021</td><td>Öffentliches Eingeständnis der Eugenik-Historie</td></tr>
+  </table>
+
+  <div class="closing">
+    <p><em>Die Rockefeller Foundation zeigt exemplarisch, wie eine private Institution über ein Jahrhundert hinweg globale öffentliche Strukturen mitformen kann — von der WHO-Blaupause bis zur digitalen Identität. Die dokumentierte Geschichte allein wirft genug Fragen auf. Wozu also die Fälschungen?</em></p>
+    <p><em>Im nächsten Teil der Serie: Ford Foundation — RAND Corporation, CIA-Verbindungen der 1950er/60er-Jahre und die Rolle als zweitälteste große US-Stiftung.</em></p>
+  </div>
+
+  <div class="nav-series">
+    <span class="label">Serie: Infrastruktur der Einflussnahme</span>
+    <ul>
+      <li class="current">✓ Teil 1: Arabella Advisors (Dark Money, US)</li>
+      <li class="current">✓ Teil 2: Rockefeller Foundation — dieser Artikel</li>
+      <li class="pending">Teil 3: Ford Foundation</li>
+      <li class="pending">Teil 4: Gates Foundation</li>
+      <li class="pending">Teil 5: Open Society Foundations</li>
+      <li class="pending">Teil 6: Carnegie Endowment</li>
+      <li class="pending">Teil 7: Koch-Netzwerk</li>
+      <li class="pending">Teil 8: Wellcome Trust / europäische Stiftungen</li>
+      <li class="pending">Synthese: Die Machtpyramide</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

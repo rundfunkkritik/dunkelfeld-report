@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wer beeinflusst Europas höchste Gerichte? — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --box-bg: #1a1a2e;
+    --belegt: #4caf50;
+    --extrapolation: #ff9800;
+    --offen: #888888;
+    --widerlegt: #e84747;
+    --text: #e4e4e7;
+    --text-dim: #a1a1aa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0 1.2rem 4rem;
+  }
+  .container { max-width: 720px; margin: 0 auto; }
+  .site-header {
+    text-align: center;
+    padding: 2.5rem 0 1rem;
+    border-bottom: 1px solid #2a2a3a;
+  }
+  .site-header .logo {
+    font-family: 'Courier New', monospace;
+    font-size: 1.4rem;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+  }
+  .site-header .tagline {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 0.4rem;
+    letter-spacing: 0.03em;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    text-align: center;
+    margin: 1.5rem 0 0.5rem;
+  }
+  h1.article-title {
+    font-family: Georgia, serif;
+    font-size: 1.9rem;
+    line-height: 1.35;
+    text-align: center;
+    color: #fafafa;
+    margin: 0.8rem 0 1.8rem;
+  }
+  .lede {
+    font-size: 1.15rem;
+    color: var(--text-dim);
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+    margin: 1.5rem 0 2.5rem;
+    font-style: italic;
+  }
+  h2 {
+    font-family: Georgia, serif;
+    color: var(--accent);
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    border-bottom: 1px solid #2a2a3a;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    font-family: Georgia, serif;
+    color: #fafafa;
+    font-size: 1.15rem;
+    margin-top: 1.8rem;
+  }
+  p { padding-bottom: 1.2rem; margin: 0; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 0.6rem;
+  }
+  .tag-belegt { background: rgba(76,175,80,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag-extrapolation { background: rgba(255,152,0,0.15); color: var(--extrapolation); border: 1px solid var(--extrapolation); }
+  .tag-offen { background: rgba(136,136,136,0.15); color: var(--offen); border: 1px solid var(--offen); }
+  .tag-widerlegt { background: rgba(232,71,71,0.15); color: var(--widerlegt); border: 1px solid var(--widerlegt); text-decoration: line-through; }
+
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    margin: 1.2rem 0 1.8rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .source-box strong { color: var(--accent); }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .stat-card {
+    background: var(--box-bg);
+    padding: 1rem;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .stat-card .value {
+    font-family: 'Courier New', monospace;
+    font-size: 1.6rem;
+    color: var(--accent);
+    font-weight: bold;
+    display: block;
+  }
+  .stat-card .label {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-top: 0.3rem;
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0 2rem;
+    font-size: 0.95rem;
+  }
+  .comparison-table th, .comparison-table td {
+    border: 1px solid #2a2a3a;
+    padding: 0.7rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  .comparison-table th {
+    background: var(--box-bg);
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+  }
+
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #fafafa;
+    text-align: center;
+    margin: 2.2rem 0;
+    padding: 0 1rem;
+    border-top: 1px solid var(--accent);
+    border-bottom: 1px solid var(--accent);
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+  }
+
+  .eggert-box {
+    background: var(--box-bg);
+    border: 1px dashed var(--accent);
+    padding: 1.2rem 1.4rem;
+    margin: 2rem 0;
+    border-radius: 4px;
+  }
+  .eggert-box .eggert-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+
+  .timeline {
+    margin: 1.5rem 0 2rem;
+    border-left: 2px solid var(--accent);
+    padding-left: 1.2rem;
+  }
+  .timeline-item { margin-bottom: 1.3rem; position: relative; }
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -1.53rem;
+    top: 0.3rem;
+    width: 9px;
+    height: 9px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  ul, ol { padding-left: 1.4rem; margin: 0 0 1.2rem; }
+  li { margin-bottom: 0.5rem; }
+
+  .footer-note {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    font-style: italic;
+    border-top: 1px solid #2a2a3a;
+    padding-top: 1.5rem;
+    margin-top: 3rem;
+  }
+  .sources-list {
+    font-family: 'Courier New', monospace;
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.9;
+  }
+  .site-footer {
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a3a;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="site-header">
+    <div class="logo">dunkelfeld.report</div>
+    <div class="tagline">Analyse · Systemkritik · Quellenbasiert</div>
+  </div>
+
+  <div class="meta">Juli 2026 &nbsp;|&nbsp; Lesedauer: ca. 11 Minuten</div>
+
+  <h1 class="article-title">Wer beeinflusst Europas höchste Gerichte?<br>EuGH und EGMR im Systemvergleich</h1>
+
+  <p class="lede">Zwei Gerichtshöfe, zwei völlig unterschiedliche Angriffspunkte: Der eine über die Herkunft seiner Richter, der andere über den Mechanismus ihrer Wiederernennung. Beide Fälle sind dokumentiert — von neutralen Stellen bestätigt, nicht nur von interessierten Beobachtern behauptet.</p>
+
+  <p>Wenn von "Einflussnahme auf europäische Gerichte" die Rede ist, denken viele zuerst an Verschwörung. Tatsächlich handelt es sich um zwei nüchtern dokumentierte Strukturprobleme — eines beim Europäischen Gerichtshof für Menschenrechte (EGMR, Straßburg), eines beim Europäischen Gerichtshof der Europäischen Union (EuGH, Luxemburg). Beide sind zu verwechseln, aber grundverschieden in Zuständigkeit und Funktionsweise.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="value">22 / 100</span>
+      <span class="label">EGMR-Richter (2009–2019) waren zuvor bei NGOs tätig, die vor demselben Gericht klagen</span>
+    </div>
+    <div class="stat-card">
+      <span class="value">88</span>
+      <span class="label">Fälle, in denen ein Richter über eine Organisation urteilte, für die er zuvor gearbeitet hatte</span>
+    </div>
+  </div>
+
+  <h2>Teil 1 — EGMR: Richter und die Organisationen, die vor ihnen klagen</h2>
+
+  <span class="tag tag-belegt">BELEGT</span>
+  <p>Im Februar 2020 veröffentlichte das Straßburger European Centre for Law and Justice (ECLJ) eine Untersuchung mit dem Titel "NGOs and the Judges of the ECHR". Die zentrale Zahl: Mindestens 22 der 100 Richter, die zwischen 2009 und 2019 am EGMR tagten, waren zuvor Mitarbeiter oder Leiter einer von sieben Nichtregierungsorganisationen, die selbst regelmäßig vor dem Gericht auftreten — als Kläger, als Prozessvertreter oder als Drittpartei mit Stellungnahmen.</p>
+
+  <div class="source-box">
+    <strong>Quelle</strong> ECLJ: "NGOs and the Judges of the ECHR, 2009–2019", Autoren Grégor Puppinck &amp; Delphine Loiseau, Straßburg, Februar 2020.
+  </div>
+
+  <p>Betroffene Organisationen: Open Society Foundations (OSF), Amnesty International, Human Rights Watch, International Commission of Jurists, das Helsinki-Komitees-Netzwerk, Interights und das AIRE Centre. In 88 dokumentierten Fällen entschieden Richter über Verfahren, die von der Organisation eingebracht oder unterstützt wurden, der sie zuvor angehört hatten — ohne dies offenzulegen oder sich aus dem Verfahren zurückzuziehen. Ein Rückzug aus Befangenheitsgründen erfolgte in nur 12 Fällen im gesamten Untersuchungszeitraum.</p>
+
+  <h3>Wer bestätigt das — außer dem ECLJ selbst?</h3>
+  <p>Das ist der entscheidende Punkt für die Einordnung: Die Zahlen stammen ursprünglich vom ECLJ, wurden aber unabhängig geprüft und übernommen von:</p>
+  <ul>
+    <li>Den <strong>Wissenschaftlichen Diensten des Deutschen Bundestags</strong> (Sachstand WD 2-3000-079/20, September 2020) — eine parteipolitisch neutrale Analyseeinheit des Parlaments.</li>
+    <li>Einer <strong>offiziellen parlamentarischen Anfrage im Europäischen Parlament</strong> (E-002327/2020), die die ECLJ-Zahlen ohne Widerspruch referiert.</li>
+    <li>Dem <strong>Ministerkomitee des Europarats</strong> selbst — dem höchsten Organ, dem 47 Botschafter angehören und dem der EGMR untersteht. Es räumte am 8. April 2021 öffentlich ein, die Richtigkeit des Berichts zu prüfen, und kündigte eine Überarbeitung des Richterauswahlverfahrens bis Ende 2024 an.</li>
+  </ul>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-date">Februar 2020</span>
+      ECLJ veröffentlicht den Bericht "NGOs and the Judges of the ECHR"
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">8. April 2021</span>
+      Ministerkomitee des Europarats bestätigt die Richtigkeit des Berichts öffentlich, kündigt Reformprüfung an
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2. September 2021</span>
+      EGMR veröffentlicht überarbeitete "Résolution sur l'éthique judiciaire" — explizites Verbot, an Fällen mit persönlichem Interesse mitzuwirken; Pflicht zur Unabhängigkeit von "jeglicher Organisation"
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2020–2022 (ECLJ-Folgebericht)</span>
+      54 weitere dokumentierte Interessenkonflikte, 12 der damals 46 amtierenden Richter betroffen, davon 18 Fälle vor der Großen Kammer
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    "Die Richter müssen frei von jedem unberechtigten — internen oder externen — Einfluss sein."
+    <br><span style="font-size:0.9rem; font-family:'Courier New',monospace; color:#a1a1aa;">— aus der überarbeiteten EGMR-Ethikresolution, September 2021</span>
+  </div>
+
+  <div class="eggert-box">
+    <span class="eggert-label">EGGERT-PRINZIP — EINORDNUNG DER QUELLE</span>
+    <p style="padding-bottom:0;">Das ECLJ ist keine neutrale Instanz. Es ist der europäische Ableger des American Center for Law and Justice (ACLJ), einer konservativ-christlichen US-Organisation mit eigener Agenda (u. a. gegen Abtreibung, für traditionelle Familienbilder). Ein Interesse, das Establishment-NGOs zu diskreditieren, liegt auf der Hand — das schließt der Text nicht aus. Entscheidend ist trotzdem: Die zugrundeliegenden Fallzahlen wurden nicht vom ECLJ "behauptet und stehengelassen", sondern von einer neutralen Institution (Bundestag) und einem offiziellen EU-Organ (Europäisches Parlament) unabhängig referiert — und vom Europarat selbst als zutreffend anerkannt. Die Motivation des Absenders ändert nichts an der Faktenlage, die von Dritten bestätigt wurde.</p>
+  </div>
+
+  <h2>Teil 2 — EuGH: Abhängigkeit durch das Ernennungsverfahren</h2>
+
+  <span class="tag tag-belegt">BELEGT</span>
+  <p>Beim EuGH funktioniert die potenzielle Einflussnahme anders: nicht über die Herkunft der Richter, sondern über den strukturellen Mechanismus ihrer Berufung. Richter und Generalanwälte werden von den Regierungen der Mitgliedstaaten im gegenseitigen Einvernehmen für sechs Jahre ernannt — <strong>eine Wiederernennung ist ausdrücklich zulässig</strong> und in der Praxis üblich.</p>
+
+  <div class="source-box">
+    <strong>Quelle</strong> Art. 253 AEUV; Kurzdarstellung des Europäischen Parlaments "Der Gerichtshof der Europäischen Union"; Wissenschaftliche Dienste des Bundestags, PE 6-150-18.
+  </div>
+
+  <p>Der Rechtswissenschaftler Fabian Wittreck (Universität Münster) bezeichnete dies in einer auf Verfassungsblog.de dokumentierten Analyse als "evident kritisch": Ein Richter könne angesichts der anstehenden eigenen Wiederernennung "zumindest darüber nachsinnen", ob ein Urteil die Zustimmung der dafür zuständigen nationalen Regierung finden werde.</p>
+
+  <div class="source-box">
+    <strong>Quelle</strong> Verfassungsblog.de, "Völlige Autonomie" (2022), unter Bezug auf ein Gutachten von Prof. Dr. Fabian Wittreck.
+  </div>
+
+  <h3>Ein dokumentierter Präzedenzfall: Litauen gegen den eigenen Richter</h3>
+  <p>Wie real dieses Druckpotenzial ist, zeigt ein aktuelles Verfahren vor dem EuGH selbst: <strong>Rechtssache C-119/23 (Valančius)</strong>. Der litauische Richter Virgilijus Valančius bewarb sich um seine eigene Wiederernennung am Europäischen Gericht (EuG). Eine unabhängige litauische Expertenkommission stufte ihn als bestplatzierten Kandidaten ein. Der litauische Präsident schlug ihn dennoch nicht vor — ohne die Ablehnungsgründe offenzulegen. Valančius klagte dagegen; das Verfahren war beim EuGH anhängig.</p>
+
+  <div class="source-box">
+    <strong>Quelle</strong> Verfassungsblog.de, "Einstimmig für alle, alle für einstimmig?" (Juli 2024); Wissenschaftliche Dienste des Bundestags, Sachstand zur Rechtssache C-119/23.
+  </div>
+
+  <h3>Historischer Beleg: Richterposten als politische Verhandlungsmasse</h3>
+  <p>Dass EuGH-Richterposten in der Vergangenheit auch als politisches Tauschgut behandelt wurden, ist ebenfalls dokumentiert: Die Besetzung eines deutschen EuGH-Richterpostens ging auf ein direktes Gespräch zwischen Bundeskanzler Helmut Kohl und dem damaligen SPD-Oppositionsführer Hans-Jochen Vogel zurück — als Ausgleich, nachdem zwei EU-Kommissarsposten bereits anderweitig vergeben waren.</p>
+
+  <div class="source-box">
+    <strong>Quelle</strong> Björn Blum, "Die Ernennung der Richter und Generalanwälte des EuGH im Vergleich ausgewählter Mitgliedstaaten", FU Berlin, Rechtswissenschaftliche Reihe.
+  </div>
+
+  <table class="comparison-table">
+    <tr><th>Mechanismus</th><th>EuGH</th></tr>
+    <tr><td>Vorschlagsrecht</td><td>Nationale Regierung des jeweiligen Mitgliedstaats, ohne EU-weite Vorgaben zum innerstaatlichen Verfahren</td></tr>
+    <tr><td>Ernennung</td><td>Im gegenseitigen Einvernehmen aller Mitgliedstaaten, nach Anhörung des Art.-255-Ausschusses</td></tr>
+    <tr><td>Amtszeit</td><td>6 Jahre, Wiederernennung ausdrücklich zulässig</td></tr>
+    <tr><td>Kritikpunkt (Wittreck)</td><td>Wiederernennungs-Abhängigkeit von der eigenen Regierung als struktureller Interessenkonflikt</td></tr>
+    <tr><td>Blockade-Mechanismus</td><td>Einvernehmniserfordernis wirkt laut Verfassungsblog als "Erpressungsmittel" — Staaten akzeptieren gegenseitig unbesehen die Kandidaten der anderen</td></tr>
+  </table>
+
+  <span class="tag tag-offen">OFFEN</span>
+  <p>Ob die strukturelle Abhängigkeit im EuGH-Ernennungsverfahren tatsächlich konkrete Urteile beeinflusst hat, ist — anders als bei den EGMR-Interessenkonflikten — nicht in Fallzahlen nachgewiesen. Die Kritik betrifft die Anfälligkeit des Systems, nicht bewiesene Einzelfälle politischer Steuerung von Urteilen. Der Fall Valančius zeigt, dass der Mechanismus wirksam werden <em>kann</em> — nicht, dass er es in jedem Fall tut.</p>
+
+  <h2>Fazit: Zwei verschiedene Angriffsflächen</h2>
+  <p>Der EGMR und der EuGH sind häufig verwechselte, aber grundverschiedene Institutionen — und die dokumentierten Schwachstellen unterscheiden sich entsprechend. Beim EGMR geht es um die <strong>Herkunft</strong> der Richter aus zivilgesellschaftlichen Netzwerken, die selbst Prozesspartei sind. Beim EuGH geht es um die <strong>Kontrolle über die Wiederernennung</strong> durch nationale Regierungen. Beide Mechanismen sind in offiziellen Dokumenten, akademischer Fachliteratur und institutionellen Reaktionen belegt — keiner von beiden erfordert die Annahme einer koordinierten Verschwörung, um plausibel zu sein.</p>
+
+  <h2>Quellenverzeichnis</h2>
+  <div class="sources-list">
+    <strong>EGMR:</strong><br>
+    ECLJ: "NGOs and the Judges of the ECHR, 2009–2019" (Feb. 2020) — eclj.org<br>
+    Wissenschaftliche Dienste des Bundestags, WD 2-3000-079/20 (Sept. 2020)<br>
+    Europäisches Parlament, Anfrage E-002327/2020<br>
+    EGMR: "Résolution sur l'éthique judiciaire" (2. Sept. 2021)<br>
+    Institut für Ehe und Familie (IEF): "Interessenkonflikte bei EGMR-Richtern"<br>
+    Die Tagespost: "EGMR erkennt Interessenskonflikte von Richtern" (Nov. 2021)<br><br>
+    <strong>EuGH:</strong><br>
+    Art. 253, 254, 255 AEUV; EuGH-Satzung, Protokoll Nr. 3<br>
+    Verfassungsblog.de: "Völlige Autonomie" (2022) — zu Fabian Wittreck<br>
+    Verfassungsblog.de: "Einstimmig für alle, alle für einstimmig?" (Juli 2024)<br>
+    EuGH, Rechtssache C-119/23 (Valančius/Litauen), anhängig<br>
+    Björn Blum, FU Berlin: "Die Ernennung der Richter und Generalanwälte des EuGH"<br>
+    Europäisches Parlament: Kurzdarstellung "Der Gerichtshof der Europäischen Union"<br>
+    taz.de: "Lobbyismus am Europäischen Gerichtshof" (2025) — Fall Kokott/Servier
+  </div>
+
+  <p class="footer-note">Alle Angaben basieren auf öffentlich zugänglichen Quellen: Primärrecht, parlamentarischen Dokumenten, institutionellen Stellungnahmen und Fachpublikationen. Die Einordnung der ECLJ-Quelle folgt dem Eggert-Prinzip: Fakten werden unabhängig von der Motivation des Absenders bewertet. Leser sind ausdrücklich zur eigenständigen Prüfung der verlinkten Quellen eingeladen.</p>
+
+  <div class="site-footer">
+    dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.
+  </div>
+
+</div>
+</body>
+</html>

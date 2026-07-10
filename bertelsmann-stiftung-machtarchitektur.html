@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Die Bertelsmann-Konstruktion: Stiftung, Stimmrecht und Steuervorteil | dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 2rem 1rem 5rem;
+  }
+  .container { max-width: 720px; margin: 0 auto; }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: #71717a;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    color: #f4f4f5;
+    margin-bottom: 0.5rem;
+  }
+  .subtitle {
+    color: #a1a1aa;
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  h2 {
+    color: #e8c547;
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    color: #f4f4f5;
+    font-size: 1.15rem;
+    margin-top: 1.8rem;
+    margin-bottom: 0.8rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  strong { color: #f4f4f5; }
+  .lead {
+    font-size: 1.2rem;
+    color: #d4d4d8;
+    border-left: 3px solid #e8c547;
+    padding-left: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: #14532d; color: #86efac; }
+  .tag-extrapolation { background: #713f12; color: #fde68a; }
+  .tag-offen { background: #1e3a5f; color: #93c5fd; }
+  .tag-vt { background: #7f1d1d; color: #fca5a5; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .stat-card {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem;
+    border-radius: 4px;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.6rem;
+    color: #e8c547;
+    font-weight: bold;
+    line-height: 1.2;
+  }
+  .stat-label {
+    font-size: 0.85rem;
+    color: #a1a1aa;
+    margin-top: 0.3rem;
+  }
+
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 4px;
+    font-size: 0.95rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #e8c547;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .person-card {
+    background: #16161f;
+    border: 1px solid #27272a;
+    border-radius: 6px;
+    padding: 1.2rem 1.5rem;
+    margin: 1rem 0;
+  }
+  .person-card .name {
+    color: #e8c547;
+    font-weight: bold;
+    font-size: 1.05rem;
+  }
+  .person-card .role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #a1a1aa;
+    margin-bottom: 0.6rem;
+  }
+
+  .timeline {
+    border-left: 2px solid #3f3f46;
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .timeline-item {
+    margin-bottom: 1.3rem;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.94rem;
+    top: 0.3rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #e8c547;
+  }
+  .timeline-year {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+
+  .quote-box {
+    background: #16161f;
+    border-left: 3px solid #71717a;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #d4d4d8;
+    font-size: 1.05rem;
+  }
+  .quote-box .attribution {
+    display: block;
+    font-style: normal;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #a1a1aa;
+    margin-top: 0.6rem;
+  }
+
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  @media (max-width: 500px) {
+    .comparison { grid-template-columns: 1fr; }
+  }
+  .comparison-col {
+    background: #16161f;
+    border: 1px solid #27272a;
+    border-radius: 6px;
+    padding: 1.2rem;
+  }
+  .comparison-col h4 {
+    color: #e8c547;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.7rem;
+  }
+  .comparison-col ul {
+    padding-left: 1.2rem;
+    font-size: 0.95rem;
+    color: #d4d4d8;
+  }
+  .comparison-col li { margin-bottom: 0.5rem; }
+
+  .closing-questions {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+  }
+  .closing-questions p {
+    font-style: italic;
+    color: #a1a1aa;
+  }
+
+  .footer-note {
+    margin-top: 3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #52525b;
+    border-top: 1px solid #27272a;
+    padding-top: 1.5rem;
+  }
+
+  a { color: #e8c547; }
+
+  .series-nav {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #27272a;
+  }
+  .series-nav span { color: #e8c547; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="series-nav">
+    Serie: Infrastruktur der Einflussnahme &mdash; Teil 2 &middot; <span>Bertelsmann-Stiftung</span> &middot; (vorheriger Teil: Arabella Advisors / Dark Money USA)
+  </div>
+
+  <div class="meta">dunkelfeld.report &middot; Hidden in Plain Sight &middot; Juli 2026</div>
+
+  <h1>Die Bertelsmann-Konstruktion: Kapital, Kontrolle und ein Bürgerrat gegen Desinformation</h1>
+  <div class="subtitle">Wie eine „gemeinnützige" Stiftung, eine private Verwaltungsgesellschaft und ein Medienkonzern rechtlich getrennt und faktisch verflochten sind — dokumentiert an eigenen Angaben, Handelsregisterdaten und einem aktuellen Fallbeispiel.</div>
+
+  <p class="lead">Die Bertelsmann Stiftung gehört zu den einflussreichsten Stiftungen Deutschlands. Sie finanziert sich aus Anteilen an Europas größtem Medienkonzern, hat aber laut eigenen Angaben keine Stimmrechte an diesem Konzern. Wer entscheidet dann wirklich? Und was bedeutet es, wenn dieselbe Stiftung 2024 einen „Bürgerrat" gegen Desinformation organisiert, während der zugehörige Konzern selbst über RTL das größte private Fernsehnetz Deutschlands kontrolliert? Diese Fragen lassen sich anhand öffentlich zugänglicher Dokumente beantworten — ohne Motivunterstellung, rein strukturell.</p>
+
+  <h2>1. Die Eigentumsstruktur: Kapital ist nicht gleich Kontrolle</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Seit 1993 hält die Bertelsmann Stiftung gemeinsam mit der Reinhard Mohn Stiftung und der BVG-Stiftung die Mehrheit der Kapitalanteile an der Bertelsmann SE & Co. KGaA.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-number">80,9%</div>
+      <div class="stat-label">Kapitalanteile bei den drei Stiftungen (Bertelsmann Stiftung, Reinhard Mohn Stiftung, BVG-Stiftung)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">19,1%</div>
+      <div class="stat-label">Kapitalanteile mittelbar bei Familie Mohn</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">0%</div>
+      <div class="stat-label">Stimmrechte der Stiftungen in der Hauptversammlung</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Stimmrechte bei der Bertelsmann Verwaltungsgesellschaft (BVG)</div>
+    </div>
+  </div>
+
+  <p>Die Bertelsmann Stiftung hält die Anteile zusammen mit der Reinhard Mohn Stiftung und der BVG-Stiftung zu 80,9 Prozent, verfügt dabei aber über keinerlei Stimmrechte. Diese liegen vollständig bei der Bertelsmann Verwaltungsgesellschaft mbH (BVG) — einer privaten Gesellschaft, die nicht der Gemeinnützigkeit unterliegt und deren Anteilseigner die Familie Mohn ist.</p>
+
+  <div class="source-box">
+    <span class="label">Struktur-Logik</span>
+    Zwei rechtlich getrennte Ebenen: (1) Die gemeinnützigen Stiftungen besitzen das Kapital und profitieren von steuerlichen Vergünstigungen. (2) Die private BVG hält die Stimmrechte und trifft die unternehmerischen Entscheidungen. Laut Lobbypedia sind Stiftung und Bertelsmann SE zwei formal getrennte Einheiten, die jedoch über Aktienbesitz und zentrale Personen miteinander verflochten sind und beide von der Unternehmerfamilie Mohn kontrolliert werden.
+  </div>
+
+  <h2>2. Die Bertelsmann Verwaltungsgesellschaft (BVG): Das eigentliche Entscheidungszentrum</h2>
+
+  <p>Wer sitzt in dieser BVG, die über den größten Medienkonzern Europas entscheidet? Die personelle Kontinuität zur Gründerfamilie ist lückenlos dokumentiert.</p>
+
+  <div class="person-card">
+    <div class="name">Christoph Mohn</div>
+    <div class="role">Seit Juni 2021: Familiensprecher &amp; Vorsitzender Lenkungsausschuss BVG &middot; seit 2013: Vorsitzender Aufsichtsrat Bertelsmann SE &middot; seit 2010: Vorstandsvorsitzender Reinhard Mohn Stiftung &middot; seit 2009: Mitglied Kuratorium Bertelsmann Stiftung</div>
+    <p style="padding-bottom:0;">Christoph Mohn ist seit Juni 2021 Familiensprecher und Vorsitzender des Lenkungsausschusses der Bertelsmann Verwaltungsgesellschaft mbH sowie seit Januar 2013 Vorsitzender des Aufsichtsrats von Bertelsmann.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">1986–2021</div>
+      Liz Mohn zunächst Mitglied des Beirats/Kuratoriums, ab 2005 stellvertretende Vorsitzende von Vorstand und Kuratorium der Bertelsmann Stiftung.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">Juni 2021</div>
+      Liz Mohn verlässt anlässlich ihres 80. Geburtstags den Vorstand der Bertelsmann-Stiftung und übergibt die Position der Familiensprecherin sowie den Vorsitz im BVG-Lenkungsausschuss an ihren Sohn Christoph.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2025</div>
+      Vorstandsvorsitzender Hannes Ametsreiter verlässt die Stiftung zum 31. Juli 2025; übergangsweise übernimmt Brigitte Mohn, seit 2005 im Vorstand, den Vorsitz.
+    </div>
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Das Kuratorium der Bertelsmann Stiftung ist laut eigener Satzung (§13) personell mit den Gesellschaftern der BVG verflochten. Die Kontrollfunktion liegt damit strukturell bei denselben Personen, unabhängig davon, welche formale Rolle (Stiftung oder Konzern) gerade betrachtet wird.</p>
+
+  <h2>3. Der steuerliche Vorteil und die Regulierungsfrage</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Die Übertragung der Kapitalmehrheit an die Stiftung 1993 hatte einen dokumentierten steuerlichen Effekt: Reinhard Mohn sparte seiner Frau Liz Mohn und den Kindern Christoph und Brigitte dadurch rund zwei Milliarden Euro Erbschafts- oder Schenkungssteuer. Zugleich bleibt der Konzern durch diese Konstruktion vor einem Verkauf an Dritte geschützt und in der Hand der Familie.</p>
+
+  <p><span class="tag tag-offen">OFFEN</span> Im Jahr 2005 wurde unter der nordrhein-westfälischen Landesregierung das Stiftungsrecht in NRW reformiert — nach Vorschlägen einer Expertenkommission der Bertelsmann-Stiftung. Damit entfiel die reguläre Stiftungsaufsicht durch die Regierungspräsidien de facto. Dieser Vorgang wird in mehreren Quellen erwähnt, eine detaillierte Auswertung der Gesetzesbegründung und der beteiligten Akteure steht für diesen Artikel noch aus und wäre ein eigenständiges Rechercheprojekt wert.</p>
+
+  <div class="comparison">
+    <div class="comparison-col">
+      <h4>Deutschland (Bertelsmann-Modell)</h4>
+      <ul>
+        <li>Stiftung kann Mehrheitsanteile ohne prozentuale Obergrenze halten</li>
+        <li>Steuerbegünstigte Dividenden an die Stiftung</li>
+        <li>Stiftungsaufsicht durch Landesbehörden (nach 2005 gelockert)</li>
+      </ul>
+    </div>
+    <div class="comparison-col">
+      <h4>USA (Regulierung zum Vergleich)</h4>
+      <ul>
+        <li>Steuerbegünstigte Stiftungen dürfen nicht mehr als 20 Prozent eines Unternehmens halten, um Interessenkonflikten vorzubeugen</li>
+        <li>Verpflichtung zu akribischer öffentlicher Rechenschaft über Ausgaben</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>4. Fallbeispiel 2024: Der Bürgerrat „Forum gegen Fakes"</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Am 24. Januar 2024 startete das „Forum gegen Fakes – Gemeinsam für eine starke Demokratie" als bundesweites Beteiligungsprojekt der Bertelsmann Stiftung in Kooperation mit dem Bundesministerium des Innern und für Heimat, der Stiftung Mercator und der Michael Otto Foundation for Sustainability.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-number">120</div>
+      <div class="stat-label">Teilnehmer im Bürgerrat, zufällig ausgewählt nach Quotenkriterien</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">15/28</div>
+      <div class="stat-label">Verabschiedete Empfehlungen / konkrete Maßnahmen</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">12.09.24</div>
+      <div class="stat-label">Übergabe des Bürgergutachtens an Innenministerin Faeser</div>
+    </div>
+  </div>
+
+  <p>Der Bürgerrat übergab seine Empfehlungen zum Umgang mit Desinformation an Bundesinnenministerin Nancy Faeser; die Maßnahmen richten sich an Politik, Medien, Bildungseinrichtungen, Wirtschaft und Zivilgesellschaft. Laut einer Erhebung der Bertelsmann Stiftung sehen 84 Prozent der Menschen in Deutschland Desinformation im Internet als großes gesellschaftliches Problem.</p>
+
+  <h3>Die dokumentierten Vorschläge im Wortlaut</h3>
+  <p>Zu den 28 Maßnahmen zählen unter anderem: ein verpflichtendes Schulfach bzw. Studienmodul „Medienkompetenz", ein freiwilliges Gütesiegel für Medien, eine zentrale Meldestelle für Desinformation, verpflichtende Kennzeichnung KI-generierter Inhalte sowie eine Ergänzung des Digital Services Act um verpflichtende jährliche Plattform-Audits nach dem Vorbild von EZB-Bankenaudits.</p>
+
+  <h3>Kritik aus unterschiedlichen Lagern</h3>
+  <p><span class="tag tag-offen">OFFEN</span> Das Projekt löste Kritik aus, die von etablierten Medien bis zu alternativen Portalen reicht. Zwei Stimmen aus dem bürgerlich-konservativen bis liberalen Spektrum:</p>
+
+  <div class="quote-box">
+    Die NZZ bezeichnete die Hoffnung der Stiftung auf eine KI, die Desinformation objektiv erkennen und zertifizieren solle, als technisch naiv und politisch im Ansatz totalitär, und verwies auf eine strukturelle Nähe der vorgeschlagenen „zentralen Stelle" zu Orwells „Ministerium für Wahrheit".
+    <span class="attribution">NZZ, Der andere Blick, 18.09.2024</span>
+  </div>
+
+  <div class="quote-box">
+    Der Cicero-Autor und Rechtsprofessor Volker Boehme-Neßler bewertete den Bürgerrat als Anmaßung und Gefahr für die Demokratie, da ein „Bürgergutachten" der Innenministerin zur Umsetzung übergeben wurde, ohne parlamentäre Legitimation.
+    <span class="attribution">Cicero, 20.09.2024</span>
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Auch die Autorin Susanne Gaschke kritisierte das Gremium als pseudo-repräsentative Einrichtung; das Bundesinnenministerium selbst zeigte sich bei einigen Vorschlägen skeptisch, obwohl es Projektpartner war.</p>
+
+  <div class="source-box">
+    <span class="label">Beleg-vor-Motiv-Prinzip</span>
+    Die dokumentierten Fakten: Die Bertelsmann Stiftung initiiert und moderiert ein Projekt gegen Desinformation, kooperiert dabei mit einem Bundesministerium, und die Ergebnisse fließen direkt in eine Regierungsstrategie ein — ohne parlamentarisches Gesetzgebungsverfahren. Ob dahinter der erklärte Zweck (Demokratieschutz) oder ein anderes Motiv steht, lässt sich aus den vorliegenden Dokumenten nicht ableiten. Dokumentiert ist der Mechanismus: eine private, milliardenschwere Stiftung mit direktem Zugang zu einem Bundesministerium formuliert politische Handlungsempfehlungen.
+  </div>
+
+  <h2>5. Der ungelöste Interessenkonflikt: Medienmacht und Desinformationsbekämpfung</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Zur selben Unternehmensgruppe, deren Stiftung sich gegen Desinformation engagiert, gehört RTL Group — der größte private Fernsehkonzern Deutschlands und einer der größten in Europa. Bertelsmann erzielte 2022 einen Konzernumsatz von 20,2 Milliarden Euro mit rund 165.000 Mitarbeitenden, zum Konzern zählen neben RTL auch Penguin Random House, BMG und die Arvato Group.</p>
+
+  <p>Diese Doppelrolle — Medienkonzern und selbsternannter Schiedsrichter über „Desinformation" — wird in der öffentlichen Debatte selten in einem Satz genannt, obwohl beide Fakten öffentlich dokumentiert sind. Die strukturelle Frage bleibt für den Leser offen: Wer zertifiziert, wenn der Zertifizierer selbst der größte Player im zu bewertenden Markt ist?</p>
+
+  <h2>6. Der dokumentierte Fototermin: Politiknähe als Struktur, nicht als Anklage</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Ein Bildbeleg aus dem Jahr 2006 zeigt Angela Merkel gemeinsam mit Liz Mohn, damals Vorstandsmitglied der Bertelsmann Stiftung. Das Bild selbst belegt nur eine dokumentierte Begegnung — keine Absicht und keinen Einfluss auf konkrete Politik. Es ordnet sich aber in ein größeres Muster ein: Stiftungen mit Milliarden-Kapitalbasis unterhalten routinemäßig Kontakte auf höchster Regierungsebene, was angesichts ihrer Finanzkraft strukturell naheliegend, aber selten Gegenstand systematischer Transparenzpflichten ist.</p>
+
+  <div class="closing-questions">
+    <p><em>Warum gilt für gemeinnützige Stiftungen in Deutschland keine Obergrenze für Unternehmensbeteiligungen, wie sie in den USA seit Jahrzehnten existiert?</em></p>
+    <p><em>Welche konkreten Änderungen brachte die Reform des NRW-Stiftungsrechts 2005 im Detail, und wer saß in der zugrundeliegenden Expertenkommission?</em></p>
+    <p><em>Ist es sachgerecht, dass die Handlungsempfehlungen eines von einer privaten Stiftung organisierten Bürgerrats ohne Gesetzgebungsverfahren direkt in eine Ministeriumsstrategie einfließen?</em></p>
+    <p><em>Wie lässt sich der Interessenkonflikt zwischen Medienbesitz (RTL) und Deutungshoheit über „Desinformation" innerhalb desselben Konzernverbunds strukturell auflösen?</em></p>
+  </div>
+
+  <div class="footer-note">
+    dunkelfeld.report &middot; Serie: Infrastruktur der Einflussnahme, Teil 2 &middot; Slug: bertelsmann-stiftung-machtarchitektur &middot; Evidenzsystem: BELEGT / EXTRAPOLATION / OFFEN / VT-WIDERLEGT &middot; Quellen: bertelsmann-stiftung.de, bertelsmann.de, Lobbypedia, Lobbyregister Bundestag, NZZ, Cicero, Behörden Spiegel, Wikipedia (EN), Die Stiftung
+  </div>
+
+</div>
+</body>
+</html>

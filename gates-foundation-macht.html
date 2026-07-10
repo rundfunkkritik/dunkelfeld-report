@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gates Foundation: Microsoft-Vermögen, WHO-Abhängigkeit und Agrar-Konzerne | dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 2rem 1.2rem 5rem;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  .brand {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    color: #a1a1aa;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+  }
+  .series-tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #71717a;
+    border: 1px solid #3f3f46;
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-family: Georgia, serif;
+    font-size: 1.9rem;
+    line-height: 1.3;
+    color: #f4f4f5;
+    margin-bottom: 0.6rem;
+  }
+  .subtitle {
+    color: #d4d4d8;
+    font-size: 1.05rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #71717a;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 1.5rem;
+  }
+  h2 {
+    font-family: Georgia, serif;
+    color: #e8c547;
+    font-size: 1.35rem;
+    margin-top: 2.8rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid #e8c547;
+    padding-left: 0.8rem;
+  }
+  h3 {
+    font-family: Georgia, serif;
+    color: #f4f4f5;
+    font-size: 1.1rem;
+    margin-top: 1.8rem;
+    margin-bottom: 0.7rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  strong { color: #f4f4f5; }
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    color: #c4c4cc;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+    margin-right: 0.4rem;
+    margin-bottom: 0.5rem;
+  }
+  .tag.belegt { background: rgba(74,222,128,0.12); color: #4ade80; border: 1px solid rgba(74,222,128,0.35); }
+  .tag.extrapolation { background: rgba(232,197,71,0.12); color: #e8c547; border: 1px solid rgba(232,197,71,0.35); }
+  .tag.offen { background: rgba(161,161,170,0.15); color: #a1a1aa; border: 1px solid rgba(161,161,170,0.35); }
+  .tag.vt { background: rgba(248,113,113,0.12); color: #f87171; border: 1px solid rgba(248,113,113,0.35); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #27272a;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat {
+    background: #131316;
+    border: 1px solid #27272a;
+    border-radius: 4px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat .num {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 1.5rem;
+    display: block;
+  }
+  .stat .lbl {
+    font-size: 0.8rem;
+    color: #a1a1aa;
+    margin-top: 0.3rem;
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-style: italic;
+    color: #a1a1aa;
+  }
+  .closing p { padding-bottom: 0.8rem; }
+  a { color: #e8c547; }
+  .nav-series {
+    margin-top: 3rem;
+    padding: 1rem 1.2rem;
+    background: #131316;
+    border: 1px solid #27272a;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+  .nav-series .label {
+    font-family: 'Courier New', monospace;
+    color: #71717a;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .nav-series ul { list-style: none; padding-left: 0; }
+  .nav-series li { padding: 0.2rem 0; }
+  .nav-series .current { color: #e8c547; }
+  .nav-series .pending { color: #52525b; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand">dunkelfeld.report</div>
+  <div class="kicker">Analyse · Systemkritik · Quellenbasiert</div>
+  <div class="series-tag">SERIE: INFRASTRUKTUR DER EINFLUSSNAHME · TEIL 4</div>
+
+  <h1>Gates Foundation: Microsoft-Vermögen, WHO-Abhängigkeit und Agrar-Konzerne</h1>
+  <div class="subtitle">Wie eine private Stiftung zum zweitgrößten, inzwischen größten Geldgeber der Weltgesundheitsorganisation wurde — und wie sie über Umwege Bayer, Monsanto und Co. den Weg nach Afrika ebnete.</div>
+  <div class="meta">Juli 2026 &nbsp;|&nbsp; Lesedauer: ca. 12 Minuten &nbsp;|&nbsp; Teil 4 der Serie: Arabella Advisors → Rockefeller → Ford → Gates Foundation → Open Society → ...</div>
+
+  <p>Die Gates Foundation ist die mit Abstand am besten dokumentierte Stiftung dieser Serie: Sie veröffentlicht ihre Zuwendungen selbst, wissenschaftliche Studien werten diese Daten systematisch aus. Genau das macht sie zu einem Lehrbeispiel: Hier braucht es keine Spekulation — die eigenen Zahlen der Stiftung liefern die Kritikpunkte frei Haus.</p>
+
+  <h2>1. Vom Microsoft-Vermögen zur größten Stiftung der Welt</h2>
+
+  <p>1994 gründeten Bill und Melinda Gates die "William H. Gates Foundation", 2000 entstand durch Fusion mit der "Gates Learning Foundation" die Bill & Melinda Gates Foundation. Die entscheidende Finanzspritze kam 2006: Warren Buffett kündigte an, jährlich Berkshire-Hathaway-Aktien zu spenden — bis 2025 kamen so über 47,9 Milliarden Dollar von Buffett zusammen, neben 63,9 Milliarden Dollar von Bill und Melinda Gates selbst.</p>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="num">$110,9 Mrd.</span><span class="lbl">Gesamtausschüttungen seit 1994 (Stand Q4 2025)</span></div>
+    <div class="stat"><span class="num">$89 Mrd.</span><span class="lbl">Stiftungsvermögen Ende 2025</span></div>
+  </div>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Gates Foundation, "Foundation Fact Sheet" (offizielle Selbstauskunft, 2025); Gates Foundation Annual Report 2024.
+  </div>
+
+  <h2>2. Die Trennung: Melinda French Gates verlässt die Stiftung</h2>
+
+  <p>Bill und Melinda Gates ließen sich 2021 scheiden, blieben zunächst gemeinsam Co-Vorsitzende. Am 13. Mai 2024 kündigte Melinda French Gates ihren Rücktritt an, wirksam zum 7. Juni 2024. Im Januar 2025 wurde die Stiftung offiziell in "Gates Foundation" umbenannt, Bill Gates ist seither alleiniger Vorsitzender. Melinda French Gates widmet sich seither ihrer eigenen Organisation Pivotal Ventures mit Fokus auf Frauen und junge Menschen.</p>
+
+  <p>Im Mai 2025 kündigte Bill Gates zudem an, rund 200 Milliarden Dollar seines verbleibenden Vermögens innerhalb der nächsten zwei Jahrzehnte auszugeben — die Stiftung soll Ende 2045 ihre Arbeit vollständig einstellen.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Wikipedia/Bill & Melinda Gates Foundation (mit Primärverweisen auf Stiftungsmitteilungen); Britannica, "Gates Foundation", 2025.
+  </div>
+
+  <h2>3. Die WHO-Abhängigkeit: Vom zweitgrößten zum größten Geldgeber</h2>
+
+  <p>Zwischen 2000 und 2024 vergab die Gates Foundation 640 Einzelzuwendungen im Gesamtwert von 5,5 Milliarden Dollar an die Weltgesundheitsorganisation — das entspricht 9,5 Prozent aller WHO-Einnahmen zwischen 2010 und 2023. Über 80 Prozent dieser Gelder (4,5 Mrd. Dollar) flossen in Infektionskrankheiten, fast 60 Prozent (3,2 Mrd. Dollar) allein in die Polio-Ausrottung — obwohl Polio nur einen verschwindend geringen Anteil an der globalen Krankheitslast hat. Weniger als 1 Prozent floss in die Stärkung von Gesundheitssystemen allgemein.</p>
+
+  <p>Bis 2025 war die Stiftung zweitgrößter WHO-Geldgeber hinter den USA. Nachdem die USA im Januar 2026 offiziell aus der WHO austraten, wurde die Gates Foundation zum größten freiwilligen Einzelgeldgeber der Organisation — mit über 13 Prozent aller freiwilligen Beiträge im Budgetzeitraum 2024–2025.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    BMJ Global Health, "Who's leading WHO? A quantitative analysis of the Bill and Melinda Gates Foundation's grants to WHO, 2000-2024" (Queen Mary University of London, 2025); Statista, WHO-Geberstatistik 2024–25; CIDRAP, Oktober 2025.
+  </div>
+
+  <p><span class="tag belegt">BELEGT</span> Die extreme thematische Konzentration auf Polio und Impfprogramme bei gleichzeitig geringer Förderung von Gesundheitssystemen insgesamt ist keine Interpretation, sondern direkt aus den von der Stiftung selbst veröffentlichten Förderdaten abgeleitet.</p>
+
+  <p>Wissenschaftler weisen darauf hin, dass über 90 Prozent des WHO-Budgets aus zweckgebundenen freiwilligen Beiträgen stammen, über die die Organisation nicht frei verfügen kann. Die WHO kontrolliert damit nur etwa ein Viertel ihres eigenen Budgets selbst.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Lawrence Gostin (Georgetown University), zitiert in Euronews, "Why does WHO rely so much on Bill Gates", Feb. 2023; CIDRAP, Okt. 2025.
+  </div>
+
+  <h2>4. Landwirtschaft in Afrika: AGRA, Bayer, Monsanto</h2>
+
+  <p>Die Gates Foundation ist mit rund zwei Dritteln des Budgets der mit Abstand größte Geldgeber von AGRA (Alliance for a Green Revolution in Africa, ursprünglich mitbegründet zusammen mit der Rockefeller Foundation). Seit 2006 flossen so über 650 Millionen Dollar in ein Programm, dessen eigene 2022 veröffentlichte Evaluation keine belastbaren Belege für gestiegene Erträge oder Einkommen der Kleinbauern fand — bei gleichzeitig um 31 Prozent gestiegenem Hunger in den Zielregionen laut einer Tufts-Universitäts-Studie.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    The Nation, "The New Colonialist Food Economy", 2024; IATP-Interview mit Timothy Wise (Tufts University), Okt. 2020; usrtk.org, "Gates Foundation agriculture project in Africa flunks its own review", 2025 (mit Verweis auf die von der Gates Foundation selbst finanzierte Mathematica-Evaluation).
+  </div>
+
+  <p><span class="tag belegt">BELEGT</span> 2020 gründete die Stiftung "Gates Ag One" mit Sitz in St. Louis, Missouri — dem historischen Firmensitz von Monsanto. Geleitet wird die Organisation von einem ehemaligen Bayer-Crop-Science- und Monsanto-Manager. Zu den AGRA-Partnerunternehmen zählen laut Recherchen unter anderem Bayer/Monsanto, Syngenta, Corteva und Nestlé.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Navdanya International, "Gates Ag One: The Recolonisation Of Agriculture", 2023; Forbes, "Why African Groups Want Reparations From The Gates Foundation" (mit Zitat aus Tim Schwab, "The Bill Gates Problem"), Sept. 2024.
+  </div>
+
+  <p><span class="tag offen">OFFEN</span> Ob die Konzentration auf industrielle Landwirtschaft eine bewusste Bevorzugung von Konzerninteressen oder Ausdruck einer aufrichtigen, aber fehlgeleiteten technologiegläubigen Grundüberzeugung ist, lässt sich aus den Fördersummen allein nicht ableiten — hier gilt das Beleg-vor-Motiv-Prinzip: Die Struktur ist dokumentiert, die Motivlage bleibt offen.</p>
+
+  <p>2026 wurden zudem PR-Firmen im Umfeld von Gates Foundation und AGRA dabei erwischt, Wikipedia-Einträge zu bearbeiten, um kritische Bewertungen des Programms zu entfernen.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Bureau of Investigative Journalism, "London PR firm rewrites Wikipedia for governments and billionaires", 14. Jan. 2026; The Elephant, "AGRA Exposed for Censoring Criticism of its Green Revolution", 23. März 2026.
+  </div>
+
+  <h2>5. Epstein-Verbindung: Was dokumentiert ist — und was nicht</h2>
+
+  <p>2024/2025 gerieten historische Kontakte zwischen der Stiftung und Personen im Umfeld des verurteilten Straftäters Jeffrey Epstein erneut in den Fokus. Zwischen 2013 und 2019 vergab die Stiftung rund 8 Millionen Dollar an das International Peace Institute für Polio-Programme in Pakistan und Afghanistan. Dokumente zeigten, dass Epstein Kontakt zu IPI-Verantwortlichen hatte und zeitweise in Kommunikation zu diesen Zuwendungen eingebunden war.</p>
+
+  <p><span class="tag belegt">BELEGT</span> Der dokumentierte Kontakt selbst ist unbestritten. <span class="tag offen">OFFEN</span> Es liegen keine Belege vor, dass Fördermittel zweckentfremdet wurden; ein Sprecher der Stiftung erklärte, die Förderung sei ausschließlich programmatisch begründet gewesen und Epstein sei an der Vergabeentscheidung nicht beteiligt gewesen.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Influence Watch, "Gates Foundation" (mit Verweis auf DOJ-Dokumentenfreigaben); House Oversight and Government Reform Committee, Epstein-Files-Veröffentlichung, Dez. 2025/Jan. 2026.
+  </div>
+
+  <table>
+    <tr><th>Jahr</th><th>Ereignis</th></tr>
+    <tr><td>1994</td><td>Gründung William H. Gates Foundation</td></tr>
+    <tr><td>2000</td><td>Fusion zur Bill & Melinda Gates Foundation</td></tr>
+    <tr><td>2006</td><td>Warren Buffett beginnt jährliche Milliardenspenden</td></tr>
+    <tr><td>2006</td><td>Beginn AGRA-Förderung (mit Rockefeller Foundation)</td></tr>
+    <tr><td>2020</td><td>Gründung Gates Ag One, Sitz St. Louis (Monsanto-Standort)</td></tr>
+    <tr><td>2021</td><td>Scheidung Bill/Melinda Gates; Buffett scheidet als Treuhänder aus</td></tr>
+    <tr><td>2022</td><td>AGRA-Evaluation zeigt keine belastbaren Erfolge</td></tr>
+    <tr><td>2024</td><td>Melinda French Gates verlässt die Stiftung</td></tr>
+    <tr><td>2025</td><td>Umbenennung in "Gates Foundation", $200-Mrd.-Ausgabenplan</td></tr>
+    <tr><td>2026 (Jan.)</td><td>US-Austritt aus WHO — Gates Foundation wird größter Geldgeber</td></tr>
+  </table>
+
+  <div class="closing">
+    <p><em>Die Gates Foundation zeigt exemplarisch, wie schmal der Grat zwischen "größtem Wohltäter" und "größtem Einzelakteur mit privater Agenda in globaler Gesundheits- und Agrarpolitik" sein kann. Bemerkenswert: Anders als bei vielen anderen Stiftungen liefert hier die eigene Transparenz der Stiftung die Grundlage für die Kritik — nicht ihr Verschweigen.</em></p>
+    <p><em>Im nächsten Teil der Serie: Open Society Foundations — George Soros, die "Farbrevolutionen" und die Übergabe an Alex Soros 2023.</em></p>
+  </div>
+
+  <div class="nav-series">
+    <span class="label">Serie: Infrastruktur der Einflussnahme</span>
+    <ul>
+      <li class="current">✓ Teil 1: Arabella Advisors (Dark Money, US)</li>
+      <li class="current">✓ Teil 2: Rockefeller Foundation</li>
+      <li class="current">✓ Teil 3: Ford Foundation</li>
+      <li class="current">✓ Teil 4: Gates Foundation — dieser Artikel</li>
+      <li class="pending">Teil 5: Open Society Foundations</li>
+      <li class="pending">Teil 6: Carnegie Endowment</li>
+      <li class="pending">Teil 7: Koch-Netzwerk</li>
+      <li class="pending">Teil 8: Wellcome Trust / europäische Stiftungen</li>
+      <li class="pending">Synthese: Die Machtpyramide</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

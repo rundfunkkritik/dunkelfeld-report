@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ford Foundation: Vom Automobilvermögen zur CIA-Kulturfront | dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 2rem 1.2rem 5rem;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  .brand {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    color: #a1a1aa;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+  }
+  .series-tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #71717a;
+    border: 1px solid #3f3f46;
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-family: Georgia, serif;
+    font-size: 1.9rem;
+    line-height: 1.3;
+    color: #f4f4f5;
+    margin-bottom: 0.6rem;
+  }
+  .subtitle {
+    color: #d4d4d8;
+    font-size: 1.05rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #71717a;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 1.5rem;
+  }
+  h2 {
+    font-family: Georgia, serif;
+    color: #e8c547;
+    font-size: 1.35rem;
+    margin-top: 2.8rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid #e8c547;
+    padding-left: 0.8rem;
+  }
+  h3 {
+    font-family: Georgia, serif;
+    color: #f4f4f5;
+    font-size: 1.1rem;
+    margin-top: 1.8rem;
+    margin-bottom: 0.7rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  strong { color: #f4f4f5; }
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    color: #c4c4cc;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+    margin-right: 0.4rem;
+    margin-bottom: 0.5rem;
+  }
+  .tag.belegt { background: rgba(74,222,128,0.12); color: #4ade80; border: 1px solid rgba(74,222,128,0.35); }
+  .tag.extrapolation { background: rgba(232,197,71,0.12); color: #e8c547; border: 1px solid rgba(232,197,71,0.35); }
+  .tag.offen { background: rgba(161,161,170,0.15); color: #a1a1aa; border: 1px solid rgba(161,161,170,0.35); }
+  .tag.vt { background: rgba(248,113,113,0.12); color: #f87171; border: 1px solid rgba(248,113,113,0.35); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #27272a;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat {
+    background: #131316;
+    border: 1px solid #27272a;
+    border-radius: 4px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat .num {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 1.5rem;
+    display: block;
+  }
+  .stat .lbl {
+    font-size: 0.8rem;
+    color: #a1a1aa;
+    margin-top: 0.3rem;
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-style: italic;
+    color: #a1a1aa;
+  }
+  .closing p { padding-bottom: 0.8rem; }
+  a { color: #e8c547; }
+  .nav-series {
+    margin-top: 3rem;
+    padding: 1rem 1.2rem;
+    background: #131316;
+    border: 1px solid #27272a;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+  .nav-series .label {
+    font-family: 'Courier New', monospace;
+    color: #71717a;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .nav-series ul { list-style: none; padding-left: 0; }
+  .nav-series li { padding: 0.2rem 0; }
+  .nav-series .current { color: #e8c547; }
+  .nav-series .pending { color: #52525b; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand">dunkelfeld.report</div>
+  <div class="kicker">Analyse · Systemkritik · Quellenbasiert</div>
+  <div class="series-tag">SERIE: INFRASTRUKTUR DER EINFLUSSNAHME · TEIL 3</div>
+
+  <h1>Ford Foundation: Vom Automobilvermögen zur CIA-Kulturfront</h1>
+  <div class="subtitle">Wie die größte private Stiftung ihrer Zeit im Kalten Krieg zum dokumentierten Finanzierungskanal westlicher Geheimdienstpolitik wurde — kein Verdacht, sondern kongressamtlich untersuchter Fakt.</div>
+  <div class="meta">Juli 2026 &nbsp;|&nbsp; Lesedauer: ca. 12 Minuten &nbsp;|&nbsp; Teil 3 der Serie: Arabella Advisors → Rockefeller Foundation → Ford Foundation → Gates Foundation → Open Society → ...</div>
+
+  <p>Bei kaum einer anderen großen Stiftung ist die Verflechtung mit einem Geheimdienst so lückenlos dokumentiert wie bei der Ford Foundation. Anders als beim Rockefeller-Kapitel geht es hier nicht um nachträglich unterschobene Mythen, sondern um einen 1976 vom US-Kongress selbst untersuchten und von der New York Times aufgedeckten Sachverhalt. Das macht diesen Teil der Serie zu einem Lehrstück dafür, wie belegbare Strukturkritik aussieht, wenn sie auf Primärquellen statt auf Spekulation beruht.</p>
+
+  <h2>1. Der Ursprung: Ein Steuervermeidungs-Vehikel wird zur größten Stiftung der Welt</h2>
+
+  <p>Edsel Ford gründete die Stiftung 1936 mit einer vergleichsweise bescheidenen Erstspende von 25.000 Dollar — ursprünglich als lokale Wohltätigkeitseinrichtung in Michigan, entstanden auch als pragmatische Reaktion auf eine damalige Bundesvermögenssteuer. Nach dem Tod von Henry und Edsel Ford hielt die Stiftung bis 1947 90 Prozent der stimmrechtslosen Anteile der Ford Motor Company; die Familie Ford behielt die stimmberechtigten Anteile. Zwischen 1955 und 1974 verkaufte die Stiftung sukzessive ihre Ford-Motor-Beteiligungen und ist heute vom Automobilkonzern vollständig getrennt.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Wikipedia/Ford Foundation (mit Verweis auf Unternehmensarchivmaterial); Bak, "Henry and Edsel: The Creation of the Ford Empire" (2003).
+  </div>
+
+  <p><span class="tag belegt">BELEGT</span> Ende der 1950er-Jahre verfügte die Stiftung über mehr als 3 Milliarden Dollar Vermögen — zeitweise die größte private Stiftung der Welt.</p>
+
+  <h2>2. Der Bruch: H. Rowan Gaither und die Neuausrichtung 1949–1951</h2>
+
+  <p>1949 beauftragte die Stiftung eine Kommission unter Leitung des Juristen H. Rowan Gaither Jr. mit einer Grundsatzstudie zur künftigen Ausrichtung. Gaither hatte zuvor als Manager am MIT während des Zweiten Weltkriegs Kontakte zu Physikern des Manhattan-Projekts geknüpft und war maßgeblich an der Umwandlung der militärischen "Project RAND" in die zivile, gemeinnützige RAND Corporation beteiligt — finanziert durch eine Bankbürgschaft der Ford Foundation.</p>
+
+  <p>Der sogenannte Gaither-Report definierte für die Stiftung eine "internationale Rolle", die weit über klassische Wohltätigkeit hinausging. Zum 1. Januar 1951 wurde Paul G. Hoffman, zuvor Direktor des Marshall-Plans, Präsident der Stiftung — ein direkter personeller Brückenschlag zwischen staatlicher Nachkriegspolitik und privater Stiftungsführung.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Rockefeller Archive Center Research Reports, "RAC Research Reports" (Primärquellenauswertung der Ford Foundation Records, Office Files of H. Rowan Gaither); Volker R. Berghahn, zitiert in RAC-Forschungsbericht.
+  </div>
+
+  <h2>3. Die dokumentierte CIA-Verflechtung: Kein Mythos, sondern Kongressbefund</h2>
+
+  <p>1952 wurde Richard Bissell Präsident der Stiftung. Innerhalb von zwei Jahren traf er sich wiederholt mit CIA-Direktor Allen Dulles und anderen CIA-Funktionären zur "gemeinsamen Ideenfindung". 1954 verließ Bissell die Stiftung, um Sonderassistent von Dulles bei der CIA zu werden — ein direkter Wechsel von der Stiftungsspitze in die Geheimdienstführung.</p>
+
+  <p>John J. McCloy — zuvor Assistant Secretary of War, Weltbank-Präsident, US-Hochkommissar im besetzten Deutschland und Chase-Manhattan-Bank-Vorsitzender — übernahm als Stiftungsvorsitzender die praktische Koordination mit der CIA. Er richtete innerhalb der Stiftung eine eigene Verwaltungseinheit speziell für die Zusammenarbeit mit der CIA ein und leitete ein dreiköpfiges Abstimmungsgremium mit dem Geheimdienst.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Frances Stonor Saunders, "The Cultural Cold War: The CIA and the World of Arts and Letters" (Granta, 1999), S. 134–141; Transatlantic Perspectives, "Ford Foundation" (wissenschaftliches Archivprojekt); Jason Epstein, "The CIA and the Intellectuals", New York Review of Books, 20. April 1967.
+  </div>
+
+  <p><span class="tag belegt">BELEGT</span> Eine Untersuchung des US-Kongresses aus dem Jahr 1976 stellte fest, dass fast 50 Prozent von 700 internationalen Förderprojekten der großen US-Stiftungen in dieser Zeit von der CIA mitfinanziert waren. Ein CIA-Mitarbeiter charakterisierte Stiftungen wie Ford intern als "die beste und plausibelste Art von Finanzierungstarnung".</p>
+
+  <h3>3.1 Der Congress for Cultural Freedom und die Enttarnung durch die New York Times</h3>
+
+  <p>Über Projekte wie "Intercultural Publications" und den "Congress for Cultural Freedom" (CCF) kanalisierte die Stiftung Gelder an ein Netzwerk von Zeitschriften, Intellektuellen und Kulturorganisationen, das sich gegen kommunistische Einflussnahme in Europa richtete. Eine Serie von Enthüllungsartikeln der New York Times Ende der 1960er-Jahre deckte die Herkunft dieser Finanzierung auf und verfolgte CIA-Gelder direkt durch Kanäle der Ford Foundation zurück. Mehrere langjährige Unterstützer, darunter der "Encounter"-Herausgeber Stephen Spender, zogen sich daraufhin aus dem Projekt zurück.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    New York Times, Enthüllungsserie 1966–1967 (dokumentiert bei Transatlantic Perspectives und Saunders 1999); Jason Epstein, New York Review of Books, 1967.
+  </div>
+
+  <h3>3.2 Deutschland und Europa: Die "verdeckte" Unterstützung</h3>
+
+  <p>Ein Memo von Hans Speier (RAND Corporation) an Gaither vom 5. Mai 1951 dokumentiert, dass sowohl das US-Außenministerium als auch der Hochkommissar für Deutschland ihre Unterstützung für westdeutsche Organisationen bewusst verschleiern wollten, um nicht als Instrument Washingtons zu erscheinen. Gemeinsam mit der CIA suchte man daraufhin nach Wegen, Gelder indirekt bereitzustellen — mit der Ford Foundation als einem der genutzten Kanäle.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Rockefeller Archive Center, Office Files of H. Rowan Gaither (FA621), Box 1, Folder 3 (Primärquelle, Archivsignatur dokumentiert bei RAC Research Reports).
+  </div>
+
+  <p><span class="tag belegt">BELEGT</span> Dies ist keine Rekonstruktion aus Sekundärquellen, sondern Archivmaterial aus dem Rockefeller Archive Center, das die Ford-Foundation-eigenen Unterlagen verwahrt.</p>
+
+  <h2>4. RAND Corporation: Von der Luftwaffenforschung zum globalen Think Tank</h2>
+
+  <p>1948 verhalf ein Zuschuss der Ford Foundation der "Project RAND" zur Umwandlung in eine unabhängige, gemeinnützige Körperschaft. Die US-Luftwaffe blieb über die 1950er-Jahre hinweg wichtigster Auftraggeber; RAND-Analysten prägten Nukleardoktrin, Systemanalyse und später auch Wirtschafts- und Gesellschaftsforschung. Unter den späteren RAND-Mitarbeitern und -Beratern finden sich Namen wie Condoleezza Rice und Donald Rumsfeld.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Columbia Journalism Review, "America's Think Tank" (Rezension zu Alex Abella, "Soldiers of Reason: The RAND Corporation and the Rise of the American Empire", 2008).
+  </div>
+
+  <p><span class="tag offen">OFFEN</span> Behauptungen zu einer separaten Einheit "Rand Development Corporation" mit direkten MKULTRA-Verbindungen stammen aus Quellen des JFK-Attentats-Forschungsmilieus und sind nicht mit derselben Belegqualität abgesichert wie die oben genannten CIA-Ford-Verbindungen. Dieser Strang wird hier bewusst nicht weiterverfolgt, um die solide belegte Faktenlage nicht mit schwächer fundierten Nebensträngen zu vermischen.</p>
+
+  <h2>5. Population Control und Bürgerrechtsbewegung: Zwei Gesichter derselben Stiftung</h2>
+
+  <p>Parallel zur Kulturkriegsfinanzierung engagierte sich die Ford Foundation ab den 1960er-Jahren in der Bevölkerungskontrolle — mit einem Fördervolumen von geschätzt 169 Millionen Dollar Ende der 1960er-Jahre — und gleichzeitig in der US-Bürgerrechtsbewegung: 18 Millionen Dollar für Bürgerrechts-Prozessführung, Gründungsfinanzierung des Mexican American Legal Defense and Educational Fund (1967) und des Native American Rights Fund (1972).</p>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="num">$169 Mio.</span><span class="lbl">Bevölkerungskontrolle, Ende 1960er</span></div>
+    <div class="stat"><span class="num">$18 Mio.</span><span class="lbl">Bürgerrechts-Prozessführung, 1960er/70er</span></div>
+  </div>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Wikipedia/Ford Foundation (mit Primärverweisen auf Stiftungsjahresberichte und Foundation Center-Daten).
+  </div>
+
+  <h2>6. Indonesien und Chile: Wirtschaftsausbildung als geopolitisches Instrument</h2>
+
+  <p>Die Stiftung etablierte an indonesischen Universitäten US-orientierte Wirtschaftsstudiengänge. Ausgebildete indonesische Eliten spielten laut mehreren Quellen eine Rolle beim von der CIA unterstützten Putsch 1965, der General Suharto an die Macht brachte. Auch im Vorfeld des Putsches gegen den demokratisch gewählten chilenischen Präsidenten Salvador Allende 1973 war die Stiftung nach Angaben von Kritikern involviert.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Arundhati Roy, "Capitalism: A Ghost Story" (Haymarket, 2014), S. 27–28 — als Meinungsbeitrag mit dokumentierter Quellenlage zu kennzeichnen, nicht als neutrale Primärquelle.
+  </div>
+
+  <p><span class="tag extrapolation">EXTRAPOLATION</span> Der direkte kausale Beitrag der Wirtschaftsausbildung zum Putschgeschehen ist historisch diskutiert und sollte nicht als monokausale Erklärung dargestellt werden — die zeitliche und personelle Nähe ist jedoch dokumentiert.</p>
+
+  <h2>7. Bis heute: Vom Kalten Krieg zur globalen Menschenrechtsfinanzierung</h2>
+
+  <p>Kritische Analysen (u.a. James Petras, 2001) argumentieren, die Stiftung fördere bis heute selektiv Menschenrechtsgruppen, die US-Gegner scharf kritisieren, während sie eigene bzw. verbündete Menschenrechtsverletzungen relativieren. Diese Einschätzung stammt aus einer klar linksgerichteten, kapitalismuskritischen Perspektive und sollte entsprechend als Meinungsposition, nicht als neutraler Fakt eingeordnet werden.</p>
+
+  <p><span class="tag offen">OFFEN</span> Ob und in welchem Umfang eine strukturelle Fortsetzung der Cold-War-Ausrichtung bis in die Gegenwart reicht, ist eine Bewertungsfrage, die über die hier dokumentierten historischen Fakten hinausgeht.</p>
+
+  <table>
+    <tr><th>Jahr</th><th>Ereignis</th></tr>
+    <tr><td>1936</td><td>Gründung durch Edsel Ford, $25.000 Erstspende</td></tr>
+    <tr><td>1947</td><td>90% der stimmrechtslosen Ford-Motor-Anteile im Stiftungsbesitz</td></tr>
+    <tr><td>1948</td><td>Ford-Foundation-Zuschuss macht RAND zur unabhängigen Körperschaft</td></tr>
+    <tr><td>1951</td><td>Paul G. Hoffman (Marshall-Plan) wird Stiftungspräsident</td></tr>
+    <tr><td>1952–54</td><td>Richard Bissell Stiftungspräsident, wechselt danach zur CIA</td></tr>
+    <tr><td>1955–1974</td><td>Verkauf der Ford-Motor-Anteile, Trennung vom Konzern</td></tr>
+    <tr><td>1966–67</td><td>New-York-Times-Enthüllungsserie zu CIA-Ford-Verbindungen</td></tr>
+    <tr><td>1976</td><td>US-Kongressuntersuchung: ~50% internat. Stiftungsgrants CIA-finanziert</td></tr>
+  </table>
+
+  <div class="closing">
+    <p><em>Die Ford-Foundation-CIA-Verbindung zeigt: Manchmal braucht es keine Verschwörungstheorie, um beunruhigende Machtstrukturen zu dokumentieren — ein Kongressbericht und ein Zeitungsarchiv reichen aus. Die eigentliche Frage ist nicht, ob es diese Verflechtung gab, sondern was daraus für die Bewertung heutiger "unabhängiger" Stiftungsarbeit folgt.</em></p>
+    <p><em>Im nächsten Teil der Serie: Gates Foundation — Microsoft-Vermögen, WHO-Großspenden und die Trennung von Bill und Melinda French Gates.</em></p>
+  </div>
+
+  <div class="nav-series">
+    <span class="label">Serie: Infrastruktur der Einflussnahme</span>
+    <ul>
+      <li class="current">✓ Teil 1: Arabella Advisors (Dark Money, US)</li>
+      <li class="current">✓ Teil 2: Rockefeller Foundation</li>
+      <li class="current">✓ Teil 3: Ford Foundation — dieser Artikel</li>
+      <li class="pending">Teil 4: Gates Foundation</li>
+      <li class="pending">Teil 5: Open Society Foundations</li>
+      <li class="pending">Teil 6: Carnegie Endowment</li>
+      <li class="pending">Teil 7: Koch-Netzwerk</li>
+      <li class="pending">Teil 8: Wellcome Trust / europäische Stiftungen</li>
+      <li class="pending">Synthese: Die Machtpyramide</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

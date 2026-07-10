@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Austritt, Ausnahmen und Aktien — Was vom WHO-Bruch übrig blieb | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --text: #e4e4e7;
+    --muted: #8a8a94;
+    --border: #232329;
+    --box: #1a1a2e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .mono {
+    font-family: 'Courier New', monospace;
+  }
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+  header .dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  header .label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  header .stand {
+    margin-left: auto;
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 3rem;
+  }
+  .kicker {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 1.5rem;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    line-height: 1.15;
+    font-weight: 700;
+    margin: 0 0 1rem;
+    color: var(--text);
+  }
+  .subtitle {
+    font-size: 1.2rem;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    font-style: italic;
+  }
+  h2 {
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  .source-box {
+    background: var(--box);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.3rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .source-box .src-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+  }
+  .tag-belegt { color: #7ee787; border: 1px solid #7ee787; }
+  .tag-extrapolation { color: #f0a44e; border: 1px solid #f0a44e; }
+  .tag-offen { color: #9ca3af; border: 1px solid #9ca3af; }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    margin: 2rem 0;
+  }
+  .stat-cell {
+    background: var(--bg);
+    padding: 1.2rem 1rem;
+  }
+  .stat-cell .num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.6rem;
+    color: var(--accent);
+    display: block;
+  }
+  .stat-cell .desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+  .timeline {
+    border-left: 2px solid var(--border);
+    padding-left: 1.5rem;
+    margin: 1.5rem 0 1.5rem 0.5rem;
+  }
+  .timeline .entry {
+    margin-bottom: 1.3rem;
+    position: relative;
+  }
+  .timeline .entry::before {
+    content: "";
+    position: absolute;
+    left: -1.85rem;
+    top: 0.4rem;
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .timeline .date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  blockquote {
+    border-left: 3px solid var(--accent);
+    margin: 1.5rem 0;
+    padding: 0.3rem 0 0.3rem 1.3rem;
+    font-style: italic;
+    color: var(--text);
+  }
+  footer {
+    max-width: 720px;
+    margin: 3rem auto 0;
+    padding: 2.5rem 1.5rem 3rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.75rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  a { color: var(--accent); }
+  ul { padding-left: 1.3rem; }
+  li { padding-bottom: 0.5rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="dot"></div>
+  <span class="label">Dokumentation · Fakten · Quellen</span>
+  <div class="stand mono">Stand: Juli 2026</div>
+</header>
+
+<main>
+  <div class="kicker">dunkelfeld.report — Infrastruktur der Kontrolle</div>
+
+  <h1>Austritt, Ausnahmen und Aktien</h1>
+  <div class="subtitle">Was vom WHO-Bruch übrig blieb</div>
+
+  <p>Am 22. Januar 2026 vollzogen die USA offiziell ihren Austritt aus der Weltgesundheitsorganisation. Finanzierung eingestellt, Personal aus Genf abgezogen, Mitgliedschaft beendet. Ein klarer Schnitt — so die Darstellung. Was folgt, ist eine Bestandsaufnahme dessen, was tatsächlich blieb: auf Bundesebene, auf Länderebene und an der Börse.</p>
+
+  <h2>I. Der formale Bruch</h2>
+
+  <div class="timeline">
+    <div class="entry">
+      <span class="date">20.01.2025</span>
+      Executive Order 14155: Präsident Trump ordnet den Austrittsprozess der USA aus der WHO an.
+    </div>
+    <div class="entry">
+      <span class="date">22.01.2026</span>
+      HHS und State Department verkünden den Abschluss des Austritts. Gesundheitsminister Robert F. Kennedy Jr. und Außenminister Marco Rubio erklären die Mitgliedschaft für beendet.
+    </div>
+  </div>
+
+  <div class="source-box">
+    <span class="src-label">Quelle · <span class="tag tag-belegt">BELEGT</span></span>
+    Das HHS begründet den Schritt mit dem Umgang der WHO mit der Corona-Pandemie, ausbleibenden Reformen und mangelnder Unabhängigkeit von politischer Einflussnahme der Mitgliedstaaten. Alle US-Zahlungen wurden eingestellt, sämtliches Personal aus Genf abgezogen.
+    <br><br>HHS.gov: "United States Completes WHO Withdrawal" (22.01.2026)
+  </div>
+
+  <p>Die WHO reagierte mit der Einschätzung, der Schritt mache "sowohl die Vereinigten Staaten als auch die Welt weniger sicher", und äußerte die Hoffnung auf eine spätere Rückkehr. Als Folge des Finanzierungsausfalls kündigte die Organisation an, rund 2.300 Stellen — ein Viertel der Belegschaft — bis Sommer 2026 abzubauen und zehn Abteilungen auf vier zu verschlanken.</p>
+
+  <h2>II. Die Lücke im eigenen Wortlaut</h2>
+
+  <p>Bemerkenswert ist eine Formulierung des HHS selbst: Man habe "hunderte" der Engagements mit der WHO ausgesetzt oder beendet. Nicht alle.</p>
+
+  <div class="source-box">
+    <span class="src-label">Quelle · <span class="tag tag-belegt">BELEGT</span></span>
+    Die CDC unterhält weiterhin aktive Verbindungen zu WHO-nahen Strukturen — darunter TEPHINET (Trainingsnetzwerk für Epidemiologen, gegründet 1997 mit WHO- und CDC-Unterstützung, aktiv in über 100 Ländern) und die Global Health Security Agenda (GHSA).
+    <br><br>The New American, 13.02.2026: "States Join WHO Network; CDC-WHO Cooperation Continues Despite U.S. Withdrawal"
+  </div>
+
+  <p>Die operative Infrastruktur — das, was GOARN als "Netzwerk der Netzwerke" bezeichnet: geteilte Ausbruchsdaten, Laborkooperationen, Expertenaustausch über rund 360 Partnerorganisationen weltweit — bleibt an mehreren Stellen bestehen, auch ohne formale US-Mitgliedschaft in der WHO selbst.</p>
+
+  <h2>III. Die Bundesstaaten gehen einen eigenen Weg</h2>
+
+  <p>Während der Bund den Bruch vollzieht, treten mehrere US-Bundesstaaten unabhängig davon dem Global Outbreak Alert and Response Network (GOARN) bei — und zwar ausdrücklich als politische Reaktion auf den Bundesaustritt.</p>
+
+  <div class="stat-grid">
+    <div class="stat-cell"><span class="num">5</span><div class="desc">Bundesstaaten/Städte in GOARN: Kalifornien, Illinois, Colorado, New York, New York City</div></div>
+    <div class="stat-cell"><span class="num">2026</span><div class="desc">Beitritte erfolgten zwischen Februar und März, nach dem Bundesaustritt</div></div>
+    <div class="stat-cell"><span class="num">360+</span><div class="desc">Partnerorganisationen weltweit im GOARN-Netzwerk</div></div>
+  </div>
+
+  <blockquote>
+    "By withdrawing from the World Health Organization, Donald Trump has undermined science and weakened our nation's ability to detect and respond to global health threats. I refuse to sit idly by and let that happen."
+    <br><span class="mono" style="font-size:0.8rem;color:var(--muted);">— Gouverneur J.B. Pritzker, Illinois, 03.02.2026</span>
+  </blockquote>
+
+  <div class="source-box">
+    <span class="src-label">Quelle · <span class="tag tag-belegt">BELEGT</span></span>
+    Gouverneur Jared Polis (Colorado) begründete den Beitritt seines Staates ähnlich: man wolle sicherstellen, dass Ärzte und Wissenschaftler weiterhin an "verlässliche, wissenschaftsbasierte" Informationen angebunden seien, "während die föderale Gesundheitspolitik zunehmend inkonsistent wird".
+    <br><br>Illinois Department of Public Health, Pressemitteilung 03.02.2026 · Denver7, 27.03.2026
+  </div>
+
+  <p>Der Befund an dieser Stelle ist nicht "der Austritt ist inszeniert", sondern das Gegenteil: Der Bruch auf Bundesebene ist real und wird von einzelnen Landesregierungen bewusst konterkariert — teils explizit als politischer Protest gegen die Trump-Administration.</p>
+
+  <h2>IV. Der Kapitalmarkt reagiert unabhängig</h2>
+
+  <p>Ein Blick auf die Impfstoff-Aktien zeigt eine dritte, von WHO-Politik weitgehend losgelöste Ebene. 2025 hatten Vogelgrippe-Sorgen (H5N1) zu deutlichen Kursausschlägen bei Moderna, Novavax, Pfizer und weiteren Herstellern geführt — teils zweistellige Tagesgewinne bei einzelnen Ausbruchsmeldungen.</p>
+
+  <div class="source-box">
+    <span class="src-label">Quelle · <span class="tag tag-belegt">BELEGT</span></span>
+    Anfang 2025 gewährte die US-Behörde BARDA Moderna 176 Millionen US-Dollar zur Entwicklung eines mRNA-H5N1-Impfstoffs. Diese Bundesförderung wurde im Jahresverlauf 2025 gestrichen; im Dezember 2025 sprang die internationale Koalition CEPI mit 54,3 Millionen US-Dollar ein, um die Phase-3-Entwicklung fortzuführen.
+    <br><br>BioPharma Dive, 18.12.2025: "Moderna gets funding for H5 pandemic influenza vaccine"
+  </div>
+
+  <p>Im Juli 2026 zeigt sich ein anderes Bild: Novavax liegt trotz positiver präklinischer H5N1-Daten (März 2026) über zwölf Monate rund 50 Prozent im Minus. Moderna dagegen ist 2026 um rund 94 Prozent gestiegen — nicht wegen Vogelgrippe, sondern wegen der einstimmigen Empfehlung eines FDA-Gremiums für den saisonalen Grippeimpfstoff mFlusiva sowie der EU-Zulassung der Grippe-Covid-Kombination mCOMBRIAX. Die finale FDA-Entscheidung steht für den 5. August 2026 aus.</p>
+
+  <div class="stat-grid">
+    <div class="stat-cell"><span class="num">+94%</span><div class="desc">Moderna-Kursentwicklung 2026 (Grippe-Pivot, nicht H5N1)</div></div>
+    <div class="stat-cell"><span class="num">+41%</span><div class="desc">Novavax 2026 YTD, trotz H5N1-Präklinik im März</div></div>
+    <div class="stat-cell"><span class="num">-50%</span><div class="desc">Novavax über 12 Monate — Vogelgrippe-Hype verpufft</div></div>
+  </div>
+
+  <p>Die Vogelgrippe-Rally von 2025 war ein Angst-getriebenes Kurzphänomen. Die eigentliche Kapitalbewegung 2026 folgt einem anderen Muster: dem Übergang der Hersteller von experimenteller Pandemie-Vorsorge zu kommerziell tragfähigen Mehrfachprodukten — unabhängig davon, ob die USA WHO-Mitglied sind oder nicht.</p>
+
+  <h2>V. Fazit</h2>
+
+  <p>Drei Ebenen, drei unterschiedliche Bewegungsrichtungen:</p>
+
+  <ul>
+    <li><strong>Bund:</strong> vollzieht einen echten, dokumentierten Austritt aus der WHO-Mitgliedschaft — bei gleichzeitigem Fortbestand einzelner operativer Verbindungen (TEPHINET, GHSA).</li>
+    <li><strong>Länder:</strong> mehrere Bundesstaaten treten unabhängig und bewusst gegenläufig der GOARN-Struktur bei — als politisches Signal gegen die Bundesregierung.</li>
+    <li><strong>Kapitalmarkt:</strong> bewegt sich nach eigenen Regeln, orientiert an Zulassungsdaten und Produktpipelines, nicht an WHO-Mitgliedschaftsstatus.</li>
+  </ul>
+
+  <p>Die Ausgangsthese — der Austritt sei "nur Show" — trägt bei genauerer Prüfung nicht. Was sich zeigt, ist etwas Nüchterneres: Ein formaler Bruch auf einer Ebene schließt parallele, teils gegenläufige Verflechtungen auf anderen Ebenen nicht aus. Genau das macht "Austritt" als politischen Begriff komplizierter, als eine Pressemitteilung suggeriert.</p>
+
+</main>
+
+<footer>
+  <p>Alle in diesem Artikel dargestellten Informationen basieren auf öffentlich zugänglichen Quellen: Behördenpublikationen (HHS, CDC), Pressemitteilungen von Landesregierungen und Wirtschaftsberichterstattung. Kursangaben Stand 08./09.07.2026.</p>
+  <p style="margin-top:0.5rem;">Diese Seite erhebt keinen Anspruch auf Vollständigkeit. Bewertung und Schlussfolgerung obliegen dem Leser.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schmutzige Kleidung: Fast Fashion, Luxus und die globale Lieferkette — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --text: #e4e4e7;
+    --muted: #9a9aa5;
+    --border: #232329;
+    --source-bg: #1a1a2e;
+    --green: #6db56d;
+    --orange: #e0a355;
+    --grey: #8a8a92;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .mono {
+    font-family: 'Courier New', Courier, monospace;
+  }
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+  header .dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  header .label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  header .date {
+    margin-left: auto;
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .hero {
+    padding: 4rem 0 3rem;
+  }
+  .eyebrow {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 1.5rem;
+  }
+  h1 {
+    font-size: clamp(2.2rem, 6vw, 3.4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0 0 1rem;
+    color: var(--text);
+  }
+  h1 .sub {
+    color: var(--muted);
+    display: block;
+    font-size: 0.55em;
+    font-weight: 400;
+    margin-top: 0.6rem;
+  }
+  .dek {
+    font-size: 1.15rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 620px;
+  }
+  h2 {
+    font-size: 1.7rem;
+    color: var(--text);
+    margin: 3.5rem 0 1.2rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 {
+    font-size: 1.25rem;
+    color: var(--accent);
+    margin: 2rem 0 0.8rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    margin: 1.5rem 0 2rem;
+  }
+  .stat-card {
+    background: var(--bg);
+    padding: 1.5rem 1.2rem;
+  }
+  .stat-num {
+    font-size: 1.9rem;
+    color: var(--accent);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.4rem;
+  }
+  .source-box {
+    background: var(--source-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.3rem;
+    margin: 1.2rem 0 2rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.6;
+  }
+  .source-box strong { color: var(--text); }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.55rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+    text-transform: uppercase;
+  }
+  .tag-belegt { background: rgba(109,181,109,0.15); color: var(--green); border: 1px solid rgba(109,181,109,0.4); }
+  .tag-extra { background: rgba(224,163,85,0.15); color: var(--orange); border: 1px solid rgba(224,163,85,0.4); }
+  .tag-offen { background: rgba(138,138,146,0.15); color: var(--grey); border: 1px solid rgba(138,138,146,0.4); }
+  .tag-vt { background: rgba(138,138,146,0.1); color: var(--grey); border: 1px solid rgba(138,138,146,0.3); text-decoration: line-through; }
+  table.comparison {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0 2rem;
+    font-size: 0.95rem;
+  }
+  table.comparison th, table.comparison td {
+    border: 1px solid var(--border);
+    padding: 0.8rem 1rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  table.comparison th {
+    background: var(--source-bg);
+    color: var(--accent);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  table.comparison td { color: var(--muted); }
+  table.comparison td.hl { color: var(--text); }
+  .pull-quote {
+    border-left: 3px solid var(--accent);
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: var(--text);
+    font-size: 1.15rem;
+  }
+  .person-card {
+    background: var(--source-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.2rem 1.4rem;
+    margin: 1rem 0;
+  }
+  .person-card .name {
+    color: var(--accent);
+    font-weight: 700;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .timeline {
+    border-left: 2px solid var(--border);
+    margin: 1.5rem 0 2rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    position: relative;
+    padding-bottom: 1.6rem;
+  }
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -1.94rem;
+    top: 0.35rem;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline-date {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+  }
+  .open-question {
+    font-style: italic;
+    color: var(--muted);
+    margin: 2.5rem 0;
+    font-size: 1.15rem;
+    text-align: center;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .series-nav {
+    margin: 3rem 0;
+    padding: 1.5rem;
+    background: var(--source-bg);
+    border-radius: 4px;
+  }
+  .series-nav .mono { color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  .series-nav ul { margin: 0.8rem 0 0; padding-left: 1.2rem; color: var(--muted); font-size: 0.95rem; }
+  footer {
+    padding: 4rem 1.5rem 3rem;
+    max-width: 720px;
+    margin: 0 auto;
+    border-top: 1px solid var(--border);
+    margin-top: 3rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  footer .brand {
+    color: var(--accent);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+  }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="dot"></div>
+  <span class="label mono">Dokumentation · Fakten · Quellen</span>
+  <span class="date mono">Stand: Juli 2026</span>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="eyebrow mono">Infrastruktur der Ausbeutung — Globale Lieferketten</div>
+    <h1>Schmutzige Kleidung
+      <span class="sub">Wie ein System durch alle Preisklassen läuft — von Fast Fashion bis Luxus</span>
+    </h1>
+    <p class="dek">Bangladesch, Pakistan, Türkei, Italien: vier Länder, vier Preissegmente, ein wiederkehrendes Muster. Dieser Text dokumentiert, was gerichtlich, behördlich und durch Gewerkschaften belegt ist — und trennt es von dem, was offen bleibt.</p>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-num">4,5 Mio.</div>
+        <div class="stat-label">Beschäftigte in Bangladeschs Textilsektor, 54% Frauen</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1.100+</div>
+        <div class="stat-label">Tote bei Rana Plaza, Bangladesch, 2013</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">258</div>
+        <div class="stat-label">Tote bei Ali Enterprises, Pakistan, 2012</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">53 € → 2.600 €</div>
+        <div class="stat-label">Herstellungskosten vs. Verkaufspreis, Dior-Handtasche</div>
+      </div>
+    </div>
+  </section>
+
+  <h2>I. Bangladesch — der Referenzfall</h2>
+
+  <p>Bangladesch ist nach China der zweitgrößte Textilproduzent der Welt. <span class="tag tag-belegt">Belegt</span> Über 84 Prozent der Exporterlöse des Landes stammen aus dem Textilsektor, rund 4,5 Millionen Menschen arbeiten dort, 54 Prozent davon Frauen.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">November 2012</div>
+      Feuer in der Tazreen-Fashion-Fabrik — Vorläuferereignis, das den späteren "National Tripartite Plan of Action" auslöste.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">24. April 2013</div>
+      Einsturz des Fabrikgebäudes Rana Plaza in Dhaka: über 1.100 Tote, rund 2.500 Verletzte. Ursache: grobe Fahrlässigkeit bei Bau und Betrieb.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2013–heute</div>
+      ILO-Programm (27,8 Mio. USD, finanziert u.a. von Kanada, Niederlande, Großbritannien) zu Brandschutz, Gebäudesicherheit und Arbeitsinspektion. Bangladesh Accord: rechtlich bindender Vertrag zwischen Gewerkschaften und Unternehmen.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2023</div>
+      Zehnter Jahrestag von Rana Plaza: Fabrikbesitzer und Gebäudeeigentümer weiterhin nicht für die Toten strafrechtlich belangt.
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>Quellen:</strong> ILO ("Bangladesch: Verbesserung der Arbeitsbedingungen in der Textilindustrie"), BMZ Länderprofil Bangladesch, FEMNET Länderprofil Bangladesch, Amnesty Journal Interview Kalpona Akter (04/2025)
+  </div>
+
+  <h3>Was sich verbessert hat</h3>
+  <p><span class="tag tag-belegt">Belegt</span> Die physische Gebäudesicherheit wurde durch den Accord verbessert — Bangladesch zählt inzwischen zu den Ländern mit den meisten LEED-zertifizierten "grünen" Fabriken weltweit. Der Accord deckt jedoch nur rund 1.600 von etwa 4.000 Textilproduzenten des Landes ab; kleinere Betriebe für den Binnenmarkt bleiben außen vor.</p>
+
+  <h3>Was unverändert blieb</h3>
+  <p><span class="tag tag-belegt">Belegt</span> Der Mindestlohn lag 2022 bei rund 97 €/Monat, während ein existenzsichernder Lohn von der Asia Floor Wage auf etwa 450 €/Monat geschätzt wird. <span class="tag tag-belegt">Belegt</span> 80 Prozent der weiblichen Bekleidungsarbeiterinnen haben laut RMG-Fabrikbefragungen sexuelle Gewalt oder Belästigung am Arbeitsplatz selbst erlebt oder beobachtet.</p>
+
+  <div class="pull-quote">
+    "Es gibt keine verbesserten Arbeitsbedingungen, keine neue Gesetzgebung." — Nasir Mansoor, National Trade Union Federation, mit Bezug auf die Situation nach dem Fabrikbrand von Karatschi
+  </div>
+
+  <h2>II. Pakistan — der Fall, der stillsteht</h2>
+
+  <p><span class="tag tag-belegt">Belegt</span> Am 11. September 2012 brach in der Textilfabrik Ali Enterprises in Karatschi ein Feuer aus. 258 Menschen verbrannten oder erstickten, mehr als 30 wurden verletzt. Vergitterte Fenster, defekte Feuerlöscher und verschlossene Notausgänge machten die Fabrik zur tödlichen Falle. Rund 70 Prozent der Produktion gingen an den deutschen Textildiscounter KiK.</p>
+
+  <div class="person-card">
+    <div class="name">KiK — Kompensationsverfahren</div>
+    <p style="padding-bottom:0;">Erste Soforthilfe: 1 Mio. USD. Betroffene lehnten ein Folgeangebot 2015 als unzureichend ab. Klage vor dem Landgericht Dortmund (2015) — 2019 wegen Verjährung nach pakistanischem Recht abgewiesen. Die Frage der Unternehmenshaftung blieb damit gerichtlich ungeklärt.</p>
+  </div>
+
+  <p><span class="tag tag-belegt">Belegt</span> Über ein Jahrzehnt nach der Katastrophe: keine strafrechtliche Verurteilung der Fabrikbesitzer, keine neue Gesetzgebung zu Arbeitsschutz in der Branche, so die Bilanz der pakistanischen Gewerkschaft NTUF gegenüber medico international.</p>
+
+  <h2>III. Türkei — nicht nur Jeans</h2>
+
+  <p><span class="tag tag-belegt">Belegt</span> Die Türkei bedient die gesamte textile Kette — von eigenem Baumwollanbau über Garn und Weberei bis zur Konfektion — und beschäftigt über 1 Million registrierte sowie geschätzt 2,5 Millionen Menschen insgesamt in der Branche. 2021 exportierte das Land Textilwaren im Wert von rund 30 Milliarden USD.</p>
+
+  <table class="comparison">
+    <tr><th>Kunde</th><th>Dokumentierter Vorwurf</th><th>Status</th></tr>
+    <tr><td class="hl">Hugo Boss</td><td>Aggressives Vorgehen gegen Gewerkschafter am wichtigsten Produktionsstandort Izmir</td><td>Dokumentiert seit 2011</td></tr>
+    <tr><td class="hl">Levi's / Özak Tekstil</td><td>Systematische Verletzung gewerkschaftlicher Rechte in Şanlıurfa</td><td>Seit Ende 2023, laufend</td></tr>
+    <tr><td class="hl">DIGEL Tekstil</td><td>Union Busting in Izmir</td><td>Über 300 Tage Arbeitskampf (Stand 11/2025)</td></tr>
+  </table>
+
+  <p><span class="tag tag-belegt">Belegt</span> Türkische Textilarbeiter verdienen laut Clean Clothes Campaign oft nur etwa ein Viertel dessen, was sie zum Leben bräuchten. Nur die Hälfte ihrer Lieferkette legen große Marken laut Recherchen offen — die andere Hälfte, meist kleinere Subunternehmen mit den schlechtesten Bedingungen, bleibt unbenannt.</p>
+
+  <div class="source-box">
+    <strong>Quellen:</strong> Clean Clothes Campaign / Kampagne für Saubere Kleidung, Länderprofil Türkei 2022; Vorwärts-Recherche zum Lieferkettengesetz; ARD/SWR-Berichterstattung
+  </div>
+
+  <h2>IV. Luxus — dieselbe Struktur, anderes Etikett</h2>
+
+  <p><span class="tag tag-belegt">Belegt</span> "Made in Italy" verlangt rechtlich nur, dass die letzten beiden Produktionsschritte in Italien stattfinden. LVMH (Louis Vuitton, Dior, Fendi) lässt Schuh- und Taschenteile in eigenen Fabriken in Rumänien fertigen und zur Endmontage nach Frankreich/Italien schicken.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">2023–2024</div>
+      Italienische Wettbewerbsbehörde leitet Untersuchungen gegen mehrere Luxuskonzerne wegen Arbeitsrechtsverstößen bei Subunternehmern ein.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Juli 2024</div>
+      Mailänder Gericht stellt "Manufactures Dior SRL" unter einjährige gerichtliche Zwangsverwaltung. Ermittlungen zeigen: Zulieferer stellten Dior 53 € pro Handtasche in Rechnung, Verkaufspreis rund 2.600 €.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2024</div>
+      Ähnliches Urteil gegen einen Armani-Zulieferer, der die gesamte Produktion an Dumpinglohn-Fabriken ausgelagert hatte.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">seit 2023</div>
+      Loro Piana wird als fünftes Modehaus unter gerichtliche Zwangsverwaltung gestellt.
+    </div>
+  </div>
+
+  <p><span class="tag tag-belegt">Belegt</span> Gerichtsdokumente beschreiben, dass Arbeiter gezwungen wurden, in den Fabriken zu schlafen, um rund um die Uhr verfügbar zu sein, und dass Sicherheitsvorrichtungen an Maschinen entfernt wurden, um die Produktion zu beschleunigen. Betroffen waren laut Behörden überwiegend migrantische Arbeitskräfte, viele davon ohne regulären Aufenthaltsstatus.</p>
+
+  <div class="pull-quote">
+    "Hohe Preise sind keine Garantie für faire Arbeitsbedingungen." — ZDFheute, Berichterstattung zu den Mailänder Ermittlungen, 07/2024
+  </div>
+
+  <p><span class="tag tag-belegt">Belegt</span> Italien macht laut Branchendaten 50–55 Prozent der gesamten Lieferkette für Luxusgüter aus. Die italienische Wettbewerbsbehörde bezeichnete die aufgedeckten Zustände als "systemisch" — nicht als Einzelfälle einzelner Marken.</p>
+
+  <div class="source-box">
+    <strong>Quellen:</strong> ZDFheute (07/2024, zwei Artikel), Südtirol News (07/2024), Janus Henderson Investors — "Behind the Brand" Branchenanalyse (11/2025)
+  </div>
+
+  <h2>V. Vier Länder im Vergleich</h2>
+
+  <table class="comparison">
+    <tr><th>Land</th><th>Preissegment</th><th>Dokumentierter Kernfall</th><th>Struktureller Befund</th></tr>
+    <tr><td class="hl">Bangladesch</td><td>Fast Fashion / Mitte</td><td>Rana Plaza, 1.100+ Tote (2013)</td><td>Gebäudesicherheit verbessert, Löhne unverändert unzureichend</td></tr>
+    <tr><td class="hl">Pakistan</td><td>Fast Fashion / Mitte</td><td>Ali Enterprises, 258 Tote (2012)</td><td>Keine Gesetzesänderung, Klage an Verjährung gescheitert</td></tr>
+    <tr><td class="hl">Türkei</td><td>Fast Fashion bis gehobene Mitte</td><td>Systematisches Union Busting (laufend)</td><td>Intransparente Sub-Lieferketten, Löhne bei ca. 25% des Existenzminimums</td></tr>
+    <tr><td class="hl">Italien</td><td>Luxus</td><td>Dior/Armani/Loro Piana unter Zwangsverwaltung</td><td>Gleiche Mechanismen wie Fast Fashion, nur höhere Marge</td></tr>
+  </table>
+
+  <p><span class="tag tag-extra">Extrapolation</span> Der wiederkehrende Mechanismus über alle vier Fälle hinweg: Marken schließen Verträge mit Erstlieferanten, die wiederum an Subunternehmer auslagern, die selbst weitere Subunternehmer beauftragen. An jeder Stufe sinken Löhne und Kontrolle, während die offizielle Lieferkette formal "sauber" bleibt. Ob dies bewusste Auslagerung von Verantwortung ist oder Folge komplexer globaler Beschaffungssysteme, bleibt <span class="tag tag-offen">Offen</span> — belegt ist nur das wiederkehrende strukturelle Muster selbst.</p>
+
+  <h2>VI. Die Rolle von Audits und Zertifikaten</h2>
+
+  <p><span class="tag tag-belegt">Belegt</span> Soziale Audits und Zertifizierungen sollen Kontrolle über die Lieferkette signalisieren. Im Fall Ali Enterprises bestand ein solches Zertifikat kurz vor dem tödlichen Brand. Menschenrechtsorganisationen wie das ECCHR dokumentieren, dass private, unverbindliche Sozial-Audits strukturell nicht geeignet sind, reale Arbeitsbedingungen vor Ort zu verändern, da sie meist angekündigt erfolgen und keine Sanktionsmacht besitzen.</p>
+
+  <div class="open-question">
+    Wer trägt die Kosten einer wirklich unabhängigen, unangekündigten Kontrolle — und wer hätte ein Interesse daran, dass diese Kontrolle nie stattfindet?
+  </div>
+
+  <h2>VII. Was bleibt offen</h2>
+
+  <p><span class="tag tag-offen">Offen</span> Ob das globale Lieferkettengesetz (in Deutschland seit 2023 für Unternehmen ab 3.000 Mitarbeitern) tatsächlich Wirkung entfaltet, lässt sich nach wenigen Jahren Praxis noch nicht abschließend beurteilen — Juristinnen verweisen auf fehlende Kontrollmechanismen vor Ort in den Produktionsländern selbst.</p>
+
+  <p><span class="tag tag-offen">Offen</span> Ob höhere Endverbraucherpreise (wie im Luxussegment) langfristig zu spürbar besseren Bedingungen führen oder lediglich zu höheren Margen bei gleichbleibender Auslagerung der Produktion, ist anhand der bisher dokumentierten Fälle nicht eindeutig zu beantworten.</p>
+
+  <div class="series-nav">
+    <div class="mono">Verwandte Dossiers</div>
+    <ul>
+      <li>Wer kontrolliert, was wir essen? — Konzentration im globalen Ernährungssystem</li>
+      <li>Infrastruktur der Einflussnahme — Die Machtpyramide</li>
+    </ul>
+  </div>
+
+</main>
+
+<footer>
+  <p>Alle dargestellten Informationen basieren auf öffentlich zugänglichen Quellen: Gerichtsurteilen, Behördenberichten, Publikationen von ILO, GIZ, BMZ, Clean Clothes Campaign, ECCHR sowie investigativer Berichterstattung (ZDF, Amnesty Journal, Vorwärts).</p>
+  <p>Diese Seite erhebt keinen Anspruch auf Vollständigkeit. Bewertungen und Schlussfolgerungen liegen bei den Lesern selbst.</p>
+  <p style="margin-top:1.5rem;" class="brand">dunkelfeld.report — Hidden in Plain Sight</p>
+</footer>
+
+</body>
+</html>

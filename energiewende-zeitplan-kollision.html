@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Die Zeitplan-Kollision — dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background: #09090b;
+    color: #e5e5e5;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 20px 100px;
+  }
+  h1 {
+    font-size: 2rem;
+    color: #f5f5f5;
+    line-height: 1.3;
+    margin-bottom: 0.3em;
+  }
+  .subtitle {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+    margin-bottom: 2em;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: #888;
+    font-size: 0.85rem;
+    margin-bottom: 3em;
+    border-bottom: 1px solid #2a2a2a;
+    padding-bottom: 1.5em;
+  }
+  h2 {
+    color: #e8c547;
+    font-size: 1.4rem;
+    margin-top: 2.5em;
+    margin-bottom: 0.8em;
+    border-left: 3px solid #e8c547;
+    padding-left: 0.6em;
+  }
+  p { padding-bottom: 1.2rem; }
+  .lead {
+    font-size: 1.2rem;
+    color: #f0f0f0;
+  }
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1.2em 1.4em;
+    margin: 1.5em 0;
+    font-size: 0.95rem;
+  }
+  .source-box strong { color: #e8c547; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5em 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+  }
+  th, td {
+    border: 1px solid #2a2a2a;
+    padding: 0.6em 0.8em;
+    text-align: left;
+  }
+  th {
+    background: #1a1a2e;
+    color: #e8c547;
+  }
+  tr:nth-child(even) { background: #131320; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    padding: 0.15em 0.5em;
+    border-radius: 3px;
+    display: inline-block;
+    margin-left: 0.5em;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: #1a3a1a; color: #6fcf6f; border: 1px solid #2d5a2d; }
+  .tag-extrapolation { background: #3a2a1a; color: #e8a547; border: 1px solid #5a3d2d; }
+  .tag-offen { background: #2a2a2a; color: #aaa; border: 1px solid #444; }
+  .timeline {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    background: #131320;
+    border: 1px solid #2a2a2a;
+    padding: 1.2em 1.4em;
+    margin: 1.5em 0;
+  }
+  .timeline-item {
+    padding: 0.4em 0;
+    border-bottom: 1px dotted #2a2a2a;
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-year { color: #e8c547; font-weight: bold; }
+  .pull-quote {
+    font-style: italic;
+    color: #cfcfcf;
+    font-size: 1.15rem;
+    border-top: 1px solid #2a2a2a;
+    border-bottom: 1px solid #2a2a2a;
+    padding: 1.2em 0;
+    margin: 2em 0;
+    text-align: center;
+  }
+  .open-question {
+    font-style: italic;
+    color: #d0d0d0;
+  }
+  .footer-block {
+    margin-top: 3em;
+    padding-top: 1.5em;
+    border-top: 1px solid #2a2a2a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #888;
+  }
+  .footer-block p { padding-bottom: 0.6rem; }
+  .sources-list {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #aaa;
+  }
+  .sources-list p { padding-bottom: 0.5rem; }
+  a { color: #e8c547; }
+</style>
+</head>
+<body>
+
+<h1>Die Zeitplan-Kollision</h1>
+<div class="subtitle">Wenn Abschaltung schneller ist als Ersatz — Kohle, Gas und die Frage, wer die Reihenfolge prüft</div>
+
+<div class="meta">
+  DUNKELFELD.REPORT · Infrastruktur der Kontrolle<br>
+  Beleg-vor-Motiv-Prinzip: Motive werden nicht zugeschrieben, wo sie nicht dokumentiert sind
+</div>
+
+<p class="lead">Drei Energieträger laufen in Deutschland derzeit auf feste Enddaten zu: Kernkraft ist seit 2023 beendet, Kohle folgt gesetzlich fixiert bis spätestens 2038 (in Teilen schon 2030), und selbst das Gasnetz — lange als "ewige" Infrastruktur behandelt — wird in den meisten deutschen Großstädten bereits zum Rückbau vorbereitet. Was in keinem dieser drei Fälle vollständig geklärt ist: ob die Ersatzkapazität rechtzeitig steht, bevor die alte abgeschaltet wird.</p>
+
+<h2>I. Kohle — der gesetzlich fixierte Ausstieg</h2>
+
+<p>Der Ausstieg aus der Kohleverstromung ist seit dem Kohleverstromungsbeendigungsgesetz (KVBG) von 2020 verbindlich geregelt. Bis 2026 liefen freiwillige Ausschreibungsrunden, in denen Betreiber gegen Entschädigung ihre Anlagen vorzeitig abschalten konnten. <span class="tag tag-belegt">BELEGT</span></p>
+
+<div class="timeline">
+  <div class="timeline-item"><span class="timeline-year">2020–2026:</span> Freiwillige Ausschreibungsrunden zur Stilllegung (7 Runden, gegen Entschädigung)</div>
+  <div class="timeline-item"><span class="timeline-year">Ab 2027:</span> Nur noch entschädigungslose gesetzliche Reduzierung (Ordnungsrecht)</div>
+  <div class="timeline-item"><span class="timeline-year">2030:</span> Maximal noch 8 GW Steinkohle am Netz — de facto nur Mannheim (GKM) und Datteln 4</div>
+  <div class="timeline-item"><span class="timeline-year">2030:</span> Rheinisches Braunkohlerevier komplett stillgelegt (acht Jahre früher als ursprünglich geplant: 2038)</div>
+  <div class="timeline-item"><span class="timeline-year">2030 (angestrebt):</span> Lausitzer Revier ebenfalls, u. a. Tagebau Welzow-Süd</div>
+  <div class="timeline-item"><span class="timeline-year">Spätestens 2038:</span> Letzte LEAG-Kraftwerke Schwarze Pumpe und Boxberg — Ende der Kohleverstromung in Deutschland</div>
+</div>
+
+<p>Datteln 4 — 2020 in Betrieb genommen, als der Kohleausstieg bereits beschlossene Sache war — soll laut EU-Auflage bis Ende 2026 verkauft werden. Das Kraftwerk läuft trotz eines Urteils des Oberverwaltungsgerichts Münster weiter, wonach der zugrunde liegende Bebauungsplan unwirksam ist. <span class="tag tag-belegt">BELEGT</span></p>
+
+<p>Für die Lausitz gilt zusätzlich: Ist ein Tagebau einmal geflutet, ist er auf Jahrzehnte nicht mehr reaktivierbar — Reservekapazität, die in einer künftigen Versorgungskrise unwiederbringlich fehlt. <span class="tag tag-extrapolation">EXTRAPOLATION</span> (strukturelle Folge, kein behördlich prognostiziertes Szenario)</p>
+
+<h2>II. Gas — der Rückbau beginnt vor dem Gesetz</h2>
+
+<p>Bis zum 30. Juni 2026 mussten alle deutschen Großstädte über 100.000 Einwohner ihre kommunale Wärmeplanung vorlegen — gesetzlich verpflichtend seit dem Wärmeplanungsgesetz 2024. Das Ergebnis: <strong>keine einzige</strong> der großen Städte plant den vollständigen Erhalt ihres Gasnetzes. <span class="tag tag-belegt">BELEGT</span></p>
+
+<div class="source-box">
+  <strong>Was einzelne Städte konkret planen:</strong><br>
+  Mannheim &amp; Stuttgart: vollständiger Ausstieg bis 2035<br>
+  Berlin: Gasnetz wird "in großen Teilen" stillgelegt<br>
+  Augsburg, Hannover, Würzburg, Aalen: Enddatum 2040<br>
+  Düsseldorf, Oldenburg, Jena, Remscheid: Rückbau- bzw. Stilllegungspläne in Vorbereitung<br>
+  Nur rund 17 % des bestehenden Gasnetzes gelten überhaupt als für Wasserstoff geeignet
+</div>
+
+<p>Die eigentliche Pointe: Die <strong>rechtliche Grundlage</strong> für einen geordneten Rückbau — die EnWG-Novelle zur Umsetzung des EU-Gas- und Wasserstoff-Binnenmarktpakets — war zum Zeitpunkt der kommunalen Planungspflicht noch nicht durchs Parlament. Die EU-Umsetzungsfrist läuft am 5. August 2026 ab; der parlamentarische Abschluss war bis zuletzt offen. Kommunen planen also den Rückbau einer Infrastruktur, für die der Rückbau-Rechtsrahmen erst noch geschaffen wird. <span class="tag tag-belegt">BELEGT</span></p>
+
+<p>Der Bundesverband der Energie- und Wasserwirtschaft (BDEW) selbst kritisierte den Gesetzentwurf als unzureichend und mahnte "Planungssicherheit" beim Rückbau der Netzinfrastruktur an. Der Verbraucherzentrale Bundesverband warnte zusätzlich vor steigenden Netzentgelten für jene Haushalte, die sich einen Ausstieg aus dem Gasnetz nicht leisten können. <span class="tag tag-belegt">BELEGT</span></p>
+
+<h2>III. Die Grundlastlücke, die niemand bestreitet</h2>
+
+<p>Die Grundlast — der Mindeststrombedarf, der rund um die Uhr gedeckt sein muss — liegt in Deutschland typischerweise zwischen 40 und 60 Gigawatt. Sonne und Wind können sie nicht garantieren; das ist keine politische Position, sondern eine physikalische Eigenschaft volatiler Erzeugung.</p>
+
+<table>
+  <tr><th>Kennzahl</th><th>Wert</th><th>Quelle</th></tr>
+  <tr><td>Grundlast Deutschland</td><td>40–60 GW</td><td>Bundesnetzagentur</td></tr>
+  <tr><td>Dunkelflauten pro Jahr (&gt;24h)</td><td>ca. 6×</td><td>Amprion</td></tr>
+  <tr><td>Bedarf neue Kapazität bis 2030</td><td>30 GW</td><td>McKinsey 2023</td></tr>
+  <tr><td>Bedarf neue Kapazität bis 2045</td><td>bis 100 GW</td><td>Wirtschaftsdienst 2023</td></tr>
+  <tr><td>Geplante neue Gaskraftwerke</td><td>12 GW (20–30 Anlagen)</td><td>BMWK</td></tr>
+  <tr><td>Laut Gasverband: ausreichend?</td><td>Nein</td><td>Verband Gas- u. Wasserstoffwirtschaft</td></tr>
+</table>
+
+<p>Die Bundesnetzagentur schreibt in ihrem eigenen Versorgungssicherheitsbericht, dass 2030 die Stromnachfrage "in wenigen Stunden am Strommarkt nicht vollständig gedeckt werden" könnte — sollte der Ausbau der Erneuerbaren und der Gaskraftwerke nicht wie geplant laufen. <span class="tag tag-belegt">BELEGT</span></p>
+
+<h2>IV. Was Redispatch über den Ist-Zustand verrät</h2>
+
+<p>Während die Abschaltungen nach Zeitplan laufen, steigen schon jetzt die Kosten, das bestehende Netz überhaupt stabil zu halten. Redispatch — das ständige Herauf- und Herunterregeln von Kraftwerken zum Ausgleich von Engpässen — kostete 2024 rund 2,8 Mrd. €, 2025 rund 3,1 Mrd. €. Rund 74 % aller Engpässe entfielen 2024 auf das Übertragungsnetz, weil der Netzausbau zwischen Erzeugungsregionen im Norden und Verbrauchszentren im Süden nicht hinterherkommt. <span class="tag tag-belegt">BELEGT</span></p>
+
+<p>Der offizielle Stabilitätsindikator SAIDI (rund 11–13 Minuten Ausfall pro Haushalt und Jahr) zeigt keine dramatische Verschlechterung — die Bundesnetzagentur selbst räumt aber ein, dass dieser Wert wenig aussagt, weil er nur Unterbrechungen über drei Minuten erfasst und strukturelle Risiken wie Dunkelflauten oder die Grundlastlücke nicht abbildet. <span class="tag tag-belegt">BELEGT</span></p>
+
+<h2>V. Wenn es tatsächlich passiert: Berlin, Januar 2026</h2>
+
+<p>Am 3. Januar 2026 legte ein Brandanschlag auf eine Kabelbrücke in Berlin-Lichterfelde rund 45.000 Haushalte und über 2.200 Betriebe tagelang lahm — der längste Stromausfall der Stadt seit Kriegsende 1945. Krankenhäuser mussten auf Notstrom zurückgreifen, Pflegeeinrichtungen wurden erst verzögert mit mobilen Aggregaten versorgt, die Bundeswehr half beim Betanken. Erst am 7. Januar war die Versorgung vollständig wiederhergestellt. <span class="tag tag-belegt">BELEGT</span></p>
+
+<p>Anschließende Recherchen zeigten: Vergleichbar ungeschützte Hochspannungs-Schwachstellen gibt es auch in anderen Städten — darunter Leitungen, die ein Mercedes-Werk und einen Airbus-Standort versorgen. Das KRITIS-Dachgesetz zum Schutz kritischer Infrastruktur lag zu diesem Zeitpunkt bereits seit Herbst 2025 unverabschiedet im Bundestag; erst nach dem Anschlag wurde die Verabschiedung priorisiert. <span class="tag tag-belegt">BELEGT</span></p>
+
+<p>Der Berliner Fall betrifft eine andere Ursache als die Grundlastlücke — er zeigt aber, wie schnell ein an sich stabiles System an einer einzigen ungeschützten Stelle kollabieren kann. Ob ähnliche Schwachstellen mit dem fortschreitenden Rückbau von Kohle- und Gasinfrastruktur zunehmen, ist nicht behördlich untersucht. <span class="tag tag-offen">OFFEN</span></p>
+
+<h2>VI. Eine offene Frage</h2>
+
+<p>Drei Energieträger laufen auf feste Enddaten zu. In keinem der drei Fälle ist abschließend geklärt, ob die Ersatzstruktur — Gaskraftwerke, Wasserstoffnetz, Speicher — rechtzeitig vor der Abschaltung steht. Bei Kohle ist die gesetzliche Reihenfolge fixiert, bei Gas beginnt der kommunale Rückbau, bevor der nationale Rechtsrahmen dafür überhaupt verabschiedet ist.</p>
+
+<p class="pull-quote open-question">Wer eine Lücke terminiert abschaltet, ohne dass der Ersatz terminiert steht — plant er sorglos, oder plant er etwas anderes? Das ist keine Behauptung. Es ist eine Frage, die die Zeitpläne selbst aufwerfen.</p>
+
+<div class="footer-block">
+  <p class="sources-list"><strong>QUELLENVERZEICHNIS</strong></p>
+  <p class="sources-list">Kohleausstieg / KVBG: Bundesnetzagentur, Kohleausstieg-Fachseiten; BMWE FAQ Kohleausstiegsgesetz</p>
+  <p class="sources-list">Datteln 4: Fraunhofer ISE Energy Charts; OVG Münster-Urteil; energiezukunft.eu</p>
+  <p class="sources-list">Rheinisches Revier / Lausitz: Bundesfinanzministerium, Kohleausstieg-Themenseite; taz</p>
+  <p class="sources-list">Gasnetz-Rückbau / Wärmeplanung: t-online.de (01.07.2026, Übersicht kommunale Wärmepläne); epochtimes.de</p>
+  <p class="sources-list">EnWG-Novelle / EU-Gas-Wasserstoffpaket: Deutscher Bundestag (Dokumentation Ausschuss Wirtschaft und Energie); BMWE Pressemitteilung 25.03.2026; vzbv-Stellungnahme</p>
+  <p class="sources-list">Grundlastlücke: Wirtschaftsdienst Jg. 103 (2023), H. 10; Bundesnetzagentur Versorgungssicherheitsbericht; McKinsey/Vahlenkamp et al. 2023</p>
+  <p class="sources-list">Redispatch-Kosten: BEE-Faktencheck 04/2026; cleanthinking.de Faktencheck; Bundesnetzagentur Netzengpassmanagement</p>
+  <p class="sources-list">Berlin-Blackout Januar 2026: Wikipedia "Brandanschlag auf das Berliner Stromnetz 2026"; ZDF frontal (27.01./04.02.2026); Bundesakademie für Sicherheitspolitik, Arbeitspapier 2026</p>
+
+  <p>● DUNKELFELD.REPORT — Dokumentation auf Basis öffentlich zugänglicher Primärquellen</p>
+  <p>● Spekulation ist als solche gekennzeichnet. Motive werden nicht zugeschrieben.</p>
+  <p>● Schlussfolgerungen ziehen die Leser selbst.</p>
+</div>
+
+</body>
+</html>

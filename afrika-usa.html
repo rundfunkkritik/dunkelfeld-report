@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wettlauf um Afrika, Teil 3: USA — dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background: #09090b;
+    color: #e5e5e5;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #e8c547;
+  }
+  .series-banner {
+    background: #131316;
+    border: 1px solid #27272a;
+    border-radius: 4px;
+    padding: 0.8rem 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #a1a1aa;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em;
+  }
+  .series-banner strong { color: #e8c547; }
+  h1 {
+    font-family: Georgia, serif;
+    font-size: 2.1rem;
+    line-height: 1.3;
+    margin: 0.8rem 0 0.5rem;
+    color: #f4f4f5;
+  }
+  .subtitle {
+    font-size: 1.15rem;
+    color: #a1a1aa;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  h2 {
+    font-family: Georgia, serif;
+    font-size: 1.5rem;
+    color: #e8c547;
+    margin-top: 3rem;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    font-family: Georgia, serif;
+    font-size: 1.2rem;
+    color: #f4f4f5;
+    margin-top: 1.8rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  .meta-bar {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+    padding: 0.8rem 0;
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .label { display: block; margin-bottom: 0.5rem; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.6rem;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 0.8rem;
+  }
+  .tag-belegt { background: rgba(74, 222, 128, 0.15); color: #4ade80; border: 1px solid #4ade80; }
+  .tag-extrapolation { background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid #fb923c; }
+  .tag-offen { background: rgba(161, 161, 170, 0.15); color: #a1a1aa; border: 1px solid #a1a1aa; }
+  .tag-vt-widerlegt { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid #ef4444; text-decoration: line-through; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .stat-card {
+    background: #131316;
+    border: 1px solid #27272a;
+    border-radius: 4px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.8rem;
+    color: #e8c547;
+    font-weight: bold;
+    display: block;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #a1a1aa;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #27272a;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #e8c547;
+  }
+
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #f4f4f5;
+    border-left: 3px solid #e8c547;
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .timeline {
+    margin: 1.5rem 0;
+    border-left: 2px solid #27272a;
+    padding-left: 1.5rem;
+  }
+  .timeline-item { margin-bottom: 1.2rem; position: relative; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.68rem;
+    top: 0.35rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #e8c547;
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #e8c547;
+    display: block;
+  }
+
+  .closing-question {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #d4d4d8;
+    text-align: center;
+    margin: 3rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+  }
+
+  .series-nav {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+  }
+  .series-nav a { display: block; margin: 0.3rem 0; }
+
+  a { color: #e8c547; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="label">Infrastruktur der Einflussnahme · dunkelfeld.report</div>
+  <div class="series-banner"><strong>SERIE: Wettlauf um Afrika</strong> — Teil 3 von 5</div>
+  <h1>USA in Afrika</h1>
+  <div class="subtitle">Rückzug, Restrukturierung — und ein plötzliches Vakuum</div>
+
+  <div class="meta-bar">
+    <span>Hidden in Plain Sight</span>
+    <span>Beleg-vor-Motiv-Prinzip</span>
+  </div>
+
+  <p>Während China Häfen baut und Russland Söldner schickt, hat sich das amerikanische Afrika-Engagement seit 2025 in die entgegengesetzte Richtung entwickelt: Rückzug. Die Auflösung von USAID, der Truppenabzug aus Niger, ein neues "African-led"-Sicherheitsmodell — die USA ziehen sich strukturell zurück, während sie in Einzelfällen (Somalia, Nigeria) gleichzeitig militärisch aktiver werden als zuvor. Das Ergebnis ist kein einheitlicher Kurs, sondern ein Machtvakuum, das andere Akteure sichtbar füllen.</p>
+
+  <h2>Die Auflösung von USAID</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-date">20. Januar 2025</span>
+      Trump verfügt per Dekret ein 90-tägiges Einfrieren aller USAID-Auslandshilfe sowie den Austritt der USA aus der WHO.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">10. März 2025</span>
+      Außenminister Rubio bestätigt: ca. 5.200 von 6.200 globalen USAID-Programmen beendet — rund 83 Prozent.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Juli 2025</span>
+      Die US-Regierung löst USAID als Behörde vollständig auf.
+    </div>
+  </div>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Public Health Journal (Oxford, DOI 10.1093/pubmed/fdaf122, November 2025); Amref Deutschland, "Ein Jahr USAID-Kürzungen" (März 2026).
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-number">65%</span><span class="stat-label">Rückgang HIV/AIDS-Sterblichkeit durch USAID (20 Jahre)</span></div>
+    <div class="stat-card"><span class="stat-number">51%</span><span class="stat-label">Rückgang Malaria-Sterblichkeit durch USAID</span></div>
+    <div class="stat-card"><span class="stat-number">91 Mio.</span><span class="stat-label">Verhinderte Todesfälle 2001–2021 (Lancet-Studie)</span></div>
+  </div>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Konrad-Adenauer-Stiftung, "Auswirkungen der US-Politik auf die globale Gesundheit" (Dezember 2025), auf Basis einer Lancet-Studie zu USAID-Wirkung 2001–2021.
+  </div>
+
+  <h3>Die Prognosen zu den Folgen — uneinheitlich</h3>
+  <span class="tag tag-offen">OFFEN</span>
+
+  <p>Über das Ausmaß der Folgen gehen selbst seriöse Quellen deutlich auseinander — das gehört transparent gemacht statt geglättet:</p>
+
+  <table>
+    <tr><th>Quelle</th><th>Schätzung</th><th>Zeitraum</th></tr>
+    <tr><td>Center for Global Development</td><td>500.000 – 1 Mio. zusätzliche Todesfälle</td><td>2025 (ein Jahr)</td></tr>
+    <tr><td>Lancet-Studie (SRF-Bericht)</td><td>14 Mio. zusätzliche Todesfälle, davon 4,5 Mio. Kinder unter 5</td><td>bis 2030</td></tr>
+    <tr><td>Lancet-Studie (Tagesspiegel-Bericht)</td><td>mind. 9,4 Mio. zusätzliche Todesfälle, davon 2,5 Mio. Kinder unter 5</td><td>bis 2030</td></tr>
+    <tr><td>WHO-Generaldirektor Tedros (März 2025)</td><td>15 Mio. zusätzliche Malariafälle, 107.000 zusätzliche Todesfälle</td><td>Prognose</td></tr>
+  </table>
+
+  <p><em>Redaktionelle Einordnung:</em> Die unterschiedlichen Zahlen stammen aus verschiedenen Modellierungen mit unterschiedlichen Annahmen und Zeiträumen — sie sind Projektionen, keine abgeschlossenen Zählungen. Elon Musk bestritt öffentlich auf X, dass die Kürzungen zu Todesfällen geführt hätten, ohne dies zu belegen. Die Bandbreite selbst ist Teil der Dokumentation: Sie zeigt, dass die genaue Zahl <strong>OFFEN</strong> ist — nicht, ob es überhaupt Auswirkungen gibt.</p>
+
+  <h2>AFRICOM: Abzug aus Niger, neues Modell</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-date">2019</span>
+      Eröffnung der 110-Millionen-Dollar-Drohnenbasis Agadez (Niger) — größtes Bauprojekt der US-Luftwaffe in Afrika.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2024</span>
+      Die Militärjunta in Niger zwingt AFRICOM zum vollständigen Abzug von rund 1.000 US-Soldaten.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Februar 2026</span>
+      Rund 200 US-Soldaten in Nigeria zur Unterstützung gegen ISIS im Lake-Chad-Becken.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Mai 2026</span>
+      Gemeinsame US-nigerianische Operation tötet Abu-Bilal al-Minuki, Nr. 2 von ISIS weltweit.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Juli 2026</span>
+      AFRICOM-Kommandeur Gen. Dagvin Anderson bestätigt Abzug des Großteils der Truppen aus Nigeria — Fortsetzung nur noch als Geheimdienstkooperation auf nigerianischen Wunsch.
+    </div>
+  </div>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    AFRICOM-Pressemitteilungen; Stars and Stripes (6. Juli 2026); Military Times (3. Juli 2026).
+  </div>
+
+  <p>Parallel dazu fährt AFRICOM in Somalia die aggressivste Luftkampagne seit Gründung des Kommandos 2007: 89 Angriffe gegen IS- und al-Qaida-nahe Kräfte im bisherigen Jahresverlauf 2025 — der höchste Wert seit 63 Angriffen 2019.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Stars and Stripes (3. November 2025), auf Basis von AFRICOM-Daten.
+  </div>
+
+  <h3>Diskutierte Auflösung von AFRICOM selbst</h3>
+  <span class="tag tag-offen">OFFEN</span>
+
+  <p>Innerhalb der US-Regierung kursierten Überlegungen, AFRICOM (Hauptquartier in Stuttgart) dem European Command unterzuordnen, um Bürokratie abzubauen. Ob dies umgesetzt wird, war zum Zeitpunkt der zitierten Quelle offen.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Konrad-Adenauer-Stiftung, "The US strategy in West Africa under Trump" (Juni 2025).
+  </div>
+
+  <h2>Das Vakuum: Wer profitiert vom Rückzug?</h2>
+  <span class="tag tag-extrapolation">EXTRAPOLATION</span>
+
+  <p>Der US-Abzug aus Niger verschärfte eine Entwicklung, die zeitgleich auf französischer Seite ablief (siehe Teil 4): Der komplette Rückzug westlicher Truppen aus dem Sahel traf mit der Ausweitung des russischen Africa Corps in denselben Ländern zusammen (siehe Teil 2). Ein Kausalzusammenhang im Sinne einer koordinierten Absicht ist nicht belegt — der zeitliche und geografische Zusammenfall der Entwicklungen ist es jedoch.</p>
+
+  <div class="pull-quote">
+    Viele afrikanische Regierungen beobachten genau, wie verlässlich Washingtons Engagement ist. Ein Rückzug könnte Zweifel an der langfristigen Unterstützung der USA wecken — und antidemokratischen Kräften Auftrieb geben.
+  </div>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Konrad-Adenauer-Stiftung (Juni 2025).
+  </div>
+
+  <div class="closing-question">
+    Ist ein Rückzug aus humanitärer und militärischer Verantwortung neutral — oder ist Nichthandeln in einem Machtvakuum am Ende auch eine Form von Einflussnahme, nur ohne Absicht?
+  </div>
+
+  <div class="series-nav">
+    <strong>SERIE: Wettlauf um Afrika</strong>
+    Teil 1: China — Infrastruktur gegen Einfluss<br>
+    Teil 2: Russland — Wagner/Africa Corps<br>
+    Teil 3: USA — Rückzug und Restrukturierung (dieser Artikel)<br>
+    Teil 4: Frankreich/Wertewesten — Ende der Françafrique (folgt)<br>
+    Teil 5: Synthese (folgt)
+  </div>
+
+</div>
+</body>
+</html>

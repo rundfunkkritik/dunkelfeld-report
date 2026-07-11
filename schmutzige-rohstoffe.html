@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schmutzige Rohstoffe — dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background: #09090b;
+    color: #e5e5e5;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #e8c547;
+  }
+  h1 {
+    font-family: Georgia, serif;
+    font-size: 2.1rem;
+    line-height: 1.3;
+    margin: 0.8rem 0 0.5rem;
+    color: #f4f4f5;
+  }
+  .subtitle {
+    font-size: 1.15rem;
+    color: #a1a1aa;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  h2 {
+    font-family: Georgia, serif;
+    font-size: 1.5rem;
+    color: #e8c547;
+    margin-top: 3rem;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    font-family: Georgia, serif;
+    font-size: 1.2rem;
+    color: #f4f4f5;
+    margin-top: 1.8rem;
+  }
+  p {
+    padding-bottom: 1.2rem;
+  }
+  .meta-bar {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+    padding: 0.8rem 0;
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .label { display: block; margin-bottom: 0.5rem; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.6rem;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 0.8rem;
+  }
+  .tag-belegt { background: rgba(74, 222, 128, 0.15); color: #4ade80; border: 1px solid #4ade80; }
+  .tag-extrapolation { background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid #fb923c; }
+  .tag-offen { background: rgba(161, 161, 170, 0.15); color: #a1a1aa; border: 1px solid #a1a1aa; }
+  .tag-vt-widerlegt { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid #ef4444; text-decoration: line-through; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .stat-card {
+    background: #131316;
+    border: 1px solid #27272a;
+    border-radius: 4px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.8rem;
+    color: #e8c547;
+    font-weight: bold;
+    display: block;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #a1a1aa;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #27272a;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #e8c547;
+  }
+
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #f4f4f5;
+    border-left: 3px solid #e8c547;
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .timeline {
+    margin: 1.5rem 0;
+    border-left: 2px solid #27272a;
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    margin-bottom: 1.2rem;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.68rem;
+    top: 0.35rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #e8c547;
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #e8c547;
+    display: block;
+  }
+
+  .closing-question {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #d4d4d8;
+    text-align: center;
+    margin: 3rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+  }
+
+  .series-nav {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+  }
+
+  a { color: #e8c547; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="label">Infrastruktur der Einflussnahme · dunkelfeld.report</div>
+  <h1>Schmutzige Rohstoffe</h1>
+  <div class="subtitle">Der wahre Preis der grünen und digitalen Revolution</div>
+
+  <div class="meta-bar">
+    <span>Hidden in Plain Sight</span>
+    <span>Beleg-vor-Motiv-Prinzip</span>
+  </div>
+
+  <p>Jedes Smartphone, jedes Elektroauto, jede Windkraftanlage endet als sauberes, glänzendes Endprodukt. Was am Anfang der Lieferkette steht, sieht anders aus: handgegrabene Schächte im Kongo, radioaktive Absetzbecken in der Inneren Mongolei, umkämpfte Minen im Ostkongo, Salzwüsten in Chile. Dieser Artikel dokumentiert vier Rohstoffe, ohne die moderne Technologie nicht funktioniert — und den Preis, den andere dafür zahlen.</p>
+
+  <h2>1. Kobalt — Kongo</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <p>Mehr als die Hälfte des weltweiten Kobaltbedarfs wird in der Demokratischen Republik Kongo gefördert. Kobalt ist zentraler Bestandteil von Lithium-Ionen-Akkus — in Smartphones, Laptops und Elektroautos.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-number">~40.000</span><span class="stat-label">Kinder in Minen (Schätzung)</span></div>
+    <div class="stat-card"><span class="stat-number">&gt;50%</span><span class="stat-label">Weltweite Kobaltförderung aus DR Kongo</span></div>
+    <div class="stat-card"><span class="stat-number">7–17</span><span class="stat-label">Alter der arbeitenden Kinder (Jahre)</span></div>
+  </div>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Amnesty International / Afrewatch, "This is what we die for: Human rights abuses in the Democratic Republic of the Congo power the global trade in cobalt" (2016), sowie Folgebericht "Time to recharge" (2017). Dokumentiert Kinder ab sieben Jahren in handgegrabenen Schächten, ohne Schutzausrüstung, bei 1–2 US-Dollar Tageslohn.
+  </div>
+
+  <p>2019 reichte die Organisation International Rights Advocates in den USA im Namen von 14 Familien verstorbener oder schwer verletzter Bergbau-Kinder Klage gegen Apple, Microsoft, Tesla, Google und Dell ein. Keines der von Amnesty 2017 überprüften 29 Unternehmen — darunter Daimler, Volkswagen, Samsung, BMW — erfüllte zu dem Zeitpunkt seine menschenrechtlichen Sorgfaltspflichten vollständig entlang der Lieferkette.</p>
+
+  <p>Die kongolesische Regierung verpflichtete sich 2017 offiziell, Kinderarbeit in Minen bis 2025 zu beenden. Nach Einschätzung mehrerer Menschenrechtsorganisationen hat sich die Lage seither kaum grundlegend verändert.</p>
+
+  <h2>2. Konfliktmineralien — Coltan, Zinn, Wolfram, Gold</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <p>Coltan (Tantalerz) steckt in praktisch jedem Kondensator moderner Elektronik. Rund 80 Prozent der bekannten Weltvorkommen liegen in der Provinz Kivu im Ostkongo — einer Region, die seit über 30 Jahren von bewaffneten Konflikten geprägt ist.</p>
+
+  <div class="pull-quote">
+    "Für den Erlös von fast 100 Kilogramm Gold kann man im Kongo etwa 7.000 Gewehre kaufen."
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-date">2010</span>
+      US Dodd-Frank Act (Sec. 1502) verpflichtet US-Unternehmen zur Offenlegung von Konfliktmineralien in ihren Lieferketten.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2021</span>
+      EU-Konfliktmineralien-Verordnung tritt in Kraft — verbindliche Sorgfaltspflichten für Importeure von Zinn, Tantal, Wolfram und Gold.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2025</span>
+      Rebellengruppe M23 übernimmt Kontrolle über die Coltan-Mine Rubaya im Ostkongo. Global Witness dokumentiert, dass der Luxemburger Rohstoffhändler Traxys 2024 rund 280 Tonnen Coltan aus Ruanda kaufte — trotz hohem Risiko, dass die Ware aus dem Kongo stammt oder geschmuggelt wurde.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Februar 2026</span>
+      Einsturz einer Coltan-Mine in Nord-Kivu: über 200 Tote, darunter Minderjährige. Die kongolesische Regierung macht illegale Ausbeutung, bewaffnete Gruppen und das Versagen internationaler Kontrollmechanismen verantwortlich.
+    </div>
+  </div>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    UN-Expertengruppenbericht zur DR Kongo (2025); Global Witness, Untersuchung zu Traxys/Ruanda (April 2025); SRF-Bericht zu UN-Warnungen vor Konfliktmineralien (September 2025); Vatican News zum Minenunglück Nord-Kivu (Februar 2026).
+  </div>
+
+  <p>Ein Kampagnenleiter von Global Witness formulierte es so: Die EU habe offenbar keine wirksamen Schutzmaßnahmen umgesetzt und solle ihre Rohstoffpartnerschaft mit Ruanda überdenken. Der Erzbischof von Kinshasa, Kardinal Fridolin Ambongo Besungu, kritisierte das EU-Ruanda-Abkommen öffentlich scharf.</p>
+
+  <h2>3. Seltene Erden — China, Baotou</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <p>China fördert heute rund 70 Prozent und verarbeitet rund 90 Prozent der weltweiten seltenen Erden — Metalle, die in Elektromotoren, Windkraftmagneten, Chips und Militärtechnik verbaut werden. Deutschland bezieht etwa zwei Drittel seines Bedarfs aus China.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-number">~70%</span><span class="stat-label">Weltförderung durch China</span></div>
+    <div class="stat-card"><span class="stat-number">~90%</span><span class="stat-label">Weltverarbeitung durch China</span></div>
+    <div class="stat-card"><span class="stat-number">160 Mio. t</span><span class="stat-label">Rückstände im Absetzbecken Baotou</span></div>
+  </div>
+
+  <p>Die Mine Bayan Obo bei Baotou (Innere Mongolei) ist seit Jahrzehnten das Zentrum der weltweiten Förderung. Die zugehörige Absetzanlage lagert nach über 50 Betriebsjahren rund 160 Millionen Tonnen Rückstände und 17,5 Millionen Kubikmeter Abwasser — darunter radioaktives Thorium sowie Schwefel- und Flusssäure aus dem Trennverfahren. Umliegende Dörfer werden von Anwohnern als "Krebsdörfer" bezeichnet.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    adelphi/Umweltbundesamt, UmSoRess-Fallstudie Bayan Obo (Öko-Institut e.V., Tsinghua-Universität); ZDF-Reportage zu China Seltene-Erden-Monopol (2026); DIW-Wochenbericht Nr. 19/2011 zum chinesischen Monopol.
+  </div>
+
+  <p>China erreichte seine Marktdominanz nicht primär über Rohstoffvorkommen — die USA förderten bis in die 1980er Jahre den Großteil des Weltbedarfs aus der Mine Mountain Pass in Kalifornien. Ausschlaggebend waren laut mehreren Fachquellen niedrige Lohnkosten und das Fehlen von Umweltauflagen, wodurch die Produktion in westlichen Ländern unwirtschaftlich wurde. Seit April 2025 nutzt Peking Exportbeschränkungen für schwere seltene Erden gezielt als geopolitisches Druckmittel, das ausdrücklich auch die Rüstungsindustrie betrifft.</p>
+
+  <h2>4. Lithium — Atacama-Wüste</h2>
+  <span class="tag tag-offen">OFFEN</span>
+
+  <p>Beim Lithium ist die Quellenlage weniger eindeutig als bei den vorangegangenen Rohstoffen — und genau das gehört dokumentiert, statt unterschlagen zu werden.</p>
+
+  <p>Die verbreitete Behauptung, Lithiumabbau trockne die Atacama-Wüste aus, stützt sich meist auf ältere Zahlen (u.a. aus 2011). Eine mehrjährige Studie der University of Massachusetts Amherst und der University of Alaska Anchorage (2022) kommt zu einem differenzierteren Bild: Der Gesamtwasserverbrauch im Salar de Atacama übersteigt zwar die natürliche Wasserzufuhr — der Lithiumabbau selbst mache davon aber weniger als 10 Prozent des regionalen Süßwasserverbrauchs aus, deutlich weniger als Landwirtschaft und Tourismus.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Studie UMass Amherst / University of Alaska Anchorage, veröffentlicht in "Earth's Future" (2022) — mitfinanziert von BMW und BASF. Ergänzend: Studie des Argonne National Laboratory (finanziert von SQM, 2021).
+  </div>
+
+  <p><em>Hinweis zur Einordnung:</em> Beide zitierten Studien wurden teilweise von Unternehmen mitfinanziert, die selbst Interesse an einer positiven Bewertung des Lithiumabbaus haben (BMW, BASF, SQM). Das macht die Ergebnisse nicht automatisch falsch — aber es begründet, warum dieser Punkt als <strong>OFFEN</strong> und nicht als <strong>BELEGT</strong> geführt wird. Unabhängig von der Wassermenge dokumentieren mehrere Quellen einen realen Zielkonflikt zwischen Lithiumförderung und den Lebensgrundlagen indigener Gemeinschaften in der Region.</p>
+
+  <h2>Die grüne und digitale Doppelmoral</h2>
+
+  <table>
+    <tr><th>Endprodukt</th><th>Vermarktet als</th><th>Rohstoff-Herkunft</th></tr>
+    <tr><td>Elektroauto</td><td>Klimafreundlich</td><td>Kobalt (Kongo), Lithium (Atacama), seltene Erden (China)</td></tr>
+    <tr><td>Windkraftanlage</td><td>Erneuerbare Energie</td><td>Seltene Erden (China/Baotou)</td></tr>
+    <tr><td>Smartphone</td><td>Innovation, Lifestyle</td><td>Kobalt, Coltan (Kongo/Ruanda)</td></tr>
+  </table>
+
+  <p>Ein französischer Rohstoffexperte formulierte 2010 gegenüber Le Monde diplomatique das Paradox so: Ausgerechnet die Rohstoffe, die für die Produktion erneuerbarer Energien unentbehrlich sind, werden mit besonders umweltschädlichen Verfahren gewonnen. Der Westen hat, so mehrere Fachquellen übereinstimmend, die "schmutzige" Förderstufe über Jahrzehnte gezielt ausgelagert — nach China, in den Kongo, nach Chile — und importiert das fertige, saubere Produkt.</p>
+
+  <div class="closing-question">
+    Wäre ein Elektroauto noch "klimafreundlich", wenn der Preis der Lieferkette auf dem Preisschild stünde?<br><br>
+    Und: Wer entscheidet eigentlich, welcher Rohstoff als "Konfliktmineral" gilt — und welcher nicht?
+  </div>
+
+  <div class="series-nav">
+    dunkelfeld.report · Infrastruktur der Einflussnahme<br>
+    Verwandte Themen: US-Einmischung Lateinamerika · Wer kontrolliert, was wir essen?
+  </div>
+
+</div>
+</body>
+</html>

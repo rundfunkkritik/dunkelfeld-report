@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wer prägt wen? — Die Netzwerke hinter der deutschen Sicherheitspolitik | dunkelfeld.info</title>
+<style>
+  :root{
+    --bg:#09090b; --bg2:#111114; --card:#1a1a2e;
+    --red:#c81e3a; --red-bright:#e8324f;
+    --text:#e4e4e7; --text-dim:#9a9aa5;
+    --green:#3fa34d; --orange:#d98c2b; --grey:#7a7a85;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:'JetBrains Mono',Consolas,monospace;
+    max-width:820px; margin:0 auto; padding:0 20px 80px;
+    line-height:1.7; font-size:1.0rem;
+  }
+  header{ border-bottom:2px solid var(--red); padding:28px 0 18px; margin-bottom:36px; }
+  .kicker{ color:var(--red-bright); text-transform:uppercase; letter-spacing:2px; font-size:.78rem; margin-bottom:10px; }
+  h1{ font-size:1.85rem; line-height:1.25; margin:0 0 12px; color:#fff; font-weight:700; }
+  .subtitle{ color:var(--text-dim); font-size:1rem; }
+  .meta{ color:var(--text-dim); font-size:.8rem; margin-top:14px; }
+  h2{ color:var(--red-bright); font-size:1.2rem; margin:48px 0 16px; border-left:3px solid var(--red); padding-left:12px; }
+  h3.person-name{ color:#fff; font-size:1.05rem; margin:0 0 4px; }
+  .person-role{ color:var(--text-dim); font-size:.82rem; margin-bottom:14px; }
+  p{ margin:0 0 16px; }
+  .lead{ font-size:1.05rem; color:#f2f2f4; }
+
+  .box{ background:var(--card); border-left:3px solid var(--red-bright); padding:18px 20px; margin:18px 0; border-radius:2px; }
+  .box-label{ font-size:.7rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--red-bright); margin-bottom:8px; font-weight:700; }
+  .box.fairness{ border-left-color:var(--orange); }
+  .box.fairness .box-label{ color:var(--orange); }
+  .box.danger{ border-left-color:#e8324f; background:#241318; }
+  .box.danger .box-label{ color:#ff5c72; }
+  .box.offen{ border-left-color:var(--grey); background:#17171c; }
+  .box.offen .box-label{ color:var(--grey); }
+  .box ul{ margin:0; padding-left:20px; }
+  .box li{ margin-bottom:7px; font-size:.95rem; }
+
+  .tag{ display:inline-block; font-size:.68rem; text-transform:uppercase; letter-spacing:1px; padding:2px 8px; border-radius:3px; margin-left:8px; font-weight:700; vertical-align:middle; }
+  .tag-belegt{ background:rgba(63,163,77,.15); color:var(--green); border:1px solid var(--green); }
+  .tag-offen{ background:rgba(122,122,133,.15); color:var(--grey); border:1px solid var(--grey); }
+
+  .person-card{ background:var(--bg2); border:1px solid #2a2a35; border-radius:6px; padding:22px 24px; margin:20px 0 36px; }
+
+  table{ width:100%; border-collapse:collapse; margin:20px 0; font-size:.82rem; }
+  th, td{ border:1px solid #2a2a35; padding:8px 10px; text-align:left; }
+  th{ background:var(--bg2); color:var(--red-bright); font-size:.72rem; text-transform:uppercase; letter-spacing:.5px; }
+  tr:nth-child(even){ background:#131318; }
+  td.yes{ color:var(--green); text-align:center; font-weight:700; }
+  td.no{ text-align:center; color:var(--text-dim); }
+
+  .glossary-item{ margin-bottom:20px; padding-bottom:18px; border-bottom:1px solid #22222b; }
+  .glossary-item:last-child{ border-bottom:none; }
+  .glossary-term{ color:var(--red-bright); font-weight:700; font-size:.95rem; margin-bottom:4px; }
+  .glossary-def{ font-size:.9rem; color:#d4d4dc; }
+
+  blockquote{ border-left:3px solid var(--orange); margin:24px 0; padding:4px 20px; font-style:italic; color:#d4d4dc; }
+
+  .series-nav{ margin-top:56px; padding:22px; background:var(--bg2); border:1px solid #2a2a35; border-radius:4px; font-size:.85rem; }
+  .series-nav h3{ color:var(--red-bright); font-size:.85rem; text-transform:uppercase; letter-spacing:1px; margin:0 0 12px; }
+  .series-nav ul{ margin:0; padding-left:18px; }
+  .series-nav li{ margin-bottom:6px; }
+
+  .source-note{ font-size:.76rem; color:var(--text-dim); margin-top:4px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="kicker">dunkelfeld.info · Infrastruktur der Einflussnahme · Ergänzung</div>
+  <h1>Wer prägt wen? — Die Netzwerke hinter der deutschen Sicherheitspolitik</h1>
+  <div class="subtitle">Überzeugung oder Prägung durch Zirkel? Fünf Personenprofile, ein Organisations-Glossar, eine offene Frage.</div>
+  <div class="meta">Hidden in Plain Sight</div>
+</header>
+
+<p class="lead">Wenn Politiker:innen mit großer Verve für mehr Waffen, mehr Aufrüstung oder eine härtere Haltung gegenüber Russland werben — handeln sie aus reiner Überzeugung, oder wurde diese Überzeugung durch jahrelange Einbindung in bestimmte Netzwerke geprägt? Diese Frage lässt sich aus Dokumenten allein nicht abschließend beantworten. Was sich aber dokumentieren lässt, sind die Netzwerke selbst — und wer wo Mitglied ist. Das ist der Gegenstand dieses Artikels. Ausdrücklich <strong>nicht</strong> Gegenstand: Behauptungen über Bestechung oder Bezahlung für politische Positionen. Dafür gibt es bei keiner der genannten Personen einen Beleg.</p>
+
+<h2>Personenprofile</h2>
+
+<div class="person-card">
+  <h3 class="person-name">Friedrich Merz (CDU) <span class="tag tag-belegt">Belegt</span></h3>
+  <div class="person-role">Bundeskanzler, CDU-Vorsitzender</div>
+  <div class="box">
+    <div class="box-label">Faktbox</div>
+    <ul>
+      <li><cite index="58-1">Merz war von 2009 bis 2019 Vorsitzender der Atlantik-Brücke und von 2016 bis 2020 Aufsichtsratschef des deutschen Ablegers von BlackRock, für den er Beziehungen zu wichtigen Kunden, Behörden und Regierungsstellen in Deutschland vermittelte.</cite></li>
+      <li><cite index="61-1">Während seiner BlackRock-Tätigkeit traf er sich unter anderem mit Olaf Scholz, Sigmar Gabriel und dem heutigen Finanzstaatssekretär Jörg Kukies.</cite></li>
+      <li><cite index="59-1">2006 klagte Merz erfolglos gegen die Pflicht zur Offenlegung von Nebeneinkünften als Bundestagsabgeordneter.</cite></li>
+      <li><cite index="63-1">Er war zudem Aufsichtsratsvorsitzender bei WEPA und dem Flughafen Köln/Bonn sowie Vorsitzender des Verwaltungsrats bei HSBC Trinkaus & Burkhardt.</cite></li>
+    </ul>
+  </div>
+  <p class="source-note">Einordnung: Belegt ist strukturelle Nähe zur Finanzindustrie und ein dokumentiertes Interessenkonflikt-Potenzial durch den direkten Wechsel von Konzernaufsicht ins Kanzleramt. Nicht belegt: eine konkrete Kausalität zwischen Zahlung und politischer Entscheidung.</p>
+</div>
+
+<div class="person-card">
+  <h3 class="person-name">Marie-Agnes Strack-Zimmermann (FDP) <span class="tag tag-belegt">Belegt</span></h3>
+  <div class="person-role">MdEP, ehem. Vorsitzende Verteidigungsausschuss</div>
+  <div class="box">
+    <div class="box-label">Faktbox</div>
+    <ul>
+      <li><cite index="32-1">Bis November 2023 war sie Mitglied im Präsidium des Förderkreis Deutsches Heer, dessen Mitgliedsunternehmen u.a. Rheinmetall, Heckler & Koch und Krauss-Maffei Wegmann sind.</cite></li>
+      <li><cite index="35-1">Bis Mai 2023 war sie zudem Präsidiumsmitglied der Deutschen Gesellschaft für Wehrtechnik.</cite></li>
+      <li><cite index="36-1">Seit Mai 2022 ist sie Vizepräsidentin der Deutsch-Atlantischen Gesellschaft.</cite></li>
+      <li><cite index="31-1">Ihr Wahlkreis Düsseldorf beherbergt den Konzernsitz von Rheinmetall.</cite></li>
+      <li><cite index="32-1">Auf direkte Nachfrage, ob sie sich als Lobbyistin bezeichne, antwortete sie wiederholt: „Nein ich bin keine Lobbyistin."</cite></li>
+    </ul>
+  </div>
+  <p class="source-note">Einordnung: Belegt ist die Ämterhäufung in Rüstungsnetzwerken parallel zum Ausschussvorsitz. Die Ämter waren nach Presse- und Eigenangaben ehrenamtlich.</p>
+</div>
+
+<div class="person-card">
+  <h3 class="person-name">Roderich Kiesewetter (CDU) <span class="tag tag-belegt">Belegt</span></h3>
+  <div class="person-role">MdB, Oberst a.D.</div>
+  <div class="box">
+    <div class="box-label">Faktbox</div>
+    <ul>
+      <li><cite index="39-1">Sprecher des Beirats der Bundesakademie für Sicherheitspolitik, Mitglied im Vorstand der Deutsch-Atlantischen Gesellschaft, Mitglied bei Atlantik-Brücke, GSP, ECFR und European Leadership Network.</cite></li>
+      <li><cite index="47-1">Oberst a.D. mit Stationen im NATO-Hauptquartier Brüssel und Mons sowie im Bundesverteidigungsministerium; Generalstabsausbildung an der Führungsakademie der Bundeswehr.</cite></li>
+      <li><cite index="42-1">Nach eigener Angabe geht er keinen bezahlten Nebentätigkeiten nach — seine Ämter sind ehrenamtlich.</cite></li>
+    </ul>
+  </div>
+  <p class="source-note">Einordnung: Reines Netzwerk- und Karriereprofil eines sicherheitspolitischen Berufspolitikers mit Militärlaufbahn. Kein Hinweis auf Zahlungen.</p>
+</div>
+
+<div class="person-card">
+  <h3 class="person-name">Norbert Röttgen (CDU) <span class="tag tag-belegt">Belegt</span></h3>
+  <div class="person-role">MdB, stellv. Fraktionsvorsitzender</div>
+  <div class="box">
+    <div class="box-label">Faktbox</div>
+    <ul>
+      <li><cite index="50-1">Stellvertretender Vorsitzender des Atlantik-Brücke-Vorstands sowie Mitglied im Präsidium der Deutschen Gesellschaft für Auswärtige Politik (DGAP).</cite></li>
+      <li><cite index="54-1">Zusätzlich Mitglied in den Leitungsgremien des European Council on Foreign Relations sowie Präsident des Club of Three.</cite></li>
+      <li><cite index="50-1">Einzige beim Bundestag offengelegte bezahlte Nebentätigkeit: 5.000 Euro brutto jährlich als Kuratoriumsmitglied der Hertie School of Governance.</cite></li>
+    </ul>
+  </div>
+  <p class="source-note">Einordnung: Ähnliches Muster wie Kiesewetter — dichtes transatlantisches Netzwerk, aber die einzige beziffert offengelegte Nebentätigkeit ist gering.</p>
+</div>
+
+<div class="person-card">
+  <h3 class="person-name">Anton Hofreiter (Grüne) <span class="tag tag-offen">Offen</span></h3>
+  <div class="person-role">MdB, Vorsitzender EU-Ausschuss</div>
+  <div class="box offen">
+    <div class="box-label">Faktbox — Leerstelle statt Beleg</div>
+    <ul>
+      <li>Auf die am 25.04.2024 bei abgeordnetenwatch gestellte direkte Frage, ob er oder sein Wahlkreis Zuwendungen von Unternehmen oder Verbänden mit Rüstungsbezug erhalten habe, ist der Antwortstatus bis heute „ausstehend".</li>
+      <li>Auf die Frage nach einer möglichen Mitgliedschaft bei Atlantik-Brücke oder German Marshall Fund antwortete er ausweichend mit einem Verweis auf Klimapolitik und äußerte sich nicht dazu, ob er selbst Mitglied ist.</li>
+      <li>Hofreiter hat inzwischen erklärt, das Portal abgeordnetenwatch grundsätzlich nicht mehr zu nutzen und dort keine Fragen mehr zu beantworten — das betrifft alle offenen Fragen gleichermaßen, nicht speziell diese.</li>
+      <li>Anders als bei den anderen vier Personen ließ sich in dieser Recherche keine dokumentierte Mitgliedschaft in einem der genannten transatlantischen oder rüstungsnahen Netzwerke finden. Sein politischer Werdegang (Kommunalpolitik München, Verkehrsausschuss, Biologie-Promotion) unterscheidet sich strukturell von den Laufbahnen der anderen vier.</li>
+    </ul>
+  </div>
+  <p class="source-note">Einordnung: Dünne, teils bewusst unbeantwortete Beleglage — das ist ein anderer Befund als "keine Verbindungen nachweisbar". Beides sauber auseinanderzuhalten ist hier redaktionell zentral.</p>
+</div>
+
+<h2>Verflechtungstabelle</h2>
+<table>
+  <tr><th>Person</th><th>Atlantik-Brücke</th><th>DGAP</th><th>DWT</th><th>FKH</th><th>DAG</th><th>ECFR</th><th>BAKS</th></tr>
+  <tr><td>Merz</td><td class="yes">✓ (Vors. 09–19)</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+  <tr><td>Strack-Zimmermann</td><td class="no">—</td><td class="no">—</td><td class="yes">✓ (bis 23)</td><td class="yes">✓ (bis 23)</td><td class="yes">✓ Vizepräs.</td><td class="no">—</td><td class="yes">Beirat</td></tr>
+  <tr><td>Kiesewetter</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">✓ Vorstand</td><td class="yes">✓</td><td class="yes">Sprecher</td></tr>
+  <tr><td>Röttgen</td><td class="yes">✓ stellv. Vors.</td><td class="yes">✓ Präsidium</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">✓ Leitung</td><td class="no">—</td></tr>
+  <tr><td>Hofreiter</td><td class="no">offen</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+</table>
+<p class="source-note">Stand der Recherche. Leere Felder bedeuten „keine dokumentierte Mitgliedschaft gefunden", nicht zwingend „keine Mitgliedschaft".</p>
+
+<h2>Organisations-Glossar</h2>
+
+<div class="glossary-item">
+  <div class="glossary-term">Atlantik-Brücke e.V.</div>
+  <div class="glossary-def"><cite index="55-1">Gegründet 1952, ein Verein führender Persönlichkeiten aus Wirtschaft, Politik, Streitkräften, Wissenschaft, Medien und Kultur, die über ein gemeinsames Netzwerk gesellschaftspolitischen Einfluss nehmen; Mitgliedschaft nur durch Nominierung und Kooptation durch den Vorstand.</cite> Bekanntestes Programm: die „Young Leaders"-Konferenzen für Nachwuchskräfte. Aktueller Vorsitzender: Sigmar Gabriel.</div>
+</div>
+
+<div class="glossary-item">
+  <div class="glossary-term">Bundesakademie für Sicherheitspolitik (BAKS)</div>
+  <div class="glossary-def">Keine private Lobby, sondern eine staatliche Einrichtung: <cite index="73-1">die zentrale, ressortübergreifende Weiterbildungsstätte der Bundesregierung für Sicherheitspolitik, angesiedelt im Geschäftsbereich des Verteidigungsministeriums, mit dem Nationalen Sicherheitsrat als Kuratorium.</cite> <cite index="73-1">Führt jährlich über 70 Veranstaltungen mit bis zu 5.000 Teilnehmenden durch</cite> und soll dabei explizit auch ein Netzwerk zwischen Teilnehmenden aus Staat, Wirtschaft und Gesellschaft schaffen.</div>
+</div>
+
+<div class="glossary-item">
+  <div class="glossary-term">Deutsche Gesellschaft für Auswärtige Politik (DGAP)</div>
+  <div class="glossary-def"><cite index="37-1">Eine der einflussreichsten außen- und sicherheitspolitischen Organisationen Deutschlands; frühere Präsidentschaft u.a. durch Thomas Enders, den ehemaligen Vorstandsvorsitzenden von Airbus. Die DGAP erhielt von Airbus mehr als 100.000 Euro Spenden in mehreren Geschäftsjahren sowie 2021/22 zwischen 10.000 und 19.999 Euro von Rheinmetall.</cite></div>
+</div>
+
+<div class="glossary-item">
+  <div class="glossary-term">Deutsche Gesellschaft für Wehrtechnik (DWT)</div>
+  <div class="glossary-def"><cite index="35-1">1957 auf Initiative der Rüstungsabteilung des Bundesverteidigungsministeriums gegründeter Netzwerkverein, der Rüstungsindustrie, Bundestagsabgeordnete und Ministeriumsmitarbeiter zu wehrtechnischen Fragen zusammenbringt.</cite> Mitgliedsunternehmen u.a. Rheinmetall, Diehl, Krauss-Maffei Wegmann, Lockheed Martin, Airbus, Thales.</div>
+</div>
+
+<div class="glossary-item">
+  <div class="glossary-term">Förderkreis Deutsches Heer (FKH)</div>
+  <div class="glossary-def"><cite index="32-1">Netzwerkverein der deutschen Rüstungsindustrie, der Mitgliedern privilegierte Zugänge zu Bundestagsabgeordneten verschafft; Mitgliedsunternehmen u.a. Rheinmetall, Heckler & Koch, Krauss-Maffei Wegmann, Diehl, Airbus, Boeing.</cite> <cite index="32-1">Gab 2023 laut Lobbyregister mindestens 1,11 Millionen Euro für Lobbytätigkeit aus.</cite></div>
+</div>
+
+<div class="glossary-item">
+  <div class="glossary-term">Deutsch-Atlantische Gesellschaft (DAG)</div>
+  <div class="glossary-def"><cite index="36-1">Verein mit dem Ziel, das Verständnis für die Ziele des Atlantischen Bündnisses zu vertiefen, über NATO-Politik zu informieren und den europäischen Pfeiler der NATO zu stärken.</cite> Vorstand mit Politikern aller Parteien, Ex-Generälen und Rüstungsmanagern.</div>
+</div>
+
+<div class="glossary-item">
+  <div class="glossary-term">European Council on Foreign Relations (ECFR)</div>
+  <div class="glossary-def">Paneuropäischer Think Tank mit Büros in mehreren europäischen Hauptstädten einschließlich Berlin, der sich für eine gemeinsame europäische Außen- und Sicherheitspolitik einsetzt.</div>
+</div>
+
+<h2>Fairnessbox</h2>
+<div class="box fairness">
+  <div class="box-label">Die Gegenposition</div>
+  <p>Netzwerkmitgliedschaft ist in Deutschland legal und für Bundestagsabgeordnete teils sogar offenlegungspflichtig. Vernetzung mit Fachverbänden, Think Tanks und internationalen Partnern gehört zum normalen Handwerk von Außen- und Sicherheitspolitik. Wer sich mit einem Thema beschäftigt, wird zwangsläufig in die Fachzirkel dieses Themas eingeladen — das gilt für Verteidigungspolitiker ebenso wie für Umwelt- oder Sozialpolitiker in ihren jeweiligen Bereichen.</p>
+</div>
+
+<h2>Dangerbox</h2>
+<div class="box danger">
+  <div class="box-label">Grenzen der Aussage</div>
+  <p>Für keine der fünf genannten Personen gibt es einen Beleg für Zahlungen im Austausch für eine bestimmte politische Position. Was dokumentiert ist, ist institutionelle Nähe — nicht Kausalität. Ob Überzeugung die Netzwerk-Mitgliedschaft ausgelöst hat oder die Netzwerk-Mitgliedschaft die Überzeugung geprägt hat, lässt sich aus den vorliegenden Dokumenten nicht auflösen.</p>
+</div>
+
+<blockquote>
+  <em>Prägt das Netzwerk die Überzeugung, oder sucht sich die Überzeugung ihr passendes Netzwerk? Und ändert es etwas an der politischen Bewertung einer Position, wenn man weiß, in welchen Zirkeln sie gereift ist?</em>
+</blockquote>
+
+<div class="series-nav">
+  <h3>Cross-Reference</h3>
+  <ul>
+    <li>Infrastruktur der Einflussnahme (13-teilige Grundlagenserie)</li>
+    <li>Kaderschmieden der Macht (Elite-Bildung, Netzwerke)</li>
+    <li>Die Machtpyramide (Synthese-Artikel)</li>
+  </ul>
+</div>
+
+</body>
+</html>

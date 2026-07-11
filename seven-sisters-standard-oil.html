@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zerschlagen und doch ungeteilt: Wie Standard Oil weiterlebt | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --text: #e4e4e7;
+    --muted: #9a9aa2;
+    --border: #27272a;
+    --box-bg: #1a1a2e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+  .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+  header .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; }
+  header .date { margin-left: auto; font-size: 0.7rem; color: var(--muted); font-family: 'Courier New', monospace; }
+  main { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+  .kicker { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 1.5rem; }
+  h1 { font-size: clamp(2rem, 6vw, 2.8rem); line-height: 1.15; margin: 0 0 1rem; color: var(--text); }
+  .subtitle { color: var(--muted); font-size: 1.15rem; line-height: 1.6; margin-bottom: 1.5rem; }
+  .meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 3rem; font-family: 'Courier New', monospace; }
+  h2 { font-size: 1.6rem; color: var(--accent); margin-top: 3.5rem; margin-bottom: 1.2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.6rem; }
+  h3 { font-size: 1.2rem; color: var(--text); margin-top: 2rem; margin-bottom: 0.8rem; }
+  p { padding-bottom: 1.2rem; }
+  .source-box { background: var(--box-bg); border-left: 3px solid var(--accent); padding: 1rem 1.3rem; margin: 1.5rem 0 2rem; font-size: 0.9rem; color: var(--muted); font-family: 'Courier New', monospace; line-height: 1.6; }
+  .source-box .label { color: var(--accent); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.08em; display: block; margin-bottom: 0.4rem; }
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--border); margin: 2rem 0; }
+  .stat-card { background: var(--bg); padding: 1.5rem 1.2rem; }
+  .stat-number { font-size: 1.8rem; color: var(--accent); font-family: 'Courier New', monospace; font-weight: bold; line-height: 1.1; }
+  .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem; }
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2rem; font-size: 0.95rem; }
+  th, td { text-align: left; padding: 0.7rem 0.8rem; border-bottom: 1px solid var(--border); }
+  th { color: var(--accent); font-family: 'Courier New', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .tag { display: inline-block; font-family: 'Courier New', monospace; font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 0.5rem; }
+  .tag-belegt { background: rgba(76, 175, 80, 0.15); color: #7ed88a; border: 1px solid rgba(126, 216, 138, 0.3); }
+  .tag-offen { background: rgba(154, 154, 162, 0.15); color: var(--muted); border: 1px solid rgba(154, 154, 162, 0.3); }
+  .open-question { font-style: italic; color: var(--muted); margin: 2.5rem 0; font-size: 1.05rem; }
+  footer { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 4rem; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--muted); }
+  footer h3 { color: var(--accent); font-size: 1rem; }
+  footer ul { padding-left: 1.2rem; line-height: 1.9; }
+  footer .tagline { margin-top: 2rem; color: var(--accent); font-family: 'Courier New', monospace; font-size: 0.85rem; }
+  .nav-series { background: var(--box-bg); border: 1px solid var(--border); padding: 1.2rem 1.5rem; margin: 2.5rem 0; font-size: 0.9rem; }
+  .nav-series .label { color: var(--accent); font-family: 'Courier New', monospace; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.08em; margin-bottom: 0.6rem; display: block; }
+  .nav-series ol { margin: 0; padding-left: 1.3rem; color: var(--muted); }
+  .nav-series li.current { color: var(--text); font-weight: bold; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="dot"></div>
+  <span class="label">Dokumentation · Fakten · Quellen</span>
+  <span class="date">Juli 2026</span>
+</header>
+
+<main>
+  <div class="kicker">Serie: Schwarzes Gold — Was Erdöl wirklich bewegt · Teil 3</div>
+  <h1>Zerschlagen und doch ungeteilt: Wie Standard Oil weiterlebt</h1>
+  <p class="subtitle">1911 zerschlug der Oberste Gerichtshof der USA das größte Ölmonopol der Geschichte in über 30 Einzelunternehmen. Ein Jahrhundert später kontrollieren dieselben drei Vermögensverwalter die Nachfolgekonzerne — und praktisch jeden ihrer Konkurrenten gleich mit.</p>
+  <div class="meta">Lesedauer: ca. 8 Minuten · Teil 3 der Serie "Schwarzes Gold"</div>
+
+  <h2>1. Das Urteil von 1911</h2>
+
+  <p>John D. Rockefeller gründete Standard Oil 1863 gemeinsam mit Geschäftspartnern wie Henry M. Flagler. Innerhalb weniger Jahrzehnte kontrollierte das Unternehmen den überwiegenden Teil der US-amerikanischen Ölraffinerie-Kapazität und wurde zur Grundlage der Rockefeller-Dynastie. Sein Geschäftsgebaren führte zur ersten US-amerikanischen Anti-Monopol-Gesetzgebung — und am 15. Mai 1911 zum Zerschlagungsurteil des Obersten Gerichtshofs.</p>
+
+  <p>Standard Oil wurde in mehr als 30 unabhängige Nachfolgeunternehmen aufgeteilt, im Volksmund "Baby Standards" genannt. Unmittelbar nach der Zerschlagung stieg der Wettbewerb in der Branche spürbar — die einzelnen Gesellschaften begannen, unabhängig voneinander zu agieren.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Wikipedia (deutsch): "Standard Oil Company". Schwerd.info: "Die Zerschlagung von Standard Oil". Urteil des US Supreme Court vom 15. Mai 1911.
+  </div>
+
+  <h2>2. Die "Wiedervereinigung" unter neuem Namen</h2>
+
+  <p>Was als Zerschlagung begann, entwickelte sich über ein Jahrhundert Fusionen und Übernahmen zurück in Richtung Konzentration:</p>
+
+  <table>
+    <tr><th>Standard-Oil-Nachfolger (1911)</th><th>Heutige Identität</th></tr>
+    <tr><td>Standard Oil of New Jersey</td><td>Exxon → fusionierte 1999 mit Mobil zu ExxonMobil</td></tr>
+    <tr><td>Standard Oil of New York</td><td>Mobil → Teil von ExxonMobil</td></tr>
+    <tr><td>Standard Oil of California</td><td>Chevron (übernahm 2001 Texaco)</td></tr>
+    <tr><td>Standard Oil of Indiana</td><td>Amoco → heute Teil von BP</td></tr>
+    <tr><td>Standard Oil of Ohio</td><td>Sohio → heute Teil von BP</td></tr>
+    <tr><td>Continental Oil</td><td>Conoco → fusionierte 2002 mit Phillips zu ConocoPhillips</td></tr>
+  </table>
+
+  <p>1999 fusionierten Exxon und Mobil zu ExxonMobil — einer der größten Unternehmenszusammenschlüsse der Geschichte. 2001 übernahm Chevron den Standard-Oil-Nachfolger Texaco. Bemerkenswert auch: Saudi Aramco, das staatliche Ölunternehmen Saudi-Arabiens, geht auf eine Partnerschaft mit Standard Oil of California (heute Chevron) zurück, die nach der Zerschlagung geschlossen wurde.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Wikipedia (englisch): "Successors of Standard Oil". Dividend.com: "The History of the Standard Oil Company: An Infographic". Intelligent Investieren: "Kissigs Börsengeschichte(n)" zum Zerschlagungsurteil von 1911.
+  </div>
+
+  <h2>3. Die eigentliche Pointe: Common Ownership im Jahr 2026</h2>
+
+  <p>Der historische Bogen wäre für sich genommen schon bemerkenswert. Interessanter wird es beim Blick auf die aktuellen Aktionärslisten der einstigen Standard-Oil-Nachfolger — denn hier schließt sich der Kreis auf eine andere Art.</p>
+
+  <p>Laut aktuellen SEC-Unterlagen von ExxonMobil (2026) halten drei Vermögensverwalter die größten Einzelanteile am Unternehmen:</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-number">~10%</div>
+      <div class="stat-label">Vanguard Group bei ExxonMobil</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">~6,5%</div>
+      <div class="stat-label">BlackRock bei ExxonMobil</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">~5%</div>
+      <div class="stat-label">State Street bei ExxonMobil</div>
+    </div>
+  </div>
+
+  <p>Bei Chevron, dem zweiten großen Standard-Oil-Nachfolger, sieht die Aktionärsstruktur nahezu identisch aus: Vanguard (~7,6%), State Street (~6,8%) und BlackRock (~4%) zählen ebenfalls zu den größten Einzelaktionären. Dieselben drei Vermögensverwalter — Vanguard, BlackRock und State Street, in der Fachliteratur als "Big Three" bezeichnet — sind laut wissenschaftlicher Untersuchung der größte Einzelaktionär in fast 90 Prozent aller S&amp;P-500-Unternehmen, darunter Apple, Microsoft, Coca-Cola und eben auch die einstigen Standard-Oil-Erben ExxonMobil und Chevron gleichermaßen.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    ExxonMobil, SEC Form DEF 14A (2024–2026), sec.gov. TIKR.com: "Who Owns Chevron?" und "Who Owns Exxon Mobil?" (2025). The Conversation: "These three firms own corporate America" (Fichtner, Heemskerk &amp; Garcia-Bernardo, 2017).
+  </div>
+
+  <h2>4. Was bedeutet das strukturell?</h2>
+
+  <p>Dieses Phänomen wird in der Wissenschaft "Common Ownership" genannt: Wenn dieselben Großinvestoren gleichzeitig an mehreren direkten Wettbewerbern einer Branche beteiligt sind, verändert sich der Anreiz zum Wettbewerb — im Interesse dieser Investoren liegt nicht der Erfolg einer einzelnen Firma gegen die andere, sondern die Rendite der gesamten Branche. Das ist keine Verschwörungstheorie, sondern Gegenstand kartellrechtlicher Untersuchungen in den USA und der EU (siehe dazu auch Artikel #7 zum globalen Geldsystem).</p>
+
+  <div class="source-box">
+    <span class="label">Einordnung</span>
+    <span class="tag tag-belegt">BELEGT</span> Aktionärsstruktur, Fusionsgeschichte und Marktanteile sind durch SEC-Unterlagen und Gerichtsdokumente lückenlos dokumentiert.<br><br>
+    <span class="tag tag-offen">OFFEN</span> In welchem Ausmaß Common Ownership tatsächlich das Wettbewerbsverhalten der Ölkonzerne im Alltagsgeschäft beeinflusst, ist Gegenstand laufender akademischer und regulatorischer Untersuchungen — ein abschließendes Urteil steht noch aus.
+  </div>
+
+  <p class="open-question"><em>Ein Gerichtsurteil zerschlug 1911 ein Monopol, um Wettbewerb zu erzwingen. Ein Jahrhundert später halten dieselben drei Vermögensverwalter die größten Anteile an praktisch allen Nachfolgekonzernen gleichzeitig. Ist das noch der Wettbewerb, den das Urteil von 1911 herstellen wollte — oder eine neue Form derselben Konzentration, nur ohne einen einzelnen Namen an der Spitze?</em></p>
+
+  <div class="nav-series">
+    <span class="label">Serie: Schwarzes Gold — Was Erdöl wirklich bewegt</span>
+    <ol>
+      <li>Wenn die Party vorbei ist: Wer zahlt den Abwrack?</li>
+      <li>Nachwachsendes Öl? Was an der Theorie dran ist — und was nicht</li>
+      <li class="current">Zerschlagen und doch ungeteilt: Wie Standard Oil weiterlebt</li>
+      <li>Öl als Kriegswaffe: Die Doppelmoral der Vernichtung</li>
+    </ol>
+  </div>
+
+</main>
+
+<footer>
+  <h3>Quellenverzeichnis</h3>
+  <ul>
+    <li>Wikipedia (deutsch): "Standard Oil Company"</li>
+    <li>Wikipedia (englisch): "Successors of Standard Oil"</li>
+    <li>Schwerd.info: "Die Zerschlagung von Standard Oil"</li>
+    <li>ExxonMobil Corp, SEC Form DEF 14A (FY2022, FY2024, FY2025, FY2026), sec.gov</li>
+    <li>TIKR.com: "Who Owns Chevron? Biggest Shareholders and Recent Insider Trades" (2025)</li>
+    <li>TIKR.com: "Who Owns Exxon Mobil? Top Shareholders and Recent Insider Trades" (2025)</li>
+    <li>The Conversation: "These three firms own corporate America" — Fichtner, Heemskerk &amp; Garcia-Bernardo (2017)</li>
+    <li>Azar, Schmalz, Tecu: "Anticompetitive Effects of Common Ownership", Journal of Finance (2018)</li>
+  </ul>
+  <p style="margin-top: 1.5rem;">Alle dargestellten Informationen basieren auf öffentlich zugänglichen Quellen: SEC-Pflichtmitteilungen, Gerichtsurteilen und peer-reviewter Fachliteratur. Aktionärsanteile schwanken quartalsweise und wurden zum Zeitpunkt der jeweils zitierten Quelle erhoben.</p>
+  <div class="tagline">dunkelfeld.report — Fakten, die das Licht nicht zu scheuen brauchen.</div>
+</footer>
+
+</body>
+</html>

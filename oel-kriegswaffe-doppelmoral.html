@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Öl als Kriegswaffe: Die Doppelmoral der Vernichtung | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --text: #e4e4e7;
+    --muted: #9a9aa2;
+    --border: #27272a;
+    --box-bg: #1a1a2e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .mono {
+    font-family: 'Courier New', Courier, monospace;
+  }
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+  .dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  header .label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  header .date {
+    margin-left: auto;
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+  .kicker {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 1.5rem;
+  }
+  h1 {
+    font-size: clamp(2rem, 6vw, 2.8rem);
+    line-height: 1.15;
+    margin: 0 0 1rem;
+    color: var(--text);
+  }
+  .subtitle {
+    color: var(--muted);
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  .meta {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 3rem;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  h2 {
+    font-size: 1.6rem;
+    color: var(--accent);
+    margin-top: 3.5rem;
+    margin-bottom: 1.2rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.6rem;
+  }
+  h3 {
+    font-size: 1.2rem;
+    color: var(--text);
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+  }
+  p {
+    padding-bottom: 1.2rem;
+  }
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.3rem;
+    margin: 1.5rem 0 2rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.6;
+  }
+  .source-box .label {
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    margin: 2rem 0;
+  }
+  .stat-card {
+    background: var(--bg);
+    padding: 1.5rem 1.2rem;
+  }
+  .stat-number {
+    font-size: 1.8rem;
+    color: var(--accent);
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    line-height: 1.1;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.5rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0 2rem;
+    font-size: 0.95rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    color: var(--accent);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-left: 0.5rem;
+  }
+  .tag-belegt {
+    background: rgba(76, 175, 80, 0.15);
+    color: #7ed88a;
+    border: 1px solid rgba(126, 216, 138, 0.3);
+  }
+  .tag-extrapolation {
+    background: rgba(255, 152, 0, 0.15);
+    color: #ffb74d;
+    border: 1px solid rgba(255, 183, 77, 0.3);
+  }
+  .tag-offen {
+    background: rgba(154, 154, 162, 0.15);
+    color: var(--muted);
+    border: 1px solid rgba(154, 154, 162, 0.3);
+  }
+  blockquote {
+    border-left: 3px solid var(--accent);
+    margin: 2rem 0;
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    font-style: italic;
+    color: var(--text);
+    font-size: 1.15rem;
+  }
+  .open-question {
+    font-style: italic;
+    color: var(--muted);
+    margin: 2.5rem 0;
+    font-size: 1.05rem;
+  }
+  footer {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  footer h3 {
+    color: var(--accent);
+    font-size: 1rem;
+  }
+  footer ul {
+    padding-left: 1.2rem;
+    line-height: 1.9;
+  }
+  footer .tagline {
+    margin-top: 2rem;
+    color: var(--accent);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+  }
+  .nav-series {
+    background: var(--box-bg);
+    border: 1px solid var(--border);
+    padding: 1.2rem 1.5rem;
+    margin: 2.5rem 0;
+    font-size: 0.9rem;
+  }
+  .nav-series .label {
+    color: var(--accent);
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+  .nav-series ol {
+    margin: 0;
+    padding-left: 1.3rem;
+    color: var(--muted);
+  }
+  .nav-series li.current {
+    color: var(--text);
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="dot"></div>
+  <span class="label">Dokumentation · Fakten · Quellen</span>
+  <span class="date mono">Juli 2026</span>
+</header>
+
+<main>
+  <div class="kicker">Serie: Schwarzes Gold — Was Erdöl wirklich bewegt · Teil 4</div>
+  <h1>Öl als Kriegswaffe: Die Doppelmoral der Vernichtung</h1>
+  <p class="subtitle">Ein Rohstoff, um den Kriege geführt werden, wird im selben Atemzug hemmungslos verheizt, sobald er dem Feind nicht mehr nützen soll. Eine Bestandsaufnahme der größten Öl-Katastrophen zu Land und zu Wasser — und der Frage, warum "strategische Ressource" und "Klimaschutz" in solchen Momenten plötzlich keine Rolle mehr spielen.</p>
+  <div class="meta">Lesedauer: ca. 9 Minuten · Teil 4 der Serie "Schwarzes Gold"</div>
+
+  <p>Erdöl gilt als eine der knappsten und wertvollsten Ressourcen der Moderne. Um seinen Zugang wurden Kriege geführt, Regime gestützt und gestürzt, Milliarden investiert. Und doch: Immer wieder wurde genau dieser Rohstoff im großen Stil vernichtet — nicht durch Unfall, sondern durch bewusste Entscheidung, mitten im Krieg. Dieser Artikel dokumentiert die größten Fälle, ordnet sie in Zahlen ein und stellt die offene Frage, die sich daraus ergibt.</p>
+
+  <h2>1. Kuwait 1991: Die größte mutwillige Ölvernichtung der Geschichte</h2>
+
+  <p>Als die von den USA angeführte Koalition im Februar 1991 zum Bodenangriff ansetzte, um das irakisch besetzte Kuwait zu befreien, begannen sich zurückziehende irakische Truppen an den kuwaitischen Ölfeldern zu rächen. Bereits im Dezember 1990 waren Sprengladungen an den Anlagen platziert worden. Die systematische Zerstörung begann am 16. Januar 1991, zeitgleich mit den alliierten Luftschlägen.</p>
+
+  <p>Am Ende hatten irakische Truppen mehr als 700 der rund 900 bis 1.000 kuwaitischen Ölquellen in Brand gesetzt oder beschädigt — über drei Viertel aller kuwaitischen Förderanlagen. Während der unkontrollierten Brandphase zwischen Februar und April 1991 verbrannten täglich zwischen vier und sechs Millionen Barrel Rohöl sowie 70 bis 100 Millionen Kubikmeter Erdgas. Die US-Umweltbehörde EPA bezifferte in ihrem Bericht an den Kongress den Gesamtschaden auf über 700 beschädigte oder brennende Ölquellen, Lagertanks, Raffinerien und Anlagen.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-number">700+</div>
+      <div class="stat-label">brennende / zerstörte Ölquellen</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">~1 Mrd.</div>
+      <div class="stat-label">Barrel Rohöl verbrannt (Gesamtschätzung)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">10 Monate</div>
+      <div class="stat-label">bis zur Löschung der letzten Quelle</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">157,5 Mrd. $</div>
+      <div class="stat-label">geschätzter Wertverlust (Kuwait Oil Company, 1991)</div>
+    </div>
+  </div>
+
+  <p>Die letzte brennende Ölquelle wurde erst am 6. November 1991 gelöscht — nach zehn Monaten Löscharbeiten durch internationale Spezialteams (u. a. Red Adair, Boots &amp; Coots, Bechtel). Zur Einordnung: Die verbrannte Ölmenge entspricht rechnerisch dem gesamten weltweiten Ölverbrauch von rund zehn Tagen, gemessen am Verbrauch von 2022. Ein Time-Magazine-Ranking von 2010 stufte die Kuwait-Ölbrände als drittschlimmste Umweltkatastrophe der Geschichte ein — direkt hinter Tschernobyl und Bhopal.</p>
+
+  <h3>Die Klima-Ironie</h3>
+  <p>Die Brände setzten enorme Mengen Ruß, Schwefeldioxid und Kohlenmonoxid frei. Die Lufttemperatur sank regional um bis zu 10 Grad, die Wassertemperatur des Golfs um mehrere Grad. Tagelang verwandelte sich heller Tag in Dunkelheit. Just in dem Moment, in dem Erdöl als strategisch unverzichtbare, knappe Ressource galt, um die ein Krieg geführt wurde, spielte weder sein Marktwert noch seine Klimawirkung noch eine Rolle — Hauptsache, der Gegner sollte keinen Nutzen mehr daraus ziehen.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Wikipedia: "Kuwaiti oil fires" (Stand 2024/25), Angaben basierend auf US-EPA-Bericht an den Kongress und Kuwait Petroleum Company (September 1991). NZZ: "Ölbrände als Kriegswaffe Saddams" (2003). Wissenschaft &amp; Frieden: "Die ökologischen Folgen des Golfkrieges" (1992/1).
+  </div>
+
+  <h2>2. Der Persische Golf 1991: Größte Ölpest der Geschichte bis 2010</h2>
+
+  <p>Parallel zu den Bränden an Land öffneten irakische Soldaten am 21. Januar 1991 absichtlich die Ventile am Sea-Island-Ölterminal und ließen das Öl mehrerer Tanker in den Persischen Golf laufen — mutmaßlich um eine amphibische Landung der US-Marineinfanterie zu erschweren. Die Gesamtmenge stammte aus drei Quellen: den geöffneten Ventilen, beschädigten Tankern und zerstörten Pipelines.</p>
+
+  <p>Schätzungen zur ausgetretenen Ölmenge schwanken zwischen einer Milliarde Liter und bis zu sechs Milliarden Litern Rohöl — je nach Quelle und Berechnungsmethode. Damit übertraf die Menge die Exxon-Valdez-Katastrophe (1989) um ein Vielfaches. Rund 30 Prozent der Mangroven und Salzmarschen der arabischen Golfküste starben sofort ab oder überlebten die folgenden drei bis fünf Jahre nicht. Die Ölpest am Persischen Golf 1991 galt bis zur Deepwater-Horizon-Katastrophe 2010 als größte marine Ölkatastrophe der Geschichte.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Wikipedia (deutsch): "Ölpest am Persischen Golf 1991". Paul R. Bultmann: "Environmental Warfare: 1991 Persian Gulf War", State University of New York College at Oneonta (2001).
+  </div>
+
+  <h2>3. Weitere schwere Öl-Katastrophen zu Land und Wasser</h2>
+
+  <table>
+    <tr><th>Ereignis</th><th>Jahr</th><th>Kern-Fakten</th></tr>
+    <tr>
+      <td><strong>Piper Alpha</strong> (Nordsee, Plattform)</td>
+      <td>1988</td>
+      <td>165 Todesopfer an Bord, 2 weitere Rettungskräfte. Tödlichstes Offshore-Unglück der Geschichte. Plattform kollabierte binnen zwei Stunden nach der Explosion; erzeugte zuvor rund 10% der gesamten Nordsee-Förderung.</td>
+    </tr>
+    <tr>
+      <td><strong>Ixtoc I</strong> (Golf von Mexiko, Bohrloch)</td>
+      <td>1979</td>
+      <td>Blowout bei Pemex-Bohrung, anfangs 30.000 Barrel Öl/Tag ausgetreten. Jahrelange ökologische Nachwirkungen, bis heute wissenschaftlicher Vergleichsfall für Deepwater Horizon.</td>
+    </tr>
+    <tr>
+      <td><strong>Deepwater Horizon</strong> (Golf von Mexiko, BP)</td>
+      <td>2010</td>
+      <td>11 Todesopfer, 87 Tage Ölaustritt, ca. 3,19 Mio. Barrel (~134 Mio. Gallonen) — bis heute größte marine Ölkatastrophe der Industriegeschichte.</td>
+    </tr>
+    <tr>
+      <td><strong>Exxon Valdez</strong> (Alaska, Tanker)</td>
+      <td>1989</td>
+      <td>Tankerhavarie, ca. 260.000–750.000 Barrel Rohöl ausgetreten. Auslöser für verschärfte US-Umweltauflagen und Referenzfall der Rechtsprechung.</td>
+    </tr>
+  </table>
+
+  <p>Die Aufzählung zeigt: Katastrophen im Umgang mit Erdöl sind kein Sonderfall einzelner Kriege, sondern ein wiederkehrendes Muster — durch technisches Versagen, mangelnde Wartung und, im Kriegsfall, durch bewusste Zerstörung als Waffe.</p>
+
+  <h2>4. Warum wird eine "kostbare" Ressource im Krieg vernichtet?</h2>
+
+  <p>Der scheinbare Widerspruch löst sich auf, sobald man die militärische Logik betrachtet: Solange ein Rohstoff dem Gegner nutzt, ist seine Vernichtung ein strategisches Kalkül — "verbrannte Erde" im wörtlichen Sinn. Der wirtschaftliche Wert der Ressource wird dann zweitrangig gegenüber dem Ziel, dass sie dem Feind keinen Nutzen mehr bringt. Klimafolgen, Gesundheitsschäden der Zivilbevölkerung und Langzeitschäden an Ökosystemen spielen in dieser Kalkulation nachweislich keine Rolle.</p>
+
+  <p>Bemerkenswert ist zudem die Kurzlebigkeit der öffentlichen Aufmerksamkeit: Nach Kriegsende gerieten sowohl die Kuwait-Brände als auch die Ölpest im Golf vergleichsweise schnell in Vergessenheit — trotz jahrzehntelanger Regenerationszeiten der betroffenen Ökosysteme.</p>
+
+  <div class="source-box">
+    <span class="label">Einordnung</span>
+    <span class="tag tag-belegt">BELEGT</span> Ausmaß, Zeitpunkt und Verursacher der genannten Katastrophen sind durch Behördenberichte, wissenschaftliche Studien und Zeitzeugenberichte dokumentiert.<br><br>
+    <span class="tag tag-offen">OFFEN</span> Ob und in welchem Umfang einzelne Entscheidungsträger die ökologischen Langzeitfolgen zum Zeitpunkt der Entscheidung tatsächlich einkalkuliert haben, lässt sich aus den vorliegenden Quellen nicht abschließend belegen.
+  </div>
+
+  <p class="open-question"><em>Eine Ressource, um die Kriege geführt werden, wird im gleichen Krieg zur Waffe gegen die eigene Umwelt gemacht. Wer entscheidet in einem solchen Moment, dass der Wert eines Rohstoffs plötzlich keine Rolle mehr spielt — und wer trägt am Ende die Kosten dieser Entscheidung?</em></p>
+
+  <div class="nav-series">
+    <span class="label">Serie: Schwarzes Gold — Was Erdöl wirklich bewegt</span>
+    <ol>
+      <li>Wenn die Party vorbei ist: Wer zahlt den Abwrack?</li>
+      <li>Nachwachsendes Öl? Was an der Theorie dran ist — und was nicht</li>
+      <li>Zerschlagen und doch ungeteilt: Wie Standard Oil weiterlebt</li>
+      <li class="current">Öl als Kriegswaffe: Die Doppelmoral der Vernichtung</li>
+    </ol>
+  </div>
+
+</main>
+
+<footer>
+  <h3>Quellenverzeichnis</h3>
+  <ul>
+    <li>Wikipedia (englisch): "Kuwaiti oil fires" — en.wikipedia.org/wiki/Kuwaiti_oil_fires</li>
+    <li>Wikipedia (deutsch): "Ölpest am Persischen Golf 1991"</li>
+    <li>US Environmental Protection Agency: Bericht an den US-Kongress zu den Kuwait-Ölbränden (1991)</li>
+    <li>Kuwait Petroleum Company: Schadensschätzung, September 1991</li>
+    <li>NZZ: "Ölbrände als Kriegswaffe Saddams" (2003)</li>
+    <li>Wissenschaft &amp; Frieden: "Die ökologischen Folgen des Golfkrieges" (1992/1)</li>
+    <li>Paul R. Bultmann: "Environmental Warfare: 1991 Persian Gulf War", SUNY Oneonta (2001)</li>
+    <li>Wikipedia: "Piper Alpha", Britannica: "Piper Alpha disaster"</li>
+    <li>ScienceDirect: "Assessing the damage caused by Deepwater Horizon: Not just another Exxon Valdez"</li>
+    <li>Arnold &amp; Itkin LLP: "Major Oil Rig Disasters of 20th &amp; 21st Century"</li>
+  </ul>
+
+  <p style="margin-top: 1.5rem;">Alle dargestellten Informationen basieren auf öffentlich zugänglichen Quellen: Behördenberichten, wissenschaftlichen Studien, Gerichtsakten und etablierter Fachliteratur. Diese Seite erhebt keinen Anspruch auf Vollständigkeit. Zahlen zu Ölmengen variieren je nach Quelle und Berechnungsmethode; wo Schätzungen divergieren, wurde die Bandbreite angegeben.</p>
+
+  <div class="tagline">dunkelfeld.report — Fakten, die das Licht nicht zu scheuen brauchen.</div>
+</footer>
+
+</body>
+</html>

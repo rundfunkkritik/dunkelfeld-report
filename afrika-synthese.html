@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wettlauf um Afrika, Teil 5: Synthese — dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background: #09090b;
+    color: #e5e5e5;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #e8c547;
+  }
+  .series-banner {
+    background: #131316;
+    border: 1px solid #27272a;
+    border-radius: 4px;
+    padding: 0.8rem 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #a1a1aa;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em;
+  }
+  .series-banner strong { color: #e8c547; }
+  h1 {
+    font-family: Georgia, serif;
+    font-size: 2.1rem;
+    line-height: 1.3;
+    margin: 0.8rem 0 0.5rem;
+    color: #f4f4f5;
+  }
+  .subtitle {
+    font-size: 1.15rem;
+    color: #a1a1aa;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  h2 {
+    font-family: Georgia, serif;
+    font-size: 1.5rem;
+    color: #e8c547;
+    margin-top: 3rem;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    font-family: Georgia, serif;
+    font-size: 1.2rem;
+    color: #f4f4f5;
+    margin-top: 1.8rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  .meta-bar {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+    padding: 0.8rem 0;
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .label { display: block; margin-bottom: 0.5rem; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.6rem;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 0.8rem;
+  }
+  .tag-belegt { background: rgba(74, 222, 128, 0.15); color: #4ade80; border: 1px solid #4ade80; }
+  .tag-extrapolation { background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid #fb923c; }
+  .tag-offen { background: rgba(161, 161, 170, 0.15); color: #a1a1aa; border: 1px solid #a1a1aa; }
+  .tag-vt-widerlegt { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid #ef4444; text-decoration: line-through; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .stat-card {
+    background: #131316;
+    border: 1px solid #27272a;
+    border-radius: 4px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.8rem;
+    color: #e8c547;
+    font-weight: bold;
+    display: block;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #a1a1aa;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #27272a;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #e8c547;
+  }
+
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #f4f4f5;
+    border-left: 3px solid #e8c547;
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .closing-question {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #d4d4d8;
+    text-align: center;
+    margin: 3rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+  }
+
+  .series-nav {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+  }
+  .series-nav a { display: block; margin: 0.3rem 0; }
+
+  a { color: #e8c547; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="label">Infrastruktur der Einflussnahme · dunkelfeld.report</div>
+  <div class="series-banner"><strong>SERIE: Wettlauf um Afrika</strong> — Teil 5 von 5</div>
+  <h1>Vier Mächte, ein Muster</h1>
+  <div class="subtitle">Synthese: Was China, Russland, die USA und Frankreich gemeinsam haben — und was sie unterscheidet</div>
+
+  <div class="meta-bar">
+    <span>Hidden in Plain Sight</span>
+    <span>Beleg-vor-Motiv-Prinzip</span>
+  </div>
+
+  <p>Vier Teile, vier völlig unterschiedliche Vorgehensweisen — und doch ein gemeinsamer Nenner: Rohstoffe, Sicherheit und geopolitischer Einfluss stehen bei allen vier Akteuren im Zentrum, unabhängig von der jeweiligen offiziellen Begründung. Dieser Abschlussteil stellt die vier Modelle nebeneinander.</p>
+
+  <h2>Die vier Modelle im Vergleich</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <table>
+    <tr><th>Akteur</th><th>Methode</th><th>Gegenleistung für Afrika</th><th>Aktuelle Richtung</th></tr>
+    <tr><td>China</td><td>Kredite, Infrastruktur (Häfen, Bahnen, Minen)</td><td>Straßen, Kraftwerke, Jobs — bei Rückzahlungsverpflichtung</td><td>Konsolidierung, Fokus auf Wertschöpfungsketten</td></tr>
+    <tr><td>Russland</td><td>Militärische Söldnerkräfte (Wagner → Africa Corps)</td><td>"Stabilität" für autoritäre Regierungen</td><td>Expansion trotz Rückschlägen (Kidal 2026)</td></tr>
+    <tr><td>USA</td><td>Militärkooperation, Entwicklungshilfe (USAID)</td><td>Gesundheitsprogramme, Anti-Terror-Einsätze</td><td>Abrupter Rückzug (USAID-Auflösung, Truppenabzüge)</td></tr>
+    <tr><td>Frankreich</td><td>Postkoloniale Strukturen (Militärbasen, CFA-Franc)</td><td>Währungsstabilität, Sicherheitsgarantien</td><td>Erzwungener Rückzug aus fast allen Sahel-Staaten</td></tr>
+  </table>
+
+  <h2>Der gemeinsame Nenner: Kein Akteur handelt uneigennützig</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <p>Über alle vier Teile hinweg zeigt sich ein wiederkehrendes Muster: Jeder Akteur begründet sein Engagement mit einer positiven Erzählung — Entwicklungspartnerschaft (China), Sicherheit vor Terrorismus (Russland, USA, Frankreich), Demokratieförderung (USA, Frankreich, EU) oder Süd-Süd-Solidarität (China, Russland). In allen vier Fällen lässt sich jedoch ein handfestes materielles oder geostrategisches Interesse dokumentieren: Rohstoffzugang (Kobalt, Kupfer, Gold, Lithium), UN-Stimmen, Militärbasen, Währungskontrolle.</p>
+
+  <div class="pull-quote">
+    Keiner der vier Akteure kommt ohne Gegenleistung. Der Unterschied liegt nicht darin, ob es eine Rechnung gibt — sondern wer sie bezahlt, und womit.
+  </div>
+
+  <h2>Der Unterschied: Wer trägt die Kosten der Gewalt?</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <p>Hier zeigt sich die deutlichste Differenz zwischen den vier Modellen. Russlands Africa Corps ist mit systematisch dokumentierten Massenhinrichtungen, Vergewaltigungen und Dorfzerstörungen verbunden (Teil 2) — eine Gewaltbilanz, die von AP, BBC und Le Monde unabhängig bestätigt wird. Chinas Modell (Teil 1) produziert überwiegend wirtschaftliche Abhängigkeit, keine dokumentierte physische Gewalt gegen Zivilisten in vergleichbarem Ausmaß. USA und Frankreich (Teile 3 und 4) hinterlassen beim Rückzug ein Vakuum, dessen Folgekosten — messbar etwa an USAID-bedingten Sterblichkeitsprognosen — selbst unter Experten umstritten, aber nicht bestritten sind.</p>
+
+  <h2>Wer gewinnt durch die Lücken der anderen?</h2>
+  <span class="tag tag-extrapolation">EXTRAPOLATION</span>
+
+  <p>Der zeitliche Zusammenfall ist auffällig, auch wenn eine koordinierte Absicht nicht belegt ist: Genau dort, wo Frankreich und die USA sich zwischen 2022 und 2026 zurückzogen (Mali, Burkina Faso, Niger), expandierte das russische Africa Corps. Genau dort, wo westliche Entwicklungshilfe wegbrach (USAID-Auflösung 2025), baute China seine "green energy statecraft"-Strategie parallel weiter aus. Das lässt sich als strukturelle Gesetzmäßigkeit lesen — Machtvakuen werden gefüllt — nicht zwingend als Plan eines einzelnen Akteurs.</p>
+
+  <h2>Was in dieser Serie offen bleibt</h2>
+  <span class="tag tag-offen">OFFEN</span>
+
+  <ul style="padding-left: 1.2rem;">
+    <li style="padding-bottom: 0.8rem;">Ob Chinas "Schuldenfallen"-Modell eine bewusste Strategie oder eine Nebenfolge kommerzieller Kreditvergabe ist (Teil 1)</li>
+    <li style="padding-bottom: 0.8rem;">Wie viele Menschenleben die USAID-Auflösung tatsächlich kosten wird — die seriösen Schätzungen reichen von 500.000 bis 14 Millionen (Teil 3)</li>
+    <li style="padding-bottom: 0.8rem;">Ob die Eco-Währungsreform in Westafrika reale Souveränität bringt oder nur eine kosmetische Umbenennung des CFA-Franc ist (Teil 4)</li>
+  </ul>
+
+  <p>Was diese Serie <strong>nicht</strong> behauptet: dass es eine geheime, koordinierte Absprache zwischen den vier Akteuren gibt, Afrika "aufzuteilen". Dafür liegt kein Beleg vor — im Gegenteil, die vier Modelle konkurrieren sichtbar und teils offen aggressiv miteinander (Frankreich vs. Russland in Mali, USA vs. China um Rohstoffzugang). Was die Serie dokumentiert, ist etwas Nüchterneres und zugleich Beunruhigenderes: Vier völlig unterschiedliche politische Systeme kommen unabhängig voneinander zum selben Ergebnis — Afrika bleibt in erster Linie Objekt fremder Interessen, nicht gleichberechtigter Partner.</p>
+
+  <div class="closing-question">
+    Was würde sich ändern, wenn afrikanische Staaten selbst die Verhandlungsposition hätten, die ihre Rohstoffe eigentlich wert sind — gegenüber allen vier Akteuren gleichzeitig?
+  </div>
+
+  <div class="series-nav">
+    <strong>SERIE: Wettlauf um Afrika — vollständig</strong>
+    Teil 1: China — Infrastruktur gegen Einfluss<br>
+    Teil 2: Russland — Wagner/Africa Corps<br>
+    Teil 3: USA — Rückzug und Restrukturierung<br>
+    Teil 4: Frankreich/Wertewesten — Ende der Françafrique<br>
+    Teil 5: Synthese (dieser Artikel)
+  </div>
+
+</div>
+</body>
+</html>

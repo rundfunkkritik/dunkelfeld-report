@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wettlauf um Afrika, Teil 1: China — dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background: #09090b;
+    color: #e5e5e5;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #e8c547;
+  }
+  .series-banner {
+    background: #131316;
+    border: 1px solid #27272a;
+    border-radius: 4px;
+    padding: 0.8rem 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #a1a1aa;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em;
+  }
+  .series-banner strong { color: #e8c547; }
+  h1 {
+    font-family: Georgia, serif;
+    font-size: 2.1rem;
+    line-height: 1.3;
+    margin: 0.8rem 0 0.5rem;
+    color: #f4f4f5;
+  }
+  .subtitle {
+    font-size: 1.15rem;
+    color: #a1a1aa;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  h2 {
+    font-family: Georgia, serif;
+    font-size: 1.5rem;
+    color: #e8c547;
+    margin-top: 3rem;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    font-family: Georgia, serif;
+    font-size: 1.2rem;
+    color: #f4f4f5;
+    margin-top: 1.8rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  .meta-bar {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+    padding: 0.8rem 0;
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .label { display: block; margin-bottom: 0.5rem; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.6rem;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 0.8rem;
+  }
+  .tag-belegt { background: rgba(74, 222, 128, 0.15); color: #4ade80; border: 1px solid #4ade80; }
+  .tag-extrapolation { background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid #fb923c; }
+  .tag-offen { background: rgba(161, 161, 170, 0.15); color: #a1a1aa; border: 1px solid #a1a1aa; }
+  .tag-vt-widerlegt { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid #ef4444; text-decoration: line-through; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .stat-card {
+    background: #131316;
+    border: 1px solid #27272a;
+    border-radius: 4px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.8rem;
+    color: #e8c547;
+    font-weight: bold;
+    display: block;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #a1a1aa;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #27272a;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #e8c547;
+  }
+
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #f4f4f5;
+    border-left: 3px solid #e8c547;
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .timeline {
+    margin: 1.5rem 0;
+    border-left: 2px solid #27272a;
+    padding-left: 1.5rem;
+  }
+  .timeline-item { margin-bottom: 1.2rem; position: relative; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.68rem;
+    top: 0.35rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #e8c547;
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #e8c547;
+    display: block;
+  }
+
+  .closing-question {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #d4d4d8;
+    text-align: center;
+    margin: 3rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+  }
+
+  .series-nav {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+  }
+  .series-nav a { display: block; margin: 0.3rem 0; }
+
+  a { color: #e8c547; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="label">Infrastruktur der Einflussnahme · dunkelfeld.report</div>
+  <div class="series-banner"><strong>SERIE: Wettlauf um Afrika</strong> — Teil 1 von 5</div>
+  <h1>China in Afrika</h1>
+  <div class="subtitle">Infrastruktur gegen Einfluss</div>
+
+  <div class="meta-bar">
+    <span>Hidden in Plain Sight</span>
+    <span>Beleg-vor-Motiv-Prinzip</span>
+  </div>
+
+  <p>Häfen in Namibia, Eisenbahnen in Sambia, Kupferminen im Kongo, Kredite in Milliardenhöhe — kein Land hat sein Engagement in Afrika in den letzten 25 Jahren so systematisch ausgebaut wie China. Was 2000 mit dem Forum on China-Africa Cooperation (FOCAC) begann, ist heute ein durchgängiges Modell: Rohstoffzugang gegen Infrastruktur, Kredite gegen diplomatische Unterstützung. Dieser Teil dokumentiert, wie das funktioniert — und wo die Bewertung selbst unter Experten umstritten ist.</p>
+
+  <h2>Die Zahlen</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-number">332 Mrd. $</span><span class="stat-label">Chin. Investitionen Afrika 2010–2023</span></div>
+    <div class="stat-card"><span class="stat-number">51 Mrd. $</span><span class="stat-label">FOCAC-Zusage Sept. 2024 (3 Jahre)</span></div>
+    <div class="stat-card"><span class="stat-number">53</span><span class="stat-label">Afrikanische BRI-Teilnehmerstaaten</span></div>
+  </div>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    American Enterprise Institute, China Global Investment Tracker (2025), zitiert in Wirtschaftsdienst 2025/Heft 6. 31 % der Investitionen entfielen auf Energie, 29 % auf Transport. Beim FOCAC-Gipfel im September 2024 in Peking sagte Xi Jinping rund 51 Mrd. US-Dollar für die kommenden drei Jahre zu — davon rund 30 Mrd. als Kredite, 11 Mrd. als Hilfen, 10 Mrd. als Investitionen.
+  </div>
+
+  <h2>Das Muster: Rohstoffe gegen Infrastruktur</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <p>Chinesische Unternehmen haben ihre Position in der kongolesischen Kupfer- und Kobaltproduktion in den letzten Jahren gezielt ausgebaut. Auch in Simbabwe wurde mit chinesischer Unterstützung der Lithiumabbau und die Weiterverarbeitung rasch erweitert. Laut der Analysefirma Climate Energy Finance haben chinesische Unternehmen seit Anfang 2023 zusätzlich mehr als 220 Milliarden US-Dollar in nachgelagerte Industriebereiche gelenkt — nicht nur Bergbau, sondern auch Raffinerien, Bahnen, Häfen und Stromversorgung.</p>
+
+  <div class="pull-quote">
+    "Green energy statecraft" — ein Ansatz, bei dem es nicht nur um Rohstoffzugang geht, sondern um Kontrolle möglichst vieler Stufen der Wertschöpfungskette, von der Förderung bis zur industriellen Nutzung in Batterie- und Energietechnologien.
+  </div>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Climate Energy Finance-Studie, zitiert in GOLDINVEST (März 2026). Konkretes Beispiel: Die Tazara-Eisenbahn von Daressalam (Tansania) zu Sambias Kupfergürtel soll für 1 Milliarde US-Dollar erneuert werden — Ankündigung FOCAC 2024.
+  </div>
+
+  <h3>Wem nützt die Infrastruktur wirklich?</h3>
+
+  <p>Nicht jedes Projekt lässt einen klaren wirtschaftlichen Nutzen für das Gastland erkennen. Ein oft zitiertes Beispiel: die Schnellstraße zwischen Ugandas Hauptstadt Kampala und dem Flughafen Entebbe, finanziert mit 476 Millionen US-Dollar. Sie verkürzt Fahrzeiten, ein klarer Beitrag zum Wirtschaftswachstum ist laut Fachanalysen aber nicht ersichtlich. Das Overseas Development Institute (ODI) kommt in einer Gesamtbetrachtung dennoch zu dem Schluss, chinesische Investitionen seien für afrikanische Länder insgesamt vorteilhaft gewesen — sie hätten Arbeitsplätze, Technologietransfer und wirtschaftliche Diversifizierung unterstützt.</p>
+
+  <h2>Die "Schuldenfallen"-Debatte</h2>
+  <span class="tag tag-offen">OFFEN</span>
+
+  <p>Das Narrativ von der gezielten "Schuldenfallen-Diplomatie" gehört zu den meistdiskutierten Vorwürfen gegen Chinas Afrika-Engagement — und ist unter Fachleuten selbst umstritten.</p>
+
+  <table>
+    <tr><th>Fall</th><th>Verlauf</th><th>Ergebnis</th></tr>
+    <tr><td>Äthiopien</td><td>4 Mrd. $ Kredit für Eisenbahnprojekte, Zahlungsschwierigkeiten</td><td>Neuverhandlung, verlängerte Rückzahlungsfrist — Kontrolle über Infrastruktur blieb bei Äthiopien</td></tr>
+    <tr><td>Sambia</td><td>Staatliche Garantien, hohe Zinsen bei kommerziellen BRI-Krediten</td><td>Auswirkungen laut Fachquellen weiterhin ungeklärt ("auf dem Prüfstand")</td></tr>
+  </table>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    IFA (Institut für Auslandsbeziehungen), "Zwischen Schuldenfalle und grünem Engagement" (Februar 2025). Die Analyse betont, dass Peking seinen "Appetit auf risikoreiche Kreditvergabe" inzwischen selbst zurückgefahren habe — ein Hinweis darauf, dass es sich eher um das Nachholen ausstehender Forderungen chinesischer Banken handelt als um eine bewusste geopolitische Strategie.
+  </div>
+
+  <p><em>Redaktionelle Einordnung:</em> Der Beleg-vor-Motiv-Grundsatz verlangt hier Zurückhaltung. Dass manche BRI-Kredite afrikanische Länder in Zahlungsschwierigkeiten gebracht haben, ist dokumentiert. Dass dies eine bewusste chinesische Strategie zur Kontrollübernahme sei, ist unter Experten nicht mehrheitlich belegt — das Beispiel Äthiopien spricht sogar dagegen. Dieser Punkt bleibt daher <strong>OFFEN</strong>.</p>
+
+  <h2>Handelsstruktur: Wer exportiert was?</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <p>2023 stammten 58 Prozent der afrikanischen Lieferungen nach China aus nur wenigen Ländern, die fast ausschließlich Öl oder Mineralien exportieren: Angola (21 %), DR Kongo (16 %), dazu Guinea, Kongo-Brazzaville und Sambia. Chinas Gegenexporte sind hingegen breit gestreut — Fertigwaren an die drei größten Volkswirtschaften Südafrika, Nigeria und Ägypten. Das klassische Muster kolonialer Handelsstrukturen — Rohstoffexport gegen Fertigwarenimport — bleibt damit strukturell bestehen, auch wenn der Handelspartner ein neuer ist.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    German Trade & Invest (GTAI), Analyse zum FOCAC-Gipfel 2024, auf Basis von Außenhandelsstatistiken.
+  </div>
+
+  <h2>Diplomatischer Nutzen</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <p>Afrikanische Staaten sind für China auch auf diplomatischer Ebene von strategischem Wert — etwa bei Abstimmungen in den Vereinten Nationen. Mit 54 Stimmen bildet der Kontinent den größten regionalen Block in der UN-Generalversammlung.</p>
+
+  <div class="closing-question">
+    Ist ein Kredit, der Straßen und Häfen baut, automatisch neokolonial — nur weil am Ende Rohstoffe abfließen? Und: Unterscheidet sich das Modell strukturell von dem, was westliche Institutionen jahrzehntelang praktiziert haben — nur mit anderen Auflagen?
+  </div>
+
+  <div class="series-nav">
+    <strong>SERIE: Wettlauf um Afrika</strong>
+    Teil 1: China in Afrika (dieser Artikel)<br>
+    Teil 2: Russland — Wagner/Africa Corps (folgt)<br>
+    Teil 3: USA — Rückzug und Restrukturierung (folgt)<br>
+    Teil 4: Frankreich/Wertewesten — Ende der Françafrique (folgt)<br>
+    Teil 5: Synthese (folgt)
+  </div>
+
+</div>
+</body>
+</html>

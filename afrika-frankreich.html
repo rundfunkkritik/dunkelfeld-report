@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wettlauf um Afrika, Teil 4: Frankreich — dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background: #09090b;
+    color: #e5e5e5;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #e8c547;
+  }
+  .series-banner {
+    background: #131316;
+    border: 1px solid #27272a;
+    border-radius: 4px;
+    padding: 0.8rem 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #a1a1aa;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em;
+  }
+  .series-banner strong { color: #e8c547; }
+  h1 {
+    font-family: Georgia, serif;
+    font-size: 2.1rem;
+    line-height: 1.3;
+    margin: 0.8rem 0 0.5rem;
+    color: #f4f4f5;
+  }
+  .subtitle {
+    font-size: 1.15rem;
+    color: #a1a1aa;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  h2 {
+    font-family: Georgia, serif;
+    font-size: 1.5rem;
+    color: #e8c547;
+    margin-top: 3rem;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    font-family: Georgia, serif;
+    font-size: 1.2rem;
+    color: #f4f4f5;
+    margin-top: 1.8rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  .meta-bar {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+    padding: 0.8rem 0;
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .label { display: block; margin-bottom: 0.5rem; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.6rem;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 0.8rem;
+  }
+  .tag-belegt { background: rgba(74, 222, 128, 0.15); color: #4ade80; border: 1px solid #4ade80; }
+  .tag-extrapolation { background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid #fb923c; }
+  .tag-offen { background: rgba(161, 161, 170, 0.15); color: #a1a1aa; border: 1px solid #a1a1aa; }
+  .tag-vt-widerlegt { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid #ef4444; text-decoration: line-through; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .stat-card {
+    background: #131316;
+    border: 1px solid #27272a;
+    border-radius: 4px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.8rem;
+    color: #e8c547;
+    font-weight: bold;
+    display: block;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #a1a1aa;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #27272a;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #e8c547;
+  }
+
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #f4f4f5;
+    border-left: 3px solid #e8c547;
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .timeline {
+    margin: 1.5rem 0;
+    border-left: 2px solid #27272a;
+    padding-left: 1.5rem;
+  }
+  .timeline-item { margin-bottom: 1.2rem; position: relative; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.68rem;
+    top: 0.35rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #e8c547;
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #e8c547;
+    display: block;
+  }
+
+  .closing-question {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #d4d4d8;
+    text-align: center;
+    margin: 3rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+  }
+
+  .series-nav {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+  }
+  .series-nav a { display: block; margin: 0.3rem 0; }
+
+  a { color: #e8c547; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="label">Infrastruktur der Einflussnahme · dunkelfeld.report</div>
+  <div class="series-banner"><strong>SERIE: Wettlauf um Afrika</strong> — Teil 4 von 5</div>
+  <h1>Frankreich und der "Wertewesten"</h1>
+  <div class="subtitle">Das Ende der Françafrique — und was von ihr bleibt</div>
+
+  <div class="meta-bar">
+    <span>Hidden in Plain Sight</span>
+    <span>Beleg-vor-Motiv-Prinzip</span>
+  </div>
+
+  <p>Von allen vier Akteuren dieser Serie ist Frankreich derjenige mit der längsten Vorgeschichte in Afrika — und dem sichtbarsten Rückzug der letzten Jahre. Der Begriff "Françafrique" beschreibt seit Jahrzehnten das enge, oft informelle Geflecht aus Militärpräsenz, Währungskontrolle und wirtschaftlichem Einfluss, mit dem Paris seine ehemaligen Kolonien an sich band. Zwischen 2022 und 2025 ist dieses Modell in mehreren Ländern kollabiert — nicht durch französische Entscheidung, sondern durch Vertreibung.</p>
+
+  <h2>Der Truppenabzug: Eine Kette von Rauswürfen</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-date">2022</span>
+      Frankreich beendet seine Militäroperation in Mali nach Konflikt mit der Junta, die stattdessen auf Wagner setzt.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2023</span>
+      Truppenabzug aus Burkina Faso und Niger, ebenfalls nach Putschen und wachsendem Druck der neuen Militärregierungen.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Anfang 2025</span>
+      Höhepunkt des Rückzugs: Frankreich zieht sich auch aus der Côte d'Ivoire, dem Senegal und dem Tschad zurück — Länder, in denen die französische Präsenz zuvor als gesichert galt.
+    </div>
+  </div>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Konrad-Adenauer-Stiftung, "The US strategy in West Africa under Trump" (Juni 2025) — dokumentiert den französischen Rückzug als Kontext für die US-Neuausrichtung.
+  </div>
+
+  <p>Der Rückzug erfolgte laut mehreren Quellen im Umfeld wachsenden innenpolitischen Drucks in den jeweiligen Ländern und zunehmender antifranzösischer Proteste. Burkina Fasos Präsident Ibrahim Traoré positioniert sich besonders explizit gegen westlichen Einfluss.</p>
+
+  <h2>Der CFA-Franc: Eine Währung als Kolonialerbe</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <p>Der CFA-Franc wurde 1945 als Währung der "Colonies Françaises d'Afrique" eingeführt — das Kürzel wurde später in "Communauté Financière Africaine" umgedeutet, die Struktur blieb. Er gilt heute in 14 west- und zentralafrikanischen Staaten mit zusammen rund 160 Millionen Einwohnern und ist zu einem festen Kurs an den Euro gebunden (655,957:1).</p>
+
+  <div class="stat-grid">
+    <div class="stat-card"><span class="stat-number">1945</span><span class="stat-label">Einführung als Kolonialwährung</span></div>
+    <div class="stat-card"><span class="stat-number">14</span><span class="stat-label">Staaten mit CFA-Franc</span></div>
+    <div class="stat-card"><span class="stat-number">160 Mio.</span><span class="stat-label">Betroffene Einwohner</span></div>
+  </div>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Der Standard (Januar 2020); Jacobin Magazin (Oktober 2024), unter Bezug auf Ndongo Samba Sylla/Fanny Pigeaud, "Africa's Last Colonial Currency".
+  </div>
+
+  <p>Bis zu einer Reform 2019 mussten die westafrikanischen CFA-Staaten die Hälfte ihrer Devisenreserven bei der Banque de France hinterlegen; Frankreich saß zudem in den Leitungsgremien der Zentralbanken. Die Reform beendete beides formal für die westafrikanische Zone (UEMOA) — die zentralafrikanische Währungsunion (u. a. Kamerun, Gabun, Tschad) behielt das alte System bei, dort gibt es bislang keine Reformpläne.</p>
+
+  <h3>Der "Eco" — angekündigt, verschoben, umstritten</h3>
+  <span class="tag tag-offen">OFFEN</span>
+
+  <p>Bereits 2019 kündigten westafrikanische Staatschefs an, den CFA-Franc 2020 durch eine neue, französisch-unabhängige Währung namens Eco zu ersetzen. Die Einführung wurde mehrfach verschoben — zuletzt auf 2027. Ob sie stattfindet und was sie substanziell ändert, ist umstritten:</p>
+
+  <table>
+    <tr><th>Position</th><th>Argument</th></tr>
+    <tr><td>Kritiker (u. a. Cheikh Tidiane Dieye)</td><td>Reform sei "politischer Betrug" — verhindere eine echte regionale Währungsunion, da der Eco weiterhin an den Euro gekoppelt bleibt</td></tr>
+    <tr><td>SWP (Evita Schmieg)</td><td>Reform sei bereits als Erfolg zu werten, allein durch den Rückzug Frankreichs aus dem Aufsichtsgremium — unabhängig vom Namen der Währung</td></tr>
+    <tr><td>Nigeria/anglophone Staaten</td><td>Fordern radikalen Bruch mit dem CFA-System; eigener Naira, keine Euro-Bindung</td></tr>
+  </table>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    NZZ (2020); Der Freitag (August 2025); Geschichte der Gegenwart (2022); Rosa-Luxemburg-Stiftung (Januar 2025); Stiftung Wissenschaft und Politik (SWP, 2020).
+  </div>
+
+  <p><em>Redaktionelle Einordnung:</em> Ob die geplante Eco-Reform substanzielle Souveränität bringt oder nur eine kosmetische Umbenennung ist, wird von anerkannten Institutionen (SWP) und kritischen Ökonomen unterschiedlich bewertet. Beide Seiten stützen sich auf denselben Sachverhalt — die Euro-Bindung bleibt bestehen — kommen aber zu gegensätzlichen Bewertungen. Daher bleibt diese Frage <strong>OFFEN</strong>.</p>
+
+  <h2>Der "Wertewesten": Anspruch und Rückzug</h2>
+  <span class="tag tag-extrapolation">EXTRAPOLATION</span>
+
+  <p>Frankreichs Afrika-Politik wurde traditionell mit dem Anspruch begründet, Demokratie, Rechtsstaatlichkeit und Entwicklung zu fördern — ein Anspruch, den auch die EU und die USA für ihr Afrika-Engagement formulieren. Der beobachtbare Verlauf der letzten Jahre — Rückzug unter Druck, Ersetzung durch russische Söldnertruppen mit dokumentiert schlechterer Menschenrechtsbilanz (siehe Teil 2) — lässt sich als Indiz werten, dass der "Wertewesten"-Anspruch und die tatsächliche Handlungsfähigkeit vor Ort zunehmend auseinanderfallen. Ein direkter Kausalbeweis, dass Werterhetorik und Realpolitik grundsätzlich entkoppelt sind, liegt nicht vor — die Beobachtung bleibt eine Einordnung, keine belegte Tatsachenfeststellung.</p>
+
+  <div class="closing-question">
+    Wenn eine Kolonialwährung erst nach 80 Jahren und unter dem Druck von Putschen und Protesten reformiert wird — war der Wandel dann eine Einsicht, oder eine Kapitulation vor vollendeten Tatsachen?
+  </div>
+
+  <div class="series-nav">
+    <strong>SERIE: Wettlauf um Afrika</strong>
+    Teil 1: China — Infrastruktur gegen Einfluss<br>
+    Teil 2: Russland — Wagner/Africa Corps<br>
+    Teil 3: USA — Rückzug und Restrukturierung<br>
+    Teil 4: Frankreich/Wertewesten — Ende der Françafrique (dieser Artikel)<br>
+    Teil 5: Synthese (folgt)
+  </div>
+
+</div>
+</body>
+</html>

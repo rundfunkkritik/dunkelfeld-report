@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wenn die Party vorbei ist: Wer zahlt den Abwrack? | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --text: #e4e4e7;
+    --muted: #9a9aa2;
+    --border: #27272a;
+    --box-bg: #1a1a2e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+  .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+  header .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; }
+  header .date { margin-left: auto; font-size: 0.7rem; color: var(--muted); font-family: 'Courier New', monospace; }
+  main { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+  .kicker { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 1.5rem; }
+  h1 { font-size: clamp(2rem, 6vw, 2.8rem); line-height: 1.15; margin: 0 0 1rem; color: var(--text); }
+  .subtitle { color: var(--muted); font-size: 1.15rem; line-height: 1.6; margin-bottom: 1.5rem; }
+  .meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 3rem; font-family: 'Courier New', monospace; }
+  h2 { font-size: 1.6rem; color: var(--accent); margin-top: 3.5rem; margin-bottom: 1.2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.6rem; }
+  h3 { font-size: 1.2rem; color: var(--text); margin-top: 2rem; margin-bottom: 0.8rem; }
+  p { padding-bottom: 1.2rem; }
+  .source-box { background: var(--box-bg); border-left: 3px solid var(--accent); padding: 1rem 1.3rem; margin: 1.5rem 0 2rem; font-size: 0.9rem; color: var(--muted); font-family: 'Courier New', monospace; line-height: 1.6; }
+  .source-box .label { color: var(--accent); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.08em; display: block; margin-bottom: 0.4rem; }
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--border); margin: 2rem 0; }
+  .stat-card { background: var(--bg); padding: 1.5rem 1.2rem; }
+  .stat-number { font-size: 1.8rem; color: var(--accent); font-family: 'Courier New', monospace; font-weight: bold; line-height: 1.1; }
+  .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem; }
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2rem; font-size: 0.95rem; }
+  th, td { text-align: left; padding: 0.7rem 0.8rem; border-bottom: 1px solid var(--border); }
+  th { color: var(--accent); font-family: 'Courier New', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .tag { display: inline-block; font-family: 'Courier New', monospace; font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 0.5rem; }
+  .tag-belegt { background: rgba(76, 175, 80, 0.15); color: #7ed88a; border: 1px solid rgba(126, 216, 138, 0.3); }
+  .tag-offen { background: rgba(154, 154, 162, 0.15); color: var(--muted); border: 1px solid rgba(154, 154, 162, 0.3); }
+  .open-question { font-style: italic; color: var(--muted); margin: 2.5rem 0; font-size: 1.05rem; }
+  footer { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 4rem; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--muted); }
+  footer h3 { color: var(--accent); font-size: 1rem; }
+  footer ul { padding-left: 1.2rem; line-height: 1.9; }
+  footer .tagline { margin-top: 2rem; color: var(--accent); font-family: 'Courier New', monospace; font-size: 0.85rem; }
+  .nav-series { background: var(--box-bg); border: 1px solid var(--border); padding: 1.2rem 1.5rem; margin: 2.5rem 0; font-size: 0.9rem; }
+  .nav-series .label { color: var(--accent); font-family: 'Courier New', monospace; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.08em; margin-bottom: 0.6rem; display: block; }
+  .nav-series ol { margin: 0; padding-left: 1.3rem; color: var(--muted); }
+  .nav-series li.current { color: var(--text); font-weight: bold; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="dot"></div>
+  <span class="label">Dokumentation · Fakten · Quellen</span>
+  <span class="date">Juli 2026</span>
+</header>
+
+<main>
+  <div class="kicker">Serie: Schwarzes Gold — Was Erdöl wirklich bewegt · Teil 1</div>
+  <h1>Wenn die Party vorbei ist: Wer zahlt den Abwrack?</h1>
+  <p class="subtitle">1995 versuchte Shell, den Öltank Brent Spar im Atlantik zu versenken — und scheiterte an einer der folgenreichsten Umweltkampagnen der Geschichte. Drei Jahrzehnte später steht die eigentliche Frage im Raum: Wer zahlt, wenn Hunderte Milliarden für den Rückbau ausgedienter Ölplattformen fällig werden?</p>
+  <div class="meta">Lesedauer: ca. 8 Minuten · Teil 1 der Serie "Schwarzes Gold"</div>
+
+  <h2>1. Brent Spar: Der Präzedenzfall</h2>
+
+  <p>Im April 1995 wollte Shell den ausgedienten Öl-Lagertank Brent Spar rund 150 Meilen vor der schottischen Küste im Nordatlantik versenken — in über 6.000 Fuß Tiefe. Der Konzern hatte drei Jahre und Millionen Pfund in Umweltgutachten investiert, die zu dem Ergebnis kamen, dass die Tiefseeversenkung tatsächlich die ökologisch am wenigsten schädliche Option sei. Die britische Regierung erteilte die Genehmigung.</p>
+
+  <p>Greenpeace-Aktivisten besetzten die Plattform am 30. April 1995 und lösten eine der größten Konsumentenkampagnen der 1990er-Jahre aus. In Deutschland brachen die Umsätze an Shell-Tankstellen zeitweise um bis zu 50 Prozent ein. Am 20. Juni 1995 gab Shell nach und entsorgte die Anlage stattdessen an Land.</p>
+
+  <div class="source-box">
+    <span class="label">Randnotiz</span>
+    Greenpeace musste später einräumen, die Ölmenge an Bord falsch berechnet zu haben: tatsächlich lagen höchstens 10 Tonnen Ölrückstände vor, nicht die behaupteten 130 Tonnen. Shells Umweltgutachten lag wissenschaftlich richtig — verlor aber den Medienkrieg. Ein Lehrbuchfall für die Kraft öffentlicher Kampagnen gegenüber technischer Faktenlage.
+  </div>
+
+  <h2>2. Die Konsequenz: Versenken ist seither verboten</h2>
+
+  <p>Der Brent-Spar-Konflikt führte 1998 zu einem Beschluss der OSPAR-Kommission (zuständig für den Schutz der Meeresumwelt des Nordost-Atlantiks), der das Versenken oder dauerhafte Zurücklassen ausgedienter Ölplattformen im Meer grundsätzlich verbietet. Seither müssen Plattformen nach Betriebsende vollständig zurückgebaut werden.</p>
+
+  <h2>3. Das eigentliche Problem: Hunderte Milliarden Dollar</h2>
+
+  <p>Fast 500 Ölplattformen stehen allein in der Nordsee zwischen Dänemark, Großbritannien, Norwegen und den Niederlanden. Seit der Jahrtausendwende geht die Förderung dort kontinuierlich zurück. Für den vollständigen Rückbau aller Nordsee-Plattformen rechnet die Beratungsfirma BCG mit Kosten von mindestens 150 Milliarden Dollar. Allein in den kommenden zehn Jahren erwartet BCG, dass 80 bis 150 Offshore-Plattformen aus wirtschaftlichen Gründen stillgelegt werden.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-number">~500</div>
+      <div class="stat-label">Ölplattformen in der Nordsee</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">150 Mrd. $</div>
+      <div class="stat-label">geschätzte Gesamtkosten Rückbau Nordsee</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">98%</div>
+      <div class="stat-label">des Stahls recycelbar</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">1 Mio. t</div>
+      <div class="stat-label">Stahl bis 2030 allein aus der Nordsee</div>
+    </div>
+  </div>
+
+  <h3>Was tatsächlich mit dem Material passiert</h3>
+  <p>Der überwiegende Teil des Materials wird recycelt: Rund 98 Prozent des Stahls einer Plattform lassen sich sortieren, zerkleinern, einschmelzen und wiederverwenden — für neue Ölplattformen, Industriebauten oder Offshore-Windkraftanlagen. Der eigentliche Abbau erfolgt jedoch selten vor Ort: Bei Nordsee-Plattformen landet das Material meist in der Türkei, andere Anlagen werden nach Südasien verschifft. China nimmt seit 2019 keine Wrackteile mehr an.</p>
+
+  <h3>Der Sonderfall Brent-Feld</h3>
+  <p>Die vier Plattformen Brent Alpha, Bravo, Charlie und Delta (Betreiber: Shell und ExxonMobil, je 50 Prozent) haben seit den 1970er-Jahren umgerechnet mehr als drei Milliarden Barrel Öl und Gas gefördert. Shell beantragte 2018 eine Ausnahmegenehmigung, die massiven Betonfundamente samt 62 großvolumigen Betonbehältern mit rund 640.000 Kubikmetern ölhaltigem Wasser im Meer zu belassen. Deutschland, unterstützt von Belgien, den Niederlanden und Schweden, protestierte dagegen und verwies auf unabhängige Gutachten, die einen vollständigen Rückbau für technisch machbar halten.</p>
+
+  <h2>4. Wer trägt die Kosten? Gewinne privat, Rückbau sozialisiert</h2>
+
+  <p>Hier liegt der eigentliche Kern der Geschichte: Mehrere Staaten übernehmen einen erheblichen Teil der Abwrackkosten aus Steuermitteln — in manchen Fällen bis zu 80 Prozent. Großbritannien beteiligt sich mit rund der Hälfte der Kosten. Die Konzerne, die über Jahrzehnte hinweg Milliardengewinne aus der Förderung erzielt haben, werden bei der Entsorgung also erheblich entlastet.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Infosperber: "Ausgediente Nordsee-Bohrinseln sind eine Gefahr für die Umwelt" (2020). taz: "Was tun mit alten Ölbohrplattformen?" (2020). Handelsblatt: "Verlassene Bohrinseln in der Nordsee: Die 150-Milliarden-Dollar-Herausforderung". Euronews: "Nordsee-Bohrinseln: Millionen Tonnen Stahl warten auf Wiederverwertung" (2022). Wuppertal Institut (Hans-Jochen Luhmann) in "Wirtschaftsdienst".
+  </div>
+
+  <p class="open-question"><em>Wer jahrzehntelang von der Förderung profitiert hat, bezahlt selten die vollen Kosten der Entsorgung. Die Allgemeinheit trägt einen Teil der Rechnung — für eine Infrastruktur, an der sie selbst nie mitverdient hat. Ist das ein fairer Interessenausgleich oder eine stille Umverteilung von privat zu öffentlich?</em></p>
+
+  <div class="nav-series">
+    <span class="label">Serie: Schwarzes Gold — Was Erdöl wirklich bewegt</span>
+    <ol>
+      <li class="current">Wenn die Party vorbei ist: Wer zahlt den Abwrack?</li>
+      <li>Nachwachsendes Öl? Was an der Theorie dran ist — und was nicht</li>
+      <li>Zerschlagen und doch ungeteilt: Wie Standard Oil weiterlebt</li>
+      <li>Öl als Kriegswaffe: Die Doppelmoral der Vernichtung</li>
+    </ol>
+  </div>
+
+</main>
+
+<footer>
+  <h3>Quellenverzeichnis</h3>
+  <ul>
+    <li>Greenpeace International: "Brent Spar: The sea is not a dustbin"</li>
+    <li>Environment &amp; Society Portal: "Brent Spar Campaign"</li>
+    <li>Handelsblatt: "Verlassene Bohrinseln in der Nordsee: Die 150-Milliarden-Dollar-Herausforderung"</li>
+    <li>Infosperber: "Ausgediente Nordsee-Bohrinseln sind eine Gefahr für die Umwelt" (2020)</li>
+    <li>taz: "Was tun mit alten Ölbohrplattformen? Schrott in der Nordsee" (2020)</li>
+    <li>Euronews: "Nordsee-Bohrinseln: Millionen Tonnen Stahl warten auf Wiederverwertung" (2022)</li>
+    <li>energiezukunft: "Alte Ölplattformen in der Nordsee werden zum Problem" (2016)</li>
+    <li>NWZ online: "Streit um Entsorgung alter Ölplattformen" (Wuppertal Institut, Hans-Jochen Luhmann)</li>
+  </ul>
+  <p style="margin-top: 1.5rem;">Alle dargestellten Informationen basieren auf öffentlich zugänglichen Quellen: Fachverbandsschätzungen, Regierungsangaben und etablierter Wirtschaftsberichterstattung. Kostenschätzungen variieren je nach Quelle und Berechnungszeitpunkt.</p>
+  <div class="tagline">dunkelfeld.report — Fakten, die das Licht nicht zu scheuen brauchen.</div>
+</footer>
+
+</body>
+</html>

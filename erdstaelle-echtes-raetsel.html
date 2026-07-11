@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Erdställe — das echte Rätsel — dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 6rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    color: #a1a1aa;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    color: #f4f4f5;
+    margin: 0.3rem 0 0.6rem;
+  }
+  .subtitle {
+    font-size: 1.2rem;
+    color: #d4d4d8;
+    font-style: italic;
+    margin-bottom: 2rem;
+    border-left: 3px solid #e8c547;
+    padding-left: 1rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+    color: #e8c547;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 0.5rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  a { color: #e8c547; }
+
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #e8c547;
+    margin-bottom: 0.4rem;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+    margin-bottom: 0.3rem;
+  }
+  .tag-belegt { background: rgba(74, 222, 128, 0.15); color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.4); }
+  .tag-extrapolation { background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid rgba(251, 146, 60, 0.4); }
+  .tag-offen { background: rgba(161, 161, 170, 0.15); color: #a1a1aa; border: 1px solid rgba(161, 161, 170, 0.4); }
+  .tag-widerlegt { background: rgba(244, 63, 94, 0.1); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3); text-decoration: line-through; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat {
+    background: #131320;
+    border: 1px solid #27272a;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat .number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    color: #e8c547;
+    font-weight: bold;
+  }
+  .stat .label {
+    font-size: 0.8rem;
+    color: #a1a1aa;
+    margin-top: 0.3rem;
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .comparison-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #e8c547;
+    text-align: left;
+    padding: 0.6rem;
+    border-bottom: 2px solid #e8c547;
+  }
+  .comparison-table td {
+    padding: 0.7rem 0.6rem;
+    border-bottom: 1px solid #27272a;
+    vertical-align: top;
+  }
+
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #f4f4f5;
+    border-left: 3px solid #e8c547;
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    margin: 2rem 0;
+  }
+  .pull-quote .attr {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #a1a1aa;
+    font-style: normal;
+    margin-top: 0.5rem;
+  }
+
+  .open-question { font-style: italic; color: #d4d4d8; }
+
+  .legend {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #71717a;
+    border-top: 1px solid #27272a;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+  }
+  .legend .tag { margin-bottom: 0.5rem; }
+
+  footer {
+    margin-top: 4rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #52525b;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="meta">dunkelfeld.report · Hidden in Plain Sight</div>
+  <h1>Erdställe: Das echte Rätsel</h1>
+  <div class="subtitle">Tausende enge Tunnelgänge unter Bayern und Österreich — von der Fachwelt seit Jahrzehnten untersucht, bis heute ohne geklärten Zweck. Ein Fall, der keine Alientheorie braucht, um faszinierend zu sein.</div>
+
+  <p>Es gibt einen wichtigen Unterschied zwischen einem konstruierten Rätsel und einem echten. Bei den vielbeschworenen "Deep Underground Military Bases" in den USA ist die Deutung (geheime Basen, Außerirdische) unbelegt — der zugrunde liegende Befund (Bilanzchaos im Pentagon) ist real, aber die Verbindung zur Untergrund-These bleibt Spekulation. Bei den sogenannten Erdställen in Mitteleuropa liegt der Fall umgekehrt: Hier ist die Existenz von tausenden Anlagen zweifelsfrei belegt, geologisch dokumentiert und teils sogar musealisiert — nur der <strong>Zweck</strong> ist bis heute offiziell ungeklärt. Kein Alien-Anstrich nötig.</p>
+
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="number">~900</div>
+      <div class="label">allein in der Steiermark dokumentierte unterirdische Anlagen (Sub Terra Vorau)</div>
+    </div>
+    <div class="stat">
+      <div class="number">10.–13. Jh.</div>
+      <div class="label">Radiokarbon-datierter Nutzungszeitraum der meisten Erdställe</div>
+    </div>
+  </div>
+
+  <h2>Was ein Erdstall ist</h2>
+  <p>Erdställe sind schmale, oft stark gewundene unterirdische Gangsysteme, die sich über mehrere Ebenen ziehen können. Kennzeichnend sind die sogenannten "Schlupfe" — Engstellen von teils nur 40 bis 60 Zentimetern Durchmesser, durch die man sich zwängen muss. Sie finden sich vor allem in Bayern (Niederbayern, Oberpfalz) und Österreich (Niederösterreich, Steiermark), aber auch in Baden-Württemberg, Sachsen, Tschechien, der Slowakei, Ungarn und Polen. Regional werden sie auch "Schratzloch" oder "Zwergloch" genannt — ein Hinweis darauf, dass schon frühere Generationen ihren Zweck nicht mehr kannten und sie mythologisch deuteten.</p>
+
+  <div class="source-box">
+    <div class="label">Tag: <span class="tag tag-belegt">BELEGT</span></div>
+    Der wissenschaftliche Arbeitskreis für Erdstallforschung e.V. betreibt in Neukirchen-Balbini (Bayern) ein eigenes europäisches Forschungszentrum mit archäologischer Dokumentation. Radiokarbondatierungen von Holzresten aus mehreren Anlagen (u. a. Aying, Höcherlmühle, Niederretz) verorten die Nutzung übereinstimmend zwischen dem 10. und 13. Jahrhundert.
+  </div>
+
+  <h2>Der eigentliche Rätsel-Kern</h2>
+  <p>Die Anlagen sind fast durchgängig fundleer — kein Hausrat, keine Gräber, keine eindeutigen Gebrauchsspuren. Es existiert keine einzige mittelalterliche schriftliche Quelle, die erklärt, wer sie baute oder wofür. Auffällig: Die Aufgabe der Erdställe erfolgte europaweit in einem vergleichbaren Zeitfenster gegen Ende des 13. Jahrhunderts — als wäre mit einem gesellschaftlichen Wandel plötzlich der Bedarf entfallen.</p>
+
+  <div class="pull-quote">
+    „Das ist ein wahnsinnig großes archäologisches Rätsel, das noch keiner verstanden hat."
+    <span class="attr">— Birgit Symader, Vorsitzende Arbeitskreis für Erdstallforschung e.V., gegenüber National Geographic Deutschland</span>
+  </div>
+
+  <p>Diskutierte, aber unbewiesene Deutungen:</p>
+  <table class="comparison-table">
+    <tr><th>Theorie</th><th>Haupteinwand</th></tr>
+    <tr><td>Zufluchtsort bei Überfällen</td><td>Enge Schlupfe kaum passierbar für Schwangere, Kinder, Alte — unpraktisch als Fluchtort</td></tr>
+    <tr><td>Kult-/Totenstätte</td><td>Keine Grabbeigaben oder menschlichen Überreste gefunden</td></tr>
+    <tr><td>Vorratslager</td><td>Erklärt nicht die aufwendigen Engstellen und Kreisgänge</td></tr>
+  </table>
+
+  <div class="source-box">
+    <div class="label">Tag: <span class="tag tag-offen">OFFEN</span></div>
+    Die Fachwelt selbst weigert sich ausdrücklich, sich vorschnell auf eine Zweckbestimmung festzulegen — solange es für keine der Theorien belastbare archäologische Belege gibt, gilt der Zweck offiziell als ungeklärt. Das ist eine seltene und bemerkenswert ehrliche Position in einem Forschungsfeld, das leicht zu Spekulation einlädt.
+  </div>
+
+  <h2>Wo es kippt: Spekulative Erweiterungen</h2>
+  <p>Neben der etablierten Forschung kursieren auch weitergehende Behauptungen — etwa von einem Grazer Prähistoriker, der einzelne Gänge auf über 10.000 Jahre datiert und Werkzeugspuren beschreibt, die angeblich nur durch Temperaturen von über 1.200 Grad erklärbar seien. Diese Angaben wurden unter anderem im Kopp-Verlag veröffentlicht, einem Verlag mit esoterisch-alternativhistorischem Schwerpunkt, und sind bislang nicht durch breitere fachliche Datierung bestätigt.</p>
+
+  <div class="source-box">
+    <div class="label">Tag: <span class="tag tag-extrapolation">EXTRAPOLATION</span> / <span class="tag tag-offen">OFFEN</span></div>
+    Solche Einzelquellen-Behauptungen sind von der etablierten, im Arbeitskreis für Erdstallforschung organisierten Fachforschung zu unterscheiden, deren Datierungen (10.–13. Jahrhundert) auf mehrfach reproduzierten C14-Analysen beruhen. Eine prähistorische Datierung einzelner Gänge ist nicht ausgeschlossen, aber nicht in vergleichbarer Weise belegt.
+  </div>
+
+  <h2>Der Kontrast zu DUMB</h2>
+  <p>Genau hier liegt die Pointe im Vergleich zu den amerikanischen Untergrundbasen-Theorien: Bei DUMB ist die Ausgangstatsache (Bilanzchaos, unbelegte Buchungen) real, aber die aufregende Deutung (Geheimbasen, Energieforschung, Aliens) ist frei erfunden bzw. unbewiesen. Bei den Erdställen ist es umgekehrt — die Existenz von tausenden dokumentierten, vermessenen, teils begehbaren Anlagen ist unbestreitbar, nur die naheliegende Frage "wozu" bleibt seit über hundert Jahren Forschung offen. Das eigentliche Mysterium braucht keine Zuspitzung — es reicht, ehrlich zu sagen: Wir wissen es nicht.</p>
+
+  <h2>Offene Fragen</h2>
+  <p class="open-question"><em>Warum wurden über ein derart großes Gebiet hinweg, unabhängig voneinander, so ähnliche Bauformen gewählt? Warum endete die Praxis fast gleichzeitig gegen Ende des 13. Jahrhunderts? Und: Was sagt es über unseren Umgang mit echten, eingestandenen Wissenslücken aus, dass sie in der öffentlichen Wahrnehmung so viel weniger Aufmerksamkeit bekommen als konstruierte Geheimnisse mit Alien-Anstrich?</em></p>
+
+  <div class="legend">
+    <div class="tag tag-belegt">BELEGT</div> — durch Primärquellen/Fachforschung dokumentiert<br>
+    <div class="tag tag-extrapolation">EXTRAPOLATION</div> — begründete Schlussfolgerung, kein Direktbeleg<br>
+    <div class="tag tag-offen">OFFEN</div> — ungeklärt, auch laut Fachwelt selbst<br>
+    <div class="tag tag-widerlegt">VT-WIDERLEGT</div> — Verschwörungsbehauptung ohne tragfähigen Beleg
+  </div>
+
+  <footer>dunkelfeld.report — Beleg-vor-Motiv-Prinzip. Die Fakten sprechen für sich.</footer>
+</div>
+</body>
+</html>

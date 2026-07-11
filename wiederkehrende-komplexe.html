@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der immer gleiche Mechanismus – dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background-color: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .label {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  h1 {
+    font-family: Georgia, serif;
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin: 0.5rem 0 0.3rem;
+    color: #f4f4f5;
+  }
+  .subtitle {
+    font-family: 'Courier New', monospace;
+    color: #a1a1aa;
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem;
+  }
+  h2 {
+    color: #e8c547;
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 0.5rem;
+  }
+  p {
+    padding-bottom: 1.2rem;
+  }
+  .source-box {
+    background-color: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .source-box .label { margin-bottom: 0.4rem; display: block; }
+  .source-box a { color: #e8c547; }
+
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+    display: inline-block;
+  }
+  .tag-belegt { background: rgba(74, 222, 128, 0.15); color: #4ade80; border: 1px solid #4ade80; }
+  .tag-extrapolation { background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid #fb923c; }
+  .tag-offen { background: rgba(161, 161, 170, 0.15); color: #a1a1aa; border: 1px solid #a1a1aa; }
+  .tag-widerlegt { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid #ef4444; text-decoration: line-through; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.92rem;
+  }
+  th, td {
+    border: 1px solid #27272a;
+    padding: 0.6rem 0.7rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: #1a1a2e;
+    color: #e8c547;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat-card {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    color: #e8c547;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.85rem;
+    color: #a1a1aa;
+  }
+
+  .timeline {
+    border-left: 2px solid #27272a;
+    margin: 1.5rem 0 1.5rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    position: relative;
+    padding-bottom: 1.8rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.85rem;
+    top: 0.35rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #e8c547;
+  }
+  .timeline-year {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 0.9rem;
+  }
+  .timeline-title {
+    font-weight: bold;
+    color: #f4f4f5;
+    margin-bottom: 0.3rem;
+  }
+
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #f4f4f5;
+    border-left: 3px solid #e8c547;
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+  }
+
+  .open-question {
+    font-style: italic;
+    color: #a1a1aa;
+  }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+  }
+
+  .series-nav {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1.2rem;
+    margin: 2rem 0;
+    font-size: 0.9rem;
+  }
+  .series-nav .label { margin-bottom: 0.6rem; display: block; }
+  .series-nav a { color: #e8c547; display: block; padding: 0.2rem 0; }
+
+  @media (max-width: 500px) {
+    .stat-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <span class="label">Hidden in Plain Sight — Struktur-Synthese</span>
+  <h1>Der immer gleiche Mechanismus</h1>
+  <div class="subtitle">Wie Kapital sich Politik einverleibt — und warum das kein Plan sein muss, um zu funktionieren</div>
+
+  <p>Am 17. Januar 1961 warnte US-Präsident Dwight D. Eisenhower in seiner Abschiedsrede vor einer "unwarranted influence" — einem informellen Bündnis aus Militär, Rüstungsindustrie und Kongress, das er den "military-industrial complex" nannte. Eisenhower selbst hatte als Präsident die Verteidigungsausgaben massiv erhöht und pflegte enge Verbindungen zu genau jenen Kreisen, vor denen er warnte<span class="tag tag-belegt">BELEGT</span>.</p>
+
+  <p>Über sechzig Jahre später lässt sich ein Muster erkennen, das weit über das Militär hinausreicht: Immer wieder kapert derselbe Mechanismus den jeweils kapitalstärksten Sektor einer Epoche. Nicht als koordinierter Plan — sondern als Struktur, die sich unter den immer gleichen Bedingungen von selbst reproduziert.</p>
+
+  <h2>Der Mechanismus</h2>
+
+  <p>Vier Elemente kehren branchenübergreifend wieder, unabhängig davon, ob es um Waffen, Medikamente, Kredite oder Daten geht:</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-number">1</span>
+      <span class="stat-label">Konzentration weniger Player (Oligopol)</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">2</span>
+      <span class="stat-label">Lobbying + Kampagnenfinanzierung</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">3</span>
+      <span class="stat-label">Drehtür zwischen Behörde und Industrie</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">4</span>
+      <span class="stat-label">Regulatory Capture — die Kontrollinstanz wird mitgeprägt</span>
+    </div>
+  </div>
+
+  <p>Kritiker nennen dieses Zusammenspiel ein "iron triangle" aus Regierungsvertretern, Abgeordneten und Industriefirmen — eine gegenseitig vorteilhafte Beziehung, die tendenziell zu steigenden Ausgaben und zur Bevorzugung militärischer Lösungen führt<span class="tag tag-belegt">BELEGT</span>.</p>
+
+  <h2>Zeitleiste der Komplexe</h2>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-year">SEIT DEN 1940ER/50ER JAHREN</div>
+      <div class="timeline-title">Rüstung</div>
+      <p>Ursprung im permanenten Rüstungsapparat des Kalten Kriegs. Heute: 950 von der Rüstungsindustrie beauftragte Lobbyisten (2024), 220 mehr als noch 2020<span class="tag tag-belegt">BELEGT</span>. Das US-Militärbudget erreichte 2025 nach einer Zusatzfinanzierung von 156 Mrd. USD einen Gesamtwert von 1,06 Billionen USD<span class="tag tag-belegt">BELEGT</span>. Eine Untersuchung der Büroleiterin von Senatorin Elizabeth Warren fand fast 700 ehemalige hochrangige Regierungsvertreter, darunter Generäle und Admirale, die inzwischen für Rüstungskonzerne arbeiten — 91 % davon als Pentagon-Lobbyisten<span class="tag tag-belegt">BELEGT</span>.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-year">SEIT DEN 1980ER JAHREN</div>
+      <div class="timeline-title">Finanz</div>
+      <p>Deregulierung als politisches Programm, Kulmination in der Finanzkrise 2008. Zwischen 1998 und 2008 flossen 1,725 Mrd. USD an Kampagnenspenden der US-Finanzbranche an beide Parteien, plus weitere 3,4 Mrd. USD direktes Lobbying<span class="tag tag-belegt">BELEGT</span>. Allein 2007 waren rund 3.000 Lobbyisten der Finanzbranche für 540 Abgeordnete und 100 Senatoren im Einsatz<span class="tag tag-belegt">BELEGT</span>. Der Begriff der "Kaperung der Politik" durch die Finanzbranche stammt vom früheren IWF-Chefökonomen Simon Johnson — ein etablierter Begriff der Wirtschaftswissenschaft, kein Randphänomen<span class="tag tag-belegt">BELEGT</span>.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-year">SEIT DEN 1990ER/2000ER JAHREN</div>
+      <div class="timeline-title">Pharma</div>
+      <p>Von 1998 bis Mitte 2025 gab die Pharmaindustrie über 6,3 Mrd. USD für Lobbying aus — mehr als jede andere Branche<span class="tag tag-belegt">BELEGT</span>. Über den Prescription Drug User Fee Act (PDUFA) finanzieren Pharmafirmen direkt mehr als 1 Mrd. USD jährlich an "User Fees", die rund 65 % des FDA-Arzneimittelprüfbudgets ausmachen<span class="tag tag-belegt">BELEGT</span>. 57 % der ausgeschiedenen FDA-Prüfer wechseln in die Industrie, die sie zuvor reguliert haben<span class="tag tag-belegt">BELEGT</span>. Im Zuge der Opioidkrise gaben Pharmafirmen zwischen 2006 und 2015 über 880 Mio. USD aus, um Regulierung zu verzögern — mit Folgen: über 500.000 Tote in den USA seit den späten 1990ern<span class="tag tag-belegt">BELEGT</span>.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-year">SEIT DEN 2010ER JAHREN, AKTUELL BESCHLEUNIGT</div>
+      <div class="timeline-title">Digital / Tech (inkl. Krypto & KI)</div>
+      <p>Seit 2024 hat sich eine neue, deutlich schnellere Variante etabliert: sektorspezifische Super-PACs. Der kryptofinanzierte Super-PAC "Fairshake" gab 2024 über 133 Mio. USD aus, um gezielt Abgeordnete zu bekämpfen, die der Kryptoindustrie nicht wohlgesonnen waren<span class="tag tag-belegt">BELEGT</span>. Im laufenden Zyklus 2026 haben Krypto- und KI-finanzierte Super-PACs bereits über 321 Mio. USD gesammelt, mit dem KI-fokussierten "Leading the Future" (50,1 Mio. USD, angeführt von Andreessen Horowitz) als neuestem Beispiel<span class="tag tag-belegt">BELEGT</span>. Parallel verschmilzt der Digital-Komplex zunehmend mit dem Rüstungskomplex: Firmen wie Palantir und Anduril kritisieren offen die etablierten Rüstungskonzerne und positionieren sich mit KI-gestützter Kriegstechnologie als deren Nachfolger<span class="tag tag-belegt">BELEGT</span>.</p>
+    </div>
+
+  </div>
+
+  <h2>Vergleich der Kennzahlen</h2>
+
+  <table>
+    <tr>
+      <th>Sektor</th>
+      <th>Lobbying-Volumen</th>
+      <th>Drehtür-Beleg</th>
+      <th>Krisenfolge</th>
+    </tr>
+    <tr>
+      <td>Rüstung</td>
+      <td>&gt;140 Mio. USD/Jahr (2023)</td>
+      <td>~700 Ex-Beamte bei Rüstungsfirmen</td>
+      <td>Dauerbudget, 1,06 Bio. USD (2025)</td>
+    </tr>
+    <tr>
+      <td>Pharma</td>
+      <td>6,3 Mrd. USD (1998–2025)</td>
+      <td>57 % der Ex-FDA-Prüfer wechseln zur Industrie</td>
+      <td>Opioidkrise, &gt;500.000 Tote</td>
+    </tr>
+    <tr>
+      <td>Finanz</td>
+      <td>1,7 Mrd. USD Spenden + 3,4 Mrd. Lobbying (1998–2008)</td>
+      <td>Systematischer Seitenwechsel Politik ↔ Banken</td>
+      <td>Finanzkrise 2008, Deregulierung hielt an</td>
+    </tr>
+    <tr>
+      <td>Digital/Tech</td>
+      <td>&gt;321 Mio. USD Krypto/KI-Super-PACs (2026, laufend)</td>
+      <td>Konvergenz mit Rüstungssektor (Palantir, Anduril)</td>
+      <td class="open-question">offen — Prozess läuft aktuell</td>
+    </tr>
+  </table>
+
+  <div class="source-box">
+    <span class="label">Quellen</span>
+    Quincy Institute (Profits of War, 2025) · GAO-Berichte · OpenSecrets.org · Wall Street Watch · Finanzwende-Studie zur deutschen Finanzlobby · Public Citizen (2026) · The Nation (Crypto/AI Super-PACs, 2026)
+  </div>
+
+  <h2>Abgrenzungskriterium: Verstetigung vs. Einmaligkeit</h2>
+
+  <p>Nicht jeder Boom-Bust-Zyklus ist ein Komplex im hier beschriebenen Sinn. Ein Gegenbeispiel schärft den Unterschied: die niederländische Tulpenmanie von 1634–1637.</p>
+
+  <p>Auch dort gab es ein neues Finanzinstrument (Terminkontrakte auf Tulpenzwiebeln, bei denen nur eine Anzahlung von rund 10 % nötig war), Entkopplung von Preis und Wert sowie einen abrupten Vertrauenskollaps: Bei einer Auktion am 3. Februar 1637 in Haarlem blieben die Gebote für ein Pfund "Witte Croonen"-Zwiebeln plötzlich aus, obwohl sich normalerweise mehrere Interessenten gemeldet hätten<span class="tag tag-belegt">BELEGT</span>.</p>
+
+  <p>Was fehlt: eine dauerhafte institutionelle Verzahnung. Es gab keinen Regulator, der gekapert wurde, keine Lobbyisten, keine Gesetzgebung, die verbogen wurde. Nach dem Crash verschwand die Tulpe einfach wieder als Statussymbol — es folgte kein Krieg, keine Gesundheitskrise, keine dauerhafte Institution, die den Bedarf künstlich am Leben hielt.</p>
+
+  <div class="pull-quote">Echter Komplex: Die Krise wird strukturell verstetigt, weil Politik, Kapital und Institution dauerhaft verzahnt sind. Bloße Spekulationsblase: einmaliger Boom-Bust-Zyklus, der sich nach dem Crash von selbst auflöst.</div>
+
+  <p>Bemerkenswert: Moderne Forschung (u. a. die Historikerin Anne Goldgar) zeigt zudem, dass das Ausmaß der Tulpenmanie nachträglich von moralisierenden Pamphleten übertrieben dargestellt wurde — das einflussreichste zeitgenössische Dokument über die Organisation des Handels ist selbst ein spekulationskritisches Pamphlet, das kurz nach dem Ende der Blase verbreitet wurde<span class="tag tag-belegt">BELEGT</span>. Ein Fall von nachträglicher Narrativkonstruktion, nicht von struktureller Macht.</p>
+
+  <h2>Was das nicht ist</h2>
+
+  <p>Dieser Artikel behauptet nicht, dass eine durchgehende Gruppe seit Jahrzehnten branchenübergreifend denselben Plan verfolgt und den Staffelstab bewusst weiterreicht<span class="tag tag-widerlegt">VT-WIDERLEGT</span>. Eine solche Behauptung würde Dokumente erfordern, die es nicht gibt.</p>
+
+  <p>Die Struktur-These ist eine andere und stärkere: Wenn die Anreizbedingungen — viel Kapital, ein politisch regulierbarer Markt, eine durchlässige Grenze zwischen Behörde und Industrie — über Jahrzehnte hinweg bestehen bleiben, erzeugen sie unabhängig vom Sektor dieselben Verhaltensmuster. Das Ergebnis sieht am Ende aus wie ein Plan, ist aber strukturell erklärbar<span class="tag tag-extrapolation">EXTRAPOLATION</span>. Diese Version ist schwerer zu widerlegen als jede Verschwörungserzählung — weil sie nicht auf eine geheime Absprache angewiesen ist, sondern auf öffentlich dokumentierte Anreize.</p>
+
+  <h2>Offene Fragen</h2>
+
+  <p class="open-question"><em>Wird der Digital/Tech-Komplex, anders als seine Vorgänger, so schnell reguliert, dass er nie die institutionelle Verstetigung von Rüstung, Pharma und Finanz erreicht — oder verschmilzt er gerade mit dem Rüstungskomplex zu einer neuen, noch mächtigeren Form? Und: Wer profitiert vom nächsten Sektor, der noch gar nicht auf dem Radar ist?</em></p>
+
+  <footer>
+    dunkelfeld.report — Hidden in Plain Sight<br>
+    Beleg-vor-Motiv-Prinzip: Motive werden nur zugeschrieben, wo sie dokumentarisch belegt sind.
+  </footer>
+
+</div>
+</body>
+</html>

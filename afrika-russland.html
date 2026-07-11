@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wettlauf um Afrika, Teil 2: Russland — dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background: #09090b;
+    color: #e5e5e5;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #e8c547;
+  }
+  .series-banner {
+    background: #131316;
+    border: 1px solid #27272a;
+    border-radius: 4px;
+    padding: 0.8rem 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #a1a1aa;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em;
+  }
+  .series-banner strong { color: #e8c547; }
+  h1 {
+    font-family: Georgia, serif;
+    font-size: 2.1rem;
+    line-height: 1.3;
+    margin: 0.8rem 0 0.5rem;
+    color: #f4f4f5;
+  }
+  .subtitle {
+    font-size: 1.15rem;
+    color: #a1a1aa;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  h2 {
+    font-family: Georgia, serif;
+    font-size: 1.5rem;
+    color: #e8c547;
+    margin-top: 3rem;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    font-family: Georgia, serif;
+    font-size: 1.2rem;
+    color: #f4f4f5;
+    margin-top: 1.8rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  .meta-bar {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+    padding: 0.8rem 0;
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .label { display: block; margin-bottom: 0.5rem; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.6rem;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 0.8rem;
+  }
+  .tag-belegt { background: rgba(74, 222, 128, 0.15); color: #4ade80; border: 1px solid #4ade80; }
+  .tag-extrapolation { background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid #fb923c; }
+  .tag-offen { background: rgba(161, 161, 170, 0.15); color: #a1a1aa; border: 1px solid #a1a1aa; }
+  .tag-vt-widerlegt { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid #ef4444; text-decoration: line-through; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .stat-card {
+    background: #131316;
+    border: 1px solid #27272a;
+    border-radius: 4px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.8rem;
+    color: #e8c547;
+    font-weight: bold;
+    display: block;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #a1a1aa;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #27272a;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #e8c547;
+  }
+
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #f4f4f5;
+    border-left: 3px solid #e8c547;
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .timeline {
+    margin: 1.5rem 0;
+    border-left: 2px solid #27272a;
+    padding-left: 1.5rem;
+  }
+  .timeline-item { margin-bottom: 1.2rem; position: relative; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.68rem;
+    top: 0.35rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #e8c547;
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #e8c547;
+    display: block;
+  }
+
+  .closing-question {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #d4d4d8;
+    text-align: center;
+    margin: 3rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+  }
+
+  .series-nav {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+  }
+  .series-nav a { display: block; margin: 0.3rem 0; }
+
+  a { color: #e8c547; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="label">Infrastruktur der Einflussnahme · dunkelfeld.report</div>
+  <div class="series-banner"><strong>SERIE: Wettlauf um Afrika</strong> — Teil 2 von 5</div>
+  <h1>Russland in Afrika</h1>
+  <div class="subtitle">Von Wagner zu Africa Corps — Sicherheit gegen Rohstoffe</div>
+
+  <div class="meta-bar">
+    <span>Hidden in Plain Sight</span>
+    <span>Beleg-vor-Motiv-Prinzip</span>
+  </div>
+
+  <p>Wo Frankreich abzieht, füllt Russland die Lücke — nicht mit Krediten oder Infrastruktur, sondern mit Söldnern. Das Modell: Militärische Unterstützung für autoritäre oder von Putschen an die Macht gekommene Regierungen, im Gegenzug Zugang zu Gold- und Rohstoffvorkommen. Nach dem Tod Prigoschins 2023 übernahm der russische Staat direkt die Kontrolle über das Netzwerk — die "Wagner-Gruppe" wurde zum "Africa Corps", direkt dem russischen Verteidigungsministerium unterstellt. Die Bilanz zwei Jahre später: militärisch durchwachsen, menschenrechtlich verheerend dokumentiert.</p>
+
+  <h2>Vom Söldner zum Staatsapparat</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <p>Wagner war ein nominell privates Söldnerunternehmen, das sich seine Einsätze zu großen Teilen über direkten Zugriff auf Bergbaukonzessionen finanzierte — etwa in der Zentralafrikanischen Republik (CAR), wo Wagner seit 2018 aktiv ist und nach dem endgültigen Abzug französischer Truppen 2022 zur dominierenden Kraft wurde. Nach Prigoschins Tod im August 2023 baute der Kreml eine neue, direkt dem Verteidigungsministerium unterstellte Truppe auf: das Africa Corps. Diese übernahm ab Ende 2023 schrittweise das afrikanische Netzwerk Wagners.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Robert Lansing Institute, "Russia's Africa Corps: Wagner's Successor in Africa (2022–2025)" (September 2025); Congressional Research Service / Congress.gov, "Russia's Security Operations in Africa".
+  </div>
+
+  <h3>Der zentrale Unterschied zu Wagner</h3>
+
+  <p>Anders als Wagner, das über militärische Erfolge direkten Zugriff auf Minenkonzessionen suchte (in Mali erfolglos, in der Zentralafrikanischen Republik erfolgreich), nutzt das Africa Corps zunächst russische und guineische Unternehmen für seine militärischen Zwecke — die Struktur ist stärker in staatliche Geschäftsbeziehungen eingebettet als das alte Söldnermodell.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    The Sentry, "Doubling Down: Russia in West Africa" (April 2026).
+  </div>
+
+  <h2>Mali: Der Rückzug aus Kidal</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-date">Ende 2021</span>
+      Wagner-Söldner treffen in Mali ein, Kosten laut US-Außenministerium rund 10 Mio. $ monatlich.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">November 2023</span>
+      Wagner und Regierungstruppen erobern die Tuareg-Hochburg Kidal zurück — Höhepunkt der russischen Präsenz.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Juli 2024</span>
+      Gefecht bei Tinzaouaten: 84 Wagner-Söldner und 47 malische Soldaten getötet. Die Ukraine reklamiert Beteiligung durch Aufklärungsunterstützung für Tuareg-Rebellen.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Juni 2025</span>
+      Wagner verkündet Abzug aus Mali nach dreieinhalb Jahren; Übergabe an das staatlich kontrollierte Africa Corps.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">April 2026</span>
+      Russland liefert trotz Wagner-Abzugs drei große Militärkonvois (Panzer, gepanzerte Fahrzeuge) nach Bamako — Ausweitung statt Rückzug.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">April/Mai 2026</span>
+      Dschihadistische und Tuareg-Kämpfer erobern Kidal zurück. Russische Truppen ziehen sich unter Zurücklassung von Ausrüstung (u. a. Drohnenstationen) zurück — laut Experten der bislang schwerste Rückschlag für Russlands Afrika-Projekt.
+    </div>
+  </div>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    RFE/RL (30. April 2026); The Sentry (April 2026); Wikipedia-Zusammenstellung "Africa Corps (Russia)" mit Verweisen auf BBC, AP und Le Monde.
+  </div>
+
+  <h2>Dokumentierte Menschenrechtsverletzungen</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <p>Mehrere unabhängige Quellen dokumentieren systematische Gewalt gegen Zivilisten durch Wagner- und Africa-Corps-Kräfte in Mali: Massenhinrichtungen, Vergewaltigungen, Enthauptungen, Verstümmelungen, Niederbrennen von Dörfern. Malische Streitkräfte und russische Söldner töteten in der zweiten Jahreshälfte 2024 nach RAND-Recherchen mindestens 32 Zivilisten gezielt und brannten über 100 Häuser nieder; im Januar 2025 wurden mindestens 10 Menschen willkürlich hingerichtet, darunter Frauen und ein zweijähriges Kind.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    RAND Corporation (Juni 2025); Associated Press, Bericht zur mutmaßlichen Vergewaltigung eines 14-jährigen Mädchens durch Africa-Corps-Angehörige (Dezember 2025); BBC-Interviews mit Augenzeugen (25. November 2025); Le Monde (27. Juni 2026).
+  </div>
+
+  <h2>Expansion über Mali hinaus</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <table>
+    <tr><th>Land</th><th>Status</th></tr>
+    <tr><td>Zentralafrikanische Republik</td><td>Africa Corps übernahm Wagner-Netzwerk Mitte 2025; Präsident Touadéra 2025 wiedergewählt (Verfassungsänderung, mutmaßliche russische Unterstützung)</td></tr>
+    <tr><td>Burkina Faso</td><td>Militärbasis in Loumbila seit Anfang 2024</td></tr>
+    <tr><td>Niger</td><td>Russische Kräfte seit 2024, nach US-Truppenabzug (siehe Teil 3)</td></tr>
+    <tr><td>Äquatorialguinea</td><td>Ausbildung von Präsidentengarde-Einheiten</td></tr>
+    <tr><td>Madagaskar</td><td>Kontakte nach Militärputsch 2025</td></tr>
+    <tr><td>Togo</td><td>Militärkooperationsabkommen 2025, laut Berichten inkl. Hafenzugang</td></tr>
+  </table>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Congressional Research Service, "Russia's Security Operations in Africa" (2026).
+  </div>
+
+  <h2>Die Gegenleistung: Rohstoffe und UN-Stimmen</h2>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <p>In Mali versuchten Wagner-Kräfte 2023 wiederholt, die Kontrolle über artisanale Goldminen zu übernehmen (Balandougou, Koyoko, Yanfolila, später Intahaka) — mit wechselndem Erfolg. In der Zentralafrikanischen Republik gelang der Zugriff auf Bergbau, Holzwirtschaft und weitere Geschäftsfelder über Wagner-nahe Firmen dauerhaft. Parallel gewinnt Russland afrikanische Staaten als Verbündete bei UN-Abstimmungen — ein diplomatischer Nutzen, der sich messen lässt.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Arizona State University, "Proxy Power and Precious Minerals: Russia's Growing Footprint in Africa through the Wagner Group" (2025).
+  </div>
+
+  <div class="closing-question">
+    Russland verkauft sein Engagement als Alternative zum "Wertewesten" — ohne demokratische Konditionalität, ohne koloniale Vorgeschichte. Was bedeutet es, wenn die dokumentierte Gewalt gegen Zivilisten dabei höher liegt als unter den vorherigen Partnern?
+  </div>
+
+  <div class="series-nav">
+    <strong>SERIE: Wettlauf um Afrika</strong>
+    Teil 1: China — Infrastruktur gegen Einfluss<br>
+    Teil 2: Russland — Wagner/Africa Corps (dieser Artikel)<br>
+    Teil 3: USA — Rückzug und Restrukturierung (folgt)<br>
+    Teil 4: Frankreich/Wertewesten — Ende der Françafrique (folgt)<br>
+    Teil 5: Synthese (folgt)
+  </div>
+
+</div>
+</body>
+</html>

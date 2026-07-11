@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wiesbaden — Das stille Hauptquartier | dunkelfeld.info</title>
+<style>
+  :root{
+    --bg:#09090b; --bg2:#111114; --card:#1a1a2e;
+    --red:#c81e3a; --red-bright:#e8324f;
+    --text:#e4e4e7; --text-dim:#9a9aa5;
+    --green:#3fa34d; --orange:#d98c2b; --grey:#7a7a85;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:'JetBrains Mono',Consolas,monospace;
+    max-width:760px; margin:0 auto; padding:0 20px 80px;
+    line-height:1.7; font-size:1.02rem;
+  }
+  header{
+    border-bottom:2px solid var(--red); padding:28px 0 18px; margin-bottom:36px;
+  }
+  .kicker{
+    color:var(--red-bright); text-transform:uppercase; letter-spacing:2px;
+    font-size:.78rem; margin-bottom:10px;
+  }
+  h1{
+    font-size:1.9rem; line-height:1.25; margin:0 0 12px; color:#fff;
+    font-weight:700;
+  }
+  .subtitle{ color:var(--text-dim); font-size:1rem; }
+  .meta{ color:var(--text-dim); font-size:.8rem; margin-top:14px; }
+  h2{
+    color:var(--red-bright); font-size:1.25rem; margin:44px 0 16px;
+    border-left:3px solid var(--red); padding-left:12px;
+  }
+  p{ margin:0 0 18px; }
+  .lead{ font-size:1.08rem; color:#f2f2f4; }
+
+  .box{
+    background:var(--card); border-left:3px solid var(--red-bright);
+    padding:20px 22px; margin:26px 0; border-radius:2px;
+  }
+  .box-label{
+    font-size:.72rem; text-transform:uppercase; letter-spacing:1.5px;
+    color:var(--red-bright); margin-bottom:10px; font-weight:700;
+  }
+  .box.fairness{ border-left-color:var(--orange); }
+  .box.fairness .box-label{ color:var(--orange); }
+  .box.danger{ border-left-color:#e8324f; background:#241318; }
+  .box.danger .box-label{ color:#ff5c72; }
+  .box ul{ margin:0; padding-left:20px; }
+  .box li{ margin-bottom:8px; }
+
+  .tag{
+    display:inline-block; font-size:.7rem; text-transform:uppercase;
+    letter-spacing:1px; padding:2px 8px; border-radius:3px; margin-right:6px;
+    font-weight:700;
+  }
+  .tag-belegt{ background:rgba(63,163,77,.15); color:var(--green); border:1px solid var(--green); }
+  .tag-extra{ background:rgba(217,140,43,.15); color:var(--orange); border:1px solid var(--orange); }
+  .tag-offen{ background:rgba(122,122,133,.15); color:var(--grey); border:1px solid var(--grey); }
+  .tag-widerlegt{ background:rgba(232,50,79,.1); color:#ff5c72; border:1px solid #ff5c72; text-decoration:line-through; }
+
+  .stat-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:24px 0;
+  }
+  .stat{
+    background:var(--bg2); border:1px solid #2a2a35; padding:16px; border-radius:4px;
+  }
+  .stat .num{ font-size:1.5rem; color:var(--red-bright); font-weight:700; }
+  .stat .lbl{ color:var(--text-dim); font-size:.78rem; margin-top:4px; }
+
+  .timeline{ margin:24px 0; border-left:2px solid #2a2a35; padding-left:20px; }
+  .tl-item{ margin-bottom:20px; position:relative; }
+  .tl-item::before{
+    content:''; position:absolute; left:-25px; top:6px; width:9px; height:9px;
+    border-radius:50%; background:var(--red-bright);
+  }
+  .tl-date{ color:var(--red-bright); font-size:.8rem; font-weight:700; }
+
+  blockquote{
+    border-left:3px solid var(--orange); margin:24px 0; padding:4px 20px;
+    font-style:italic; color:#d4d4dc;
+  }
+  .source-note{ font-size:.78rem; color:var(--text-dim); margin-top:6px; }
+
+  .closing{
+    margin-top:50px; padding-top:20px; border-top:1px solid #2a2a35;
+    font-style:italic; color:#c9c9d2;
+  }
+
+  .series-nav{
+    margin-top:56px; padding:22px; background:var(--bg2); border:1px solid #2a2a35;
+    border-radius:4px; font-size:.85rem;
+  }
+  .series-nav h3{ color:var(--red-bright); font-size:.85rem; text-transform:uppercase;
+    letter-spacing:1px; margin:0 0 12px; }
+  .series-nav a{ color:var(--text); text-decoration:none; border-bottom:1px dotted var(--text-dim); }
+  .series-nav a:hover{ color:var(--red-bright); }
+  .series-nav ul{ margin:0; padding-left:18px; }
+  .series-nav li{ margin-bottom:6px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="kicker">dunkelfeld.info · Serie „Wer kontrolliert wen?“ · Teil C</div>
+  <h1>Wiesbaden — Das stille Hauptquartier</h1>
+  <div class="subtitle">Wie aus einer hessischen Landeshauptstadt ein militärischer Knotenpunkt des Ukraine-Krieges wurde — und warum die Fakten allein schon reichen.</div>
+  <div class="meta">Hidden in Plain Sight</div>
+</header>
+
+<p class="lead">Wiesbaden gilt gemeinhin als Kurstadt mit Thermalquellen und Jugendstil-Fassaden. Weniger bekannt: In der Lucius-D.-Clay-Kaserne im Stadtteil Erbenheim liegt das Hauptquartier der US-Armee für Europa und Afrika (USAREUR-AF) — und von dort aus lief, wie mittlerweile umfassend dokumentiert ist, ein zentraler Teil der militärischen Koordination des Westens im Krieg gegen Russland. Dieser Artikel trennt, was belegt ist, von dem, was Interpretation bleibt.</p>
+
+<h2>Was dokumentiert ist</h2>
+
+<div class="box">
+  <div class="box-label">Faktbox <span class="tag tag-belegt">Belegt</span></div>
+  <ul>
+    <li><cite index="7-1">In der Clay-Kaserne im Wiesbadener Stadtteil Erbenheim tauschten US-Kräfte mit ukrainischen Kollegen nachrichtendienstliche Erkenntnisse aus und entwickelten gemeinsam Strategien gegen russische Angriffe sowie die Taktik für ukrainische Gegenoffensiven.</cite></li>
+    <li><cite index="9-1">Das Koordinationszentrum für westliche Militärhilfe war zunächst ab April 2022 in Stuttgart angesiedelt und wurde kurz darauf nach Wiesbaden verlegt; im Sommer 2022 entstand dort mit britischer Unterstützung ein gemeinsames Planungs- und Koordinationszentrum.</cite></li>
+    <li><cite index="6-1">Der damalige ukrainische Oberbefehlshaber Walerij Saluschnyj bezeichnete das Zentrum später selbst als „Geheimwaffe“ bei der Planung von Operationen und der Koordination militärischer Bedürfnisse der Ukraine.</cite></li>
+    <li>Grundlage der öffentlichen Debatte ist die Recherche „The Partnership – The Secret History of the War in Ukraine" von Adam Entous, erschienen am 29. März 2025 in der New York Times, <cite index="8-1">basierend auf mehr als 300 Interviews mit hochrangigen Vertretern aus NATO-Staaten.</cite></li>
+    <li><cite index="6-1">Laut der Recherche wurden mithilfe amerikanischer Aufklärung und Zielkoordinaten ukrainische Angriffe auf das Hauptquartier der 58. Armee in der Region Cherson sowie auf den Hafen von Sewastopol koordiniert.</cite></li>
+    <li><cite index="7-1">Ein von der New York Times zitierter Chef eines europäischen Geheimdienstes bezeichnete die US-Beteiligung als Teil der „Tötungskette“.</cite></li>
+  </ul>
+</div>
+
+<div class="timeline">
+  <div class="tl-item">
+    <div class="tl-date">April 2022</div>
+    <div>Erste Koordinationsstelle für westliche Militärhilfe in Stuttgart; erstes Treffen ukrainischer und amerikanischer Militärs in Ramstein.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">Sommer 2022</div>
+    <div><cite index="9-1">Verlegung des Koordinationszentrums nach Wiesbaden; Aufbau eines gemeinsamen Planungs- und Koordinationszentrums mit britischer Unterstützung.</cite></div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">2023</div>
+    <div><cite index="3-1">Durchführung gemeinsamer „War Games" in Wiesbaden zur Planung ukrainischer Gegenoffensiven; anschließendes Training auf deutschen Truppenübungsplätzen.</cite></div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">29. März 2025</div>
+    <div>Veröffentlichung der NYT-Recherche „The Partnership" durch Adam Entous — erstmals detaillierte Offenlegung der Tiefe der Kooperation.</div>
+  </div>
+</div>
+
+<h2>Die offizielle Einordnung</h2>
+
+<div class="box fairness">
+  <div class="box-label">Fairnessbox — Die Gegenposition</div>
+  <p>USAREUR-AF beschreibt seine eigene Funktion nicht als Kriegsführung, sondern als Bündnisverteidigung. In einer eigenen Darstellung des US-Militärs heißt es, die Einheit sei <cite index="4-2">„technisch ein amerikanisches Hauptquartier", aber untrennbar mit der NATO verbunden, als kombiniertes Landstreitkräfte-Hauptquartier, das gemeinsam mit dem NATO Allied Land Command operiere.</cite> Die dortige Arbeit wird als Reaktion auf einen völkerrechtswidrigen russischen Angriffskrieg gerahmt: <cite index="4-1">Russland habe mit der Invasion der Ukraine das grundlegendste Prinzip des Völkerrechts verletzt — die Unverletzlichkeit von Grenzen.</cite> Die dortigen Aktivitäten werden offiziell als Ausbildungs-, Aufklärungs- und Koordinationsunterstützung eines souveränen, angegriffenen Staates bezeichnet — nicht als eigene Kriegsteilnahme.</p>
+</div>
+
+<h2>Was nicht belegt ist</h2>
+
+<div class="box danger">
+  <div class="box-label">Dangerbox — Vorsicht bei der Einordnung <span class="tag tag-offen">Offen</span></div>
+  <p>Aus den dokumentierten Fakten wird in Teilen der Öffentlichkeit gefolgert, die beteiligten NATO-Staaten seien damit rechtlich oder faktisch „Kriegspartei" geworden. Diese Zuspitzung ist eine <strong>Bewertung</strong>, keine <strong>Tatsachenbehauptung</strong> — und genau diese Unterscheidung ist juristisch hochsensibel. Deutsche Gerichte haben in vergleichbaren Fällen wiederholt betont, dass unbewiesene, zugespitzte Zuschreibungen an staatliche oder mit dem Staat verbundene Akteure als unzulässige Tatsachenbehauptungen gelten können, wenn sie sich nicht durch belastbare Belege stützen lassen — unabhängig davon, in welcher politischen Richtung sie geäußert werden. Der Begriff „Kriegspartei" bleibt daher hier bewusst als offene, unbelegte Zuspitzung markiert, nicht als Faktum.</p>
+  <p>Ebenso unbelegt bleibt jede Behauptung über die <em>Motive</em> einzelner Entscheidungsträger. Dokumentiert ist die operative Struktur — nicht die Absicht dahinter.</p>
+</div>
+
+<h2>Was offenbleibt</h2>
+<p>Die NYT-Recherche und die Bestätigung durch Saluschnyj selbst verschieben die öffentliche Wahrnehmung der westlichen Rolle im Krieg spürbar — weg von reiner „Waffen- und Ausbildungshilfe", hin zu einer engen operativen Verzahnung bei Zielaufklärung und Operationsplanung. Was diese Verzahnung völkerrechtlich, sicherheitspolitisch und für die deutsche Öffentlichkeit bedeutet, ist damit noch nicht beantwortet.</p>
+
+<blockquote>
+  <em>Ist die Unterscheidung zwischen „Unterstützung" und „Kriegsteilnahme" an diesem Punkt noch trennscharf — oder verschiebt sich diese Grenze mit jeder neuen Stufe der Kooperation stillschweigend mit?</em>
+</blockquote>
+
+<div class="series-nav">
+  <h3>Serie „Wer kontrolliert wen?"</h3>
+  <ul>
+    <li>Teil A — Die Zeitachse-Illusion (kurswechsel.blog)</li>
+    <li>Teil B — Das 28-Prozent-Problem (kurswechsel.blog)</li>
+    <li><strong>Teil C — Wiesbaden: Das stille Hauptquartier</strong> (dieser Artikel)</li>
+    <li>Teil D — Wer verdient an der Eskalationsleiter? →</li>
+  </ul>
+  <h3 style="margin-top:18px;">Cross-Reference</h3>
+  <ul>
+    <li>Siehe auch: Infrastruktur der Kontrolle — Serie zu Überwachungsarchitektur und Machtstrukturen</li>
+  </ul>
+</div>
+
+</body>
+</html>

@@ -5,258 +5,150 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Keine externen Ressourcen / DSGVO-konform -->
   <title>Was wir über die Ukraine wussten — und wann wir aufhörten, es zu sagen — dunkelfeld.report</title>
-  <meta name="description" content="Was wir über die Ukraine wussten — und wann wir aufhörten, es zu sagen">
+  <meta name="description" content="ARD und ZDF berichteten jahrelang über Leihmutterschaft, Rechtsextremismus, Korruption und Biolabore in der Ukraine. Eine Dokumentation dessen, was vor 2022 gesagt wurde.">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background: #09090b;
-      color: #d4d4d8;
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 48px 24px 80px;
-    }
-
+    body { background: #09090b; color: #d4d4d8; font-family: Georgia, 'Times New Roman', serif; font-size: 1.1rem; line-height: 1.8; max-width: 720px; margin: 0 auto; padding: 48px 24px 80px; }
     a { color: #e8c547; text-decoration: none; }
     a:hover { text-decoration: underline; }
-
-    .site-label {
-      font-family: 'Courier New', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #e8c547;
-      margin-bottom: 4px;
-    }
-    .site-tagline {
-      font-family: 'Courier New', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      color: #52525b;
-      margin-bottom: 48px;
-    }
-
-    .article-meta {
-      font-family: 'Courier New', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      color: #e8c547;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    h1 {
-      font-family: Georgia, serif;
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
-      font-weight: bold;
-      color: #f4f4f5;
-      line-height: 1.3;
-      margin-bottom: 14px;
-    }
-
-    .subtitle {
-      font-size: 1.05rem;
-      color: #71717a;
-      font-style: italic;
-      margin-bottom: 36px;
-      line-height: 1.6;
-    }
-
-    .divider {
-      border: none;
-      border-top: 1px solid #27272a;
-      margin: 36px 0;
-    }
-
-    p {
-      padding-bottom: 1.2rem;
-      color: #d4d4d8;
-    }
-
-    h2 {
-      font-family: Georgia, serif;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #f4f4f5;
-      margin: 2rem 0 0.8rem;
-    }
-
-    h3 {
-      font-family: 'Courier New', monospace;
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #e8c547;
-      margin: 1.5rem 0 0.6rem;
-    }
-
+    .site-label { font-family: 'Courier New', monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: #e8c547; margin-bottom: 4px; }
+    .site-tagline { font-family: 'Courier New', monospace; font-size: 0.65rem; letter-spacing: 0.12em; color: #9a9aa5; margin-bottom: 40px; }
+    .article-meta { font-family: 'Courier New', monospace; font-size: 0.7rem; letter-spacing: 0.15em; color: #e8c547; text-transform: uppercase; margin-bottom: 20px; }
+    h1 { font-family: Georgia, serif; font-size: clamp(1.7rem, 4.5vw, 2.3rem); font-weight: bold; color: #f4f4f5; line-height: 1.25; margin-bottom: 14px; }
+    .subtitle { font-size: 1.1rem; color: #a1a1aa; font-style: italic; margin-bottom: 20px; line-height: 1.6; }
+    .divider { border: none; border-top: 1px solid #27272a; margin: 32px 0; }
+    p { padding-bottom: 1.2rem; color: #d4d4d8; }
+    h2 { font-family: Georgia, serif; font-size: 1.35rem; font-weight: bold; color: #e8c547; margin: 2.6rem 0 0.9rem; border-left: 3px solid #e8c547; padding-left: 0.7rem; }
     strong { color: #f4f4f5; }
-
-    .source-box {
-      background: #1a1a2e;
-      border-left: 3px solid #e8c547;
-      padding: 1rem 1.2rem;
-      margin: 1.5rem 0 1.2rem;
-      font-family: 'Courier New', monospace;
-      font-size: 0.78rem;
-      line-height: 1.6;
-      color: #a1a1aa;
-    }
-    .source-line { margin-bottom: 0.3rem; }
-    .source-line:last-child { margin-bottom: 0; }
-
-    .methodology {
-      background: #111113;
-      border: 1px solid #27272a;
-      border-left: 3px solid #52525b;
-      padding: 1rem 1.2rem;
-      margin: 2rem 0;
-      font-size: 0.88rem;
-      color: #71717a;
-      font-style: italic;
-    }
-
-    .footer {
-      margin-top: 4rem;
-      padding-top: 2rem;
-      border-top: 1px solid #27272a;
-      font-family: 'Courier New', monospace;
-      font-size: 0.68rem;
-      color: #3f3f46;
-      letter-spacing: 0.08em;
-    }
-    .footer a { color: #52525b; }
-
-    table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
-    th {
-      background: #111113;
-      color: #e8c547;
-      font-family: 'Courier New', monospace;
-      font-size: 0.72rem;
-      padding: 0.6rem 0.8rem;
-      text-align: left;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border-bottom: 1px solid #27272a;
-    }
-    td {
-      padding: 0.7rem 0.8rem;
-      border-bottom: 1px solid #1a1a1e;
-      font-size: 0.92rem;
-      vertical-align: top;
-      color: #d4d4d8;
-    }
+    .source-box { background: #1a1a2e; border-left: 3px solid #e8c547; padding: 1rem 1.2rem; margin: 1.4rem 0 1.6rem; font-family: 'Courier New', monospace; font-size: 0.76rem; line-height: 1.65; color: #b4b4bc; }
+    .source-box .lbl { color: #e8c547; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; display:block; margin-bottom: 0.4rem; }
+    .methodology { background: #111113; border: 1px solid #27272a; border-left: 3px solid #9a9aa5; padding: 1rem 1.2rem; margin: 1.5rem 0 2rem; font-size: 0.9rem; color: #a1a1aa; font-style: italic; }
+    .footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #27272a; font-family: 'Courier New', monospace; font-size: 0.68rem; color: #8a8a92; letter-spacing: 0.08em; }
+    .footer a { color: #9a9aa5; }
+    table { width: 100%; border-collapse: collapse; margin: 1.4rem 0; font-size: 0.92rem; }
+    th { background: #131316; color: #e8c547; font-family: 'Courier New', monospace; font-size: 0.68rem; padding: 0.55rem 0.7rem; text-align: left; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid #27272a; }
+    td { padding: 0.6rem 0.7rem; border-bottom: 1px solid #1a1a1e; font-size: 0.9rem; vertical-align: top; color: #d4d4d8; }
+    td.when { font-family: 'Courier New', monospace; font-size: 0.78rem; color: #e8c547; white-space: nowrap; }
+    .pull { font-size: 1.2rem; font-style: italic; color: #f4f4f5; border-top: 1px solid #27272a; border-bottom: 1px solid #27272a; padding: 1.6rem 0; margin: 2rem 0; text-align: center; }
   </style>
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="dunkelfeld.report">
   <meta property="og:title" content="Was wir über die Ukraine wussten — und wann wir aufhörten, es zu sagen">
-  <meta property="og:description" content="Was wir über die Ukraine wussten — und wann wir aufhörten, es zu sagen">
+  <meta property="og:description" content="ARD und ZDF berichteten jahrelang über Leihmutterschaft, Rechtsextremismus, Korruption und Biolabore in der Ukraine.">
   <meta property="og:url" content="https://dunkelfeld.report/artikel-020-ukraine-medien.html">
   <link rel="canonical" href="https://dunkelfeld.report/artikel-020-ukraine-medien.html">
 </head>
 <body>
-<div style="max-width:720px;margin:0 auto;padding:0.75rem 1.5rem;font-family:'Courier New',monospace;font-size:0.72rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
-
+<div style="max-width:720px;margin:0 auto;padding:0.75rem 0 1.5rem;font-family:'Courier New',monospace;font-size:0.72rem;"><a href="index.html" style="color:#9a9aa5;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
 
   <div class="site-label">● dunkelfeld.report</div>
-  <div class="site-tagline">Fakten · Quellen · Dokumentation — keine Schlussfolgerungen</div>
+  <div class="site-tagline">Analyse · Systemkritik · Quellenbasiert</div>
 
-  <div class="article-meta">Artikel #20 &nbsp;·&nbsp; Juni &nbsp;·&nbsp; Quellenbasiert</div>
-
+  <div class="article-meta">Artikel #20 &nbsp;·&nbsp; Juni 2026 &nbsp;·&nbsp; Quellenbasiert</div>
   <h1>Was wir über die Ukraine wussten — und wann wir aufhörten, es zu sagen</h1>
-  
 
   <div class="methodology">
-    Dieser Artikel stellt dokumentierte Fakten nebeneinander. Keine Motive, keine Spekulation. 
-    Alle Angaben basieren auf öffentlich zugänglichen Primärquellen. Die Schlussfolgerung überlässt 
-    dunkelfeld.report dem Leser.
+    Alle zitierten Berichte und Aussagen sind öffentlich dokumentiert und über die verlinkten Quellen
+    nachprüfbar. Dieser Artikel behauptet keine Motive — er dokumentiert Widersprüche zwischen dem, was zu
+    unterschiedlichen Zeitpunkten gesagt, gezeigt oder untersucht wurde. Die Einordnung überlässt er dem Leser.
   </div>
 
   <hr class="divider">
 
-  <p>Zwischen 2010 und 2021 erschienen in ARD, ZDF und deutschen Leitmedien zahlreiche Berichte über die Ukraine: über Rechtsextremismus, über eine boomende Leihmutter-Industrie, über tiefe Korruption, über US-finanzierte Biolabore. Diese Berichte wurden von den jeweiligen Redaktionen selbst veröffentlicht — mit Quellen, Archivmaterial, Interviewpartnern.</p><p>Seit Februar 2022 sind dieselben Themen aus dem kritischen Mainstream-Diskurs weitgehend verschwunden. Wer sie anspricht, riskiert den Vorwurf, russische Propaganda zu verbreiten.</p><p>Dieser Artikel dokumentiert keine Meinungen. Er stellt Berichte nebeneinander — datiert, archiviert, öffentlich zugänglich. Die Einordnung überlassen wir dem Leser.</p><h2>1. Die Babyfabrik — Was ZDF und ARD zeigten</h2><p>In keinem anderen europäischen Land war kommerzielle Leihmutterschaft so offen, so günstig und so gut organisiert wie in der Ukraine. Das war kein Geheimnis — es war ein Medienthema.</p><p><strong>Was berichtet wurde</strong></p><p>Im Mai 2020 sorgte ein Video weltweit für Schlagzeilen: 46 Säuglinge lagen in einem Kiewer Hotel und warteten auf ihre ausländischen Bestelleltern — die wegen Corona nicht einreisen konnten. Die ukrainische Menschenrechtsbeauftragte erklärte öffentlich: &quot;Kinder sollten in der Ukraine kein Objekt für Menschenhandel sein.&quot;</p><p>Gegen den Betreiber der größten Agentur BioTexCom — nach eigenen Angaben weltweit führend — wurde wegen Menschenhandels ermittelt. Er stand zeitweise unter Hausarrest. 2018 belegte eine DNA-Analyse, dass Kinder und Bestelleltern kein gemeinsames Genmaterial teilten — obwohl ukrainisches Recht dies vorschreibt.</p><h2>2. Das Asow-Bataillon — Was ARD und ZDF zeigten und dann nicht mehr fragten</h2><p>Dass in der ukrainischen Armee Einheiten mit offen rechtsextremer Symbolik kämpften, war 2014 kein Geheimnis — es wurde von deutschen Medien selbst dokumentiert.</p><p><strong>Was berichtet wurde</strong></p><p>Im ZDF-Fernsehrat kam es im Herbst 2014 zum Eklat: Chefredakteur Peter Frey verweigerte die Beantwortung kritischer Nachfragen einer Abgeordneten zu dem Bericht. Der ARD-Programmbeirat stellte der Sendergruppe in einer internen Stellungnahme ein vernichtendes Urteil aus: Wesentliche Aspekte des Ukraine-Konflikts seien &quot;nicht oder nur unzureichend beleuchtet&quot; worden, die Berichterstattung tendiere &quot;gegen Russland und die russischen Positionen&quot;.</p><p>Das Protokoll dieser Sitzung (Protokoll 582, Juni 2014) ist öffentlich dokumentiert.</p><h2>3. Die Biolabore — Verschwörungstheorie, dann bestätigt</h2><p>Wenige Themen illustrieren das Muster so klar wie die US-finanzierten Biolabore in der Ukraine. Der Verlauf ist vollständig dokumentiert.</p><p><strong>Die Chronologie</strong></p><h2>4. Korruption — Was vor 2022 dokumentiert war</h2><p>Die Ukraine galt jahrelang als eines der korruptesten Länder Europas. Diese Einschätzung stammt nicht aus russischen Quellen — sie stammt von Transparency International, dem US-Außenministerium und der EU-Kommission.</p><p><strong>Der Kolomoisky-Komplex</strong></p><p>Ihor Kolomoisky ist Milliardär, Medienmogul und war Gouverneur der Region Dnipropetrowsk. Auf seinem TV-Sender lief die Comedyserie &quot;Diener des Volkes&quot; — mit Wolodymyr Selenskyj in der Hauptrolle als Anti-Korruptions-Präsident. Kolomoisky finanzierte 2019 Selenskyjs Wahlkampf. Kritiker bezeichneten Selenskyj damals als &quot;Kolomoiskys Kandidaten&quot;.</p><p>Im März 2021 verhängte das US-Außenministerium Sanktionen gegen Kolomoisky wegen &quot;erheblicher Korruption&quot;. Im September 2023 ordnete ein Kiewer Gericht Untersuchungshaft an — wegen Verdachts der Geldwäsche von mehr als einer halben Milliarde Hrywnja.</p><p><strong>Aktuelle Entwicklungen 2026</strong></p><p>Im Mai 2026 veröffentlichte die Ukrainska Prawda Tonaufnahmen, die laut Bericht das Nationale Antikorruptionsbüro der Ukraine (NABU) dokumentiert hatte. Im Mittelpunkt: Tymur Minditsch, ein langjähriger Geschäftspartner Selenskyjs aus dessen Schauspielzeit. Er soll Einfluss auf staatliche Entscheidungen im Energie- und Rüstungsbereich genommen haben. Der ukrainische Justizminister wurde infolge der Ermittlungen von seinen Aufgaben entbunden.</p><h2>5. Menschenhandel — Was die EU-Kommission selbst sagte</h2><p>Dass Kriegsflüchtlinge einem erhöhten Risiko ausgesetzt sind, Opfer von Menschenhandel zu werden, ist keine politische These — es ist eine dokumentierte Warnung europäischer Behörden.</p><p>Im März 2022, wenige Wochen nach Kriegsbeginn, erklärte EU-Innenkommissarin Ylva Johansson vor dem Europäischen Parlament: Kriminelle nähmen an der ukrainischen Grenze &quot;schutzbedürftige Menschen, Frauen und Kinder&quot; mit — hauptsächlich zur sexuellen Ausbeutung. Die UNODC-Direktorin betonte, sie seien dem Risiko von Menschenhandel &quot;in besonderer Weise ausgesetzt&quot;.</p><p>90 Prozent der ukrainischen Flüchtlinge zum Zeitpunkt dieser Aussage: Frauen und Kinder.</p><p>Bereits vor dem Krieg war die Ukraine eines der Hauptherkunftsländer für Menschenhandel in die EU. Laut UNODC-Datenbank wurden ukrainische Opfer 2018 in 29 Länder verschleppt. Nach der Eskalation 2022 stiegen OSZE-Beobachtern zufolge Online-Suchanfragen nach ukrainischen Frauen für Sex und Heirat unmittelbar messbar an.</p><p><strong>Was dieser Artikel dokumentiert — und was nicht</strong></p><div class="source-box"><div class="source-line">Quellenverzeichnis</div><div class="source-line">Primärquellen (öffentlich zugänglich):</div><div class="source-line">ODNI Pressemitteilung Nr. 10-26, 12. Juni 2026 — dni.gov</div><div class="source-line">US State Department: Sanktionsmitteilung Kolomoisky, März 2021 — state.gov</div><div class="source-line">EU-Kommissarin Johansson: Aussage vor dem EP-Ausschuss für Frauenrechte, März 2022 — europarl.europa.eu</div><div class="source-line">ARD-Programmbeirat: Protokoll 582, Juni 2014 (öffentlich dokumentiert)</div><div class="source-line">UNODC Global Report on Trafficking in Persons 2024 — unodc.org</div><div class="source-line">Medienberichte und Investigativjournalismus:</div><div class="source-line">ZDF 37°-Reportage: &quot;Unser Wunschkind und der Krieg — Leihmutterschaft in der Ukraine&quot;, September 2022</div><div class="source-line">Cicero: &quot;Ukraine-Fehler in der ARD — Nur eine halbe Entschuldigung&quot;, Oktober 2014</div><div class="source-line">Handelsblatt: &quot;Eklat im ZDF-Fernsehrat wegen Ukraine-Bericht&quot;, September 2014</div><div class="source-line">Jüdische Allgemeine: Anfrage zur ZDF-Berichterstattung über Asow-Symbolik, September 2014</div><div class="source-line">EMMA: &quot;Leihmutterschaft: Die Babys von Kiew&quot;, 2020</div><div class="source-line">Berliner Zeitung: &quot;Geheime Tonaufnahmen erschüttern Ukraine-Regierung&quot;, Mai 2026</div><div class="source-line">Berliner Zeitung: &quot;Biolabore in der Ukraine: Was die neuen US-Dokumente belegen&quot;, Juni 2026</div><div class="source-line">Newsweek: &quot;Gabbard Reveals Declassified Map, Records of Ukraine Bio Labs&quot;, Juni 2026</div><div class="source-line">BBC: &quot;Ukrainian billionaire and former Zelenskyy ally detained for fraud&quot;, September 2023</div></div><p>dunkelfeld.report  —  Fakten, die das Licht scheuen nicht nötig haben.</p><p><strong>GHOST CMS — PUBLIKATIONS-METADATEN</strong></p><p><strong>Slug: ukraine-was-wir-wussten</strong></p><p><strong>Titel (SEO): Was wir über die Ukraine wussten — und wann wir aufhörten, es zu sagen</strong></p><p><strong>Meta Description: ARD und ZDF berichteten jahrelang über Leihmutterschaft, Rechtsextremismus, Korruption und Biolabore in der Ukraine. Eine Dokumentation dessen, was vor 2022 gesagt wurde.</strong></p><p><strong>Tags: Ukraine, Medienkritik, Biolabore, Leihmutterschaft, Korruption, Asow, Systemkritik</strong></p><p><strong>Autor: dunkelfeld.report Redaktion</strong></p><p><strong>Featured: Ja</strong></p><p><strong>Status: Draft — zur Prüfung vor Publikation</strong></p><h2>Bildbriefing:</h2><p>Header-Bild: Zweigeteilt — links ein Zeitungsarchiv-Stapel in Schwarz-Weiß (symbolisch für &quot;früher dokumentiert&quot;), rechts ein modernes Newsroom-Monitor mit verschwommenem Ukraine-Flaggen-Hintergrund. Alternativ: leeres Aktenregal mit einzelner verbleibender Akte. Ton: dunkel, archivisch, nüchtern. Kein Kriegsbildmaterial.</p>
+  <p>Zwischen 2010 und 2021 erschienen in ARD, ZDF und deutschen Leitmedien zahlreiche Berichte über die Ukraine: über Rechtsextremismus, über eine boomende Leihmutter-Industrie, über tiefe Korruption, über US-finanzierte Biolabore. Diese Berichte wurden von den jeweiligen Redaktionen selbst veröffentlicht — mit Quellen, Archivmaterial, Interviewpartnern.</p>
+  <p>Seit Februar 2022 sind dieselben Themen aus dem kritischen Mainstream-Diskurs weitgehend verschwunden. Wer sie anspricht, riskiert den Vorwurf, russische Propaganda zu verbreiten.</p>
+  <p>Dieser Artikel dokumentiert keine Meinungen. Er stellt Berichte nebeneinander — datiert, archiviert, öffentlich zugänglich.</p>
+
+  <h2>1. Die Babyfabrik — was ZDF und ARD zeigten</h2>
+  <p>In keinem anderen europäischen Land war kommerzielle Leihmutterschaft so offen, so günstig und so gut organisiert wie in der Ukraine. Das war kein Geheimnis — es war ein Medienthema.</p>
+  <table>
+    <tr><th>Zeitraum</th><th>Was berichtet wurde</th></tr>
+    <tr><td class="when">2015–2021</td><td>ZDF-RE-Reportage: „Die Ukraine hat sich zur Low-Budget-Babyfabrik entwickelt — ab 39.900 Euro, mit Geld-zurück-Garantie." ARD und ZDF begleiteten deutsche Paare in ukrainische Kliniken.</td></tr>
+    <tr><td class="when">Nach Feb. 2022</td><td>Das Thema Leihmutterschaft taucht im Kontext Ukraine kaum noch kritisch auf. Die Ukraine ist nun EU-Beitrittskandidat und Partnernation.</td></tr>
+  </table>
+  <p>Im Mai 2020 sorgte ein Video weltweit für Schlagzeilen: 46 Säuglinge lagen in einem Kiewer Hotel und warteten auf ihre ausländischen Bestelleltern — die wegen Corona nicht einreisen konnten. Die ukrainische Menschenrechtsbeauftragte erklärte öffentlich: „Kinder sollten in der Ukraine kein Objekt für Menschenhandel sein."</p>
+  <p>Gegen den Betreiber der größten Agentur BioTexCom — nach eigenen Angaben weltweit führend — wurde wegen Menschenhandels ermittelt. Er stand zeitweise unter Hausarrest. 2018 belegte eine DNA-Analyse, dass Kinder und Bestelleltern kein gemeinsames Genmaterial teilten — obwohl ukrainisches Recht dies vorschreibt.</p>
+  <div class="source-box"><span class="lbl">Quelle</span>ZDF 37°-Reportage „Unser Wunschkind und der Krieg", September 2022, zdf.de · ZDF-RE-Reportage „Das Geschäft mit ukrainischen Leihmüttern", 2015 · EMMA: „Leihmutterschaft: Die Babys von Kiew", 2020 · Cicero: „Ukraine: Das Geschäft mit den Leihmüttern", Mai 2020.</div>
+
+  <h2>2. Das Asow-Bataillon — was ARD und ZDF zeigten und dann nicht mehr fragten</h2>
+  <p>Dass in der ukrainischen Armee Einheiten mit offen rechtsextremer Symbolik kämpften, war 2014 kein Geheimnis — es wurde von deutschen Medien selbst dokumentiert.</p>
+  <table>
+    <tr><th>Zeitpunkt</th><th>Was berichtet wurde</th></tr>
+    <tr><td class="when">September 2014</td><td>Das ZDF zeigte in einem Nachrichtenbeitrag Kämpfer des Asow-Bataillons mit Hakenkreuzen und SS-Runen am Stahlhelm. Der Beitrag blieb unkommentiert. Die Jüdische Allgemeine fragte daraufhin öffentlich: „Wo ist die journalistische Sorgfaltspflicht des ZDF geblieben?"</td></tr>
+    <tr><td class="when">Nach Feb. 2022</td><td>Das Asow-Bataillon wurde 2022 in die ukrainischen Streitkräfte integriert. Die rechtsextreme Symbolik wird in Berichten über die Armee kaum noch thematisiert.</td></tr>
+  </table>
+  <p>Im ZDF-Fernsehrat kam es im Herbst 2014 zum Eklat: Chefredakteur Peter Frey verweigerte die Beantwortung kritischer Nachfragen einer Abgeordneten zu dem Bericht. Der ARD-Programmbeirat stellte der Sendergruppe in einer internen Stellungnahme ein vernichtendes Urteil aus: Wesentliche Aspekte des Ukraine-Konflikts seien „nicht oder nur unzureichend beleuchtet" worden, die Berichterstattung tendiere „gegen Russland und die russischen Positionen". Das Protokoll dieser Sitzung (Protokoll 582, Juni 2014) ist öffentlich dokumentiert.</p>
+  <div class="source-box"><span class="lbl">Quelle</span>Cicero: „Ukraine-Fehler in der ARD — Nur eine halbe Entschuldigung", Oktober 2014 · Handelsblatt: „Eklat im ZDF-Fernsehrat wegen Ukraine-Bericht", September 2014 · ARD-Programmbeirat: Protokoll 582, Juni 2014.</div>
+
+  <h2>3. Die Biolabore — Verschwörungstheorie, dann bestätigt</h2>
+  <p>Wenige Themen illustrieren das Muster so klar wie die US-finanzierten Biolabore in der Ukraine. Der Verlauf ist vollständig dokumentiert.</p>
+  <table>
+    <tr><th>Zeitpunkt</th><th>Was geschah</th></tr>
+    <tr><td class="when">März 2022</td><td>US-Staatssekretärin Victoria Nuland gibt vor dem US-Kongress zu, die USA seien besorgt, „biologische Forschungseinrichtungen" in der Ukraine könnten in russische Hände fallen. Am nächsten Tag bezeichnen US-Medien die Aussage als „russische Propaganda".</td></tr>
+    <tr><td class="when">2022–2025</td><td>Tulsi Gabbard warnt im US-Senat vor ungesicherten Biolaboren. Senator Mitt Romney nennt die Aussage öffentlich „verräterische Lüge". Faktenchecker in deutschen und US-Medien stufen die Behauptung als Desinformation ein.</td></tr>
+    <tr><td class="when">12. Juni 2026</td><td>Gabbard, nunmehr US-Geheimdienstkoordinatorin (DNI), veröffentlicht eine ODNI-Pressemitteilung: Die USA haben mehr als 120 Biolabore in über 30 Ländern finanziert — darunter mehr als 40 in der Ukraine. Die Dokumente belegen Forschung mit gefährlichen Erregern bei geringer Transparenz.</td></tr>
+  </table>
+  <p><strong>Wichtige Einschränkung:</strong> Die vier freigegebenen ODNI-Seiten bestätigen die Existenz und US-Finanzierung der Labore sowie Forschung mit gefährlichen Erregern. Sie erwähnen explizite Gain-of-Function-Forschung nicht direkt. Was genau in diesen Laboren untersucht wurde, ist bislang nicht vollständig öffentlich dokumentiert.</p>
+  <div class="source-box"><span class="lbl">Quelle</span>ODNI-Pressemitteilung Nr. 10-26, 12. Juni 2026, dni.gov · Newsweek: „Gabbard Reveals Declassified Map, Records of Ukraine Bio Labs", Juni 2026 · Berliner Zeitung: „Biolabore in der Ukraine: Was die neuen US-Dokumente belegen", Juni 2026 · ZDF heute: Einordnung der Dokumente, Juni 2026.</div>
+
+  <h2>4. Korruption — was vor 2022 dokumentiert war</h2>
+  <p>Die Ukraine galt jahrelang als eines der korruptesten Länder Europas. Diese Einschätzung stammt nicht aus russischen Quellen — sie stammt von Transparency International, dem US-Außenministerium und der EU-Kommission.</p>
+  <p><strong>Der Kolomoisky-Komplex.</strong> Ihor Kolomoisky ist Milliardär, Medienmogul und war Gouverneur der Region Dnipropetrowsk. Auf seinem TV-Sender lief die Comedyserie „Diener des Volkes" — mit Wolodymyr Selenskyj in der Hauptrolle als Anti-Korruptions-Präsident. Kolomoisky finanzierte 2019 Selenskyjs Wahlkampf; Kritiker bezeichneten Selenskyj damals als „Kolomoiskys Kandidaten". Im März 2021 verhängte das US-Außenministerium Sanktionen gegen Kolomoisky wegen „erheblicher Korruption". Im September 2023 ordnete ein Kiewer Gericht Untersuchungshaft an — wegen Verdachts der Geldwäsche von mehr als einer halben Milliarde Hrywnja.</p>
+  <p><strong>Aktuelle Entwicklungen 2026.</strong> Im Mai 2026 veröffentlichte die Ukrainska Prawda Tonaufnahmen, die laut Bericht das Nationale Antikorruptionsbüro (NABU) dokumentiert hatte. Im Mittelpunkt: Tymur Minditsch, ein langjähriger Geschäftspartner Selenskyjs aus dessen Schauspielzeit. Er soll Einfluss auf staatliche Entscheidungen im Energie- und Rüstungsbereich genommen haben. Der ukrainische Justizminister wurde infolge der Ermittlungen von seinen Aufgaben entbunden.</p>
+  <table>
+    <tr><th>Quelle</th><th>Feststellung</th></tr>
+    <tr><td class="when">Transparency Int'l 2021</td><td>Ukraine Platz 122 von 180 Ländern — zweitkorruptestes Land Europas nach Russland</td></tr>
+    <tr><td class="when">US-Außenministerium 2021</td><td>Sanktionen gegen Kolomoisky wegen „erheblicher Korruption während seiner Amtszeit als Gouverneur"</td></tr>
+    <tr><td class="when">EU-Kommission 2022</td><td>Antikorruptionsreformen als zentrale Beitrittsbedingung formuliert</td></tr>
+    <tr><td class="when">NABU 2026</td><td>Ermittlungen gegen Selenskyj-Vertrauten Minditsch, Justizminister entlassen</td></tr>
+  </table>
+  <div class="source-box"><span class="lbl">Quelle</span>US State Department: Sanktionsmitteilung Kolomoisky, März 2021, state.gov · BBC: „Ukrainian billionaire and former Zelenskyy ally detained for fraud", September 2023 · Berliner Zeitung: „Geheime Tonaufnahmen erschüttern Ukraine-Regierung", Mai 2026 · Transparency International CPI 2021.</div>
+
+  <h2>5. Menschenhandel — was die EU-Kommission selbst sagte</h2>
+  <p>Dass Kriegsflüchtlinge einem erhöhten Risiko ausgesetzt sind, Opfer von Menschenhandel zu werden, ist keine politische These — es ist eine dokumentierte Warnung europäischer Behörden.</p>
+  <p>Im März 2022, wenige Wochen nach Kriegsbeginn, erklärte EU-Innenkommissarin Ylva Johansson vor dem Europäischen Parlament: Kriminelle nähmen an der ukrainischen Grenze „schutzbedürftige Menschen, Frauen und Kinder" mit — hauptsächlich zur sexuellen Ausbeutung. Die UNODC-Direktorin betonte, sie seien dem Risiko von Menschenhandel „in besonderer Weise ausgesetzt". 90 Prozent der ukrainischen Flüchtlinge zu diesem Zeitpunkt: Frauen und Kinder.</p>
+  <p>Bereits vor dem Krieg war die Ukraine eines der Hauptherkunftsländer für Menschenhandel in die EU. Laut UNODC-Datenbank wurden ukrainische Opfer 2018 in 29 Länder verschleppt. Nach der Eskalation 2022 stiegen OSZE-Beobachtern zufolge Online-Suchanfragen nach ukrainischen Frauen für Sex und Heirat unmittelbar messbar an.</p>
+  <div class="source-box"><span class="lbl">Quelle</span>EU-Kommissarin Ylva Johansson vor dem Ausschuss für Frauenrechte, Europäisches Parlament, März 2022 · UNODC Global Report on Trafficking in Persons 2024 · OSZE-Beobachtungsdaten, zitiert nach Euractiv, April 2022.</div>
+
+  <h2>Was dieser Artikel dokumentiert — und was nicht</h2>
+  <table>
+    <tr><th>Dokumentiert</th><th>Nicht dokumentiert</th></tr>
+    <tr><td>ARD/ZDF haben diese Themen selbst berichtet</td><td>Ob der Wandel koordiniert oder organisch entstand</td></tr>
+    <tr><td>Zeitpunkte und Quellen sind archiviert und nachprüfbar</td><td>Ob Redaktionsentscheidungen politisch gesteuert wurden</td></tr>
+    <tr><td>Institutionen (US-Sanktionen, EU-Kommission, UNODC) haben die Sachverhalte offiziell benannt</td><td>Welche Absichten hinter einzelnen Berichten oder deren Ausbleiben stecken</td></tr>
+    <tr><td>Die Berichterstattung hat sich nach Februar 2022 messbar verändert</td><td>Ob die Ukraine schuldig oder unschuldig an den beschriebenen Zuständen ist</td></tr>
+  </table>
+  <p class="pull">Wenn dieselben Fakten je nach geopolitischer Lage als Berichterstattung oder als Desinformation eingestuft werden — was sagt das über den Zustand des öffentlichen Diskurses?</p>
+
+  <div class="source-box">
+    <span class="lbl">Quellenverzeichnis</span>
+    <strong>Primärquellen:</strong> ODNI-Pressemitteilung Nr. 10-26, 12. Juni 2026 — dni.gov. US State Department: Sanktionsmitteilung Kolomoisky, März 2021 — state.gov. EU-Kommissarin Johansson vor dem EP-Ausschuss für Frauenrechte, März 2022 — europarl.europa.eu. ARD-Programmbeirat: Protokoll 582, Juni 2014. UNODC Global Report on Trafficking in Persons 2024 — unodc.org.<br><br>
+    <strong>Medien &amp; Investigativjournalismus:</strong> ZDF 37°-Reportage „Unser Wunschkind und der Krieg", September 2022. Cicero: „Ukraine-Fehler in der ARD", Oktober 2014. Handelsblatt: „Eklat im ZDF-Fernsehrat", September 2014. Jüdische Allgemeine, September 2014. EMMA: „Die Babys von Kiew", 2020. Berliner Zeitung, Mai/Juni 2026. Newsweek, Juni 2026. BBC, September 2023.
+  </div>
 
   <div class="footer">
-    <a href="index.html">← dunkelfeld.report</a> &nbsp;·&nbsp; 
-    Artikel #20 &nbsp;·&nbsp; Juni &nbsp;·&nbsp;
-    Keine Cookies · Kein Tracking · DSGVO-konform
-  
-    <a href="impressum.html">Impressum</a> &nbsp;·&nbsp; <a href="datenschutz.html">Datenschutz</a></div>
-
+    <a href="index.html">← dunkelfeld.report</a> &nbsp;·&nbsp; Artikel #20 &nbsp;·&nbsp; Juni 2026 &nbsp;·&nbsp;
+    Keine Cookies · Kein Tracking · DSGVO-konform &nbsp;·&nbsp;
+    <a href="impressum.html">Impressum</a> &nbsp;·&nbsp; <a href="datenschutz.html">Datenschutz</a>
+  </div>
 
   <!-- ════ SOCIAL SHARE ════ -->
-  <div class="share-section" style="max-width:720px;margin:3rem auto 1rem;padding:0 2rem;border-top:1px solid #27272a;padding-top:2rem;">
+  <div class="share-section" style="max-width:720px;margin:3rem auto 1rem;padding-top:2rem;border-top:1px solid #27272a;">
     <div style="font-family:'Courier New',monospace;font-size:0.7rem;letter-spacing:3px;color:#e8c547;text-transform:uppercase;margin-bottom:1rem;">Artikel teilen</div>
     <div class="share-buttons" style="display:flex;gap:0.75rem;flex-wrap:wrap;">
-
-      <a class="share-btn" id="share-telegram" href="#" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.1rem;border:1px solid #27272a;border-radius:3px;text-decoration:none;font-family:'Courier New',monospace;font-size:0.72rem;letter-spacing:1.5px;text-transform:uppercase;color:#71717a;background:#111113;transition:all 0.2s;cursor:pointer;">
-        <svg style="width:14px;height:14px;fill:currentColor;flex-shrink:0;" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.088 14.08l-2.978-.924c-.643-.204-.658-.643.136-.953l11.636-4.487c.537-.194 1.006.131.834.505z"/></svg>
-        Telegram
-      </a>
-
-      <a class="share-btn" id="share-twitter" href="#" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.1rem;border:1px solid #27272a;border-radius:3px;text-decoration:none;font-family:'Courier New',monospace;font-size:0.72rem;letter-spacing:1.5px;text-transform:uppercase;color:#71717a;background:#111113;transition:all 0.2s;cursor:pointer;">
-        <svg style="width:14px;height:14px;fill:currentColor;flex-shrink:0;" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        X / Twitter
-      </a>
-
-      <button class="share-btn" onclick="shareMastodon()" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.1rem;border:1px solid #27272a;border-radius:3px;font-family:'Courier New',monospace;font-size:0.72rem;letter-spacing:1.5px;text-transform:uppercase;color:#71717a;background:#111113;transition:all 0.2s;cursor:pointer;">
-        <svg style="width:14px;height:14px;fill:currentColor;flex-shrink:0;" viewBox="0 0 24 24"><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg>
-        Mastodon
-      </button>
-
-      <a class="share-btn" id="share-whatsapp" href="#" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.1rem;border:1px solid #27272a;border-radius:3px;text-decoration:none;font-family:'Courier New',monospace;font-size:0.72rem;letter-spacing:1.5px;text-transform:uppercase;color:#71717a;background:#111113;transition:all 0.2s;cursor:pointer;">
-        <svg style="width:14px;height:14px;fill:currentColor;flex-shrink:0;" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-        WhatsApp
-      </a>
-
-      <button class="share-btn" onclick="copyShareLink(this)" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.1rem;border:1px solid #27272a;border-radius:3px;font-family:'Courier New',monospace;font-size:0.72rem;letter-spacing:1.5px;text-transform:uppercase;color:#71717a;background:#111113;transition:all 0.2s;cursor:pointer;">
-        <svg style="width:14px;height:14px;fill:currentColor;flex-shrink:0;" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-        Link kopieren
-      </button>
-
+      <a class="share-btn" id="share-telegram" href="#" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.1rem;border:1px solid #27272a;border-radius:3px;text-decoration:none;font-family:'Courier New',monospace;font-size:0.72rem;letter-spacing:1.5px;text-transform:uppercase;color:#9a9aa5;background:#111113;">Telegram</a>
+      <a class="share-btn" id="share-twitter" href="#" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.1rem;border:1px solid #27272a;border-radius:3px;text-decoration:none;font-family:'Courier New',monospace;font-size:0.72rem;letter-spacing:1.5px;text-transform:uppercase;color:#9a9aa5;background:#111113;">X / Twitter</a>
+      <a class="share-btn" id="share-whatsapp" href="#" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.1rem;border:1px solid #27272a;border-radius:3px;text-decoration:none;font-family:'Courier New',monospace;font-size:0.72rem;letter-spacing:1.5px;text-transform:uppercase;color:#9a9aa5;background:#111113;">WhatsApp</a>
+      <button class="share-btn" onclick="copyShareLink(this)" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.1rem;border:1px solid #27272a;border-radius:3px;font-family:'Courier New',monospace;font-size:0.72rem;letter-spacing:1.5px;text-transform:uppercase;color:#9a9aa5;background:#111113;cursor:pointer;">Link kopieren</button>
     </div>
   </div>
   <!-- ════ END SOCIAL SHARE ════ -->
-
   <script>
-  /* ════ SOCIAL SHARE JS ════ */
-  (function() {
-    var url = encodeURIComponent(window.location.href);
-    var title = encodeURIComponent(document.title);
-    var tg = document.getElementById('share-telegram');
-    if (tg) tg.href = 'https://t.me/share/url?url=' + url + '&text=' + title;
-    var tw = document.getElementById('share-twitter');
-    if (tw) tw.href = 'https://x.com/intent/tweet?url=' + url + '&text=' + title;
-    var wa = document.getElementById('share-whatsapp');
-    if (wa) wa.href = 'https://wa.me/?text=' + title + '%20' + url;
-  })();
-  function shareMastodon() {
-    var inst = prompt('Deine Mastodon-Instanz (z.B. mastodon.social):', 'mastodon.social');
-    if (!inst) return;
-    var url = encodeURIComponent(window.location.href);
-    var title = encodeURIComponent(document.title);
-    window.open('https://' + inst.trim() + '/share?text=' + title + '%20' + url, '_blank');
-  }
-  function copyShareLink(btn) {
-    navigator.clipboard.writeText(window.location.href).then(function() {
-      btn.style.borderColor = '#4ade80';
-      btn.style.color = '#4ade80';
-      var nodes = btn.childNodes;
-      for (var i = 0; i < nodes.length; i++) {
-        if (nodes[i].nodeType === 3) { nodes[i].textContent = ' Kopiert!'; break; }
-      }
-      setTimeout(function() {
-        btn.style.borderColor = '';
-        btn.style.color = '';
-        for (var i = 0; i < nodes.length; i++) {
-          if (nodes[i].nodeType === 3) { nodes[i].textContent = ' Link kopieren'; break; }
-        }
-      }, 2500);
-    });
-  }
+  (function(){var url=encodeURIComponent(window.location.href),title=encodeURIComponent(document.title);
+   var tg=document.getElementById('share-telegram');if(tg)tg.href='https://t.me/share/url?url='+url+'&text='+title;
+   var tw=document.getElementById('share-twitter');if(tw)tw.href='https://x.com/intent/tweet?url='+url+'&text='+title;
+   var wa=document.getElementById('share-whatsapp');if(wa)wa.href='https://wa.me/?text='+title+'%20'+url;})();
+  function copyShareLink(btn){navigator.clipboard.writeText(window.location.href).then(function(){var o=btn.textContent;btn.textContent='Kopiert!';setTimeout(function(){btn.textContent=o;},2000);});}
   </script>
 </body>
 </html>

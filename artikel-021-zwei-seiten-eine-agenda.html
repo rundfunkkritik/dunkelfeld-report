@@ -1,262 +1,299 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Keine externen Ressourcen / DSGVO-konform -->
-  <title>Zwei Seiten, eine Agenda? — dunkelfeld.report</title>
-  <meta name="description" content="Zwei Seiten, eine Agenda?">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background: #09090b;
-      color: #d4d4d8;
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 48px 24px 80px;
-    }
-
-    a { color: #e8c547; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    .site-label {
-      font-family: 'Courier New', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #e8c547;
-      margin-bottom: 4px;
-    }
-    .site-tagline {
-      font-family: 'Courier New', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      color: #52525b;
-      margin-bottom: 48px;
-    }
-
-    .article-meta {
-      font-family: 'Courier New', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      color: #e8c547;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    h1 {
-      font-family: Georgia, serif;
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
-      font-weight: bold;
-      color: #f4f4f5;
-      line-height: 1.3;
-      margin-bottom: 14px;
-    }
-
-    .subtitle {
-      font-size: 1.05rem;
-      color: #71717a;
-      font-style: italic;
-      margin-bottom: 36px;
-      line-height: 1.6;
-    }
-
-    .divider {
-      border: none;
-      border-top: 1px solid #27272a;
-      margin: 36px 0;
-    }
-
-    p {
-      padding-bottom: 1.2rem;
-      color: #d4d4d8;
-    }
-
-    h2 {
-      font-family: Georgia, serif;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #f4f4f5;
-      margin: 2rem 0 0.8rem;
-    }
-
-    h3 {
-      font-family: 'Courier New', monospace;
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #e8c547;
-      margin: 1.5rem 0 0.6rem;
-    }
-
-    strong { color: #f4f4f5; }
-
-    .source-box {
-      background: #1a1a2e;
-      border-left: 3px solid #e8c547;
-      padding: 1rem 1.2rem;
-      margin: 1.5rem 0 1.2rem;
-      font-family: 'Courier New', monospace;
-      font-size: 0.78rem;
-      line-height: 1.6;
-      color: #a1a1aa;
-    }
-    .source-line { margin-bottom: 0.3rem; }
-    .source-line:last-child { margin-bottom: 0; }
-
-    .methodology {
-      background: #111113;
-      border: 1px solid #27272a;
-      border-left: 3px solid #52525b;
-      padding: 1rem 1.2rem;
-      margin: 2rem 0;
-      font-size: 0.88rem;
-      color: #71717a;
-      font-style: italic;
-    }
-
-    .footer {
-      margin-top: 4rem;
-      padding-top: 2rem;
-      border-top: 1px solid #27272a;
-      font-family: 'Courier New', monospace;
-      font-size: 0.68rem;
-      color: #3f3f46;
-      letter-spacing: 0.08em;
-    }
-    .footer a { color: #52525b; }
-
-    table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
-    th {
-      background: #111113;
-      color: #e8c547;
-      font-family: 'Courier New', monospace;
-      font-size: 0.72rem;
-      padding: 0.6rem 0.8rem;
-      text-align: left;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border-bottom: 1px solid #27272a;
-    }
-    td {
-      padding: 0.7rem 0.8rem;
-      border-bottom: 1px solid #1a1a1e;
-      font-size: 0.92rem;
-      vertical-align: top;
-      color: #d4d4d8;
-    }
-  </style>
-  <meta property="og:type" content="article">
-  <meta property="og:site_name" content="dunkelfeld.report">
-  <meta property="og:title" content="Zwei Seiten, eine Agenda?">
-  <meta property="og:description" content="Zwei Seiten, eine Agenda?">
-  <meta property="og:url" content="https://dunkelfeld.report/artikel-021-zwei-seiten-eine-agenda.html">
-  <link rel="canonical" href="https://dunkelfeld.report/artikel-021-zwei-seiten-eine-agenda.html">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zwei Seiten, eine Agenda? — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --source-box: #1a1a2e;
+    --text: #e5e5e5;
+    --text-dim: #9a9a9a;
+    --green: #4caf80;
+    --orange: #d98b3f;
+    --grey: #888;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 2rem 1.2rem 4rem; }
+  header.site {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    border-bottom: 1px solid #222;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  header.site a { color: var(--accent); text-decoration: none; }
+  .eyebrow {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 2rem;
+    line-height: 1.25;
+    margin: 0 0 0.6rem;
+  }
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 1.15rem;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.35rem;
+    margin-top: 2.6rem;
+    margin-bottom: 0.3rem;
+  }
+  .accent-line {
+    width: 48px;
+    height: 3px;
+    background: var(--accent);
+    margin-bottom: 1.2rem;
+  }
+  p { padding-bottom: 1.2rem; margin: 0; }
+  .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+  }
+  .source-box {
+    background: var(--source-box);
+    border-left: 3px solid var(--accent);
+    padding: 0.9rem 1.1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    margin: 0.5rem 0 1.8rem;
+    line-height: 1.5;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 0.5rem;
+    font-size: 0.95rem;
+  }
+  th, td {
+    border: 1px solid #222;
+    padding: 0.6rem 0.7rem;
+    vertical-align: top;
+    text-align: left;
+  }
+  th {
+    background: #16161d;
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  td { font-size: 0.92rem; line-height: 1.5; }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+    text-transform: uppercase;
+  }
+  .tag-belegt { background: rgba(76,175,128,0.15); color: var(--green); border: 1px solid var(--green); }
+  .tag-extra { background: rgba(217,139,63,0.15); color: var(--orange); border: 1px solid var(--orange); }
+  .tag-offen { background: rgba(136,136,136,0.15); color: var(--grey); border: 1px solid var(--grey); }
+  .divider { border: none; border-top: 1px solid #222; margin: 2.5rem 0; }
+  .pull-quote {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--accent);
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+  }
+  .open-questions {
+    margin-top: 1rem;
+  }
+  .open-questions p { font-style: italic; color: #c9c9c9; }
+  .related-box {
+    margin-top: 2.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid #222;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+  }
+  .related-label { color: var(--text-dim); margin-bottom: 0.5rem; }
+  .related-box a { display: block; color: var(--accent); text-decoration: none; margin-bottom: 0.4rem; }
+  footer {
+    margin-top: 3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  footer a { color: var(--accent); }
+</style>
 </head>
 <body>
-<div style="max-width:720px;margin:0 auto;padding:0.75rem 1.5rem;font-family:'Courier New',monospace;font-size:0.72rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+<div class="wrap">
 
+  <header class="site">
+    <span>dunkelfeld.report — Hidden in Plain Sight</span>
+    <a href="index.html">← Übersicht</a>
+  </header>
 
-  <div class="site-label">● dunkelfeld.report</div>
-  <div class="site-tagline">Fakten · Quellen · Dokumentation — keine Schlussfolgerungen</div>
-
-  <div class="article-meta">Artikel #21 &nbsp;·&nbsp; Mai &nbsp;·&nbsp; Quellenbasiert</div>
-
+  <div class="eyebrow">Infrastruktur der Einflussnahme · Artikel #21</div>
   <h1>Zwei Seiten, eine Agenda?</h1>
-  
+  <div class="subtitle">WEF-Verbindungen, digitale Zentralbankwährungen und der Wiederaufbau der Ukraine — dieselben Institutionen auf beiden Seiten der Front.</div>
 
-  <div class="methodology">
-    Dieser Artikel stellt dokumentierte Fakten nebeneinander. Keine Motive, keine Spekulation. 
-    Alle Angaben basieren auf öffentlich zugänglichen Primärquellen. Die Schlussfolgerung überlässt 
-    dunkelfeld.report dem Leser.
-  </div>
+  <p>Russland und die Ukraine führen seit 2022 einen offenen Krieg gegeneinander. Parallel dazu vollziehen beide Regierungen dieselben strukturellen Schritte: Anbindung an das World Economic Forum, Einführung digitaler Zentralbankwährungen, Öffnung für dieselben internationalen Finanzakteure. Dieser Artikel stellt die dokumentierten Fakten nebeneinander — <span class="tag tag-belegt">Belegt</span> wo Primärquellen vorliegen, <span class="tag tag-extra">Extrapolation</span> wo ein struktureller Zusammenhang plausibel, aber nicht ursächlich belegt ist. Die Bewertung, was das bedeutet, liegt beim Leser.</p>
 
   <hr class="divider">
 
-  <p><strong>WAS DANACH GESCHAH</strong></p><p>Nach dem Wahlsieg von Donald Trump im November 2024 zog sich BlackRock aus den aktiven Verhandlungen zurück. Begründung: mangelndes Investoreninteresse angesichts gestiegener Unsicherheit über Ukraines Zukunft. Die Ukraine Recovery Conference in Rom (Juli 2025) fand ohne BlackRock als aktiven Partner statt.</p><h2>5. Die Spiegelstruktur: Was belegbar ist — was nicht</h2><h2>6. Die Frage, die sich stellt</h2><p>Russland und die Ukraine kämpfen gegeneinander. Beide beschleunigen gleichzeitig ihre digitale Infrastruktur: staatliche Währungskontrollen, zentrale Bürgeridentitäts-Apps, Investitionsrahmen für globale Finanzinstitutionen.</p><p>Beide Regierungen unterhalten oder unterhielten dokumentierte institutionelle Verbindungen zum Weltwirtschaftsforum. Westliche Finanzinstitutionen — BlackRock, JP Morgan, McKinsey — positionierten sich bereits während des laufenden Krieges für den Wiederaufbau.</p><p>Die journalistische Frage, die sich aus diesen parallelen Entwicklungen ergibt, ist keine moralische. Sie ist eine strukturelle:</p><p><strong>Wer profitiert — unabhängig davon, wer diesen Krieg gewinnt?</strong></p><p>Diese Frage beantwortet sich aus den verfügbaren Quellen nicht eindeutig. Sie stellt sich aus ihnen heraus.</p><div class="source-box"><div class="source-line">Quellenverzeichnis</div><div class="source-line">PRIMÄRQUELLEN — ÖFFENTLICH ZUGÄNGLICH</div><div class="source-line">→  WEF Press Release, 18. Januar 2024: &#x27;World Economic Forum and Ukraine Agree to Work Towards Country&#x27;s Digital Transformation&#x27; — weforum.org/press</div><div class="source-line">→  BlackRock Press Release, 16. November 2022: &#x27;BlackRock FMA to advise Ministry of Economy of Ukraine&#x27; — blackrock.com</div><div class="source-line">→  Ukrainisches Wirtschaftsministerium, 6. Mai 2023: Ankündigung Ukraine Development Fund — me.gov.ua</div><div class="source-line">→  Bank of Russia CBDC Status Report, Juni 2025 — cbr.ru</div><div class="source-line">→  Human Rights Foundation CBDC Tracker: Russia — cbdctracker.hrf.org</div><div class="source-line">→  Putin, Eröffnungsrede WEF Davos, Januar 2021 — weforum.org</div><div class="source-line">→  Roscongress Foundation: Putin trifft Schwab, SPIEF 2017 — forumspb.com</div><div class="source-line">FAKTENCHECKS</div><div class="source-line">→  Full Fact, März 2023: &#x27;Ukraine&#x27;s Diia app is not connected to the Great Reset&#x27; — fullfact.org</div><div class="source-line">→  USA Today Fact Check, März 2022: &#x27;No connection between Ukrainian app and WEF&#x27;s Great Reset&#x27;</div><div class="source-line">INVESTIGATIVE EINORDNUNG</div><div class="source-line">→  Swiss Policy Research: &#x27;The WEF Young Global Leaders&#x27; — swprs.org</div><div class="source-line">→  Wikispooks: &#x27;WEF/Global Leaders for Tomorrow&#x27; (inkl. Putin-Dokumentation)</div><div class="source-line">→  Kyiv Post, 7. Juli 2025: &#x27;BlackRock Backs Out of Ukraine Rebuild Fund Initiative&#x27;</div><div class="source-line">→  Carnegie Endowment for International Peace: &#x27;Can the Digital Ruble Shield Russia From Western Sanctions?&#x27; Oktober 2024</div><div class="source-line">Hinweis zur Methodik</div></div><p>Alle Angaben basieren auf öffentlich zugänglichen Primärquellen: offiziellen Pressemitteilungen, Behördendokumenten und institutionellen Verlautbarungen. Schwabs Behauptungen über Putins YGL-Mitgliedschaft sind als solche gekennzeichnet — nicht als belegte Tatsache. Leser werden ausdrücklich zur eigenständigen Prüfung der angegebenen Quellen eingeladen.</p><p>dunkelfeld.report  —  Analyse · Systemkritik · Quellenbasiert</p>
+  <h2>1. WEF-Verbindungen — beide Seiten</h2>
+  <div class="accent-line"></div>
 
-  <div class="footer">
-    <a href="index.html">← dunkelfeld.report</a> &nbsp;·&nbsp; 
-    Artikel #21 &nbsp;·&nbsp; Mai &nbsp;·&nbsp;
-    Keine Cookies · Kein Tracking · DSGVO-konform
-  
-    <a href="impressum.html">Impressum</a> &nbsp;·&nbsp; <a href="datenschutz.html">Datenschutz</a></div>
+  <div class="label">Russland / Putin <span class="tag tag-belegt">Belegt</span></div>
+  <p>Klaus Schwab erklärte 2017 in einem Interview an der Harvard Kennedy School, Putin sei ein ehemaliges Mitglied der Young Global Leaders des WEF gewesen. Im selben Jahr unterzeichneten die russische Roscongress Foundation und das WEF ein Kooperationsmemorandum; Putin erklärte dabei, globale Herausforderungen wie Klima und Wirtschaftswachstum ließen sich „nur durch Zusammenarbeit auf globaler Ebene lösen". 2021 hielt er eine Grundsatzrede beim WEF-Jahrestreffen in Davos — im Wortlaut auf weforum.org dokumentiert.</p>
 
+  <div class="label">Ukraine / Selenskyj <span class="tag tag-belegt">Belegt</span></div>
+  <p>Im Januar 2024 unterzeichneten das WEF und das ukrainische Ministerium für Digitale Transformation eine Vereinbarung zur Einrichtung eines „Centre for the Fourth Industrial Revolution" (C4IR) in Kiew — weltweit erst das zweite Zentrum dieser Art nach Berlin. WEF Managing Director Mirek Dušek erklärte, das Zentrum solle „WEFs globale Bemühungen unterstützen, das Potenzial digitaler Technologien für öffentliche Dienste zu erschließen".</p>
 
-  <!-- ════ SOCIAL SHARE ════ -->
-  <div class="share-section" style="max-width:720px;margin:3rem auto 1rem;padding:0 2rem;border-top:1px solid #27272a;padding-top:2rem;">
-    <div style="font-family:'Courier New',monospace;font-size:0.7rem;letter-spacing:3px;color:#e8c547;text-transform:uppercase;margin-bottom:1rem;">Artikel teilen</div>
-    <div class="share-buttons" style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+  <div class="source-box">Quellen: Klaus Schwab, Harvard Kennedy School Interview 2017; WEF/Roscongress Memorandum 2017 — weforum.org; WEF-Rede Putin, Davos 2021 — weforum.org; WEF Press Release, 18. Januar 2024 — weforum.org/press</div>
 
-      <a class="share-btn" id="share-telegram" href="#" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.1rem;border:1px solid #27272a;border-radius:3px;text-decoration:none;font-family:'Courier New',monospace;font-size:0.72rem;letter-spacing:1.5px;text-transform:uppercase;color:#71717a;background:#111113;transition:all 0.2s;cursor:pointer;">
-        <svg style="width:14px;height:14px;fill:currentColor;flex-shrink:0;" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.088 14.08l-2.978-.924c-.643-.204-.658-.643.136-.953l11.636-4.487c.537-.194 1.006.131.834.505z"/></svg>
-        Telegram
-      </a>
+  <hr class="divider">
 
-      <a class="share-btn" id="share-twitter" href="#" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.1rem;border:1px solid #27272a;border-radius:3px;text-decoration:none;font-family:'Courier New',monospace;font-size:0.72rem;letter-spacing:1.5px;text-transform:uppercase;color:#71717a;background:#111113;transition:all 0.2s;cursor:pointer;">
-        <svg style="width:14px;height:14px;fill:currentColor;flex-shrink:0;" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        X / Twitter
-      </a>
+  <h2>2. Digitale Währungen — parallele Entwicklung</h2>
+  <div class="accent-line"></div>
 
-      <button class="share-btn" onclick="shareMastodon()" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.1rem;border:1px solid #27272a;border-radius:3px;font-family:'Courier New',monospace;font-size:0.72rem;letter-spacing:1.5px;text-transform:uppercase;color:#71717a;background:#111113;transition:all 0.2s;cursor:pointer;">
-        <svg style="width:14px;height:14px;fill:currentColor;flex-shrink:0;" viewBox="0 0 24 24"><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg>
-        Mastodon
-      </button>
+  <p>Während beide Länder militärisch gegeneinander kämpfen, vollziehen sie denselben geldpolitischen Schritt: die Einführung staatlich kontrollierten digitalen Geldes und digitaler Identitätsinfrastruktur.</p>
 
-      <a class="share-btn" id="share-whatsapp" href="#" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.1rem;border:1px solid #27272a;border-radius:3px;text-decoration:none;font-family:'Courier New',monospace;font-size:0.72rem;letter-spacing:1.5px;text-transform:uppercase;color:#71717a;background:#111113;transition:all 0.2s;cursor:pointer;">
-        <svg style="width:14px;height:14px;fill:currentColor;flex-shrink:0;" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-        WhatsApp
-      </a>
+  <table>
+    <tr><th>Russland — Digitaler Rubel</th><th>Ukraine — Digitale Infrastruktur (Diia)</th></tr>
+    <tr><td>April 2021: Konzept der Zentralbank veröffentlicht</td><td>2019: Diia-App als zentrale digitale Infrastrukturbasis eingeführt</td></tr>
+    <tr><td>August 2023: Pilotbetrieb mit 13 Banken, 600 Bürgern, 30 Unternehmen in 11 Städten</td><td>2024: WEF-C4IR-Zentrum in Kiew — Fokus GovTech und Digitalwährungsinfrastruktur</td></tr>
+    <tr><td>Juli 2023: Putin unterzeichnet das Digitaler-Rubel-Gesetz</td><td>Über 20 Millionen Diia-Nutzer, mehr als 100 integrierte Regierungsdienste</td></tr>
+    <tr><td>Juli 2024: Putin fordert „vollständige Implementierung des digitalen Rubels in Wirtschaft und Finanzsektor"</td><td>Ministerium für Digitale Transformation: Ziel 100 % öffentliche Dienste online</td></tr>
+    <tr><td>Erklärtes Ziel: SWIFT-unabhängige Zahlungsinfrastruktur, BRICS-Vernetzung</td><td>Erklärtes Ziel: internationales Vorzeigemodell für digitale Staatstransformation</td></tr>
+  </table>
 
-      <button class="share-btn" onclick="copyShareLink(this)" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.1rem;border:1px solid #27272a;border-radius:3px;font-family:'Courier New',monospace;font-size:0.72rem;letter-spacing:1.5px;text-transform:uppercase;color:#71717a;background:#111113;transition:all 0.2s;cursor:pointer;">
-        <svg style="width:14px;height:14px;fill:currentColor;flex-shrink:0;" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-        Link kopieren
-      </button>
+  <div class="source-box">Quellen: Bank of Russia, CBDC-Statusbericht Juni 2025 — cbr.ru; Human Rights Foundation CBDC Tracker; WEF/Ukraine Memorandum of Understanding, Januar 2024</div>
 
-    </div>
+  <hr class="divider">
+
+  <h2>3. BlackRock und der Wiederaufbau</h2>
+  <div class="accent-line"></div>
+
+  <p>Bereits während des laufenden Krieges positionierte sich BlackRock — der weltgrößte Vermögensverwalter — als zentraler Architekt des ukrainischen Wiederaufbaus.</p>
+
+  <div class="label">Dokumentierte Schritte <span class="tag tag-belegt">Belegt</span></div>
+  <p><strong>September 2022:</strong> Selenskyj und BlackRock-CEO Larry Fink treffen sich zum Thema Investitionsstruktur für den Wiederaufbau der Ukraine.<br>
+  <strong>10. November 2022:</strong> BlackRock Financial Markets Advisory und das ukrainische Wirtschaftsministerium unterzeichnen in Washington D.C. ein Memorandum of Understanding — BlackRock übernimmt kostenlose Beratung beim Aufbau eines Investitionsrahmens.<br>
+  <strong>Mai 2023:</strong> Die Ukraine kündigt den Ukraine Development Fund (UDF) an, entwickelt unter BlackRock-Beratung gemeinsam mit JP Morgan und McKinsey. Finanzierungsziel: 15 Milliarden US-Dollar — langfristiger Bedarf laut UN/Weltbank-Schätzung: 524 Milliarden US-Dollar.</p>
+
+  <div class="pull-quote">Dieselbe Institution berät den Wiederaufbau eines Landes, dessen Gegner sie über Jahrzehnte hinweg selbst in ihr eigenes globales Netzwerk aufgenommen hat.</div>
+
+  <div class="label">Was danach geschah <span class="tag tag-belegt">Belegt</span></div>
+  <p>Nach dem Wahlsieg von Donald Trump im November 2024 zog sich BlackRock aus den aktiven Verhandlungen zurück. Begründung: mangelndes Investoreninteresse angesichts gestiegener Unsicherheit über Ukraines Zukunft. Die Ukraine Recovery Conference in Rom (Juli 2025) fand ohne BlackRock als aktiven Partner statt.</p>
+
+  <div class="source-box">Quellen: BlackRock Press Release, 16. November 2022 — blackrock.com; ukrainisches Wirtschaftsministerium, 6. Mai 2023 — me.gov.ua; Kyiv Post, 7. Juli 2025</div>
+
+  <hr class="divider">
+
+  <h2>4. Die Spiegelstruktur: Was belegbar ist — was nicht</h2>
+  <div class="accent-line"></div>
+
+  <table>
+    <tr><th>Dokumentiert ✓</th><th>Nicht dokumentiert ✗</th></tr>
+    <tr>
+      <td>Putin traf Schwab erstmals 1992, nahm regelmäßig an WEF-Veranstaltungen teil, hielt 2021 Eröffnungsrede in Davos</td>
+      <td>Koordinierte Absprache Putin ↔ WEF über Kriegsziele oder gemeinsame Agenda</td>
+    </tr>
+    <tr>
+      <td>Ukraine unterzeichnete 2024 WEF-Partnerschaft für GovTech-Zentrum in Kiew</td>
+      <td>Diia ist direktes Instrument des WEF-„Great Reset" (von WEF selbst dementiert)</td>
+    </tr>
+    <tr>
+      <td>Russland: Digitaler Rubel seit Juli 2023 in Pilotphase, von Putin per Gesetz eingeführt</td>
+      <td>Russische und ukrainische CBDC-Programme sind koordiniert oder abgesprochen</td>
+    </tr>
+    <tr>
+      <td>BlackRock berät Ukraine beim Wiederaufbau — MoU öffentlich dokumentiert</td>
+      <td>BlackRock steuert militärische oder politische Entscheidungen der Ukraine</td>
+    </tr>
+    <tr>
+      <td>Schwab behauptete 2017 und 2019, Putin sei YGL-Mitglied gewesen</td>
+      <td>Putins YGL-Mitgliedschaft durch Archivlisten belegt <span class="tag tag-offen">Offen</span> — nur Schwabs eigene Aussage liegt vor, kein Archivbeleg</td>
+    </tr>
+  </table>
+
+  <hr class="divider">
+
+  <h2>5. Die Frage, die sich stellt</h2>
+  <div class="accent-line"></div>
+
+  <p>Russland und die Ukraine kämpfen gegeneinander. Beide Regierungen verfolgen zugleich eine beschleunigte Digitalisierungsagenda — mit staatlicher Kontrolle über Zahlungsverkehr, Identität und öffentliche Dienste. Beide pflegen dokumentierte institutionelle Verbindungen zum WEF. Westliche Finanzinstitutionen positionieren sich für den Wiederaufbau, unabhängig vom Kriegsverlauf.</p>
+
+  <div class="pull-quote">Die Frage, die sich aus diesen parallelen Entwicklungen ergibt, ist keine moralische — sondern eine strukturelle: Wer profitiert, unabhängig vom Ausgang des Krieges?</div>
+
+  <hr class="divider">
+
+  <h2>Offene Fragen</h2>
+  <div class="accent-line"></div>
+
+  <div class="open-questions">
+    <p><em>Warum unterhalten dieselben internationalen Institutionen — WEF, BlackRock — dokumentierte, offen kommunizierte Beziehungen zu beiden Kriegsparteien, ohne dass eine der beiden Seiten dies öffentlich thematisiert?</em></p>
+    <p><em>Welche Rolle spielt die parallele Einführung digitaler Zentralbankwährungen für die langfristige Kontrolle über Zahlungsverkehr und Bürgerdaten — unabhängig vom Kriegsausgang?</em></p>
+    <p><em>Wer trägt die Kosten, wenn private Vermögensverwalter den Wiederaufbau eines kriegszerstörten Landes strukturieren — und wer die Rendite?</em></p>
   </div>
-  <!-- ════ END SOCIAL SHARE ════ -->
 
-  <script>
-  /* ════ SOCIAL SHARE JS ════ */
-  (function() {
-    var url = encodeURIComponent(window.location.href);
-    var title = encodeURIComponent(document.title);
-    var tg = document.getElementById('share-telegram');
-    if (tg) tg.href = 'https://t.me/share/url?url=' + url + '&text=' + title;
-    var tw = document.getElementById('share-twitter');
-    if (tw) tw.href = 'https://x.com/intent/tweet?url=' + url + '&text=' + title;
-    var wa = document.getElementById('share-whatsapp');
-    if (wa) wa.href = 'https://wa.me/?text=' + title + '%20' + url;
-  })();
-  function shareMastodon() {
-    var inst = prompt('Deine Mastodon-Instanz (z.B. mastodon.social):', 'mastodon.social');
-    if (!inst) return;
-    var url = encodeURIComponent(window.location.href);
-    var title = encodeURIComponent(document.title);
-    window.open('https://' + inst.trim() + '/share?text=' + title + '%20' + url, '_blank');
+  <div class="related-box">
+    <div class="related-label">Verwandte Artikel — dunkelfeld.report</div>
+    <a href="wef-macht-mitgliedschaft.html">Artikel #8 — WEF: Macht und Mitgliedschaft →</a>
+    <a href="wef-selenskyj-blackrock.html">Selenskyj, Davos und BlackRock →</a>
+    <a href="kontrollarchitektur.html">Artikel #15 — Infrastruktur der Kontrolle: Von Hollerith zu eIDAS 2.0 →</a>
+  </div>
+
+  <footer>
+    dunkelfeld.report — Hidden in Plain Sight<br>
+    Alle Behauptungen mit Primärquellen belegt. Tags: BELEGT (grün) = verifiziert | EXTRAPOLATION (orange) = strukturell plausibel, interpretativ | OFFEN (grau) = ungeklärt.<br>
+    Kein Impressum ohne Anfrage — <span id="mail-placeholder"></span>
+  </footer>
+
+</div>
+
+<script>
+(function() {
+  var u = 'ofni', d = 'trepor.dlefnelkud', tld = 'ed';
+  var el = document.getElementById('mail-placeholder');
+  if (el) {
+    var link = document.createElement('a');
+    link.href = 'mailto:' + u.split('').reverse().join('') + '@' + d.split('').reverse().join('') + '.' + tld.split('').reverse().join('');
+    link.textContent = 'Kontakt';
+    link.style.color = '#444';
+    el.appendChild(link);
   }
-  function copyShareLink(btn) {
-    navigator.clipboard.writeText(window.location.href).then(function() {
-      btn.style.borderColor = '#4ade80';
-      btn.style.color = '#4ade80';
-      var nodes = btn.childNodes;
-      for (var i = 0; i < nodes.length; i++) {
-        if (nodes[i].nodeType === 3) { nodes[i].textContent = ' Kopiert!'; break; }
-      }
-      setTimeout(function() {
-        btn.style.borderColor = '';
-        btn.style.color = '';
-        for (var i = 0; i < nodes.length; i++) {
-          if (nodes[i].nodeType === 3) { nodes[i].textContent = ' Link kopieren'; break; }
-        }
-      }, 2500);
-    });
-  }
-  </script>
+})();
+</script>
 </body>
 </html>

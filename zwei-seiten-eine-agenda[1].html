@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zwei Seiten, eine Agenda? — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --source-box: #1a1a2e;
+    --text: #e5e5e5;
+    --text-dim: #9a9a9a;
+    --green: #4caf80;
+    --orange: #d98b3f;
+    --grey: #888;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 2rem 1.2rem 4rem; }
+  header.site {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    border-bottom: 1px solid #222;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  header.site a { color: var(--accent); text-decoration: none; }
+  .eyebrow {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 2rem;
+    line-height: 1.25;
+    margin: 0 0 0.6rem;
+  }
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 1.15rem;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.35rem;
+    margin-top: 2.6rem;
+    margin-bottom: 0.3rem;
+  }
+  .accent-line {
+    width: 48px;
+    height: 3px;
+    background: var(--accent);
+    margin-bottom: 1.2rem;
+  }
+  p { padding-bottom: 1.2rem; margin: 0; }
+  .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+  }
+  .source-box {
+    background: var(--source-box);
+    border-left: 3px solid var(--accent);
+    padding: 0.9rem 1.1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    margin: 0.5rem 0 1.8rem;
+    line-height: 1.5;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 0.5rem;
+    font-size: 0.95rem;
+  }
+  th, td {
+    border: 1px solid #222;
+    padding: 0.6rem 0.7rem;
+    vertical-align: top;
+    text-align: left;
+  }
+  th {
+    background: #16161d;
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  td { font-size: 0.92rem; line-height: 1.5; }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+    text-transform: uppercase;
+  }
+  .tag-belegt { background: rgba(76,175,128,0.15); color: var(--green); border: 1px solid var(--green); }
+  .tag-extra { background: rgba(217,139,63,0.15); color: var(--orange); border: 1px solid var(--orange); }
+  .tag-offen { background: rgba(136,136,136,0.15); color: var(--grey); border: 1px solid var(--grey); }
+  .divider { border: none; border-top: 1px solid #222; margin: 2.5rem 0; }
+  .pull-quote {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--accent);
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+  }
+  .open-questions {
+    margin-top: 1rem;
+  }
+  .open-questions p { font-style: italic; color: #c9c9c9; }
+  .related-box {
+    margin-top: 2.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid #222;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+  }
+  .related-label { color: var(--text-dim); margin-bottom: 0.5rem; }
+  .related-box a { display: block; color: var(--accent); text-decoration: none; margin-bottom: 0.4rem; }
+  footer {
+    margin-top: 3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="site">
+    <span>dunkelfeld.report — Hidden in Plain Sight</span>
+    <a href="index.html">← Übersicht</a>
+  </header>
+
+  <div class="eyebrow">Infrastruktur der Einflussnahme · Artikel #21</div>
+  <h1>Zwei Seiten, eine Agenda?</h1>
+  <div class="subtitle">WEF-Verbindungen, digitale Zentralbankwährungen und der Wiederaufbau der Ukraine — dieselben Institutionen auf beiden Seiten der Front.</div>
+
+  <p>Russland und die Ukraine führen seit 2022 einen offenen Krieg gegeneinander. Parallel dazu vollziehen beide Regierungen dieselben strukturellen Schritte: Anbindung an das World Economic Forum, Einführung digitaler Zentralbankwährungen, Öffnung für dieselben internationalen Finanzakteure. Dieser Artikel stellt die dokumentierten Fakten nebeneinander — <span class="tag tag-belegt">Belegt</span> wo Primärquellen vorliegen, <span class="tag tag-extra">Extrapolation</span> wo ein struktureller Zusammenhang plausibel, aber nicht ursächlich belegt ist. Die Bewertung, was das bedeutet, liegt beim Leser.</p>
+
+  <hr class="divider">
+
+  <h2>1. WEF-Verbindungen — beide Seiten</h2>
+  <div class="accent-line"></div>
+
+  <div class="label">Russland / Putin <span class="tag tag-belegt">Belegt</span></div>
+  <p>Klaus Schwab erklärte 2017 in einem Interview an der Harvard Kennedy School, Putin sei ein ehemaliges Mitglied der Young Global Leaders des WEF gewesen. Im selben Jahr unterzeichneten die russische Roscongress Foundation und das WEF ein Kooperationsmemorandum; Putin erklärte dabei, globale Herausforderungen wie Klima und Wirtschaftswachstum ließen sich „nur durch Zusammenarbeit auf globaler Ebene lösen". 2021 hielt er eine Grundsatzrede beim WEF-Jahrestreffen in Davos — im Wortlaut auf weforum.org dokumentiert.</p>
+
+  <div class="label">Ukraine / Selenskyj <span class="tag tag-belegt">Belegt</span></div>
+  <p>Im Januar 2024 unterzeichneten das WEF und das ukrainische Ministerium für Digitale Transformation eine Vereinbarung zur Einrichtung eines „Centre for the Fourth Industrial Revolution" (C4IR) in Kiew — weltweit erst das zweite Zentrum dieser Art nach Berlin. WEF Managing Director Mirek Dušek erklärte, das Zentrum solle „WEFs globale Bemühungen unterstützen, das Potenzial digitaler Technologien für öffentliche Dienste zu erschließen".</p>
+
+  <div class="source-box">Quellen: Klaus Schwab, Harvard Kennedy School Interview 2017; WEF/Roscongress Memorandum 2017 — weforum.org; WEF-Rede Putin, Davos 2021 — weforum.org; WEF Press Release, 18. Januar 2024 — weforum.org/press</div>
+
+  <hr class="divider">
+
+  <h2>2. Digitale Währungen — parallele Entwicklung</h2>
+  <div class="accent-line"></div>
+
+  <p>Während beide Länder militärisch gegeneinander kämpfen, vollziehen sie denselben geldpolitischen Schritt: die Einführung staatlich kontrollierten digitalen Geldes und digitaler Identitätsinfrastruktur.</p>
+
+  <table>
+    <tr><th>Russland — Digitaler Rubel</th><th>Ukraine — Digitale Infrastruktur (Diia)</th></tr>
+    <tr><td>April 2021: Konzept der Zentralbank veröffentlicht</td><td>2019: Diia-App als zentrale digitale Infrastrukturbasis eingeführt</td></tr>
+    <tr><td>August 2023: Pilotbetrieb mit 13 Banken, 600 Bürgern, 30 Unternehmen in 11 Städten</td><td>2024: WEF-C4IR-Zentrum in Kiew — Fokus GovTech und Digitalwährungsinfrastruktur</td></tr>
+    <tr><td>Juli 2023: Putin unterzeichnet das Digitaler-Rubel-Gesetz</td><td>Über 20 Millionen Diia-Nutzer, mehr als 100 integrierte Regierungsdienste</td></tr>
+    <tr><td>Juli 2024: Putin fordert „vollständige Implementierung des digitalen Rubels in Wirtschaft und Finanzsektor"</td><td>Ministerium für Digitale Transformation: Ziel 100 % öffentliche Dienste online</td></tr>
+    <tr><td>Erklärtes Ziel: SWIFT-unabhängige Zahlungsinfrastruktur, BRICS-Vernetzung</td><td>Erklärtes Ziel: internationales Vorzeigemodell für digitale Staatstransformation</td></tr>
+  </table>
+
+  <div class="source-box">Quellen: Bank of Russia, CBDC-Statusbericht Juni 2025 — cbr.ru; Human Rights Foundation CBDC Tracker; WEF/Ukraine Memorandum of Understanding, Januar 2024</div>
+
+  <hr class="divider">
+
+  <h2>3. BlackRock und der Wiederaufbau</h2>
+  <div class="accent-line"></div>
+
+  <p>Bereits während des laufenden Krieges positionierte sich BlackRock — der weltgrößte Vermögensverwalter — als zentraler Architekt des ukrainischen Wiederaufbaus.</p>
+
+  <div class="label">Dokumentierte Schritte <span class="tag tag-belegt">Belegt</span></div>
+  <p><strong>September 2022:</strong> Selenskyj und BlackRock-CEO Larry Fink treffen sich zum Thema Investitionsstruktur für den Wiederaufbau der Ukraine.<br>
+  <strong>10. November 2022:</strong> BlackRock Financial Markets Advisory und das ukrainische Wirtschaftsministerium unterzeichnen in Washington D.C. ein Memorandum of Understanding — BlackRock übernimmt kostenlose Beratung beim Aufbau eines Investitionsrahmens.<br>
+  <strong>Mai 2023:</strong> Die Ukraine kündigt den Ukraine Development Fund (UDF) an, entwickelt unter BlackRock-Beratung gemeinsam mit JP Morgan und McKinsey. Finanzierungsziel: 15 Milliarden US-Dollar — langfristiger Bedarf laut UN/Weltbank-Schätzung: 524 Milliarden US-Dollar.</p>
+
+  <div class="pull-quote">Dieselbe Institution berät den Wiederaufbau eines Landes, dessen Gegner sie über Jahrzehnte hinweg selbst in ihr eigenes globales Netzwerk aufgenommen hat.</div>
+
+  <div class="label">Was danach geschah <span class="tag tag-belegt">Belegt</span></div>
+  <p>Nach dem Wahlsieg von Donald Trump im November 2024 zog sich BlackRock aus den aktiven Verhandlungen zurück. Begründung: mangelndes Investoreninteresse angesichts gestiegener Unsicherheit über Ukraines Zukunft. Die Ukraine Recovery Conference in Rom (Juli 2025) fand ohne BlackRock als aktiven Partner statt.</p>
+
+  <div class="source-box">Quellen: BlackRock Press Release, 16. November 2022 — blackrock.com; ukrainisches Wirtschaftsministerium, 6. Mai 2023 — me.gov.ua; Kyiv Post, 7. Juli 2025</div>
+
+  <hr class="divider">
+
+  <h2>4. Die Spiegelstruktur: Was belegbar ist — was nicht</h2>
+  <div class="accent-line"></div>
+
+  <table>
+    <tr><th>Dokumentiert ✓</th><th>Nicht dokumentiert ✗</th></tr>
+    <tr>
+      <td>Putin traf Schwab erstmals 1992, nahm regelmäßig an WEF-Veranstaltungen teil, hielt 2021 Eröffnungsrede in Davos</td>
+      <td>Koordinierte Absprache Putin ↔ WEF über Kriegsziele oder gemeinsame Agenda</td>
+    </tr>
+    <tr>
+      <td>Ukraine unterzeichnete 2024 WEF-Partnerschaft für GovTech-Zentrum in Kiew</td>
+      <td>Diia ist direktes Instrument des WEF-„Great Reset" (von WEF selbst dementiert)</td>
+    </tr>
+    <tr>
+      <td>Russland: Digitaler Rubel seit Juli 2023 in Pilotphase, von Putin per Gesetz eingeführt</td>
+      <td>Russische und ukrainische CBDC-Programme sind koordiniert oder abgesprochen</td>
+    </tr>
+    <tr>
+      <td>BlackRock berät Ukraine beim Wiederaufbau — MoU öffentlich dokumentiert</td>
+      <td>BlackRock steuert militärische oder politische Entscheidungen der Ukraine</td>
+    </tr>
+    <tr>
+      <td>Schwab behauptete 2017 und 2019, Putin sei YGL-Mitglied gewesen</td>
+      <td>Putins YGL-Mitgliedschaft durch Archivlisten belegt <span class="tag tag-offen">Offen</span> — nur Schwabs eigene Aussage liegt vor, kein Archivbeleg</td>
+    </tr>
+  </table>
+
+  <hr class="divider">
+
+  <h2>5. Die Frage, die sich stellt</h2>
+  <div class="accent-line"></div>
+
+  <p>Russland und die Ukraine kämpfen gegeneinander. Beide Regierungen verfolgen zugleich eine beschleunigte Digitalisierungsagenda — mit staatlicher Kontrolle über Zahlungsverkehr, Identität und öffentliche Dienste. Beide pflegen dokumentierte institutionelle Verbindungen zum WEF. Westliche Finanzinstitutionen positionieren sich für den Wiederaufbau, unabhängig vom Kriegsverlauf.</p>
+
+  <div class="pull-quote">Die Frage, die sich aus diesen parallelen Entwicklungen ergibt, ist keine moralische — sondern eine strukturelle: Wer profitiert, unabhängig vom Ausgang des Krieges?</div>
+
+  <hr class="divider">
+
+  <h2>Offene Fragen</h2>
+  <div class="accent-line"></div>
+
+  <div class="open-questions">
+    <p><em>Warum unterhalten dieselben internationalen Institutionen — WEF, BlackRock — dokumentierte, offen kommunizierte Beziehungen zu beiden Kriegsparteien, ohne dass eine der beiden Seiten dies öffentlich thematisiert?</em></p>
+    <p><em>Welche Rolle spielt die parallele Einführung digitaler Zentralbankwährungen für die langfristige Kontrolle über Zahlungsverkehr und Bürgerdaten — unabhängig vom Kriegsausgang?</em></p>
+    <p><em>Wer trägt die Kosten, wenn private Vermögensverwalter den Wiederaufbau eines kriegszerstörten Landes strukturieren — und wer die Rendite?</em></p>
+  </div>
+
+  <div class="related-box">
+    <div class="related-label">Verwandte Artikel — dunkelfeld.report</div>
+    <a href="wef-macht-mitgliedschaft.html">Artikel #8 — WEF: Macht und Mitgliedschaft →</a>
+    <a href="wef-selenskyj-blackrock.html">Selenskyj, Davos und BlackRock →</a>
+    <a href="kontrollarchitektur.html">Artikel #15 — Infrastruktur der Kontrolle: Von Hollerith zu eIDAS 2.0 →</a>
+  </div>
+
+  <footer>
+    dunkelfeld.report — Hidden in Plain Sight<br>
+    Alle Behauptungen mit Primärquellen belegt. Tags: BELEGT (grün) = verifiziert | EXTRAPOLATION (orange) = strukturell plausibel, interpretativ | OFFEN (grau) = ungeklärt.<br>
+    Kein Impressum ohne Anfrage — <span id="mail-placeholder"></span>
+  </footer>
+
+</div>
+
+<script>
+(function() {
+  var u = 'ofni', d = 'trepor.dlefnelkud', tld = 'ed';
+  var el = document.getElementById('mail-placeholder');
+  if (el) {
+    var link = document.createElement('a');
+    link.href = 'mailto:' + u.split('').reverse().join('') + '@' + d.split('').reverse().join('') + '.' + tld.split('').reverse().join('');
+    link.textContent = 'Kontakt';
+    link.style.color = '#444';
+    el.appendChild(link);
+  }
+})();
+</script>
+</body>
+</html>

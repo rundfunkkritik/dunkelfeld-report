@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infrastruktur der Kontrolle — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --bg2: #111114;
+    --bg3: #1a1a2e;
+    --amber: #e8c547;
+    --amber-dim: #b89d32;
+    --text: #d4d4d8;
+    --text-dim: #71717a;
+    --border: #27272a;
+    --red: #c0392b;
+    --green: #2ecc71;
+    --mono: 'Courier New', Courier, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  a { color: var(--amber); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* SITE HEADER */
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+  .site-logo {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .site-nav {
+    display: flex;
+    gap: 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .site-nav a { color: var(--text-dim); }
+  .site-nav a:hover { color: var(--amber); text-decoration: none; }
+
+  /* HERO */
+  .hero {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 5rem 2rem 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .dossier-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: normal;
+    line-height: 1.15;
+    color: #fff;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 em {
+    color: var(--amber);
+    font-style: normal;
+  }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  .meta-row {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .meta-row span { text-transform: uppercase; }
+
+  /* STAT GRID */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    margin: 0 auto;
+    max-width: 860px;
+  }
+  .stat-card {
+    background: var(--bg2);
+    padding: 1.6rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .stat-number {
+    font-family: var(--mono);
+    font-size: 2rem;
+    color: var(--amber);
+    line-height: 1;
+    font-weight: bold;
+  }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+  }
+  .stat-note {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 0.2rem;
+  }
+
+  /* MAIN CONTENT */
+  .content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    font-weight: normal;
+    color: #fff;
+    margin: 3rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: -0.01em;
+  }
+  h3 {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--amber);
+    margin: 2rem 0 0.8rem;
+  }
+
+  p { margin-bottom: 1.2rem; }
+
+  /* SOURCE BOX */
+  .source-box {
+    background: var(--bg3);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.88rem;
+  }
+  .source-box .src-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--amber);
+    margin-bottom: 0.4rem;
+  }
+  .source-box p { margin-bottom: 0.5rem; color: var(--text-dim); }
+  .source-box p:last-child { margin-bottom: 0; }
+
+  /* STATUS TAGS */
+  .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    margin-right: 0.3rem;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(46,204,113,0.15); color: var(--green); border: 1px solid rgba(46,204,113,0.3); }
+  .tag-offen { background: rgba(232,197,71,0.12); color: var(--amber); border: 1px solid rgba(232,197,71,0.3); }
+  .tag-extrapolation { background: rgba(192,57,43,0.12); color: #e07060; border: 1px solid rgba(192,57,43,0.3); }
+
+  /* BEHÖRDEN-TABELLE */
+  .behoerden-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    margin: 1.5rem 0;
+  }
+  .behoerden-table th {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--amber);
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid var(--amber);
+    background: var(--bg2);
+  }
+  .behoerden-table td {
+    padding: 0.75rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text);
+  }
+  .behoerden-table tr:hover td { background: var(--bg2); }
+  .behoerden-table .amt { font-weight: bold; color: #fff; }
+  .behoerden-table .zahl { font-family: var(--mono); color: var(--amber); }
+  .behoerden-table .budget-cell { font-family: var(--mono); font-size: 0.8rem; }
+
+  /* STASI VERGLEICH BLOCK */
+  .vergleich-block {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--amber);
+    padding: 1.8rem;
+    margin: 2rem 0;
+  }
+  .vergleich-block h3 { margin-top: 0; }
+  .vergleich-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  @media (max-width: 600px) {
+    .vergleich-grid { grid-template-columns: 1fr; }
+  }
+  .vergleich-col h4 {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .vergleich-col ul {
+    list-style: none;
+    font-size: 0.88rem;
+  }
+  .vergleich-col ul li {
+    padding: 0.3rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .vergleich-col ul li span {
+    font-family: var(--mono);
+    color: var(--amber);
+    white-space: nowrap;
+  }
+
+  /* CHRONIK */
+  .chronik-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .chronik-year {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--amber);
+    padding-top: 0.1rem;
+  }
+  .chronik-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  .chronik-text strong { color: #fff; }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 3rem 0;
+  }
+  .divider-amber {
+    border: none;
+    border-top: 1px solid var(--amber-dim);
+    margin: 2rem 0;
+    opacity: 0.4;
+  }
+
+  /* CLOSING */
+  .closing-question {
+    font-style: italic;
+    color: var(--text-dim);
+    font-size: 1rem;
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 3rem 0 1rem;
+    line-height: 1.7;
+  }
+
+  /* FOOTER */
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    margin-top: 4rem;
+  }
+
+  @media (max-width: 640px) {
+    .site-nav { display: none; }
+    .hero { padding: 3rem 1.2rem 2rem; }
+    .content { padding: 2rem 1.2rem; }
+    .vergleich-col ul li { flex-direction: column; gap: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-logo">dunkelfeld.report</div>
+  <nav class="site-nav">
+    <a href="index.html">Übersicht</a>
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="dossier-label">Dossier · Infrastruktur der Kontrolle</div>
+  <h1>16 Länder, 3 Bundesdienste, <em>eine Architektur</em></h1>
+  <p class="hero-sub">Deutschlands Geheimdienstapparat im Überblick — Struktur, Größe, Skandalchronik und Vergleich mit der Stasi</p>
+  <div class="meta-row">
+    <span>Stand: Juni 2026</span>
+    <span>Quellen: BMI, Wikipedia, Goschler/Wala, Brodkorb 2024</span>
+    <span>Slug: kontrollarchitektur</span>
+  </div>
+</section>
+
+<!-- STAT GRID -->
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="stat-number">19</div>
+    <div class="stat-label">Behörden gesamt</div>
+    <div class="stat-note">3 Bund + 16 Länder</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">~16.100</div>
+    <div class="stat-label">Mitarbeiter gesamt</div>
+    <div class="stat-note">Bundesbehörden + Länder (2024)</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">~2 Mrd.</div>
+    <div class="stat-label">Euro Jahresbudget</div>
+    <div class="stat-note">Bund + Länder kombiniert</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">14.480</div>
+    <div class="stat-label">Überwachte Personen</div>
+    <div class="stat-note">TKÜ allein im 1. Halbjahr 2022</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">+38%</div>
+    <div class="stat-label">BfV-Wachstum</div>
+    <div class="stat-note">Mitarbeiter 2017–2023</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">91.000</div>
+    <div class="stat-label">Stasi-Hauptamtliche</div>
+    <div class="stat-note">+ 189.000 IM (1989, DDR)</div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<main class="content">
+
+  <h2>I. Die Architektur</h2>
+
+  <p>Deutschland betreibt eines der ausdifferenziertesten Geheimdienstsysteme Westeuropas. Drei Bundesbehörden, 16 Landesämter und ein gemeinsames Datennetz bilden eine Infrastruktur, die — anders als in den meisten demokratischen Staaten — keine einheitliche parlamentarische Kontrolle kennt.</p>
+
+  <div class="source-box">
+    <div class="src-label">Dokumentiert — BfV-Website (verfassungsschutz.de)</div>
+    <p>„Jedes der 16 Bundesländer hat eine eigene Landesbehörde für Verfassungsschutz. Einige sind eigenständige Ämter, andere Abteilungen des jeweiligen Innenministeriums."</p>
+  </div>
+
+  <h3>Die 19 Behörden im Überblick <span class="tag tag-belegt">Belegt</span></h3>
+
+  <table class="behoerden-table">
+    <thead>
+      <tr>
+        <th>Behörde</th>
+        <th>Auftrag</th>
+        <th>Mitarbeiter</th>
+        <th>Budget 2024</th>
+        <th>Aufsicht</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="amt">BfV</td>
+        <td>Inland — Extremismus, Spionageabwehr</td>
+        <td class="zahl">4.549</td>
+        <td class="budget-cell">504 Mio. €</td>
+        <td>BMI</td>
+      </tr>
+      <tr>
+        <td class="amt">BND</td>
+        <td>Ausland — Nachrichtengewinnung</td>
+        <td class="zahl">~6.500</td>
+        <td class="budget-cell">~1.083 Mio. €</td>
+        <td>Bundeskanzleramt</td>
+      </tr>
+      <tr>
+        <td class="amt">MAD</td>
+        <td>Bundeswehr — Abschirmung, Extremismusabwehr</td>
+        <td class="zahl">1.604</td>
+        <td class="budget-cell">191 Mio. €</td>
+        <td>BMVg</td>
+      </tr>
+      <tr>
+        <td class="amt">16 × LfV</td>
+        <td>Inland — Landesebene (parallel zu BfV)</td>
+        <td class="zahl">~3.500*</td>
+        <td class="budget-cell">mind. 244 Mio. €</td>
+        <td>16 Innenministerien</td>
+      </tr>
+      <tr style="font-weight:bold; background: rgba(232,197,71,0.05);">
+        <td>GESAMT</td>
+        <td>—</td>
+        <td class="zahl">~16.150</td>
+        <td class="budget-cell">~2,0 Mrd. €</td>
+        <td>Kein Einheitsgremium</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:0.78rem; color: var(--text-dim); font-family: var(--mono);">* Schätzung auf Basis Länderberichte. NRW: 610 (höchste Zahl), Bremen: 72 (niedrigste). Quelle: Wikipedia/Statista auf Basis amtl. Verfassungsschutzberichte.</p>
+
+  <h2>II. Was diese Behörden dürfen</h2>
+
+  <p>Alle drei Bundesbehörden sind Nachrichtendienste ohne exekutive Befugnisse — sie dürfen nicht verhaften. Was sie dürfen, ist rechtlich weit gefasst.</p>
+
+  <div class="source-box">
+    <div class="src-label">Belegt — Wikipedia/BfV, Quellen: amtl. Berichte</div>
+    <p>BfV, BND und MAD führten 2022 zusammen 251 Maßnahmen zur Telekommunikationsüberwachung durch. Im ersten Halbjahr 2022 waren davon 14.480 Personen betroffen, im zweiten Halbjahr 8.888 Personen.</p>
+    <p>Das BfV nutzt zudem virtuelle Agenten mit verschiedenen Profilen in sozialen Netzwerken zur Informationsbeschaffung und Gruppeninfiltration.</p>
+  </div>
+
+  <h3>V-Leute: Das strukturelle Paradox <span class="tag tag-belegt">Belegt</span></h3>
+
+  <p>V-Leute (Vertrauenspersonen) sind Privatpersonen, die in extremistischen Strukturen eingesetzt werden, um Informationen zu liefern. Das 2015 reformierte Gesetz lässt der Behörde großen Ermessensspielraum darüber, welche Straftaten V-Leute dabei begehen dürfen.</p>
+
+  <div class="source-box">
+    <div class="src-label">Belegt — Humanistische Union, Vorgänge Nr. 224 (2018)</div>
+    <p>„Die in den Dienstvorschriften entworfene V-Person, die zwar Wissen über relevante Vorgänge hat, an diesen jedoch nicht beteiligt ist, ist ein Paradoxon, das in der Wirklichkeit selten bis nie vorkommt."</p>
+    <p>V-Mann Thomas Richter alias „Corelli": Statt ihn in ein Aussteigerprogramm zu überführen, wurde er vom BfV über Jahre weitergeführt — gegen seinen erklärten Willen, das Milieu zu verlassen.</p>
+  </div>
+
+  <h2>III. Stasi-Vergleich</h2>
+
+  <div class="vergleich-block">
+    <h3>DDR 1989 vs. BRD 2024 — Größenordnung</h3>
+    <div class="vergleich-grid">
+      <div class="vergleich-col">
+        <h4>Stasi / MfS (DDR, 1989)</h4>
+        <ul>
+          <li>Hauptamtliche <span>91.015</span></li>
+          <li>Inoffizielle MA (IM) <span>189.000</span></li>
+          <li>Bevölkerung DDR <span>16,4 Mio.</span></li>
+          <li>1 Hauptamtl. / Einw. <span>1 : 180</span></li>
+          <li>Budget (Schätzung) <span>geheim</span></li>
+        </ul>
+      </div>
+      <div class="vergleich-col">
+        <h4>Bundesdienste + Länder (BRD, 2024)</h4>
+        <ul>
+          <li>Hauptamtliche gesamt <span>~16.150</span></li>
+          <li>V-Leute <span>nicht öffentlich</span></li>
+          <li>Bevölkerung BRD <span>84 Mio.</span></li>
+          <li>1 Hauptamtl. / Einw. <span>1 : 5.200</span></li>
+          <li>Jahresbudget <span>~2 Mrd. €</span></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="divider-amber">
+    <p style="font-size:0.88rem; color: var(--text-dim); margin-top: 1rem;">
+      <strong style="color:#fff;">Der entscheidende Unterschied:</strong> Die Stasi brauchte ca. 1 Spitzel auf 89 Einwohner, um die DDR-Gesellschaft flächendeckend zu durchdringen. 1989 wurden nach BStU-Angaben insgesamt 620.000 Personen zwischen 1950 und 1989 als IM registriert. — Der heutige Apparat ist kleiner, operiert aber mit technischen Mitteln (TKÜ, Metadaten, Social-Media-Infiltration), die eine Person auf eine Weise überwachbar machen, die für die Stasi strukturell unmöglich war.
+    </p>
+  </div>
+
+  <div class="source-box">
+    <div class="src-label">Belegt — MfS-Wikipedia / BStU / Tagesspiegel</div>
+    <p>„Gemessen an der Bevölkerungszahl war das MfS der größte geheimpolizeiliche Sicherheitsapparat in der Geschichte der Menschheit. Zum Vergleich: In der Sowjetunion kam 1990 ein KGB-Mitarbeiter auf 595 Einwohner."</p>
+  </div>
+
+  <h2>IV. Skandalchronik — ausgewählte Fälle</h2>
+
+  <p>Seit Gründung des BfV 1950 verging kein Jahrzehnt ohne dokumentierten Skandal. Die folgende Auswahl beschränkt sich auf parlamentarisch aufgearbeitete oder gerichtlich festgestellte Fälle.</p>
+
+  <div class="chronik-item">
+    <div class="chronik-year">1950–75</div>
+    <div class="chronik-text"><strong>NS-Personal in der Gründungsphase.</strong> Goschler/Wala (Rowohlt 2015, mit exklusivem Archivzugang): Jeder dritte frühe BfV-Angehörige war zuvor NSDAP-Mitglied. NS-belastete Mitarbeiter wurden nicht entlassen — intern galten sie als „das beste Pferd im Stall".</div>
+  </div>
+  <div class="chronik-item">
+    <div class="chronik-year">1954</div>
+    <div class="chronik-text"><strong>Otto John — erster BfV-Präsident taucht in der DDR auf.</strong> Behauptete Entführung, Verurteilung nach Rückkehr wegen Landesverrat (4 Jahre Haft). Ungeklärt bis heute.</div>
+  </div>
+  <div class="chronik-item">
+    <div class="chronik-year">1972</div>
+    <div class="chronik-text"><strong>Präsident Schrübbers tritt zurück</strong> nachdem seine NS-Justiz-Tätigkeit bekannt wird. Weitere Inhaber: Nollau (NSDAP-Mitglied, zurückgetreten nach Guillaume-Affäre 1974).</div>
+  </div>
+  <div class="chronik-item">
+    <div class="chronik-year">1974</div>
+    <div class="chronik-text"><strong>MAD — illegaler Lauschangriff</strong> in der Privatwohnung der Sekretärin von Verteidigungsminister Georg Leber. Dokumentiert; kein strafrechtliches Verfahren gegen Behörde.</div>
+  </div>
+  <div class="chronik-item">
+    <div class="chronik-year">1981–85</div>
+    <div class="chronik-text"><strong>Kuron &amp; Tiedge — Doppelagenten im BfV.</strong> Klaus Kuron (Abwehr-Spezialist) lieferte ab 1981 gegen Geld Informationen an die Stasi. Sein Vorgesetzter Hansjoachim Tiedge — Leiter des Referats „Nachrichtendienste der DDR" — lief 1985 persönlich in die DDR über. Horst Garau, enttarnter Agent, starb in Untersuchungshaft.</div>
+  </div>
+  <div class="chronik-item">
+    <div class="chronik-year">2001–03</div>
+    <div class="chronik-text"><strong>NPD-Verbotsverfahren scheitert</strong> weil V-Leute des Verfassungsschutzes in der Führungsebene der NPD tätig waren und unklar war, welche Aussagen vom Staat stammten.</div>
+  </div>
+  <div class="chronik-item">
+    <div class="chronik-year">2011–14</div>
+    <div class="chronik-text"><strong>NSU-Komplex.</strong> Zwischen 2000 und 2007 neun Morde, Bombenanschläge, Raubüberfälle. V-Mann-Netz im Umfeld nachgewiesen. Akten in Thüringen, Sachsen, Sachsen-Anhalt und Berlin vernichtet oder verschwunden. Vier Amtsleiter traten zurück.</div>
+  </div>
+  <div class="chronik-item">
+    <div class="chronik-year">2018</div>
+    <div class="chronik-text"><strong>Maaßen:</strong> Bezweifelt öffentlich „Hetzjagden" in Chemnitz, trifft sich mit AfD-Vertretern. Rücktritt. Wird heute selbst vom BfV als Rechtsextremist geführt.</div>
+  </div>
+  <div class="chronik-item">
+    <div class="chronik-year">2024</div>
+    <div class="chronik-text"><strong>Haldenwang / Meinungsfreiheit.</strong> In einem FAZ-Gastbeitrag erklärt der amtierende BfV-Präsident: Meinungsäußerungen könnten „auch unterhalb der strafrechtlichen Grenzen und unbeschadet ihrer Legalität verfassungsschutzrechtlich von Belang sein." Prof. Boehme-Neßler (Uni Oldenburg): „Eine alarmierende Grenzüberschreitung." Haldenwang kandidierte anschließend für die CDU.</div>
+  </div>
+  <div class="chronik-item">
+    <div class="chronik-year">2025</div>
+    <div class="chronik-text"><strong>AfD-Einstufung.</strong> Das BfV stuft die AfD als „gesichert rechtsextremistisch" ein — in den letzten Amtstagen Faesers, Wochen vor Regierungswechsel. Intern im BMI nur noch „Faeser-Gutachten" genannt. Das Verwaltungsgericht Köln untersagt die Einstufung vorläufig (Februar 2026).</div>
+  </div>
+
+  <h2>V. Strukturelle Kritik — dokumentierte Positionen</h2>
+
+  <div class="source-box">
+    <div class="src-label">Belegt — Brodkorb, Mathias: „Gesinnungspolizei im Rechtsstaat?" (zu Klampen, 2024, 3. Auflage)</div>
+    <p>Ehemaliger SPD-Finanzminister Mecklenburg-Vorpommerns, 500+ Quellenbelege auf 216 Seiten. Fazit: „In keiner anderen westlichen Demokratie existiert eine solche Behörde zur Prüfung der politischen Gesinnung der Bürger." Die Behörde sei nicht reformierbar und gehöre abgeschafft.</p>
+  </div>
+
+  <div class="source-box">
+    <div class="src-label">Belegt — Humanistische Union, Vorgänge Nr. 224 (2018)</div>
+    <p>„Geschichte und Praxis des Inlandsgeheimdienstes zeigen, dass Affären und Skandale nicht die Ausnahmen von der Regel sind, sondern dass Struktur und modus operandi des Verfassungsschutzes darauf angelegt sind."</p>
+  </div>
+
+  <div class="source-box">
+    <div class="src-label">Belegt — Goschler/Wala: „Keine neue Gestapo" (Rowohlt, 2015)</div>
+    <p>Erstes auf Archivzugang basierendes Standardwerk zur BfV-Frühgeschichte 1950–1975. „Ebenso wie sich wandelte, was Politik und Verfassungsschutz als Bedrohung sahen, wurde die Behörde selbst in der Gesellschaft zunehmend als Bedrohung gesehen."</p>
+  </div>
+
+  <div class="source-box">
+    <div class="src-label">Belegt — Steinke, Ronen: „Verfassungsschutz — Wie der Geheimdienst Politik macht" (Berlin Verlag, 2023)</div>
+    <p>Immanente und radikale Kritik — beide Perspektiven werden vertreten; Plädoyer für Abschaffung des Inlandsgeheimdienstes in seiner heutigen Form.</p>
+  </div>
+
+  <h2>VI. Offene Fragen</h2>
+
+  <p>Folgende Punkte sind dokumentiert, aber nicht abschließend beantwortet:</p>
+
+  <div class="chronik-item">
+    <div class="chronik-year" style="color: var(--amber);">Offen</div>
+    <div class="chronik-text"><span class="tag tag-offen">Nicht belegt</span> Gesamtzahl der aktuell geführten V-Leute — nicht öffentlich. Weder BfV noch Landesämter veröffentlichen diese Zahl.</div>
+  </div>
+  <div class="chronik-item">
+    <div class="chronik-year" style="color: var(--amber);">Offen</div>
+    <div class="chronik-text"><span class="tag tag-offen">Nicht belegt</span> Vollständige Aufklärung des NSU-Komplexes. Parlamentarische Untersuchungsausschüsse schließen weitere Verwicklungen nicht aus.</div>
+  </div>
+  <div class="chronik-item">
+    <div class="chronik-year" style="color: var(--amber);">Offen</div>
+    <div class="chronik-text"><span class="tag tag-offen">Nicht belegt</span> Ob die Kategorie „Delegitimierung des Staates" (BfV-Eigenkategorie, eingeführt 2021) mit dem Grundgesetz vereinbar ist. Verfassungsrechtlich umstritten.</div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="closing-question">
+    Welche Demokratie braucht 19 Behörden mit 16.000 Mitarbeitern und 2 Milliarden Euro Jahresbudget, um ihre eigenen Bürger zu beobachten — und wer kontrolliert die Kontrolleure?
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  dunkelfeld.report &mdash; Hidden in Plain Sight &mdash; Alle Angaben quellenbasiert &mdash;
+  <a href="impressum.html">Impressum</a> &middot; <a href="datenschutz.html">Datenschutz</a>
+</footer>
+
+</body>
+</html>

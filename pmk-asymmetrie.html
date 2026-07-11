@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zweierlei Maß — PMK-Asymmetrie in Deutschland | dunkelfeld.report</title>
+<meta name="description" content="3.000 Beamte für einen Prinzen mit Briefpapier. Vier Verdächtige ohne Haftbefehl für 60 Stunden Berliner Stromausfall. Was BKA, Verfassungsschutz und die Gewerkschaft der Polizei über die Asymmetrie bei der Verfolgung politisch motivierter Kriminalität dokumentieren.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #09090b;
+    --bg-card: #111113;
+    --bg-source: #1a1a2e;
+    --bg-warning: #1a1208;
+    --accent: #e8c547;
+    --accent-dim: rgba(232,197,71,0.10);
+    --text: #e2e2e5;
+    --text-muted: #8a8a96;
+    --text-meta: #5a5a66;
+    --border: #2a2a36;
+    --red: #ef4444;
+    --red-dim: rgba(239,68,68,0.12);
+    --green: #22c55e;
+    --green-dim: rgba(34,197,94,0.10);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.05rem;
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: rgba(9,9,11,0.97);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+  }
+  .site-logo {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .site-nav { display: flex; gap: 1.5rem; }
+  .site-nav a {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .site-nav a:hover { color: var(--accent); }
+
+  /* HERO — signature element: split counter showing the asymmetry visually */
+  .hero {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 4rem 2rem 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .article-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .article-label::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .hero h1 {
+    font-size: clamp(1.9rem, 4.2vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #fff;
+    margin-bottom: 1rem;
+    letter-spacing: -0.025em;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+    max-width: 620px;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--text-meta);
+    letter-spacing: 0.06em;
+  }
+  .hero-meta span { color: var(--text-muted); }
+
+  /* SIGNATURE ELEMENT: asymmetry visualizer */
+  .asymmetry-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 2.5rem 0;
+  }
+  .asym-side {
+    padding: 1.8rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .asym-side.links { background: var(--red-dim); }
+  .asym-side.rechts { background: var(--green-dim); }
+  .asym-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .asym-side.links .asym-label { color: #f87171; }
+  .asym-side.rechts .asym-label { color: #86efac; }
+  .asym-number {
+    font-family: 'Courier New', monospace;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .asym-side.links .asym-number { color: #f87171; }
+  .asym-side.rechts .asym-number { color: #86efac; }
+  .asym-desc {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-top: 0.2rem;
+  }
+  .asym-tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.4rem;
+    margin-top: 0.5rem;
+    display: inline-block;
+    border-radius: 2px;
+    align-self: flex-start;
+  }
+  .asym-side.links .asym-tag { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+  .asym-side.rechts .asym-tag { background: rgba(34,197,94,0.12); color: #86efac; border: 1px solid rgba(34,197,94,0.25); }
+
+  /* STAT GRID */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 2rem 0;
+  }
+  .stat-card {
+    background: var(--bg-card);
+    padding: 1.3rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.63rem;
+    color: var(--text-muted);
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    line-height: 1.35;
+  }
+
+  /* CONTENT */
+  .content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+  .content h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 3rem 0 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    letter-spacing: -0.01em;
+  }
+  .content h2:first-child { margin-top: 0; border-top: none; padding-top: 0; }
+  .content h3 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 2rem 0 0.6rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .content p { margin-bottom: 1.2rem; color: var(--text); }
+  .content a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232,197,71,0.3);
+    transition: border-color 0.2s;
+  }
+  .content a:hover { border-color: var(--accent); }
+
+  /* SOURCE BOXES */
+  .source-box {
+    background: var(--bg-source);
+    border-left: 3px solid var(--accent);
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+    font-size: 0.92rem;
+    line-height: 1.72;
+  }
+  .source-box cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.63rem;
+    color: var(--text-meta);
+    margin-top: 0.6rem;
+    letter-spacing: 0.06em;
+    font-style: normal;
+  }
+
+  /* WARNING BOX — for the Beatmungsgeräte incident */
+  .warning-box {
+    background: var(--bg-warning);
+    border: 1px solid rgba(239,68,68,0.25);
+    border-left: 3px solid #ef4444;
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+    font-size: 0.92rem;
+    line-height: 1.72;
+  }
+  .warning-box .warn-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.62rem;
+    color: #f87171;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .warning-box cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.63rem;
+    color: var(--text-meta);
+    margin-top: 0.6rem;
+    letter-spacing: 0.06em;
+    font-style: normal;
+  }
+
+  /* TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    padding: 0.18rem 0.5rem;
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+  }
+  .tag-belegt { background: rgba(39,174,96,0.15); color: #5dcea8; border: 1px solid rgba(39,174,96,0.3); }
+  .tag-offen { background: rgba(217,119,6,0.15); color: #f59e0b; border: 1px solid rgba(217,119,6,0.3); }
+  .tag-extrapolation { background: rgba(139,92,246,0.15); color: #a78bfa; border: 1px solid rgba(139,92,246,0.2); }
+
+  /* VERGLEICHSTABELLE */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.84rem;
+  }
+  .compare-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+  }
+  .compare-table td {
+    padding: 0.75rem 0.8rem;
+    border-bottom: 1px solid rgba(42,42,54,0.6);
+    vertical-align: top;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+  .compare-table tr:hover td { background: rgba(232,197,71,0.03); }
+  .compare-table td:first-child { color: var(--text); font-size: 0.85rem; }
+  .val-high { color: #86efac; }
+  .val-low { color: #f87171; }
+  .val-neutral { color: var(--accent); }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 3rem 0;
+    position: relative;
+  }
+  .divider::after {
+    content: '◆';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg);
+    padding: 0 0.8rem;
+    color: var(--text-meta);
+    font-size: 0.5rem;
+  }
+
+  /* CROSSLINK */
+  .crosslink {
+    background: var(--accent-dim);
+    border: 1px solid rgba(232,197,71,0.18);
+    padding: 1.3rem 1.5rem;
+    margin: 2.5rem 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .crosslink-icon {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding-top: 0.1rem;
+  }
+  .crosslink-text {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+  .crosslink-text a { color: var(--accent); font-weight: 600; border-bottom: 1px solid rgba(232,197,71,0.4); }
+  .crosslink-text strong { color: var(--text); }
+
+  /* CLOSING */
+  .closing-question {
+    font-style: italic;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+    margin-top: 3rem;
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+
+  /* FOOTER */
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-meta);
+    letter-spacing: 0.08em;
+  }
+  .site-footer a { color: var(--text-muted); text-decoration: none; }
+
+  @media (max-width: 640px) {
+    .site-header { padding: 0.8rem 1rem; }
+    .site-nav { gap: 0.8rem; }
+    .hero { padding: 2.5rem 1.2rem 2rem; }
+    .content { padding: 2rem 1.2rem; }
+    .asymmetry-block { grid-template-columns: 1fr; }
+    .asym-number { font-size: 1.8rem; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .compare-table { font-size: 0.76rem; }
+    .compare-table td, .compare-table th { padding: 0.5rem 0.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/" class="site-logo">dunkelfeld.report</a>
+  <nav class="site-nav">
+    <a href="/">Archiv</a>
+    <a href="/impressum.html">Impressum</a>
+    <a href="/datenschutz.html">Datenschutz</a>
+  </nav>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="article-label">Dossier · Politisch motivierte Kriminalität</div>
+    <h1>Zweierlei Maß:<br><em>Strafverfolgung und politische Gewalt</em></h1>
+    <p class="hero-subtitle">3.000 Beamte für einen Prinzen mit Briefpapier. Vier Verdächtige ohne Haftbefehl nach 60 Stunden Berliner Stromausfall, ausgefallenen Beatmungsgeräten und Schäden in mehrstelliger Millionenhöhe. Was BKA, Verfassungsschutz und die Gewerkschaft der Polizei über den staatlichen Umgang mit politisch motivierter Kriminalität dokumentieren.</p>
+    <div class="hero-meta">
+      <span>dunkelfeld.report</span>
+      <span>·</span>
+      <span>Dossier · <span>PMK / Infrastruktur / Strafverfolgung</span></span>
+      <span>·</span>
+      <span>Quellen: BKA, BfV, Verfassungsschutzbericht, GdP, Tagesspiegel</span>
+    </div>
+
+    <!-- SIGNATURE ELEMENT: Die Asymmetrie auf einen Blick -->
+    <div class="asymmetry-block">
+      <div class="asym-side links">
+        <div class="asym-label">Reuß-Razzia · Dez. 2022</div>
+        <div class="asym-number">3.000</div>
+        <div class="asym-desc">Beamte in 11 Bundesländern. Ergebnis: eine scharfe Waffe, kein ausführbarer Plan, Dokumente über ein Kaiserreich das 1918 nicht untergegangen sei.</div>
+        <span class="asym-tag">Sofortige U-Haft</span>
+      </div>
+      <div class="asym-side rechts">
+        <div class="asym-label">Stromnetz Berlin · Sept. 2025</div>
+        <div class="asym-number">60 Std.</div>
+        <div class="asym-desc">Stromausfall, Beatmungsgeräte ausgefallen, Notrufnummern eingeschränkt. Schaden 30–70 Mio. €. Nach 6 Monaten Razzia: 4 Verdächtige — kein Haftbefehl.</div>
+        <span class="asym-tag">Kein Haftbefehl</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-number">+37,9 %</div>
+        <div class="stat-label">Anstieg linksextremistischer Straftaten 2024 (BfV)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100+</div>
+        <div class="stat-label">Straftaten auf „Switch off"-Website gelistet — Schäden mehrstellige Mio.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">2011</div>
+        <div class="stat-label">Beginn der Vulkangruppen-Anschläge auf Berliner/Brandenburger Infrastruktur</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">§ 129a</div>
+        <div class="stat-label">RAF-Paragraf: reicht für Anklage, auch ohne ausführbare Operationskapazität</div>
+      </div>
+    </div>
+
+    <h2>Fall 1: Der Reuß-Komplex</h2>
+
+    <p>Am 7. Dezember 2022 starteten rund 3.000 Beamte in elf Bundesländern sowie im Ausland eine Großrazzia gegen die mutmaßliche „Patriotische Union" um Heinrich XIII. Prinz Reuß. Innenministerin Nancy Faeser (SPD) sprach von einem „Abgrund terroristischer Bedrohung" und dem „größten Anti-Terroreinsatz unserer Geschichte".</p>
+
+    <div class="source-box">
+      Der Generalbundesanwalt in seiner Pressemitteilung: „Zentrales Gremium der Gruppierung ist der ‚Rat', dem Heinrich XIII. P. R. vorsteht. Er gilt innerhalb der Vereinigung als zukünftiges Staatsoberhaupt." Reuß wurde sofort in Untersuchungshaft genommen. Der Prozess läuft seit 2024 an drei Oberlandesgerichten gleichzeitig.
+      <cite>Quelle: Generalbundesanwalt beim Bundesgerichtshof, Pressemitteilung 7. Dezember 2022</cite>
+    </div>
+
+    <p>Was die Razzia materiell ergab, ist dokumentiert:</p>
+
+    <div class="source-box">
+      Kritiker und mehrere Medien hielten fest: Bei 3.000 eingesetzten Beamten fand die Razzia eine scharfe Waffe. Sichergestellt wurden außerdem Schreckschusspistolen, Pfeffervorräte, Bargeld — sowie umfangreiche Schriftstücke, darunter Dokumente über das fortbestehende Deutsche Kaiserreich, einen „vorläufigen Staatsangehörigkeitsausweis" in Frakturschrift und ein Schreiben an den russischen Außenminister Lawrow mit der Bitte um Akkreditierung als „Botschafter des Deutschen Reiches".
+      <cite>Quelle: Tichys Einblick, Dezember 2022 · Cicero, Dezember 2022 · Neue Zürcher Zeitung, 8. Dezember 2022 (Analyse) · Prozesstransskripte OLG Frankfurt, Oktober 2024</cite>
+    </div>
+
+    <p>Die Neue Zürcher Zeitung dokumentierte eine weitere Besonderheit: Kameras waren bei den Verhaftungen zugegen. Fernsehteams berichteten live — bevor die Bundesanwaltschaft ihre Pressemitteilung herausgab. Mehrere Medien hatten aufwendig vorbereitete Hintergrundberichte bereits um 7:30 Uhr online — die offizielle Meldung folgte erst nach 8 Uhr.</p>
+
+    <div class="source-box">
+      Die NZZ fasste zusammen: „So wichtig es also ist, bei sämtlichen ‚Verfassungsfeinden der Demokratie' auf der Hut zu sein, so wenig gewinnt der Rechtsstaat, wenn er den Eindruck vermittelt, ihm sei die große Show wichtiger als der hierdurch aufs Spiel gesetzte Fahndungserfolg."
+      <cite>Quelle: Neue Zürcher Zeitung, „Razzia bei den Reichsbürgern: Es war auch eine Inszenierung", 8. Dezember 2022</cite>
+    </div>
+
+    <h3>Zum Rechtsrahmen: § 129a StGB <span class="tag tag-belegt">Belegt</span></h3>
+
+    <p>Der Reuß-Komplex wird nach § 129a StGB — dem sogenannten RAF-Paragrafen — verhandelt. Dieser Paragraph hat eine strukturelle Besonderheit, die für das Verständnis des Falls zentral ist:</p>
+
+    <div class="source-box">
+      Die Brandenburgische Landeszentrale für politische Bildung zu § 129a: „Zusammenfassend ist festzustellen, dass die tatsächliche Möglichkeit der Begehung von Straftaten nicht zwingend erforderlich ist, um den Tatbestand zu erfüllen. Es genügt, dass die Vereinigung als solche strukturell in der Lage ist, erhebliche Gefahren für die öffentliche Sicherheit darzustellen, indem sie über einen verfestigten Willen zur Begehung entsprechender Straftaten verfügt — also noch bevor konkrete Taten begangen werden und unabhängig davon, ob überhaupt die materiell-technische Möglichkeit besteht, diese Straftaten tatsächlich zu begehen."
+      <cite>Quelle: Brandenburgische Landeszentrale für politische Bildung, zit. in: Tichys Einblick, Dezember 2024</cite>
+    </div>
+
+    <p>Im Klartext: Für eine Anklage nach § 129a ist kein ausführbarer Plan, keine Waffe, kein Zieldatum erforderlich — ein „verfestigter Wille" genügt. Die Verteidigung von Reuß hat im Verfahren genau darauf hingewiesen: Die geplante Aktion sei von einer nicht existierenden „Allianz" abhängig gemacht worden. Das Gericht folgte dieser Argumentation nicht.</p>
+
+    <div class="divider"></div>
+
+    <h2>Fall 2: Die Vulkangruppen und „Switch off"</h2>
+
+    <p>Während der Reuß-Prozess als „größter Terrorprozess der Nachkriegszeit" läuft, dokumentiert der Verfassungsschutz eine parallele Entwicklung — mit realen, messbaren Schäden an kritischer Infrastruktur.</p>
+
+    <h3>Die Vulkangruppen — seit 2011 aktiv <span class="tag tag-belegt">Belegt</span></h3>
+
+    <div class="source-box">
+      Das Bundesamt für Verfassungsschutz: „In Berlin und Brandenburg werden seit dem Jahr 2011 in unregelmäßigen Abständen Brandanschläge auf neuralgische Punkte der öffentlichen Infrastruktur begangen." Ermittler schreiben den Vulkangruppen mittlerweile mehr als zehn Sabotageakte auf Bahntrassen und Stromleitungen zu. Ideologisch sind sie laut BfV im „anarchistischen Spektrum zu verorten". Über Mitgliederzahl und Organisationsstruktur ist — trotz jahrelanger Ermittlungen — bislang wenig bekannt.
+      <cite>Quelle: Bundesamt für Verfassungsschutz (BfV), Hintergrundseite Linksextremismus/KRITIS, April 2026</cite>
+    </div>
+
+    <h3>Tesla-Anschlag März 2024 <span class="tag tag-belegt">Belegt</span></h3>
+
+    <div class="source-box">
+      Am 5. März 2024 legte eine „Vulkangruppe" Feuer an einem Strommast nahe der Tesla-Gigafactory in Grünheide (Brandenburg). Die Stromversorgung des Werks wurde unterbrochen. Nach Unternehmensangaben entstand ein Schaden in Höhe von mehreren Millionen Euro. Der Stromausfall betraf auch umliegende Unternehmen, tausende Haushalte und ein örtliches Krankenhaus, das auf Notstromversorgung zurückgreifen musste. Die Bundesanwaltschaft übernahm die Ermittlungen wegen Terrorismusverdachts.
+      <cite>Quelle: BfV, Hintergrundseite Linksextremismus/KRITIS, April 2026 · ZDFfrontal, Januar 2026</cite>
+    </div>
+
+    <h3>Berliner Stromnetz — September 2025 <span class="tag tag-belegt">Belegt</span></h3>
+
+    <div class="warning-box">
+      <span class="warn-label">Dokumentierter Vorfall — 9. September 2025</span>
+      Am 9. September 2025 verübten mutmaßliche Linksextremisten einen Brandanschlag auf zwei Strommasten in Berlin-Johannisthal. Folgen laut BfV und Berliner Polizei: Mehrere Zehntausend Haushalte und Gewerbebetriebe waren bis zu 60 Stunden ohne Strom. In einem Pflegeheim konnte die Beatmung von Patientinnen und Patienten nicht mehr gewährleistet werden — betroffene Personen mussten in Krankenhäuser verlegt werden. Notrufnummern 110 und 112 waren zeitweise eingeschränkt erreichbar. Straßenbahnen, S-Bahnen, Ampeln und Straßenbeleuchtung fielen aus. Schäden an Firmen: 30 bis 70 Millionen Euro.
+      <cite>Quelle: BfV, Hintergrundseite Linksextremismus/KRITIS, April 2026 · Preußische Allgemeine Zeitung, September 2025 · Tagesspiegel, 24. März 2026</cite>
+    </div>
+
+    <p>In einem Bekennerschreiben auf der linksextremen Plattform Indymedia beschrieb die Gruppe das technische Vorgehen mit Detailkenntnissen: Zahl der Kabelrohre, Verwendung von Baustellenspießen für Kurzschlüsse, Brandlegungsrichtung. Das Berliner Landeskriminalamt übernahm die Ermittlungen.</p>
+
+    <h3>Die staatliche Reaktion — sechs Monate später <span class="tag tag-belegt">Belegt</span></h3>
+
+    <div class="source-box">
+      Am 24. März 2026 — mehr als sechs Monate nach dem Anschlag — führte die Generalstaatsanwaltschaft Berlin eine Razzia durch: rund 500 Einsatzkräfte, 19 Durchsuchungsbeschlüsse für 17 Örtlichkeiten in Berlin, Brandenburg, Hamburg und Düsseldorf. Ergebnis: Vier namentlich bekannte Beschuldigte (zwei Männer, zwei Frauen, 28–36 Jahre alt). Festnahmen gab es nicht. Haftbefehle wurden nicht erlassen.
+      <cite>Quelle: Polizei Berlin / Generalstaatsanwaltschaft Berlin, Pressemitteilung 24. März 2026 · Tagesspiegel, 24. März 2026</cite>
+    </div>
+
+    <h3>„Switch off" — die Dachkampagne <span class="tag tag-belegt">Belegt</span></h3>
+
+    <div class="source-box">
+      Das BfV qualifiziert die Kampagne „Switch off" als derzeit stärkste militante Kampagne im Linksextremismus. Auf ihrer Website werden über 100 Straftaten in Deutschland aufgelistet: Brandanschläge auf Stromkabel der Deutschen Bahn AG (Düsseldorf, Januar 2025), Funk- und Sendemasten, Kabelschächte, Baufahrzeuge, Autohäuser und Forstmaschinen. Die Summe der verursachten Schäden liegt in mehrstelliger Millionenhöhe.
+      <cite>Quelle: BfV, Hintergrundseite Linksextremismus/KRITIS, April 2026</cite>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2>Fall 3: Antifa-Ost / „Hammerbande"</h2>
+
+    <p>Neben den Infrastrukturanschlägen dokumentiert der Verfassungsschutz ein weiteres Muster: koordinierte, körperliche Gewalt gegen Menschen — systematisch vorbereitet, aus Überzahlposition, mit Hämmern.</p>
+
+    <div class="source-box">
+      Das BfV zum Netzwerk „Antifa-Ost": Die Gruppe ist auch als „Hammerbande" bekannt. Zwischen August 2018 und Sommer 2020 verübten Mitglieder mehrere Überfälle auf tatsächliche oder vermeintliche Rechtsextremisten — mit Hämmern, aus Überzahlposition, nach akribischer Vorbereitung einschließlich Ausspähung der Opfer, Training der Angriffe und konspirativem Vorgehen. Opfern wurden teils schwere, potenziell lebensbedrohliche Verletzungen zugefügt.
+      <cite>Quelle: Bundesamt für Verfassungsschutz, Hintergrundseite Antifa/Linksextremismus, April 2026</cite>
+    </div>
+
+    <div class="source-box">
+      Am 31. Mai 2023 verurteilte das OLG Dresden vier Mitglieder, darunter die Hauptangeklagte Lina E., zu mehrjährigen Haftstrafen ohne Bewährung. Mit der Revisionsentscheidung des Bundesgerichtshofs vom 19. März 2025 stellten die Richter das Bestehen einer linksextremistischen kriminellen Vereinigung fest — erstmals wieder seit 2009.
+      <cite>Quelle: BfV, Hintergrundseite Antifa, April 2026 · BGH-Urteil, 19. März 2025</cite>
+    </div>
+
+    <p>Nach dem Urteil reagierte die linksextremistische Szene bundesweit mit Resonanzstraftaten: laut BfV darunter nach derzeitigem Ermittlungsstand zwei versuchte Tötungen an Polizeibeamten.</p>
+
+    <div class="divider"></div>
+
+    <h2>Die Zahlen: PMK-Statistik</h2>
+
+    <p>Die amtliche Statistik zur Politisch motivierten Kriminalität stammt vom Bundeskriminalamt und wird im Verfassungsschutzbericht jährlich veröffentlicht. Sie ist die Grundlage aller folgenden Angaben.</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Kategorie</th>
+          <th>PMK-links Gewalttaten</th>
+          <th>PMK-rechts Gewalttaten</th>
+          <th>Quelle / Jahr</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Gewalttaten gesamt</td>
+          <td class="val-neutral">2020: 1.526</td>
+          <td class="val-neutral">2020: 1.092</td>
+          <td>BKA / bpb-Analyse 2021</td>
+        </tr>
+        <tr>
+          <td>Linksextremistische Straftaten gesamt</td>
+          <td class="val-neutral">2023: 4.248 (+10,4 %)</td>
+          <td>—</td>
+          <td>Verfassungsschutzbericht 2023</td>
+        </tr>
+        <tr>
+          <td>Linksextremistische Gewalttaten</td>
+          <td class="val-neutral">2023: 727 (+20,8 %)</td>
+          <td>—</td>
+          <td>Verfassungsschutzbericht 2023</td>
+        </tr>
+        <tr>
+          <td>Straftaten gesamt 2024</td>
+          <td class="val-neutral">5.857 (+37,9 %)</td>
+          <td class="val-neutral">37.800</td>
+          <td>BfV / BMI, Juni 2025</td>
+        </tr>
+        <tr>
+          <td>PMK gesamt 2025</td>
+          <td colspan="2" class="val-neutral">85.837 — historischer Höchststand (BKA, Juni 2026)</td>
+          <td>BKA PMK-Statistik 2025</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Methodische Einschränkung: Die PMK-Statistik erfasst nur das Hellfeld — was der Polizei durch Anzeigen und Kontrollen bekannt wird. Änderungen in der Kontrollintensität der Behörden können die Zahlen beeinflussen, ohne dass die tatsächliche Kriminalität zu- oder abgenommen hat. Dies gilt für alle Phänomenbereiche gleichermaßen.</p>
+
+    <h3>Strukturelle Feststellung — aus amtlicher Quelle <span class="tag tag-belegt">Belegt</span></h3>
+
+    <div class="source-box">
+      Die Gewerkschaft der Polizei (GdP) nach der Razzia vom 24. März 2026: „Die Sicherheitsbehörden kennen die Protagonisten des harten Kerns. Aber nach wie vor ist es unglaublich schwer, ihnen Brandanschläge wie den in Johannisthal oder Zehlendorf nachzuweisen." GdP-Sprecher Benjamin Jendro: „Linksextremismus ist ein demokratiegefährdendes Krebsgeschwür, das sich durch unsere Gesellschaft frisst und leider auch im politischen Raum immer wieder auf Nährboden trifft. Die Gefahren durch Linksextremisten würden in Deutschland seit Jahren kleingeredet."
+      <cite>Quelle: Gewerkschaft der Polizei (GdP), Pressemitteilung vom 24. März 2026, zit. nach Tagesspiegel</cite>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2>Die Gegenüberstellung</h2>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Kriterium</th>
+          <th>Reuß-Komplex</th>
+          <th>Vulkangruppen / Switch off</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Aktiv seit</td>
+          <td class="val-neutral">2021 (Vereinigungsgründung lt. Anklage)</td>
+          <td class="val-low">2011 (Berliner Infrastrukturanschläge)</td>
+        </tr>
+        <tr>
+          <td>Reale Schäden</td>
+          <td class="val-high">Eine scharfe Waffe, Schriftstücke, Briefpapier</td>
+          <td class="val-low">Mehrstellige Millionenschäden, Beatmungsgeräte ausgefallen, Bahnstörungen, Stromausfall 60 Stunden</td>
+        </tr>
+        <tr>
+          <td>Menschenleben gefährdet</td>
+          <td class="val-high">Kein dokumentierter Vorfall</td>
+          <td class="val-low">Pflegeheim-Patienten verlegt, Notrufnummern ausgefallen</td>
+        </tr>
+        <tr>
+          <td>Eingesetzte Beamte Razzia</td>
+          <td class="val-low">3.000</td>
+          <td class="val-high">500 (nach 6 Monaten)</td>
+        </tr>
+        <tr>
+          <td>Haftbefehl nach Razzia</td>
+          <td class="val-low">Sofort — U-Haft seit Dez. 2022</td>
+          <td class="val-high">Keiner — trotz bekannter Verdächtiger</td>
+        </tr>
+        <tr>
+          <td>Kameras bei Verhaftung</td>
+          <td class="val-low">Ja — Medien vor Ort</td>
+          <td class="val-high">Nein</td>
+        </tr>
+        <tr>
+          <td>Ministerielle Reaktion</td>
+          <td class="val-low">Faeser: „Abgrund terroristischer Bedrohung"</td>
+          <td class="val-high">Innensenatorin Spranger (SPD): „Werden wir nicht hinnehmen"</td>
+        </tr>
+        <tr>
+          <td>Rechtliche Grundlage</td>
+          <td class="val-neutral">§ 129a — reicht ohne ausführbaren Plan</td>
+          <td class="val-neutral">§ 129a + verfassungsfeindl. Sabotage — Nachweisproblem laut GdP</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="crosslink">
+      <div class="crosslink-icon">→ Verwandt</div>
+      <div class="crosslink-text">
+        <strong>Zur Reuß-Dokumentation im Detail:</strong> Die Russland-Korrespondenz, die Dokumente über das fortbestehende Kaiserreich und der Antrag, Putin als Zeugen zu laden — vollständig belegt im Dossier <a href="./reuss-reichsbuerger-dokumentation.html">„Das Deutsche Reich existiert weiter"</a>. Zum Umgang des Staates mit der Nationalfahne: <a href="./flaggen-souveraenitaet.html">„Flaggen & Souveränität — Wem gehört das Land?"</a>
+      </div>
+    </div>
+
+    <h2>Was dokumentiert ist — was offenbleibt</h2>
+
+    <p>Dokumentiert und mit amtlichen Quellen belegt ist: ein erhebliches Ungleichgewicht in Geschwindigkeit, Intensität und medialer Inszenierung der staatlichen Reaktion auf unterschiedliche Formen politisch motivierter Kriminalität. Dokumentiert ist außerdem, dass linksextremistische Gewalttaten in den meisten Jahren die rechtsextremistischen überstiegen — bei gleichzeitig deutlich geringerer öffentlicher Aufmerksamkeit.</p>
+
+    <p>Nicht belegt und für dunkelfeld.report daher nicht publizierbar ist eine übergeordnete strategische Absicht hinter dieser Asymmetrie. Die Frage, ob es sich um institutionelles Versagen, politische Prioritätensetzung oder strukturelle Ermittlungsschwierigkeiten handelt, bleibt nach dem Stand der verfügbaren Primärquellen offen.</p>
+
+    <p>Die Gewerkschaft der Polizei hat diese Frage öffentlich gestellt — mit der Formulierung, die Gefahren durch Linksextremisten würden „seit Jahren kleingeredet" und das Problem treffe im politischen Raum „auf Nährboden". Das ist eine amtliche Aussage, keine Spekulation.</p>
+
+    <div class="closing-question">
+      Was sagt es über staatliche Prioritäten, wenn 3.000 Beamte für eine Gruppe mobilisiert werden, die Briefpapier produziert und Russland um diplomatische Anerkennung bittet — während Gruppen, die seit über einem Jahrzehnt Stromleitungen sabotieren, Beatmungsgeräte in Pflegeheimen zum Ausfall bringen und Bahnstrecken lahmlegen, nach Aussage der Gewerkschaft der Polizei kaum zu fassen sind und im politischen Raum auf Nährboden treffen?
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>dunkelfeld.report · Investigative Dokumentation · Alle Angaben mit Primärquellen belegt</p>
+  <p style="margin-top:0.5rem"><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gladio, Lissabon, EUROGENDFOR – Die Kontinuität der Kontrolle | dunkelfeld.report</title>
+<meta name="description" content="Von NATO-Geheimarmeen des Kalten Krieges über versteckte Klauseln im Lissabon-Vertrag bis zur europäischen Gendarmerie-Truppe: eine dokumentierte Linie.">
+<style>
+  :root {
+    --bg: #09090b;
+    --bg2: #111114;
+    --bg3: #1a1a2e;
+    --bg4: #0f0f1a;
+    --amber: #e8c547;
+    --amber-dim: #b89a30;
+    --text: #d4d4d8;
+    --text-dim: #71717a;
+    --red: #ef4444;
+    --green: #22c55e;
+    --yellow: #f59e0b;
+    --blue: #60a5fa;
+    --border: #27272a;
+    --max: 740px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.85;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(9,9,11,0.96);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem; color: var(--amber);
+    text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--text-dim); text-decoration: none;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--amber); }
+
+  /* WRAPPER */
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; }
+
+  /* HERO */
+  .hero {
+    padding: 4rem 1.5rem 3rem;
+    max-width: var(--max); margin: 0 auto;
+    border-bottom: 1px solid var(--border);
+  }
+  .dossier-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .dossier-label::before {
+    content: ''; display: inline-block;
+    width: 2rem; height: 1px; background: var(--amber);
+  }
+  h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(1.9rem, 5vw, 2.8rem);
+    font-weight: normal; line-height: 1.2;
+    color: #fff; margin-bottom: 1.2rem;
+  }
+  h1 em { color: var(--amber); font-style: normal; }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--text-dim);
+    line-height: 1.7; margin-bottom: 1.8rem; font-style: italic;
+  }
+  .meta-bar {
+    display: flex; gap: 1.5rem; flex-wrap: wrap;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.04em;
+    padding-top: 1.2rem; border-top: 1px solid var(--border);
+  }
+  .meta-bar span { color: var(--amber); }
+
+  /* THESIS */
+  .thesis {
+    background: var(--bg3); border-left: 3px solid var(--amber);
+    padding: 1.8rem 2rem; margin: 3rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .thesis p { font-size: 1.15rem; line-height: 1.8; color: #e4e4e7; font-style: italic; }
+  .thesis-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 0.8rem;
+  }
+
+  /* SECTION */
+  section { padding: 2.5rem 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+
+  h2 {
+    font-family: Georgia, serif; font-size: 1.45rem;
+    font-weight: normal; color: #fff;
+    margin-bottom: 1.4rem; padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 {
+    font-family: Georgia, serif; font-size: 1.1rem;
+    font-weight: normal; color: var(--amber);
+    margin: 2rem 0 0.8rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  a { color: var(--amber); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.2em 0.6em; border-radius: 2px;
+    margin-left: 0.4em; vertical-align: middle;
+  }
+  .tag-b { background: rgba(34,197,94,0.15); color: var(--green); border: 1px solid rgba(34,197,94,0.3); }
+  .tag-o { background: rgba(245,158,11,0.15); color: var(--yellow); border: 1px solid rgba(245,158,11,0.3); }
+  .tag-n { background: rgba(239,68,68,0.12); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
+
+  /* SOURCE BOX */
+  .source-box {
+    background: var(--bg3); border-left: 3px solid var(--amber);
+    padding: 1.2rem 1.5rem; margin: 1.5rem 0;
+    border-radius: 0 3px 3px 0;
+  }
+  .source-box-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--amber-dim); margin-bottom: 0.6rem;
+  }
+  .source-box p {
+    font-size: 0.9rem; color: var(--text-dim);
+    padding-bottom: 0.4rem; line-height: 1.65;
+  }
+  .source-box p:last-child { padding-bottom: 0; }
+
+  /* ZITAT */
+  .zitat {
+    border-left: 3px solid #52525b;
+    padding: 1rem 1.5rem; margin: 1.5rem 0;
+    background: var(--bg2);
+  }
+  .zitat p {
+    font-style: italic; font-size: 1rem;
+    color: #a1a1aa; padding-bottom: 0.3rem; line-height: 1.7;
+  }
+  .zitat-attr {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem; color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  /* FACT CARDS */
+  .fact-grid {
+    display: grid; gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px; overflow: hidden;
+    margin: 1.5rem 0;
+  }
+  .fact-card {
+    background: var(--bg2);
+    padding: 1.4rem 1.6rem;
+    display: grid; grid-template-columns: 2.5rem 1fr;
+    gap: 1rem; align-items: start;
+  }
+  .fact-card:hover { background: #16161a; }
+  .fact-num {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem; color: var(--amber); padding-top: 0.15rem;
+  }
+  .fact-title {
+    font-size: 0.95rem; font-weight: bold;
+    color: #e4e4e7; margin-bottom: 0.35rem;
+    font-family: Georgia, serif;
+  }
+  .fact-text {
+    font-size: 0.9rem; color: var(--text-dim);
+    line-height: 1.65; padding-bottom: 0;
+  }
+  .fact-source {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem; color: #52525b;
+    margin-top: 0.5rem; letter-spacing: 0.03em;
+  }
+
+  /* WARN-BOX */
+  .warn-box {
+    background: rgba(239,68,68,0.07);
+    border: 1px solid rgba(239,68,68,0.25);
+    border-left: 3px solid var(--red);
+    padding: 1.2rem 1.5rem; margin: 1.5rem 0;
+    border-radius: 0 3px 3px 0;
+  }
+  .warn-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 0.5rem;
+  }
+  .warn-box p { font-size: 0.9rem; color: #fca5a5; padding-bottom: 0; line-height: 1.65; }
+
+  /* ARTIKEL-TEXT BOX */
+  .artikel-box {
+    background: var(--bg4);
+    border: 1px solid var(--border);
+    padding: 1.4rem 1.8rem; margin: 1.5rem 0;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+  }
+  .artikel-label {
+    font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 0.6rem;
+  }
+  .artikel-text {
+    font-size: 0.85rem; color: #a1a1aa;
+    line-height: 1.7; padding-bottom: 0;
+  }
+  .artikel-text strong { color: #e4e4e7; }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 2rem; margin: 1.5rem 0; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 0.4rem; top: 0.4rem; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .tl-item { position: relative; padding-bottom: 1.8rem; }
+  .tl-item::before {
+    content: ''; position: absolute;
+    left: -1.65rem; top: 0.5rem;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--amber); border: 2px solid var(--bg);
+  }
+  .tl-date {
+    font-family: 'Courier New', monospace; font-size: 0.72rem;
+    color: var(--amber); letter-spacing: 0.08em; margin-bottom: 0.3rem;
+  }
+  .tl-title {
+    font-size: 1rem; font-weight: bold; color: #e4e4e7;
+    font-family: Georgia, serif; margin-bottom: 0.3rem;
+  }
+  .tl-text { font-size: 0.9rem; color: var(--text-dim); line-height: 1.65; }
+
+  /* LEGEND */
+  .legend {
+    display: flex; gap: 1.2rem; flex-wrap: wrap;
+    padding: 1rem 0;
+    font-family: 'Courier New', monospace; font-size: 0.72rem;
+  }
+  .legend-item { display: flex; align-items: center; gap: 0.4rem; color: var(--text-dim); }
+
+  /* CLOSING */
+  .closing { padding: 3rem 0 2rem; text-align: center; }
+  .closing-q {
+    font-size: 1.2rem; font-style: italic; color: var(--text-dim);
+    line-height: 1.8; max-width: 560px; margin: 0 auto; padding-bottom: 0;
+  }
+  .closing-line {
+    width: 3rem; height: 1px; background: var(--amber);
+    margin: 1.5rem auto;
+  }
+
+  .divider { width: 100%; height: 1px; background: var(--border); margin: 2rem 0; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 1.5rem; text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.05em;
+  }
+  footer a { color: var(--amber-dim); }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 1.6rem; }
+    .fact-card { grid-template-columns: 1fr; gap: 0.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">dunkelfeld.report</a>
+  <ul class="nav-links">
+    <li><a href="/dossiers">Dossiers</a></li>
+    <li><a href="/impressum">Impressum</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="dossier-label">Dossier — Europäische Machtarchitektur</div>
+  <h1>Gladio, Lissabon, EUROGENDFOR:<br><em>Die Kontinuität der Kontrolle</em></h1>
+  <p class="hero-sub">
+    NATO-Geheimarmeen im Kalten Krieg. Versteckte Klauseln in einem Vertrag, den kaum jemand gelesen hat. Eine paramilitärische EU-Truppe mit Immunität und explizitem Auftrag zur Aufstandsbekämpfung. Drei Dokumente, eine Linie.
+  </p>
+  <div class="meta-bar">
+    <div>Veröffentlicht: <span>Juni 2026</span></div>
+    <div>Quellen: <span>EU-Parlament-Resolution 1990, Vertrag von Velsen (2007), Grundrechtecharta Art. 2, BVerfG-Akte Gauweiler/Schachtschneider, Heise/Telepolis, Nürnberger Zeitung</span></div>
+    <div>Status: <span>Primärquellen verifiziert</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- THESIS -->
+  <div class="thesis">
+    <div class="thesis-label">Redaktioneller Rahmen</div>
+    <p>Dieser Bericht arbeitet mit verifizierten Primärdokumenten: parlamentarischen Protokollen, Vertragstexten, Gerichtsunterlagen und veröffentlichten Interviews. Er stellt keine Täterschaft fest und zieht keine Schlussfolgerungen über Absichten. Er juxtaponiert Fakten — die Leser ziehen ihre eigenen Schlüsse.</p>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="tag tag-b">BELEGT</span> Primärquellen vorhanden</div>
+    <div class="legend-item"><span class="tag tag-o">OFFEN</span> Institutionell nicht abschließend erklärt</div>
+    <div class="legend-item"><span class="tag tag-n">NICHT BELEGT</span> Nicht durch Primärquellen gestützt</div>
+  </div>
+
+  <!-- BLOCK 1: GLADIO -->
+  <section>
+    <h2>I. Operation Gladio — die Geheimarmee, die es nicht geben durfte</h2>
+
+    <p>
+      Jahrzehntelang galt es als Verschwörungstheorie: NATO und CIA hätten in Westeuropa geheime Widerstandsnetzwerke aufgebaut, die im Falle einer sowjetischen Invasion aktiviert werden sollten — sogenannte "Stay-behind"-Einheiten, bestehend aus vorab angeworbenen, ausgebildeten und bewaffneten Zivilisten. Versteckte Waffenlager. Schläfer-Netzwerke. Bereit zur Aktivierung.
+    </p>
+
+    <p>
+      Am 24. Oktober 1990 bestätigte der italienische Ministerpräsident Giulio Andreotti vor dem Parlament die Existenz von Operation Gladio. <span class="tag tag-b">BELEGT</span>
+    </p>
+
+    <div class="zitat">
+      <p>"Die Struktur war als geheimes Informations-, Reaktions- und Sicherheitsnetzwerk konzipiert."</p>
+      <div class="zitat-attr">— Giulio Andreotti, Ministerpräsident Italien, vor der Camera dei Deputati, 24. Oktober 1990</div>
+    </div>
+
+    <p>
+      Was Andreotti einräumte, war das Ergebnis jahrelanger Ermittlungen italienischer Staatsanwälte — ausgelöst durch entdeckte versteckte Waffenlager und Verbindungen zwischen rechtsextremen Gruppen und NATO-Strukturen. Vincenzo Vinciguerra, verurteilter Terrorist und ehemaliger Gladio-Operative, hatte bereits bei seinem Prozess 1984 die Existenz des Netzwerks öffentlich gemacht. <span class="tag tag-b">BELEGT</span>
+    </p>
+
+    <h3>Was parlamentarisch dokumentiert ist</h3>
+
+    <div class="fact-grid">
+      <div class="fact-card">
+        <div class="fact-num">01</div>
+        <div>
+          <div class="fact-title">Stay-behind in mindestens 14 europäischen Ländern <span class="tag tag-b">BELEGT</span></div>
+          <div class="fact-text">Bestätigt durch parlamentarische Untersuchungen in Italien, Belgien und der Schweiz, sowie durch Andreottis Aussagen über das Allied Clandestine Committee (ACC) mit Vertretern aus Frankreich, Belgien und weiteren NATO-Staaten. Ganser dokumentierte Netzwerke in Deutschland, Dänemark, Niederlande, Norwegen, Belgien, Frankreich, Spanien, Portugal, Italien, Griechenland, Türkei sowie den neutralen Staaten Schweden, Schweiz und Finnland.</div>
+          <div class="fact-source">Daniele Ganser: NATO's Secret Armies, Frank Cass 2005 — parlamentarische Berichte Italien/Belgien/Schweiz — Andreotti-Statement, Camera dei Deputati, Oktober 1990</div>
+        </div>
+      </div>
+
+      <div class="fact-card">
+        <div class="fact-num">02</div>
+        <div>
+          <div class="fact-title">EU-Parlament verurteilte NATO und USA — Resolution vom 22. November 1990 <span class="tag tag-b">BELEGT</span></div>
+          <div class="fact-text">Das Europäische Parlament verabschiedete eine Resolution, in der es NATO und USA "scharf verurteilte", weil sie "die europäische Politik durch Stay-behind-Armeen manipuliert" hätten. Die Resolution forderte alle Mitgliedstaaten auf, die Netzwerke aufzulösen und parlamentarisch zu untersuchen. Primärquelle: Amtsblatt der EU, No. C 324/201 vom 22. November 1990.</div>
+          <div class="fact-source">European Parliament Resolution on Gladio — EUR-Lex OJ C 324/201, 22.11.1990 — Wikisource: "European Parliament resolution on Gladio"</div>
+        </div>
+      </div>
+
+      <div class="fact-card">
+        <div class="fact-num">03</div>
+        <div>
+          <div class="fact-title">"Strategie der Spannung" — Gladio und Terroranschläge in Italien <span class="tag tag-o">OFFEN</span></div>
+          <div class="fact-text">Vincenzo Vinciguerra sagte vor Gericht aus, er habe Zivilisten angegriffen, um die öffentliche Meinung gegen Kommunisten zu wenden und den Staat zu einer autoritäreren Antwort zu zwingen. Der Bombenanschlag auf den Bahnhof Bologna 1980 (85 Tote) wurde gerichtlich mit neofaschistischen Gruppen verbunden — ob und wie Gladio-Strukturen beteiligt waren, ist juristisch umstritten, parlamentarisch aber als Frage offen dokumentiert.</div>
+          <div class="fact-source">Vinciguerra-Gerichtsaussage 1984 — Senatorin Pellegrino, Commissione Stragi, Parlamentsbericht — Bundesverfassungsgericht: Gauweiler ./. Bundesrepublik Deutschland</div>
+        </div>
+      </div>
+
+      <div class="fact-card">
+        <div class="fact-num">04</div>
+        <div>
+          <div class="fact-title">Dokumente vernichtet, FOIA-Anfragen abgelehnt <span class="tag tag-b">BELEGT</span></div>
+          <div class="fact-text">Viele Originaldokumente wurden nach Entdeckung der Netzwerke vernichtet. FOIA-Anfragen von Historikern (u.a. Ganser) an CIA und NATO wurden abgelehnt. Das Senate Armed Services Committee USA verweigerte jede Stellungnahme — mit Verweis auf laufende Golfkriegsvorbereitungen.</div>
+          <div class="fact-source">Ganser, NATO's Secret Armies (2005), Kap. 1 — National Security Archive, FOIA-Korrespondenz — Wikipedia/Operation Gladio</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="source-box">
+      <div class="source-box-label">Primärquelle — EU-Parlament-Resolution 1990 (Auszug)</div>
+      <p>Resolution vom 22. November 1990, Amtsblatt der EU OJ C 324/201: "A. in Anbetracht der Enthüllung durch mehrere europäische Regierungen über die Existenz einer seit 40 Jahren geheimen parallelen Geheimdienststruktur in mehreren Mitgliedstaaten der Gemeinschaft. B. da diese Organisation über 40 Jahre jeder demokratischen Kontrolle entzogen war und von den Geheimdiensten der betreffenden Staaten in Zusammenarbeit mit der NATO geleitet wurde. C. in der Befürchtung, dass solche Netzwerke in die innenpolitischen Angelegenheiten der Mitgliedstaaten eingegriffen haben könnten oder noch eingreifen..."</p>
+    </div>
+
+  </section>
+
+  <!-- BLOCK 2: LISSABON -->
+  <section>
+    <h2>II. Der Vertrag von Lissabon — was drinsteht und was nicht drinsteht</h2>
+
+    <p>
+      Der Vertrag von Lissabon wurde am 13. Dezember 2007 unterzeichnet und trat am 1. Dezember 2009 in Kraft. Er ist das zentrale Primärrechtsdokument der Europäischen Union — und gleichzeitig eines der komplexesten Rechtsdokumente, die je ratifiziert wurden. Valery Giscard d'Estaing, der Vater der EU-Verfassung, sagte über die Methode öffentlich:
+    </p>
+
+    <div class="zitat">
+      <p>"Die Öffentlichkeit wird dazu gebracht werden, Vorschlägen zuzustimmen, die sie überhaupt nicht kennt, und wir wagen es auch nicht, sie zu veröffentlichen. Alle früheren Vorschläge sind im neuen Text enthalten, nur versteckt und verschleiert."</p>
+      <div class="zitat-attr">— Valery Giscard d'Estaing, Le Monde — zitiert nach: Schachtschneider, Argumente gegen den Vertrag von Lissabon</div>
+    </div>
+
+    <h3>Schachtschneiders Verfassungsbeschwerde</h3>
+
+    <p>
+      Karl Albrecht Schachtschneider, emeritierter Professor für öffentliches Recht an der Universität Erlangen-Nürnberg, reichte gemeinsam mit dem CSU-Bundestagsabgeordneten Peter Gauweiler Verfassungsbeschwerde gegen den Vertrag beim Bundesverfassungsgericht ein. Er ist einer der wenigen Juristen, die den gesamten Vertragstext systematisch analysiert haben. <span class="tag tag-b">BELEGT</span>
+    </p>
+
+    <p>
+      Das BVerfG-Urteil vom 30. Juni 2009 bestätigte, dass der Vertrag in der vorliegenden Form mit dem Grundgesetz vereinbar ist — ergänzte aber eine historisch bemerkenswerte Einschränkung: der Bundestag müsse seine Rechte gegenüber der EU stärken, da der Integrationsgrad das demokratische Prinzip des Grundgesetzes berühre. Zum Todesstrafe-Punkt äußerte sich das Gericht nicht. <span class="tag tag-b">BELEGT</span>
+    </p>
+
+  </section>
+
+  <!-- BLOCK 3: TODESSTRAFE -->
+  <section>
+    <h2>III. Artikel 2 Grundrechtecharta — was in den Erläuterungen steht</h2>
+
+    <p>
+      Dies ist der juristisch präziseste und am wenigsten bekannte Punkt dieses Dossiers. Er erfordert sorgfältige Lektüre.
+    </p>
+
+    <div class="artikel-box">
+      <div class="artikel-label">Artikel 2 Absatz 2 — EU-Grundrechtecharta (Wortlaut)</div>
+      <div class="artikel-text"><strong>"Niemand darf zur Todesstrafe verurteilt oder hingerichtet werden."</strong></div>
+    </div>
+
+    <p>
+      Soweit, so klar. Der entscheidende Punkt liegt jedoch in den <em>Erläuterungen</em> zur Grundrechtecharta — die nach Artikel 52 Absatz 3 und 7 der Charta selbst verbindlichen Auslegungscharakter haben und aus der Europäischen Menschenrechtskonvention von 1950 übernommen wurden.
+    </p>
+
+    <div class="warn-box">
+      <div class="warn-label">Dokumentierter Befund — Schachtschneider-Analyse</div>
+      <p>Die Erläuterungen zu Artikel 2 übernehmen Ausnahmen aus der EMRK von 1950, nach denen tödliche Gewalt durch staatliche Organe in bestimmten Situationen <em>keine Verletzung des Rechts auf Leben</em> darstellt — darunter ausdrücklich: "zur Niederschlagung eines Aufstands oder Aufruhrs." Schachtschneider wörtlich: "Aufstände oder Aufruhre kann man auch in bestimmten Demonstrationen sehen."</p>
+    </div>
+
+    <p>
+      Schachtschneider in einem Interview mit der Nürnberger Zeitung (3. September 2009): <span class="tag tag-b">BELEGT</span>
+    </p>
+
+    <div class="zitat">
+      <p>"Der Lissabon-Vertrag selbst ist nicht das alleinige Problem. Problematisch ist die dazugehörige Grundrechtecharta. Diese ermöglicht in den dort aufgenommenen Erläuterungen ausdrücklich die Wiedereinführung der Todesstrafe im Kriegsfall — daneben erlaubt sie auch die Tötung von Menschen, um einen Aufstand oder einen Aufruhr niederzuschlagen."</p>
+      <div class="zitat-attr">— Prof. Dr. Karl Albrecht Schachtschneider, Nürnberger Zeitung, 3.9.2009 — verifiziert durch Heise/Telepolis-Interview, Focus-Money-Interview (2009)</div>
+    </div>
+
+    <div class="source-box">
+      <div class="source-box-label">Rechtliche Einordnung</div>
+      <p>Schachtschneiders Kernargument: Die Erläuterungen haben nach Art. 52 Abs. 3 und 7 der Charta verbindlichen Auslegungscharakter. Das BVerfG hat sich in seinem Lissabon-Urteil 2009 zu diesem spezifischen Punkt <em>nicht geäußert</em> — weder bestätigend noch verneinend. Schachtschneider kommentiert: "Das ist sogar der Normalfall. Wenn sich das Bundesverfassungsgericht eines Problems nicht annehmen will, äußert es sich einfach nicht dazu."</p>
+      <p>Quellen: Nürnberger Zeitung, 3.9.2009 — Heise/Telepolis, 22.7.2008 — Focus-Money-Interview, veröffentlicht 2009 — BVerfG-Urteil 2 BvE 2/08 vom 30.6.2009 (Lissabon).</p>
+    </div>
+
+    <p>
+      Die Formulierung ist nicht neu. Sie entstammt Artikel 2 der EMRK von 1950 — einem Nachkriegsdokument, das explizite Ausnahmen für staatliche Tötungsakte enthielt. Neu ist, dass diese Ausnahmen durch den Lissabon-Vertrag in rechtsverbindliches EU-Primärrecht überführt wurden — ohne dass dieser Aspekt in der öffentlichen Ratifizierungsdebatte thematisiert wurde. <span class="tag tag-b">BELEGT</span> <span class="tag tag-o">POLITISCHE BEWERTUNG OFFEN</span>
+    </p>
+
+  </section>
+
+  <!-- BLOCK 4: EUROGENDFOR -->
+  <section>
+    <h2>IV. EUROGENDFOR — die Truppe, die niemand gewählt hat</h2>
+
+    <p>
+      Am 18. Oktober 2007 unterzeichneten Spanien, Frankreich, Italien, Portugal und die Niederlande in Velsen den Gründungsvertrag der European Gendarmerie Force (EGF/EUROGENDFOR). Hauptquartier: Vicenza, Italien. Heute sind Polen und Rumänien Vollmitglieder, Litauen Partner, die Türkei Beobachter. <span class="tag tag-b">BELEGT</span>
+    </p>
+
+    <p>
+      Die Truppe besteht aus einem permanenten Kern von 800–900 Einsatzkräften sowie rund 2.300 weiteren, die innerhalb von 30 Tagen mobilisiert werden können. Sie vereint in einer Einheit: Polizeibefugnisse, Militärbefugnisse und nachrichtendienstliche Kapazitäten — ein als "Dual-Use" bezeichnetes Konzept. <span class="tag tag-b">BELEGT</span>
+    </p>
+
+    <h3>Was der Vertrag von Velsen wörtlich sagt</h3>
+
+    <div class="artikel-box">
+      <div class="artikel-label">Vertrag von Velsen, Artikel 4 — Aufträge und Aufgaben (Auszug, offizielle Übersetzung)</div>
+      <div class="artikel-text">
+        "EUROGENDFOR muss in der Lage sein, als Ersatz oder zur Unterstützung das ganze Spektrum von Polizeieinsätzen während aller Phasen eines Krisenbewältigungseinsatzes abzudecken, darunter:<br><br>
+        <strong>e. zum Schutz von Personen und Eigentum und zur Aufrechterhaltung der Ordnung im Falle öffentlicher Unruhen</strong>"
+      </div>
+    </div>
+
+    <div class="fact-grid">
+      <div class="fact-card">
+        <div class="fact-num">→</div>
+        <div>
+          <div class="fact-title">Immunität und extraterritoriale Rechtsstellung <span class="tag tag-b">BELEGT</span></div>
+          <div class="fact-text">Alle Gebäude und Gelände, die von EUROGENDFOR-Truppen in Beschlag genommen werden, genießen Immunität und sind selbst für Behörden des Einsatzstaates nicht zugänglich. Die Truppe untersteht einem hochrangigen interministeriellen Komitee (CIMIN) — nicht dem Europäischen Parlament, nicht dem Europäischen Rat. Die EU-Kommission bestätigte 2008 ausdrücklich: "Eurogendfor ist weder der Kommission noch anderen EU-Institutionen gegenüber rechenschaftspflichtig."</div>
+          <div class="fact-source">Vertrag von Velsen, Art. 3, 7, 22 — EU-Kommission, Antwort auf parlamentarische Anfrage, 2008 — Wikipedia/Europäische Gendarmerietruppe</div>
+        </div>
+      </div>
+
+      <div class="fact-card">
+        <div class="fact-num">→</div>
+        <div>
+          <div class="fact-title">Einsatz innerhalb der EU rechtlich möglich <span class="tag tag-b">BELEGT</span> <span class="tag tag-o">OFFEN</span></div>
+          <div class="fact-text">Der Vertrag von Velsen erlaubt Einsätze sowohl außerhalb als auch innerhalb der EU. Die offizielle EUROGENDFOR-Website spricht von "peace support operations" und internationalen Stabilisierungsmissionen. Laut Wissenschaft &amp; Frieden (IMI, 2008): "Die EGF soll in der Lage sein... diese paramilitärischen Polizeikräfte werden wieder für Einsätze in ihren Herkunftsländern oder auch für gemeinsame Einsätze innerhalb der EU zur Verfügung stehen." Bisher kein dokumentierter EU-Inneneinsatz.</div>
+          <div class="fact-source">Vertrag von Velsen — Claudia Haydt, Wissenschaft &amp; Frieden, 2008/1 — GADMO-Faktcheck, Februar 2023</div>
+        </div>
+      </div>
+
+      <div class="fact-card">
+        <div class="fact-num">→</div>
+        <div>
+          <div class="fact-title">Gründungsimpuls: Unruhen in Frankreich 2005 <span class="tag tag-b">BELEGT</span></div>
+          <div class="fact-text">Die frühere französische Verteidigungsministerin Michèle Alliot-Marie trieb die Gründung der Truppe voran, nachdem es in Frankreich 2005 zu wochenlangen Straßenunruhen mit Plünderungen und Sachschäden gekommen war. Dieser Zusammenhang ist in mehreren Quellen dokumentiert, darunter Zeit-Fragen und die IMI-Analyse von 2008.</div>
+          <div class="fact-source">Zeit-Fragen, Nr. 16, 16.4.2012 — Wissenschaft &amp; Frieden, 2008/1 — internetz-zeitung.eu</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="source-box">
+      <div class="source-box-label">Einschätzung GADMO-Faktcheck (Februar 2023)</div>
+      <p>Das German-Austrian Digital Media Observatory (GADMO) stellte 2023 klar: "Die Gendarmerietruppe Eurogendfor ist keine Institution der EU und wurde noch nie auf dem Gebiet der Europäischen Union eingesetzt." Gleichzeitig bestätigt der Faktcheck: Die Truppe existiert, der Vertrag von Velsen ist real, und der Einsatz zur Aufstandsbekämpfung ist vertraglich vorgesehen. Die Frage, ob Einsätze innerhalb der EU möglich wären, lässt der Faktcheck offen.</p>
+    </div>
+
+  </section>
+
+  <!-- BLOCK 5: VERBINDUNGSLINIE -->
+  <section>
+    <h2>V. Die Verbindungslinie: Gladio-Logik in neuer Rechtsform</h2>
+
+    <p>
+      Drei separate Dokumente — die EU-Parlament-Resolution 1990 zu Gladio, das BVerfG-Urteil zum Lissabon-Vertrag 2009, der Vertrag von Velsen 2007 — beschreiben unterschiedliche Instrumente. Was sie verbindet, ist eine strukturelle Frage: Wer kontrolliert die Kontrolleure?
+    </p>
+
+    <p>
+      Bei Gladio: keine demokratische Kontrolle, jahrzehntelange Geheimhaltung, parlamentarisch verurteilt. <span class="tag tag-b">BELEGT</span>
+    </p>
+
+    <p>
+      Bei EUROGENDFOR: kein parlamentarisches Mandat des EU-Parlaments, kein Rechenschaftsverhältnis gegenüber EU-Institutionen, Immunität der Einrichtungen, Entscheidungsmacht beim CIMIN — einem interministeriellen Gremium ohne öffentliche Protokolle. <span class="tag tag-b">BELEGT</span>
+    </p>
+
+    <p>
+      Bei der Todesstrafe-Klausel: Eine verbindliche Ausnahme im EU-Primärrecht, die das Töten zur Niederschlagung von Aufständen vom Grundrechtsschutz ausnimmt — in einem Vertrag, dessen Details nach dem eigenen Aussage seines Architekten bewusst "versteckt und verschleiert" wurden. Das BVerfG hat sich dazu nicht geäußert. <span class="tag tag-b">BELEGT</span>
+    </p>
+
+    <div class="zitat">
+      <p>"Um nicht die eigene Armee gegen die Bürger des Landes einsetzen zu müssen, wurde eine paramilitärische Gendarmerie-Truppe der EU gegründet."</p>
+      <div class="zitat-attr">— Zeit-Fragen, Nr. 16, 16.4.2012 (Sekundärquelle — Primärquelle: Vertrag von Velsen, Artikel 4)</div>
+    </div>
+
+    <p>
+      Es ist eine strukturelle Beobachtung, keine Behauptung über Absichten: Wenn eine Polizei remonstrationspflichtig ist — wenn also deutsche Beamte einen Befehl ablehnen dürfen, den sie für rechtswidrig halten — kann eine ausländische Truppe eingesetzt werden, die dieser Pflicht nicht unterliegt.
+    </p>
+
+  </section>
+
+  <!-- BLOCK 6: CORONA -->
+  <section>
+    <h2>VI. 2020–2022: Supranationale Durchsetzung in der Praxis</h2>
+
+    <p>
+      Die Corona-Pandemie war das erste Ereignis in der Geschichte der EU, in dem vergleichbare Maßnahmen in nahezu allen Mitgliedstaaten nahezu gleichzeitig durchgesetzt wurden — Ausgangssperren, Versammlungsverbote, Schließung von Einrichtungen, Kontrolle von Bewegungsfreiheit.
+    </p>
+
+    <div class="fact-grid">
+      <div class="fact-card">
+        <div class="fact-num">→</div>
+        <div>
+          <div class="fact-title">Koordinierter EU-Krisenrahmen IPCR aktiviert <span class="tag tag-b">BELEGT</span></div>
+          <div class="fact-text">Am 2. Februar 2020 aktivierte der EU-Ratsvorsitz den Integrated Political Crisis Response (IPCR) — ein Mechanismus für koordiniertes EU-Krisenmanagement. Dieser Rahmen ermöglichte regelmäßige Koordinierungstreffen zwischen Mitgliedstaaten auf ministerieller Ebene zur Abstimmung von Maßnahmen. Erstmals wurde der IPCR für eine Gesundheitskrise eingesetzt.</div>
+          <div class="fact-source">Europäischer Rat, Pressemitteilung 2.2.2020 — EU-Ratsdokument 5881/20</div>
+        </div>
+      </div>
+
+      <div class="fact-card">
+        <div class="fact-num">→</div>
+        <div>
+          <div class="fact-title">Demonstration als Ausnahmezustand — dokumentierte Fälle <span class="tag tag-b">BELEGT</span></div>
+          <div class="fact-text">In Frankreich, Belgien, den Niederlanden und Deutschland wurden Demonstrationen gegen Corona-Maßnahmen gewaltsam aufgelöst. In Brüssel setzten Beamte Wasserwerfer gegen Demonstranten ein. In den Niederlanden wurde nach Ausschreitungen in Rotterdam der Ausnahmezustand ausgerufen. Nationale Gerichte hoben später zahlreiche Maßnahmen als unverhältnismäßig auf.</div>
+          <div class="fact-source">Reuters, 20.11.2021 (Rotterdam) — Belgische Tageszeitung De Standaard, Dez. 2021 — VG Berlin-Beschlüsse 2021/22</div>
+        </div>
+      </div>
+
+      <div class="fact-card">
+        <div class="fact-num">→</div>
+        <div>
+          <div class="fact-title">EUROGENDFOR nicht nachweislich aktiviert — aber einsatzbereit <span class="tag tag-n">NICHT BELEGT</span> <span class="tag tag-o">STRUKTURELL OFFEN</span></div>
+          <div class="fact-text">Es gibt keine verifizierten Berichte über einen Einsatz von EUROGENDFOR-Einheiten auf EU-Territorium während der Corona-Krise. Die Struktur existiert und ist nach Vertrag einsatzbereit. Die Frage, ob ihre Existenz die Durchsetzungsbereitschaft nationaler Regierungen beeinflusste, lässt sich durch Primärquellen nicht beantworten.</div>
+          <div class="fact-source">EUROGENDFOR-Website — GADMO-Faktcheck, 2023</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SCHLUSSPUNKT -->
+  <div class="divider"></div>
+  <div class="closing">
+    <div class="closing-line"></div>
+    <p class="closing-q">
+      <em>Wenn demokratische Kontrolle der Kernunterschied zwischen einer Armee und einer Besatzungstruppe ist — was ist dann eine Truppe ohne demokratische Kontrolle, mit Immunität, mit Aufstandsbekämpfungsauftrag, in einem Vertrag, dessen Details der Architekt selbst als "versteckt und verschleiert" beschrieben hat?</em>
+    </p>
+    <div class="closing-line"></div>
+    <p style="font-family:'Courier New',monospace;font-size:0.72rem;color:var(--text-dim);padding-bottom:0;">Alle Fakten dieses Berichts sind durch verlinkte Primärquellen nachprüfbar. Offene Fragen sind als solche gekennzeichnet. Dieser Bericht zieht keine Schlussfolgerungen über Absichten oder Täterschaft.</p>
+  </div>
+
+</main>
+
+<footer>
+  <p>dunkelfeld.report — Faktenjournalismus ohne Schlussfolgerungen</p>
+  <p style="margin-top:0.5rem;"><a href="/impressum">Impressum</a> · <a href="/datenschutz">Datenschutz</a> · <a href="/dossiers">Alle Dossiers</a></p>
+</footer>
+
+</body>
+</html>

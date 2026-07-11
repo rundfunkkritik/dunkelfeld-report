@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Die Unpleite — dunkelfeld.report</title>
+<meta name="description" content="Wie die EZB verhindert, dass Staaten pleite gehen — und wer dafür bezahlt. OMT, PEPP, TPI, ESM: die Mechanismen im Überblick.">
+<meta property="og:title" content="Die Unpleite — dunkelfeld.report">
+<meta property="og:description" content="Griechenland war 2012 faktisch insolvent. Es ging nicht pleite. Warum — und was das für alle Eurostaaten bedeutet.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg:#09090b; --surface:#111114; --surface2:#1a1a2e;
+    --amber:#e8c547; --amber-dim:#b8962e;
+    --text:#e2e2e5; --muted:#8888a0;
+    --danger:#e05252; --safe:#52b788;
+    --font-body:Georgia,'Times New Roman',serif;
+    --font-mono:'Courier New',Courier,monospace;
+    --font-sans:system-ui,-apple-system,sans-serif;
+    --max:740px;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:1.1rem;line-height:1.85}
+
+  nav{position:sticky;top:0;z-index:100;background:rgba(9,9,11,0.96);backdrop-filter:blur(8px);border-bottom:1px solid #222;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+  .nav-brand{font-family:var(--font-mono);color:var(--amber);font-size:.85rem;letter-spacing:.12em;text-decoration:none;text-transform:uppercase}
+  .nav-links{display:flex;gap:1.5rem;list-style:none}
+  .nav-links a{font-family:var(--font-sans);font-size:.8rem;color:var(--muted);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
+  .nav-links a:hover{color:var(--amber)}
+
+  .container{max-width:var(--max);margin:0 auto;padding:0 1.5rem}
+
+  .hero{padding:4rem 1.5rem 3rem;max-width:var(--max);margin:0 auto}
+  .dossier-label{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:1.2rem;display:flex;align-items:center;gap:.6rem}
+  .dossier-label::before{content:'';display:inline-block;width:2rem;height:1px;background:var(--amber)}
+  h1{font-family:var(--font-body);font-size:clamp(2rem,5vw,3rem);font-weight:700;line-height:1.15;color:#fff;margin-bottom:1rem}
+  h1 .amber{color:var(--amber)}
+  .hero-sub{font-size:1.15rem;color:var(--muted);line-height:1.7;margin-bottom:2rem;max-width:580px}
+  .meta{font-family:var(--font-mono);font-size:.72rem;color:var(--muted);letter-spacing:.08em;display:flex;gap:1.5rem;flex-wrap:wrap}
+
+  .lead-number{border:1px solid #2a2a3a;border-left:3px solid var(--amber);background:var(--surface2);padding:1.8rem 2rem;margin:2.5rem 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem}
+  @media(max-width:580px){.lead-number{grid-template-columns:1fr;gap:1rem}}
+  .lead-number .num{font-family:var(--font-mono);font-size:2rem;font-weight:700;line-height:1;color:var(--amber)}
+  .lead-number .label{font-family:var(--font-sans);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:.4rem}
+  .lead-number .sublabel{font-size:.78rem;color:var(--muted);margin-top:.3rem}
+
+  .divider{border:none;border-top:1px solid #222;margin:3rem 0}
+
+  p{padding-bottom:1.2rem}
+  h2{font-family:var(--font-body);font-size:1.5rem;font-weight:700;color:#fff;margin-top:2.5rem;margin-bottom:.8rem;line-height:1.3}
+  h3{font-family:var(--font-sans);font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-top:2rem;margin-bottom:.6rem}
+
+  .source-box{background:var(--surface2);border-left:3px solid var(--amber);padding:1rem 1.2rem;margin:1.2rem 0 1.8rem;font-family:var(--font-mono);font-size:.76rem;line-height:1.6;color:#aaa}
+  .source-box strong{color:var(--amber)}
+
+  .tag{display:inline-block;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.18em .55em;border-radius:2px;margin-right:.4rem;vertical-align:middle}
+  .tag-belegt{background:#1a3320;color:var(--safe);border:1px solid var(--safe)}
+  .tag-offen{background:#2a1a1a;color:var(--danger);border:1px solid var(--danger)}
+  .tag-extra{background:#2a2210;color:var(--amber);border:1px solid var(--amber-dim)}
+
+  /* Mechanismus-Karten */
+  .mechanism-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:2rem 0}
+  @media(max-width:560px){.mechanism-grid{grid-template-columns:1fr}}
+  .mech-card{background:var(--surface2);border:1px solid #2a2a3a;border-top:3px solid var(--amber);padding:1.2rem 1.4rem}
+  .mech-card .mech-name{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.4rem}
+  .mech-card .mech-title{font-family:var(--font-body);font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem}
+  .mech-card .mech-body{font-size:.88rem;color:var(--muted);line-height:1.65}
+  .mech-card .mech-status{margin-top:.8rem;font-family:var(--font-mono);font-size:.68rem;color:#555}
+
+  /* Griechenland-Timeline */
+  .timeline{margin:2rem 0;position:relative;padding-left:1.5rem}
+  .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--amber),var(--danger))}
+  .tl-item{margin-bottom:1.8rem;position:relative}
+  .tl-item::before{content:'';position:absolute;left:-1.9rem;top:.45rem;width:8px;height:8px;border-radius:50%;background:var(--amber);border:1px solid var(--bg)}
+  .tl-date{font-family:var(--font-mono);font-size:.72rem;color:var(--amber);letter-spacing:.1em;margin-bottom:.2rem}
+  .tl-text{font-size:.92rem;color:var(--text);line-height:1.7}
+
+  /* Spread-Tabelle */
+  .spread-table{width:100%;border-collapse:collapse;font-family:var(--font-sans);font-size:.85rem;margin:1.5rem 0}
+  .spread-table th{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);border-bottom:1px solid var(--amber-dim);padding:.6rem .8rem;text-align:left}
+  .spread-table td{padding:.65rem .8rem;border-bottom:1px solid #1e1e2e;color:var(--text);vertical-align:top}
+  .spread-table tr:hover td{background:#111118}
+  .spread-table .val{font-family:var(--font-mono);color:var(--amber)}
+  .spread-table .red{color:var(--danger)}
+
+  .chart-section{margin:2.5rem 0}
+  .chart-title{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.5rem}
+  .chart-note{font-family:var(--font-mono);font-size:.68rem;color:var(--muted);margin-top:.5rem;line-height:1.5}
+  .chart-wrap{background:var(--surface);border:1px solid #222;padding:1.5rem}
+  .chart-wrap canvas{max-height:320px}
+
+  /* EZB-Bilanz SVG */
+  .svg-wrap{background:var(--surface);border:1px solid #222;padding:1.5rem;margin:2rem 0;text-align:center}
+  .svg-wrap svg{max-width:100%;height:auto}
+
+  .closing{border-top:1px solid #222;margin-top:3.5rem;padding-top:2rem;padding-bottom:3rem}
+  .closing p{font-style:italic;color:var(--muted);font-size:1.05rem;line-height:1.9}
+
+  footer{background:var(--surface);border-top:1px solid #1e1e2e;padding:2rem 1.5rem;font-family:var(--font-mono);font-size:.72rem;color:var(--muted);text-align:center;line-height:1.9}
+  footer a{color:var(--amber);text-decoration:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="/">dunkelfeld.report</a>
+  <ul class="nav-links">
+    <li><a href="/archiv">Archiv</a></li>
+    <li><a href="/methodik">Methodik</a></li>
+    <li><a href="/impressum">Impressum</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="dossier-label">Systemanalyse · Geldpolitik</div>
+  <h1>Die <span class="amber">Unpleite</span></h1>
+  <p class="hero-sub">Wie die Europäische Zentralbank verhindert, dass Staaten zahlungsunfähig werden — mit welchen Instrumenten, auf wessen Kosten, und was das strukturell bedeutet.</p>
+  <div class="meta">
+    <span>Juni 2026</span>
+    <span>Lesedauer: ca. 10 min</span>
+    <span>Quellen: EZB · EuGH · ESM-Vertrag · Eurostat · BIZ</span>
+  </div>
+</header>
+
+<div class="container">
+  <div class="lead-number">
+    <div>
+      <div class="num">~7 Bio.</div>
+      <div class="label">EZB-Bilanzsumme Peak</div>
+      <div class="sublabel">2022, größte Zentralbankbilanz relativ zum BIP weltweit</div>
+    </div>
+    <div>
+      <div class="num">0</div>
+      <div class="label">OMT-Aktivierungen</div>
+      <div class="sublabel">Bloße Ankündigung 2012 reichte — nie eingesetzt</div>
+    </div>
+    <div>
+      <div class="num">4 %</div>
+      <div class="label">EZB-Leitzins 2023–24</div>
+      <div class="sublabel">Erste ernsthafte Zinserhöhung seit 2011</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" style="max-width:740px;margin:0 auto">
+
+<main class="container">
+
+  <h2>1. Das Grundproblem: Warum Staaten in der Eurozone nicht pleite gehen können</h2>
+
+  <p>
+    <span class="tag tag-belegt">Belegt</span>
+    Ein normaler Schuldner, der nicht zahlen kann, geht in Insolvenz. Für Staaten der Eurozone gilt das nicht — zumindest nicht so lange, wie die Europäische Zentralbank bereit ist zu intervenieren. Dieser Mechanismus ist keine Verschwörung. Er ist in EZB-Ratsbeschlüssen, EuGH-Urteilen und ESM-Verträgen dokumentiert.
+  </p>
+
+  <p>
+    Das strukturelle Problem entstand mit der Einführung des Euro: Mitgliedsstaaten gaben ihre nationalen Währungen auf. Sie können seither nicht mehr einfach Geld drucken, um Schulden zu bedienen. Gleichzeitig fehlt ein gemeinsamer Fiskalmechanismus wie in einem Bundesstaat. Die EZB füllt diese Lücke — mit einer Reihe von Instrumenten, die schrittweise ausgebaut wurden.
+  </p>
+
+  <div class="source-box">
+    <strong>Quellen:</strong> EZB: „The monetary policy of the ECB" (3. Auflage, 2011, ecb.europa.eu) · Draghi, Mario: Rede „Whatever it takes", Lancaster House, London, 26.07.2012 (vollständiges Transkript auf ecb.europa.eu) · ESM-Vertrag (2012), Artikel 12ff., esm.europa.eu
+  </div>
+
+  <h2>2. Die vier Rettungsinstrumente</h2>
+
+  <div class="mechanism-grid">
+    <div class="mech-card">
+      <div class="mech-name">OMT — seit 2012</div>
+      <div class="mech-title">Outright Monetary Transactions</div>
+      <div class="mech-body">Die EZB erklärt, im Notfall unbegrenzt Staatsanleihen von Krisenländern am Sekundärmarkt zu kaufen. Bedingung: das Land muss beim ESM einen Hilfsantrag stellen. Nie aktiviert — die bloße Ankündigung reichte, um die Märkte zu beruhigen.</div>
+      <div class="mech-status">EuGH C-62/14 (Gauweiler) 2015: für rechtmäßig erklärt</div>
+    </div>
+    <div class="mech-card">
+      <div class="mech-name">APP/PSPP — seit 2015</div>
+      <div class="mech-title">Asset Purchase Programme</div>
+      <div class="mech-body">Quantitative Easing: Die EZB kauft systematisch Staatsanleihen der Mitgliedsländer auf dem Sekundärmarkt. Volumen bis 2022: über 3 Billionen Euro. Effekt: künstlich niedrige Zinsen auch für hochverschuldete Staaten wie Italien und Griechenland.</div>
+      <div class="mech-status">EZB-Ratsbeschluss Januar 2015, monatliche Berichte ecb.europa.eu</div>
+    </div>
+    <div class="mech-card">
+      <div class="mech-name">PEPP — 2020–2022</div>
+      <div class="mech-title">Pandemic Emergency Purchase Programme</div>
+      <div class="mech-body">COVID-Sonderversion des APP: 1,85 Billionen Euro Volumen, flexiblere Verteilung zwischen Ländern. Ermöglichte gezielt höhere Käufe italienischer und spanischer Anleihen in Stressphasen — ohne formalen ESM-Antrag.</div>
+      <div class="mech-status">EZB-Pressemitteilung März 2020, Beschluss EZB/2020/17</div>
+    </div>
+    <div class="mech-card">
+      <div class="mech-name">TPI — seit 2022</div>
+      <div class="mech-title">Transmission Protection Instrument</div>
+      <div class="mech-body">Neuestes Instrument: soll „ungeordnete Marktdynamiken" verhindern. Aktivierungsschwelle nicht klar definiert — bewusst vage, um maximale Abschreckungswirkung zu erzielen. Bisher nicht eingesetzt.</div>
+      <div class="mech-status">EZB-Beschluss EZB/2022/20, Juli 2022</div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>Quellen:</strong> EuGH, Urteil C-62/14 (Gauweiler/Weiss), 16.06.2015 — OMT für rechtmäßig erklärt · EZB-Beschluss EZB/2015/10 (APP) · EZB-Beschluss EZB/2020/17 (PEPP) · EZB-Beschluss EZB/2022/20 (TPI) · Alle abrufbar unter ecb.europa.eu/legal
+  </div>
+
+  <!-- CHART: EZB-Bilanzsumme -->
+  <div class="chart-section">
+    <div class="chart-title">Grafik 1 — EZB-Bilanzsumme 2008–2025 (Billionen EUR)</div>
+    <div class="chart-wrap">
+      <canvas id="chart-ezb"></canvas>
+    </div>
+    <div class="chart-note">Quelle: EZB, Konsolidierter Ausweis des Eurosystems, monatliche Daten. Markierungen: APP-Start 2015, PEPP-Start 2020, Zinswende 2022. Eigene Darstellung auf Basis EZB-Veröffentlichungen.</div>
+  </div>
+
+  <hr class="divider">
+
+  <h2>3. Fallbeispiel Griechenland — die dokumentierte Rettung</h2>
+
+  <p>
+    <span class="tag tag-belegt">Belegt</span>
+    Griechenland ist der am besten dokumentierte Fall: ein Staat, der nach klassischen Kriterien insolvent war und dennoch nicht pleite ging. Die Chronologie ist öffentlich zugänglich.
+  </p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">2009–2010</div>
+      <div class="tl-text">Griechenlands Defizit wird auf 12,7% des BIP revidiert (offiziell gemeldet waren 3,7%). Internationale Ratingagenturen stufen griechische Staatsanleihen auf Junk herab. Zinsen auf 10-jährige Anleihen steigen auf über 12%.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Mai 2010</div>
+      <div class="tl-text">Erstes Hilfspaket: 110 Milliarden Euro von EU/IWF. Bedingung: Austeritätsprogramm. Troika (EU-Kommission, EZB, IWF) übernimmt de facto die Haushaltskontrolle.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2012</div>
+      <div class="tl-text">Zweites Hilfspaket: 130 Milliarden Euro. Erster Schuldenschnitt in der Geschichte der Eurozone: private Gläubiger verzichten auf ~53,5% des Nominalwerts. Öffentliche Gläubiger (EZB, nationale Zentralbanken) sind ausgenommen.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Juli 2012</div>
+      <div class="tl-text">EZB-Präsident Draghi: „Whatever it takes to preserve the euro." Ankündigung des OMT-Programms. Zinsen in der gesamten Eurozone fallen sofort — ohne dass ein Euro fließt.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2015–2018</div>
+      <div class="tl-text">Drittes Hilfspaket: 86 Milliarden Euro (ESM). Weitere Austeritätsauflagen: Rentenkürzungen, Privatisierungen, Steuererhöhungen. Griechenland verlässt das Programm 2018 — mit einer Schuldenquote von 181% des BIP.</div>
+    </div>
+  </div>
+
+  <p>
+    <span class="tag tag-extra">Einordnung</span>
+    Griechenland ging nicht pleite. Die Schulden blieben bestehen — umverteilt von privaten auf öffentliche Gläubiger. Die Kosten trug die griechische Bevölkerung durch Austerität, nicht die Finanzinstitutionen, die griechische Anleihen zu Hochzinsen gehalten hatten.
+  </p>
+
+  <div class="source-box">
+    <strong>Quellen:</strong> EU-Kommission: „The Economic Adjustment Programme for Greece" (2010, 2012, 2015), ec.europa.eu/economy_finance · IWF: „Greece: Ex Post Evaluation of Exceptional Access under the 2010 Stand-By Arrangement" (2013) · ESM: Jahresberichte 2013–2018, esm.europa.eu · Draghi-Rede vollständig: ecb.europa.eu/press/key/date/2012
+  </div>
+
+  <hr class="divider">
+
+  <h2>4. Wer bezahlt — der Cantillon-Effekt in der Praxis</h2>
+
+  <p>
+    <span class="tag tag-belegt">Belegt</span>
+    Wenn die EZB Staatsanleihen kauft, schafft sie Geld per Buchungseintrag. Dieses Geld fließt zunächst in den Finanzsektor — zu Banken und institutionellen Investoren, die ihre Anleihen an die EZB verkaufen. Erst danach, zeitverzögert, erreicht es die Realwirtschaft. Dieser Mechanismus hat einen Namen: Cantillon-Effekt.
+  </p>
+
+  <p>
+    In der Praxis bedeutet das: Wer zuerst Zugang zu neu geschaffenem Geld hat, kann damit Vermögenswerte kaufen, bevor die allgemeine Preissteigerung einsetzt. Immobilien, Aktien, Unternehmensanteile — all das wurde in der Niedrigzinsphase 2015–2022 massiv teurer. Wer bereits Vermögen besaß, wurde reicher. Wer von Löhnen oder Ersparnissen lebt, wurde relativ ärmer.
+  </p>
+
+  <!-- CHART: Spreads -->
+  <div class="chart-section">
+    <div class="chart-title">Grafik 2 — Zinsspread Italien/Griechenland gegenüber Deutschland (Basispunkte)</div>
+    <div class="chart-wrap">
+      <canvas id="chart-spreads"></canvas>
+    </div>
+    <div class="chart-note">Zinsspread = Differenz der 10-jährigen Staatsanleiherenditen gegenüber deutschen Bundesanleihen. Hoher Spread = Märkte verlangen höhere Risikoprämie. Daten: EZB Statistical Data Warehouse, eigene Darstellung. Draghi-„Whatever it takes"-Rede: Juli 2012.</div>
+  </div>
+
+  <div class="source-box">
+    <strong>Quellen:</strong> Richard Cantillon: „Essai sur la Nature du Commerce en Général" (1755) — Originaltext, Archive.org · EZB Statistical Data Warehouse: Staatsanleiherenditen (SDW, sdw.ecb.europa.eu) · BIZ: „The distributional effects of asset purchases" (Working Paper Nr. 964, 2021, bis.org)
+  </div>
+
+  <hr class="divider">
+
+  <h2>5. Die EU-Erweiterungslogik: Schulden exportieren</h2>
+
+  <p>
+    <span class="tag tag-belegt">Belegt</span>
+    Seit dem russischen Angriff auf die Ukraine 2022 hat die EU ihre Erweiterungspolitik explizit geopolitisch begründet. Derzeit führt die EU Beitrittsverhandlungen mit Montenegro, Serbien, Albanien, Nordmazedonien, Ukraine und Moldau. Zieldatum für erste neue Mitglieder: ab 2028.
+  </p>
+
+  <p>
+    <span class="tag tag-extra">Einordnung</span>
+    Jedes neue Mitglied mit unterdurchschnittlichem BIP erhöht den EU-weiten Transferbedarf. Es werden Nettoempfänger aus EU-Strukturfonds, finanziert hauptsächlich von Deutschland, Österreich, den Niederlanden und Schweden. Gleichzeitig erhalten neue Mitglieder Zugang zum Euro-Währungsraum — womit sie automatisch unter den EZB-Rettungsschirm fallen. Die strukturelle Frage, wer die Kosten einer Währungsunion mit immer mehr wirtschaftlich schwachen Mitgliedern trägt, wird in der politischen Kommunikation nicht gestellt.
+  </p>
+
+  <table class="spread-table">
+    <thead>
+      <tr>
+        <th>Land</th>
+        <th>BIP pro Kopf (% EU-Schnitt)</th>
+        <th>Schuldenquote</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Montenegro</td><td class="val">~53%</td><td class="val">~65%</td><td>Frontrunner, Ziel 2028</td></tr>
+      <tr><td>Albanien</td><td class="val">~35%</td><td class="val">~62%</td><td>Verhandlungen laufen</td></tr>
+      <tr><td>Serbien</td><td class="val">~47%</td><td class="val">~54%</td><td>Verhandlungen stocken</td></tr>
+      <tr><td>Ukraine</td><td class="val">~25%</td><td class="val">~90%+</td><td>Verhandlungen seit 2024</td></tr>
+      <tr><td>Moldau</td><td class="val">~20%</td><td class="val">~37%</td><td>Verhandlungen seit 2024</td></tr>
+      <tr><td><strong>Deutschland</strong></td><td class="val red">~122%</td><td class="val red">~63%</td><td>Nettozahler</td></tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <strong>Quellen:</strong> Eurostat: BIP pro Kopf in KKS (Kaufkraftstandards), 2024 · EU-Kommission: Erweiterungspaket 2025, Fortschrittsberichte (ec.europa.eu/enlargement) · SWP-Aktuell 2026/A 16 (27.03.2026): „Kyjiw durch Beitrittsassoziierung" · BAKS: „EU-Erweiterungspolitik: Westlicher Balkan und Schwarzmeerraum" (Oktober 2025)
+  </div>
+
+  <hr class="divider">
+
+  <h2>6. Die strukturelle Grenze</h2>
+
+  <p>
+    <span class="tag tag-belegt">Belegt</span>
+    Das System funktioniert, solange drei Bedingungen erfüllt sind: Marktvertrauen in die Zahlungsfähigkeit der Mitgliedsstaaten, EZB-Bereitschaft zur Intervention, und ausreichendes Wirtschaftswachstum zur Stabilisierung der Schuldenquoten.
+  </p>
+
+  <p>
+    <span class="tag tag-extra">Einordnung</span>
+    Alle drei Bedingungen werden gleichzeitig schwächer: Frankreichs Rating wurde 2025 herabgestuft. Die EZB hat ihre Bilanzsumme reduziert und kann nicht unbegrenzt expandieren, ohne die Inflation wieder anzufachen. Und das Wachstum der Eurozone stagniert strukturell. Der Mechanismus ist nicht gebrochen — aber er hat weniger Puffer als 2020.
+  </p>
+
+  <p>
+    <span class="tag tag-offen">Nicht belegt</span>
+    Wann, ob und wie dieses System endet, ist keine beantwortbare Frage. Ökonomen, die seit 2012 einen Zusammenbruch vorhergesagt haben, lagen falsch. Das System ist widerstandsfähiger als seine Kritiker annahmen — und fragiler als seine Verteidiger einräumen.
+  </p>
+
+  <div class="closing">
+    <p>Die EZB hat seit 2012 mit einer Abfolge immer neuer Instrumente verhindert, dass Eurostaaten zahlungsunfähig werden. Jedes Instrument war zunächst außergewöhnlich — und wurde dann zur Normalität. Der EuGH hat alle bisherigen Schritte abgesegnet. Die Kosten — Inflation, Vermögenspreisanstieg, verdeckte Transfers von Sparern zu Schuldnern — trägt die Bevölkerung, ohne dass darüber abgestimmt wird. Wie weit dieser Mechanismus ausgedehnt werden kann, bevor das Vertrauen in die gemeinsame Währung selbst erodiert, ist die Frage, die keine Institution öffentlich stellt.</p>
+  </div>
+
+</main>
+
+<footer>
+  <p>dunkelfeld.report — Dokumentation auf Basis öffentlich zugänglicher Primärquellen</p>
+  <p style="margin-top:.4rem">Spekulation ist als solche gekennzeichnet. Motive werden nicht zugeschrieben. Schlussfolgerungen ziehen die Leser selbst.</p>
+  <p style="margin-top:.8rem"><a href="/archiv">Archiv</a> · <a href="/methodik">Methodik</a> · <a href="/impressum">Impressum</a> · <a href="/datenschutz">Datenschutz</a></p>
+</footer>
+
+<script>
+  Chart.defaults.color = '#8888a0';
+  Chart.defaults.borderColor = '#1e1e2e';
+  Chart.defaults.font.family = "'Courier New', monospace";
+  Chart.defaults.font.size = 11;
+
+  const amber = '#e8c547', red = '#e05252', green = '#52b788', blue = '#4488cc';
+
+  // CHART 1: EZB-Bilanzsumme
+  new Chart(document.getElementById('chart-ezb'), {
+    type: 'line',
+    data: {
+      labels: ['2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+      datasets: [{
+        label: 'EZB-Bilanzsumme (Bio. EUR)',
+        data: [2.1, 1.85, 2.0, 2.75, 3.1, 2.3, 2.05, 2.8, 3.7, 4.5, 4.7, 4.7, 6.2, 8.6, 8.0, 7.0, 6.5, 6.3],
+        borderColor: amber,
+        backgroundColor: 'rgba(232,197,71,0.07)',
+        borderWidth: 2,
+        tension: 0.35,
+        fill: true,
+        pointBackgroundColor: amber,
+        pointRadius: 3
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        annotation: {},
+        tooltip: { callbacks: { label: ctx => ` ${ctx.raw} Billionen EUR` } }
+      },
+      scales: {
+        x: { grid: { color: '#1a1a2e' } },
+        y: {
+          grid: { color: '#1a1a2e' },
+          ticks: { callback: v => v + ' Bio.' },
+          title: { display: true, text: 'Billionen EUR', color: '#666' }
+        }
+      }
+    }
+  });
+
+  // CHART 2: Spreads
+  new Chart(document.getElementById('chart-spreads'), {
+    type: 'line',
+    data: {
+      labels: ['2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+      datasets: [
+        {
+          label: 'Italien (BPS)',
+          data: [150, 380, 480, 240, 160, 100, 140, 160, 250, 130, 160, 110, 190, 170, 140, 160],
+          borderColor: amber, backgroundColor: 'rgba(232,197,71,0.06)',
+          borderWidth: 2, tension: 0.3, pointBackgroundColor: amber, pointRadius: 3
+        },
+        {
+          label: 'Griechenland (BPS)',
+          data: [850, 1600, 2800, 850, 600, 900, 700, 500, 380, 200, 150, 110, 200, 150, 100, 90],
+          borderColor: red, backgroundColor: 'rgba(224,82,82,0.06)',
+          borderWidth: 2, tension: 0.3, pointBackgroundColor: red, pointRadius: 3
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'bottom', labels: { padding: 16, font: { size: 11 }, boxWidth: 14 } },
+        tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.raw} Basispunkte` } }
+      },
+      scales: {
+        x: { grid: { color: '#1a1a2e' } },
+        y: {
+          grid: { color: '#1a1a2e' },
+          ticks: { callback: v => v + ' BPS' },
+          title: { display: true, text: 'Basispunkte', color: '#666' }
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>

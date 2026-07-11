@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>„#unsereDemokratie" — Der NGO-Komplex | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --surface: #111113;
+    --surface2: #1a1a2e;
+    --amber: #e8c547;
+    --amber-dim: rgba(232,197,71,0.12);
+    --amber-border: rgba(232,197,71,0.25);
+    --text: #e4e4e7;
+    --text-dim: #a1a1aa;
+    --text-muted: #71717a;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --red: #f87171;
+    --blue: #60a5fa;
+    --max: 720px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    border-bottom: 1px solid var(--amber-border);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  nav a {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--amber);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+  nav a:hover { text-decoration: underline; }
+  nav span { color: var(--text-muted); font-size: 0.8rem; font-family: 'Courier New', monospace; }
+
+  /* HERO */
+  .hero {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 4rem 2rem 2rem;
+  }
+
+  .series-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .series-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background: var(--amber);
+  }
+
+  h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: normal;
+    line-height: 1.25;
+    color: #fff;
+    margin-bottom: 1.2rem;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--amber);
+  }
+
+  .deck {
+    font-size: 1.15rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--amber-border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .meta span { color: var(--amber); }
+
+  /* MAIN */
+  main {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 2.5rem 2rem 6rem;
+  }
+
+  h2 {
+    font-family: Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: normal;
+    color: var(--amber);
+    margin: 3rem 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--amber-border);
+  }
+
+  h3 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin: 2rem 0 0.75rem;
+  }
+
+  p { margin-bottom: 1.3rem; }
+
+  /* TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    padding: 0.15em 0.5em;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin: 0 0.2em;
+  }
+  .tag-b { background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid rgba(74,222,128,0.3); }
+  .tag-e { background: rgba(251,146,60,0.15); color: var(--orange); border: 1px solid rgba(251,146,60,0.3); }
+  .tag-o { background: rgba(248,113,113,0.15); color: var(--red); border: 1px solid rgba(248,113,113,0.3); }
+
+  /* STAT GRID */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--amber-border);
+    border: 1px solid var(--amber-border);
+    margin: 2rem 0;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .stat-cell {
+    background: var(--surface);
+    padding: 1.5rem 1.2rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Courier New', monospace;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--amber);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* SOURCE BOX */
+  .source-box {
+    background: var(--surface2);
+    border-left: 3px solid var(--amber);
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .source-box strong {
+    color: var(--amber);
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .source-box a { color: var(--blue); text-decoration: none; }
+  .source-box a:hover { text-decoration: underline; }
+
+  /* PERSON CARD */
+  .person-card {
+    border: 1px solid var(--amber-border);
+    background: var(--surface);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    position: relative;
+  }
+  .person-card::before {
+    content: '●';
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    color: var(--amber);
+    font-size: 0.6rem;
+  }
+  .person-name {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--amber);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .person-role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-bottom: 0.8rem;
+  }
+  .person-card p {
+    font-size: 0.95rem;
+    margin-bottom: 0.6rem;
+    color: var(--text-dim);
+  }
+
+  /* TIMELINE */
+  .timeline { margin: 1.5rem 0; }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .tl-year {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--amber);
+    padding-top: 0.1rem;
+    font-weight: bold;
+  }
+  .tl-text {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-top: 2px solid var(--amber);
+    border-bottom: 1px solid var(--amber-border);
+    padding: 1.5rem 0;
+    margin: 2.5rem 0;
+  }
+  .pull-quote p {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #fff;
+    line-height: 1.6;
+    margin-bottom: 0.6rem;
+  }
+  .pull-quote cite {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--amber);
+    letter-spacing: 0.06em;
+    font-style: normal;
+  }
+
+  /* INTEREST TABLE */
+  .interest-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.88rem;
+  }
+  .interest-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--amber);
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid var(--amber);
+    background: var(--surface2);
+  }
+  .interest-table td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: var(--text-dim);
+    vertical-align: top;
+  }
+  .interest-table tr:hover td { background: rgba(232,197,71,0.04); }
+
+  /* OPEN QUESTIONS */
+  .open-questions {
+    background: var(--surface2);
+    border: 1px solid var(--amber-border);
+    padding: 2rem;
+    margin: 3rem 0 1rem;
+  }
+  .open-questions h3 {
+    color: var(--amber);
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  .open-questions ul {
+    list-style: none;
+    padding: 0;
+  }
+  .open-questions li {
+    font-style: italic;
+    color: var(--text-dim);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-left: 1.2rem;
+    position: relative;
+    font-size: 0.95rem;
+  }
+  .open-questions li::before {
+    content: '?';
+    position: absolute;
+    left: 0;
+    color: var(--amber);
+    font-family: 'Courier New', monospace;
+    font-style: normal;
+    font-size: 0.8rem;
+  }
+  .open-questions li:last-child { border-bottom: none; }
+
+  /* DIVIDER */
+  .section-divider {
+    text-align: center;
+    color: var(--amber-border);
+    margin: 2rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--amber-border);
+    padding: 2rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.8;
+    letter-spacing: 0.03em;
+  }
+  footer a { color: var(--amber); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .hero, main { padding-left: 1.2rem; padding-right: 1.2rem; }
+    .tl-item { grid-template-columns: 60px 1fr; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/">dunkelfeld.report</a>
+  <span>/</span>
+  <a href="/strukturen">Strukturen</a>
+  <span>/</span>
+  <span style="color:var(--text-dim)">NGO-Komplex</span>
+</nav>
+
+<div class="hero">
+  <div class="series-label">Strukturkritik · Zivilgesellschaft & Staat</div>
+  <h1>„<em>#unsereDemokratie</em>" —<br>Der NGO-Komplex</h1>
+  <p class="deck">Wer 182 Millionen Euro jährlich verteilt, entscheidet mit, wer Demokratie definiert. Eine Dokumentation der Förderstrukturen, Interessenverflechtungen und parlamentarischen Vorgänge rund um das Bundesprogramm „Demokratie leben!"</p>
+  <div class="meta">
+    <span>dunkelfeld.report</span>
+    <span>Stand: <span>Juni 2026</span></span>
+    <span>Bereich: <span>Strukturkritik</span></span>
+    <span>Quellen: <span>BMFSFJ-Förderrichtlinie · Bundestagsdrucksache 20/15035 · DOJ-Dokumente · LG Berlin 27 O 379/25</span></span>
+  </div>
+</div>
+
+<main>
+
+  <!-- BEGRIFFSPOLITIK -->
+  <h2>I. Neusprech: Wer definiert „unsere" Demokratie?</h2>
+
+  <p>„#unsereDemokratie" — der Hashtag suggeriert Gemeinschaft. Doch die grammatische Konstruktion enthält eine Vorentscheidung: Ein kollektives „Wir" wird behauptet, bevor der Inhalt bestimmt ist. Die Frage, wer dieses „Wir" konstituiert und wer die Mittel erhält, seine Definition institutionell durchzusetzen, ist keine rhetorische — sie ist eine strukturelle. <span class="tag tag-b">BELEGT</span></p>
+
+  <p>Das Bundesprogramm „Demokratie leben!" des Bundesministeriums für Bildung, Familie, Senioren, Frauen und Jugend (BMBFSFJ) ist seit 2015 das finanziell größte Instrument dieser Definitionsmacht. Es legt fest, welche Organisationen als Träger anerkannt werden, welche Themen als „demokratiegefährdend" gelten — und welche nicht. <span class="tag tag-b">BELEGT</span></p>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    Förderrichtlinie „Demokratie leben!", BMFSFJ, 20. November 2024, Gemeinsames Ministerialblatt 2024, S. 1166 ff. — Laufzeit: 1. Januar 2025 bis 31. Dezember 2032. Ziel laut Richtlinie: „zur Stärkung der Demokratie und zu einem friedlichen, respektvollen Zusammenleben beizutragen, Teilhabe zu fördern sowie die Arbeit gegen jede Form von Menschen- und Demokratiefeindlichkeit zu ermöglichen."
+  </div>
+
+  <!-- PROGRAMM-FAKTEN -->
+  <h2>II. Das Programm — Fakten und Entwicklung</h2>
+
+  <p>„Demokratie leben!" wurde 2014 von der damaligen SPD-Bundesfamilienministerin Manuela Schwesig ins Leben gerufen und startete im Januar 2015 operativ. Seit 2025 befindet es sich in seiner dritten Förderperiode, die bis 2032 läuft — und damit über mehrere Legislaturperioden hinaus. <span class="tag tag-b">BELEGT</span></p>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <span class="stat-num">182 Mio.</span>
+      <span class="stat-label">Euro/Jahr (2023–)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">40,5 Mio.</span>
+      <span class="stat-label">Euro/Jahr (2015)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">+350 %</span>
+      <span class="stat-label">Budgetzuwachs 2015–2023</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">~1 Mrd.</span>
+      <span class="stat-label">Euro gesamt bis 2029</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">580</span>
+      <span class="stat-label">Projekte ab 2025</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">8 Jahre</span>
+      <span class="stat-label">Max. Förderlaufzeit (neu)</span>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>Quellen</strong>
+    BMBFSFJ, Infopapier „Demokratie leben!" — Start der 3. Förderperiode, 2025 · NZZ, „Regierung weicht 551 Fragen der CDU zum NGO-Komplex im Antwortschreiben aus", März 2025 (bestätigt 182 Mio. € Budget 2023 via Welt.de-Verweis auf Bundestagsartikel).
+  </div>
+
+  <p>Das Programm finanziert über fünf Programmbereiche: Bundeszentrale Infrastruktur, Partnerschaften für Demokratie (kommunale Ebene), Landes-Demokratiezentren, Innovationsprojekte sowie Extremismusprävention im Strafvollzug. In der dritten Förderperiode werden einzelne Projekte mit bis zu acht Jahren Laufzeit ausgestattet — über zwei Bundestagswahlperioden hinaus. <span class="tag tag-b">BELEGT</span></p>
+
+  <!-- ASYMMETRIE -->
+  <h2>III. Das asymmetrische Spektrum</h2>
+
+  <p>Ein dokumentiertes Strukturmerkmal des Programms betrifft die thematische Ausrichtung. Der Journalist Markus Wehner kritisierte 2017 in der Frankfurter Allgemeinen Zeitung nach den G20-Ausschreitungen in Hamburg, das Programm stecke lediglich ein Prozent der Mittel in Projekte gegen Linksextremismus. <span class="tag tag-b">BELEGT</span></p>
+
+  <div class="pull-quote">
+    <p>„Wenig hilft wenig: Nur ein Prozent gegen Linksextremismus."</p>
+    <cite>— Markus Wehner, Frankfurter Allgemeine Zeitung, 2017</cite>
+  </div>
+
+  <p>Das Programm selbst räumt in seiner Trägerdokumentation ein, dass „Zielgruppenzugänge zu linksmilitanten, linksextremen Akteuren schwierig herzustellen" seien und die Begriffsdebatte um Linksextremismus im wissenschaftlichen Diskurs noch nicht abgeschlossen sei. <span class="tag tag-b">BELEGT</span></p>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    Bundesprogramm „Demokratie leben!", Kooperationsverbünde und Themen, Sektion Linksextremismus: „Die öffentliche Wahrnehmung von und Diskussionen über Linksextremismus sind vor allem von linksextremistisch motivierter Gewalt und eskalierenden Protesten geprägt. Zielgruppenzugänge erweisen sich weiterhin als schwierig herzustellen." — demokratie-leben.de, abgerufen 2026.
+  </div>
+
+  <!-- HAUPTTRÄGER AAS -->
+  <h2>IV. Der Hauptträger: Amadeu Antonio Stiftung</h2>
+
+  <p>Die Amadeu Antonio Stiftung (AAS) nimmt im Programm eine koordinierende Rolle ein: Sie leitet den Kooperationsverbund gegen Rechtsextremismus unter dem Namen „KompRex — Kompetent in der Rechtsextremismusprävention" und ist damit eine der institutionell zentralsten Förderempfängerinnen. Laut eigener Programmdokumentation erhielt die AAS seit 2015 über 8,8 Millionen Euro aus „Demokratie leben!". <span class="tag tag-b">BELEGT</span></p>
+
+  <div class="person-card">
+    <div class="person-name">Anetta Kahane</div>
+    <div class="person-role">Initiatorin der AAS · Vorstandsvorsitzende 1998–2022</div>
+    <p>Kahane gründete die Amadeu Antonio Stiftung 1998. Ihre frühere Tätigkeit als inoffizielle Mitarbeiterin (IM) der DDR-Staatssicherheit ist durch die AAS selbst öffentlich dokumentiert.</p>
+    <p>Laut der von der AAS beauftragten Untersuchung des Stasi-Forschers Dr. Helmut Müller-Enbergs: Kahane war von <strong>1974 bis 1982</strong> unter dem Decknamen <strong>„IM Victoria"</strong> für das MfS tätig. Die Kooperation begann im Alter von 19 Jahren „auf politisch-ideologischer Grundlage". Sie berichtete über westdeutsche Touristen und andere Ausländer. Dokumentiert ist u.a. die Denunziation der Brüder Brasch als „Feinde der DDR". <span class="tag tag-b">BELEGT</span></p>
+    <p>Kahane brach die Zusammenarbeit 1982 aus eigener Initiative ab, was nach eigener Darstellung zu beruflichen Nachteilen führte. Ab 1983 stand sie selbst unter Stasi-Observierung. <span class="tag tag-b">BELEGT</span></p>
+  </div>
+
+  <div class="source-box">
+    <strong>Quellen</strong>
+    Amadeu Antonio Stiftung, eigene Webseite: „1974 wurde Anetta Kahane im Alter von 19 Jahren als IM angeworben." · Dr. Helmut Müller-Enbergs, beauftragtes Gutachten 2012, veröffentlicht April 2016 · Wikipedia (EN), „Anetta Kahane", mit Einzelnachweisen zu den Stasi-Akten.
+  </div>
+
+  <p>2023 richtete die AAS mit Unterstützung des Bundesfamilienministeriums eine „Meldestelle Antifeminismus" ein. 2016 beteiligte sich die Stiftung auf Einladung von Bundesjustizminister Heiko Maas an einer Taskforce gegen Hassrede im Internet — eine Beteiligung, die angesichts der IM-Biografie ihrer Gründerin öffentliche Kontroversen auslöste. <span class="tag tag-b">BELEGT</span></p>
+
+  <!-- VERFASSUNGSSCHUTZ-SKANDAL -->
+  <h2>V. Der Verfassungsschutz-Skandal 2018</h2>
+
+  <p>Im Jahr 2018 wurde öffentlich, dass das Bundesfamilienministerium insgesamt 51 Projektträger des Programms heimlich durch das Bundesamt für Verfassungsschutz (BfV) hatte überprüfen lassen — ohne Wissen der betroffenen Organisationen. <span class="tag tag-b">BELEGT</span></p>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    Martin Kaul: „Verfassungsschutz überprüfte NGOs: Demokratieprojekte durchleuchtet." In: Die Tageszeitung (taz), 16. Mai 2018 · Ein Bundestagsgutachten stufte diese Praxis als verfassungsrechtlich bedenklich ein: Die Abfragen erfolgten ohne Rechtsgrundlage nach BVerfSchG und könnten einen unzulässigen Grundrechtseingriff darstellen.
+  </div>
+
+  <p>Zwischen 2020 und 2024 wurden laut Antwort auf eine parlamentarische Anfrage über alle Ministerien hinweg insgesamt <strong>1.250 NGOs und 1.296 Einzelpersonen</strong> per sogenanntem „Haber-Verfahren" überprüft. In 210 Fällen vermerkte der Verfassungsschutz „Erkenntnisse" — was in der Regel zur Ablehnung der Förderung führte. <span class="tag tag-b">BELEGT</span></p>
+
+  <!-- 551 FRAGEN -->
+  <h2>VI. 551 Fragen — und ihre Versenkung</h2>
+
+  <p>Am 21. Februar 2025 — einen Tag nach der Bundestagswahl — brachte die CDU/CSU-Bundestagsfraktion, unterzeichnet von Friedrich Merz und Alexander Dobrindt, die Kleine Anfrage <strong>Drucksache 20/15035</strong> mit dem Titel „Politische Neutralität staatlich geförderter Organisationen" in den Bundestag ein. 551 Einzelfragen richteten sich an 17 zivilgesellschaftliche Organisationen, darunter die Amadeu Antonio Stiftung, Correctiv, Greenpeace, Campact und die „Omas gegen Rechts". <span class="tag tag-b">BELEGT</span></p>
+
+  <div class="pull-quote">
+    <p>„Die Union zielt mit ihrer Anfrage im Bundestag darauf ab, zivilgesellschaftliche Organisationen infrage zu stellen, die unsere Demokratie schützen. Die Union sollte dringend ihr Foulspiel überdenken, wenn sie mit der SPD ins Gespräch kommen möchte."</p>
+    <cite>— Lars Klingbeil, SPD-Fraktionsvorsitzender, auf X, Februar 2025</cite>
+  </div>
+
+  <p>Klingbeil drohte offen mit dem Abbruch der laufenden Koalitionsgespräche und forderte die Union auf, die Anfrage zurückzuziehen. Nach eigenen Angaben könne er sich „keine Situation vorstellen", in der man morgens über Investitionen verhandle und nachmittags Organisationen „an den Pranger" stelle. <span class="tag tag-b">BELEGT</span></p>
+
+  <h3>Der Interessenkonflikt</h3>
+
+  <p>Zum Zeitpunkt seiner Drohung war öffentlich wenig bekannt: <strong>Lena-Sophie Müller</strong>, die Ehefrau Lars Klingbeils, ist seit 2014 hauptamtliche Geschäftsführerin der <strong>Initiative D21 e.V.</strong> — einer gemeinnützigen NGO, die selbst staatliche Fördergelder erhält. <span class="tag tag-b">BELEGT</span></p>
+
+  <div class="interest-table-wrapper">
+    <table class="interest-table">
+      <thead>
+        <tr>
+          <th>Person</th>
+          <th>Funktion</th>
+          <th>Relevanz</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Lars Klingbeil</td>
+          <td>SPD-Fraktionsvorsitzender, ab Mai 2025 Bundesfinanzminister</td>
+          <td>Drohte mit Abbruch der Koalitionsgespräche wegen der NGO-Anfrage</td>
+        </tr>
+        <tr>
+          <td>Lena-Sophie Müller</td>
+          <td>Geschäftsführerin Initiative D21 e.V. (seit 2014), verheiratet mit Klingbeil seit 2019</td>
+          <td>D21 erhielt 2022–2024 laut Lobbyregister ca. 500.000 € öffentliche Zuwendungen; 2023: mindestens 150.000 € aus drei Ministerien</td>
+        </tr>
+        <tr>
+          <td>Müller / D21</td>
+          <td>Mitglied Digitalrat Bundesverteidigungsministerium (ab 2019)</td>
+          <td>Berufung erfolgte, als Klingbeil stellv. Mitglied im Verteidigungsausschuss des Bundestags war</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="source-box">
+    <strong>Quellen</strong>
+    Wikipedia, „Initiative D21": „Die Geschäfte führt seit 2014 Lena-Sophie Müller. Sie ist seit 2019 mit dem SPD-Politiker Lars Klingbeil verheiratet." · Lobbyregister des Deutschen Bundestags (öffentlich zugänglich) · dpa-Faktencheck, Mai 2025: bestätigt Grundtatsachen, kein Widerspruch zur Geschäftsführer-Funktion. · Connections.news, Oktober 2025.
+  </div>
+
+  <h3>Verschleiern und Verweigern: Die Antwort der Bundesregierung</h3>
+
+  <p>Die scheidende Bundesregierung antwortete auf die 551 Fragen — ließ jedoch <strong>251 davon unbeantwortet</strong>. Begründung: Die Zusammenstellung der angefragten Informationen sei zu aufwendig; es sei nicht Aufgabe der Regierung, „frei verfügbare Informationen" zusammenzutragen. <span class="tag tag-b">BELEGT</span></p>
+
+  <p>Eine der offengebliebenen Fragen lautete: <em>„Gibt es direkte Verbindungen zwischen der Correctiv gGmbH und bestimmten Parteien oder politischen Akteuren?"</em> — eine Frage, die durch eine frühere AfD-Anfrage bereits partiell dokumentierte Verbindungen (SPD-Staatsministerin bei Theateraufführung eines Correctiv-Texts, Einladung Scholz' durch Correctiv-Geschäftsführerin) berührte. <span class="tag tag-b">BELEGT</span></p>
+
+  <h3>Der Deal</h3>
+
+  <p>Die CDU einigte sich in der Folge auf einen impliziten Deal mit der SPD: Die Forderung nach vollständigem Rückzug der Anfrage wurde fallengelassen — im Gegenzug liefen die Fragen durch das Prinzip der parlamentarischen Diskontinuität (Wechsel des Bundestags) ins Leere. Eine vollständige parlamentarische Beantwortung erfolgte nicht. <span class="tag tag-b">BELEGT</span></p>
+
+  <div class="source-box">
+    <strong>Quelle</strong>
+    NZZ, „Lassen CDU und SPD die 551 NGO-Fragen in der Versenkung verschwinden?", März 2025: „Die CDU hat sich auf einen Deal mit SPD-Chef Lars Klingbeil eingelassen: Die SPD verlangt anscheinend nicht mehr, dass die Union die Fragen zurückzieht." · Tichys Einblick, März 2025: Thorsten Frei räumte ein, die CDU habe das Programm selbst in der GroKo mitgetragen.
+  </div>
+
+  <!-- MÜNCHEN FALLBEISPIEL -->
+  <h2>VII. Fallbeispiel München: Die kommunale Dimension</h2>
+
+  <p>Das Münchner Beispiel zeigt, wie die Förderlogik von der Bundesebene in die kommunale Struktur übergeht. Oberbürgermeister Dieter Reiter (SPD) hat laut einer Nius-Recherche vom Februar 2026 ein Netzwerk von staatlich geförderten Strukturen aufgebaut, das Antifa-nahe Gruppen einschließt. <span class="tag tag-b">BELEGT</span></p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">2022–</div>
+      <div class="tl-text">Feierwerk e.V. (Trägerverein der Fachinformationsstelle Rechtsextremismus München / firm) erhält jährlich rund 4 Millionen Euro städtische Förderung. firm selbst: 132.000 € (2024), 123.000 € (2025).</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2024</div>
+      <div class="tl-text">Autonomes Zentrum „Kafe Marat" — laut Bayerischem Verfassungsschutz als linksextremistischer Treffpunkt geführt — erhält 50.000 € städtische Förderung.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2025</div>
+      <div class="tl-text">Antifa-Gruppe „Recherche Nord" erhält den Georg-Elser-Preis der Stadt München (10.000 €). Preis überreicht durch Kulturreferent Marek Wiechers, der bis 2019 das Büro von OB Reiter leitete.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">Jan.–Jul. 2026</div>
+      <div class="tl-text">Bundesregierung fördert Antifa-Ausstellung „Antifascism: Now" in der Kunsthalle Lothringer 13. Laut Nius-Recherche enthielt die Ausstellung Anleitungen zur Sabotage digitaler Infrastruktur sowie zum Bau von Wurfgeschossen. Fördervolumen: 133.000 €.</div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>Quellen</strong>
+    Nius, „Münchns SPD-Oberbürgermeister Reiter betreibt ein städtisches Antifa-Netzwerk", 20. Februar 2026 · Nius, „Regierung fördert Antifa-Ausstellung mit Anleitung für Wurfgeschosse gegen Unterdrücker mit 133.000 Euro Steuergeld", Februar 2026 · AfD-Stadtratsgruppe München, Kleine Anfrage an OB Reiter mit Verweis auf Verfassungsschutzberichte Bayern, Risi-Dokument 8889585.
+  </div>
+
+  <!-- CORRECTIV & RECHTSLAGE -->
+  <h2>VIII. Das Correctiv-Urteil und der rechtliche Rahmen</h2>
+
+  <p>Ein zentraler Referenzpunkt des gesamten Komplexes ist der Correctiv-Bericht vom Januar 2024 über ein Treffen in Potsdam, der eine der größten Demonstrationswellen der deutschen Nachkriegsgeschichte auslöste — und der staatlich geförderte NGOs als Mobilisierungsinfrastruktur nutzte. <span class="tag tag-b">BELEGT</span></p>
+
+  <p>Am <strong>17. März 2026</strong> stufte das Landgericht Berlin II unter dem Aktenzeichen <strong>27 O 379/25</strong> mehrere Kernaussagen des Correctiv-Berichts als unwahr ein. Der Bericht hatte den Anlass für Massendemonstrationen geliefert, an denen auch Organisationen aus dem Fördernetzwerk von „Demokratie leben!" beteiligt waren. <span class="tag tag-b">BELEGT</span></p>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    LG Berlin II, Az. 27 O 379/25, Urteil vom 17. März 2026 (Kernaussagen des Correctiv-Berichts als unwahr eingestuft). Dokumentiert durch RA Joachim Steinhöfel, der seit Jahren den staatlich-institutionellen Zensurkomplex aus HateAid, AAS und Correctiv gerichtlich angreift.
+  </div>
+
+  <p>Rechtsanwalt Joachim Steinhöfel dokumentiert in seiner Arbeit einen „staatlich-industriellen Zensurkomplex": HateAid, Amadeu Antonio Stiftung und Correctiv erhalten staatliche Millionenförderungen und operieren gleichzeitig im Bereich der Rechtsverfolgung gegen Bürger, die ihre Arbeit kritisieren. <span class="tag tag-e">EXTRAPOLATION</span></p>
+
+  <!-- STRUKTURBILANZ -->
+  <h2>IX. Strukturbilanz: Was dokumentierbar ist</h2>
+
+  <p>Aus den vorliegenden Primärquellen ergibt sich folgendes Strukturbild — ohne Attribuierung von Motiven:</p>
+
+  <div class="stat-grid" style="grid-template-columns: 1fr 1fr; margin-top:1rem;">
+    <div class="stat-cell" style="text-align:left; padding:1.2rem;">
+      <div style="font-family:'Courier New',monospace;font-size:0.7rem;color:var(--amber);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.8rem;">Dokumentierte Strukturmerkmale</div>
+      <ul style="list-style:none;font-size:0.88rem;color:var(--text-dim);line-height:1.8;">
+        <li>→ Staatliche Förderung definiert „Zivilgesellschaft"</li>
+        <li>→ Träger definieren, was als Extremismus gilt</li>
+        <li>→ Träger erhalten Mittel für diese Definition</li>
+        <li>→ Parlamentarische Kontrolle wurde blockiert</li>
+        <li>→ Interessenkonflikte bei zentralen Akteuren</li>
+        <li>→ Hauptträger mit IM-Biografie der Gründerin</li>
+      </ul>
+    </div>
+    <div class="stat-cell" style="text-align:left; padding:1.2rem;">
+      <div style="font-family:'Courier New',monospace;font-size:0.7rem;color:var(--orange);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.8rem;">Offen / Nicht belegt</div>
+      <ul style="list-style:none;font-size:0.88rem;color:var(--text-dim);line-height:1.8;">
+        <li>→ Intentionale Koordination zwischen Akteuren</li>
+        <li>→ Kausalität: Förderung → politisches Ergebnis</li>
+        <li>→ Gesamtvolumen aller parallelen Förderströme</li>
+        <li>→ Vollständige Trägerliste 3. Förderperiode</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- OFFENE FRAGEN -->
+  <div class="section-divider">· · ·</div>
+
+  <div class="open-questions">
+    <h3>Offene Fragen</h3>
+    <ul>
+      <li><em>Wenn 251 von 551 parlamentarischen Fragen unbeantwortet bleiben — welche Informationen wären darin enthalten gewesen?</em></li>
+      <li><em>Auf welcher Rechtsgrundlage kann ein staatlich geförderter Träger gleichzeitig definieren, was als „Extremismus" gilt, und Gelder für die Bekämpfung dieses selbst definierten Phänomens erhalten?</em></li>
+      <li><em>Warum wurde das Programm von 40,5 Millionen Euro (2015) auf 182 Millionen Euro (2023) ausgebaut — und welche Wirksamkeitsnachweise lagen dieser Entscheidung zugrunde?</em></li>
+      <li><em>Welche Rolle spielten staatlich geförderte NGO-Strukturen bei der Mobilisierung der Demonstrationen, die auf Basis von Correctiv-Behauptungen stattfanden, die ein Gericht später als unwahr eingestuft hat?</em></li>
+      <li><em>Warum hat die CDU, nachdem sie die 551 Fragen gestellt hatte, keinen parlamentarischen Nachdruck auf vollständige Beantwortung verwendet?</em></li>
+    </ul>
+  </div>
+
+  <div class="source-box" style="margin-top:3rem;">
+    <strong>Vollständige Quellenübersicht</strong>
+    Förderrichtlinie „Demokratie leben!" (GMBl. 2024, S. 1166 ff.) · Bundestagsdrucksache 20/15035 (551 Fragen, CDU/CSU, 21.02.2025) · BMBFSFJ, Infopapier 3. Förderperiode · NZZ, März 2025 · Taz, Oktober 2025 · Taz, März 2026 (Haber-Verfahren) · Tagesspiegel, März 2026 · Nius, Februar 2026 (Reiter/München) · Nius, Februar 2026 (Antifa-Ausstellung) · Risi-Dokument München 8889585 · Wikipedia „Amadeu Antonio Stiftung" · Wikipedia „Initiative D21" · AAS-Pressemitteilung April 2016 · Dr. Müller-Enbergs, Gutachten 2012 · LG Berlin II, Az. 27 O 379/25 · Fabio De Masi (X, 19.02.2026)
+  </div>
+
+</main>
+
+<footer>
+  dunkelfeld.report — Dokumentarischer Journalismus · Alle Behauptungen sind inline als BELEGT, EXTRAPOLATION oder NICHT BELEGT/OFFEN gekennzeichnet.<br>
+  <a href="/impressum">Impressum</a> · <a href="/datenschutz">Datenschutz</a> · <a href="/">Startseite</a>
+</footer>
+
+</body>
+</html>

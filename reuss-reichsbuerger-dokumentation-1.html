@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>„Das Deutsche Reich existiert weiter" — Dossier Reuß | dunkelfeld.report</title>
+<meta name="description" content="Heinrich XIII. Prinz Reuß plante laut Anklage einen Staatsstreich, bat Russland um Anerkennung als Botschafter des Deutschen Reiches und wollte Putin als Zeugen laden. Dokumentation der Primärquellen.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #09090b;
+    --bg-card: #111113;
+    --bg-source: #1a1a2e;
+    --accent: #e8c547;
+    --accent-dim: rgba(232,197,71,0.12);
+    --text: #e2e2e5;
+    --text-muted: #8a8a96;
+    --text-meta: #5a5a66;
+    --border: #2a2a36;
+    --red: #c0392b;
+    --green: #27ae60;
+    --orange: #d97706;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.05rem;
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: rgba(9,9,11,0.96);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+  }
+  .site-logo {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .site-nav {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .site-nav a {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .site-nav a:hover { color: var(--accent); }
+
+  .hero {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 4rem 2rem 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .article-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .article-label::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .hero h1 {
+    font-size: clamp(1.7rem, 3.8vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+    max-width: 620px;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--text-meta);
+    letter-spacing: 0.06em;
+  }
+  .hero-meta span { color: var(--text-muted); }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 2.5rem 0;
+  }
+  .stat-card {
+    background: var(--bg-card);
+    padding: 1.4rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+
+  .content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+
+  .content h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 3rem 0 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    letter-spacing: -0.01em;
+  }
+  .content h2:first-child { margin-top: 0; border-top: none; padding-top: 0; }
+
+  .content h3 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 2rem 0 0.6rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .content p { margin-bottom: 1.2rem; color: var(--text); }
+
+  .content a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232,197,71,0.3);
+    transition: border-color 0.2s;
+  }
+  .content a:hover { border-color: var(--accent); }
+
+  .source-box {
+    background: var(--bg-source);
+    border-left: 3px solid var(--accent);
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+  .source-box cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-meta);
+    margin-top: 0.6rem;
+    letter-spacing: 0.06em;
+    font-style: normal;
+  }
+
+  /* DOKUMENT-ZITAT — für tatsächliche wörtliche Dokumente */
+  .doc-quote {
+    background: rgba(232,197,71,0.06);
+    border: 1px solid rgba(232,197,71,0.2);
+    border-left: 3px solid var(--accent);
+    padding: 1.3rem 1.6rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: #ccc;
+  }
+  .doc-quote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-meta);
+    margin-top: 0.7rem;
+    letter-spacing: 0.06em;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+  }
+  .tag-belegt { background: rgba(39,174,96,0.15); color: #5dcea8; border: 1px solid rgba(39,174,96,0.3); }
+  .tag-offen { background: rgba(217,119,6,0.15); color: #f59e0b; border: 1px solid rgba(217,119,6,0.3); }
+  .tag-extrapolation { background: rgba(139,92,246,0.15); color: #a78bfa; border: 1px solid rgba(139,92,246,0.2); }
+
+  /* CHRONOLOGIE */
+  .timeline {
+    position: relative;
+    padding-left: 1.6rem;
+    margin: 2rem 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    padding-bottom: 2rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.6rem;
+    top: 0.45rem;
+    width: 7px;
+    height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+  }
+  .timeline-title {
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+  }
+  .timeline-text {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 3rem 0;
+    position: relative;
+  }
+  .divider::after {
+    content: '◆';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg);
+    padding: 0 0.8rem;
+    color: var(--text-meta);
+    font-size: 0.5rem;
+  }
+
+  .crosslink {
+    background: var(--accent-dim);
+    border: 1px solid rgba(232,197,71,0.2);
+    padding: 1.4rem 1.6rem;
+    margin: 2.5rem 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .crosslink-icon {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding-top: 0.1rem;
+  }
+  .crosslink-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+  .crosslink-text a {
+    color: var(--accent);
+    font-weight: 600;
+    border-bottom: 1px solid rgba(232,197,71,0.4);
+  }
+  .crosslink-text strong { color: var(--text); }
+
+  /* ANKLAGETABELLE */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.86rem;
+  }
+  .data-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+  }
+  .data-table td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid rgba(42,42,54,0.6);
+    vertical-align: top;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+  .data-table tr:hover td { background: rgba(232,197,71,0.03); }
+  .data-table td:first-child { color: var(--text); font-weight: 600; }
+
+  .closing-question {
+    font-style: italic;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+    margin-top: 3rem;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-meta);
+    letter-spacing: 0.08em;
+  }
+  .site-footer a { color: var(--text-muted); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .site-header { padding: 0.8rem 1rem; }
+    .site-nav { gap: 0.8rem; }
+    .hero { padding: 2.5rem 1.2rem 1.5rem; }
+    .content { padding: 2rem 1.2rem; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .data-table { font-size: 0.78rem; }
+    .data-table td, .data-table th { padding: 0.5rem 0.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/" class="site-logo">dunkelfeld.report</a>
+  <nav class="site-nav">
+    <a href="/">Archiv</a>
+    <a href="/impressum.html">Impressum</a>
+    <a href="/datenschutz.html">Datenschutz</a>
+  </nav>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="article-label">Dossier · Reichsbürger-Ideologie & Staatsstreich</div>
+    <h1>„Das Deutsche Reich<br><em>existiert weiter"</em></h1>
+    <p class="hero-subtitle">Heinrich XIII. Prinz Reuß bat den russischen Außenminister Lawrow schriftlich um Anerkennung als Botschafter des Deutschen Reiches, beantragte Putin als Prozesszeuge und proklamierte per Schreiben: Das Kaiserreich von 1918 ist nicht untergegangen. Die Dokumente wurden im Prozess verlesen.</p>
+    <div class="hero-meta">
+      <span>dunkelfeld.report</span>
+      <span>·</span>
+      <span>Dossier · <span>Reichsbürger / Staatsrecht</span></span>
+      <span>·</span>
+      <span>Primärquellen: OLG Frankfurt, Bundesanwaltschaft, Prozesstransskripte</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-number">26</div>
+        <div class="stat-label">Angeklagte in drei parallelen Verfahren (OLG Frankfurt, München, Stuttgart)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">3.000</div>
+        <div class="stat-label">Beamte bei der Razzia am 7. Dezember 2022 — 11 Bundesländer</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">Dez. 2022</div>
+        <div class="stat-label">Verhaftung Reuß — seit Verhaftung in Untersuchungshaft</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">§ 129a</div>
+        <div class="stat-label">StGB — Rädelsführer einer terroristischen Vereinigung (Anklagevorwurf)</div>
+      </div>
+    </div>
+
+    <h2>Wer ist Heinrich XIII. Prinz Reuß?</h2>
+
+    <p>Heinrich XIII. Prinz Reuß, geboren am 4. Dezember 1951 in Büdingen, ist Diplomingenieur, Immobilienunternehmer und Angehöriger des Hauses Reuß — eines thüringischen Adelsgeschlechts, dessen Stammlinien 1927 erloschen. Er gilt laut Anklage der Bundesanwaltschaft als Rädelsführer der „Patriotischen Union", einer mutmaßlich rechtsterroristischen Vereinigung.</p>
+
+    <div class="source-box">
+      Der Generalbundesanwalt in seiner Pressemitteilung vom 7. Dezember 2022: „Zentrales Gremium der Gruppierung ist der ‚Rat', dem Heinrich XIII. P. R. vorsteht. Er gilt innerhalb der Vereinigung als zukünftiges Staatsoberhaupt."
+      <cite>Quelle: Generalbundesanwalt beim Bundesgerichtshof, Pressemitteilung 7. Dezember 2022</cite>
+    </div>
+
+    <p>Reuß entstammt dem Seitenzweig Köstritz des Hauses Reuß. Das Adelsgeschlecht trägt historisch dieselben Landesfarben wie die heutige Bundesflagge: Schwarz, Rot und Gold — und dies bereits Jahrzehnte vor der Demokratiebewegung von 1848. Ein Kuriosum, auf das das Dossier <a href="./flaggen-souveraenitaet.html">„Flaggen & Souveränität"</a> vertiefend eingeht.</p>
+
+    <h2>Chronologie der Ereignisse</h2>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">Ab ca. 2010</div>
+        <div class="timeline-title">Erste Dokumente mit Reichsbürger-Ideologie</div>
+        <div class="timeline-text">Bei der Razzia sichergestellte Schriftstücke reichen laut Gericht bis 2010 zurück. Darin: Aussagen, die Bundesrepublik sei „weder juristisch noch faktisch" ein souveräner Staat.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">19. August 2022</div>
+        <div class="timeline-title">Offizieller Empfang in Bad Lobenstein</div>
+        <div class="timeline-text">Reuß wird zu einem offiziellen Empfang des Bürgermeisters Thomas Weigelt eingeladen. Ein Journalist der Ostthüringer Zeitung, der nach dem Anlass fragt, wird des Saales verwiesen. Am nächsten Tag wird er beim Filmen körperlich angegriffen.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">7. Dezember 2022</div>
+        <div class="timeline-title">Großrazzia — Verhaftung</div>
+        <div class="timeline-text">Rund 3.000 Beamte in elf Bundesländern sowie im Ausland. Reuß und 24 weitere Personen werden festgenommen. Beginn der Untersuchungshaft.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Dezember 2023</div>
+        <div class="timeline-title">Anklage vor OLG Frankfurt</div>
+        <div class="timeline-text">Anklage wegen Gründung einer terroristischen Vereinigung (§ 129a StGB) und Vorbereitung eines hochverräterischen Unternehmens.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">April / Mai 2024</div>
+        <div class="timeline-title">Prozessbeginn — drei parallele Verfahren</div>
+        <div class="timeline-text">Verfahren vor OLGs in Frankfurt (9 Angeklagte), München und Stuttgart. Reuß äußert sich erstmals öffentlich zu seinem Werdegang und bestreitet die Annahme von Gewalt.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Oktober 2024</div>
+        <div class="timeline-title">Dokumente werden verlesen — Russland-Verbindung</div>
+        <div class="timeline-text">Im Frankfurter Prozess werden sichergestellte Schriften verlesen: Briefe an Lawrow und an einen Mitarbeiter einer russischen Bank. Antrag der Verteidigung, Putin als Zeugen zu laden.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">April 2026</div>
+        <div class="timeline-title">Prozess läuft — U-Haft bestätigt</div>
+        <div class="timeline-text">Das OLG Frankfurt weist einen Antrag auf Entlassung aus der Untersuchungshaft ab. Reuß wird weiterhin als zu gefährlich eingestuft.</div>
+      </div>
+    </div>
+
+    <h2>Die Russland-Verbindung — Primärquellen</h2>
+
+    <p>Der politisch bemerkenswerteste Befund des Verfahrens betrifft die in den sichergestellten Schriftstücken dokumentierten Russland-Kontakte. Die folgenden Dokumente wurden im Prozess vor dem OLG Frankfurt verlesen und sind damit Teil des öffentlichen Verfahrensrekords.</p>
+
+    <h3>Brief an Außenminister Lawrow <span class="tag tag-belegt">Belegt</span></h3>
+
+    <div class="source-box">
+      Zu den verlesenen Schriftstücken gehörte ein Schreiben an den russischen Außenminister Sergei Lawrow. Darin bat Prinz Reuß darum, als „Botschafter des Deutschen Reiches" akkreditiert zu werden.
+      <cite>Quelle: Hessenschau, 8. Oktober 2024 · Hessentoday, 9. Oktober 2024 — beide berichten aus der Hauptverhandlung OLG Frankfurt</cite>
+    </div>
+
+    <h3>Inhalt der Russland-Korrespondenz <span class="tag tag-belegt">Belegt</span></h3>
+
+    <div class="doc-quote">
+      Reuß bat in den Briefen um Anerkennung seiner Fürstentümer als „erste Gliedstaaten" des Deutschen Reichs sowie seiner Person als Botschafter des Deutschen Reichs. Die Hilfe Russlands könne „zu einem dauerhaften weltweiten Frieden" führen.
+      <cite>Quelle: Der Tagesspiegel, 8. Oktober 2024 (Prozessbericht OLG Frankfurt)</cite>
+    </div>
+
+    <h3>Kernthese der Reichsbürger-Dokumente <span class="tag tag-belegt">Belegt</span></h3>
+
+    <div class="doc-quote">
+      In einem Brief schrieb Reuß: „Das Kaiserreich von 1918 ist nicht untergegangen" — und: „Das Deutsche Reich ist existent." Er habe es durch die Proklamation seiner Fürstentümer „wieder aktiviert".
+      <cite>Quelle: Der Tagesspiegel, 8. Oktober 2024 · Hessentoday, 9. Oktober 2024</cite>
+    </div>
+
+    <h3>Putin informiert — und als Zeuge beantragt <span class="tag tag-belegt">Belegt</span></h3>
+
+    <div class="source-box">
+      In einem Mailverkehr geht es um die Frage, wie „die Anerkennung souveräner Gliedstaaten des Reichs" erreicht werden kann. Reuß schreibt darin, Putin sei „über meine Tätigkeit informiert". Der Anwalt einer Mitangeklagten schlug daraufhin vor, Putin als Zeugen zu laden. Reuß' eigener Anwalt schloss sich dem an und erweiterte die Liste um den Ex-US-Präsidenten Barack Obama, der etwas zur Frage der Souveränität Deutschlands beitragen könne.
+      <cite>Quelle: Der Tagesspiegel, 8. Oktober 2024 · Hessentoday, 9. Oktober 2024</cite>
+    </div>
+
+    <h2>Weitere sichergestellte Dokumente</h2>
+
+    <p>Neben den Russland-Korrespondenzen wurden weitere Schriftstücke in den Verhandlungen verlesen und eingeblendet:</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Dokument</th>
+          <th>Inhalt (laut Prozesskammer)</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Brief an Reuß (unbekannter Absender)</td>
+          <td>Tituliert Reuß als „künftiges Staatsoberhaupt" — unterzeichnet mit „Ihr Diener"</td>
+          <td><span class="tag tag-belegt">Belegt</span></td>
+        </tr>
+        <tr>
+          <td>„Vorläufiger Staatsangehörigkeitsausweis"</td>
+          <td>In Frakturschrift, ausgestellt auf Basis eines Gesetzes von 1913, unterzeichnet von einer „staatlichen Wahlkommission Reuß"</td>
+          <td><span class="tag tag-belegt">Belegt</span></td>
+        </tr>
+        <tr>
+          <td>„Ausweis" — Polizei-Festnahmeverbot</td>
+          <td>Dokument, das es der Polizei untersagt, den Inhaber festzunehmen</td>
+          <td><span class="tag tag-belegt">Belegt</span></td>
+        </tr>
+        <tr>
+          <td>Mitgliedsanträge</td>
+          <td>Stapel mit Anträgen für „Kompetenz-Teams und Arbeitsgruppen zur Herbeiführung des Weltfriedens"</td>
+          <td><span class="tag tag-belegt">Belegt</span></td>
+        </tr>
+        <tr>
+          <td>„Eid-Entbindung"</td>
+          <td>Dokument, mit dem Reuß sich von „einem korrupten und menschenverachtenden System, der BRD" lossagt</td>
+          <td><span class="tag tag-belegt">Belegt</span></td>
+        </tr>
+        <tr>
+          <td>Sitzungsprotokoll „Übergangsrat"</td>
+          <td>Protokoll des Gremiums, das laut Anklage nach dem Umsturz die Regierungsgeschäfte übernehmen sollte</td>
+          <td><span class="tag tag-belegt">Belegt</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Die Anklage: Was die Bundesanwaltschaft behauptet</h2>
+
+    <div class="source-box">
+      Das Oberlandesgericht Frankfurt in seinem Haftfortdauerbeschluss: Reuß sei nach wie vor als Teil der mutmaßlichen Verschwörergruppe anzusehen, „die den Bundestag gewaltsam erstürmen und Parlamentarier festnehmen habe wollen. Alles mit dem Ziel, einen gewaltsamen Umsturz im Staat einzuleiten."
+      <cite>Quelle: OLG Frankfurt, Haftbeschluss, Juli 2024 · Hessenschau-Bericht vom 10. Juli 2024</cite>
+    </div>
+
+    <p>In Chats von Mitangeklagten, die erstmals in der Hauptverhandlung zitiert wurden, ist unter anderem die Rede davon, dass die Erstürmung des Parlaments in Berlin am „Tag der großen Impfentscheidung" stattfinden solle. Wörtlich heißt es in einem Chat: „Es werden alle erwischt. Dann kommt das große Aufräumen bis in die Rathäuser."</p>
+
+    <h3>Position der Verteidigung <span class="tag tag-offen">Offene Frage</span></h3>
+
+    <p>Die Verteidigung von Reuß bestreitet die Tatvorwürfe. Sie argumentiert, die Angeklagten hätten die Umsetzung des geplanten Bundestagssturms von dem Eingreifen einer „fiktiven Allianz aus Regierungen und Geheimdiensten" abhängig gemacht — und dass Reuß selbst erkannt habe, dass diese nicht existiere. Es handele sich allenfalls um einen „untauglichen Versuch". Die Schriftstücke — so die Verteidigung — zeigten, dass ihr Mandant um einen „friedlichen Weg zur Anerkennung der von ihm proklamierten" Strukturen bemüht gewesen sei. Das Gericht folgte dieser Argumentation nicht und bestätigte die Untersuchungshaft.</p>
+
+    <div class="divider"></div>
+
+    <h2>Einordnung: Was ist Reichsbürger-Ideologie?</h2>
+
+    <p>Die Reichsbürger-Bewegung geht von der Prämisse aus, dass das Deutsche Reich von 1871 rechtlich nie untergegangen sei, die Bundesrepublik Deutschland kein souveräner Staat, sondern eine „GmbH" oder Verwaltungsstruktur der Alliierten sei, und einzelne Personen sich durch Proklamation aus dem Rechtssystem der BRD herauslösen könnten.</p>
+
+    <p>Diese Annahmen haben keine Grundlage im deutschen oder internationalen Recht. Das Grundgesetz von 1949 konstituiert die Bundesrepublik als souveränen Rechtsnachfolger. Der Zwei-plus-Vier-Vertrag von 1990 regelt die volle Souveränität des wiedervereinigten Deutschlands völkerrechtlich verbindlich.</p>
+
+    <p>Gleichwohl ist die Ideologie politisch relevant — nicht weil sie juristisch belastbar wäre, sondern weil sie eine Mobilisierungsgrundlage darstellt, die in den vergangenen Jahren erheblich gewachsen ist. Das Verfassungsschutzamt schätzte die Zahl der Reichsbürger und Selbstverwalter in Deutschland auf zuletzt über 23.000 Personen.</p>
+
+    <div class="crosslink">
+      <div class="crosslink-icon">→ Verwandt</div>
+      <div class="crosslink-text">
+        <strong>Symbolfrage:</strong> Das Haus Reuß, dem Heinrich XIII. Prinz Reuß angehört, trägt historisch dieselben Farben wie die heutige Bundesflagge — Schwarz, Rot und Gold. Wie der Staat heute mit seiner eigenen Nationalfahne umgeht, dokumentiert das Dossier <a href="./flaggen-souveraenitaet.html">„Flaggen & Souveränität — Wem gehört das Land?"</a>.
+      </div>
+    </div>
+
+    <div class="closing-question">
+      Ein Immobilienunternehmer und Adliger, der sich selbst als künftiges Staatsoberhaupt des Deutschen Reiches betrachtete, Russland um diplomatische Anerkennung bat und Putin über seine Aktivitäten informiert haben will — und dessen Verteidigung beantragte, den russischen Präsidenten als Entlastungszeugen in einem deutschen Terrorprozess zu laden: Welche Schlüsse ziehen Leser aus dem Nebeneinander dieser dokumentierten Fakten?
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>dunkelfeld.report · Investigative Dokumentation · Alle Angaben mit Primärquellen belegt</p>
+  <p style="margin-top:0.5rem"><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></p>
+</footer>
+
+</body>
+</html>

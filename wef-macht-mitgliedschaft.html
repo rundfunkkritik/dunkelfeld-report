@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Davos, Selenskyj, BlackRock — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --belegt: #4ade80;
+    --extrapolation: #fb923c;
+    --offen: #9ca3af;
+    --box-bg: #1a1a2e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+  }
+  .site-label, .meta, .label {
+    font-family: 'Courier New', monospace;
+  }
+  .site-label {
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .meta {
+    color: #71717a;
+    font-size: 0.85rem;
+    margin-bottom: 30px;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin: 0 0 8px;
+    color: #f4f4f5;
+  }
+  .subtitle {
+    color: #a1a1aa;
+    font-size: 1.15rem;
+    font-style: italic;
+    margin-bottom: 40px;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.4rem;
+    margin-top: 56px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 10px;
+  }
+  p { padding-bottom: 1.2rem; margin: 0; }
+  .intro-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 20px 24px;
+    margin: 24px 0 40px;
+    font-size: 1.02rem;
+  }
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 0.95rem;
+    color: #d4d4d8;
+  }
+  .source-box .label {
+    color: var(--accent);
+    font-size: 0.75rem;
+    display: block;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    padding: 3px 9px;
+    border-radius: 3px;
+    margin-right: 6px;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag-extrapolation { background: rgba(251,146,60,0.15); color: var(--extrapolation); border: 1px solid var(--extrapolation); }
+  .tag-offen { background: rgba(156,163,175,0.15); color: var(--offen); border: 1px solid var(--offen); }
+  .quote-box {
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--accent);
+    border-left: 3px solid var(--accent);
+    padding: 4px 0 4px 24px;
+    margin: 30px 0;
+  }
+  .quote-box .attribution {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-style: normal;
+    font-size: 0.85rem;
+    color: #a1a1aa;
+    margin-top: 10px;
+  }
+  .timeline {
+    margin: 30px 0;
+    padding-left: 20px;
+    border-left: 2px solid #27272a;
+  }
+  .timeline-item {
+    margin-bottom: 22px;
+    position: relative;
+    padding-left: 20px;
+  }
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -27px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .stat-card {
+    background: var(--box-bg);
+    padding: 16px;
+    border-radius: 4px;
+  }
+  .stat-card .num {
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 1.3rem;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .stat-card .desc {
+    font-size: 0.85rem;
+    color: #a1a1aa;
+  }
+  .person-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .person-card {
+    background: var(--box-bg);
+    padding: 14px 18px;
+    border-radius: 4px;
+    border-left: 3px solid var(--accent);
+  }
+  .person-name {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+  .person-fact {
+    font-size: 0.95rem;
+    color: #d4d4d8;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 0.92rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid #27272a;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+  }
+  .open-questions {
+    font-style: italic;
+    color: #a1a1aa;
+    margin: 30px 0;
+  }
+  .open-questions p {
+    margin-bottom: 0.9rem;
+  }
+  .rule {
+    border: none;
+    border-top: 1px solid #27272a;
+    margin: 50px 0;
+  }
+  .footer-nav {
+    margin-top: 70px;
+    padding-top: 24px;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="site-label">dunkelfeld.report · dossier · teil 1/2 · wef-macht-mitgliedschaft</div>
+  <div class="meta">Juli 2026 &nbsp;|&nbsp; Lesedauer: ca. 14 Minuten</div>
+
+  <h1>Davos: Vom Management-Symposium zur Weltbühne</h1>
+  <div class="subtitle">Wie aus einem kleinen Schweizer Treffen unter Betriebswirten die einflussreichste private Plattform der Weltpolitik wurde — und wer heute an ihrer Spitze steht.</div>
+
+  <div class="intro-box">
+    Dies ist Teil 1 eines zweiteiligen Dossiers. Teil 1 dokumentiert die Geschichte, Struktur, Mitgliedschaft und Führung des World Economic Forum (WEF). Teil 2 widmet sich der Rolle des ukrainischen Präsidenten Wolodymyr Selenskyj in Davos und der parallelen Entwicklung der BlackRock-Beteiligung am Wiederaufbau der Ukraine.<br><br>
+    Keine Spekulation über Motive. Nur was öffentlich gesagt, dokumentiert und von den Beteiligten selbst bestätigt ist. Die Fakten sprechen für sich.
+  </div>
+
+  <rule></rule>
+
+  <h2>1. Von den zarten Anfängen</h2>
+
+  <p>Was heute als "Davos" globale Schlagzeilen macht, begann 1971 als betriebswirtschaftliches Nischentreffen. Der aus Ravensburg stammende Ingenieur und Ökonom Klaus Schwab, damals Professor an der Universität Genf, wollte europäischen Managern amerikanische Führungsmethoden näherbringen.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-date">1971</span>
+      Gründung als "European Management Symposium" in Davos. 444 Teilnehmer aus 31 Ländern. Motto: "Let's meet the American challenge".
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">1974</span>
+      Nach Bretton-Woods-Kollaps und Ölkrise erstmals Einladung von Regierungsvertretern — der Fokus verschiebt sich von reiner Managementlehre zu Wirtschaftspolitik.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">1987</span>
+      Umbenennung in "World Economic Forum".
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">1988</span>
+      Die "Davos Declaration": Griechenland und die Türkei unterzeichnen in Davos eine Erklärung, die einen Krieg um Zypern verhindert.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">1992</span>
+      Erster gemeinsamer öffentlicher Auftritt von De Klerk, Mandela und Buthelezi außerhalb Afrikas — in Davos.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">1993</span>
+      Start des Programms "Global Leaders for Tomorrow" (GLT) — Vorläufer der späteren "Young Global Leaders".
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2004</span>
+      Umbenennung von GLT in "Young Global Leaders" (YGL).
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">13. Juni 2019</span>
+      WEF und Vereinte Nationen unterzeichnen ein "Strategic Partnership Framework" zur gemeinsamen Umsetzung der UN-Agenda 2030.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">April/August 2025</span>
+      Klaus Schwab tritt nach internen Konflikten als Stiftungsratsvorsitzender zurück. Eine Doppelspitze übernimmt.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Januar 2026</span>
+      56. Jahrestreffen in Davos-Klosters, ca. 3.000 Teilnehmer aus 130 Ländern, rund 65 Staats- und Regierungschefs.
+    </div>
+  </div>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Bundeszentrale für politische Bildung (bpb.de), "Weltwirtschaftsforum in Davos"; Wikipedia (mit Primärquellenverweisen); WEF-eigene Jubiläumspublikation "A Partner in Shaping History: The First 40 Years" (2010)
+  </div>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <h2>2. Der Mentor: Kissinger und Harvard</h2>
+
+  <p>Schwab selbst hat wiederholt öffentlich beschrieben, wie er zu seiner geopolitischen Prägung kam. 1965/66 studierte er an der Harvard Kennedy School of Government — und traf dort den damaligen Professor Henry Kissinger.</p>
+
+  <p>In einem Gespräch an der Kennedy School, das Harvard selbst veröffentlichte, erinnerte sich Schwab: Er sei in Kissingers Seminar zunächst nicht zugelassen gewesen, habe aber teilnehmen dürfen — "weil ich Deutscher war". Diese Begegnung habe sein Interesse für Geopolitik geweckt. Die Freundschaft bestehe "bis heute".</p>
+
+  <p>1980 hielt Kissinger als einer der ersten hochrangigen Redner überhaupt eine Rede beim damaligen European Management Symposium in Davos — dokumentiert im WEF-eigenen Archiv. Das Thema damals: "das Zeitalter globaler Interdependenz".</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    Wikipedia "Klaus Schwab" (mit Verweis auf Harvard Institute of Politics); WEF-eigenes Archiv widgets.weforum.org/history/1980.html; The Founder Spirit Podcast, Interview mit Klaus Schwab
+  </div>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <p style="font-size: 0.9rem; color: #a1a1aa;">Was nicht dokumentiert, sondern nur behauptet ist: Die These, Schwab sei über ein CIA-finanziertes Harvard-Seminar gezielt "rekrutiert" worden, um das WEF als verdecktes US-Projekt aufzubauen. Belegt ist nur, dass Kissingers "International Seminar" laut Harvard Crimson (16.4.1967) mit 135.000 US-Dollar von der CIA mitfinanziert wurde — eine reine Finanzierungstatsache. Was diese Finanzierung bedeutete oder bezweckte, ist nicht dokumentiert.</p>
+  <span class="tag tag-offen">OFFEN</span>
+
+  <h2>3. "We penetrate the cabinets"</h2>
+
+  <p>2017 gab Schwab dem südafrikanischen Sender SABC ein Interview, das im Kontext des WEF-eigenen Nachwuchsprogramms bis heute zitiert wird:</p>
+
+  <div class="quote-box">
+    "I have to say, when I mention now names like Mrs. Merkel, even Vladimir Putin, and so on, they have all been Young Global Leaders of the World Economic Forum. But what we are really proud of now with the young generation like Prime Minister Trudeau, President of Argentina and so on, is that we penetrate the cabinets. So yesterday I was at a reception for Prime Minister Trudeau and I would say that more than half of his cabinet are actually Young Global Leaders of the World Economic Forum."
+    <span class="attribution">— Klaus Schwab, SABC-Interview, 2017</span>
+  </div>
+
+  <p>Das WEF hat diese Aussage nie korrigiert oder zurückgenommen. Schwab verwendet das Wort "penetrate" — durchdringen — nicht als Kritik an sich selbst, sondern als Erfolgsausweis des eigenen Netzwerkprogramms.</p>
+
+  <p>Die Gründungskohorte von 1993 ("Global Leaders for Tomorrow") ist über das WEF-eigene Jubiläumsbuch dokumentiert. Zu den Mitgliedern des ersten Jahrgangs gehörten:</p>
+
+  <div class="person-grid">
+    <div class="person-card">
+      <div class="person-name">Angela Merkel</div>
+      <div class="person-fact">1993 noch Bundesministerin für Frauen und Jugend, später Bundeskanzlerin</div>
+    </div>
+    <div class="person-card">
+      <div class="person-name">Bill Gates</div>
+      <div class="person-fact">Mitgründer Microsoft, später Bill & Melinda Gates Foundation</div>
+    </div>
+    <div class="person-card">
+      <div class="person-name">Tony Blair, Gordon Brown</div>
+      <div class="person-fact">Später britischer Premierminister bzw. Schatzkanzler/Premierminister</div>
+    </div>
+    <div class="person-card">
+      <div class="person-name">José Manuel Barroso</div>
+      <div class="person-fact">Später Präsident der Europäischen Kommission</div>
+    </div>
+    <div class="person-card">
+      <div class="person-name">Nicolas Sarkozy</div>
+      <div class="person-fact">Später Präsident Frankreichs</div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    WEF-eigene Publikation "A Partner in Shaping History: The First 40 Years" (2010), www3.weforum.org/docs/WEF_First40Years_Book_2010.pdf; Norbert Häring, "Warum Baerbock dank Weltwirtschaftsforum eine hochkompetente Nachfolgerin für Merkel wäre" (norberthaering.de, 2021), mit direktem Verweis auf o.g. WEF-Dokument. Aktuelle, durchsuchbare Mitgliederdatenbank: younggloballeaders.org/community
+  </div>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <h2>4. Eintrittspreis</h2>
+
+  <p>Das WEF ist eine Schweizer Stiftung mit rund 1.000 Mitgliedsunternehmen — typischerweise Konzerne mit mehr als 5 Milliarden US-Dollar Jahresumsatz. Die Mitgliedschaft ist gestaffelt:</p>
+
+  <table>
+    <tr><th>Stufe</th><th>Jährliche Gebühr</th></tr>
+    <tr><td>Basis-Mitgliedschaft</td><td>CHF 42.500–60.000</td></tr>
+    <tr><td>Industrie-Partner</td><td>CHF 250.000–263.000</td></tr>
+    <tr><td>Strategischer Partner (~100 Firmen)</td><td>CHF 600.000</td></tr>
+  </table>
+
+  <p>Hinzu kommt ein separates Ticket für die persönliche Teilnahme in Davos: rund CHF 18.000–25.000 pro Person und Jahr. Politiker und Staatschefs zahlen nichts — sie werden eingeladen. Der kleine und mittelständische Unternehmenssektor ist wegen der Kostenstruktur faktisch ausgeschlossen.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="num">~1.000</span>
+      <span class="desc">Mitgliedsunternehmen weltweit</span>
+    </div>
+    <div class="stat-card">
+      <span class="num">~100</span>
+      <span class="desc">"Strategische Partner" (u.a. KPMG, Allianz, VW)</span>
+    </div>
+    <div class="stat-card">
+      <span class="num">CHF 327 Mio.</span>
+      <span class="desc">Jahreseinnahmen der Stiftung (Stand 2019)</span>
+    </div>
+    <div class="stat-card">
+      <span class="num">CHF 9 Mio.</span>
+      <span class="desc">Sicherheitskosten Davos 2026, geteilt zw. WEF und Schweizer Staat</span>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    bpb.de, "Weltwirtschaftsforum in Davos" (2026); Wikipedia "World Economic Forum" mit historischen Gebührenangaben seit 2011; Tagesanzeiger, "Was Teilnehmer für das WEF bezahlen" (2019); admin.ch (Schweizer Bundesverwaltung)
+  </div>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <h2>5. Die neue Doppelspitze</h2>
+
+  <p>Im April 2025 trat Klaus Schwab wegen interner Konflikte als Vorsitzender des Stiftungsrates zurück. Seit August 2025 wird die Stiftung übergangsweise von einer Doppelspitze geführt:</p>
+
+  <div class="person-grid">
+    <div class="person-card">
+      <div class="person-name">Larry Fink</div>
+      <div class="person-fact">Mitgründer und CEO von BlackRock, dem größten Vermögensverwalter der Welt</div>
+    </div>
+    <div class="person-card">
+      <div class="person-name">André Hoffmann</div>
+      <div class="person-fact">Vizepräsident von Roche Holding</div>
+    </div>
+  </div>
+
+  <p>Der Gründer und Namensgeber des Netzwerks, das 55 Jahre lang von einem einzelnen Ökonomen geprägt wurde, ist damit abgelöst — durch den Chef eines der größten privaten Finanzkonzerne der Welt. Das ist keine Interpretation, sondern eine Personalie, die bpb.de und andere Quellen unabhängig bestätigen.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    bpb.de, "Weltwirtschaftsforum in Davos" (Stand Januar 2026)
+  </div>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <h2>6. Das breite Spektrum</h2>
+
+  <p>Davos ist längst nicht mehr nur ein Wirtschaftstreffen. Schwab lud über Jahre gezielt Stimmen ein, die mit klassischer Betriebswirtschaft wenig zu tun haben — bis hin zu ausdrücklichen Gegenpositionen zum eigenen "Stakeholder Capitalism".</p>
+
+  <p><strong>Sadhguru</strong> (Jaggi Vasudev), indischer spiritueller Lehrer und Gründer der Isha Foundation, trat 2006 erstmals in Davos auf. 2020, zum 50-jährigen Jubiläum des Forums, kehrte er auf persönliche Einladung Schwabs zurück, leitete mehrere Meditationssitzungen und einen halbtägigen "Consciousness Retreat" für Teilnehmer und wurde Mitinitiator der WEF-Initiative "1 Trillion Trees" (gemeinsam mit UNEP und FAO).</p>
+
+  <p><strong>Javier Milei</strong>, libertärer Präsident Argentiniens, hielt 2024 sein internationales Debüt ausgerechnet in Davos — mit einer Rede gegen "Kollektivismus" und "Sozialismus", eingeleitet von Schwab selbst, der Mileis "radikalere Methoden" lobend erwähnte. 2025 sorgte Milei mit Aussagen zur Gender-Debatte für einen Eklat, 2026 hielt er seine dritte Rede in Davos und traf zuvor CEOs von Citigroup, BlackRock und BBVA.</p>
+
+  <div class="quote-box">
+    "The West is in danger... those who are supposed to defend the values of the West have been co-opted by a vision of the world that inexorably leads to socialism."
+    <span class="attribution">— Javier Milei, Davos, 17. Januar 2024</span>
+  </div>
+
+  <p>Das WEF lässt also explizit Kritik am eigenen ideologischen Gründungsnarrativ ("Stakeholder Capitalism") auf seiner Bühne zu — ebenso wie spirituelle Praktiken, die mit Wirtschaftspolitik im engeren Sinne nichts zu tun haben. Beides ist dokumentiert, ohne dass eine Deutung nötig wäre.</p>
+
+  <div class="source-box">
+    <span class="label">Quelle</span>
+    isha.sadhguru.org (Eigenberichte der Isha Foundation zu Davos 2006/2020/2022); CNBC, Buenos Aires Times, Buenos Aires Herald, Jerusalem Post (Milei-Reden 2024–2026, mit direkten Zitaten)
+  </div>
+  <span class="tag tag-belegt">BELEGT</span>
+
+  <hr class="rule">
+
+  <div class="open-questions">
+    <p><em>Wieso lässt ein Wirtschaftsforum spirituelle Retreats und explizite Gegenreden zum eigenen Wirtschaftsmodell zu — und was sagt das über die tatsächliche Funktion von Davos aus, jenseits der Wirtschaftsagenda?</em></p>
+    <p><em>Was bedeutet es, dass der weltgrößte private Vermögensverwalter nun die Doppelspitze einer Organisation stellt, die sich selbst als neutrale Plattform beschreibt?</em></p>
+  </div>
+
+  <div class="footer-nav">
+    → Weiter zu Teil 2: <a href="wef-selenskyj-blackrock.html" style="color:var(--accent);">Selenskyj in Davos und die BlackRock-Timeline zum Wiederaufbau der Ukraine</a>
+  </div>
+
+</div>
+</body>
+</html>

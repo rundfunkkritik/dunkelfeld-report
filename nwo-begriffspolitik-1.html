@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neue Weltordnung — Das Wort, das Kritik unsichtbar macht | dunkelfeld.report</title>
+<meta name="description" content="Politiker haben den Begriff selbst verwendet. Souveränitätstransfer ist in EU-Primärrecht dokumentiert. Und dennoch: Wer 'Neue Weltordnung' sagt, verliert sofort das Gespräch. Wie funktioniert das?">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #09090b;
+    --bg-card: #111113;
+    --bg-source: #1a1a2e;
+    --amber: #e8c547;
+    --amber-dim: #b89a30;
+    --text: #e2e2e5;
+    --text-muted: #8a8a96;
+    --text-dim: #5a5a66;
+    --border: #2a2a35;
+    --max: 720px;
+    --tag-belegt: #22c55e;
+    --tag-extrapolation: #f59e0b;
+    --tag-offen: #94a3b8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(9,9,11,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .site-nav .logo {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--amber);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .site-nav .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .site-nav .nav-links a {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .site-nav .nav-links a:hover { color: var(--amber); }
+
+  /* ── WRAPPER ── */
+  .wrapper {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .dossier-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--amber);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+  .hero h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 em {
+    color: var(--amber);
+    font-style: normal;
+  }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+  .meta-row span { color: var(--text-muted); }
+
+  /* ── STAT GRID ── */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 3rem 0;
+  }
+  .stat-card {
+    background: var(--bg-card);
+    padding: 1.4rem 1.2rem;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.6rem;
+    color: var(--amber);
+    font-weight: bold;
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+  }
+  .divider-amber {
+    border-color: var(--amber-dim);
+    opacity: 0.4;
+  }
+
+  /* ── CONTENT ── */
+  .content { padding: 2rem 0 4rem; }
+
+  .content h2 {
+    font-family: Georgia, serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 3rem 0 1rem;
+    padding-top: 1rem;
+    border-top: 2px solid var(--amber);
+    padding-top: 1rem;
+  }
+  .content h2:first-child { margin-top: 0; }
+
+  .content h3 {
+    font-family: Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--amber);
+    margin: 2rem 0 0.8rem;
+  }
+
+  .content p {
+    padding-bottom: 1.2rem;
+    color: var(--text);
+  }
+
+  .content a {
+    color: var(--amber);
+    text-decoration: none;
+    border-bottom: 1px solid var(--amber-dim);
+    transition: border-color 0.2s;
+  }
+  .content a:hover { border-color: var(--amber); }
+
+  /* ── ZITAT-BOX ── */
+  .zitat-box {
+    background: var(--bg-source);
+    border-left: 3px solid var(--amber);
+    padding: 1.4rem 1.6rem;
+    margin: 1.8rem 0;
+    position: relative;
+  }
+  .zitat-box .speaker {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+  .zitat-box blockquote {
+    font-style: italic;
+    font-size: 1.08rem;
+    color: #fff;
+    line-height: 1.7;
+    border: none;
+    padding: 0;
+  }
+  .zitat-box .zitat-meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    margin-top: 0.7rem;
+    display: block;
+  }
+
+  /* ── QUELLE BOX ── */
+  .source-box {
+    background: var(--bg-source);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.4rem;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .source-box .source-label {
+    color: var(--amber);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .source-box a {
+    color: var(--amber);
+    border-bottom: 1px solid var(--amber-dim);
+    text-decoration: none;
+  }
+
+  /* ── STATUS TAGS ── */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.15em 0.5em;
+    border-radius: 2px;
+    font-weight: bold;
+    vertical-align: middle;
+    margin-left: 0.4em;
+  }
+  .tag-belegt { background: rgba(34,197,94,0.15); color: var(--tag-belegt); border: 1px solid rgba(34,197,94,0.3); }
+  .tag-extrapolation { background: rgba(245,158,11,0.15); color: var(--tag-extrapolation); border: 1px solid rgba(245,158,11,0.3); }
+  .tag-offen { background: rgba(148,163,184,0.1); color: var(--tag-offen); border: 1px solid rgba(148,163,184,0.2); }
+
+  /* ── KOMPETENZ-TABELLE ── */
+  .kompetenz-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0 2rem;
+    font-size: 0.88rem;
+  }
+  .kompetenz-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--amber);
+    border-bottom: 1px solid var(--amber-dim);
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    background: var(--bg-card);
+  }
+  .kompetenz-table td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .kompetenz-table tr:last-child td { border-bottom: none; }
+  .kompetenz-table .rechtsartikel {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--amber-dim);
+    white-space: nowrap;
+  }
+
+  /* ── VERGLEICHS-GRID ── */
+  .vergleich-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    margin: 1.5rem 0 2rem;
+  }
+  .vergleich-cell {
+    background: var(--bg-card);
+    padding: 1.2rem;
+  }
+  .vergleich-cell .region-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+  .vergleich-cell p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    padding-bottom: 0;
+    color: var(--text-muted);
+  }
+  .vergleich-cell strong { color: var(--text); }
+
+  /* ── MECHANISMUS-BOX ── */
+  .mechanismus-box {
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    padding: 1.6rem;
+    margin: 1.8rem 0;
+  }
+  .mechanismus-box .mech-title {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--amber);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .mechanismus-box ol {
+    padding-left: 1.4rem;
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.8;
+  }
+  .mechanismus-box ol li { margin-bottom: 0.4rem; }
+
+  /* ── WEITERFUEHREND ── */
+  .weiterfuehrend {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 1.6rem;
+    margin: 2rem 0;
+  }
+  .weiterfuehrend .wf-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .weiterfuehrend .wf-note {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .wf-list {
+    list-style: none;
+    padding: 0;
+  }
+  .wf-list li {
+    border-bottom: 1px solid var(--border);
+    padding: 0.6rem 0;
+    font-size: 0.88rem;
+    display: flex;
+    gap: 0.8rem;
+    align-items: baseline;
+  }
+  .wf-list li:last-child { border-bottom: none; }
+  .wf-list .wf-year {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--amber-dim);
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .wf-list a {
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .wf-list a:hover { color: var(--amber); border-color: var(--amber-dim); }
+
+  /* ── ABSCHLUSS-FRAGE ── */
+  .abschluss {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 0 1rem;
+    margin-top: 2rem;
+  }
+  .abschluss p {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.9;
+    padding-bottom: 0;
+  }
+
+  /* ── LEGENDE ── */
+  .legende {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+    border-top: 1px solid var(--border);
+    margin-top: 1.5rem;
+  }
+  .legende-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+  .site-footer a { color: var(--text-dim); text-decoration: none; }
+  .site-footer a:hover { color: var(--amber); }
+
+  @media (max-width: 600px) {
+    .site-nav .nav-links { display: none; }
+    .vergleich-grid { grid-template-columns: 1fr; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a class="logo" href="/">dunkelfeld.report</a>
+  <ul class="nav-links">
+    <li><a href="/">Alle Artikel</a></li>
+    <li><a href="/impressum.html">Impressum</a></li>
+    <li><a href="/datenschutz.html">Datenschutz</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="wrapper">
+  <header class="hero">
+    <span class="dossier-label">Analyse · Begriffspolitik · Quellenbasiert</span>
+    <h1>»Neue Weltordnung« —<br>Das Wort, das <em>Kritik unsichtbar</em> macht</h1>
+    <p class="hero-sub">Politiker haben den Begriff selbst benutzt. Souveränitätstransfer ist in EU-Primärrecht dokumentiert. Und dennoch: Wer »Neue Weltordnung« sagt, verliert sofort das Gespräch. Eine Untersuchung in zwei Teilen.</p>
+    <div class="meta-row">
+      <div>Veröffentlicht: <span>Juni 2026</span></div>
+      <div>Lesedauer: <span>ca. 10 Minuten</span></div>
+      <div>Kategorie: <span>Begriffspolitik · EU-Recht · Machtstrukturen</span></div>
+    </div>
+  </header>
+
+  <!-- STAT GRID -->
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-number">5</span>
+      <span class="stat-label">Bereiche, in denen EU-Staaten keine eigene Gesetzgebungskompetenz mehr haben</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">1990</span>
+      <span class="stat-label">Erster Einsatz des Begriffs durch US-Präsident George H.W. Bush vor dem Kongress</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">180+</span>
+      <span class="stat-label">Staaten außerhalb Europas, die Souveränitätstransfer an supranationale Organe ablehnen</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">2011</span>
+      <span class="stat-label">Angela Merkel fordert »globale politische Ordnung« — öffentlich, auf dem Evangelischen Kirchentag</span>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <p>Dieser Artikel untersucht zwei Fragen getrennt voneinander. Erstens: Was haben Politiker und Institutionsvertreter tatsächlich gesagt und beschlossen? Zweitens: Wie funktioniert der Begriff »Neue Weltordnung« als Diskreditierungsinstrument — und wessen Interessen dient das?</p>
+
+    <p>Beide Fragen lassen sich mit Primärquellen beantworten. Die Schlussfolgerungen zieht der Leser selbst.</p>
+
+    <hr class="divider">
+
+    <!-- TEIL 1 -->
+    <h2>Teil 1 — Was Politiker selbst gesagt haben</h2>
+
+    <p>Der Begriff »Neue Weltordnung« gilt heute als Erkennungszeichen von Verschwörungstheorien. Tatsächlich wurde er von führenden westlichen Politikern selbst in öffentlichen Reden verwendet — nicht in dunklen Hinterzimmern, sondern vor Parlamenten, auf Kirchentagen und in publizierten Büchern.</p>
+
+    <h3>George H.W. Bush — US-Kongress, 11. September 1990 <span class="tag tag-belegt">BELEGT</span></h3>
+
+    <div class="zitat-box">
+      <span class="speaker">George H.W. Bush — Rede vor dem US-Kongress, 11. September 1990</span>
+      <blockquote>»Out of these troubled times, our fifth objective — a new world order — can emerge: a new era, freer from the threat of terror, stronger in the pursuit of justice, and more secure in the quest for peace.«</blockquote>
+      <span class="zitat-meta">Vollständige Rede im Congressional Record archiviert. Auf Deutsch: »Aus diesen schwierigen Zeiten kann unser fünftes Ziel — eine neue Weltordnung — hervorgehen.«</span>
+    </div>
+
+    <div class="source-box">
+      <span class="source-label">Primärquelle</span>
+      George H.W. Bush: Address Before a Joint Session of Congress, 11. September 1990. Congressional Record, archiviert im Miller Center der University of Virginia sowie im George Bush Presidential Library Archive.
+    </div>
+
+    <p>Wenige Monate später, am 29. Januar 1991, wiederholte Bush den Begriff in seiner State of the Union Address: <em>»What is at stake is more than one small country; it is a big idea: a new world order.«</em></p>
+
+    <p>Der Kontext: Ende des Kalten Krieges, Zusammenbruch der Sowjetunion, Beginn des Zweiten Golfkriegs. Bush meinte damit eine von den USA geführte multilaterale Ordnung — nicht eine Geheimverschwörung. Dieser Kontext ist dokumentiert und muss mitgelesen werden.</p>
+
+    <h3>Angela Merkel — Evangelischer Kirchentag Dresden, 4. Juni 2011 <span class="tag tag-belegt">BELEGT</span></h3>
+
+    <div class="zitat-box">
+      <span class="speaker">Angela Merkel — Evangelischer Kirchentag, Dresden, 4. Juni 2011</span>
+      <blockquote>»Wenn man eine wirkliche Weltordnung haben will, eine globale politische Ordnung, dann wird man nicht umhinkommen, an einigen Stellen auch Souveränität, Rechte an andere abzugeben.«</blockquote>
+      <span class="zitat-meta">Videoaufzeichnung der Podiumsdiskussion »Auf dem Weg zu einer neuen Weltordnung?« vorhanden. Merkel ergänzte: »Wir haben lauter Souveränität an die Europäische Kommission abgegeben. Manchmal sind wir sauer darüber, aber wir haben's gemacht.«</span>
+    </div>
+
+    <div class="source-box">
+      <span class="source-label">Primärquelle</span>
+      Evangelischer Kirchentag Dresden 2011, Podiumsdiskussion »Auf dem Weg zu einer neuen Weltordnung?«, 4. Juni 2011. Videoaufzeichnung mehrfach dokumentiert. Merkel sprach in eigenem Namen, nicht als amtierende Kanzlerin bei einem Staatsakt.
+    </div>
+
+    <p>Der Kontext: Eine offene Diskussion über globale Gouvernanz. Merkels Aussage ist keine geheime Absichtserklärung — sie ist eine öffentliche politische Positionierung. Bemerkenswert ist, wie präzise sie die Struktur beschreibt: Souveränitätsabgabe als bewusstes Instrument, das in Europa bereits vollzogen wurde.</p>
+
+    <h3>Klaus Schwab — »COVID-19: The Great Reset«, 2020 <span class="tag tag-belegt">BELEGT</span></h3>
+
+    <div class="zitat-box">
+      <span class="speaker">Klaus Schwab, Gründer des Weltwirtschaftsforums — »COVID-19: The Great Reset«, WEF, 2020</span>
+      <blockquote>»Nothing will ever return to the 'broken' sense of normalcy that prevailed prior to the crisis because the coronavirus pandemic marks a fundamental inflection point in our global trajectory.«</blockquote>
+      <span class="zitat-meta">Offiziell publiziertes Buch, ISBN 978-2-940631-19-6, abrufbar über das WEF.</span>
+    </div>
+
+    <p>Schwab beschreibt darin explizit eine wirtschaftspolitische Neugestaltung globaler Systeme — »Stakeholder Capitalism« statt Shareholder-Orientierung. Er benutzt den Begriff »New World Order« nicht, beschreibt aber funktional analoge Strukturveränderungen. Das Buch ist öffentlich, nicht geheim.</p>
+
+    <div class="source-box">
+      <span class="source-label">Primärquelle</span>
+      Klaus Schwab, Thierry Malleret: »COVID-19: The Great Reset«. World Economic Forum, Genf, 2020. ISBN 978-2-940631-19-6. Öffentlich zugänglich.
+    </div>
+
+    <hr class="divider divider-amber">
+
+    <!-- TEIL 2 -->
+    <h2>Teil 2 — Was konkret beschlossen wurde</h2>
+
+    <p>Jenseits der Rhetorik existieren Rechtsdokumente. Der Vertrag von Lissabon (unterzeichnet 2007, in Kraft seit 1. Dezember 2009) kodifiziert, welche Kompetenzen EU-Mitgliedstaaten vollständig auf die EU übertragen haben.</p>
+
+    <h3>Ausschließliche Zuständigkeiten der EU <span class="tag tag-belegt">BELEGT</span></h3>
+
+    <p>In den folgenden Bereichen haben Mitgliedstaaten ihre Gesetzgebungskompetenz vollständig abgetreten. Sie dürfen nur noch handeln, wenn die EU sie dazu ausdrücklich ermächtigt:</p>
+
+    <table class="kompetenz-table">
+      <thead>
+        <tr>
+          <th>Bereich</th>
+          <th>Rechtsgrundlage</th>
+          <th>Bedeutung für Mitgliedstaaten</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Zollunion</td>
+          <td class="rechtsartikel">Art. 3 Abs. 1 lit. a AEUV</td>
+          <td>Kein nationaler Zoll möglich</td>
+        </tr>
+        <tr>
+          <td>Wettbewerbsregeln im Binnenmarkt</td>
+          <td class="rechtsartikel">Art. 3 Abs. 1 lit. b AEUV</td>
+          <td>Kartellrecht liegt bei EU-Kommission</td>
+        </tr>
+        <tr>
+          <td>Währungspolitik (Eurozone)</td>
+          <td class="rechtsartikel">Art. 3 Abs. 1 lit. c AEUV</td>
+          <td>Zinsen und Geldmenge: EZB entscheidet allein</td>
+        </tr>
+        <tr>
+          <td>Fischereipolitik</td>
+          <td class="rechtsartikel">Art. 3 Abs. 1 lit. d AEUV</td>
+          <td>Fangquoten: EU, nicht Nationalstaat</td>
+        </tr>
+        <tr>
+          <td>Gemeinsame Handelspolitik</td>
+          <td class="rechtsartikel">Art. 3 Abs. 1 lit. e AEUV</td>
+          <td>Handelsverträge mit Drittstaaten: nur EU schließt ab</td>
+        </tr>
+        <tr>
+          <td>Völkerrechtliche Vertragsschlusskompetenz</td>
+          <td class="rechtsartikel">Art. 3 Abs. 2 AEUV</td>
+          <td>EU als eigenständige Völkerrechtsperson</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="source-box">
+      <span class="source-label">Primärquelle</span>
+      Vertrag über die Arbeitsweise der Europäischen Union (AEUV), Art. 3, in Kraft seit 1. Dezember 2009. Volltext: <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A12012E%2FTXT" target="_blank" rel="noopener">eur-lex.europa.eu</a>. Kommentar: SWP Berlin, »Der Vertrag von Lissabon — Kurzkommentar«, 3. Auflage 2009.
+    </div>
+
+    <p>Die Stiftung Wissenschaft und Politik (SWP Berlin) fasst es im offiziellen Kommentar so zusammen: Die abschließende Auflistung der ausschließlichen Zuständigkeiten in Art. 3 AEUV stellt klar, in welchen Bereichen die Mitgliedstaaten ihre Rechtsetzungskompetenzen vollständig auf die EU übertragen haben und über keine eigenen Gesetzgebungskompetenzen mehr verfügen.</p>
+
+    <h3>Geteilte und erweiterte Zuständigkeiten <span class="tag tag-belegt">BELEGT</span></h3>
+
+    <p>Zusätzlich zu den ausschließlichen Kompetenzen gilt im Bereich der geteilten Zuständigkeiten (Art. 4 AEUV) eine Sperrwirkung: Sobald die EU in einem Bereich tätig wird, dürfen Mitgliedstaaten nicht mehr eigenständig handeln. Betroffen sind Binnenmarkt, Agrarpolitik, Umweltpolitik, Energiepolitik, Verkehr, Verbraucherschutz sowie — seit Lissabon erstmals vergemeinschaftet — Grenzkontrollen, Asyl und Einwanderung sowie justizielle und polizeiliche Zusammenarbeit.</p>
+
+    <p>Ein besonderer Mechanismus ist der sogenannte Trilog (Art. 294 AEUV): Ein Großteil der Gesetzgebungsvorhaben wird in nicht-öffentlichen informellen Verhandlungen zwischen EU-Kommission, Europäischem Parlament und Ministerrat beschlossen. Europarechtler der Freien Universität Berlin konstatieren dazu: Diese Praxis »weckt im Hinblick auf den Grundsatz der Offenheit, die demokratische Legitimation und angesichts der detaillierten Regelungen des Art. 294 AEUV primärrechtliche Bedenken.«</p>
+
+    <div class="source-box">
+      <span class="source-label">Primärquelle</span>
+      AEUV Art. 4 (geteilte Zuständigkeiten), Art. 294 (Gesetzgebungsverfahren/Trilog). EUR-Lex: <a href="https://eur-lex.europa.eu/DE/legal-content/summary/the-treaty-of-lisbon.html" target="_blank" rel="noopener">Zusammenfassung Vertrag von Lissabon</a>. FU Berlin E-Learning Europarecht: Kommentar zu Art. 294 AEUV.
+    </div>
+
+    <hr class="divider divider-amber">
+
+    <!-- TEIL 3: GLOBALER VERGLEICH -->
+    <h2>Teil 3 — Der globale Vergleich: Was andere Staatenbünde nicht tun</h2>
+
+    <p>Die strukturelle Einzigartigkeit der EU wird deutlich im Vergleich mit anderen regionalen Zusammenschlüssen. Kein anderer Staatenbund der Welt hat vergleichbare Souveränitätstransfers vollzogen.</p>
+
+    <div class="vergleich-grid">
+      <div class="vergleich-cell">
+        <span class="region-label">Europäische Union</span>
+        <p><strong>Supranational:</strong> EU-Recht bricht nationales Recht. Mitgliedstaaten haben in fünf Kernbereichen keine eigene Gesetzgebungskompetenz mehr. EU-Kommission kann Vertragsverletzungsverfahren einleiten und Strafen verhängen.</p>
+      </div>
+      <div class="vergleich-cell">
+        <span class="region-label">ASEAN (Südostasien)</span>
+        <p><strong>Intergouvernemental:</strong> Entscheidungen nur per Konsens. Kein supranationales Organ mit Durchsetzungsbefugnis. Supranationalismus wird von Mitgliedstaaten <em>explizit abgelehnt</em> — dokumentiert als »ASEAN Way«.</p>
+      </div>
+      <div class="vergleich-cell">
+        <span class="region-label">Afrikanische Union (AU)</span>
+        <p><strong>Souveränitätsprinzip:</strong> AU-Gründungsprinzipien umfassen ausdrücklich: nationale Souveränität, territoriale Integrität, Nichteinmischung, Nichtintervention in innere Angelegenheiten der Mitgliedstaaten.</p>
+      </div>
+      <div class="vergleich-cell">
+        <span class="region-label">RCEP / Asiatisch-Pazifisch</span>
+        <p><strong>Freihandel ohne Souveränitätstransfer:</strong> Größtes Freihandelsabkommen der Welt (30% globales BIP) — ohne supranationale Institutionen, ohne gemeinsame Gesetzgebungskompetenz, ohne Durchsetzungsmechanismus.</p>
+      </div>
+    </div>
+
+    <div class="source-box">
+      <span class="source-label">Primärquellen</span>
+      AU Constitutive Act (2000), Art. 4: Prinzipien der Afrikanischen Union. Volltext: <a href="https://au.int/en/constitutive-act" target="_blank" rel="noopener">au.int</a>. — Europäisches Parlament: »African Union: political integration and EU-AU relations«, Studie EXPO_STU(2023)702587, Mai 2023. — Oxford EJIL: »Intergovernmental Yet Dynamically Expansive«, 2022 (zu ASEAN-Ablehnung von Supranationalismus).
+    </div>
+
+    <hr class="divider divider-amber">
+
+    <!-- TEIL 4: BEGRIFFSMECHANIK -->
+    <h2>Teil 4 — Wie der Begriff »NWO« Kritik neutralisiert</h2>
+
+    <p>Damit beginnt der zweite Teil der Untersuchung. Die dokumentierten Strukturen — Souveränitätstransfer, Trilog-Gesetzgebung, globale Währungskoordination — sind belegbar. Die Frage ist nicht, ob sie existieren. Die Frage ist: Warum reicht es aus, das Stichwort »Neue Weltordnung« zu nennen, damit diese Fakten aus dem Gespräch verschwinden?</p>
+
+    <h3>Die Entstehungsgeschichte des Begriffs als Diskreditierungsmittel <span class="tag tag-belegt">BELEGT</span></h3>
+
+    <p>Der Begriff wurde nach Bushs Rede 1990/91 von evangelikalen und fundamentalistischen Gruppen in den USA aufgegriffen und mit apokalyptischen Narrativen verbunden — Antichrist, Geheimgesellschaften, Weltregierung. Wikipedia dokumentiert diesen Prozess detailliert als Teil der konspirationistischen politischen Rechten in den USA der frühen 1990er Jahre.</p>
+
+    <p>Das Ergebnis: Ein politischer Begriff, der ursprünglich von Staatschefs für reale geopolitische Verschiebungen verwendet wurde, wurde durch Überladung mit Verschwörungsnarrativ aus dem seriösen Diskurs entfernt. Jeder, der ihn heute noch benutzt, transportiert unwillentlich diese Assoziationskette.</p>
+
+    <div class="mechanismus-box">
+      <span class="mech-title">Funktionsmechanismus — Diskreditierung durch Begriffskontamination</span>
+      <ol>
+        <li>Reale Strukturen (Souveränitätstransfer, supranationale Institutionen) werden beschrieben.</li>
+        <li>Kritiker verwenden den Begriff »Neue Weltordnung« — sei es aus Unkenntnis der Kontaminationsgeschichte oder als Abkürzung.</li>
+        <li>Der Begriff löst sofortige Assoziation mit Extremnarrativen aus (Illuminaten, Antichrist, Geheimbund).</li>
+        <li>Die gesamte Kritik — einschließlich der belegbaren Fakten — wird als »Verschwörungstheorie« abgetan.</li>
+        <li>Die Strukturen selbst werden nicht mehr diskutiert.</li>
+      </ol>
+    </div>
+
+    <p>Das Paradox: Je präziser und belegbarer die strukturelle Kritik ist, desto wirkungsvoller ist die Neutralisierung — weil der Begriff alle Differenzierung auslöscht. Die Frage, wessen Interessen an diesem Mechanismus hängen, beantwortet der Artikel nicht. Sie ist offen.</p>
+
+    <h3>Exkurs: Antisemitische Tropen <span class="tag tag-belegt">BELEGT</span></h3>
+
+    <p>Strukturkritik an globalen Institutionen kollidiert regelmäßig mit antisemitischen Narrativtraditionen — Rothschild, »Weltjudentum«, Hochfinanz. Diese Narrative sind dokumentiert, ihr Ursprung ist bekannt, und sie haben die Eigenschaft, legitime strukturelle Kritik durch Assoziation zu kontaminieren. Wer heute über BlackRock, BIZ oder WEF schreibt, ohne diesen Kontext zu benennen, läuft Gefahr, ungewollt in diesen Strom einzufließen — oder bewusst darin eingespeist zu werden.</p>
+
+    <p>dunkelfeld.report benennt diesen Zusammenhang explizit: Strukturkritik ist keine Personalisierung. Institutionen funktionieren nach dokumentierten Regeln — unabhängig von der ethnischen oder religiösen Herkunft ihrer Akteure.</p>
+
+    <hr class="divider">
+
+    <!-- WEITERFÜHREND -->
+    <div class="weiterfuehrend">
+      <span class="wf-label">Weiterführend — Satire als Primärquellen-Aufbereitung</span>
+      <span class="wf-note">Die folgenden Folgen »Die Anstalt« (ZDF) arbeiten mit denselben Primärquellen wie dieser Artikel — satirisch aufbereitet. Sie sind keine Belege, aber ein niedrigschwelliger Einstieg für Leser, die tiefer einsteigen wollen.</span>
+      <ul class="wf-list">
+        <li>
+          <span class="wf-year">2016</span>
+          <a href="https://www.youtube.com/watch?v=3lHVcvJdWIs" target="_blank" rel="noopener">»Das Demokratiedefizit in der EU« — Kompetenzverschiebungen visualisiert (Die Anstalt, ZDF, 6.9.2016)</a>
+        </li>
+        <li>
+          <span class="wf-year">2019</span>
+          <a href="https://www.youtube.com/watch?v=ab4TTtIKTrs" target="_blank" rel="noopener">»Wirtschaften in der EU — Erpressung im großen Stil« — Troika, Schuldenbremse, Machtstrukturen (Die Anstalt, ZDF, 28.5.2019)</a>
+        </li>
+        <li>
+          <span class="wf-year">2021</span>
+          <a href="https://www.youtube.com/watch?v=ZIbI6O0MKHE" target="_blank" rel="noopener">»Das Einmaleins der Lobbyarbeit« — Friedrich Merz und CDU-Netzwerke (Die Anstalt, ZDF)</a>
+        </li>
+        <li>
+          <span class="wf-year">2025</span>
+          <a href="https://www.youtube.com/watch?v=ZaGRaxSMzSg" target="_blank" rel="noopener">»Deep State oder Deep Lobby? — Merz' fragwürdige Netzwerke« (Die Anstalt, ZDF, 11.3.2025)</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ABSCHLUSSFRAGE -->
+    <div class="abschluss">
+      <p>Fünf Politikbereiche, in denen EU-Mitgliedstaaten keine eigene Gesetzgebungskompetenz mehr haben — dokumentiert im Primärrecht. Ein Begriff, der ausreicht, um jede Debatte darüber zu beenden. 180 Staaten weltweit, die diesen Weg nicht gegangen sind.</p>
+      <p><em>Wenn die Strukturen öffentlich dokumentiert sind — welche Funktion erfüllt dann das Wort, das jeden verhindert, der sie benennt?</em></p>
+    </div>
+
+    <!-- LEGENDE -->
+    <div class="legende">
+      <div class="legende-item"><span class="tag tag-belegt">BELEGT</span> Primärquelle vorhanden, nachprüfbar</div>
+      <div class="legende-item"><span class="tag tag-extrapolation">EXTRAPOLATION</span> Schlussfolgerung aus belegten Fakten</div>
+      <div class="legende-item"><span class="tag tag-offen">OFFEN</span> Nicht abschließend belegbar</div>
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="wrapper">
+    <a href="/">dunkelfeld.report</a> &nbsp;·&nbsp;
+    <a href="/impressum.html">Impressum</a> &nbsp;·&nbsp;
+    <a href="/datenschutz.html">Datenschutz</a>
+    <br><br>
+    Alle Aussagen basieren auf öffentlich zugänglichen Primärquellen. Keine Werbung. Keine Sponsored Content.
+  </div>
+</footer>
+
+</body>
+</html>

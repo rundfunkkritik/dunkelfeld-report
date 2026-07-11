@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antifa: Ideologie, Infrastruktur, Asymmetrie | dunkelfeld.report</title>
+<meta name="description" content="Von der KPD-Gründung 1932 über Gramsci's Hegemonietheorie bis zur Münchner Anschlagsserie 2025: Eine dokumentierte Bestandsaufnahme.">
+<style>
+  :root {
+    --bg: #09090b;
+    --bg-card: #111113;
+    --bg-source: #1a1a2e;
+    --amber: #e8c547;
+    --amber-dim: #c9a93a;
+    --text: #e2e2e5;
+    --text-muted: #888896;
+    --text-faint: #555562;
+    --border: #2a2a3a;
+    --red-tag: #c0392b;
+    --green-tag: #27ae60;
+    --yellow-tag: #d4ac0d;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.05rem;
+    line-height: 1.85;
+  }
+
+  /* NAV */
+  nav {
+    background: #0d0d0f;
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-brand {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--amber);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--amber); }
+
+  /* WRAPPER */
+  .wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 3.5rem 0 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .article-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--amber);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .article-label::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--amber);
+    border-radius: 50%;
+  }
+  h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #f0f0f3;
+    margin-bottom: 1rem;
+  }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 1.8rem;
+    line-height: 1.6;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-faint);
+    letter-spacing: 0.06em;
+  }
+  .meta-row span { color: var(--amber-dim); }
+
+  /* STAT GRID */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    margin: 2.5rem 0;
+    border: 1px solid var(--border);
+  }
+  .stat-card {
+    background: var(--bg-card);
+    padding: 1.2rem 1rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--amber);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    line-height: 1.3;
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+  }
+  .divider-amber {
+    border-top: 2px solid var(--amber);
+    margin: 3rem 0;
+  }
+
+  /* BODY TEXT */
+  .body-text {
+    padding: 2rem 0;
+  }
+  .body-text p {
+    padding-bottom: 1.2rem;
+    color: var(--text);
+  }
+  h2 {
+    font-family: Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #f0f0f3;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 2rem 0 0.8rem;
+  }
+
+  /* SOURCE BOX */
+  .source-box {
+    background: var(--bg-source);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+  .source-box .source-title {
+    color: var(--amber);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+  }
+  .source-box a {
+    color: var(--amber-dim);
+    text-decoration: none;
+  }
+  .source-box a:hover { text-decoration: underline; }
+
+  /* STATUS TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+  }
+  .tag-belegt { background: var(--green-tag); color: #fff; }
+  .tag-offen { background: var(--yellow-tag); color: #000; }
+  .tag-nicht { background: var(--red-tag); color: #fff; }
+  .tag-extrapolation { background: #4a4a6a; color: #ccc; }
+
+  /* DATA TABLE */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.88rem;
+  }
+  .data-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--amber);
+    border-bottom: 2px solid var(--amber);
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+  }
+  .data-table td {
+    border-bottom: 1px solid var(--border);
+    padding: 0.7rem 0.8rem;
+    vertical-align: top;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .data-table tr:hover td { background: #0f0f16; }
+
+  /* QUOTE BLOCK */
+  .quote-block {
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 1rem;
+  }
+  .quote-block cite {
+    display: block;
+    margin-top: 0.6rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-style: normal;
+    color: var(--text-faint);
+    letter-spacing: 0.05em;
+  }
+
+  /* CLOSING */
+  .closing-question {
+    padding: 2.5rem 0;
+    border-top: 1px solid var(--border);
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #0d0d0f;
+    border-top: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    margin-top: 4rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-faint);
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    nav { gap: 1rem; }
+    .nav-links { display: none; }
+    h1 { font-size: 1.5rem; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .data-table { font-size: 0.8rem; }
+    .data-table th, .data-table td { padding: 0.5rem 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand">dunkelfeld.report</a>
+  <ul class="nav-links">
+    <li><a href="/">Übersicht</a></li>
+    <li><a href="/kontrollarchitektur.html">Geheimdienste</a></li>
+    <li><a href="/statistik-macht.html">PMK-Statistik</a></li>
+  </ul>
+</nav>
+
+<div class="wrapper">
+
+  <div class="hero">
+    <div class="article-label">Analyse · Linksextremismus</div>
+    <h1>Antifa: Ideologie, Infrastruktur, Asymmetrie</h1>
+    <p class="hero-sub">Von der KPD-Gründung 1932 über Gramscis Hegemonietheorie bis zur Münchner Anschlagsserie 2025 — und der Frage, welche Maßstäbe im politischen Diskurs gelten.</p>
+    <div class="meta-row">
+      <span>Stand: Juni 2026</span>
+      <span>Quellen: BfV, Bayerisches StMI, Generalbundesanwalt, Bundestagsdrucksachen, OLG Dresden</span>
+      <span>Status: Publikationsreif</span>
+    </div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-num">1932</span>
+      <span class="stat-label">Gründungsjahr<br>durch KPD</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">9,1 Mio.</span>
+      <span class="stat-label">€ Bundesmittel<br>Amadeu Antonio 2024</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">4</span>
+      <span class="stat-label">dokumentierte<br>Anschläge München</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">83:15</span>
+      <span class="stat-label">Übergriffe auf<br>Politiker L vs R</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">13+</span>
+      <span class="stat-label">Hammerbande-<br>Opfer, teils lebensgefl.</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">2025</span>
+      <span class="stat-label">US-Verbot per<br>Präsidialdekret</span>
+    </div>
+  </div>
+
+  <hr class="divider-amber">
+
+  <div class="body-text">
+
+    <h2>I. Ursprung: KPD, Komintern und das Logo von 1932</h2>
+
+    <p>Die Antifaschistische Aktion wurde am 4. Juli 1932 von der Kommunistischen Partei Deutschlands (KPD) gegründet — als Sammelbewegung im Wahljahr, nicht als überparteiliche Bürgerinitiative. Das Datum ist in der zeithistorischen Forschung eindeutig belegt; die Gründungsveranstaltung fand im Berliner Sportpalast statt.</p>
+
+    <p>Die KPD folgte zu diesem Zeitpunkt der Komintern-Linie der sogenannten Sozialfaschismusthese: Die SPD galt als Hauptfeind — nicht die NSDAP. Diese strategische Fehlentscheidung, die durch Moskauer Protokolle nach 1989 dokumentiert ist, machte ein gemeinsames Vorgehen der Linken gegen den Nationalsozialismus unmöglich.</p>
+
+    <div class="source-box">
+      <div class="source-title">PRIMÄRQUELLE — Historisch</div>
+      Gründungsdatum und KPD-Ursprung: Bundesarchiv Berlin, SAPMO-BArch, Komintern-Protokolle. Sozialfaschismusthese: Beschlüsse des VI. Weltkongresses der Kommunistischen Internationale, Moskau 1928. Logo-Ursprung: Ernst Thälmann, KPD, 1932 — zwei Fahnen (rot = Sozialismus, schwarz = Anarchismus).
+    </div>
+
+    <p>Das Logo der heutigen Antifa — zwei nach rechts geneigte Fahnen, eine rote, eine schwarze — stammt direkt aus dem Erscheinungsbild von 1932. Rot steht für den Sozialismus, Schwarz für den Autonomen Anarchismus. Die ikonografische Kontinuität ist unbestritten.</p>
+
+    <h2>II. Gramscis Blaupause: Der lange Marsch durch die Institutionen</h2>
+
+    <p>Antonio Gramsci (1891–1937), italienischer Kommunist und Mitbegründer der Partito Comunista d'Italia, entwickelte zwischen 1929 und 1935 in seinen <em>Gefängnisheften</em> das Konzept der kulturellen Hegemonie. Seine Kernthese: Politische Macht erfordert nicht nur die Kontrolle von Staatsapparat und Wirtschaft — sie erfordert die Vorherrschaft über Kultur, Medien, Bildung und das, was Gramsci „Zivilgesellschaft" nannte.</p>
+
+    <div class="quote-block">
+      „Ohne kulturelle Hegemonie lässt sich politische Macht nicht dauerhaft stabilisieren. Wer den vorpolitischen Raum beherrscht, braucht noch nicht einmal die Mehrheit in einer Demokratie, um zu herrschen."
+      <cite>Antonio Gramsci, Gefängnishefte, Bd. 7, Heft 13 (1932/33) — sinngemäß nach der deutschen Gesamtausgabe, Argument-Verlag</cite>
+    </div>
+
+    <p>Gramscis Strategie des „Stellungskrieges" — der schrittweisen Durchdringung gesellschaftlicher Institutionen statt des direkten Umsturzes — wurde im 20. Jahrhundert von linken Bewegungen explizit rezipiert. Der Soziologe Rudi Dutschke prägte in den 1960er Jahren den Begriff des „langen Marsches durch die Institutionen", der direkt auf Gramsci zurückgeht.</p>
+
+    <div class="source-box">
+      <div class="source-title">PRIMÄRQUELLE — Theoretisch</div>
+      Gramsci, Antonio: Gefängnishefte. Kritische Gesamtausgabe, Argument-Verlag Hamburg, 10 Bände. Insbesondere: Heft 13 (Noterelle sulla politica del Machiavelli), Heft 23 (Kritik am Croce'schen Historismus). Zur Rezeption in der deutschen Linken: Dutschke, Rudi, zit. in: Der Spiegel Nr. 30/1967.
+    </div>
+
+    <p>Ob zeitgenössische Antifa-Gruppen Gramsci explizit anwenden oder seine Strategie unbewusst reproduzieren, lässt sich dokumentarisch nicht abschließend klären. <span class="tag tag-offen">OFFEN</span> Was sich dokumentieren lässt: Die strategische Ausrichtung auf NGOs, Medien und Bildungsinstitutionen als Hebel politischer Wirkung entspricht dem gramscianischen Modell strukturell.</p>
+
+    <h2>III. Der Schwarze Block: Eine Taktik, keine Organisation</h2>
+
+    <p>Der Schwarze Block ist keine Organisation — er ist eine Demonstrationstaktik. Das ist für das Verständnis des Phänomens wesentlich, weil er deshalb rechtlich schwer greifbar ist.</p>
+
+    <p>Der Bayerische Verfassungsschutz beschreibt ihn so: Durch einheitliche schwarze Kleidung und Vermummung soll die Zuordnung von Gewalttaten zu Einzelpersonen erschwert werden. Die Anonymisierung dient der Strafverfolgungsvermeidung. <span class="tag tag-belegt">BELEGT</span></p>
+
+    <div class="source-box">
+      <div class="source-title">PRIMÄRQUELLE — BfV / Bayerischer VS</div>
+      Bayerisches Landesamt für Verfassungsschutz, Jahresbericht 2024: Schwarzer Block als Demonstrationstaktik. Bundesamt für Verfassungsschutz: „Die 'Antifa': Antifaschistischer Kampf im Linksextremismus" (aktualisiert April 2026). Wissenschaftlicher Dienst des Bundestages, Sachstandsbericht „Das versammlungsrechtliche Vermummungsverbot", 2018.
+    </div>
+
+    <p>Bemerkenswert: Der Wissenschaftliche Dienst des Bundestages stellte 2018 fest, dass eine Vermummung mit dem Ziel, von Dritten nicht erkannt zu werden, nach geltender Rechtslage nicht zwingend gegen das Vermummungsverbot verstößt — sofern Schutz vor politischen Gegnern als Motiv geltend gemacht wird. <span class="tag tag-belegt">BELEGT</span> Diese Auslegung steht der praktischen Strafverfolgung im Weg.</p>
+
+    <p>Beim G20-Gipfel in Hamburg 2017 dokumentierten Ermittlungsbehörden europaweit vernetzte Strukturen mit vorbereiteten Depots, Flashmob-Taktik und koordiniertem Rückzug. Über 200 Polizeibeamte wurden verletzt. Die Täter kamen nach Erkenntnissen der Sonderkommission auch aus dem Ausland. <span class="tag tag-belegt">BELEGT</span></p>
+
+    <hr class="divider">
+
+    <h2>IV. München: Vier dokumentierte Anschläge</h2>
+
+    <p>In München und Umgebung kommt es seit Jahren zu einer Serie von Anschlägen, die vom Bundesamt für Verfassungsschutz ausdrücklich dokumentiert wird. Die folgende Chronologie basiert ausschließlich auf Primärquellen.</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Datum</th>
+          <th>Ziel</th>
+          <th>Schaden</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>21. Mai 2021</td>
+          <td>Freigelegte Stromleitungen München — Elektronikunternehmen (Militär-Luftfahrttechnik) als erklärtes Ziel laut Bekennerschreiben vom 23.05.2021</td>
+          <td>~20.000 Haushalte zeitweise ohne Strom, teils länger als 24h</td>
+          <td><span class="tag tag-belegt">BELEGT</span> BfV-Dokumentation</td>
+        </tr>
+        <tr>
+          <td>Juni 2022</td>
+          <td>8 Polizei-Mannschaftsbusse, Hochstraße/Gasteig — Unterkunft von G7-Einsatzkräften</td>
+          <td>Fahrzeuge vollständig ausgebrannt, Brandstiftung durch Grillanzünder auf Reifen</td>
+          <td><span class="tag tag-belegt">BELEGT</span> Polizei München, dpa</td>
+        </tr>
+        <tr>
+          <td>Januar 2025</td>
+          <td>Hundestaffel Polizeipräsidium München</td>
+          <td>Sachschaden im siebenstelligen Bereich</td>
+          <td><span class="tag tag-belegt">BELEGT</span> Bayerisches StMI</td>
+        </tr>
+        <tr>
+          <td>22. Mai 2025</td>
+          <td>Reiterstaffel Polizeipräsidium München — 5 Pferdetransporter, 1 Anhänger; Dach der Stallung beschädigt</td>
+          <td>4 Fahrzeuge vollständig zerstört; Sachschaden siebenstellig</td>
+          <td><span class="tag tag-belegt">BELEGT</span> Bayerisches StMI, DPolG Bayern</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="source-box">
+      <div class="source-title">PRIMÄRQUELLEN — München-Anschlagsserie</div>
+      Bundesamt für Verfassungsschutz: „Angriffe von Linksextremisten auf Kritische Infrastrukturen und Wirtschaftsunternehmen", April 2026 — <a href="https://www.verfassungsschutz.de/SharedDocs/hintergruende/DE/linksextremismus/angriffe-von-linksextremisten-auf-kritis.html" target="_blank">verfassungsschutz.de</a><br>
+      Bayerisches Staatsministerium des Innern: Pressemitteilung 22. Mai 2025 (Reiterstaffel) — <a href="https://www.stmi.bayern.de/news/detail/herrmann-zum-brandanschlag-auf-die-reiterstaffel-der-muenchner-polizei/" target="_blank">stmi.bayern.de</a><br>
+      Deutsche Polizeigewerkschaft Bayern: Medieninfo 22. Mai 2025 — <a href="https://www.dpolg-bayern.de/artikel/dpolg-ueber-feigen-terroristischen-anschlag-auf-polizei-reiterstaffel-in-muenchen-entsetzt-437.htm" target="_blank">dpolg-bayern.de</a>
+    </div>
+
+    <p>Das BfV dokumentiert für diese Anschläge Bekennerschreiben auf der Plattform Indymedia sowie eine Einordnung in die überregionale Kampagne „Switch off — the system of destruction", die seit Anfang 2023 aktiv ist und auf ihrer Website selbst über 100 Straftaten in Deutschland auflistet. Gesamtschäden: mehrstelliger Millionenbereich. <span class="tag tag-belegt">BELEGT</span></p>
+
+    <p>Die Deutsche Polizeigewerkschaft Bayern bewertete die Anschlagsserie als „linksterroristische Anschlagsserie mit gezielter Struktur und Planung". <span class="tag tag-belegt">BELEGT</span> — Inwieweit diese Einschätzung der rechtlichen Einordnung durch die Ermittlungsbehörden entspricht, ist zum Redaktionsschluss offen. <span class="tag tag-offen">OFFEN</span></p>
+
+    <hr class="divider">
+
+    <h2>V. Staatliche Finanzierung: Was belegbar ist</h2>
+
+    <p>Der Wissenschaftliche Dienst des Deutschen Bundestages stellte 2018 im Sachstandsbericht (AZ: WD 7–3000–069/18) fest: Verschiedene Antifa-Gruppen wurden im Rahmen des Bundesprogramms „Demokratie leben" aus dem Bundesfamilienministerium gefördert. <span class="tag tag-belegt">BELEGT</span></p>
+
+    <div class="source-box">
+      <div class="source-title">PRIMÄRQUELLE — Wissenschaftlicher Dienst des Bundestages</div>
+      WD 7–3000–069/18: „Linksextremismus in Gestalt der so genannten 'Antifa' — Organisationsbezogene strafrechtliche Implikationen", Abschluss April 2018. Bundestag-Drucksache. Feststellung: Finanzierung über Bundesprogramm „Demokratie leben", BMFSFJ. Gleichzeitig: Dokumentierte Äquidistanzfrage — unterschiedliche Maßstäbe zwischen Rechts- und Linksextremismus.
+    </div>
+
+    <p>Die Amadeu Antonio Stiftung erhielt 2024 rund 9,1 Millionen Euro an Bundesmitteln. <span class="tag tag-belegt">BELEGT</span> Kritiker werfen der Stiftung vor, Antifa-nahe Strukturen zu fördern; ein ehemaliger Mitarbeiter wurde wegen gewalttätiger linksextremer Aktivitäten verurteilt. <span class="tag tag-belegt">BELEGT</span> Die Stiftung ließ entsprechende Anfragen unbeantwortet.</p>
+
+    <p>Der Europäische Rechnungshof rügte im April 2025 die EU-NGO-Finanzierung als „zu undurchsichtig" und bemängelte mangelnde Transparenz bei der Mittelverwendung. <span class="tag tag-belegt">BELEGT</span></p>
+
+    <div class="source-box">
+      <div class="source-title">PRIMÄRQUELLE — Bundestag / EU-Rechnungshof</div>
+      Bundestag, 21. WP, Drucksache 21/2221 (14. Oktober 2025): Antrag zur Linksextremismus-Bekämpfung; enthält Auflistung staatlicher Förderstrukturen. Europäischer Rechnungshof, Sonderbericht April 2025: EU-Finanzierung von NGOs — mangelnde Transparenz. Renate Künast (Grüne), Plenarprotokoll Bundestag, 13. März 2020: wörtliche Forderung nach verlässlicher staatlicher Finanzierung für „NGOs und Antifa-Gruppen".
+    </div>
+
+    <h3>Was nicht belegbar ist: Der Mythos der bezahlten Demonstranten</h3>
+
+    <p>Die Behauptung, Antifa-Demonstranten würden pro Stunde oder pro Demo entlohnt, geht auf einen Satire-Artikel der taz aus dem Jahr 2015 zurück, der von Teilen des rechten Spektrums als Tatsachenbericht rezipiert wurde. Für bezahlte Demonstranten der Antifa gibt es keine seriösen Belege. <span class="tag tag-nicht">NICHT BELEGT</span></p>
+
+    <p>Ironie der Faktenlage: Die einzige dokumentierte Zahlung an Demonstranten stammt aus dem Jahr 2018 — vom AfD-Landesverband Rheinland-Pfalz, der den ersten 30 Teilnehmern einer Berliner Demo einen Fahrtkostenzuschuss von 50 Euro anbot. Die E-Mail wurde von der Partei als echt bestätigt. <span class="tag tag-belegt">BELEGT</span></p>
+
+    <hr class="divider">
+
+    <h2>VI. Hammerbande und politische Solidarisierung</h2>
+
+    <p>Zwischen 2018 und 2020 verübte die als „Hammerbande" bekannte Gruppe unter Führung von Lina E. mindestens 13 dokumentierte gewalttätige Überfälle auf Personen, die sie für Rechtsextremisten hielt. Als Tatwaffen dienten Hämmer, Totschläger und Pfefferspray. Mehrere Opfer erlitten lebensgefährliche Verletzungen, darunter ein Bauarbeiter aus Leipzig, dessen Gesicht mit einer Metallplatte rekonstruiert werden musste. <span class="tag tag-belegt">BELEGT</span></p>
+
+    <p>Das Oberlandesgericht Dresden verurteilte Lina E. am 31. Mai 2023 zu 5 Jahren und 3 Monaten Haft wegen Mitgliedschaft in einer kriminellen Vereinigung und mehrfacher gefährlicher Körperverletzung. <span class="tag tag-belegt">BELEGT</span> Drei Mitangeklagte erhielten Freiheitsstrafen zwischen 2 Jahren 5 Monaten und 3 Jahren 3 Monaten. Der Haftbefehl gegen Lina E. wurde gegen Auflagen außer Vollzug gesetzt.</p>
+
+    <div class="source-box">
+      <div class="source-title">PRIMÄRQUELLE — OLG Dresden / Generalbundesanwalt</div>
+      OLG Dresden, Urteil vom 31. Mai 2023, Staatsschutzsenat. Generalbundesanwalt: Pressemitteilungen zum Verfahrenskomplex „Hammerbande", zuletzt 11. Juni 2025 (neue Anklage Düsseldorf). Bundestag, 21. WP, Drucksache 21/2221: PMK-Übergriffe auf Politiker 2024 — 83 linksextreme, 15 rechtsextreme Tatverdächtige; alle 83 linken Fälle zulasten von AfD-Politikern.
+    </div>
+
+    <p>Die folgende Tabelle dokumentiert öffentlich gemachte Aussagen von Politikern zum Verfahren. Alle Zitate sind über parlamentarische Protokolle, verifizierte Social-Media-Posts oder journalistische Primärberichte belegt.</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Person / Partei</th>
+          <th>Aussage (dokumentiert)</th>
+          <th>Kontext</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Bernd Riexinger<br><small>ex-Vors. Die Linke</small></td>
+          <td>„Lina E. stellt keine Gefahr für die Gesellschaft dar."</td>
+          <td>Öffentliche Stellungnahme nach Urteil, 2023 <span class="tag tag-belegt">BELEGT</span></td>
+        </tr>
+        <tr>
+          <td>Die Linke<br><small>Parteitag Aschersleben</small></td>
+          <td>Dringlichkeitsantrag: Solidarität mit der verurteilten Hammerbande; Forderung, die Initiative „Soli Antifa Ost" zu unterstützen</td>
+          <td>4. Juni 2023, Parteitagsprotokoll <span class="tag tag-belegt">BELEGT</span></td>
+        </tr>
+        <tr>
+          <td>Katrin Göring-Eckardt<br><small>Bündnis 90/Die Grünen</small></td>
+          <td>Video aus Budapest: „Es ist eine Katastrophe mitten in Europa" — über Haftbedingungen von „Maja T." (Hammerbande-Umfeld); kein Wort zu den Opfern</td>
+          <td>Instagram, 2024, bestätigt durch NZZ-Bericht <span class="tag tag-belegt">BELEGT</span></td>
+        </tr>
+        <tr>
+          <td>Heidi Reichinnek<br><small>Die Linke, Bundestagspräs.</small></td>
+          <td>Solidaritätsbekundung für „Maja T." (Hammerbande-Umfeld)</td>
+          <td>Instagram, 2024 <span class="tag tag-belegt">BELEGT</span></td>
+        </tr>
+        <tr>
+          <td>Nancy Faeser<br><small>SPD, ex-BMI</small></td>
+          <td>Gastbeitrag für Antifa-Magazin „antifa" (VVN-BdA)</td>
+          <td>2021, bestätigt; Bundestagsanfrage dazu: Dip.Bundestag.de <span class="tag tag-belegt">BELEGT</span></td>
+        </tr>
+        <tr>
+          <td>Saskia Esken<br><small>SPD, ex-Parteivors.</small></td>
+          <td>„58 und Antifa. Selbstverständlich." (auf X, 2020)</td>
+          <td>Publizierter Post, vielfach dokumentiert <span class="tag tag-belegt">BELEGT</span></td>
+        </tr>
+        <tr>
+          <td>Lars Klingbeil<br><small>SPD, Vizekanzler</small></td>
+          <td>Auf Journalistenfrage über seinen politischen Werdegang: Selbstauskunft über frühere Antifa-Mitgliedschaft und Organisationstätigkeit</td>
+          <td>Interview, dokumentiert durch Medienberichte <span class="tag tag-belegt">BELEGT</span></td>
+        </tr>
+        <tr>
+          <td>Renate Künast<br><small>Bündnis 90/Die Grünen</small></td>
+          <td>Bundestagsplenum, 13. März 2020: Forderung nach verlässlicher staatlicher Finanzierung für „NGOs und Antifa-Gruppen"</td>
+          <td>Bundestagsplenarprotokoll 19/149 <span class="tag tag-belegt">BELEGT</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Die NZZ formulierte die strukturelle Asymmetrie so: Wer sich vorstellt, wie dieselben Politikerinnen auf Solidaritätskampagnen für eine rechtsextreme Schlägerbande reagieren würden — und diese Reaktion mit dem tatsächlichen Verhalten vergleicht — sieht zwei verschiedene Maßstäbe nebeneinander. Das ist eine Beobachtung, keine Schuldzuweisung. <span class="tag tag-extrapolation">EXTRAPOLATION</span></p>
+
+    <hr class="divider">
+
+    <h2>VII. USA: Verbot per Dekret und Folgen für Deutschland</h2>
+
+    <p>Am 22. September 2025 erklärte US-Präsident Donald Trump die Antifa per präsidialer Verfügung zur „inländischen terroristischen Organisation". Anlass war das Attentat auf den rechten Aktivisten Charlie Kirk, für das Trump der Antifa die Verantwortung zurechnete — ohne belegte Täterschaft. <span class="tag tag-belegt">BELEGT</span> / Kausalbehauptung: <span class="tag tag-nicht">NICHT BELEGT</span></p>
+
+    <p>FBI und US-Heimatschutzministerium hatten eine formelle Terror-Einstufung der Antifa zuvor für rechtlich kaum möglich erklärt, da es sich um keine Organisationsstruktur handelt, sondern um einen dezentralen Sammelbegriff. <span class="tag tag-belegt">BELEGT</span></p>
+
+    <p>In Deutschland scheiterte ein AfD-Antrag auf ein entsprechendes Verbot am 16. Oktober 2025 am Widerspruch aller anderen Fraktionen. Auch die Rechtslage steht einem Verbot entgegen: Verboten werden können Organisationen — nicht Sammelbegriffe. <span class="tag tag-belegt">BELEGT</span></p>
+
+    <div class="source-box">
+      <div class="source-title">PRIMÄRQUELLE — USA / Deutschland</div>
+      Trump, Präsidialverfügung vom 22. September 2025: „Antifa — militaristische, anarchistische Organisation, die ausdrücklich zum Sturz der US-Regierung aufruft." Bundestag, 21. WP, Drucksache 21/2221 (14.10.2025): AfD-Antrag, gescheitert. Verfassungsblog.de, Mai 2026: „Don't say Antifa — Wie Meta den Rechtsstaat und die europäische Medienregulierung herausfordert" — zu DSA-Implikationen. ORF FM4, Januar 2026: Kontensperre der Roten Hilfe durch deutsche Banken aus Angst vor US-Sanktionen; Gericht erklärt Sperre für unzulässig.
+    </div>
+
+    <p>Eine konkrete Folge des US-Dekrets in Deutschland: Deutsche Banken sperrten Konten der Roten Hilfe e.V. aus Angst vor US-Sanktionen. Ein Gericht erklärte die Sperrung für unzulässig — mit der Begründung, dass US-Recht deutsches Bankrecht nicht aushebeln könne, unabhängig von der Marktmacht der USA. <span class="tag tag-belegt">BELEGT</span></p>
+
+    <p>Für deutsche Politiker mit dokumentierten Antifa-Bekenntnissen (s. Tabelle oben) könnten laut Rechtsexperten Einreisebeschränkungen in die USA entstehen. Ausgenommen: Amtsträger mit Diplomatenimmunität. <span class="tag tag-offen">OFFEN</span></p>
+
+    <hr class="divider">
+
+    <h2>VIII. Strafverfolgungsasymmetrie: Was die Daten zeigen</h2>
+
+    <p>Der Wissenschaftliche Dienst des Bundestages hielt in seinem Bericht von 2018 fest: Die dokumentierte Ungleichbehandlung zwischen Rechts- und Linksextremismus bei der Strafverfolgung sei „nachvollziehbar und gerechtfertigt", da es sich um „sehr unterschiedliche Phänomene" handle. <span class="tag tag-belegt">BELEGT</span> Die zugrunde liegende Frage — ob diese Begründung trägt — ist Gegenstand einer laufenden politischen Debatte. <span class="tag tag-offen">OFFEN</span></p>
+
+    <p>Die Bundestagsdrucksache 21/2221 vom Oktober 2025 enthält eine Auswertung politisch motivierter Übergriffe auf Politiker: 83 Übergriffe mit linksextremen Tatverdächtigen stehen 15 mit rechtsextremen Tatverdächtigen gegenüber. Alle 83 linksextremen Fälle richteten sich gegen AfD-Politiker. <span class="tag tag-belegt">BELEGT</span></p>
+
+    <p>Das BfV dokumentiert für linksextreme Strukturen seit 2023 eine Kampagne („Switch off"), die explizit zur Sabotage kritischer Infrastruktur aufruft und auf ihrer Website selbst über 100 Straftaten auflistet. Gesamtschäden: mehrstelliger Millionenbereich. Aufklärungsquote: nicht vollständig publiziert. <span class="tag tag-offen">OFFEN</span></p>
+
+  </div>
+
+  <div class="closing-question">
+    <p>Diese Dokumentation stellt nebeneinander: die historische Kontinuität einer Bewegung, ihre theoretischen Grundlagen, die dokumentierten Gewalttaten, die staatlichen Finanzierungsstrukturen, die politischen Solidaritätsbekundungen und die unterschiedlichen Maßstäbe im öffentlichen Diskurs.</p>
+    <p><em>Welche Schlüsse aus dieser Juxtaposition zu ziehen sind, bleibt dem Leser überlassen.</em></p>
+  </div>
+
+</div>
+
+<footer>
+  dunkelfeld.report — Dokumentation auf Basis öffentlich zugänglicher Primärquellen<br>
+  Alle Angaben nach bestem Wissen; Fehler bitte melden. Keine Meinungsäußerung, keine Parteinahme.<br>
+  <br>
+  Impressum · Datenschutz · Kontakt
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brüssel als Marktplatz | dunkelfeld.report</title>
+<meta name="description" content="30.000 Lobbyisten, 1,5 Millionen Euro Bargeld, ein VC-Konsortium als Gesetzgeber: Wie Interessengruppen EU-Recht schreiben — und was das 28. Regime damit zu tun hat.">
+<meta name="keywords" content="EU Lobbying, Qatargate, 28. Regime, EU Inc, Transparenzregister, ERT, BusinessEurope, Drehtür, Korruption, Gesellschaftsrecht">
+<style>
+  :root {
+    --bg: #09090b;
+    --bg-card: #111113;
+    --bg-source: #1a1a2e;
+    --amber: #e8c547;
+    --amber-dim: #b8982f;
+    --text: #e2e2e5;
+    --text-muted: #888890;
+    --text-dim: #555560;
+    --border: #2a2a35;
+    --green: #27ae60;
+    --red: #c0392b;
+    --orange: #d35400;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.85;
+  }
+
+  .site-nav {
+    background: #0d0d10;
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-brand {
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    color: var(--amber);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+  }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--amber); }
+
+  .wrapper { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .hero {
+    padding: 4rem 0 2.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+  .article-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+  .hero h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  .hero h1 span { color: var(--amber); }
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  .meta-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+  .meta-row span { color: var(--amber-dim); }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+  .stat-card {
+    background: var(--bg-card);
+    padding: 1.4rem 1.2rem;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--amber);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+  .divider-amber { border-color: var(--amber-dim); opacity: 0.35; }
+
+  h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 2.8rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--amber);
+    margin-top: 2rem;
+    margin-bottom: 0.7rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.04em;
+  }
+  p { padding-bottom: 1.2rem; }
+
+  .source-box {
+    background: var(--bg-source);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .source-box strong {
+    color: var(--amber);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+  }
+  .tag-belegt { background: var(--green); color: #fff; }
+  .tag-offen { background: var(--orange); color: #fff; }
+  .tag-extrapolation { background: #555; color: #ddd; }
+
+  /* AKTEUR-KARTE */
+  .actor-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  .actor-header {
+    background: #14141e;
+    padding: 0.8rem 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .actor-name { font-weight: 700; color: #fff; font-size: 1rem; }
+  .actor-type {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--amber-dim);
+    letter-spacing: 0.1em;
+  }
+  .actor-body { padding: 1rem 1.2rem; font-size: 0.93rem; line-height: 1.65; }
+  .actor-body p { padding-bottom: 0.5rem; }
+  .actor-body p:last-child { padding-bottom: 0; }
+
+  /* ZEITLEISTE QATARGATE */
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #1a1a25;
+    align-items: start;
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .tl-date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--amber-dim);
+    font-weight: 700;
+    padding-top: 0.1rem;
+  }
+  .tl-text { font-size: 0.93rem; color: var(--text); line-height: 1.6; padding-bottom: 0; }
+
+  /* 28. REGIME BLÖCKE */
+  .regime-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    margin-bottom: 1.2rem;
+    overflow: hidden;
+  }
+  .regime-header {
+    padding: 0.7rem 1.2rem;
+    background: #0f0f18;
+    border-bottom: 1px solid var(--border);
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .regime-body {
+    padding: 1rem 1.2rem;
+    font-size: 0.93rem;
+    line-height: 1.65;
+    color: var(--text);
+  }
+  .regime-body p { padding-bottom: 0.5rem; }
+  .regime-body p:last-child { padding-bottom: 0; }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0 2rem;
+    font-size: 0.88rem;
+  }
+  .data-table th {
+    background: #1a1a2e;
+    color: var(--amber);
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.7rem 0.9rem;
+    text-align: left;
+    border-bottom: 1px solid var(--amber-dim);
+  }
+  .data-table td {
+    padding: 0.75rem 0.9rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .data-table tr:hover td { background: #111118; }
+
+  .quote-block {
+    border-left: 3px solid var(--amber-dim);
+    padding: 1rem 1.4rem;
+    margin: 1.5rem 0;
+    background: #0e0e18;
+  }
+  .quote-block p {
+    font-style: italic;
+    color: var(--text);
+    font-size: 1rem;
+    padding-bottom: 0.4rem;
+  }
+  .quote-attr {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    display: block;
+  }
+
+  .closing {
+    margin: 3rem 0;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber-dim);
+    background: #0e0e15;
+  }
+  .closing p {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    padding-bottom: 0.8rem;
+  }
+  .closing p:last-child { padding-bottom: 0; }
+
+  .method-note {
+    background: #0f0f18;
+    border: 1px solid var(--border);
+    padding: 1.2rem 1.4rem;
+    margin: 2rem 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .related {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+  }
+  .related-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--amber-dim);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .related a {
+    display: block;
+    color: var(--amber);
+    text-decoration: none;
+    font-size: 0.92rem;
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+  }
+  .related a:hover { text-decoration: underline; }
+
+  .site-footer {
+    background: #0d0d10;
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 1.5rem;
+    margin-top: 5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-align: center;
+  }
+  .site-footer a { color: var(--amber-dim); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 2.5rem 0 2rem; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .nav-links { display: none; }
+    .timeline-item { grid-template-columns: 80px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="/" class="nav-brand">dunkelfeld.report</a>
+  <ul class="nav-links">
+    <li><a href="/ns-kontinuitaet.html">Teil I</a></li>
+    <li><a href="/verfassung-erosion.html">Teil II</a></li>
+    <li><a href="/eu-regulierungsmacht.html">Teil III</a></li>
+    <li><a href="/impressum.html">Impressum</a></li>
+  </ul>
+</nav>
+
+<main class="wrapper">
+
+  <header class="hero">
+    <span class="article-label">Dokumentation · EU-Lobbying · 28. Regime · Interessenkonflikt</span>
+    <h1>Brüssel als Marktplatz — <span>Wer EU-Recht wirklich schreibt</span></h1>
+    <p class="hero-subtitle">30.000 Lobbyisten, ein VC-Konsortium als Gesetzentwurfs-Autor, 1,5 Millionen Euro Bargeld bei verhafteten Parlamentariern: Das Lobbysystem der EU und das 28. Regime als jüngstes Fallbeispiel. Eine Dokumentation auf Basis des EU-Transparenzregisters, Parlamentsprotokollen und Strafverfolgungsakten.</p>
+    <div class="meta-row">
+      <span>Juni 2026</span>
+      <span>Lesedauer: ca. 14 Minuten</span>
+      <span>Quellen: EU-Transparenzregister · Parlamentsprotokolle · Belgische Strafverfolgung · Europäischer Rechnungshof</span>
+    </div>
+  </header>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-number">&gt; 30.000</span>
+      <span class="stat-label">Lobbyisten in Brüssel — nach Washington die zweitgrößte Lobbykonzentration weltweit</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">13.000+</span>
+      <span class="stat-label">registrierte Lobbyorganisationen im EU-Transparenzregister (Ende 2024)</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">1,5 Mrd. €</span>
+      <span class="stat-label">jährliches Lobbybudget laut Transparenzregister — Unterschätzung systematisch</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">1,5 Mio. €</span>
+      <span class="stat-label">Bargeld bei Qatargate-Verhaftungen sichergestellt, Dezember 2022</span>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>Quellen zu den Kennzahlen</strong>
+    Lobbypedia.de: „Lobbyismus in der EU" · Statista/LobbyFacts: Transparenzregister-Daten 2024 · Transparency International: Jahreslobbybudget (zitiert nach FNF-Analyse, 2022) · LobbyControl: Qatargate-Dokumentation (lobbycontrol.de) · Europäischer Rechnungshof: Sonderbericht 05/2024 EU-Transparenzregister
+  </div>
+
+  <hr class="divider">
+
+  <h2>1. Die Architektur: Warum Brüssel ein Lobbymagneten ist</h2>
+
+  <p>Kein Zufall — Struktur. Die EU-Kommission hat das alleinige Recht, Gesetzentwürfe einzubringen. Sie ist damit das wertvollste Einzelziel für Interessenvertreter auf dem Kontinent: Wer die Kommission beeinflusst, beeinflusst den Ursprung aller EU-Gesetzgebung.</p>
+
+  <p>Das Ergebnis: Brüssel ist nach Washington die zweitgrößte Lobbykonzentration der Welt. Die Zahl der registrierten Organisationen hat sich seit 2012 mehr als verdoppelt — von unter 5.200 auf über 13.000 Ende 2024.</p>
+
+  <div class="source-box">
+    <strong>Strukturelle Grundlage</strong>
+    Art. 17 Abs. 2 EUV: Ausschließliches Initiativmonopol der Kommission · Lobbypedia: „Die EU-Kommission ist die einzige Institution in der EU mit Gesetzgebungskompetenz." · EU-Transparenzregister: transparency-register.europa.eu (öffentlich zugänglich) · Europäischer Rechnungshof, Sonderbericht 05/2024: Transparenzregister „eher unzuverlässig und unvollständig", Ausgaben tendenziell zu niedrig angegeben <span class="tag tag-belegt">BELEGT</span>
+  </div>
+
+  <h3>Das strukturelle Problem des Registers</h3>
+
+  <p>Das Transparenzregister gilt als Hauptinformationsquelle für Lobbying in Brüssel — und gleichzeitig als unzuverlässig. Die Angaben sind freiwillig, weitgehend unkontrolliert und werden nach Einschätzung des Europäischen Rechnungshofs systematisch zu niedrig angegeben. Der Rechnungshof stellte das in einem Sonderbericht 2024 ausdrücklich fest. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Transparency International berechnet das jährliche Lobbybudget in Brüssel auf rund 1,5 Milliarden Euro. Die tatsächliche Summe liegt höher — wie viel höher, ist nicht bekannt.</p>
+
+  <hr class="divider">
+
+  <h2>2. Die wichtigsten Akteure — wer Zugang hat</h2>
+
+  <div class="actor-card">
+    <div class="actor-header">
+      <span class="actor-name">European Round Table of Industrialists (ERT)</span>
+      <span class="actor-type">Industrie-Lobbying · seit 1983</span>
+    </div>
+    <div class="actor-body">
+      <p>Der ERT vereint die Vorstandsvorsitzenden der etwa 50 größten europäischen Konzerne — darunter BP, Nestlé, Siemens, Unilever, Total, Volkswagen. Kein öffentliches Büro, keine Pressemitteilungen an die Öffentlichkeit, direkter Zugang zu Kommissaren und Ratspräsidentschaften.</p>
+      <p>Die Lissabon-Strategie (2000) und die Europa-2020-Strategie tragen deutliche ERT-Handschrift: Beide priorisieren Wettbewerbsfähigkeit und Deregulierung als Kernziele — Formulierungen, die der ERT seit den 1980ern eingebracht hatte. Lobbypedia dokumentiert: Es ist einflussreichen Lobbygruppen wie dem ERT gelungen, den Wettbewerbsgedanken „prioritär in Strategien und Vertragsanhängen zu verankern." <span class="tag tag-belegt">BELEGT</span></p>
+    </div>
+  </div>
+
+  <div class="actor-card">
+    <div class="actor-header">
+      <span class="actor-name">BusinessEurope</span>
+      <span class="actor-type">Arbeitgeber-Dachverband · im Transparenzregister</span>
+    </div>
+    <div class="actor-body">
+      <p>Dachverband europäischer Arbeitgeberverbände, Nachfolger der UNICE. Direktzugang zu Kommissions-Generaldirektionen dokumentiert. Im EU-Transparenzregister eingetragen, Lobbybudget: mehrere Millionen Euro jährlich.</p>
+      <p>BusinessEurope gehört zu den institutionalisierten Sozialpartnern, die die Kommission vor Gesetzgebungsvorhaben konsultieren muss — ein formales Recht auf Mitwirkung, das Bürgerinnen und Bürgern nicht zusteht. <span class="tag tag-belegt">BELEGT</span></p>
+    </div>
+  </div>
+
+  <div class="actor-card">
+    <div class="actor-header">
+      <span class="actor-name">EU-Inc.org / VC-Konsortium</span>
+      <span class="actor-type">Start-up-Lobby · Blaupause 28. Regime</span>
+    </div>
+    <div class="actor-body">
+      <p>Ein Konsortium von Unternehmern und Risikokapitalgebern, das unter dem Namen EU-Inc.org einen detaillierten Gesetzgebungsvorschlag für das 28. Regime erarbeitet hat. Dieser Vorschlag dient nach Angaben der Arbeiterkammer Wien „seither als Art Blaupause in der Diskussion".</p>
+      <p>Das bedeutet: Ein privates VC-finanziertes Konsortium ohne demokratisches Mandat hat den Entwurf für eine neue EU-weite Gesellschaftsform geschrieben, die das EU-Parlament dann in seinen Empfehlungen weitgehend übernahm. <span class="tag tag-belegt">BELEGT</span></p>
+    </div>
+  </div>
+
+  <div class="actor-card">
+    <div class="actor-header">
+      <span class="actor-name">Google (Alphabet)</span>
+      <span class="actor-type">Tech-Konzern · meiste Treffen mit EU-Spitzenbeamten</span>
+    </div>
+    <div class="actor-body">
+      <p>Seit die Kommission 2014 alle Treffen von Kommissaren mit Lobbyisten veröffentlicht, führt Google die Statistik an: Seit 2014 wurden 414 Treffen zwischen Google-Mitarbeitenden und führenden EU-Beamten registriert — mehr als jede andere Organisation. <span class="tag tag-belegt">BELEGT</span></p>
+      <p>Gleichzeitig steht Google auf der Gatekeeper-Liste des DMA und wurde mit wettbewerbsrechtlichen Verfahren belegt. Wie Einfluss auf Regulierungsinhalte und Regulierungsanwendung zusammenhängen — OFFEN.</p>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>Quellen zu den Akteuren</strong>
+    Lobbypedia: ERT-Dokumentation (lobbypedia.de/wiki/European_Round_Table_of_Industrialists) · EU-Transparenzregister: BusinessEurope-Eintrag (transparency-register.europa.eu) · Arbeiterkammer Wien: „Das 28. Regime — Mitbestimmung in Gefahr" (wien.arbeiterkammer.at, 2025) · Statista: „Google: Anzahl Treffen mit EU-Beamten 2014–2024"
+  </div>
+
+  <hr class="divider">
+
+  <h2>3. Qatargate — wenn Lobbying zur Straftat wird</h2>
+
+  <p>Am 9. Dezember 2022 führte die belgische Polizei 20 Razzien an 19 Adressen in Brüssel durch. Sichergestellt: über 1,5 Millionen Euro Bargeld. Verhaftet: die Vizepräsidentin des Europäischen Parlaments, ihr Vater, ihr Lebensgefährte und weitere Personen.</p>
+
+  <div class="timeline-item">
+    <span class="tl-date">Dez. 2022</span>
+    <p class="tl-text">Verhaftung von Eva Kaili (Vizepräsidentin EP, Griechenland), Francesco Giorgi (ihr Lebensgefährte, parlamentarischer Assistent), Pier Antonio Panzeri (Ex-MdEP, Italien) und Niccolò Figà-Talamanca. Vorwurf: Korruption, Geldwäsche, kriminelle Vereinigung. Bei Kailis Vater: 750.000 € in einem Koffer. In der Wohnung von Kaili/Giorgi: 150.000 €. Bei Panzeri: 600.000 €. <span class="tag tag-belegt">BELEGT</span></p>
+  </div>
+  <div class="timeline-item">
+    <span class="tl-date">Dez. 2022</span>
+    <p class="tl-text">Giorgi gesteht, von katarischen Beamten bestochen worden zu sein, um Entscheidungen des EU-Parlaments zu beeinflussen. Er gibt an, zwischen Juni 2021 und November 2022 sechs parlamentarische Entschließungen zur Verurteilung Katars „neutralisiert" zu haben. <span class="tag tag-belegt">BELEGT</span></p>
+  </div>
+  <div class="timeline-item">
+    <span class="tl-date">Jan. 2023</span>
+    <p class="tl-text">Immunität von Marc Tarabella (Belgien) und Andrea Cozzolino (Italien) aufgehoben. Beide Monate später wegen Korruption verhaftet. Auch Marokko als weiterer Auftraggeber identifiziert. <span class="tag tag-belegt">BELEGT</span></p>
+  </div>
+  <div class="timeline-item">
+    <span class="tl-date">Juni 2023</span>
+    <p class="tl-text">Der leitende Untersuchungsrichter tritt zurück — wegen Interessenkonflikts: Sein Sohn betreibt ein gemeinsames Unternehmen mit dem Sohn eines Verdächtigen. <span class="tag tag-belegt">BELEGT</span></p>
+  </div>
+  <div class="timeline-item">
+    <span class="tl-date">Feb. 2026</span>
+    <p class="tl-text">Das belgische Berufungsgericht stellt fest: Die Ermittlungen waren nicht grundlegend fehlerhaft, das Verfahren kann fortgesetzt werden. Stand April 2026: kein Prozesstermin angesetzt. <span class="tag tag-belegt">BELEGT</span></p>
+  </div>
+
+  <div class="source-box">
+    <strong>Quellen Qatargate</strong>
+    Wikipedia DE: „Katar-Korruptionsskandal im Europäischen Parlament" (mit Einzelnachweisen) · LobbyControl: „Katargate — oder wie man den Kopf aus der Schlinge zieht" (lobbycontrol.de, Februar 2024) · Wikipedia EN: „Qatar corruption scandal at the European Parliament" (April 2026 aktualisiert) · Euronews: Immunität Tarabella/Cozzolino (Januar 2023) · Transparency International: „Kultur der Straflosigkeit" (zitiert nach nd-aktuell.de, Juni 2023)
+  </div>
+
+  <div class="quote-block">
+    <p>„Es handelt sich bei der Affäre nicht um einen Einzelfall. Es mangelt an unabhängiger Kontrolle."</p>
+    <span class="quote-attr">Transparency International zur Qatargate-Affäre — BELEGT (nd-aktuell.de, Juni 2023)</span>
+  </div>
+
+  <hr class="divider divider-amber">
+
+  <h2>4. Das 28. Regime — Lobbying als Gesetzgebung</h2>
+
+  <p>Das 28. Regime ist das jüngste und am klarsten dokumentierte Beispiel für den Weg vom Lobby-Entwurf zum EU-Recht. Am 18. März 2026 legte die Kommission den Verordnungsentwurf vor.</p>
+
+  <div class="regime-block">
+    <div class="regime-header">Was das 28. Regime offiziell ist</div>
+    <div class="regime-body">
+      <p>Eine neue, freiwillig wählbare EU-weite Gesellschaftsform — die <em>EU Inc.</em> (offizieller Name: Societas Europaea Unificata, S.EU). Gründung innerhalb von 48 Stunden, unter 100 Euro Kosten, kein Mindestkapital, vollständig digital. Gedacht für Start-ups und Scale-ups, inzwischen für alle Unternehmen geöffnet. <span class="tag tag-belegt">BELEGT</span></p>
+    </div>
+  </div>
+
+  <div class="regime-block">
+    <div class="regime-header">Wer den Entwurf geschrieben hat</div>
+    <div class="regime-body">
+      <p>Das Konsortium EU-Inc.org — eine Vereinigung von Unternehmern und Risikokapitalgebern — legte einen detaillierten Gesetzgebungsvorschlag vor, der nach Einschätzung der Arbeiterkammer Wien „seither als Art Blaupause in der Diskussion" dient. Auch der Draghi-Bericht (September 2024) und der Letta-Bericht (April 2024) enthielten Forderungen nach dem 28. Regime. <span class="tag tag-belegt">BELEGT</span></p>
+      <p>Der EU-Parlamentsausschuss übernahm wesentliche Strukturmerkmale des VC-Entwurfs. Eine öffentliche Konsultation fand statt — sie endete September 2025 und war damit parallel zur parlamentarischen Beratung. <span class="tag tag-belegt">BELEGT</span></p>
+    </div>
+  </div>
+
+  <div class="regime-block">
+    <div class="regime-header">Was Gewerkschaften und Arbeitnehmervertreter kritisieren</div>
+    <div class="regime-body">
+      <p>Arbeiterkammer Wien und europäische Gewerkschaftsverbände (ETUI Policy Brief, September 2025) dokumentieren das zentrale Risiko: In der ursprünglichen Fassung wäre die Unternehmensmitbestimmung im Aufsichts- oder Verwaltungsrat ausdrücklich ausgeschlossen gewesen. Ein Unternehmen hätte sich als EU Inc. registrieren und damit dauerhaft aus dem deutschen Betriebsverfassungsgesetz und dem Mitbestimmungsrecht heraushalten können. <span class="tag tag-belegt">BELEGT</span></p>
+      <p>Die Gründung in 24 Stunden macht nach Einschätzung der Arbeiterkammer eine seriöse Prüfung auf Geldwäsche, Scheinadressen und Sozialbetrug „praktisch unmöglich". <span class="tag tag-belegt">BELEGT</span></p>
+    </div>
+  </div>
+
+  <div class="regime-block">
+    <div class="regime-header">Wie es durchgesetzt werden soll — ohne Einstimmigkeit</div>
+    <div class="regime-body">
+      <p>EU-Kommissarin Zaharieva sprach sich öffentlich für eine Verordnung statt einer Richtlinie aus — weil eine Verordnung keine Einstimmigkeit der Mitgliedstaaten erfordert. Der Kommissionsvorschlag vom 18. März 2026 ist eine Verordnung. <span class="tag tag-belegt">BELEGT</span></p>
+      <p>Das Muster: Gilt für alle 27 Mitgliedsstaaten, ohne dass ein einzelner Staat Nein sagen kann. Nationaler Arbeits- und Sozialrechtsstandard wird durch EU-Parallelform umgehbar. <span class="tag tag-extrapolation">EXTRAPOLATION</span></p>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>Quellen 28. Regime</strong>
+    Arbeiterkammer Wien: „Das 28. Regime — Mitbestimmung in Gefahr" (wien.arbeiterkammer.at, 2025) · EY Deutschland: „28. Regime: EU-Kommission unterbreitet Vorschlag für EU Inc." (ey.com, März 2026) · Euractiv DE: „Startup-Kommissarin: 28. Regime soll für alle Unternehmen offenstehen" (Oktober 2025) · Bundesnotarkammer: „Auf dem Weg zu einem 28. Regime" (bnotk.de, Dezember 2025) · ETUI Policy Brief: „How a 28th company law regime jeopardises workers' rights" (September 2025) · EU-Inc.org Proposal (proposal.eu-inc.org) · EP-Resolution 20250079(INL), 20. Januar 2026
+  </div>
+
+  <hr class="divider">
+
+  <h2>5. Das Muster — nebeneinandergestellt</h2>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Beobachtung</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Das EU-Transparenzregister gilt laut Europäischem Rechnungshof als „eher unzuverlässig und unvollständig" — Ausgaben systematisch zu niedrig angegeben</td>
+        <td><span class="tag tag-belegt" style="margin:0">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Das VC-Konsortium EU-Inc.org hat den Gesetzentwurf für das 28. Regime inhaltlich vorstrukturiert — vor dem parlamentarischen Prozess</td>
+        <td><span class="tag tag-belegt" style="margin:0">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Qatargate: Parlamentarische Entscheidungen wurden nachweislich gegen Bargeld beeinflusst — Strafverfolgung läuft seit 2022, kein Prozess bis April 2026</td>
+        <td><span class="tag tag-belegt" style="margin:0">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Das 28. Regime soll als Verordnung durchgesetzt werden — kein nationales Veto möglich</td>
+        <td><span class="tag tag-belegt" style="margin:0">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Google führt die Statistik der Treffen mit EU-Spitzenbeamten an (414 seit 2014) — steht gleichzeitig auf der Gatekeeper-Zielliste</td>
+        <td><span class="tag tag-belegt" style="margin:0">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Ob Lobbykontakte Regulierungsentscheidungen im Einzelfall beeinflussen — Kausalzusammenhang im Einzelfall</td>
+        <td><span class="tag tag-offen" style="margin:0">OFFEN</span></td>
+      </tr>
+      <tr>
+        <td>Ob das 28. Regime gezielt als Instrument zur Umgehung nationaler Sozialstandards konzipiert wurde</td>
+        <td><span class="tag tag-offen" style="margin:0">OFFEN</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="divider divider-amber">
+
+  <div class="closing">
+    <p>Eine Institution, deren Gesetzgebungsentwürfe von privaten Konsortien vorformuliert werden. Ein Register, das laut eigenem Rechnungshof unzuverlässig ist. Ein Korruptionsskandal, dessen Prozess 3,5 Jahre nach den Verhaftungen noch nicht terminiert ist. Und eine neue Gesellschaftsform, die ohne nationales Veto eingeführt werden soll — auf Basis eines VC-Entwurfs.</p>
+    <p>Ob das System, das EU-Recht produziert, demokratisch legitimiert ist, hat das Bundesverfassungsgericht 2009 mit einer klaren Antwort beantwortet: Es ist keines im staatlichen Sinne.</p>
+    <p>Wessen Interessen es stattdessen repräsentiert — das dokumentiert das Transparenzregister. Wer es liest.</p>
+  </div>
+
+  <hr class="divider">
+
+  <h2>Quellenverzeichnis</h2>
+
+  <h3>Amtliche Quellen</h3>
+  <div class="source-box">
+    <strong>Register und Berichte</strong>
+    EU-Transparenzregister (transparency-register.europa.eu) · Europäischer Rechnungshof: Sonderbericht 05/2024 (eca.europa.eu) · EP-Resolution 2025/2079(INL) vom 20. Januar 2026 (europarl.europa.eu) · EU-Kommission: Verordnungsentwurf EU Inc., 18. März 2026
+  </div>
+
+  <h3>Wissenschaft und Analyse</h3>
+  <div class="source-box">
+    <strong>Fachliteratur</strong>
+    Lobbypedia: „Lobbyismus in der EU" (lobbypedia.de) · Arbeiterkammer Wien: „Das 28. Regime — Mitbestimmung in Gefahr" (2025) · ETUI: „How a 28th company law regime jeopardises workers' rights" (September 2025) · Springer Nature: „Die Demokratie von innen verteidigen: Qatargate und die Europawahl 2024" (2025)
+  </div>
+
+  <h3>Journalismus und NGO-Dokumentation</h3>
+  <div class="source-box">
+    <strong>Medienberichte und Organisationsberichte</strong>
+    LobbyControl: Qatargate-Dokumentation (lobbycontrol.de) · Transparency International: Lobbying-Jahresbudget Brüssel · nd-aktuell.de: „Katargate: Korruption trotzt dem Lobbyregister" (Juni 2023) · Euractiv DE: 28. Regime-Berichterstattung (2025) · EY Deutschland: EU Inc.-Analyse (März 2026) · Bundesnotarkammer: Gesellschaftsrechts-Analyse (Dezember 2025)
+  </div>
+
+  <div class="method-note">
+    <strong>Methodischer Hinweis:</strong> Dieser Artikel dokumentiert belegte Sachverhalte und stellt sie nebeneinander. Offene Kausalzusammenhänge sind als <span class="tag tag-offen">OFFEN</span> gekennzeichnet. Kein eigenes Fazit — die Schlussfolgerung liegt beim Leser.
+  </div>
+
+  <div class="related">
+    <span class="related-label">Diese Dokumentationsreihe</span>
+    <a href="/ns-kontinuitaet.html">Teil I — Der nahtlose Übergang: NS-Funktionäre in den Gründungsinstitutionen</a>
+    <a href="/verfassung-erosion.html">Teil II — Vom Grundgesetz zum Lissabon-Vertrag</a>
+    <a href="/eu-regulierungsmacht.html">Teil III — Recht ohne Demos: Wie die EU-Kommission globale Konzerne reguliert</a>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrapper">
+    <p><a href="/">dunkelfeld.report</a> · Analyse · Systemkritik · Quellenbasiert</p>
+    <p style="margin-top:0.5rem;">© 2026 · <a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

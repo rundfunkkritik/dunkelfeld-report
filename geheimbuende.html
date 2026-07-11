@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geheimbünde: Was historisch belegt ist — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --surface: #111113;
+    --surface2: #1a1a2e;
+    --amber: #e8c547;
+    --amber-dim: #b89a30;
+    --text: #d4d4d8;
+    --text-dim: #71717a;
+    --text-bright: #f4f4f5;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --red: #f87171;
+    --blue: #60a5fa;
+    --border: #27272a;
+    --max: 740px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.85;
+    padding: 0 1.25rem;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(9,9,11,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 -1.25rem;
+  }
+  .nav-brand {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--amber);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--amber); }
+
+  /* WRAPPER */
+  .wrapper {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 3rem 0 5rem;
+  }
+
+  /* META HEADER */
+  .article-meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+  .article-meta .cat {
+    color: var(--amber);
+    border: 1px solid var(--amber-dim);
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+  }
+
+  /* TITLE */
+  h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    color: var(--text-bright);
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+  .subtitle {
+    font-size: 1.15rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+    border-left: 3px solid var(--amber);
+    padding-left: 1rem;
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+  }
+  .divider-amber {
+    border-top-color: var(--amber-dim);
+    opacity: 0.4;
+  }
+
+  /* HEADINGS */
+  h2 {
+    font-family: Georgia, serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--text-bright);
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--amber);
+    display: inline-block;
+  }
+  h3 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--amber);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 2rem 0 0.75rem;
+  }
+
+  /* PROSE */
+  p { margin-bottom: 1.25rem; }
+
+  /* TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.45rem;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin: 0 0.2rem;
+    position: relative;
+    top: -1px;
+  }
+  .tag-belegt    { background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid rgba(74,222,128,0.35); }
+  .tag-extra     { background: rgba(251,146,60,0.15); color: var(--orange); border: 1px solid rgba(251,146,60,0.35); }
+  .tag-offen     { background: rgba(248,113,113,0.15); color: var(--red); border: 1px solid rgba(248,113,113,0.35); }
+
+  /* SOURCE BOX */
+  .source-box {
+    background: var(--surface2);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+  .source-box .src-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: var(--amber-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .source-box cite {
+    font-style: normal;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    display: block;
+    margin-top: 0.5rem;
+  }
+
+  /* TIMELINE */
+  .timeline { margin: 1.5rem 0; }
+  .tl-row {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 0 1.25rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .tl-row:last-child { border-bottom: none; }
+  .tl-year {
+    font-family: 'Courier New', monospace;
+    font-size: 0.82rem;
+    color: var(--amber);
+    font-weight: 700;
+    padding-top: 0.1rem;
+    white-space: nowrap;
+  }
+  .tl-text { font-size: 0.95rem; color: var(--text); }
+
+  /* COMPARISON TABLE */
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.88rem;
+  }
+  .comp-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amber);
+    background: var(--surface2);
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    border: 1px solid var(--border);
+  }
+  .comp-table td {
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .comp-table tr:nth-child(even) td { background: var(--surface); }
+
+  /* GRADE CARDS */
+  .grade-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .grade-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--amber-dim);
+    padding: 1.1rem;
+  }
+  .grade-card .grade-num {
+    font-family: 'Courier New', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--amber);
+    opacity: 0.4;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .grade-card .grade-title {
+    font-weight: 700;
+    color: var(--text-bright);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .grade-card .grade-symbol {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--amber-dim);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+  .grade-card p {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  /* PULLQUOTE */
+  .pullquote {
+    border-left: 4px solid var(--amber);
+    padding: 0.75rem 1.25rem;
+    margin: 2rem 0;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--text-bright);
+    line-height: 1.7;
+  }
+  .pullquote cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    font-style: normal;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+  }
+
+  /* OPEN QUESTIONS */
+  .open-questions {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--amber-dim);
+    padding: 1.5rem;
+    margin: 2.5rem 0 0;
+  }
+  .open-questions .oq-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .open-questions p {
+    font-style: italic;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+  .open-questions p:last-child { margin-bottom: 0; }
+
+  /* SYMBOL GRID */
+  .symbol-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .symbol-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1rem;
+  }
+  .symbol-item .sym-name {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.35rem;
+  }
+  .symbol-item p {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+  }
+  .legend-item { display: flex; align-items: center; gap: 0.4rem; color: var(--text-dim); }
+
+  /* SECTION NUMBER */
+  .sec-num {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  /* FOOTNOTE AREA */
+  .footnotes {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .footnotes p {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+  }
+  .footnotes .fn-header {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amber-dim);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  @media (max-width: 600px) {
+    .grade-grid { grid-template-columns: 1fr; }
+    .symbol-grid { grid-template-columns: 1fr; }
+    .tl-row { grid-template-columns: 70px 1fr; }
+    nav { flex-direction: column; gap: 0.75rem; align-items: flex-start; }
+    .nav-links { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="/">dunkelfeld.report</a>
+  <ul class="nav-links">
+    <li><a href="/">Archiv</a></li>
+    <li><a href="/impressum.html">Impressum</a></li>
+  </ul>
+</nav>
+
+<div class="wrapper">
+
+  <!-- META -->
+  <div class="article-meta">
+    <span class="cat">Strukturanalyse</span>
+    <span>Juni 2026</span>
+    <span>Lesedauer ca. 18 Min.</span>
+  </div>
+
+  <!-- TITLE -->
+  <h1>Geheimbünde: Was historisch belegt ist — und was Konstruktion</h1>
+  <p class="subtitle">Illuminaten, Freimaurer, Jesuiten, Rosenkreuzer — vier Bewegungen, die seit Jahrhunderten als Chiffren für Weltverschwörungen herhalten. Eine Quellenanalyse trennt Dokument von Deutung.</p>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <span class="legend-item"><span class="tag tag-belegt">BELEGT</span> Durch Primärquellen nachweisbar</span>
+    <span class="legend-item"><span class="tag tag-extra">EXTRAPOLATION</span> Plausibel, nicht vollständig belegbar</span>
+    <span class="legend-item"><span class="tag tag-offen">NICHT BELEGT</span> Behauptung ohne Quellengrundlage</span>
+  </div>
+
+  <hr class="divider divider-amber">
+
+  <!-- EINLEITUNG -->
+  <p>Vier Namen tauchen in nahezu jedem Verschwörungsnarrativ der letzten 250 Jahre auf: Illuminaten, Freimaurer, Jesuiten, Rosenkreuzer. Mal einzeln, mal als angebliches Gesamtsystem einer verborgenen Weltregierung. Das Problem: Die Erzählung von der geheimen Lenkung der Geschichte durch diese Gruppen hat einen nachweisbaren Ursprung — und der liegt nicht im Dunkeln, sondern ist quellenmäßig gut dokumentiert.</p>
+
+  <p>Was folgt, ist keine Verteidigung dieser Organisationen, aber auch keine Dämonisierung. Es ist der Versuch, das historisch Belegbare vom politisch Konstruierten zu trennen — anhand von Primärquellen, Gerichtsakten, päpstlichen Bullen und den eigenen Schriften der Gründer.</p>
+
+  <hr class="divider">
+
+  <!-- I. ILLUMINATEN -->
+  <span class="sec-num">I. — 1776–1785</span>
+  <h2>Die Illuminaten</h2>
+
+  <h3>Gründung und tatsächliche Ziele</h3>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Am 1. Mai 1776 gründete Johann Adam Weishaupt, Professor für Kirchenrecht an der Universität Ingolstadt, mit fünf Studenten den „Bund der Perfektibilisten" — kurz darauf umbenannt in Illuminatenorden (lat. <em>illuminati</em>: die Erleuchteten). Das Datum und die Gründungsumstände sind durch erhaltene Ordensdokumente und Korrespondenz vielfach belegt.
+  </p>
+
+  <div class="source-box">
+    <span class="src-label">Primärquelle</span>
+    Weishaupt über seine Intention (überliefert): „Zu einer Zeit, wo man nicht aufhörte, geheime Gesellschaften lächerlich zu machen und zu mißbrauchen, plante ich, diese menschliche Schwäche für ein wirkliches und würdiges Ziel zu nutzen, zum Nutzen der Menschen."
+    <cite>Zit. nach: Reinhard Markner (Hrsg.): Die Korrespondenz des Illuminatenordens, Bd. 1, Niemeyer Tübingen 2005</cite>
+  </div>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Weishaupt war der erste Laie auf dem Lehrstuhl für Kirchenrecht in Ingolstadt — eine Position, die bis zur Aufhebung des Jesuitenordens 1773 ausschließlich von Jesuiten besetzt worden war. Er operierte an einer Universität, die fest in der Hand der Jesuiten war: Moderne Fächer wie Chemie oder Botanik wurden dort lange verhindert, fortschrittliche Lehren zensiert oder verboten. Die Illuminaten entstanden als Reaktionsformation auf genau dieses Milieu.
+  </p>
+
+  <h3>Wachstum: Von der Studentengruppe zum Netzwerk</h3>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    1777 trat Weishaupt in die Münchener Freimaurerloge „Theodor zum guten Rath" ein und nutzte die Freimaurernetzwerke gezielt zur Mitgliederrekrutierung. Der entscheidende Wachstumsimpuls kam 1780 durch den Beitritt von Adolf Freiherr von Knigge — bekannt als Autor des Werks über gesellschaftlichen Umgang — der dem Orden eine tragfähige Struktur gab und ihn für bestehende Elitennetzwerke öffnete.
+  </p>
+
+  <div class="source-box">
+    <span class="src-label">Primärquelle — Brief Knigge an Weishaupt, 16. Dezember 1780</span>
+    „Eine Revolution steht der Maurerey bevor. Es ist also nöthig dabey nicht das Ruder aus den Händen zu verliehren, damit uns nicht andre kluge Köpfe zuvorkommen."
+    <cite>Illuminatenkorrespondenz, zit. nach: Illuminatenorden — Wikipedia, mit Verweis auf: Markner et al., Bd. 1 (2005)</cite>
+  </div>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Die Historikerin Peggy Stubley (University of Edinburgh) beschrieb Weishaupts Gründung zum Zeitpunkt der Entstehung als einer „extracurricularen studentischen Lerngruppe" näher als einer „Dissidentenzelle auf Verschwörerkurs".
+  </p>
+
+  <h3>Verbot und Ende</h3>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    1784 wurden abgefangene Schriften des Ordens vom Kurfürsten Karl Theodor als staatsgefährlich eingestuft. Der Orden wurde 1784/85 verboten. Weishaupt verlor seine Professur und floh — zunächst nach Regensburg, dann dauerhaft nach Gotha, wo er unter dem Schutz Herzog Ernsts II. lebte und schriftstellerisch tätig blieb. Er starb dort 1830.
+  </p>
+
+  <h3>Was historisch nicht stimmt</h3>
+
+  <p>
+    <span class="tag tag-offen">NICHT BELEGT</span>
+    Die behauptete Steuerung der Französischen Revolution durch Illuminaten ist historisch nicht haltbar: Der Orden hatte in Frankreich keine nennenswerte Ausbreitung. Er existierte zum Zeitpunkt der Revolution bereits seit fünf Jahren nicht mehr. Das allsehende Auge auf dem US-Dollar ist keine Illuminatensymbolik — es verweist auf die christliche Symbolik des Heiligen Geistes; die 13 Stufen der Pyramide stehen für die 13 Gründungskolonien.
+  </p>
+
+  <p>
+    <span class="tag tag-offen">NICHT BELEGT</span>
+    Galileo Galilei, Leonardo da Vinci und andere werden in populären Narrativen regelmäßig als Illuminaten bezeichnet. Alle diese Figuren lebten Jahrhunderte vor Gründung des Ordens.
+  </p>
+
+  <hr class="divider">
+
+  <!-- II. FREIMAURER -->
+  <span class="sec-num">II. — 1717 bis heute</span>
+  <h2>Die Freimaurer</h2>
+
+  <h3>Historischer Ursprung</h3>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Am 24. Juni 1717 schlossen sich vier Londoner Logen im Gasthaus „Goose and Gridiron" zur ersten Großloge von England zusammen. Die Konstitution der Freimaurerei — die sogenannten „Alten Pflichten" — wurde 1723 vom Geistlichen James Anderson verfasst und bildet bis heute die Grundlage des Bundes. Kernprinzip: keine festgelegte Religionszugehörigkeit, nur Anerkennung eines moralischen Gesetzes. In einer Zeit aktiver Religionskriege war das strukturell revolutionär.
+  </p>
+
+  <p>Die Vorläufer reichen weiter zurück: Als älteste Freimaurerloge der Welt gilt die Lodge of Edinburgh (Mary's Chapel No. 1) in Schottland, die ihre Gründung auf 1599 zurückführt. Die Verbindung zu mittelalterlichen Steinmetzgilden — die geheime Erkennungszeichen zur Sicherung von Löhnen und Zunftgeheimnissen verwendeten — ist historisch plausibel, quellenmäßig aber nicht lückenlos belegbar.</p>
+
+  <h3>Symbole, Grade und Rituale</h3>
+
+  <p>Die freimaurerische Symbolsprache entstammt mehrheitlich dem Bauwesen und der Geometrie — dem historischen Handwerk der Steinmetze. Zirkel, Winkelmaß, rauter und kubischer Stein sind keine okkulten Chiffren, sondern Arbeitswerkzeuge, die als moralische Metaphern umgedeutet wurden.</p>
+
+  <div class="grade-grid">
+    <div class="grade-card">
+      <div class="grade-num">1°</div>
+      <div class="grade-title">Lehrling</div>
+      <div class="grade-symbol">Symbol: Rauer Stein</div>
+      <p>„Schaut in sich." Selbsterkenntnis als erster Schritt. Der Lehrling empfängt Zeichen, Wort und Griff seines Grades und hält am Ende eine Gesellenzeichnung als Prüfung.</p>
+    </div>
+    <div class="grade-card">
+      <div class="grade-num">2°</div>
+      <div class="grade-title">Geselle</div>
+      <div class="grade-symbol">Symbol: Kubischer Stein</div>
+      <p>„Schaut um sich." Anwendung des Wissens in der Gemeinschaft. Der Geselle besucht andere Logen und erwirbt sich durch eine Meisterzeichnung den Aufstieg.</p>
+    </div>
+    <div class="grade-card">
+      <div class="grade-num">3°</div>
+      <div class="grade-title">Meister</div>
+      <div class="grade-symbol">Symbol: Reißbrett</div>
+      <p>„Schaut über sich." Auseinandersetzung mit Vergänglichkeit. Zentral: die Hiram-Legende — der Baumeister des Salomonischen Tempels als mythische Figur der Treue bis in den Tod.</p>
+    </div>
+  </div>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Die drei Grundgrade (blau, auch „Johannismaurerei") bilden das universelle Fundament aller freimaurerischen Systeme weltweit. Darauf aufbauend existieren sogenannte Hochgrad- oder Schottische Systeme mit bis zu 33 Graden — diese sind jedoch Erweiterungen, keine übergeordnete Struktur. Die Farben rot, grün, schwarz der Hochgrade verweisen auf unterschiedliche Ritualbereiche, nicht auf hierarchische Macht über die Basisgrade.
+  </p>
+
+  <div class="symbol-grid">
+    <div class="symbol-item">
+      <div class="sym-name">Zirkel & Winkelmaß</div>
+      <p>Handwerkswerkzeuge der Steinmetze. Symbolisch: Zirkel = geistiger Radius (das eigene Handeln), Winkelmaß = moralische Ausrichtung im Verhältnis zu anderen.</p>
+    </div>
+    <div class="symbol-item">
+      <div class="sym-name">Allsehendes Auge</div>
+      <p>Christliches Symbol (Trinität/Providenz), in der Freimaurerei als „Auge der Vorsehung" übernommen. Auf dem US-Dollar seit 1782 — Illuminatenorden erst 1776 gegründet, 1785 aufgelöst.</p>
+    </div>
+    <div class="symbol-item">
+      <div class="sym-name">Schurz (Lammfell)</div>
+      <p>Erkennungszeichen des Grades — Gestaltung und Farbe unterscheiden Lehrling, Geselle, Meister und Hochgrade. Öffentlich sichtbares Element bei Logentreffen.</p>
+    </div>
+    <div class="symbol-item">
+      <div class="sym-name">Hiram-Legende</div>
+      <p>Mythische Gründungsfigur des Meistergrades. Hiram Abiff, Baumeister des Salomonischen Tempels, stirbt den Tod eines Treuen. Moralische Allegorie, kein historisches Faktum.</p>
+    </div>
+  </div>
+
+  <h3>Politische Verfolgung</h3>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Bereits 1738 erließ Papst Clemens XII. eine Bannbulle gegen die Freimaurer — elf Jahre nach Gründung der ersten Großloge. Kardinal Firrao ließ 1739 freimaurerische Bücher verbrennen; der Dichter Tommaso Crudeli wurde in Florenz wegen seiner Mitgliedschaft gefoltert und starb 1745 mit 43 Jahren an den Haftfolgen. Papst Benedikt XIV. bestätigte 1751 die Bulle; König Karl III. von Spanien verbot daraufhin die Freimaurer auf der Iberischen Halbinsel.
+  </p>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Im nationalsozialistischen Deutschland wurden alle Logen verboten, Häuser zerstört, Mitglieder verfolgt und deportiert. Das NS-Regime stufte die Freimaurer als Teil einer angeblichen jüdisch-freimaurerischen Weltverschwörung ein — eine Konstruktion, die nachweislich auf Barruel und den Protokollen der Weisen von Zion basiert (letztere 1903 als Fälschung entstanden, 1921 als solche nachgewiesen).
+  </p>
+
+  <h3>Bekannte Mitglieder (historisch belegt)</h3>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Zu den historisch belegten Freimaurern zählen: Wolfgang Amadeus Mozart, Benjamin Franklin, George Washington, Friedrich der Große (König von Preußen), Giuseppe Garibaldi, Simón Bolívar sowie mehrere US-Präsidenten des 18. und 19. Jahrhunderts. Die Netzwerkfunktion der Logen für politische Eliten ist dokumentiert — eine geheime Steuerung von Staaten daraus abzuleiten ist eine Schlussfolgerung, keine Quellenlage.
+  </p>
+
+  <hr class="divider">
+
+  <!-- III. JESUITEN -->
+  <span class="sec-num">III. — 1534 bis heute</span>
+  <h2>Die Jesuiten</h2>
+
+  <h3>Gründung</h3>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Ignatius von Loyola (1491–1556), ehemaliger baskischer Offizier, legte 1534 in Paris gemeinsam mit sechs Gefährten — darunter Franz Xaver — Gelübde ab, die zur Gründung des Ordens führten. 1540 erkannte Papst Paul III. die Societas Jesu offiziell an. Das vierte Gelübde der Jesuiten — besonderer Gehorsam gegenüber dem Papst — unterschied sie strukturell von allen anderen Orden.
+  </p>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Die Jesuiten errichteten ein weltweites Bildungsnetzwerk: Schulen, Kollegien, Universitäten in Europa, Lateinamerika, Indien und China. Jesuitenpater wie Christoph Scheiner entdeckten Sonnenflecken und berechneten die Sonnenrotation; viele Mondkrater tragen bis heute Namen von Jesuiten-Astronomen.
+  </p>
+
+  <h3>Warum Geheimbund-Narrativ?</h3>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Drei strukturelle Merkmale machten die Jesuiten zur Projektionsfläche: Sie trugen keine Ordenstracht (äußerlich nicht erkennbar), wohnten nicht in Klöstern, und schuldeten allein dem Papst Gehorsam — nicht dem Monarchen. Im Zeitalter des Absolutismus, der ungeteilte Loyalität der Untertanen forderte, war das ein echter Konflikt, kein eingebildeter.
+  </p>
+
+  <h3>Aufhebung 1773</h3>
+
+  <div class="timeline">
+    <div class="tl-row">
+      <div class="tl-year">1758–1767</div>
+      <div class="tl-text">Portugal, Frankreich, Spanien und Neapel weisen die Jesuiten aus ihren Territorien aus. Hintergrund: Konflikt zwischen päpstlicher Loyalität und absolutistischem Herrschaftsanspruch.</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-year">1773</div>
+      <div class="tl-text">Papst Clemens XIV. hebt den Jesuitenorden auf — unter massivem Druck der bourbonischen Höfe in Paris, Madrid und Neapel, die mit Kirchenspaltung drohten. Dokument: Breve „Dominus ac Redemptor Noster", 21. Juli 1773. <span class="tag tag-belegt">BELEGT</span></div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-year">1773</div>
+      <div class="tl-text">Weishaupt erhält den Lehrstuhl für Kirchenrecht in Ingolstadt — die erste Besetzung durch einen Laien, da die Stelle bisher den Jesuiten vorbehalten war. Drei Jahre später gründet er die Illuminaten.</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-year">1814</div>
+      <div class="tl-text">Wiederherstellung des Jesuitenordens durch Papst Pius VII. Der Orden ist bis heute aktiv. Papst Franziskus (Jorge Mario Bergoglio) ist der erste Jesuit auf dem Papstthron. <span class="tag tag-belegt">BELEGT</span></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- IV. ROSENKREUZER -->
+  <span class="sec-num">IV. — 1614 bis heute</span>
+  <h2>Die Rosenkreuzer</h2>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Den dokumentierten Ursprung des Rosenkreuzertums bilden drei Schriften, die 1614/15 anonym in Deutschland erschienen: <em>Fama Fraternitatis</em> (1614), <em>Confessio Fraternitatis</em> (1615) und die <em>Chymische Hochzeit Christiani Rosenkreutz</em> (1616). Die Publikationen lösten in ganz Europa heftige Debatten aus — über eine Bruderschaft, die möglicherweise niemals als physische Organisation existiert hat.
+  </p>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Als wahrscheinlicher Autor der Manifeste gilt der württembergisch-lutherische Theologe Johann Valentin Andreae (1586–1654), der die Schriften möglicherweise als literarische Utopie verfasste — nicht als Gründungsdokument einer tatsächlichen Gemeinschaft. Der symbolische Ordensgründer Christian Rosenkreuz (1378–1484) ist historisch nicht nachweisbar.
+  </p>
+
+  <div class="source-box">
+    <span class="src-label">Wissenschaftliche Einschätzung</span>
+    Der Forschungsband „Rosenkreuz als europäisches Phänomen im 17. Jahrhundert" (Bibliotheca Philosophica Hermetica, Amsterdam) gilt als Standardwerk: Er „begegnet mit historisch-philologischer Akribie den aufreizenden Legenden" und lässt „den vielfältigen Spekulationen, die von Beginn des 17. Jahrhunderts bis ins 20. Jahrhundert hinein entwickelt wurden, keine Chance."
+    <cite>Claudia Brosseder, Süddeutsche Zeitung, Rezension des Sammelbandes</cite>
+  </div>
+
+  <p>
+    <span class="tag tag-extra">EXTRAPOLATION</span>
+    Zu den historisch mit den Rosenkreuzern in Verbindung gebrachten Denkern zählen — ohne sichere Quellenbasis — Francis Bacon, René Descartes, Johannes Kepler und Baruch Spinoza. Gemeinsam ist diesen Figuren: sie standen dem antiklerikalen, reformerischen Denken ihrer Zeit nahe. Die Zuschreibung „Rosenkreuzer" basiert auf ideologischer Verwandtschaft, nicht auf Mitgliedschaftsnachweisen.
+  </p>
+
+  <hr class="divider">
+
+  <!-- V. DER URSPRUNG DES SCHLECHTEN IMAGES -->
+  <span class="sec-num">V. — Die entscheidende Quelle</span>
+  <h2>Wer das Bild erschuf: Abbé Barruel, 1797</h2>
+
+  <p>Dies ist der journalistisch zentrale Befund: Das Bild der Illuminaten, Freimaurer und Rosenkreuzer als geheime Weltregierung ist keine organisch gewachsene Volksüberzeugung. Es hat einen spezifischen, quellenmäßig belegbaren Ursprung.</p>
+
+  <div class="pullquote">
+    „Die Revolutionäre hatten keine Könige, Priester oder Adligen als Feinde — sie waren von Philosophen, Freimaurern und Illuminaten in die Irre geführt worden."
+    <cite>Abbé Augustin Barruel, Mémoires pour servir à l'histoire du Jacobinisme, London 1797/98</cite>
+  </div>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    1797 veröffentlichte der französisch-jesuitische Geistliche Abbé Augustin Barruel (1741–1820) — vor der Revolution nach London geflohen, von Edmund Burke protegiert — seine vierbändigen „Mémoires pour servir à l'histoire du Jacobinisme". Darin behauptete er ohne überprüfbare Belege: Die Französische Revolution sei das Ergebnis einer Verschwörung aus Aufklärungsphilosophen, Freimaurern und Illuminaten gegen Thron, Altar und Aristokratie.
+  </p>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Nahezu gleichzeitig erschien in Edinburgh John Robisons „Proofs of a Conspiracy" mit identischer Grundthese. 1803 folgte Johann August Starcks „Triumph der Philosophie" in Darmstadt. Das Bistum Augsburg bezeichnete Barruel in einer Materialdienstpublikation (2010) als „Vater aller heute im Umlauf befindlichen Verschwörungstheorien über die Illuminaten".
+  </p>
+
+  <div class="source-box">
+    <span class="src-label">Primärquelle — Bistum Augsburg, Materialdienst 2010-2</span>
+    „Bis 1808 erweiterte Barruel seine Verschwörungstheorie immer weiter: Die Illuminaten waren nun nicht mehr ein Zirkel, der 1776 in Bayern gegründet wurde, sondern eine noch viel ältere Organisation praktizierender Satanisten."
+    <cite>Bistum Augsburg, Materialdienst 2010-2, S. 22 — bistum-augsburg.de (Direktlink verfügbar)</cite>
+  </div>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Im US-amerikanischen Präsidentschaftswahlkampf 1800 brandmarkten Anhänger von John Adams ihren Gegner Thomas Jefferson öffentlich als „Illuminaten". Als Jefferson die Wahl gewann, ebbte die Verschwörungstheorie zunächst ab — ein Beleg dafür, dass sie von Beginn an politisches Instrument war.
+  </p>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Die historische Ironie der Konstellation: Barruel war selbst Jesuit. Der Begründer der modernen Illuminaten-Verschwörungstheorie gehörte jenem Orden an, gegen den Weishaupt die Illuminaten gegründet hatte.
+  </p>
+
+  <hr class="divider">
+
+  <!-- VI. ÜBERSICHTSTABELLE -->
+  <span class="sec-num">VI. — Vergleich</span>
+  <h2>Gegenüberstellung: Fakt vs. Erzählung</h2>
+
+  <table class="comp-table">
+    <thead>
+      <tr>
+        <th>Organisation</th>
+        <th>Gründung</th>
+        <th>Tatsächliche Lebensdauer</th>
+        <th>Heute</th>
+        <th>VT-Ursprung</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Illuminaten</strong></td>
+        <td>1776, Ingolstadt</td>
+        <td>9 Jahre (1776–1785)</td>
+        <td>Aufgelöst. Keine Nachfolgeorganisation belegt.</td>
+        <td>Barruel 1797 — ohne Quellennachweis</td>
+      </tr>
+      <tr>
+        <td><strong>Freimaurer</strong></td>
+        <td>1717, London</td>
+        <td>Über 300 Jahre aktiv</td>
+        <td>Ca. 6 Mio. Mitglieder weltweit; in Deutschland ~15.000</td>
+        <td>Päpstliche Bannbulle 1738; Barruel 1797; NS-Propaganda</td>
+      </tr>
+      <tr>
+        <td><strong>Jesuiten</strong></td>
+        <td>1534/1540, Paris/Rom</td>
+        <td>Über 480 Jahre aktiv (mit Unterbrechung 1773–1814)</td>
+        <td>Ca. 15.000 Mitglieder; Papst Franziskus ist Jesuit</td>
+        <td>Absolutistische Fürstenhöfe; nationalistisch-antiklerikale Bewegungen 19. Jh.</td>
+      </tr>
+      <tr>
+        <td><strong>Rosenkreuzer</strong></td>
+        <td>1614 (Manifeste)</td>
+        <td>Ursprüngliche Organisation: möglicherweise fiktiv</td>
+        <td>Diverse Nachfolgeorganisationen (AMORC u.a.), keine gesicherte Kontinuität</td>
+        <td>Zeitgenössische Kirchenkritiker; später Einbindung in Illuminaten-Narrativ</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="divider">
+
+  <!-- VII. STRUKTURELLE FRAGE -->
+  <span class="sec-num">VII. — Strukturelle Beobachtung</span>
+  <h2>Warum das Narrativ persistent ist</h2>
+
+  <p>Geheimgesellschaften teilen strukturell drei Merkmale, die sie zur Projektionsfläche machen: sie operieren nicht öffentlich, sie haben erkennbare Netzwerke unter Eliten, und ihre tatsächlichen Inhalte sind nicht allgemein zugänglich. Das erzeugt einen Deutungsraum, den andere — mit politischen Interessen — füllen können.</p>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span>
+    Die Verfolgungsgeschichte dieser Organisationen zeigt das Muster in umgekehrter Richtung: Päpste verfolgten die Freimaurer, weil diese religiöse Toleranz praktizierten. Absolute Monarchen verfolgten die Jesuiten, weil diese dem Papst und nicht dem König gehorchten. Der bayerische Kurfürst verbot die Illuminaten, weil diese die Fürstenherrschaft überwinden wollten. In allen drei Fällen traf Verfolgung real existierende Organisationen mit dokumentierten Zielen — nicht imaginäre Weltverschwörer.
+  </p>
+
+  <p>
+    <span class="tag tag-extra">EXTRAPOLATION</span>
+    Die Gleichsetzung aller vier Organisationen zu einer einheitlichen geheimen Weltstruktur entstand nicht durch historische Forschung, sondern durch sukzessive Erweiterung der Barruel'schen Erzählung — von französischen Royalisten über nationalsozialistische Propaganda bis zur US-amerikanischen Popkultur des 20. Jahrhunderts (Dan Brown, Hollywood, Internetforen). Jede Epoche fügte Elemente hinzu; die ursprüngliche Quelle von 1797 verschwand dabei zunehmend aus dem Blick.
+  </p>
+
+  <!-- OFFENE FRAGEN -->
+  <div class="open-questions">
+    <span class="oq-label">Offene Fragen — keine redaktionellen Schlussfolgerungen</span>
+    <p>Welche Funktion erfüllt es politisch, wenn historisch aufgelöste oder klar beschreibbare Organisationen als aktive, unkontrollierbare Weltmächte dargestellt werden — und wer profitiert davon, dass strukturelle Macht durch mythische Akteure ersetzt wird?</p>
+    <p>Wenn die Hauptquelle des Illuminaten-Narrativs ein gegenrevolutionärer Jesuit war, der selbst keinen direkten Zugang zu Ordensdokumenten hatte — welchen Quellenwert hat dann eine 230 Jahre alte politische Polemik, die bis heute unreflektiert reproduziert wird?</p>
+    <p>Inwiefern schützt die Konzentration auf geheime Bünde strukturelle Macht, die sich längst in öffentlich zugänglichen Dokumenten, Lobbyregistern und Jahresberichten abbilden lässt?</p>
+  </div>
+
+  <!-- FOOTNOTES -->
+  <div class="footnotes">
+    <span class="fn-header">Quellen & Belege</span>
+    <p>[1] LMU München, Historisches Lexikon: Adam Weishaupt und die Gründung der Illuminaten — lmu.de/de/die-lmu/geschichte/1776</p>
+    <p>[2] Reinhard Markner, Monika Neugebauer-Wölk, Hermann Schüttler (Hrsg.): Die Korrespondenz des Illuminatenordens, Bd. 1: 1776–1781. Niemeyer, Tübingen 2005, ISBN 3-484-10881-9</p>
+    <p>[3] Stadt Ingolstadt, Stadtgeschichtslexikon: Illuminaten — stadtgeschichtslexikon.ingolstadt.de</p>
+    <p>[4] Freimaurerei: Konstitution von 1723 (Alten Pflichten) — James Anderson, London 1723 (Digitalisat verfügbar)</p>
+    <p>[5] Abbé Augustin Barruel: Mémoires pour servir à l'histoire du Jacobinisme, 4 Bde., London 1797/98; dt. Zusammenfassung 1799</p>
+    <p>[6] Bistum Augsburg, Materialdienst 2010-2: Verschwörungstheorien, S. 22 — bistum-augsburg.de (PDF)</p>
+    <p>[7] EKR (Eidgenössische Kommission gegen Rassismus): TANGRAM 45, „Verschwörungstheorien fallen nicht vom Himmel" — ekr.admin.ch</p>
+    <p>[8] Rosenkreuzer: Fama Fraternitatis (1614), Confessio Fraternitatis (1615) — Erstdrucke; wiss. Edition: Carlos Gilly, Bibliotheca Philosophica Hermetica, Amsterdam</p>
+    <p>[9] Freimaurer-Wiki (freimaurer-wiki.de): Grade, Hochgrade, Rituale — mit Quellenangaben zu Originalritualen</p>
+    <p>[10] Wikipedia Illuminatenorden (mit Literaturverzeichnis): de.wikipedia.org/wiki/Illuminatenorden</p>
+  </div>
+
+</div><!-- /wrapper -->
+</body>
+</html>

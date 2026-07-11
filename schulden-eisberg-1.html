@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Eisberg — dunkelfeld.report</title>
+<meta name="description" content="Was Deutschlands offizielle Schuldenzahl verschweigt: Sondervermögen, Pensionsbomben, Rüstungskonsum. Eine Bestandsaufnahme der tatsächlichen Verpflichtungen.">
+<meta property="og:title" content="Der Eisberg — dunkelfeld.report">
+<meta property="og:description" content="2,75 Billionen offizielle Schulden. 19,5 Billionen tatsächliche Verpflichtungen. Was dazwischen liegt.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg:       #09090b;
+    --surface:  #111114;
+    --surface2: #1a1a2e;
+    --amber:    #e8c547;
+    --amber-dim:#b8962e;
+    --text:     #e2e2e5;
+    --muted:    #8888a0;
+    --danger:   #e05252;
+    --safe:     #52b788;
+    --font-body: Georgia, 'Times New Roman', serif;
+    --font-mono: 'Courier New', Courier, monospace;
+    --font-sans: system-ui, -apple-system, sans-serif;
+    --max: 740px;
+    --max-wide: 960px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    line-height: 1.85;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(9,9,11,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #222;
+    padding: 0.75rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand {
+    font-family: var(--font-mono);
+    color: var(--amber);
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex; gap: 1.5rem; list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--amber); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; }
+  .container-wide { max-width: var(--max-wide); margin: 0 auto; padding: 0 1.5rem; }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 4rem 1.5rem 3rem;
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+  .dossier-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .dossier-label::before {
+    content: '';
+    display: inline-block;
+    width: 2rem; height: 1px;
+    background: var(--amber);
+  }
+  h1 {
+    font-family: var(--font-body);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  h1 .amber { color: var(--amber); }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 580px;
+  }
+  .meta {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    display: flex; gap: 1.5rem; flex-wrap: wrap;
+  }
+
+  /* ── LEAD NUMBER ── */
+  .lead-number {
+    border: 1px solid #2a2a3a;
+    border-left: 3px solid var(--amber);
+    background: var(--surface2);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  @media (max-width: 560px) { .lead-number { grid-template-columns: 1fr; gap: 1rem; } }
+  .lead-number .num {
+    font-family: var(--font-mono);
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--amber);
+  }
+  .lead-number .num.red { color: var(--danger); }
+  .lead-number .label {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-top: 0.4rem;
+  }
+  .lead-number .sublabel {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid #222;
+    margin: 3rem 0;
+  }
+
+  /* ── BODY TEXT ── */
+  p { padding-bottom: 1.2rem; }
+  h2 {
+    font-family: var(--font-body);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 2.5rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.3;
+  }
+  h3 {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-top: 2rem;
+    margin-bottom: 0.6rem;
+  }
+
+  /* ── SOURCE BOX ── */
+  .source-box {
+    background: var(--surface2);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 1.2rem 0 1.8rem;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    line-height: 1.6;
+    color: #aaa;
+  }
+  .source-box strong { color: var(--amber); }
+
+  /* ── STATUS TAGS ── */
+  .tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.18em 0.55em;
+    border-radius: 2px;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+  .tag-belegt   { background: #1a3320; color: var(--safe); border: 1px solid var(--safe); }
+  .tag-offen    { background: #2a1a1a; color: var(--danger); border: 1px solid var(--danger); }
+  .tag-extra    { background: #2a2210; color: var(--amber); border: 1px solid var(--amber-dim); }
+
+  /* ── CHART CONTAINERS ── */
+  .chart-section {
+    margin: 2.5rem 0;
+  }
+  .chart-title {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 0.5rem;
+  }
+  .chart-note {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    line-height: 1.5;
+  }
+  .chart-wrap {
+    background: var(--surface);
+    border: 1px solid #222;
+    padding: 1.5rem;
+    position: relative;
+  }
+  .chart-wrap canvas { max-height: 340px; }
+
+  /* ── SVG EISBERG ── */
+  .iceberg-wrap {
+    background: var(--surface);
+    border: 1px solid #222;
+    padding: 2rem 1.5rem;
+    margin: 2rem 0;
+    text-align: center;
+  }
+  .iceberg-wrap svg { max-width: 100%; height: auto; }
+
+  /* ── WIDERSPRUCHS-TABLE ── */
+  .conflict-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    margin: 1.5rem 0;
+  }
+  .conflict-table th {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber);
+    border-bottom: 1px solid var(--amber-dim);
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+  }
+  .conflict-table td {
+    padding: 0.65rem 0.8rem;
+    border-bottom: 1px solid #1e1e2e;
+    color: var(--text);
+    vertical-align: top;
+  }
+  .conflict-table tr:hover td { background: #111118; }
+  .conflict-table .val {
+    font-family: var(--font-mono);
+    color: var(--amber);
+    white-space: nowrap;
+  }
+  .conflict-table .cat { color: var(--muted); font-size: 0.78rem; }
+  .conflict-table tr.total td {
+    border-top: 1px solid var(--amber-dim);
+    color: var(--danger);
+    font-weight: bold;
+  }
+  .conflict-table tr.total .val { color: var(--danger); }
+
+  /* ── CLOSING QUESTION ── */
+  .closing {
+    border-top: 1px solid #222;
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+  }
+  .closing p {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.9;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--surface);
+    border-top: 1px solid #1e1e2e;
+    padding: 2rem 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.9;
+  }
+  footer a { color: var(--amber); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="/">dunkelfeld.report</a>
+  <ul class="nav-links">
+    <li><a href="/archiv">Archiv</a></li>
+    <li><a href="/methodik">Methodik</a></li>
+    <li><a href="/impressum">Impressum</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="dossier-label">Systemanalyse · Fiskalpolitik</div>
+  <h1>Der <span class="amber">Eisberg</span></h1>
+  <p class="hero-sub">Was Deutschlands offizielle Schuldenzahl verschweigt: Sondervermögen als Etikettenschwindel, Rüstungskonsum statt Investition, und die versteckten Billionen, die in keiner Statistik auftauchen.</p>
+  <div class="meta">
+    <span>Juni 2026</span>
+    <span>Lesedauer: ca. 10 min</span>
+    <span>Quellen: Destatis · Bundesfinanzministerium · Raffelhüschen/Uni Freiburg · Stiftung Marktwirtschaft · Eurostat</span>
+  </div>
+</header>
+
+<!-- LEAD NUMBERS -->
+<div class="container">
+  <div class="lead-number">
+    <div>
+      <div class="num">2,75 Bio.</div>
+      <div class="label">Offizielle Staatsschuld</div>
+      <div class="sublabel">Maastricht-Definition, Destatis 2025</div>
+    </div>
+    <div>
+      <div class="num red">19,5 Bio.</div>
+      <div class="label">Tatsächliche Verpflichtungen</div>
+      <div class="sublabel">Inkl. implizite Schulden, Raffelhüschen 2025</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" style="max-width:740px; margin:0 auto 0; padding: 0 1.5rem;">
+
+<!-- ARTIKEL BODY -->
+<main class="container">
+
+  <h2>1. Was ein „Sondervermögen" wirklich ist</h2>
+
+  <p>
+    <span class="tag tag-belegt">Belegt</span>
+    Das Wort klingt nach Rücklage. Nach einem Topf, in den man vorher eingezahlt hat. Das Gegenteil ist wahr: Ein Sondervermögen des Bundes ist ein kreditfinanziertes Ausgabenpaket, das außerhalb der verfassungsrechtlichen Schuldenbremse gebucht wird. Es ist Schuld — mit einem anderen Etikett.
+  </p>
+
+  <p>
+    Im März 2025 trat eine Grundgesetzänderung in Kraft. Seitdem sind sicherheits- und verteidigungspolitisch begründete Ausgaben — Bundeswehr, Zivil- und Bevölkerungsschutz, Nachrichtendienste, IT-Sicherheit, Ukraine-Hilfen — von der regulären Kreditobergrenze der Schuldenbremse ausgenommen, soweit sie einen Sockelwert von 1% des BIP überschreiten. Parallel wurde ein Sondervermögen Infrastruktur und Klimaneutralität über 500 Milliarden Euro beschlossen — kreditfinanziert, im Grundgesetz Art. 143h verankert, rückwirkend zum 1. Januar 2025 in Kraft getreten.
+  </p>
+
+  <p>
+    Neben dem regulären Bundeshaushalt existieren derzeit <strong>27 Sonder-, Zweck- und Treuhandvermögen</strong> des Bundes. Die Schuldenbremse wird nicht abgeschafft — sie wird durch wiederholte Grundgesetzänderungen ausgehöhlt, bis sie leeres Recht ist.
+  </p>
+
+  <div class="source-box">
+    <strong>Quellen:</strong> Bundestag Drucksache 21/779 und 21/1578 (Sondervermögen Infrastruktur und Klimaneutralität, September 2025) · Bundesfinanzministerium, Monatsbericht April 2025: „Weichenstellungen in der Finanzverfassung" · Grundgesetz Art. 87a (Verteidigung), Art. 143h (Infrastruktur-Sondervermögen)
+  </div>
+
+  <!-- CHART 1: Sondervermögen gestapelt -->
+  <div class="chart-section">
+    <div class="chart-title">Grafik 1 — Alle Schuldenpositionen Deutschlands im Überblick</div>
+    <div class="chart-wrap">
+      <canvas id="chart-gesamt"></canvas>
+    </div>
+    <div class="chart-note">Quellen: Destatis April 2026 (explizite Schuld) · Bundestag-Beschlüsse (Sondervermögen) · Raffelhüschen/Uni Freiburg Generationenbilanz 2025 (implizite Schulden). Darstellung in Billionen EUR. Rüstungsausgaben EU-Ebene (ReArm Europe) sind Schätzwerte der EU-Kommission März 2025.</div>
+  </div>
+
+  <hr class="divider">
+
+  <h2>2. Rüstung ist Konsum — kein Investment</h2>
+
+  <p>
+    <span class="tag tag-belegt">Belegt</span>
+    Die politische Kommunikation behandelt Rüstungsausgaben wie Infrastrukturinvestitionen. Das ist ökonomisch falsch und hat konkrete Konsequenzen für die Schuldentragfähigkeit.
+  </p>
+
+  <p>
+    Investitionen in Infrastruktur — Brücken, Bahn, Glasfasernetz — schaffen produktiven Kapitalstock. Sie erhöhen langfristig die Wirtschaftsleistung und damit die Steuerbasis, aus der Schulden bedient werden. Das Bundesfinanzministerium begründet seine Sondervermögen ausdrücklich damit, dass „öffentliche Investitionen doppelt wirken: über den Ausbau des Kapitalstocks und über bessere Standortbedingungen."
+  </p>
+
+  <p>
+    <span class="tag tag-extra">Einordnung</span>
+    Rüstungsausgaben erzeugen keinen produktiven Rückfluss. Panzer, Munition und Raketenabwehrsysteme werden verbraucht, eingelagert oder veralten. Sie erzeugen keine Steuereinnahmen, keine Produktivitätssteigerung, keinen Exportvorteil für die Gesamtwirtschaft. Wenn dieselbe Schuldenlogik, die für Straßenbau gilt, auf Waffenbeschaffung angewendet wird, ist das ein kategorialer Fehler — oder bewusste Verschleierung.
+  </p>
+
+  <p>
+    <span class="tag tag-belegt">Belegt</span>
+    Das deutsche Sondervermögen Bundeswehr (100 Mrd., 2022) und das EU-Instrument ReArm Europe / SAFE (bis 800 Mrd. EU-Ebene, März 2025) folgen beide dieser Logik: kreditfinanzierter Konsum, verbucht als Investition.
+  </p>
+
+  <div class="source-box">
+    <strong>Quellen:</strong> Bundesfinanzministerium, Monatsbericht April 2025: Begründung des Sondervermögens Infrastruktur · EU-Kommission Pressemitteilung März 2025: ReArm Europe / SAFE-Instrument · Bundestag-Beschluss Sondervermögen Bundeswehr, Juni 2022
+  </div>
+
+  <hr class="divider">
+
+  <h2>3. Der Eisberg: Was unter der Oberfläche liegt</h2>
+
+  <p>
+    <span class="tag tag-belegt">Belegt</span>
+    Die offiziell ausgewiesenen 2,75 Billionen Euro Staatsschulden sind die Spitze eines Eisbergs. Darunter liegen Verpflichtungen, die in keiner Schuldenquote auftauchen — aber genauso real sind, weil sie zwangsläufig aus künftigen Steuern und Beiträgen bezahlt werden müssen.
+  </p>
+
+  <!-- SVG EISBERG -->
+  <div class="iceberg-wrap">
+    <svg viewBox="0 0 600 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Eisberg-Infografik: sichtbare und versteckte Staatsschulden">
+
+      <!-- Wasseroberfläche -->
+      <line x1="0" y1="160" x2="600" y2="160" stroke="#1a3a5c" stroke-width="2" stroke-dasharray="6,4"/>
+      <text x="10" y="155" font-family="Courier New, monospace" font-size="10" fill="#4488aa" letter-spacing="2">WASSEROBERFLÄCHE — ÖFFENTLICH SICHTBAR</text>
+
+      <!-- Eis oben (sichtbar) -->
+      <polygon points="300,20 180,160 420,160" fill="#1a2a1a" stroke="#52b788" stroke-width="1.5"/>
+      <text x="300" y="90" text-anchor="middle" font-family="Georgia,serif" font-size="22" font-weight="bold" fill="#52b788">2,75 Bio.</text>
+      <text x="300" y="112" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#52b788" letter-spacing="1">OFFIZIELLE STAATSSCHULD</text>
+      <text x="300" y="128" text-anchor="middle" font-family="Courier New,monospace" font-size="9" fill="#6aaa80">Destatis / Maastricht-Definition</text>
+
+      <!-- Wasser (Hintergrund unter Linie) -->
+      <rect x="0" y="160" width="600" height="260" fill="#0a0e1a" opacity="0.7"/>
+
+      <!-- Eisberg-Unterkörper -->
+      <polygon points="180,160 70,390 530,390 420,160" fill="#1a1a3a" stroke="#3a3a6a" stroke-width="1"/>
+
+      <!-- Pensionen -->
+      <rect x="120" y="185" width="160" height="52" rx="3" fill="#1e1e3a" stroke="#e8c547" stroke-width="1"/>
+      <text x="200" y="207" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#e8c547" letter-spacing="1">BEAMTENPENSIONEN</text>
+      <text x="200" y="224" text-anchor="middle" font-family="Georgia,serif" font-size="16" font-weight="bold" fill="#e8c547">&gt; 1 Bio. EUR</text>
+      <text x="200" y="236" text-anchor="middle" font-family="Courier New,monospace" font-size="8" fill="#b8962e">ifo / IW Köln</text>
+
+      <!-- Rente -->
+      <rect x="310" y="185" width="160" height="52" rx="3" fill="#1e1e3a" stroke="#e8c547" stroke-width="1"/>
+      <text x="390" y="207" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#e8c547" letter-spacing="1">RENTENVERSICHERUNG</text>
+      <text x="390" y="224" text-anchor="middle" font-family="Georgia,serif" font-size="16" font-weight="bold" fill="#e8c547">~3 Bio. EUR</text>
+      <text x="390" y="236" text-anchor="middle" font-family="Courier New,monospace" font-size="8" fill="#b8962e">Raffelhüschen 2022</text>
+
+      <!-- Pflege/Gesundheit -->
+      <rect x="95" y="260" width="175" height="52" rx="3" fill="#2a1a1a" stroke="#e05252" stroke-width="1"/>
+      <text x="182" y="282" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#e05252" letter-spacing="1">PFLEGE + GESUNDHEIT</text>
+      <text x="182" y="299" text-anchor="middle" font-family="Georgia,serif" font-size="16" font-weight="bold" fill="#e05252">nicht beziffert</text>
+      <text x="182" y="311" text-anchor="middle" font-family="Courier New,monospace" font-size="8" fill="#aa4444">künftige Haushaltslücken</text>
+
+      <!-- Sondervermögen -->
+      <rect x="295" y="260" width="185" height="52" rx="3" fill="#2a1a1a" stroke="#e05252" stroke-width="1"/>
+      <text x="387" y="282" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#e05252" letter-spacing="1">SONDERVERMÖGEN</text>
+      <text x="387" y="299" text-anchor="middle" font-family="Georgia,serif" font-size="16" font-weight="bold" fill="#e05252">~0,6 Bio. EUR</text>
+      <text x="387" y="311" text-anchor="middle" font-family="Courier New,monospace" font-size="8" fill="#aa4444">Bundeswehr + Infrastruktur</text>
+
+      <!-- Gesamt unten -->
+      <rect x="155" y="338" width="285" height="42" rx="3" fill="#2a0a0a" stroke="#e05252" stroke-width="2"/>
+      <text x="297" y="356" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#e05252" letter-spacing="2">GESAMT TATSÄCHLICH</text>
+      <text x="297" y="374" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-weight="bold" fill="#e05252">~19,5 Bio. EUR</text>
+
+      <!-- BELEGT Tag -->
+      <rect x="10" y="395" width="54" height="16" rx="2" fill="#1a3320" stroke="#52b788" stroke-width="0.8"/>
+      <text x="37" y="406" text-anchor="middle" font-family="Courier New,monospace" font-size="8" fill="#52b788" letter-spacing="1">BELEGT</text>
+
+      <text x="70" y="406" font-family="Courier New,monospace" font-size="8" fill="#666">Generationenbilanz 2025 · Raffelhüschen / Uni Freiburg</text>
+    </svg>
+  </div>
+
+  <p>
+    <span class="tag tag-belegt">Belegt</span>
+    Ökonom Prof. Bernd Raffelhüschen (Universität Freiburg) legt in seiner Generationenbilanz 2025 dar: Die tatsächliche Staatsverschuldung Deutschlands einschließlich der verdeckten Lasten beläuft sich auf rund 19,5 Billionen Euro. Bei 83,5 Millionen Einwohnern entspricht das einer rechnerischen Pro-Kopf-Verpflichtung von etwa 230.000 Euro. Nur rund 30.000 Euro davon sind in der offiziellen Schuldenstatistik sichtbar.
+  </p>
+
+  <p>
+    Die Stiftung Marktwirtschaft (September 2025): „Völlig unberücksichtigt bleiben in der aktuellen Debatte um die Reform der Schuldenbremse die impliziten Schulden, aus denen bei Fortführung des Status quo über kurz oder lang explizite Schulden werden. Die Schuldenbremse ist aufgrund ihrer Gegenwartsorientierung weitgehend blind gegenüber diesen in der Zukunft liegenden fiskalischen Belastungen."
+  </p>
+
+  <!-- CHART 2: Explizit vs. Implizit -->
+  <div class="chart-section">
+    <div class="chart-title">Grafik 2 — Sichtbare vs. versteckte Schulden (Deutschland)</div>
+    <div class="chart-wrap">
+      <canvas id="chart-eisberg"></canvas>
+    </div>
+    <div class="chart-note">Explizite Schuld: Destatis Q3 2025 · Pensionslasten Länder: ifo-Institut / IW Köln · Rentenlücke: Raffelhüschen 2022 · Sondervermögen: Bundestag-Beschlüsse · Gesamtschätzung: Raffelhüschen Generationenbilanz 2025. Alle Angaben in Billionen EUR.</div>
+  </div>
+
+  <div class="source-box">
+    <strong>Quellen:</strong> Prof. Bernd Raffelhüschen / Albert-Ludwigs-Universität Freiburg: Generationenbilanz 2025, Pressemitteilung 28.08.2025 · Stiftung Marktwirtschaft, Pressemitteilung 11.09.2025: „Reformoptionen Schuldenbremse" · IW Köln / ifo-Institut: Pensionslasten Bundesländer (2023) · Bundeszuschuss zur Rentenversicherung 2025: Bundeshaushalt, Einzelplan 11
+  </div>
+
+  <hr class="divider">
+
+  <h2>4. Schuldenvergleich: Die drei größten Eurozone-Schuldner</h2>
+
+  <p>
+    <span class="tag tag-belegt">Belegt</span>
+    Deutschland gilt im internationalen Vergleich als fiskalisch solide. Das stimmt relativ — nicht absolut. Frankreich und Italien stehen schlechter da, aber alle drei bewegen sich strukturell jenseits der Maastricht-Grenze von 60% des BIP, die seit ihrer Einführung de facto nie eingehalten wurde.
+  </p>
+
+  <!-- CHART 3: DE/FR/IT Vergleich -->
+  <div class="chart-section">
+    <div class="chart-title">Grafik 3 — Schuldenquoten Deutschland / Frankreich / Italien (% des BIP)</div>
+    <div class="chart-wrap">
+      <canvas id="chart-laender"></canvas>
+    </div>
+    <div class="chart-note">Quellen: Eurostat Q3 2025 (22. Januar 2026) · Staatsverschuldung.de (April 2026) · IWF World Economic Outlook Oktober 2025. Maastricht-Grenze: 60% des BIP (Stabilitätspakt 1992). Alle aktuellen Werte übersteigen diese Grenze um das 1,5- bis 2,3-fache.</div>
+  </div>
+
+  <p>
+    Frankreich wurde im September 2025 von der Ratingagentur Fitch von AA- auf A+ herabgestuft und zahlt seither deutlich höhere Zinsen am Kapitalmarkt als Deutschland. Italiens Zinslast wird laut Prognosen bis 2029 knapp 4% der gesamten Wirtschaftsleistung verschlingen — Geld, das weder in Bildung noch in Infrastruktur fließt.
+  </p>
+
+  <div class="source-box">
+    <strong>Quellen:</strong> Eurostat: Quarterly Government Debt, Q3 2025 (veröffentlicht 22.01.2026) · Fitch Ratings: Frankreich-Herabstufung September 2025 (Pressemitteilung) · IWF World Economic Outlook Datenbank, Oktober 2025
+  </div>
+
+  <hr class="divider">
+
+  <h2>5. Was sich alles gleichzeitig beißt</h2>
+
+  <p>
+    Alle nachstehenden Verpflichtungen laufen gleichzeitig. Sie alle bedienen sich aus demselben Haushalt — einem Haushalt, dessen Zinsausgaben 2026 bereits 34,1 Milliarden Euro verschlingen und dessen Steuerbasis durch demografischen Wandel, Deindustrialisierung und Energiekostenniveau strukturell unter Druck steht.
+  </p>
+
+  <table class="conflict-table">
+    <thead>
+      <tr>
+        <th>Verpflichtung</th>
+        <th>Betrag</th>
+        <th>Kategorie</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Explizite Staatsschuld</td>
+        <td class="val">~2,75 Bio. EUR</td>
+        <td class="cat">Anleihen, Kredite</td>
+        <td><span class="tag tag-belegt">Belegt</span></td>
+      </tr>
+      <tr>
+        <td>Sondervermögen Bundeswehr (2022)</td>
+        <td class="val">100 Mrd. EUR</td>
+        <td class="cat">Rüstung / Konsum</td>
+        <td><span class="tag tag-belegt">Belegt</span></td>
+      </tr>
+      <tr>
+        <td>Sondervermögen Infrastruktur (2025)</td>
+        <td class="val">500 Mrd. EUR</td>
+        <td class="cat">GG Art. 143h</td>
+        <td><span class="tag tag-belegt">Belegt</span></td>
+      </tr>
+      <tr>
+        <td>EU ReArm Europe / SAFE</td>
+        <td class="val">bis 800 Mrd. EUR</td>
+        <td class="cat">EU-Ebene, anteilig DE</td>
+        <td><span class="tag tag-belegt">Belegt</span></td>
+      </tr>
+      <tr>
+        <td>NextGenerationEU (DE-Anteil)</td>
+        <td class="val">~100+ Mrd. EUR</td>
+        <td class="cat">EU-Schulden anteilig</td>
+        <td><span class="tag tag-belegt">Belegt</span></td>
+      </tr>
+      <tr>
+        <td>Beamtenpensionen (Bund + Länder)</td>
+        <td class="val">&gt; 1 Bio. EUR</td>
+        <td class="cat">Implizit, kein Rücklage</td>
+        <td><span class="tag tag-belegt">Belegt</span></td>
+      </tr>
+      <tr>
+        <td>Rentenlücke (GRV)</td>
+        <td class="val">~3 Bio. EUR</td>
+        <td class="cat">Implizit, Leistungsversprechen</td>
+        <td><span class="tag tag-belegt">Belegt</span></td>
+      </tr>
+      <tr>
+        <td>Pflege / Gesundheit (Demografielücke)</td>
+        <td class="val">nicht bezifferbar</td>
+        <td class="cat">Implizit, strukturell</td>
+        <td><span class="tag tag-extra">Offen</span></td>
+      </tr>
+      <tr>
+        <td>Bundeszuschuss RV (laufend, p.a.)</td>
+        <td class="val">121 Mrd. EUR/Jahr</td>
+        <td class="cat">Laufende Transfers</td>
+        <td><span class="tag tag-belegt">Belegt</span></td>
+      </tr>
+      <tr class="total">
+        <td>Tatsächliche Gesamtverpflichtung</td>
+        <td class="val">~19,5 Bio. EUR</td>
+        <td class="cat">Generationenbilanz 2025</td>
+        <td><span class="tag tag-belegt">Belegt</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <strong>Quellen Tabelle:</strong> Bundesfinanzministerium: Bundeshaushalt 2026, Gesamtvolumen 524,5 Mrd. EUR, Zinsausgaben 34,1 Mrd. EUR · Bundestag-Beschlüsse Sondervermögen (2022 / 2025) · EU-Kommission: NextGenerationEU, ReArm Europe / SAFE (März 2025) · Raffelhüschen/Uni Freiburg: Generationenbilanz 2025
+  </div>
+
+  <hr class="divider">
+
+  <h2>6. Die Mechanik: Warum das System trotzdem läuft</h2>
+
+  <p>
+    <span class="tag tag-belegt">Belegt</span>
+    Das System läuft, solange drei Bedingungen erfüllt sind: erstens Vertrauen der Kapitalmärkte in die Zahlungsfähigkeit des Staates, zweitens die Bereitschaft der EZB, im Notfall als Käufer letzter Instanz zu agieren (OMT, TPI), und drittens ausreichendes Wirtschaftswachstum, um die Schuldenquote relativ zum BIP stabil zu halten.
+  </p>
+
+  <p>
+    <span class="tag tag-extra">Einordnung</span>
+    Alle drei Bedingungen geraten gleichzeitig unter Druck: Das Wachstum in Deutschland ist seit 2022 strukturell schwach (Rezession 2023/24, stagnierende Industrieproduktion). Die Zinslast steigt durch die Normalisierung der EZB-Geldpolitik. Und das Vertrauen der Märkte ist messbar gesunken — erkennbar an Frankreichs Rating-Abstufung und steigenden Spreads gegenüber deutschen Bundesanleihen.
+  </p>
+
+  <p>
+    Was das System nicht überlebt, ist der simultane Ausfall aller drei Puffer. Das ist kein Datum — es ist eine Strukturbeschreibung.
+  </p>
+
+  <!-- CLOSING QUESTION -->
+  <div class="closing">
+    <p>Deutschland präsentiert einen Bundeshaushalt mit 34 Milliarden Euro Zinsausgaben, während gleichzeitig Sondervermögen für Rüstung, Infrastruktur und Klimaneutralität in dreistelliger Milliardenhöhe aufgelegt werden — finanziert durch Schulden, die außerhalb der Verfassungsschranke gebucht werden. Gleichzeitig wachsen im Verborgenen Pensionsverpflichtungen, Rentengarantien und Pflegelasten, für die keine Rücklagen existieren. Welche Generation zahlt die Rechnung, die heute nicht ausgestellt wird?</p>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p>dunkelfeld.report — Dokumentation auf Basis öffentlich zugänglicher Primärquellen</p>
+  <p style="margin-top:0.4rem">Spekulation ist als solche gekennzeichnet. Motive werden nicht zugeschrieben. Schlussfolgerungen ziehen die Leser selbst.</p>
+  <p style="margin-top:0.8rem"><a href="/archiv">Archiv</a> · <a href="/methodik">Methodik</a> · <a href="/impressum">Impressum</a> · <a href="/datenschutz">Datenschutz</a></p>
+</footer>
+
+<!-- CHART.JS SCRIPTS -->
+<script>
+  Chart.defaults.color = '#8888a0';
+  Chart.defaults.borderColor = '#1e1e2e';
+  Chart.defaults.font.family = "'Courier New', monospace";
+  Chart.defaults.font.size = 11;
+
+  const amber = '#e8c547';
+  const amberDim = '#b8962e';
+  const red = '#e05252';
+  const green = '#52b788';
+  const blue = '#4488cc';
+  const muted = '#444460';
+  const surface = '#111114';
+
+  // ── CHART 1: Alle Schuldenpositionen gestapelt ──
+  new Chart(document.getElementById('chart-gesamt'), {
+    type: 'bar',
+    data: {
+      labels: ['Explizit\n(Maastricht)', 'Sonderv.\nBundeswehr', 'Sonderv.\nInfrastruktur', 'EU ReArm\n(anteilig)', 'Pensionen\n(implizit)', 'Rentenlücke\n(implizit)', 'Gesamt\ntatsächlich'],
+      datasets: [{
+        label: 'Billionen EUR',
+        data: [2.75, 0.1, 0.5, 0.4, 1.0, 3.0, 19.5],
+        backgroundColor: [green, amber, amber, amberDim, red, red, '#7a1a1a'],
+        borderColor: ['#52b788', '#e8c547', '#e8c547', '#b8962e', '#e05252', '#e05252', '#aa2222'],
+        borderWidth: 1,
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ` ${ctx.raw} Billionen EUR`
+          }
+        }
+      },
+      scales: {
+        x: { grid: { color: '#1a1a2e' }, ticks: { maxRotation: 0, font: { size: 10 } } },
+        y: {
+          grid: { color: '#1a1a2e' },
+          ticks: { callback: v => v + ' Bio.' },
+          title: { display: true, text: 'Billionen EUR', color: '#666' }
+        }
+      }
+    }
+  });
+
+  // ── CHART 2: Sichtbar vs. versteckt (Eisberg) ──
+  new Chart(document.getElementById('chart-eisberg'), {
+    type: 'doughnut',
+    data: {
+      labels: [
+        'Sichtbar: Offizielle Staatsschuld (2,75)',
+        'Versteckt: Pensionen (>1,0)',
+        'Versteckt: Rentenlücke (~3,0)',
+        'Versteckt: Sondervermögen (~0,6)',
+        'Versteckt: Sonstige implizite (~12,2)'
+      ],
+      datasets: [{
+        data: [2.75, 1.0, 3.0, 0.6, 12.15],
+        backgroundColor: [green, amber, red, amberDim, '#3a1a2a'],
+        borderColor: ['#52b788', '#e8c547', '#e05252', '#b8962e', '#5a1a4a'],
+        borderWidth: 1,
+        hoverOffset: 8
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { padding: 14, font: { size: 10 }, boxWidth: 14 }
+        },
+        tooltip: {
+          callbacks: {
+            label: ctx => ` ${ctx.label}: ${ctx.raw} Billionen EUR`
+          }
+        }
+      }
+    }
+  });
+
+  // ── CHART 3: DE / FR / IT Schuldenquoten Zeitreihe ──
+  new Chart(document.getElementById('chart-laender'), {
+    type: 'line',
+    data: {
+      labels: ['2010', '2012', '2014', '2016', '2018', '2020', '2022', '2023', '2024', '2025'],
+      datasets: [
+        {
+          label: 'Deutschland',
+          data: [82.4, 81.1, 74.6, 68.5, 61.9, 68.7, 66.3, 63.6, 62.9, 63.5],
+          borderColor: green,
+          backgroundColor: 'rgba(82,183,136,0.08)',
+          borderWidth: 2,
+          tension: 0.3,
+          pointBackgroundColor: green
+        },
+        {
+          label: 'Frankreich',
+          data: [85.3, 90.6, 95.0, 98.0, 98.1, 114.6, 111.8, 109.9, 113.4, 117.4],
+          borderColor: amber,
+          backgroundColor: 'rgba(232,197,71,0.06)',
+          borderWidth: 2,
+          tension: 0.3,
+          pointBackgroundColor: amber
+        },
+        {
+          label: 'Italien',
+          data: [115.4, 126.5, 135.4, 134.8, 134.4, 154.9, 144.7, 137.3, 135.0, 136.0],
+          borderColor: red,
+          backgroundColor: 'rgba(224,82,82,0.06)',
+          borderWidth: 2,
+          tension: 0.3,
+          pointBackgroundColor: red
+        },
+        {
+          label: 'Maastricht-Grenze (60%)',
+          data: [60,60,60,60,60,60,60,60,60,60],
+          borderColor: '#444',
+          borderWidth: 1,
+          borderDash: [6,4],
+          pointRadius: 0,
+          tension: 0
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { padding: 16, font: { size: 11 }, boxWidth: 16 }
+        },
+        tooltip: {
+          callbacks: {
+            label: ctx => ` ${ctx.dataset.label}: ${ctx.raw}% BIP`
+          }
+        }
+      },
+      scales: {
+        x: { grid: { color: '#1a1a2e' } },
+        y: {
+          grid: { color: '#1a1a2e' },
+          ticks: { callback: v => v + '%' },
+          min: 50, max: 165,
+          title: { display: true, text: '% des BIP', color: '#666' }
+        }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

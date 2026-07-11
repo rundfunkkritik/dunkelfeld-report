@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flaggen & Souveränität — Wem gehört das Land? | dunkelfeld.report</title>
+<meta name="description" content="Wer eine Deutschlandfahne zeigt, riskiert Ordnungsruf oder Polizeieinsatz. Wer eine Regenbogenfahne ans Parlament hängt, bekommt ministerielle Genehmigung. Was sagen Staatssymbole über Souveränität?">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #09090b;
+    --bg-card: #111113;
+    --bg-source: #1a1a2e;
+    --accent: #e8c547;
+    --accent-dim: rgba(232,197,71,0.12);
+    --text: #e2e2e5;
+    --text-muted: #8a8a96;
+    --text-meta: #5a5a66;
+    --border: #2a2a36;
+    --red: #c0392b;
+    --green: #27ae60;
+    --orange: #d97706;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.05rem;
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* SITE HEADER */
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: rgba(9,9,11,0.96);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+  }
+  .site-logo {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .site-nav {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .site-nav a {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .site-nav a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 4rem 2rem 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .article-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .article-label::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .hero h1 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 600px;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--text-meta);
+    letter-spacing: 0.06em;
+  }
+  .hero-meta span { color: var(--text-muted); }
+
+  /* STAT GRID */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 2.5rem 0;
+  }
+  .stat-card {
+    background: var(--bg-card);
+    padding: 1.4rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+
+  /* CONTENT */
+  .content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+
+  .content h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 3rem 0 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    letter-spacing: -0.01em;
+  }
+  .content h2:first-child { margin-top: 0; border-top: none; padding-top: 0; }
+
+  .content h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 2rem 0 0.6rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+  }
+
+  .content p {
+    margin-bottom: 1.2rem;
+    color: var(--text);
+  }
+
+  .content a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232,197,71,0.3);
+    transition: border-color 0.2s;
+  }
+  .content a:hover { border-color: var(--accent); }
+
+  /* SOURCE BOX */
+  .source-box {
+    background: var(--bg-source);
+    border-left: 3px solid var(--accent);
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+  .source-box cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-meta);
+    margin-top: 0.6rem;
+    letter-spacing: 0.06em;
+    font-style: normal;
+  }
+
+  /* TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+  }
+  .tag-belegt { background: rgba(39,174,96,0.15); color: #5dcea8; border: 1px solid rgba(39,174,96,0.3); }
+  .tag-offen { background: rgba(217,119,6,0.15); color: #f59e0b; border: 1px solid rgba(217,119,6,0.3); }
+  .tag-extrapolation { background: rgba(139,92,246,0.15); color: #a78bfa; border: 1px solid rgba(139,92,246,0.2); }
+
+  /* VERGLEICHSTABELLE */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.88rem;
+  }
+  .compare-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+  }
+  .compare-table td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid rgba(42,42,54,0.6);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .compare-table tr:hover td { background: rgba(232,197,71,0.03); }
+  .compare-table td:first-child { color: var(--text-muted); font-size: 0.82rem; }
+  .col-schwarz { color: #ef4444; }
+  .col-gruen { color: var(--accent); }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 3rem 0;
+    position: relative;
+  }
+  .divider::after {
+    content: '◆';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg);
+    padding: 0 0.8rem;
+    color: var(--text-meta);
+    font-size: 0.5rem;
+  }
+
+  /* CROSS-LINK BOX */
+  .crosslink {
+    background: var(--accent-dim);
+    border: 1px solid rgba(232,197,71,0.2);
+    padding: 1.4rem 1.6rem;
+    margin: 2.5rem 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .crosslink-icon {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding-top: 0.1rem;
+  }
+  .crosslink-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+  .crosslink-text a {
+    color: var(--accent);
+    font-weight: 600;
+    border-bottom: 1px solid rgba(232,197,71,0.4);
+  }
+  .crosslink-text strong { color: var(--text); }
+
+  /* CLOSING QUESTION */
+  .closing-question {
+    font-style: italic;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+    margin-top: 3rem;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  /* FOOTER */
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-meta);
+    letter-spacing: 0.08em;
+  }
+  .site-footer a { color: var(--text-muted); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .site-header { padding: 0.8rem 1rem; }
+    .site-nav { gap: 0.8rem; }
+    .hero { padding: 2.5rem 1.2rem 1.5rem; }
+    .content { padding: 2rem 1.2rem; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .compare-table { font-size: 0.78rem; }
+    .compare-table td, .compare-table th { padding: 0.5rem 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/" class="site-logo">dunkelfeld.report</a>
+  <nav class="site-nav">
+    <a href="/">Archiv</a>
+    <a href="/impressum.html">Impressum</a>
+    <a href="/datenschutz.html">Datenschutz</a>
+  </nav>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="article-label">Dossier · Staatssymbolik & Souveränität</div>
+    <h1>Flaggen & Souveränität:<br><em>Wem gehört das Land?</em></h1>
+    <p class="hero-subtitle">Wer eine Deutschlandfahne zeigt, riskiert Ordnungsruf oder Polizeieinsatz. Wer eine Regenbogenfahne ans Parlament hängt, erhält ministerielle Genehmigung. Was sagt der staatliche Umgang mit Symbolen über Souveränität — und über sich selbst?</p>
+    <div class="hero-meta">
+      <span>dunkelfeld.report</span>
+      <span>·</span>
+      <span>Dossier · <span>Staatssymbolik</span></span>
+      <span>·</span>
+      <span>Primärquellen: Bundestag, BMI, bpb, Protokoll Inland</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-number">1.000 €</div>
+        <div class="stat-label">Ordnungsgeld für Deutschlandfahne im Bundestag (Feb. 2024)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">0 €</div>
+        <div class="stat-label">Kosten für Regenbogenfahne am Reichstag — aktiv genehmigt (2022)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">2022</div>
+        <div class="stat-label">Erstmalige Regenbogenfahne am Reichstag — per Ministeriumerlass</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">§ 90a</div>
+        <div class="stat-label">StGB: Verunglimpfung der Nationalflagge — bis 3 Jahre Freiheitsstrafe</div>
+      </div>
+    </div>
+
+    <h2>Das dokumentierte Muster</h2>
+
+    <p>Zwischen 2013 und 2026 häufen sich in Deutschland Vorfälle, die ein strukturelles Muster ergeben: Der staatliche Umgang mit der eigenen Nationalfahne und mit anderen Symbolen ist messbar asymmetrisch. Die folgenden Ereignisse sind dokumentiert — durch Videomaterial, amtliche Protokolle und offizielle Pressemitteilungen.</p>
+
+    <h3>Ereignis 1 · Wahlabend 2013 <span class="tag tag-belegt">Belegt</span></h3>
+
+    <p>Am Abend der Bundestagswahl 2013 feierte die CDU ihren Wahlsieg in Berlin. CDU-Generalsekretär Hermann Gröhe schwenkte freudig eine kleine Deutschlandfahne. Bundeskanzlerin Angela Merkel nahm ihm die Fahne ab und gab sie kopfschüttelnd von der Bühne weg. Das Video ist vielfach dokumentiert und bis heute abrufbar.</p>
+
+    <div class="source-box">
+      Die offizielle CDU-Erklärung, formuliert durch den damaligen Generalsekretär Peter Tauber, lautete: Merkel habe damit ausdrücken wollen, „Wir machen uns den Staat nicht zur Beute, wir dienen ihm."
+      <cite>Quelle: Blog Peter Tauber (CDU), 10. März 2017 · Videodokumentation: mehrfach auf YouTube archiviert</cite>
+    </div>
+
+    <p>Die Geste ist auf Video festgehalten. Die Deutung bleibt dem Betrachter überlassen.</p>
+
+    <h3>Ereignis 2 · Bundestag, Februar 2024 <span class="tag tag-belegt">Belegt</span></h3>
+
+    <p>AfD-Abgeordneter Martin Reichardt hielt während einer Plenardebatte zur Meinungsfreiheit kurz eine kleine Deutschlandfahne hoch. Bundestagsvizepräsidentin Yvonne Magwas (CDU) erteilte ihm unmittelbar einen Ordnungsruf.</p>
+
+    <div class="source-box">
+      Der genaue Wortlaut der Bundestagsvizepräsidentin laut Mitschnitt der AfD-Fraktion: „Lieber Herr Reichardt, wir halten hier nichts hoch, wir sind ein Parlament des Wortes und nicht des Hochhaltens von Fahnen oder dergleichen. Von daher erteile ich Ihnen dafür einen Ordnungsruf."
+      <cite>Quelle: Videomitschnitt AfD-Fraktion auf X (ehemals Twitter), Februar 2024 · Anti-Spiegel.ru (Dokumentation des Vorgangs)</cite>
+    </div>
+
+    <p>Der Ordnungsruf führte zu einem Ordnungsgeld. Zeitgleich galt: Am 24. Februar 2023 beschloss derselbe Deutsche Bundestag eine offizielle Solidaritätsbeflaggung für die Ukraine am Reichstagsgebäude — die Flagge einer fremden Nation wurde auf dem Parlament gehisst. Ein Ordnungsruf erfolgte nicht.</p>
+
+    <h3>Ereignis 3 · Bundestagsbalkon, Juni 2026 <span class="tag tag-belegt">Belegt</span></h3>
+
+    <p>Während einer Demonstration im Berliner Regierungsviertel schwenkten AfD-Abgeordnete (darunter Beatrix von Storch und Stefan Keuter) vom Balkon ihrer Bundestagsbüros eine Deutschlandfahne. Kurz darauf erschienen bewaffnete Bundestagspolizisten auf dem Balkon.</p>
+
+    <div class="source-box">
+      Der dokumentierte Dialog: Abgeordneter Keuter fragte: „Wo ist das Problem? Deutschland-Flagge?" Ein Beamter antwortete: „Es steht der Verdacht im Raum, dass das gegen die Hausordnung verstößt." Von wem der Auftrag für den Polizeieinsatz kam — ob von Bundestagspräsidentin Julia Klöckner (CDU) oder einem Vizepräsidenten — blieb unklar. Die Beamten zogen unverrichteter Dinge wieder ab.
+      <cite>Quelle: Junge Freiheit, 14. Juni 2026, mit Videodokumentation · picture-alliance/dpa</cite>
+    </div>
+
+    <h3>Ereignis 4 · Bürger vor dem Bundestag, Juni 2026 <span class="tag tag-belegt">Belegt</span></h3>
+
+    <p>Am 8. Juni 2026 wurde ein 67-jähriger ehemaliger Bundeswehrsoldat nahe dem Bundestag von Polizeibeamten aufgefordert, seine Deutschlandfahne einzurollen. Er weigerte sich. Das Video wurde viral.</p>
+
+    <div class="source-box">
+      Die offizielle Begründung der Polizei Berlin: Es handele sich um eine „gefahrenabwehrende Maßnahme". Eine etwa 20-köpfige Gruppe sei geschlossen gelaufen und von dem Mann mit einer an einem rund zwei Meter langen Stab befestigten Deutschlandfahne angeführt worden. Dies habe den Eindruck eines nicht angemeldeten Aufzugs im befriedeten Bezirk des Deutschen Bundestages erwecken können.
+      <cite>Quelle: Mimikama.org, 22. Juni 2026 (Faktendarstellung auf Basis Polizei-Berlin-Auskunft) · Junge Freiheit, 23. Juni 2026 (Interview mit Gerwin Dubnitzki)</cite>
+    </div>
+
+    <h3>Festakt Tag der Deutschen Einheit · Strukturell sparsam <span class="tag tag-belegt">Belegt</span></h3>
+
+    <p>Der Nationalfeiertag der Bundesrepublik präsentiert sich — im Vergleich zu anderen Demokratien — symbolisch zurückhaltend. Das ist keine Kritik von Außenseitern, sondern die Selbstbeschreibung der Bundeszentrale für politische Bildung:</p>
+
+    <div class="source-box">
+      „Im Gegensatz zu anderen Nationalfeiertagen wie zum Beispiel dem französischen 14. Juli, an dem die Champs-Élysées einem trikoloren Fahnenmeer gleichen, werden nationale Symbole am Tag der Deutschen Einheit eher sparsam eingesetzt. Von den Fahnen der Bundesländer im Festsaal bis hin zur Ländermeile auf dem Bürgerfest ist dagegen der Föderalismus präsent."
+      <cite>Quelle: Bundeszentrale für politische Bildung (bpb), Aus Politik und Zeitgeschichte (APuZ), Ausgabe 41-42/2015: „Tag der Deutschen Einheit: Festakt und Live-Übertragung im Wandel"</cite>
+    </div>
+
+    <h2>Die Regenbogenfahne: Aktivgenehmigung</h2>
+
+    <p>Demgegenüber steht ein entgegengesetztes staatliches Handeln bei anderen Symbolen.</p>
+
+    <div class="source-box">
+      Das Bundesministerium des Innern und für Heimat (BMI) unter Nancy Faeser (SPD) erteilte im April 2022 die Genehmigung, die Regenbogenfahne zu bestimmten Anlässen wie dem Christopher Street Day an Dienstgebäuden des Bundes zu hissen. Bundesinnenministerin Faeser: „Es ist allerhöchste Zeit, dass wir das auch als staatliche Institutionen deutlicher zeigen."
+      <cite>Quelle: Pressemitteilung BMI, April 2022 (abrufbar: bmi.bund.de)</cite>
+    </div>
+
+    <div class="source-box">
+      Am 23. Juli 2022 wurde erstmals die Regenbogenfahne auf dem Südwestturm des Reichstagsgebäudes gehisst. Bundestagspräsidentin Bärbel Bas: „Die Regenbogenflagge auf unserem Parlament – das bedeutet mir viel!"
+      <cite>Quelle: Deutscher Bundestag, Pressemitteilung, 23. Juli 2022 (abrufbar: bundestag.de)</cite>
+    </div>
+
+    <p>Im selben Genehmigungsschreiben von Innenministerin Faeser an alle Bundesministerien findet sich jedoch folgende Passage:</p>
+
+    <div class="source-box">
+      „Solidarität kann auf verschiedenste Art zum Ausdruck kommen und medial transportiert werden, ohne dabei unsere Staatssymbole für politische Zeichensetzungen in Anspruch zu nehmen." Sowie: „Um die Akzeptanz staatlicher Symbole in der Bevölkerung zu erhalten, ist die Wahrung staatlicher Neutralität zwingend erforderlich."
+      <cite>Quelle: BMI-Schreiben an Bundesministerien, April 2022, dokumentiert durch queer.de</cite>
+    </div>
+
+    <p>Die Genehmigung zur Beflaggung mit einem politischen Symbol und die Begründung, staatliche Neutralität sei für die Symbolakzeptanz zwingend erforderlich, stehen im selben Dokument nebeneinander.</p>
+
+    <div class="divider"></div>
+
+    <h2>Die Asymmetrie — tabellarisch</h2>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Vorgang</th>
+          <th>Symbol</th>
+          <th>Staatliche Reaktion</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Merkel, CDU-Wahlparty, Sept. 2013</td>
+          <td>Deutschlandfahne</td>
+          <td class="col-schwarz">Von Bühne entfernt (kopfschüttelnd)</td>
+          <td><span class="tag tag-belegt">Belegt</span></td>
+        </tr>
+        <tr>
+          <td>Abgeordneter Reichardt, Bundestag, Feb. 2024</td>
+          <td>Deutschlandfahne</td>
+          <td class="col-schwarz">Ordnungsruf + 1.000 € Ordnungsgeld</td>
+          <td><span class="tag tag-belegt">Belegt</span></td>
+        </tr>
+        <tr>
+          <td>AfD-Abgeordnete, Bundestagsbalkon, Juni 2026</td>
+          <td>Deutschlandfahne</td>
+          <td class="col-schwarz">Bewaffnete Polizei auf Balkon geschickt</td>
+          <td><span class="tag tag-belegt">Belegt</span></td>
+        </tr>
+        <tr>
+          <td>Bürger Dubnitzki, Bundestagnähe, Juni 2026</td>
+          <td>Deutschlandfahne</td>
+          <td class="col-schwarz">„Gefahrenabwehrende Maßnahme" — Einrollungsgebot</td>
+          <td><span class="tag tag-belegt">Belegt</span></td>
+        </tr>
+        <tr>
+          <td>Bundestag, 24. Feb. 2023</td>
+          <td>Ukrainefahne</td>
+          <td class="col-gruen">Offizieller Bundestagsbeschluss — gehisst</td>
+          <td><span class="tag tag-belegt">Belegt</span></td>
+        </tr>
+        <tr>
+          <td>Reichstagsgebäude, ab Juli 2022</td>
+          <td>Regenbogenfahne</td>
+          <td class="col-gruen">Aktive Genehmigung durch BMI — gehisst</td>
+          <td><span class="tag tag-belegt">Belegt</span></td>
+        </tr>
+        <tr>
+          <td>Tag der Deutschen Einheit, Festakt (laufend)</td>
+          <td>Deutschlandfahne</td>
+          <td class="col-schwarz">„Eher sparsam eingesetzt" (bpb-Selbstbeschreibung)</td>
+          <td><span class="tag tag-belegt">Belegt</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Historische Tiefenschärfe: Haus Reuss und die Trikolore</h2>
+
+    <p>Ein wenig bekanntes Kuriosum: Schwarz-Rot-Gold ist älter als die Demokratiebewegung von 1848. Die Farben entstammen dem thüringischen Adelsgeschlecht <em>Haus Reuß</em> — jenem Adelshaus, das durch die Verhaftung von Heinrich XIII. Prinz Reuß im Dezember 2022 international bekannt wurde.</p>
+
+    <div class="source-box">
+      Das Flaggenlexikon zur vexillologischen Dokumentation hält fest: „Die Landesfarben aller Linien von Reuß war die Farbkombination aus Schwarz, Rot und Gold. Die Farben Schwarz-Rot-Gold in den Reußischen Landen sind älter als 1848." Die Bundeszentrale vermerkt dies als „Kuriosum": In den Fürstentümern Reuß wehte bereits vor 1848 die Flagge, die später zur Nationalfahne der Bundesrepublik wurde.
+      <cite>Quelle: Flaggenlexikon.de (Vexillologie-Dokumentation) · Hessisches Flaggenarchiv (hlz.hessen.de)</cite>
+    </div>
+
+    <p>Das Adelsgeschlecht, dessen Mitglied als mutmaßlicher Putschplaner inhaftiert ist, trug historisch dieselben Farben wie die heutige Bundesflagge — Jahrzehnte bevor diese zur demokratischen Trikolore wurde.</p>
+
+    <div class="crosslink">
+      <div class="crosslink-icon">→ Verwandt</div>
+      <div class="crosslink-text">
+        <strong>Zum Fall Heinrich XIII. Prinz Reuß:</strong> Sein Schreiben an den russischen Außenminister Lawrow, die Bitte um Akkreditierung als „Botschafter des Deutschen Reiches" und der Antrag, Putin als Zeugen zu laden — dokumentiert im Dossier <a href="./reuss-reichsbuerger-dokumentation.html">„Das Deutsche Reich existiert weiter" — Dossier Reuß & Reichsbürger-Ideologie</a>.
+      </div>
+    </div>
+
+    <h2>Der rechtliche Rahmen</h2>
+
+    <p>Die Deutschlandfahne ist rechtlich geschützt — aber asymmetrisch. Privatpersonen dürfen die einfache Schwarz-Rot-Gold-Fahne ohne Adler frei zeigen. Die Bundesdienstflagge mit Adler ist Bundesbehörden vorbehalten, ihre unbefugte Nutzung ist nach § 124 OWiG eine Ordnungswidrigkeit. Die Verunglimpfung der Nationalflagge ist nach § 90a StGB mit bis zu drei Jahren Freiheitsstrafe bewehrt.</p>
+
+    <p>Die Hausordnung des Bundestages untersagt das Hochhalten von Fahnen und Transparenten im Plenum. Die Regel gilt formal für alle Fahnen — angewendet wurde sie nachweislich bei der Deutschlandfahne, während die Ukraine-Beflaggung per Bundestagsbeschluss geschah und die Antifa-Flagge am Rednerpult laut dokumentierten Berichten lediglich einen dezenten Hinweis auslöste.</p>
+
+    <div class="closing-question">
+      Welches Signal sendet ein Staat, der die Nationalfahnen anderer Nationen und die Symbole politischer Bewegungen aktiv an seinem Parlament hisst — während das Zeigen der eigenen Nationalfahne durch Bürger als potenzielle Sicherheitsgefahr und durch gewählte Abgeordnete als Hausordnungsverstoß behandelt wird?
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>dunkelfeld.report · Investigative Dokumentation · Alle Angaben mit Primärquellen belegt</p>
+  <p style="margin-top:0.5rem"><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></p>
+</footer>
+
+</body>
+</html>

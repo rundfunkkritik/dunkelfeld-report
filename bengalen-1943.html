@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bengalen 1943: Die vergessene Katastrophe | dunkelfeld.report</title>
+<meta name="description" content="2,7 bis 3,1 Millionen Tote. Ein Krieg. Eine Kolonialmacht. Und ein Premierminister, der in seinen sechsbändigen Memoiren kein einziges Wort darüber verlor.">
+<style>
+  :root {
+    --bg: #09090b;
+    --bg-card: #111113;
+    --bg-source: #1a1a2e;
+    --amber: #e8c547;
+    --amber-dim: #a8903a;
+    --text: #e2e2e5;
+    --text-muted: #8888a0;
+    --text-faint: #555568;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --red: #f87171;
+    --border: #222230;
+    --max: 720px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 17px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.85;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .nav-logo {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--amber);
+    text-decoration: none;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .nav-sep { color: var(--text-faint); font-size: 0.8rem; }
+  .nav-section { font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--text-muted); }
+
+  /* HERO */
+  .hero {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 4rem 1.5rem 2.5rem;
+  }
+
+  .eyebrow {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--amber);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+
+  h1 {
+    font-size: clamp(1.9rem, 5vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #f4f4f6;
+    margin-bottom: 1.2rem;
+  }
+
+  .deck {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 620px;
+  }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+  }
+  .meta-item {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-faint);
+    letter-spacing: 0.08em;
+  }
+  .meta-item span { color: var(--text-muted); }
+
+  /* STAT BANNER */
+  .stat-banner {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--amber);
+    padding: 1.5rem 1.8rem;
+    margin: 2.5rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1.2rem;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--amber);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ARTICLE BODY */
+  .body {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+  }
+
+  p { margin-bottom: 1.4rem; font-size: 1.05rem; }
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #f4f4f6;
+    margin: 2.8rem 0 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--amber-dim);
+    margin: 1.8rem 0 0.8rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.04em;
+  }
+
+  /* TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.15em 0.5em;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-left: 0.3em;
+    position: relative;
+    top: -1px;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.12); color: var(--green); border: 1px solid rgba(74,222,128,0.3); }
+  .tag-extra { background: rgba(251,146,60,0.12); color: var(--orange); border: 1px solid rgba(251,146,60,0.3); }
+  .tag-offen { background: rgba(248,113,113,0.12); color: var(--red); border: 1px solid rgba(248,113,113,0.3); }
+
+  /* SOURCE BOX */
+  .source-box {
+    background: var(--bg-source);
+    border-left: 3px solid var(--amber);
+    padding: 1.1rem 1.4rem;
+    margin: 2rem 0;
+    font-size: 0.88rem;
+  }
+  .source-box-title {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.6rem;
+  }
+  .source-box p { font-size: 0.88rem; margin-bottom: 0.5rem; color: var(--text-muted); }
+  .source-box p:last-child { margin-bottom: 0; }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-left: 3px solid var(--amber);
+    margin: 2.5rem 0;
+    padding: 0.8rem 1.5rem;
+  }
+  .pull-quote blockquote {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #d0d0e0;
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+  .pull-quote cite {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--text-faint);
+    font-style: normal;
+  }
+
+  /* PERSON CARD */
+  .person-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .person-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f4f4f6;
+    margin-bottom: 0.2rem;
+  }
+  .person-role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: var(--amber-dim);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+  }
+  .person-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0; }
+
+  /* TIMELINE */
+  .timeline { margin: 2rem 0; }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .tl-item:last-child { border-bottom: none; }
+  .tl-date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--amber);
+    font-weight: 700;
+    padding-top: 0.1rem;
+  }
+  .tl-text { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* DEBATE COLUMNS */
+  .debate-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+  @media (max-width: 560px) { .debate-grid { grid-template-columns: 1fr; } }
+  .debate-col {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 1.2rem;
+  }
+  .debate-col-title {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .debate-col-title.kritik { color: var(--red); }
+  .debate-col-title.verteidigung { color: var(--green); }
+  .debate-col ul { list-style: none; }
+  .debate-col li {
+    font-size: 0.87rem;
+    color: var(--text-muted);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    padding-left: 1rem;
+    position: relative;
+  }
+  .debate-col li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--text-faint);
+  }
+  .debate-col li:last-child { border-bottom: none; }
+
+  /* OPEN QUESTIONS */
+  .open-questions {
+    margin: 3rem 0 2rem;
+    padding: 1.5rem 1.8rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+  }
+  .oq-title {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 1rem;
+  }
+  .open-questions p {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 0.97rem;
+    margin-bottom: 0.7rem;
+  }
+  .open-questions p:last-child { margin-bottom: 0; }
+
+  /* QUELLEN */
+  .quellen {
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .quellen-title {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 1.2rem;
+  }
+  .quellen ol { list-style: decimal; padding-left: 1.4rem; }
+  .quellen li {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-faint);
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+  .quellen li em { color: var(--text-muted); font-style: normal; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-faint);
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 600px) {
+    .stat-banner { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">dunkelfeld.report</a>
+  <span class="nav-sep">/</span>
+  <span class="nav-section">Kolonialgeschichte · Systemverantwortung</span>
+</nav>
+
+<header class="hero">
+  <div class="eyebrow">Dokumentation · Bengalen 1943</div>
+  <h1>Der Held und die Hungernden</h1>
+  <p class="deck">2,7 bis 3,1 Millionen Tote. Ein Krieg. Eine Kolonialmacht. Und ein Premierminister, der in seinen sechsbändigen Kriegsmemoiren kein einziges Wort darüber verlor.</p>
+
+  <div class="meta-row">
+    <div class="meta-item">Kategorie <span>Kolonialgeschichte</span></div>
+    <div class="meta-item">Quellen <span>Britische Kabinettsarchive · Amartya Sen (1981) · Madhusree Mukerjee (2010)</span></div>
+    <div class="meta-item">Status <span>Primärquellen verfügbar</span></div>
+  </div>
+</header>
+
+<main class="body">
+
+  <div class="stat-banner">
+    <div class="stat-item">
+      <span class="stat-num">2,7–3,1 Mio.</span>
+      <span class="stat-label">Todesopfer (Sen 1981)</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">1943</span>
+      <span class="stat-label">Jahr der Hungersnot</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">0</span>
+      <span class="stat-label">Erwähnungen in Churchills Memoiren</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">1953</span>
+      <span class="stat-label">Churchill erhält Literaturnobelpreis</span>
+    </div>
+  </div>
+
+  <p>Winston Churchill gilt im kollektiven Gedächtnis des Westens als der Retter der freien Welt — der Mann, der Europa vor dem Nationalsozialismus bewahrte. Diese Einschätzung ist historisch begründet. Was weniger bekannt ist: Im selben Jahr, in dem Churchill seinen entscheidenden Kriegskurs hielt, starben unter britischer Kolonialverwaltung in der Provinz Bengalen Millionen Menschen.</p>
+
+  <p>Dieser Artikel dokumentiert, was aus britischen Regierungsarchiven, Kriegskabinettsprotokollen und akademischer Forschung belegt ist — und was strittig bleibt. Er zieht keine Schlussfolgerungen über Motive. Er stellt dokumentierte Fakten nebeneinander.</p>
+
+  <h2>Was die Quellen zeigen</h2>
+
+  <h3>Die Hungersnot: Grunddaten</h3>
+
+  <p>Die Hungersnot in Bengalen 1943 ist die einzige große Hungersnot der modernen indischen Geschichte, die nicht auf eine schwere Dürre zurückzuführen war. <span class="tag tag-belegt">BELEGT</span> Der Ökonom und spätere Nobelpreisträger Amartya Sen, der die Katastrophe als Zehnjähriger selbst erlebte, legte in seiner Standardstudie <em>Poverty and Famines</em> (1981) dar: Im Jahr 1943 war das Angebot an Reis und Getreide in Bengalen um 11 Prozent höher als 1941 — dem Jahr ohne Hungersnot. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Sen schlussfolgerte: Nicht das physische Fehlen von Nahrungsmitteln verursachte die Katastrophe, sondern der durch Kriegsinflation bedingte Zusammenbruch der Kaufkraft — insbesondere bei ländlichen Lohnarbeitern. <span class="tag tag-belegt">BELEGT</span> Die Zahl der Todesopfer schätzte Sen nach Prüfung der verfügbaren empirischen Befunde auf 2,7 bis 3,1 Millionen; andere Forscher, die Langzeitfolgen durch Krankheiten einrechnen, nennen bis zu 3,5 Millionen. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <div class="source-box-title">Primärquelle</div>
+    <p>Amartya Sen: <em>Poverty and Famines: An Essay on Entitlement and Deprivation.</em> Oxford University Press, London 1981, S. 203.</p>
+    <p>Sen erhielt 1998 den Nobelpreis für Wirtschaftswissenschaften. Er wurde 1933 in Bengalen geboren und erlebte die Hungersnot vor Ort.</p>
+  </div>
+
+  <h3>Die britischen Kabinettsarchive</h3>
+
+  <p>Ab Dezember 1942 begannen hochrangige britische Beamte und Militäroffiziere — darunter der Gouverneur von Bengalen, Vizekönig Linlithgow, Staatssekretär Leo Amery und Admiral Mountbatten — Nahrungsmittelimporte für Indien durch Regierungs- und Militärkanäle anzufordern. <span class="tag tag-belegt">BELEGT</span> Diese Anfragen wurden von Churchills Kriegskabinett monatelang entweder abgelehnt oder auf einen Bruchteil des ursprünglichen Umfangs reduziert. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Die Kolonie durfte in diesem Zeitraum weder ihre eigenen Sterlingreserven verwenden noch eigene Schiffe einsetzen, um Nahrungsmittel zu importieren. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <div class="source-box-title">Archivquelle</div>
+    <p>Britische Kriegskabinettsprotokolle, August–Oktober 1943 (Cabinet Papers 65/36 und 23/11). Zugänglich über The National Archives, Kew.</p>
+    <p>Madhusree Mukerjee: <em>Churchill's Secret War.</em> Basic Books, New York 2010. Basiert auf systematischer Auswertung declassifizierter Regierungsarchive.</p>
+  </div>
+
+  <h3>Die Denial Policy</h3>
+
+  <p>Zu Beginn des Krieges hatte die britische Kolonialverwaltung entlang der bengalischen Küste eine sogenannte "Denial Policy" umgesetzt: Boote und Reisvorräte wurden konfisziert, um zu verhindern, dass eine mögliche japanische Invasionstruppe diese nutzen konnte. <span class="tag tag-belegt">BELEGT</span> Allein in Tamluk wurden bis April 1942 rund 18.000 Boote vernichtet. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Diese Maßnahme entzog der ländlichen Bevölkerung die Grundlage für Transport und Handel mit Nahrungsmitteln. Ob sie kausal für das Ausmaß der Hungersnot war oder lediglich ein Faktor unter mehreren, ist unter Historikern strittig. <span class="tag tag-extra">EXTRAPOLATION</span></p>
+
+  <h3>Churchills Kriegskabinett: Die dokumentierten Positionen</h3>
+
+  <p>Für den 4. August 1943 ist in den Kriegskabinettsprotokollen festgehalten, dass das Kabinett erstmals die volle Dimension der Hungersnot erkannte. Vizekönig Wavell, dessen Tagebücher ebenfalls als historische Quelle dienen, notierte nach einer Kabinettssitzung am 27. Juli 1943: Churchill habe ein "erschütterndes Bild britischer Arbeiter in Lumpen" gezeichnet, die "reiche indische Mühlenbesitzer" bezahlen müssten. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>In den Kabinettsprotokollen vom August 1943 empfahl das Kriegskabinett als Reaktion auf Amery's Schilderung der Hungersnot: "forceful propaganda" und Inflationsdämpfung als Maßnahmen gegen die Katastrophe. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="pull-quote">
+    <blockquote>„Die Hungertoten in Bengalen liegen mir weniger am Herzen als der Hunger der Griechen — es sind widerstandsfähige Menschen, und Bengalen kommt nicht einmal an erster Stelle."</blockquote>
+    <cite>Winston Churchill, dokumentiert in Kriegskabinettsaufzeichnungen, zitiert nach Mukerjee (2010) — Formulierung umstritten, Kontext belegt</cite>
+  </div>
+
+  <p><strong>Hinweis zur Quellenlage:</strong> Direkte Churchill-Zitate aus Kabinettsprotokollen werden von verschiedenen Historikern unterschiedlich gewichtet. Die Churchill-freundliche Hillsdale-Forschungsgruppe bestreitet nicht die Protokolle selbst, wohl aber ihre Interpretation. Dieser Artikel folgt dem akademischen Mainstream — Sen, Mukerjee, Lizzie Collingham — und kennzeichnet strittige Punkte. <span class="tag tag-extra">EXTRAPOLATION</span></p>
+
+  <h2>Die Debatte: Was Historiker unterschiedlich bewerten</h2>
+
+  <div class="debate-grid">
+    <div class="debate-col">
+      <div class="debate-col-title kritik">Kritische Position</div>
+      <ul>
+        <li>Shipping-Zuteilungen des Kriegskabinetts leiteten australisches Mehl an Ceylon, Nahen Osten und Südafrika — überall im Indischen Ozean außer nach Indien (Mukerjee)</li>
+        <li>Bengalen durfte weder eigene Reserven noch eigene Schiffe für Importe nutzen</li>
+        <li>Lebensmittelexporte aus Indien dauerten während der Hungersnot an</li>
+        <li>Churchill erwähnte die Katastrophe in keinem seiner sechs Memoirenbände</li>
+        <li>Histor. Urteil Lizzie Collingham: Churchills Haltung gegenüber Indern entschied, wo der Hunger fiel</li>
+      </ul>
+    </div>
+    <div class="debate-col">
+      <div class="debate-col-title verteidigung">Verteidigende Position</div>
+      <ul>
+        <li>Zwischen August 1943 und Ende 1944 trafen über 1 Million Tonnen Getreide in Bengalen ein (Archivdaten)</li>
+        <li>Churchill bestand am 24. September 1943 darauf: "something must be done"</li>
+        <li>Japan hatte Burma besetzt und Reisimportrouten gekappt — ein realer Faktor</li>
+        <li>Japanische U-Boote versenkten 1942/43 über 870.000 Tonnen alliierter Schiffstonnage im Indischen Ozean</li>
+        <li>Wavell — von Churchill im Oktober 1943 ernannt — gilt als derjenige, der die Hilfsmaßnahmen koordinierte</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>Der akademische Konsens, wie er sich seit Sens Pionierarbeit herausgebildet hat: Die Hungersnot war keine Naturkatastrophe, sondern ein politisches Versagen. Über das Ausmaß der persönlichen Verantwortung Churchills — und ob es sich um Gleichgültigkeit, Kalkulation oder Kriegszwang handelte — besteht keine Einigkeit unter Historikern. <span class="tag tag-extra">EXTRAPOLATION</span></p>
+
+  <h2>Der Zeitzeuge: Gandhi</h2>
+
+  <div class="person-card">
+    <div class="person-name">Mahatma Gandhi</div>
+    <div class="person-role">1869–1948 · Unabhängigkeitsbewegung Indien</div>
+    <p>Gandhi und Churchill waren direkte Zeitgenossen und politische Antagonisten. Churchills öffentliche Aussage über Gandhi — "a seditious middle temple lawyer, now posing as a half-naked fakir" — ist durch zeitgenössische Quellen dokumentiert (1931). Gandhi führte 1943 während der schlimmsten Phase der Hungersnot selbst mehrere Fastenperioden durch, was britischerseits als politisches Manöver gewertet wurde. Die indische Unabhängigkeitsbewegung und die Weigerung des Kriegskabinetts, Famine-Relief zu priorisieren, verliefen zeitlich parallel.</p>
+  </div>
+
+  <h2>Chronologie: Entscheidungsmomente 1942–1943</h2>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">Okt. 1942</div>
+      <div class="tl-text">Zyklon in Bengalen. Ernte in Teilen vernichtet. Gleichzeitig: "Quit India"-Bewegung. Britische Verwaltung interniert rund 66.000 Aktivisten.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Dez. 1942</div>
+      <div class="tl-text">Vizekönig Linlithgow beginnt, Nahrungsmittelimporte über Regierungskanäle anzufragen. Kabinett lehnt ab oder reduziert.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Frühjahr 1943</div>
+      <div class="tl-text">Hungersnot eskaliert. Staatssekretär Amery drängt auf drastische Maßnahmen. Kabinett empfiehlt: "forceful propaganda" und Inflationsdämpfung.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">4. Aug. 1943</div>
+      <div class="tl-text">Kriegskabinett erkennt erstmals die volle Dimension. Beschluss: 150.000 Tonnen irakische Gerste und australischer Weizen werden freigegeben.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Okt. 1943</div>
+      <div class="tl-text">Churchill ernennt Feldmarschall Wavell zum Vizekönig. Wavell koordiniert militärische Logistik für Nahrungsmitteltransporte.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Ende 1943</div>
+      <div class="tl-text">Rekordernte. Lebensmittelkrise beginnt abzuklingen. Über die Hälfte aller hungersnot-bedingten Todesfälle ereignet sich erst 1944 — durch Folgekrankheiten.</div>
+    </div>
+  </div>
+
+  <h2>Das Schweigen in den Memoiren</h2>
+
+  <p>Winston Churchill verfasste nach dem Krieg ein sechsbändiges Memoirenwerk, <em>The Second World War</em> (1948–1954), für das er 1953 den Nobelpreis für Literatur erhielt. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Die Hungersnot in Bengalen — die das Kriegskabinett laut verfügbaren Archiven über Monate beschäftigte — kommt in keinem der sechs Bände vor. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Ob dieses Schweigen Absicht, Scham, Irrelevanz aus Churchills Sicht oder redaktionelle Auswahl war, ist nicht dokumentiert. <span class="tag tag-offen">NICHT BELEGT / OFFEN</span></p>
+
+  <div class="source-box">
+    <div class="source-box-title">Strukturelle Einordnung</div>
+    <p>Amartya Sen stellte fest: "Die Weltgeschichte kennt kein Beispiel für eine Hungersnot in einer funktionierenden Demokratie." Sein Befund richtet sich strukturell gegen imperiale Systeme, nicht gegen Einzelpersonen.</p>
+    <p>Das bedeutet: Die Frage nach individueller Schuld ist von der Frage nach systemischer Verantwortung zu unterscheiden. Beide Fragen lassen sich stellen. Beide haben unterschiedliche Antworten.</p>
+  </div>
+
+  <h2>Was bleibt</h2>
+
+  <p>Bengalen 1943 ist kein Fall von Naturkatastrophe. Das zeigen die Daten: keine Dürre, kein absoluter Nahrungsmangel, eine um 11 Prozent über dem Vorjahr liegende Getreideverfügbarkeit. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Es ist ein dokumentierter Fall, in dem staatliche Entscheidungen — Exportpolitik, Shipping-Zuteilung, verzögerte Hilfsmaßnahmen, Konfiszierung von Transportmitteln — unter den Bedingungen eines Krieges und eines Kolonialverhältnisses zusammenwirkten und zum Tod von mehreren Millionen Menschen beitrugen. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Der Mann, der während dieser Monate die entscheidenden Kabinettssitzungen leitete, erhielt zehn Jahre später den renommiertesten Literaturpreis der Welt — für ein Werk, in dem diese Ereignisse nicht vorkommen.</p>
+
+  <div class="open-questions">
+    <div class="oq-title">Offene Fragen</div>
+    <p><em>Welche Shipping-Zuteilungen des Kriegskabinetts im August 1943 lassen sich vollständig aus den National Archives rekonstruieren — und wohin floss das Getreide tatsächlich?</em></p>
+    <p><em>Warum wurde die Denial Policy — das Konfiszieren von Booten und Nahrungsmittelvorräten — nicht aufgehoben, als die Hungersnot bereits eskalierte?</em></p>
+    <p><em>In welchem Verhältnis steht das kollektive westliche Gedächtnis an Churchill zu dem, was in den Archiven dokumentiert ist — und wie entsteht dieses Verhältnis?</em></p>
+  </div>
+
+  <div class="quellen">
+    <div class="quellen-title">Primär- und Sekundärquellen</div>
+    <ol>
+      <li><em>Amartya Sen:</em> Poverty and Famines: An Essay on Entitlement and Deprivation. Oxford University Press, London 1981, S. 52–85, 195–216.</li>
+      <li><em>Madhusree Mukerjee:</em> Churchill's Secret War: The British Empire and the Ravaging of India during World War II. Basic Books, New York 2010.</li>
+      <li><em>Britische Kriegskabinettsprotokolle:</em> Cabinet Papers 65/36 (7. Oktober 1943) und 23/11 (8. Oktober 1943). The National Archives, Kew.</li>
+      <li><em>Famine Inquiry Commission:</em> Report on Bengal. Government of India Press, New Delhi 1945.</li>
+      <li><em>Lizzie Collingham:</em> The Taste of War: World War II and the Battle for Food. Penguin Press, New York 2012.</li>
+      <li><em>Wikipedia / Hungersnot in Bengalen 1943:</em> Schätzungen nach Encyclopedia Britannica (1992); Mahalanobis, Mukherjee & Ghosh (Statistisches Institut Indiens), Stichprobenerhebung 1945.</li>
+      <li><em>Wavell-Tagebücher:</em> Penderel Moon (Hrsg.): The Viceroy's Journal. Oxford University Press, London 1973.</li>
+      <li><em>Churchill-Memoiren (Fehlfund):</em> Winston S. Churchill: The Second World War. 6 Bde., Cassell, London 1948–1954.</li>
+    </ol>
+  </div>
+
+</main>
+
+<footer>
+  dunkelfeld.report — Dokumentation struktureller Zusammenhänge auf Basis öffentlich zugänglicher Primärquellen<br>
+  Spekulation ist als solche gekennzeichnet. Motive werden nicht zugeschrieben. Schlussfolgerungen ziehen die Leserinnen und Leser selbst.
+</footer>
+
+</body>
+</html>

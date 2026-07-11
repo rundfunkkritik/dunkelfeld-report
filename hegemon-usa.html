@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Der Hegemon – dunkelfeld.report</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #09090b;
+      --bg-card: #111113;
+      --bg-source: #1a1a2e;
+      --amber: #e8c547;
+      --amber-dim: rgba(232,197,71,0.12);
+      --amber-border: rgba(232,197,71,0.25);
+      --text: #d4d4d8;
+      --text-muted: #71717a;
+      --text-bright: #f4f4f5;
+      --green: #4ade80;
+      --orange: #fb923c;
+      --red: #f87171;
+      --blue: #60a5fa;
+      --serif: Georgia, 'Times New Roman', serif;
+      --mono: 'Courier New', Courier, monospace;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      line-height: 1.85;
+      padding: 2rem 1rem 6rem;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--amber-border);
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--amber);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--amber); }
+
+    /* HEADER */
+    .series-badge {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--amber);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .series-badge::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 2px;
+      background: var(--amber);
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(1.9rem, 5vw, 2.8rem);
+      font-weight: 700;
+      color: var(--text-bright);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .meta {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--amber-border);
+    }
+
+    /* OPENING QUOTE */
+    .opening-quote {
+      background: var(--amber-dim);
+      border-left: 4px solid var(--amber);
+      padding: 1.5rem 1.8rem;
+      margin: 2rem 0 2.5rem;
+      border-radius: 0 4px 4px 0;
+    }
+    .opening-quote p {
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--text-bright);
+      line-height: 1.7;
+      margin-bottom: 0.5rem;
+    }
+    .opening-quote cite {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--amber);
+      font-style: normal;
+    }
+
+    /* LEAD */
+    .lead {
+      font-size: 1.18rem;
+      color: var(--text-bright);
+      line-height: 1.9;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* SECTIONS */
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--amber);
+      margin: 3rem 0 1.2rem;
+      line-height: 1.3;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      margin: 2rem 0 0.8rem;
+      font-family: var(--mono);
+      letter-spacing: 0.03em;
+    }
+
+    p {
+      margin-bottom: 1.3rem;
+    }
+
+    /* TAGS */
+    .tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 0.2em 0.55em;
+      border-radius: 2px;
+      vertical-align: middle;
+      margin: 0 0.15em;
+      position: relative;
+      top: -1px;
+    }
+    .tag-belegt { background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid rgba(74,222,128,0.3); }
+    .tag-extrapolation { background: rgba(251,146,60,0.15); color: var(--orange); border: 1px solid rgba(251,146,60,0.3); }
+    .tag-offen { background: rgba(248,113,113,0.15); color: var(--red); border: 1px solid rgba(248,113,113,0.3); }
+
+    /* SOURCE BOXES */
+    .source-box {
+      background: var(--bg-source);
+      border-left: 3px solid var(--amber);
+      padding: 1rem 1.3rem;
+      margin: 1.5rem 0;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .source-box strong {
+      color: var(--amber);
+      display: block;
+      margin-bottom: 0.3rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* STAT GRID */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--amber-border);
+      padding: 1.2rem;
+      text-align: center;
+    }
+    .stat-number {
+      font-family: var(--mono);
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--amber);
+      display: block;
+      line-height: 1.2;
+    }
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 0.4rem;
+    }
+
+    /* SERIES LINKS */
+    .series-nav {
+      background: var(--bg-card);
+      border: 1px solid var(--amber-border);
+      padding: 1.5rem 1.8rem;
+      margin: 3rem 0 2rem;
+    }
+    .series-nav-title {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--amber);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .series-nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .series-nav li {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .series-nav li::before {
+      content: '→';
+      color: var(--amber);
+      font-size: 0.8rem;
+    }
+    .series-nav a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .series-nav a:hover { color: var(--amber); }
+    .series-nav .soon {
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--amber-border);
+      margin: 2.5rem 0;
+    }
+
+    /* CLOSING */
+    .closing-questions {
+      border-top: 2px solid var(--amber);
+      padding-top: 2rem;
+      margin-top: 3rem;
+    }
+    .closing-questions p {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 0.9rem;
+    }
+    .closing-questions .label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--amber);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+      font-style: normal;
+    }
+
+    /* HIGHLIGHT */
+    .highlight {
+      background: var(--amber-dim);
+      border-left: 3px solid var(--amber);
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0;
+      font-style: italic;
+      color: var(--text-bright);
+      font-size: 1.05rem;
+    }
+
+    /* TIMELINE */
+    .timeline {
+      margin: 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .timeline-year {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--amber);
+      font-weight: 700;
+      padding-top: 0.2rem;
+    }
+    .timeline-text {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.7rem; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .timeline-item { grid-template-columns: 70px 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">dunkelfeld.report</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Übersicht</a></li>
+      <li><a href="impressum.html">Impressum</a></li>
+    </ul>
+  </nav>
+
+  <!-- HEADER -->
+  <div class="series-badge">Serie · Der Hegemon · Überblick</div>
+
+  <h1>Der Hegemon</h1>
+  <p class="subtitle">Wie die Vereinigten Staaten globale Macht ausüben — fünf Instrumente, dokumentiert aus Primärquellen</p>
+
+  <div class="meta">
+    <span>Erstveröffentlichung 2025</span>
+    <span>Lesedauer ~12 Min.</span>
+    <span>Serie: 1 von 6 Teilen</span>
+  </div>
+
+  <!-- OPENING QUOTE -->
+  <div class="opening-quote">
+    <p>„In den Räten der Regierung müssen wir uns gegen den Erwerb ungerechtfertigten Einflusses durch den militärisch-industriellen Komplex wappnen — ob angestrebt oder nicht. Das Potenzial für einen katastrophalen Aufstieg fehl geleiteter Macht ist vorhanden und wird fortbestehen."</p>
+    <cite>— Dwight D. Eisenhower, Abschiedsrede als 34. Präsident der Vereinigten Staaten, 17. Januar 1961</cite>
+  </div>
+
+  <!-- LEAD -->
+  <div class="lead">
+    <p>Eisenhower sprach diese Worte am letzten Abend seiner Präsidentschaft, vor laufenden Kameras, an die Nation. Er war kein Außenseiter, kein Kritiker aus dem Abseits. Er war Oberbefehlshaber der alliierten Streitkräfte im Zweiten Weltkrieg, NATO-Oberbefehlshaber in Europa, zwei Amtszeiten lang Präsident der mächtigsten Nation der Erde. Was er beschrieb, war keine Vermutung. Es war die Bestandsaufnahme eines Insiders.</p>
+    <p>Sechzig Jahre später lässt sich dokumentieren, was aus dieser Warnung geworden ist. Dieser Artikel gibt einen Überblick über fünf Instrumente, mit denen die Vereinigten Staaten globale Macht ausüben. Jedes davon wird in einem eigenständigen Detailartikel dieser Serie ausführlich belegt. Die hier verwendeten Quellen sind ausschließlich Primärdokumente: Regierungsberichte, deklassifizierte Geheimdienstakten, Kongressprotokolle, UN-Daten und Forschungseinrichtungen wie das Stockholmer Friedensforschungsinstitut SIPRI.</p>
+  </div>
+
+  <!-- STAT GRID -->
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-number">997 Mrd. $</span>
+      <span class="stat-label">US-Militärbudget 2024<br>(SIPRI)</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">~750</span>
+      <span class="stat-label">Auslandsbasen in<br>80+ Ländern</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">60%</span>
+      <span class="stat-label">Weltreserven<br>in US-Dollar</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">72+</span>
+      <span class="stat-label">Dokumentierte<br>Regierungsstürze</span>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>Quellen Statistiken</strong>
+    SIPRI Military Expenditure Database 2025, sipri.org — David Vine / Quincy Institute: „Drawdown", 2021 — IWF COFER Database Q4 2024, imf.org — Lindsey O'Rourke: „Covert Regime Change", Cornell University Press, 2018
+  </div>
+
+  <hr class="divider" />
+
+  <!-- INSTRUMENT 1 -->
+  <h2>I. Das Geld: Dollarhegemonie</h2>
+
+  <p>Seit dem Ende des Zweiten Weltkriegs ist der US-Dollar die dominierende Weltreservewährung. <span class="tag tag-belegt">BELEGT</span> Das bedeutet: Staaten auf der ganzen Welt halten einen Großteil ihrer Devisenreserven in Dollar — nicht weil sie es wollen, sondern weil der internationale Handel, allen voran der Ölmarkt, in Dollar abgewickelt wird.</p>
+
+  <p>1971 hob Präsident Nixon die Golddeckung des Dollars auf. <span class="tag tag-belegt">BELEGT</span> Was folgte, war eine Vereinbarung mit Saudi-Arabien: Öl wird global nur in Dollar gehandelt — dafür garantieren die USA militärischen Schutz für das Königshaus. Der sogenannte Petrodollar war geboren. Seitdem erzeugt die Nachfrage nach Öl automatisch eine Nachfrage nach Dollar — und damit eine permanente globale Nachfrage nach US-Währung, unabhängig von der wirtschaftlichen Leistung der USA.</p>
+
+  <p>Das verschafft Washington ein einzigartiges Privileg: Die USA können sich in ihrer eigenen Währung verschulden, die gleichzeitig Weltwährung ist. Jedes andere Land der Welt muss zunächst Dollar verdienen — durch Exporte, Rohstoffe oder Kredite — bevor es auf dem Weltmarkt kaufen kann. Die USA drucken schlicht mehr davon.</p>
+
+  <p>Dazu kommt SWIFT: das globale Zahlungsnetzwerk, über das nahezu jede internationale Banküberweisung läuft. <span class="tag tag-belegt">BELEGT</span> Wer vom SWIFT-System ausgeschlossen wird — wie Iran, Russland oder Venezuela — verliert faktisch den Zugang zum globalen Finanzmarkt. Den Ausschluss entscheiden, in letzter Instanz, die USA.</p>
+
+  <div class="source-box">
+    <strong>Primärquellen</strong>
+    Nixon-Schock: Presidential Proclamation 4074, 15.8.1971, archives.gov — Petrodollar: William R. Clark, „Petrodollar Warfare" (2005); Congressional Research Service: „The Dollar as the World's Reserve Currency" (2023) — SWIFT: EU-Ratsverordnung 267/2012; US Executive Orders 13599, 13846
+  </div>
+
+  <div class="highlight">
+    Länder, die den Ölhandel außerhalb des Dollars organisierten, gerieten in mehreren dokumentierten Fällen unter starken geopolitischen Druck. Die Kausalität ist als solche nicht beweisbar — die zeitliche Abfolge ist dokumentiert. <span class="tag tag-offen">OFFEN</span>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- INSTRUMENT 2 -->
+  <h2>II. Die Streitkräfte: Militärische Infrastruktur</h2>
+
+  <p>Kein Land in der Geschichte der Menschheit hat jemals ein vergleichbares Netz militärischer Basen auf fremdem Territorium unterhalten. <span class="tag tag-belegt">BELEGT</span> Laut Pentagon Base Structure Report 2024 und unabhängiger Forschung des Quincy Institute for Responsible Statecraft unterhalten die USA rund 750 Stützpunkte in über 80 Ländern.</p>
+
+  <p>Japan beherbergt allein über 120 US-Militärstandorte, Deutschland 119, Südkorea 73. <span class="tag tag-belegt">BELEGT</span> Die Kosten: offiziell 22 Milliarden Dollar jährlich laut Pentagon — vollständige Berechnungen unter Einschluss aller Personalkosten und Begleitinfrastruktur kommen auf ein Vielfaches.</p>
+
+  <p>Das US-Verteidigungsbudget betrug 2024 rund 997 Milliarden Dollar laut SIPRI. <span class="tag tag-belegt">BELEGT</span> Zum Vergleich: Die nächsten zehn ausgabestärksten Länder zusammen kommen auf einen ähnlichen Betrag. Allein die NATO-Staaten ohne die USA gaben 627 Milliarden Dollar aus.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-number">997 Mrd.$</span>
+      <span class="stat-label">USA Militär 2024</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">149 Mrd.$</span>
+      <span class="stat-label">Russland 2024</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">336 Mrd.$</span>
+      <span class="stat-label">China 2024</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">~⅓</span>
+      <span class="stat-label">Weltweite Militärausgaben<br>entfallen auf die USA</span>
+    </div>
+  </div>
+
+  <p>Die rechtliche Grundlage für die Stationierung bilden sogenannte Status of Forces Agreements (SOFAs) — bilaterale Verträge, die US-Streitkräften auf fremdem Staatsgebiet weitgehende Immunität gewähren. <span class="tag tag-belegt">BELEGT</span> Vergehen von US-Soldaten werden in vielen Ländern nicht vor nationalen Gerichten verhandelt.</p>
+
+  <div class="source-box">
+    <strong>Primärquellen</strong>
+    Pentagon Base Structure Report 2024, acq.osd.mil — SIPRI Military Expenditure Database 2025, sipri.org — David Vine, „Base Nation" (2015) / Quincy Institute: „Drawdown" (2021) — Congressional Research Service: „Overseas Basing of U.S. Military Forces" (Juli 2024)
+  </div>
+
+  <hr class="divider" />
+
+  <!-- INSTRUMENT 3 -->
+  <h2>III. Die Wirtschaft: IWF, Weltbank und Schuldenarchitektur</h2>
+
+  <p>Die Vereinigten Staaten halten in beiden zentralen globalen Finanzinstitutionen — IWF und Weltbank — als einzige Nation ein effektives Vetorecht. <span class="tag tag-belegt">BELEGT</span> Für wesentliche Beschlüsse des IWF ist eine Mehrheit von 85 Prozent der Stimmen erforderlich. Der US-Stimmanteil liegt bei 17,4 Prozent.</p>
+
+  <p>Seit den 1980er-Jahren vergaben IWF und Weltbank Kredite an verschuldete Entwicklungsländer regelmäßig unter Auflagen: Privatisierung staatlicher Betriebe, Abbau von Subventionen, Marktöffnung für ausländisches Kapital — bekannt als „Strukturanpassungsprogramme". <span class="tag tag-belegt">BELEGT</span> Die Auswirkungen auf Gesundheitssysteme, Bildung und lokale Wirtschaft in betroffenen Ländern sind Gegenstand umfangreicher akademischer und UN-Forschung.</p>
+
+  <p>John Perkins, früherer Wirtschaftsberater, legte 2004 in „Confessions of an Economic Hit Man" einen Mechanismus offen: Entwicklungsländer würden systematisch in Schuldenfallen gelockt — Kredite für Infrastrukturprojekte, die von US-Konzernen gebaut werden, die verschuldeten Länder bei Zahlungsunfähigkeit zur Vergabe von Rohstoffkonzessionen oder strategischen Zugängen zwingen. <span class="tag tag-extrapolation">EXTRAPOLATION</span> Perkins' Beschreibungen sind nicht unabhängig verifiziert — einzelne dokumentierte Fälle (Ecuador, Panama, Indonesien) weisen strukturelle Parallelen auf.</p>
+
+  <div class="source-box">
+    <strong>Primärquellen</strong>
+    IWF Articles of Agreement, Art. XII §5 — IWF Quota and Governance Reform, imf.org/en/About/Factsheets — UNCTAD: „A World of Debt" Report 2023 — Weltbank: „World Development Report" (verschiedene Jahrgänge)
+  </div>
+
+  <hr class="divider" />
+
+  <!-- INSTRUMENT 4 -->
+  <h2>IV. Die Operationen: Dokumentierte Regierungsstürze</h2>
+
+  <p>Dies ist das am stärksten dokumentierte und zugleich am wenigsten öffentlich diskutierte Kapitel. Dass die CIA und andere US-Behörden aktiv an der Destabilisierung und dem Sturz ausländischer Regierungen beteiligt waren, ist keine Verschwörungstheorie — es ist durch deklassifizierte Regierungsdokumente belegt.</p>
+
+  <p><strong>Iran, 1953:</strong> Ministerpräsident Mohammad Mosaddegh hatte die iranische Ölindustrie verstaatlicht, bis dahin unter britischer Kontrolle. Am 19. August 1953 wurde er gestürzt. <span class="tag tag-belegt">BELEGT</span> Im August 2013, zum 60. Jahrestag, veröffentlichte die CIA erstmals offizielle Dokumente, die ihre Führungsrolle bei dem Coup bestätigen. Im internen CIA-Dokument „The Battle for Iran" heißt es wörtlich: Der Militärputsch gegen Mosaddegh wurde „unter CIA-Führung als Akt der US-Außenpolitik" durchgeführt. Die Dokumente wurden über das Freedom of Information Act an das National Security Archive der George Washington University übergeben.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-year">1953</span>
+      <span class="timeline-text">Iran — CIA bestätigt Sturz von Premier Mosaddegh (Operation Ajax / TP-AJAX). Deklassifiziert 2013. <span class="tag tag-belegt">BELEGT</span></span>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-year">1954</span>
+      <span class="timeline-text">Guatemala — CIA-Operation PBSUCCESS stürzt gewählten Präsidenten Jacobo Árbenz. Deklassifiziert, CIA selbst bestätigt. <span class="tag tag-belegt">BELEGT</span></span>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-year">1973</span>
+      <span class="timeline-text">Chile — Sturz von Salvador Allende. Senatsbericht Church Committee 1975 dokumentiert US-Beteiligung. <span class="tag tag-belegt">BELEGT</span></span>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-year">1986</span>
+      <span class="timeline-text">Nicaragua — Iran-Contra-Affäre. US-Kongress dokumentiert illegale Finanzierung der Contra-Rebellen durch CIA. <span class="tag tag-belegt">BELEGT</span></span>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-year">2003</span>
+      <span class="timeline-text">Irak — Invasion auf Grundlage später widerlegter Geheimdienstangaben über Massenvernichtungswaffen. Untersuchungsberichte aus UK (Chilcot 2016) und USA. <span class="tag tag-belegt">BELEGT</span></span>
+    </div>
+  </div>
+
+  <p>Politikwissenschaftlerin Lindsey O'Rourke dokumentierte 2018 in ihrer Studie „Covert Regime Change" (Cornell University Press) 72 verdeckte und offene US-Operationen zum Regierungssturz zwischen 1947 und 1989. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Das National Endowment for Democracy (NED), 1983 per Gesetz gegründet und aus dem US-Staatshaushalt finanziert, bezeichnet sich selbst als Förderorganisation für Demokratie weltweit. <span class="tag tag-belegt">BELEGT</span> Sein erster Präsident, Allen Weinstein, sagte 1991 gegenüber der Washington Post: „Vieles von dem, was wir heute tun, wurde vor 25 Jahren verdeckt von der CIA gemacht." Das NED veröffentlicht seine Förderungen öffentlich auf ned.org.</p>
+
+  <div class="source-box">
+    <strong>Primärquellen</strong>
+    CIA: „The Battle for Iran" (deklassifiziert 2013), nsarchive.gwu.edu — Church Committee Report, U.S. Senate 1975, intelligence.senate.gov — Chilcot Report 2016, gov.uk/chilcot — Lindsey O'Rourke: „Covert Regime Change", Cornell University Press (2018) — NED Annual Reports, ned.org — Allen Weinstein zit. in: Washington Post, 21.9.1991
+  </div>
+
+  <hr class="divider" />
+
+  <!-- INSTRUMENT 5 -->
+  <h2>V. Die Narrative: Soft Power und Informationsinfrastruktur</h2>
+
+  <p>Neben militärischer und wirtschaftlicher Macht verfügen die USA über ein drittes, weniger sichtbares Instrument: die Kontrolle über globale Informationsinfrastruktur und Kulturexport.</p>
+
+  <p>Das Internet wurde aus einem Militärforschungsprojekt der DARPA (Defense Advanced Research Projects Agency) entwickelt. <span class="tag tag-belegt">BELEGT</span> In-Q-Tel, der offizielle Venture-Capital-Arm der CIA, investiert seit 1999 in Technologieunternehmen — darunter Google Earth-Vorläufer Keyhole Inc. und Palantir Technologies. <span class="tag tag-belegt">BELEGT</span> Die Investitionen sind auf der CIA-Website dokumentiert.</p>
+
+  <p>Voice of America, Radio Free Europe und Radio Free Asia sind direkt durch den US-Kongress finanzierte Medienorganisationen, die in über 100 Ländern senden. <span class="tag tag-belegt">BELEGT</span> Der Smith-Mundt Modernization Act von 2012 hob das bis dahin bestehende Verbot auf, diese Inhalte auch auf dem US-Inlandsmarkt zu verbreiten.</p>
+
+  <p>Das Global Engagement Center des US-Außenministeriums koordiniert seit 2016 offiziell Maßnahmen zur Beeinflussung ausländischer Öffentlichkeiten. <span class="tag tag-belegt">BELEGT</span> Die Abgrenzung zu Propagandaoperationen ist Gegenstand rechtlicher und akademischer Debatten — beide Seiten beziehen sich auf denselben Gesetzestext.</p>
+
+  <div class="source-box">
+    <strong>Primärquellen</strong>
+    DARPA Geschichte: darpa.mil/about — In-Q-Tel Portfolio: iqt.org — Smith-Mundt Modernization Act 2012, congress.gov — Global Engagement Center: state.gov/bureaus-offices/under-secretary-for-public-diplomacy-and-public-affairs/global-engagement-center/ — Broadcasting Board of Governors: usagm.gov
+  </div>
+
+  <hr class="divider" />
+
+  <!-- SYNTHESIS -->
+  <h2>Das Muster</h2>
+
+  <p>Die fünf beschriebenen Instrumente — Dollarhegemonie, Militärinfrastruktur, Wirtschaftsdruck, verdeckte Operationen, Informationskontrolle — wirken nicht isoliert. Sie verstärken sich gegenseitig und bilden ein System, das in seiner Reichweite historisch ohne Präzedenz ist.</p>
+
+  <p>Was Eisenhower 1961 als aufkommende Gefahr beschrieb, ist heute strukturell verankert. Die Rüstungsausgaben der USA sind 2024 auf nahezu eine Billion Dollar gestiegen. <span class="tag tag-belegt">BELEGT</span> Das Netz der Auslandsbasen ist seit dem Ende des Kalten Krieges nicht kleiner, sondern größer geworden. Die Institutionen, die Eisenhower identifizierte — das Wechselspiel zwischen Rüstungsindustrie, Regierung und Forschungsapparat — existieren nicht mehr nur national, sondern global.</p>
+
+  <p>Wie dieses System im Einzelnen funktioniert, welche Akteure dahinterstehen und welche primärquellenbelegten Fälle sich rekonstruieren lassen — das ist Gegenstand der folgenden fünf Detailartikel dieser Serie.</p>
+
+  <!-- SERIES NAV -->
+  <div class="series-nav">
+    <div class="series-nav-title">▸ Serie: Der Hegemon — alle Teile</div>
+    <ul>
+      <li><strong style="color:var(--text-bright)">Teil 1: Überblick</strong> — dieser Artikel</li>
+      <li><a href="hegemon-dollar.html">Teil 2: Dollarhegemonie — Petrodollar, SWIFT, Reservewährung</a> <span class="soon">(folgt)</span></li>
+      <li><a href="hegemon-militaer.html">Teil 3: Militärinfrastruktur — Basen, SOFA, Rüstungskomplex</a> <span class="soon">(folgt)</span></li>
+      <li><a href="hegemon-wirtschaft.html">Teil 4: Wirtschaftsdruck — IWF, Weltbank, Schuldenarchitektur</a> <span class="soon">(folgt)</span></li>
+      <li><a href="hegemon-geheimdienste.html">Teil 5: Verdeckte Operationen — dokumentierte Regime Changes</a> <span class="soon">(folgt)</span></li>
+      <li><a href="hegemon-softpower.html">Teil 6: Soft Power — DARPA, NED, Informationsinfrastruktur</a> <span class="soon">(folgt)</span></li>
+    </ul>
+  </div>
+
+  <!-- CLOSING QUESTIONS -->
+  <div class="closing-questions">
+    <div class="label">Offene Fragen</div>
+    <p>Worin liegt der Unterschied zwischen der Ausübung globaler Macht durch die USA und der durch andere Großmächte — und was macht ihn messbar?</p>
+    <p>Welche Rolle spielen internationale Institutionen wie UN, IWF und Weltbank als eigenständige Akteure, und ab welchem Punkt werden sie zum Instrument eines ihrer Mitglieder?</p>
+    <p>Was bedeutet es für die demokratische Kontrolle eines Landes, wenn ein erheblicher Teil seiner Sicherheits- und Wirtschaftsarchitektur von Entscheidungen einer fremden Regierung abhängt?</p>
+    <p>Eisenhowers Warnung von 1961 kam von einem amtierenden Präsidenten. Weshalb hat sie so wenig institutionellen Widerhall gefunden — und wäre das bei einer gleichlautenden Warnung aus dem Ausland anders gewesen?</p>
+  </div>
+
+</div>
+</body>
+</html>

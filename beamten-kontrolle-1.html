@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unter Verdacht — dunkelfeld.report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #09090b;
+    --surface: #111113;
+    --surface2: #1a1a2e;
+    --amber: #e8c547;
+    --amber-dim: #a8902f;
+    --text: #d4d4d8;
+    --text-muted: #71717a;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --red: #f87171;
+    --max: 720px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.85;
+    padding: 0 1rem 4rem;
+  }
+
+  /* NAV */
+  nav {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 1.2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  nav a { color: var(--amber); text-decoration: none; font-weight: bold; letter-spacing: 0.05em; }
+
+  /* HEADER */
+  .article-header {
+    max-width: var(--max);
+    margin: 3rem auto 2.5rem;
+  }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    line-height: 1.2;
+    color: #fafafa;
+    margin-bottom: 1rem;
+    font-weight: normal;
+  }
+  .subtitle {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    border-left: 3px solid var(--amber);
+    padding-left: 1rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* DIVIDER */
+  .divider {
+    max-width: var(--max);
+    margin: 2rem auto;
+    border: none;
+    border-top: 1px solid #27272a;
+  }
+
+  /* BODY */
+  .article-body {
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+  .article-body p { margin-bottom: 1.4rem; }
+  .article-body h2 {
+    font-size: 1.3rem;
+    color: #fafafa;
+    font-weight: normal;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid #27272a;
+  }
+  .article-body h3 {
+    font-size: 1rem;
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 2rem 0 0.8rem;
+  }
+
+  /* TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.15em 0.5em;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin: 0 0.15em;
+  }
+  .tag-belegt { background: #14532d; color: var(--green); border: 1px solid #166534; }
+  .tag-extrapolation { background: #431407; color: var(--orange); border: 1px solid #7c2d12; }
+  .tag-offen { background: #450a0a; color: var(--red); border: 1px solid #7f1d1d; }
+
+  /* SOURCE BOX */
+  .source-box {
+    background: var(--surface2);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .source-box strong { color: var(--amber); display: block; margin-bottom: 0.4rem; }
+  .source-box a { color: var(--text-muted); text-decoration: underline; }
+
+  /* STAT GRID */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1px;
+    background: #27272a;
+    margin: 2rem 0;
+  }
+  .stat-cell {
+    background: var(--surface);
+    padding: 1.2rem;
+    text-align: center;
+  }
+  .stat-number {
+    font-size: 2rem;
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-top: 2px solid var(--amber);
+    border-bottom: 1px solid #27272a;
+    padding: 1.2rem 0;
+    margin: 2rem 0;
+    color: #e4e4e7;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    font-style: italic;
+  }
+  .pull-quote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 0.6rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* COMPARISON */
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #27272a;
+    margin: 2rem 0;
+  }
+  .comp-col {
+    background: var(--surface);
+    padding: 1.2rem;
+  }
+  .comp-col h4 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #27272a;
+  }
+  .comp-col.left h4 { color: var(--orange); }
+  .comp-col.right h4 { color: var(--red); }
+  .comp-col p { font-size: 0.88rem; line-height: 1.65; color: var(--text); margin-bottom: 0; }
+
+  /* TIMELINE */
+  .timeline { margin: 2rem 0; }
+  .tl-row {
+    display: flex;
+    gap: 1rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid #1f1f23;
+  }
+  .tl-date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--amber);
+    min-width: 90px;
+    padding-top: 0.2rem;
+    flex-shrink: 0;
+  }
+  .tl-text { font-size: 0.9rem; color: var(--text); line-height: 1.6; }
+  .tl-text strong { color: #fafafa; }
+
+  /* OPEN QUESTIONS */
+  .open-questions {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+  }
+  .open-questions p {
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 0.8rem !important;
+    font-size: 1rem;
+  }
+
+  /* FOOTER */
+  footer {
+    max-width: var(--max);
+    margin: 4rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 600px) {
+    .comparison { grid-template-columns: 1fr; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/">dunkelfeld.report</a>
+  <span>Strukturkritik · Primärquellen · Keine Motive</span>
+</nav>
+
+<header class="article-header">
+  <p class="kicker">Staatsdienst &amp; Kontrolle</p>
+  <h1>Unter Verdacht</h1>
+  <p class="subtitle">Wie der Staat seine eigenen Bediensteten unter Druck setzt — durch Beweislastumkehr, Karriererisiko und den Abbau rechtsstaatlicher Schutzmechanismen.</p>
+  <p class="meta">Veröffentlicht Juni 2026 &nbsp;·&nbsp; Alle Angaben mit Primärquellen belegt &nbsp;·&nbsp; <a href="#quellen" style="color:var(--text-muted)">Quellenverzeichnis ↓</a></p>
+</header>
+
+<hr class="divider">
+
+<article class="article-body">
+
+  <h2>Das Dilemma im Staatsdienst</h2>
+
+  <p>Das deutsche Beamtenrecht baut auf einem Widerspruch. Beamte sind gemäß § 36 Beamtenstatusgesetz (BeamtStG) verpflichtet, dienstliche Anordnungen auszuführen — tragen dabei aber gleichzeitig die volle persönliche Verantwortung für die Rechtmäßigkeit ihres Handelns. <span class="tag tag-belegt">Belegt</span> Ein Instrument zur Auflösung dieses Konflikts ist die Remonstrationspflicht: Wer eine Weisung für rechtswidrig hält, muss Bedenken schriftlich auf dem Dienstweg geltend machen — zunächst beim unmittelbaren, dann beim nächsthöheren Vorgesetzten. Erst nach Bestätigung durch beide Stellen ist der Beamte von persönlicher Verantwortung befreit.</p>
+
+  <div class="source-box">
+    <strong>Primärquelle: § 36 BeamtStG / § 63 BBG</strong>
+    „Beamtinnen und Beamte tragen für die Rechtmäßigkeit ihrer dienstlichen Handlungen die volle persönliche Verantwortung. Bedenken gegen die Rechtmäßigkeit dienstlicher Anordnungen haben Beamtinnen und Beamte unverzüglich auf dem Dienstweg geltend zu machen."
+    <br><br>Quelle: Beamtenstatusgesetz (BeamtStG), Bundesbeamtengesetz (BBG)
+  </div>
+
+  <p>Der dbb beamtenbund beschreibt die Doppelfunktion der Remonstration: Sie dient einerseits der behördeninternen Selbstkontrolle, andererseits der haftungs- und disziplinarrechtlichen Entlastung des Beamten. <span class="tag tag-belegt">Belegt</span> In der Praxis entsteht ein Spannungsfeld: Wer remonstriert, gibt Vorgesetzten offen „Widerworte" und stellt die Rechtmäßigkeit ihrer Anordnungen in Frage — mit möglichen Folgen für die eigene Karriere. Verfassungsrechtler, die dieses Dilemma untersucht haben, stellen fest: Die gesetzlich geforderte Ungewissheit darüber, ob eine Weisung tatsächlich rechtswidrig war, trägt allein der Beamte — für die gesamte Dauer eines etwaigen Disziplinarverfahrens. <span class="tag tag-belegt">Belegt</span></p>
+
+  <div class="pull-quote">
+    „Rechtlich darf die Remonstration keine Nachteile haben. Faktisch kann sie jedoch das Verhältnis zum Vorgesetzten belasten."
+    <cite>— Kommunalforum.de, Analyse des § 36 BeamtStG</cite>
+  </div>
+
+  <h2>Das Landesantidiskriminierungsgesetz NRW</h2>
+
+  <p>Nordrhein-Westfalen plant für die zweite Jahreshälfte 2026 ein Landesantidiskriminierungsgesetz (LADG NRW, Vorlage 18/4458 des Landtags). <span class="tag tag-belegt">Belegt</span> Das Gesetz richtet sich gegen Diskriminierung durch Landesbehörden — Schulen, Hochschulen, Finanzämter. Es gilt für keine kommunalen Behörden. Die zentrale Kontroverse betrifft § 8: die Regelung zur Beweislast.</p>
+
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <span class="stat-number">6000</span>
+      <span class="stat-label">angemeldete Teilnehmer<br>Kassel März 2021</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-number">20.000</span>
+      <span class="stat-label">tatsächliche Teilnehmer<br>ohne Masken, ohne Abstand</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-number">187</span>
+      <span class="stat-label">LADG-Beschwerden Berlin<br>gegen Polizei (4 Jahre)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-number">86%</span>
+      <span class="stat-label">davon als unbegründet<br>festgestellt</span>
+    </div>
+  </div>
+
+  <p>Die Gewerkschaft der Polizei (GdP NRW) beschreibt das Kernproblem: Wer sich durch Landesbedienstete diskriminiert fühlt, muss künftig nur ein „Indiz" vorlegen. Dann liegt es an der Behörde und den betreffenden Kolleginnen und Kollegen zu beweisen, dass nicht diskriminiert wurde. Die GdP nennt dies „faktische Beweislastumkehr" und das Gesetz insgesamt ein „Misstrauensgesetz". <span class="tag tag-belegt">Belegt</span></p>
+
+  <div class="source-box">
+    <strong>Quelle: Gewerkschaft der Polizei NRW (GdP), April 2026</strong>
+    „Das Gesetz stellt handelnde Kolleginnen und Kollegen immer erstmal unter Verdacht: Es könnte ja sein, dass… Es ist ein Misstrauensgesetz."
+    <br>Quelle: gdp.de/nrw, April 2026
+  </div>
+
+  <p>Auch der Verband Bildung und Erziehung (VBE NRW) äußert in seiner offiziellen Stellungnahme zur Anhörung des Landtags Kritik: Die vorgesehene Beweislastumkehr (§ 8 LADG NRW) könne dazu führen, dass Beschäftigte ihre Arbeit „in einem Klima der Angst vor Fehlinterpretationen" verrichteten. Der VBE mahnt an, dass Rechtsklarheit und die Unschuldsvermutung gleichermaßen gewahrt bleiben müssten. <span class="tag tag-belegt">Belegt</span></p>
+
+  <h3>Der Berliner Präzedenzfall</h3>
+
+  <p>Berlin verfügt seit dem 21. Juni 2020 über ein LADG — das erste seiner Art in Deutschland. Nach vier Jahren zieht die LADG-Ombudsstelle Bilanz anhand parlamentarisch dokumentierter Zahlen (Abgeordnetenhaus Berlin, Schriftliche Anfrage S19-18745, April 2024): <span class="tag tag-belegt">Belegt</span></p>
+
+  <div class="source-box">
+    <strong>Berliner LADG-Bilanz 2020–2024 (parlamentarisch dokumentiert)</strong>
+    Gesamte Beschwerden bei Ombudsstelle: 2.258 (davon 1.318 mit LADG-Bezug)<br>
+    Beschwerden gegen Polizei: 187 Vorgänge<br>
+    Davon unbegründet: 162 (86,6 %)<br>
+    Rechtskräftige Gerichtsurteile wegen Diskriminierung: wenige Einzelfälle<br><br>
+    Quelle: Berliner Abgeordnetenhaus, Drucksache S19-18745, 18.04.2024
+  </div>
+
+  <p>Jeder der 162 unbegründeten Beschwerden löste dennoch ein förmliches Verfahren aus, das der betroffene Beamte unter Karrieredruck zu durchlaufen hatte. Die befürchtete Klageflut blieb in Berlin aus — unter anderem wegen hoher finanzieller Hürden für Kläger. <span class="tag tag-belegt">Belegt</span> Was blieb: die strukturelle Wirkung des Verdachts vor Abschluss des Verfahrens.</p>
+
+  <h2>Corona als Blaupause</h2>
+
+  <p>Die Pandemiejahre 2020–2022 dokumentierten erstmals öffentlich sichtbar, welche Konsequenzen Beamte tragen, wenn sie Weisungen in Frage stellen oder öffentlich Kritik äußern. Das Spektrum der belegten Maßnahmen reicht von Suspendierung über Disziplinarverfahren bis zu Hausdurchsuchungen.</p>
+
+  <div class="timeline">
+
+    <div class="tl-row">
+      <span class="tl-date">AUG 2020</span>
+      <span class="tl-text"><strong>Dortmund:</strong> Ein Polizeibeamter aus Niedersachsen hält auf einer Corona-Demo eine Rede, in der er Kollegen aufruft, sich mehr dem Gewissen als dem Gehorsam verpflichtet zu fühlen, und zieht Parallelen zur NS-Zeit. Folge: sofortige Suspendierung durch die Polizeidirektion Hannover, Einleitung einer Prüfung wegen Verstoßes gegen Neutralitäts- und Wohlverhaltenspflicht. <span class="tag tag-belegt">Belegt</span></span>
+    </div>
+
+    <div class="tl-row">
+      <span class="tl-date">MRZ 2021</span>
+      <span class="tl-text"><strong>Kassel:</strong> 20.000 statt genehmigter 6.000 Demonstranten; keine Masken; Polizei hält sich zurück. Medialer Aufschrei sofort: SPD-Parlamentarier sprechen von „absolutem Zurückweichen des Staates", Hessens Innenminister kündigt Nachbereitung an. Das Internationale Auschwitz Komitee meldet sich öffentlich. Gleichzeitig: Videos zeigen Thüringer Polizisten, die gewaltsam gegen Gegendemonstranten vorgehen — Thüringens Innenminister Georg Maier (SPD) kündigt Konsequenzen an. <span class="tag tag-belegt">Belegt</span></span>
+    </div>
+
+    <div class="tl-row">
+      <span class="tl-date">DEZ 2021</span>
+      <span class="tl-text"><strong>Bayern (Gerichtsurteil):</strong> Ein Beamter erscheint nach Nichtbefolgung der 3G-Regelung nicht mehr zum Dienst. Disziplinarklage mit dem Ziel der Entfernung aus dem Beamtenverhältnis. Das Gericht stellt unerlaubtes Fernbleiben vom 06.12.2021 bis 30.03.2022 fest. <span class="tag tag-belegt">Belegt</span> (Az. Bayerischer Verwaltungsgerichtshof 2023)</span>
+    </div>
+
+    <div class="tl-row">
+      <span class="tl-date">MRZ 2023</span>
+      <span class="tl-text"><strong>Ruhrgebiet:</strong> Björn Lars Oberndorf, Kriminologe, ehemaliger Polizeibeamter und Vorsitzender des Vereins „Polizisten für Aufklärung e.V.", wird um 06:00 Uhr von der GSG 9 — der Antiterroreinheit der Bundespolizei — zu Hause aufgesucht. Rund 25 Beamte, Durchsuchungsdauer über sechs Stunden. Oberndorf wird mittels Kabelbinder gefesselt. Sein Status: Zeuge, nicht Beschuldigter. Grundlage: Ermittlungsverfahren des Generalbundesanwalts gegen Unbekannt wegen § 129/129a StGB (terroristische Vereinigung). <span class="tag tag-belegt">Belegt</span></span>
+    </div>
+
+  </div>
+
+  <div class="source-box">
+    <strong>Parlamentarisch dokumentiert: Bundestag, Drucksache 20/6858 (Mai 2023)</strong>
+    Die Bundesregierung bestätigt in ihrer Antwort auf eine Kleine Anfrage der AfD-Fraktion (Drucksache 20/6623): Das BKA wurde im Januar 2023 vom Generalbundesanwalt beauftragt, Ermittlungen in einem Verfahren gegen Unbekannt wegen des Verdachts der Mitgliedschaft in bzw. Unterstützung einer terroristischen Vereinigung (§§ 129, 129a StGB) wahrzunehmen. Im Rahmen dieser Ermittlungen erfolgte die Hausdurchsuchung bei Oberndorf als Zeugen.
+    <br><br>Quelle: Bundestag.de, hib/STO, Mai 2023
+  </div>
+
+  <p>Oberndorf selbst berichtet, dass die GSG 9-Begründung auf seinen Status als legaler Waffenbesitzer (Jagdschein) verwiesen habe. Rechtsprofessoren, die er konsultierte, beurteilten den Einsatz übereinstimmend als nicht rechtskonform. <span class="tag tag-extrapolation">Extrapolation</span> Eine gerichtliche Prüfung war zum Zeitpunkt der Veröffentlichung dieses Artikels angekündigt, aber noch nicht abgeschlossen.</p>
+
+  <h2>Die asymmetrische Reaktion</h2>
+
+  <p>Die dokumentierten Fälle zeigen ein wiederkehrendes Muster: Die institutionelle und mediale Reaktion auf Beamte, die öffentlich Kritik an Maßnahmen üben, folgt einem anderen Maßstab als die Reaktion auf Beamte, die Maßnahmen nicht konsequent durchsetzen. <span class="tag tag-extrapolation">Extrapolation</span></p>
+
+  <div class="comparison">
+    <div class="comp-col left">
+      <h4>Beamter äußert Kritik öffentlich</h4>
+      <p>Polizist hält Rede auf Demo → sofortige Suspendierung, Dienstverbot, Prüfung Disziplinarverfahren.<br><br>Vereinsvorsitzender kritischer Polizisten → GSG-9-Hausdurchsuchung als Zeuge.<br><br>Beamter verweigert Coronamaßnahmen-Konformität → Disziplinarklage mit Ziel Entfernung aus Dienst.</p>
+    </div>
+    <div class="comp-col right">
+      <h4>Beamte setzen Maßnahmen nicht durch</h4>
+      <p>Kassel März 2021: Polizei hält sich bei 20.000-Demo zurück → politischer und medialer Druck auf härteres Einschreiten, Innenminister kündigt Nachbereitung an, SPD-Abgeordnete sprechen von „Zurückweichen des Staates".</p>
+    </div>
+  </div>
+
+  <p>Die rechtliche Grundlage für öffentliche Meinungsäußerungen von Beamten ist durch ständige Rechtsprechung eingeschränkt: Beamte dürfen ihren Dienstherrn nicht derart in Frage stellen, dass der Eindruck entstehen könnte, es fehle die erforderliche Loyalität. Diese Loyalitätspflicht findet sich in keinem Beamtengesetz explizit, gilt aber durch Rechtsprechung. <span class="tag tag-belegt">Belegt</span></p>
+
+  <h2>Der Kontext: Faeser und die Publikation</h2>
+
+  <p>Im Juli 2021 — mehrere Monate vor ihrem Amtsantritt als Bundesinnenministerin — veröffentlichte Nancy Faeser (SPD) einen Gastbeitrag im Magazin <em>antifa</em>, dem Publikationsorgan der Vereinigung der Verfolgten des Naziregimes — Bund der Antifaschistinnen und Antifaschisten (VVN-BdA). <span class="tag tag-belegt">Belegt</span> Die VVN-BdA wurde im bayerischen Verfassungsschutzbericht 2020 als „bundesweit größte linksextremistisch beeinflusste Organisation im Bereich des Antifaschismus" bezeichnet.</p>
+
+  <div class="source-box">
+    <strong>Quelle: Tagesspiegel, 10. August 2022</strong>
+    „Faeser hatte im vergangenen Jahr — mehrere Monate vor ihrem Amtsantritt als Innenministerin — einen Gastbeitrag im Magazin Antifa veröffentlicht [...] Weil es sich bei Antifa um das Magazin der Vereinigung der Verfolgten des Naziregimes — Bund der Antifaschisten handelt, die 2020 im bayerischen Verfassungsschutzbericht als die 'bundesweit größte linksextremistisch beeinflusste Organisation im Bereich des Antifaschismus' bezeichnet wurde, kritisierten Politiker von Union und AfD die SPD-Politikerin."
+    <br><br>Nach Amtsantritt erklärte Faeser, sie würde einen solchen Beitrag in ihrer Rolle als Ministerin nicht mehr schreiben: „Heute habe ich eine andere Rolle." (t-online, Februar 2022)
+  </div>
+
+  <p>Die Person, die als Bundesinnenministerin die Sicherheitsbehörden — einschließlich der Verfassungsschutzämter — beaufsichtigte, hatte kurz zuvor in einer Publikation einer vom Verfassungsschutz beobachteten Organisation geschrieben. Ob und wie dieser Umstand die institutionelle Kultur beeinflusste, ist dokumentarisch nicht belegbar. <span class="tag tag-offen">Offen</span></p>
+
+  <div class="open-questions">
+    <h3>Offene Fragen</h3>
+    <p><em>Wer überprüft, ob ein vorgelegtes „Indiz" tatsächlich ein Indiz für Diskriminierung ist — und wer schützt den Beamten, der rechtmäßig gehandelt hat, während das Verfahren läuft?</em></p>
+    <p><em>Warum wurde bei einem als Zeugen geführten, polizeilich unbelasteten Bürger die Antiterroreinheit GSG 9 eingesetzt — und welche Verhältnismäßigkeitsprüfung fand statt?</em></p>
+    <p><em>Inwiefern verändert der strukturelle Druck auf Beamte, öffentlich keine Kritik zu äußern, die behördeninterne Selbstkontrolle, die die Remonstrationspflicht ursprünglich sicherstellen sollte?</em></p>
+    <p><em>Was sagt es über ein Rechtssystem aus, wenn Beamte für die Durchsetzung nachträglich für rechtswidrig erklärter Maßnahmen keine disziplinarischen Konsequenzen tragen — die Verweigerung dieser Maßnahmen jedoch sanktioniert wurde?</em></p>
+  </div>
+
+</article>
+
+<footer id="quellen">
+  <strong style="color:var(--amber); display:block; margin-bottom:0.8rem;">Quellenverzeichnis</strong>
+  § 36 BeamtStG / § 63 BBG — Beamtenstatusgesetz, Bundesbeamtengesetz (Primärquellen)<br>
+  GdP NRW: Stellungnahme LADG NRW, April 2026 — gdp.de/nrw<br>
+  VBE NRW: Schriftliche Stellungnahme zur Anhörung LADG NRW, 2025 — vbe-nrw.de<br>
+  Landtag NRW, 18. Wahlperiode, Vorlage 18/4458 (2025)<br>
+  Berliner Abgeordnetenhaus, Drucksache S19-18745 (April 2024)<br>
+  Bundestag, Drucksache 20/6858, Antwort auf Kleine Anfrage 20/6623 (Mai 2023) — bundestag.de<br>
+  Tagesspiegel: „Vier Jahre Berliner LADG", April 2024<br>
+  Tagesspiegel: „Faeser wehrt sich gegen Kritik an Antifa-Gastbeitrag", August 2022<br>
+  t-online: „Nancy Faeser: Heute habe ich eine andere Rolle", Februar 2022<br>
+  Stuttgarter Zeitung: „Polizist nach kritischer Rede vom Dienst entbunden", August 2020<br>
+  Berliner Zeitung: „Corona-Demo in Kassel: Gewalt-Vorwürfe gegen die Polizei", März 2021<br>
+  BayVGH: Urteil Corona-Infektion als Dienstunfall, Juni 2024 (Az. nicht öffentlich vollständig)<br>
+  Gesetze Bayern: Disziplinarverfahren Nichtbefolgung 3G, BECKRS-B-2023-N-9901<br>
+  Verfassungsblog: „Die Beamtenschaft zwischen Courage und Pflicht", Mai 2024<br>
+  dbb: Lexikonartikel Remonstrationspflicht / Disziplinarverfahren — dbb.de<br>
+  BLLV: Meinungsfreiheit und Beamtenstatus, Mai 2021 — bllv.de<br>
+  Bundestag hib/STO: Verdacht der Mitgliedschaft in terroristischer Vereinigung, Mai 2023<br>
+  Epoch Times: Interview Björn Lars Oberndorf, November 2023<br>
+  klartext-rheinmain.de: „Disziplinierte Polizisten?", November 2025<br>
+  <br>
+  <span style="color:#3f3f46">dunkelfeld.report — Alle Angaben mit Primärquellen belegt. Keine Motive, keine Schlussfolgerungen. Fakten in Juxtaposition.</span>
+</footer>
+
+</body>
+</html>

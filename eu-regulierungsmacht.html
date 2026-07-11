@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recht ohne Demos | dunkelfeld.report</title>
+<meta name="description" content="Die EU-Kommission setzt Recht, das Konzerne mit bis zu 20% ihres Weltjahresumsatzes belegen kann — ohne gewähltes Initiativrecht, ohne souveränes Staatsvolk. Eine Strukturanalyse.">
+<meta name="keywords" content="EU Kommission, DMA, DSA, DSGVO, Gatekeeper, Regulierung, demokratische Legitimation, Bußgelder, Apple, Meta, Google, Musk">
+<style>
+  :root {
+    --bg: #09090b;
+    --bg-card: #111113;
+    --bg-source: #1a1a2e;
+    --amber: #e8c547;
+    --amber-dim: #b8982f;
+    --text: #e2e2e5;
+    --text-muted: #888890;
+    --text-dim: #555560;
+    --border: #2a2a35;
+    --green: #27ae60;
+    --red: #c0392b;
+    --orange: #d35400;
+    --blue-dim: #1a3a5c;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.85;
+  }
+
+  .site-nav {
+    background: #0d0d10;
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-brand {
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    color: var(--amber);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+  }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--amber); }
+
+  .wrapper { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .hero {
+    padding: 4rem 0 2.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+  .article-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+  .series-badge {
+    display: inline-block;
+    background: #1a1a2e;
+    border: 1px solid var(--amber-dim);
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--amber-dim);
+    padding: 0.25rem 0.6rem;
+    margin-bottom: 1rem;
+  }
+  .hero h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  .hero h1 span { color: var(--amber); }
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  .meta-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+  .meta-row span { color: var(--amber-dim); }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+  .stat-card {
+    background: var(--bg-card);
+    padding: 1.4rem 1.2rem;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--amber);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+  }
+  .divider-amber { border-color: var(--amber-dim); opacity: 0.35; }
+
+  h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 2.8rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--amber);
+    margin-top: 2rem;
+    margin-bottom: 0.7rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.04em;
+  }
+  p { padding-bottom: 1.2rem; }
+
+  .source-box {
+    background: var(--bg-source);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .source-box strong {
+    color: var(--amber);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+  }
+  .tag-belegt { background: var(--green); color: #fff; }
+  .tag-offen { background: var(--orange); color: #fff; }
+  .tag-extrapolation { background: #555; color: #ddd; }
+
+  /* STRAFEN-KARTE */
+  .fine-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--red);
+    margin-bottom: 1.2rem;
+    padding: 1.1rem 1.3rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: start;
+  }
+  .fine-name {
+    font-weight: 700;
+    color: #fff;
+    font-size: 1rem;
+  }
+  .fine-basis {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+  }
+  .fine-detail {
+    font-size: 0.9rem;
+    color: var(--text);
+    margin-top: 0.5rem;
+    line-height: 1.55;
+    padding-bottom: 0;
+  }
+  .fine-amount {
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--amber);
+    white-space: nowrap;
+    text-align: right;
+  }
+  .fine-max {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--red);
+    display: block;
+    text-align: right;
+    margin-top: 0.2rem;
+  }
+
+  /* MACHTSTRUKTUR-TABELLE */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0 2rem;
+    font-size: 0.88rem;
+  }
+  .data-table th {
+    background: #1a1a2e;
+    color: var(--amber);
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.7rem 0.9rem;
+    text-align: left;
+    border-bottom: 1px solid var(--amber-dim);
+  }
+  .data-table td {
+    padding: 0.75rem 0.9rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .data-table tr:hover td { background: #111118; }
+
+  /* GATEKEEPER LISTE */
+  .gatekeeper-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 1.5rem 0;
+  }
+  .gk-item {
+    background: var(--bg-card);
+    padding: 1rem 1.1rem;
+  }
+  .gk-name {
+    font-weight: 700;
+    color: #fff;
+    font-size: 0.95rem;
+  }
+  .gk-origin {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    margin-top: 0.3rem;
+  }
+  .gk-us { color: #e07070; }
+  .gk-cn { color: #e0a070; }
+  .gk-eu { color: #70e070; }
+  .gk-services {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+    line-height: 1.4;
+  }
+
+  .quote-block {
+    border-left: 3px solid var(--amber-dim);
+    padding: 1rem 1.4rem;
+    margin: 1.5rem 0;
+    background: #0e0e18;
+  }
+  .quote-block p {
+    font-style: italic;
+    color: var(--text);
+    font-size: 1rem;
+    padding-bottom: 0.4rem;
+  }
+  .quote-attr {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    display: block;
+  }
+
+  /* DREI-EBENEN-STRUKTUR */
+  .layer-block {
+    border: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  .layer-header {
+    background: #14141e;
+    padding: 0.8rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .layer-num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--amber);
+    min-width: 2rem;
+  }
+  .layer-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .layer-body {
+    padding: 1.1rem 1.3rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .layer-body p { padding-bottom: 0.7rem; }
+  .layer-body p:last-child { padding-bottom: 0; }
+
+  .closing {
+    margin: 3rem 0;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber-dim);
+    background: #0e0e15;
+  }
+  .closing p {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    padding-bottom: 0.8rem;
+  }
+  .closing p:last-child { padding-bottom: 0; }
+
+  .method-note {
+    background: #0f0f18;
+    border: 1px solid var(--border);
+    padding: 1.2rem 1.4rem;
+    margin: 2rem 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .related {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+  }
+  .related-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--amber-dim);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .related a {
+    display: block;
+    color: var(--amber);
+    text-decoration: none;
+    font-size: 0.92rem;
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+  }
+  .related a:hover { text-decoration: underline; }
+
+  .site-footer {
+    background: #0d0d10;
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 1.5rem;
+    margin-top: 5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+  .site-footer a { color: var(--amber-dim); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 2.5rem 0 2rem; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .nav-links { display: none; }
+    .fine-card { grid-template-columns: 1fr; }
+    .fine-amount { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="/" class="nav-brand">dunkelfeld.report</a>
+  <ul class="nav-links">
+    <li><a href="/ns-kontinuitaet.html">Teil I</a></li>
+    <li><a href="/verfassung-erosion.html">Teil II</a></li>
+    <li><a href="/impressum.html">Impressum</a></li>
+  </ul>
+</nav>
+
+<main class="wrapper">
+
+  <header class="hero">
+    <span class="series-badge">Teil III von III · Institutionelle Kontinuität</span>
+    <span class="article-label">Analyse · EU-Regulierungsmacht · Digitalrecht</span>
+    <h1>Recht ohne Demos — <span>Wie die EU-Kommission ohne demokratische Legitimation globale Konzerne reguliert</span></h1>
+    <p class="hero-subtitle">Eine Institution ohne gewähltes Initiativrecht setzt Recht, das Unternehmen mit bis zu 20 % ihres Weltjahresumsatzes belegen kann. Wer steht auf der Zielliste — und wer nicht? Eine Strukturanalyse auf Basis von EU-Verordnungen, Kommissionsentscheidungen und BVerfG-Urteil.</p>
+    <div class="meta-row">
+      <span>Juni 2026</span>
+      <span>Lesedauer: ca. 12 Minuten</span>
+      <span>Quellen: DMA · DSA · DSGVO · Kommissionsentscheidungen · BVerfG</span>
+    </div>
+  </header>
+
+  <!-- STAT GRID -->
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-number">20 %</span>
+      <span class="stat-label">maximales Bußgeld des DMA: des weltweiten Jahresumsatzes bei Wiederholungsverstoß</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">7,1 Mrd.</span>
+      <span class="stat-label">Euro DSGVO-Bußgelder gegen Meta seit 2018 — ein Unternehmen</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">6 / 7</span>
+      <span class="stat-label">Gatekeeper-Unternehmen mit Hauptsitz außerhalb der EU (USA / China)</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">0</span>
+      <span class="stat-label">europäische Tech-Konzerne auf der Gatekeeper-Liste (Spotify, SAP: nicht drauf)</span>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>Quellen zu den Kennzahlen</strong>
+    DMA Art. 26 Abs. 1 (Bußgeldrahmen 10/20 %, EUR-Lex) · DSGVO-Bußgeldstatistik Meta (gisma.com, Oktober 2024) · EU-Kommission: Gatekeeper-Designation-Portal (digital-markets-act.ec.europa.eu) · Bruegel: „Which platforms will be caught by the DMA?" (Mariniello/Martins, 2021)
+  </div>
+
+  <hr class="divider">
+
+  <h2>1. Wer die Kommission ermächtigt — und wer sie nicht kontrolliert</h2>
+
+  <p>Die EU-Kommission ist das einzige Organ der Europäischen Union mit dem Recht, Gesetzentwürfe einzubringen. Kein gewähltes Parlament — weder das Europäische noch ein nationales — kann dieses Initiativmonopol brechen.</p>
+
+  <div class="layer-block">
+    <div class="layer-header">
+      <span class="layer-num">01</span>
+      <span class="layer-title">Das Initiativmonopol</span>
+    </div>
+    <div class="layer-body">
+      <p>Artikel 17 Abs. 2 EUV: „Gesetzgebungsakte der Union können nur auf Vorschlag der Kommission erlassen werden." Das Europäische Parlament kann die Kommission auffordern, einen Entwurf vorzulegen — aber nicht erzwingen. <span class="tag tag-belegt">BELEGT</span></p>
+      <p>Max-Planck-Institut für Gesellschaftsforschung (2024): „Das Europäische Parlament hat kein Gesetzesinitiativrecht, dies liegt allein bei der Kommission. Auch das Budgetrecht — das Königsrecht der Parlamente — fehlt ihm." <span class="tag tag-belegt">BELEGT</span></p>
+    </div>
+  </div>
+
+  <div class="layer-block">
+    <div class="layer-header">
+      <span class="layer-num">02</span>
+      <span class="layer-title">Die Ernennung</span>
+    </div>
+    <div class="layer-body">
+      <p>Kommissare werden von nationalen Regierungen nominiert und vom Europäischen Rat mit qualifizierter Mehrheit bestätigt. Das Europäische Parlament stimmt über die Kommission als Kollegium ab — kann aber keine Einzelkandidaten ablehnen. <span class="tag tag-belegt">BELEGT</span></p>
+      <p>Das BVerfG stellt in seinem Lissabon-Urteil fest: Das Europäische Parlament ist „kein Repräsentationsorgan eines souveränen europäischen Volkes". Es gibt kein europäisches Volk, in dessen Namen die Kommission handelt. <span class="tag tag-belegt">BELEGT</span></p>
+    </div>
+  </div>
+
+  <div class="layer-block">
+    <div class="layer-header">
+      <span class="layer-num">03</span>
+      <span class="layer-title">Die Durchsetzungsmacht</span>
+    </div>
+    <div class="layer-body">
+      <p>Die Kommission ist im Bereich DMA die <em>alleinige</em> Durchsetzungsbehörde. Sie entscheidet, wer als Gatekeeper eingestuft wird, welche Verstöße verfolgt werden, und welche Höhe das Bußgeld annimmt — innerhalb des gesetzlichen Rahmens, aber ohne gerichtliche Vorkontrolle. <span class="tag tag-belegt">BELEGT</span></p>
+      <p>Die Kommission kann bei „systematischer Verletzung" zusätzlich nicht-finanzielle Maßnahmen verhängen — darunter die Veräußerung von Unternehmensteilen oder ein Fusionsverbot. Das ist strukturelle Einflussnahme auf Eigentumsverhältnisse. <span class="tag tag-belegt">BELEGT</span></p>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>Primärquellen</strong>
+    Art. 17 Abs. 2 EUV (Initiativmonopol) · Art. 26 DMA (Bußgeldrahmen, EUR-Lex: eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32022R1925) · BVerfG 2 BvE 2/08 Rn. 280 (kein souveränes europäisches Volk) · Max-Planck-Institut für Gesellschaftsforschung: „Ist die Europäische Union demokratisch genug?" (mpifg.de, 2024)
+  </div>
+
+  <hr class="divider">
+
+  <h2>2. Die Strafarchitektur: Was die EU verhängen kann</h2>
+
+  <p>Drei Regelwerke bauen aufeinander auf und schaffen zusammen eine Strafarchitektur, die in ihrer Maximalhöhe die Existenz von Unternehmen gefährden kann:</p>
+
+  <div class="fine-card">
+    <div>
+      <div class="fine-name">DSGVO — Datenschutz-Grundverordnung</div>
+      <div class="fine-basis">In Kraft seit 2018 · Art. 83 DSGVO</div>
+      <p class="fine-detail">Bis zu 4 % des weltweiten Jahresumsatzes oder 20 Mio. Euro — je nachdem, was höher ist. Meta hat seit 2018 insgesamt 7,1 Milliarden Euro an DSGVO-Bußgeldern gezahlt, allein in der EU.</p>
+    </div>
+    <div>
+      <div class="fine-amount">4 % Umsatz</div>
+      <span class="fine-max">Max. pro Verstoß</span>
+    </div>
+  </div>
+
+  <div class="fine-card">
+    <div>
+      <div class="fine-name">DSA — Digital Services Act</div>
+      <div class="fine-basis">In Kraft seit 2022/2024 · Art. 74 DSA</div>
+      <p class="fine-detail">Bis zu 6 % des weltweiten Jahresumsatzes. Gegen X (Twitter) wurden bereits 120 Millionen Euro wegen DSA-Verstößen verhängt. Bei wiederholten Verstößen: temporäres Plattformverbot möglich.</p>
+    </div>
+    <div>
+      <div class="fine-amount">6 % Umsatz</div>
+      <span class="fine-max">+ Sperrung möglich</span>
+    </div>
+  </div>
+
+  <div class="fine-card">
+    <div>
+      <div class="fine-name">DMA — Digital Markets Act</div>
+      <div class="fine-basis">In Kraft seit 2023 · Art. 26 DMA</div>
+      <p class="fine-detail">Bis zu 10 % des weltweiten Jahresumsatzes (Erstverstoß), bis zu 20 % bei Wiederholung. Bei „systematischer Verletzung": Veräußerung von Unternehmensteilen, Fusionsverbot, strukturelle Auflagen. April 2025: Apple 500 Mio. €, Meta 200 Mio. € — erste DMA-Strafen überhaupt, bewusst klein gehalten.</p>
+    </div>
+    <div>
+      <div class="fine-amount">20 % Umsatz</div>
+      <span class="fine-max">+ Zerschlagung möglich</span>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>Zum Verhältnis Strafe / Umsatz</strong>
+    The Pioneer (April 2025): Die April-2025-Strafen gegen Apple (500 Mio. €) und Meta (200 Mio. €) entsprechen rund 0,1 % der jeweiligen Jahresumsätze. Apple-Umsatz 2024: 391 Mrd. USD. Meta-Umsatz 2024: 164,5 Mrd. USD. Das gesetzlich mögliche Maximum (20 %) läge bei Apple bei 78 Mrd. USD — mehr als das Doppelte des deutschen Bundeshaushalts für Soziales. Quelle: The Pioneer, 23. April 2025; Meta SEC-Filing (Form 8-K FY2025); Apple Annual Report 2024.
+  </div>
+
+  <hr class="divider">
+
+  <h2>3. Die Zielliste: Wer Gatekeeper ist — und wer nicht</h2>
+
+  <p>Die Kommission entscheidet selbst, welche Unternehmen als Gatekeeper eingestuft werden. Die Kriterien sind formell objektiv — aber die Grenzziehung hat Spielraum. Das Ergebnis ist dokumentiert:</p>
+
+  <div class="gatekeeper-grid">
+    <div class="gk-item">
+      <div class="gk-name">Alphabet (Google)</div>
+      <div class="gk-origin gk-us">🇺🇸 USA</div>
+      <div class="gk-services">Search, Maps, Play, YouTube, Android, Ads, Chrome</div>
+    </div>
+    <div class="gk-item">
+      <div class="gk-name">Apple</div>
+      <div class="gk-origin gk-us">🇺🇸 USA</div>
+      <div class="gk-services">App Store, iOS, Safari, iPadOS</div>
+    </div>
+    <div class="gk-item">
+      <div class="gk-name">Meta</div>
+      <div class="gk-origin gk-us">🇺🇸 USA</div>
+      <div class="gk-services">Facebook, Instagram, WhatsApp, Messenger</div>
+    </div>
+    <div class="gk-item">
+      <div class="gk-name">Amazon</div>
+      <div class="gk-origin gk-us">🇺🇸 USA</div>
+      <div class="gk-services">Marketplace, Advertising</div>
+    </div>
+    <div class="gk-item">
+      <div class="gk-name">Microsoft</div>
+      <div class="gk-origin gk-us">🇺🇸 USA</div>
+      <div class="gk-services">LinkedIn, Windows PC OS, Teams</div>
+    </div>
+    <div class="gk-item">
+      <div class="gk-name">ByteDance (TikTok)</div>
+      <div class="gk-origin gk-cn">🇨🇳 China</div>
+      <div class="gk-services">TikTok</div>
+    </div>
+    <div class="gk-item">
+      <div class="gk-name">Booking.com</div>
+      <div class="gk-origin gk-us">🇺🇸 USA (HQ Amsterdam)</div>
+      <div class="gk-services">Online-Vermittlungsdienst</div>
+    </div>
+  </div>
+
+  <p style="font-family:'Courier New',monospace;font-size:0.82rem;color:var(--text-muted);margin-top:-1rem;padding-bottom:1.5rem;">Stand: Mai 2025 · Quelle: EU-Kommission, digital-markets-act.ec.europa.eu</p>
+
+  <p>Kein einziges Unternehmen mit Hauptsitz in einem EU-Mitgliedsstaat steht auf der Liste. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Zum Vergleich: Spotify (Schweden, 250+ Mio. Nutzer in der EU) und SAP (Deutschland, dominante ERP-Plattform für Unternehmenskunden) wurden nicht als Gatekeeper eingestuft. Die Kommission begründete dies mit dem Kriterienkatalog des DMA — demnach sind Musik-Streaming und Enterprise-Software keine „zentralen Plattformdienste" im Sinne des Gesetzes. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <strong>Zur Abgrenzungsfrage</strong>
+    Bruegel (Mariniello/Martins, 2021): „Netflix und Spotify sind ausgeschlossen, weil sie keine zentralen Plattformdienste im DMA-Sinne anbieten." Die Entscheidung darüber, welche Dienste als „zentrale Plattformdienste" gelten, trifft die Kommission selbst — per Delegiertem Rechtsakt, ohne obligatorische parlamentarische Zustimmung. Art. 2 Nr. 2 DMA (Definition CPS) · Bruegel: „Which platforms will be caught by the DMA?" (December 2021)
+  </div>
+
+  <hr class="divider divider-amber">
+
+  <h2>4. Das Strukturmuster — drei Ebenen nebeneinandergestellt</h2>
+
+  <p>Ohne Motiv-Zuschreibung: Was ist belegbar, was offen?</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Beobachtung</th>
+        <th>Status</th>
+        <th>Quelle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Die Kommission hat das alleinige Gesetzesinitiativrecht — kein Parlament kann sie zur Initiative zwingen</td>
+        <td><span class="tag tag-belegt" style="margin:0">BELEGT</span></td>
+        <td>Art. 17 Abs. 2 EUV</td>
+      </tr>
+      <tr>
+        <td>Das BVerfG stellt fest: Es gibt kein souveränes europäisches Volk, von dem diese Macht ausgeht</td>
+        <td><span class="tag tag-belegt" style="margin:0">BELEGT</span></td>
+        <td>BVerfG 2 BvE 2/08 Rn. 280</td>
+      </tr>
+      <tr>
+        <td>Alle 6 ursprünglichen Gatekeeper haben ihren Hauptsitz in den USA oder China — kein EU-Konzern</td>
+        <td><span class="tag tag-belegt" style="margin:0">BELEGT</span></td>
+        <td>Kommissions-Designation 2023</td>
+      </tr>
+      <tr>
+        <td>Die verhängten Strafen liegen bisher bei ~0,1 % des möglichen Maximums — das Maximum bleibt als Drohkulisse erhalten</td>
+        <td><span class="tag tag-belegt" style="margin:0">BELEGT</span></td>
+        <td>The Pioneer, April 2025</td>
+      </tr>
+      <tr>
+        <td>Die Kommission kann bei „systematischer Verletzung" Unternehmenszerschlagungen anordnen — ohne Gerichtsurteil</td>
+        <td><span class="tag tag-belegt" style="margin:0">BELEGT</span></td>
+        <td>Art. 26 Abs. 4 DMA</td>
+      </tr>
+      <tr>
+        <td>Ob die Gatekeeper-Kriterien bewusst so definiert wurden, dass EU-Unternehmen ausgeschlossen bleiben</td>
+        <td><span class="tag tag-offen" style="margin:0">OFFEN</span></td>
+        <td>Keine belastbaren Dokumente</td>
+      </tr>
+      <tr>
+        <td>Ob kleine Strafen als strategisches Instrument zur dauerhaften Compliance-Abhängigkeit eingesetzt werden</td>
+        <td><span class="tag tag-offen" style="margin:0">OFFEN</span></td>
+        <td>Strukturell plausibel, nicht belegbar</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="divider">
+
+  <h2>5. Der Kontext: Wer profitiert strukturell?</h2>
+
+  <p>Eine Beobachtung, die für sich steht:</p>
+
+  <p>Europa hat keine global konkurrenzfähigen Suchmaschinen, sozialen Netzwerke, Betriebssysteme oder App-Stores. Die Regulierung trifft ausschließlich die Anbieter, die diese Infrastruktur bereitstellen — und zwingt diese, ihre Plattformen für Drittanbieter zu öffnen. Europäische Unternehmen, die diese geöffneten Strukturen nutzen wollen, profitieren von der Regulierung, ohne ihr zu unterliegen.</p>
+
+  <p>Das ist keine versteckte Agenda — es ist das erklärte Ziel des DMA: „fairen Wettbewerb sicherstellen" und „Bestreitbarkeit digitaler Märkte schützen". <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Die strukturelle Frage — für die es keine belegbare Antwort gibt — lautet: Ist Regulierung, die ausschließlich Nicht-EU-Konzerne trifft und dabei eine Institution einsetzt, die das BVerfG selbst als ohne souveränes Staatsvolk beschreibt, ein Werkzeug des Verbraucherschutzes, der Industriepolitik, oder beides?</p>
+
+  <div class="quote-block">
+    <p>„Alle in der EU tätigen Unternehmen müssen unsere Gesetze befolgen und die europäischen Werte respektieren."</p>
+    <span class="quote-attr">EU-Kommissionsvizepräsidentin Teresa Ribera, April 2025 — BELEGT (Weser-Kurier, 24. April 2025)</span>
+  </div>
+
+  <div class="quote-block">
+    <p>„Die EU ist eine supranationale Organisation, die aus 27 souveränen Staaten besteht [...] Die EU ist kein Bundesstaat, sondern bleibt ein Verbund souveräner Staaten."</p>
+    <span class="quote-attr">BVerfG 2 BvE 2/08, Pressemitteilung Nr. 72/2009 — BELEGT</span>
+  </div>
+
+  <p>Diese beiden Sätze existieren gleichzeitig. Die Kommission spricht von „unseren Gesetzen" und „europäischen Werten" — das BVerfG stellt fest, dass es kein souveränes europäisches Volk gibt, das diese Werte demokratisch definiert hätte.</p>
+
+  <hr class="divider divider-amber">
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <p>Eine Institution ohne gewähltes Initiativrecht, ohne souveränes Staatsvolk — nach Definition des höchsten deutschen Gerichts — setzt Recht, das Konzerne mit bis zu 20 % ihres Weltjahresumsatzes belegen kann. Auf der Zielliste stehen ausschließlich Unternehmen aus den USA und China. Kein europäisches Tech-Unternehmen steht darauf.</p>
+    <p>Die bisherigen Strafen entsprechen 0,1 % des möglichen Maximums. Das Maximum bleibt ungenutzt — aber als Instrument erhalten.</p>
+    <p>Ob das Verbraucherschutz ist, Industriepolitik, Machtprojektion ohne demokratische Rückbindung — oder alles davon gleichzeitig — ist eine Frage, die dieser Artikel nicht beantwortet. Er dokumentiert nur, was nebeneinander existiert.</p>
+  </div>
+
+  <hr class="divider">
+
+  <h2>Quellenverzeichnis</h2>
+
+  <h3>EU-Primärrecht</h3>
+  <div class="source-box">
+    <strong>Verordnungen und Verträge</strong>
+    Art. 17 Abs. 2 EUV (Initiativmonopol Kommission) · Verordnung (EU) 2022/1925 — Digital Markets Act (EUR-Lex) · Verordnung (EU) 2022/2065 — Digital Services Act (EUR-Lex) · Verordnung (EU) 2016/679 — DSGVO (EUR-Lex) · BVerfG: Urteil 2 BvE 2/08, 30. Juni 2009, Pressemitteilung Nr. 72/2009 (bundesverfassungsgericht.de)
+  </div>
+
+  <h3>Kommissionsentscheidungen</h3>
+  <div class="source-box">
+    <strong>Offizielle Designation und Bußgeldentscheidungen</strong>
+    EU-Kommission: Gatekeeper-Designation September 2023 (digital-markets-act.ec.europa.eu) · EU-Kommission: DMA-Strafen Apple (500 Mio. €) und Meta (200 Mio. €), 23. April 2025 · EU-Kommission: DSA-Strafe X (120 Mio. €) · iwd.de: „Europäische Union nimmt ihre digitalen Gesetze ernst" (Februar 2026, gestützt auf Kommissionsdaten)
+  </div>
+
+  <h3>Wissenschaftliche Analyse</h3>
+  <div class="source-box">
+    <strong>Fachliteratur und Think Tanks</strong>
+    Mariniello / Martins (Bruegel): „Which platforms will be caught by the Digital Markets Act?" (Dezember 2021, bruegel.org) · Max-Planck-Institut für Gesellschaftsforschung: „Ist die Europäische Union demokratisch genug?" (Hoepner, 2024, mpifg.de) · Wikipedia DE: Demokratiedefizit der EU (mit Einzelnachweisen)
+  </div>
+
+  <h3>Journalistische Quellen</h3>
+  <div class="source-box">
+    <strong>Medienberichte mit Quellenangabe</strong>
+    The Pioneer: „EU: 700-Millionen-Strafe gegen Apple und Meta" (23. April 2025) — Verhältnis Strafe/Umsatz · ZDF: „Apple und Meta: EU-Kommission verhängt Millionenstrafen" (23. April 2025) · Netzpolitik.org: „Digitale Gatekeeper: Einer fehlt im Club der Großen" (September 2023) · gisma.com: DSGVO-Bußgeldstatistik Top-Unternehmen (Oktober 2024)
+  </div>
+
+  <div class="method-note">
+    <strong>Methodischer Hinweis:</strong> Dieser Artikel dokumentiert belegte Strukturen und stellt sie nebeneinander. Offene Fragen sind als <span class="tag tag-offen">OFFEN</span> gekennzeichnet. Dieser Artikel enthält kein eigenes Fazit — die Schlussfolgerung liegt beim Leser. Er ist Teil III einer dreiteiligen Dokumentationsreihe zur institutionellen Kontinuität in der europäischen Nachkriegsordnung.
+  </div>
+
+  <div class="related">
+    <span class="related-label">Diese Dokumentationsreihe</span>
+    <a href="/ns-kontinuitaet.html">Teil I — Der nahtlose Übergang: NS-Funktionäre in den Gründungsinstitutionen</a>
+    <a href="/verfassung-erosion.html">Teil II — Vom Grundgesetz zum Lissabon-Vertrag: Was übertragen wurde</a>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrapper">
+    <p><a href="/">dunkelfeld.report</a> · Analyse · Systemkritik · Quellenbasiert</p>
+    <p style="margin-top:0.5rem;">© 2026 · <a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

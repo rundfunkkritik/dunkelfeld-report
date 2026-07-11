@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der nahtlose Übergang | dunkelfeld.report</title>
+<meta name="description" content="NS-Funktionäre in den Gründungsinstitutionen der Bundesrepublik, NATO und EWG — eine Personaldokumentation auf Basis amtlicher Quellen.">
+<meta name="keywords" content="NS-Kontinuität, Globke, Hallstein, Speidel, Heusinger, Auswärtiges Amt, NATO, EWG, Bundesrepublik, Nachkriegsgeschichte">
+<style>
+  :root {
+    --bg: #09090b;
+    --bg-card: #111113;
+    --bg-source: #1a1a2e;
+    --amber: #e8c547;
+    --amber-dim: #b8982f;
+    --text: #e2e2e5;
+    --text-muted: #888890;
+    --text-dim: #555560;
+    --border: #2a2a35;
+    --red-tag: #c0392b;
+    --orange-tag: #d35400;
+    --green-tag: #27ae60;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.85;
+    padding: 0;
+  }
+
+  /* NAV */
+  .site-nav {
+    background: #0d0d10;
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-brand {
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    color: var(--amber);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--amber); }
+
+  /* WRAPPER */
+  .wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 4rem 0 2.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+  .article-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+  .hero h1 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.25;
+    color: #fff;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 span {
+    color: var(--amber);
+  }
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  .meta-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+  .meta-row span { color: var(--amber-dim); }
+
+  /* STAT GRID */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+  .stat-card {
+    background: var(--bg-card);
+    padding: 1.4rem 1.2rem;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--amber);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+  }
+  .divider-amber {
+    border-color: var(--amber-dim);
+    opacity: 0.4;
+  }
+
+  /* CONTENT */
+  h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 2.8rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--amber);
+    margin-top: 2rem;
+    margin-bottom: 0.7rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.04em;
+  }
+  p {
+    padding-bottom: 1.2rem;
+    color: var(--text);
+  }
+
+  /* PERSON CARDS */
+  .person-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    margin-bottom: 2rem;
+    overflow: hidden;
+  }
+  .person-header {
+    background: #16161f;
+    padding: 1rem 1.4rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+  }
+  .person-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .person-dates {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+  .person-body {
+    padding: 1.2rem 1.4rem;
+  }
+  .timeline-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 0.8rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #1e1e28;
+    align-items: start;
+  }
+  .timeline-row:last-child { border-bottom: none; }
+  .timeline-year {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--amber-dim);
+    font-weight: 700;
+    padding-top: 0.1rem;
+  }
+  .timeline-text {
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.6;
+    padding-bottom: 0;
+  }
+
+  /* SOURCE BOX */
+  .source-box {
+    background: var(--bg-source);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .source-box strong {
+    color: var(--amber);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  /* STATUS TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+  }
+  .tag-belegt { background: var(--green-tag); color: #fff; }
+  .tag-offen { background: var(--orange-tag); color: #fff; }
+  .tag-extrapolation { background: #555; color: #ddd; }
+
+  /* TABLE */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0 2rem;
+    font-size: 0.88rem;
+  }
+  .data-table th {
+    background: #1a1a2e;
+    color: var(--amber);
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.7rem 0.9rem;
+    text-align: left;
+    border-bottom: 1px solid var(--amber-dim);
+  }
+  .data-table td {
+    padding: 0.75rem 0.9rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .data-table tr:hover td { background: #111118; }
+
+  /* CLOSING QUESTION */
+  .closing {
+    margin: 3rem 0;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber-dim);
+    background: #0e0e15;
+  }
+  .closing p {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    padding-bottom: 0;
+  }
+
+  /* FOOTER */
+  .site-footer {
+    background: #0d0d10;
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 1.5rem;
+    margin-top: 5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+  .site-footer a { color: var(--amber-dim); text-decoration: none; }
+
+  /* METHODOLOGY NOTE */
+  .method-note {
+    background: #0f0f18;
+    border: 1px solid var(--border);
+    padding: 1.2rem 1.4rem;
+    margin: 2rem 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 2.5rem 0 2rem; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .timeline-row { grid-template-columns: 90px 1fr; }
+    .nav-links { display: none; }
+    .data-table { font-size: 0.8rem; }
+    .data-table th, .data-table td { padding: 0.5rem 0.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="/" class="nav-brand">dunkelfeld.report</a>
+  <ul class="nav-links">
+    <li><a href="/">Alle Artikel</a></li>
+    <li><a href="/impressum.html">Impressum</a></li>
+    <li><a href="/datenschutz.html">Datenschutz</a></li>
+  </ul>
+</nav>
+
+<main class="wrapper">
+
+  <header class="hero">
+    <span class="article-label">Dokumentation · Institutionelle Kontinuität · NS-Geschichte</span>
+    <h1>Der nahtlose Übergang — <span>NS-Funktionäre in den Gründungsinstitutionen</span> der Bundesrepublik, NATO und EWG</h1>
+    <p class="hero-subtitle">Eine Personaldokumentation auf Basis amtlicher Historikerkommissionen, Bundesarchiv-Quellen und parlamentarischer Anfragen. Keine Thesen — nur belegte Karriereverläufe nebeneinandergestellt.</p>
+    <div class="meta-row">
+      <span>Juni 2026</span>
+      <span>Lesedauer: ca. 14 Minuten</span>
+      <span>Primärquellen: Bundesarchiv · Historikerkommission AA · Parlamentsanfragen</span>
+    </div>
+  </header>
+
+  <!-- STAT GRID -->
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-number">49 / 75</span>
+      <span class="stat-label">Auswärtiges Amt 1952: Ministerialebene mit NSDAP-Vergangenheit</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">77,4 %</span>
+      <span class="stat-label">Verteidigungsministerium bis 1955: Stellen mit „131er"-Besetzung</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">12.360</span>
+      <span class="stat-label">von 14.900 Zeitsoldaten der Bundeswehr 1959 hatten NS-Offiziersstatus</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">39.000</span>
+      <span class="stat-label">wiedereingestellte „131er" bei Bund und Ländern 1951–1953</span>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>Quellen zu den Kennzahlen</strong>
+    Bundesregierung: Antwort auf parlamentarische Anfrage, Januar 2012 (Bundestagsdrucksache). Historikerkommission Auswärtiges Amt: „Das Amt und die Vergangenheit" (Conze/Frei/Hayes/Zimmermann, Karl Blessing Verlag 2010, 879 S.). Militärgeschichtliches Forschungsamt Bundeswehr (Heinemann-Studie). Alle Zahlen durch unabhängige Historiker verifiziert und amtlich bestätigt.
+  </div>
+
+  <hr class="divider">
+
+  <h2>1. Die systemische Grundlage: Artikel 131 Grundgesetz</h2>
+
+  <p>Den rechtlichen Rahmen für die Massenreintegration ehemaliger NS-Funktionäre schuf nicht informeller Proporz, sondern ein Bundesgesetz. Artikel 131 Grundgesetz verpflichtete den Bund, die Rechtsverhältnisse ehemaliger Beamter zu regeln, die infolge der Kriegsniederlage ihren Dienst verloren hatten.</p>
+
+  <p>Das Ergänzungsgesetz von 1951 erlaubte die Wiedereinstellung von zuvor entlassenen „Minderbelasteten". Die Gesamtzahl der von 1951 bis 1953 bei Bund und Ländern wieder eingestellten „131er" lag bei 39.000 — ohne Post und Bahn. Eine einheitliche Überprüfung auf NS-Verbrechen fand nicht statt.</p>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    Grundgesetz für die Bundesrepublik Deutschland, Art. 131 (BGBl. 1949 I S. 1). Gesetz zur Regelung der Rechtsverhältnisse der unter Art. 131 GG fallenden Personen vom 11. Mai 1951 (BGBl. I S. 307). Bundesregierung: Antwort auf parlamentarische Anfrage, Bundestagsdrucksache 17/8134, Januar 2012.
+  </div>
+
+  <hr class="divider">
+
+  <h2>2. Einzeldokumentationen — Schlüsselpersonen</h2>
+
+  <p>Die folgenden Lebensläufe basieren ausschließlich auf amtlichen Quellen: Bundesarchiv-Beständen, dem Abschlussbericht der Unabhängigen Historikerkommission Auswärtiges Amt (2010), dem Leibniz-Zentrum für Zeithistorische Forschung sowie Urteilen und Parlamentsprotokollen.</p>
+
+  <!-- GLOBKE -->
+  <div class="person-block">
+    <div class="person-header">
+      <span class="person-name">Hans Globke</span>
+      <span class="person-dates">1898–1973</span>
+    </div>
+    <div class="person-body">
+      <div class="timeline-row">
+        <span class="timeline-year">1932</span>
+        <p class="timeline-text">Als Referent im Preußischen Innenministerium erarbeitet Globke Richtlinien, nach denen Namensänderungen für Juden eingeschränkt werden sollen, damit diese „blutmäßig" kenntlich bleiben.</p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1936</span>
+        <p class="timeline-text">Gemeinsam mit SS-Obergruppenführer Wilhelm Stuckart verfasst Globke den juristischen Kommentar zu den Nürnberger Rassegesetzen. Der Kommentar schafft die Rechtsbasis für die Klassifikation und Verfolgung von Menschen nach rassistischen Kriterien. <span class="tag tag-belegt">BELEGT</span></p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1938</span>
+        <p class="timeline-text">Globke erarbeitet die Namensänderungsverordnung: Jüdische Männer werden per Gesetz gezwungen, den Zwangsnamen „Israel" zu führen, jüdische Frauen „Sara" — zur leichteren Identifizierung. <span class="tag tag-belegt">BELEGT</span></p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1939–1944</span>
+        <p class="timeline-text">Globke erarbeitet den „Kodex des jüdischen Rechts" für die Slowakei, der die Entrechtung und Enteignung der jüdischen Bevölkerung einleitet. Er ist zentrale Auskunftsperson für die Anwendung der Nürnberger Gesetze in den besetzten Gebieten.</p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1949</span>
+        <p class="timeline-text">Adenauer beruft Globke als Ministerialdirigenten ins neugeschaffene Bundeskanzleramt — trotz Kenntnis seiner NS-Vergangenheit und trotz Protesten der SPD-Opposition. <span class="tag tag-belegt">BELEGT</span></p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1951</span>
+        <p class="timeline-text">Globke veranlasst ein Gesetz, das ehemaligen NS-Beamten rückwirkend Gehaltsnachzahlungen, Pensionen und Beförderungen gewährt — so, als hätte der Krieg nicht stattgefunden.</p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1953–1963</span>
+        <p class="timeline-text">Globke wird Staatssekretär und Chef des Bundeskanzleramts — de facto der mächtigste Beamte der Bundesrepublik. Er bestimmt Personalentscheidungen in allen Ministerien, beaufsichtigt den Aufbau des Bundesnachrichtendienstes und fungiert als Hauptverbindungsmann zur CIA und zur NATO. <span class="tag tag-belegt">BELEGT</span></p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1963</span>
+        <p class="timeline-text">Das Oberste Gericht der DDR verurteilt Globke in Abwesenheit zu lebenslanger Haft. Die Bundesrepublik erkennt das Urteil nicht an. Globke verlässt das Amt mit Adenauer — ohne strafrechtliche Konsequenzen in der BRD.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>Quellen Globke</strong>
+    Lemo/HDG Bundesrepublik: Biografie Hans Globke (hdg.de). Wikipedia EN: Hans Globke (mit Einzelnachweisen). Globke-Prozess: Wikipedia DE (mit Urteilstext). Anne Frank Haus: Prozessdokumentation. Bevers, Jürgen: „Der Mann hinter Adenauer" (Berlin 2009). Bästlein, Klaus: „Der Fall Globke" (Berlin 2018). Hannah Arendt: Kommentar zum Auschwitz-Prozess (zitiert nach Blog der Republik).
+  </div>
+
+  <!-- HALLSTEIN -->
+  <div class="person-block">
+    <div class="person-header">
+      <span class="person-name">Walter Hallstein</span>
+      <span class="person-dates">1901–1982</span>
+    </div>
+    <div class="person-body">
+      <div class="timeline-row">
+        <span class="timeline-year">1930</span>
+        <p class="timeline-text">Hallstein wird mit 29 Jahren jüngster Rechtsprofessor Deutschlands — Berufung nach Rostock, Dekan ab 1936.</p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1933–1944</span>
+        <p class="timeline-text">Hallstein ist Mitglied des NS-Rechtswahrerbundes, des NS-Lehrerbundes, der Nationalsozialistischen Volkswohlfahrt, des NS-Luftschutzbundes und des NS-Dozentenbundes. Er ist kein NSDAP-Mitglied — die Pflichtmitgliedschaft in NS-Berufsorganisationen ist für Beamte jedoch Voraussetzung für die Fortsetzung der Tätigkeit. <span class="tag tag-belegt">BELEGT</span></p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1938/39</span>
+        <p class="timeline-text">Hallstein beteiligt sich an Verhandlungen zwischen NS-Deutschland und dem faschistischen Italien und setzt sich für eine vereinheitlichte europäische Rechtskultur unter deutscher Führung ein. <span class="tag tag-belegt">BELEGT</span></p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1944</span>
+        <p class="timeline-text">Die Universität Frankfurt meldet Hallstein dem NS-Dozentenbund als „NS-Führungsoffizier". Im Juli 1944 gerät er als Leutnant in Frankreich in US-Kriegsgefangenschaft.</p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1948/49</span>
+        <p class="timeline-text">Hallstein ist Gastprofessor an der Georgetown University in Washington — derselben Institution, in deren Archiv später die Dokumente zur CIA-Finanzierung der europäischen Einigungsbewegung lagern (ACUE-Records). <span class="tag tag-offen">OFFEN</span></p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1950</span>
+        <p class="timeline-text">Adenauer holt Hallstein in den außenpolitischen Apparat. Er wird leitender Beamter des Auswärtigen Amts und maßgeblicher Architekt der Westintegration.</p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1958–1967</span>
+        <p class="timeline-text">Hallstein wird erster Präsident der Kommission der Europäischen Wirtschaftsgemeinschaft (EWG). Er beschreibt sich als „eine Art europäischer Premierminister" und bezeichnet nationale Souveränität als „gestrige Doktrin". Sein erklärtes Ziel: „Dieses Endziel bleibt der europäische Bundesstaat." <span class="tag tag-belegt">BELEGT</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>Quellen Hallstein</strong>
+    Konrad-Adenauer-Stiftung: Biografie Walter Hallstein (kas.de). Bundesarchiv: Personalakten (BArch NWH N1266). Sehepunkte: Rezension Schönwald-Biografie (2019). Hallstein: „Der unvollendete Bundesstaat" (Econ 1969) — Selbstzitat Endziel Bundesstaat. Columbia-University-Rede 1963 (Bayerische Staatsbibliothek). bonndoc.ulb.uni-bonn.de: Europäische Integration aus historischer Erfahrung.
+  </div>
+
+  <!-- SPEIDEL -->
+  <div class="person-block">
+    <div class="person-header">
+      <span class="person-name">Hans Speidel</span>
+      <span class="person-dates">1897–1984</span>
+    </div>
+    <div class="person-body">
+      <div class="timeline-row">
+        <span class="timeline-year">1940–1942</span>
+        <p class="timeline-text">Speidel ist Chef des Kommandostabs des deutschen Militärbefehlshabers in Paris. In dieser Funktion wird er für die Deportation von Pariser Juden und Geiselerschießungen mitverantwortlich gemacht. Die Deportationsberichte gehen über seinen Schreibtisch. <span class="tag tag-belegt">BELEGT</span></p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1944</span>
+        <p class="timeline-text">Als Generalstabschef der Heeresgruppe B unter Rommel beteiligt sich Speidel am Attentat vom 20. Juli 1944. Nach dessen Scheitern wird er von der Gestapo verhaftet, überlebt jedoch den Krieg.</p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1955</span>
+        <p class="timeline-text">Speidel wird — entgegen den Empfehlungen des Personalgutachterausschusses — als General in die neue Bundeswehr übernommen. Die Bundesregierung übergeht das Gutachten. <span class="tag tag-belegt">BELEGT</span></p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1957–1963</span>
+        <p class="timeline-text">Speidel wird NATO-Oberbefehlshaber der alliierten Landstreitkräfte in Mitteleuropa — höchste militärische NATO-Führungsposition für Deutschland. Sein Hauptquartier: Schloss Fontainebleau. <span class="tag tag-belegt">BELEGT</span></p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1963</span>
+        <p class="timeline-text">De Gaulle erzwingt Speidels Abberufung. Der französische Präsident verweist explizit auf Speidels Rolle bei der Bekämpfung des französischen Widerstands und den Deportationen. <span class="tag tag-belegt">BELEGT</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>Quellen Speidel</strong>
+    Deutsche Biographie: Speidel, Hans (deutsche-biographie.de). Zeitgeschichte-Online: „Auftrag: Forschung" (Speidel-Abschnitt). Wikipedia EN: Hans Speidel (mit Quellenangaben). Lemo/HDG: Biografie Hans Speidel. Der Spiegel: Schnez-Truppe-Dokumentation (2014, gestützt auf BND-Akten). Zentrum für Militärgeschichte und Sozialwissenschaften der Bundeswehr.
+  </div>
+
+  <!-- HEUSINGER -->
+  <div class="person-block">
+    <div class="person-header">
+      <span class="person-name">Adolf Heusinger</span>
+      <span class="person-dates">1897–1982</span>
+    </div>
+    <div class="person-body">
+      <div class="timeline-row">
+        <span class="timeline-year">1940–1944</span>
+        <p class="timeline-text">Heusinger ist im Oberkommando des Heeres (OKH) zuständig für die Koordinierung der sogenannten „Partisanenbekämpfung" in den besetzten Gebieten — eine Tätigkeit, die mit Massenerschießungen von Zivilisten verbunden ist. <span class="tag tag-belegt">BELEGT</span></p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">20. Juli 1944</span>
+        <p class="timeline-text">Heusinger steht unmittelbar neben Hitler, als die Bombe explodiert. Er wird verletzt und überlebt.</p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1957</span>
+        <p class="timeline-text">Heusinger wird erster Generalinspekteur der Bundeswehr — höchster militärischer Dienstgrad der neuen deutschen Armee. <span class="tag tag-belegt">BELEGT</span></p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1961–1964</span>
+        <p class="timeline-text">Heusinger wird Vorsitzender des NATO-Militärausschusses in Washington — der höchste militärische Posten der Allianz. Zeitgleich läuft in der UdSSR ein Haftbefehl gegen ihn wegen Kriegsverbrechen. <span class="tag tag-belegt">BELEGT</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>Quellen Heusinger</strong>
+    Zeitgeschichte-Online: „Auftrag: Forschung" — Heusinger-Abschnitt. Militärgeschichtliches Forschungsamt der Bundeswehr. Bundesarchiv: Personalakten Wehrmacht und Bundeswehr. Der Freitag: „Standhaft ignoriert" (Förster, 2012).
+  </div>
+
+  <!-- OBERLÄNDER -->
+  <div class="person-block">
+    <div class="person-header">
+      <span class="person-name">Theodor Oberländer</span>
+      <span class="person-dates">1905–1998</span>
+    </div>
+    <div class="person-body">
+      <div class="timeline-row">
+        <span class="timeline-year">1923</span>
+        <p class="timeline-text">Als Student beteiligt sich Oberländer am Hitler-Ludendorff-Putsch in München. <span class="tag tag-belegt">BELEGT</span></p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1933</span>
+        <p class="timeline-text">Oberländer tritt in die NSDAP ein. Er wird Professor und 1941 Dekan der Karls-Universität Prag. <span class="tag tag-belegt">BELEGT</span></p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1941</span>
+        <p class="timeline-text">Oberländer kommandiert eine Einheit, die nach dem Einmarsch in Lemberg (Lwiw) eingesetzt wird. Journalisten und DDR-Gerichte werfen ihm später vor, an Massakern an der jüdischen Bevölkerung beteiligt gewesen zu sein. Bundesrepublikanische Verfahren werden mangels Tatverdacht eingestellt. <span class="tag tag-offen">OFFEN</span></p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1953–1960</span>
+        <p class="timeline-text">Oberländer ist Bundesminister für Vertriebene, Flüchtlinge und Kriegsgeschädigte unter Adenauer — als NSDAP-Mitglied und Hitler-Putschist im Kabinett der jungen Demokratie. <span class="tag tag-belegt">BELEGT</span></p>
+      </div>
+      <div class="timeline-row">
+        <span class="timeline-year">1960</span>
+        <p class="timeline-text">Oberländer tritt zurück — als erster Bundesminister, der wegen seiner NS-Vergangenheit das Amt verlässt. Auslöser ist nicht ein Gericht, sondern politischer Druck seiner eigenen Partei. <span class="tag tag-belegt">BELEGT</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <strong>Quellen Oberländer</strong>
+    Lemo/HDG: Biografie Theodor Oberländer (hdg.de). Blätter für deutsche und internationale Politik: „So war das mit Herrn Oberländer" (2004). Spiegel-Archiv: Berichterstattung 1959/1960. Bundestag-Protokolle: Debatten über Ministerrücktritt Mai 1960.
+  </div>
+
+  <hr class="divider divider-amber">
+
+  <h2>3. Die institutionelle Ebene: Das Auswärtige Amt</h2>
+
+  <p>Der systematisch am besten dokumentierte Fall ist das Auswärtige Amt — weil hier eine unabhängige, international besetzte Historikerkommission im Auftrag des Außenministers sechs Jahre lang in 30 Archiven geforscht hat.</p>
+
+  <p>Das Ergebnis, 2010 veröffentlicht: <em>„Das Amt und die Vergangenheit"</em> (Conze / Frei / Hayes / Zimmermann, Karl Blessing Verlag, 879 Seiten).</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Zeitpunkt</th>
+        <th>Befund</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1943</td>
+        <td>573 von 703 Angehörigen des höheren Dienstes im AA sind NSDAP-Mitglieder (81,5 %)</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>März 1952</td>
+        <td>49 von 75 Ministerialebenen-Angehörigen (Direktoren, Dirigenten, Referatsleiter) des wiedergegründeten AA sind ehemalige NSDAP-Mitglieder (65 %)</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>1951–1955</td>
+        <td>Diplomaten, die im Widerstand tätig waren (z. B. Fritz Kolbe), werden als „Verräter" abgelehnt. NS-Belastete werden bevorzugt eingestellt.</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>2010</td>
+        <td>Außenminister Westerwelle bei Übergabe des Berichts: Das AA habe „noch jahrzehntelang ein Geschichtsbild gepflegt, das diese Vergangenheit ausblendete und das AA zum Hort des Widerstands gegen das Regime umdeutete".</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="source-box">
+    <strong>Primärquelle</strong>
+    Conze / Frei / Hayes / Zimmermann: „Das Amt und die Vergangenheit. Deutsche Diplomaten im Dritten Reich und in der Bundesrepublik" (Karl Blessing Verlag, München 2010). Auswärtiges Amt: Offizielle Seite zur Unabhängigen Historikerkommission (auswaertiges-amt.de). Tagesspiegel: Rezension 27. Oktober 2010 (Piper). Das Parlament: Langzeitanalyse (das-parlament.de).
+  </div>
+
+  <hr class="divider">
+
+  <h2>4. Gesamtübersicht: Fünf Institutionen — ein Muster</h2>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Person / Institution</th>
+        <th>NS-Funktion / Belastung</th>
+        <th>Nachkriegsposition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Hans Globke</strong></td>
+        <td>Kommentar Nürnberger Rassegesetze, Zwangsnamen, Kodex Slowakei</td>
+        <td>Chef Bundeskanzleramt, CIA-Verbindungsmann, NATO-Liaison 1953–63</td>
+      </tr>
+      <tr>
+        <td><strong>Walter Hallstein</strong></td>
+        <td>5 NS-Organisationen, NS-Führungsoffizier gemeldet, europ. Rechtsharmonisierung unter dt. Führung 1938/39</td>
+        <td>Erster EWG-Kommissionspräsident 1958–67</td>
+      </tr>
+      <tr>
+        <td><strong>Hans Speidel</strong></td>
+        <td>Mitverantwortung Deportationen Paris, Geiselerschießungen 1940–42</td>
+        <td>NATO-Oberbefehlshaber Mitteleuropa 1957–63</td>
+      </tr>
+      <tr>
+        <td><strong>Adolf Heusinger</strong></td>
+        <td>Koordinierung „Partisanenbekämpfung" OKH 1940–44</td>
+        <td>1. Generalinspekteur Bundeswehr; Vorsitzender NATO-Militärausschuss 1961–64</td>
+      </tr>
+      <tr>
+        <td><strong>Theodor Oberländer</strong></td>
+        <td>Hitler-Putsch 1923, NSDAP ab 1933, Vorwürfe Lemberg 1941</td>
+        <td>Bundesminister 1953–60</td>
+      </tr>
+      <tr>
+        <td><strong>Auswärtiges Amt</strong></td>
+        <td>„Verbrecherische Organisation" (Historikerkommission 2010)</td>
+        <td>1952: 65 % der Ministerialebene NSDAP-Mitglieder</td>
+      </tr>
+      <tr>
+        <td><strong>Bundeswehr gesamt</strong></td>
+        <td>Wehrmacht-Offizierskorps</td>
+        <td>1959: 12.360 von 14.900 Zeitsoldaten mit NS-Offiziersstatus</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="method-note">
+    Alle Angaben in dieser Tabelle basieren auf amtlich bestätigten Quellen: Historikerkommissionen, Bundesarchiv, parlamentarischen Anfragen und zitierfähigen Biografien. Offene oder umstrittene Punkte sind im jeweiligen Personaleintrag als <span class="tag tag-offen">OFFEN</span> gekennzeichnet. Diese Tabelle trifft keine Aussage über Motive oder Kausalzusammenhänge — sie dokumentiert Karriereverläufe.
+  </div>
+
+  <hr class="divider">
+
+  <h2>5. Die offizielle Begründung</h2>
+
+  <p>Die westdeutsche Regierung hat die Personalentscheidungen nie bestritten — sie hat sie erklärt. Adenauers Logik, rekonstruiert aus Protokollen und Zeitzeugenberichten:</p>
+
+  <p>Ein funktionierender Staat braucht erfahrene Verwaltungsbeamte. Ein NATO-Bündnis braucht kriegserfahrene Generäle. Eine junge Demokratie kann es sich nicht leisten, den gesamten Apparat auszutauschen. Vergangenheit wird durch Loyalität zur neuen Ordnung überschrieben.</p>
+
+  <div class="source-box">
+    <strong>Wörtliche Überlieferung</strong>
+    Militärhistoriker Winfried Heinemann (Militärgeschichtliches Forschungsamt der Bundeswehr) zur Bundeswehr-Personalpolitik: „Bundeskanzler Adenauer hatte eine funktionale Sichtweise. Und die lautete: Der NATO kann ich keine 18-jährigen Generäle andienen." (Der Freitag, 2012, gestützt auf MGFA-Forschung.)
+  </div>
+
+  <p>Was diese Erklärung nicht beantwortet: Welche institutionellen Kulturen, Rechtstraditionen und Machtverständnisse diese Personen in die neu gebauten Institutionen eingebracht haben — und wie lange diese Prägungen wirksam blieben.</p>
+
+  <hr class="divider divider-amber">
+
+  <!-- CLOSING QUESTION -->
+  <div class="closing">
+    <p>Die Namen sind dokumentiert. Die Funktionen sind dokumentiert. Die zeitliche Überschneidung ist dokumentiert. Was nicht dokumentiert ist: ob die Institutionen, die diese Personen mitgeprägt haben — das Auswärtige Amt, die Bundeswehr, die EWG-Kommission, das Bundeskanzleramt —, andere Strukturen, andere Rechtsverständnisse und andere Machtkonzepte entwickelt hätten, wenn ihre Gründergeneration anders ausgesehen hätte.</p>
+    <p style="margin-top:1rem;">Diese Frage bleibt offen. Absichtlich.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SOURCES -->
+  <h2>Quellenverzeichnis</h2>
+
+  <h3>Amtliche Primärquellen</h3>
+  <div class="source-box">
+    <strong>Gesetze und Parlamentsdokumente</strong>
+    Grundgesetz Art. 131 (BGBl. 1949 I S. 1) · Gesetz zur Regelung der Rechtsverhältnisse der unter Art. 131 GG fallenden Personen (11.5.1951, BGBl. I S. 307) · Bundesregierung: Antwort auf parlamentarische Anfrage, BT-Drs. 17/8134 (Januar 2012) · DDR-Oberstesgericht: Urteil im Globke-Prozess (23.7.1963, Urteilstext in: DDR-Justiz und NS-Verbrechen, Band III)
+  </div>
+
+  <h3>Historikerkommissionen</h3>
+  <div class="source-box">
+    <strong>Wissenschaftliche Aufarbeitungen</strong>
+    Conze / Frei / Hayes / Zimmermann: „Das Amt und die Vergangenheit" (Karl Blessing Verlag, München 2010, 879 S.) · Militärgeschichtliches Forschungsamt der Bundeswehr: Studie zur Personalübernahme Wehrmacht/Bundeswehr (Heinemann) · Bundesarchiv Berlin: NSDAP-Mitgliederkartei (digital zugänglich unter bundesarchiv.de) · Institut für Zeitgeschichte München: Forschungsergebnisse zu NS-Kontinuität (ifz-muenchen.de)
+  </div>
+
+  <h3>Biografien (wissenschaftlich)</h3>
+  <div class="source-box">
+    <strong>Zitierfähige Sekundärliteratur</strong>
+    Bevers, Jürgen: „Der Mann hinter Adenauer. Hans Globkes Aufstieg vom NS-Juristen zur grauen Eminenz der Bonner Republik" (Berlin 2009) · Bästlein, Klaus: „Der Fall Globke. Propaganda und Justiz in Ost und West" (Berlin 2018) · Schönwald (Biografie Hallstein, 2018) · Krüger, Dieter: „Hans Speidel und Ernst Jünger" (Ferdinand Schöningh 2016) · Deutsche Biographie: Einträge Speidel, Heusinger (deutsche-biographie.de)
+  </div>
+
+  <h3>Journalistische Primärbelege</h3>
+  <div class="source-box">
+    <strong>Veröffentlichungen mit Archivbasis</strong>
+    Der Spiegel: Schnez-Truppe / BND-Akten (2014) · Der Freitag: „Standhaft ignoriert" (Andreas Förster, 2012) · Tagesspiegel: Rezension „Das Amt" (Ernst Piper, 27.10.2010) · Blätter für deutsche und internationale Politik: „So war das mit Herrn Oberländer" (2004) · World Socialist Web Site: „Das Auswärtige Amt im Dritten Reich" (2.11.2010) — gestützt auf Historikerkommissions-Bericht
+  </div>
+
+  <div class="method-note">
+    <strong>Methodischer Hinweis:</strong> Dieser Artikel dokumentiert belegte Sachverhalte und stellt sie nebeneinander. Er trifft keine Aussagen über Motive, Kausalzusammenhänge oder kollektive Absichten. Einträge sind als <span class="tag tag-belegt">BELEGT</span>, <span class="tag tag-extrapolation">EXTRAPOLATION</span> oder <span class="tag tag-offen">OFFEN</span> gekennzeichnet. Leser werden ausdrücklich zur Prüfung der verlinkten Primärquellen eingeladen. Ein Folgedossier dokumentiert die strukturellen Auswirkungen dieser Personalentscheidungen auf EU-Vertragsarchitektur und Verfassungsentwicklung bis 2009.
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrapper">
+    <p><a href="/">dunkelfeld.report</a> · Analyse · Systemkritik · Quellenbasiert</p>
+    <p style="margin-top:0.5rem;">© 2026 · <a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

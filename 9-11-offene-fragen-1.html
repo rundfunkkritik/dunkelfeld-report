@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>9/11 – Die Architektur der Angst | dunkelfeld.report</title>
+<meta name="description" content="Nicht wer es getan hat – sondern was es mit uns gemacht hat. Dokumentierte Anomalien, neurobiologische Wirkung von Dauerstress und das systematische Priming auf zukünftige Krisen.">
+<style>
+  :root {
+    --bg: #09090b;
+    --bg2: #111114;
+    --bg3: #1a1a2e;
+    --amber: #e8c547;
+    --amber-dim: #b89a30;
+    --text: #d4d4d8;
+    --text-dim: #71717a;
+    --red: #ef4444;
+    --green: #22c55e;
+    --yellow: #f59e0b;
+    --border: #27272a;
+    --max: 740px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.85;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(9,9,11,0.96);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--amber);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--amber); }
+
+  /* WRAPPER */
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 4rem 1.5rem 3rem;
+    max-width: var(--max);
+    margin: 0 auto;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dossier-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .dossier-label::before {
+    content: '';
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: var(--amber);
+  }
+
+  h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(1.9rem, 5vw, 2.8rem);
+    font-weight: normal;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 1.2rem;
+  }
+
+  h1 em {
+    color: var(--amber);
+    font-style: normal;
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 1.8rem;
+    font-style: italic;
+  }
+
+  .meta-bar {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border);
+  }
+  .meta-bar span { color: var(--amber); }
+
+  /* THESIS BLOCK */
+  .thesis {
+    background: var(--bg3);
+    border-left: 3px solid var(--amber);
+    padding: 1.8rem 2rem;
+    margin: 3rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .thesis p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #e4e4e7;
+    font-style: italic;
+  }
+  .thesis-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 0.8rem;
+  }
+
+  /* SECTION */
+  section { padding: 2.5rem 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+
+  h2 {
+    font-family: Georgia, serif;
+    font-size: 1.45rem;
+    font-weight: normal;
+    color: #fff;
+    margin-bottom: 1.4rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  h3 {
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: normal;
+    color: var(--amber);
+    margin: 2rem 0 0.8rem;
+  }
+
+  p { padding-bottom: 1.2rem; }
+
+  a { color: var(--amber); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* STATUS TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2em 0.6em;
+    border-radius: 2px;
+    margin-left: 0.4em;
+    vertical-align: middle;
+  }
+  .tag-b { background: rgba(34,197,94,0.15); color: var(--green); border: 1px solid rgba(34,197,94,0.3); }
+  .tag-o { background: rgba(245,158,11,0.15); color: var(--yellow); border: 1px solid rgba(245,158,11,0.3); }
+  .tag-n { background: rgba(239,68,68,0.12); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
+
+  /* ANOMALIE CARDS */
+  .anomalie-grid {
+    display: grid;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+  }
+  .anomalie-card {
+    background: var(--bg2);
+    padding: 1.4rem 1.6rem;
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+  .anomalie-card:hover { background: #16161a; }
+  .anomalie-num {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--amber);
+    padding-top: 0.15rem;
+  }
+  .anomalie-body {}
+  .anomalie-title {
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: #e4e4e7;
+    margin-bottom: 0.35rem;
+    font-family: Georgia, serif;
+  }
+  .anomalie-text {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+    padding-bottom: 0;
+  }
+  .anomalie-source {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: #52525b;
+    margin-top: 0.5rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* SOURCE BOX */
+  .source-box {
+    background: var(--bg3);
+    border-left: 3px solid var(--amber);
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 0 3px 3px 0;
+  }
+  .source-box-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber-dim);
+    margin-bottom: 0.6rem;
+  }
+  .source-box p {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    padding-bottom: 0.4rem;
+    line-height: 1.65;
+  }
+  .source-box p:last-child { padding-bottom: 0; }
+
+  /* PRIMING TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+    margin: 1.5rem 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.4rem;
+    top: 0.4rem;
+    bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+  .tl-item {
+    position: relative;
+    padding-bottom: 1.8rem;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -1.65rem;
+    top: 0.5rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--amber);
+    border: 2px solid var(--bg);
+  }
+  .tl-date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.3rem;
+  }
+  .tl-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #e4e4e7;
+    font-family: Georgia, serif;
+    margin-bottom: 0.3rem;
+  }
+  .tl-text {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+
+  /* NEURO BLOCK */
+  .neuro-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+  }
+  .neuro-card {
+    background: var(--bg2);
+    padding: 1.4rem;
+  }
+  .neuro-effect {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 0.5rem;
+  }
+  .neuro-desc {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .neuro-source {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: #52525b;
+    margin-top: 0.5rem;
+  }
+
+  /* CLOSING QUESTION */
+  .closing {
+    padding: 3rem 0 2rem;
+    text-align: center;
+  }
+  .closing-q {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--text-dim);
+    line-height: 1.8;
+    max-width: 560px;
+    margin: 0 auto;
+    padding-bottom: 0;
+  }
+  .closing-line {
+    width: 3rem;
+    height: 1px;
+    background: var(--amber);
+    margin: 1.5rem auto 1.5rem;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    margin: 2rem 0;
+  }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+  }
+  .legend-item { display: flex; align-items: center; gap: 0.4rem; color: var(--text-dim); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+  footer a { color: var(--amber-dim); }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 1.6rem; }
+    .anomalie-card { grid-template-columns: 1fr; gap: 0.3rem; }
+    .anomalie-num { padding-top: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">dunkelfeld.report</a>
+  <ul class="nav-links">
+    <li><a href="/dossiers">Dossiers</a></li>
+    <li><a href="/impressum">Impressum</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="dossier-label">Dossier — Sicherheitsarchitektur</div>
+  <h1>11. September 2001:<br><em>Die Architektur der Angst</em></h1>
+  <p class="hero-sub">
+    Nicht wer es getan hat — sondern was es mit uns gemacht hat. Dokumentierte Anomalien, die nie institutionell beantwortet wurden. Und die Frage, welche Infrastruktur auf einem kollektiv gelähmten Denken aufgebaut wurde.
+  </p>
+  <div class="meta-bar">
+    <div>Veröffentlicht: <span>Juni 2026</span></div>
+    <div>Quellen: <span>9/11-Commission-Report, NIST NCSTAR, FAA/ICAO, Senate Armed Services Committee, PubMed, Wikipedia/Carlyle</span></div>
+    <div>Status: <span>Primärquellen verifiziert</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- THESIS -->
+  <div class="thesis">
+    <div class="thesis-label">Redaktioneller Rahmen</div>
+    <p>Dieser Bericht stellt keine Täterschaft fest. Er dokumentiert zwei Dinge: Erstens Fragen, die von Fachleuten gestellt wurden und bis heute keine institutionelle Antwort haben. Zweitens die messbare psychologische und politische Wirkung eines Zustands, der nach dem 11. September systematisch aufrechterhalten wurde — und seine strukturellen Folgen bis heute.</p>
+  </div>
+
+  <!-- LEGENDE -->
+  <div class="legend">
+    <div class="legend-item"><span class="tag tag-b">BELEGT</span> Primärquellen vorhanden</div>
+    <div class="legend-item"><span class="tag tag-o">OFFEN</span> Institutionell nicht abschließend erklärt</div>
+    <div class="legend-item"><span class="tag tag-n">NICHT BELEGT</span> Nicht durch Primärquellen gestützt</div>
+  </div>
+
+  <!-- BLOCK 1: NEUROBIOLOGIE -->
+  <section>
+    <h2>I. Was Dauerstress mit Denken macht</h2>
+
+    <p>
+      Am 11. September 2001 erlebten Millionen Menschen in Echtzeit den Schock einer Massenkatastrophe — gefolgt von einer jahrelangen Dauerbeschallung mit Bedrohungsszenarien. Was das neurobiologisch auslöst, ist heute gut dokumentiert.
+    </p>
+
+    <p>
+      Chronischer Stress aktiviert dauerhaft die Amygdala — das Angstzentrum des Gehirns — und hemmt gleichzeitig den präfrontalen Kortex, der für kritisches Denken, Impulskontrolle und das Abwägen von Wahrscheinlichkeiten zuständig ist. Ein Mensch unter permanenter Bedrohungswahrnehmung denkt buchstäblich anders — schneller, einfacher, autoritätskonformer. <span class="tag tag-b">BELEGT</span>
+    </p>
+
+    <div class="neuro-grid">
+      <div class="neuro-card">
+        <div class="neuro-effect">Amygdala-Hyperaktivität</div>
+        <div class="neuro-desc">Chronische Bedrohungsreize führen zu dauerhafter Überaktivierung — der Körper unterscheidet nicht zwischen realer und medialer Gefahr.</div>
+        <div class="neuro-source">Quelle: LeDoux, J. (2000). Emotion circuits in the brain. Annual Review of Neuroscience.</div>
+      </div>
+      <div class="neuro-card">
+        <div class="neuro-effect">Präfrontaler Kortex-Hemmung</div>
+        <div class="neuro-desc">Anhaltender Stresshormon-Ausstoß (Cortisol) reduziert nachweislich die Funktion des für Urteilsvermögen zuständigen Hirnbereichs.</div>
+        <div class="neuro-source">Quelle: Arnsten, A. (2009). Stress signalling pathways that impair prefrontal cortex structure and function. Nature Reviews Neuroscience.</div>
+      </div>
+      <div class="neuro-card">
+        <div class="neuro-effect">Autoritätskonformität</div>
+        <div class="neuro-desc">Menschen unter Angst folgen Autoritäten häufiger und kritikloser — ein Muster, das in Krisensituationen politisch nutzbar ist.</div>
+        <div class="neuro-source">Quelle: Milgram, S. (1974). Obedience to Authority. Rauwald, M. (2022) — Mausfeld-Referenz.</div>
+      </div>
+      <div class="neuro-card">
+        <div class="neuro-effect">Tunnelblick</div>
+        <div class="neuro-desc">Hochstress verengt die Wahrnehmung auf die unmittelbare Bedrohung — komplexe Zusammenhänge, Widersprüche, alternative Erklärungen fallen aus dem Blickfeld.</div>
+        <div class="neuro-source">Quelle: Starcke, K. & Brand, M. (2012). Decision making under stress. Neuroscience & Biobehavioral Reviews.</div>
+      </div>
+    </div>
+
+    <p>
+      Politisch war das Ergebnis messbar: Der USA PATRIOT Act — 363 Seiten — wurde 45 Tage nach den Anschlägen verabschiedet, am selben Tag eingebracht und abgestimmt, ohne reguläre Ausschussberatung. Abgeordneter Bobby Scott sagte damals wörtlich: <em>"No one has really had an opportunity to look at the bill to see what is in it."</em> <span class="tag tag-b">BELEGT</span>
+    </p>
+
+    <div class="source-box">
+      <div class="source-box-label">Primärquelle</div>
+      <p>Electronic Frontier Foundation: <em>"Only 45 days passed between the Sept. 11, 2001 attacks and the day Bush signed the Patriot Act into law. The 363-page bill was considered on the House floor the same day it was introduced, leapfrogging over deliberation in the committees with jurisdiction."</em> (EFF, Oktober 2016)</p>
+      <p>ALA Chronologie des USA PATRIOT Act, 2001 — American Library Association.</p>
+    </div>
+  </section>
+
+  <!-- BLOCK 2: ANOMALIEN -->
+  <section>
+    <h2>II. Dokumentierte Anomalien — acht Fragen ohne institutionelle Antwort</h2>
+
+    <p>
+      Die folgenden Punkte sind keine Behauptungen über Täterschaft. Es sind Fragen, die Ingenieure, Piloten, Juristen und Parlamentarier gestellt haben — und die bis heute keine vollständige, öffentlich nachprüfbare institutionelle Antwort erhalten haben.
+    </p>
+
+    <div class="anomalie-grid">
+
+      <div class="anomalie-card">
+        <div class="anomalie-num">01</div>
+        <div class="anomalie-body">
+          <div class="anomalie-title">Piloten: Flugkompetenz vs. Ausbildungsstand <span class="tag tag-b">BELEGT</span></div>
+          <div class="anomalie-text">Mohamed Atta und Marwan al-Shehhi trainierten auf Cessna 172 und Piper Archer — Standardflugzeuge der Grundausbildung. Die FAA verlangt für das Führen einer Boeing 757/767 mindestens 500 Stunden auf vergleichbaren Großjets oder 1.000 Stunden Turbojet-Betrieb im kommerziellen Linienflug. Zacarias Moussaoui — mit 50 Flugstunden ohne Soloflug — wurde von seinem Fluglehrer sofort gemeldet, als er Simulatorzeit für Boeing 747 anfragte. Der 9/11-Commission-Report vermerkt: "Some hijackers struggled with basic maneuvers."</div>
+          <div class="anomalie-source">FAA Flight Standardization Board Report B-757/767 — ICAO Annex 1 — 9/11 Commission Report, S. 225ff.</div>
+        </div>
+      </div>
+
+      <div class="anomalie-card">
+        <div class="anomalie-num">02</div>
+        <div class="anomalie-body">
+          <div class="anomalie-title">WTC 7: Freier Fall und nicht veröffentlichte Simulationsdaten <span class="tag tag-b">BELEGT</span> <span class="tag tag-o">OFFEN</span></div>
+          <div class="anomalie-text">NIST bestätigte im eigenen Abschlussbericht 2008: WTC 7 fiel in Phase 2 "essentially in free fall" — mit vernachlässigbarem strukturellem Widerstand von unten. Im Entwurfsbericht hatte NIST freien Fall noch ausdrücklich verneint, dann die Aussage revidiert. Eine FOIA-Anfrage 2011 deckte auf: NIST hatte in seinem Simulationsmodell Trägerbreiten, Stegversteifungen, Querstützen und Schubbolzen nicht korrekt erfasst. Die Rohdaten der globalen Kollaps-Simulation wurden bis heute nicht für unabhängige Peer-Review freigegeben.</div>
+          <div class="anomalie-source">NIST NCSTAR 1A (2008) — FOIA-Ergebnis, dokumentiert in: Fire and Safety Journal Americas (2025) — Ae911truth.org, Chandler-Analyse.</div>
+        </div>
+      </div>
+
+      <div class="anomalie-card">
+        <div class="anomalie-num">03</div>
+        <div class="anomalie-body">
+          <div class="anomalie-title">Pentagon: 85 Videoaufnahmen — vier veröffentlicht <span class="tag tag-b">BELEGT</span></div>
+          <div class="anomalie-text">Das FBI konfiszierte laut eigenen Angaben 85 Videoaufnahmen aus der unmittelbaren Umgebung des Pentagon. Nach FOIA-Klage der Bürgerrechtsorganisation Judicial Watch wurden 2006 vier Videos freigegeben — davon zwei ohne direkten Blick auf den Einschlag. Fünf Einzelframes wurden 2002 zunächst geleakt; das Pentagon bestritt offiziell jede Beteiligung daran. Die vollständige Version erschien erst nach dem Moussaoui-Prozess, also nach gerichtlichem Druck. Von den verbleibenden 81 Aufnahmen wurden keine veröffentlicht.</div>
+          <div class="anomalie-source">Judicial Watch FOIA, Dez. 2004 — DoD Veröffentlichung Mai 2006 — Pentagon-Sprecherin Cheryl Irwin, Washington Post, 7. März 2002.</div>
+        </div>
+      </div>
+
+      <div class="anomalie-card">
+        <div class="anomalie-num">04</div>
+        <div class="anomalie-body">
+          <div class="anomalie-title">NORAD: Übung lief — und Verwechslung war dokumentiert <span class="tag tag-b">BELEGT</span></div>
+          <div class="anomalie-text">Am 11. September lief Vigilant Guardian — ein mehrtägiges NORAD-Kommandoübungsmanöver mit simuliertem Entführungsszenario. Als die erste Entführungsmeldung einging, sagte NEADS-Missionskommandant Kevin Nasypany wörtlich: "Somebody started the exercise early." NORAD hatte in den zwei Jahren vor 9/11 Übungen durchgeführt, in denen Flugzeuge als Waffen gegen Gebäude eingesetzt wurden — darunter ein Szenario mit dem World Trade Center als Ziel. General McKinley bestätigte dem Senate Armed Services Committee: "Scriptwriters for the drills included the idea of hijacked aircraft being used as weapons."</div>
+          <div class="anomalie-source">9/11-Commission-Report, Fn. 116 — Senate Armed Services Committee, 17.8.2004 — Vanity Fair: "9/11 Live: The NORAD Tapes", August 2006.</div>
+        </div>
+      </div>
+
+      <div class="anomalie-card">
+        <div class="anomalie-num">05</div>
+        <div class="anomalie-body">
+          <div class="anomalie-title">Shanksville: Triebwerk "at a considerable distance" — keine offizielle Spezifikation <span class="tag tag-b">BELEGT</span> <span class="tag tag-o">OFFEN</span></div>
+          <div class="anomalie-text">Pennsylvania State Police Major Lyle Szupinka bestätigte in einem öffentlichen Briefing, dass eines der Triebwerke "at a considerable distance from the crash site" gefunden wurde — ohne die Distanz zu spezifizieren. Szupinka wörtlich über die Unfallstelle: "If you were to go down there, you wouldn't know that was a plane crash. You would look around and say, I wonder what happened here?" Leichte Trümmer (Papier, Nylon) wurden bis zu 13 km entfernt gefunden — erklärt durch Windvektor. Die genaue Fundposition des Triebwerks wurde nie in einem NTSB-Primärdokument veröffentlicht.</div>
+          <div class="anomalie-source">Pittsburgh Post-Gazette, 13.9.2001 — State Police Briefing, Maj. Szupinka — Wikipedia/United Airlines Flight 93 (NTSB-Daten).</div>
+        </div>
+      </div>
+
+      <div class="anomalie-card">
+        <div class="anomalie-num">06</div>
+        <div class="anomalie-body">
+          <div class="anomalie-title">Pentagon: 2,3 Billionen Dollar und der getroffene Flügel <span class="tag tag-b">BELEGT</span> <span class="tag tag-n">KAUSALITÄT NICHT BELEGT</span></div>
+          <div class="anomalie-text">Das US-Verteidigungsministerium hatte eingeräumt, 2,3 Billionen Dollar an Transaktionen nicht nachverfolgen zu können. CBS News berichtete darüber ausführlich im Januar 2002. Der Flügel des Pentagon, der am 11. September getroffen wurde, beherbergte das Office of Naval Intelligence — jene Abteilung, die an der Finanzprüfung arbeitete. Mehrere dort tätige Analysten starben beim Einschlag. Eine kausale Verbindung ist durch keine Primärquelle belegt. Die Gleichzeitigkeit dieser zwei Fakten ist dokumentiert.</div>
+          <div class="anomalie-source">CBS News, 29.1.2002 — Reuters Fact Check, 14.9.2023 (Richtigstellung des genauen Datums) — Pentagon Victim Records.</div>
+        </div>
+      </div>
+
+      <div class="anomalie-card">
+        <div class="anomalie-num">07</div>
+        <div class="anomalie-body">
+          <div class="anomalie-title">Carlyle Group: Bush senior, Bin-Laden-Bruder — gleiche Konferenz, gleicher Tag <span class="tag tag-b">BELEGT</span></div>
+          <div class="anomalie-text">Die Jahreskonferenz der Carlyle Group fand am 11. September 2001 in Washington statt. Bestätigt durch Washington Post und The Economist: Shafiq bin Laden — Bruder von Osama — war Gast der Konferenz. George H.W. Bush, Senior Advisor der Carlyle Group, war am Vortag ebenfalls anwesend. Die Bin-Laden-Familie hatte seit 1995 in Carlyle-Fonds investiert, darunter den rüstungsorientierten Carlyle Partners II. Sie liquidierte ihre Beteiligungen im Oktober 2001. Die Carlyle Group profitierte vom folgenden Rüstungsausbau.</div>
+          <div class="anomalie-source">Wikipedia/The Carlyle Group — Washington Post, 16.3.2003 — The Economist, 26.6.2003.</div>
+        </div>
+      </div>
+
+      <div class="anomalie-card">
+        <div class="anomalie-num">08</div>
+        <div class="anomalie-body">
+          <div class="anomalie-title">PATRIOT Act: 363 Seiten — 45 Tage — kein Abgeordneter hatte ihn gelesen <span class="tag tag-b">BELEGT</span></div>
+          <div class="anomalie-text">Das Gesetz, das die weitreichendste Ausweitung staatlicher Überwachungsbefugnisse in der US-Geschichte darstellte, wurde 45 Tage nach den Anschlägen verabschiedet. Es wurde am selben Tag eingebracht und abgestimmt, ohne reguläre Ausschussberatung. Abgeordneter John Conyers sagte öffentlich: "We don't read most of the bills." Die Senatsmehrheit stimmte 98:1. Einziger Gegenstimme: Senator Russ Feingold. Der PATRIOT Act legte die rechtliche Grundlage für die NSA-Massenüberwachung, deren Ausmaß erst 2013 durch Edward Snowden bekannt wurde.</div>
+          <div class="anomalie-source">EFF, Oktober 2016 — ALA Chronologie 2001 — Congressional Record H.R. 3162 (107th Congress) — Snowden-Dokumente, Guardian/Washington Post 2013.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BLOCK 3: PRIMING -->
+  <section>
+    <h2>III. Das Priming-System: Die Chronologie der Bedrohungsszenarien</h2>
+
+    <p>
+      Bedrohungsangst endet nicht mit dem Ereignis — sie wird aufrechterhalten durch die kontinuierliche Zirkulation neuer Szenarien. Nach dem 11. September folgte eine methodische Abfolge öffentlicher Warnungen, Übungen und tatsächlicher Ereignisse, die kollektiv das Bild einer permanenten, unsichtbaren Gefahr zementierten.
+    </p>
+
+    <p>
+      Was auffällt: Einige dieser Szenarien existierten als Regierungsübungen bereits <em>vor</em> dem 11. September — und wurden danach zur Begründung neuer Kontrollmaßnahmen herangezogen.
+    </p>
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-date">Juni 2001 — 3 Monate vor 9/11</div>
+        <div class="tl-title">Operation Dark Winter <span class="tag tag-b">BELEGT</span></div>
+        <div class="tl-text">Regierungsübung am Andrews Air Force Base, organisiert von Johns Hopkins Center for Civilian Biodefense Studies und dem Center for Strategic and International Studies. Simuliert: verdeckter Pockenangriff, der sich von Oklahoma City auf 25 US-Bundesstaaten und 15 Länder ausbreitet. Teilnehmer: ehemalige hochrangige US-Regierungsvertreter. Dark Winter wurde anschließend als Begründung für die Bevorratung von 300 Millionen Pockenimpfdosen herangezogen. Die Übung briefte Dick Cheney, Condoleezza Rice und über 80 Mitglieder des Kongresses.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">11. September 2001</div>
+        <div class="tl-title">Die Anschläge <span class="tag tag-b">BELEGT</span></div>
+        <div class="tl-text">Vier entführte Flugzeuge, drei Einschläge, fast 3.000 Tote. Gleichzeitig läuft NORAD-Übung Vigilant Guardian mit Entführungsszenarien. Das Pentagon-Flügel mit Finanzprüfern wird getroffen. Binnen Stunden: internationale Medienübertragung in Endlosschleife.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">Oktober 2001</div>
+        <div class="tl-title">Anthrax-Briefe <span class="tag tag-b">BELEGT</span></div>
+        <div class="tl-text">Milzbrand-Sporen in Briefen an US-Senatoren und Medienredaktionen. Fünf Tote. Wochenlange Panikatmosphäre. Die Briefe stammten nachweislich aus dem US-Regierungslabor Fort Detrick — ein Inlandstäter, der nie rechtskräftig verurteilt wurde. Der Anschlag beschleunigte die Verabschiedung des PATRIOT Act.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">2002–2004</div>
+        <div class="tl-title">Dauerwarnungen: Terror-Farbskala, Dirty Bombs, Chemiewaffen <span class="tag tag-b">BELEGT</span></div>
+        <div class="tl-text">Das neue Department of Homeland Security führte ein fünfstufiges Farbwarnsystem ein (Homeland Security Advisory System). In diesem Zeitraum wurde die Bevölkerung regelmäßig mit Szenarien konfrontiert: radioaktive "Dirty Bombs" in Städten, Chemikalien in U-Bahnen, Vergiftung der Wasserversorgung. Kein dieser Anschläge ereignete sich.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">2003–2005</div>
+        <div class="tl-title">Biologische Bedrohungen: SARS, Vogelgrippe, Bioterrorismus-Gesetze <span class="tag tag-b">BELEGT</span></div>
+        <div class="tl-text">SARS 2003 und H5N1 2005 wurden in der politischen Kommunikation explizit mit Bioterrorismus-Szenarien verknüpft. Die Bush-Administration erhöhte das Budget für Biodefense massiv — von 294 Millionen Dollar (2001) auf 7,6 Milliarden Dollar (2004). Die Begründung: Dark Winter hatte gezeigt, wie verwundbar das Land ist.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">2005</div>
+        <div class="tl-title">Atlantic Storm: Internationale Pandemie-Übung <span class="tag tag-b">BELEGT</span></div>
+        <div class="tl-text">Nachfolgeübung zu Dark Winter, organisiert vom Center for Biosecurity der University of Pittsburgh Medical Center. Diesmal: internationaler Pockenausbruch. Teilnehmer: Außenminister europäischer Länder, WHO-Vertreter. Thema: Schließung von Grenzen, Impfstoffverteilung, staatliche Kontrolle von Bevölkerungsbewegungen.</div>
+      </div>
+
+    </div>
+
+    <div class="source-box">
+      <div class="source-box-label">Primärquelle — Operation Dark Winter</div>
+      <p>Johns Hopkins Center for Health Security: "The Dark Winter exercise, held at Andrews AFB, Washington, DC, June 22–23, 2001, portrayed a fictional scenario depicting a covert smallpox attack on US citizens." (Originaldokumentation, centerforhealthsecurity.org)</p>
+      <p>Peer-reviewed Publikation: O'Toole, T. et al. (2002): "Shining Light on Dark Winter." Clinical Infectious Diseases, 34(7). Oxford Academic / PubMed PMID 11880964.</p>
+      <p>SourceWatch: Dark Winter briefte Dick Cheney, Condoleezza Rice, FEMA Director Joe Allbaugh und über 80 Mitglieder des Kongresses — und führte zur Entscheidung, 300 Millionen Pockenimpfdosen herzustellen.</p>
+    </div>
+
+    <p>
+      Die Frage, die sich daraus ergibt, ist keine Verschwörungsfrage. Sie ist eine strukturelle: Wenn Szenarien vor einem Ereignis geübt, nach dem Ereignis umgesetzt und danach für Gesetzgebung herangezogen werden — welche Rolle spielt die Übung, und welche das Ereignis?
+    </p>
+
+  </section>
+
+  <!-- BLOCK 4: STRUKTURELLE FOLGEN -->
+  <section>
+    <h2>IV. Was folgte: Die Infrastruktur</h2>
+
+    <p>
+      Innerhalb von vier Jahren nach dem 11. September entstand in den USA eine Überwachungsinfrastruktur, für die es in der Geschichte demokratischer Staaten keine direkte Entsprechung gab.
+    </p>
+
+    <div class="anomalie-grid">
+      <div class="anomalie-card">
+        <div class="anomalie-num">→</div>
+        <div class="anomalie-body">
+          <div class="anomalie-title">NSA-Massenüberwachung <span class="tag tag-b">BELEGT</span></div>
+          <div class="anomalie-text">Das PRISM-Programm und verwandte Operationen sammelten flächendeckend Kommunikationsdaten von US-Bürgern und internationalen Nutzern. Rechtsgrundlage: PATRIOT Act Section 215. Bekannt erst 2013 durch Snowden-Dokumente — bestätigt durch Bundesgericht: Section 215 als illegal eingestuft (2020).</div>
+        </div>
+      </div>
+      <div class="anomalie-card">
+        <div class="anomalie-num">→</div>
+        <div class="anomalie-body">
+          <div class="anomalie-title">Department of Homeland Security <span class="tag tag-b">BELEGT</span></div>
+          <div class="anomalie-text">Gegründet November 2002 — die größte Umstrukturierung der US-Bundesbehörden seit dem Zweiten Weltkrieg. Vereinte 22 Behörden mit 170.000 Mitarbeitern unter einer Dachbehörde mit direktem Fokus auf Innensicherheit.</div>
+        </div>
+      </div>
+      <div class="anomalie-card">
+        <div class="anomalie-num">→</div>
+        <div class="anomalie-body">
+          <div class="anomalie-title">Krieg gegen den Terror — ohne Endpunkt <span class="tag tag-b">BELEGT</span></div>
+          <div class="anomalie-text">Der "War on Terror" wurde als Krieg ohne geografische oder zeitliche Grenzen definiert. Afghanistan 2001, Irak 2003 — letzterer ohne Massenvernichtungswaffen, wie spätere Untersuchungen bestätigten. Die Kosten: geschätzte 8 Billionen Dollar (Watson Institute, Brown University, 2021).</div>
+        </div>
+      </div>
+    </div>
+
+    <p>
+      Diese Infrastruktur wurde nicht im Verborgenen errichtet. Sie wurde öffentlich beschlossen, parlamentarisch verabschiedet, medial begleitet — von einer Bevölkerung, die in einem Zustand kollektiver Ausnahmesituation lebte. Rainer Mausfeld beschreibt den zugrundeliegenden Mechanismus als "kollektive Regression": Schockzustand macht Menschen autoritätshörig, nicht weil sie dumm sind, sondern weil ihr Nervensystem es so einrichtet.
+    </p>
+
+  </section>
+
+  <!-- SCHLUSSPUNKT -->
+  <div class="divider"></div>
+  <div class="closing">
+    <div class="closing-line"></div>
+    <p class="closing-q">
+      <em>Wenn Angst das Denken hemmt, wer profitiert dann von einer Gesellschaft, die aufgehört hat zu fragen — und was braucht es, damit sie wieder anfängt?</em>
+    </p>
+    <div class="closing-line"></div>
+    <p style="font-family:'Courier New',monospace;font-size:0.72rem;color:var(--text-dim);padding-bottom:0;">Alle hier angeführten Fakten sind durch verlinkte Primärquellen nachprüfbar. Offene Fragen werden als solche gekennzeichnet. Dieser Bericht zieht keine Schlussfolgerungen über Täterschaft.</p>
+  </div>
+
+</main>
+
+<footer>
+  <p>dunkelfeld.report — Faktenjournalismus ohne Schlussfolgerungen</p>
+  <p style="margin-top:0.5rem;"><a href="/impressum">Impressum</a> · <a href="/datenschutz">Datenschutz</a> · <a href="/dossiers">Alle Dossiers</a></p>
+</footer>
+
+</body>
+</html>

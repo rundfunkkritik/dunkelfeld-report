@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Rollator-Putsch — dunkelfeld.report</title>
+<style>
+  /* ── Tokens ─────────────────────────────────────────────── */
+  :root {
+    --ink:      #0e0e0e;
+    --paper:    #f7f4ef;
+    --dim:      #6b6b6b;
+    --rule:     #d0ccc4;
+    --accent:   #1a2e4a;
+    --warn:     #8b3a2a;
+    --open:     #2a5c3a;
+    --mono:     'Courier New', Courier, monospace;
+    --serif:    Georgia, 'Times New Roman', serif;
+    --sans:     'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  /* ── Reset ──────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ── Base ───────────────────────────────────────────────── */
+  html { font-size: 17px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ─────────────────────────────────────────────── */
+  .site-header {
+    background: var(--accent);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .site-name {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: #ffffff88;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .site-name strong {
+    color: #fff;
+    display: block;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+  }
+
+  .status-badge {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: #f0a020;
+    border: 1px solid #f0a020;
+    padding: 0.25rem 0.6rem;
+    text-transform: uppercase;
+  }
+
+  /* ── Hero ───────────────────────────────────────────────── */
+  .hero {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 28px,
+      rgba(255,255,255,0.025) 28px,
+      rgba(255,255,255,0.025) 29px
+    );
+  }
+
+  .hero-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .kicker {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #f0a020;
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-sub {
+    font-family: var(--sans);
+    font-size: 1rem;
+    color: #ccc;
+    line-height: 1.6;
+    max-width: 560px;
+    margin-bottom: 2rem;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    border-top: 1px solid #333;
+    padding-top: 1.2rem;
+  }
+
+  .meta-item {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #888;
+  }
+
+  .meta-item span {
+    display: block;
+    color: #bbb;
+    margin-top: 0.2rem;
+  }
+
+  /* ── Article ────────────────────────────────────────────── */
+  .article {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+  }
+
+  /* ── Dunkelfeld-Notice ──────────────────────────────────── */
+  .dunkelfeld-notice {
+    background: var(--accent);
+    color: #c8d8e8;
+    padding: 1.2rem 1.5rem;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    border-left: 3px solid #f0a020;
+    margin-bottom: 2.5rem;
+  }
+
+  .dunkelfeld-notice strong {
+    color: #fff;
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── Sections ───────────────────────────────────────────── */
+  .section {
+    margin-bottom: 2.8rem;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  p {
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+  }
+
+  /* ── Zitat ──────────────────────────────────────────────── */
+  .zitat {
+    border-left: 3px solid var(--accent);
+    margin: 1.8rem 0;
+    padding: 1rem 1.5rem;
+    background: #fff;
+  }
+
+  .zitat p {
+    font-style: italic;
+    color: #2a2a2a;
+    font-size: 1.02rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .zitat cite {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dim);
+    font-style: normal;
+  }
+
+  /* ── Fakten-Grid ────────────────────────────────────────── */
+  .fakten {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin: 2rem 0;
+  }
+
+  .fakt {
+    background: var(--paper);
+    padding: 1.2rem;
+  }
+
+  .fakt-num {
+    font-family: var(--mono);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .fakt-label {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    color: var(--dim);
+    line-height: 1.4;
+  }
+
+  /* ── Vergleichstabelle ──────────────────────────────────── */
+  .matrix {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+  }
+
+  .matrix thead {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .matrix th {
+    padding: 0.7rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  .matrix td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .matrix tr:last-child td { border-bottom: none; }
+
+  .matrix tr:nth-child(even) td { background: #fff; }
+
+  .tag-belegt {
+    display: inline-block;
+    background: #e8f4ec;
+    color: var(--open);
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.4rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .tag-offen {
+    display: inline-block;
+    background: #f9ece8;
+    color: var(--warn);
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.4rem;
+    margin-bottom: 0.3rem;
+  }
+
+  /* ── Fragen-Block ───────────────────────────────────────── */
+  .fragen {
+    background: #fff;
+    border: 1px solid var(--rule);
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .fragen h3 {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 1rem;
+  }
+
+  .frage-item {
+    display: flex;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: flex-start;
+  }
+
+  .frage-item:last-child { border-bottom: none; }
+
+  .frage-mark {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: #f0a020;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  .frage-text {
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    color: var(--ink);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ── Quellen ────────────────────────────────────────────── */
+  .quellen {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--ink);
+  }
+
+  .quellen h3 {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 1rem;
+  }
+
+  .quelle {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem 1rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    align-items: baseline;
+  }
+
+  .quelle:last-child { border-bottom: none; }
+
+  .q-type {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dim);
+    padding-top: 0.05rem;
+  }
+
+  .q-text { color: #2a2a2a; line-height: 1.5; }
+
+  /* ── Footer ─────────────────────────────────────────────── */
+  footer {
+    background: var(--ink);
+    color: #666;
+    padding: 2rem;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+  }
+
+  footer a { color: #888; text-decoration: none; }
+
+  /* ── Responsive ─────────────────────────────────────────── */
+  @media (max-width: 600px) {
+    .fakten { grid-template-columns: 1fr 1fr; }
+    .fakt-num { font-size: 1.5rem; }
+    .hero { padding: 2.5rem 1.2rem 2rem; }
+    .article { padding: 2rem 1.2rem 3rem; }
+    .meta-row { gap: 1rem; }
+    .matrix { font-size: 0.78rem; }
+    .matrix th, .matrix td { padding: 0.6rem 0.7rem; }
+  }
+
+  @media (max-width: 400px) {
+    .fakten { grid-template-columns: 1fr; }
+  }
+
+  /* ── Print ──────────────────────────────────────────────── */
+  @media print {
+    .site-header, footer { display: none; }
+    body { background: #fff; }
+    .hero { background: #1a2e4a !important; -webkit-print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="site-name">
+    dunkelfeld.report
+    <strong>Hypothesen. Quellen. Offene Fragen.</strong>
+  </div>
+  <div class="status-badge">⬤ Aktive Hypothese</div>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="kicker">Dunkelfeld — Stand: Juni 2026</div>
+    <h1>Der Rollator-Putsch</h1>
+    <p class="hero-sub">
+      3.000 Polizisten. Vorab informierte Kameras. Zwei Tote in Untersuchungshaft.
+      Und Deutschlands renommierteste Gerichtsreporterin fragt, warum die Anklage
+      keine einzige vollendete Tat benennen kann.
+    </p>
+    <div class="meta-row">
+      <div class="meta-item">Status<span>Hypothese</span></div>
+      <div class="meta-item">Urteile erwartet<span>Nicht vor 2027</span></div>
+      <div class="meta-item">U-Haft seit<span>Dez. 2022</span></div>
+      <div class="meta-item">Angeklagte<span>26 Personen</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Artikel -->
+<article class="article">
+
+  <!-- Dunkelfeld-Hinweis -->
+  <div class="dunkelfeld-notice">
+    <strong>Dunkelfeld-Protokoll</strong>
+    Dieser Text dokumentiert offene Fragen auf Basis belegbarer Quellen.
+    Er enthält keine Schlussfolgerungen — nur Widersprüche, die eine
+    Antwort verdienen. Sobald erstinstanzliche Urteile vorliegen,
+    wird dieser Eintrag aktualisiert oder zu richtig-erinnern.de
+    übertragen.
+  </div>
+
+  <!-- Abschnitt 1: Friedrichsen -->
+  <div class="section">
+    <div class="section-label">Primärquelle — Die Welt, November 2024</div>
+    <h2>Was Deutschlands bekannteste Gerichtsreporterin sagt</h2>
+
+    <p>
+      Gisela Friedrichsen berichtete 27 Jahre für den <em>Spiegel</em> über
+      Strafprozesse — den NSU-Prozess, das Zschäpe-Verfahren, Auschwitz-Verfahren.
+      Sie erhielt den Pressepreis des Deutschen Anwaltvereins. Sie ist keiner
+      rechten Sympathien verdächtig.
+    </p>
+
+    <p>
+      Nach mehr als 100 Verhandlungstagen im Frankfurter Reuß-Prozess
+      schrieb sie in der <em>Welt</em>:
+    </p>
+
+    <div class="zitat">
+      <p>
+        „Hätten sie bloß eine konkrete Tat begangen! Eine Fensterscheibe
+        eingeworfen oder sich einer Körperverletzung schuldig gemacht,
+        irgendetwas, was für andere Personen einen Schaden bedeutet hätte,
+        den man messen kann. Man hätte etwas in Händen."
+      </p>
+      <cite>Gisela Friedrichsen — Die Welt, 2024 (Paywall)</cite>
+    </div>
+
+    <div class="zitat">
+      <p>
+        „Angeklagt sind Personen, die sich einen Bären haben aufbinden lassen.
+        Oder die ihren Opfern einen Bären aufgebunden haben. Dass sie gemeinsam
+        fest entschlossen gewesen seien, blutigen Terror zu verbreiten, dafür
+        fehlt es weiterhin an Beweisen. Zeugen bestätigten die Terror-These
+        der Anklage nicht, abgesehen vielleicht von einem notorischen
+        Knast-Denunzianten, dessen Angaben so glaubhaft sind wie Wahlversprechen
+        von Politikern."
+      </p>
+      <cite>Gisela Friedrichsen — Fazit nach 100 Sitzungstagen</cite>
+    </div>
+
+    <p>
+      Die Anklage, so Friedrichsen, beantworte nicht die eigentlich
+      entscheidende Frage: ob die Bundesrepublik jemals durch die Phantastereien
+      einiger Figuren, die als Impfgegner zusammengefunden hatten, gefährdet war.
+    </p>
+  </div>
+
+  <!-- Abschnitt 2: Zahlen -->
+  <div class="section">
+    <div class="section-label">Verhältnis — Dokumentiert</div>
+    <h2>Die Zahlen</h2>
+
+    <div class="fakten">
+      <div class="fakt">
+        <div class="fakt-num">3.000+</div>
+        <div class="fakt-label">Polizistinnen und Polizisten im Einsatz am 7. Dezember 2022</div>
+      </div>
+      <div class="fakt">
+        <div class="fakt-num">160+</div>
+        <div class="fakt-label">Durchsuchte Objekte bundesweit und im Ausland</div>
+      </div>
+      <div class="fakt">
+        <div class="fakt-num">1.200+</div>
+        <div class="fakt-label">Tage Untersuchungshaft ohne rechtskräftiges Urteil</div>
+      </div>
+      <div class="fakt">
+        <div class="fakt-num">2</div>
+        <div class="fakt-label">Angeklagte starben — einer vor, einer während des Prozesses</div>
+      </div>
+      <div class="fakt">
+        <div class="fakt-num">3</div>
+        <div class="fakt-label">Gleichzeitige Hochsicherheitsprozesse vor OLG Frankfurt, Stuttgart und München</div>
+      </div>
+      <div class="fakt">
+        <div class="fakt-num">0</div>
+        <div class="fakt-label">Vollendete Straftaten in der Anklageschrift</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Abschnitt 3: Presse -->
+  <div class="section">
+    <div class="section-label">Medienstrategie — Belegt durch Übermedien und NZZ</div>
+    <h2>Die Presse war früher da als die Pressemitteilung</h2>
+
+    <p>
+      Um 7:30 Uhr am 7. Dezember 2022 verschickte der Rechercheverbund
+      NDR/WDR/SZ eine Pressemitteilung mit umfangreichen Details zur Razzia —
+      zur selben Zeit, als die Tagesschau berichtete. Kamerateams waren an
+      nahezu allen Zugriffsorten bereits vor Beginn der Durchsuchungen präsent.
+    </p>
+
+    <div class="zitat">
+      <p>
+        „Es ist offenkundig: Die Presse war auf diese Razzia gut vorbereitet.
+        Sie wusste vorab, wann sie stattfindet und gegen wen sie sich richtet.
+        Sie konnte Fotografen und Kamerateams zu den Orten der Zugriffe schicken,
+        und war teilweise schon dabei, bevor sie begannen."
+      </p>
+      <cite>Stefan Niggemeier — Übermedien, 19. Dezember 2022</cite>
+    </div>
+
+    <p>
+      Auch die <em>Neue Zürcher Zeitung</em> kommentierte am selben Tag:
+      Der Gehsteig vor dem Wohnhaus von Prinz Reuß in Frankfurt sei
+      „gut gefüllt mit Journalisten" gewesen — noch während das Sonderkommando
+      im Innern arbeitete.
+    </p>
+
+    <p>
+      Anwälte erstatteten Strafanzeige wegen der Vorabinformation der Presse.
+      Die Staatsanwaltschaft Karlsruhe stellte die Ermittlungen ein —
+      mit der Begründung, es kämen zu viele Personen aus verschiedenen
+      Behörden als mögliche Täter in Frage.
+    </p>
+  </div>
+
+  <!-- Abschnitt 4: Belegt / Offen -->
+  <div class="section">
+    <div class="section-label">Dokumentation — Offene Fragen</div>
+    <h2>Was wir wissen. Was wir nicht wissen.</h2>
+
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th>Sachverhalt</th>
+          <th>Quellenlage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Presse war vor Razzia informiert</td>
+          <td><span class="tag-belegt">Belegt</span><br>Übermedien, NZZ, dpa-Timecodes</td>
+        </tr>
+        <tr>
+          <td>Wer die Medien informierte</td>
+          <td><span class="tag-offen">Offen</span><br>Ermittlung durch StA Karlsruhe eingestellt</td>
+        </tr>
+        <tr>
+          <td>Verfassungsschutz mind. 8 Monate vor Razzia aktiv drin</td>
+          <td><span class="tag-belegt">Belegt</span><br>BfV-Bericht, Wikipedia (GBA-Quellen)</td>
+        </tr>
+        <tr>
+          <td>Rolle der V-Leute bei Radikalisierung</td>
+          <td><span class="tag-offen">Offen</span><br>Im Prozess beantragt, nicht beantwortet</td>
+        </tr>
+        <tr>
+          <td>Keine vollendeten Straftaten in der Anklage</td>
+          <td><span class="tag-belegt">Belegt</span><br>Friedrichsen, Die Welt / Anklageschrift GBA</td>
+        </tr>
+        <tr>
+          <td>Tatsächliche Handlungsfähigkeit der Gruppe</td>
+          <td><span class="tag-offen">Offen</span><br>Entscheidet das Gericht — nicht vor 2027</td>
+        </tr>
+        <tr>
+          <td>Zwei Angeklagte starben in/nach U-Haft</td>
+          <td><span class="tag-belegt">Belegt</span><br>OLG Frankfurt, Zeit, Junge Freiheit</td>
+        </tr>
+        <tr>
+          <td>Gesamtkosten des Verfahrens</td>
+          <td><span class="tag-offen">Offen</span><br>Nicht veröffentlicht</td>
+        </tr>
+        <tr>
+          <td>30+ Beschuldigte nie festgenommen</td>
+          <td><span class="tag-belegt">Belegt</span><br>GBA, Wikipedia</td>
+        </tr>
+        <tr>
+          <td>Warum diese nicht festgenommen wurden</td>
+          <td><span class="tag-offen">Offen</span><br>Keine öffentliche Erklärung</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Abschnitt 5: Fragen -->
+  <div class="section">
+    <div class="section-label">Hypothesen — Nicht belegt</div>
+    <h2>Die Fragen, die im Raum stehen</h2>
+
+    <div class="fragen">
+      <h3>Offene Hypothesen — Dunkelfeld</h3>
+
+      <div class="frage-item">
+        <div class="frage-mark">?</div>
+        <p class="frage-text">
+          Haben Verfassungsschutz-Informanten die Gruppe nicht nur beobachtet,
+          sondern aktiv in ihrer Radikalisierung mitgeformt —
+          analog zu dokumentierten Fällen beim NPD-Verbotsverfahren?
+        </p>
+      </div>
+      <div class="frage-item">
+        <div class="frage-mark">?</div>
+        <p class="frage-text">
+          War die Razzia so angelegt, dass sie eine maximale
+          Medienwirkung erzeugte — und wenn ja: zu welchem politischen Zweck,
+          wenige Tage nach dem Illerkirchberger Messerangriff?
+        </p>
+      </div>
+      <div class="frage-item">
+        <div class="frage-mark">?</div>
+        <p class="frage-text">
+          Warum wurden mehr als 30 weitere Beschuldigte nie verhaftet,
+          obwohl der Generalbundesanwalt sie als Mitglieder der Vereinigung führt?
+        </p>
+      </div>
+      <div class="frage-item">
+        <div class="frage-mark">?</div>
+        <p class="frage-text">
+          Entspricht eine U-Haft von über 1.200 Tagen für Menschen,
+          denen keine vollendete Straftat vorgeworfen wird,
+          dem Verhältnismäßigkeitsgrundsatz des Grundgesetzes?
+        </p>
+      </div>
+      <div class="frage-item">
+        <div class="frage-mark">?</div>
+        <p class="frage-text">
+          Wurden Beamte, die ursprünglich aus der Querdenken-Bewegung kamen
+          und das Remonstrationsrecht thematisierten, systematisch
+          in Richtung extremerer Positionen gelenkt — und von wem?
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Abschnitt 6: Einordnung -->
+  <div class="section">
+    <div class="section-label">Einordnung</div>
+    <h2>Was das bedeutet — und was nicht</h2>
+
+    <p>
+      Dieser Text bestreitet nicht, dass es die Gruppe Reuß gab.
+      Er bestreitet nicht, dass Pläne diskutiert wurden.
+      Er bestreitet nicht, dass Waffen gefunden wurden.
+    </p>
+
+    <p>
+      Er stellt fest: Zwischen dem, was die Bundesanwaltschaft anklagte,
+      und dem, was nach über 100 Verhandlungstagen als Beweislage erkennbar ist,
+      besteht eine Lücke. Diese Lücke wurde von Deutschlands renommiertester
+      Gerichtsreporterin öffentlich benannt. Nicht von einer Querdenker-Seite.
+      Von einer Journalistin, deren Vater im KZ inhaftiert war und die
+      den NSU-Prozess vollständig begleitete.
+    </p>
+
+    <p>
+      Die Verbindungslinie von der Corona-Protestbewegung zur Reuss-Gruppe
+      ist dokumentiert. Michael Fritsch war das Bindeglied.
+      Ob diese Verbindung durch natürliche Radikalisierung entstand —
+      oder durch externe Einflussnahme beschleunigt wurde —
+      ist die zentrale offene Frage dieses Dunkelfeld-Eintrags.
+    </p>
+  </div>
+
+  <!-- Quellen -->
+  <div class="quellen">
+    <h3>Primärquellen &amp; Belege</h3>
+
+    <div class="quelle">
+      <div class="q-type">Gericht</div>
+      <div class="q-text">GBA: Anklageschrift gegen 26 Mitglieder der Patriotischen Union, Dez. 2023</div>
+    </div>
+    <div class="quelle">
+      <div class="q-type">Presse</div>
+      <div class="q-text">Gisela Friedrichsen — <em>Die Welt</em>, November 2024 (Paywall): „Vorwurf Rechtsterrorismus — Warum der Reichsbürger-Prozess zur Farce wird"</div>
+    </div>
+    <div class="quelle">
+      <div class="q-type">Medien</div>
+      <div class="q-text">Stefan Niggemeier — <em>Übermedien</em>, 19.12.2022: „Stell dir vor, es ist Razzia und alle Medien sind schon da"</div>
+    </div>
+    <div class="quelle">
+      <div class="q-type">Presse</div>
+      <div class="q-text"><em>Neue Zürcher Zeitung</em>, 8.12.2022: „Razzia bei den Reichsbürgern: Es war auch eine Inszenierung"</div>
+    </div>
+    <div class="quelle">
+      <div class="q-type">Behörde</div>
+      <div class="q-text">BfV — Hintergrundbericht: „Exekutivmaßnahmen gegen Vereinigung aus Reichsbürger-Spektrum", Dez. 2022</div>
+    </div>
+    <div class="quelle">
+      <div class="q-type">Recht</div>
+      <div class="q-text">StA Karlsruhe: Einstellung der Ermittlungen wegen Medien-Leak (Begründung über wallasch.de dokumentiert)</div>
+    </div>
+    <div class="quelle">
+      <div class="q-type">Referenz</div>
+      <div class="q-text">Wikipedia: Patriotische Union — mit GBA-Quellen und Prozessprotokollen (Stand Juni 2026)</div>
+    </div>
+    <div class="quelle">
+      <div class="q-type">Presse</div>
+      <div class="q-text">bpb.de — <em>Aus Politik und Zeitgeschichte</em>, Nov. 2025: „Die Prozesse gegen die Gruppe Reuß"</div>
+    </div>
+  </div>
+
+</article>
+
+<!-- Footer -->
+<footer>
+  <p>dunkelfeld.report — Hypothesen mit Quellenangabe &nbsp;·&nbsp; Keine Schlussfolgerungen ohne Urteil</p>
+  <p style="margin-top:0.5rem"><a href="https://richtig-erinnern.de">richtig-erinnern.de</a> &nbsp;·&nbsp; Letzte Aktualisierung: Juni 2026</p>
+</footer>
+
+</body>
+</html>

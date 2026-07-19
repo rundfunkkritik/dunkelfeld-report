@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Von Davos zur Depotbank: Wie Psychedelika im WEF-Ökosystem ankamen | dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.7;
+    font-size: 18px;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 60px 24px 100px; }
+
+  .masthead {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #27272a;
+  }
+  .masthead .logo {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .masthead .tagline {
+    font-family: 'Courier New', monospace;
+    color: #71717a;
+    font-size: 12px;
+    margin-top: 6px;
+    letter-spacing: 1px;
+  }
+
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: #71717a;
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-size: 32px;
+    line-height: 1.25;
+    color: #f4f4f5;
+    margin: 10px 0 20px;
+    font-weight: 700;
+  }
+
+  .lede {
+    font-size: 19px;
+    color: #d4d4d8;
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    font-size: 24px;
+    color: #e8c547;
+    margin: 52px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #27272a;
+  }
+
+  h3 {
+    font-size: 19px;
+    color: #f4f4f5;
+    margin: 32px 0 14px;
+  }
+
+  p { margin-bottom: 18px; color: #d4d4d8; }
+
+  a { color: #e8c547; text-decoration: none; border-bottom: 1px dotted #e8c547; }
+  a:hover { border-bottom-style: solid; }
+
+  /* Evidence Tags */
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 2px;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.12); color: #4ade80; border: 1px solid rgba(74,222,128,0.35); }
+  .tag-extrapolation { background: rgba(251,146,60,0.12); color: #fb923c; border: 1px solid rgba(251,146,60,0.35); }
+  .tag-offen { background: rgba(161,161,170,0.12); color: #a1a1aa; border: 1px solid rgba(161,161,170,0.35); }
+  .tag-widerlegt { background: rgba(248,113,113,0.12); color: #f87171; border: 1px solid rgba(248,113,113,0.35); text-decoration: line-through; }
+
+  /* Timeline */
+  .timeline { margin: 30px 0; border-left: 2px solid #3f3f46; padding-left: 0; }
+  .tl-item {
+    position: relative;
+    padding: 4px 0 26px 28px;
+    border-left: 2px solid #3f3f46;
+    margin-left: -2px;
+  }
+  .tl-item:last-child { border-left: 2px solid transparent; padding-bottom: 4px; }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #e8c547;
+    border: 2px solid #09090b;
+  }
+  .tl-year {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  .tl-title { color: #f4f4f5; font-size: 17px; margin: 4px 0 6px; font-weight: bold; }
+  .tl-body { color: #b4b4b8; font-size: 16px; }
+
+  /* Source Box */
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 16px 20px;
+    margin: 20px 0 30px;
+    font-size: 15px;
+    color: #b4b4b8;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 11px;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* Person Cards */
+  .person-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 24px 0 30px;
+  }
+  .person-card {
+    flex: 1 1 300px;
+    background: #131320;
+    border: 1px solid #27272a;
+    border-radius: 6px;
+    padding: 18px 20px;
+  }
+  .person-card .p-name {
+    color: #f4f4f5;
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  .person-card .p-role {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 12px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .person-card p { font-size: 15px; color: #b4b4b8; margin-bottom: 0; }
+
+  /* Stat Grid */
+  .stat-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 24px 0 30px;
+  }
+  .stat {
+    flex: 1 1 200px;
+    background: #131320;
+    border: 1px solid #27272a;
+    border-radius: 6px;
+    padding: 18px;
+    text-align: center;
+  }
+  .stat .num {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 26px;
+    font-weight: bold;
+    display: block;
+  }
+  .stat .label { color: #a1a1aa; font-size: 13px; margin-top: 6px; }
+
+  /* Comparison Table */
+  table.comp {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 30px;
+    font-size: 15px;
+  }
+  table.comp th {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 2px solid #3f3f46;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+  table.comp td {
+    padding: 12px;
+    border-bottom: 1px solid #27272a;
+    color: #d4d4d8;
+    vertical-align: top;
+  }
+
+  /* Pull quote */
+  .pullquote {
+    font-size: 21px;
+    color: #f4f4f5;
+    font-style: italic;
+    border-left: 3px solid #e8c547;
+    padding: 6px 0 6px 22px;
+    margin: 32px 0;
+  }
+  .pullquote .attr {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    font-style: normal;
+    color: #71717a;
+    margin-top: 10px;
+  }
+
+  .closing {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid #27272a;
+    font-style: italic;
+    color: #a1a1aa;
+  }
+  .closing p { color: #a1a1aa; }
+
+  .series-nav {
+    margin-top: 48px;
+    padding: 18px 20px;
+    background: #131320;
+    border: 1px solid #27272a;
+    border-radius: 6px;
+    font-size: 15px;
+  }
+  .series-nav .label {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 11px;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  footer {
+    margin-top: 60px;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    color: #52525b;
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="logo">dunkelfeld.report</div>
+    <div class="tagline">Hidden in Plain Sight</div>
+  </div>
+
+  <div class="meta">DOSSIER · WEF / DAVOS / KAPITAL · Juli 2026 · Lesedauer ca. 9 Minuten</div>
+  <h1>Von Davos zur Depotbank: Wie Psychedelika im WEF-Ökosystem ankamen</h1>
+  <p class="lede">Vor wenigen Jahren waren Psilocybin und LSD ein Nischenthema von Undergrund-Therapeuten. Heute stehen sie im offiziellen Programm des World Economic Forum — und in den Portfolios der größten Vermögensverwalter der Welt. Eine dokumentierte Chronologie, ohne Motivunterstellung.</p>
+
+  <h2>1. Der Auftakt: Eine Forschungsfrage in Davos</h2>
+  <p>2019 findet erstmals eine offizielle Session des World Economic Forum zum Thema Psychedelika statt: ein Gespräch mit dem Neurowissenschaftler Robin Carhart-Harris über das <span class="tag tag-belegt">BELEGT</span> "untapped potential" psychedelischer Substanzen dort, wo klassische Medizin an ihre Grenzen stößt. Die Session wird offiziell vom WEF selbst veranstaltet und live gestreamt.</p>
+
+  <div class="source-box">
+    <span class="label">QUELLE</span>
+    World Economic Forum, Annual Meeting: "The New Science of Psychedelics" — offizielle Session mit Robin Carhart-Harris, weforum.org/videos/the-new-science-of-psychedelics
+  </div>
+
+  <h2>2. Die Timeline: Von der Randnotiz zum Kernthema</h2>
+  <p>Was folgt, ist eine schrittweise Institutionalisierung — dokumentiert über offizielle WEF-Kanäle, Wirtschaftspresse und Branchenmedien.</p>
+
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-year">2020</div>
+      <div class="tl-title">Thiel Capital investiert in ATAI Life Sciences <span class="tag tag-belegt">BELEGT</span></div>
+      <div class="tl-body">Peter Thiel — Mitgründer von PayPal und Palantir, bereits zentrale Figur in Artikel #16 — investiert über Thiel Capital 10 Mio. Euro in die Berliner Psychedelika-Firma ATAI Life Sciences. Thiel hat zu diesem Zeitpunkt auch bereits in Compass Pathways investiert, den Entwickler von synthetischem Psilocybin.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">2021</div>
+      <div class="tl-title">Börsengänge und prominente Investoren <span class="tag tag-belegt">BELEGT</span></div>
+      <div class="tl-body">ATAI geht an die Nasdaq, Bewertung 2,3 Mrd. Dollar, Thiel bleibt größter Investor. Kevin O'Leary steigt bei MindMed und ATAI ein. Cathie Woods ARK-Genomic-Revolution-ETF nimmt ATAI ins Portfolio auf.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">2022</div>
+      <div class="tl-title">"Medical Psychedelics House of Davos" — parallel zum WEF <span class="tag tag-belegt">BELEGT</span></div>
+      <div class="tl-body">Zeitgleich zum WEF-Jahrestreffen findet erstmals das "Medical Psychedelics House of Davos" statt: ca. 40 Sessions, organisiert von Energia Holdings und Tabula Rasa Ventures. <strong>Wichtig zur Einordnung:</strong> Diese Veranstaltung ist nicht offizieller Teil des WEF-Programms — nur zeitlich und örtlich parallel. Bloomberg, The Guardian und Forbes berichten dennoch ausführlich. Teilnehmer: Vertreter von MAPS, Compass Pathways, Imperial College London sowie Investoren.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">2022</div>
+      <div class="tl-title">BlackRock steigt ein <span class="tag tag-belegt">BELEGT</span></div>
+      <div class="tl-body">BlackRock — mit damals rund 9,5 Billionen Dollar verwaltetem Vermögen der weltweit größte Asset-Manager — meldet eine Position von knapp 1 Mio. Dollar bei der Psychedelika-Firma Cybin.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">2023</div>
+      <div class="tl-title">BlackRock baut Position aus <span class="tag tag-belegt">BELEGT</span></div>
+      <div class="tl-body">BlackRock erweitert seine Beteiligung an ATAI Life Sciences.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">2024</div>
+      <div class="tl-title">Rückkehr ins offizielle WEF-Programm <span class="tag tag-belegt">BELEGT</span></div>
+      <div class="tl-body">"The New Science of Psychedelics" erscheint erneut — diesmal wieder als offizielle Session im WEF-Programm der Jahrestagung 2024 in Davos-Klosters.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">2025</div>
+      <div class="tl-title">Umdeutung zu "Brain Capital" und "Mental Wealth" <span class="tag tag-belegt">BELEGT</span></div>
+      <div class="tl-body">Psychedelika werden nun unter neuem Vokabular verhandelt: "Brain Capital & Human Flourishing" — eine Session, die Gehirngesundheit, Psychedelika und "ökonomisches Wachstum" explizit verknüpft. Beteiligt: Brain Capital Alliance, Weltbank (Rice University's Baker Institute), Europäische Kommission (European Policy Centre), Norwegian Brain Council. Das Konzept "Mental Wealth" wird als neue volkswirtschaftliche Kennzahl neben dem BIP positioniert.</div>
+    </div>
+
+  </div>
+
+  <div class="source-box">
+    <span class="label">QUELLEN ZUR TIMELINE</span>
+    CNBC (2020–2023): Berichterstattung zu Thiel-Investments in ATAI/Compass Pathways · Forbes: "Psychedelics, Deepak Chopra, BlackRock And Tony Robbins" (Feb. 2022) · Lucid News: "Psychedelics Were the Hot Topic at This Year's World Economic Forum" (2022) · weforum.org/events/world-economic-forum-annual-meeting-2024 · European Brain Council: "Brain Health on the Global Stage in Davos" (2025), braincouncil.eu
+  </div>
+
+  <h2>3. Die Akteure</h2>
+  <div class="person-grid">
+    <div class="person-card">
+      <div class="p-name">Peter Thiel</div>
+      <span class="p-role">Thiel Capital · Mitgründer PayPal &amp; Palantir</span>
+      <p>Investierte 2020 rund 10 Mio. Euro in ATAI Life Sciences, zusätzlich in Compass Pathways. Blieb bei ATAIs Börsengang 2021 größter Investor. Zentrale Figur auch in Artikel #16 (PayPal Mafia).</p>
+    </div>
+    <div class="person-card">
+      <div class="p-name">Christian Angermayer</div>
+      <span class="p-role">Gründer &amp; Chairman, ATAI Life Sciences</span>
+      <p>Deutscher Unternehmer, baute ATAI 2018 als Holding-Plattform für Psychedelika-Startups auf. Beschreibt sein persönliches Anliegen öffentlich als Antwort auf unzureichende bestehende Therapien.</p>
+    </div>
+    <div class="person-card">
+      <div class="p-name">BlackRock Inc.</div>
+      <span class="p-role">Größter Vermögensverwalter weltweit</span>
+      <p>Bereits Gegenstand von Artikel #7 (Common Ownership, Aladdin-Algorithmus). Stieg 2022 bei Cybin ein, baute 2023 die Position bei ATAI aus.</p>
+    </div>
+  </div>
+
+  <h2>4. Was ist belegt, was ist offen?</h2>
+  <table class="comp">
+    <tr><th>Aussage</th><th>Status</th></tr>
+    <tr><td>Thiel investierte in ATAI und Compass Pathways</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+    <tr><td>BlackRock hält Positionen in Cybin und ATAI</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+    <tr><td>Psychedelika-Sessions liefen 2019 und 2024 offiziell im WEF-Programm</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+    <tr><td>Das "Medical Psychedelics House" 2022 war offizielles WEF-Programm</td><td><span class="tag tag-widerlegt">VT-WIDERLEGT</span></td></tr>
+    <tr><td>Die Umbenennung zu "Brain Capital" dient primär der Kapitalmarkt-Legitimierung</td><td><span class="tag tag-extrapolation">EXTRAPOLATION</span></td></tr>
+    <tr><td>Es gibt eine koordinierte Strategie zwischen WEF, Thiel-Netzwerk und Asset-Managern</td><td><span class="tag tag-offen">OFFEN</span></td></tr>
+  </table>
+
+  <div class="pullquote">
+    "Psychedelics are a nonspecific amplifier." Put psychedelics in the wrong hands and society could be hurt, rather than helped.
+    <span class="attr">— Simeon Schnapper, JLS Fund, zit. n. Lucid News, 2022</span>
+  </div>
+
+  <h2>5. Die Anschlussstelle zu Artikel #16</h2>
+  <p>Die Brücke zwischen diesem Dossier und der PayPal-Mafia-Analyse ist kein konstruierter Zusammenhang, sondern derselbe Akteur in einem neuen Feld: Thiel, der über Palantir Überwachungsinfrastruktur und über PayPal Finanzinfrastruktur mitgeprägt hat, investiert seit 2020 in die Kommerzialisierung veränderter Bewusstseinszustände. Was diese drei Felder verbindet, überlässt dieser Artikel bewusst der Einschätzung der Leser.</p>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="num">2019 → 2025</span><div class="label">Zeitraum der Institutionalisierung</div></div>
+    <div class="stat"><span class="num">~9,5 Bio. $</span><div class="label">BlackRock verwaltetes Vermögen (2022)</div></div>
+    <div class="stat"><span class="num">2,3 Mrd. $</span><div class="label">ATAI-Bewertung beim Börsengang 2021</div></div>
+  </div>
+
+  <div class="closing">
+    <p><em>Wer entscheidet, welches Vokabular ein Thema gesellschaftsfähig macht — "Psychedelika-Therapie" oder "Brain Capital"? Und was bedeutet es, wenn dieselben Kapitalströme, die Überwachungsinfrastruktur und globale Zahlungssysteme mitgeprägt haben, nun in die Kommerzialisierung innerer Erfahrung investieren? Dieser Artikel beantwortet diese Fragen nicht — er dokumentiert lediglich, dass sie gestellt werden müssen.</em></p>
+  </div>
+
+  <div class="series-nav">
+    <span class="label">WEITERFÜHREND IM ARCHIV</span>
+    Artikel #7 — Geld als Herrschaftsinstrument (BlackRock, Common Ownership)<br>
+    Artikel #16 — PayPal Mafia / Dialog Society / Thiel / Spahn
+  </div>
+
+  <footer>dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.</footer>
+
+</div>
+</body>
+</html>

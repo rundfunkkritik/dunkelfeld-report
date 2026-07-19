@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Statistik als Macht — dunkelfeld.report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #09090b;
+    --surface: #111116;
+    --surface2: #16161c;
+    --border: #1e1e28;
+    --text: #e2e2ea;
+    --muted: #5a5a72;
+    --accent: #e8c547;
+    --accent-dim: #b89a2a;
+    --red: #e85447;
+    --font-body: Georgia, 'Times New Roman', serif;
+    --font-mono: 'Courier New', Courier, monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(9,9,11,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  nav a {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  nav a:hover { color: #fff; }
+  .nav-sep { color: var(--border); margin: 0 0.25rem; }
+  .nav-right {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  /* HERO */
+  .hero {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 5rem 2rem 3.5rem;
+  }
+  .label-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .label-tag {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent-dim);
+    padding: 0.2rem 0.6rem;
+  }
+  .label-slug {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  h1 {
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.08;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.02em;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 600px;
+    margin-bottom: 2.5rem;
+  }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-top: 1px solid var(--border);
+    padding-top: 1.2rem;
+  }
+  .meta-row span { color: var(--text); }
+
+  /* STAT GRID */
+  .stat-grid {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1px;
+    background: var(--border);
+  }
+  .stat-cell {
+    background: var(--surface);
+    padding: 1.6rem 1.4rem;
+  }
+  .stat-value {
+    font-size: 2.4rem;
+    font-weight: 700;
+    font-family: var(--font-body);
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text);
+    line-height: 1.4;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+  }
+  .stat-source {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--muted);
+  }
+
+  /* DIVIDER */
+  .divider {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    padding: 0 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* BODY */
+  .body-wrap {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem 5rem;
+  }
+
+  h2 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 3rem 0 1rem;
+    letter-spacing: -0.01em;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  h3 {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 2rem 0 0.8rem;
+  }
+
+  p {
+    margin-bottom: 1.2rem;
+    color: var(--text);
+  }
+
+  /* SOURCE BOX */
+  .source-box {
+    background: #0e0e1a;
+    border-left: 3px solid var(--accent);
+    padding: 1.1rem 1.4rem;
+    margin: 1.8rem 0;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1.7;
+    color: #a0a0c0;
+  }
+  .source-box strong {
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .source-box em {
+    color: var(--text);
+    font-style: normal;
+    font-weight: bold;
+  }
+
+  /* STATUS TAGS */
+  .tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+  .tag-b { background: #0e2a1a; color: #4ec87a; border: 1px solid #2a6040; }
+  .tag-n { background: #2a1010; color: #e07070; border: 1px solid #602020; }
+  .tag-e { background: #1e1a08; color: #c8a030; border: 1px solid #504010; }
+
+  /* CLAIM TABLE */
+  .claim-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0 2rem;
+    font-size: 0.88rem;
+  }
+  .claim-table th {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .claim-table td {
+    padding: 0.8rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .claim-table tr:last-child td { border-bottom: none; }
+  .claim-table tr:nth-child(even) td { background: var(--surface); }
+
+  /* HIGHLIGHT BOX */
+  .highlight-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 1.4rem 1.6rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+    line-height: 1.75;
+  }
+
+  /* CLOSING */
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  footer a {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  footer a:hover { color: var(--accent); }
+
+  @media (max-width: 600px) {
+    nav { padding: 0.8rem 1rem; }
+    .hero { padding: 3rem 1.2rem 2.5rem; }
+    .stat-grid { padding: 0 1.2rem 2.5rem; }
+    .divider { padding: 0 1.2rem; }
+    .body-wrap { padding: 0 1.2rem 4rem; }
+    footer { padding: 2rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html">dunkelfeld.report</a>
+  <span class="nav-sep">/</span>
+  <a href="#">statistik-macht</a>
+  <div class="nav-right">Hidden in Plain Sight</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="label-row">
+    <span class="label-tag">Analyse</span>
+    <span class="label-slug">statistik-macht · Juni 2026</span>
+  </div>
+
+  <h1>Wenn die Zahl<br>die <em>Wahrheit</em> formt</h1>
+
+  <p class="hero-sub">
+    Wie die amtliche Statistik zur politisch motivierten Kriminalität strukturell mehr „rechte" Taten erzeugt — unabhängig davon, wer die Taten begeht. Eine Dokumentation anhand amtlicher Quellen.
+  </p>
+
+  <div class="meta-row">
+    Quellen: <span>BKA, Bundestag, BPB</span>
+    &nbsp;·&nbsp; Stand: <span>Juni 2026</span>
+    &nbsp;·&nbsp; Slug: <span>statistik-macht</span>
+  </div>
+</section>
+
+<!-- STAT GRID -->
+<div class="stat-grid">
+  <div class="stat-cell">
+    <div class="stat-value">61,5%</div>
+    <div class="stat-label">aller PMK-rechts-Fälle sind Propagandadelikte</div>
+    <div class="stat-source">Quelle: BKA Factsheet PMK 2024</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-value">35%</div>
+    <div class="stat-label">Aufklärungsquote PMK-links (vs. 60% PMK-rechts)</div>
+    <div class="stat-source">Quelle: BKA / statistiken-aktuell.de 2024</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-value">3.419</div>
+    <div class="stat-label">linksmotivierte Sachbeschädigungen 2021 — mehr als rechts</div>
+    <div class="stat-source">Quelle: BPB Vergleichsanalyse 2023</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-value">+42,6%</div>
+    <div class="stat-label">Anstieg linksextremer Gewalttaten 2025</div>
+    <div class="stat-source">Quelle: BKA PMK-Jahresbericht 2025</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- BODY -->
+<div class="body-wrap">
+
+  <h2>Die Regel, die alles entscheidet</h2>
+
+  <p>
+    Das Bundeskriminalamt gibt den Landespolizeibehörden eine einheitliche Ausfüllanleitung für die Erfassung politisch motivierter Kriminalität. Darin findet sich eine Passage, die für das Verständnis der gesamten Statistik zentral ist.
+  </p>
+
+  <div class="source-box">
+    <strong>Primärquelle — BKA Ausfüllanleitung KPMD-PMK</strong>
+    <em>„Von Unbekannt verübte rechte Propagandadelikte, insbesondere die Verbreitung und Verwendung verbotener nationalsozialistischer Symbole, wie z. B. Hakenkreuze und SS-Runen, sind dem Phänomenbereich PMK-rechts- zuzuordnen, wenn keine gegenteiligen Tatsachen zur Tätermotivation vorliegen."</em>
+  </div>
+
+  <p>
+    <span class="tag tag-b">BELEGT</span> Diese Regelung ist amtlich dokumentiert und wurde vom BKA auf Anfrage mehrfach bestätigt. Das Landeskriminalamt Nordrhein-Westfalen ergänzte gegenüber Apollo News, selbst eine Hakenkreuzschmiererei auf einem AfD-Plakat stelle eine „Verharmlosung des Nationalsozialismus" dar — und sei damit dem Phänomenbereich rechts zuzuordnen.
+  </p>
+
+  <p>
+    Die praktische Konsequenz: Ein unbekannter Täter, der ein AfD-Büro mit einem Hakenkreuz beschmiert, erzeugt statistisch eine „rechte" Straftat — unabhängig von seiner tatsächlichen Motivation.
+  </p>
+
+  <h2>Was die Zahlen zeigen</h2>
+
+  <h3>Propagandadelikte dominieren PMK-rechts</h3>
+
+  <p>
+    <span class="tag tag-b">BELEGT</span> Im Jahr 2024 waren laut BKA-Factsheet 61,51 Prozent aller als PMK-rechts erfassten Straftaten sogenannte Propagandadelikte — das Verwenden verfassungswidriger Symbole (§86a StGB) oder das Verbreiten von Propagandamitteln (§86 StGB). Der Großteil dieser Fälle entsteht ohne ermittelten Täter.
+  </p>
+
+  <p>
+    Im Bereich PMK-links existieren praktisch keine vergleichbaren verbotenen Symbole. Verbotene linksextreme Organisationen sind in Deutschland deutlich seltener als Organisationen aus der NS-Zeit, deren Kennzeichen unter §86a fallen. Das erklärt einen wesentlichen Teil der numerischen Asymmetrie zwischen beiden Phänomenbereichen.
+  </p>
+
+  <div class="highlight-box">
+    <strong style="font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 0.6rem;">Strukturelle Asymmetrie</strong>
+    PMK-rechts: 60% Aufklärungsquote — viele Propagandadelikte mit identifizierbarem Täter (z.B. Posting, Flugblatt).<br>
+    PMK-links: 35% Aufklärungsquote — Schwerpunkt auf anonymen Sachbeschädigungen.
+  </div>
+
+  <h3>Sachbeschädigungen: links vor rechts</h3>
+
+  <p>
+    <span class="tag tag-b">BELEGT</span> Die Bundeszentrale für politische Bildung dokumentiert: Bei Sachbeschädigungen lagen die Zahlen für PMK-links in den Jahren 2021 und 2022 bei 3.419 bzw. 1.968 Fällen — gegenüber 923 bzw. 592 bei PMK-rechts. Linksextreme Sachbeschädigungen übertrafen rechtsextreme damit um den Faktor 3 bis 4.
+  </p>
+
+  <table class="claim-table">
+    <thead>
+      <tr>
+        <th>Delikt</th>
+        <th>PMK-links 2021</th>
+        <th>PMK-rechts 2021</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Sachbeschädigungen</td>
+        <td>3.419</td>
+        <td>923</td>
+        <td><span class="tag tag-b">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Körperverletzungen</td>
+        <td>362</td>
+        <td>783</td>
+        <td><span class="tag tag-b">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Propagandadelikte</td>
+        <td>gering (keine verbotenen linken Symbole)</td>
+        <td>Mehrheit aller PMK-rechts-Fälle</td>
+        <td><span class="tag tag-b">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Gewalttaten gesamt 2025</td>
+        <td>+42,6% gegenüber Vorjahr</td>
+        <td>+7,4% gegenüber Vorjahr</td>
+        <td><span class="tag tag-b">BELEGT</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    <span class="tag tag-b">BELEGT</span> Die BKA-Jahresstatistik 2025 verzeichnet einen Anstieg linksextremer Gewalttaten um 42,6 Prozent auf 1.087 Fälle — den höchsten Stand seit 2016. BKA-Präsident Holger Münch sprach von einer „wachsenden Bedrohung".
+  </p>
+
+  <h2>Hakenkreuz an AfD-Büro: ein dokumentierter Fall</h2>
+
+  <p>
+    <span class="tag tag-b">BELEGT</span> Im Jahr 2019 brachte die AfD eine Kleine Anfrage im Bundestag ein (Drucksache 20/5470) zu einer Hakenkreuzschmiererei an einem AfD-Wahlkreisbüro in Sachsen-Anhalt. Die Bundesregierung antwortete schriftlich: Das Verwenden nationalsozialistischer Symbole sei dem Phänomenbereich PMK-rechts zuzuordnen, „wenn sich aus den Umständen der Tat und/oder der Einstellung des Täters keine gegenteiligen Anhaltspunkte zur Tätermotivation ergeben."
+  </p>
+
+  <p>
+    Der Täter blieb unbekannt. Der Fall wurde als PMK-rechts erfasst.
+  </p>
+
+  <div class="source-box">
+    <strong>Primärquelle — Bundestagsdrucksache 20/5470</strong>
+    Kleine Anfrage der AfD-Fraktion zu Angriffen auf Wahlkreisbüros. Antwort der Bundesregierung vom 2. August 2019. Bestätigung der Zuordnungsregel durch das BKA. Öffentlich einsehbar unter dserver.bundestag.de.
+  </div>
+
+  <h2>Der Kreislauf: Statistik — Medien — Finanzierung</h2>
+
+  <p>
+    <span class="tag tag-b">BELEGT</span> Die PMK-Jahresbilanz wird jährlich vom Bundesinnenministerium und BKA-Präsidenten auf einer Bundespressekonferenz vorgestellt. 2024 meldeten zahlreiche Medien einen Anstieg „rechtsextremer" Straftaten von rund 30.000 auf 43.000 Fälle.
+  </p>
+
+  <p>
+    <span class="tag tag-b">BELEGT</span> Das Bundesförderprogramm „Demokratie leben!" des Bundesfamilienministeriums finanziert Organisationen, die im Bereich der Prävention und Dokumentation rechtsextremer Aktivitäten tätig sind. Das Programmvolumen betrug laut Bundeshaushalt zuletzt rund 200 Millionen Euro jährlich.
+  </p>
+
+  <p>
+    <span class="tag tag-e">EXTRAPOLATION</span> Ein kausaler Zusammenhang zwischen steigenden PMK-rechts-Zahlen und steigenden Fördermitteln für zivilgesellschaftliche Organisationen im Bereich „Kampf gegen Rechts" lässt sich aus den verfügbaren Daten nicht beweisen. Die zeitliche Koinzidenz beider Entwicklungen ist dokumentiert.
+  </p>
+
+  <div class="highlight-box">
+    <strong style="font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 0.6rem;">Dokumentierte Abfolge</strong>
+    1. Hakenkreuz gesprüht, Täter unbekannt → automatisch PMK-rechts (amtliche Regelung) <span class="tag tag-b">BELEGT</span><br>
+    2. Jahresstatistik zeigt steigende rechtsextreme Straftaten → Medienberichterstattung <span class="tag tag-b">BELEGT</span><br>
+    3. Politische Forderungen nach mehr Mitteln für Prävention → Förderentscheidungen <span class="tag tag-b">BELEGT</span><br>
+    4. Geförderte Organisationen dokumentieren Vorfälle → fließen in Folgestatistiken ein <span class="tag tag-e">EXTRAPOLATION</span>
+  </div>
+
+  <h2>Was die Statistik nicht erfasst</h2>
+
+  <p>
+    <span class="tag tag-b">BELEGT</span> Die BKA-Dunkelfeldstudie SKID 2024 dokumentiert: Rund 40 Prozent der von politischer Gewalt Betroffenen erstatten keine Anzeige. Bei antisemitischen Übergriffen liegt die Anzeigequote laut RIAS (Recherche- und Informationsstelle Antisemitismus) sogar nur bei rund 25 Prozent — während RIAS gleichzeitig rund viermal mehr Fälle erfasst als die offizielle PMK-Statistik.
+  </p>
+
+  <p>
+    <span class="tag tag-b">BELEGT</span> Die PMK-Statistik ist eine Eingangsstatistik: Die politische Einordnung erfolgt zum Zeitpunkt der Anzeigenaufnahme — also bevor ein Täter ermittelt wurde. Nachträgliche Korrekturen sind möglich, aber selten.
+  </p>
+
+  <p>
+    <span class="tag tag-n">NICHT BELEGT</span> Wie viele der als PMK-rechts erfassten Hakenkreuzschmierereien tatsächlich von Tätern aus dem linken oder islamistischen Spektrum stammen, ist statistisch nicht erfasst. Das BKA erhebt diese Unterscheidung nicht systematisch.
+  </p>
+
+  <p class="closing">
+    Welche Schlüsse lassen sich aus einer Statistik ziehen, die strukturell mehr Taten einer politischen Richtung zuordnet — unabhängig davon, wer die Taten begeht? Und wessen Interessen bedient eine Systematik, die seit einer Innenministerkonferenz im Jahr 2009 unverändert gilt?
+  </p>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html">← Zurück zur Übersicht</a>
+  <a href="impressum.html">Impressum</a>
+  <a href="datenschutz.html">Datenschutz</a>
+  <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted); letter-spacing: 0.06em;">dunkelfeld.report · statistik-macht · Juni 2026</span>
+</footer>
+
+</body>
+</html>

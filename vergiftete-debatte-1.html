@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Die vergiftete Debatte | dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --bg-card: #111113;
+    --bg-source: #1a1a2e;
+    --accent: #e8c547;
+    --accent-dim: rgba(232,197,71,0.12);
+    --accent-dim2: rgba(232,197,71,0.06);
+    --text: #d4d4d8;
+    --text-muted: #71717a;
+    --text-bright: #f4f4f5;
+    --border: #27272a;
+    --belegt: #4ade80;
+    --belegt-bg: rgba(74,222,128,0.08);
+    --offen: #fb923c;
+    --offen-bg: rgba(251,146,60,0.08);
+    --extrapolation: #818cf8;
+    --extrapolation-bg: rgba(129,140,248,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.05rem;
+    line-height: 1.85;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(9,9,11,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.8rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 5rem 2rem 3rem;
+  }
+
+  .dossier-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .dossier-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: normal;
+    color: var(--text-bright);
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+  }
+
+  h1 em {
+    color: var(--accent);
+    font-style: normal;
+  }
+
+  .subtitle {
+    font-family: 'Courier New', monospace;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    border-left: 2px solid var(--accent);
+    padding-left: 1rem;
+  }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .meta-row span { color: var(--accent); }
+
+  /* STAT GRID */
+  .stat-grid {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+  }
+
+  .stat-card {
+    background: var(--bg-card);
+    padding: 1.4rem 1.2rem;
+  }
+
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.9rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+  }
+
+  /* MAIN CONTENT */
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 3.5rem 0;
+  }
+
+  h2 {
+    font-family: Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: normal;
+    color: var(--text-bright);
+    margin-bottom: 1.4rem;
+    margin-top: 3rem;
+    padding-top: 0.5rem;
+  }
+
+  h3 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.9rem;
+    margin-top: 2rem;
+  }
+
+  p {
+    margin-bottom: 1.2rem;
+    color: var(--text);
+  }
+
+  /* SOURCE BOXES */
+  .source-box {
+    background: var(--bg-source);
+    border-left: 3px solid var(--accent);
+    padding: 1.1rem 1.3rem;
+    margin: 1.8rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .source-box .source-title {
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .source-box a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* STATUS TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    padding: 0.2em 0.55em;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-right: 0.3em;
+  }
+
+  .tag-belegt {
+    background: var(--belegt-bg);
+    color: var(--belegt);
+    border: 1px solid rgba(74,222,128,0.25);
+  }
+
+  .tag-offen {
+    background: var(--offen-bg);
+    color: var(--offen);
+    border: 1px solid rgba(251,146,60,0.25);
+  }
+
+  .tag-extrapolation {
+    background: var(--extrapolation-bg);
+    color: var(--extrapolation);
+    border: 1px solid rgba(129,140,248,0.25);
+  }
+
+  /* DATA TABLE */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.88rem;
+  }
+
+  .data-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    text-align: left;
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .data-table td {
+    padding: 0.85rem 0.8rem;
+    border-bottom: 1px solid rgba(39,39,42,0.5);
+    vertical-align: top;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .data-table tr:hover td {
+    background: var(--accent-dim2);
+  }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-top: 1px solid var(--accent);
+    border-bottom: 1px solid var(--accent);
+    padding: 1.5rem 0;
+    margin: 2.5rem 0;
+    font-size: 1.15rem;
+    color: var(--text-bright);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  /* MECHANIC BOX */
+  .mechanic-box {
+    background: var(--accent-dim);
+    border: 1px solid rgba(232,197,71,0.2);
+    padding: 1.3rem 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .mechanic-box .mechanic-title {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.7rem;
+  }
+
+  .mechanic-box p {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+  }
+
+  /* CLOSING QUESTION */
+  .closing-question {
+    margin-top: 4rem;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+  }
+
+  .closing-question p {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 0;
+  }
+
+  /* CROSS-REF */
+  .cross-ref {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .cross-ref-title {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .cross-ref-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .cross-ref-link {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    text-decoration: none;
+    border: 1px solid rgba(232,197,71,0.3);
+    padding: 0.35rem 0.8rem;
+    transition: background 0.2s;
+  }
+
+  .cross-ref-link:hover {
+    background: var(--accent-dim);
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    nav { padding: 0.75rem 1rem; }
+    .nav-links { gap: 1rem; }
+    .hero, .content { padding-left: 1.2rem; padding-right: 1.2rem; }
+    .stat-grid { padding-left: 1.2rem; padding-right: 1.2rem; }
+    h1 { font-size: 1.8rem; }
+    .data-table { font-size: 0.78rem; }
+    .data-table th, .data-table td { padding: 0.6rem 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">dunkelfeld.report</a>
+  <ul class="nav-links">
+    <li><a href="/dossiers">Dossiers</a></li>
+    <li><a href="/artikel">Artikel</a></li>
+    <li><a href="/impressum">Impressum</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="dossier-label">Analyse · Medienpolitik</div>
+  <h1>Die <em>vergiftete</em> Debatte</h1>
+  <p class="subtitle">
+    Schweigespirale, Dunning-Kruger und die Infrastruktur, die wartet —<br>
+    wer profitiert davon, wenn legitime Sicherheitsdebatten entweder<br>
+    totgeschwiegen oder durch Exploitationkino vergiftet werden?
+  </p>
+  <div class="meta-row">
+    <div>Veröffentlicht <span>Juni 2026</span></div>
+    <div>Kategorie <span>Medienpolitik / Strukturanalyse</span></div>
+    <div>Status <span>Primärquellen verifiziert</span></div>
+  </div>
+</header>
+
+<!-- STAT GRID -->
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="stat-number">1974</div>
+    <div class="stat-label">Erstpublikation<br>Schweigespirale<br>Noelle-Neumann</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">8,9%</div>
+    <div class="stat-label">Anteil Zuwanderer<br>an Tatverdächtigen<br>BKA 2024</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">1999</div>
+    <div class="stat-label">Dunning-Kruger<br>Originalstudie<br>Cornell University</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">420k</div>
+    <div class="stat-label">Downloads nach<br>Streisand-Klage<br>(vorher: 6)</div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<main class="content">
+
+  <hr class="section-divider">
+
+  <!-- EINLEITUNG -->
+  <p>
+    Am 19. Juni 2026 erschien in deutschen Kinos kein Film. Genauer: Er erschien nicht, weil ihm die Freiwillige Selbstkontrolle der Filmwirtschaft (FSK) die Altersfreigabe verweigerte — was in Deutschland einer faktischen Beschlagnahmung gleichkommt. Der Film heißt <em>Citizen Vigilante</em>, Regie: Uwe Boll, Hauptdarsteller: Armie Hammer. Inhalt: Ein Ex-Militär rächt sich an kriminellen Migranten und korrupten Richtern und wird dabei zum Social-Media-Helden.
+  </p>
+  <p>
+    Innerhalb von Stunden wurde der Film — dank des Verbots — international bekannt. Das Kommentarfeld unter dem ersten deutschen Bericht fasste es präzise zusammen: <em>„Der Streisand-Effekt wird dafür sorgen, dass der Film noch viel mehr Aufmerksamkeit erhält als geplant."</em>
+  </p>
+  <p>
+    Dieser Text ist keine Filmkritik. Er stellt die Frage, die hinter dem Vorgang steht: Wer profitiert davon, wenn eine reale gesellschaftliche Debatte entweder systematisch unterdrückt wird — oder durch Exploitationkino vergiftet wird? Und welche Infrastruktur steht bereit, wenn der Kessel überläuft?
+  </p>
+
+  <hr class="section-divider">
+
+  <!-- TEIL 1 -->
+  <h2>Teil 1 — Das Vakuum: Die Schweigespirale als Mechanismus</h2>
+
+  <p>
+    Der Begriff stammt nicht aus dem Rechtspopulismus, sondern aus der akademischen Kommunikationswissenschaft. Die deutsche Meinungsforscherin Elisabeth Noelle-Neumann entwickelte die Theorie der Schweigespirale ab Mitte der 1960er Jahre und publizierte sie erstmals 1974.
+  </p>
+
+  <div class="source-box">
+    <span class="source-title">Primärquelle</span>
+    Noelle-Neumann, E. (1974): <em>Die Schweigespirale: Über die Entstehung der öffentlichen Meinung.</em> In: Forsthoff/Hörstel (Hrsg.), Standorte im Zeitstrom. Festschrift für Arnold Gehlen, Frankfurt a.M., S. 299–330. | Buchfassung: <em>Die Schweigespirale. Öffentliche Meinung — unsere soziale Haut.</em> Piper, München 1980. | Englisch: <em>The Spiral of Silence: Public Opinion — Our Social Skin.</em> University of Chicago Press, 1984. Laut Google Scholar über 3.890-mal zitiert (Stand 2023).
+  </div>
+
+  <p>
+    Der Mechanismus ist einfach und empirisch vielfach repliziert: Menschen beobachten ihre soziale Umgebung und schätzen ein, welche Meinungen als mehrheitsfähig gelten. Wer glaubt, mit seiner Ansicht in der Minderheit zu sein, schweigt — aus Angst vor sozialer Isolation. Je mehr schweigen, desto stärker wird die wahrgenommene Mehrheitsmeinung — unabhängig davon, ob sie tatsächlich die Mehrheit ist.
+  </p>
+
+  <div class="mechanic-box">
+    <div class="mechanic-title">Mechanismus</div>
+    <p>Wahrgenommene Mehrheit → Schweigende Minderheit → Stärkung der wahrgenommenen Mehrheit → tieferes Schweigen der tatsächlichen Minderheit. Ein selbstverstärkender Kreislauf, den Massenmedien entscheidend prägen — weil sie das Bild der „öffentlichen Meinung" liefern, an dem sich Individuen orientieren.</p>
+  </div>
+
+  <h3>Anwendung: Migrationsdebatte</h3>
+
+  <p>
+    Die Forschungsliteratur belegt, dass das Thema Migrantenkriminalität in Deutschland einem ausgeprägten Schweigespiraleffekt unterliegt. Akteure, die reale Sicherheitsbedenken äußern, riskieren soziale Stigmatisierung — unabhängig davon, ob ihre Aussagen durch Primärquellen gedeckt sind. Das erzeugt ein Vakuum: Die Realität existiert in Statistiken und Behördenberichten, aber nicht im öffentlichen Diskurs.
+  </p>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Die Schweigespirale als Theorie: Noelle-Neumann 1974/1980, Journal of Communication 1974, über 3.100-mal zitiert.
+  </p>
+  <p>
+    <span class="tag tag-offen">OFFEN</span> Ob und in welchem Ausmaß die Schweigespirale gezielt instrumentalisiert wird — d.h. ob Schweigemechanismen bewusst herbeigeführt werden — ist dokumentarisch nicht belegt.
+  </p>
+
+  <hr class="section-divider">
+
+  <!-- TEIL 2 -->
+  <h2>Teil 2 — Die Vergiftung: Drei Dimensionen des Dunning-Kruger</h2>
+
+  <p>
+    Der Dunning-Kruger-Effekt ist ein kognitiver Verzerrungsmechanismus, der 1999 von den Cornell-Psychologen Justin Kruger und David Dunning empirisch nachgewiesen wurde.
+  </p>
+
+  <div class="source-box">
+    <span class="source-title">Primärquelle</span>
+    Kruger, J. &amp; Dunning, D. (1999): <em>Unskilled and Unaware of It: How Difficulties in Recognizing One's Own Incompetence Lead to Inflated Self-Assessments.</em> Journal of Personality and Social Psychology, 77(6), S. 1121–1134. DOI: 10.1037/0022-3514.77.6.1121. PMID: 10626367.
+  </div>
+
+  <p>
+    Der Kernbefund: Menschen mit geringer Kompetenz in einem Bereich überschätzen ihre eigene Leistungsfähigkeit systematisch. In vier Experimenten (Logik, Grammatik, Humor) platzierten sich Probanden des untersten Quartils im Schnitt auf Perzentile 62 — tatsächlich lagen sie auf Perzentile 12. Der Effekt gilt universell, nicht nur bei niedriger Intelligenz, sondern für jeden Menschen in Bereichen seiner relativen Inkompetenz.
+  </p>
+
+  <p>
+    Im Kontext der vergifteten Debatte wirkt der Effekt in drei Richtungen gleichzeitig:
+  </p>
+
+  <h3>A — Als Diskreditierungswaffe</h3>
+
+  <p>
+    Dunning-Kruger wird als rhetorisches Instrument gegen Kritiker eingesetzt: Wer Migrantenkriminalität oder Behördenversagen thematisiert, wird als kognitiv überfordert abgestempelt — zu dumm für Komplexität, Opfer des eigenen Dunning-Kruger-Effekts. Das ist strukturell identisch mit dem Einsatz des Begriffs „Verschwörungstheorie" als Diskreditierungsmittel, der in Dossier #10 (Faktenchecker-Business) dokumentiert ist.
+  </p>
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Mechanismus der Diskreditierung durch Verschwörungstheorie-Vorwurf: CeMAS-Dokumentation, parlamentarische Protokolle — siehe Dossier #10.
+  </p>
+  <p>
+    <span class="tag tag-extrapolation">EXTRAPOLATION</span> Dass Dunning-Kruger strategisch als Diskreditierungsinstrument eingesetzt wird, lässt sich aus Mustern ableiten, nicht aus Dokumenten belegen.
+  </p>
+
+  <h3>B — Als Politikversagen</h3>
+
+  <p>
+    Das BKA veröffentlicht jährlich ein Bundeslagebild „Kriminalität im Kontext von Zuwanderung". Die Daten existieren, sind öffentlich zugänglich — und werden im politischen Diskurs selten vollständig rezipiert.
+  </p>
+
+  <div class="source-box">
+    <span class="source-title">Primärquelle — BKA Bundeslagebild 2024</span>
+    Bundeskriminalamt (2025): <em>Bundeslagebild Kriminalität im Kontext von Zuwanderung — Fokus: Fluchtmigration 2024.</em> Wiesbaden: BKA. <a href="https://www.bka.de/SharedDocs/Downloads/DE/Publikationen/JahresberichteUndLagebilder/KriminalitaetImKontextVonZuwanderung/KriminalitaetImKontextVonZuwanderung_2024.pdf" target="_blank">→ PDF (BKA.de)</a>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Kennzahl</th>
+        <th>Wert 2024</th>
+        <th>Veränderung</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Tatverdächtige Zuwanderer gesamt</td>
+        <td>172.000</td>
+        <td>−3,6% ggü. 2023</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Anteil an allen Tatverdächtigen</td>
+        <td>8,9%</td>
+        <td>stabil</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Straftaten gegen das Leben (tvZ)</td>
+        <td>474</td>
+        <td>+12,9% ggü. 2023</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Rückgang durch Cannabis-Legalisierung</td>
+        <td>erheblich</td>
+        <td>Vergleichbarkeit eingeschränkt</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Angriffe auf Asylunterkünfte</td>
+        <td>3.707 Fälle</td>
+        <td>+15,6% ggü. 2023</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    Das BKA selbst weist ausdrücklich auf methodische Einschränkungen hin: Erfasst werden Tatverdächtige, nicht Verurteilte. Die Wahrscheinlichkeit, angezeigt zu werden, ist nicht für alle Bevölkerungsgruppen gleich. Kriminologen warnen vor politischer Instrumentalisierung dieser Zahlen in beide Richtungen — weder als Beleg für pauschale Kriminalisierung noch als Argument zur Verharmlosung.
+  </p>
+
+  <div class="pull-quote">
+    „Zusammenhänge zwischen Migration und Kriminalität sind komplex und lassen sich nicht auf einfache Ursache-Wirkungs-Modelle reduzieren."
+    <br><small style="font-family:'Courier New',monospace;font-size:0.72rem;color:var(--text-muted);display:block;margin-top:0.5rem;">— Dr. Christian Walburg, Kriminologe, Bundeszentrale für politische Bildung</small>
+  </div>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> BKA-Daten existieren und sind öffentlich. <span class="tag tag-belegt">BELEGT</span> Methodische Einschränkungen sind im Lagebild selbst dokumentiert. <span class="tag tag-offen">OFFEN</span> In welchem Ausmaß politische Entscheidungsträger diese Daten tatsächlich kennen und berücksichtigen.
+  </p>
+
+  <h3>C — Als Mediales Versagen</h3>
+
+  <p>
+    Journalisten und Kommentatoren, die über Migrantenkriminalität berichten oder nicht berichten, tun dies häufig ohne Rückgriff auf die verfügbaren Primärquellen. Das Vakuum zwischen dem, was die Statistik zeigt, und dem, was im öffentlichen Diskurs ankommt, ist dokumentierbar — und wird durch Exploitationkino gefüllt.
+  </p>
+
+  <p>
+    Der forensische Psychiater Prof. Frank Urbaniok — über 30 Jahre Berufserfahrung, ehemaliger Chefarzt des Psychiatrisch-Psychologischen Dienstes Kanton Zürich, Professor an den Universitäten Zürich und Konstanz — benennt den Mechanismus explizit:
+  </p>
+
+  <div class="source-box">
+    <span class="source-title">Quelle — NZZ-Interview, 12. April 2025</span>
+    Urbaniok wirft Politik und Kriminologie vor, Migrantengewalt durch „gezielte Desinformation und statistische Tricks" systematisch verharmlost zu haben. Begründung: Man wolle Rechtsextremen keine Argumente liefern. Urbanioks Einschätzung: „Doch davon gehen die Probleme nicht weg — im Gegenteil." Gleichzeitig betont er: Soziale Faktoren wie Bildung, Umfeld und Einkommen spielen eine Rolle — das Herkunftsland allein erklärt nichts abschließend.<br><br>
+    <a href="https://www.nzz.ch/schweiz/frank-urbaniok-ueber-migration-kriminalitaet-und-die-schweizer-asylpolitik-ld.1879251" target="_blank">→ NZZ: „Ein erheblicher Teil der Gewalt ist importiert" (12.04.2025)</a>
+  </div>
+
+  <div class="source-box">
+    <span class="source-title">Quelle — Buch „Schattenseiten der Migration", Voima-Verlag Zürich, April 2025</span>
+    Urbaniok wertet Kriminalstatistiken aus Deutschland, Österreich und der Schweiz systematisch aus. Kernbefund: Bestimmte Herkunftsgruppen sind in schwerer Gewalt- und Sexualkriminalität überrepräsentiert. Urbaniok grenzt sich ausdrücklich von pauschaler Kriminalisierung ab und fordert differenzierte, sachorientierte Politik — und Transparenz in der Statistikpolitik.<br><br>
+    <a href="https://www.nzz.ch/themen/frank-urbaniok" target="_blank">→ NZZ: Alle Artikel zu Frank Urbaniok</a>
+  </div>
+
+  <div class="source-box">
+    <span class="source-title">Video — YouTube, August 2025</span>
+    „Migration &amp; Kriminalität: Die unbequemen Zahlen" — Urbaniok im Gespräch über seine 30-jährige Erfahrung mit Straftätern und die methodischen Grundlagen seiner Auswertung.<br><br>
+    <a href="https://www.youtube.com/watch?v=XlSzbfiY0Lo" target="_blank">→ YouTube: Migration &amp; Kriminalität: Die unbequemen Zahlen (August 2025)</a>
+  </div>
+
+  <div class="source-box">
+    <span class="source-title">Video — YouTube, Juni 2026</span>
+    „Schattenseiten der Migration — Zahlen, Fakten, Lösungen" — Urbaniok, 3. Juni 2026. Vortrag mit Datenpräsentation zu Kriminalitätsquoten im deutschsprachigen Raum.<br><br>
+    <a href="https://www.youtube.com/watch?v=XddTYx_DVOk" target="_blank">→ YouTube: Schattenseiten der Migration (Juni 2026)</a>
+  </div>
+
+  <div class="source-box">
+    <span class="source-title">Gegenperspektive — Correctiv, Dezember 2025</span>
+    Correctiv kritisiert Urbanioks Methodik: Kriminologe Christian Walburg (Bundeszentrale für politische Bildung) weist darauf hin, dass Alter und Geschlecht der verglichenen Gruppen rund 25–30% der statistischen Unterschiede erklären. Urbaniok räumt den Einwand als „berechtigt" ein, hält das Grundproblem jedoch für bestehend. Beide Positionen sind öffentlich dokumentiert.<br><br>
+    <a href="https://correctiv.org/aktuelles/denkanstoss/2025/12/22/auslaenderkriminalitaet-das-erfundene-tabu/" target="_blank">→ Correctiv: „Ausländerkriminalität: Das erfundene Tabu" (Dezember 2025)</a>
+  </div>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Urbanioks Aussagen und Quellen sind öffentlich dokumentiert (NZZ, SRF, FAZ, YouTube). <span class="tag tag-belegt">BELEGT</span> Methodische Gegenposition durch Kriminologe Walburg ebenfalls dokumentiert. <span class="tag tag-offen">OFFEN</span> Ob die von Urbaniok beschriebene Selbstzensur koordiniert oder strukturell bedingt ist.
+  </p>
+
+  <p>
+    <em>Citizen Vigilante</em> ist kein politisches Manifest, sondern billiges Genre-Kino. Die Variety-Kritik nennt den Film „astonishingly bad, violent, incoherent, morally bankrupt". Uwe Boll ist kein Vordenker. Aber er besetzt ein Vakuum — und das Verbot verschafft ihm eine Reichweite, die er sich nicht verdient hat.
+  </p>
+
+  <hr class="section-divider">
+
+  <!-- TEIL 3 -->
+  <h2>Teil 3 — Der Kessel: Streisand-Effekt als Strategie</h2>
+
+  <p>
+    Das Phänomen ist benannt nach einem Vorfall aus dem Jahr 2003: Barbara Streisand verklagte einen Fotografen, weil dessen Luftaufnahme der kalifornischen Küste zufällig ihr Anwesen zeigte. Das Foto war bis zur Klage sechsmal heruntergeladen worden — zweimal von Streisands Anwälten. Nach der Klage: über 420.000 Downloads innerhalb eines Monats.
+  </p>
+
+  <div class="source-box">
+    <span class="source-title">Sekundärquelle (mit Primärquellenverweisen)</span>
+    Pörksen, B. &amp; Detel, H. (2012): <em>Der entfesselte Skandal. Das Ende der Kontrolle im digitalen Zeitalter.</em> Herbert von Halem Verlag. | Psychologische Grundlage: Reaktanz-Theorie (Brehm, J.W., 1966: <em>A Theory of Psychological Reactance.</em> Academic Press).
+  </div>
+
+  <p>
+    Neuere empirische Forschung zeigt: Der Streisand-Effekt ist für bestimmte politische Akteure keine unbeabsichtigte Folge mehr, sondern bewusste Strategie.
+  </p>
+
+  <div class="mechanic-box">
+    <div class="mechanic-title">Dokumentierter Mechanismus</div>
+    <p>Eine Analyse von 245 politischen Spendenaufrufen ergab: Über 90% der buchverbotsbezogenen Fundraising-Nachrichten stammten von Akteuren, die das Verbot als Mobilisierungsthema nutzten. Die Verbote erzeugten sowohl Empörung als auch Gegenempörung — und trieben auf beiden Seiten Spendeneinnahmen. Das Verbot selbst wird zur Ware.</p>
+  </div>
+
+  <p>
+    Im Fall <em>Citizen Vigilante</em>: Das FSK-Verbot in Deutschland macht den Film zu einem internationalen Thema. Uwe Boll — nach eigenem Bekunden — hat einen Anwalt eingesetzt und die Entscheidung öffentlich angefochten. Die Logik ist dieselbe. Ob das kalkuliert war oder nicht, ist für die strukturelle Analyse irrelevant: Der Effekt tritt auf.
+  </p>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Streisand-Effekt als dokumentiertes Phänomen. <span class="tag tag-belegt">BELEGT</span> Strategische Nutzung in politischen Kampagnen: empirische Studie (artoftruth.org, 2026, mit Quellenangaben). <span class="tag tag-extrapolation">EXTRAPOLATION</span> Ob das FSK-Verbot im konkreten Fall strategisch herbeigeführt wurde.
+  </p>
+
+  <h3>Der Eskalationskreislauf</h3>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Phase</th>
+        <th>Akteur</th>
+        <th>Effekt</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Schweigespirale</td>
+        <td>Medien / Politik</td>
+        <td>Vakuum entsteht, Realität nicht diskutierbar</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Vakuumfüllung</td>
+        <td>Exploitationkino / Populismus</td>
+        <td>Debatte wird vergiftet, Differenzierung unmöglich</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Verbot / Zensur</td>
+        <td>Behörden / FSK</td>
+        <td>Streisand-Effekt, Empörung auf beiden Seiten</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Eskalation</td>
+        <td>Alle Seiten</td>
+        <td>Gemeinsame Informationsgrundlage zerstört</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Legitimationsbedarf</td>
+        <td>Sicherheitsarchitektur</td>
+        <td>Infrastruktur wird als „Lösung" präsentiert</td>
+        <td><span class="tag tag-extrapolation">EXTRAPOLATION</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="section-divider">
+
+  <!-- TEIL 4 -->
+  <h2>Teil 4 — Die Infrastruktur, die wartet</h2>
+
+  <p>
+    Während die öffentliche Debatte zwischen Schweigen und Vergiftung pendelt, ist eine parallele Infrastruktur in Aufbau und Betrieb: digitale Identitätssysteme, KI-gestützte Auswertungsplattformen, erweiterte Überwachungsarchitektur.
+  </p>
+
+  <p>
+    Diese Infrastruktur ist nicht hypothetisch. Sie ist dokumentiert — in parlamentarischen Anfragen, EU-Verordnungen, Behördenberichten und Unternehmensverträgen. Dunkelfeld.report hat drei Stränge bereits in separaten Dossiers aufgearbeitet:
+  </p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Infrastruktur</th>
+        <th>Stand</th>
+        <th>Dossier</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>eIDAS 2.0 / Digitale Identität EU</td>
+        <td>In Kraft seit 2024, Implementierung läuft</td>
+        <td>„Infrastruktur der Kontrolle" (#15)</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Chatkontrolle (EU-Verordnung)</td>
+        <td>Gesetzgebungsverfahren aktiv</td>
+        <td>„Infrastruktur der Kontrolle" (#15)</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>Palantir / VeRA (Polizeisoftware DE)</td>
+        <td>In 5+ Bundesländern aktiv oder erprobt</td>
+        <td>Palantir-Dossier (in Vorbereitung)</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+      <tr>
+        <td>§98d StPO (Nachrichtendienstl. Mittel)</td>
+        <td>In Kraft</td>
+        <td>„Faktenchecker-Business" (#10)</td>
+        <td><span class="tag tag-belegt">BELEGT</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    Die strukturelle Frage ist nicht, ob diese Werkzeuge im Einsatz sind — das ist belegt. Die Frage ist: Welches gesellschaftliche Klima schafft die Legitimation für ihre Ausweitung? Und wem nützt es, wenn genau dieses Klima durch einen Kreislauf aus Schweigen, Vergiftung und Eskalation erzeugt wird?
+  </p>
+
+  <p>
+    <span class="tag tag-belegt">BELEGT</span> Existenz und Einsatz der genannten Infrastruktur (Quellen in verlinkten Dossiers). <span class="tag tag-extrapolation">EXTRAPOLATION</span> Kausaler Zusammenhang zwischen gesellschaftlicher Eskalation und Legitimationsbeschaffung für Überwachungsinfrastruktur. <span class="tag tag-offen">OFFEN</span> Wer diesen Zusammenhang — falls er intentional ist — koordiniert.
+  </p>
+
+  <hr class="section-divider">
+
+  <!-- CLOSING -->
+  <div class="closing-question">
+    <p>
+      Wer profitiert von einer Gesellschaft, in der eine reale Sicherheitsdebatte entweder nicht stattfinden darf — oder nur in der Form von Exploitationkino stattfindet? Und welche Infrastruktur steht bereit, wenn der Kessel überläuft — nicht trotz der Schweigespirale und der vergifteten Debatte, sondern vielleicht genau deswegen?
+    </p>
+  </div>
+
+  <!-- CROSS-REF -->
+  <div class="cross-ref">
+    <div class="cross-ref-title">Verwandte Dossiers</div>
+    <div class="cross-ref-links">
+      <a class="cross-ref-link" href="/dossier-10-faktenchecker.html">→ #10 Faktenchecker-Business</a>
+      <a class="cross-ref-link" href="/dossier-11-divide-impera.html">→ #11 Divide et Impera 2.0</a>
+      <a class="cross-ref-link" href="/dossier-15-infrastruktur.html">→ #15 Infrastruktur der Kontrolle</a>
+      <a class="cross-ref-link" href="/palantir.html">→ Palantir (in Vorbereitung)</a>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>dunkelfeld.report — Hidden in Plain Sight</p>
+  <p style="margin-top:0.5rem;">
+    <a href="/impressum">Impressum</a> · <a href="/datenschutz">Datenschutz</a>
+  </p>
+  <p style="margin-top:0.5rem;font-size:0.65rem;color:#52525b;">
+    Alle Aussagen sind mit Quellenstatus versehen (BELEGT / OFFEN / EXTRAPOLATION).<br>
+    Keine Motive werden unterstellt. Primärquellen sind verlinkt oder vollständig zitiert.
+  </p>
+</footer>
+
+</body>
+</html>

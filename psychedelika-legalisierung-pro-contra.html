@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legalisierung von Psychedelika: Was die Datenlage tatsächlich zeigt | dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.7;
+    font-size: 18px;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 60px 24px 100px; }
+
+  .masthead { text-align: center; margin-bottom: 48px; padding-bottom: 24px; border-bottom: 1px solid #27272a; }
+  .masthead .logo { font-family: 'Courier New', monospace; color: #e8c547; font-size: 15px; letter-spacing: 2px; text-transform: uppercase; }
+  .masthead .tagline { font-family: 'Courier New', monospace; color: #71717a; font-size: 12px; margin-top: 6px; letter-spacing: 1px; }
+
+  .meta { font-family: 'Courier New', monospace; color: #71717a; font-size: 13px; margin-bottom: 8px; }
+  h1 { font-size: 32px; line-height: 1.25; color: #f4f4f5; margin: 10px 0 20px; font-weight: 700; }
+  .lede { font-size: 19px; color: #d4d4d8; margin-bottom: 40px; }
+  h2 { font-size: 24px; color: #e8c547; margin: 52px 0 18px; padding-bottom: 10px; border-bottom: 1px solid #27272a; }
+  h3 { font-size: 19px; color: #f4f4f5; margin: 32px 0 14px; }
+  p { margin-bottom: 18px; color: #d4d4d8; }
+  a { color: #e8c547; text-decoration: none; border-bottom: 1px dotted #e8c547; }
+
+  .tag { font-family: 'Courier New', monospace; font-size: 11px; font-weight: bold; letter-spacing: 1px; padding: 2px 7px; border-radius: 3px; display: inline-block; vertical-align: middle; margin: 0 2px; }
+  .tag-belegt { background: rgba(74,222,128,0.12); color: #4ade80; border: 1px solid rgba(74,222,128,0.35); }
+  .tag-extrapolation { background: rgba(251,146,60,0.12); color: #fb923c; border: 1px solid rgba(251,146,60,0.35); }
+  .tag-offen { background: rgba(161,161,170,0.12); color: #a1a1aa; border: 1px solid rgba(161,161,170,0.35); }
+
+  /* Pro/Contra Split */
+  .split { display: flex; flex-wrap: wrap; gap: 18px; margin: 24px 0 30px; }
+  .col { flex: 1 1 300px; border-radius: 8px; padding: 20px 22px; }
+  .col-pro { background: rgba(74,222,128,0.06); border: 1px solid rgba(74,222,128,0.3); }
+  .col-contra { background: rgba(248,113,113,0.06); border: 1px solid rgba(248,113,113,0.3); }
+  .col h3 { margin-top: 0; font-size: 16px; font-family: 'Courier New', monospace; letter-spacing: 1px; }
+  .col-pro h3 { color: #4ade80; }
+  .col-contra h3 { color: #f87171; }
+  .col ul { padding-left: 20px; margin-bottom: 0; }
+  .col li { font-size: 15px; color: #c4c4c8; margin-bottom: 10px; }
+
+  .source-box { background: #1a1a2e; border-left: 3px solid #e8c547; padding: 16px 20px; margin: 20px 0 30px; font-size: 15px; color: #b4b4b8; }
+  .source-box .label { font-family: 'Courier New', monospace; color: #e8c547; font-size: 11px; letter-spacing: 1px; display: block; margin-bottom: 6px; }
+
+  .stat-grid { display: flex; flex-wrap: wrap; gap: 14px; margin: 24px 0 30px; }
+  .stat { flex: 1 1 150px; background: #131320; border: 1px solid #27272a; border-radius: 6px; padding: 16px; text-align: center; }
+  .stat .num { font-family: 'Courier New', monospace; color: #e8c547; font-size: 22px; font-weight: bold; display: block; }
+  .stat .label { color: #a1a1aa; font-size: 12px; margin-top: 6px; }
+
+  table.comp { width: 100%; border-collapse: collapse; margin: 20px 0 30px; font-size: 15px; }
+  table.comp th { font-family: 'Courier New', monospace; color: #e8c547; text-align: left; padding: 10px 12px; border-bottom: 2px solid #3f3f46; font-size: 13px; letter-spacing: 0.5px; }
+  table.comp td { padding: 12px; border-bottom: 1px solid #27272a; color: #d4d4d8; vertical-align: top; }
+
+  .pullquote { font-size: 21px; color: #f4f4f5; font-style: italic; border-left: 3px solid #e8c547; padding: 6px 0 6px 22px; margin: 32px 0; }
+  .pullquote .attr { display: block; font-family: 'Courier New', monospace; font-size: 12px; font-style: normal; color: #71717a; margin-top: 10px; }
+
+  .closing { margin-top: 56px; padding-top: 24px; border-top: 1px solid #27272a; font-style: italic; color: #a1a1aa; }
+  .closing p { color: #a1a1aa; }
+
+  .series-nav { margin-top: 48px; padding: 18px 20px; background: #131320; border: 1px solid #27272a; border-radius: 6px; font-size: 15px; }
+  .series-nav .label { font-family: 'Courier New', monospace; color: #e8c547; font-size: 11px; letter-spacing: 1px; display: block; margin-bottom: 8px; }
+
+  footer { margin-top: 60px; text-align: center; font-family: 'Courier New', monospace; color: #52525b; font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="logo">dunkelfeld.report</div>
+    <div class="tagline">Hidden in Plain Sight</div>
+  </div>
+
+  <div class="meta">DOSSIER · DROGENPOLITIK / EVIDENZ · Juli 2026 · Lesedauer ca. 10 Minuten</div>
+  <h1>Legalisierung von Psychedelika: Was die Datenlage tatsächlich zeigt</h1>
+  <p class="lede">Seit 2020 laufen in zwei US-Bundesstaaten reale, regulierte Programme — mit echten Zahlen statt Prognosen. Die Schweiz sammelt seit 1988 Therapieerfahrung. Gleichzeitig bleibt die UN-Konvention von 1971 in Kraft, und die meisten Länder der Welt, darunter Deutschland, rühren sich nicht. Dieser Artikel stellt die Argumente beider Seiten nebeneinander — mit Zahlen, nicht mit Meinungen.</p>
+
+  <h2>1. Die Faktenlage: Zwei Bundesstaaten mit echten Betriebsdaten</h2>
+  <p>Oregon ist seit Januar 2023 der erste US-Bundesstaat mit einem vollständig lizenzierten Psilocybin-Therapieprogramm (Measure 109, 2020 per Volksabstimmung beschlossen). Colorado folgte mit Prop 122 ab 2025. Damit existiert inzwischen — anders als bei reinen Laborstudien — ein mehrjähriger Realbetrieb mit veröffentlichten Verwaltungsdaten.</p>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="num">~16.000</span><div class="label">Klienten seit 2023 (Oregon)</div></div>
+    <div class="stat"><span class="num">37.000+</span><div class="label">verkaufte Psilocybin-Produkte</div></div>
+    <div class="stat"><span class="num">23 von 35</span><div class="label">Zentren noch in Betrieb (2026)</div></div>
+    <div class="stat"><span class="num">10.000 $</span><div class="label">jährl. Lizenzgebühr pro Zentrum</div></div>
+  </div>
+
+  <div class="source-box">
+    <span class="label">QUELLE</span>
+    Psychedelic Alpha: "The Oregon Psilocybin Services Tracker" (2026), psychedelicalpha.com/data · Oregon Health Authority, Oregon Psilocybin Services · Ballotpedia: Oregon Measure 109 (2020)
+  </div>
+
+  <p>Bemerkenswert: Von den ursprünglich 35 lizenzierten Zentren sind bis 2026 zwölf geschlossen worden — die Betreiber nennen hohe Betriebskosten (Lizenzgebühr, Sicherheitsauflagen, Lagerprotokolle) als Hauptgrund. Die Steuereinnahmen blieben mit rund 618.000 Dollar für die Haushaltsperiode 2023–2025 weit hinter den Erwartungen zurück — zum Vergleich: Cannabis brachte im selben Zeitraum rund 300 Millionen Dollar ein.</p>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="num">618.000 $</span><div class="label">Steuereinnahmen Psilocybin 2023–25</div></div>
+    <div class="stat"><span class="num">300 Mio. $</span><div class="label">zum Vergleich: Cannabis-Steuern</div></div>
+  </div>
+
+  <h2>2. Pro und Contra im direkten Vergleich</h2>
+
+  <div class="split">
+    <div class="col col-pro">
+      <h3>ARGUMENTE FÜR LIBERALISIERUNG</h3>
+      <ul>
+        <li>Klinische Studien zeigen Wirksamkeit bei therapieresistenter Depression — u. a. Compass Pathways' COMP360-Studie mit 233 Patienten aus 10 Ländern, der größten randomisierten kontrollierten Psilocybin-Studie bisher</li>
+        <li>MindMeds LSD-Präparat MM120 erhielt von der US-FDA den "Breakthrough Therapy"-Status für generalisierte Angststörung</li>
+        <li>Oregon-Betriebsdaten zeigen bislang wenige gemeldete Zwischenfälle bei begleiteten Sitzungen</li>
+        <li>Schweiz sammelt bereits seit 1988 Therapieerfahrung mit LSD und MDMA in kontrollierten Gruppensitzungen</li>
+        <li>Kriminalisierung verhindert nicht den Konsum, sondern nur die Qualitätskontrolle und Begleitung</li>
+      </ul>
+    </div>
+    <div class="col col-contra">
+      <h3>ARGUMENTE GEGEN LIBERALISIERUNG</h3>
+      <ul>
+        <li>UN World Drug Report 2023 warnt ausdrücklich vor unbegleiteter Selbsttherapie und Mikrodosierung außerhalb klinischer Aufsicht</li>
+        <li>Reale Wirtschaftlichkeit fraglich: Oregons Zentren schließen reihenweise, Steuereinnahmen bleiben marginal</li>
+        <li>Fast alle Wirksamkeitsstudien sind klein (n=20–250) und schließen Menschen mit komplexen psychiatrischen Diagnosen aus — Übertragbarkeit auf breite Bevölkerung ungeklärt</li>
+        <li>FDA lehnte 2024 den ersten Zulassungsantrag für MDMA-Therapie (Lykos Therapeutics) ab und forderte weitere Phase-3-Studien</li>
+        <li>Patentstreitigkeiten (Compass Pathways) werfen Fragen nach Monopolisierung eines jahrtausendealten Naturstoffs auf</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pullquote">
+    Monopolistic behavior that attempts to block other entities from bringing medicines to market ... is harmful to the healing we as a movement want to bring to the world.
+    <span class="attr">— David Bronner, Psychedelika-Aktivist, zur Patentstrategie von Compass Pathways, 2020</span>
+  </div>
+
+  <h2>3. Die Schweiz: 35 Jahre Erfahrung, wenig Nachahmer</h2>
+  <p>Die Schweiz erlaubt seit 1988 die begleitete therapeutische Anwendung von LSD und MDMA und hat zwischen 1988 und 1993 rund 200 Patienten in Gruppentherapie behandelt. Seit 2014 kann das Bundesamt für Gesundheit zusätzlich Ausnahmebewilligungen im Rahmen des "Compassionate Use" erteilen. Die Schweiz hat mit über 35 klinischen Studien die zweithöchste Zahl weltweit nach den USA vorzuweisen — bemerkenswert für ein kleines Land.</p>
+  <p>Trotz dieser vergleichsweise langen Erfahrung hat kein anderes europäisches Land dieses Modell übernommen. Deutschland, Österreich und die meisten EU-Staaten halten an der vollständigen Kriminalisierung fest.</p>
+
+  <div class="source-box">
+    <span class="label">QUELLE</span>
+    Prohibition Partners: "PSYCH – The Psychedelics As Medicine Report", 3rd Edition (2026) · Schweizer Betäubungsmittelgesetz (1951) und BAG-Ausnahmebewilligungspraxis
+  </div>
+
+  <h2>4. Niederlande und Jamaika: Legal ohne Therapie-Rahmen</h2>
+  <p>Neben den kontrollierten Therapiemodellen (Oregon, Colorado, Schweiz) gibt es einen dritten, strukturell anderen Weg: die vollständige Legalität ohne medizinischen Rahmen. In den Niederlanden sind klassische Psilocybin-Pilze zwar verboten, psilocybinhaltige "Trüffel" (Sklerotien) dagegen legal — eine gesetzliche Lücke, die seit Jahren genutzt wird und einen offenen Markt für Retreats ermöglicht. Jamaika kennt gar keine Beschränkung: Psilocybin ist dort schlicht nicht reguliert, es gibt keine speziellen Voraussetzungen für Anbieter oder Konsumenten.</p>
+  <p><strong>Ein überraschender Kontrast:</strong> Jamaika ist international vor allem für seine Cannabis-Kultur bekannt — rechtlich ist Cannabis dort aber weiterhin unter dem Dangerous Drugs Act reguliert, nur kleine Mengen sind entkriminalisiert. Psilocybin dagegen ist ein reiner Gesetzeslücken-Zufall: Das Dangerous Drugs Act stammt aus dem Jahr 1948 — Jahre bevor Psilocybin überhaupt wissenschaftlich identifiziert war — und wurde seitdem nie um Pilze ergänzt. Psilocybin ist damit in Jamaika de facto unreguliert und strenggenommen liberaler gestellt als Cannabis, das Land, mit dem es kulturell assoziiert wird. Die jamaikanische Regierung hat das erkannt und baut seit 2023/24 aktiv eine legale Psilocybin-Industrie mit Genehmigungsprotokollen für Anbau und Export auf.</p>
+  <p>Der Unterschied zu den US-Modellen ist wesentlich: Hier fehlt die Beleg- und Sicherheitsinfrastruktur (Screening, Vorbereitung, begleitete Sitzung, Nachsorge), die in Oregon und der Schweiz den Kern des jeweiligen Modells bildet. Befürworter kontrollierter Modelle verweisen genau darauf als Risiko; Befürworter offener Modelle verweisen auf jahrzehntelange Retreat-Praxis ohne belastbare Schadensstatistik in beiden Ländern.</p>
+
+  <div class="source-box">
+    <span class="label">QUELLE</span>
+    Mushverse: "Rechtslage von Psilocybin im Jahr 2026" (2026), mushverse.com · Mycomeditations: "Where Is Psilocybin Therapy Legal 2026" (2026) · Jamaica Information Service: "Protocols in Place for 'Magic Mushrooms'" (jis.gov.jm) · Lexology: "Jamaica: Psilocybin Leader" (2022) — zum Kontrast zur restriktiveren Cannabis-Regulierung im Dangerous Drugs Act
+  </div>
+
+  <h2>5. Warum bewegt sich die Mehrheit der Staaten nicht?</h2>
+  <table class="comp">
+    <tr><th>Faktor</th><th>Status</th></tr>
+    <tr><td>UN-Konvention von 1971 stuft Psychedelika strenger ein als Stimulanzien/Sedativa</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+    <tr><td>Cannabis-Teillegalisierung in DE 2024 hat keine ähnliche Debatte für Psychedelika ausgelöst</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+    <tr><td>Fehlende große Phase-3-Studien verzögern reguläre Zulassungen</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+    <tr><td>Politische Zurückhaltung ist primär Wahlkampf-Kalkül, nicht wissenschaftliche Skepsis</td><td><span class="tag tag-extrapolation">EXTRAPOLATION</span></td></tr>
+    <tr><td>Ob eine bundesweite Liberalisierung in den kommenden Jahren erfolgt (auch in den USA auf Bundesebene)</td><td><span class="tag tag-offen">OFFEN</span></td></tr>
+  </table>
+
+  <h2>6. Aktuelle US-Bundesebene: Bewegung ohne Kurswechsel</h2>
+  <p>Eine Exekutivverordnung von 2026 beschleunigt Forschung und FDA-Prüfung — ändert aber nichts am Schedule-I-Status von Psilocybin auf Bundesebene. Parallel bewegen sich einzelne Bundesstaaten weiter: New Jersey startete Anfang 2026 ein krankenhausbasiertes Pilotprogramm, South Dakota verabschiedete eine Gesetzesgrundlage, Minnesota brachte einen Gesetzentwurf durch den ersten Ausschuss. Der Trend geht in Richtung kontrollierter, medizinischer Modelle — nicht in Richtung freier Verfügbarkeit.</p>
+
+  <div class="closing">
+    <p><em>Überwiegen die Vorteile? Die Datenlage beantwortet diese Frage nicht eindeutig — sie zeigt vielmehr zwei unabhängige Wahrheiten gleichzeitig: Kontrollierte therapeutische Anwendung zeigt in Studien Wirkung bei Erkrankungen, die bislang schwer behandelbar waren. Und die ökonomische wie regulatorische Realität eines liberalisierten Modells ist deutlich unspektakulärer, als es die Investorenrhetorik rund um Davos vermuten lässt. Wer entscheidet am Ende, welches dieser beiden Bilder das öffentliche Meinungsbild prägt?</em></p>
+  </div>
+
+  <div class="series-nav">
+    <span class="label">WEITERFÜHREND IM ARCHIV</span>
+    Dossier — Von Davos zur Depotbank: Wie Psychedelika im WEF-Ökosystem ankamen
+  </div>
+
+  <footer>dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.</footer>
+
+</div>
+</body>
+</html>

@@ -129,12 +129,35 @@ a.stat{cursor:pointer;text-decoration:none}a.stat:hover{border-color:var(--gold)
       cards=[].slice.call(document.querySelectorAll('.card')),
       cats=[].slice.call(document.querySelectorAll('.cat')),
       total=cards.length;
-  function norm(s){return s.toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').replace(/[„“–]/g,'');}
+  function norm(s){return (s||'').toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').replace(/[„“–]/g,'');}
+
+  // Volltext-Index (asynchron nachgeladen). Suche funktioniert sofort ueber
+  // data-s (Titel/Schlagwoerter); sobald der Index da ist, werden zusaetzlich
+  // Treffer im Artikeltext gefunden - ohne die erste Anzeige zu verzoegern.
+  var fullText = {}, indexReady = false, searchTimer;
+  function keyFromHref(href){ return (href||'').replace(/\.html$/,''); }
+  function keyFromUrl(url){ return (url||'').replace(/^\//,'').replace(/\.html$/,''); }
+
+  fetch('search-index.json', {cache:'no-cache'}).then(function(r){
+    if(!r.ok) throw new Error('index nicht verfuegbar');
+    return r.json();
+  }).then(function(data){
+    data.forEach(function(entry){
+      fullText[keyFromUrl(entry.url)] = norm((entry.title||'') + ' ' + (entry.excerpt||'') + ' ' + (entry.content||''));
+    });
+    indexReady = true;
+    if(q.value.trim()) run();
+  }).catch(function(){ /* Suche bleibt auf Titel/Schlagwoerter beschraenkt */ });
+
   function run(){
     var terms=norm(q.value.trim()).split(/\s+/).filter(Boolean);
     var shown=0;
     cards.forEach(function(c){
       var hay=c.getAttribute('data-s');
+      if(indexReady){
+        var ft = fullText[keyFromHref(c.getAttribute('href'))];
+        if(ft) hay += ' ' + ft;
+      }
       var ok=terms.every(function(t){return hay.indexOf(t)>-1;});
       c.style.display=ok?'':'none';
       if(ok)shown++;
@@ -146,12 +169,16 @@ a.stat{cursor:pointer;text-decoration:none}a.stat:hover{border-color:var(--gold)
     nores.style.display=shown?'none':'block';
     cnt.textContent = terms.length ? (shown+' von '+total+' Beiträgen') : (total+' Beiträge');
   }
-  q.addEventListener('input',run);
+  q.addEventListener('input',function(){
+    clearTimeout(searchTimer);
+    searchTimer=setTimeout(run,80);
+  });
   clr.addEventListener('click',function(){q.value='';run();q.focus();});
   var pq=new URLSearchParams(location.search).get('q');
   if(pq){q.value=pq;}
   run();
 })();
+
 </script>
 
 <script>(function(){var r=document.getElementById("stat-rubriken"),m=document.getElementById("rubrikmenu"),s=document.getElementById("stat-search"),q=document.getElementById("q");if(r&&m){r.addEventListener("click",function(e){e.preventDefault();m.classList.toggle("open");});m.addEventListener("click",function(e){if(e.target.tagName==="A")m.classList.remove("open");});}if(s&&q){s.addEventListener("click",function(e){e.preventDefault();q.focus();q.scrollIntoView({block:"center"});});}})();</script>

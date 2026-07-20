@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cashcow Rüstung (4): Der Weltraum-Zwilling — dunkelfeld.report</title>
+<style>
+  :root{
+    --bg:#09090b; --accent:#e8c547; --box:#1a1a2e;
+    --green:#5fbf7a; --orange:#e8a147; --grey:#8a8a8a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:#e4e4e7; font-family:Georgia,'Times New Roman',serif;
+    font-size:1.1rem; line-height:1.8; margin:0; padding:0;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:2.5rem 1.25rem 5rem;}
+  .kicker{
+    font-family:'Courier New',monospace; color:var(--accent); font-size:0.85rem;
+    letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.5rem;
+  }
+  h1{font-family:Georgia,serif; font-size:2.1rem; line-height:1.25; margin:0 0 1rem; color:#f4f4f5;}
+  .subtitle{color:#b8b8bd; font-size:1.05rem; margin-bottom:2rem; font-style:italic;}
+  .meta{
+    font-family:'Courier New',monospace; font-size:0.8rem; color:var(--grey);
+    border-top:1px solid #2a2a35; border-bottom:1px solid #2a2a35;
+    padding:0.75rem 0; margin-bottom:2.5rem; display:flex; gap:1.5rem; flex-wrap:wrap;
+  }
+  p{padding-bottom:1.2rem;}
+  h2{
+    font-size:1.4rem; color:var(--accent); margin:2.5rem 0 1rem;
+    font-family:Georgia,serif; border-bottom:1px solid #2a2a35; padding-bottom:0.5rem;
+  }
+  h3{font-size:1.15rem; color:#f4f4f5; margin:1.8rem 0 0.8rem;}
+  .source-box{
+    background:var(--box); border-left:3px solid var(--accent);
+    padding:1.2rem 1.4rem; margin:1.5rem 0; border-radius:0 4px 4px 0;
+  }
+  .source-box .src-label{
+    font-family:'Courier New',monospace; font-size:0.75rem; color:var(--accent);
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem; display:block;
+  }
+  .source-box p{padding-bottom:0.5rem; font-size:1rem;}
+  .tag{
+    font-family:'Courier New',monospace; font-size:0.72rem; font-weight:bold;
+    padding:0.2rem 0.55rem; border-radius:3px; letter-spacing:0.05em;
+    display:inline-block; margin-right:0.4rem; margin-bottom:0.3rem;
+  }
+  .tag-belegt{background:rgba(95,191,122,0.15); color:var(--green); border:1px solid var(--green);}
+  .tag-extra{background:rgba(232,161,71,0.15); color:var(--orange); border:1px solid var(--orange);}
+  .tag-offen{background:rgba(138,138,138,0.15); color:var(--grey); border:1px solid var(--grey);}
+
+  .stat-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:1rem; margin:1.8rem 0;
+  }
+  .stat{background:var(--box); border-radius:6px; padding:1.1rem; text-align:center;}
+  .stat-num{font-size:1.4rem; color:var(--accent); font-family:'Courier New',monospace; font-weight:bold; line-height:1.2;}
+  .stat-label{font-size:0.74rem; color:var(--grey); margin-top:0.4rem;}
+
+  .person-card{
+    display:flex; gap:1rem; border:1px solid #2a2a35; border-radius:6px;
+    padding:1.2rem 1.4rem; margin:1.3rem 0; background:#111116; align-items:flex-start;
+  }
+  .person-card .avatar{
+    width:42px; height:42px; border-radius:50%; background:var(--accent);
+    color:#09090b; font-family:'Courier New',monospace; font-weight:bold;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1rem;
+  }
+  .person-card h3{margin:0 0 0.3rem;}
+  .person-card .role{font-family:'Courier New',monospace; font-size:0.8rem; color:var(--grey); margin-bottom:0.6rem;}
+
+  table{width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:0.93rem;}
+  th,td{border:1px solid #2a2a35; padding:0.55rem 0.7rem; text-align:left;}
+  th{background:var(--box); color:var(--accent); font-family:'Courier New',monospace; font-size:0.76rem;}
+
+  .pull-quote{
+    font-size:1.3rem; font-style:italic; color:#f4f4f5; margin:2rem 0;
+    padding:0 1rem; border-left:3px solid var(--accent); line-height:1.5;
+  }
+
+  .caveat-box{
+    background:#161612; border:1px solid var(--orange); border-radius:6px;
+    padding:1.2rem 1.4rem; margin:2rem 0;
+  }
+  .caveat-box .src-label{
+    font-family:'Courier New',monospace; font-size:0.75rem; color:var(--orange);
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem; display:block;
+  }
+
+  .open-question{
+    font-style:italic; color:#b8b8bd; margin-top:3rem; padding-top:1.5rem;
+    border-top:1px solid #2a2a35; font-size:1.05rem;
+  }
+
+  .series-nav{
+    margin-top:3.5rem; padding-top:1.5rem; border-top:1px solid #2a2a35;
+    font-family:'Courier New',monospace; font-size:0.85rem; color:var(--grey);
+  }
+  .series-nav a{color:var(--accent); text-decoration:none;}
+  .series-nav a:hover{text-decoration:underline;}
+  .series-nav .row{margin-bottom:0.4rem;}
+
+  a{color:var(--accent);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">Dunkelfeld.report · Serie: Cashcow Rüstung · Teil 4 von 4</div>
+  <h1>Der Weltraum-Zwilling</h1>
+  <p class="subtitle">Drohnenmauer und Satellitenprojekt laufen unter demselben Kommissar, derselbe Personenkreis taucht in beiden auf — und am Ende steht eine Zahl, die niemand in Europa noch vor vier Jahren für möglich gehalten hätte.</p>
+
+  <div class="meta">
+    <span>Stand: Juli 2026</span>
+    <span>Teil 4/4</span>
+    <span>Lesezeit: ca. 8 Min.</span>
+  </div>
+
+  <p>Zwei Projekte, die in der öffentlichen Wahrnehmung getrennt laufen, haben denselben Ursprung: Andrius Kubilius, EU-Kommissar für Verteidigung <em>und</em> Weltraum in Personalunion. Unter seiner Zuständigkeit entstehen parallel die „Drohnenmauer" (EDDI) zur Luftraumüberwachung an der Ostgrenze und IRIS², die europäische Satellitenkonstellation als Gegenstück zu Starlink. Beide sind Teil derselben von-der-Leyen-Strategie „Verteidigungsbereitschaft 2030".</p>
+
+  <h2>Zwei Projekte, ein Etat-Rahmen</h2>
+
+  <table>
+    <tr><th>Projekt</th><th>Ursprüngliches Budget</th><th>Aktuelles Budget</th><th>Ziel-Jahr</th></tr>
+    <tr><td>Drohnenmauer (EDDI)</td><td>6 Mrd. €</td><td>noch offen (Kostenschätzung läuft)</td><td>2027</td></tr>
+    <tr><td>IRIS² (Satelliten)</td><td>6 Mrd. €</td><td>10,6 Mrd. €</td><td>2030</td></tr>
+    <tr><td>Deutschland (Weltraum gesamt)</td><td>—</td><td>35 Mrd. €</td><td>2030</td></tr>
+    <tr><td>Frankreich (Weltraum-Verteidigung)</td><td>—</td><td>10,2 Mrd. €</td><td>2030</td></tr>
+    <tr><td>Europa gesamt (Weltraumfähigkeiten)</td><td>—</td><td>~95,5 Mrd. €</td><td>2030</td></tr>
+  </table>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Bei IRIS² hat sich das Budget bereits verdoppelt: von ursprünglich rund 6 Mrd. € auf 10,6 Mrd. €, weil sich Airbus und Thales laut Politico weigerten, den Auftrag für weniger zu übernehmen. Das ist ein dokumentiertes Beispiel dafür, wie stark Anbieter bei quasi konkurrenzlosen Großprojekten den Preis bestimmen können.</p>
+
+  <h2>Die Drehtür, Version EU</h2>
+
+  <p>Teil 1 dieser Serie zeigte die personelle Nähe zwischen Springer-Journalismus und deutscher Drohnenindustrie. Auf EU-Ebene taucht ein strukturell verwandtes Muster auf — mit anderen Namen, größerem Maßstab.</p>
+
+  <div class="person-card">
+    <div class="avatar">GS</div>
+    <div>
+      <h3>Gundbert Scherf</h3>
+      <div class="role">Ex-militärischer Berater im Bundesverteidigungsministerium unter Ursula von der Leyen · heute CEO von Helsing</div>
+      <p>Wechselte aus der Ministeriumsberatung direkt an die Spitze des mittlerweile wertvollsten deutschen Startups (12 Mrd. € Bewertung, siehe Teil 2).</p>
+    </div>
+  </div>
+
+  <div class="person-card">
+    <div class="avatar">KK</div>
+    <div>
+      <h3>Kaja Kallas</h3>
+      <div class="role">Ex-estnische Premierministerin · heute EU-Außenbeauftragte und Kommissions-Vizepräsidentin</div>
+      <p>Kündigte gemeinsam mit Scherf noch als estnische Regierungschefin den Aufbau einer Helsing-Niederlassung in Tallinn an — 70 Mio. € Investment bis 2027, mit dem Argument, die NATO-Ostflanke zu stärken.</p>
+    </div>
+  </div>
+
+  <div class="source-box">
+    <span class="src-label">Quelle · Informationsstelle Militarisierung (IMI), März 2026</span>
+    <p>Die Recherche verweist darauf, dass „gleich zwei Protagonist:innen der EU-Kommission in Verbindung zum deutschen Hauptprofiteur Helsing stehen" — neben Kallas auch von der Leyen selbst, deren frühere „Berateraffäre" im Verteidigungsministerium seit 2018 wiederholt Schlagzeilen machte.</p>
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Personalie und zeitlicher Ablauf (Scherfs Ministeriumstätigkeit vor Helsing, Kallas' Ankündigung mit Scherf) sind von IMI dokumentiert.<br>
+  <span class="tag tag-offen">OFFEN</span> Ob und wie stark diese persönlichen Verbindungen die konkrete Projektvergabe beeinflusst haben — IMI selbst formuliert dies als Kritik an mangelnder Transparenz, nicht als Beweis einer Absprache.</p>
+
+  <h2>Die Frage nach der Belastungsgrenze</h2>
+
+  <p>Kritiker der Drohnenmauer verweisen auf ein technisches Missverhältnis: Eine Abfangrakete kostet rund eine Million Euro, eine Angreiferdrohne wenige tausend Euro. Dieses Kosten-Nutzen-Gefälle — von der EU selbst als Motivation für neue, günstigere Abwehrtechnologien angeführt — zeigt gleichzeitig, wie unklar der tatsächliche Wirkungsgrad der Milliardenprojekte bislang ist. Die taz zitiert zudem ungelöste Kompetenzfragen zwischen Polizei und Bundeswehr, die schon bei nationaler Drohnenabwehr in Deutschland ungeklärt sind — von einer europaweit abgestimmten Struktur ganz zu schweigen.</p>
+
+  <div class="pull-quote">
+    Zwei Projekte unter einem Kommissar, eine Handvoll Namen, die in beiden auftauchen, und ein Budget, das sich in Rekordzeit verdoppelt — bevor die erste Komponente überhaupt einsatzbereit ist.
+  </div>
+
+  <h2>Die historische Parallele — und ihre Grenzen</h2>
+
+  <p>Die Frage, ob sich der Westen mit dieser Aufrüstungsdynamik „zu Tode rüstet", verweist auf ein historisches Muster: Die Sowjetunion band in den 1980er-Jahren einen so hohen Anteil ihrer Wirtschaftsleistung an Rüstung, dass strukturelle Reformen (Perestroika) folgten und das System 1991 kollabierte — ein Zusammenhang, den die historische Forschung als einen von mehreren Faktoren sieht, nicht als Alleinursache.</p>
+
+  <div class="caveat-box">
+    <span class="src-label">Ausdrücklicher Vorbehalt</span>
+    <p>Die heutige Ausgangslage unterscheidet sich fundamental von der UdSSR der 1980er: Europas Rüstungsausgaben werden überwiegend kreditfinanziert in funktionierenden Kapitalmärkten (EU-Rüstungskredite über 150 Mrd. €, siehe taz), nicht durch Zwangsplanwirtschaft. Ob eine Volkswirtschaft eine solche Ausgabendynamik verkraftet, hängt von Wachstum, Verschuldungsfähigkeit und Alternativkosten ab — Fragen, die diese Serie nicht abschließend beantworten kann und will. Die historische Parallele ist ein Denkanstoß, kein Beweis für einen vorbestimmten Ausgang.</p>
+  </div>
+
+  <p>Was sich belegen lässt, ist die Beschleunigung selbst: von 6 auf 10,6 Mrd. € bei IRIS² innerhalb der Vertragsverhandlungen, von 25 Mio.-Einzelvorlagen im Rekordtempo bis zum 152-Mrd.-Ziel 2029 (siehe Teil 2). Ob das eine tragfähige Kapitalallokation oder eine sich selbst verstärkende Ausgabenspirale ist, wird sich an den Wachstumszahlen der kommenden Jahre zeigen — nicht an der Rhetorik der beteiligten Kommissare.</p>
+
+  <p class="open-question"><em>Wenn ein einzelner Kommissar sowohl für Weltraum als auch für Verteidigung zuständig ist und in beiden Bereichen dieselben Namen als Nutznießer auftauchen — ist das eine sinnvolle Bündelung von Zuständigkeit oder eine strukturelle Einladung zur Selbstbedienung? Und: Wer in Europa hat ein Interesse daran, diese Frage öffentlich zu stellen, bevor die Verträge unterschrieben sind, statt danach?</em></p>
+
+  <div class="series-nav">
+    <div class="row"><strong>Serie „Cashcow Rüstung":</strong> <a href="cashcow-ruestung-teil1.html">Teil 1: Die Drehtür</a> · <a href="cashcow-ruestung-teil2.html">Teil 2: Die Bewertungen</a> · <a href="cashcow-ruestung-teil3.html">Teil 3: Der Bedarf, der bestellt wird</a> · Teil 4: Der Weltraum-Zwilling (dieser Artikel)</div>
+    <div class="row"><strong>Serie „Attributionskrieg":</strong> <a href="attributionskrieg-teil1.html">Teil 1</a> · <a href="attributionskrieg-teil2.html">Teil 2</a></div>
+  </div>
+
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

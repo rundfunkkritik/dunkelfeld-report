@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cashcow Rüstung (3): Der Bedarf, der bestellt wird — dunkelfeld.report</title>
+<style>
+  :root{
+    --bg:#09090b; --accent:#e8c547; --box:#1a1a2e;
+    --green:#5fbf7a; --orange:#e8a147; --grey:#8a8a8a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:#e4e4e7; font-family:Georgia,'Times New Roman',serif;
+    font-size:1.1rem; line-height:1.8; margin:0; padding:0;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:2.5rem 1.25rem 5rem;}
+  .kicker{
+    font-family:'Courier New',monospace; color:var(--accent); font-size:0.85rem;
+    letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.5rem;
+  }
+  h1{font-family:Georgia,serif; font-size:2.1rem; line-height:1.25; margin:0 0 1rem; color:#f4f4f5;}
+  .subtitle{color:#b8b8bd; font-size:1.05rem; margin-bottom:2rem; font-style:italic;}
+  .meta{
+    font-family:'Courier New',monospace; font-size:0.8rem; color:var(--grey);
+    border-top:1px solid #2a2a35; border-bottom:1px solid #2a2a35;
+    padding:0.75rem 0; margin-bottom:2.5rem; display:flex; gap:1.5rem; flex-wrap:wrap;
+  }
+  p{padding-bottom:1.2rem;}
+  h2{
+    font-size:1.4rem; color:var(--accent); margin:2.5rem 0 1rem;
+    font-family:Georgia,serif; border-bottom:1px solid #2a2a35; padding-bottom:0.5rem;
+  }
+  h3{font-size:1.15rem; color:#f4f4f5; margin:1.8rem 0 0.8rem;}
+  .source-box{
+    background:var(--box); border-left:3px solid var(--accent);
+    padding:1.2rem 1.4rem; margin:1.5rem 0; border-radius:0 4px 4px 0;
+  }
+  .source-box .src-label{
+    font-family:'Courier New',monospace; font-size:0.75rem; color:var(--accent);
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem; display:block;
+  }
+  .source-box p{padding-bottom:0.5rem; font-size:1rem;}
+  .tag{
+    font-family:'Courier New',monospace; font-size:0.72rem; font-weight:bold;
+    padding:0.2rem 0.55rem; border-radius:3px; letter-spacing:0.05em;
+    display:inline-block; margin-right:0.4rem; margin-bottom:0.3rem;
+  }
+  .tag-belegt{background:rgba(95,191,122,0.15); color:var(--green); border:1px solid var(--green);}
+  .tag-extra{background:rgba(232,161,71,0.15); color:var(--orange); border:1px solid var(--orange);}
+  .tag-offen{background:rgba(138,138,138,0.15); color:var(--grey); border:1px solid var(--grey);}
+
+  .dual-timeline{margin:2rem 0;}
+  .dt-row{
+    display:grid; grid-template-columns:90px 1fr 1fr; gap:0.8rem;
+    padding:0.7rem 0; border-bottom:1px solid #1e1e28; align-items:start;
+  }
+  .dt-row:first-child{
+    font-family:'Courier New',monospace; font-size:0.72rem; color:var(--grey);
+    text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid var(--accent);
+  }
+  .dt-date{font-family:'Courier New',monospace; font-size:0.8rem; color:var(--accent);}
+  .dt-cell{font-size:0.92rem; line-height:1.5;}
+  .dt-cell.threat{border-left:2px solid #c85050; padding-left:0.6rem;}
+  .dt-cell.market{border-left:2px solid var(--green); padding-left:0.6rem;}
+
+  .pull-quote{
+    font-size:1.3rem; font-style:italic; color:#f4f4f5; margin:2rem 0;
+    padding:0 1rem; border-left:3px solid var(--accent); line-height:1.5;
+  }
+
+  .caveat-box{
+    background:#161612; border:1px solid var(--orange); border-radius:6px;
+    padding:1.2rem 1.4rem; margin:2rem 0;
+  }
+  .caveat-box .src-label{
+    font-family:'Courier New',monospace; font-size:0.75rem; color:var(--orange);
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem; display:block;
+  }
+
+  .open-question{
+    font-style:italic; color:#b8b8bd; margin-top:3rem; padding-top:1.5rem;
+    border-top:1px solid #2a2a35; font-size:1.05rem;
+  }
+
+  .series-nav{
+    margin-top:3.5rem; padding-top:1.5rem; border-top:1px solid #2a2a35;
+    font-family:'Courier New',monospace; font-size:0.85rem; color:var(--grey);
+  }
+  .series-nav a{color:var(--accent); text-decoration:none;}
+  .series-nav a:hover{text-decoration:underline;}
+  .series-nav .row{margin-bottom:0.4rem;}
+
+  a{color:var(--accent);}
+
+  @media (max-width:600px){
+    .dt-row{grid-template-columns:70px 1fr; }
+    .dt-row .dt-cell.market{grid-column:2; margin-top:0.5rem;}
+    .dt-row:first-child .dt-cell.market{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">Dunkelfeld.report · Serie: Cashcow Rüstung · Teil 3 von 4</div>
+  <h1>Der Bedarf, der bestellt wird</h1>
+  <p class="subtitle">Zwei Serien, eine Zeitlinie: Wie sich mediale Bedrohungslage und Rüstungsmarkt im selben Zeitraum bewegen — und wo die Grenze zwischen Korrelation und Beweis verläuft.</p>
+
+  <div class="meta">
+    <span>Stand: Juli 2026</span>
+    <span>Teil 3/3</span>
+    <span>Lesezeit: ca. 8 Min.</span>
+  </div>
+
+  <p>Zwei Serien auf diesem Portal sind bislang unabhängig voneinander entstanden. „Attributionskrieg" dokumentierte, wie Drohnensichtungen und Botnetz-Vorwürfe medial Russland zugeschrieben wurden, ohne dass dafür Beweise vorlagen — daneben aber auch Fälle, in denen Zuschreibungen forensisch sauber belegt sind. „Cashcow Rüstung" zeigte, wie Medienkonzern, Personal und Kapital in der Rüstungsbranche verflochten sind, und wie eng Aktienkurse an parlamentarische Beschaffungsentscheidungen gekoppelt sind. Dieser Teil legt beide Zeitlinien übereinander.</p>
+
+  <h2>Die zusammengeführte Zeitlinie</h2>
+
+  <div class="dual-timeline">
+    <div class="dt-row">
+      <div class="dt-date">Datum</div>
+      <div class="dt-cell threat">Bedrohungslage (Attributionskrieg)</div>
+      <div class="dt-cell market">Markt/Haushalt (Cashcow)</div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-date">Sept. 2025</div>
+      <div class="dt-cell threat">Drohnensichtungen über dänischen Flughäfen, Alarmbereitschaft in mehreren EU-Ländern.</div>
+      <div class="dt-cell market">Deutsche DefenseTech-Investoren pumpen laut Branchenübersicht bereits über 1 Mrd. € in den Sektor.</div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-date">Okt. 2025</div>
+      <div class="dt-cell threat">CORRECTIV: kein eindeutiger Beweis für Herkunft der Drohnen. EU-„Drohnenmauer" wird vorgeschlagen.</div>
+      <div class="dt-cell market">Hensoldt erreicht Allzeithoch von 117,70 €, +840 % seit 2022.</div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-date">Nov. 2025</div>
+      <div class="dt-cell threat">—</div>
+      <div class="dt-cell market">Bundestag billigt Verteidigungshaushalt 2026: 108 Mrd. € (Rekord), Zielpfad 152 Mrd. € bis 2029.</div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-date">Dez. 2025</div>
+      <div class="dt-cell threat">—</div>
+      <div class="dt-cell market">Haushaltsausschuss genehmigt Rekord-Beschaffungspaket über 52 Mrd. € in einer Sitzung.</div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-date">Feb. 2026</div>
+      <div class="dt-cell threat">Innenministerin SH: „bisher keine gesicherten Erkenntnisse", trotzdem Einordnung als „hybride Kriegsführung".</div>
+      <div class="dt-cell market">Hensoldt meldet Rekordauftrag (4,7 Mrd. €); Iran-Eskalation („Epic Fury") treibt Rüstungsaktien.</div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-date">April 2026</div>
+      <div class="dt-cell threat">Botnetz-Kolumnen-Serie in Spiegel/FAZ/t-online zu AfD/BSW.</div>
+      <div class="dt-cell market">Röpcke (BILD) kündigt Wechsel in die Drohnenbranche an.</div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-date">Juli 2026</div>
+      <div class="dt-cell threat">Häring-Kritik an Botnetz-Kolumnen; Telepolis-Analyse zu unbewiesenen Drohnen-Zuschreibungen.</div>
+      <div class="dt-cell market">WELT-Sicherheitsgipfel im Springer-Hochhaus, Rheinmetall bei Rekordhoch 1.500 €.</div>
+    </div>
+  </div>
+
+  <p>Auffällig ist nicht ein einzelner Zusammenhang, sondern die Dichte: In fast jedem Monat dieser Zeitlinie fällt eine mediale Bedrohungsmeldung mit einer Kennzahl aus dem Rüstungsmarkt zusammen.</p>
+
+  <div class="caveat-box">
+    <span class="src-label">Ausdrücklicher Vorbehalt</span>
+    <p>Zeitliche Nähe ist kein Kausalitätsbeweis. Verteidigungshaushalte werden nicht von Zeitungskolumnen beschlossen, sondern von gewählten Parlamenten — auf Basis geopolitischer Lagebilder, die unabhängig von einzelnen Presseartikeln entstehen (Ukraine-Krieg, Nahost-Eskalation, NATO-Ostflanke). Ebenso wenig belegt die Existenz einer Drehtür zwischen Medienhaus und Rüstungsindustrie, dass konkrete Artikel redaktionell beeinflusst wurden. Diese Serie zeigt Struktur, nicht Absicht.</p>
+  </div>
+
+  <h2>Was sich trotzdem sagen lässt</h2>
+
+  <p>Drei Dinge lassen sich unabhängig von der Kausalitätsfrage belegen:</p>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Ein struktureller Interessenkonflikt existiert: Wer über Bedrohungslagen berichtet, die Verteidigungsausgaben rechtfertigen, ist bei mindestens einem großen deutschen Medienhaus personell und kapitalmäßig mit den Nutznießern dieser Ausgaben verbunden (siehe Teil 1).</p>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Die Beweisstandards für „Bedrohung durch Russland" schwanken erheblich zwischen einzelnen Fällen — von komplett unbelegt (Drohnen-Herkunft, Botnetz-Kolumnen) bis forensisch dokumentiert (Doppelgänger-Kampagne, Starmer-Brandanschlag), siehe Attributionskrieg-Serie.</p>
+
+  <p><span class="tag tag-extra">EXTRAPOLATION</span> Die Kombination aus unsicherer Beweislage bei Einzelfällen und sicherer, strukturell garantierter Nachfrage im Rüstungsmarkt erzeugt ein Anreizsystem, in dem eine diffuse, aber unwiderlegbare Bedrohungswahrnehmung wirtschaftlich nützlicher ist als eine klar bewiesene oder klar widerlegte. Das ist eine These, kein Nachweis einer Absicht einzelner Akteure.</p>
+
+  <div class="pull-quote">
+    Man muss niemandem unterstellen, log⁠isch geplant zu haben, um zu erkennen, dass ein System belohnt wird, in dem Angst schneller wächst als Beweis.
+  </div>
+
+  <h2>Zwischenfazit</h2>
+
+  <p>Diese sechs Artikel — zwei zu Attributionsmustern, drei zu Rüstungsökonomie plus dieser Zusammenführung — ergeben zusammen kein abschließendes Urteil. Sie liefern eine Landkarte: wo Beweise fehlen, wo sie vorliegen, wer an welcher Stelle finanziell und personell verflochten ist, und wie eng beides zeitlich zusammenfällt. Die Interpretation dieser Landkarte — Zufall, strukturelle Eigendynamik oder gezielte Steuerung — bleibt bewusst offen. Das ist keine Ausflucht, sondern Konsequenz des Beleg-vor-Motiv-Prinzips: Wo die Dokumente enden, endet auch die Zuschreibung.</p>
+
+  <p class="open-question"><em>Wer profitiert am meisten davon, dass die Öffentlichkeit „Bedrohung" und „Beweis" regelmäßig verwechselt — und wäre eine sauberere Trennung beider Begriffe im Interesse irgendeines der beteiligten Akteure?</em></p>
+
+  <div class="series-nav">
+    <div class="row"><strong>Serie „Cashcow Rüstung":</strong> <a href="cashcow-ruestung-teil1.html">Teil 1: Die Drehtür</a> · <a href="cashcow-ruestung-teil2.html">Teil 2: Die Bewertungen</a> · Teil 3: Der Bedarf, der bestellt wird (dieser Artikel) · <a href="cashcow-ruestung-teil4.html">Teil 4: Der Weltraum-Zwilling →</a></div>
+    <div class="row"><strong>Serie „Attributionskrieg":</strong> <a href="attributionskrieg-teil1.html">Teil 1: Muster ohne Beweis</a> · <a href="attributionskrieg-teil2.html">Teil 2: Was tatsächlich belegt ist</a></div>
+  </div>
+
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

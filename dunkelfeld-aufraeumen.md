@@ -45,3 +45,5 @@ Kandidaten zum Löschen — die jeweils genannte Datei ist die, die bleibt:
 4. Doubletten (Pkt. 4) löschen — pro Datei ein kleiner Commit reicht
 
 Wenn du eine der „bleibt"-Dateien schon von außen verlinkt hast, sag Bescheid; sonst ist die Auswahl konfliktfrei.
+
+<!-- diag-ping -->

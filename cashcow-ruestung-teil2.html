@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cashcow Rüstung (2): Die Bewertungen — dunkelfeld.report</title>
+<style>
+  :root{
+    --bg:#09090b; --accent:#e8c547; --box:#1a1a2e;
+    --green:#5fbf7a; --orange:#e8a147; --grey:#8a8a8a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:#e4e4e7; font-family:Georgia,'Times New Roman',serif;
+    font-size:1.1rem; line-height:1.8; margin:0; padding:0;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:2.5rem 1.25rem 5rem;}
+  .kicker{
+    font-family:'Courier New',monospace; color:var(--accent); font-size:0.85rem;
+    letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.5rem;
+  }
+  h1{font-family:Georgia,serif; font-size:2.1rem; line-height:1.25; margin:0 0 1rem; color:#f4f4f5;}
+  .subtitle{color:#b8b8bd; font-size:1.05rem; margin-bottom:2rem; font-style:italic;}
+  .meta{
+    font-family:'Courier New',monospace; font-size:0.8rem; color:var(--grey);
+    border-top:1px solid #2a2a35; border-bottom:1px solid #2a2a35;
+    padding:0.75rem 0; margin-bottom:2.5rem; display:flex; gap:1.5rem; flex-wrap:wrap;
+  }
+  p{padding-bottom:1.2rem;}
+  h2{
+    font-size:1.4rem; color:var(--accent); margin:2.5rem 0 1rem;
+    font-family:Georgia,serif; border-bottom:1px solid #2a2a35; padding-bottom:0.5rem;
+  }
+  h3{font-size:1.15rem; color:#f4f4f5; margin:1.8rem 0 0.8rem;}
+  .source-box{
+    background:var(--box); border-left:3px solid var(--accent);
+    padding:1.2rem 1.4rem; margin:1.5rem 0; border-radius:0 4px 4px 0;
+  }
+  .source-box .src-label{
+    font-family:'Courier New',monospace; font-size:0.75rem; color:var(--accent);
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem; display:block;
+  }
+  .source-box p{padding-bottom:0.5rem; font-size:1rem;}
+  .source-box cite{
+    display:block; font-family:'Courier New',monospace; font-size:0.78rem;
+    color:var(--grey); font-style:normal; margin-top:0.5rem;
+  }
+  .tag{
+    font-family:'Courier New',monospace; font-size:0.72rem; font-weight:bold;
+    padding:0.2rem 0.55rem; border-radius:3px; letter-spacing:0.05em;
+    display:inline-block; margin-right:0.4rem; margin-bottom:0.3rem;
+  }
+  .tag-belegt{background:rgba(95,191,122,0.15); color:var(--green); border:1px solid var(--green);}
+  .tag-extra{background:rgba(232,161,71,0.15); color:var(--orange); border:1px solid var(--orange);}
+  .tag-offen{background:rgba(138,138,138,0.15); color:var(--grey); border:1px solid var(--grey);}
+
+  .stat-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:1rem; margin:1.8rem 0;
+  }
+  .stat{
+    background:var(--box); border-radius:6px; padding:1.1rem; text-align:center;
+  }
+  .stat-num{font-size:1.5rem; color:var(--accent); font-family:'Courier New',monospace; font-weight:bold; line-height:1.2;}
+  .stat-label{font-size:0.76rem; color:var(--grey); margin-top:0.4rem;}
+
+  .company-card{
+    border:1px solid #2a2a35; border-radius:6px; padding:1.4rem 1.5rem; margin:1.5rem 0;
+    background:#111116;
+  }
+  .company-card h3{margin-top:0; color:var(--accent);}
+
+  .timeline{margin:2rem 0; border-left:2px solid var(--accent); padding-left:1.5rem;}
+  .timeline-item{margin-bottom:1.5rem; position:relative;}
+  .timeline-item::before{
+    content:''; position:absolute; left:-1.56rem; top:0.4rem;
+    width:8px; height:8px; border-radius:50%; background:var(--accent);
+  }
+  .timeline-date{
+    font-family:'Courier New',monospace; font-size:0.8rem; color:var(--accent); display:block;
+    margin-bottom:0.3rem;
+  }
+
+  .pull-quote{
+    font-size:1.3rem; font-style:italic; color:#f4f4f5; margin:2rem 0;
+    padding:0 1rem; border-left:3px solid var(--accent); line-height:1.5;
+  }
+
+  table{width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:0.95rem;}
+  th,td{border:1px solid #2a2a35; padding:0.6rem 0.8rem; text-align:left;}
+  th{background:var(--box); color:var(--accent); font-family:'Courier New',monospace; font-size:0.8rem;}
+
+  .open-question{
+    font-style:italic; color:#b8b8bd; margin-top:3rem; padding-top:1.5rem;
+    border-top:1px solid #2a2a35; font-size:1.05rem;
+  }
+
+  .series-nav{
+    margin-top:3.5rem; padding-top:1.5rem; border-top:1px solid #2a2a35;
+    font-family:'Courier New',monospace; font-size:0.85rem; color:var(--grey);
+  }
+  .series-nav a{color:var(--accent); text-decoration:none;}
+  .series-nav a:hover{text-decoration:underline;}
+
+  a{color:var(--accent);}
+</style>
+<meta name="rubrik" content="cat-geld">
+<meta name="kachel-titel" content="Cashcow Rüstung (2): Die Bewertungen">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">Dunkelfeld.report · Serie: Cashcow Rüstung · Teil 2 von 3</div>
+  <h1>Die Bewertungen</h1>
+  <p class="subtitle">Rheinmetall, Hensoldt und der Bundeshaushalt: Wie eine parlamentarische Entscheidung sich in Echtzeit in Aktienkurse übersetzt — und wer davon profitiert.</p>
+
+  <div class="meta">
+    <span>Stand: Juli 2026</span>
+    <span>Teil 2/3</span>
+    <span>Lesezeit: ca. 8 Min.</span>
+  </div>
+
+  <p>Teil 1 zeigte die personelle Drehtür zwischen Medienhaus und Rüstungsindustrie. Dieser Teil zeigt die Zahlen dahinter — und den Mechanismus, der sie erzeugt: Der deutsche Verteidigungshaushalt ist kein abstrakter Posten, sondern ein direkter Kurstreiber für einen kleinen Kreis börsennotierter Unternehmen.</p>
+
+  <h2>Der Haushalt als Bestellzettel</h2>
+
+  <div class="stat-grid">
+    <div class="stat"><div class="stat-num">108 Mrd. €</div><div class="stat-label">Militärhaushalt 2026 (Rekord)</div></div>
+    <div class="stat"><div class="stat-num">152 Mrd. €</div><div class="stat-label">Zielmarke bis 2029</div></div>
+    <div class="stat"><div class="stat-num">48 Mrd. €</div><div class="stat-label">davon für Beschaffung 2026</div></div>
+    <div class="stat"><div class="stat-num">15 Mrd. €</div><div class="stat-label">direkt für Munition/Drohnen/Luftverteidigung</div></div>
+  </div>
+
+  <p>Im November 2025 billigte der Bundestag diesen Anstieg — eine Verdreifachung gegenüber 2023. Im Dezember 2025 genehmigte allein der Haushaltsausschuss 103 sogenannte „25-Mio.-Vorlagen" mit einem Gesamtvolumen von rund 83 Mrd. €, darunter ein einzelner Rekord-Beschluss über 52 Mrd. € „wie nie zuvor in einer einzigen Sitzung".</p>
+
+  <div class="source-box">
+    <span class="src-label">Einordnung</span>
+    <p>Eine „25-Mio.-Vorlage" ist eine parlamentarische Beschaffungsvorlage, die der Haushaltsausschuss ab einem Volumen von 25 Mio. € gesondert freigeben muss. Die schiere Zahl von 103 solcher Vorlagen allein 2025 zeigt das Tempo der Beschaffung.</p>
+  </div>
+
+  <h2>Drei Unternehmen, drei Kurven</h2>
+
+  <div class="company-card">
+    <h3>Rheinmetall</h3>
+    <p>Aktienkurs durchbrach im Februar 2025 erstmals die Marke von 1.000 €, markierte im Verlauf 2026 ein Rekordhoch von 1.500 € — ein Plus von rund 130 % allein seit Jahresbeginn 2026. Umsatz 2024: +36 %, davon im Militärsegment allein +50 %.</p>
+    <span class="tag tag-belegt">BELEGT</span> Kursdaten Börsen-öffentlich nachvollziehbar (u.a. deraktionaer.de, ir.rheinmetall.com)
+  </div>
+
+  <div class="company-card">
+    <h3>Hensoldt</h3>
+    <p>Kursentwicklung seit Kriegsbeginn Februar 2022: von rund 12,50 € auf ein Allzeithoch von 117,70 € im Oktober 2025 — ein Zuwachs von rund 840 %. Rekord-Auftragseingang Q4 2025: 4,7 Mrd. €. Bereinigtes EBITDA +12 % auf 452 Mio. €, freier Cashflow +39 % auf 347 Mio. €. Auftragsbestand Anfang 2026: rund 9,8 Mrd. € — das entspricht mehreren Jahren Vorlauf.</p>
+    <span class="tag tag-belegt">BELEGT</span> Quartalszahlen, Auftragsbestand aus Unternehmensberichten und Finanzpresse
+  </div>
+
+  <div class="company-card">
+    <h3>Airbus Defence</h3>
+    <p>Als Mitbewerber im „Uranos"-Rahmen (KI-gestütztes Aufklärungs-/Führungssystem der Bundeswehr) gemeinsam mit Rheinmetall, Hensoldt sowie den Startups Quantum Systems, Helsing und Arx Robotics genannt. Airbus-Aktie 2025/26 volatiler als die beiden anderen — u.a. wegen der stärkeren zivilen Luftfahrtsparte, die auf globale Lieferketten reagiert.</p>
+    <span class="tag tag-belegt">BELEGT</span> Bewerberkreis laut Handelsblatt-Recherche, zitiert bei deraktionaer.de<br>
+    <span class="tag tag-offen">OFFEN</span> Endgültige Auftragsvergabe „Uranos" zum Zeitpunkt dieses Artikels
+  </div>
+
+  <h2>Die Kausalkette</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-date">Nov. 2025</span>
+      Bundestag billigt Verteidigungshaushalt 2026 (108 Mrd. €, Zielpfad 152 Mrd. € bis 2029).
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Dez. 2025</span>
+      Haushaltsausschuss genehmigt Rekord-Beschaffungspaket von 52 Mrd. € in einer einzigen Sitzung.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">26. Feb. 2026</span>
+      Hensoldt meldet Rekord-Auftragseingang (4,7 Mrd. €) — Aktie fällt trotzdem 7 %, weil der Ausblick Analysten nicht überzeugt.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">28. Feb. 2026</span>
+      USA und Israel beginnen Operation „Epic Fury" gegen den Iran; Teheran antwortet mit Raketenangriffen auf Israel, US-Basen, Golfstaaten.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Folgetage</span>
+      Rüstungsaktien (Rheinmetall, Hensoldt, Renk) drehen ins Plus — „genau die Art von Bedrohung, gegen die Hensoldts Radarsysteme entwickelt wurden", so ein Marktkommentar.
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    Die Nachfrage wächst fast doppelt so schnell, wie geliefert werden kann — eine Book-to-Bill-Ratio von 1,9.
+  </div>
+
+  <p>Diese Zahl (Hensoldt, Stand Februar 2026) beschreibt kein Marktversagen, sondern das Gegenteil: eine politisch beschlossene, strukturell garantierte Nachfrage, die schneller wächst als die industrielle Kapazität. Für Aktionäre ist das eine seltene Konstellation — ein Auftragsbestand, der auf Jahre hinaus Umsätze absichert, unabhängig von klassischen Konjunkturzyklen.</p>
+
+  <h2>Wer hier mitverdient</h2>
+
+  <p>An dieser Stelle schließt sich der Kreis zu Teil 1: Dieselben Unternehmen (Rheinmetall, Hensoldt, Airbus, STARK, Helsing), deren Kurse an der Börse durch Bundestagsbeschlüsse getrieben werden, sind exakt die Firmen, die auf dem WELT-Sicherheitsgipfel im Springer-Hochhaus auftraten — und deren Wachstum von Fonds wie Doepfner Capital (Moritz Döpfner) mitfinanziert wird. Wer über die Bedrohungslage berichtet, die diese Haushaltsentscheidungen politisch begründet, sitzt damit nicht außerhalb, sondern innerhalb der Kette aus Nachfrage, Kapital und Berichterstattung.</p>
+
+  <p>Auch hier gilt die Einschränkung aus Teil 1: Eine Kursrally ist kein Beweis für eine gesteuerte Berichterstattung. Politische Entscheidungen zu Verteidigungsausgaben werden von gewählten Abgeordneten getroffen, nicht von Aktionären. Was belegt ist, ist ausschließlich die zeitliche und strukturelle Nähe der Akteure zueinander — nicht deren Absicht.</p>
+
+  <p class="open-question"><em>Wenn eine Bedrohungslage medial an Schärfe gewinnt (siehe Attributionskrieg-Serie) und im selben Zeitraum Kurse und Haushaltsposten in bislang unerreichte Höhen steigen — wie unterscheidet man dann sauber zwischen einer Sicherheitslage, die die Ausgaben rechtfertigt, und einer Ausgabenlogik, die eine Sicherheitslage braucht?</em></p>
+
+  <div class="series-nav">
+    Serie „Cashcow Rüstung" · <a href="cashcow-ruestung-teil1.html">← Teil 1: Die Drehtür</a> · Teil 2: Die Bewertungen (dieser Artikel) · <a href="cashcow-ruestung-teil3.html">Teil 3: Der Bedarf, der bestellt wird</a> · <a href="cashcow-ruestung-teil4.html">Teil 4: Der Weltraum-Zwilling →</a><br>
+    Verwandt: Serie „Attributionskrieg" (Teil 1 & 2)
+  </div>
+
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gekaufte Journalisten? — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --amber: #e8c547;
+    --box-bg: #1a1a2e;
+    --green: #4caf82;
+    --orange: #e08a3c;
+    --grey: #8a8a95;
+    --red: #d95d5d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 20px 80px;
+  }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin: 0 0 8px;
+    color: #f5f5f5;
+  }
+  .subtitle {
+    color: #a8a8b3;
+    font-size: 1.05rem;
+    font-style: italic;
+    margin-bottom: 32px;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--grey);
+    border-top: 1px solid #2a2a3a;
+    border-bottom: 1px solid #2a2a3a;
+    padding: 10px 0;
+    margin-bottom: 40px;
+  }
+  h2 {
+    color: var(--amber);
+    font-size: 1.4rem;
+    margin-top: 56px;
+    margin-bottom: 18px;
+    border-left: 3px solid var(--amber);
+    padding-left: 14px;
+  }
+  h3 {
+    color: #d8d8e0;
+    font-size: 1.1rem;
+    margin-top: 32px;
+  }
+  p { margin: 0 0 18px; }
+  a { color: var(--amber); }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-weight: bold;
+    margin-right: 6px;
+  }
+  .tag-belegt { background: rgba(76,175,130,0.15); color: var(--green); border: 1px solid var(--green); }
+  .tag-extra { background: rgba(224,138,60,0.15); color: var(--orange); border: 1px solid var(--orange); }
+  .tag-offen { background: rgba(138,138,149,0.15); color: var(--grey); border: 1px solid var(--grey); }
+  .tag-widerlegt { background: rgba(217,93,93,0.15); color: var(--red); border: 1px solid var(--red); text-decoration: line-through; }
+
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--amber);
+    padding: 16px 20px;
+    margin: 24px 0;
+    font-size: 0.92rem;
+  }
+  .source-box .src-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .stat {
+    background: var(--box-bg);
+    padding: 18px;
+    text-align: center;
+    border-radius: 4px;
+  }
+  .stat .num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.6rem;
+    color: var(--amber);
+    font-weight: bold;
+  }
+  .stat .label {
+    font-size: 0.78rem;
+    color: #a8a8b3;
+    margin-top: 4px;
+  }
+
+  .person-card {
+    background: var(--box-bg);
+    border-radius: 4px;
+    padding: 18px 20px;
+    margin: 24px 0;
+  }
+  .person-card .name {
+    font-weight: bold;
+    color: #f5f5f5;
+    font-size: 1.05rem;
+  }
+  .person-card .role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--grey);
+    margin-bottom: 10px;
+  }
+
+  blockquote {
+    border-left: 3px solid var(--amber);
+    margin: 28px 0;
+    padding: 4px 0 4px 20px;
+    font-style: italic;
+    color: #cfcfd8;
+    font-size: 1.05rem;
+  }
+
+  table.comparison {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 0.88rem;
+  }
+  table.comparison th {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    text-align: left;
+    border-bottom: 2px solid var(--amber);
+    padding: 8px 10px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+  }
+  table.comparison td {
+    padding: 10px;
+    border-bottom: 1px solid #2a2a3a;
+    vertical-align: top;
+  }
+
+  .drucksache-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.82rem;
+    font-family: 'Courier New', monospace;
+  }
+  .drucksache-table th {
+    text-align: left;
+    color: var(--amber);
+    border-bottom: 2px solid var(--amber);
+    padding: 6px 8px;
+  }
+  .drucksache-table td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #2a2a3a;
+  }
+
+  .closing {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid #2a2a3a;
+  }
+  .closing p {
+    font-style: italic;
+    color: #b8b8c2;
+  }
+
+  .series-nav {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid #2a2a3a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--grey);
+  }
+  .series-nav a { color: var(--amber); }
+</style>
+<meta name="rubrik" content="cat-medien">
+<meta name="kachel-titel" content="Gekaufte Journalisten?">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">dunkelfeld.report — Faktenchecker &amp; Medienmacht</div>
+  <h1>Gekaufte Journalisten?</h1>
+  <div class="subtitle">Zwei umstrittene Insider, ein belegter Mechanismus — und was der Bundestag selbst zugeben musste</div>
+  <div class="meta">Beleg-vor-Motiv-Prinzip · Stand: Juli 2026 · Lesezeit ca. 9 Min.</div>
+
+  <p>
+  2014 behauptete der ehemalige FAZ-Journalist Udo Ulfkotte in seinem Buch <em>„Gekaufte Journalisten“</em>,
+  CIA und BND würden deutsche Journalisten systematisch bestechen. Die Reaktion der etablierten Medien war
+  einhellig: Verschwörungstheorie, unseriöser Verlag, widerlegte Einzelbehauptungen. Zehn Jahre später
+  beschreibt der Ex-NDR-Redakteur Patrik Baab in <em>„Propaganda-Presse“</em> einen strukturell sehr ähnlichen
+  Mechanismus — ökonomischer Druck, Netzwerke, vorauseilender Gehorsam. Auch er gilt als umstritten.
+  </p>
+  <p>
+  Zwischen diesen beiden Außenseitern liegt aber etwas, das sich nicht als Verschwörungstheorie abtun lässt:
+  eine offizielle Antwort der Bundesregierung an den Bundestag, in der Zahlungen an Journalisten in Millionenhöhe
+  bestätigt werden — und der Auslandsgeheimdienst BND die Auskunft komplett verweigert, unter Verweis auf das
+  „Staatswohl“.
+  </p>
+
+  <span class="tag tag-belegt">BELEGT</span>
+  <span class="tag tag-extra">EXTRAPOLATION</span>
+  <span class="tag tag-offen">OFFEN</span>
+
+  <h2>1. Was der Bundestag selbst dokumentiert hat</h2>
+
+  <p>
+  Im Februar 2023 beantwortete die Bundesregierung eine Kleine Anfrage der AfD-Fraktion
+  (Drucksache 20/5437) mit der Bundestagsdrucksache 20/5822. Es geht dabei nicht um die Anfrage selbst,
+  sondern um die Antwort der Bundesregierung — ein amtliches Dokument, keine Interpretation.
+  </p>
+
+  <div class="stat-grid">
+    <div class="stat"><div class="num">1.471.828 €</div><div class="label">Honorare an Journalisten seit 2018 (Bundesministerien &amp; -behörden)</div></div>
+    <div class="stat"><div class="num">875.232 €</div><div class="label">davon an Journalisten von ARD, ZDF, Deutschlandradio, Deutsche Welle</div></div>
+  </div>
+  <div class="stat-grid">
+    <div class="stat"><div class="num">596.597 €</div><div class="label">an Journalisten privater Medien</div></div>
+    <div class="stat"><div class="num">200+</div><div class="label">einzeln aufgeführte, aber anonymisierte „Journalist 1–200“</div></div>
+  </div>
+
+  <p>
+  Die Bundesregierung listet die Zahlungen minutiös auf — Ministerium, Datum, Art des Auftrags
+  (überwiegend Moderationen, aber auch Lektorat, Medientraining, Vorträge, Videoproduktion), Sender.
+  Nur einen Punkt verweigert sie: die Klarnamen. Aus „Gründen des Datenschutzes“.
+  </p>
+
+  <div class="source-box">
+    <div class="src-label">Primärquelle</div>
+    <span class="tag tag-belegt">BELEGT</span> Bundestagsdrucksache 20/5822 vom 27.02.2023,
+    „Zahlungen von Bundesministerien an Journalisten des öffentlich-rechtlichen Rundfunks und
+    privatrechtlicher Medien". Volltext: dserver.bundestag.de/btd/20/058/2005822.pdf
+  </div>
+
+  <h3>Ein Auszug aus der Original-Tabelle (Anlage 1, anonymisiert von der Bundesregierung selbst)</h3>
+  <table class="drucksache-table">
+    <tr><th>Ministerium</th><th>Auftragsart</th><th>Journalist</th><th>Sender</th></tr>
+    <tr><td>BMAS</td><td>Moderation</td><td>Journalist 1</td><td>ZDF</td></tr>
+    <tr><td>BMDV</td><td>Moderation</td><td>Journalist 21</td><td>Deutsche Welle</td></tr>
+    <tr><td>BMF/GZD</td><td>Lehrauftrag Medientraining Pressesprecher</td><td>Journalist 27</td><td>u.a. WDR, NDR, ZDF</td></tr>
+    <tr><td>BMWK</td><td>Moderation</td><td>Journalist 165</td><td>Axel-Springer-Konzern</td></tr>
+    <tr><td>BMBF</td><td>Moderation</td><td>Journalist 184</td><td>Süddeutsche Zeitung / Ressortleiterin Wissen</td></tr>
+    <tr><td>BKM/DNB</td><td>Begleitveranstaltung Ausstellung</td><td>Journalist 191</td><td>FAZ</td></tr>
+    <tr><td>BMVg/ZMSBw</td><td>Moderation Kolloquium</td><td>Journalist 198</td><td>Der Spiegel</td></tr>
+  </table>
+  <p style="font-size:0.85rem; color:#8a8a95;">
+  Journalist 27 taucht allein viermal zwischen 2018–2022 auf, immer für Medientraining von Pressesprechern
+  und Führungskräften des Zolls. Journalist 73 erscheint über ein Dutzend Mal bei BMAS, BMEL und BMBF.
+  Die Namen sind unbekannt — die Häufung ist es nicht.
+  </p>
+
+  <h3>Der Satz, der die Anfrage eigentlich beantwortet</h3>
+  <blockquote>
+  „Für den Bundesnachrichtendienst (BND) ist darauf hinzuweisen, dass die Beantwortung der Fragen aus
+  Staatswohlgründen nicht erfolgen kann, weil Kooperationen des BND besonders schützenswert sind.“
+  </blockquote>
+  <p>
+  Das ist keine Verneinung — die Bundesregierung schreibt das selbst dazu: „der Umstand, dass die Antwort
+  nicht gegeben werden kann, [ist] weder als Bestätigung noch als Verneinung des angefragten Sachverhalts
+  zu werten.“ <span class="tag tag-belegt">BELEGT</span> Der BND verweigert also nicht, weil nichts
+  stattfindet — sondern weil die Offenlegung selbst als Schaden für die „Kooperationsfähigkeit“ gilt.
+  </p>
+
+  <div class="source-box">
+    <div class="src-label">Ergänzend belegt</div>
+    In einem Schriftsatz an das Bundesverwaltungsgericht (26.04.2022, Az. BVerwG 20 F 5.22, im Rahmen
+    eines presserechtlichen Auskunftsersuchens der BILD-Zeitung) bestätigte der BND selbst, dass
+    „eine Heranziehung von Vertretern der Medienbranche als NDVen [nachrichtendienstliche Verbindungen]
+    auch heute noch möglich" sei. Der Deutsche Journalistenverband sprach von einem Verstoß gegen
+    Ziffer 5.2 des Pressekodex. <span class="tag tag-belegt">BELEGT</span> (Quelle: LTO, 23.01.2023)
+  </div>
+
+  <h3>Der historische Präzedenzfall: BND und Stern, 1980</h3>
+  <p>
+  Diese Praxis ist nicht neu. Bereits 1980 musste sich die Bundesregierung in einer Kleinen Anfrage
+  (Drucksache 8/3959) zu einer Kooperation zwischen BND und dem Magazin „Stern" äußern. Zeugenaussagen
+  vor dem Oberlandesgericht München legten damals nahe, dass ein vom BND „überprüfter und gebilligter"
+  Artikel nicht der Sicherheit des Dienstes diente, sondern der „beruflichen und moralischen Vernichtung
+  eines entschiedenen Gegners der Ostpolitik der Bundesregierung". <span class="tag tag-belegt">BELEGT</span>
+  — der Fall ist aktenkundig, nicht Ulfkottes Erfindung.
+  </p>
+
+  <h2>2. Die Insider: Ulfkotte und Baab im Vergleich</h2>
+
+  <div class="person-card">
+    <div class="name">Udo Ulfkotte (1960–2017)</div>
+    <div class="role">17 Jahre FAZ-Redakteur · Buch: „Gekaufte Journalisten" (2014, Kopp-Verlag)</div>
+    <p>Behauptete, CIA und BND hätten ihn und Kollegen für pro-NATO-Berichterstattung „geschmiert" und
+    in transatlantische Netzwerke (Atlantik-Brücke, Marshall Memorial Fund — dessen Fellow er selbst war)
+    eingebunden. Mainstream-Medien und Kollegen wie Stefan Niggemeier wiesen zahlreiche Einzelbehauptungen
+    als unbelegt oder falsch zurück. <span class="tag tag-offen">OFFEN</span> Einzelvorwürfe unabhängig
+    nie verifiziert. <span class="tag tag-belegt">BELEGT</span> seine eigene Netzwerk-Mitgliedschaft und
+    Ehrenbürgerschaft für „positive Berichterstattung" in den USA.</p>
+  </div>
+
+  <div class="person-card">
+    <div class="name">Patrik Baab (*1959)</div>
+    <div class="role">Ex-NDR-Redakteur · Bücher: „Recherchieren" (2022), „Propaganda-Presse" (2024)</div>
+    <p>Beschreibt Medien als „ideologische Apparate": prekäre Beschäftigung, PR-Übermacht, Digitalisierung,
+    vorauseilender Gehorsam, transatlantische Netzwerke. 2022 wurde ihm nach einer umstrittenen Reise als
+    Wahlbeobachter bei russisch kontrollierten Scheinreferenden in der Ukraine der Lehrauftrag entzogen —
+    2023 vom Verwaltungsgericht Schleswig-Holstein als formal rechtswidrig aufgehoben (Az. 9A 31/23,
+    9A 167/22). <span class="tag tag-offen">OFFEN</span> Das Gerichtsurteil bestätigt ein Verfahrensfehler,
+    keine inhaltliche Richtigkeit seiner Russland-Positionen, die von Osteuropa-Historikern als
+    Kreml-nah kritisiert werden.</p>
+  </div>
+
+  <p>
+  Beide Männer sind belastete Zeugen mit eigener Agenda. Das ist relevant — und genau deshalb ist der
+  eigentliche Befund bemerkenswert: Zwei Journalisten, zehn Jahre und ein völlig unterschiedliches
+  politisches Spektrum auseinander, beschreiben unabhängig voneinander denselben strukturellen Mechanismus.
+  Nicht identische Einzelvorwürfe — aber ein deckungsgleiches Muster.
+  </p>
+
+  <table class="comparison">
+    <tr><th>Mechanismus</th><th>Ulfkotte (2014)</th><th>Baab (2022/24)</th><th>Extern belegt?</th></tr>
+    <tr><td>Ökonomischer Druck auf Journalisten</td><td>Ja</td><td>Ja</td><td><span class="tag tag-belegt">BELEGT</span> Branchenkrise dokumentiert</td></tr>
+    <tr><td>Transatlantische Netzwerke</td><td>Ja (Atlantik-Brücke)</td><td>Ja</td><td><span class="tag tag-belegt">BELEGT</span> Mitgliedschaften öffentlich</td></tr>
+    <tr><td>Bezahlung durch Regierungsstellen</td><td>Ja (unspezifisch)</td><td>Nicht Kernthema</td><td><span class="tag tag-belegt">BELEGT</span> durch BT-Drs. 20/5822</td></tr>
+    <tr><td>Konkrete Bestechung/Weisung</td><td>Behauptet</td><td>Nicht behauptet</td><td><span class="tag tag-offen">OFFEN</span></td></tr>
+  </table>
+
+  <h2>3. Die historische Blaupause: Operation Mockingbird</h2>
+  <p>
+  Der Mechanismus „Geheimdienst ↔ Journalist" ist in den USA seit dem Church Committee (1975/76) amtlich
+  untersucht. Der Ausschuss des US-Senats stellte fest, dass die CIA über Jahrzehnte Verbindungen zu
+  Hunderten US-Journalisten und Redaktionen unterhielt. <span class="tag tag-belegt">BELEGT</span>
+  Carl Bernstein dokumentierte 1977 in Rolling Stone rund 400 Namen. Der ehemalige CIA-Offizier
+  William B. Bader sagte vor dem Senats-Geheimdienstausschuss aus, man müsse „Time Magazine" gar nicht
+  manipulieren — „es gibt [CIA-]Leute auf Führungsebene". <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="closing">
+    <h2 style="border:none; padding-left:0; color:#f5f5f5;">Offene Fragen</h2>
+    <p>
+    Wenn selbst eine parlamentarische Anfrage nur die aggregierten Summen offenlegt und der Auslandsgeheimdienst
+    die Antwort komplett verweigert — was genau soll dadurch geschützt werden: die Sicherheit der Kooperationspartner,
+    oder ihre Identität?
+    </p>
+    <p>
+    Warum beschreiben zwei Journalisten aus entgegengesetzten politischen Lagern, zehn Jahre auseinander,
+    denselben strukturellen Mechanismus — obwohl kaum ein aktiver Journalist von innen dasselbe bestätigt?
+    </p>
+    <p>
+    Und: Macht ein Datenschutzargument aus einer demokratischen Kontrollfrage automatisch eine private Angelegenheit?
+    </p>
+  </div>
+
+  <div class="series-nav">
+    dunkelfeld.report — Serie „Faktenchecker &amp; Medienmacht" ·
+    siehe auch: <a href="#">Hass, Hetze und das Faktenchecker-Business</a> ·
+    <a href="#">Divide et Impera 2.0</a>
+  </div>
+
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

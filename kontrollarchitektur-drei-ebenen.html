@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontrollarchitektur: Drei Ebenen, dieselben Hände | dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b;
+    color: #d4d4d8;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: #71717a;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  h1 {
+    color: #e8c547;
+    font-size: 2rem;
+    line-height: 1.3;
+    margin-bottom: 12px;
+    font-weight: normal;
+  }
+  .subtitle {
+    color: #a1a1aa;
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-bottom: 30px;
+  }
+  h2 {
+    color: #e8c547;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 50px 0 20px;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 10px;
+  }
+  p { padding-bottom: 1.2rem; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 3px;
+    display: inline-block;
+    letter-spacing: 0.03em;
+  }
+  .belegt { background: #14321f; color: #4ade80; border: 1px solid #4ade80; }
+  .extrapolation { background: #3a2a10; color: #fb923c; border: 1px solid #fb923c; }
+  .offen { background: #27272a; color: #a1a1aa; border: 1px solid #71717a; }
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 0.95rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #e8c547;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .stat-card {
+    background: #18181b;
+    border: 1px solid #27272a;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 1.6rem;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: #71717a;
+    margin-top: 4px;
+  }
+  .timeline {
+    border-left: 2px solid #e8c547;
+    margin: 20px 0 20px 10px;
+    padding-left: 24px;
+  }
+  .timeline-item {
+    position: relative;
+    padding-bottom: 24px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -30px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #e8c547;
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .person-card {
+    background: #18181b;
+    border: 1px solid #27272a;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+  }
+  .person-name { color: #e8c547; font-family: 'Courier New', monospace; font-size: 0.95rem; }
+  .person-role { color: #a1a1aa; font-size: 0.9rem; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    border: 1px solid #27272a;
+    padding: 10px 12px;
+    text-align: left;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #e8c547;
+    text-transform: uppercase;
+  }
+  td.num { font-family: 'Courier New', monospace; color: #d4d4d8; }
+  .pullquote {
+    font-size: 1.3rem;
+    color: #e8c547;
+    font-style: italic;
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+    padding: 24px 0;
+    margin: 30px 0;
+    text-align: center;
+  }
+  .open-questions {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #27272a;
+    font-style: italic;
+    color: #a1a1aa;
+  }
+  .open-questions li { margin-bottom: 10px; margin-left: 20px; }
+  .sources-final {
+    margin-top: 50px;
+    font-size: 0.85rem;
+    color: #71717a;
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+  }
+  .sources-final a { color: #71717a; }
+  a { color: #e8c547; }
+  .series-nav {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+  }
+</style>
+<meta name="rubrik" content="cat-kontrolle">
+<meta name="kachel-titel" content="Kontrollarchitektur: Drei Ebenen, dieselben Hände">
+</head>
+<body>
+
+<div class="meta">dunkelfeld.report — Juli 2026 — Kontrollarchitektur</div>
+<h1>Drei Ebenen, dieselben Hände</h1>
+<p class="subtitle">Geheimdienstaufsicht, EU-Sanktionsverfahren und "Desinformationsbekämpfung" laufen 2025/26 strukturell bei denselben Akteuren zusammen — ohne dass irgendjemandem eine Absicht unterstellt werden muss.</p>
+
+<h2>Ebene 1 — Wer bestellt die Kontrolleure der Kontrolleure</h2>
+<p><span class="tag belegt">BELEGT</span> Der Unabhängige Kontrollrat (UKRat) prüft seit 2022 die Rechtmäßigkeit nachrichtendienstlicher Maßnahmen. Seine Mitglieder werden vom Bundespräsidenten ernannt — auf Vorschlag des Parlamentarischen Kontrollgremiums (PKGr) des Bundestags. Der Referentenentwurf zur Verfassungsschutzreform (BMI, Sommer 2026) will genau diesen UKRat mit deutlich erweiterten Aufgaben betrauen, während die reguläre Datenschutzaufsicht durch die Bundesdatenschutzbeauftragte für die Nachrichtendienste entfallen soll.</p>
+
+<div class="source-box">
+<div class="label">Quelle: Bundestag, 26.06.2025</div>
+Das PKGr der 21. Wahlperiode konstituierte sich am 26. Juni 2025 mit neun vorgesehenen Sitzen. Gewählt wurden bislang: drei Vertreter von CDU/CSU, zwei von der SPD, einer von den Grünen — drei Sitze blieben zunächst unbesetzt. Vorsitz: CDU/CSU. Stellvertretender Vorsitz: Bündnis 90/Die Grünen — einzige nicht-regierungstragende Fraktion im Gremium.
+</div>
+
+<div class="person-card">
+<span class="person-name">Marc Henrichmann</span> — <span class="person-role">CDU/CSU, Vorsitzender PKGr</span>
+</div>
+<div class="person-card">
+<span class="person-name">Dr. Konstantin von Notz</span> — <span class="person-role">Bündnis 90/Die Grünen, stellv. Vorsitzender — einzige Oppositionsstimme</span>
+</div>
+<div class="person-card">
+<span class="person-name">Heiko Hain, Alexander Throm</span> — <span class="person-role">CDU/CSU</span>
+</div>
+<div class="person-card">
+<span class="person-name">Daniel Baldy, Sonja Eichwede</span> — <span class="person-role">SPD</span>
+</div>
+
+<p><span class="tag belegt">BELEGT</span> Das PKGr tagt geheim, seine Mitglieder unterliegen strikter Verschwiegenheitspflicht — auch gegenüber dem übrigen Bundestag. Es bestellt zugleich die Mitglieder der G10-Kommission. Die faktische Kontrollarchitektur über Geheimdienste liegt damit in einem nicht-öffentlichen Gremium, das mehrheitlich aus der Regierungskoalition besteht.</p>
+
+<p><span class="tag extrapolation">EXTRAPOLATION</span> Der Referentenentwurf sieht in § 61 Abs. 5 eine Eilfall-Ausnahme vor: Bei Gefahr im Verzug kann die Amtsleitung des Verfassungsschutzes Maßnahmen für sofort vollziehbar erklären — noch bevor der UKRat über deren Rechtmäßigkeit entschieden hat. Die vorgesehene Vorabkontrolle würde damit in den praktisch bedeutsamsten Fällen relativiert. Ob dies die Regel oder die Ausnahme wird, ist noch offen.</p>
+
+<h2>Ebene 2 — Wer entscheidet, wer als "Desinformationsakteur" gilt</h2>
+<p><span class="tag belegt">BELEGT</span> EU-Sanktionen gegen Einzelpersonen wegen "Desinformation" beschließt der Rat der EU — die 27 Mitgliedstaaten, einstimmig, ohne Gerichtsverfahren. Betroffene werden nicht vorab angehört. Im 17. Sanktionspaket (beschlossen 20.05.2025) wurden erstmals auch deutsche Staatsbürger gelistet: die Blogger Alina Lipp und Thomas Röper. Später folgten Hüseyin Doğru (Berlin) und Jacques Baud (Schweizer Militäranalyst).</p>
+
+<div class="stat-grid">
+  <div class="stat-card"><span class="stat-number">2.500+</span><div class="stat-label">Personen/Organisationen aktuell auf EU-Russland-Sanktionsliste</div></div>
+  <div class="stat-card"><span class="stat-number">0</span><div class="stat-label">Gerichtsverfahren gegen Lipp, Röper, Doğru oder Baud</div></div>
+</div>
+
+<div class="timeline">
+  <div class="timeline-item">
+    <span class="timeline-date">16.05.2025</span>
+    Correctiv veröffentlicht Bericht: Einblick in Entwurf des 17. Sanktionspakets, nennt Lipp und Röper vorab namentlich.
+  </div>
+  <div class="timeline-item">
+    <span class="timeline-date">20.05.2025</span>
+    Rat der EU beschließt das 17. Sanktionspaket formell — Lipp und Röper stehen tatsächlich auf der Liste.
+  </div>
+  <div class="timeline-item">
+    <span class="timeline-date">Dez. 2025</span>
+    Jacques Baud wird im 19. Paket sanktioniert. Die Schweizer Botschaft interveniert offiziell bei der EU und fordert ein faires Verfahren.
+  </div>
+  <div class="timeline-item">
+    <span class="timeline-date">Mai 2025 – Stand Juli 2026</span>
+    Ein von der Fraktion "Bündnis Sahra Wagenknecht" im EU-Parlament beauftragtes Gutachten kommt zu dem Schluss, dass Sanktionen wie im Fall Doğru EU- und internationalem Recht widersprechen — insbesondere die Verweigerung rechtlichen Gehörs vor Verhängung.
+  </div>
+</div>
+
+<p><span class="tag belegt">BELEGT</span> Correctiv selbst beschreibt in seinem eigenen Bericht, vorab Einsicht in den Entwurf der Sanktionsverordnung gehabt zu haben — vor dem offiziellen Ratsbeschluss. Eine private, gemeinnützige Rechercheorganisation hatte damit dokumentierten Zugriff auf einen völkerrechtlich bindenden Entwurf, bevor dieser demokratisch beschlossen war.</p>
+
+<p><span class="tag offen">OFFEN</span> Wie genau dieser Vorab-Zugriff zustande kam, ist öffentlich nicht dokumentiert. Ebenso offen: ob die Bundesregierung die Listung Doğrus selbst vorgeschlagen hat — ein Medienbericht vermutet dies, belegt es aber nicht abschließend.</p>
+
+<h2>Ebene 3 — Wer finanziert die Organisation mit dem Vorab-Zugriff</h2>
+<p><span class="tag belegt">BELEGT</span> Dieselbe Rechercheorganisation, die 2025 vorab Zugriff auf den EU-Sanktionsentwurf hatte, wird in erheblichem Umfang aus Bundesmitteln gefördert — dokumentiert in Antworten der Bundesregierung auf parlamentarische Anfragen sowie in Medienrecherchen (Cicero, Focus).</p>
+
+<table>
+<tr><th>Ministerium</th><th>Zeitraum</th><th>Summe</th><th>Projektbezeichnung</th></tr>
+<tr><td>Bundesforschungsministerium</td><td class="num">2024</td><td class="num">176.051 €</td><td>"noFake – Kommunikationstechnologien und Cybersicherheit"</td></tr>
+<tr><td>Bundesforschungsministerium</td><td class="num">2025</td><td class="num">67.202 €</td><td>dito</td></tr>
+<tr><td>Bundesforschungsministerium</td><td class="num">2026</td><td class="num">720.418 €</td><td>Verbundprojekt Desinformationsmonitoring DE/TR/RU</td></tr>
+<tr><td>Bundesfamilienministerium</td><td class="num">2023–2026</td><td class="num">411.147 €</td><td>"Brandherd Desinformation" (davon 280.991 € 2025/26)</td></tr>
+</table>
+
+<p><span class="tag belegt">BELEGT</span> Zusätzlich erhält die Organisation Zuschüsse der Bundeszentrale für politische Bildung (im BMI angesiedelt) sowie private Mittel u. a. von Google, der Open Society Foundations und der Mercator-Stiftung. Ein Landgericht Berlin urteilte im März 2026 in einem Teilaspekt gegen die Organisation (unwahre Tatsachenbehauptung zu einer vielzitierten Passage eines früheren Berichts) — ein widersprechendes Urteil eines anderen Landgerichts (Dezember 2025) hatte dieselbe Passage als zulässige Meinungsäußerung eingestuft.</p>
+
+<div class="pullquote">
+"Drei getrennte Kontrollmechanismen — Geheimdienstaufsicht, Sanktionsverfahren, Desinformationsbekämpfung — laufen 2025/26 organisatorisch und finanziell bei überlappenden Akteuren zusammen. Das ist keine Verschwörung. Es ist eine Struktur."
+</div>
+
+<h2>Die Verknüpfung — was sich zeigt, wenn man die drei Ebenen nebeneinanderlegt</h2>
+<p>Die Fakten sprechen für sich, wenn man sie nur nebeneinanderstellt: Ein mehrheitlich regierungskoalitionär besetztes Geheimgremium bestimmt, wer die Nachrichtendienste kontrolliert. Ein Ministerrat ohne Gerichtsverfahren bestimmt, wer als "Desinformationsakteur" gilt und faktisch aus der EU ausgebürgert wird. Und eine private Organisation, die bei mindestens einem solchen Verfahren nachweislich vorab informiert war, wird von denselben Bundesministerien mit siebenstelligen Summen für genau dieses Themenfeld gefördert.</p>
+
+<p><span class="tag extrapolation">EXTRAPOLATION</span> Keine der drei Ebenen beweist für sich genommen eine koordinierte Absicht. Strukturell ergibt sich jedoch: Wer Kontrolle, Sanktionierung und öffentliche Deutungshoheit über "Desinformation" gleichzeitig mitgestaltet oder finanziert, braucht keine Verschwörung — die Ergebnisse ähneln sich auch ohne eine solche.</p>
+
+<div class="open-questions">
+<p>Offene Fragen, die dieser Artikel bewusst nicht beantwortet:</p>
+<ul>
+<li>Warum erhielt eine privat organisierte Rechercheplattform Einblick in einen nicht-öffentlichen EU-Sanktionsentwurf, bevor dieser demokratisch beschlossen war?</li>
+<li>Ist die beobachtete Ämter- und Mittelkonzentration bei denselben politischen und institutionellen Akteuren Zufall, Verwaltungslogik — oder System?</li>
+<li>Wie unterscheidet sich der Fall Doğru/Baud (kein belegter Russland-Bezug) rechtlich und politisch vom Fall Lipp/Röper (dokumentierte Russland-Nähe) — und warum wird diese Unterscheidung in der öffentlichen Debatte kaum gemacht?</li>
+</ul>
+</div>
+
+<div class="sources-final">
+QUELLEN: Deutscher Bundestag (bundestag.de, PKGr-Konstituierung 26.06.2025) · Wikipedia "Parlamentarisches Kontrollgremium" / "Unabhängiger Kontrollrat" (als Einstieg zu Primärquellen, nicht als Beleg selbst) · LTO, "Referentenentwurf zur Reform des Nachrichtendienstrechts", 13.07.2026 · Bundestag-Drucksache 20/10473 · nd-aktuell.de, "Am langen Arm der EU verhungert" · Correctiv.org, Bericht 16.05.2025 · Consilium (Rat der EU), Pressemitteilungen 17./19. Sanktionspaket · Berliner Zeitung, 2025 · Cicero / Junge Freiheit, Bundesforschungsministerium-Förderung Correctiv, Mai 2026 · Nordkurier, "2,5 Mio Euro Steuergeld für Correctiv", Feb. 2024 · Wikipedia "Correctiv" (Förderzahlen, LG-Berlin-Urteil)
+</div>
+
+<div class="series-nav">
+DUNKELFELD.REPORT — KONTROLLARCHITEKTUR 2026<br>
+Verwandt: #15 Infrastruktur der Kontrolle · #10 Faktenchecker-Business
+</div>
+
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

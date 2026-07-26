@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Attributionskrieg (2/2): Was tatsächlich belegt ist — dunkelfeld.report</title>
+<style>
+  :root{
+    --bg:#09090b; --accent:#e8c547; --box:#1a1a2e;
+    --green:#5fbf7a; --orange:#e8a147; --grey:#8a8a8a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:#e4e4e7; font-family:Georgia,'Times New Roman',serif;
+    font-size:1.1rem; line-height:1.8; margin:0; padding:0;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:2.5rem 1.25rem 5rem;}
+  .kicker{
+    font-family:'Courier New',monospace; color:var(--accent); font-size:0.85rem;
+    letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.5rem;
+  }
+  h1{font-family:Georgia,serif; font-size:2.1rem; line-height:1.25; margin:0 0 1rem; color:#f4f4f5;}
+  .subtitle{color:#b8b8bd; font-size:1.05rem; margin-bottom:2rem; font-style:italic;}
+  .meta{
+    font-family:'Courier New',monospace; font-size:0.8rem; color:var(--grey);
+    border-top:1px solid #2a2a35; border-bottom:1px solid #2a2a35;
+    padding:0.75rem 0; margin-bottom:2.5rem; display:flex; gap:1.5rem; flex-wrap:wrap;
+  }
+  p{padding-bottom:1.2rem;}
+  h2{
+    font-size:1.4rem; color:var(--accent); margin:2.5rem 0 1rem;
+    font-family:Georgia,serif; border-bottom:1px solid #2a2a35; padding-bottom:0.5rem;
+  }
+  h3{font-size:1.15rem; color:#f4f4f5; margin:1.8rem 0 0.8rem;}
+  .source-box{
+    background:var(--box); border-left:3px solid var(--accent);
+    padding:1.2rem 1.4rem; margin:1.5rem 0; border-radius:0 4px 4px 0;
+  }
+  .source-box .src-label{
+    font-family:'Courier New',monospace; font-size:0.75rem; color:var(--accent);
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem; display:block;
+  }
+  .source-box p{padding-bottom:0.5rem; font-size:1rem;}
+  .source-box cite{
+    display:block; font-family:'Courier New',monospace; font-size:0.78rem;
+    color:var(--grey); font-style:normal; margin-top:0.5rem;
+  }
+  .tag{
+    font-family:'Courier New',monospace; font-size:0.72rem; font-weight:bold;
+    padding:0.2rem 0.55rem; border-radius:3px; letter-spacing:0.05em;
+    display:inline-block; margin-right:0.4rem;
+  }
+  .tag-belegt{background:rgba(95,191,122,0.15); color:var(--green); border:1px solid var(--green);}
+  .tag-extra{background:rgba(232,161,71,0.15); color:var(--orange); border:1px solid var(--orange);}
+  .tag-offen{background:rgba(138,138,138,0.15); color:var(--grey); border:1px solid var(--grey);}
+
+  .case-card{
+    border:1px solid #2a2a35; border-radius:6px; padding:1.4rem 1.5rem; margin:1.5rem 0;
+    background:#111116;
+  }
+  .case-card h3{margin-top:0; color:var(--accent);}
+  .case-card .verdict{
+    font-family:'Courier New',monospace; font-size:0.85rem; margin-top:1rem;
+    padding-top:0.8rem; border-top:1px dashed #2a2a35;
+  }
+
+  .stat-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:1rem; margin:1.8rem 0;
+  }
+  .stat{
+    background:var(--box); border-radius:6px; padding:1rem; text-align:center;
+  }
+  .stat-num{font-size:1.6rem; color:var(--accent); font-family:'Courier New',monospace; font-weight:bold;}
+  .stat-label{font-size:0.78rem; color:var(--grey); margin-top:0.3rem;}
+
+  .pull-quote{
+    font-size:1.3rem; font-style:italic; color:#f4f4f5; margin:2rem 0;
+    padding:0 1rem; border-left:3px solid var(--accent); line-height:1.5;
+  }
+
+  table{width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:0.95rem;}
+  th,td{border:1px solid #2a2a35; padding:0.6rem 0.8rem; text-align:left;}
+  th{background:var(--box); color:var(--accent); font-family:'Courier New',monospace; font-size:0.8rem;}
+
+  .open-question{
+    font-style:italic; color:#b8b8bd; margin-top:3rem; padding-top:1.5rem;
+    border-top:1px solid #2a2a35; font-size:1.05rem;
+  }
+
+  .series-nav{
+    margin-top:3.5rem; padding-top:1.5rem; border-top:1px solid #2a2a35;
+    font-family:'Courier New',monospace; font-size:0.85rem; color:var(--grey);
+  }
+  .series-nav a{color:var(--accent); text-decoration:none;}
+  .series-nav a:hover{text-decoration:underline;}
+
+  a{color:var(--accent);}
+</style>
+<meta name="rubrik" content="cat-medien">
+<meta name="kachel-titel" content="Der Attributionskrieg (2/2): Was tatsächlich belegt ist">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">Dunkelfeld.report · Serie: Attributionskrieg · Teil 2 von 2</div>
+  <h1>Was tatsächlich belegt ist</h1>
+  <p class="subtitle">Teil 1 zeigte das Muster der Attribution ohne Beweis. Dieser Teil zeigt die Gegenprobe: Fälle, in denen Ermittlungen, Gerichte und forensische Analysen tatsächlich zu belastbaren Ergebnissen kamen.</p>
+
+  <div class="meta">
+    <span>Stand: Juli 2026</span>
+    <span>Teil 2/2</span>
+    <span>Lesezeit: ca. 9 Min.</span>
+  </div>
+
+  <p>Beleg-vor-Motiv-Prinzip heißt: keine Zuschreibung ohne Dokument. Das gilt in beide Richtungen. Wer im Botnetz- und Drohnen-Fall zu Recht die fehlende Beweislage moniert, muss dieselbe Sorgfalt anwenden, wenn Beweise vorliegen — auch wenn das Ergebnis unbequem ist. Zwei Fälle mit forensischer Substanz und Gerichtsurteilen, kein Blindtext-Verdacht.</p>
+
+  <h2>Fall 1 — Die Operation „Doppelgänger"</h2>
+
+  <div class="case-card">
+    <h3>Gefälschte Medien-Klone seit 2022</h3>
+    <p>Seit mindestens Mai 2022 kursieren im Netz Klone echter Nachrichtenseiten — Spiegel, Bild, Guardian, Le Monde, Washington Post, 20 Minuten und weitere, insgesamt über 17 imitierte Medienmarken. Die gefälschten Artikel zeichnen ein Bild der Ukraine als gescheiterten, korrupten Staat und leugnen unter anderem das Massaker von Butscha.</p>
+
+    <div class="stat-grid">
+      <div class="stat"><div class="stat-num">17+</div><div class="stat-label">geklonte Medienmarken</div></div>
+      <div class="stat"><div class="stat-num">32</div><div class="stat-label">von US-DOJ beschlagnahmte Domains</div></div>
+      <div class="stat"><div class="stat-num">277</div><div class="stat-label">Seiten FBI-Affidavit</div></div>
+      <div class="stat"><div class="stat-num">190</div><div class="stat-label">Seiten interner Leak-Dokumente</div></div>
+    </div>
+
+    <p><strong>Technische Forensik (EU DisinfoLab / Qurium):</strong> Die imitierten Domains wurden über den russischen Internet-Registrar Nic.ru registriert. Gefälschte Videos wurden auf Rechnern mit russischem System-Setup produziert, einer davon in der Zeitzone GMT+8. Die zentrale Hosting-Infrastruktur läuft über den Provider Aeza mit Knotenpunkten in Moskau und Frankfurt.</p>
+
+    <p><strong>Rechtlich:</strong> Im Juli 2023 setzte die EU die Firmen Struktura und Social Media Agency sowie leitende Personen auf die Sanktionsliste (Vermögenssperre, Einreiseverbot). Am 4. September 2024 beschlagnahmte das US-Justizministerium 32 Domains und veröffentlichte ein 277-seitiges FBI-Affidavit mit 190 Seiten interner Dokumente der russischen Firma Social Design Agency.</p>
+
+    <p><strong>Aus geleakten Strategiepapieren</strong> (Washington Post, April 2024) geht laut Berichten hervor, dass ein Kernziel in Deutschland darin bestehe, Zustimmungswerte für die AfD zu steigern und die für Bündnis 90/Die Grünen zu senken — sowie die Botschaft zu verankern, der eigene Wohlstand solle nicht für einen „Sieg über die Ukraine" geopfert werden.</p>
+
+    <div class="verdict">
+      <span class="tag tag-belegt">BELEGT</span> Technische Infrastruktur, Domain-Registrierung, Hosting-Kette (Qurium/EU DisinfoLab)<br>
+      <span class="tag tag-belegt">BELEGT</span> EU-Sanktionen 2023, US-Beschlagnahmung 2024 mit forensischem Affidavit<br>
+      <span class="tag tag-offen">OFFEN</span> EU DisinfoLab selbst betont: keine formale Zuschreibung an einen spezifischen Akteur möglich, „false flag" nicht vollständig ausschließbar
+    </div>
+  </div>
+
+  <p>Bemerkenswert an diesem Fall: Selbst die Organisation, die die Kampagne aufgedeckt hat, bleibt in ihrer eigenen Attribution vorsichtig — <em>„we are unable to make a conclusive and specific attribution"</em> — obwohl die technischen Indizien deutlich in Richtung russischer Akteure weisen. Das ist der Unterschied zum Drohnen- und Botnetz-Fall aus Teil 1: Hier gibt es forensisch nachvollziehbare Spuren, dokumentierte Rechtsverfahren und benannte Firmen — und trotzdem bleibt methodische Zurückhaltung bei der letzten Zuschreibungsebene.</p>
+
+  <h2>Fall 2 — Brandanschlag auf Starmers Besitz</h2>
+
+  <div class="case-card">
+    <h3>Gerichtsurteil London, Juni 2026</h3>
+    <p>Im Mai 2025 brannten zwei Häuser und ein Auto, die mit dem britischen Premierminister Keir Starmer in Verbindung standen. Ein britisches Gericht verurteilte zwei Männer (22 und 27 Jahre) wegen Verschwörung zur Brandstiftung; ein dritter Angeklagter wurde freigesprochen.</p>
+    <p>Laut Anklage bot eine russischsprachige Person unter dem Pseudonym „El Money" dem 22-Jährigen über Telegram Geld dafür, die Gebäude anzuzünden und Videomaterial als Beweis für eine spätere Veröffentlichung zu liefern.</p>
+    <div class="verdict">
+      <span class="tag tag-belegt">BELEGT</span> Gerichtsurteil, Verurteilung durch ordentliches Verfahren<br>
+      <span class="tag tag-belegt">BELEGT</span> Bezahlung via Telegram durch russischsprachige Person dokumentiert<br>
+      <span class="tag tag-offen">OFFEN</span> Identität und staatliche Anbindung des Hintermanns „El Money" ungeklärt
+    </div>
+  </div>
+
+  <p>Auch hier gilt die Differenzierung: Die Tat selbst und die Bezahlungskette sind gerichtsfest belegt. Ob „El Money" im Auftrag russischer Staatsstellen handelte oder als freischaffender Krimineller mit prorussischer Attitüde, bleibt offen. Der Unterschied zu den Fällen in Teil 1 ist trotzdem fundamental: Hier existiert ein Strafverfahren mit Beweisaufnahme, Verteidigung und Urteil — kein anonymer Sicherheitskreis-Hinweis.</p>
+
+  <h2>Der Unterschied, der zählt</h2>
+
+  <table>
+    <tr><th>Kriterium</th><th>Teil 1 (Drohnen/Botnetz)</th><th>Teil 2 (Doppelgänger/Starmer)</th></tr>
+    <tr><td>Forensische Spur</td><td>Keine sichergestellte Drohne/Software</td><td>Domain-Register, Server-Standorte, Zahlungsspur</td></tr>
+    <tr><td>Rechtsverfahren</td><td>Keines</td><td>EU-Sanktionen, US-Beschlagnahmung, Gerichtsurteil</td></tr>
+    <tr><td>Unabhängige Prüfung</td><td>Widersprüchlich / unbestätigt</td><td>Mehrfach repliziert (Qurium, Meta, OpenAI, VIGINUM, ISD)</td></tr>
+    <tr><td>Finale Täter-Attribution</td><td>Spekulativ</td><td>Bewusst offengehalten trotz Indizienlage</td></tr>
+  </table>
+
+  <div class="pull-quote">
+    Das eine schließt das andere nicht aus — im Gegenteil: Es zeigt, wie unterscheidbar „belegt" von „vermutet" tatsächlich ist, sobald man es nachprüft.
+  </div>
+
+  <p>Diese Serie ist damit kein Persilschein für den Kreml. Sie ist eine Methodenfrage: Wenn Redaktionen bei Doppelgänger monatelang forensisch sauber arbeiten können — mit Domain-Analysen, Gerichtsakten, internen Leak-Dokumenten — warum genügt beim Drohnen- und Botnetz-Fall ein anonymer Hinweis aus „Sicherheitskreisen"? Die Antwort liegt vermutlich nicht in der Absicht der einzelnen Journalisten, sondern in der unterschiedlichen Dringlichkeit, mit der ein Narrativ gebraucht wird — vor Landtagswahlen, vor Verteidigungshaushalts-Debatten, in Kriegszeiten.</p>
+
+  <p class="open-question"><em>Warum wird bei den einen Fällen die volle forensische Sorgfalt aufgewendet, bei den anderen nicht — und wer profitiert jeweils vom Tempo der Zuschreibung?</em></p>
+
+  <div class="series-nav">
+    Serie „Attributionskrieg" · <a href="attributionskrieg-teil1.html">← Teil 1: Muster ohne Beweis</a> · Teil 2: Was tatsächlich belegt ist (dieser Artikel)
+  </div>
+
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

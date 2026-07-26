@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wessen Lobby gewinnt? Teil 3: Die Architekten — dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background: #09090b;
+    color: #d4d4d8;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+  .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #8a8a92;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  h1 {
+    font-size: 1.9rem;
+    color: #e8c547;
+    line-height: 1.3;
+    margin-bottom: 0.3rem;
+  }
+  h2 {
+    font-size: 1.35rem;
+    color: #e8c547;
+    margin-top: 2.8rem;
+    border-bottom: 1px solid #26262c;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    font-size: 1.1rem;
+    color: #e8c547;
+    margin-top: 1.8rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  a { color: #e8c547; }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #8a8a92;
+    margin-bottom: 2rem;
+  }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+    letter-spacing: 0.03em;
+  }
+  .tag-belegt { background: #14351f; color: #4ade80; border: 1px solid #22c55e44; }
+  .tag-extrapolation { background: #3a2a12; color: #fb923c; border: 1px solid #f9731644; }
+  .tag-offen { background: #26262c; color: #a1a1aa; border: 1px solid #52525b44; }
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .source-box .label { margin-bottom: 0.4rem; }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #26262c;
+    margin: 1.5rem 0;
+    border: 1px solid #26262c;
+  }
+  .stat-cell {
+    background: #09090b;
+    padding: 1rem;
+  }
+  .stat-cell .num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.4rem;
+    color: #e8c547;
+    display: block;
+  }
+  .stat-cell .desc {
+    font-size: 0.85rem;
+    color: #a1a1aa;
+  }
+  .pull-quote {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #e4e4e7;
+    border-left: 3px solid #e8c547;
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+  }
+  .pull-quote .attr {
+    font-style: normal;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #8a8a92;
+    display: block;
+    margin-top: 0.5rem;
+  }
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .comparison-table th, .comparison-table td {
+    border: 1px solid #26262c;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+  }
+  .comparison-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #e8c547;
+    text-transform: uppercase;
+  }
+  .timeline {
+    margin: 1.5rem 0;
+    border-left: 2px solid #26262c;
+    padding-left: 1.2rem;
+  }
+  .timeline .entry {
+    margin-bottom: 1.2rem;
+    position: relative;
+  }
+  .timeline .entry .date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #e8c547;
+    display: block;
+  }
+  .person-card {
+    background: #1a1a2e;
+    border: 1px solid #26262c;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+  }
+  .person-card .name {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .closing-questions {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #26262c;
+    font-style: italic;
+    color: #a1a1aa;
+  }
+  .series-nav {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #e8c547;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+  }
+  .series-nav .part { padding: 0.4rem 0; color: #a1a1aa; }
+  .series-nav .part.active { color: #e8c547; }
+  .series-nav a { color: #a1a1aa; text-decoration: none; }
+  .series-nav a:hover { color: #e8c547; }
+</style>
+<meta name="rubrik" content="cat-stiftungen">
+<meta name="kachel-titel" content="Wessen Lobby gewinnt? Teil 3: Die Architekten">
+</head>
+<body>
+
+<div class="label">DUNKELFELD.REPORT — SERIE: WESSEN LOBBY GEWINNT? — TEIL 3 VON 3</div>
+<h1>Die Architekten: Netzwerke, Nachfolgejobs und ein Reaktor in Wyoming</h1>
+<div class="meta">Personen, Verflechtungen, Technik — und ein Kontrast aus dem Kriegsgebiet</div>
+
+<p>Teil 1 und 2 zeigten zwei unterschiedliche Mechanismen — Personalpolitik in den USA, Verhandlungslösungen in Deutschland. Teil 3 schaut auf die Personen hinter der deutschen Energiewende-Architektur, auf eine dokumentierte Eigentumskette rund um den Ex-Wirtschaftsminister — und auf ein Kraftwerksprojekt, das zeigt, wie langsam selbst gut finanzierte Atomkraft-Alternativen tatsächlich sind.</p>
+
+<h2>Der Graichen-Clan: Von Agora ins Ministerium und weiter</h2>
+
+<p><span class="tag tag-belegt">BELEGT</span> Patrick Graichen war 2014–2021 Direktor der Denkfabrik Agora Energiewende, bevor er 2021 Staatssekretär im Bundeswirtschaftsministerium unter Robert Habeck wurde.</p>
+
+<div class="timeline">
+  <div class="entry">
+    <span class="date">2001–2012</span>
+    Graichen im Bundesumweltministerium, zuletzt Referatsleiter Klima- und Energiepolitik
+  </div>
+  <div class="entry">
+    <span class="date">2012</span>
+    Mitgründer der Denkfabrik Agora Energiewende
+  </div>
+  <div class="entry">
+    <span class="date">2014–2021</span>
+    Exekutivdirektor von Agora Energiewende
+  </div>
+  <div class="entry">
+    <span class="date">Dez. 2021</span>
+    Ernennung zum Staatssekretär im BMWK unter Habeck
+  </div>
+  <div class="entry">
+    <span class="date">April/Mai 2023</span>
+    Trauzeugenaffäre — Rücktritt / einstweiliger Ruhestand
+  </div>
+  <div class="entry">
+    <span class="date">seit 2024</span>
+    Mitglied des Aufsichtsrats von Ukrenerho (ukrainischer Netzbetreiber)
+  </div>
+</div>
+
+<p><span class="tag tag-belegt">BELEGT</span> Die "Trauzeugenaffäre": Graichen saß in der Findungskommission, die seinen Trauzeugen und langjährigen Freund Michael Schäfer als Kandidaten für die Chefposition der bundeseigenen Deutschen Energie-Agentur (Dena) vorschlug — und verschwieg seine Befangenheit zunächst gegenüber dem Ministerium. Schäfer verzichtete nach Bekanntwerden auf den Posten und auf eine Abfindung.</p>
+
+<div class="person-card">
+  <span class="name">Verena Graichen</span>
+  Schwester von Patrick Graichen, beschäftigt beim Öko-Institut — das wiederum Aufträge verschiedener Ministerien und Behörden erhält. Verheiratet mit Michael Kellner, ebenfalls Staatssekretär im BMWK unter Habeck.
+</div>
+
+<div class="person-card">
+  <span class="name">Jakob Graichen</span>
+  Bruder von Patrick Graichen, ebenfalls beim Öko-Institut beschäftigt.
+</div>
+
+<p><span class="tag tag-extrapolation">EXTRAPOLATION</span> Das Ministerium betonte, Kellner und Graichen seien nicht an Ausschreibungen beteiligt gewesen, auf die sich das Öko-Institut hätte bewerben können. Ob die personelle Nähe dennoch strukturellen Einfluss auf Vergabeentscheidungen hatte, ist damit nicht endgültig geklärt — dokumentiert ist die Nähe selbst, nicht die Einflussnahme im Einzelfall.</p>
+
+<h2>Habeck, Viessmann, Urban Partners: Eine dokumentierte Kette</h2>
+
+<div class="timeline">
+  <div class="entry">
+    <span class="date">2023</span>
+    Viessmann verkauft sein Kerngeschäft (Climate Solutions, Wärmepumpen/Heiztechnik, 85% des Umsatzes) für 12 Mrd. € an Carrier Global (USA) — geprüft vom BMWK unter Habeck. Der Verkauf löst öffentliche Kritik aus; FDP-Politiker und die Präsidentin der "Familienunternehmer" machen Habecks Heizungsgesetz mitverantwortlich.
+  </div>
+  <div class="entry">
+    <span class="date">Januar 2025</span>
+    Die Viessmann Generations Group (Familienholding) erwirbt eine Minderheitsbeteiligung an Urban Partners, einem dänischen Stadtentwicklungs-Investor mit über 21 Mrd. € verwaltetem Vermögen.
+  </div>
+  <div class="entry">
+    <span class="date">August 2026</span>
+    Robert Habeck wird Senior Advisor bei Urban Partners.
+  </div>
+</div>
+
+<p><span class="tag tag-belegt">BELEGT</span> Alle drei Stationen sind über unabhängige Quellen bestätigt: Viessmanns eigene Pressemitteilung und die von Urban Partners zur Beteiligung, sowie Berichterstattung von Green Street News und dem M&amp;A-Fachdienst mainsights.io zur Beteiligung selbst; die Habeck-Anstellung über t-online und Tagesspiegel.</p>
+
+<div class="source-box">
+  <div class="label">Quelle</div>
+  Viessmann ist der zweite externe Investor bei Urban Partners nach Novo Holdings (2020, 25%). Die Transaktion berührt laut Unternehmensangaben nicht die strategische Entscheidungsfindung oder das Tagesgeschäft von Urban Partners. (Viessmann Group / Urban Partners, Pressemitteilungen, Januar 2025)
+</div>
+
+<p><span class="tag tag-offen">OFFEN</span> Ob zwischen Habecks Heizungsgesetz, dem Viessmann-Verkauf und seiner späteren Anstellung ein kausaler Zusammenhang besteht, ist nicht belegt. Dokumentiert ist ausschließlich die Eigentums- und Zeitkette — die Frage nach Zufall oder Kalkül bleibt offen.</p>
+
+<h2>Gates' Gegenentwurf: Wie schnell ist "schnelle" Atomkraft wirklich?</h2>
+
+<p><span class="tag tag-belegt">BELEGT</span> TerraPowers Natrium-Reaktor gilt als Symbol einer neuen, privat finanzierten Atomkraft-Generation. Ein Blick auf Technik, Zeitplan und Kosten relativiert das Tempo-Versprechen.</p>
+
+<div class="comparison-table">
+<table class="comparison-table">
+<tr><th></th><th>Isar 2 (Referenz-AKW)</th><th>TerraPower Natrium</th><th>KI-Rechenzentrum (Amazon/Anthropic, Indiana)</th></tr>
+<tr><td>Leistung</td><td>1.410 MW netto</td><td>345 MW / Spitze 500 MW</td><td>500 MW (erste Ausbaustufe)</td></tr>
+<tr><td>Bauzeit</td><td>1982–1988 (6 Jahre)</td><td>2024–2031 (7 Jahre Bau, 23 Jahre seit Firmengründung 2008)</td><td>ca. 1–2 Jahre</td></tr>
+<tr><td>Kosten</td><td>ca. 1,27 Mrd. DM (historisch)</td><td>ca. 10 Mrd. $</td><td>9–19 Mrd. $ pro GW (Gasturbinen-Variante)</td></tr>
+</table>
+</div>
+
+<p><span class="tag tag-belegt">BELEGT</span> Natrium nutzt einen natriumgekühlten Schnellen Reaktor mit Salzschmelze-Speicher — dieser Speicher erlaubt kurzfristiges Hochfahren von 345 auf 500 MW und macht die Anlage lastfolgefähig, ein technischer Vorteil gegenüber klassischen Grundlast-Reaktoren. Die Bauweise gilt zudem als passiv sicherer: niedriger Betriebsdruck, natürliche Konvektionskühlung im Störfall.</p>
+
+<p><span class="tag tag-belegt">BELEGT</span> Gegenposition der Union of Concerned Scientists (Dezember 2025): Die Sicherheitsprüfung der NRC wurde von ursprünglich geplanten 18 Monaten auf eine per Trump-Exekutivorder verkürzte Frist gedrängt — bei einem Reaktordesign, von dem laut Fachpresse noch kein einziger Prototyp je gebaut wurde.</p>
+
+<div class="pull-quote">
+  Ein typisches "powered shell" — ein leeres Rechenzentrumsgebäude ohne die teuren Chips — kostet 9 bis 11 Milliarden Dollar pro Gigawatt.
+  <span class="attr">— Branchenbericht zu Stargate-Rechenzentren, 2026</span>
+</div>
+
+<p><span class="tag tag-extrapolation">EXTRAPOLATION</span> Der eigentliche Befund: Ein KI-Rechenzentrum mit 500 MW Bedarf steht in ein bis zwei Jahren, mit Gasturbinen überbrückt. TerraPowers "sauberer" Reaktor mit vergleichbarer Spitzenleistung braucht bis 2031 — die Rechenzentren, für die Nvidia und Meta in Natrium investiert haben, werden also längst mit fossilem Strom laufen, bevor der Reaktor überhaupt ans Netz geht.</p>
+
+<h2>Der Kontrast: Atomkraft im Krieg</h2>
+
+<p><span class="tag tag-belegt">BELEGT</span> Während Deutschland den endgültigen Atomausstieg vollzog, betreibt die Ukraine mitten im Krieg neun Reaktorblöcke an drei Standorten (Riwne, Chmelnyzkyj, Südukraine) weiter — sie lieferten laut GRS 49,4 % des ukrainischen Stroms. Das AKW Saporischschja ist zwar seit der russischen Besetzung 2022 abgeschaltet (Kaltabschaltung), doch die übrigen Anlagen laufen unter Kriegsbedingungen, wiederholtem Drohnenbeschuss und Dutzenden Totalausfällen der externen Stromversorgung weiter.</p>
+
+<div class="source-box">
+  <div class="label">Quelle</div>
+  Die Ukraine kündigte auf der COP29 an, ihre Atomkraft-Kapazität zu verdreifachen, unter anderem durch Small Modular Reactors in Kooperation mit der US-Firma Holtec International. (taz, GRS, 2024/2026)
+</div>
+
+<h2>Schluss: Offene Fragen</h2>
+
+<div class="closing-questions">
+  <p>Warum galt der deutsche Atomausstieg als alternativlos sicherheitsrelevant, während ein Land im aktiven Krieg neun Reaktorblöcke weiterbetreibt und sogar ausbaut?</p>
+  <p>Was würde mit der öffentlichen Zustimmung zur Atomkraft in Deutschland geschehen, wenn ein Blackout oder gehäufte Brownouts einträten — und wäre das eine Folge struktureller Fehlplanung oder ein Anlass, an dem alte Positionen neu verhandelt werden? Dafür gibt es derzeit keinen Beleg in die eine oder andere Richtung — nur die Frage selbst.</p>
+</div>
+
+<div class="series-nav">
+  <div class="label">Serie: Wessen Lobby gewinnt?</div>
+  <div class="part"><a href="lobby-usa.html">← Teil 1: USA</a></div>
+  <div class="part"><a href="lobby-deutschland.html">← Teil 2: Deutschland</a></div>
+  <div class="part active">→ Teil 3: Die Architekten (dieser Artikel)</div>
+</div>
+
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

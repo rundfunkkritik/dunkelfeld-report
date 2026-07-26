@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Das Netzwerk hinter dem "Zentrum für politische Schönheit" | dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 2rem 1.2rem 5rem;
+  }
+  .container { max-width: 720px; margin: 0 auto; }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #8a8a92;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    line-height: 1.3;
+    color: #f4f4f5;
+    margin-bottom: 0.8rem;
+  }
+  h2 {
+    color: #e8c547;
+    font-size: 1.3rem;
+    margin-top: 2.6rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #26262b;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    color: #e8c547;
+    font-size: 1.05rem;
+    margin-top: 1.6rem;
+    margin-bottom: 0.6rem;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  p { padding-bottom: 1.2rem; }
+  .lede {
+    font-size: 1.2rem;
+    color: #d4d4d8;
+    border-left: 3px solid #e8c547;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+  }
+  a { color: #e8c547; }
+
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-weight: bold;
+    letter-spacing: 0.04em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+    margin-right: 0.3rem;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.12); color: #4ade80; border: 1px solid rgba(74,222,128,0.4); }
+  .tag-extrapolation { background: rgba(251,146,60,0.12); color: #fb923c; border: 1px solid rgba(251,146,60,0.4); }
+  .tag-offen { background: rgba(161,161,170,0.12); color: #a1a1aa; border: 1px solid rgba(161,161,170,0.4); }
+  .tag-widerlegt { background: rgba(244,63,94,0.1); color: #f43f5e; border: 1px solid rgba(244,63,94,0.3); text-decoration: line-through; }
+
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #e8c547;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+    margin: 1.5rem 0;
+  }
+  .stat {
+    background: #141418;
+    border: 1px solid #26262b;
+    padding: 1rem;
+    border-radius: 4px;
+  }
+  .stat .num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.4rem;
+    color: #e8c547;
+    font-weight: bold;
+    display: block;
+  }
+  .stat .label {
+    font-size: 0.82rem;
+    color: #a1a1aa;
+  }
+
+  .flow {
+    background: #141418;
+    border: 1px solid #26262b;
+    border-radius: 4px;
+    padding: 1.2rem;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 2;
+  }
+  .flow .arrow { color: #e8c547; }
+  .flow .node { color: #f4f4f5; }
+  .flow .sub { color: #8a8a92; font-size: 0.8rem; }
+
+  .person-card {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background: #141418;
+    border: 1px solid #26262b;
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+  .person-card .name {
+    color: #f4f4f5;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .person-card .role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: #e8c547;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .person-card p { padding-bottom: 0; font-size: 0.95rem; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.92rem;
+  }
+  th, td {
+    border: 1px solid #26262b;
+    padding: 0.6rem 0.7rem;
+    text-align: left;
+  }
+  th {
+    background: #141418;
+    color: #e8c547;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+  }
+
+  .timeline {
+    border-left: 2px solid #26262b;
+    margin: 1.5rem 0 1.5rem 0.5rem;
+    padding-left: 1.3rem;
+  }
+  .timeline .entry { position: relative; padding-bottom: 1.4rem; }
+  .timeline .entry::before {
+    content: '';
+    position: absolute;
+    left: -1.75rem;
+    top: 0.3rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #e8c547;
+  }
+  .timeline .date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #e8c547;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .timeline .desc { font-size: 0.95rem; color: #d4d4d8; }
+
+  .pull-quote {
+    font-size: 1.25rem;
+    font-style: italic;
+    color: #e8c547;
+    border-top: 1px solid #26262b;
+    border-bottom: 1px solid #26262b;
+    padding: 1.2rem 0;
+    margin: 1.8rem 0;
+    text-align: center;
+  }
+  .pull-quote .attr {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-style: normal;
+    color: #8a8a92;
+    margin-top: 0.6rem;
+  }
+
+  .closing {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #26262b;
+    font-style: italic;
+    color: #a1a1aa;
+  }
+
+  .footer-nav {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #26262b;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #8a8a92;
+  }
+</style>
+<meta name="rubrik" content="cat-stiftungen">
+<meta name="kachel-titel" content="Das Netzwerk hinter dem „Zentrum für politische Schönheit“">
+</head>
+<body>
+<div class="container">
+
+  <div class="meta">Dunkelfeld.report · Recherche · Struktur & Finanzierung</div>
+  <h1>Das Netzwerk hinter dem "Zentrum für politische Schönheit"</h1>
+  <p class="lede">Ein gemeinnütziger Verein, eine Unternehmergruppe, ein Bus im Wert einer Viertelmillion Euro und ein bemerkenswertes Muster: Ermittlungsverfahren, die enden, bevor sie beginnen. Was Dokumente, Bundestags-Anfragen und ein Podcast-Interview über die Struktur hinter dem "Zentrum für politische Schönheit" (ZPS) verraten.</p>
+
+  <h2>1. Die Firmenkette</h2>
+  <p>Nach außen tritt das ZPS als loses Künstlerkollektiv auf. Dahinter steht jedoch ein Geflecht aus Verein und Unternehmen, dessen Eigentumsverhältnisse öffentlich kaum bekannt sind.</p>
+
+  <div class="flow">
+    <span class="node">Philipp Ruch</span> <span class="sub">(Geschäftsführer)</span><br>
+    <span class="arrow">↓ besitzt</span><br>
+    <span class="node">hyle Investment GmbH</span><br>
+    <span class="arrow">↓ besitzt zu 100%</span><br>
+    <span class="node">Coam UG</span><br>
+    <span class="arrow">↓ Inhaberin der Marke</span><br>
+    <span class="node">"Politische Schönheit" (Text- und Bildmarke)</span>
+  </div>
+
+  <div class="source-box">
+    <span class="label">Belegt</span>
+    Die Markenrechte an "Politische Schönheit" liegen nicht bei Philipp Ruch persönlich, sondern bei der Coam UG, die wiederum vollständig der hyle Investment GmbH gehört. Ruch ist bei beiden Gesellschaften Geschäftsführer. <em>(Quelle: Apollo News, Firmenrecherche)</em>
+  </div>
+
+  <p>Ein zweiter, getrennter Strang läuft über den Verein <strong>"Kunstwerk Menschheit e.V."</strong> — offiziell als gemeinnützig anerkannt vom Finanzamt für Körperschaften I in Berlin. Satzungszweck: Förderung von Kunst und Kultur, Volks- und Berufsbildung, Studentenhilfe, Naturschutz, Landschaftspflege und Umweltschutz.</p>
+
+  <div class="flow">
+    <span class="node">Kunstwerk Menschheit e.V.</span> <span class="sub">(gemeinnützig, Finanzamt Berlin)</span><br>
+    <span class="arrow">↓ besitzt zu 100%</span><br>
+    <span class="node">Artists for Democracy GmbH</span><br>
+    <span class="arrow">↓ betreibt</span><br>
+    <span class="node">afd-verbot.de</span>
+  </div>
+
+  <p>Spenden für das ZPS fließen nicht an Ruch persönlich, sondern an diesen Verein. Der Verein finanziert damit die Aktionen — und ist zugleich Eigentümer jener GmbH, die eine Kampagne für ein Parteiverbot der AfD betreibt.</p>
+
+  <div class="person-card">
+    <div>
+      <span class="name">Philipp Ruch</span>
+      <span class="role">Gründer, Geschäftsführer Coam UG & hyle Investment GmbH</span>
+      <p>Öffentliches Gesicht des ZPS seit 2009. Laut Firmenregister zugleich Unternehmer in zwei Holdingstrukturen, über die Markenrechte gehalten werden.</p>
+    </div>
+  </div>
+
+  <div class="person-card">
+    <div>
+      <span class="name">Stefan Pelzer</span>
+      <span class="role">Vorsitzender, Kunstwerk Menschheit e.V.</span>
+      <p>Bezeichnet sich selbst als "Vereinsvorsitzender beim ZPS". Bestätigte im Podcast "Logbuch Netzpolitik" die Finanzierung des Bus-Umbaus aus Spendenmitteln.</p>
+    </div>
+  </div>
+
+  <h2>2. Die Finanzierung</h2>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="num">~250.000 €</span><span class="label">Spenden für Umbau des Aktionsbusses "Adenauer SRP+" (Pelzer-Zitat, Podcast)</span></div>
+    <div class="stat"><span class="num">600</span><span class="label">Fördermitglieder laut Eigenangabe des ZPS</span></div>
+    <div class="stat"><span class="num">10 €/Monat</span><span class="label">Mindestbeitrag als "Kompliz:in"</span></div>
+    <div class="stat"><span class="num">~10.000 €</span><span class="label">öffentliche Mittel über Maxim-Gorki-Theater, Aktion "Erster Internationaler Mauerfall" (2014)</span></div>
+  </div>
+
+  <div class="source-box">
+    <span class="label">Belegt — der stärkste Einzelfund</span>
+    "Kunstwerk Menschheit" taucht im ARD-Produzentenbericht 2016 als WDR-Lizenzgeber auf — als Empfänger einer Lizenzzahlung für Film- oder Tonmaterial. Auf Anfrage bestätigte der WDR den Vorgang: eine <em>"Lizenzzahlung in mittlerer dreistelliger Höhe"</em>. Zu weiteren Details wollte sich der Sender nicht äußern. <em>(Quelle: Apollo News, ARD-Produzentenbericht 2016)</em>
+  </div>
+
+  <p>Öffentlich behauptet das ZPS durchgängig, keine staatliche Förderung zu erhalten — zuletzt 2025 erneut von Ruch bekräftigt ("nicht einen Cent"). Die WDR-Zahlung lief nicht über einen klassischen Förderbescheid, sondern über einen Lizenzankauf durch eine öffentlich-rechtliche Anstalt — ein Unterschied, der die Aussage formal nicht widerlegt, sie aber einordnungsbedürftig macht.</p>
+
+  <span class="tag tag-belegt">BELEGT</span> Keine direkte Bundesförderung laut Bundesregierung (Antwort auf Kleine Anfrage, 2021).<br><br>
+  <span class="tag tag-belegt">BELEGT</span> Indirekter Mittelfluss über ARD/WDR (Lizenzzahlung) und Gorki-Theater (Sachleistungen/Logistik, teils aus öffentlichen Mitteln).<br><br>
+  <span class="tag tag-offen">OFFEN</span> Ob und in welchem Umfang weitere öffentlich-rechtliche oder kommunale Stellen mit dem Verein oder seinen Tochtergesellschaften Geschäftsbeziehungen unterhalten.
+
+  <h2>3. Gemeinnützigkeit — der wunde Punkt</h2>
+  <p>Als anerkannt gemeinnütziger Verein muss "Kunstwerk Menschheit e.V." keine Körperschaftsteuer zahlen und darf Spendenquittungen ausstellen. Im Gegenzug gelten enge Regeln: Die Tätigkeit darf nicht in erster Linie parteipolitisch ausgerichtet sein.</p>
+
+  <table>
+    <tr><th>Organisation</th><th>Vorwurf</th><th>Ergebnis</th></tr>
+    <tr><td>Attac</td><td>Vorrangig tagespolitische statt gemeinnützige Ziele</td><td>Gemeinnützigkeit durch Bundesfinanzhof aberkannt</td></tr>
+    <tr><td>Campact</td><td>Politische Kampagnenarbeit statt Bildungsarbeit</td><td>Gemeinnützigkeit vom Berliner Finanzamt aberkannt</td></tr>
+    <tr><td>Kunstwerk Menschheit e.V. (ZPS)</td><td>Finanziert Kampagne gegen konkrete Parteien (AfD, zeitweise CDU)</td><td class="tag tag-offen" style="margin:0;">Status unverändert — Prüfung nicht bekannt</td></tr>
+  </table>
+
+  <p>Ob die Berliner Finanzbehörden die Vereinsstruktur derzeit prüfen, ist nicht öffentlich bekannt. Eine Anfrage von Apollo News an das ZPS blieb unbeantwortet.</p>
+
+  <h2>4. Aktionen und ihr juristisches Nachspiel</h2>
+  <p>Ein wiederkehrendes Muster: Ermittlungsverfahren werden eingeleitet — und enden regelmäßig ohne Anklage.</p>
+
+  <div class="timeline">
+    <div class="entry">
+      <span class="date">November 2017</span>
+      <span class="desc">Nachbau des Holocaust-Mahnmals neben Höckes Wohnhaus in Bornhagen. ZPS kündigt zusätzlich an, Höcke zu überwachen.</span>
+    </div>
+    <div class="entry">
+      <span class="date">2018</span>
+      <span class="desc">Staatsanwaltschaft Gera leitet Verfahren wegen § 129 StGB ("Bildung einer kriminellen Vereinigung") gegen Ruch ein — ein Straftatbestand, der laut Fachpresse üblicherweise bei Schwerkriminalität zur Anwendung kommt.</span>
+    </div>
+    <div class="entry">
+      <span class="date">April 2019</span>
+      <span class="desc">Verfahren nach 16 Monaten eingestellt (§ 170 Abs. 2 StPO — kein hinreichender Tatverdacht). Dem ermittelnden Staatsanwalt wird während des Verfahrens AfD-Nähe vorgeworfen; er wird mit anderen Aufgaben betraut.</span>
+    </div>
+    <div class="entry">
+      <span class="date">Dezember 2024 – 2025</span>
+      <span class="desc">Umbau des ehemaligen Gefangenentransporters zum Aktionsbus "Adenauer SRP+". Mehrfach von der Polizei beschlagnahmt, jedes Mal wieder herausgegeben.</span>
+    </div>
+    <div class="entry">
+      <span class="date">20. Juli 2025</span>
+      <span class="desc">Störaktion beim ARD-"Sommerinterview" mit AfD-Chefin Alice Weidel. Ruch erklärt später, die Aktion sei "in enger Absprache" mit der Berliner Polizei erfolgt.</span>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    "Wir konnten dort eigentlich machen, was wir vorhatten."
+    <span class="attr">— Philipp Ruch, im Podcast von Paul Ronzheimer, zur Absprache mit der Berliner Polizei</span>
+  </div>
+
+  <p>Auf die direkte Frage, ob gegen ihn wegen der Weidel-Aktion ermittelt werde, antwortete Ruch gegenüber t-online: <em>"Von Ermittlungen gegen das 'Zentrum für Politische Schönheit' habe ich keine Kenntnis."</em> Die Berliner Polizei hatte zu diesem Zeitpunkt nach eigenen Angaben bereits Ermittlungen gegen Teilnehmer der Störaktion aufgenommen.</p>
+
+  <span class="tag tag-belegt">BELEGT</span> Mehrere strafrechtlich relevante Verfahren gegen ZPS-Aktionen wurden eingeleitet und – soweit öffentlich bekannt – bislang stets ohne Anklage oder Verurteilung beendet.<br><br>
+  <span class="tag tag-extrapolation">EXTRAPOLATION</span> Eine besonders kooperative Linie der Berliner Behörden gegenüber dem ZPS, verglichen mit dem Umgang mit anderen Aktivisten-Gruppen.<br><br>
+  <span class="tag tag-offen">OFFEN</span> Die genauen Gründe für die durchgängige Verfahrenseinstellung — mangelnde Beweislage, politische Rücksichtnahme oder schlicht Straffreiheit der Aktionen selbst.
+
+  <h2>5. Was zusammengehört</h2>
+  <p>Ein Verein mit Gemeinnützigkeitsstatus finanziert über eine hundertprozentige Tochter-GmbH eine Kampagne für ein Parteiverbot. Der öffentliche Rundfunk zahlt eine Lizenzgebühr an denselben Verein. Ein Theater mit öffentlicher Förderung unterstützt logistisch. Ermittlungsverfahren laufen ins Leere. Jedes einzelne Element ist für sich genommen unauffällig — Vereinsrecht, Lizenzgeschäft, eingestellte Verfahren kommen in Deutschland ständig vor. Die Verkettung ist es, die die Aufmerksamkeit rechtfertigt.</p>
+
+  <div class="closing">
+    <em>Reicht eine als gemeinnützig anerkannte Kunst- und Bildungsarbeit aus, um eine Kampagne gegen eine konkrete Partei zu finanzieren? Und: Wäre die öffentliche Reaktion dieselbe, würde ein rechtes Kollektiv nach demselben Muster gegen eine andere Partei mobilisieren?</em>
+  </div>
+
+  <div class="footer-nav">
+    Quellen: Apollo News (Firmenrecherche, Juli 2026) · Weltwoche Daily · t-online · NZZ · Tagesspiegel · taz · Deutscher Bundestag, Drucksachen 19/1426 u.a. · WDR (Bestätigung auf Anfrage)
+  </div>
+
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

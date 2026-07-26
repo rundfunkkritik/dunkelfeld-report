@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cashcow Rüstung (1): Die Drehtür — dunkelfeld.report</title>
+<style>
+  :root{
+    --bg:#09090b; --accent:#e8c547; --box:#1a1a2e;
+    --green:#5fbf7a; --orange:#e8a147; --grey:#8a8a8a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:#e4e4e7; font-family:Georgia,'Times New Roman',serif;
+    font-size:1.1rem; line-height:1.8; margin:0; padding:0;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:2.5rem 1.25rem 5rem;}
+  .kicker{
+    font-family:'Courier New',monospace; color:var(--accent); font-size:0.85rem;
+    letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.5rem;
+  }
+  h1{font-family:Georgia,serif; font-size:2.1rem; line-height:1.25; margin:0 0 1rem; color:#f4f4f5;}
+  .subtitle{color:#b8b8bd; font-size:1.05rem; margin-bottom:2rem; font-style:italic;}
+  .meta{
+    font-family:'Courier New',monospace; font-size:0.8rem; color:var(--grey);
+    border-top:1px solid #2a2a35; border-bottom:1px solid #2a2a35;
+    padding:0.75rem 0; margin-bottom:2.5rem; display:flex; gap:1.5rem; flex-wrap:wrap;
+  }
+  p{padding-bottom:1.2rem;}
+  h2{
+    font-size:1.4rem; color:var(--accent); margin:2.5rem 0 1rem;
+    font-family:Georgia,serif; border-bottom:1px solid #2a2a35; padding-bottom:0.5rem;
+  }
+  h3{font-size:1.15rem; color:#f4f4f5; margin:1.8rem 0 0.8rem;}
+  .source-box{
+    background:var(--box); border-left:3px solid var(--accent);
+    padding:1.2rem 1.4rem; margin:1.5rem 0; border-radius:0 4px 4px 0;
+  }
+  .source-box .src-label{
+    font-family:'Courier New',monospace; font-size:0.75rem; color:var(--accent);
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem; display:block;
+  }
+  .source-box p{padding-bottom:0.5rem; font-size:1rem;}
+  .source-box cite{
+    display:block; font-family:'Courier New',monospace; font-size:0.78rem;
+    color:var(--grey); font-style:normal; margin-top:0.5rem;
+  }
+  .tag{
+    font-family:'Courier New',monospace; font-size:0.72rem; font-weight:bold;
+    padding:0.2rem 0.55rem; border-radius:3px; letter-spacing:0.05em;
+    display:inline-block; margin-right:0.4rem; margin-bottom:0.3rem;
+  }
+  .tag-belegt{background:rgba(95,191,122,0.15); color:var(--green); border:1px solid var(--green);}
+  .tag-belegt1{background:rgba(95,191,122,0.08); color:#8fcf9f; border:1px solid #3a6a45;}
+  .tag-extra{background:rgba(232,161,71,0.15); color:var(--orange); border:1px solid var(--orange);}
+  .tag-offen{background:rgba(138,138,138,0.15); color:var(--grey); border:1px solid var(--grey);}
+
+  .person-card{
+    display:flex; gap:1rem; border:1px solid #2a2a35; border-radius:6px;
+    padding:1.2rem 1.4rem; margin:1.3rem 0; background:#111116; align-items:flex-start;
+  }
+  .person-card .avatar{
+    width:42px; height:42px; border-radius:50%; background:var(--accent);
+    color:#09090b; font-family:'Courier New',monospace; font-weight:bold;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1rem;
+  }
+  .person-card h3{margin:0 0 0.3rem;}
+  .person-card .role{font-family:'Courier New',monospace; font-size:0.8rem; color:var(--grey); margin-bottom:0.6rem;}
+
+  .timeline{margin:2rem 0; border-left:2px solid var(--accent); padding-left:1.5rem;}
+  .timeline-item{margin-bottom:1.5rem; position:relative;}
+  .timeline-item::before{
+    content:''; position:absolute; left:-1.56rem; top:0.4rem;
+    width:8px; height:8px; border-radius:50%; background:var(--accent);
+  }
+  .timeline-date{
+    font-family:'Courier New',monospace; font-size:0.8rem; color:var(--accent); display:block;
+    margin-bottom:0.3rem;
+  }
+
+  .pull-quote{
+    font-size:1.3rem; font-style:italic; color:#f4f4f5; margin:2rem 0;
+    padding:0 1rem; border-left:3px solid var(--accent); line-height:1.5;
+  }
+
+  table{width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:0.95rem;}
+  th,td{border:1px solid #2a2a35; padding:0.6rem 0.8rem; text-align:left;}
+  th{background:var(--box); color:var(--accent); font-family:'Courier New',monospace; font-size:0.8rem;}
+
+  .open-question{
+    font-style:italic; color:#b8b8bd; margin-top:3rem; padding-top:1.5rem;
+    border-top:1px solid #2a2a35; font-size:1.05rem;
+  }
+
+  .series-nav{
+    margin-top:3.5rem; padding-top:1.5rem; border-top:1px solid #2a2a35;
+    font-family:'Courier New',monospace; font-size:0.85rem; color:var(--grey);
+  }
+  .series-nav a{color:var(--accent); text-decoration:none;}
+  .series-nav a:hover{text-decoration:underline;}
+
+  a{color:var(--accent);}
+
+  .legend{
+    font-family:'Courier New',monospace; font-size:0.72rem; color:var(--grey);
+    margin:1rem 0 2rem; line-height:2;
+  }
+</style>
+<meta name="rubrik" content="cat-geld">
+<meta name="kachel-titel" content="Cashcow Rüstung (1): Die Drehtür">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">Dunkelfeld.report · Serie: Cashcow Rüstung · Teil 1 von 3</div>
+  <h1>Die Drehtür</h1>
+  <p class="subtitle">Wie Springer-Journalisten, die jahrelang über Kampfdrohnen berichteten, direkt in die Firmen wechseln, die sie herstellen — während der eigene Verlagskonzern in dieselben Firmen investiert.</p>
+
+  <div class="meta">
+    <span>Stand: Juli 2026</span>
+    <span>Teil 1/3</span>
+    <span>Lesezeit: ca. 9 Min.</span>
+  </div>
+
+  <div class="legend">
+    <span class="tag tag-belegt">BELEGT · mehrfach unabhängig bestätigt</span>
+    <span class="tag tag-belegt1">BELEGT · einzelquellig</span>
+    <span class="tag tag-extra">EXTRAPOLATION</span>
+    <span class="tag tag-offen">OFFEN</span>
+  </div>
+
+  <p>Am 1. und 2. Juli 2026 trafen sich im Axel-Springer-Hochhaus in Berlin rund 130 handverlesene Gäste zum zweiten WELT-Sicherheitsgipfel: Bundesverteidigungsminister Boris Pistorius, Wirtschaftsministerin Katherina Reiche, BKA-Präsident Holger Münch, dazu die Chefs von Rheinmetall, Airbus Defence, STARK und (zugeschaltet) Palantir. Organisiert unter Chatham-House-Regeln von Media Impact — der Werbe- und Event-Tochter von Axel Springer.</p>
+
+  <p>Parallel dazu, im selben Zeitraum, wechseln zwei langjährige Springer-Journalisten direkt in die Rüstungsindustrie. Und die Eigentümerfamilie des Verlags investiert über einen eigenen Fonds in eine der Firmen, die auf ihrem eigenen Gipfel auftraten. Drei Fäden, die sich an einem Punkt treffen.</p>
+
+  <h2>Der Gipfel</h2>
+
+  <div class="source-box">
+    <span class="src-label">Verkaufsunterlagen · Media Impact</span>
+    <p>Beworben mit „exklusivem Gästekreis", „Top-Level-Netzwerk" und „geschütztem Raum für offene und vertrauliche Debatten".</p>
+    Quelle: alexander-wallasch.de, Juli 2026 — einzelquellig, unabhängige Bestätigung des genauen Gästekreises steht aus
+  </div>
+
+  <p>Ein Medienkonzern verkauft damit strukturiert Zugang zur Politik an Rüstungsunternehmen — als kommerzielles Eventformat, nicht als redaktionelles Angebot. Das ist per se kein Skandal; Wirtschaftsgipfel mit geladenen Gästen sind in der Verlagsbranche üblich (siehe auch der bereits 17. WELT-Wirtschaftsgipfel). Bemerkenswert wird es erst im Zusammenspiel mit den folgenden zwei Punkten.</p>
+
+  <h2>Die Drehtür — zwei Personalien</h2>
+
+  <div class="person-card">
+    <div class="avatar">JR</div>
+    <div>
+      <h3>Julian Röpcke</h3>
+      <div class="role">11 Jahre BILD, zuletzt „Leitender Redakteur Sicherheitspolitik und Konflikte"</div>
+      <p>Bestätigte im April 2026 selbst auf X seinen Wechsel: „Was ansteht, ist der Wechsel zu einem deutsch-ukrainischen Drohnenbauer, der seit 2023 operiert und zu den größten Lieferanten für die Ukraine gehört." Der konkrete Arbeitgeber wurde von Röpcke selbst zunächst offengelassen.</p>
+      <p style="font-size:0.95rem;">2022 hatte Röpcke sein Selbstverständnis als Berichterstatter öffentlich präzisiert: „Verwechselt nicht Objektivität mit Neutralität. Ich bin nicht neutral." Für seine Ukraine-Berichterstattung erhielt er zuvor einen ukrainischen Verdienstorden.</p>
+      <div>
+        <span class="tag tag-belegt">BELEGT</span> Wechsel in die Drohnenbranche (eigene X-Aussage, mehrfach unabhängig berichtet: junge Welt, NachDenkSeiten, ukranews.com)<br>
+        <span class="tag tag-belegt1">BELEGT · einzelquellig</span> Konkreter Arbeitgeber „United Unmanned Systems", Position „Chief Marketing Officer" — nur bei Wallasch benannt, von Röpcke nicht bestätigt
+      </div>
+    </div>
+  </div>
+
+  <div class="person-card">
+    <div class="avatar">JB</div>
+    <div>
+      <h3>Johannes Boie</h3>
+      <div class="role">Ex-Chefredakteur BILD und Welt am Sonntag</div>
+      <p>Seit August 2025 laut Berichten als Marketing- und Pressechef beim KI-Rüstungsunternehmen Helsing tätig — demselben Unternehmen, das zwischen 2024 und 2025 von 5 auf 12 Mrd. € Bewertung stieg.</p>
+      <div>
+        <span class="tag tag-belegt1">BELEGT · einzelquellig</span> Position bei Helsing seit Aug. 2025 — bislang nur bei Wallasch dokumentiert, unabhängige Zweitquelle noch zu prüfen
+      </div>
+    </div>
+  </div>
+
+  <h2>Das Investment</h2>
+
+  <p>Unabhängig von den Personalwechseln lässt sich eine dritte Verbindung bereits durch eine zweite, unabhängige Quelle stützen: Der Berliner Investor Stark Defense — 2024 gegründet, mittlerweile mit rund 500 Mio. US-Dollar bewertet — zählt neben Sequoia Capital, Peter Thiel, In-Q-Tel (dem Venture-Arm der CIA) und dem NATO Innovation Fund auch <strong>Doepfner Capital</strong> zu seinen Investoren — den Fonds von Moritz Döpfner, Sohn des Axel-Springer-Vorstandsvorsitzenden Mathias Döpfner.</p>
+
+  <div class="source-box">
+    <span class="src-label">Quelle · LogReal.Direkt, unabhängig von Wallasch</span>
+    <p>„Zu den Investoren von Stark gehören ansonsten auch der umstrittene Tech-Investor Peter Thiel, In-Q-Tel, NATO Innovation Fund, Project A Ventures und Doepfner Capital von Moritz Döpfner (Sohn des Axel-Springer-Chefs Mathias Döpfner)."</p>
+    logrealdirekt.de, 18.09.2025
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Diese Investoren-Verbindung ist durch zwei unabhängige Quellen (LogReal.Direkt und Wallasch) bestätigt — anders als die einzelquelligen Personalie-Details oben.</p>
+
+  <h2>Die Zeitlinie</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-date">2024</span>
+      Stark Defense gegründet (Florian Seibel, Sven Kruck) — Investoren u.a. Sequoia, Peter Thiel, In-Q-Tel, NATO Innovation Fund, Doepfner Capital.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Aug. 2025</span>
+      Johannes Boie (laut Einzelquelle) wechselt zu Helsing als Marketing-/Pressechef.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">April 2026</span>
+      Julian Röpcke bestätigt auf X seinen Wechsel von BILD in die Drohnenbranche.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">1./2. Juli 2026</span>
+      WELT-Sicherheitsgipfel im Springer-Hochhaus: Politik, BKA, Rüstungs-CEOs unter einem Dach, organisiert von Media Impact.
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    Der Berichterstatter wird zum Vermarkter des Produkts, über das er zuvor berichtet hat — während die Eigentümerfamilie des Medienhauses am Aufstieg genau dieser Firma finanziell beteiligt ist.
+  </div>
+
+  <h2>Was das nicht ist — und was es ist</h2>
+
+  <p>Diese Verbindungen belegen keine Absprache und keinen redaktionellen Auftrag „von oben". Berufswechsel von Journalisten in die Wirtschaft sind branchenüblich, ebenso Beteiligungen von Verleger-Familien an Wachstumsbranchen. Keiner der genannten Fakten beweist für sich, dass Röpckes oder Boies frühere Berichterstattung inhaltlich gesteuert war.</p>
+
+  <p>Was die Fakten aber zeigen: eine strukturelle Nähe zwischen der Redaktion, die über eine Bedrohungslage berichtet (Drohnen, hybride Kriegsführung — siehe die Serie „Attributionskrieg"), der Eventabteilung desselben Konzerns, die Zugang zu genau den Profiteuren dieser Bedrohungslage verkauft, und der Eigentümerfamilie, die selbst in diese Profiteure investiert. Diese drei Ebenen sind bei anderen Medienhäusern in der Regel klarer getrennt.</p>
+
+  <p class="open-question"><em>Wie unabhängig kann eine Berichterstattung über Verteidigungsausgaben und Bedrohungslagen sein, wenn Redaktion, Eventgeschäft und Eigentümerfamilie desselben Hauses an drei verschiedenen Stellen derselben Branche hängen? Und: War die einzelquellige Information zu Boies Position bei Helsing zum Zeitpunkt der Veröffentlichung bereits öffentlich einsehbar (z. B. LinkedIn), oder stützt sie sich ausschließlich auf Insiderwissen?</em></p>
+
+  <div class="series-nav">
+    Serie „Cashcow Rüstung" · Teil 1: Die Drehtür (dieser Artikel) · <a href="cashcow-ruestung-teil2.html">Teil 2: Die Bewertungen</a> · <a href="cashcow-ruestung-teil3.html">Teil 3: Der Bedarf, der bestellt wird</a> · <a href="cashcow-ruestung-teil4.html">Teil 4: Der Weltraum-Zwilling →</a><br>
+    Verwandt: Serie „Attributionskrieg" (Teil 1 & 2)
+  </div>
+
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

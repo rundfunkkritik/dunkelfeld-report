@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presseagenturen — ihre Macht — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --amber: #e8c547;
+    --box-bg: #1a1a2e;
+    --green: #4caf82;
+    --orange: #e08a3c;
+    --grey: #8a8a95;
+    --red: #d95d5d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 48px 20px 80px; }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    margin-bottom: 12px;
+  }
+  h1 { font-size: 2.1rem; line-height: 1.25; margin: 0 0 8px; color: #f5f5f5; }
+  .subtitle { color: #a8a8b3; font-size: 1.05rem; font-style: italic; margin-bottom: 32px; }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--grey);
+    border-top: 1px solid #2a2a3a;
+    border-bottom: 1px solid #2a2a3a;
+    padding: 10px 0;
+    margin-bottom: 40px;
+  }
+  h2 {
+    color: var(--amber);
+    font-size: 1.4rem;
+    margin-top: 56px;
+    margin-bottom: 18px;
+    border-left: 3px solid var(--amber);
+    padding-left: 14px;
+  }
+  h3 { color: #d8d8e0; font-size: 1.1rem; margin-top: 32px; }
+  p { margin: 0 0 18px; }
+  a { color: var(--amber); }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-weight: bold;
+    margin-right: 6px;
+  }
+  .tag-belegt { background: rgba(76,175,130,0.15); color: var(--green); border: 1px solid var(--green); }
+  .tag-extra { background: rgba(224,138,60,0.15); color: var(--orange); border: 1px solid var(--orange); }
+  .tag-offen { background: rgba(138,138,149,0.15); color: var(--grey); border: 1px solid var(--grey); }
+
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--amber);
+    padding: 16px 20px;
+    margin: 24px 0;
+    font-size: 0.92rem;
+  }
+  .source-box .src-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
+  .stat { background: var(--box-bg); padding: 18px; text-align: center; border-radius: 4px; }
+  .stat .num { font-family: 'Courier New', monospace; font-size: 1.5rem; color: var(--amber); font-weight: bold; }
+  .stat .label { font-size: 0.78rem; color: #a8a8b3; margin-top: 4px; }
+
+  .person-card { background: var(--box-bg); border-radius: 4px; padding: 18px 20px; margin: 24px 0; }
+  .person-card .name { font-weight: bold; color: #f5f5f5; font-size: 1.05rem; }
+  .person-card .role { font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--grey); margin-bottom: 10px; }
+
+  blockquote {
+    border-left: 3px solid var(--amber);
+    margin: 28px 0;
+    padding: 4px 0 4px 20px;
+    font-style: italic;
+    color: #cfcfd8;
+    font-size: 1.05rem;
+  }
+
+  table.comparison { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 0.85rem; }
+  table.comparison th {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    text-align: left;
+    border-bottom: 2px solid var(--amber);
+    padding: 8px 8px;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+  }
+  table.comparison td { padding: 9px 8px; border-bottom: 1px solid #2a2a3a; vertical-align: top; }
+
+  .timeline { margin: 28px 0; padding-left: 20px; border-left: 2px solid #2a2a3a; }
+  .timeline-item { margin-bottom: 20px; position: relative; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -25px;
+    top: 6px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+  .timeline-year { font-family: 'Courier New', monospace; color: var(--amber); font-size: 0.85rem; font-weight: bold; }
+
+  .closing { margin-top: 64px; padding-top: 24px; border-top: 1px solid #2a2a3a; }
+  .closing p { font-style: italic; color: #b8b8c2; }
+
+  .series-nav {
+    margin-top: 56px; padding-top: 20px; border-top: 1px solid #2a2a3a;
+    font-family: 'Courier New', monospace; font-size: 0.8rem; color: var(--grey);
+  }
+  .series-nav a { color: var(--amber); }
+</style>
+<meta name="rubrik" content="cat-medien">
+<meta name="kachel-titel" content="Presseagenturen — ihre Macht">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">dunkelfeld.report — Faktenchecker &amp; Medienmacht · Teil 2</div>
+  <h1>Presseagenturen — ihre Macht</h1>
+  <div class="subtitle">Wer eine Meldung in Umlauf bringt, muss niemanden mehr bestechen — dpa, Gates, die SPD und die Geschichte der drei Weltagenturen</div>
+  <div class="meta">Beleg-vor-Motiv-Prinzip · Stand: Juli 2026 · Lesezeit ca. 10 Min. · Fortsetzung von „Gekaufte Journalisten?"</div>
+
+  <p>
+  Im ersten Teil ging es um Einzelzahlungen an einzelne Journalisten. Doch die größere Hebelwirkung liegt woanders:
+  bei den <strong>Nachrichtenagenturen</strong>, deren Meldungen von hunderten Redaktionen ungeprüft übernommen werden.
+  Wer eine Agenturmeldung beeinflusst, beeinflusst nicht einen Artikel — sondern die Vorlage für hunderte.
+  Genau hier zeigt sich ein Muster, das sich in Deutschland, den USA und Frankreich wiederholt: Keine der großen
+  Agenturen ist wirklich unabhängig. Jede hängt an einem Staat, einer Partei oder einer einzelnen Familie.
+  </p>
+
+  <span class="tag tag-belegt">BELEGT</span>
+  <span class="tag tag-extra">EXTRAPOLATION</span>
+  <span class="tag tag-offen">OFFEN</span>
+
+  <h2>1. dpa — die deutsche Monopolagentur und ihr Fördergeld</h2>
+  <p>
+  Die Deutsche Presse-Agentur (dpa) hat in Deutschland eine faktische Monopolstellung: nahezu alle
+  reichweitenstarken Medien greifen auf ihre Meldungen zurück. <span class="tag tag-belegt">BELEGT</span>
+  Gleichzeitig erhält sie seit 2021 erhebliche Summen aus Bundesmitteln.
+  </p>
+
+  <div class="stat-grid">
+    <div class="stat"><div class="num">2,3 Mio. €</div><div class="label">projektgebundene Förderung 2021–2024 (BKM + BMI)</div></div>
+    <div class="stat"><div class="num">1 Mio. €</div><div class="label">„Jahr der Nachricht" (BMI) — ohne Ausschreibung vergeben</div></div>
+  </div>
+
+  <p>
+  Träger des Millionenprojekts ist die dpa-Tochter <strong>UseTheNews gGmbH</strong>, 2020 gegründet gemeinsam
+  mit der SPD-geführten Hamburger Behörde für Kultur und Medien. <span class="tag tag-belegt">BELEGT</span>
+  Finanziert wird das Projekt unter anderem vom Bundesinnenministerium unter Nancy Faeser (SPD) sowie von der
+  <strong>Madsack-Stiftung</strong>. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="source-box">
+    <div class="src-label">Quellenlage</div>
+    dpa bestreitet öffentlich, „staatsfinanziert" zu sein, räumt aber „projektgebundene Förderungen" ein
+    (dpa.com/ueber-die-dpa/unabhaengigkeit). Der Journalist Norbert Häring wirft der dpa vor, EU-Zahlungen für
+    die Faktencheck-Kooperation GADMO in ihren eigenen Transparenz-Angaben nicht zu erwähnen (multipolar-magazin.de,
+    07.04.2025). Bundestagsvizepräsident Wolfgang Kubicki (FDP) hält die auftragslose Millionenvergabe für
+    „rechtlich erklärungsbedürftig" (Bild-Zeitung / medium magazin, 2024). <span class="tag tag-belegt">BELEGT</span>
+  </div>
+
+  <h2>2. Das SPD-Netzwerk — verifiziert</h2>
+  <p>
+  Die Madsack-Mediengruppe (Redaktionsnetzwerk Deutschland/RND, u.a. Hannoversche Allgemeine, Leipziger
+  Volkszeitung, Ostsee-Zeitung, seit 2024 auch die Sächsische Zeitung) beliefert über 60 Tageszeitungen mit
+  überregionalen Inhalten, Reichweite: rund 6,8 Mio. Leser täglich. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="stat-grid">
+    <div class="stat"><div class="num">23,1 %</div><div class="label">Kapitalanteil der SPD-Holding DDVG an Madsack (Kommanditbeteiligung)</div></div>
+    <div class="stat"><div class="num">40 %</div><div class="label">Stimmrechtsanteil der SPD/DDVG bei Madsack (laut Gesellschaftsvertrag §10)</div></div>
+  </div>
+
+  <p>
+  Die DDVG (Deutsche Druck- und Verlagsgesellschaft) steht zu 100 % im Eigentum der SPD und ist damit keine
+  normale Medienbeteiligung, sondern eine Parteiholding. <span class="tag tag-belegt">BELEGT</span>
+  Verifiziert über drei unabhängige Quellen: Wikipedia (mit Verweis auf DDVG-Geschäftsbericht 2024),
+  Media Ownership Monitor Germany (Reporter ohne Grenzen / BILD-Stiftung) und die Bundestagsdebatte vom
+  Dezember 2019 zu einem AfD-Gesetzentwurf, in der auch der CDU-Rechtspolitiker Ansgar Heveling die Zahlen
+  23 % Kapital / 40 % Stimmrecht bei Madsack sowie 40 % bei der DDV-Mediengruppe bestätigte —
+  nur die Bewertung („kein beherrschender Einfluss") wird kontrovers diskutiert.
+  <span class="tag tag-belegt">BELEGT</span> die Zahlen, <span class="tag tag-offen">OFFEN</span> die
+  Frage, ob 40 % Stimmrecht „beherrschenden Einfluss" bedeuten.
+  </p>
+
+  <div class="person-card">
+    <div class="name">Die einordnende Stimme von 2000</div>
+    <div class="role">Inge Wettig-Danielmeier, damalige SPD-Bundesschatzmeisterin</div>
+    <p>„Auch dort, wo wir 30 oder 40 Prozent haben, kann in der Regel nichts ohne uns passieren."
+    <span class="tag tag-belegt">BELEGT</span> Zitiert nach taz/achgut, unwidersprochen im Raum stehend.</p>
+  </div>
+
+  <p>
+  Die Verflechtung zieht sich weiter: UseTheNews (Kapitel 1) wurde mit einer SPD-geführten Behörde gegründet
+  und von einer Madsack-Stiftung mitfinanziert. Die Doppelrolle der SPD — gleichzeitig Regierungspartei,
+  Geldgeberin über Ministerien und Verlagsbeteiligte über die DDVG — ist strukturell einmalig unter den
+  demokratischen Parteien Deutschlands. <span class="tag tag-belegt">BELEGT</span> als Struktur,
+  <span class="tag tag-offen">OFFEN</span> bleibt der Nachweis konkreter redaktioneller Einflussnahme im
+  Einzelfall.
+  </p>
+
+  <h2>3. Bill Gates — der globale „Big Spender"</h2>
+  <p>
+  Der US-Journalist Tim Schwab wertete für die Columbia Journalism Review (CJR) rund 20.000 Förderungen der
+  Gates-Stiftung aus und fand über <strong>250 Mio. US-Dollar</strong>, die direkt oder indirekt an
+  Nachrichtenmedien flossen. <span class="tag tag-belegt">BELEGT</span> — das ist derselbe Betrag, den
+  Jeff Bezos 2013 für die Washington Post bezahlte.
+  </p>
+
+  <table class="comparison">
+    <tr><th>Empfänger</th><th>Betrag (kumulativ)</th><th>Zweck laut Förderbedingung</th></tr>
+    <tr><td>NPR</td><td>17,5–24,6 Mio. $</td><td>Globale Gesundheit &amp; Bildung</td></tr>
+    <tr><td>The Guardian</td><td>12,9 Mio. $</td><td>Entwicklungsthemen</td></tr>
+    <tr><td>BBC Media Action</td><td>ca. 53 Mio. $</td><td>Gesundheitskommunikation</td></tr>
+    <tr><td>CNN</td><td>3,6 Mio. $</td><td>Geschlechtergerechtigkeit / Ärmste Länder</td></tr>
+    <tr><td>Der Spiegel</td><td>im Grants-Register gelistet</td><td>nicht öffentlich spezifiziert</td></tr>
+    <tr><td>Le Monde, FT, Al Jazeera u.a.</td><td>diverse</td><td>Entwicklungs-/Gesundheitsberichterstattung</td></tr>
+  </table>
+
+  <p>
+  Entscheidend ist die Förderlogik: Gates-Gelder sind fast nie allgemeine Unterstützung, sondern zweckgebunden
+  auf Themen, an denen die Stiftung selbst finanziell und politisch beteiligt ist — Impfpolitik, Bildungsreform,
+  globale Gesundheit. <span class="tag tag-belegt">BELEGT</span> (Seattle Times 2011, CJR 2020, Chronicle of
+  Philanthropy). Die New York Times musste nach Recherchen Schwabs nachträglich Interessenkonflikte offenlegen,
+  weil von Gates finanzierte Autoren unkritisch über die Stiftung selbst geschrieben hatten.
+  <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <blockquote>
+  „Wenn du als Journalist globale Gesundheit abdeckst, sollte die Gates-Stiftung eines deiner wichtigsten
+  Kontroll-Ziele sein. Das geht aber nicht, wenn sie deine Redaktion finanziert." — Tim Schwab, CJR
+  </blockquote>
+
+  <h2>4. Die drei Weltagenturen — ein gemeinsamer Ursprung</h2>
+  <p>
+  Was für dpa (SPD-Netzwerk) und Gates (private Stiftung) gilt, gilt auch für die beiden anderen der
+  „großen drei" globalen Nachrichtenagenturen — und ihre Geschichte beginnt gemeinsam, nicht getrennt.
+  </p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">1835</div>
+      Charles-Louis Havas gründet in Paris die Agentur Havas — die älteste Nachrichtenagentur der Welt,
+      Vorläuferin der heutigen AFP. <span class="tag tag-belegt">BELEGT</span>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1849/1851</div>
+      Zwei ehemalige Havas-Mitarbeiter gründen eigene Agenturen: Bernhard Wolff (Berlin, „Wolffs
+      Telegraphisches Bureau" — Vorläufer der deutschen Nachrichtenagenturtradition, aus der 1949 die dpa
+      hervorging) und Paul Julius Reuter (London, Reuters). <span class="tag tag-belegt">BELEGT</span>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1870er</div>
+      Havas, Reuters und Wolff schließen die „Ring Combination" — ein Kartell, das die Nachrichtenmärkte
+      der Welt vertraglich untereinander aufteilt. <span class="tag tag-belegt">BELEGT</span>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1944</div>
+      Nach der Befreiung von Paris wird Havas zu Agence France-Presse (AFP) reorganisiert, mit
+      Vermögenswerten des französischen Staates ausgestattet. <span class="tag tag-belegt">BELEGT</span>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2008</div>
+      Die kanadische Thomson-Familie übernimmt Reuters über die Thomson Corporation; das „Founders
+      Share"-Prinzip, das verhindern sollte, dass eine einzelne Partei mehr als 15 % hält, wird eigens
+      dafür aufgehoben. <span class="tag tag-belegt">BELEGT</span>
+    </div>
+  </div>
+
+  <h3>AFP heute: ca. 40 % der Einnahmen vom französischen Staat</h3>
+  <p>
+  AFP ist die drittgrößte Nachrichtenagentur der Welt nach AP und Reuters. <span class="tag tag-belegt">BELEGT</span>
+  Ihre Finanzierung ist gesetzlich geregelt (Loi 2015-433) und beruht laut eigenen und externen Angaben zu
+  bis zu 40 % der Einnahmen auf Abonnements französischer Regierungsstellen. <span class="tag tag-belegt">BELEGT</span>
+  Die EU-Kommission bestätigte 2014 nach einer Beschwerde des Konkurrenten dapd, dass diese Finanzierung als
+  rechtmäßiger Ausgleich für „Aufgaben von allgemeinem Interesse" gilt. <span class="tag tag-belegt">BELEGT</span>
+  Bereits 1981 beschrieb das Magazin New Internationalist AFP so:
+  </p>
+  <blockquote>„AFP ist die einzige der großen Agenturen, die von Subventionen ihrer Heimatregierung abhängt —
+  deshalb gilt sie oft als Stimme der französischen Regierung."</blockquote>
+
+  <h3>Reuters heute: 66–72 % im Besitz einer einzigen kanadischen Familie</h3>
+  <p>
+  Reuters gehört seit der Fusion mit der Thomson Corporation (2008) mehrheitlich der Woodbridge Company,
+  dem privaten Holding-Vehikel der Thomson-Familie — Stand 2025/26 zwischen 66,7 % und 72,5 % der Anteile.
+  <span class="tag tag-belegt">BELEGT</span> Die redaktionelle Unabhängigkeit wird formal über die „Reuters
+  Trust Principles" und eine „Founders Share" geschützt, die 2008 eigens gelockert wurde, um die
+  Konzentration bei einer einzigen Familie überhaupt zu ermöglichen. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <table class="comparison">
+    <tr><th>Agentur</th><th>Struktureller Anker</th><th>Grad der Abhängigkeit</th></tr>
+    <tr><td>dpa (Deutschland)</td><td>Bundesregierung (Fördergelder) + SPD-Netzwerk (DDVG/Madsack)</td><td>Fördergelder ca. 0,35 % des Umsatzes laut dpa; strukturelle Nähe über UseTheNews/Madsack-Stiftung</td></tr>
+    <tr><td>AFP (Frankreich)</td><td>Französischer Staat, gesetzlich fixiert</td><td>bis zu 40 % der Einnahmen</td></tr>
+    <tr><td>Reuters (UK/Kanada)</td><td>Thomson-Familie über Woodbridge</td><td>66–72 % der Anteile, Kontrollmehrheit</td></tr>
+    <tr><td>Gates-finanzierte Newsrooms (global)</td><td>Bill &amp; Melinda Gates Foundation</td><td>projekt-/themengebunden, &gt;250 Mio. $ kumulativ</td></tr>
+  </table>
+
+  <p>
+  Das Muster ist in allen vier Fällen dasselbe: Keine der großen Nachrichtenquellen ist eigentümerlos oder
+  staatsfern im umgangssprachlichen Sinne. Der Unterschied liegt nur darin, <em>wer</em> der Anker ist —
+  eine Regierungspartei, ein Nationalstaat, eine Milliardärsstiftung oder eine einzelne Familie.
+  </p>
+
+  <div class="closing">
+    <h2 style="border:none; padding-left:0; color:#f5f5f5;">Offene Fragen</h2>
+    <p>
+    Wenn die drittgrößte Weltagentur zu 40 % vom französischen Staat lebt und die zweitgrößte einer einzigen
+    kanadischen Familie gehört — was genau bedeutet dann „unabhängige Nachrichtenagentur" noch?
+    </p>
+    <p>
+    Macht es einen Unterschied, ob eine Agentur von einem Staat, einer Partei oder einer Milliardärsstiftung
+    abhängt — oder ist die entscheidende Frage nur, <em>wessen</em> Themen dadurch bevorzugt in die
+    Weltnachrichten gelangen?
+    </p>
+    <p>
+    Und: Wenn dieselbe Partei gleichzeitig regiert, Fördergelder vergibt und über eine Holding an der
+    empfangenden Mediengruppe beteiligt ist — an welchem Punkt hört das auf, eine Randnotiz zu sein?
+    </p>
+  </div>
+
+  <div class="series-nav">
+    dunkelfeld.report — Serie „Faktenchecker &amp; Medienmacht" ·
+    Teil 1: <a href="gekaufte-journalisten.html">Gekaufte Journalisten?</a> ·
+    siehe auch: <a href="#">Divide et Impera 2.0</a>
+  </div>
+
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

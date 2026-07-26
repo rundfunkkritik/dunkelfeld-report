@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exkurs: Presse, Macht, Mockingbird — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b; --amber: #e8c547; --box-bg: #1a1a2e;
+    --green: #4caf82; --orange: #e08a3c; --grey: #8a8a95; --red: #d95d5d;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: #e4e4e7; font-family: Georgia, 'Times New Roman', serif; line-height: 1.7; margin: 0; padding: 0; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 48px 20px 80px; }
+  .kicker { font-family: 'Courier New', monospace; color: var(--amber); letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.75rem; margin-bottom: 12px; }
+  h1 { font-size: 2rem; line-height: 1.25; margin: 0 0 8px; color: #f5f5f5; }
+  .subtitle { color: #a8a8b3; font-size: 1.05rem; font-style: italic; margin-bottom: 32px; }
+  .meta { font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--grey); border-top: 1px solid #2a2a3a; border-bottom: 1px solid #2a2a3a; padding: 10px 0; margin-bottom: 40px; }
+  h2 { color: var(--amber); font-size: 1.35rem; margin-top: 56px; margin-bottom: 18px; border-left: 3px solid var(--amber); padding-left: 14px; }
+  h3 { color: #d8d8e0; font-size: 1.05rem; margin-top: 30px; }
+  p { margin: 0 0 18px; }
+  a { color: var(--amber); }
+  .tag { display: inline-block; font-family: 'Courier New', monospace; font-size: 0.7rem; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 3px; font-weight: bold; margin-right: 6px; }
+  .tag-belegt { background: rgba(76,175,130,0.15); color: var(--green); border: 1px solid var(--green); }
+  .tag-extra { background: rgba(224,138,60,0.15); color: var(--orange); border: 1px solid var(--orange); }
+  .tag-offen { background: rgba(138,138,149,0.15); color: var(--grey); border: 1px solid var(--grey); }
+  .source-box { background: var(--box-bg); border-left: 3px solid var(--amber); padding: 16px 20px; margin: 24px 0; font-size: 0.92rem; }
+  .source-box .src-label { font-family: 'Courier New', monospace; font-size: 0.7rem; color: var(--amber); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
+  .stat { background: var(--box-bg); padding: 18px; text-align: center; border-radius: 4px; }
+  .stat .num { font-family: 'Courier New', monospace; font-size: 1.45rem; color: var(--amber); font-weight: bold; }
+  .stat .label { font-size: 0.76rem; color: #a8a8b3; margin-top: 4px; }
+  .person-card { background: var(--box-bg); border-radius: 4px; padding: 18px 20px; margin: 24px 0; }
+  .person-card .name { font-weight: bold; color: #f5f5f5; font-size: 1.05rem; }
+  .person-card .role { font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--grey); margin-bottom: 10px; }
+  blockquote { border-left: 3px solid var(--amber); margin: 28px 0; padding: 4px 0 4px 20px; font-style: italic; color: #cfcfd8; font-size: 1.03rem; }
+  table.comparison { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 0.85rem; }
+  table.comparison th { font-family: 'Courier New', monospace; color: var(--amber); text-align: left; border-bottom: 2px solid var(--amber); padding: 8px; font-size: 0.72rem; text-transform: uppercase; }
+  table.comparison td { padding: 9px 8px; border-bottom: 1px solid #2a2a3a; vertical-align: top; }
+  .timeline { margin: 28px 0; padding-left: 20px; border-left: 2px solid #2a2a3a; }
+  .timeline-item { margin-bottom: 20px; position: relative; }
+  .timeline-item::before { content: ''; position: absolute; left: -25px; top: 6px; width: 8px; height: 8px; border-radius: 50%; background: var(--amber); }
+  .timeline-year { font-family: 'Courier New', monospace; color: var(--amber); font-size: 0.85rem; font-weight: bold; }
+  .closing { margin-top: 64px; padding-top: 24px; border-top: 1px solid #2a2a3a; }
+  .closing p { font-style: italic; color: #b8b8c2; }
+  .series-nav { margin-top: 56px; padding-top: 20px; border-top: 1px solid #2a2a3a; font-family: 'Courier New', monospace; font-size: 0.8rem; color: var(--grey); }
+  .series-nav a { color: var(--amber); }
+</style>
+<meta name="rubrik" content="cat-medien">
+<meta name="kachel-titel" content="Exkurs: Presse, Macht, Mockingbird">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">dunkelfeld.report — Exkurs zur Serie „Faktenchecker &amp; Medienmacht"</div>
+  <h1>Presse, Macht, Mockingbird</h1>
+  <div class="subtitle">Drei historische Schnappschüsse: Gleichschaltung 1933, die CIA und die Presse, und was Corona in der deutschen Medienlandschaft strukturell verändert hat</div>
+  <div class="meta">Beleg-vor-Motiv-Prinzip · Stand: Juli 2026 · Lesezeit ca. 12 Min.</div>
+
+  <p>
+  Die bisherigen Teile dieser Serie haben gezeigt, wie Geld und Netzwerke heute auf Journalismus wirken.
+  Dieser Exkurs geht zurück: Wie sah Medienkontrolle aus, als sie nicht über Fördergelder, sondern über
+  Gesetz und Zwang lief? Was ist an der CIA-Geschichte tatsächlich belegt — und was ist Legende? Und was hat
+  sich strukturell verändert zwischen der Presse vor 2020 und der Presse heute?
+  </p>
+
+  <span class="tag tag-belegt">BELEGT</span>
+  <span class="tag tag-extra">EXTRAPOLATION</span>
+  <span class="tag tag-offen">OFFEN</span>
+
+  <h2>1. Presse in Deutschland vor dem Krieg</h2>
+  <p>
+  Schon in der Weimarer Republik war Pressefreiheit durch Notverordnungen eingeschränkt worden.
+  <span class="tag tag-belegt">BELEGT</span> Nach der Machtübernahme ging es sehr schnell: Bereits im
+  Februar 1933 wurde die sozialdemokratische und kommunistische Parteipresse verboten — noch bevor es
+  überhaupt ein rechtliches Instrument gegen die bürgerliche Presse gab. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">30.01.1933</div>
+      Hitler wird Reichskanzler. Die "Gleichschaltung" von Vereinen, Verbänden und Medien beginnt binnen
+      Tagen. <span class="tag tag-belegt">BELEGT</span>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">Feb. 1933</div>
+      SPD- und KPD-Presse wird nach dem Reichstagsbrand verboten. <span class="tag tag-belegt">BELEGT</span>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">13.03.1933</div>
+      Joseph Goebbels wird Minister für Volksaufklärung und Propaganda (RMVP). <span class="tag tag-belegt">BELEGT</span>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">22.09.1933</div>
+      Reichskulturkammergesetz: Journalisten müssen sich in Berufslisten eintragen; Reichspressekammer
+      entsteht unter RMVP-Aufsicht. <span class="tag tag-belegt">BELEGT</span>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">04.10.1933</div>
+      Schriftleitergesetz (in Kraft ab 1.1.1934): "Ariernachweis" Pflicht, Verleger verlieren die
+      inhaltliche Kontrolle über die eigene Zeitung an den staatlich eingesetzten "Schriftleiter".
+      Rund 1.300 Journalisten verlieren sofort ihre Arbeit. <span class="tag tag-belegt">BELEGT</span>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">05.12.1933</div>
+      Fusion von Wolffs Telegraphischem Büro und der Telegraphen-Union (Hugenberg-Konzern) zum staatlichen
+      <strong>Deutschen Nachrichtenbüro (DNB)</strong> — der Vorläufer-Linie, aus der 1949 die dpa
+      hervorging (siehe Teil 2 dieser Serie), wird zur einzigen zugelassenen Nachrichtenquelle für alle
+      deutschen Zeitungen. <span class="tag tag-belegt">BELEGT</span>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1939 → 1944</div>
+      NSDAP-Anteil an deutschen Zeitungen wächst von 8,7 % auf 36 %; durch Marktbereinigung
+      (4.703 → 977 Zeitungen) kontrolliert die Partei 1944 direkt rund 82 % der Gesamtauflage.
+      <span class="tag tag-belegt">BELEGT</span>
+    </div>
+  </div>
+
+  <blockquote>
+  „Infolgedessen wird die Aufgabe der Presse von Grund aus verändert. Sie besteht wesentlich darin, nicht
+  mehr zu diskutieren, sondern zu interpretieren und die Entschlüsse der Regierung mit den Argumenten
+  unterbauen zu helfen." — Neue Zürcher Zeitung, 10. Oktober 1933, zur Verabschiedung des Schriftleitergesetzes
+  </blockquote>
+
+  <div class="source-box">
+    <div class="src-label">Der Kontrollmechanismus im Detail</div>
+    Verleger konnten ihre eigenen Redakteure nicht mehr ohne Erlaubnis der Reichspressekammer entlassen
+    oder einstellen — der Staat kontrollierte, wer überhaupt schreiben durfte.
+    <span class="tag tag-belegt">BELEGT</span> Täglich gab die "Reichspressekonferenz" (vormals eine
+    Journalisten-geführte Institution) verbindliche Anweisungen zu Inhalt, Form und politischer Tendenz
+    an die zugelassenen Schriftleiter aus. <span class="tag tag-belegt">BELEGT</span> (Quelle: bpb.de,
+    Arolsen Archives, FU-Berlin-Medienchronik der NS-Diktatur)
+  </div>
+
+  <p>
+  Eine bittere Pointe der Geschichte liegt allerdings nicht darin, dass in Deutschland formal jeder sich
+  Journalist nennen darf, ohne Ausbildung, Lizenz oder Kammer. <span class="tag tag-belegt">BELEGT</span>
+  Die eigentliche Pointe ist, dass genau dieser Zugang aktuell wieder über informelle Kanäle verengt wird —
+  nicht per Gesetz wie 1933, sondern über Akkreditierung und Definitionshoheit.
+  </p>
+  <p>
+  Drei aktuelle Beispiele: Erstens verengte die Bundesregierung 2022 in ihrer Antwort auf eine Kleine Anfrage
+  (Drucksache 20/4850, siehe Teil 1 dieser Serie) die Definition von „Journalist" eigenmächtig auf
+  festangestellte Mitarbeiter — ohne dass danach gefragt worden war. Erst eine zweite Anfrage zwang die
+  Regierung, auch freie und nebenberufliche Journalisten einzuschließen. <span class="tag tag-belegt">BELEGT</span>
+  Zweitens verlangt die Jahresakkreditierung des Bundestages für 2026 zwingend den „bundeseinheitlichen
+  Presseausweis" — ausgestellt ausschließlich von sechs anerkannten Verbänden (DJV, dju/ver.di, BDZV, MVFP,
+  VDS, FREELENS). <span class="tag tag-belegt">BELEGT</span> Wer keinem dieser Verbände angehört oder keine
+  „ständige Berichterstattung" nachweisen kann, bekommt keinen Zugang zum Parlament — unabhängig davon, ob
+  er sich zurecht „Journalist" nennt. Drittens verlor der seit 20 Jahren in Brüssel akkreditierte Journalist
+  Filippo Giuffrida 2025 seine EU-Akkreditierung mit der Begründung angeblicher „Kontakte zur extremen
+  Linken" — ohne Definition des Vorwurfs, ohne Beweis. Erst nach einem halben Jahr Widerspruchsverfahren
+  wurde die Ablehnung als unzureichend begründet aufgehoben. <span class="tag tag-belegt">BELEGT</span>
+  (junge Welt, 24.04.2026)
+  </p>
+  <p>
+  Der Unterschied zu 1933 ist der Mechanismus, nicht das Ergebnis: Damals brauchte es ein Gesetz mit
+  Berufsverbot und KZ-Drohung. Heute reicht die Kombination aus Verbandsmitgliedschaft, informeller
+  Sicherheitsprüfung und behördlicher Definitionsmacht, um denselben Effekt — Zugang für die einen,
+  Ausschluss für die anderen — ohne ein einziges neues Gesetz zu erzielen. <span class="tag tag-extra">EXTRAPOLATION</span>
+  </p>
+
+  <h2>2. Operation Mockingbird — ausführlich, mit Beleglage</h2>
+  <p>
+  Kaum ein Begriff wird so oft zitiert und so selten sauber eingeordnet wie "Operation Mockingbird".
+  Hier die drei Ebenen, sauber getrennt.
+  </p>
+
+  <h3>Ebene 1: Was der Church Committee (1975/76) offiziell bestätigte</h3>
+  <p>
+  Der US-Senatsausschuss unter Senator Frank Church untersuchte 1975/76 Missbräuche von CIA, FBI und NSA.
+  Der Ausschuss bestätigte offiziell, dass die CIA geheime Beziehungen zu <strong>rund 50 amerikanischen
+  Journalisten</strong> unterhielt sowie Kontakte zu Dutzenden weiteren US-Medienorganisationen.
+  <span class="tag tag-belegt">BELEGT</span> CIA-Direktor William Colby sagte aus, dass nach internen
+  Überprüfungen in den frühen 1970ern keine fest angestellten amerikanischen Journalisten mehr auf der
+  Gehaltsliste standen. <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <h3>Ebene 2: Was Carl Bernstein 1977 zusätzlich berichtete</h3>
+  <p>
+  Der Watergate-Reporter Carl Bernstein veröffentlichte im Oktober 1977 in Rolling Stone die 25.000 Wörter
+  lange Recherche "The CIA and the Media". Seine — deutlich höhere — Zahl: über
+  <strong>400 amerikanische Journalisten</strong> hätten in den vorangegangenen 25 Jahren geheime Aufträge
+  für die CIA ausgeführt, unter anderem bei New York Times, CBS, Time und Newsweek.
+  <span class="tag tag-belegt">BELEGT</span> als Bernsteins Recherche-Ergebnis — <span class="tag tag-offen">OFFEN</span>
+  bleibt, warum diese Zahl so viel höher liegt als die offizielle Church-Committee-Zahl von ~50: Bernstein
+  stützte sich auf halbjährige Interviews mit Ex-CIA-Mitarbeitern und interne Akten, die dem Ausschuss nicht
+  vollständig vorlagen oder von diesem enger gefasst wurden.
+  </p>
+
+  <div class="person-card">
+    <div class="name">Frank Wisner (1909–1965)</div>
+    <div class="role">Leiter des CIA Office of Policy Coordination, 1948–1958</div>
+    <p>Nannte sein Netzwerk aus Zeitungen, Nachrichtenagenturen, Radiosendern und Buchverlagen selbst
+    "The Mighty Wurlitzer" — nach der Theaterorgel, die jede Melodie spielen kann.
+    <span class="tag tag-belegt">BELEGT</span> als Eigenbezeichnung Wisners, dokumentiert u.a. bei
+    Hugh Wilford, "The Mighty Wurlitzer: How the CIA Played America" (Harvard University Press, 2008).</p>
+  </div>
+
+  <h3>Ebene 3: Der Name "Operation Mockingbird" selbst</h3>
+  <p>
+  Hier wird es entscheidend für die Beleglage: Der Begriff "Operation Mockingbird" taucht in keinem
+  freigegebenen CIA-Dokument und in keinem der Church-Committee-Berichte auf. <span class="tag tag-belegt">BELEGT</span>
+  Er stammt aus Deborah Davis' unautorisierter Biografie "Katharine the Great" (1979) über Washington-Post-Verlegerin
+  Katharine Graham — und Davis nannte für ihre zentralen Behauptungen (z.B. Wisner habe "namhafte Mitglieder"
+  von NYT, Newsweek und CBS "besessen") keine überprüfbaren Quellen. <span class="tag tag-offen">OFFEN</span>
+  Die 1973 freigegebenen "Family Jewels"-CIA-Akten erwähnen zwar ein "Project Mockingbird" — das bezeichnet
+  aber ein eng begrenztes Abhörprojekt von 1963 gegen zwei Kolumnisten, nicht das große Medienbeeinflussungsprogramm.
+  <span class="tag tag-belegt">BELEGT</span> als Verwechslungsquelle.
+  </p>
+
+  <div class="source-box">
+    <div class="src-label">Zusammenfassend</div>
+    <span class="tag tag-belegt">BELEGT</span>: CIA-Kontakte zu Journalisten existierten, offiziell bestätigt,
+    Größenordnung mind. 50 (Church Committee), plausibel deutlich mehr (Bernstein).
+    <span class="tag tag-extra">EXTRAPOLATION</span>: Die Bezeichnung als "systematisches Programm" mit
+    zentraler Steuerung — plausibel angesichts der Faktenlage, aber nicht wortwörtlich so in Primärquellen belegt.
+    <span class="tag tag-offen">OFFEN</span>: Der Name "Mockingbird" selbst und Einzelbehauptungen über
+    "besessene" konkrete Journalisten ohne Quellenangabe.
+  </div>
+
+  <h2>3. Presse vor Corona — Presse heute: Was sich strukturell verändert hat</h2>
+  <p>
+  Zwei Dinge lassen sich sauber messen: Vertrauen (Umfragedaten) und Förderinfrastruktur (Fördersummen und
+  -mechanismen). Beide zeigen eine ähnliche Kurve.
+  </p>
+
+  <h3>Das Vertrauen: Ein Ausschlag, kein Dauerzustand</h3>
+  <div class="stat-grid">
+    <div class="stat"><div class="num">43–44 %</div><div class="label">Medienvertrauen 2019 (vor Corona)</div></div>
+    <div class="stat"><div class="num">56 %</div><div class="label">Medienvertrauen Ende 2020 (Höhepunkt Pandemie)</div></div>
+  </div>
+  <div class="stat-grid">
+    <div class="stat"><div class="num">44 %</div><div class="label">Medienvertrauen 2023 — wieder auf Vor-Corona-Niveau</div></div>
+    <div class="stat"><div class="num">70 % → 62 %</div><div class="label">Vertrauen ÖR-Fernsehen: 2020 vs. 2022 (niedrigster je gemessener Wert)</div></div>
+  </div>
+  <p>
+  Quelle: Mainzer Langzeitstudie „Medienvertrauen" (Uni Mainz/Uni Düsseldorf, gefördert seit 2022 von der
+  Bundeszentrale für politische Bildung), erschienen in der Fachzeitschrift Media Perspektiven.
+  <span class="tag tag-belegt">BELEGT</span> Gleichzeitig stieg die Zustimmung zur Aussage "Medien und
+  Politik arbeiten Hand in Hand, um die Meinung der Bevölkerung zu manipulieren" von 15 % (2020) auf 23 %
+  (2023). <span class="tag tag-belegt">BELEGT</span>
+  </p>
+
+  <h3>Die Förderinfrastruktur: von Einzelposten zur Institution</h3>
+  <p>
+  Schon vor Corona gab es punktuelle Bezahlung von Journalisten durch Ministerien — etwa 2018/2019
+  Medientrainings für Wissenschaftsjournalisten durch BMG/RKI (3.300 €, siehe Teil 1 dieser Serie).
+  <span class="tag tag-belegt">BELEGT</span> Der Unterschied zu heute ist die Größenordnung und
+  Institutionalisierung:
+  </p>
+
+  <table class="comparison">
+    <tr><th>Vor Corona (bis 2019)</th><th>Nach Corona (seit 2021)</th></tr>
+    <tr><td>Einzelne Medientrainings, niedrige vierstellige Beträge</td><td>„Jahr der Nachricht", 1 Mio. €, ohne Ausschreibung</td></tr>
+    <tr><td>Kein spezifischer EU-Rechtsrahmen für „Desinformation"</td><td>Digital Services Act (DSA, 2022/24) mit Pflichten für Plattformen</td></tr>
+    <tr><td>Faktencheck als journalistisches Nischenformat</td><td>Institutionalisierte Faktencheck-Netzwerke (EDMO/GADMO), EU-kofinanziert</td></tr>
+    <tr><td>NetzDG (2017) zielt auf strafbare Inhalte</td><td>DSA zielt zusätzlich auf „Desinformation" als eigene Kategorie</td></tr>
+  </table>
+
+  <p>
+  <span class="tag tag-belegt">BELEGT</span> ist die quantitative Verschiebung: mehr Geld, mehr Institutionen,
+  ein neuer Rechtsrahmen speziell für den Begriff „Desinformation". <span class="tag tag-offen">OFFEN</span>
+  bleibt die Bewertung, ob diese Institutionalisierung eine legitime Reaktion auf ein während der Pandemie
+  real gewachsenes Problem ist — oder eine Struktur, die unabhängig vom ursprünglichen Anlass fortbesteht
+  und wächst.
+  </p>
+
+  <div class="closing">
+    <h2 style="border:none; padding-left:0; color:#f5f5f5;">Offene Fragen</h2>
+    <p>
+    Wenn das Vertrauen in die Medien nach Corona wieder auf das Vor-Corona-Niveau zurückgefallen ist — aber
+    die während der Pandemie aufgebaute Förder- und Kontrollinfrastruktur bestehen bleibt und wächst — was
+    war dann tatsächlich die Ursache: die Krise selbst, oder der Aufbau der Institutionen?
+    </p>
+    <p>
+    1933 brauchte es ein Gesetz, um die Presse zu kontrollieren. Heute braucht es offenbar kein Gesetz mehr,
+    das Journalisten zwingt — reicht die Kombination aus Fördergeld, Netzwerken und Definitionshoheit über
+    „Desinformation" bereits aus, um ähnliche Effekte zu erzielen, nur ohne den Zwang?
+    </p>
+    <p>
+    Und: Wenn selbst die offizielle Beleglage zu Mockingbird (Church Committee: ~50) so viel niedriger liegt
+    als die meistzitierte Zahl (Bernstein: 400+) — welche Zahl prägt eigentlich das öffentliche Bild, und warum?
+    </p>
+  </div>
+
+  <div class="series-nav">
+    dunkelfeld.report — Serie „Faktenchecker &amp; Medienmacht" ·
+    Teil 1: <a href="gekaufte-journalisten.html">Gekaufte Journalisten?</a> ·
+    Teil 2: <a href="presseagenturen-macht.html">Presseagenturen — ihre Macht</a> ·
+    dieser Exkurs
+  </div>
+
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

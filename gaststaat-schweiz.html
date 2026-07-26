@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gaststaat Schweiz — Die Immunitäts-Architektur von Genf und Basel | dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.7;
+    font-size: 18px;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 60px 24px 100px; }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    letter-spacing: 2px;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-size: 2.1em;
+    line-height: 1.25;
+    color: #fafafa;
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+  .subtitle {
+    color: #a1a1aa;
+    font-size: 1.05em;
+    font-style: italic;
+    margin-bottom: 36px;
+    border-left: 3px solid #e8c547;
+    padding-left: 14px;
+  }
+  h2 {
+    font-size: 1.4em;
+    color: #e8c547;
+    margin: 48px 0 18px;
+    font-weight: 400;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 10px;
+  }
+  h3 {
+    font-size: 1.1em;
+    color: #fafafa;
+    margin: 28px 0 12px;
+    font-weight: 700;
+  }
+  p { margin-bottom: 16px; color: #d4d4d8; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  .belegt { background: #14291b; color: #4ade80; border: 1px solid #22543d; }
+  .extrapolation { background: #2b2007; color: #fb923c; border: 1px solid #78350f; }
+  .offen { background: #27272a; color: #a1a1aa; border: 1px solid #3f3f46; }
+  .vt-widerlegt { background: #2b1214; color: #f87171; border: 1px solid #7f1d1d; text-decoration: line-through; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin: 28px 0;
+  }
+  .stat-box {
+    background: #14141a;
+    border: 1px solid #27272a;
+    border-radius: 6px;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.8em;
+    color: #e8c547;
+    font-weight: 700;
+  }
+  .stat-label {
+    font-size: 0.8em;
+    color: #a1a1aa;
+    margin-top: 4px;
+  }
+
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 16px 18px;
+    margin: 20px 0;
+    font-size: 0.92em;
+    color: #c4c4cc;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: #e8c547;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.88em;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    text-align: left;
+    padding: 10px 8px;
+    border-bottom: 2px solid #3f3f46;
+    font-size: 0.85em;
+    letter-spacing: 0.5px;
+  }
+  td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #27272a;
+    color: #d4d4d8;
+    vertical-align: top;
+  }
+  tr:hover td { background: #14141a; }
+
+  .timeline {
+    margin: 24px 0;
+    padding-left: 4px;
+  }
+  .timeline-item {
+    display: flex;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid #1f1f23;
+  }
+  .timeline-year {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    min-width: 60px;
+    font-weight: 700;
+    font-size: 0.9em;
+  }
+  .timeline-text { color: #d4d4d8; font-size: 0.95em; }
+
+  .pull-quote {
+    font-size: 1.25em;
+    color: #fafafa;
+    font-style: italic;
+    border-left: 3px solid #e8c547;
+    padding: 8px 0 8px 20px;
+    margin: 32px 0;
+  }
+
+  .case-box {
+    background: #14141a;
+    border: 1px solid #3f3f46;
+    border-radius: 6px;
+    padding: 20px;
+    margin: 24px 0;
+  }
+  .case-box h3 { margin-top: 0; color: #e8c547; }
+
+  .closing {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid #27272a;
+  }
+  .closing p {
+    font-style: italic;
+    color: #a1a1aa;
+  }
+
+  .series-nav {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85em;
+    color: #71717a;
+  }
+  .series-nav a { color: #e8c547; text-decoration: none; }
+
+  a { color: #e8c547; }
+</style>
+<meta name="rubrik" content="cat-stiftungen">
+<meta name="kachel-titel" content="Gaststaat Schweiz — Die Immunitäts-Architektur von Genf und Basel">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">dunkelfeld.report — hidden in plain sight</div>
+  <h1>Gaststaat Schweiz: Die Immunitäts-Architektur von Genf und Basel</h1>
+  <div class="subtitle">Warum WHO, Gavi, BIZ und rund 40 weitere Institutionen in der Schweiz praktisch unbehelligt operieren — und wie diese Konzentration überhaupt entstanden ist.</div>
+
+  <p>Genf gilt als "Hauptstadt des Multilateralismus". Was seltener beleuchtet wird: Fast jede Organisation, die dort ihren Sitz hat, operiert unter einem rechtlichen Schutzschirm, der sie von Schweizer Gerichtsbarkeit, Vollstreckung und in weiten Teilen auch von Steuern befreit. Dieser Artikel dokumentiert die Rechtsgrundlage, die wichtigsten Institutionen und einen Fall, in dem diese Immunität vor Gericht tatsächlich getestet wurde.</p>
+
+  <span class="tag belegt">BELEGT</span>
+  <h2>Die Rechtsgrundlage</h2>
+  <p>Seit 1. Januar 2008 regelt das <strong>Gaststaatgesetz (GSG)</strong> einheitlich, was zuvor über 50 Jahre lang durch Einzelfallpraxis, Bundesverfassung und Völkergewohnheitsrecht abgedeckt war. Das Gesetz definiert Kategorien von "institutionellen Begünstigten" und legt fest, welche Vorrechte, Immunitäten und Erleichterungen ihnen gewährt werden können.</p>
+  <p>Zusätzlich zum GSG schliesst der Bundesrat mit <em>jeder einzelnen</em> Organisation ein individuelles <strong>Sitzabkommen</strong> ab. Dieses regelt den konkreten Umfang: Immunität von Gerichtsbarkeit und Vollstreckung, Steuerbefreiung, Unverletzlichkeit der Räumlichkeiten, teils sogar eigene Ausweise für Mitarbeitende. Rechtlich lehnt sich das Ganze an das Wiener Übereinkommen von 1961 über diplomatische Beziehungen an — internationale Organisationen werden also weitgehend wie ausländische Botschaften behandelt.</p>
+
+  <div class="source-box">
+    <div class="label">Quelle</div>
+    Bundesgesetz vom 22. Juni 2007 über die von der Schweiz als Gaststaat gewährten Vorrechte, Immunitäten und Erleichterungen sowie finanziellen Beiträge (Gaststaatgesetz, GSG), SR 192.12 · EDA, "Immunität von internationalen Organisationen"
+  </div>
+
+  <span class="tag belegt">BELEGT</span>
+  <h2>Die Zahlen</h2>
+  <div class="stat-grid">
+    <div class="stat-box"><div class="stat-num">41</div><div class="stat-label">internationale Institutionen mit offiziellem Status in der Schweiz</div></div>
+    <div class="stat-box"><div class="stat-num">35</div><div class="stat-label">davon in Genf, 3 Waadt, 2 Bern, 1 Basel</div></div>
+    <div class="stat-box"><div class="stat-num">~25'000</div><div class="stat-label">Mitarbeitende dieser Organisationen im Land</div></div>
+    <div class="stat-box"><div class="stat-num">43'000</div><div class="stat-label">Personen umfasst die internationale Gemeinschaft in Genf</div></div>
+  </div>
+  <p style="font-size:0.85em; color:#71717a;">Quelle: EDA, "Gaststaat Schweiz" (Switzerland Host State), Faktenblatt</p>
+
+  <span class="tag belegt">BELEGT</span>
+  <h2>Die Institutionen im Überblick</h2>
+  <p>Eine Auswahl der bekannteren Organisationen mit Sitzabkommen, sortiert nach Gründungs- bzw. Ansiedlungsjahr:</p>
+
+  <table>
+    <tr><th>Organisation</th><th>Sitz</th><th>Seit</th><th>Bereich</th></tr>
+    <tr><td>IKRK</td><td>Genf</td><td>1863</td><td>Humanitäres Völkerrecht</td></tr>
+    <tr><td>BIZ (Bank für Internationalen Zahlungsausgleich)</td><td>Basel</td><td>1930</td><td>Zentralbank-Kooperation</td></tr>
+    <tr><td>ILO / Internationale Arbeitsorganisation</td><td>Genf</td><td>1919/1946</td><td>Arbeitsrecht</td></tr>
+    <tr><td>WMO / Weltorganisation für Meteorologie</td><td>Genf</td><td>1947/1951</td><td>Klima, Wetter</td></tr>
+    <tr><td>WHO / Weltgesundheitsorganisation</td><td>Genf</td><td>1948</td><td>Gesundheit</td></tr>
+    <tr><td>CERN</td><td>Genf/Meyrin</td><td>1954</td><td>Kernforschung</td></tr>
+    <tr><td>UNHCR</td><td>Genf</td><td>1950</td><td>Flüchtlingsschutz</td></tr>
+    <tr><td>WIPO / Weltorganisation für geistiges Eigentum</td><td>Genf</td><td>1970</td><td>Patente, IP-Recht</td></tr>
+    <tr><td>WTO / Welthandelsorganisation</td><td>Genf</td><td>1995 (als GATT-Nachfolge seit 1947 vor Ort)</td><td>Welthandel</td></tr>
+    <tr><td>Global Fund (GFATM)</td><td>Genf</td><td>2002</td><td>Aids/TB/Malaria-Finanzierung</td></tr>
+    <tr><td>Gavi, die Impfallianz</td><td>Genf</td><td>2009 (gegründet 2000)</td><td>Impfstoff-Beschaffung</td></tr>
+    <tr><td>WEF (World Economic Forum)</td><td>Cologny</td><td>1971, Sonderstatus 2015</td><td>Wirtschaftsforum, privater Verein</td></tr>
+  </table>
+
+  <div class="source-box">
+    <div class="label">Quelle</div>
+    EDA, "Historical Milestones" (Genève internationale) · GAVI Alliance Pressemitteilung 23.6.2009 · BIZ, Sitzabkommen 1987 · Schweizerisches Bundesarchiv, Sitzabkommen-Liste (19 Seiten, EDA)
+  </div>
+
+  <span class="tag belegt">BELEGT</span>
+  <h2>Fallbeispiel: Die BIZ — die "Bank, von der Sie noch nie gehört haben"</h2>
+  <p>Die <strong>Bank für Internationalen Zahlungsausgleich (BIZ)</strong> in Basel ist die älteste internationale Finanzorganisation der Welt, gegründet 1930 zur Abwicklung deutscher Reparationszahlungen nach dem Ersten Weltkrieg. Heute gilt sie als "Zentralbank der Zentralbanken" — 63 Mitglieder, darunter Fed, EZB und Bundesbank, treffen sich dort regelmässig, unbeobachtet von der Öffentlichkeit.</p>
+  <p>Ihre Immunität geht auf das <strong>Haager Abkommen von 1930</strong> und das <strong>Brüsseler Protokoll von 1936</strong> zurück, ergänzt durch das Sitzabkommen von 1987 (revidiert 2003). Die Formulierung ist eindeutig: Die Bank "geniesst Befreiung von jeglicher Gerichtsbarkeit", und ihr anvertraute Werte können "nicht gepfändet, mit Arrest belegt, gesperrt" werden.</p>
+
+  <div class="case-box">
+    <h3>Der Testfall: NML Capital vs. Argentinien (2009–2012)</h3>
+    <p>Nach der argentinischen Staatspleite versuchten die Gläubiger NML Capital Ltd. und EM Limited, argentinische Zentralbank-Guthaben bei der BIZ in Basel per Arrest zu pfänden. Das Betreibungsamt Basel-Stadt vollzog zunächst eine Zahlungssperre. Die BIZ berief sich auf ihr Sitzabkommen von 1987 und verweigerte jede Mitwirkung — Streitigkeiten über ihre Immunität seien ausschliesslich durch Verhandlungen oder ein im Abkommen vorgesehenes Schiedsgericht zu klären, nicht durch Schweizer Vollstreckungsbehörden.</p>
+    <p>Das <strong>Schweizerische Bundesgericht bestätigte 2010 (BGE 136 III 379)</strong> die Immunität der BIZ vollumfänglich. Die Gläubiger erhielten keinen Zugriff auf die Gelder.</p>
+  </div>
+
+  <div class="source-box">
+    <div class="label">Quelle</div>
+    Schweizerisches Bundesgericht, Entscheid BGE 136 III 379 · BIZ, Sitzabkommen vom 10. Februar 1987 (SR 0.192.122.971.3) · Bundeszentrale für politische Bildung, "Ein mächtiger Klub: die Bank für Internationalen Zahlungsausgleich"
+  </div>
+
+  <p><span class="tag extrapolation">EXTRAPOLATION</span></p>
+  <p>Der Fall zeigt einen strukturellen Mechanismus: Immunität schützt nicht nur die Organisation selbst vor Klagen wegen ihres eigenen Handelns — sie kann auch <em>Vermögenswerte Dritter</em>, die bei der Organisation deponiert sind, faktisch dem Zugriff nationaler Gerichte entziehen. Ob das im Einzelfall gerecht oder ungerecht ist, hängt von der Perspektive ab; dokumentiert ist, dass der Mechanismus real und gerichtlich bestätigt ist.</p>
+
+  <span class="tag belegt">BELEGT</span>
+  <h2>Warum ausgerechnet die Schweiz?</h2>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-year">1863</div><div class="timeline-text">Gründung des IKRK in Genf — Beginn der humanitären Tradition</div></div>
+    <div class="timeline-item"><div class="timeline-year">1920</div><div class="timeline-text">Genf wird Sitz des Völkerbunds — erste grosse zwischenstaatliche Ansiedlung</div></div>
+    <div class="timeline-item"><div class="timeline-year">1930</div><div class="timeline-text">BIZ-Gründung in Basel, weil Belgien als Standort am Streit um Eupen-Malmedy scheiterte</div></div>
+    <div class="timeline-item"><div class="timeline-year">1946</div><div class="timeline-text">UNO beschliesst Genf als europäischen Hauptsitz — Dutzende UN-Organe folgen</div></div>
+    <div class="timeline-item"><div class="timeline-year">1948</div><div class="timeline-text">Gründung der WHO in Genf</div></div>
+    <div class="timeline-item"><div class="timeline-year">1955</div><div class="timeline-text">FIPOI (Immobilienstiftung für internationale Organisationen) wird geschaffen — Bund und Kanton finanzieren aktiv Gebäude</div></div>
+    <div class="timeline-item"><div class="timeline-year">1995</div><div class="timeline-text">WTO-Gründung, direkt neben WHO</div></div>
+    <div class="timeline-item"><div class="timeline-year">2000er</div><div class="timeline-text">Gesundheits-Partnerschaften (Gavi, Global Fund, Unitaid) konzentrieren sich am "Global Health Campus" — bewusste Standortpolitik</div></div>
+    <div class="timeline-item"><div class="timeline-year">2007</div><div class="timeline-text">Gaststaatgesetz vereinheitlicht die Praxis, explizit auch um im "internationalen Seilziehen um prestigeträchtige Sitze" zu bestehen</div></div>
+  </div>
+
+  <p>Drei dokumentierte Faktoren treiben die Konzentration:</p>
+  <p><strong>1. Neutralität als Standortvorteil:</strong> Kein Mitgliedstaat "besitzt" den Sitz, was Konsensfindung erleichtert.</p>
+  <p><strong>2. Netzwerkeffekt:</strong> Wer schon 22 Organisationen in Genf hat, zieht neue automatisch an — gemeinsame Infrastruktur, diplomatisches Corps, Fachpersonal vor Ort.</p>
+  <p><strong>3. Aktive Standortpolitik:</strong> Die damalige Aussenministerin Calmy-Rey formulierte 2006 explizit das Ziel, die Position im globalen Wettbewerb um Organisationssitze zu stärken. Der Bund zahlt dafür — 2007 waren im Bundesbudget 18,4 Mio. CHF an Beiträgen für Gaststaat-Zwecke vorgesehen, zusätzlich Baudarlehen über die FIPOI.</p>
+
+  <div class="pull-quote">
+    "Die Schweiz darf sich aber nicht auf ihren Lorbeeren ausruhen, wenn sie ihre starke Position halten will."
+  </div>
+  <p style="font-size:0.85em; color:#71717a; margin-top:-20px;">— Micheline Calmy-Rey, Bundesrätin, 2006 (swissinfo.ch)</p>
+
+  <span class="tag offen">OFFEN</span>
+  <h2>Was die Immunität faktisch bedeutet</h2>
+  <p>Rechtlich unbestritten ist: Immunität soll die Unabhängigkeit internationaler Organisationen von politischem Druck einzelner Mitgliedstaaten schützen — das ist ihre erklärte Funktion und historisch nachvollziehbar (kein Staat soll z.B. die WHO durch nationale Klagen lahmlegen können).</p>
+  <p>Offen bleibt, in wessen Interesse dieser Schutz im Einzelfall wirkt, wenn es nicht um staatlichen Druck, sondern um zivilrechtliche Ansprüche Dritter geht (wie im BIZ-Fall), oder wenn Organisationen wie Gavi oder der Global Fund milliardenschwere Beschaffungsverträge abschliessen, ohne dass nationale Gerichte diese im Streitfall prüfen können.</p>
+
+  <div class="closing">
+    <p><em>Wer entscheidet im Streitfall über die Grenzen der eigenen Immunität — die Organisation selbst, ein Schiedsgericht, das sie mitbestimmt, oder eine unabhängige Instanz?</em></p>
+    <p><em>Und: Ist eine Konzentration von rund 40 global einflussreichen, weitgehend unbehelligten Institutionen auf einem derart kleinen Territorium ein Zufall der Geschichte — oder das Ergebnis einer über ein Jahrhundert bewusst betriebenen Standortpolitik, wie Calmy-Reys eigene Worte nahelegen?</em></p>
+  </div>
+
+  <div class="series-nav">
+    dunkelfeld.report — Hidden in Plain Sight<br>
+    Verwandt: Geld als Herrschaftsinstrument · WEF/YGL-Netzwerke
+  </div>
+
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

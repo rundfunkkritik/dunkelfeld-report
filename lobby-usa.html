@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wessen Lobby gewinnt? Teil 1: USA — dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background: #09090b;
+    color: #d4d4d8;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+  .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #8a8a92;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  h1 {
+    font-size: 1.9rem;
+    color: #e8c547;
+    line-height: 1.3;
+    margin-bottom: 0.3rem;
+  }
+  h2 {
+    font-size: 1.35rem;
+    color: #e8c547;
+    margin-top: 2.8rem;
+    border-bottom: 1px solid #26262c;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    font-size: 1.1rem;
+    color: #e8c547;
+    margin-top: 1.8rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  a { color: #e8c547; }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #8a8a92;
+    margin-bottom: 2rem;
+  }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+    letter-spacing: 0.03em;
+  }
+  .tag-belegt { background: #14351f; color: #4ade80; border: 1px solid #22c55e44; }
+  .tag-extrapolation { background: #3a2a12; color: #fb923c; border: 1px solid #f9731644; }
+  .tag-offen { background: #26262c; color: #a1a1aa; border: 1px solid #52525b44; }
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .source-box .label { margin-bottom: 0.4rem; }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #26262c;
+    margin: 1.5rem 0;
+    border: 1px solid #26262c;
+  }
+  .stat-cell {
+    background: #09090b;
+    padding: 1rem;
+  }
+  .stat-cell .num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.4rem;
+    color: #e8c547;
+    display: block;
+  }
+  .stat-cell .desc {
+    font-size: 0.85rem;
+    color: #a1a1aa;
+  }
+  .pull-quote {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #e4e4e7;
+    border-left: 3px solid #e8c547;
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+  }
+  .pull-quote .attr {
+    font-style: normal;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #8a8a92;
+    display: block;
+    margin-top: 0.5rem;
+  }
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .comparison-table th, .comparison-table td {
+    border: 1px solid #26262c;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+  }
+  .comparison-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #e8c547;
+    text-transform: uppercase;
+  }
+  .closing-questions {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #26262c;
+    font-style: italic;
+    color: #a1a1aa;
+  }
+  .series-nav {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #e8c547;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+  }
+  .series-nav .part {
+    padding: 0.4rem 0;
+    color: #a1a1aa;
+  }
+  .series-nav .part.active {
+    color: #e8c547;
+  }
+  .series-nav .part.pending {
+    color: #52525b;
+  }
+  .series-nav a { color: #a1a1aa; text-decoration: none; }
+  .series-nav a:hover { color: #e8c547; }
+</style>
+<meta name="rubrik" content="cat-stiftungen">
+<meta name="kachel-titel" content="Wessen Lobby gewinnt? Teil 1: USA">
+</head>
+<body>
+
+<div class="label">DUNKELFELD.REPORT — SERIE: WESSEN LOBBY GEWINNT? — TEIL 1 VON 3</div>
+<h1>Öl, Kohle, Atom, Wind: Wer hat die beste Lobby — und warum?</h1>
+<div class="meta">USA · Lobbying-Ausgaben, Revolving Door, Gates &amp; die Atomkraft-Renaissance</div>
+
+<p>Die naheliegende Annahme: Wer am meisten für Lobbying ausgibt, gewinnt. Die Zahlen aus den US-Lobbyregistern zeigen etwas anderes — die teuerste Lobby ist nicht zwingend die wirksamste, und die wirksamste nicht zwingend die teuerste.</p>
+
+<div class="stat-grid">
+  <div class="stat-cell">
+    <span class="num">~71 Mio. $</span>
+    <span class="desc">Öl &amp; Gas, Lobbying H1 2025</span>
+  </div>
+  <div class="stat-cell">
+    <span class="num">~75 Mio. $</span>
+    <span class="desc">Utilities/Stromversorger, H1 2025</span>
+  </div>
+  <div class="stat-cell">
+    <span class="num">~40 Mio. $</span>
+    <span class="desc">Erneuerbare (American Clean Power), H1 2025</span>
+  </div>
+  <div class="stat-cell">
+    <span class="num">1,57 Mio. $</span>
+    <span class="desc">Nuclear Energy Institute, 2025 gesamt</span>
+  </div>
+</div>
+
+<div class="source-box">
+  <div class="label">Quelle</div>
+  Rund 240 Mio. $ flossen im ersten Halbjahr 2025 insgesamt in Energie-Lobbying, mit knapp 2.200 registrierten Lobbyisten — fast die Hälfte davon ehemalige Regierungsangestellte. Damit war der Energiesektor der fünftgrößte Lobbying-Sektor, den OpenSecrets in diesem Zeitraum erfasste. (Inside Climate News, September 2025)
+</div>
+
+<h2>Warum Geld allein nicht die Macht erklärt</h2>
+
+<p><span class="tag tag-belegt">BELEGT</span> Öl und Gas geben absolut am meisten aus — aber laut Beobachtern nicht, weil sie mehr Einfluss brauchen, sondern weil sie ihn längst haben. Die Verbindung läuft nicht mehr über den Lobbyisten-Umweg, sondern direkt durch die Besetzung von Regierungsposten mit Branchenvertretern.</p>
+
+<div class="pull-quote">
+  „Wenn Sie ein Weißes Haus haben, das klargemacht hat, dass es tut, was Sie wollen, müssen Sie nicht so viel Geld ausgeben, um Ergebnisse zu bekommen.“
+  <span class="attr">— Tyson Slocum, Director, Public Citizen Energy Program</span>
+</div>
+
+<p><span class="tag tag-belegt">BELEGT</span> Robert Maguire von Citizens for Responsibility and Ethics in Washington (CREW) beschreibt denselben Mechanismus: Die fossile Industrie musste ihre Lobbying-Ausgaben nicht erhöhen, um zentrale Erfolge zu erzielen, weil die Regierung selbst mit Branchenvertretern besetzt ist, deren einzige Qualifikation der Wille ist, im Sinne der Industrie zu handeln.</p>
+
+<h2>Fallbeispiel Kohle: Wenig Lobbying, viel Subvention</h2>
+
+<p><span class="tag tag-belegt">BELEGT</span> Die klassischen Kohle-Lobbygruppen (National Mining Association, American Coalition for Clean Coal Electricity) verlieren seit Jahren Mitgliedsunternehmen und geben strukturell weniger aus. Gleichzeitig kündigte das US-Energieministerium im September 2025 eine direkte Subvention von 625 Mio. $ zur „Reinvigorierung" der Kohleindustrie an — plus mehrfache Notfall-Anordnungen, um die Stilllegung einzelner Kohlekraftwerke zu verhindern.</p>
+
+<div class="source-box">
+  <div class="label">Quelle</div>
+  $350 Mio. für Kraftwerks-Reaktivierung und Nachrüstung, $175 Mio. für ländliche Versorgungssicherheit, weitere Mittel für Dual-Fuel-Umbauten. Insgesamt 19 Notfall-Anordnungen seit Amtsantritt der Administration, um Kohlekraftwerksschließungen zu verhindern. (U.S. Department of Energy, September 2025)
+</div>
+
+<p><span class="tag tag-extrapolation">EXTRAPOLATION</span> Das Muster: Kohle braucht kein teures Lobbying mehr, weil die politische Ausrichtung der Administration den gleichen Effekt erzielt — ohne dass dafür ein Preisschild in den Lobbyregistern erscheint.</p>
+
+<h2>Fallbeispiel Atom: Gates, Nvidia und der KI-Strombedarf</h2>
+
+<p><span class="tag tag-belegt">BELEGT</span> Der klassische Atom-Lobbyverband (Nuclear Energy Institute) bewegt sich mit rund 1,6 Mio. $ Jahresbudget im Mittelfeld der Branchenverbände — unauffällig im Vergleich zu Öl/Gas oder Utilities. Der eigentliche Hebel läuft über einen anderen Kanal: private Kapitalallianzen und regulatorische Beschleunigung.</p>
+
+<div class="comparison-table">
+<table class="comparison-table">
+<tr><th>Ereignis</th><th>Fakt</th></tr>
+<tr><td>2008</td><td>Bill Gates gründet TerraPower</td></tr>
+<tr><td>2025</td><td>650 Mio. $ Investitionsrunde, u. a. von Nvidias Venture-Arm NVentures und HD Hyundai — Gesamtkapital von TerraPower damit ca. 1,7 Mrd. $</td></tr>
+<tr><td>Mai 2025</td><td>Exekutivorder zur Beschleunigung der Genehmigungsverfahren der Nuclear Regulatory Commission (18-Monats-Frist)</td></tr>
+<tr><td>März 2026</td><td>TerraPower erhält als erstes Unternehmen seit fast einem Jahrzehnt NRC-Genehmigung für ein komplettes kommerzielles Reaktordesign (Natrium, 345 MW, Kemmerer/Wyoming, Standort eines auslaufenden Kohlekraftwerks)</td></tr>
+<tr><td>2026</td><td>Meta unterstützt den Bau von zwei weiteren Natrium-Reaktoren mit Optionen auf sechs zusätzliche — bis zu 2,8 GW Gesamtkapazität</td></tr>
+</table>
+</div>
+
+<div class="source-box">
+  <div class="label">Quelle</div>
+  TerraPower hat insgesamt 1,7 Mrd. $ eingesammelt, laut PitchBook-Daten. Weitere Nuklear-Startups haben in den letzten Monaten zusammen über 1 Mrd. $ Kapital erhalten — getrieben vom Strombedarf der KI-Rechenzentren. (TechCrunch, März 2026)
+</div>
+
+<p><span class="tag tag-extrapolation">EXTRAPOLATION</span> Der Unterschied zu Öl/Gas und Kohle: Atomkraft in den USA gewinnt derzeit nicht primär über klassisches Lobbying, sondern über eine Allianz aus Tech-Kapital (Nvidia, Meta) und einem gemeinsamen Interesse — verlässlicher Grundlaststrom für KI-Rechenzentren. Ob das langfristig wirksamer ist als klassisches Lobbying, ist offen.</p>
+
+<h2>Fallbeispiel Wind &amp; Solar: Höchstes Wachstum, geringste Wirkung</h2>
+
+<p><span class="tag tag-belegt">BELEGT</span> Die Lobbyausgaben der Erneuerbaren-Branche (angeführt von der American Clean Power Association) wuchsen 2025 so schnell wie in keinem anderen Sektor — mit rund 40 Mio. $ im ersten Halbjahr auf Kurs, den Vorjahresrekord von 63,7 Mio. $ zu übertreffen. Der Verband allein steigerte seine Ausgaben im zweiten Quartal 2025 auf 3,8 Mio. $ — fast doppelt so viel wie im gesamten Jahr 2024.</p>
+
+<div class="pull-quote">
+  „Trotz ihrer beträchtlichen politischen Macht haben die Versorger versucht … einige der schlimmsten Angriffe auf Wind und Solar zu verhindern — und sind dabei praktisch an jeder Front gescheitert.“
+  <span class="attr">— David Pomerantz, Executive Director, Energy and Policy Institute</span>
+</div>
+
+<p><span class="tag tag-belegt">BELEGT</span> Höchste Wachstumsrate der Lobbyausgaben, aber laut Watchdog-Einschätzung die geringste politische Durchschlagskraft im Sektorvergleich — bei gleichzeitig sinkender Regierungsunterstützung für Wind- und Solarprojekte in diesem Zeitraum.</p>
+
+<h2>Zwischenstand: Was die vier Fälle gemeinsam haben</h2>
+
+<div class="comparison-table">
+<table>
+<tr><th>Sektor</th><th>Lobby-Ausgaben</th><th>Haupthebel</th></tr>
+<tr><td>Öl &amp; Gas</td><td>hoch, aber stagnierend</td><td>Personalpolitik / Revolving Door</td></tr>
+<tr><td>Kohle</td><td>strukturell sinkend</td><td>direkte Subventionen, Notfall-Anordnungen</td></tr>
+<tr><td>Atom</td><td>niedrig (Verband) / hoch (privat)</td><td>Venture-Kapital + KI-Industrie-Allianz</td></tr>
+<tr><td>Wind/Solar</td><td>am stärksten wachsend</td><td>klassisches Verbandslobbying — wirkt am schwächsten</td></tr>
+</table>
+</div>
+
+<div class="closing-questions">
+  <p>Offene Fragen: Verschiebt sich die eigentliche Machtfrage in der Energiepolitik von klassischem Lobbying hin zu Personalbesetzung und privaten Kapitalallianzen? Und wenn ja — wird diese Verschiebung durch Lobbyregister überhaupt noch sichtbar, oder verschwindet der eigentliche Hebel aus der Transparenzpflicht?</p>
+</div>
+
+<div class="series-nav">
+  <div class="label">Serie: Wessen Lobby gewinnt?</div>
+  <div class="part active">→ Teil 1: USA (dieser Artikel)</div>
+  <div class="part"><a href="lobby-deutschland.html">Teil 2: Deutschland — Atom- &amp; Kohleausstieg, BDEW →</a></div>
+  <div class="part"><a href="lobby-architekten.html">Teil 3: Die Architekten — Graichen, Habeck, Ukraine-Kontrast →</a></div>
+</div>
+
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

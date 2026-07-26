@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Attributionskrieg (1/2): Erst der Schuldige, dann die Lücke — dunkelfeld.report</title>
+<style>
+  :root{
+    --bg:#09090b; --accent:#e8c547; --box:#1a1a2e;
+    --green:#5fbf7a; --orange:#e8a147; --grey:#8a8a8a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:#e4e4e7; font-family:Georgia,'Times New Roman',serif;
+    font-size:1.1rem; line-height:1.8; margin:0; padding:0;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:2.5rem 1.25rem 5rem;}
+  .kicker{
+    font-family:'Courier New',monospace; color:var(--accent); font-size:0.85rem;
+    letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.5rem;
+  }
+  h1{
+    font-family:Georgia,serif; font-size:2.1rem; line-height:1.25; margin:0 0 1rem;
+    color:#f4f4f5;
+  }
+  .subtitle{color:#b8b8bd; font-size:1.05rem; margin-bottom:2rem; font-style:italic;}
+  .meta{
+    font-family:'Courier New',monospace; font-size:0.8rem; color:var(--grey);
+    border-top:1px solid #2a2a35; border-bottom:1px solid #2a2a35;
+    padding:0.75rem 0; margin-bottom:2.5rem; display:flex; gap:1.5rem; flex-wrap:wrap;
+  }
+  p{padding-bottom:1.2rem;}
+  h2{
+    font-size:1.4rem; color:var(--accent); margin:2.5rem 0 1rem;
+    font-family:Georgia,serif; border-bottom:1px solid #2a2a35; padding-bottom:0.5rem;
+  }
+  h3{font-size:1.15rem; color:#f4f4f5; margin:1.8rem 0 0.8rem;}
+  .source-box{
+    background:var(--box); border-left:3px solid var(--accent);
+    padding:1.2rem 1.4rem; margin:1.5rem 0; border-radius:0 4px 4px 0;
+  }
+  .source-box .src-label{
+    font-family:'Courier New',monospace; font-size:0.75rem; color:var(--accent);
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem; display:block;
+  }
+  .source-box p{padding-bottom:0.5rem; font-size:1rem;}
+  .source-box cite{
+    display:block; font-family:'Courier New',monospace; font-size:0.78rem;
+    color:var(--grey); font-style:normal; margin-top:0.5rem;
+  }
+  .tag{
+    font-family:'Courier New',monospace; font-size:0.72rem; font-weight:bold;
+    padding:0.2rem 0.55rem; border-radius:3px; letter-spacing:0.05em;
+    display:inline-block; margin-right:0.4rem;
+  }
+  .tag-belegt{background:rgba(95,191,122,0.15); color:var(--green); border:1px solid var(--green);}
+  .tag-extra{background:rgba(232,161,71,0.15); color:var(--orange); border:1px solid var(--orange);}
+  .tag-offen{background:rgba(138,138,138,0.15); color:var(--grey); border:1px solid var(--grey);}
+  .tag-vt{background:rgba(200,60,60,0.1); color:#c85050; border:1px solid #c85050; text-decoration:line-through;}
+
+  .case-card{
+    border:1px solid #2a2a35; border-radius:6px; padding:1.4rem 1.5rem; margin:1.5rem 0;
+    background:#111116;
+  }
+  .case-card h3{margin-top:0; color:var(--accent);}
+  .case-card .verdict{
+    font-family:'Courier New',monospace; font-size:0.85rem; margin-top:1rem;
+    padding-top:0.8rem; border-top:1px dashed #2a2a35;
+  }
+
+  .timeline{margin:2rem 0; border-left:2px solid var(--accent); padding-left:1.5rem;}
+  .timeline-item{margin-bottom:1.5rem; position:relative;}
+  .timeline-item::before{
+    content:''; position:absolute; left:-1.56rem; top:0.4rem;
+    width:8px; height:8px; border-radius:50%; background:var(--accent);
+  }
+  .timeline-date{
+    font-family:'Courier New',monospace; font-size:0.8rem; color:var(--accent); display:block;
+    margin-bottom:0.3rem;
+  }
+
+  .pull-quote{
+    font-size:1.3rem; font-style:italic; color:#f4f4f5; margin:2rem 0;
+    padding:0 1rem; border-left:3px solid var(--accent); line-height:1.5;
+  }
+
+  table{width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:0.95rem;}
+  th,td{border:1px solid #2a2a35; padding:0.6rem 0.8rem; text-align:left;}
+  th{background:var(--box); color:var(--accent); font-family:'Courier New',monospace; font-size:0.8rem;}
+
+  .open-question{
+    font-style:italic; color:#b8b8bd; margin-top:3rem; padding-top:1.5rem;
+    border-top:1px solid #2a2a35; font-size:1.05rem;
+  }
+
+  .series-nav{
+    margin-top:3.5rem; padding-top:1.5rem; border-top:1px solid #2a2a35;
+    font-family:'Courier New',monospace; font-size:0.85rem; color:var(--grey);
+  }
+  .series-nav a{color:var(--accent); text-decoration:none;}
+  .series-nav a:hover{text-decoration:underline;}
+
+  a{color:var(--accent);}
+</style>
+<meta name="rubrik" content="cat-medien">
+<meta name="kachel-titel" content="Der Attributionskrieg (1/2): Erst der Schuldige, dann die Lücke">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">Dunkelfeld.report · Serie: Attributionskrieg · Teil 1 von 2</div>
+  <h1>Erst der Schuldige, dann die Lücke</h1>
+  <p class="subtitle">Wie Drohnen über Norddeutschland und Fake-Konten für AfD/BSW dieselbe Beweislücke teilen — und warum das niemanden zu stören scheint.</p>
+
+  <div class="meta">
+    <span>Stand: Juli 2026</span>
+    <span>Teil 1/2</span>
+    <span>Lesezeit: ca. 8 Min.</span>
+  </div>
+
+  <p>Im Juli 2026 kursiert eine Kolumne im Spiegel: <em>„So wirbt Putin für AfD und BSW"</em>. Die These: russische Botnetze bewerben gezielt zwei Parteien, alle anderen bleiben verschont. Die Quellenlage dahinter ist, wie eine Recherche des Ökonomen Norbert Häring zeigt, denkbar dünn.</p>
+
+  <p>Fast zeitgleich ein zweites Phänomen, seit Herbst 2025 europaweit: Drohnen über Flughäfen, Kasernen, Chemieparks. Auch hier: schneller Verdacht, keine gesicherten Erkenntnisse. Zwei Fälle, ein Muster. Diese Serie dokumentiert es — und stellt in Teil 2 dem gegenüber, was tatsächlich belegt ist.</p>
+
+  <h2>Fall 1 — Die Botnetz-Kolumne</h2>
+
+  <div class="case-card">
+    <h3>„So wirbt Putin für AfD und BSW"</h3>
+    <p>Christian Stöcker beschreibt im Spiegel vom 12. Juli 2026 angebliche Aktivitäten russischer Botnetze zugunsten von AfD und BSW. Spiegel, FAZ und t-online veröffentlichten laut Häring eine ganze Serie solcher Beiträge.</p>
+    <p>Häring merkt an: die Plausibilität der Behauptungen sei gering, die Quellen wirkten wie Tarneinheiten von Militärs oder Geheimdiensten, die gezielt die anstehenden Landtagswahlen beeinflussen wollten.</p>
+    <div class="verdict">
+      <span class="tag tag-belegt">BELEGT</span> Kolumnen-Serie existiert, Autorenschaft klar<br>
+      <span class="tag tag-offen">OFFEN</span> Technische Verifikation der „Botnetz"-Behauptung nicht vorgelegt<br>
+      <span class="tag tag-extra">EXTRAPOLATION</span> Motiv „Landtagswahl-Einflussnahme" — plausibel, aber nicht belegt
+    </div>
+  </div>
+
+  <p>Bemerkenswert: Die Kritik kommt hier nicht von einem Boulevardmedium, sondern von einem Volkswirt mit Wikipedia-Eintrag und Blog-Reichweite — der selbst betont, dass seine eigenen Fußnoten unabhängig zu prüfen sind. Genau das ist der Punkt: Nachprüfbarkeit ist keine Nebensache, sie ist der ganze Unterschied zwischen Journalismus und Verdachtsberichterstattung.</p>
+
+  <h2>Fall 2 — Die Drohnen</h2>
+
+  <p>Zwischen Januar und August 2025 kam es laut offiziellen Angaben zu 144 drohnenbedingten Behinderungen des deutschen Flugverkehrs. Bewaffnete Drohnen wurden dabei nicht registriert.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-date">Sept. 2025</span>
+      Sichtungen über dänischen Flughäfen lösen Alarmbereitschaft aus, kurz darauf Meldungen aus Schweden, Norwegen, Lettland.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Sept. 2025</span>
+      Ein russischer Öltanker wird vor Saint-Nazaire beschlagnahmt. Quellen behaupten, das Schiff sei zum Drohnenstart vor Dänemark genutzt worden — Belege stehen aus.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Okt. 2025</span>
+      CORRECTIV-Recherche: mindestens 24 Ermittlungsverfahren wegen möglicher Luftspionage in Deutschland 2024. Ein eindeutiger Beweis konnte bislang jedoch nicht erbracht werden — nicht einmal genaue Gesamtzahlen waren bekannt.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Okt. 2025</span>
+      Innenministerin Sütterlin-Waack (Schleswig-Holstein) räumt ein: „bisher keine gesicherten Erkenntnisse, wo die Drohnen herkommen" — ordnet die Vorfälle aber bereits als „hybride Kriegsführung" ein.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Dez. 2025</span>
+      Blog „Augen geradeaus" moniert öffentlich: keine einzige nicht-zivile Drohne wurde bislang sichergestellt, oft fehlen sogar Bildbeweise der Sichtungen selbst.
+    </div>
+  </div>
+
+  <div class="source-box">
+    <span class="src-label">Quelle · bpb.de, Okt. 2025</span>
+    <p>„Einige Politiker/-innen und Fachleute vermuten Russland hinter den letzten Drohnenvorfällen. Es gibt dafür bisher keine Beweise."</p>
+    bpb.de — Tägliche Dosis Politik, 09.10.2025
+  </div>
+
+  <p>Eine unabhängige Analyse bei Telepolis geht noch weiter: Untersuchungen mehrerer europäischer Behörden hätten ergeben, dass es sich beim Großteil der gemeldeten Sichtungen um autorisierte Drohnen sowie falsch identifizierte bemannte Flugzeuge und andere routinemäßige Flugobjekte gehandelt habe. Die These eines Zusammenhangs mit militärischen Operationen habe unter Experten nur sehr begrenzte Unterstützung gefunden — stattdessen sei das Phänomen mit weit verbreiteter Bestätigungsvoreingenommenheit und Hysterie erklärbar, vergleichbar mit klassischen UFO-Wellen.</p>
+
+  <div class="pull-quote">
+    „Der Schuldige ist meist auch schnell gefunden: Putin beziehungsweise Russland – doch Beweise bleiben bislang fällig."
+  </div>
+
+  <p>Selbst Verteidigungsminister Pistorius mahnte gegenüber dem Handelsblatt zur Besonnenheit — mit einer bemerkenswerten Doppelbewegung: Putin gehe es darum, „zu provozieren, Angst zu machen, kontroverse Debatten auszulösen". Die Zuschreibung des Motivs bleibt damit bestehen, obwohl die Zuschreibung der Täterschaft selbst offen ist.</p>
+
+  <h2>Das gemeinsame Muster</h2>
+
+  <table>
+    <tr><th>Element</th><th>Botnetz-Fall</th><th>Drohnen-Fall</th></tr>
+    <tr><td>Quelle</td><td>Anonyme „Sicherheitskreise"</td><td>Anonyme „Sicherheitsbehörden", Geheimdienstkontakt DK</td></tr>
+    <tr><td>Technischer Beweis</td><td>Nicht vorgelegt</td><td>Keine sichergestellte Drohne</td></tr>
+    <tr><td>Politische Einordnung</td><td>Vor Beweis: „Wahlbeeinflussung"</td><td>Vor Beweis: „hybride Kriegsführung"</td></tr>
+    <tr><td>Kritische Prüfung</td><td>Einzelner Ökonom (X/Blog)</td><td>Telepolis, Fachblogs</td></tr>
+    <tr><td>Mainstream-Reaktion</td><td>Übernahme der Deutung</td><td>Übernahme, später vorsichtiger Rückzug</td></tr>
+  </table>
+
+  <p>Der Mechanismus ist in beiden Fällen derselbe: Die Attribution (Russland) erscheint vor der Verifikation (Beweis). Politische Reaktionen — Aufrüstung der Drohnenabwehr, EU-„Drohnenmauer", diplomatische Verstimmungen — folgen der Vermutung, nicht dem Nachweis. Kritische Nachfragen kommen überwiegend aus Nischenmedien oder von Einzelpersonen, nicht aus der Breite des Mainstreams.</p>
+
+  <p>Das bedeutet nicht, dass die Vermutung falsch sein muss. Es bedeutet: <strong>solange der Beweis fehlt, ist „Russland" eine Hypothese, keine Tatsache</strong> — und sollte redaktionell auch so gekennzeichnet werden.</p>
+
+  <p class="open-question"><em>Warum wird in beiden Fällen die Reihenfolge — erst Beweis, dann Schuldzuweisung — nicht eingehalten? Wer trägt die Kosten, wenn sich eine Zuschreibung später als falsch erweist — und wer die Kosten, wenn sie zutrifft, aber nie bewiesen wurde?</em></p>
+
+  <div class="series-nav">
+    Serie „Attributionskrieg" · Teil 1: Muster ohne Beweis (dieser Artikel) · <a href="attributionskrieg-teil2.html">Teil 2: Was tatsächlich belegt ist →</a>
+  </div>
+
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

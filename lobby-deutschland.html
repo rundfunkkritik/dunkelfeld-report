@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wessen Lobby gewinnt? Teil 2: Deutschland — dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background: #09090b;
+    color: #d4d4d8;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+  .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #8a8a92;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  h1 {
+    font-size: 1.9rem;
+    color: #e8c547;
+    line-height: 1.3;
+    margin-bottom: 0.3rem;
+  }
+  h2 {
+    font-size: 1.35rem;
+    color: #e8c547;
+    margin-top: 2.8rem;
+    border-bottom: 1px solid #26262c;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    font-size: 1.1rem;
+    color: #e8c547;
+    margin-top: 1.8rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  a { color: #e8c547; }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #8a8a92;
+    margin-bottom: 2rem;
+  }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+    letter-spacing: 0.03em;
+  }
+  .tag-belegt { background: #14351f; color: #4ade80; border: 1px solid #22c55e44; }
+  .tag-extrapolation { background: #3a2a12; color: #fb923c; border: 1px solid #f9731644; }
+  .tag-offen { background: #26262c; color: #a1a1aa; border: 1px solid #52525b44; }
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .source-box .label { margin-bottom: 0.4rem; }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #26262c;
+    margin: 1.5rem 0;
+    border: 1px solid #26262c;
+  }
+  .stat-cell {
+    background: #09090b;
+    padding: 1rem;
+  }
+  .stat-cell .num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.4rem;
+    color: #e8c547;
+    display: block;
+  }
+  .stat-cell .desc {
+    font-size: 0.85rem;
+    color: #a1a1aa;
+  }
+  .pull-quote {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #e4e4e7;
+    border-left: 3px solid #e8c547;
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+  }
+  .pull-quote .attr {
+    font-style: normal;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #8a8a92;
+    display: block;
+    margin-top: 0.5rem;
+  }
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .comparison-table th, .comparison-table td {
+    border: 1px solid #26262c;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+  }
+  .comparison-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #e8c547;
+    text-transform: uppercase;
+  }
+  .timeline {
+    margin: 1.5rem 0;
+    border-left: 2px solid #26262c;
+    padding-left: 1.2rem;
+  }
+  .timeline .entry {
+    margin-bottom: 1.2rem;
+    position: relative;
+  }
+  .timeline .entry .date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #e8c547;
+  }
+  .person-card {
+    background: #1a1a2e;
+    border: 1px solid #26262c;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+  }
+  .person-card .name {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .closing-questions {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #26262c;
+    font-style: italic;
+    color: #a1a1aa;
+  }
+  .series-nav {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #e8c547;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+  }
+  .series-nav .part { padding: 0.4rem 0; color: #a1a1aa; }
+  .series-nav .part.active { color: #e8c547; }
+  .series-nav .part.pending { color: #52525b; }
+  .series-nav a { color: #a1a1aa; text-decoration: none; }
+  .series-nav a:hover { color: #e8c547; }
+</style>
+<meta name="rubrik" content="cat-stiftungen">
+<meta name="kachel-titel" content="Wessen Lobby gewinnt? Teil 2: Deutschland">
+</head>
+<body>
+
+<div class="label">DUNKELFELD.REPORT — SERIE: WESSEN LOBBY GEWINNT? — TEIL 2 VON 3</div>
+<h1>Wir zahlen fürs Aussteigen: Deutschlands Energie-Lobby</h1>
+<div class="meta">Deutschland · Atomausstieg, Kohleausstieg, Verbandsspitzen — ein anderer Mechanismus, dasselbe Muster</div>
+
+<p>Teil 1 dieser Serie zeigte: In den USA entscheidet nicht das Lobbybudget über politischen Einfluss, sondern die personelle Nähe zur Regierung. In Deutschland läuft der Mechanismus anders — hier zahlt der Staat nicht für Lobbying, sondern direkt an die Konzerne, die er per Gesetz zum Ausstieg zwingt.</p>
+
+<h2>Der Atomausstieg: 2,4 Milliarden Euro</h2>
+
+<p><span class="tag tag-belegt">BELEGT</span> Nach dem beschleunigten Atomausstieg 2011 (Reaktion auf Fukushima) klagten RWE, E.ON und Vattenfall vor dem Bundesverfassungsgericht. 2016 urteilte das Gericht: Der Ausstieg selbst ist verfassungsgemäß — aber ein Teil der Enteignung muss entschädigt werden. Nach jahrelangem Streit einigten sich Bund und Konzerne 2021 auf eine Gesamtsumme.</p>
+
+<div class="stat-grid">
+  <div class="stat-cell">
+    <span class="num">1,425 Mrd. €</span>
+    <span class="desc">Vattenfall (größter Anteil, plus internationale Schiedsklage)</span>
+  </div>
+  <div class="stat-cell">
+    <span class="num">880 Mio. €</span>
+    <span class="desc">RWE</span>
+  </div>
+  <div class="stat-cell">
+    <span class="num">80 Mio. €</span>
+    <span class="desc">EnBW</span>
+  </div>
+  <div class="stat-cell">
+    <span class="num">42,5 Mio. €</span>
+    <span class="desc">E.ON</span>
+  </div>
+</div>
+
+<div class="source-box">
+  <div class="label">Quelle</div>
+  Der größte Teil der Summe bezieht sich auf entgangene Erlöse aus nicht mehr produziertem Strom. 142,5 Mio. € davon sind für „entwertete Investitionen“ vorgesehen, die zwischen der Laufzeitverlängerung 2010 und der Abschaltung 2011 getätigt wurden. (Handelsblatt / taz, März 2021)
+</div>
+
+<h2>Der Kohleausstieg: 4,35 Milliarden Euro — und eine strittige Formel</h2>
+
+<p><span class="tag tag-belegt">BELEGT</span> Für den gesetzlich fixierten Kohleausstieg bis 2038 erhalten RWE (2,6 Mrd. €) und LEAG (1,75 Mrd. €) Entschädigungen — nicht über eine Ausschreibung wie bei der Steinkohle, sondern über direkte Verhandlung mit dem Staat. Die EU-Kommission genehmigte die RWE-Zahlung 2023.</p>
+
+<div class="pull-quote">
+  Statt 4,35 Milliarden an Entschädigungen für den Kohleausstieg stehen den deutschen Braunkohlekonzernen maximal 343 Millionen Euro zu.
+  <span class="attr">— Ember / Greenpeace-Analyse der Berechnungsformel des Bundeswirtschaftsministeriums, 2021</span>
+</div>
+
+<p><span class="tag tag-belegt">BELEGT</span> Die Klima-Denkfabrik Ember rekonstruierte gemeinsam mit Greenpeace eine zunächst als Verschlusssache eingestufte Berechnungsformel aus dem Wirtschaftsministerium (unter Minister Altmaier). Ergebnis: Bei realistischeren Annahmen zu Laufzeit, CO2-Preisentwicklung und Ausgleichszeitraum hätte die gerechtfertigte Entschädigung bei rund 343 Mio. € statt 4,35 Mrd. € gelegen — ein Faktor von etwa 13. Auch das unabhängige Öko-Institut kam mit vorsichtigeren Annahmen auf eine Überzahlung von bis zu 2 Mrd. €.</p>
+
+<div class="comparison-table">
+<table class="comparison-table">
+<tr><th>Berechnung</th><th>Summe</th><th>Quelle</th></tr>
+<tr><td>Verhandelt (BMWi/BMWK)</td><td>4,35 Mrd. €</td><td>Bundeswirtschaftsministerium</td></tr>
+<tr><td>Öko-Institut (vorsichtige Korrektur)</td><td>ca. 2,4–3,35 Mrd. €</td><td>Studie i.A. Klima-Allianz Deutschland</td></tr>
+<tr><td>Ember/Greenpeace (realistische Annahmen)</td><td>ca. 343 Mio. €</td><td>Rekonstruierte BMWi-Formel</td></tr>
+</table>
+</div>
+
+<h2>Die Verbandsspitze: BDEW und der Seitenwechsel</h2>
+
+<p><span class="tag tag-belegt">BELEGT</span> Der Bundesverband der Energie- und Wasserwirtschaft (BDEW) vertritt rund 2.000 Mitgliedsunternehmen, dominiert von E.ON, RWE und VNG. Die Verbandsspitze zeigt denselben Revolving-Door-Mechanismus, der auch in den USA das eigentliche Machtinstrument ist — nur über Parteikarrieren statt über Regierungsämter.</p>
+
+<div class="person-card">
+  <span class="name">Kerstin Andreae</span>
+  Hauptgeschäftsführerin BDEW seit November 2019. Zuvor wirtschaftspolitische Sprecherin von Bündnis 90/Die Grünen im Bundestag, gab ihr Mandat zum Amtsantritt ab.
+</div>
+
+<div class="person-card">
+  <span class="name">Stefan Kapferer</span>
+  Hauptgeschäftsführer BDEW 2016–2019. Zuvor Staatssekretär im Bundesgesundheitsministerium (2009–2011) und im Bundeswirtschaftsministerium (2011–2014).
+</div>
+
+<p><span class="tag tag-extrapolation">EXTRAPOLATION</span> Zwei aufeinanderfolgende Verbandsspitzen kommen direkt aus Regierungsämtern bzw. Parteifunktionen — dasselbe Muster wie das in Teil 1 beschriebene US-Phänomen, nur dass der Wechsel hier über Parteikarriere statt über die Exekutive läuft. Ob das strukturellen Einfluss auf einzelne Gesetzgebungsverfahren hatte, ist im Einzelfall nicht belegt, aber die personelle Nähe selbst ist dokumentiert.</p>
+
+<h2>Zwischenstand: Gleicher Mechanismus, anderer Kanal</h2>
+
+<div class="comparison-table">
+<table>
+<tr><th></th><th>USA</th><th>Deutschland</th></tr>
+<tr><td>Zahlungsrichtung</td><td>Konzern → Politik (Lobbying)</td><td>Staat → Konzern (Entschädigung)</td></tr>
+<tr><td>Hauptmechanismus</td><td>Personalbesetzung Regierung</td><td>Verhandlungslösung + Verbandsspitzen</td></tr>
+<tr><td>Transparenz</td><td>Lobbyregister (Senate LDA)</td><td>Lobbyregister Bundestag + EU-Formel z. T. Verschlusssache</td></tr>
+</table>
+</div>
+
+<div class="closing-questions">
+  <p>Offene Fragen: Warum wurde die Berechnungsformel für die Kohle-Entschädigung zunächst als Verschlusssache eingestuft, wenn die Zahlung ohnehin öffentlich bekannt war? Und: Wenn zwei unabhängige Institute (Öko-Institut, Ember) unabhängig voneinander zu einer massiven Überzahlung kommen — warum hat sich an der verhandelten Summe nichts geändert?</p>
+</div>
+
+<div class="series-nav">
+  <div class="label">Serie: Wessen Lobby gewinnt?</div>
+  <div class="part"><a href="lobby-usa.html">← Teil 1: USA</a></div>
+  <div class="part active">→ Teil 2: Deutschland (dieser Artikel)</div>
+  <div class="part"><a href="lobby-architekten.html">Teil 3: Die Architekten — Graichen, Habeck, Ukraine-Kontrast →</a></div>
+</div>
+
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

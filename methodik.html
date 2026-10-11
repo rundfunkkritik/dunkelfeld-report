@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Warum wir keine Motive erfinden — dunkelfeld.report</title>
+
+<meta content="Methodik — dunkelfeld.report" property="og:title"/>
+<meta content="Fakten. Quellen. Dokumentation. Keine Motive ohne Beleg." property="og:description"/>
+<meta content="article" property="og:type"/>
+<meta content="https://dunkelfeld.report/methodik.html" property="og:url"/>
+<style>
+  :root {
+    --bg: #0b0c0e;
+    --bg-panel: #131518;
+    --bg-panel-2: #17191d;
+    --border: #26292e;
+    --text: #d9dadc;
+    --text-dim: #8b8f96;
+    --text-faint: #5c6067;
+    --accent: #b5895a;
+    --accent-2: #8c9a7c;
+    --belegt: #7d9b74;
+    --extrapolation: #b58a4a;
+    --offen: #7d8a9b;
+    --widerlegt: #9b6b6b;
+    --serif: Georgia, 'Times New Roman', serif;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--serif);
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(181,137,90,0.35); }
+  a:hover { border-bottom-color: var(--accent); }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  header.site {
+    border-bottom: 1px solid var(--border);
+    padding: 28px 0 20px;
+  }
+  header.site .wrap { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+  header.site .brand { font-family: var(--sans); font-size: 13px; letter-spacing: 0.14em; color: var(--text-dim); text-transform: uppercase; }
+  header.site .brand a { color: var(--text-dim); border: none; }
+  header.site .tagline { font-family: var(--sans); font-size: 12px; color: var(--text-faint); }
+
+  .kicker {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: 48px;
+  }
+
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin: 10px 0 6px;
+    font-weight: 600;
+    color: #f2f1ee;
+  }
+
+  .subtitle {
+    font-family: var(--sans);
+    color: var(--text-dim);
+    font-size: 1.02rem;
+    margin-bottom: 28px;
+  }
+
+  .lede {
+    font-size: 1.08rem;
+    color: var(--text);
+    border-left: 2px solid var(--border);
+    padding-left: 18px;
+    margin: 28px 0 40px;
+    color: var(--text-dim);
+  }
+
+  h2 {
+    font-size: 1.35rem;
+    color: #f2f1ee;
+    margin-top: 52px;
+    margin-bottom: 14px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+  }
+
+  h3 {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+    color: var(--accent);
+    margin-top: 28px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  p { margin: 0 0 16px; }
+
+  ul, ol { margin: 0 0 16px; padding-left: 22px; }
+  li { margin-bottom: 8px; }
+
+  .principle-box {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 24px 26px;
+    margin: 24px 0;
+    border-radius: 2px;
+  }
+  .principle-box .label {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .principle-box p:last-child { margin-bottom: 0; }
+  .principle-box .statement {
+    font-size: 1.15rem;
+    font-style: italic;
+    color: #ecebe7;
+    line-height: 1.6;
+  }
+
+  .tag-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 20px 0 28px;
+  }
+  .tag-row {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 16px 18px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .tag-pill {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 3px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .tag-pill.belegt { background: rgba(125,155,116,0.15); color: var(--belegt); border: 1px solid rgba(125,155,116,0.4); }
+  .tag-pill.extrapolation { background: rgba(181,138,74,0.15); color: var(--extrapolation); border: 1px solid rgba(181,138,74,0.4); }
+  .tag-pill.offen { background: rgba(125,138,155,0.15); color: var(--offen); border: 1px solid rgba(125,138,155,0.4); }
+  .tag-pill.widerlegt { background: rgba(155,107,107,0.15); color: var(--widerlegt); border: 1px solid rgba(155,107,107,0.4); }
+  .tag-row .desc { font-size: 0.96rem; color: var(--text-dim); }
+  .tag-row .desc strong { color: var(--text); font-weight: 600; }
+
+  .exclusion-note {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--text-faint);
+    background: var(--bg-panel-2);
+    border: 1px solid var(--border);
+    padding: 16px 18px;
+    border-radius: 2px;
+    margin: 20px 0;
+  }
+
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 20px 0 28px;
+  }
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .compare-row:last-child { border-bottom: none; }
+  .compare-row .what { font-family: var(--sans); font-size: 0.82rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+  .compare-row .how { color: var(--text); }
+
+  .closing {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  footer.site {
+    margin-top: 64px;
+    border-top: 1px solid var(--border);
+    padding: 28px 0 48px;
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--text-faint);
+  }
+  footer.site a { color: var(--text-faint); border-bottom: 1px solid var(--border); }
+  footer.site .links { margin-top: 10px; }
+  footer.site .links a { margin-right: 4px; }
+
+  @media (min-width: 600px) {
+    .tag-row { align-items: center; }
+  }
+</style>
+<meta name="description" content="Wie dunkelfeld.report arbeitet: das Beleg-vor-Motiv-Prinzip, die Tags BELEGT / EXTRAPOLATION / OFFEN / VT-WIDERLEGT, und warum wir Quellen ausschließen, die andere zitieren.">
+<meta name="rubrik" content="cat-seiten">
+<meta name="kachel-titel" content="Warum wir keine Motive erfinden">
+<link rel="canonical" href="https://dunkelfeld.report/methodik.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Warum wir keine Motive erfinden">
+<meta property="og:description" content="Wie dunkelfeld.report arbeitet: das Beleg-vor-Motiv-Prinzip, die Tags BELEGT / EXTRAPOLATION / OFFEN / VT-WIDERLEGT, und warum wir Quellen ausschließen, die andere zitieren.">
+<meta property="og:url" content="https://dunkelfeld.report/methodik.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<header class="site">
+<div class="wrap">
+<div class="brand"><a href="https://dunkelfeld.report/index.html">dunkelfeld.report</a></div>
+<div class="tagline">Fakten · Quellen · Dokumentation — keine Schlussfolgerungen</div>
+</div>
+</header>
+<div class="wrap">
+<div class="kicker">Methodik &amp; Selbstverständnis</div>
+<h1>Warum wir keine Motive erfinden</h1>
+<div class="subtitle">Das Beleg-vor-Motiv-Prinzip — und warum es die einzige Regel ist, die wirklich zählt.</div>
+<div class="lede">
+    Diese Seite erklärt nicht, was wir über wen herausgefunden haben. Sie erklärt, wie wir arbeiten —
+    damit jeder Artikel auf dunkelfeld.report daran gemessen werden kann.
+  </div>
+<p>
+    Es gibt inzwischen mehrere deutschsprachige Projekte, die Machtstrukturen, Medienverflechtungen
+    und institutionelles Versagen dokumentieren. Das ist gut so — ein einzelnes Projekt kann nicht
+    alles abdecken, und mehr Augen auf denselben Akten schaden niemandem außer denen, die auf
+    Unaufmerksamkeit angewiesen sind. Aber Dokumentation unterscheidet sich stark in der Ausführung.
+    Deshalb legen wir offen, wonach wir uns richten.
+  </p>
+<h2>Das Prinzip</h2>
+<div class="principle-box">
+<div class="label">Beleg-vor-Motiv-Prinzip</div>
+<p class="statement">
+      Wir attribuieren keine Absicht, die nicht durch ein Dokument gedeckt ist.
+    </p>
+<p>
+      Ein Sender, eine Politikerin, ein Konzern kann in einem Netzwerk sitzen, Geld von einer bestimmten
+      Seite erhalten, in einem Gremium geführt werden — das lässt sich belegen. Ob daraus eine Absicht,
+      eine Weisung, eine „Steuerung" folgt, lässt sich in den seltensten Fällen belegen. Wir schreiben
+      dann nicht, dass sie folgt. Wir schreiben, was belegt ist, und benennen die offene Frage als das,
+      was sie ist: offen.
+    </p>
+</div>
+<p>
+    Das ist kein Nachgeben aus Vorsicht. Es ist die Grenze zwischen Journalismus und Verdachtsproduktion.
+    Zwei Fakten, die nebeneinanderstehen, erzeugen im Kopf des Lesers fast automatisch eine Verbindung —
+    das ist menschliche Mustererkennung, keine Recherche. Unsere Aufgabe ist es, diese Verbindung nicht
+    für ihn zu ziehen, sondern die Fakten so präzise zu belegen, dass er sie selbst prüfen kann.
+  </p>
+<h3>Was das konkret bedeutet</h3>
+<ul>
+<li>Getrennte Belegketten werden nicht in einem Satz vermischt, der beide als eine Geschichte erzählt.</li>
+<li>Artikel enden mit offenen Fragen, nicht mit Urteilen.</li>
+<li>Wo ein Zusammenhang naheliegt, aber keine Quelle ihn herstellt, steht das ausdrücklich so da — als offene Frage, nicht als Befund.</li>
+<li>Das Prinzip gilt auch nach innen: Wenn wir selbst Inhalte konsumieren (etwa auf Social Media), prüfen wir sie mit demselben Maßstab. Bestätigungsfehler gilt symmetrisch — auch für Quellen, die uns gefallen.</li>
+</ul>
+<h2>Wie wir jede Aussage kennzeichnen</h2>
+<p>
+    Jede Tatsachenbehauptung in einem dunkelfeld.report-Artikel trägt eine von vier Markierungen.
+    Das ist keine Stilfrage — es ist eine Zusicherung an den Leser, wie belastbar eine Aussage ist.
+  </p>
+<div class="tag-grid">
+<div class="tag-row">
+<span class="tag-pill belegt">BELEGT</span>
+<div class="desc"><strong>Dokumentiert durch Primärquelle.</strong> Gerichtsurteil, Parlamentsprotokoll, Handelsregister, Geschäftsbericht, offizielle Statistik, eigene Aussage der betroffenen Person oder Institution. Nachprüfbar, nicht durch Interpretation entkräftbar.</div>
+</div>
+<div class="tag-row">
+<span class="tag-pill extrapolation">EXTRAPOLATION</span>
+<div class="desc"><strong>Begründete Schlussfolgerung aus belegten Fakten.</strong> Wird als solche benannt, nie als Tatsache verkleidet. Der Leser sieht, wo der Beleg endet und die Einordnung beginnt.</div>
+</div>
+<div class="tag-row">
+<span class="tag-pill offen">OFFEN</span>
+<div class="desc"><strong>Ungeklärt.</strong> Ein Zusammenhang, der plausibel erscheint, für den es aber keinen Beleg gibt — weder dafür noch dagegen. Wird als Frage stehen gelassen, nicht als Verdacht formuliert.</div>
+</div>
+<div class="tag-row">
+<span class="tag-pill widerlegt">VT-WIDERLEGT</span>
+<div class="desc"><strong>Geprüfte und widerlegte Verschwörungsbehauptung.</strong> Dieses Tag existiert, weil Dekonstruktion selbst Recherche ist — und weil Verschwörungsrhetorik echte, belegbare Kritik diskreditiert, wenn beides vermischt wird.</div>
+</div>
+</div>
+<h2>Was wir ausschließen — und warum</h2>
+<p>
+    Ein Beleg ist nur so gut wie seine Quelle. Wir zitieren keine Seiten, die selbst systematisch ohne
+    Beleg-vor-Motiv-Prinzip arbeiten, auch nicht als Sekundärquelle für an sich belegbare Fakten — weil
+    Zitierketten, die bei einer unsauberen Quelle beginnen, das Problem nur eine Ebene verschieben.
+    Zahlen, Zitate und Dokumente, die dort zuerst auftauchen, verifizieren wir stattdessen direkt an der
+    Primärquelle (Bundestag, Behörde, Gericht, Geschäftsbericht) oder lassen sie weg.
+  </p>
+<div class="exclusion-note">
+    Das betrifft in beide politische Richtungen: sowohl Seiten aus dem Umfeld organisierter
+    Verschwörungsnarrative als auch Quellen, deren Faktentreue selbst zur Debatte steht — unabhängig
+    davon, welches politische Lager sie bedienen. Eine vollständige, aktuell gepflegte Liste der
+    ausgeschlossenen Quellen liegt der Redaktion vor und wird auf Anfrage offengelegt.
+  </div>
+<h2>Was diese Seite nicht ist</h2>
+<p>
+    Sie ist kein Versprechen auf Fehlerlosigkeit. Wir korrigieren, wenn ein Beleg sich als falsch oder
+    unvollständig erweist — sichtbar, nicht stillschweigend. Sie ist auch keine Behauptung, „neutral"
+    zu sein: Wir wählen Themen aus, weil wir sie für relevant halten. Was wir zusichern, ist etwas
+    Kleineres und Überprüfbareres: dass jede Tatsachenbehauptung auf eine Quelle zurückgeht, die der
+    Leser selbst einsehen kann, und dass wir Motive nicht dazuerfinden, wo Dokumente sie nicht hergeben.
+  </p>
+<h2>Der Unterschied, der zählt</h2>
+<p>
+    Empörung ist billig zu produzieren. Ein Beleg, der einer Prüfung standhält, ist es nicht. Der
+    Unterschied zwischen einer Recherche, die in einem Jahr noch stimmt, und einer, die in einem Jahr
+    peinlich ist, liegt fast immer an derselben Stelle: ob die Motivunterstellung vom Dokument gedeckt
+    war oder vom Bauchgefühl.
+  </p>
+<div class="closing">
+    Sucht euch einen Beleg auf dieser Seite aus und prüft ihn. Genau dafür steht die Fundstelle da.
+  </div>
+</div>
+<footer class="site">
+<div class="wrap">
+    dunkelfeld.report · Keine Cookies · Kein Tracking · DSGVO-konform ·
+    Alle Angaben quellenbasiert — Unschuldsvermutung gilt bei laufenden Verfahren
+    <div class="links">
+<a href="https://dunkelfeld.report/index.html">Startseite</a> ·
+      <a href="https://dunkelfeld.report/themen.html">Themen &amp; Archiv</a> ·
+      <a href="https://dunkelfeld.report/impressum.html">Impressum</a> ·
+      <a href="https://dunkelfeld.report/datenschutz.html">Datenschutz</a>
+</div>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Der Prophet von San Francisco — dunkelfeld.report</title>
+<style>
+  :root{
+    --bg:#09090b;
+    --amber:#e8c547;
+    --box-bg:#1a1a2e;
+    --text:#e4e4e7;
+    --muted:#9a9aa5;
+    --green:#5fbf6b;
+    --orange:#e8934a;
+    --grey:#8a8a94;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:Georgia,'Times New Roman',serif;
+    line-height:1.7;
+    margin:0;
+    padding:0 20px 80px;
+  }
+  .wrap{
+    max-width:720px;
+    margin:0 auto;
+  }
+  .meta{
+    font-family:'Courier New',monospace;
+    color:var(--muted);
+    font-size:0.8rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    margin-top:40px;
+  }
+  .meta .brand{color:var(--amber);}
+  h1{
+    font-size:2rem;
+    line-height:1.25;
+    color:#fff;
+    margin:14px 0 6px;
+  }
+  .subtitle{
+    font-family:'Courier New',monospace;
+    color:var(--muted);
+    font-size:0.95rem;
+    margin-bottom:30px;
+  }
+  h2{
+    font-family:'Courier New',monospace;
+    color:var(--amber);
+    font-size:1rem;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    border-bottom:1px solid #2a2a35;
+    padding-bottom:8px;
+    margin:48px 0 20px;
+  }
+  p{margin:0 0 18px; font-size:1.05rem;}
+  .tag{
+    display:inline-block;
+    font-family:'Courier New',monospace;
+    font-size:0.7rem;
+    letter-spacing:0.05em;
+    padding:2px 8px;
+    border-radius:3px;
+    margin-right:6px;
+    vertical-align:middle;
+  }
+  .tag-belegt{background:rgba(95,191,107,0.15); color:var(--green); border:1px solid var(--green);}
+  .tag-extrapolation{background:rgba(232,147,74,0.15); color:var(--orange); border:1px solid var(--orange);}
+  .tag-offen{background:rgba(138,138,148,0.15); color:var(--grey); border:1px solid var(--grey);}
+
+  .source-box{
+    background:var(--box-bg);
+    border-left:3px solid var(--amber);
+    padding:14px 18px;
+    margin:20px 0;
+    font-size:0.92rem;
+  }
+  .source-box .src-label{
+    font-family:'Courier New',monospace;
+    color:var(--amber);
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    display:block;
+    margin-bottom:6px;
+  }
+
+  .stat-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+    margin:24px 0;
+  }
+  .stat{
+    background:var(--box-bg);
+    padding:16px;
+    border-radius:4px;
+    text-align:center;
+  }
+  .stat .num{
+    font-family:'Courier New',monospace;
+    color:var(--amber);
+    font-size:1.4rem;
+    display:block;
+  }
+  .stat .label{
+    font-family:'Courier New',monospace;
+    color:var(--muted);
+    font-size:0.68rem;
+    text-transform:uppercase;
+    margin-top:4px;
+    display:block;
+  }
+
+  .person-card{
+    display:flex;
+    gap:14px;
+    background:var(--box-bg);
+    border-radius:4px;
+    padding:16px;
+    margin:16px 0;
+    align-items:flex-start;
+  }
+  .person-card .name{
+    font-family:'Courier New',monospace;
+    color:var(--amber);
+    font-size:0.85rem;
+    display:block;
+    margin-bottom:4px;
+  }
+  .person-card .role{
+    color:var(--muted);
+    font-size:0.85rem;
+    font-style:italic;
+  }
+
+  .timeline{
+    margin:24px 0;
+    border-left:2px solid #2a2a35;
+    padding-left:20px;
+  }
+  .timeline-item{
+    margin-bottom:20px;
+    position:relative;
+  }
+  .timeline-item::before{
+    content:'';
+    position:absolute;
+    left:-26px;
+    top:5px;
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:var(--amber);
+  }
+  .timeline-date{
+    font-family:'Courier New',monospace;
+    color:var(--amber);
+    font-size:0.8rem;
+    display:block;
+    margin-bottom:3px;
+  }
+
+  .pull-quote{
+    font-style:italic;
+    font-size:1.2rem;
+    color:#fff;
+    border-left:3px solid var(--amber);
+    padding-left:18px;
+    margin:30px 0;
+  }
+
+  .caveat-box{
+    background:var(--box-bg);
+    border-left:3px solid var(--grey);
+    padding:14px 18px;
+    margin:20px 0;
+    font-size:0.92rem;
+    color:var(--muted);
+  }
+  .caveat-box .cav-label{
+    font-family:'Courier New',monospace;
+    color:var(--grey);
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    display:block;
+    margin-bottom:6px;
+  }
+
+  .open-questions{
+    margin-top:50px;
+    padding-top:20px;
+    border-top:1px solid #2a2a35;
+  }
+  .open-questions h2{color:var(--grey);}
+  .open-questions p{
+    font-style:italic;
+    color:var(--muted);
+  }
+
+  .series-nav{
+    margin-top:60px;
+    padding-top:20px;
+    border-top:1px solid #2a2a35;
+    font-family:'Courier New',monospace;
+    font-size:0.8rem;
+    color:var(--muted);
+  }
+  .series-nav .series-label{color:var(--amber); display:block; margin-bottom:8px;}
+  .series-nav .current{color:var(--text);}
+</style>
+<meta name="description" content="Ein 22-Jähriger veröffentlicht ein 165-seitiges Essay im Alleingang — und löst damit in Silicon Valley eine Debatte aus, die bis heute nachwirkt. Zwei …">
+<meta name="rubrik" content="cat-technik">
+<meta name="kachel-titel" content="Der Prophet von San Francisco">
+<link rel="canonical" href="https://dunkelfeld.report/wunderkind-kult-agi-alarmismus.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Der Prophet von San Francisco">
+<meta property="og:description" content="Ein 22-Jähriger veröffentlicht ein 165-seitiges Essay im Alleingang — und löst damit in Silicon Valley eine Debatte aus, die bis heute nachwirkt. Zwei …">
+<meta property="og:url" content="https://dunkelfeld.report/wunderkind-kult-agi-alarmismus.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="meta"><span class="brand">DUNKELFELD.REPORT</span> · Serie: Der Fall Aschenbrenner · Teil 1</div>
+<h1>Der Prophet von San Francisco</h1>
+<div class="subtitle">Wie ein Manifest zum Anlage-Narrativ wurde</div>
+<p>Ein 22-Jähriger veröffentlicht ein 165-seitiges Essay im Alleingang — und löst damit in Silicon Valley eine Debatte aus, die bis heute nachwirkt. Zwei Jahre später verwaltet er einen Hedgefonds mit einem Spitzenvermögen von 45 Milliarden Dollar. Die Fakten zur Entstehung des Narrativs, das dem Fonds seinen Namen gab.</p>
+<h2>Der Auftritt</h2>
+<span class="tag tag-belegt">BELEGT</span>
+<p>Im Juni 2024 veröffentlicht Leopold Aschenbrenner, kurz zuvor von OpenAI entlassen, auf einer eigenen, schlicht gehaltenen Website ein 165-seitiges Essay: "Situational Awareness: The Decade Ahead". Kein Verlag, kein Institut — Selbstpublikation.</p>
+<div class="pull-quote">
+    "Right now, there are perhaps a few hundred people, most of them in San Francisco and the AI labs, that have situational awareness. Through whatever peculiar forces of fate, I have found myself amongst them." — Leopold Aschenbrenner, Juni 2024
+  </div>
+<p>Die Kernbehauptung des Titels ist zugleich die rhetorische Pointe: Die Welt insgesamt habe keine "situational awareness" darüber, was bevorstehe — er selbst und eine Handvoll Eingeweihter aber schon. Das Essay positioniert seinen Autor nicht als einen Meinenden unter vielen, sondern als Überbringer einer Innenperspektive aus den Top-KI-Laboren.</p>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    situational-awareness.ai (Originaltext); Wikipedia-Eintrag Leopold Aschenbrenner; Axios (23.06.2024).
+  </div>
+<h2>Die Strategie-Analogie</h2>
+<span class="tag tag-belegt">BELEGT</span>
+<p>Aschenbrenner verortet seine Prognose ausdrücklich nicht im Feld der Konsumtechnologie, sondern der nationalen Sicherheit. Zentrale Thesen: AGI ("Artificial General Intelligence") sei bis 2027 plausibel erreichbar; Hunderte Millionen KI-Systeme könnten dann selbst KI-Forschung betreiben und ein Jahrzehnt algorithmischen Fortschritts in unter einem Jahr komprimieren ("Intelligence Explosion"). Wiederholt zieht er den Vergleich zum Manhattan-Projekt und warnt, die USA müssten sich gegen den Zugriff von Staaten wie Russland und China auf diese Technologien absichern.</p>
+<div class="stat-grid">
+<div class="stat"><span class="num">2027</span><span class="label">Prognostiziertes AGI-Fenster</span></div>
+<div class="stat"><span class="num">165 Seiten</span><span class="label">Umfang des Essays</span></div>
+</div>
+<p>Diese Rahmung verschiebt die Debatte: aus "noch eine KI-Prognose" wird "sicherheitspolitisches Dringlichkeitsdokument". Genau diese Verschiebung macht das Essay laut mehreren Fachmedien zur meistdiskutierten KI-Warnung des Jahres 2024/25.</p>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    Wikipedia (Leopold Aschenbrenner, mit Verweis auf Aftenposten 24.06.2024); Stanford Digital Economy Lab, Fireside Chat vom 30.09.2024; Rebellion Research (Mai 2026).
+  </div>
+<h2>Vom Essay zum Fonds</h2>
+<span class="tag tag-belegt">BELEGT</span>
+<p>Das Essay bleibt nicht folgenlos: Aschenbrenner gründet 2024 den Hedgefonds "Situational Awareness LP" — benannt nach dem eigenen Manifest. Frühe Unterstützung kommt laut Fortune-Recherche unter anderem von den Stripe-Gründern. Die These des Fonds: KI werde über das kommende Jahrzehnt der dominante Treiber globaler Marktrenditen sein.</p>
+<div class="timeline">
+<div class="timeline-item">
+<span class="timeline-date">Juni 2024</span>
+      Veröffentlichung des Essays "Situational Awareness"; Gründung des gleichnamigen Fonds.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">Oktober 2025</span>
+      Fondsvermögen laut Fortune bei rund 1,5 Mrd. $.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">Juli 2026</span>
+      Spitzenvermögen von 45 Mrd. $ erreicht — danach folgt der in Teil 3 dokumentierte Crash.
+    </div>
+</div>
+<p>Die Wachstumsgeschwindigkeit selbst ist der bemerkenswerte Fakt: von 1,5 Mrd. auf 45 Mrd. Dollar binnen rund neun Monaten, in einem Marktumfeld, das dem eigenen Narrativ des Fondsgründers (KI als dominanter Renditetreiber) recht zu geben schien.</p>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    Fortune (08.10.2025) — Fondsgröße, frühe Investoren; CNBC (31.07.2026) — Spitzenvermögen.
+  </div>
+<h2>Die FTX-Verbindung</h2>
+<span class="tag tag-belegt">BELEGT</span>
+<p>Vor OpenAI und dem eigenen Fonds arbeitete Aschenbrenner beim FTX Future Fund — einem philanthropischen Vehikel, das aus dem Vermögen der später kollabierten Kryptobörse FTX finanziert wurde. Zu seinem dortigen Team gehörten William MacAskill, Mitbegründer der Effective-Altruism-Bewegung, und Avital Balwit, die laut Fortune-Recherche mit Aschenbrenner verlobt ist und heute als Chief of Staff für Anthropic-CEO Dario Amodei arbeitet.</p>
+<div class="person-card">
+<div>
+<span class="name">William MacAskill</span>
+<span class="role">Mitbegründer Effective Altruism, Kollege beim FTX Future Fund</span>
+</div>
+</div>
+<div class="person-card">
+<div>
+<span class="name">Avital Balwit</span>
+<span class="role">Ehemals FTX Future Fund, heute Chief of Staff bei Anthropic; laut Fortune mit Aschenbrenner verlobt</span>
+</div>
+</div>
+<div class="caveat-box">
+<span class="cav-label">Einschränkung der Quelle</span>
+    Fortune stellt in derselben Recherche ausdrücklich klar: Es gebe keine Belege dafür, dass irgendjemand beim FTX Future Fund wusste, dass die verwendeten Gelder gestohlen waren, oder dass dort etwas Rechtswidriges geschah. Diese Einschränkung wird hier bewusst mit übernommen — die Nähe zu FTX ist ein Faktum, keine Schuldzuweisung.
+  </div>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    Fortune (08.10.2025) — Personal- und Beziehungsangaben, Zitat zur fehlenden Beweislage.
+  </div>
+<h2>Einordnung</h2>
+<span class="tag tag-extrapolation">EXTRAPOLATION</span>
+<p>Die Selbstpositionierung als Eingeweihter mit exklusivem Wissen ("situational awareness") und die spätere Fondsgründung unter demselben Namen fallen inhaltlich zusammen: Wer glaubwürdig behauptet, die Zukunft früher zu erkennen als andere, verschafft sich damit auch eine Grundlage, um Kapital für Wetten auf eben diese Zukunft einzuwerben. Ob diese Verbindung strategisch geplant oder Resultat organischen Erfolgs war, lässt sich aus den vorliegenden Quellen nicht belegen — beide Lesarten sind möglich und werden hier bewusst nicht entschieden.</p>
+<p>Getrennt zu betrachten bleibt die inhaltliche AGI-These selbst: Ob Aschenbrenners technologische Prognosen zutreffen, ist eine eigenständige, empirisch noch offene Frage — unabhängig davon, wie das Narrativ vermarktet wurde.</p>
+<div class="open-questions">
+<h2>Offene Fragen</h2>
+<span class="tag tag-offen">OFFEN</span>
+<p><em>Wie viele der frühen Investoren des Fonds waren durch das Essay selbst überzeugt worden, wie viele durch persönliche Netzwerke aus der FTX/Effective-Altruism-Szene?</em></p>
+<p><em>Hat die "Insider-Prophet"-Rhetorik das Vertrauen der Anleger stärker geprägt als die zugrundeliegenden technischen Argumente — und lässt sich das nach dem Fonds-Crash aus Teil 3 rückblickend unterscheiden?</em></p>
+</div>
+<div class="series-nav">
+<span class="series-label">SERIE: DER FALL ASCHENBRENNER</span>
+<span class="current">Teil 1: Der Prophet von San Francisco (dieser Artikel)</span><br/>
+    Teil 2: OpenAI-Exodus — Whistleblower-Erzählung vs. offizielle Kündigungsgründe (geplant)<br/>
+    Teil 3: Die Entkopplung (veröffentlicht)<br/>
+    Teil 4: FTX-Nähe — was belegbar ist, was nicht (geplant)
+  </div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

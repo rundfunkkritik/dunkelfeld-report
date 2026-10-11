@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Die dunkle Seite der SPD (I): Der Pakt vor der Partei — dunkelfeld.report</title>
+
+<meta content="SPD, Ferdinand Lassalle, Otto von Bismarck, ADAV, Moses Hess, Gotha, Parteigeschichte, Sozialdemokratie" name="keywords"/>
+<style>
+  :root {
+    --bg: #09090b;
+    --bg-card: #111113;
+    --bg-source: #1a1a2e;
+    --amber: #e8c547;
+    --amber-dim: #b8982f;
+    --text: #e2e2e5;
+    --text-muted: #888890;
+    --text-dim: #555560;
+    --border: #2a2a35;
+    --red-tag: #c0392b;
+    --orange-tag: #d35400;
+    --green-tag: #27ae60;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.85;
+    padding: 0;
+  }
+
+  /* NAV */
+  .site-nav {
+    background: #0d0d10;
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-brand {
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    color: var(--amber);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--amber); }
+
+  /* WRAPPER */
+  .wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 4rem 0 2.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+  .article-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+  .hero h1 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.25;
+    color: #fff;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 span {
+    color: var(--amber);
+  }
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  .meta-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+  .meta-row span { color: var(--amber-dim); }
+
+  /* STAT GRID */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+  .stat-card {
+    background: var(--bg-card);
+    padding: 1.4rem 1.2rem;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--amber);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+  }
+  .divider-amber {
+    border-color: var(--amber-dim);
+    opacity: 0.4;
+  }
+
+  /* CONTENT */
+  h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 2.8rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--amber);
+    margin-top: 2rem;
+    margin-bottom: 0.7rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.04em;
+  }
+  p {
+    padding-bottom: 1.2rem;
+    color: var(--text);
+  }
+
+  /* PERSON CARDS */
+  .person-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    margin-bottom: 2rem;
+    overflow: hidden;
+  }
+  .person-header {
+    background: #16161f;
+    padding: 1rem 1.4rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+  }
+  .person-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .person-dates {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+  .person-body {
+    padding: 1.2rem 1.4rem;
+  }
+  .timeline-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 0.8rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #1e1e28;
+    align-items: start;
+  }
+  .timeline-row:last-child { border-bottom: none; }
+  .timeline-year {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--amber-dim);
+    font-weight: 700;
+    padding-top: 0.1rem;
+  }
+  .timeline-text {
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.6;
+    padding-bottom: 0;
+  }
+
+  /* SOURCE BOX */
+  .source-box {
+    background: var(--bg-source);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .source-box strong {
+    color: var(--amber);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  /* STATUS TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+  }
+  .tag-belegt { background: var(--green-tag); color: #fff; }
+  .tag-offen { background: var(--orange-tag); color: #fff; }
+  .tag-extrapolation { background: #555; color: #ddd; }
+  .tag-falsch { background: var(--red-tag); color: #fff; }
+
+  /* TABLE */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0 2rem;
+    font-size: 0.88rem;
+  }
+  .data-table th {
+    background: #1a1a2e;
+    color: var(--amber);
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.7rem 0.9rem;
+    text-align: left;
+    border-bottom: 1px solid var(--amber-dim);
+  }
+  .data-table td {
+    padding: 0.75rem 0.9rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .data-table tr:hover td { background: #111118; }
+
+  /* CLOSING QUESTION */
+  .closing {
+    margin: 3rem 0;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber-dim);
+    background: #0e0e15;
+  }
+  .closing p {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    padding-bottom: 0;
+  }
+
+  /* SERIES NAV */
+  .series-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 3rem 0;
+    padding: 1.2rem 1.4rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    font-family: 'Courier New', monospace;
+    font-size: 0.82rem;
+  }
+  .series-nav a { color: var(--amber); text-decoration: none; }
+  .series-nav span { color: var(--text-dim); }
+
+  /* FOOTER */
+  .site-footer {
+    background: #0d0d10;
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 1.5rem;
+    margin-top: 5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+  .site-footer a { color: var(--amber-dim); text-decoration: none; }
+
+  /* METHODOLOGY NOTE */
+  .method-note {
+    background: #0f0f18;
+    border: 1px solid var(--border);
+    padding: 1.2rem 1.4rem;
+    margin: 2rem 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 2.5rem 0 2rem; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .timeline-row { grid-template-columns: 90px 1fr; }
+    .nav-links { display: none; }
+    .data-table { font-size: 0.8rem; }
+    .data-table th, .data-table td { padding: 0.5rem 0.6rem; }
+    .series-nav { flex-direction: column; }
+  }
+</style>
+<link href="https://dunkelfeld.report/spd-teil1.html" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="Die dunkle Seite der SPD — Teil 1: Der Pakt vor der Partei" property="og:title"/>
+<meta content="https://dunkelfeld.report/spd-teil1.html" property="og:url"/>
+<meta content="Ferdinand Lassalle traf sich mehrfach heimlich mit Otto von Bismarck, bevor er 1863 die erste deutsche Arbeiterpartei gründete. Was der 1928 veröffentlichte Briefwechsel zeigt — und was nicht." property="og:description"/>
+<meta name="description" content="Ferdinand Lassalle traf sich mehrfach heimlich mit Otto von Bismarck, bevor er 1863 die erste deutsche Arbeiterpartei gründete. Was der 1928 veröffentlichte Briefwechsel zeigt — und was nicht.">
+<meta name="rubrik" content="cat-staat">
+<meta name="kachel-titel" content="Die dunkle Seite der SPD (I): Der Pakt vor der Partei">
+<link rel="canonical" href="https://dunkelfeld.report/spd-teil1.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Die dunkle Seite der SPD (I): Der Pakt vor der Partei">
+<meta property="og:description" content="Ferdinand Lassalle traf sich mehrfach heimlich mit Otto von Bismarck, bevor er 1863 die erste deutsche Arbeiterpartei gründete. Was der 1928 veröffentlichte Briefwechsel zeigt — und was nicht.">
+<meta property="og:url" content="https://dunkelfeld.report/spd-teil1.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<nav class="site-nav">
+<a class="nav-brand" href="/">dunkelfeld.report</a>
+<ul class="nav-links">
+<li><a href="/">Alle Artikel</a></li>
+<li><a href="/impressum.html">Impressum</a></li>
+<li><a href="/datenschutz.html">Datenschutz</a></li>
+</ul>
+</nav>
+<main class="wrapper">
+<header class="hero">
+<span class="article-label">Dokumentation · Parteigeschichte · SPD — Teil 1 von 4</span>
+<h1>Die dunkle Seite der SPD — <span>Teil 1: Der Pakt vor der Partei</span></h1>
+<p class="hero-subtitle">Zwölf Tage bevor die erste deutsche Arbeiterpartei gegründet wurde, schrieb ihr Reichskanzler-Gegenspieler dem Gründer einen Brief. Was der 1928 veröffentlichte Briefwechsel zwischen Ferdinand Lassalle und Otto von Bismarck zeigt — und was nicht.</p>
+<div class="meta-row">
+<span>Teil 1 von 4</span>
+<span>Lesedauer: ca. 11 Minuten</span>
+<span>Primärquellen: Bismarck-Lassalle-Briefwechsel (Ed. Mayer 1928) · FES-Chronik · Reichstagsprotokolle</span>
+</div>
+</header>
+<!-- STAT GRID -->
+<div class="stat-grid">
+<div class="stat-card">
+<span class="stat-number">23.5.1863</span>
+<span class="stat-label">Gründung des Allgemeinen Deutschen Arbeitervereins (ADAV), Vorläufer der SPD</span>
+</div>
+<div class="stat-card">
+<span class="stat-number">12 Tage</span>
+<span class="stat-label">vor der Gründung schreibt Bismarck erstmals persönlich an Lassalle</span>
+</div>
+<div class="stat-card">
+<span class="stat-number">21</span>
+<span class="stat-label">erhaltene Dokumente des Geheimkontakts, Mai 1863 bis Februar 1864</span>
+</div>
+<div class="stat-card">
+<span class="stat-number">1928</span>
+<span class="stat-label">Jahr der Erstveröffentlichung — 64 Jahre nach den Ereignissen</span>
+</div>
+</div>
+<div class="source-box">
+<strong>Quellen zu den Kennzahlen</strong>
+    Gustav Mayer (Hg.): „Bismarck und Lassalle. Ihr Briefwechsel und ihre Gespräche", Berlin 1928, S. 59–108. Digitalisiert im Marxists Internet Archive (marxists.org/deutsch/referenz/lassalle/bismarck). FES-Chronik der deutschen Sozialdemokratie (library.fes.de).
+  </div>
+<hr class="divider"/>
+<h2>1. Die Gründung: Leipzig, 23. Mai 1863</h2>
+<p>Am 23. Mai 1863 gründeten Ferdinand Lassalle und zwölf Delegierte aus elf Städten im Leipziger „Pantheon" den Allgemeinen Deutschen Arbeiterverein (ADAV) — die erste eigenständige Arbeiterpartei auf deutschem Boden und die unmittelbare Vorläuferorganisation der heutigen SPD. Lassalle wurde mit neun von zehn Stimmen für fünf Jahre zum Präsidenten gewählt.</p>
+<p>Das offizielle Gründungsjahr der SPD ist bis heute 1863 — die Partei selbst zählt in Jubiläumsjahren von diesem Datum. Was in den meisten Darstellungen fehlt, ist der Kontext, in dem diese Gründung stattfand: Zwölf Tage zuvor hatte der preußische Ministerpräsident Otto von Bismarck dem künftigen Parteigründer persönlich geschrieben.</p>
+<div class="source-box">
+<strong>Primärquelle</strong>
+    FES, Chronik der deutschen Sozialdemokratie, Stichtag 23.5.1863 (library.fes.de/fulltext/bibliothek/chronik/band1). SPD.de, Reihe „160 Jahre SPD" (spd.de/160-jahre).
+  </div>
+<hr class="divider"/>
+<h2>2. Der Briefwechsel: Was belegt ist</h2>
+<p>1928 veröffentlichte der Historiker Gustav Mayer erstmals den vollständigen Briefwechsel zwischen Bismarck und Lassalle — 21 Dokumente aus den Jahren 1863 und 1864, ergänzt um Schreiben von Zwischenpersonen wie Polizeipräsident von Bernuth. Die Originale galten damals als Sensation: Der spätere „Eiserne Kanzler" und der Gründer der ersten Arbeiterpartei hatten monatelang direkten Kontakt gehalten — Jahrzehnte bevor Bismarck 1878 mit dem Sozialistengesetz gegen genau diese Bewegung vorging.</p>
+<div class="person-block">
+<div class="person-header">
+<span class="person-name">Ferdinand Lassalle ↔ Otto von Bismarck</span>
+<span class="person-dates">Mai 1863 – Februar 1864</span>
+</div>
+<div class="person-body">
+<div class="timeline-row">
+<span class="timeline-year">11.5.1863</span>
+<p class="timeline-text">Bismarck schreibt Lassalle erstmals: Er wolle „die gutachtlichen Äußerungen unabhängiger Männer" zur „Frage der arbeitenden Klassen" hören. Das Schreiben trägt Bismarcks eigenhändige Unterschrift. <strong>Die Initiative ging von Bismarck aus — zwölf Tage vor der ADAV-Gründung.</strong> <span class="tag tag-belegt">BELEGT</span></p>
+</div>
+<div class="timeline-row">
+<span class="timeline-year">1863</span>
+<p class="timeline-text">In den folgenden Monaten treffen sich beide mehrfach persönlich. Lassalle wirbt für das allgemeine, gleiche und direkte Wahlrecht sowie für staatlich kreditierte Arbeiter-Produktivgenossenschaften. <span class="tag tag-belegt">BELEGT</span></p>
+</div>
+<div class="timeline-row">
+<span class="timeline-year">Ende Jan. 1864</span>
+<p class="timeline-text">Lassalle an Bismarck, wörtlich: „Sie müssen das allgemeine und direkte Wahlrecht vor dem Krieg geben" — mit der Warnung, es wirke danach als Schwächezeichen, andernfalls drohten „Emeuten und Insurrektionen". <span class="tag tag-belegt">BELEGT</span></p>
+</div>
+<div class="timeline-row">
+<span class="timeline-year">31.8.1864</span>
+<p class="timeline-text">Lassalle stirbt an den Folgen eines Duells. Der direkte Kontakt zu Bismarck endet.</p>
+</div>
+<div class="timeline-row">
+<span class="timeline-year">17.9.1878</span>
+<p class="timeline-text">Bismarck bestätigt die Treffen erstmals öffentlich — im Reichstag, in der Debatte über das Sozialistengesetz. Er habe Lassalle „dreimal, meinethalben viermal" getroffen, in „stundenlangen" Gesprächen. Lassalle sei „einer der geistreichsten und liebenswürdigsten Menschen" gewesen, die er je getroffen habe. Zugleich bestreitet Bismarck, es habe sich um politische <em>Verhandlungen</em> gehandelt. <span class="tag tag-belegt">BELEGT</span></p>
+</div>
+</div>
+</div>
+<div class="source-box">
+<strong>Quellen Lassalle/Bismarck</strong>
+    Gustav Mayer (Hg.): „Bismarck und Lassalle", Berlin 1928 — Digitalisat mit Volltext: marxists.org/deutsch/referenz/lassalle/bismarck/briefe (Brief Bismarck an Lassalle, 11.5.1863: „br01"; Brief Lassalle an Bismarck, Ende Januar 1864: „br15"). Bismarcks Reichstagsrede vom 17.9.1878: bismarck-biografie.de/quellen/politische-kommunikation/664. Deutsches Historisches Museum, LeMO: Biografie Ferdinand Lassalle (dhm.de/lemo/biografie/ferdinand-lassalle).
+  </div>
+<hr class="divider"/>
+<h2>3. Cui bono? Zwei Rechnungen, ein Motiv</h2>
+<p>Was beide Seiten von dem Kontakt erwarteten, ist aus den Dokumenten selbst rekonstruierbar. Lassalle wollte das allgemeine Wahlrecht — und hoffte, es eher von einer autoritären Monarchie zu bekommen als von den liberalen Bürgerparteien, die er als Hauptgegner der Arbeiterbewegung ansah. Bismarck wiederum suchte einen Hebel gegen genau diese liberale Bürgerbewegung: eine Arbeiterschaft, die er gegen das liberale Bürgertum ausspielen konnte.</p>
+<p><strong>Was nicht belegt ist:</strong> ein förmliches Abkommen, eine Gegenleistung oder Zahlungen. Wer das behauptet, geht über die Aktenlage hinaus. Ebenso wenig ist Bismarcks Zählung von 1878 — „dreimal, meinethalben viermal" — als exakte Angabe zu nehmen: Sie stammt aus einer politischen Verteidigungsrede, 14 Jahre nach den Ereignissen, in der Bismarck zugleich bestritt, dass es „Verhandlungen" gewesen seien. Das steht in Spannung zum Briefwechsel selbst, in dem Lassalle sehr konkrete politische Forderungen stellt.</p>
+<div class="source-box">
+<strong>Einordnung</strong>
+<span class="tag tag-offen">UMSTRITTEN</span> Die Lesart „Lassalle paktierte mit der Reaktion gegen die Liberalen" wurde bereits von Marx und Engels vertreten und in der DDR-Historiografie verschärft. Die Gegenlesart betont taktisches Werben um ein Wahlrecht, das 1867/71 tatsächlich eingeführt wurde. Beide Deutungen sind mit den Primärquellen vereinbar — keine ist durch sie allein bewiesen.
+  </div>
+<hr class="divider"/>
+<h2>4. Moses Hess: Mitgründer oder Legende?</h2>
+<p>In Darstellungen der frühen Sozialdemokratie taucht gelegentlich der Name Moses Hess als „Mitgründer der SPD" auf. Das lässt sich anhand der Quellenlage nicht halten — aus einem einfachen Grund: Moses Hess starb am 6. April 1875. Die SPD als Partei dieses Namens entstand erst 1890. Auch ihre unmittelbare Vorläuferpartei, die auf dem Gothaer Vereinigungsparteitag gegründete Sozialistische Arbeiterpartei (SAP), wurde erst am 22. Mai 1875 gegründet — sechs Wochen nach Hess' Tod.</p>
+<p>Was tatsächlich belegt ist: Hess war 1863 „Bevollmächtigter des ADAV für Köln" — ein von Lassalle eingesetztes lokales Funktionärsamt, keine Gründungsrolle. In keiner der überlieferten Delegiertenlisten der Leipziger Gründungsversammlung erscheint sein Name. Bekannter ist seine frühere Rolle: Als Mitgründer und Redakteur der Rheinischen Zeitung (1842/43) brachte er Karl Marx und Friedrich Engels zusammen. Engels selbst schrieb 1843 über ihn, er sei „der erste Kommunist der Partei" gewesen.</p>
+<div class="source-box">
+<strong>Richtigstellung</strong>
+<span class="tag tag-falsch">NICHT BELEGT</span> „Mitgründer der SPD" bzw. „Mitgründer des ADAV" — Hess erscheint in keiner Gründerliste; er starb vor der SAP-Gründung 1875 und vor der Umbenennung zur SPD 1890.<br/><br/>
+<span class="tag tag-belegt">BELEGT</span> Bevollmächtigter des ADAV für Köln, 1863 (Deutsche Biographie: deutsche-biographie.de/sfz31857.html). Mitwirkung an der Rheinischen Zeitung, 1842/43 (LVR-Portal Rheinische Geschichte). Engels über Hess: „the first Communist of the party", The New Moral World, 18.11.1843 (marxists.org/archive/marx/works/1843/11/18.htm).
+  </div>
+<hr class="divider"/>
+<h2>5. Von der Spaltung zur Einheit: ADAV, SDAP, SAP, SPD</h2>
+<p>Die deutsche Sozialdemokratie entstand nicht aus einer, sondern aus zwei konkurrierenden Organisationen, die erst nach zwölf Jahren zusammenfanden.</p>
+<table class="data-table">
+<thead>
+<tr>
+<th>Datum</th>
+<th>Ereignis</th>
+<th>Ort / Personen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>23.5.1863</td>
+<td>Gründung des Allgemeinen Deutschen Arbeitervereins (ADAV)</td>
+<td>Leipzig · Ferdinand Lassalle, Präsident</td>
+</tr>
+<tr>
+<td>7.–9.8.1869</td>
+<td>Gründung der Sozialdemokratischen Arbeiterpartei (SDAP), „Eisenacher"</td>
+<td>Eisenach · August Bebel, Wilhelm Liebknecht</td>
+</tr>
+<tr>
+<td>22.–27.5.1875</td>
+<td>Vereinigung von ADAV und SDAP zur Sozialistischen Arbeiterpartei (SAP)</td>
+<td>Gotha · ADAV-Auflösung 28.5.1875</td>
+</tr>
+<tr>
+<td>12.–18.10.1890</td>
+<td>Umbenennung der SAP in Sozialdemokratische Partei Deutschlands (SPD)</td>
+<td>Halle an der Saale</td>
+</tr>
+</tbody>
+</table>
+<div class="source-box">
+<strong>Primärquelle</strong>
+    FES-Chronik der deutschen Sozialdemokratie (library.fes.de/fulltext/bibliothek/chronik/band1). SPD.de: „1890 — Die SAP wird zur SPD" (spd.de/160-jahre/1890-sap-wird-zur-spd). Bundeszentrale für politische Bildung, Lexikon Politisches System: „SPD" (bpb.de).
+  </div>
+<div class="method-note">
+    Das genaue Außerkrafttreten des Sozialistengesetzes (Bismarcks Antwort auf die Partei, die er 1863 mit angestoßen hatte) wird in der Literatur meist auf den 30. September 1890 datiert, nach Ablehnung der Verlängerung durch den Reichstag im Januar 1890. Diese Angabe ist in dieser Recherche nicht abschließend gegengeprüft und wird hier nachrichtlich, nicht als gesicherter Fakt, mitgeteilt.
+  </div>
+<hr class="divider divider-amber"/>
+<!-- CLOSING QUESTION -->
+<div class="closing">
+<p>Die Partei, die 1878 zum ersten Ziel von Bismarcks Unterdrückungsgesetzen wurde, war zwölf Jahre zuvor mit seinem Wissen und auf seine erste Anregung hin gegründet worden. Beide Fakten sind belegt. Was daraus folgt — Instrumentalisierung, gescheiterte Kooptation oder schlichte Machtpolitik auf beiden Seiten — beantworten die Quellen nicht eindeutig.</p>
+<p style="margin-top:1rem;">Teil 2 dieser Serie dokumentiert, was aus dieser Partei in der Novemberrevolution 1918/19 wurde: den Ebert-Groener-Pakt, Gustav Noskes Freikorps-Einsatz und die bis heute ungeklärte Rolle bei der Ermordung von Rosa Luxemburg und Karl Liebknecht.</p>
+</div>
+<div class="series-nav">
+<span>← Teil 1: Der Pakt vor der Partei (dieser Artikel)</span>
+<span>Teil 2: Weimar und der Bluthund — in Vorbereitung →</span>
+</div>
+<hr class="divider"/>
+<!-- SOURCES -->
+<h2>Quellenverzeichnis</h2>
+<h3>Primärquellen</h3>
+<div class="source-box">
+<strong>Briefwechsel und Reden</strong>
+    Gustav Mayer (Hg.): „Bismarck und Lassalle. Ihr Briefwechsel und ihre Gespräche" (Berlin 1928, S. 59–108) · Digitalisat: marxists.org/deutsch/referenz/lassalle/bismarck/briefe · Bismarck, Reichstagsrede 17.9.1878: bismarck-biografie.de/quellen/politische-kommunikation/664-rede-im-reichstag-1878-09-17
+  </div>
+<h3>Parteigeschichte</h3>
+<div class="source-box">
+<strong>Chroniken und Fachlexika</strong>
+    FES, Chronik der deutschen Sozialdemokratie, Band 1 (library.fes.de/fulltext/bibliothek/chronik/band1) · SPD.de, Reihe „160 Jahre" (spd.de/160-jahre) · bpb.de, Lexikon Politisches System: „SPD — Sozialdemokratische Partei Deutschlands" · de.wikipedia.org: Allgemeiner Deutscher Arbeiterverein, Sozialdemokratische Arbeiterpartei (Deutschland)
+  </div>
+<h3>Biografisches</h3>
+<div class="source-box">
+<strong>Nachschlagewerke</strong>
+    Deutsches Historisches Museum, LeMO: Biografie Ferdinand Lassalle (dhm.de/lemo/biografie/ferdinand-lassalle) · FES, Archiv der sozialen Demokratie: Vordenker Ferdinand Lassalle (fes.de/asd/vordenker-innen/ferdinand-lassalle) · Deutsche Biographie: Moses Hess (deutsche-biographie.de/sfz31857.html) · LVR-Portal Rheinische Geschichte: Moses Hess (rheinische-geschichte.lvr.de)
+  </div>
+<div class="method-note">
+<strong>Methodischer Hinweis:</strong> Dieser Artikel dokumentiert belegte Sachverhalte und stellt sie nebeneinander. Er trifft keine Aussage über Motive oder eine abschließende historische Bewertung des Lassalle-Bismarck-Kontakts. Einträge sind als <span class="tag tag-belegt">BELEGT</span>, <span class="tag tag-offen">UMSTRITTEN</span> oder <span class="tag tag-falsch">NICHT BELEGT</span> gekennzeichnet. Leser werden ausdrücklich zur Prüfung der verlinkten Primärquellen eingeladen. Teil 2 dieser Serie (Weimarer Republik) befindet sich in Vorbereitung.
+  </div>
+</main>
+<footer class="site-footer">
+<div class="wrapper">
+<p><a href="/">dunkelfeld.report</a> · Analyse · Systemkritik · Quellenbasiert</p>
+<p style="margin-top:0.5rem;">© 2026 · <a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></p>
+</div>
+</footer>
+</body>
+</html>

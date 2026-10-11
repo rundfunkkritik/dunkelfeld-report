@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Zahlen als Waffe: Methoden, Auftraggeber, aktuelle Fälle — dunkelfeld.report</title>
+<style>
+  :root{
+    --bg:#09090b;
+    --accent:#e8c547;
+    --panel:#1a1a2e;
+    --text:#e6e6e6;
+    --muted:#9a9aa5;
+    --green:#7fbf7f;
+    --orange:#e0954f;
+    --grey:#8a8a92;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:Georgia, 'Times New Roman', serif;
+    font-size:1.1rem;
+    line-height:1.8;
+    margin:0;
+    padding:0 1.2rem 4rem;
+  }
+  .wrap{max-width:720px;margin:0 auto;}
+  .meta{
+    font-family:'Courier New', monospace;
+    color:var(--muted);
+    font-size:0.85rem;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    margin-top:2.5rem;
+  }
+  h1{
+    font-family:Georgia, serif;
+    color:var(--text);
+    font-size:2.1rem;
+    line-height:1.25;
+    margin:0.6rem 0 0.3rem;
+  }
+  .subtitle{
+    color:var(--accent);
+    font-size:1.15rem;
+    font-style:italic;
+    margin-bottom:2rem;
+  }
+  h2{
+    color:var(--accent);
+    font-size:1.5rem;
+    margin-top:3rem;
+    border-bottom:1px solid #2a2a3a;
+    padding-bottom:0.4rem;
+  }
+  h3{
+    color:var(--text);
+    font-size:1.2rem;
+    margin-top:2rem;
+    color:#f0e0a0;
+  }
+  p{margin:1.1rem 0;}
+  a{color:var(--accent);}
+
+  .tag{
+    font-family:'Courier New', monospace;
+    font-size:0.75rem;
+    letter-spacing:0.05em;
+    padding:0.15rem 0.5rem;
+    border-radius:3px;
+    margin-right:0.4rem;
+    display:inline-block;
+  }
+  .tag-belegt{background:rgba(127,191,127,0.15);color:var(--green);border:1px solid var(--green);}
+  .tag-extra{background:rgba(224,149,79,0.15);color:var(--orange);border:1px solid var(--orange);}
+  .tag-offen{background:rgba(138,138,146,0.15);color:var(--grey);border:1px solid var(--grey);}
+  .tag-vt{background:rgba(138,138,146,0.1);color:var(--grey);border:1px solid var(--grey);text-decoration:line-through;}
+
+  .source-box{
+    background:var(--panel);
+    border-left:3px solid var(--accent);
+    padding:1rem 1.2rem;
+    margin:1.5rem 0;
+    font-size:0.98rem;
+  }
+  .source-box .label{
+    font-family:'Courier New', monospace;
+    font-size:0.75rem;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    margin-bottom:0.4rem;
+    display:block;
+  }
+
+  .stat-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1rem;
+    margin:1.5rem 0;
+  }
+  .stat-card{
+    background:var(--panel);
+    padding:1rem;
+    text-align:center;
+    border-radius:4px;
+  }
+  .stat-card .num{
+    font-family:'Courier New', monospace;
+    font-size:1.6rem;
+    color:var(--accent);
+    display:block;
+  }
+  .stat-card .label{
+    font-size:0.85rem;
+    color:var(--muted);
+  }
+
+  .pull-quote{
+    font-size:1.3rem;
+    font-style:italic;
+    color:var(--accent);
+    border-left:3px solid var(--accent);
+    padding-left:1.2rem;
+    margin:2rem 0;
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:1.5rem 0;
+    font-size:0.95rem;
+  }
+  th, td{
+    border-bottom:1px solid #2a2a3a;
+    padding:0.6rem 0.5rem;
+    text-align:left;
+  }
+  th{
+    font-family:'Courier New', monospace;
+    font-size:0.8rem;
+    text-transform:uppercase;
+    color:var(--accent);
+    letter-spacing:0.03em;
+  }
+
+  .toolbox{
+    background:var(--panel);
+    border-radius:6px;
+    padding:1.2rem 1.4rem;
+    margin:1.5rem 0;
+  }
+  .toolbox h3{margin-top:0;}
+  .toolbox ul{margin:0;padding-left:1.2rem;}
+  .toolbox li{margin-bottom:0.9rem;}
+  .toolbox li b{color:var(--accent);font-family:Georgia,serif;}
+
+  .closing{
+    margin-top:3.5rem;
+    padding-top:1.5rem;
+    border-top:1px solid #2a2a3a;
+    font-style:italic;
+    color:var(--muted);
+  }
+
+  .series-nav{
+    font-family:'Courier New', monospace;
+    font-size:0.85rem;
+    color:var(--muted);
+    margin-top:2.5rem;
+    padding-top:1rem;
+    border-top:1px dashed #2a2a3a;
+  }
+
+  footer{
+    margin-top:3rem;
+    font-family:'Courier New', monospace;
+    font-size:0.75rem;
+    color:var(--muted);
+    text-align:center;
+  }
+</style>
+<meta name="description" content="Eine Zahl wirkt neutral. Ein Balkendiagramm wirkt objektiv. Genau das macht Statistik zur wirksamsten Waffe im Meinungskampf: Sie tarnt Interessen als …">
+<meta name="rubrik" content="cat-medien">
+<meta name="kachel-titel" content="Zahlen als Waffe: Methoden, Auftraggeber, aktuelle Fälle">
+<link rel="canonical" href="https://dunkelfeld.report/zahlen-luegen.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zahlen als Waffe: Methoden, Auftraggeber, aktuelle Fälle">
+<meta property="og:description" content="Eine Zahl wirkt neutral. Ein Balkendiagramm wirkt objektiv. Genau das macht Statistik zur wirksamsten Waffe im Meinungskampf: Sie tarnt Interessen als …">
+<meta property="og:url" content="https://dunkelfeld.report/zahlen-luegen.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="meta">Dossier · dunkelfeld.report</div>
+<h1>Zahlen als Waffe</h1>
+<div class="subtitle">Methoden, Auftraggeber und drei aktuelle Fälle – von Cholesterin-Grenzwerten bis zum gestrichenen Klima-Katastrophenszenario</div>
+<p>Eine Zahl wirkt neutral. Ein Balkendiagramm wirkt objektiv. Genau das macht Statistik zur wirksamsten Waffe im Meinungskampf: Sie tarnt Interessen als Fakten. Dieses Dossier zeigt, mit welchen Methoden aus echten Daten verzerrte Eindrücke entstehen – und wer davon profitiert. Und es zeigt etwas, das in der Debatte oft untergeht: den Unterschied zwischen einer <b>manipulierten Zahl</b> und einem <b>Modell</b>.</p>
+<h2>Einführung: Manipulation ist nicht dasselbe wie Modellieren</h2>
+<p>Die meisten Vorwürfe der "Zahlenlüge" verwechseln zwei völlig unterschiedliche Dinge. Eine <b>Manipulation</b> liegt vor, wenn jemand aus mehreren korrekten Darstellungsweisen gezielt die auswählt, die am meisten Eindruck macht – und die anderen verschweigt. Ein <b>Modell</b> oder <b>Szenario</b> dagegen ist von vornherein keine Vorhersage, sondern eine Wenn-Dann-Rechnung: <i>Wenn</i> die Welt sich so entwickelt, <i>dann</i> passiert das. Ein Szenario ist falsch benutzt, wenn man es als Prognose verkauft. Es ist nicht falsch, wenn die zugrunde gelegte Annahme sich später als unwahrscheinlich herausstellt – das ist normale wissenschaftliche Selbstkorrektur.</p>
+<p>Diese Unterscheidung ist der rote Faden dieses Dossiers. Manche der folgenden Fälle sind echte Manipulation (Auswahl der eindrucksvolleren Zahl). Andere sind Methodenstreit unter Fachleuten (unterschiedliche, jeweils vertretbare Berechnungswege). Wieder andere sind eine dritte Kategorie: eine correcte wissenschaftliche Anpassung, die im Nachhinein politisch als "Eingeständnis" umgedeutet wird, obwohl sie keines ist. Alle drei sehen für Laien gleich aus – "die Zahl hat sich geändert". Nur eine Analyse der Methode dahinter zeigt, was tatsächlich passiert ist.</p>
+<div class="pull-quote">Zahlen lügen nicht. Aber wer die Zahl präsentiert, entscheidet, welche von mehreren wahren Zahlen gezeigt wird.</div>
+<h2>Der Methoden-Werkzeugkasten</h2>
+<p>Bevor es um konkrete Fälle geht, die vier häufigsten Techniken, mit denen aus echten Daten ein gewünschter Eindruck wird:</p>
+<div class="toolbox">
+<ul>
+<li><b>Achsen-Trick:</b> Wird die Y-Achse eines Diagramms nicht bei Null begonnen, wirkt ein kleiner Unterschied riesig. Eine Veränderung von 2 % kann so aussehen wie eine Verdopplung.</li>
+<li><b>Mittelwert vs. Median:</b> Das arithmetische Mittel wird von einzelnen Ausreißern stark verzerrt (ein Milliardär in der Nachbarschaft hebt das "Durchschnittseinkommen" der ganzen Straße). Der Median ist robuster, wird aber seltener berichtet, weil er oft die weniger dramatische Zahl ist.</li>
+<li><b>Relative vs. absolute Zahl:</b> "50 % mehr Risiko" klingt dramatisch – wenn das Grundrisiko aber von 0,002 % auf 0,003 % steigt, ist die absolute Veränderung verschwindend klein. Beide Angaben sind korrekt. Nur eine wird meist genannt.</li>
+<li><b>Stichprobenauswahl:</b> Wer befragt wird und wie die Frage formuliert ist, bestimmt das Ergebnis mit. Eine Umfrage unter Gewinnern einer Auktion sagt nichts über den Markt insgesamt aus.</li>
+</ul>
+</div>
+<h2>Historische Fälle: Wer profitiert von welcher Zahl?</h2>
+<h3>Grenzwerte und Pharmaindustrie</h3>
+<p>Die ARD-Dokumentation <i>"Die Story im Ersten: Im Land der Lügen"</i> (2016) zeigte an Cholesterin- und Blutdruckwerten ein wiederkehrendes Muster: Werden Grenzwerte für "gesund" gesenkt, werden aus Gesunden über Nacht Patienten. Risikoforscher Gerd Gigerenzer wies darauf hin, dass viele der zugrunde liegenden Studien selbst interessengeleitet zustande gekommen seien.</p>
+<div class="source-box">
+<span class="label">Beleg · ARD, 11.04.2016</span>
+    Die Dokumentation dokumentiert am Beispiel gesenkter Cholesterin- und Blutdruck-Grenzwerte, wie Grenzwertsenkungen neue Patientengruppen erzeugen – zum Vorteil der Pharmaindustrie. Prof. Gerd Gigerenzer (Risikoforschung) wird als Kronzeuge zitiert.
+    <span class="tag tag-belegt">BELEGT</span>
+</div>
+<h3>Versicherer und Lebenserwartung</h3>
+<p>Dieselbe Dokumentation zeigt, wie Versicherungen bei der Kalkulation von Prämien mit auffällig hohen Lebenserwartungsannahmen rechnen – ein Beispiel dafür, dass dieselbe Zahl ("Lebenserwartung") je nach Interessenlage unterschiedlich berechnet wird: einmal zugunsten möglichst hoher Prämien, einmal zugunsten möglichst alarmierender Rentenprognosen.</p>
+<h3>Demografie und Rente</h3>
+<p>Bevölkerungsprognosen mit Fachkräftemangel- und Rentenlücke-Narrativ folgen einem ähnlichen Muster: Prognosen über Jahrzehnte hängen von Annahmen zu Geburtenrate, Zuwanderung und Erwerbsbeteiligung ab, die selten offengelegt werden, wenn die Schlagzeile bereits feststeht.</p>
+<p class="tag tag-extra" style="display:inline-block;">EXTRAPOLATION</p> <span style="color:var(--muted);font-size:0.95rem;">– strukturelles Muster, im Einzelfall nicht immer eindeutig nachweisbar.</span>
+<h2>Drei aktuelle Fälle (2020–2026)</h2>
+<h3>Corona: Der Übersterblichkeits-Methodenstreit</h3>
+<p>Für Deutschland kursieren für die Jahre 2020/21 mehrere völlig unterschiedliche Zahlen zur Übersterblichkeit – je nachdem, welches Institut mit welcher Methode rechnet:</p>
+<div class="stat-grid">
+<div class="stat-card"><span class="num">~30.000</span><span class="label">ifo-Institut / De Nicola, Kauermann, Höhle</span></div>
+<div class="stat-card"><span class="num">~70.000</span><span class="label">Statistisches Bundesamt</span></div>
+<div class="stat-card"><span class="num">~120.000</span><span class="label">WHO-Schätzmethode</span></div>
+</div>
+<div class="source-box">
+<span class="label">Beleg · RWI Essen (Leibniz-Institut für Wirtschaftsforschung)</span>
+    Das RWI kam zu dem Schluss, dass die auffällig hohe WHO-Zahl größtenteils Folge einer ungewöhnlichen Berechnungsmethode war und für Deutschland vermutlich deutlich zu hoch lag. Übersterblichkeit sei zudem kein alleiniger Maßstab für den Vergleich von Corona-Maßnahmen zwischen Ländern, da auch Faktoren wie die Altersstruktur hineinspielen.
+    <span class="tag tag-belegt">BELEGT</span>
+</div>
+<p>Wichtig: Hier steht keine Institution im Verdacht, Zahlen erfunden zu haben. Alle drei Werte sind mit nachvollziehbaren, veröffentlichten Methoden berechnet – sie beantworten nur leicht unterschiedliche Fragen (rohe Sterbefallzahlen vs. altersstandardisierte Raten vs. internationale Vergleichsmethodik). Das Beispiel zeigt exemplarisch, wie sehr die Methode das Ergebnis bestimmt, bevor überhaupt jemand etwas "manipuliert".</p>
+<h3>Impfung: 95 % Wirksamkeit – korrekt und irreführend zugleich</h3>
+<p>Die vielzitierten "95 % Wirksamkeit" der ersten Corona-Impfstoffe waren eine relative Risikoreduktion (RRR). In der Zulassungsstudie von Biontech/Pfizer erkrankten 8 von 21.720 Geimpften an COVID-19, gegenüber 162 von 21.728 Ungeimpften. Die absolute Risikoreduktion (ARR) liegt bei rund 0,7 Prozentpunkten.</p>
+<table>
+<tr><th>Kennzahl</th><th>Wert</th><th>Bedeutung</th></tr>
+<tr><td>Relative Risikoreduktion (RRR)</td><td>95 %</td><td>Verhältnis der Erkrankungsraten zwischen den Gruppen</td></tr>
+<tr><td>Absolute Risikoreduktion (ARR)</td><td>~0,7 Prozentpunkte</td><td>Tatsächlicher Unterschied im Erkrankungsrisiko der gesamten Gruppe</td></tr>
+</table>
+<div class="source-box">
+<span class="label">Beleg · RWI "Unstatistik des Monats" / The Lancet Microbe, 20.04.2021</span>
+    Beide Statistiker-Teams erklärten öffentlich den Unterschied zwischen RRR und ARR bei den Wirksamkeitsangaben der Corona-Impfstoffe. Beide Werte sind rechnerisch korrekt – kommuniziert wurde durchgehend die eindrucksvollere relative Zahl.
+    <span class="tag tag-belegt">BELEGT</span>
+</div>
+<p>Das ist der Lehrbuchfall für den "Relative-vs.-absolute-Zahl"-Trick aus dem Werkzeugkasten oben – nur dass er hier nicht von einer einzelnen interessierten Partei stammt, sondern zur Standardpraxis der gesamten biomedizinischen Kommunikation gehört (auch bei anderen Impfstoffen, Medikamentenstudien etc.).</p>
+<h3>Klima: Das gestrichene Katastrophenszenario RCP8.5</h3>
+<p>Im Frühjahr 2026 hat das für Klimaszenarien zuständige ScenarioMIP-Team das seit 2013 dominierende Hoch-Emissions-Szenario RCP8.5 (bzw. seinen Nachfolger SSP5-8.5) offiziell als unplausibel eingestuft. Das Szenario war nie als Vorhersage gedacht, sondern als bewusst extreme Wenn-Dann-Rechnung für den Fall eines fortgesetzten globalen Kohle-Booms – der real nicht eingetreten ist.</p>
+<div class="source-box">
+<span class="label">Beleg · ScenarioMIP / Science Media Center, Mai 2026</span>
+    Klimaforscher betonen, dass die Neubewertung keine Rücknahme von Klimawarnungen bedeutet, sondern die reguläre wissenschaftliche Aktualisierung eines Szenarios an neue ökonomische und energiepolitische Trends.
+    <span class="tag tag-belegt">BELEGT</span>
+</div>
+<div class="source-box">
+<span class="label">Instrumentalisierung</span>
+    Politische Akteure, darunter die US-Regierung, deuteten die Streichung öffentlich als Eingeständnis, der Weltklimarat habe "seine eigenen Prognosen" für falsch erklärt. Klimaforscher widersprachen dem als politisch motivierte Fehldarstellung: RCP8.5 sei nie eine Prognose gewesen, sondern ein Extremszenario zur Risikoabschätzung.
+    <span class="tag tag-vt">VT-WIDERLEGT</span>
+</div>
+<p>Dieser Fall ist die Reinform des Unterschieds aus der Einführung: Ein Modell wurde korrekt an neue Annahmen angepasst – ein legitimer, alltäglicher Vorgang in der Wissenschaft. Erst die politische Umdeutung dieser Anpassung zu einem "Eingeständnis" macht daraus eine Zahlen-Manipulation zweiter Ordnung: nicht die Wissenschaft manipuliert hier, sondern die Interpretation der Wissenschaft.</p>
+<h2>Systemmuster</h2>
+<p><span class="tag tag-extra">EXTRAPOLATION</span> Über alle fünf Fälle hinweg zeigt sich ein Muster: Die verzerrende Wirkung entsteht selten durch erfundene Zahlen, sondern fast immer durch die <b>Auswahl</b> unter mehreren korrekten Darstellungen – und durch das Verschweigen der Methode, die zu einer bestimmten Zahl geführt hat. Wer die Methode kennt, kann die Zahl einordnen. Wer nur die Schlagzeile kennt, ist der Auswahl der Zahl ausgeliefert.</p>
+<div class="closing">
+<p>Offen bleibt: Wie viele der hier genannten Fälle sind bewusste Auswahl der eindrucksvolleren Zahl – und wie viele sind schlicht die Trägheit einer Kommunikationskultur, die komplexe Methodik scheut? Und: Wer profitiert strukturell am meisten davon, dass diese Unterscheidung in der öffentlichen Debatte kaum gemacht wird?</p>
+</div>
+<div class="series-nav">
+    Teil einer laufenden Recherche zu Statistik, Meinungsforschung und Faktenchecker-Ökonomie auf dunkelfeld.report.
+  </div>
+<footer>dunkelfeld.report · Beleg-vor-Motiv-Prinzip</footer>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

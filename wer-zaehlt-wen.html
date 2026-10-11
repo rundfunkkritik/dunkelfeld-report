@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wer zählt wen? Der blinde Fleck in Deutschlands Hasskriminalitäts-Statistik — dunkelfeld.report</title>
+<style>
+  :root{
+    --bg:#09090b; --accent:#e8c547; --box:#1a1a2e;
+    --green:#5fbf7a; --orange:#e8a147; --grey:#8a8a8a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:#e4e4e7; font-family:Georgia,'Times New Roman',serif;
+    font-size:1.1rem; line-height:1.8; margin:0; padding:0;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:2.5rem 1.25rem 5rem;}
+  .kicker{
+    font-family:'Courier New',monospace; color:var(--accent); font-size:0.85rem;
+    letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.5rem;
+  }
+  h1{font-family:Georgia,serif; font-size:2.1rem; line-height:1.25; margin:0 0 1rem; color:#f4f4f5;}
+  .subtitle{color:#b8b8bd; font-size:1.05rem; margin-bottom:2rem; font-style:italic;}
+  .meta{
+    font-family:'Courier New',monospace; font-size:0.8rem; color:var(--grey);
+    border-top:1px solid #2a2a35; border-bottom:1px solid #2a2a35;
+    padding:0.75rem 0; margin-bottom:2.5rem; display:flex; gap:1.5rem; flex-wrap:wrap;
+  }
+  p{padding-bottom:1.2rem;}
+  h2{
+    font-size:1.4rem; color:var(--accent); margin:2.5rem 0 1rem;
+    font-family:Georgia,serif; border-bottom:1px solid #2a2a35; padding-bottom:0.5rem;
+  }
+  h3{font-size:1.15rem; color:#f4f4f5; margin:1.8rem 0 0.8rem;}
+  .source-box{
+    background:var(--box); border-left:3px solid var(--accent);
+    padding:1.2rem 1.4rem; margin:1.5rem 0; border-radius:0 4px 4px 0;
+  }
+  .source-box .src-label{
+    font-family:'Courier New',monospace; font-size:0.75rem; color:var(--accent);
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem; display:block;
+  }
+  .source-box p{padding-bottom:0.5rem; font-size:1rem;}
+  .source-box cite{
+    display:block; font-family:'Courier New',monospace; font-size:0.78rem;
+    color:var(--grey); font-style:normal; margin-top:0.5rem;
+  }
+  .tag{
+    font-family:'Courier New',monospace; font-size:0.72rem; font-weight:bold;
+    padding:0.2rem 0.55rem; border-radius:3px; letter-spacing:0.05em;
+    display:inline-block; margin-right:0.4rem; margin-bottom:0.3rem;
+  }
+  .tag-belegt{background:rgba(95,191,122,0.15); color:var(--green); border:1px solid var(--green);}
+  .tag-belegt1{background:rgba(95,191,122,0.08); color:#8fcf9f; border:1px solid #3a6a45;}
+  .tag-extra{background:rgba(232,161,71,0.15); color:var(--orange); border:1px solid var(--orange);}
+  .tag-offen{background:rgba(138,138,138,0.15); color:var(--grey); border:1px solid var(--grey);}
+
+  .person-card{
+    display:flex; gap:1rem; border:1px solid #2a2a35; border-radius:6px;
+    padding:1.2rem 1.4rem; margin:1.3rem 0; background:#111116; align-items:flex-start;
+  }
+  .person-card .avatar{
+    width:42px; height:42px; border-radius:50%; background:var(--accent);
+    color:#09090b; font-family:'Courier New',monospace; font-weight:bold;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1rem;
+  }
+  .person-card h3{margin:0 0 0.3rem;}
+  .person-card .role{font-family:'Courier New',monospace; font-size:0.8rem; color:var(--grey); margin-bottom:0.6rem;}
+
+  .timeline{margin:2rem 0; border-left:2px solid var(--accent); padding-left:1.5rem;}
+  .timeline-item{margin-bottom:1.5rem; position:relative;}
+  .timeline-item::before{
+    content:''; position:absolute; left:-1.56rem; top:0.4rem;
+    width:8px; height:8px; border-radius:50%; background:var(--accent);
+  }
+  .timeline-date{
+    font-family:'Courier New',monospace; font-size:0.8rem; color:var(--accent); display:block;
+    margin-bottom:0.3rem;
+  }
+
+  .pull-quote{
+    font-size:1.3rem; font-style:italic; color:#f4f4f5; margin:2rem 0;
+    padding:0 1rem; border-left:3px solid var(--accent); line-height:1.5;
+  }
+
+  table{width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:0.95rem;}
+  th,td{border:1px solid #2a2a35; padding:0.6rem 0.8rem; text-align:left;}
+  th{background:var(--box); color:var(--accent); font-family:'Courier New',monospace; font-size:0.8rem;}
+
+  .open-question{
+    font-style:italic; color:#b8b8bd; margin-top:3rem; padding-top:1.5rem;
+    border-top:1px solid #2a2a35; font-size:1.05rem;
+  }
+
+  .series-nav{
+    margin-top:3.5rem; padding-top:1.5rem; border-top:1px solid #2a2a35;
+    font-family:'Courier New',monospace; font-size:0.85rem; color:var(--grey);
+  }
+  .series-nav a{color:var(--accent); text-decoration:none;}
+  .series-nav a:hover{text-decoration:underline;}
+
+  a{color:var(--accent);}
+
+  .legend{
+    font-family:'Courier New',monospace; font-size:0.72rem; color:var(--grey);
+    margin:1rem 0 2rem; line-height:2;
+  }
+
+  table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.95rem;} th,td{border:1px solid #2a2a35;padding:0.5rem;text-align:left;}
+  blockquote{background:var(--box);border-left:3px solid var(--accent);margin:1.5rem 0;padding:1rem 1.4rem;font-style:italic;}
+  .footnote{font-size:0.85rem;color:#a1a1aa;}
+</style>
+<meta name="description" content="Rechts, links, ausländisch, islamistisch – Deutschland hat gleich mehrere parallele Zählsysteme für politisch motivierte Gewalt. Ein genauer Blick zeigt: …">
+<meta name="rubrik" content="cat-gewalt">
+<meta name="kachel-titel" content="Wer zählt wen? Der blinde Fleck in Deutschlands Hasskriminalitäts-Statistik">
+<link rel="canonical" href="https://dunkelfeld.report/wer-zaehlt-wen.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wer zählt wen? Der blinde Fleck in Deutschlands Hasskriminalitäts-Statistik">
+<meta property="og:description" content="Rechts, links, ausländisch, islamistisch – Deutschland hat gleich mehrere parallele Zählsysteme für politisch motivierte Gewalt. Ein genauer Blick zeigt: …">
+<meta property="og:url" content="https://dunkelfeld.report/wer-zaehlt-wen.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="kicker">dunkelfeld.report · Dokumentation</div>
+<h1>Wer zählt wen? Der blinde Fleck in Deutschlands Hasskriminalitäts-Statistik</h1>
+<p class="subtitle">Rechts, links, ausländisch, islamistisch – Deutschland hat gleich mehrere parallele Zählsysteme für politisch motivierte Gewalt. Ein genauer Blick zeigt: Ideologische Einstufung und statistische Kategorie laufen oft auseinander – mit Folgen für das öffentliche Bild.</p>
+<h2>Der Fakt zuerst</h2>
+<p>2025 registrierte das Bundeskriminalamt 85.837 politisch motivierte Straftaten – der höchste Stand seit Einführung der Statistik im Jahr 2001. Davon entfielen 42.544 auf die Kategorie "rechts", 1.598 davon Gewaltdelikte. Der Verfassungsschutz schätzt parallel dazu ein islamistisches Personenpotenzial von 28.645 Menschen, davon 9.110 als gewaltorientiert eingestuft. Wer diese beiden Zahlen nebeneinanderlegt und vergleicht, macht einen methodischen Fehler: Es handelt sich um zwei völlig unterschiedliche Erhebungsarten, die in der öffentlichen Debatte trotzdem ständig gegeneinander ausgespielt werden.</p>
+<h2>Drei Systeme, eine Verwechslung</h2>
+<p>Die polizeiliche PMK-Statistik (Politisch motivierte Kriminalität) zählt begangene Straftaten und unterscheidet dabei nach der Motivation der Täter: rechts, links, ausländische Ideologie, religiöse Ideologie. Der Verfassungsschutzbericht dagegen liefert keine Straftatenzählung, sondern eine Gefährdungseinschätzung – wie viele Personen einer bestimmten Szene zugerechnet werden, unabhängig davon, ob sie je straffällig wurden. Beide Systeme beantworten unterschiedliche Fragen. Wer die Islamismus-Zahl des Verfassungsschutzes gegen die PMK-rechts-Zahl der Polizei aufrechnet, vergleicht Äpfel mit Aktenordnern.</p>
+<p>Dazu kommt ein drittes System: zivilgesellschaftliche Meldestellen, wie sie etwa Nordrhein-Westfalen aufgebaut hat. Fünf getrennte Anlaufstellen erfassen dort Vorfälle unterhalb der Strafbarkeitsgrenze – Antisemitismus, Queerfeindlichkeit, antimuslimischer Rassismus, Antiziganismus sowie weitere Rassismusformen. Diese Stellen sollen das sogenannte Dunkelfeld sichtbar machen, das die Polizeistatistik naturgemäß nicht erfasst.</p>
+<h2>Der auffällige Blindspot</h2>
+<p>Bemerkenswert an der NRW-Architektur: Für islamistisch oder religiös motivierte Vorfälle gegen Dritte existiert keine vergleichbare eigene Meldestelle. Ob das an mangelnder Nachfrage, politischer Priorisierung oder schlicht historischer Entstehung der einzelnen Stellen liegt, lässt sich aus den öffentlich verfügbaren Quellen nicht abschließend klären – der strukturelle Unterschied selbst ist aber dokumentiert und nachprüfbar.</p>
+<h2>Der Fall der Grauen Wölfe: Eingestuft, aber nicht gezählt</h2>
+<p>Ein besonders instruktives Beispiel für das Auseinanderfallen von Einstufung und Statistik liefert die türkisch-nationalistische Ülkücü-Bewegung, bekannt als "Graue Wölfe". Der Verfassungsschutz stuft sie explizit als rechtsextreme Organisation ein: rassistisch, gegen Kurden, Armenier, Griechen und Juden gerichtet, mit dem Fernziel eines pantürkischen Großreichs. Rund 12.900 Anhänger werden ihr in Deutschland zugerechnet, davon 10.500 organisiert in den Dachverbänden ADÜTDF, ATIB und ANF.</p>
+<p>Trotz dieser eindeutigen ideologischen Einstufung als rechtsextrem tauchen Straftaten aus diesem Umfeld nicht in der vielzitierten PMK-rechts-Zahl auf. Sie laufen stattdessen unter der eigenen Kategorie "ausländische Ideologie" – einer dritten Schublade neben rechts und links, definiert über die nichtdeutsche Prägung der Täter, nicht über deren Ideologie. Eine als rechtsextrem geltende Bewegung fließt damit statistisch nicht in die Zahl ein, mit der öffentlich meist über "Rechtsextremismus in Deutschland" gesprochen wird.</p>
+<p>Zusätzlich bemerkenswert: Der Dachverband ATİB ist Gründungsmitglied und mitgliederstärkster Verband im Zentralrat der Muslime (ZMD) – einer Organisation, die als offizieller Ansprechpartner für Bundesministerien fungiert, etwa bei der Islamkonferenz im Bundesinnenministerium. Eine vom Verfassungsschutz als rechtsextrem eingestufte Struktur sitzt damit im Vorstand eines staatlich anerkannten Dialogpartners.</p>
+<h2>Fairnessbox</h2>
+<p>Befürworter der Meldestellen-Struktur argumentieren, die Polizeistatistik bilde nur "die Spitze des Eisbergs": Diskriminierungserfahrungen würden kaum angezeigt, das Dunkelfeld sei erheblich größer als das Hellfeld. Die zusätzliche Erfassung solle kein Ersatz für Strafverfolgung sein, sondern ein ergänzendes Lagebild liefern. Kritiker, etwa aus der AfD-Fraktion NRW, wenden ein, dass nichtstaatliche Stellen Vorfälle nach intransparenten Kriterien erfassen, oft ohne Verifikation und ohne Anhörung der Beschuldigten – ein Verfahren, das rechtsstaatlichen Mindeststandards nicht entspreche. Beide Seiten haben in der Sache einen berechtigten Kern: Dunkelfeld-Phänomene existieren nachweislich, gleichzeitig ist eine Datenerhebung ohne rechtsstaatliches Verfahren methodisch angreifbar.</p>
+<h2>Kurswechsel-Fazit</h2>
+<p>Bevor über "mehr" oder "weniger" Gewalt aus dieser oder jener Richtung gestritten wird, lohnt der Blick auf die Zählweise selbst. Drei Systeme – PMK-Statistik, Verfassungsschutz-Gefährdungseinschätzung, zivilgesellschaftliche Meldestellen – beantworten unterschiedliche Fragen mit unterschiedlichen Methoden. Wer sie vermischt, erzeugt Scheingenauigkeit. Die eigentliche Forderung müsste lauten: eine transparente, einheitliche Kategorisierung, die Ideologie und Herkunft sauber trennt – und die auch für Bewegungen wie die Grauen Wölfe die tatsächliche ideologische Zuordnung statistisch sichtbar macht, statt sie in einer dritten Schublade verschwinden zu lassen.</p>
+<h2>Quellen</h2>
+<ul>
+<li>Bundeskriminalamt: Pressemitteilung PMK-Jahresbericht 2025, 09.06.2026</li>
+<li>Verfassungsschutzbericht 2025 (Islamismus-Potenzial)</li>
+<li>Verfassungsschutzberichte der Länder (Ülkücü-Bewegung/Graue Wölfe)</li>
+<li>Land NRW, Ministerium für Kinder, Jugend, Familie, Gleichstellung, Flucht und Integration: Meldestellen-Übersicht</li>
+<li>Bundestags-Drucksache 20/8317 (ZMD-Struktur)</li>
+<li>Mediendienst Integration: Migration und Kriminalität, 2025/2026</li>
+</ul>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPD und die Macht: Vom Amt in den Aufsichtsrat — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --amber: #e8c547;
+    --text: #d4d4d8;
+    --text-dim: #8a8a92;
+    --box-bg: #1a1a2e;
+    --green: #6fbf73;
+    --orange: #e08a3c;
+    --grey: #7a7a82;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 20px 80px;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  h1 {
+    font-size: 32px;
+    line-height: 1.25;
+    color: #f4f4f5;
+    margin: 0 0 8px;
+  }
+  .subtitle {
+    font-size: 18px;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 32px;
+  }
+  h2 {
+    font-size: 22px;
+    color: var(--amber);
+    border-bottom: 1px solid #2a2a35;
+    padding-bottom: 10px;
+    margin-top: 56px;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 17px;
+    color: #f4f4f5;
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+  p { margin: 0 0 16px; }
+  a { color: var(--amber); }
+
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-right: 6px;
+    display: inline-block;
+    font-weight: bold;
+  }
+  .tag-belegt { background: rgba(111,191,115,0.15); color: var(--green); border: 1px solid rgba(111,191,115,0.4); }
+  .tag-umstritten { background: rgba(224,138,60,0.15); color: var(--orange); border: 1px solid rgba(224,138,60,0.4); }
+  .tag-offen { background: rgba(122,122,130,0.15); color: var(--grey); border: 1px solid rgba(122,122,130,0.4); }
+  .tag-vt { background: rgba(122,122,130,0.1); color: var(--grey); border: 1px solid rgba(122,122,130,0.3); text-decoration: line-through; }
+
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--amber);
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 15px;
+  }
+  .source-box .src {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 8px;
+    display: block;
+  }
+
+  .quote-block {
+    font-size: 19px;
+    font-style: italic;
+    color: #f4f4f5;
+    border-left: 3px solid var(--amber);
+    padding: 8px 0 8px 20px;
+    margin: 28px 0;
+  }
+  .quote-block .source {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-style: normal;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 10px;
+  }
+
+  .timeline-item {
+    margin-bottom: 22px;
+    padding-left: 18px;
+    border-left: 2px solid #2a2a35;
+  }
+  .timeline-item .year {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--amber);
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid #2a2a35;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .person-card {
+    background: var(--box-bg);
+    border-radius: 4px;
+    padding: 18px 20px;
+    margin: 20px 0;
+  }
+  .person-card .name {
+    color: #f4f4f5;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+  .person-card .role {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+
+  .open-questions {
+    font-style: italic;
+    color: var(--text-dim);
+    margin-top: 12px;
+  }
+  .open-questions li { margin-bottom: 10px; }
+
+  .series-nav {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid #2a2a35;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  footer {
+    margin-top: 40px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    text-align: center;
+  }
+</style>
+<meta name="description" content="Zwei sozialdemokratische Bundeskanzler, zwei Verhältnisse zu Russland. Der eine verhandelte auf Regierungsebene, aus historischer Verantwortung begründet, …">
+<meta name="rubrik" content="cat-staat">
+<meta name="kachel-titel" content="SPD und die Macht: Vom Amt in den Aufsichtsrat">
+<link rel="canonical" href="https://dunkelfeld.report/spd-wirtschaft-und-macht.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SPD und die Macht: Vom Amt in den Aufsichtsrat">
+<meta property="og:description" content="Zwei sozialdemokratische Bundeskanzler, zwei Verhältnisse zu Russland. Der eine verhandelte auf Regierungsebene, aus historischer Verantwortung begründet, …">
+<meta property="og:url" content="https://dunkelfeld.report/spd-wirtschaft-und-macht.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+</head>
+<body>
+<div class="wrap">
+<div class="meta">dunkelfeld.report · serie: spd und die macht · teil 1</div>
+<h1>Vom Amt in den Aufsichtsrat</h1>
+<div class="subtitle">Wirtschaftliche Verflechtung nach der Macht — und ein Kontrast, den kaum jemand zieht</div>
+<p>Zwei sozialdemokratische Bundeskanzler, zwei Verhältnisse zu Russland. Der eine verhandelte auf Regierungsebene, aus historischer Verantwortung begründet, nie privat entlohnt. Der andere wechselte binnen Wochen vom Kanzleramt auf die Gehaltsliste eines russischen Staatskonzerns. Dieser Text stellt beide Fälle nebeneinander — ohne Wertung, mit Belegen.</p>
+<h2>I. Der Kontrast: Helmut Schmidt</h2>
+<p>Schmidt vertrat zeitlebens die Linie, Deutschland trage aus historischer Schuld eine besondere Verantwortung gegenüber Russland und den anderen Nachfolgestaaten der Sowjetunion. Er würdigte wiederholt, dass die Rote Armee 1989 in den Kasernen blieb und sich nach dem Mauerfall friedlich zurückzog — daraus leitete er eine bleibende Verpflichtung zum Dialog ab.</p>
+<span class="tag tag-belegt">BELEGT</span>
+<div class="quote-block">
+    „Die Politik des Westens basiert auf einem großen Irrtum: dass es ein Volk der Ukrainer gäbe, eine nationale Identität."
+    <span class="source">Helmut Schmidt, Bild-Zeitung, Mai 2014 — bestätigt durch Neue Osnabrücker Zeitung (13.3.2022) und offizielle Stellungnahme der Bundeskanzler-Helmut-Schmidt-Stiftung</span>
+</div>
+<p>Die Stiftung selbst ordnet das kritisch ein: Schmidt habe die Krim-Annexion 2014 gerechtfertigt und gesagt, er traue Putin einen Krieg nicht zu — eine Fehleinschätzung, die die Stiftung offen als solche benennt. Zugleich setzte Schmidt durchgehend auf multilaterale Verhandlungen nach dem Vorbild der KSZE-Konferenz von Helsinki 1975, nicht auf Alleingänge oder wirtschaftliche Privatinteressen.</p>
+<div class="source-box">
+    Entscheidend für diesen Artikel ist nicht, ob Schmidts Russland-Einschätzung im Rückblick richtig war — das war sie in Teilen nachweislich nicht. Entscheidend ist die <strong>Form</strong>: Schmidt betrieb Russland-Politik als Staatsmann, öffentlich, unbezahlt, in Reden und Zeitungsinterviews. Er saß nie in einem Aufsichtsrat eines russischen Staatskonzerns.
+    <span class="src">Quelle: Bundeskanzler-Helmut-Schmidt-Stiftung, Stellungnahme 13.3.2022 · Atlantik-Brücke e.V., "Von Helmut Schmidt lernen"</span>
+</div>
+<h2>II. Der Fall Schröder</h2>
+<div class="person-card">
+<div class="name">Gerhard Schröder</div>
+<div class="role">Bundeskanzler 1998–2005 (SPD)</div>
+<p style="margin:0;">Wenige Wochen nach seinem Ausscheiden aus dem Kanzleramt übernahm Schröder den Aufsichtsratsvorsitz von Nord Stream AG — jener Gazprom-Tochter, deren Pipeline-Deal er selbst noch als Kanzler mit Wladimir Putin besiegelt hatte.</p>
+</div>
+<span class="tag tag-belegt">BELEGT</span>
+<div class="timeline-item">
+<div class="year">2005</div>
+    Kurz vor dem Ende seiner Kanzlerschaft unterzeichnet Schröder den Pipeline-Vertrag mit Putin. Wenige Wochen nach dem Ausscheiden aus dem Amt übernimmt er den Aufsichtsratsvorsitz der Nord Stream AG.
+  </div>
+<div class="timeline-item">
+<div class="year">2011</div>
+    Nord Stream 1 geht in Betrieb. Schröder bleibt Vorsitzender des Aktionärsausschusses.
+  </div>
+<div class="timeline-item">
+<div class="year">AB 2017</div>
+    Schröder wird Aufsichtsratsvorsitzender bei Rosneft, dem russischen Staats-Ölkonzern. Wiederwahl im Juni 2021.
+  </div>
+<div class="timeline-item">
+<div class="year">2020</div>
+    Nach der Vergiftung des Kreml-Kritikers Alexej Nawalny weigert sich Schröder, eine russische Verantwortung anzuerkennen. Kritik aus der eigenen Partei und von CDU-Politiker Norbert Röttgen.
+  </div>
+<div class="timeline-item">
+<div class="year">FEBRUAR–MAI 2022</div>
+    Kurz vor dem russischen Angriff auf die Ukraine wird Schröder für den Gazprom-Aufsichtsrat nominiert. Im New-York-Times-Interview sagt er, er glaube nicht, dass Putin den Befehl zum Massaker von Butscha gegeben habe: „I don't do mea culpa." Mehrere Mitarbeiter seines Büros kündigen daraufhin.
+  </div>
+<div class="timeline-item">
+<div class="year">MAI 2022</div>
+    Die großen Bundestagsfraktionen entziehen Schröder Büro und Personal. Das EU-Parlament fordert mit 575 Stimmen eine Sanktionsliste-Aufnahme (nicht bindend). Schröder lehnt die Gazprom-Nominierung ab und tritt bei Rosneft zurück — bleibt aber Mitglied des Rosneft-Verwaltungsrats.
+  </div>
+<div class="source-box">
+<span class="tag tag-belegt">BELEGT</span> Die New York Times bezifferte Schröders Gesamtvergütung aus russischen Staatskonzern-Mandaten auf mehrere hunderttausend Euro jährlich. Genaue Zahlen sind nicht vollständig öffentlich einsehbar.
+    <span class="src">Quelle: euronews (19./20.5.2022), BBC (2020), RFE/RL (25.5.2022)</span>
+</div>
+<h3>Die Pointe</h3>
+<p>Schröder selbst zog nie eine Grenze zwischen Staatsamt und späterem Privatgeschäft, sondern begründete seine Rolle als Vermittler: „Ich vertrete das Unternehmen nach außen und beaufsichtige Managemententscheidungen." Der entscheidende Unterschied zu Schmidts Ansatz liegt nicht in der Haltung zu Russland selbst — beide Kanzler suchten den Dialog — sondern darin, <strong>wer dafür bezahlt wurde und wer nicht</strong>.</p>
+<h2>III. Cum-Ex und das Hamburger Gedächtnis</h2>
+<div class="person-card">
+<div class="name">Olaf Scholz</div>
+<div class="role">Erster Bürgermeister Hamburg 2011–2018 (SPD), später Bundeskanzler</div>
+<p style="margin:0;">Im Zentrum: die Frage, ob Scholz als Hamburger Bürgermeister Einfluss auf eine Steuerentscheidung zugunsten der Privatbank M.M.Warburg genommen hat, die in den Cum-Ex-Aktienhandel verwickelt war.</p>
+</div>
+<span class="tag tag-umstritten">UMSTRITTEN</span>
+<p>Der Hamburger Cum-Ex-Untersuchungsausschuss befasste sich mit mehreren Treffen zwischen Scholz und Warburg-Bankier Christian Olearius in den Jahren 2016–2017, während die Finanzbehörde über eine Steuerrückforderung in Millionenhöhe gegen die Bank entschied. Scholz gab wiederholt an, sich an Gesprächsinhalte nicht erinnern zu können — ein Umstand, den Olearius’ eigene, sichergestellte Tagebücher konterkarieren, da sie detaillierte Gesprächsnotizen enthalten.</p>
+<div class="source-box">
+<span class="tag tag-offen">OFFEN</span> Eine direkte, beweisbare Einflussnahme Scholz’ auf die Steuerentscheidung ist bis heute nicht gerichtlich festgestellt. Der Untersuchungsausschuss endete ohne strafrechtliche Konsequenz gegen Scholz selbst. Die auffällige Erinnerungslücke bei gleichzeitig dokumentierten Treffen bleibt der eigentliche Streitpunkt.
+    <span class="src">Quelle: Hamburgischer Cum-Ex-Untersuchungsausschuss, Abschlussbericht; Olearius-Tagebücher (NDR/Süddeutsche Zeitung, gerichtlich verwertet)</span>
+</div>
+<h2>Gegenüberstellung</h2>
+<table>
+<tr><th>Fall</th><th>Ebene</th><th>Belegstatus</th></tr>
+<tr><td>Schmidt — Russland-Dialog</td><td>Staatlich, öffentlich, unbezahlt</td><td>BELEGT</td></tr>
+<tr><td>Schröder — Nord Stream/Rosneft</td><td>Privat, nach dem Amt, bezahlt</td><td>BELEGT</td></tr>
+<tr><td>Scholz — Warburg/Cum-Ex</td><td>Amtlich, Einflussnahme vermutet</td><td>UMSTRITTEN / OFFEN</td></tr>
+</table>
+<h2>Offene Fragen</h2>
+<ul class="open-questions">
+<li>Warum wurde Schröders Wechsel vom Kanzleramt in den Gazprom-Konzern in der SPD über Jahre kaum parteiintern sanktioniert — erst der Angriffskrieg 2022 erzwang eine Reaktion?</li>
+<li>Wäre eine Karenzzeit-Regelung für ehemalige Regierungschefs, wie sie seit 2015 für Bundesminister gilt, auf Schröders Fall überhaupt anwendbar gewesen?</li>
+<li>Was genau wurde in den Gesprächen zwischen Scholz und Olearius besprochen — und warum widersprechen sich Erinnerungslücke und dokumentierte Tagebucheinträge so deutlich?</li>
+</ul>
+<p style="margin-top:24px; font-style: italic; color: var(--text-dim);">Alle Angaben in diesem Artikel beruhen auf öffentlich zugänglichen Primärquellen, Parlamentsberichten und internationaler Berichterstattung. Leser werden ausdrücklich zur eigenständigen Prüfung der genannten Quellen eingeladen.</p>
+<div class="series-nav">
+<a href="spd-teil1.html">← Vorherige Serie: SPD und NS-Kontinuität</a>
+<a href="index.html">dunkelfeld.report — Übersicht</a>
+</div>
+<footer>dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.</footer>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

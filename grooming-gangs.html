@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kajal: Was ein Fall in Nürnberg über das deutsche Dunkelfeld verrät — dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 2rem 1.25rem 5rem;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    color: #e8c547;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+    color: #f4f4f5;
+  }
+  .subtitle {
+    font-size: 1.2rem;
+    color: #a1a1aa;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #71717a;
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+    padding: 0.75rem 0;
+    margin-bottom: 2rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  h2 {
+    font-family: 'Courier New', monospace;
+    font-size: 1.05rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #e8c547;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #27272a;
+  }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+    margin-right: 0.4rem;
+    letter-spacing: 0.05em;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.12); color: #4ade80; border: 1px solid rgba(74,222,128,0.4); }
+  .tag-extra { background: rgba(251,146,60,0.12); color: #fb923c; border: 1px solid rgba(251,146,60,0.4); }
+  .tag-offen { background: rgba(161,161,170,0.12); color: #a1a1aa; border: 1px solid rgba(161,161,170,0.4); }
+  .tag-widerlegt { background: rgba(248,113,113,0.1); color: #f87171; border: 1px solid rgba(248,113,113,0.3); text-decoration: line-through; }
+
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .src-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #e8c547;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #27272a;
+    margin: 1.5rem 0;
+    border: 1px solid #27272a;
+  }
+  .stat-cell {
+    background: #09090b;
+    padding: 1rem;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.6rem;
+    color: #e8c547;
+    font-weight: bold;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.85rem;
+    color: #a1a1aa;
+    font-family: Georgia, serif;
+  }
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #e4e4e7;
+    border-left: 3px solid #e8c547;
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    margin: 2rem 0;
+  }
+  .timeline {
+    margin: 1.5rem 0;
+    border-left: 2px solid #27272a;
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    margin-bottom: 1.2rem;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -1.55rem;
+    top: 0.4rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #e8c547;
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #e8c547;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .closing-question {
+    font-style: italic;
+    color: #a1a1aa;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-size: 1.15rem;
+  }
+  a { color: #e8c547; }
+  .footer-nav {
+    margin-top: 3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #71717a;
+    text-align: center;
+  }
+</style>
+<meta name="description" content="Ein Ermittlungsverfahren, ein Antrag im Bundestag – und eine Statistiklücke, die niemand schließen kann, solange niemand danach sucht.">
+<meta name="rubrik" content="cat-kinder">
+<meta name="kachel-titel" content="Kajal: Was ein Fall in Nürnberg über das deutsche Dunkelfeld verrät">
+<link rel="canonical" href="https://dunkelfeld.report/grooming-gangs.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kajal: Was ein Fall in Nürnberg über das deutsche Dunkelfeld verrät">
+<meta property="og:description" content="Ein Ermittlungsverfahren, ein Antrag im Bundestag – und eine Statistiklücke, die niemand schließen kann, solange niemand danach sucht.">
+<meta property="og:url" content="https://dunkelfeld.report/grooming-gangs.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="kicker">Dunkelfeld / Hellfeld · Deutschland</div>
+<h1>Kajal: Was ein Fall in Nürnberg über das deutsche Dunkelfeld verrät</h1>
+<p class="subtitle">Ein Ermittlungsverfahren, ein Antrag im Bundestag – und eine Statistiklücke, die niemand schließen kann, solange niemand danach sucht.</p>
+<div class="meta">STATUS: BELEG-VOR-MOTIV-PRINZIP ANGEWENDET · STAND: JULI 2026</div>
+<p>Am 18. Mai 2026 richtet die Kriminalpolizei Nürnberg eine Ermittlungskommission ein. Name: "Kajal". Anlass: ein Zufallsfund im Umfeld des Hauptbahnhofs. Was die Ermittler seither dokumentieren, wirft eine Frage auf, die über den Einzelfall hinausgeht – und die sich mit den vorhandenen Daten nicht beantworten lässt.</p>
+<h2>Was belegt ist: der Fall</h2>
+<p>Die Fakten aus Polizei- und Bundestagsquellen sind eindeutig dokumentiert:</p>
+<div class="timeline">
+<div class="timeline-item">
+<span class="timeline-date">21.05.2026</span>
+      Polizeipräsidium Mittelfranken bestätigt in einer Pressemitteilung: Im Umfeld des Nürnberger Hauptbahnhofs agiert eine Gruppe, die minderjährige Mädchen gezielt anspricht.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">Vorgehensmuster</span>
+      Kontaktaufnahme über Geschenke, anschließende Abhängigkeit durch harte Drogen (insbesondere Crystal Meth), danach Weitergabe von Betäubungsmitteln nur noch als Gegenleistung für sexuelle Handlungen oder Prostitution.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">Opfer</span>
+      Jüngstes bekanntes Opfer: 13 Jahre alt.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">Ermittlungsstand</span>
+      Zehn identifizierte Personen. Mehrere Festnahmen, u.a. ein 23-jähriger Syrer in Untersuchungshaft; Haftbefehle gegen zwei weitere Tatverdächtige. Vorwürfe: Sexualdelikte, Abgabe von Betäubungsmitteln an Minderjährige.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">23.06.2026</span>
+      Bundestag-Drucksache 21/6648 (AfD-Fraktion) macht den Fall zum Gegenstand eines Antrags: bundesweite Ermittlungskommissionen nach Nürnberger Vorbild, Erweiterung der BKA-Bundeslagebilder um eine eigene Kategorie "gruppenbasierte sexuelle Ausbeutung Minderjähriger".
+    </div>
+</div>
+<div class="source-box">
+<span class="src-label">Quellen</span>
+    Polizeipräsidium Mittelfranken (Pressemitteilung 21.05.2026) · Deutscher Bundestag, Drucksache 21/6648 · Deutscher Bundestag, hib-Kurzmeldung 1192362
+  </div>
+<span class="tag tag-belegt">BELEGT</span> Der Fall selbst, das Vorgehen der Täter und der Ermittlungsstand sind über Polizei- und Parlamentsquellen belegt.
+
+  <h2>Die Statistiklücke</h2>
+<p>Die BKA-Bundeslagebilder "Sexualdelikte zum Nachteil von Kindern und Jugendlichen" erfassen Cybergrooming, Kinderpornografie und klassischen Missbrauch – aber keine eigene Kategorie für gruppenbasierte, organisierte Ausbeutung durch mehrere Täter. Genau diese Lücke benennt der Bundestagsantrag selbst, wenn er die Aufnahme einer solchen Kategorie fordert.</p>
+<div class="stat-grid">
+<div class="stat-cell">
+<span class="stat-number">6,2 %</span>
+<span class="stat-label">Anzeigequote bei sexuellem Missbrauch/Vergewaltigung (SKiD-Dunkelfeldstudie, 2023)</span>
+</div>
+<div class="stat-cell">
+<span class="stat-number">0</span>
+<span class="stat-label">Eigene BKA-Statistikkategorie für "Grooming Gangs" / gruppenbasierte Ausbeutung – Stand Juli 2026</span>
+</div>
+</div>
+<p>Das bedeutet konkret: Ob Nürnberg ein Einzelfall ist oder ein bislang nicht systematisch erfasstes Muster, lässt sich mit den vorliegenden Daten nicht entscheiden. Es existiert schlicht keine Vergleichsbasis – weil bislang niemand gezielt danach gesucht hat.</p>
+<span class="tag tag-offen">OFFEN</span> Verbreitung und Häufigkeit gruppenbasierter Ausbeutungsstrukturen in Deutschland – mangels eigener Erfassungskategorie nicht quantifizierbar.
+
+  <h2>Der Vergleich mit Großbritannien</h2>
+<p>Der Vergleich mit England drängt sich auf – und ist zugleich der Punkt, an dem am meisten Sorgfalt nötig ist. Offizielle britische Untersuchungen (u.a. zu Rotherham, wo zwischen 1997 und 2013 mindestens 1.400 Fälle dokumentiert wurden) kamen zu einem klaren Ergebnis: Der eigentliche Skandal war nicht allein die Tat, sondern das jahrzehntelange Wegschauen von Polizei, Jugendämtern und Sozialbehörden – teils aus Überlastung, teils aus Furcht, als rassistisch wahrgenommen zu werden.</p>
+<p class="pull-quote">Der entscheidende Unterschied zu Rotherham: In Nürnberg wurde nicht jahrelang weggeschaut. Der Fall wurde binnen Wochen mit einer eigenen Kommission bearbeitet, öffentlich gemacht und erreichte innerhalb weniger Wochen den Bundestag.</p>
+<span class="tag tag-belegt">BELEGT</span> Institutionelles Versagen über Jahre ist für die britischen Fälle amtlich dokumentiert. Für Deutschland liegt bislang kein vergleichbarer Befund vor – weder ein Beleg dafür noch ein Beleg dagegen.
+
+  <span class="tag tag-extra">EXTRAPOLATION</span> Die schnelle Reaktion in Nürnberg spricht strukturell gegen ein "britisches Muster" des systematischen Wegschauens – beweist aber nicht, dass es anderswo in Deutschland keine unentdeckten Fälle gibt.
+
+  <h2>Was bleibt</h2>
+<p>Ein Ermittlungsverfahren, ein politischer Antrag, eine Statistik, die eine Leerstelle offenlegt, an die vorher niemand gedacht hat. Das ist alles, was sich derzeit belegen lässt. Die eigentliche Frage – ob Deutschland ein flächendeckendes, bislang unentdecktes Muster hat oder ob Nürnberg eine Ausnahme bleibt – kann erst beantwortet werden, wenn systematisch danach gesucht wird.</p>
+<p class="closing-question"><em>Wird die geforderte bundesweite Erfassung kommen – und was wird sie zutage fördern, wenn erstmals systematisch nachgesehen wird?</em></p>
+<div class="footer-nav">
+    dunkelfeld.report · Beleg-vor-Motiv-Prinzip
+  </div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

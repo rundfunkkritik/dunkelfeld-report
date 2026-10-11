@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Der Hegemon (6): Die Narrative — dunkelfeld.report</title>
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #09090b;
+      --bg-card: #111113;
+      --bg-source: #1a1a2e;
+      --amber: #e8c547;
+      --amber-dim: rgba(232,197,71,0.12);
+      --amber-border: rgba(232,197,71,0.25);
+      --text: #d4d4d8;
+      --text-muted: #71717a;
+      --text-bright: #f4f4f5;
+      --green: #4ade80;
+      --orange: #fb923c;
+      --red: #f87171;
+      --serif: Georgia, 'Times New Roman', serif;
+      --mono: 'Courier New', Courier, monospace;
+    }
+
+    body { background: var(--bg); color: var(--text); font-family: var(--serif); font-size: 1.1rem; line-height: 1.85; padding: 2rem 1rem 6rem; }
+    .container { max-width: 720px; margin: 0 auto; }
+
+    nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--amber-border); }
+    .nav-logo { font-family: var(--mono); font-size: 0.85rem; color: var(--amber); text-decoration: none; letter-spacing: 0.05em; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-family: var(--mono); font-size: 0.78rem; color: var(--text-muted); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--amber); }
+
+    .series-badge { font-family: var(--mono); font-size: 0.72rem; color: var(--amber); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; }
+    .series-badge::before { content: ''; display: inline-block; width: 20px; height: 2px; background: var(--amber); }
+
+    h1 { font-family: var(--serif); font-size: clamp(1.9rem, 5vw, 2.8rem); font-weight: 700; color: var(--text-bright); line-height: 1.2; margin-bottom: 1rem; }
+    .subtitle { font-size: 1.15rem; color: var(--text-muted); font-style: italic; margin-bottom: 2rem; line-height: 1.6; }
+    .meta { font-family: var(--mono); font-size: 0.75rem; color: var(--text-muted); display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--amber-border); }
+
+    .opening-quote { background: var(--amber-dim); border-left: 4px solid var(--amber); padding: 1.5rem 1.8rem; margin: 2rem 0 2.5rem; border-radius: 0 4px 4px 0; }
+    .opening-quote p { font-size: 1.1rem; font-style: italic; color: var(--text-bright); line-height: 1.7; margin-bottom: 0.5rem; }
+    .opening-quote cite { font-family: var(--mono); font-size: 0.75rem; color: var(--amber); font-style: normal; }
+
+    .lead { font-size: 1.15rem; color: var(--text-bright); line-height: 1.9; margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+    h2 { font-size: 1.45rem; font-weight: 700; color: var(--amber); margin: 3rem 0 1.2rem; line-height: 1.3; }
+    p { margin-bottom: 1.3rem; }
+
+    .tag { display: inline-block; font-family: var(--mono); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; padding: 0.2em 0.55em; border-radius: 2px; vertical-align: middle; margin: 0 0.15em; position: relative; top: -1px; }
+    .tag-belegt { background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid rgba(74,222,128,0.3); }
+    .tag-extrapolation { background: rgba(251,146,60,0.15); color: var(--orange); border: 1px solid rgba(251,146,60,0.3); }
+    .tag-offen { background: rgba(248,113,113,0.15); color: var(--red); border: 1px solid rgba(248,113,113,0.3); }
+
+    .source-box { background: var(--bg-source); border-left: 3px solid var(--amber); padding: 1rem 1.3rem; margin: 1.5rem 0; font-family: var(--mono); font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; }
+    .source-box strong { color: var(--amber); display: block; margin-bottom: 0.3rem; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 2rem 0; }
+    .stat-card { background: var(--bg-card); border: 1px solid var(--amber-border); padding: 1.2rem; text-align: center; }
+    .stat-number { font-family: var(--mono); font-size: 1.5rem; font-weight: 700; color: var(--amber); display: block; line-height: 1.2; }
+    .stat-label { font-family: var(--mono); font-size: 0.63rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.4rem; }
+
+    .highlight { background: var(--amber-dim); border-left: 3px solid var(--amber); padding: 1.2rem 1.5rem; margin: 2rem 0; font-style: italic; color: var(--text-bright); font-size: 1.05rem; }
+
+    /* Schichten-Diagramm */
+    .layer-diagram { margin: 2rem 0; }
+    .layer-diagram-title { font-family: var(--mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
+    .layer {
+      border: 1px solid var(--amber-border);
+      padding: 1rem 1.3rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+    .layer::before {
+      content: attr(data-n);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--amber);
+      position: absolute;
+      top: 0.8rem;
+      right: 1rem;
+    }
+    .layer-name { font-family: var(--mono); font-size: 0.8rem; color: var(--text-bright); font-weight: 700; margin-bottom: 0.3rem; }
+    .layer-text { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* Entitäten-Karten */
+    .entity-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+    .entity-card { background: var(--bg-card); border: 1px solid var(--amber-border); padding: 1.1rem; }
+    .entity-name { font-family: var(--mono); font-size: 0.78rem; color: var(--amber); font-weight: 700; margin-bottom: 0.4rem; }
+    .entity-text { font-size: 0.85rem; color: var(--text); line-height: 1.5; }
+
+    .divider { border: none; border-top: 1px solid var(--amber-border); margin: 2.5rem 0; }
+
+    /* Abschluss-Synthese */
+    .synthesis {
+      background: var(--bg-card);
+      border: 1px solid var(--amber-border);
+      border-top: 3px solid var(--amber);
+      padding: 2rem;
+      margin: 3rem 0;
+    }
+    .synthesis-title { font-family: var(--mono); font-size: 0.72rem; color: var(--amber); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem; }
+    .synthesis p { font-size: 1rem; color: var(--text); margin-bottom: 1rem; }
+    .synthesis p:last-child { margin-bottom: 0; }
+
+    .series-nav { background: var(--bg-card); border: 1px solid var(--amber-border); padding: 1.5rem 1.8rem; margin: 3rem 0 2rem; }
+    .series-nav-title { font-family: var(--mono); font-size: 0.7rem; color: var(--amber); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .series-nav ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .series-nav li { font-family: var(--mono); font-size: 0.82rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.8rem; }
+    .series-nav li::before { content: '→'; color: var(--amber); font-size: 0.8rem; }
+    .series-nav a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+    .series-nav a:hover { color: var(--amber); }
+
+    .closing-questions { border-top: 2px solid var(--amber); padding-top: 2rem; margin-top: 3rem; }
+    .closing-questions p { font-style: italic; color: var(--text-muted); font-size: 1rem; margin-bottom: 0.9rem; }
+    .closing-questions .label { font-family: var(--mono); font-size: 0.7rem; color: var(--amber); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; font-style: normal; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.7rem; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .entity-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+<meta name="description" content="DARPA als Internetmutter, In-Q-Tel als CIA-Risikokapital, NED als legalisiertes Verdecktgeschäft, VOA in 48 Sprachen — wie die USA globale …">
+<meta name="rubrik" content="cat-geo">
+<meta name="kachel-titel" content="Der Hegemon (6): Die Narrative">
+<link rel="canonical" href="https://dunkelfeld.report/hegemon-softpower.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Der Hegemon (6): Die Narrative">
+<meta property="og:description" content="DARPA als Internetmutter, In-Q-Tel als CIA-Risikokapital, NED als legalisiertes Verdecktgeschäft, VOA in 48 Sprachen — wie die USA globale …">
+<meta property="og:url" content="https://dunkelfeld.report/hegemon-softpower.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+</head>
+<body>
+<div class="container">
+<nav>
+<a class="nav-logo" href="index.html">dunkelfeld.report</a>
+<ul class="nav-links">
+<li><a href="hegemon-usa.html">← Überblick</a></li>
+<li><a href="hegemon-geheimdienste.html">← Teil 5</a></li>
+</ul>
+</nav>
+<div class="series-badge">Serie · Der Hegemon · Teil 6 von 6 · Abschluss</div>
+<h1>Die Narrative</h1>
+<p class="subtitle">DARPA als Internetmutter, In-Q-Tel als CIA-Risikokapital, NED als legalisiertes Verdecktgeschäft, VOA in 48 Sprachen — wie die USA globale Informationsinfrastruktur formen</p>
+<div class="meta">
+<span>Erstveröffentlichung 2025</span>
+<span>Lesedauer ~14 Min.</span>
+<span>Detailartikel · Teil 6 · Serienabschluss</span>
+</div>
+<div class="opening-quote">
+<p>„Vieles von dem, was wir heute tun, wurde vor 25 Jahren verdeckt von der CIA gemacht."</p>
+    — Allen Weinstein, erster amtierender Präsident des National Endowment for Democracy (NED), Interview mit Washington Post-Kolumnist David Ignatius, 1991
+  </div>
+<div class="lead">
+<p>Weinsteins Satz ist keine Enthüllung eines Kritikers. Er ist das Selbstzeugnis eines Gründers — und er beschreibt das Prinzip des sechsten Instruments amerikanischer Macht präzise: Was einst verdeckt war, wurde institutionalisiert, legalisiert, budgetiert und damit im Rampenlicht sicherer gemacht. Nicht weniger wirksam. Offenheit ist ihr eigener Schutz, sagte Weinstein weiter. Das Risiko skandalöser Enthüllungen gegen null, solange man selbst der Absender der Nachricht ist.</p>
+<p>Dieser Abschlussartikel der Hegemon-Serie dokumentiert das fünfte Instrument in vier Schichten: technologische Infrastruktur (DARPA/Internet, In-Q-Tel/Silicon Valley), Medieninfrastruktur (VOA, RFE/RL, USAGM), politische Einflussstrukturen (NED) und das Zusammenwirken aller Schichten. Alle Aussagen sind aus Primärquellen oder eigenem Selbstzeugnis der Institutionen belegt.</p>
+</div>
+<div class="stat-grid">
+<div class="stat-card">
+<span class="stat-number">1969</span>
+<span class="stat-label">ARPANET — erste Übertragung aus DARPA-Forschungsprojekt</span>
+</div>
+<div class="stat-card">
+<span class="stat-number">356 Mio.$</span>
+<span class="stat-label">NED-Budget FY2024 — davon 99,3% US-Staatsgelder</span>
+</div>
+<div class="stat-card">
+<span class="stat-number">326 Mio.</span>
+<span class="stat-label">Wöchentliches VOA-Publikum weltweit (2022), 48 Sprachen</span>
+</div>
+<div class="stat-card">
+<span class="stat-number">90+</span>
+<span class="stat-label">Länder, in denen NED heute aktiv ist</span>
+</div>
+</div>
+<hr class="divider"/>
+<!-- SCHICHT 1: DARPA / INTERNET -->
+<h2>Schicht 1: Die Infrastruktur — DARPA und das Internet</h2>
+<p>Das Internet entstand aus einem Militärforschungsprojekt. Das ist keine These — es ist offizielle Selbstdarstellung der Defense Advanced Research Projects Agency (DARPA). <span class="tag tag-belegt">BELEGT</span> Am 29. Oktober 1969 fand die erste ARPANET-Übertragung zwischen der UCLA und dem Stanford Research Institute statt. ARPANET war ein Netzwerk zur sicheren Kommunikation zwischen geografisch verteilten Forschungseinrichtungen — finanziert und gesteuert von DARPA, einer Behörde des US-Verteidigungsministeriums.</p>
+<p>Bis 1983 hatte sich ARPANET zum Internet entwickelt. <span class="tag tag-belegt">BELEGT</span> Das Netzwerk wurde von der akademischen Gemeinschaft übernommen und schließlich kommerzialisiert — aber seine Protokolle, seine Architektur und seine initiale Infrastruktur waren staatlich finanziert und militärisch motiviert. TCP/IP, das Grundprotokoll des Internets, wurde unter DARPA-Förderung entwickelt. Quelle: darpa.mil/news/features/arpanet.</p>
+<p>Was das für die globale Informationsinfrastruktur bedeutet: Die dominanten US-Technologiekonzerne — Google, Meta, Amazon, Microsoft, Apple — bauen auf einer Infrastruktur auf, die aus staatlicher Militärforschung entstanden ist, und betreiben heute einen erheblichen Teil der globalen Datenkommunikation. Ob das eine direkte Fortführung staatlicher Kontrolle darstellt oder eine kommerzielle Verselbständigung, ist als Frage dokumentierbar gestellt, aber nicht dokumentarisch entschieden. <span class="tag tag-offen">OFFEN</span></p>
+<div class="source-box">
+<strong>Primärquellen</strong>
+    DARPA: „ARPANET and the Origins of the Internet", darpa.mil/news/features/arpanet — NSF: „Birth of the Commercial Internet", nsf.gov/impacts/internet — DARPA History: „A DARPA Perspective on the Development of the Internet", defensemedianetwork.com — ARPANET erste Übertragung: 29.10.1969, UCLA/SRI, dokumentiert in Netzwerkprotokollen, Library of Congress
+  </div>
+<hr class="divider"/>
+<!-- SCHICHT 2: IN-Q-TEL -->
+<h2>Schicht 2: Das Kapital — In-Q-Tel und Silicon Valley</h2>
+<p>1999 gründete die CIA In-Q-Tel — eine private, unabhängige, gemeinnützige Investmentgesellschaft mit dem erklärten Auftrag, in Technologieunternehmen zu investieren, die US-amerikanische Sicherheitsinteressen bedienen. <span class="tag tag-belegt">BELEGT</span> In-Q-Tel ist auf der CIA-Website dokumentiert und veröffentlicht sein Portfolio öffentlich auf iqt.org.</p>
+<p>Zu den dokumentierten Investitionen zählen:</p>
+<div class="entity-grid">
+<div class="entity-card">
+<div class="entity-name">Keyhole Inc.</div>
+<div class="entity-text">Geospatiales Bildanalyse-Tool, In-Q-Tel-Investition 2003 — aufgekauft von Google 2004, wurde Google Earth. <span class="tag tag-belegt">BELEGT</span></div>
+</div>
+<div class="entity-card">
+<div class="entity-name">Palantir Technologies</div>
+<div class="entity-text">Gegründet 2004 mit In-Q-Tel-Initialinvestition (ca. 2 Mio. $). Heute 40+ Mrd. $ Marktkapitalisierung, US Army-Verträge über 618,9 Mio. $ (2024). <span class="tag tag-belegt">BELEGT</span></div>
+</div>
+<div class="entity-card">
+<div class="entity-name">Recorded Future</div>
+<div class="entity-text">Geheimdienstliche Bedrohungsanalyse-Plattform, In-Q-Tel-Portfolio. Für 2,65 Mrd. $ an Mastercard verkauft (2024). <span class="tag tag-belegt">BELEGT</span></div>
+</div>
+<div class="entity-card">
+<div class="entity-name">Weitere Portfoliogesellschaften</div>
+<div class="entity-text">In-Q-Tel listet auf iqt.org öffentlich Hunderte von Investitionen in Bereichen KI, Quantencomputing, Biosensorik, Satellitenbildgebung. <span class="tag tag-belegt">BELEGT</span></div>
+</div>
+</div>
+<p>Das Muster: In-Q-Tel investiert in frühe Phasen von Technologieunternehmen, die anschließend kommerzielle Größe erreichen. Die CIA erhält dadurch Zugang zu Technologien, die im offenen Markt entwickelt werden — ohne diese selbst entwickeln zu müssen, und ohne dass die Unternehmen formal als Geheimdienstzulieferer wahrgenommen werden. <span class="tag tag-extrapolation">EXTRAPOLATION</span>: Ob daraus eine systematische Verzahnung von Silicon Valley und Nachrichtendiensten entsteht, oder ob kommerzielle und staatliche Interessen in diesen Fällen zufällig konvergieren, ist nicht aus Dokumenten allein auflösbar.</p>
+<div class="source-box">
+<strong>Primärquellen</strong>
+    In-Q-Tel: Offizielle Website und Portfolioliste, iqt.org — SEC-Filing Infobionics Inc., 2008: In-Q-Tel als „private, independent, not-for-profit strategic investor established by the U.S. CIA, launched in 1999", sec.gov — Palantir/In-Q-Tel: DoD Contract press releases, defense.gov — Keyhole/Google Earth: Google Press Release, Oktober 2004 — Recorded Future/Mastercard: Pressemitteilung August 2024
+  </div>
+<hr class="divider"/>
+<!-- SCHICHT 3: MEDIEN -->
+<h2>Schicht 3: Die Medien — VOA, RFE/RL und USAGM</h2>
+<p>Voice of America (VOA) wurde 1942 gegründet — während des Zweiten Weltkriegs — als staatliches Rundfunkinstrument. <span class="tag tag-belegt">BELEGT</span> Heute sendet VOA in 48 Sprachen für ein wöchentliches Publikum von rund 326 Millionen Menschen weltweit und beschäftigt 961 Mitarbeiter mit einem Jahresbudget von 267,5 Millionen Dollar. Quelle: VOA, Wikipedia, Haushaltsdaten USAGM.</p>
+<p>VOA untersteht dem U.S. Agency for Global Media (USAGM) — einer unabhängigen Bundesbehörde, finanziert durch jährliche Kongressmittel. Neben VOA betreibt USAGM Radio Free Europe/Radio Liberty (RFE/RL, Jahresbudget 112,5 Mio. $), Radio Free Asia, Office of Cuba Broadcasting und Alhurra TV. <span class="tag tag-belegt">BELEGT</span></p>
+<div class="highlight">
+    Von 1948 bis 2013 war VOA durch den Smith-Mundt Act ausdrücklich verboten, Inhalte an US-amerikanische Bürger im Inland zu senden. Das ursprüngliche Ziel: die amerikanische Öffentlichkeit vor Propaganda der eigenen Regierung zu schützen. Der Smith-Mundt Modernization Act von 2012 (im National Defense Authorization Act verankert) lockerte diese Beschränkungen. <span class="tag tag-belegt">BELEGT</span> Quelle: USAGM, usagm.gov/smith-mundt-faqs
+  </div>
+<p>Die Reichweite dieser Infrastruktur ist global. RFE/RL sendet in 27 Sprachen in Länder wie Russland, Belarus, Iran, Afghanistan und die Ukraine. <span class="tag tag-belegt">BELEGT</span> In Ländern ohne freie Presse ist VOA oft die einzige fremdsprachige Nachrichtenquelle — was diese Infrastruktur für Millionen Menschen informationspolitisch bedeutsam macht, gleichzeitig aber ihre staatliche Herkunft nicht verdeckt.</p>
+<p>Was dokumentiert ist: Der strategische Zweck dieser Sender ist im Gründungsgesetz festgelegt — sie sollen die USA und ihre Werte im Ausland darstellen. Was nicht dokumentiert ist: In welchem konkreten Ausmaß Inhalte auf Regierungsdirektiven reagieren vs. journalistisch unabhängig entstehen. Die formale Unabhängigkeitsverpflichtung existiert (VOA Charter 1976). Ob sie eingehalten wird, ist strukturell schwer prüfbar. <span class="tag tag-offen">OFFEN</span></p>
+<div class="source-box">
+<strong>Primärquellen</strong>
+    VOA Wikipedia: Gründungsgeschichte, Haushalt, Reichweite — USAGM: Smith-Mundt FAQs, usagm.gov/who-we-are/oversight/legislation/smith-mundt-faqs — Smith-Mundt Modernization Act, Sec. 1078(a), National Defense Authorization Act FY2013, congress.gov — VOA Charter 1976, voanews.com — USAGM Budget 2024: International Broadcasting Operations $643 Mio., davon VOA $199,5 Mio., Radio World / USAGM
+  </div>
+<hr class="divider"/>
+<!-- SCHICHT 4: NED -->
+<h2>Schicht 4: Die Förderung — National Endowment for Democracy</h2>
+<p>Das National Endowment for Democracy (NED) wurde 1983 unter Ronald Reagan gegründet. <span class="tag tag-belegt">BELEGT</span> Reagan begründete die Gründung mit dem Ziel, „die Infrastruktur der Demokratie zu fördern" — explizit in einem Londoner Rede vor dem britischen Parlament. Die Gründungsgeschichte des NED ist selbst gut dokumentiert: Sie entstand als Reaktion auf CIA-Skandale der 1960er und 1970er Jahre — mit dem Ziel, verdeckte Aktivitäten in offizielle, finanzierte Programme zu überführen.</p>
+<p>Das ist keine Interpretation von außen. Es ist das Selbstzeugnis der Gründer: NED-Präsident Carl Gershman sagte 1986: „Es wäre schrecklich, wenn demokratische Gruppen weltweit als CIA-finanziert gelten würden. Das haben wir in den 1960ern gesehen, und deshalb wurde das eingestellt." Allen Weinstein, erster NED-Präsident, sagte 1991 der Washington Post: „Vieles von dem, was wir heute tun, wurde vor 25 Jahren verdeckt von der CIA gemacht." <span class="tag tag-belegt">BELEGT</span></p>
+<p>Was das NED heute ist — nach eigener Darstellung und aus Primärdaten:</p>
+<div class="layer-diagram">
+<div class="layer-diagram-title">▸ NED — Struktur und Finanzierung (FY2024)</div>
+<div class="layer" data-n="①">
+<div class="layer-name">Finanzierung</div>
+<div class="layer-text">FY2024: 356,5 Mio. $ Einnahmen — davon 99,3% aus US-Regierungsmitteln (Kongressmittel via State Department). NED ist formell eine private gemeinnützige Organisation (501c3), de facto vollständig staatsfinanziert. <span class="tag tag-belegt">BELEGT</span></div>
+</div>
+<div class="layer" data-n="②">
+<div class="layer-name">Reichweite</div>
+<div class="layer-text">Aktiv in über 90 Ländern. Vier Kernorganisationen: National Democratic Institute (NDI), International Republican Institute (IRI), Center for International Private Enterprise (CIPE), Solidarity Center. <span class="tag tag-belegt">BELEGT</span></div>
+</div>
+<div class="layer" data-n="③">
+<div class="layer-name">Transparenz</div>
+<div class="layer-text">NED veröffentlichte früher Förderempfänger öffentlich. Seit 2021 keine neuen Grants online gestellt. Ukraine-Grants (&gt;22 Mio. $) wurden 2022 aus der Datenbank entfernt. Begründung: Sicherheitsbedenken für Empfänger. <span class="tag tag-belegt">BELEGT</span> — Quelle: Jack Poulson/Lee Fang, All-Source Intelligence, 2025</div>
+</div>
+<div class="layer" data-n="④">
+<div class="layer-name">Gründungsgeschichte</div>
+<div class="layer-text">Reagan Presidential Library-Dokumente zeigen: NED wurde konzipiert von CIA-Direktor William Casey und NSC-Mitglied William Raymond Jr. (ehemaliger CIA-Propagandaoffizier). Quelle: Reagan Library / The American Conservative, Nov. 2024. <span class="tag tag-belegt">BELEGT</span></div>
+</div>
+</div>
+<p>NED-Förderungen in dokumentierten Fällen: polnische Solidarnosc (1980er), serbische Opposition vor der Velvet Revolution 2000, ukrainische NGOs (65 Organisationen vor 2014). <span class="tag tag-belegt">BELEGT</span> Ob diese Aktivitäten als Demokratieförderung oder als geopolitische Einflussnahme einzustufen sind, hängt von der politischen Perspektive ab — und ist deshalb nicht mit dem Beleg-vor-Motiv-Prinzip entscheidbar. Was entscheidbar ist: Das Geld kommt vom US-Kongress, die Strategie wird in Washington definiert, und die Gründer haben selbst gesagt, was der Zweck ist. <span class="tag tag-offen">OFFEN</span>: Ob Demokratieförderung und US-Interessenpolitik in jedem konkreten Fall zusammenfallen oder auseinanderfallen.</p>
+<div class="source-box">
+<strong>Primärquellen</strong>
+    NED Wikipedia, mit Einzelnachweisen — Allen Weinstein 1991: Washington Post, Kolumnist David Ignatius (mehrfach bestätigt durch ProPublica 2010, Grayzone 2025) — Carl Gershman 1986: New York Times, 1.6.1986 — Reagan NED-Rede 1983: Westminster-Rede, vollständig auf reaganlibrary.gov — NED Jahresberichte (letzte: 2021), ned.org — Jack Poulson/Lee Fang: „National Endowment for Democracy Goes Dark", All-Source Intelligence, Mai 2025 — American Conservative: „DOGE's Best First Target: NED", Nov. 2024 (zit. Reagan Library Dokumente zu Casey/Raymond)
+  </div>
+<hr class="divider"/>
+<!-- SYNTHESE: ALLE 6 ARTIKEL -->
+<h2>Serienabschluss: Das Gesamtbild</h2>
+<p>Sechs Teile, sechs Instrumente — alle aus Primärquellen. Was ergibt sich als Gesamtbild?</p>
+<div class="synthesis">
+<div class="synthesis-title">▸ Die Hegemon-Serie im Überblick — was dokumentierbar ist</div>
+<p><strong>Dollar:</strong> Das einzige Land, das seine Staatsschulden in der eigenen Währung aufnimmt, die gleichzeitig Weltwährung ist. Der Petrodollar-Deal von 1974 blieb 41 Jahre geheim — bestätigt 2016 durch Diplomatenkabel aus dem US-Nationalarchiv.</p>
+<p><strong>Militär:</strong> ~750 Auslandsbasen in 80+ Ländern. Rüstungsbudget 997 Milliarden Dollar (2024). Die fünf größten Rüstungskonzerne erhielten 771 Milliarden Dollar in fünf Jahren — mehr als doppelt so viel wie alle US-Diplomatie und humanitäre Hilfe zusammen.</p>
+<p><strong>Wirtschaft:</strong> Einziges Einzelveto im IWF. 102 Billionen Dollar globale Staatsschulden — Entwicklungsländer zahlen 921 Milliarden Dollar Zinsen pro Jahr, 49 Prozent sind in Schuldennot.</p>
+<p><strong>Operationen:</strong> 72+ dokumentierte Regierungsstürze 1947–1989. NSA-Massenüberwachung für illegal erklärt (US-Gericht 2020). CIA-Cyberarsenal in 8.761 Dokumenten belegt. Assange 5 Jahre in Haft ohne Urteil.</p>
+<p><strong>Narrative:</strong> Internet aus DARPA-Forschung. In-Q-Tel als CIA-Risikokapital in Silicon Valley. NED — 356 Mio. $ staatlich finanziert, in 90+ Ländern aktiv, gegründet als legale Nachfolgeinstitution verdeckter CIA-Aktivitäten (Selbstzeugnis der Gründer). VOA in 48 Sprachen für 326 Millionen Menschen.</p>
+</div>
+<p>Was diese fünf Instrumente gemeinsam haben: Sie sind nicht heimlich. Sie sind öffentlich finanziert, gesetzlich verankert, parlamentarisch genehmigt — und trotzdem wenig diskutiert. Das ist vielleicht das bemerkenswerteste Ergebnis dieser Recherche: Das meiste davon steht in öffentlichen Dokumenten. Es braucht keine Verschwörungstheorie. Es braucht nur Lesen.</p>
+<!-- SERIES NAV -->
+<div class="series-nav">
+<div class="series-nav-title">▸ Serie: Der Hegemon — vollständig</div>
+<ul>
+<li><a href="hegemon-usa.html">Teil 1: Überblick — fünf Instrumente</a></li>
+<li><a href="hegemon-dollar.html">Teil 2: Das Geld — Dollarhegemonie, Petrodollar, SWIFT</a></li>
+<li><a href="hegemon-militaer.html">Teil 3: Die Streitkräfte — Basen, SOFA, Rüstungskomplex</a></li>
+<li><a href="hegemon-wirtschaft.html">Teil 4: Die Wirtschaft — IWF, Weltbank, Schuldenarchitektur</a></li>
+<li><a href="hegemon-geheimdienste.html">Teil 5: Die Operationen — Geheimdienste, Snowden, Vault 7</a></li>
+<li><strong style="color:var(--text-bright)">Teil 6: Die Narrative — Soft Power, NED, Medieninfrastruktur</strong> — dieser Artikel</li>
+</ul>
+</div>
+<!-- CLOSING QUESTIONS -->
+<div class="closing-questions">
+<div class="label">Offene Fragen — Serienabschluss</div>
+<p>NED-Gründer haben öffentlich erklärt, dass NED tut, was die CIA früher verdeckt tat. Wie verändert sich die demokratische Rechenschaftspflicht, wenn staatliche Einflussnahme im Ausland von einer formell privaten NGO ausgeführt wird, die vollständig aus Staatsgeldern finanziert ist?</p>
+<p>DARPA hat das Internet erfunden. In-Q-Tel hat in Unternehmen investiert, die zum Google Earth, zu Palantir und zu anderen zentralen digitalen Infrastrukturen wurden. Wo verläuft die Grenze zwischen staatlich geförderter Forschung, die der Öffentlichkeit zugute kommt, und staatlich gesteuerter Infrastruktur, die geopolitischen Zwecken dient?</p>
+<p>Die beschriebenen fünf Instrumente sind nicht geheim. Sie sind in Gesetzen, Budgets, Jahresberichten und Primärquellen dokumentiert. Warum sind sie dennoch aus dem Zentrum öffentlicher Debatte verschwunden?</p>
+<p>Eisenhower warnte 1961 vor dem militärisch-industriellen Komplex. Biden warnte 2025 in seiner eigenen Abschiedsrede vor dem „tech-industrial complex". Welche Instrumente eines zukünftigen Hegemon sind heute noch in ihrer Entstehungsphase — und wer dokumentiert sie?</p>
+</div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

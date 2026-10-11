@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Der Mechanismus hinter der flachen Erde — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --amber: #e8c547;
+    --box-bg: #1a1a2e;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --grey: #9ca3af;
+    --red: #f87171;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: #e5e5e5;
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: 2rem;
+    line-height: 1.25;
+    color: #fff;
+    margin: 0 0 8px;
+  }
+  .subtitle {
+    color: var(--grey);
+    font-size: 1.05rem;
+    font-style: italic;
+    margin-bottom: 40px;
+  }
+  h2 {
+    color: var(--amber);
+    font-size: 1.3rem;
+    margin-top: 56px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #2a2a3a;
+    padding-bottom: 8px;
+  }
+  p { margin: 0 0 20px; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 6px;
+    display: inline-block;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid var(--green); }
+  .tag-extrapolation { background: rgba(251,146,60,0.15); color: var(--orange); border: 1px solid var(--orange); }
+  .tag-offen { background: rgba(156,163,175,0.15); color: var(--grey); border: 1px solid var(--grey); }
+  .tag-vt { background: rgba(248,113,113,0.15); color: var(--red); border: 1px solid var(--red); text-decoration: line-through; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0 32px;
+  }
+  .stat-box {
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 18px;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.8rem;
+    color: var(--amber);
+    font-weight: bold;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--grey);
+    margin-top: 4px;
+  }
+
+  .timeline {
+    border-left: 2px solid var(--amber);
+    padding-left: 20px;
+    margin: 24px 0;
+  }
+  .timeline-item {
+    margin-bottom: 22px;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -26px;
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+  .timeline-year {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .person-card {
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 18px 20px;
+    margin: 20px 0;
+  }
+  .person-name {
+    font-weight: bold;
+    color: #fff;
+    font-size: 1.05rem;
+  }
+  .person-role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--grey);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--amber);
+    padding: 16px 20px;
+    margin: 24px 0;
+    font-size: 0.92rem;
+  }
+  .source-box .src-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  blockquote {
+    border-left: 3px solid var(--amber);
+    margin: 28px 0;
+    padding: 4px 20px;
+    font-style: italic;
+    color: #d4d4d8;
+    font-size: 1.1rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.9rem;
+  }
+  th, td {
+    border: 1px solid #2a2a3a;
+    padding: 10px 12px;
+    text-align: left;
+  }
+  th {
+    background: var(--box-bg);
+    color: var(--amber);
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  .closing {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid #2a2a3a;
+  }
+  .closing p {
+    font-style: italic;
+    color: var(--grey);
+  }
+
+  .series-nav {
+    margin-top: 60px;
+    padding: 20px;
+    background: var(--box-bg);
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+  }
+  .series-nav a { color: var(--amber); text-decoration: none; }
+  .series-nav a:hover { text-decoration: underline; }
+
+  a { color: var(--amber); }
+</style>
+<meta name="description" content="Warum ein jahrhundertealter Irrglaube ausgerechnet seit 2015 wieder wächst — und was das mit der Erdform gar nichts zu tun hat.">
+<meta name="rubrik" content="cat-medien">
+<meta name="kachel-titel" content="Der Mechanismus hinter der flachen Erde">
+<link rel="canonical" href="https://dunkelfeld.report/flache-erde-mechanismus.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Der Mechanismus hinter der flachen Erde">
+<meta property="og:description" content="Warum ein jahrhundertealter Irrglaube ausgerechnet seit 2015 wieder wächst — und was das mit der Erdform gar nichts zu tun hat.">
+<meta property="og:url" content="https://dunkelfeld.report/flache-erde-mechanismus.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="meta">Dunkelfeld.report — Mechanismen der Meinungsbildung</div>
+<h1>Der Mechanismus hinter der flachen Erde</h1>
+<p class="subtitle">Warum ein jahrhundertealter Irrglaube ausgerechnet seit 2015 wieder wächst — und was das mit der Erdform gar nichts zu tun hat.</p>
+<p>Am Rand der Debatte um Verschwörungserzählungen wirkt die flache Erde wie das harmloseste aller Themen — ein Kuriosum, über das man lächelt. Doch genau das macht sie als Fallstudie wertvoll: Es gibt keine geopolitischen Interessen, keine Pharmalobby, keine Kriegsindustrie, die von diesem Glauben profitiert. Was bleibt, wenn man alle Motive wegstreicht, ist der reine Mechanismus, der aus Zweifel eine Überzeugung macht — und der lässt sich hier ungewöhnlich sauber beobachten.</p>
+<h2>Kein neues Phänomen, aber eine neue Dynamik</h2>
+<div class="timeline">
+<div class="timeline-item">
+<span class="timeline-year">1849</span>
+      Der britische Autor Samuel Rowbotham veröffentlicht seine Flacherde-Schrift und führt jahrzehntelang öffentliche Debatten, in denen er die Newtonsche Physik als Verschwörung gegen die Religion darstellt.
+    </div>
+<div class="timeline-item">
+<span class="timeline-year">1956</span>
+      Samuel Shenton gründet die International Flat Earth Research Society in Großbritannien — die Idee bleibt danach jahrzehntelang eine Randerscheinung mit wenigen hundert Anhängern.
+    </div>
+<div class="timeline-item">
+<span class="timeline-year">1970er–2000er</span>
+      Unter Charles K. Johnson gewinnt die Bewegung in den USA eine kleine, aber stabile Anhängerschaft — ohne massentaugliche Verbreitungswege.
+    </div>
+<div class="timeline-item">
+<span class="timeline-year">ab ca. 2015</span>
+      Sprunghafter, dokumentierter Zuwachs an Anhängern, eigenen Konferenzen und Online-Communities — zeitlich parallel zur Etablierung algorithmischer Videoempfehlungen auf YouTube.
+    </div>
+<div class="timeline-item">
+<span class="timeline-year">2019</span>
+      YouTube räumt öffentlich ein, dass sein Empfehlungssystem zur Verbreitung von Falschinformation beigetragen hat, und kündigt eine Anpassung des Algorithmus an, die explizit auch Flat-Earth-Inhalte nennt.
+    </div>
+</div>
+<span class="tag tag-belegt">BELEGT</span> Die zeitliche Korrelation zwischen dem Aufstieg algorithmischer Videoempfehlungen und dem Mitgliederzuwachs der Flat-Earth-Bewegung ist in mehreren wissenschaftlichen Untersuchungen dokumentiert.
+
+  <h2>Was die Forschung tatsächlich gefunden hat</h2>
+<p>Die belastbarste Quelle zu diesem Thema stammt nicht aus Foren oder Blogs, sondern aus peer-reviewter Kommunikationswissenschaft. Die Psychologin Asheley Landrum und ihr Kollege Alex Olshansky von der Texas Tech University befragten über 90 Teilnehmer der ersten großen internationalen Flat-Earth-Konferenz in Raleigh, North Carolina.</p>
+<div class="stat-grid">
+<div class="stat-box">
+<span class="stat-number">29/30</span>
+<span class="stat-label">befragte Teilnehmer gaben YouTube als Ursprung ihrer Überzeugung an</span>
+</div>
+<div class="stat-box">
+<span class="stat-number">&gt;90</span>
+<span class="stat-label">Interviewte insgesamt — laut Forscherin durchweg aufrichtig, nicht trollend</span>
+</div>
+</div>
+<div class="person-card">
+<div class="person-name">Asheley R. Landrum</div>
+<div class="person-role">Kommunikationswissenschaftlerin, Texas Tech University</div>
+<p style="margin-bottom:0;">Landrum und Olshansky veröffentlichten 2019 die Studie <em>"The Role of Conspiracy Mentality in Denial of Science and Susceptibility to Viral Deception about Science"</em> (Politics and the Life Sciences) sowie 2021 eine Folgestudie zur unterschiedlichen Anfälligkeit für irreführende Flat-Earth-Argumente auf YouTube (Media Psychology). Ihre Kerneinordnung: Die Befragten seien keine trollenden Provokateure, sondern durchweg aufrichtig von ihrer Überzeugung eingenommen.</p>
+</div>
+<span class="tag tag-belegt">BELEGT</span> Die einzige Ausnahme unter den 30 Interviewten der Landrum/Olshansky-Studie war eine Person, die über ihre Tochter und ihren Schwiegersohn zur Überzeugung kam — die wiederum selbst über YouTube dazu gekommen waren. Auch dieser Fall führt letztlich zur gleichen Quelle zurück.
+
+  <h2>Der Algorithmus als Verstärker, nicht als Urheber</h2>
+<p>Wichtig für die Einordnung: Keine der zitierten Studien behauptet, YouTube habe die Flache-Erde-Idee erfunden oder gezielt gefördert. Der Mechanismus ist subtiler und dadurch interessanter. Empfehlungssysteme sind darauf optimiert, Verweildauer zu maximieren — und Inhalte, die eine bestehende Neugier radikalisieren, erzeugen nachweislich mehr Klicks als Inhalte, die sie widerlegen.</p>
+<p>Die Publizistin Zeynep Tufekci beschrieb dieses Muster 2018 unter dem Titel <em>"YouTube, the Great Radicalizer"</em>: Wer ein Video zu einem beliebigen Thema ansieht, wird vom Empfehlungssystem tendenziell zu extremeren Varianten desselben Themas weitergeleitet — unabhängig davon, ob es sich um Politik, Ernährung oder eben Kosmologie handelt.</p>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    Landrum, A. R. &amp; Olshansky, A. (2019). The Role of Conspiracy Mentality in Denial of Science and Susceptibility to Viral Deception about Science. <em>Politics and the Life Sciences</em>, 38(2), 193–209.<br/><br/>
+    Landrum, A. R., Olshansky, A. &amp; Richards, O. (2021). Differential susceptibility to misleading flat earth arguments on YouTube. <em>Media Psychology</em>, 24(1), 136–165.
+  </div>
+<span class="tag tag-extrapolation">EXTRAPOLATION</span> Dass sich dieses Muster nicht auf Flache-Erde-Inhalte beschränkt, sondern ein strukturelles Merkmal aufmerksamkeitsoptimierter Plattformen ist, legt die Parallelität zu anderen radikalisierenden Empfehlungsketten nahe (siehe "Divide et Impera 2.0" zu Frances Haugens Facebook-Enthüllungen) — ein direkter kausaler Beweis für jede Einzelplattform steht jeweils aus.
+
+  <h2>Warum Fakten allein nicht überzeugen</h2>
+<p>Ein zweiter Forschungsstrang befasst sich nicht mit der Verbreitung, sondern mit der Verfestigung des Glaubens. Mehrere Studien — unter anderem von Swami und Kollegen (2014) — zeigen, dass analytisches, reflektierendes Denken den Glauben an Verschwörungserzählungen generell verringert. Umgekehrt fanden Lantian und Kollegen (2021), dass ein hoher Verschwörungsglaube mit einer geringeren Fähigkeit zu kritischem Denken einhergeht — nicht mit mangelnder Bildung oder einem bestimmten Persönlichkeitstyp.</p>
+<p>Drei psychologisch-soziale Bedürfnisse tauchen in der Forschung immer wieder als Treiber auf:</p>
+<table>
+<tr><th>Motiv</th><th>Mechanismus</th></tr>
+<tr><td>Epistemisch</td><td>Bedürfnis nach einer einfachen, in sich schlüssigen Erklärung bei unklarer Informationslage</td></tr>
+<tr><td>Existenziell</td><td>Kontrollgefühl in einer komplexen, unübersichtlichen Welt</td></tr>
+<tr><td>Sozial</td><td>Zugehörigkeit zu einer Gemeinschaft, die "die Wahrheit" kennt — eigene Konferenzen, Foren, Anerkennung</td></tr>
+</table>
+<span class="tag tag-belegt">BELEGT</span> Keiner der zitierten Forschungsstränge findet einen stabilen Zusammenhang zwischen Verschwörungsglauben und Alter, Bildungsstand, Beruf oder psychischer Erkrankung.
+
+  <blockquote>
+    Wer einmal in der Empfehlungsspirale steckt, für den wird nicht die überzeugendste Erklärung sichtbar — sondern die, die am längsten im Feed bleibt.
+  </blockquote>
+<h2>Was offen bleibt</h2>
+<span class="tag tag-offen">OFFEN</span> Wie groß der Anteil ernsthafter Überzeugungstäter gegenüber bewusster Provokation innerhalb der Bewegung tatsächlich ist, wird in der Forschung unterschiedlich eingeschätzt — einige Beobachter halten Teile der modernen Szene für gezielte Trollerei, auf die Medien wiederholt hereinfallen.
+
+  <p style="margin-top:16px;"><span class="tag tag-offen">OFFEN</span> Ob die 2019 angekündigte Algorithmus-Anpassung von YouTube die Verbreitungsdynamik tatsächlich verlangsamt hat, ist mangels aktueller, unabhängiger Nachfolgestudien nicht abschließend belegt.</p>
+<div class="closing">
+<p>Wenn ein jahrhundertealter, längst widerlegter Irrglaube ausgerechnet in dem Jahrzehnt neue Anhänger gewinnt, in dem algorithmische Empfehlungssysteme zum dominanten Informationskanal werden — ist das dann noch Zufall der Aufklärung, oder ein Systemfehler der Plattformarchitektur selbst?</p>
+<p>Und wenn Verweildauer wichtiger ist als Wahrheitsgehalt — welche anderen, folgenreicheren Überzeugungen entstehen gerade auf die gleiche Weise, unbemerkt, weil sie plausibler klingen als eine flache Scheibe?</p>
+</div>
+<div class="series-nav">
+    Verwandt: <a href="#">Divide et Impera 2.0 — Haugen/Facebook/Algorithmus</a>
+</div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

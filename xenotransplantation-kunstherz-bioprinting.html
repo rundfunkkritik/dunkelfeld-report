@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Die Ersatzteil-Zukunft: Xenotransplantation, Kunstherz und Bioprinting — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --box-bg: #1a1a2e;
+    --text: #d8d8dc;
+    --text-dim: #9a9aa5;
+    --belegt: #4caf50;
+    --extrapolation: #e8963c;
+    --offen: #888892;
+    --widerlegt: #c0505a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 1.3rem 5rem;
+  }
+  .label, .meta, .tag, .source-box .src-meta, .stat-grid .stat-label, .timeline .t-date, .nav-footer {
+    font-family: 'Courier New', Courier, monospace;
+  }
+  header.top {
+    border-bottom: 1px solid #2a2a35;
+    padding-bottom: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  .meta {
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-family: Georgia, serif;
+    font-size: 2rem;
+    line-height: 1.25;
+    color: #f2f2f2;
+    margin: 0.6rem 0 0.4rem;
+  }
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    font-style: italic;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.3rem;
+    margin-top: 3rem;
+    margin-bottom: 0.8rem;
+    border-left: 3px solid var(--accent);
+    padding-left: 0.8rem;
+  }
+  h3 {
+    color: #e0e0e0;
+    font-size: 1.05rem;
+    margin-top: 1.6rem;
+  }
+  p { padding-bottom: 1.2rem; margin: 0; }
+  .tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    margin-right: 0.5rem;
+    letter-spacing: 0.04em;
+  }
+  .tag.belegt { background: rgba(76,175,80,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag.extrapolation { background: rgba(232,150,60,0.15); color: var(--extrapolation); border: 1px solid var(--extrapolation); }
+  .tag.offen { background: rgba(136,136,146,0.15); color: var(--offen); border: 1px solid var(--offen); }
+  .tag.widerlegt { background: rgba(192,80,90,0.15); color: var(--widerlegt); border: 1px solid var(--widerlegt); text-decoration: line-through; }
+
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    margin: 1.2rem 0 1.6rem;
+    font-size: 0.95rem;
+  }
+  .source-box .src-meta {
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    margin-top: 0.5rem;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+    margin: 1.5rem 0;
+  }
+  .stat-cell {
+    background: var(--box-bg);
+    padding: 0.9rem;
+    border-top: 2px solid var(--accent);
+  }
+  .stat-grid .stat-label {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  .stat-value {
+    font-size: 1.4rem;
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+  }
+
+  table.comparison {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.92rem;
+  }
+  table.comparison th, table.comparison td {
+    border: 1px solid #2a2a35;
+    padding: 0.6rem 0.7rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  table.comparison th {
+    background: var(--box-bg);
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  .pull-quote {
+    font-size: 1.25rem;
+    color: var(--accent);
+    border-left: 3px solid var(--accent);
+    padding-left: 1.2rem;
+    margin: 1.8rem 0;
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  .timeline {
+    margin: 1.5rem 0;
+    border-left: 2px solid #2a2a35;
+    padding-left: 1.2rem;
+  }
+  .timeline .t-entry { margin-bottom: 1.1rem; }
+  .timeline .t-date {
+    color: var(--accent);
+    font-size: 0.85rem;
+  }
+
+  .person-card {
+    background: var(--box-bg);
+    padding: 0.9rem 1.1rem;
+    margin: 1rem 0;
+    border-left: 3px solid var(--text-dim);
+  }
+  .person-card .p-name { color: #f2f2f2; font-weight: bold; }
+  .person-card .p-role { color: var(--text-dim); font-size: 0.85rem; font-family: 'Courier New', monospace; }
+
+  .closing-questions {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a35;
+    font-style: italic;
+    color: var(--text-dim);
+  }
+  .closing-questions p { margin-bottom: 0.9rem; }
+
+  .nav-footer {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a35;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+  }
+  .nav-footer a { color: var(--accent); text-decoration: none; }
+  .nav-footer a:hover { text-decoration: underline; }
+</style>
+<meta name="description" content="Der erste Teil dieser Reihe zeigte: die Grenze zwischen Leben und Tod ist in der Transplantationsmedizin verhandelbar geworden, sobald sie mit dem …">
+<meta name="rubrik" content="cat-technik">
+<meta name="kachel-titel" content="Die Ersatzteil-Zukunft: Xenotransplantation, Kunstherz und Bioprinting">
+<link rel="canonical" href="https://dunkelfeld.report/xenotransplantation-kunstherz-bioprinting.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Die Ersatzteil-Zukunft: Xenotransplantation, Kunstherz und Bioprinting">
+<meta property="og:description" content="Der erste Teil dieser Reihe zeigte: die Grenze zwischen Leben und Tod ist in der Transplantationsmedizin verhandelbar geworden, sobald sie mit dem …">
+<meta property="og:url" content="https://dunkelfeld.report/xenotransplantation-kunstherz-bioprinting.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<header class="top">
+<div class="meta">dunkelfeld.report — analyse — serie: grenzverschiebungen, teil 2</div>
+<h1>Die Ersatzteil-Zukunft: Xenotransplantation, Kunstherz und Bioprinting</h1>
+<div class="subtitle">Wenn der Körper nicht mehr auf einen menschlichen Spender angewiesen ist</div>
+</header>
+<section id="einstieg">
+<p>Der erste Teil dieser Reihe zeigte: die Grenze zwischen Leben und Tod ist in der Transplantationsmedizin verhandelbar geworden, sobald sie mit dem Organmangel kollidiert. Dieser Teil beleuchtet die naheliegende Konsequenz — den Versuch, den menschlichen Spender ganz zu umgehen. Drei parallele Wege: das Organ vom Tier, das Organ aus der Maschine, das Organ aus dem Drucker.</p>
+</section>
+<section id="xeno">
+<h2>1 — Xenotransplantation: Organe vom Schwein</h2>
+<div class="timeline">
+<div class="t-entry"><div class="t-date">Januar 2022</div>Erste Transplantation eines gentechnisch veränderten Schweineherzens in einen lebenden Menschen (University of Maryland). Der Patient hätte ohne den Eingriff nicht überlebt. Tod nach zwei Monaten — Ursache: Übertragung des porzinen Zytomegalievirus, das zu Multiorganversagen und Abstoßung führte.</div>
+<div class="t-entry"><div class="t-date">September 2023</div>Zweite Herz-Xenotransplantation, gleiches Team, 58-jähriger Patient. Tod sechs Wochen später — Hinweise auf Abstoßungsreaktion.</div>
+<div class="t-entry"><div class="t-date">2024</div>Drei Patienten erhalten gentechnisch veränderte Schweinenieren in den USA. Ein Patient (Niere) verstarb wenige Wochen später — laut Angaben nicht organbedingt.</div>
+<div class="t-entry"><div class="t-date">Januar 2025</div>Timothy Andrew erhält eine Schweineniere — nach Angaben der Ärzte einer der am längsten mit einem Xenotransplantat lebenden Patienten.</div>
+<div class="t-entry"><div class="t-date">2025</div>Chinesische Forscher transplantieren erstmals eine Schweinelunge — allerdings in einen bereits hirntoten Menschen, nicht in einen lebenden Patienten (veröffentlicht in Nature Medicine).</div>
+</div>
+<p><span class="tag belegt">BELEGT</span>Die Gentechnik ist der Schlüssel: Spenderschweine werden so verändert, dass bestimmte Gene, die akute Abstoßung auslösen, ausgeschaltet und menschliche Gene eingeschleust werden (bei der ersten Herztransplantation: zehn genetische Veränderungen). Ziel ist, das Immunsystem des Empfängers zu täuschen.</p>
+<div class="source-box">
+Stand laut Schweizer Fachauskunft (2025): Herz-Xenotransplantate überlebten bisher 40 bzw. 60 Tage — die Herz-Versuchsreihe wurde vorläufig gestoppt. Bei Nieren läuft es besser: mehrere Personen leben bereits längere Zeit mit einer Schweineniere. Zukünftiges Ziel der Forscher: Überlebenszeiten von sechs Monaten bis einem Jahr, mit Fokus auf gesündere Patienten und geringere Antikörperspiegel gegen Schweine-Antigene.
+<div class="src-meta">Quelle: SRF Wissen, 2025; Der Pragmaticus, 2025; TAB Themenkurzprofil Nr. 86, Dezember 2025 (Büro für Technikfolgen-Abschätzung beim Deutschen Bundestag)</div>
+</div>
+<p><span class="tag offen">OFFEN</span>Das zentrale ungelöste Risiko: Zoonose. Schweine tragen Viren in sich, die bei Organübertragung auf den Menschen überspringen und sich theoretisch von Mensch zu Mensch weiterverbreiten könnten — ein Bedenken, das Public-Health-Experten bereits vor der Corona-Pandemie äußerten. Der erste Todesfall 2022 bestätigte dieses Risiko konkret.</p>
+<p><span class="tag extrapolation">EXTRAPOLATION</span>Tierethische Kritik (u. a. von PETA) verweist darauf, dass für jede erfolgreiche Genvariante ganze Generationen von Schweinen gezüchtet und getötet werden, und dass frühere Tierversuche (Paviane mit Schweineherz) mit gezielter Isolation bis zum Tod verbunden waren. Das ist ein legitimer ethischer Einwand, unabhängig davon, wie man zum medizinischen Nutzen der Forschung steht.</p>
+</section>
+<section id="kunstherz">
+<h2>2 — Das Kunstherz: Ersatz ohne Spender und ohne Tier</h2>
+<p><span class="tag belegt">BELEGT</span>Parallel zur Xenotransplantation existiert ein rein mechanischer Weg: das Total Artificial Heart (TAH). Beim Modell Carmat Aeson wird das native Herz komplett entfernt und durch eine rund 800 Gramm schwere Hydraulikpumpe ersetzt, innen ausgekleidet mit Rinderherzgewebe (reduziert Schlaganfallrisiko, macht hochdosierte Blutverdünner unnötig). Eingebaute Sensoren passen die Pumpleistung automatisch an die Aktivität des Patienten an.</p>
+<div class="stat-grid">
+<div class="stat-cell"><div class="stat-label">Erste Implantation</div><div class="stat-value">2013/14</div></div>
+<div class="stat-cell"><div class="stat-label">Zulassung Deutschland</div><div class="stat-value">Ende 2022</div></div>
+<div class="stat-cell"><div class="stat-label">Weltweite Patienten (Mitte 2024)</div><div class="stat-value">~64</div></div>
+<div class="stat-cell"><div class="stat-label">Ø Wartezeit auf Spenderherz</div><div class="stat-value">6 Monate</div></div>
+</div>
+<p><span class="tag belegt">BELEGT</span>Die Stromversorgung erfolgt über ein Kabel durch die Bauchdecke zu externen Akkus, die der Patient dauerhaft am Körper trägt (Umhängetasche, Akkulaufzeit 6–7 Stunden pro Ladung). Aktueller Einsatzzweck fast ausschließlich: Überbrückung bis zur Transplantation — nicht als dauerhafter Ersatz konzipiert. Heidelberg (2024) und Kiel (2021) sind deutsche Beispiele erfolgreicher Implantationen.</p>
+<p><span class="tag extrapolation">EXTRAPOLATION</span>Das Kunstherz umgeht die gesamte Dead-Donor-Rule- und Organhandel-Problematik aus Teil 1 vollständig — kein Spender, keine Hirntod-Frage. Es wirft dafür eine eigene Grenzfrage auf: Ein Mensch lebt vollständig ohne biologisches Herz, dauerhaft abhängig von einem externen Akku, der buchstäblich leer werden kann. Das ist eine andere Art von Abhängigkeit als die lebenslange Medikation nach Organtransplantation — eine technische statt eine pharmakologische.</p>
+</section>
+<section id="bioprinting">
+<h2>3 — 3D-Bioprinting: Das Organ aus dem Drucker</h2>
+<p><span class="tag belegt">BELEGT</span>Das Weltwirtschaftsforum (WEF) publiziert seit 2014 wiederkehrend eigene Beiträge zum Thema 3D-Bioprinting auf weforum.org — nachprüfbar, öffentlich einsehbar, keine Unterstellung:</p>
+<div class="timeline">
+<div class="t-entry"><div class="t-date">2014</div>WEF-Beitrag der Organovo-Mitgründerin: Vision, eines Tages Nieren, Lebern und Herzen zu drucken. Nächstes Etappenziel damals: pharmazeutische Anwendung bis 2020.</div>
+<div class="t-entry"><div class="t-date">2015</div>WEF zu Marktprognosen: 867 Mio. US-Dollar bis 2025, bis zu 6 Mrd. bei kommerzieller Bioprinting-Nutzung.</div>
+<div class="t-entry"><div class="t-date">2016/2017</div>WEF-Beiträge von Wake-Forest-Forscher Anthony Atala: Entwicklung geht Richtung komplexer Gewebe und "solider Organe". Zugleich mahnen andere Forscher (Melbourne) zur Vorsicht: Volle Organe könnten "unmöglich" bleiben, solange Zellen beim Druckprozess nicht am Leben gehalten werden können.</div>
+<div class="t-entry"><div class="t-date">Mai 2023</div>WEF berichtet über ein NASA/Redwire-Projekt: Ein 3D-Organdrucker wurde zur ISS gebracht, weil Schwerkraft auf der Erde das gedruckte Gewebe zum "Puddeln" bringt — in Schwerelosigkeit bleibt die Struktur stabil.</div>
+</div>
+<div class="source-box">
+Die WHO veröffentlichte 2023/24 einen eigenen Foresight-Bericht zu 3D-Bioprinting und globaler Gesundheit — mit explizitem Verweis auf offene Fragen zu Qualität, Sicherheit, Zugangsgerechtigkeit und Ethik, für die noch keine Regulierung existiert.
+<div class="src-meta">Quelle: weforum.org, Artikel 2014–2023; WHO, "Imagining futures of 3D bioprinting", 2023/24</div>
+</div>
+<p><span class="tag offen">OFFEN</span>Realistischer Stand heute: Gedruckt werden bereits Knorpel, kleine Gewebeflicken und "Organoide" (Mini-Organe für Medikamententests) — kein vollständiges, durchblutetes Organ wie eine Niere oder ein Herz. Der Grund ist technisch, nicht politisch: Ein Organ braucht sofortige Blutversorgung durch hunderte feinste Kapillaren, die bislang nicht in ausreichender Präzision gedruckt werden können, ohne dass die Zellen vorher absterben.</p>
+</section>
+<div class="closing-questions">
+<p><em>Wenn drei parallele Wege — Tier, Maschine, Drucker — gleichzeitig daran arbeiten, den menschlichen Organspender überflüssig zu machen: Welcher davon setzt sich zuerst durch, und was bedeutet das für die Widerspruchslösung aus Teil 1, sollte der Organmangel eines Tages einfach technisch gelöst sein?</em></p>
+<p><em>Und wenn ein Organ nicht mehr von einem Menschen, sondern von einem gentechnisch veränderten Schwein oder einem Drucker stammt — verändert das etwas an der Seelenanteile-Frage aus Teil 1, oder erledigt es sich damit von selbst?</em></p>
+</div>
+<div class="nav-footer">
+  dunkelfeld.report — Serie: Grenzverschiebungen<br/>
+  Teil 1: Organtransplantation — auch hier: Grenzverschiebung<br/>
+  Teil 3 (in Vorbereitung, eigenständig): Kryonik
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

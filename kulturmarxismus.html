@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kulturmarxismus: Anatomie eines Kampfbegriffs — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --amber: #e8c547;
+    --box-bg: #1a1a2e;
+    --text: #e4e4e7;
+    --muted: #9a9aa5;
+    --belegt: #4ade80;
+    --extrapolation: #fb923c;
+    --offen: #9ca3af;
+    --widerlegt: #71717a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 6rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    color: #fff;
+    margin: 0 0 0.4rem;
+    font-weight: 400;
+  }
+  .subtitle {
+    color: var(--amber);
+    font-size: 1.15rem;
+    font-style: italic;
+    margin-bottom: 2.2rem;
+  }
+  h2 {
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 1rem;
+    color: var(--amber);
+    border-bottom: 1px solid #2a2a3d;
+    padding-bottom: 0.5rem;
+    margin-top: 3.2rem;
+  }
+  h3 {
+    font-size: 1.25rem;
+    color: #fff;
+    font-weight: 400;
+    margin-top: 2rem;
+  }
+  p { margin: 1.1rem 0; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-weight: bold;
+    letter-spacing: 0.04em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+    margin-right: 0.3rem;
+    white-space: nowrap;
+  }
+  .tag.belegt { background: rgba(74,222,128,0.12); color: var(--belegt); border: 1px solid rgba(74,222,128,0.35); }
+  .tag.extrapolation { background: rgba(251,146,60,0.12); color: var(--extrapolation); border: 1px solid rgba(251,146,60,0.35); }
+  .tag.offen { background: rgba(156,163,175,0.12); color: var(--offen); border: 1px solid rgba(156,163,175,0.35); }
+  .tag.widerlegt { background: rgba(113,113,122,0.12); color: var(--widerlegt); border: 1px solid rgba(113,113,122,0.35); text-decoration: line-through; }
+
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--amber);
+    padding: 1.2rem 1.4rem;
+    margin: 1.6rem 0;
+    font-size: 0.98rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+  blockquote {
+    border-left: 2px solid var(--amber);
+    margin: 1.8rem 0;
+    padding: 0.3rem 0 0.3rem 1.4rem;
+    font-style: italic;
+    color: #d4d4d8;
+  }
+  blockquote cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-style: normal;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.5rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.8rem 0;
+    font-size: 0.92rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.6rem 0.7rem;
+    border-bottom: 1px solid #2a2a3d;
+    vertical-align: top;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--amber);
+    letter-spacing: 0.04em;
+  }
+  .timeline {
+    margin: 2rem 0;
+    padding-left: 1rem;
+    border-left: 2px solid #2a2a3d;
+  }
+  .timeline-item {
+    position: relative;
+    padding: 0 0 1.6rem 1.4rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+  .timeline-year {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .closing {
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid #2a2a3d;
+    font-style: italic;
+    color: #d4d4d8;
+  }
+  .closing p { font-size: 1.08rem; }
+  .nav-series {
+    margin-top: 3rem;
+    padding: 1.4rem;
+    background: var(--box-bg);
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+  }
+  .nav-series a { color: var(--amber); text-decoration: none; }
+  .nav-series a:hover { text-decoration: underline; }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.5rem 0 2.5rem;
+    padding: 1rem 1.2rem;
+    background: rgba(255,255,255,0.02);
+    border-radius: 4px;
+    font-size: 0.82rem;
+  }
+  a { color: var(--amber); }
+  hr.divider {
+    border: none;
+    border-top: 1px solid #2a2a3d;
+    margin: 2.5rem 0;
+  }
+</style>
+<meta name="description" content="Ein Begriff, dessen Entstehung sich bis auf die Person, das Datum und das politische Motiv zurückverfolgen lässt, wird in Bundestagsreden, Talkshows und …">
+<meta name="rubrik" content="cat-medien">
+<meta name="kachel-titel" content="Kulturmarxismus: Anatomie eines Kampfbegriffs">
+<link rel="canonical" href="https://dunkelfeld.report/kulturmarxismus.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kulturmarxismus: Anatomie eines Kampfbegriffs">
+<meta property="og:description" content="Ein Begriff, dessen Entstehung sich bis auf die Person, das Datum und das politische Motiv zurückverfolgen lässt, wird in Bundestagsreden, Talkshows und …">
+<meta property="og:url" content="https://dunkelfeld.report/kulturmarxismus.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="meta">Dossier · Begriffsgeschichte &amp; Diskursanalyse</div>
+<h1>Kulturmarxismus</h1>
+<div class="subtitle">Anatomie eines Kampfbegriffs — und warum er trotz falscher Prämisse verfängt</div>
+<div class="legend">
+<span class="tag belegt">BELEGT</span>
+<span class="tag extrapolation">EXTRAPOLATION</span>
+<span class="tag offen">OFFEN</span>
+<span class="tag widerlegt">VT-WIDERLEGT</span>
+</div>
+<p>Ein Begriff, dessen Entstehung sich bis auf die Person, das Datum und das politische Motiv zurückverfolgen lässt, wird in Bundestagsreden, Talkshows und Gastbeiträgen verwendet, als beschreibe er eine reale, jahrzehntealte Verschwörung. „Kulturmarxismus" ist kein Analysebegriff mit unklarer Herkunft — er ist so gut dokumentiert wie kaum ein anderes Kampfwort der Gegenwart. Genau das macht ihn zu einem Lehrstück: nicht darüber, <em>ob</em> er stimmt, sondern darüber, warum eine nachweislich konstruierte Erzählung trotzdem auf fruchtbaren Boden fällt.</p>
+<h2>I. Was die Frankfurter Schule wirklich war</h2>
+<p>Das Institut für Sozialforschung wurde 1923 in Frankfurt am Main gegründet — eine reale, akademisch verortete Einrichtung, keine geheime Zirkel-Gründung. Zu ihren prägenden Mitgliedern zählten Max Horkheimer, Theodor W. Adorno, Herbert Marcuse, Erich Fromm und Leo Löwenthal. Ihr Projekt, die „Kritische Theorie", verband Kapitalismuskritik mit Psychoanalyse und Gesellschaftsanalyse — ein akademisches Programm mit veröffentlichten, bis heute zitierten und kontrovers diskutierten Texten: Adornos Mitarbeit an „The Authoritarian Personality" (1950) und Marcuses „One-Dimensional Man" (1964) sind die bekanntesten.</p>
+<p>Nach der nationalsozialistischen Machtübernahme emigrierten die meisten Institutsmitglieder — viele von ihnen jüdischer Herkunft — in die USA. Das Institut existierte dort im Exil weiter, bevor Teile davon in den 1950er Jahren nach Frankfurt zurückkehrten. Dieser Umstand — jüdische Emigranten, akademische Gesellschaftskritik, US-amerikanisches Exil — ist historisches Fakt. Er wird später, wie Abschnitt III zeigt, zum Ausgangsmaterial einer ganz anderen Erzählung umgeformt.</p>
+<div class="source-box">
+<div class="label">Quellenlage</div>
+    Institutsgeschichte, Mitgliederlisten und Werkverzeichnis sind über Universitätsarchive, Verlagskataloge und Standardwerke der Ideengeschichte durchgehend dokumentiert. Es gibt keinen Dissens über die Existenz, Zusammensetzung oder die veröffentlichten Inhalte der Frankfurter Schule — nur über deren Bewertung.
+  </div>
+<h2>II. Wie „Kulturmarxismus" daraus wurde</h2>
+<p>Die Verbindung von Frankfurter Schule, „Political Correctness" und einem angeblichen „Plan gegen die westliche Zivilisation" lässt sich in ihrer Entstehung präzise datieren. Ihre früheste Form findet sich in den 1970er Jahren im Umfeld von Lyndon LaRouche; 1992 erschien im LaRouche-Organ „Fidelio" ein Aufsatz von Michael Minnicino zur Frankfurter Schule und „Political Correctness" — ein Text, den sein eigener Autor später öffentlich zurückgezogen hat.</p>
+<p>Popularisiert wurde die These jedoch durch eine andere Person: William S. Lind, tätig für die von Paul Weyrich gegründete Free Congress Foundation, wo Lind von 1986 bis 2009 das „Center for Cultural Conservatism" leitete. In Linds Schrift „Cultural Marxism" heißt es, die Bewegung habe „nicht in den 1960er, sondern 1919" begonnen — als Reaktion darauf, dass die von Marx vorhergesagte proletarische Revolution nach dem Ersten Weltkrieg ausblieb.</p>
+<blockquote>
+    „Political correctness looms over American society like a colossus. It has taken over both political parties and is enforced by many laws and government regulations. […] It is a cultural war, as critical to the nation we will one day be as was the Cold War itself."
+    William S. Lind, Rede 1998, Free Congress Foundation — zit. n. SPLC, „Cultural Marxism Catching On"
+  </blockquote>
+<p>Lind verband dabei explizit die Frankfurter Schule mit Antonio Gramsci und Georg Lukács — zwei Theoretikern, die inhaltlich, biografisch und historisch nichts mit dem Frankfurter Institut zu tun hatten. Die Konstruktion ist also nicht nur inhaltlich unbelegt, sondern verknüpft nachweislich unabhängige Denker zu einer einzigen erfundenen Traditionslinie.</p>
+<div class="source-box">
+<div class="label">BELEGT — Entstehungskette</div>
+    LaRouche-Umfeld (1970er) → Minnicino/„Fidelio" (1992, vom Autor später widerrufen) → William Lind / Free Congress Foundation / Paul Weyrich (ab Mitte der 1990er, öffentliche Reden und Publikationen). Diese Kette ist durch Primärtexte, Reden und Sekundärforschung (u. a. Society for US Intellectual History, SPLC) dokumentiert.
+  </div>
+<p>Die Reichweite dieser Konstruktion zeigt sich an ihrer tödlichsten Konsequenz: Der norwegische Rechtsterrorist Anders Behring Breivik übernahm den Begriff 2011 in sein Manifest, bevor er 69 Menschen ermordete. Diese Übernahme ist dokumentiert und wird in der Forschung als Beleg für die praktische Gefährlichkeit der Erzählung angeführt — unabhängig von ihrer theoretischen Unhaltbarkeit.</p>
+<h2>III. Der antisemitische Kern — und seine deutsche Verwendung</h2>
+<p>Die Struktur der Erzählung folgt einem alten Muster: eine kleine, als „fremd" markierte Gruppe manipuliere heimlich die Mehrheitsgesellschaft. Dieses Muster ist nicht neu erfunden, sondern wiederverwendet — es findet sich bereits 1873 bei dem Anarchisten Michail Bakunin, der Karl Marx eine Verschwörung mit der Bankiersfamilie Rothschild unterstellte. Da die Frankfurter Schule mehrheitlich aus jüdischen Wissenschaftlern bestand, überträgt „Kulturmarxismus" dieses Muster unmittelbar auf sie.</p>
+<p>Im deutschen politischen Diskurs ist der Begriff seit Jahren nachweisbar in Gebrauch:</p>
+<table>
+<tr><th>Person / Datum</th><th>Kontext</th><th>Zitat / Vorwurf</th></tr>
+<tr><td>Thomas Ehrhorn (AfD), Bundestag</td><td>Plenardebatte</td><td>„kulturmarxistischer Angriff" auf die Familie</td></tr>
+<tr><td>Martin Renner (AfD)</td><td>Bundestag</td><td>Geschlechtergerechtigkeit als „von Kulturmarxismus aufgeblasener ungeistiger Popanz"</td></tr>
+<tr><td>Alice Weidel (AfD)</td><td>Gastbeitrag, „Junge Freiheit", 2018</td><td>Gramsci/Frankfurter Schule als Urheber einer „marxistischen Kulturrevolution"; Sexualisierung, Genderismus, Multikulturalismus als deren „Früchte"</td></tr>
+<tr><td>Beatrix von Storch (AfD)</td><td>Nach Bundestags-Pressekonferenz, 2020</td><td>Öffentlicher Vorwurf „Kulturmarxismus" gegenüber Anetta Kahane (Amadeu Antonio Stiftung)</td></tr>
+</table>
+<p>Dr. Michael Blume, Antisemitismusbeauftragter der Landesregierung Baden-Württemberg, ordnete den von-Storch-Vorfall öffentlich in die Tradition des jüdisch-marxistischen Weltverschwörungsnarrativs ein. Der Politikwissenschaftler Matthias Quent dokumentiert zudem, dass Teile der AfD — etwa im Umfeld Björn Höckes — zeitweise offen den historisch NS-belasteten Begriff „Kulturbolschewismus" anstelle von „Kulturmarxismus" verwenden, was den strukturellen Zusammenhang zusätzlich verdeutlicht.</p>
+<div class="source-box">
+<div class="label">VT-WIDERLEGT</div>
+    Die These eines seit 1919 bestehenden, zentral geplanten Umerziehungsprogramms durch die Frankfurter Schule ist durch keine Primärquelle gedeckt. Ihre Urheber selbst (LaRouche-Umfeld, Minnicino) haben Teile davon widerrufen. Die Verknüpfung mit Gramsci und Lukács ist nachweislich unhistorisch.
+  </div>
+<h2>IV. Warum das Narrativ trotzdem greift</h2>
+<p>Wäre „Kulturmarxismus" nur eine erfundene Geschichte ohne inneren Ankerpunkt, würde sie kaum wirken. Drei Mechanismen erklären, warum sie es dennoch tut:</p>
+<h3>1. Ein reales Körnchen wird zur Gesamterklärung</h3>
+<p>Antonio Gramscis Konzept kultureller Hegemonie — dass gesellschaftliche Macht auch über Deutungshoheit in Bildung, Medien und Kultur ausgeübt wird — ist eine anerkannte, akademisch diskutierte These. Wer eine rasche Verschiebung gesellschaftlicher Normen erlebt, sucht einen Urheber. Ein benennbarer Akteur mit Plan ist kognitiv einfacher zu verarbeiten als ein diffuser, vielschichtiger Wandel.</p>
+<h3>2. Kontrollverlust sucht einen Namen</h3>
+<p>Wer sich kulturell oder wirtschaftlich abgehängt fühlt, erlebt Wandel häufig als Fremdbestimmung. Ein konkreter Feind entlastet, weil er die eigene Lage nicht als strukturelles Problem, sondern als gezielten Angriff erklärbar macht.</p>
+<h3>3. Realer institutioneller Überschwang liefert Steilvorlagen</h3>
+<p>Wo Institutionen tatsächlich einseitig oder belehrend auftreten, wird das als „Beweis" der Gesamterzählung genommen — obwohl es sich meist um Einzelfälle ohne nachweisbare Koordination handelt.</p>
+<h2>V. Einzelfall oder Kampagne? Die Beweisfrage</h2>
+<p>Die entscheidende journalistische Unterscheidung liegt nicht zwischen „Verschwörung" und „Zufall", sondern zwischen drei nachweisbar unterschiedlichen Kategorien:</p>
+<table>
+<tr><th>Kategorie</th><th>Beispielhafte Grundlage</th><th>Status</th></tr>
+<tr>
+<td>Dokumentierte Einzelkampagne</td>
+<td>Nachweisbare Finanzierungsketten, interne Strategiepapiere, geleakte Memos, Verträge</td>
+<td><span class="tag belegt">BELEGT</span></td>
+</tr>
+<tr>
+<td>Strukturell ähnliches Verhalten</td>
+<td>Gemeinsame Anreize, Förderlogiken, akademische Sozialisation ohne nachweisbare Absprache</td>
+<td><span class="tag extrapolation">EXTRAPOLATION</span></td>
+</tr>
+<tr>
+<td>Zentral gesteuerter Gesamtplan</td>
+<td>Behauptete jahrzehntelange, koordinierte Meisterstrategie</td>
+<td><span class="tag widerlegt">VT-WIDERLEGT</span></td>
+</tr>
+</table>
+<p>Der typische Fehler liegt darin, die zweite Kategorie in die erste zu übersetzen: Aus ähnlichem Verhalten vieler unabhängiger Akteure — erklärbar durch gemeinsame ökonomische oder institutionelle Anreize — wird stillschweigend eine Absprache gemacht, ohne dass dafür je ein Dokument vorgelegt wird.</p>
+<hr class="divider"/>
+<h2>VI. Wirkungsanalyse statt Motivsuche</h2>
+<p>Hier liegt der eigentliche analytische Kern — und der Punkt, an dem sich dieses Dossier von einer reinen Widerlegung unterscheidet: Ob eine gesellschaftliche Verschiebung aus zentraler Absicht, aus glücklichen Zufällen einzelner Akteure oder aus einer sich selbst verstärkenden Anreizstruktur entsteht — für die gesellschaftliche <em>Wirkung</em> ist das irrelevant. Wer betroffen ist, spürt das Ergebnis, nicht das Motiv dahinter.</p>
+<p>Das macht Wirkungsanalyse zu einem robusteren Werkzeug als Motivsuche. Wer nach Absicht fragt, kann durch das Fehlen von Beweisen widerlegt werden — „keine Mails gefunden, also kein Komplott". Wer stattdessen fragt, wessen Interessen ein wiederkehrendes Ergebnis strukturell dient, unabhängig von der Frage nach Absprache, stellt eine Frage, die sich nicht durch das Fehlen einer Verschwörung erledigt.</p>
+<div class="source-box">
+<div class="label">Methodischer Kern</div>
+    Nicht: „Haben sich X, Y und Z abgesprochen?"<br/>
+    Sondern: „Wem nützt das wiederkehrende Ergebnis — strukturell, über Zeit, unabhängig vom Motiv?"<br/>
+    Diese Verschiebung von Motiv- zu Wirkungsanalyse ist die konsequenteste Anwendung des Beleg-vor-Motiv-Prinzips: Sie verzichtet vollständig auf die unbeweisbare Frage nach Absicht und bleibt ausschließlich beim dokumentierbaren Ergebnis.
+  </div>
+<p>Für „Kulturmarxismus" bedeutet das: Die eigentlich interessante Frage ist nicht, ob es eine geheime Meisterstrategie der Frankfurter Schule gab — das ist widerlegt. Die interessante Frage ist, wem die fortlaufende Verwendung <em>des Kampfbegriffs selbst</em> heute nützt: als Mobilisierungsinstrument, als Feindbild-Lieferant, als Ablenkung von strukturellen Ursachen gesellschaftlichen Wandels. Diese Frage lässt sich rein aus beobachtbarer Wirkung beantworten — ganz ohne Unterstellung einer Gesinnung bei denjenigen, die den Begriff benutzen.</p>
+<h2>VII. Zeitleiste</h2>
+<div class="timeline">
+<div class="timeline-item">
+<span class="timeline-year">1923</span>
+      Gründung des Instituts für Sozialforschung, Frankfurt am Main
+    </div>
+<div class="timeline-item">
+<span class="timeline-year">1933</span>
+      Emigration der meisten Institutsmitglieder aus Nazi-Deutschland, überwiegend in die USA
+    </div>
+<div class="timeline-item">
+<span class="timeline-year">1970er</span>
+      Erste Verknüpfung von Frankfurter Schule und „Umerziehungsplan" im LaRouche-Umfeld
+    </div>
+<div class="timeline-item">
+<span class="timeline-year">1992</span>
+      Michael Minnicinos Aufsatz in „Fidelio" (LaRouche-Schiller-Institut) — später vom Autor widerrufen
+    </div>
+<div class="timeline-item">
+<span class="timeline-year">Mitte 1990er</span>
+      William Lind popularisiert „Cultural Marxism" über die Free Congress Foundation (Paul Weyrich)
+    </div>
+<div class="timeline-item">
+<span class="timeline-year">2011</span>
+      Anders Behring Breivik übernimmt den Begriff in sein Manifest vor dem Anschlag in Norwegen
+    </div>
+<div class="timeline-item">
+<span class="timeline-year">2018–2025</span>
+      Wiederholte Verwendung im deutschen politischen Diskurs (Bundestag, Gastbeiträge, öffentliche Vorwürfe)
+    </div>
+</div>
+<div class="closing">
+<p>Offene Fragen bleiben: Warum ist die Erzählstruktur „kleine Gruppe steuert heimlich die Mehrheit" über ein Jahrhundert hinweg derart wiederverwendbar — unabhängig davon, welcher Name gerade eingesetzt wird? Und wem nützt es strukturell, wenn gesellschaftlicher Wandel als Ergebnis eines Plans erzählt wird, statt als das, was er in den meisten Fällen ist: das unübersichtliche Zusammenspiel realer Interessen, Anreize und Zufälle?</p>
+</div>
+<div class="nav-series">
+    Verwandte Dossiers: <a href="artikel-012-faktenchecker-system.html">Faktenchecker-Business</a> · <a href="artikel-011-divide-et-impera.html">Divide et Impera 2.0</a>
+</div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

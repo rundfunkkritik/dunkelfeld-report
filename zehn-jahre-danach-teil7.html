@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Zehn Jahre danach (7): Synthese — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --surface: #1a1a2e;
+    --accent: #e8c547;
+    --text: #e5e5e0;
+    --muted: #9a9aa5;
+    --border: #2a2a3a;
+    --belegt: #6fae6f;
+    --extrapolation: #d99a4e;
+    --offen: #8a8a95;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  header.site {
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+  header.site .dot {
+    width: 8px; height: 8px; background: var(--accent); border-radius: 50%;
+    flex-shrink: 0;
+  }
+  header.site .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 2rem;
+  }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    line-height: 1.15;
+    margin: 0 0 1rem;
+    font-weight: 700;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-size: 1.15rem;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.8rem 0;
+    margin-bottom: 3rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  p { padding-bottom: 1.2rem; }
+  h2 {
+    font-size: 1.6rem;
+    margin: 3rem 0 1.2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h2 .num {
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    margin-right: 0.5rem;
+  }
+  .source-box {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+  .tag.belegt { color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag.extrapolation { color: var(--extrapolation); border: 1px solid var(--extrapolation); }
+  .tag.offen { color: var(--offen); border: 1px solid var(--offen); }
+  table.compare {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 2rem;
+    font-size: 0.92rem;
+  }
+  table.compare th, table.compare td {
+    border: 1px solid var(--border);
+    padding: 0.55rem 0.7rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  table.compare th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    background: var(--surface);
+  }
+  table.compare td.num { font-family: 'Courier New', monospace; white-space: nowrap; }
+  .open-question {
+    font-style: italic;
+    color: var(--text);
+    font-size: 1.25rem;
+    text-align: center;
+    margin: 3rem 0;
+    padding: 2.5rem 1rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .note {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  footer.series {
+    border-top: 1px solid var(--border);
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  footer.series .series-title {
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+    margin-bottom: 0.8rem;
+  }
+  footer.series ol {
+    padding-left: 1.2rem;
+    margin: 0;
+  }
+  footer.series li { padding-bottom: 0.4rem; }
+  footer.series li.current { color: var(--text); font-weight: bold; }
+  footer.site {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+</style>
+<meta name="description" content="2015 und 2017 äußerten sich mehrere Politiker öffentlich zum erwarteten Wandel Deutschlands. Diese Synthese stellt keine neuen Fakten vor, sondern fasst …">
+<meta name="rubrik" content="cat-migration">
+<meta name="kachel-titel" content="Zehn Jahre danach (7): Synthese">
+<link rel="canonical" href="https://dunkelfeld.report/zehn-jahre-danach-teil7.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zehn Jahre danach (7): Synthese">
+<meta property="og:description" content="2015 und 2017 äußerten sich mehrere Politiker öffentlich zum erwarteten Wandel Deutschlands. Diese Synthese stellt keine neuen Fakten vor, sondern fasst …">
+<meta property="og:url" content="https://dunkelfeld.report/zehn-jahre-danach-teil7.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<header class="site">
+<div class="dot"></div>
+<span class="tag">dunkelfeld.report — Dokumentation · Fakten · Quellen</span>
+</header>
+<main>
+<div class="kicker">Serie: Zehn Jahre danach — Teil 7 von 7 (Synthese)</div>
+<h1>Synthese</h1>
+<div class="subtitle">Sechs Themenfelder, eine Zeitspanne: 2015/2017 bis heute — alle Kennzahlen im Überblick</div>
+<div class="meta">
+<span>Stand: Juli 2026</span>
+<span>Lesedauer: ca. 6 Minuten</span>
+</div>
+<p>2015 und 2017 äußerten sich mehrere Politiker öffentlich zum erwarteten Wandel Deutschlands. Diese Synthese stellt keine neuen Fakten vor, sondern fasst die in den Teilen 1–6 dokumentierten Zahlen tabellarisch zusammen — als Nachschlagewerk, nicht als Urteil.</p>
+<h2><span class="num">01</span>Geburten</h2>
+<table class="compare">
+<tr><th>Kennzahl</th><th>Wert</th><th>Quelle</th></tr>
+<tr><td>Geburten 2025</td><td class="num">654.241 (niedrigster Stand seit 1946)</td><td>Destatis</td></tr>
+<tr><td>Geburtenziffer gesamt</td><td class="num">1,32 (2024: 1,35)</td><td>Destatis</td></tr>
+<tr><td>Geburtenziffer deutsche Frauen</td><td class="num">1,20</td><td>Destatis</td></tr>
+<tr><td>Geburtenziffer ausländische Frauen</td><td class="num">1,78</td><td>Destatis</td></tr>
+<tr><td>Geburtendefizit (Sterbeüberschuss)</td><td class="num">-352.000 (Rekord Nachkriegszeit)</td><td>Destatis</td></tr>
+</table>
+<h2><span class="num">02</span>Kinderarmut &amp; Bildung</h2>
+<table class="compare">
+<tr><th>Kennzahl</th><th>Wert</th><th>Quelle</th></tr>
+<tr><td>Kinderarmut steigt in Gruppen</td><td class="num">Alleinerziehende, Migranten, Großfamilien</td><td>Arche/Siggelkow, Bundestagsanhörung</td></tr>
+<tr><td>15-Jährige mit Leseschwäche (Siggelkow-Schätzung)</td><td class="num">~30%</td><td>Bundestagsanhörung 23.3.2026</td></tr>
+<tr><td>Neuntklässler unter Lese-Mindeststandard (unabhängig erhoben)</td><td class="num">32,5% (+9 Pp. seit 2015)</td><td>IQB-Bildungstrend 2022</td></tr>
+<tr><td>Median-Nettovermögen</td><td class="num">103.200 €</td><td>7. Armuts- und Reichtumsbericht</td></tr>
+<tr><td>Schwelle Top-10%-Vermögen</td><td class="num">780.000 €</td><td>7. Armuts- und Reichtumsbericht</td></tr>
+</table>
+<h2><span class="num">03</span>Sicherheit</h2>
+<table class="compare">
+<tr><th>Kennzahl</th><th>Wert</th><th>Quelle</th></tr>
+<tr><td>Straftaten gesamt 2025</td><td class="num">5.508.559 (-5,6%)</td><td>BKA PKS 2025</td></tr>
+<tr><td>Gewaltkriminalität</td><td class="num">212.335 Fälle (-2,3%, erster Rückgang seit 2021)</td><td>BKA PKS 2025</td></tr>
+<tr><td>Vergewaltigung</td><td class="num">+9,0% (+72% seit 2018)</td><td>BKA PKS 2025</td></tr>
+<tr><td>Schusswaffengebrauch</td><td class="num">1.371 Fälle (+13,4%, Höchststand seit 2009)</td><td>BKA PKS 2025</td></tr>
+<tr><td>Tatverdächtige Kinder (unter 14)</td><td class="num">+3,3%</td><td>BKA PKS 2025</td></tr>
+<tr><td>Nichtdeutsche Tatverdächtige (gesamt / Gewaltkriminalität)</td><td class="num">38,5% / 42,9%</td><td>BKA PKS 2025</td></tr>
+</table>
+<h2><span class="num">04</span>Kinderehen &amp; Verwandtenehe</h2>
+<table class="compare">
+<tr><th>Kennzahl</th><th>Wert</th><th>Quelle</th></tr>
+<tr><td>Minderjährige Verheiratete (Stichtag 2016)</td><td class="num">1.475, davon 361 unter 14</td><td>Ausländerzentralregister</td></tr>
+<tr><td>Gesetzliche Konsequenz</td><td class="num">Ehemündigkeitsalter bundesweit auf 18 (2.6.2017)</td><td>Bundestag</td></tr>
+<tr><td>Fehlbildungsrate blutsverwandte vs. nicht verwandte Paare</td><td class="num">10,9% vs. 2,9%</td><td>Charité-Dissertation, 35.391 Fälle</td></tr>
+</table>
+<h2><span class="num">05</span>Wohnraum &amp; Kosten</h2>
+<table class="compare">
+<tr><th>Kennzahl</th><th>Wert</th><th>Quelle</th></tr>
+<tr><td>Fehlende Wohnungen</td><td class="num">1,4 Mio. (Rekordhoch)</td><td>Pestel-Institut, Sozialer Wohn-Monitor 2026</td></tr>
+<tr><td>Sozialwohnungsbestand 2024</td><td class="num">~1,05 Mio. (-26.000 ggü. 2023)</td><td>Sozialer Wohn-Monitor 2026</td></tr>
+<tr><td>Menschen in überbelegten Wohnungen</td><td class="num">9,6 Mio. (2015: 5,7 Mio.)</td><td>Sozialer Wohn-Monitor 2026</td></tr>
+<tr><td>Geschätzte Wohnungslose</td><td class="num">~1 Mio.</td><td>BAG Wohnungslosenhilfe</td></tr>
+</table>
+<h2><span class="num">06</span>Verschleierung — europäischer Vergleich</h2>
+<table class="compare">
+<tr><th>Kennzahl</th><th>Wert</th><th>Quelle</th></tr>
+<tr><td>Generelles Verbot in Kraft seit</td><td class="num">Frankreich/Belgien 2011, Österreich 2017, Dänemark 2018, Schweiz 2021</td><td>Wissenschaftliche Dienste Bundestag</td></tr>
+<tr><td>Deutschland</td><td class="num">nur Teilverbote, kein generelles Verbot</td><td>Wissenschaftliche Dienste Bundestag</td></tr>
+<tr><td>CDU-Frauen-Forderung nach generellem Verbot</td><td class="num">Februar 2026, einstimmig beschlossen</td><td>EMMA</td></tr>
+</table>
+<p class="note">Alle Einzelnachweise, Zitate im Wortlaut und methodische Einordnungen (inkl. OFFEN-markierter Punkte) finden sich in den jeweiligen Teilen 1–6 dieser Serie. <span class="tag belegt">BELEGT</span></p>
+<div class="open-question">
+    Zwei Sätze aus 2015 und 2017 versprachen einen Wandel. Zehn Jahre später liegen die Zahlen vor — in sechs Themenfeldern, aus zehn unabhängigen Quellen, von Destatis bis zum Bundestag. Was daraus über die nächsten zehn Jahre folgt, ist keine Frage der Statistik mehr. Sie liegt bei denen, die diese Zahlen lesen.
+  </div>
+<footer class="series">
+<div class="series-title">Serie: Zehn Jahre danach — vollständig</div>
+<ol>
+<li>1. Die Zitate</li>
+<li>2. Geburten — was Destatis zeigt</li>
+<li>3. Kinderarmut &amp; Bildung — der Arche-Bericht</li>
+<li>4. Sicherheit — die BKA-Kriminalstatistik 2025</li>
+<li>5. Kinderehen &amp; Verwandtenehe</li>
+<li>6. Wohnraum &amp; Kosten</li>
+<li class="current">7. Synthese ← Sie befinden sich hier</li>
+</ol>
+</footer>
+</main>
+<footer class="site">
+  dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.
+</footer>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

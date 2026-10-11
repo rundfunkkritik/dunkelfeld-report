@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Der Fall Weimer — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --amber: #e8c547;
+    --card-bg: #1a1a2e;
+    --text: #d4d4d8;
+    --text-dim: #8a8a95;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --grey: #9ca3af;
+    --red: #f87171;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 40px 20px 80px; }
+  .masthead { text-align: center; margin-bottom: 8px; }
+  .masthead .logo {
+    font-family: 'Courier New', monospace;
+    color: var(--amber); font-size: 14px; letter-spacing: 2px; text-transform: uppercase;
+  }
+  .masthead .tagline {
+    font-family: 'Courier New', monospace; color: var(--text-dim); font-size: 11px;
+    margin-top: 4px; letter-spacing: 1px;
+  }
+  hr.divider { border: none; border-top: 1px solid #27272a; margin: 24px 0; }
+  .meta {
+    font-family: 'Courier New', monospace; color: var(--text-dim); font-size: 12px;
+    text-align: center; margin-bottom: 6px;
+  }
+  h1.title { font-size: 30px; line-height: 1.25; color: #f4f4f5; text-align: center; margin: 10px 0 6px; }
+  .subtitle { text-align: center; color: var(--text-dim); font-size: 15px; font-style: italic; margin-bottom: 30px; }
+  .lead { font-size: 18px; color: #f4f4f5; margin-bottom: 30px; }
+  h2 {
+    font-family: Georgia, serif; color: var(--amber); font-size: 22px;
+    margin-top: 48px; border-bottom: 1px solid #27272a; padding-bottom: 8px;
+  }
+  h3 { color: #f4f4f5; font-size: 17px; margin-top: 28px; }
+  p { margin: 14px 0; }
+
+  .tag {
+    font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 1px;
+    padding: 2px 7px; border-radius: 3px; margin-right: 6px; display: inline-block; vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.12); color: var(--green); border: 1px solid rgba(74,222,128,0.4); }
+  .tag-extra { background: rgba(251,146,60,0.12); color: var(--orange); border: 1px solid rgba(251,146,60,0.4); }
+  .tag-offen { background: rgba(156,163,175,0.12); color: var(--grey); border: 1px solid rgba(156,163,175,0.4); }
+  .tag-widerlegt { background: rgba(248,113,113,0.10); color: var(--red); border: 1px solid rgba(248,113,113,0.4); text-decoration: line-through; }
+
+  .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 24px 0; }
+  .stat-box { background: var(--card-bg); padding: 16px; border-radius: 6px; border-left: 3px solid var(--amber); }
+  .stat-box .num { font-family: 'Courier New', monospace; font-size: 20px; color: var(--amber); font-weight: bold; }
+  .stat-box .label { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+
+  .timeline { margin: 24px 0; border-left: 2px solid #27272a; padding-left: 20px; }
+  .timeline-item { margin-bottom: 20px; position: relative; }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -26px; top: 4px;
+    width: 9px; height: 9px; border-radius: 50%; background: var(--amber);
+  }
+  .timeline-date { font-family: 'Courier New', monospace; color: var(--amber); font-size: 13px; font-weight: bold; }
+  .timeline-text { margin-top: 4px; font-size: 15px; }
+
+  .person-card { background: var(--card-bg); border-radius: 6px; padding: 16px 18px; margin: 16px 0; }
+  .person-card .name { font-size: 16px; color: #f4f4f5; font-weight: bold; }
+  .person-card .role { font-family: 'Courier New', monospace; font-size: 11px; color: var(--text-dim); margin-bottom: 8px; }
+
+  .source-box {
+    background: var(--card-bg); border-left: 3px solid var(--amber); padding: 14px 18px;
+    margin: 20px 0; font-size: 13px; color: var(--text-dim); border-radius: 0 6px 6px 0;
+  }
+  .source-box .source-label {
+    font-family: 'Courier New', monospace; color: var(--amber); font-size: 11px;
+    letter-spacing: 1px; display: block; margin-bottom: 6px;
+  }
+
+  .pull-quote {
+    font-size: 20px; font-style: italic; color: #f4f4f5;
+    border-left: 3px solid var(--amber); padding: 6px 20px; margin: 30px 0;
+  }
+
+  table.comp { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+  table.comp th {
+    font-family: 'Courier New', monospace; font-size: 11px; color: var(--amber);
+    text-align: left; padding: 8px 10px; border-bottom: 1px solid #27272a; letter-spacing: 0.5px;
+  }
+  table.comp td { padding: 8px 10px; border-bottom: 1px solid #1f1f23; vertical-align: top; }
+
+  .open-questions { margin-top: 50px; padding-top: 20px; border-top: 1px dashed #27272a; }
+  .open-questions h2 { color: var(--grey); }
+  .open-questions p { font-style: italic; color: var(--text-dim); }
+
+  .footer-nav {
+    margin-top: 60px; padding-top: 20px; border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace; font-size: 12px; color: var(--text-dim); text-align: center;
+  }
+  .footer-nav .brand { color: var(--amber); }
+
+  ul { padding-left: 22px; }
+  li { margin: 6px 0; }
+  a { color: var(--amber); text-decoration: none; }
+</style>
+<meta name="description" content="Vier Skandale in einem Amtsjahr — und warum der Kulturstaatsminister trotzdem im Amt bleibt">
+<meta name="rubrik" content="cat-medien">
+<meta name="kachel-titel" content="Der Fall Weimer">
+<link rel="canonical" href="https://dunkelfeld.report/weimer-kulturstaatsminister.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Der Fall Weimer">
+<meta property="og:description" content="Vier Skandale in einem Amtsjahr — und warum der Kulturstaatsminister trotzdem im Amt bleibt">
+<meta property="og:url" content="https://dunkelfeld.report/weimer-kulturstaatsminister.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="masthead">
+<div class="logo">dunkelfeld.report</div>
+<div class="tagline">Hidden in Plain Sight</div>
+</div>
+<hr class="divider"/>
+<div class="meta">DOSSIER · AMTSFÜHRUNG · INTERESSENKONFLIKTE</div>
+<h1 class="title">Der Fall Weimer</h1>
+<p class="subtitle">Vier Skandale in einem Amtsjahr — und warum der Kulturstaatsminister trotzdem im Amt bleibt</p>
+<p class="lead">
+    Verfassungsschutz-Abfrage gegen Buchhandlungen. Ein Gerichtsurteil gegen den eigenen Minister. Steuergeld an die
+    eigene Firma. Der Versuch, eine international besetzte Festivalleitung abzusetzen. Wolfram Weimer, seit Mai 2025
+    Kulturstaatsminister unter Friedrich Merz, hat in seinem ersten Amtsjahr mehr Kontroversen ausgelöst als mancher
+    Minister in einer ganzen Legislaturperiode — und sitzt trotzdem fest im Sattel.
+  </p>
+<div class="stat-grid">
+<div class="stat-box"><div class="num">Mai 2025</div><div class="label">Amtsantritt als Kulturstaatsminister</div></div>
+<div class="stat-box"><div class="num">parteilos</div><div class="label">Vertrauensperson von Kanzler Merz</div></div>
+<div class="stat-box"><div class="num">118</div><div class="label">nominierte Buchhandlungen, 3 gestrichen</div></div>
+<div class="stat-box"><div class="num">140.000 €+</div><div class="label">Steuergeld an die eigene Medienfirma</div></div>
+</div>
+<h2>1. Wer ist Wolfram Weimer</h2>
+<p><span class="tag tag-belegt">BELEGT</span>Wolfram Weimer, geboren 1964 in Gelnhausen, war Wirtschaftsredakteur
+  der FAZ, Chefredakteur von Welt und Berliner Morgenpost, Gründer des Magazins Cicero und später der Weimer Media
+  Group (mit Ehefrau Christiane Goetz-Weimer). Seit Mai 2025 ist er als Parteiloser Staatsminister beim Bundeskanzler
+  und Beauftragter der Bundesregierung für Kultur und Medien — Nachfolger von Claudia Roth. Als Amtsträger leitet er
+  eine oberste Bundesbehörde mit rund 470 Mitarbeitern und ist zugleich Vorsitzender des Aufsichtsrats der
+  Kulturveranstaltungen des Bundes in Berlin GmbH (KBB), die u.a. die Berlinale trägt.</p>
+<h2>2. Der Ludwig-Erhard-Gipfel — Zugang gegen Geld</h2>
+<p><span class="tag tag-belegt">BELEGT</span>Die Weimer Media Group veranstaltet seit 2014 den Ludwig-Erhard-Gipfel
+  am Tegernsee — ein Netzwerktreffen von Wirtschaftsvertretern und Spitzenpolitikern, das sich selbst als "bayerisches
+  Davos" bezeichnet (Zitat Markus Söder, Schirmherr). Laut Werbematerial wurden Teilnehmerpakete bis zu 80.000 Euro
+  verkauft, die exklusiven Zugang und "Einfluss auf politische Entscheidungsträger" versprachen — einschließlich
+  Regierungsmitgliedern.</p>
+<p>Der Interessenkonflikt: Der Veranstalter dieses Zugangs-gegen-Geld-Formats ist die Firma des amtierenden
+  Kulturstaatsministers selbst. Weimer legte in der Folge die Geschäftsführung der Weimer Media Group nieder und
+  übertrug Anteile an einen Treuhänder, wies die Vorwürfe aber zurück. Kanzler Merz erklärte die Vorwürfe für
+  "widerlegt" und stellte sich öffentlich hinter seinen Minister.</p>
+<div class="source-box">
+<span class="source-label">QUELLEN</span>
+    taz.de: "Wo die Bundeskanzler wohnen" · politik-kommunikation.de: "Weimerer Verhältnisse"
+  </div>
+<h2>3. Das Haber-Verfahren — Verfassungsschutz gegen Buchhandlungen</h2>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-date">2025</div>
+<div class="timeline-text">Eine unabhängige Jury nominiert 118 Buchhandlungen für den Deutschen Buchhandlungspreis — darunter "Zur schwankenden Weltkugel" (Berlin), "Golden Shop" (Bremen), "Rote Straße" (Göttingen).</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">16. Januar 2026</div>
+<div class="timeline-text">Weimer wendet sich an das Bundesamt für Verfassungsschutz (BfV) und bittet nach dem sogenannten Haber-Verfahren um Auskunft zu den drei Buchhandlungen — wegen "Hinweisen auf einen möglicherweise linksextremistischen Hintergrund".</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">Januar 2026</div>
+<div class="timeline-text">Das BfV teilt mit, es lägen "verfassungsschutzrelevante Erkenntnisse" vor — ohne diese zu benennen. Weimer streicht daraufhin alle drei Buchhandlungen von der Preisliste.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">März 2026</div>
+<div class="timeline-text">Die betroffenen Buchhandlungen werden in Absage-Mails fälschlich so dargestellt, als habe die unabhängige Jury sie nicht ausgewählt. Weimer sagt öffentlich (Zeit-Interview): "Wenn der Staat Preise vergibt und Steuergelder einsetzt, dann kann er das nicht für politische Extremisten tun." Er sagt die öffentliche Preisverleihung auf der Leipziger Buchmesse ab.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">Mai/Juni 2026</div>
+<div class="timeline-text">Das Verwaltungsgericht Berlin untersagt Weimer, die Betreiberinnen der "Schwankenden Weltkugel" als "politische Extremisten" zu bezeichnen. Begründung: Aus der dünnen BfV-Mitteilung könne diese Schlussfolgerung nicht "sachgerecht und vertretbar" gezogen werden. Eine gesetzliche Grundlage für das Haber-Verfahren selbst gibt es nicht.</div>
+</div>
+</div>
+<p><span class="tag tag-belegt">BELEGT</span>Das Haber-Verfahren ist seit Langem umstritten: Der frühere
+  Bundesdatenschutzbeauftragte Ulrich Kelber nannte es bereits 2019 in einer internen Bewertung
+  "datenschutzrechtswidrig" — es fehle eine hinreichende Ermächtigungsgrundlage. Seit 2020 wurden damit laut
+  netzpolitik.org rund 1.200 zivilgesellschaftliche Organisationen und 1.300 Personen überprüft. Die Bundesregierung
+  bestätigte im Bundestag (Antwort auf Kleine Anfrage der Linksfraktion), dass in drei Fällen "aufgrund konkreter
+  Anhaltspunkte" angefragt wurde — ohne den Gegenstand der Erkenntnisse zu benennen.</p>
+<p>Die drei Buchhandlungen gehen juristisch gegen Weimer und das BfV vor: Feststellungsklage wegen der
+  Datenübermittlung, Dienstaufsichtsbeschwerde wegen der wahrheitswidrig begründeten Absage, zusätzlich ein
+  Informationsfreiheitsgesetz-Antrag zur internen Kommunikation.</p>
+<div class="source-box">
+<span class="source-label">QUELLEN</span>
+    fragdenstaat.de: "Haber-Verfahren: Niederlage für Kulturstaatsminister Weimer" · verfassungsblog.de: "Buchhandlungspreis, Kunstfreiheit, Extremismus" · netzpolitik.org: "Attacke auf die Zivilgesellschaft" · LTO: "Von Preisliste gestrichen: Buchläden klagen gegen Minister" · Bundestag hib: "Anwendung des Haber-Verfahrens beim Buchhandlungspreis"
+  </div>
+<h2>4. Die Berlinale-Affäre — Tricia Tuttle</h2>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-date">Februar 2026</div>
+<div class="timeline-text">Bei der Berlinale-Abschlussgala wirft Regisseur Abdallah Alkhatib der Bundesregierung vor, Partner "des Völkermords im Gazastreifen" zu sein. Berlinale-Chefin Tricia Tuttle lässt den Vorfall unkommentiert.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">Februar 2026</div>
+<div class="timeline-text">Weimer äußert scharfe Kritik: "Die Pali-Aktivisten-Szene hat auf der Berlinale mit Israel-Hass, Aggressivität und Bekenntnisnötigungen ihre hässliche Fratze gezeigt." Als Aufsichtsratsvorsitzender der KBB beruft er eine Sondersitzung ein — Ziel laut Bild-Zeitung: Abberufung Tuttles.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">Februar/März 2026</div>
+<div class="timeline-text">Rund 700 Filmschaffende unterzeichnen einen offenen Brief gegen die drohende Entlassung — darunter Tom Tykwer, Tilda Swinton, Ex-Jurypräsident Todd Haynes. Regisseur İlker Çatak kündigt Boykott an.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">März 2026</div>
+<div class="timeline-text">Nach einer Krisensitzung im Kanzleramt bleibt Tuttle im Amt — muss aber einem "Verhaltenskodex" und einem "beratenden Forum" zustimmen. Weimers Vorstoß gilt als gescheitert.</div>
+</div>
+</div>
+<div class="pull-quote">
+    "Nicht Tricia Tuttle, sondern der Kulturdemontageminister muss gehen."
+  </div>
+<p><span class="tag tag-belegt">BELEGT</span>Kommentatoren verweisen auf Weimers eigene Antrittsworte: Der Staat
+  solle als Mäzen auftreten, sich aber "inhaltlicher Einmischung enthalten" — sonst degradiere er die Künste "zur
+  Platzanweiserin der jeweiligen politischen Korrektheit". Der Versuch, die Berlinale-Leitung wegen politischer
+  Äußerungen abzusetzen, wird von Kritikern als Widerspruch zu diesem Grundsatz gewertet.</p>
+<div class="source-box">
+<span class="source-label">QUELLEN</span>
+    taz.de: "Kritik an Berlinale-Chefin" / "Berlinale-Affäre um Tricia Tuttle" · Tagesspiegel: "Tuttle bleibt Berlinale-Chefin" · monopol-magazin.de: "Nicht Tuttle, sondern Weimer muss gehen" · Cicero Online: "Weiter so bei der Berlinale"
+  </div>
+<h2>5. Steuergeld an die eigene Firma</h2>
+<table class="comp">
+<tr><th>Zahlung</th><th>Kontext</th></tr>
+<tr><td>~140.000 € (mehrere Jahre)</td><td>Bundesregierung an Weimer Media Group für Anzeigen — u.a. 37.087,89 € vom BMAS 2023/24 zur Bewerbung des Deutschen Fachkräftepreises</td></tr>
+<tr><td>300.000 € (geplant)</td><td>Hessische Staatskanzlei (Ministerpräsident Boris Rhein, CDU) für den "Frankfurt Finance &amp; Future Summit" der Weimer Media Group, Okt. 2025 — laut Welt am Sonntag aus 271-seitiger Akte</td></tr>
+</table>
+<p><span class="tag tag-belegt">BELEGT</span>Die Anfrage des AfD-Abgeordneten Martin Erwin Renner deckte auf, dass
+  öffentliche Gelder an Medienportale mit geringer Reichweite flossen — an ein Unternehmen, dessen Gründer zum
+  Zeitpunkt der Zahlungen bereits Kulturstaatsminister war bzw. wurde.</p>
+<p><span class="tag tag-offen">OFFEN</span>Ob die geplante hessische Förderung tatsächlich ausgezahlt wurde und ob
+  es eine direkte Einflussnahme Weimers auf diese Entscheidung gab, ist mir aus den vorliegenden Quellen nicht
+  abschließend belegbar — dokumentiert ist die Aktenlage zur Planung, nicht zwingend die Kausalität.</p>
+<div class="source-box">
+<span class="source-label">QUELLEN</span>
+    kettner-edelmetalle.de: "Steuergeld für Scheinmedien" / "Die Weimer-Connection" (Sekundärquelle — Zahlen laut Bundestagsanfrage bzw. Welt am Sonntag, unabhängig zu verifizieren)
+  </div>
+<h2>6. Weitere Fronten: Jury-Eingriffe</h2>
+<p><span class="tag tag-belegt">BELEGT</span>Über den Buchhandlungspreis hinaus wird Weimer vorgeworfen, wiederholt
+  in Entscheidungen unabhängiger Jurys eingegriffen zu haben — u.a. bei einem zurückgestellten Übersetzungsprojekt.
+  Der Kulturausschuss-Vorsitzende Sven Lehmann (Grüne) sagte, Weimer höhle damit "den Grundsatz der Staatsferne aus,
+  der für die Kulturförderung in einer Demokratie überlebenswichtig ist". Die Kulturminister und -senatoren aus acht
+  SPD-geführten Ländern forderten in einer gemeinsamen Erklärung, bei Förderentscheidungen auf öffentliche Richtlinien
+  und unabhängige Jurys zu vertrauen.</p>
+<div class="source-box">
+<span class="source-label">QUELLEN</span>
+    Tagesspiegel: "Kulturminister Weimer soll erneut in Jury-Entscheidung eingegriffen haben"
+  </div>
+<h2>7. Warum er trotzdem im Amt bleibt</h2>
+<div class="person-card">
+<div class="name">Friedrich Merz (CDU)</div>
+<div class="role">Bundeskanzler</div>
+    "Wolfram Weimer hat mein Vertrauen" — Merz stellte sich wiederholt öffentlich hinter seinen Kulturstaatsminister
+    und erklärte die schwersten Vorwürfe (Interessenkonflikt Tegernsee-Gipfel) für "widerlegt".
+  </div>
+<p><span class="tag tag-belegt">BELEGT</span>Am 4. Dezember 2025 lehnte der Bundestag einen AfD-Antrag auf
+  "Entlassung des Staatsministers für Kultur und Medien" mit den Stimmen aller übrigen Fraktionen ab — auch von
+  Fraktionen, die Weimer inhaltlich kritisch sehen. CDU/CSU warfen der AfD in der Debatte vor, mit der Forderung von
+  eigenen Problemen ablenken zu wollen, statt sich inhaltlich mit den Vorwürfen auseinanderzusetzen.</p>
+<p>Strukturell kommt hinzu: Als Parteiloser im Merz-Kabinett hat Weimer keine eigene Fraktion, die ihn stürzen
+  könnte — aber auch keine, die ihn fallen lassen müsste. Er ist Merz' persönliche Berufung, direkt dem Kanzler
+  zugeordnet. Nachbarschaft und langjährige Freundschaft am Tegernsee (siehe Wirecard-Dossier, Abschnitt zu Merz)
+  sind dokumentiert, ihre kausale Rolle für die anhaltende Rückendeckung ist EXTRAPOLATION.</p>
+<div class="source-box">
+<span class="source-label">QUELLEN</span>
+    bundestag.de: "Forderung nach Rücktritt des Staatsministers für Kultur und Medien abgelehnt" (4.12.2025) · t-online.de: "Wolfram Weimer: Kulturstaatminister verliert Klage" (Jahresrückblick)
+  </div>
+<div class="open-questions">
+<h2>Offene Fragen</h2>
+<p>Welche konkreten "verfassungsschutzrelevanten Erkenntnisse" lagen tatsächlich zu den drei Buchhandlungen vor —
+    und wird das laufende IFG-Verfahren das je offenlegen?</p>
+<p>Wurde die geplante 300.000-Euro-Förderung aus Hessen tatsächlich ausgezahlt?</p>
+<p>Ein mir vorliegender Hinweis auf einen Untreueverdacht im Zusammenhang mit der Stiftung "Flucht, Vertreibung,
+    Versöhnung" und Weimers Ressort ließ sich in der verfügbaren Quellenlage nicht verifizieren — dieser Strang bleibt
+    <span class="tag tag-offen">OFFEN</span> und wird nicht als Tatsachenbehauptung in diesen Artikel übernommen.</p>
+<p>Wie viele der Jury-Eingriffe (Buchpreis, Übersetzungsförderung) folgen einem Muster — und wie viele sind
+    Einzelfälle?</p>
+</div>
+<div class="footer-nav">
+<span class="brand">dunkelfeld.report</span> — Hidden in Plain Sight<br/>
+    Dossier · Der Fall Weimer · 2026
+  </div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

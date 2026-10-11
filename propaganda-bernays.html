@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Der unsichtbare Regisseur: Edward Bernays und die Propaganda — dunkelfeld.report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #09090b;
+    --bg2: #111113;
+    --bg3: #1a1a2e;
+    --amber: #e8c547;
+    --amber-dim: #b89a30;
+    --text: #d4d4d8;
+    --text-muted: #71717a;
+    --text-dim: #a1a1aa;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --red: #f87171;
+    --border: #27272a;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.08rem;
+    line-height: 1.85;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.4rem 1.5rem;
+  }
+  .header-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .site-name {
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .site-tagline {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* MAIN */
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.8rem 1.5rem 5rem;
+  }
+
+  /* META */
+  .article-meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.4rem;
+  }
+
+  /* TITLE */
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #f4f4f5;
+    margin-bottom: 0.7rem;
+    letter-spacing: -0.01em;
+  }
+  .subtitle {
+    font-size: 1.12rem;
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+    line-height: 1.5;
+  }
+
+  /* READING META */
+  .reading-info {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.7rem 0;
+    margin-bottom: 2.5rem;
+  }
+
+  /* INTRO BOX */
+  .intro-box {
+    background: var(--bg3);
+    border-left: 3px solid var(--amber);
+    padding: 1.3rem 1.5rem;
+    margin-bottom: 2.5rem;
+    font-size: 1rem;
+    color: var(--text-dim);
+    line-height: 1.75;
+  }
+  .intro-box strong {
+    color: var(--amber);
+  }
+
+  /* SECTION HEADINGS */
+  h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #f4f4f5;
+    margin: 2.8rem 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: -0.01em;
+  }
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--amber);
+    margin: 1.8rem 0 0.7rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* PARAGRAPHS */
+  p {
+    padding-bottom: 1.2rem;
+    color: var(--text);
+  }
+
+  /* INLINE TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 0.15em 0.5em;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin: 0 0.15em;
+    text-transform: uppercase;
+  }
+  .tag-b  { background: rgba(74,222,128,0.12); color: var(--green); border: 1px solid rgba(74,222,128,0.3); }
+  .tag-e  { background: rgba(251,146,60,0.12);  color: var(--orange); border: 1px solid rgba(251,146,60,0.3); }
+  .tag-o  { background: rgba(248,113,113,0.12); color: var(--red);    border: 1px solid rgba(248,113,113,0.3); }
+
+  /* SOURCE BOXES */
+  .source-box {
+    background: var(--bg3);
+    border-left: 3px solid var(--amber);
+    padding: 0.9rem 1.2rem;
+    margin: 0.5rem 0 1.8rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .source-box strong {
+    color: var(--amber);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0 2rem;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #e4e4e7;
+    line-height: 1.7;
+  }
+  .pull-quote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: var(--amber-dim);
+    letter-spacing: 0.06em;
+    margin-top: 0.6rem;
+    text-transform: uppercase;
+  }
+
+  /* GEBOT CARDS */
+  .gebot-grid {
+    display: grid;
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .gebot-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    padding: 1.1rem 1.3rem;
+  }
+  .gebot-number {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--amber);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .gebot-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f4f4f5;
+    margin-bottom: 0.5rem;
+  }
+  .gebot-body {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .gebot-beispiel {
+    margin-top: 0.6rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    padding-top: 0.5rem;
+  }
+  .gebot-beispiel span {
+    color: var(--amber-dim);
+  }
+
+  /* VERGLEICHSTABELLE */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 2rem;
+    font-size: 0.88rem;
+  }
+  .compare-table th {
+    background: var(--bg3);
+    color: var(--amber);
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.7rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .compare-table td {
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  .compare-table tr:nth-child(even) td {
+    background: rgba(255,255,255,0.02);
+  }
+  .compare-table .col-war {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+  }
+
+  /* TIMELINE */
+  .timeline {
+    border-left: 2px solid var(--amber);
+    margin: 1.5rem 0 2rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.3rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.85rem;
+    top: 0.45rem;
+    width: 8px;
+    height: 8px;
+    background: var(--amber);
+    border-radius: 50%;
+  }
+  .timeline-year {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.2rem;
+  }
+  .timeline-text {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* OFFENE FRAGEN */
+  .open-questions {
+    margin: 3rem 0 2rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    background: var(--bg2);
+  }
+  .open-questions h2 {
+    border: none;
+    margin-top: 0;
+    padding: 0;
+    font-size: 1rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1rem;
+  }
+  .open-questions p {
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    padding-bottom: 0.6rem;
+  }
+
+  /* QUELLENVERZEICHNIS */
+  .sources {
+    border-top: 1px solid var(--border);
+    margin-top: 3rem;
+    padding-top: 2rem;
+  }
+  .sources h2 {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amber);
+    border: none;
+    margin-top: 0;
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+  .sources ul {
+    list-style: none;
+    padding: 0;
+  }
+  .sources li {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    padding: 0.35rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    line-height: 1.5;
+  }
+  .sources li::before {
+    content: '→ ';
+    color: var(--amber);
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  footer span { color: var(--amber); }
+</style>
+<meta name="description" content="Im Jahr 1928 erschienen zwei Bücher, die heute kaum jemand kennt — und die zusammen das vollständigste Handbuch der Meinungsmache darstellen, das je …">
+<meta name="rubrik" content="cat-medien">
+<meta name="kachel-titel" content="Der unsichtbare Regisseur: Edward Bernays und die Propaganda">
+<link rel="canonical" href="https://dunkelfeld.report/propaganda-bernays.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Der unsichtbare Regisseur: Edward Bernays und die Propaganda">
+<meta property="og:description" content="Im Jahr 1928 erschienen zwei Bücher, die heute kaum jemand kennt — und die zusammen das vollständigste Handbuch der Meinungsmache darstellen, das je …">
+<meta property="og:url" content="https://dunkelfeld.report/propaganda-bernays.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<header>
+<div class="header-inner">
+<div class="site-name">dunkelfeld.report</div>
+<div class="site-tagline">Analyse · Systemkritik · Quellenbasiert</div>
+</div>
+</header>
+<main>
+<div class="article-meta">Medienmacht · Propaganda · Quellenbasiert</div>
+<h1>Der unsichtbare Regisseur</h1>
+<div class="subtitle">Edward Bernays, die 10 Gesetze der Kriegspropaganda — und warum ein 98 Jahre altes Betriebssystem noch immer läuft</div>
+<div class="reading-info">
+    Juni 2026  ·  Lesedauer: ca. 15 Minuten  ·  Primärquellen: Bernays (1928), Ponsonby (1928), Morelli (2001)
+  </div>
+<div class="intro-box">
+<strong>Vorbemerkung zur Methode:</strong> Dieser Artikel dokumentiert, was öffentlich nachweisbar ist — in Büchern, Parlamentsdebatten, Pressekonferenzen und Archiven. Motive werden nicht zugeschrieben. Ob das Beschriebene intentional oder strukturell entstand, bleibt offen. Die Schlussfolgerungen zieht der Leser.
+  </div>
+<p>Im Jahr 1928 erschienen zwei Bücher, die heute kaum jemand kennt — und die zusammen das vollständigste Handbuch der Meinungsmache darstellen, das je geschrieben wurde. Das eine stammt von Edward L. Bernays, dem Neffen Sigmund Freuds und Begründer der modernen Public Relations. Das andere von Arthur Ponsonby, britischer Lord und Pazifist, der die Lügenmechanismen des Ersten Weltkriegs minutiös dokumentiert hatte.</p>
+<p>Beide Bücher wurden nicht verboten. Beide wurden nicht geheim gehalten. Sie stehen in öffentlichen Bibliotheken. Und doch beschreiben sie, mit fast klinischer Nüchternheit, wie demokratische Gesellschaften ohne Zwang zu Meinungen geformt werden können — und warum Völker immer wieder für Kriege begeistert werden, die sie kurz zuvor noch ablehnten.</p>
+<p>98 Jahre später funktionieren dieselben Mechanismen. <span class="tag tag-b">BELEGT</span></p>
+<!-- ========== BERNAYS ========== -->
+<h2>1. Edward Bernays: Der Mann, der Demokratie als Managementproblem sah</h2>
+<p>Edward L. Bernays (1891–1995) war kein Schurke aus einem Hollywoodfilm. Er war ein produktiver, angesehener Intellektueller, der 1919 in New York eine der ersten PR-Agenturen der Welt gründete und später an der Harvard University lehrte. Seine Kunden waren unter anderem Procter &amp; Gamble, die United Fruit Company und die US-Regierung.</p>
+<p>Sein 1928 erschienenes Buch <em>Propaganda</em> ist keine Enthüllung — es ist ein Lehrbuch, das Bernays selbst veröffentlicht hat. Er beschreibt darin offen, was er für die logische und notwendige Konsequenz demokratischer Massengesellschaften hält:</p>
+<div class="pull-quote">
+    „The conscious and intelligent manipulation of the organized habits and opinions of the masses is an important element in democratic society. Those who manipulate this unseen mechanism of society constitute an invisible government which is the true ruling power of our country."
+    Edward L. Bernays, Propaganda (1928), Kapitel I: Organizing Chaos, S. 9 — Liveright Publishing Corporation, New York
+  </div>
+<div class="source-box">
+<strong>QUELLE · BELEGT</strong>
+    Bernays, Edward L.: <em>Propaganda</em>. Liveright Publishing Corporation, New York 1928. Volltext digitalisiert und frei zugänglich über archive.org (Edward Bernays — Propaganda 1928). Deutsche Übersetzung: <em>Propaganda — Die Kunst der Public Relations</em>, Orange Press Freiburg.
+  </div>
+<p>Bernays unterschied nicht zwischen Werbung, PR und politischer Propaganda — für ihn war es dieselbe Technik. Er sah sich als Ingenieur der öffentlichen Meinung. Nicht als Manipulator im moralischen Sinne, sondern als notwendigen Vermittler zwischen einer komplexen Welt und einer Bevölkerung, die — so seine Überzeugung — nicht in der Lage war, sich selbst eine rationale Meinung zu bilden.</p>
+<div class="pull-quote">
+    „We are governed, our minds are molded, our tastes formed, our ideas suggested, largely by men we have never heard of."
+    Edward L. Bernays, Propaganda (1928), Kapitel I, S. 9–10
+  </div>
+<h3>Was Bernays konkret tat</h3>
+<p>Bernays' Karriere ist durch Primärquellen gut dokumentiert. Einige seiner bekanntesten Operationen: <span class="tag tag-b">BELEGT</span></p>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-year">1929</div>
+<div class="timeline-text"><strong>„Torches of Freedom"-Kampagne</strong> für die American Tobacco Company: Bernays organisierte Frauen, die öffentlich Zigaretten rauchten — als Symbol der Emanzipation. Gezielte Verbindung eines Produkts mit einer sozialen Bewegung. Dokumentiert im Bernays-Archiv der Library of Congress, Washington D.C.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-year">1953–54</div>
+<div class="timeline-text"><strong>Guatemala-Operation</strong>: Bernays führte eine PR-Kampagne für die United Fruit Company, die den gewählten guatemaltekischen Präsidenten Jacobo Árbenz in der US-Presse als Kommunisten darstellte. Kurz darauf folgte der CIA-gestützte Putsch (Operation PBSUCCESS). Dokumentiert durch deklassifizierte CIA-Akten (CIA FOIA Reading Room) und Stephen Schlesinger / Stephen Kinzers Buch <em>Bitter Fruit</em> (1982).</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-year">1917–1918</div>
+<div class="timeline-text"><strong>Committee on Public Information (Creel Committee)</strong>: Bernays war als Berater an der US-Kriegspropaganda im Ersten Weltkrieg beteiligt — dem Apparat, der die amerikanische Bevölkerung, die mehrheitlich gegen Kriegseintritt war, in wenigen Monaten umstimmte. Dokumentiert: George Creel, <em>How We Advertised America</em> (1920).</div>
+</div>
+</div>
+<div class="source-box">
+<strong>QUELLE · BELEGT</strong>
+    Library of Congress, Manuscript Division: Edward L. Bernays Papers (1882–1995). CIA FOIA Electronic Reading Room: Guatemala / Operation PBSUCCESS, deklassifizierte Dokumente, abrufbar unter cia.gov/readingroom. Schlesinger, Stephen / Kinzer, Stephen: <em>Bitter Fruit: The Story of the American Coup in Guatemala</em>. Harvard University Press 1999 (Erstauflage 1982).
+  </div>
+<h3>Bernays und Goebbels</h3>
+<p>Eine historisch belegte Verbindung, die häufig zitiert, aber selten mit Quelle versehen wird: Joseph Goebbels soll Bernays' Werk studiert haben. <span class="tag tag-e">EXTRAPOLATION</span></p>
+<p>Was belegt ist: Goebbels führte ein Tagebuch, das nach dem Krieg in deutschen Archiven gesichert wurde. Larry Tye, Bernays-Biograph, schreibt in <em>The Father of Spin</em> (1998), Bernays habe nach dem Krieg selbst erzählt, er habe erfahren, dass in Goebbels' Bibliothek seine Bücher standen. Direkte Tagebuchbelege mit exaktem Verweis auf Bernays liegen nach aktuellem Dokumentationsstand <span class="tag tag-o">OFFEN</span> — die Verbindung der Methoden ist strukturell evidentdoch der direkte Nachweis einer persönlichen Rezeption bleibt unvollständig gesichert.</p>
+<div class="source-box">
+<strong>QUELLE · EXTRAPOLATION</strong>
+    Tye, Larry: <em>The Father of Spin: Edward L. Bernays and the Birth of Public Relations</em>. Crown Publishers, New York 1998, S. 98. Bundesarchiv Berlin-Lichterfelde: Goebbels-Tagebücher (Mikrofilm-Bestand). Institut für Zeitgeschichte München: Tagebücher Joseph Goebbels, hrsg. von Elke Fröhlich, K.G. Saur Verlag.
+  </div>
+<!-- ========== PONSONBY / MORELLI ========== -->
+<h2>2. Arthur Ponsonby und Anne Morelli: Das Handbuch der Kriegslügen</h2>
+<p>Im selben Jahr 1928 — während Bernays sein Propagandabuch veröffentlichte — erschien in London ein anderes Werk: <em>Falsehood in War-Time</em> von Arthur Ponsonby (1871–1946). Ponsonby war britischer Parlamentsabgeordneter, Mitglied des Oberhauses, entschiedener Kriegsgegner und hatte den Ersten Weltkrieg als direkte Propaganda-Maschine erlebt.</p>
+<p>Sein Untertitel: <em>Containing an Assortment of Lies Circulated Throughout the Nations During the Great War</em>. Ponsonby dokumentierte 20 konkrete Lügen und Propagandamuster aus dem Ersten Weltkrieg — von der erfundenen deutschen Kindermetzeleien bis zur britischen Behauptung, Essen sei systematisch als Kriegswaffe eingesetzt worden. <span class="tag tag-b">BELEGT</span></p>
+<p>73 Jahre später — 2001 — griff die belgische Historikerin Anne Morelli Ponsonbys Analyse auf, systematisierte sie und prüfte sie an Kriegen des 20. Jahrhunderts: Korea, Vietnam, Falkland, Golfkrieg, Kosovo, Irak. Ihr Ergebnis war ernüchternd: Alle 10 destillierten Prinzipien waren in jedem dieser Kriege aktiv — auf <em>beiden</em> Seiten. <span class="tag tag-b">BELEGT</span></p>
+<div class="source-box">
+<strong>QUELLE · BELEGT</strong>
+    Ponsonby, Arthur: <em>Falsehood in War-Time. Containing an Assortment of Lies Circulated Throughout the Nations During the Great War</em>. George Allen &amp; Unwin, London 1928. Digitalisiert via archive.org. Morelli, Anne: <em>Principes élémentaires de propagande de guerre</em>. Éditions Labor, Brüssel 2001. Deutsche Übersetzung: <em>Die Prinzipien der Kriegspropaganda</em>. Zu Klampen Verlag, Springe 2004.
+  </div>
+<!-- ========== 10 GEBOTE ========== -->
+<h2>3. Die 10 Prinzipien der Kriegspropaganda — mit historischen Belegbeispielen</h2>
+<p>Die folgende Darstellung folgt den von Morelli systematisierten Prinzipien. Die historischen Beispiele sind primärquellenbelegbar — wo das im Einzelfall nicht vollständig möglich ist, ist dies gekennzeichnet.</p>
+<div class="gebot-grid">
+<div class="gebot-card">
+<div class="gebot-number">Prinzip 01</div>
+<div class="gebot-title">„Wir wollen den Krieg nicht"</div>
+<div class="gebot-body">
+        Jede kriegführende Partei behauptet, zum Frieden verpflichtet zu sein — und zum Krieg gezwungen worden zu sein. Dies gilt für alle Seiten gleichzeitig. Demokratische Regierungen sind strukturell darauf angewiesen, die eigene Bevölkerung zu überzeugen, da Kriegsbegeisterung nicht automatisch entsteht.
+      </div>
+<div class="gebot-beispiel">
+<span>BELEGT · Historische Dokumentation:</span><br/>
+        → Ribbentrop am 1. Sept. 1939: „Der Führer will den Krieg nicht. Er entschließt sich schweren Herzens dazu. Die Entscheidung zu Krieg und Frieden hängt nicht von ihm ab — sie hängt von Polen ab." (Morelli, S. 16 frz. Original)<br/>
+        → Daladier, „Aufruf an die Nation", 3. Sept. 1939: „Wir führen den Krieg, weil man ihn uns aufzwingt."<br/>
+        → Bush Jr., Sept. 2002 vor dem UN-Sicherheitsrat: Wiederholte Betonung, man wolle eine friedliche Lösung.
+      </div>
+</div>
+<div class="gebot-card">
+<div class="gebot-number">Prinzip 02</div>
+<div class="gebot-title">„Das gegnerische Lager trägt die Verantwortung"</div>
+<div class="gebot-body">
+        Die eigene Seite handelt nur reaktiv. Die Aggression geht ausschließlich vom Gegner aus. Diese Spiegelstruktur ist charakteristisch: Beide Seiten benutzen exakt dieselbe Formulierung — mit vertauschten Rollen.
+      </div>
+<div class="gebot-beispiel">
+<span>BELEGT · Historische Dokumentation:</span><br/>
+        → Golf von Tonkin, August 1964: US-Präsident Johnson meldete einen zweiten nordvietnamesischen Angriff auf US-Schiffe. 1971 veröffentlichte die Washington Post die Pentagon Papers (FOIA-Freigabe). Darin: Der zweite Angriff fand wahrscheinlich nicht statt. McNamara bestätigte Zweifel 1995 in seinen Memoiren <em>In Retrospect</em>.<br/>
+        → Irak 2003: Colin Powell vor dem UN-Sicherheitsrat, 5. Feb. 2003 — Behauptung irakischer Massenvernichtungswaffen. Quelle: UN-Protokoll S/PV.4701. Nachweislich falsch, bestätigt durch den Iraq Survey Group Final Report (2004), abrufbar via cia.gov.
+      </div>
+</div>
+<div class="gebot-card">
+<div class="gebot-number">Prinzip 03</div>
+<div class="gebot-title">„Der Führer des Gegners ist ein Teufel"</div>
+<div class="gebot-body">
+        Die Dämonisierung der feindlichen Führungsfigur konzentriert diffusen Hass auf eine konkrete Person. Das Ziel: Die Bevölkerung soll gegen eine Person, nicht gegen ein Volk oder ein System mobilisiert werden. Morelli: „Man kann eine Gruppe von Menschen nicht insgesamt hassen. Es ist daher wirkungsvoller, den Hass auf die feindliche Führungspersönlichkeit zu richten."
+      </div>
+<div class="gebot-beispiel">
+<span>BELEGT · Historische Dokumentation:</span><br/>
+        → Kaiser Wilhelm II. im Ersten Weltkrieg als „Hunnen-Kaiser" (britische Propagandaplakate, Imperial War Museum, London)<br/>
+        → Saddam Hussein: Dargestellt als neuer Hitler, 1990/91 und 2002/03 — trotz nachgewiesener US-Unterstützung desselben Saddam im Irak-Iran-Krieg (1980–88), dokumentiert durch deklassifizierte NSA-Dokumente (National Security Archive, Washington)<br/>
+        → Milosevic / Bin Laden / Gaddafi: Strukturell identische Dämonisierungsnarrative in westlichen Medien
+      </div>
+</div>
+<div class="gebot-card">
+<div class="gebot-number">Prinzip 04</div>
+<div class="gebot-title">„Wir kämpfen für eine gute Sache"</div>
+<div class="gebot-body">
+        Der Krieg wird als moralisch unausweichliche Pflicht dargestellt — zur Verteidigung von Freiheit, Demokratie, Menschenrechten oder universellen Werten. Die eigene Mission erhält damit eine quasi-religiöse Legitimation.
+      </div>
+<div class="gebot-beispiel">
+<span>BELEGT · Historische Dokumentation:</span><br/>
+        → Wilson, Kriegserklärung 2. April 1917: „The world must be made safe for democracy." Congressional Record, 65th Congress, 1st Session, Vol. 55, S. 102.<br/>
+        → Bush, 20. Sept. 2001: „Freedom and fear are at war." Rede vor dem Kongress — Congressional Record.<br/>
+        → NATO-Begründung Kosovo 1999: „Humanitäre Intervention" — zeitgleich mit erheblichen zivilen Opfern durch NATO-Luftangriffe (Human Rights Watch, <em>Civilian Deaths in the NATO Air Campaign</em>, 2000)
+      </div>
+</div>
+<div class="gebot-card">
+<div class="gebot-number">Prinzip 05</div>
+<div class="gebot-title">„Der Gegner kämpft mit unerlaubten Waffen"</div>
+<div class="gebot-body">
+        Die Methoden des Feindes werden als barbarisch und regelwidrig dargestellt. Die eigenen Methoden — auch wenn strukturell ähnlich — werden als notwendig, verhältnismäßig oder durch Umstände gerechtfertigt beschrieben.
+      </div>
+<div class="gebot-beispiel">
+<span>BELEGT / EXTRAPOLATION:</span><br/>
+        → Chemiewaffen-Vorwürfe: Irak 2003 (BELEGT: Irak hatte Chemiewaffen — eingesetzt gegen die Kurden 1988, mit westlichem Wissen. Quelle: Senate Committee on Foreign Relations, Halabja-Dokumentation, 1988); Syria 2013 (UN-Untersuchungsbericht S/2013/553)<br/>
+        → Clustermunition: Sowohl russischer als auch westlicher Einsatz in verschiedenen Konflikten dokumentiert (Human Rights Watch Jahresberichte) — <span class="tag tag-e">EXTRAPOLATION</span>: Asymmetrische öffentliche Darstellung ohne systematische Primärquellenverifikation für alle Einzelfälle
+      </div>
+</div>
+<div class="gebot-card">
+<div class="gebot-number">Prinzip 06</div>
+<div class="gebot-title">„Der Gegner begeht Grausamkeiten mit Absicht — wir nur versehentlich"</div>
+<div class="gebot-body">
+        Zivile Opfer auf Seiten des Gegners: dokumentiert, benannt, moralisch verurteilt. Eigene zivile Opfer: „Kollateralschäden", technisches Versagen, tragische Unvermeidlichkeit. Die asymmetrische Sprache schafft moralische Asymmetrie.
+      </div>
+<div class="gebot-beispiel">
+<span>BELEGT · Historische Dokumentation:</span><br/>
+        → Begriff „Kollateralschaden" militärsprachlich etabliert ab Vietnamkrieg; im Golfkrieg 1991 medial normalisiert. Dokumentation: Encarta World English Dictionary (1999): Herkunft des Begriffs.<br/>
+        → Brutkastenlüge 1990: Kuwaitis berichteten vor dem US-Kongress am 10. Okt. 1990, irakische Soldaten hätten Babys aus Brutkästen gerissen. Zeugin: Nayirah al-Ṣabaḥ. Später enthüllt: Tochter des kuwaitischen Botschafters in den USA, Aussage von PR-Firma Hill &amp; Knowlton vorbereitet. Quelle: John MacArthur, <em>Second Front</em> (1992); Senate Foreign Relations Committee Hearings.
+      </div>
+</div>
+<div class="gebot-card">
+<div class="gebot-number">Prinzip 07</div>
+<div class="gebot-title">„Unsere Verluste sind gering, die des Gegners enorm"</div>
+<div class="gebot-body">
+        Eigene Opferzahlen werden minimiert oder verzögert kommuniziert. Feindliche Verluste werden maximiert oder nicht hinterfragt. Body-Count-Statistiken dienen als Siegesindikator.
+      </div>
+<div class="gebot-beispiel">
+<span>BELEGT · Historische Dokumentation:</span><br/>
+        → Vietnam: US-Militär veröffentlichte regelmäßig „Kill Ratios" als Kriegsindikator. Später: Pentagon Papers enthüllten systematische Diskrepanz zwischen gemeldeten und tatsächlichen Zahlen.<br/>
+        → Irak 2003: US-Regierung weigerte sich offiziell, irakische Zivilopfer zu zählen. Zitat Donald Rumsfeld: „We don't do body counts." (April 2002, bestätigt durch Pressekonferenzprotokoll, defense.gov). Unabhängige Schätzungen: Lancet-Studien (2004/2006), Iraq Body Count Project.
+      </div>
+</div>
+<div class="gebot-card">
+<div class="gebot-number">Prinzip 08</div>
+<div class="gebot-title">„Künstler und Intellektuelle unterstützen unsere Sache"</div>
+<div class="gebot-body">
+        Die kulturelle Elite verleiht dem Krieg moralische Legitimität. Schriftsteller, Wissenschaftler und Künstler werden als Zeugen und Fürsprecher mobilisiert — freiwillig oder durch institutionellen Druck.
+      </div>
+<div class="gebot-beispiel">
+<span>BELEGT · Historische Dokumentation:</span><br/>
+        → „Manifest der 93" (4. Okt. 1914): 93 deutsche Wissenschaftler und Künstler — darunter Max Planck und Wilhelm Röntgen — unterzeichneten eine öffentliche Erklärung zur Rechtfertigung des deutschen Kriegseintritts. Volltext: Kriegsarchiv München / Bundesarchiv.<br/>
+        → US-Medien nach 9/11: Dokumentierte Selbstzensur-Debatte. Dan Rather, CBS-Anchor, sagte in einem BBC-Interview (Mai 2002): „It's an obscene comparison, but you know there was a time in South Africa that people would put flaming tyres around people's necks if they dissented. And in some ways the fear is that you will be necklaced here."
+      </div>
+</div>
+<div class="gebot-card">
+<div class="gebot-number">Prinzip 09</div>
+<div class="gebot-title">„Unsere Mission ist heilig"</div>
+<div class="gebot-body">
+        Der Krieg wird mit religiöser, zivilisatorischer oder historischer Sprache überhöht. Die eigene Seite kämpft nicht für Interessen — sondern für eine universelle, zeitlose Wahrheit.
+      </div>
+<div class="gebot-beispiel">
+<span>BELEGT · Historische Dokumentation:</span><br/>
+        → Bush, Rede im National Cathedral, 14. Sept. 2001: „Our responsibility to history is already clear: to answer these attacks and rid the world of evil." Volltext: georgewbush-whitehouse.archives.gov<br/>
+        → „Crusade"-Versprecher: Bush sprach am 16. Sept. 2001 von einem „crusade" — einem Kreuzzug. Das Wort wurde zurückgezogen, aber ist in Transkripten erhalten (whitehouse.gov Archiv).<br/>
+        → Kaiserliches Deutschland 1914: „Gott mit uns" — auf Koppelschlössern der deutschen Armee und in öffentlichen Kriegsreden.
+      </div>
+</div>
+<div class="gebot-card">
+<div class="gebot-number">Prinzip 10</div>
+<div class="gebot-title">„Wer unsere Berichterstattung in Zweifel zieht, ist ein Verräter"</div>
+<div class="gebot-body">
+        Kritiker des Kriegsnarrativs werden als Feinde, Vaterlandsverräter, Propagandisten der Gegenseite oder psychisch Gestörte diskreditiert. Das letzte Prinzip sichert alle vorangegangenen ab — indem es den Raum für Widerspruch schließt.
+      </div>
+<div class="gebot-beispiel">
+<span>BELEGT · Historische Dokumentation:</span><br/>
+        → Espionage Act (1917) und Sedition Act (1918, USA): Strafverfolgung von Kriegskritikern. Eugene Debs zu 10 Jahren Haft verurteilt für eine Rede gegen den Krieg. Quelle: Supreme Court, <em>Debs v. United States</em>, 249 U.S. 211 (1919).<br/>
+        → Iraq War 2003: Phil Donahue wurde sein MSNBC-Talkshow gekündigt — internes NBC-Memo (Februar 2003) warnte vor einem „difficult public face for NBC in a time of war". Quelle: FAIR (Fairness &amp; Accuracy in Reporting), Dokumentation 2003.<br/>
+        → Bundesrepublik 2022: Bundeskanzler Scholz, Außenministerin Baerbock und andere bezeichneten Kritiker westlicher Ukrainepolitik öffentlich als Verbreiter russischer Propaganda — ohne Differenzierung zwischen inhaltlicher Analyse und tatsächlicher Desinformation. <span class="tag tag-e">EXTRAPOLATION</span> (strukturelle Einordnung; vollständige Primärquellenverifikation aller Einzeläußerungen für diesen Artikel noch nicht abgeschlossen)
+      </div>
+</div>
+</div>
+<!-- ========== VERGLEICHSTABELLE ========== -->
+<h2>4. Die Prinzipien im historischen Vergleich</h2>
+<p>Die folgende Tabelle zeigt, welche Prinzipien in welchen Konflikten dokumentiert aktiviert wurden. Sie erhebt keinen Anspruch auf Vollständigkeit — sie veranschaulicht die Musterstruktur. <span class="tag tag-b">BELEGT</span> / <span class="tag tag-e">EXTRAPOLATION</span></p>
+<table class="compare-table">
+<thead>
+<tr>
+<th>Prinzip</th>
+<th>WK I</th>
+<th>WK II</th>
+<th>Vietnam</th>
+<th>Irak 2003</th>
+<th>Kosovo 1999</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01 · Wir wollen keinen Krieg</td>
+<td class="col-war">✓</td><td class="col-war">✓</td><td class="col-war">✓</td><td class="col-war">✓</td><td class="col-war">✓</td>
+</tr>
+<tr>
+<td>02 · Gegner trägt Schuld</td>
+<td class="col-war">✓</td><td class="col-war">✓</td><td class="col-war">✓ *</td><td class="col-war">✓</td><td class="col-war">✓</td>
+</tr>
+<tr>
+<td>03 · Feindlicher Führer dämonisiert</td>
+<td class="col-war">✓</td><td class="col-war">✓</td><td class="col-war">✓</td><td class="col-war">✓</td><td class="col-war">✓</td>
+</tr>
+<tr>
+<td>04 · Kampf für gute Sache</td>
+<td class="col-war">✓</td><td class="col-war">✓</td><td class="col-war">✓</td><td class="col-war">✓</td><td class="col-war">✓</td>
+</tr>
+<tr>
+<td>05 · Feind kämpft mit unerlaubten Waffen</td>
+<td class="col-war">✓</td><td class="col-war">✓</td><td class="col-war">✓</td><td class="col-war">✓</td><td class="col-war">◑ *</td>
+</tr>
+<tr>
+<td>06 · Eigene Opfer: Versehen / Feind: Absicht</td>
+<td class="col-war">✓</td><td class="col-war">✓</td><td class="col-war">✓</td><td class="col-war">✓</td><td class="col-war">✓</td>
+</tr>
+<tr>
+<td>07 · Eigene Verluste gering</td>
+<td class="col-war">✓</td><td class="col-war">✓</td><td class="col-war">✓ *</td><td class="col-war">✓ *</td><td class="col-war">✓</td>
+</tr>
+<tr>
+<td>08 · Intellektuelle unterstützen uns</td>
+<td class="col-war">✓ *</td><td class="col-war">✓</td><td class="col-war">◑</td><td class="col-war">◑</td><td class="col-war">✓</td>
+</tr>
+<tr>
+<td>09 · Unsere Mission ist heilig</td>
+<td class="col-war">✓</td><td class="col-war">✓</td><td class="col-war">✓</td><td class="col-war">✓</td><td class="col-war">✓</td>
+</tr>
+<tr>
+<td>10 · Kritiker sind Verräter</td>
+<td class="col-war">✓ *</td><td class="col-war">✓</td><td class="col-war">✓</td><td class="col-war">✓</td><td class="col-war">◑</td>
+</tr>
+</tbody>
+</table>
+<p style="font-family:'Courier New',monospace;font-size:0.68rem;color:var(--text-muted);">✓ = primärquellenbelegbar · ◑ = partiell belegbar / EXTRAPOLATION · * = besonders dokumentiert</p>
+<!-- ========== BERNAYS + MORELLI ZUSAMMEN ========== -->
+<h2>5. Bernays und Morelli: Zwei Seiten derselben Maschine</h2>
+<p>Bernays beschrieb die Technik der Meinungsformung im Frieden — für Konsumgüter, politische Kandidaten, Unternehmensimage. Ponsonby/Morelli dokumentierten dieselbe Technik im Krieg. Zusammen ergibt sich ein vollständiges Bild:</p>
+<p>Die Meinungsmachine läuft nicht nur in Ausnahmezuständen. Sie läuft permanent. Der Unterschied zwischen Produktwerbung und Kriegspropaganda ist nach Bernays kein prinzipieller — sondern nur ein gradueller. Beide benutzen:</p>
+<div class="intro-box">
+<strong>Dieselben Grundprinzipien — nach Bernays (1928):</strong><br/><br/>
+    → Ansprache emotionaler Grundbedürfnisse statt rationaler Argumentation<br/>
+    → Einsatz von Autoritätsfiguren (Wissenschaftler, Ärzte, Prominente) als Multiplikatoren<br/>
+    → Schaffung sozialer Normen: Was normal ist, was jeder denkt, was Anstand verlangt<br/>
+    → Kontrolle des Informationsrahmens: Welche Fragen überhaupt als legitim gelten<br/>
+    → Unsichtbarkeit der Steuerung: Die Zielgruppe erlebt ihre Meinung als selbst gebildet
+  </div>
+<p>Morelli ergänzt: Im Krieg werden dieselben Techniken unter Zeitdruck und emotionaler Mobilisierung eingesetzt — und sind deshalb besonders wirksam und besonders schwer zu durchschauen. <span class="tag tag-b">BELEGT</span></p>
+<!-- ========== ZENSUR ========== -->
+<h2>6. Zensur als Komplementärinstrument</h2>
+<p>Propaganda wäre ohne Zensur weniger effektiv. Beide Instrumente ergänzen sich: Propaganda füllt den Meinungsraum, Zensur schließt Lücken, durch die widersprechende Informationen eindringen könnten.</p>
+<p>In demokratischen Gesellschaften funktioniert Zensur selten als direkte staatliche Unterdrückung — sie wirkt eher durch:</p>
+<div class="gebot-grid">
+<div class="gebot-card">
+<div class="gebot-number">Mechanismus A</div>
+<div class="gebot-title">Akkreditierung und Zugang</div>
+<div class="gebot-body">Journalisten, die als „eingebettet" (embedded) operieren, erhalten Zugang — und sind strukturell auf das Wohlwollen des Militärs angewiesen. Unabhängige Berichterstattung wird durch logistische Abhängigkeit erschwert. <span class="tag tag-b">BELEGT</span> — Dokumentation: Embedding-Policy des US-Verteidigungsministeriums (2003), offizielles Dokument DoD, abrufbar über defense.gov-Archiv.</div>
+</div>
+<div class="gebot-card">
+<div class="gebot-number">Mechanismus B</div>
+<div class="gebot-title">Plattformregulierung</div>
+<div class="gebot-body">DSA (Digital Services Act), EU-Verordnung 2022/2065: Verpflichtung sehr großer Plattformen zur Entfernung von „Desinformation". Wer als Quelle für Desinformation gilt, bestimmt ein System akkreditierter Trusted Flaggers — darunter staatlich nahe oder staatlich finanzierte Organisationen. <span class="tag tag-b">BELEGT</span> — EUR-Lex: Verordnung (EU) 2022/2065, Art. 22. Liste der Trusted Flaggers: DSA Transparency Database, dsa-transparency.ec.europa.eu.</div>
+</div>
+<div class="gebot-card">
+<div class="gebot-number">Mechanismus C</div>
+<div class="gebot-title">Diskreditierung statt Widerlegung</div>
+<div class="gebot-body">Inhaltliche Kritik an Kriegsnarrativen wird nicht durch Argumentation beantwortet — sondern durch Zuschreibung von Motiven. Der Kritiker wird als Propagandist der Gegenseite, als naiv oder als Teil eines Netzwerks dargestellt. Morelli dokumentiert dies als Prinzip 10 — und es ist strukturell derselbe Mechanismus, der Bernays beschreibt: Der Rahmen bestimmt, welche Positionen überhaupt als diskutierbar gelten. <span class="tag tag-e">EXTRAPOLATION</span></div>
+</div>
+</div>
+<!-- ========== OFFENE FRAGEN ========== -->
+<div class="open-questions">
+<h2>Offene Fragen</h2>
+<p><em>Wenn Bernays 1928 offen beschrieb, wie Öffentlichkeit geformt wird — warum ist dieses Wissen nicht Teil des Regelschulunterrichts?</em></p>
+<p><em>Wenn Ponsonbys und Morellis Analyse zeigt, dass alle Kriegsparteien dieselben Propagandaprinzipien verwenden — wie unterscheidet man dann strukturell zwischen „unseren" und „ihren" Lügen?</em></p>
+<p><em>Wenn Zensur und Propaganda beide auf Unsichtbarkeit angewiesen sind — welche Interessen werden durch das aktuelle System der Trusted Flaggers und Faktenchecker strukturell begünstigt?</em></p>
+<p><em>Was unterscheidet die öffentliche Kommunikation aktueller Konflikte strukturell von den hier dokumentierten Mustern?</em></p>
+</div>
+<!-- ========== QUELLENVERZEICHNIS ========== -->
+<div class="sources">
+<h2>Quellenverzeichnis</h2>
+<ul>
+<li>Bernays, Edward L.: <em>Propaganda</em>. Liveright Publishing Corporation, New York 1928. Digitalisiert: archive.org/details/edward-bernays-propaganda-1928</li>
+<li>Ponsonby, Arthur: <em>Falsehood in War-Time</em>. George Allen &amp; Unwin, London 1928. Digitalisiert: archive.org</li>
+<li>Morelli, Anne: <em>Principes élémentaires de propagande de guerre</em>. Labor, Brüssel 2001. Dt.: <em>Die Prinzipien der Kriegspropaganda</em>. Zu Klampen Verlag 2004</li>
+<li>Tye, Larry: <em>The Father of Spin: Edward L. Bernays and the Birth of Public Relations</em>. Crown Publishers, New York 1998</li>
+<li>CIA FOIA Electronic Reading Room: Guatemala / PBSUCCESS — cia.gov/readingroom</li>
+<li>Library of Congress, Manuscript Division: Edward L. Bernays Papers (1882–1995)</li>
+<li>US Senate Committee on Foreign Relations: <em>Iraq Survey Group Final Report</em> (2004) — cia.gov/library/reports/general-reports-1/iraq_wmd_2004</li>
+<li>Wilson, Woodrow: Kriegserklärung vor dem US-Kongress, 2. April 1917. Congressional Record, 65th Congress, 1st Session, Vol. 55, S. 102</li>
+<li>Supreme Court: <em>Debs v. United States</em>, 249 U.S. 211 (1919) — supreme.justia.com</li>
+<li>Human Rights Watch: <em>Civilian Deaths in the NATO Air Campaign</em> (2000) — hrw.org</li>
+<li>MacArthur, John R.: <em>Second Front: Censorship and Propaganda in the Gulf War</em>. University of California Press 1992</li>
+<li>Pentagon Papers: veröffentlicht New York Times, Juni 1971; vollständig deklassifiziert 2011 — National Archives, archives.gov</li>
+<li>DSA (Digital Services Act): Verordnung (EU) 2022/2065 — EUR-Lex, eur-lex.europa.eu</li>
+<li>DoD Embedding Policy 2003: U.S. Department of Defense, Media Ground Rules for Embedded Reporters — defense.gov-Archiv</li>
+<li>George W. Bush Presidential Library: Reden Sept. 2001 — georgewbush-whitehouse.archives.gov</li>
+</ul>
+</div>
+<div class="source-box" style="margin-top:2rem;">
+<strong>HINWEIS ZUR METHODIK</strong>
+    Alle Kernaussagen dieses Artikels basieren auf öffentlich zugänglichen Primärquellen: Buchprimärquellen (Bernays, Ponsonby, Morelli), deklassifizierten Regierungsdokumenten, parlamentarischen Protokollen und Gerichtsakten. Wo Quellen nicht vollständig primärbelegt sind, ist dies durch die Tags EXTRAPOLATION oder OFFEN/NICHT BELEGT gekennzeichnet. Lesern wird die eigenständige Prüfung der verlinkten Quellen ausdrücklich empfohlen. Schlussfolgerungen zieht der Leser.
+  </div>
+</main>
+<footer>
+<span>dunkelfeld.report</span>  —  Fakten, die das Licht nicht scheuen müssen.
+</footer>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

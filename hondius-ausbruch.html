@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>2.825 zu 13: Der Ausbruch auf der Hondius — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --text: #e4e4e7;
+    --muted: #8b8b93;
+    --box: #1a1a2e;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --grey: #71717a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+  .kicker {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.3rem;
+    line-height: 1.25;
+    margin: 0 0 1rem;
+    font-weight: normal;
+  }
+  .standfirst {
+    font-size: 1.25rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  .meta {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+    padding: 0.8rem 0;
+    margin-bottom: 3rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin: 3rem 0 1rem;
+    color: var(--accent);
+    line-height: 1.35;
+  }
+  h3 {
+    font-size: 1.15rem;
+    font-weight: normal;
+    margin: 2rem 0 0.8rem;
+    color: var(--text);
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 0.03em;
+  }
+  p { margin: 0 0 1.3rem; }
+  a { color: var(--accent); }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    padding: 0.15rem 0.5rem;
+    border: 1px solid;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-right: 0.4rem;
+    text-transform: uppercase;
+  }
+  .t-belegt { color: var(--green); border-color: var(--green); }
+  .t-extra { color: var(--orange); border-color: var(--orange); }
+  .t-offen { color: var(--grey); border-color: var(--grey); }
+  .t-vt { color: var(--grey); border-color: var(--grey); text-decoration: line-through; }
+  .source {
+    background: var(--box);
+    border-left: 3px solid var(--accent);
+    padding: 1.2rem 1.4rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+  .source .label {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+  .statgrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: #27272a;
+    border: 1px solid #27272a;
+    margin: 2.5rem 0;
+  }
+  .stat {
+    background: var(--bg);
+    padding: 1.3rem 1rem;
+    text-align: center;
+  }
+  .stat .num {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2rem;
+    color: var(--accent);
+    display: block;
+    line-height: 1.2;
+  }
+  .stat .lbl {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+    display: block;
+    margin-top: 0.5rem;
+    line-height: 1.5;
+  }
+  .timeline {
+    border-left: 2px solid #27272a;
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+  }
+  .timeline .entry { margin-bottom: 1.6rem; position: relative; }
+  .timeline .entry::before {
+    content: '';
+    position: absolute;
+    left: -1.93rem;
+    top: 0.55rem;
+    width: 9px; height: 9px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .timeline .date {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    display: block;
+  }
+  .timeline .body { font-size: 0.98rem; color: var(--text); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.92rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.7rem 0.6rem;
+    border-bottom: 1px solid #27272a;
+    vertical-align: top;
+  }
+  th {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  td.num-cell {
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--accent);
+  }
+  .pullquote {
+    font-size: 1.35rem;
+    line-height: 1.6;
+    color: var(--accent);
+    border: none;
+    margin: 2.5rem 0;
+    padding: 0 0 0 1.5rem;
+    border-left: 3px solid var(--accent);
+    font-style: italic;
+  }
+  .closing {
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid #27272a;
+    font-style: italic;
+    color: var(--muted);
+  }
+  .sources-list {
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid #27272a;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+  .sources-list h3 { color: var(--accent); font-size: 0.85rem; }
+  .sources-list ol { padding-left: 1.2rem; }
+  .sources-list li { margin-bottom: 0.5rem; }
+  .series-nav {
+    margin-top: 3rem;
+    padding: 1.2rem 1.4rem;
+    background: var(--box);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.82rem;
+    line-height: 1.8;
+  }
+  .series-nav .label {
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+</style>
+<meta name="description" content="Im Jahr 2012 erkrankten in Deutschland 2.825 Menschen an Hantaviren. Es gab keine Sondersendungen, keine Bilder von Schutzanzügen, keine …">
+<meta name="rubrik" content="cat-nahrung">
+<meta name="kachel-titel" content="2.825 zu 13: Der Ausbruch auf der Hondius">
+<link rel="canonical" href="https://dunkelfeld.report/hondius-ausbruch.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2.825 zu 13: Der Ausbruch auf der Hondius">
+<meta property="og:description" content="Im Jahr 2012 erkrankten in Deutschland 2.825 Menschen an Hantaviren. Es gab keine Sondersendungen, keine Bilder von Schutzanzügen, keine …">
+<meta property="og:url" content="https://dunkelfeld.report/hondius-ausbruch.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="kicker">Regulierung &amp; Wahrnehmung — Teil 2 von 2</div>
+<h1>2.825 zu 13</h1>
+<p class="standfirst">Im Jahr 2012 erkrankten in Deutschland 2.825 Menschen an Hantaviren. Es gab keine Sondersendungen, keine Bilder von Schutzanzügen, keine Quarantäne-Schlagzeilen. 2026 erkrankten dreizehn Menschen auf einem Expeditionsschiff — und die Welt sah zu. Beides war medizinisch begründet. Genau das macht den Vergleich lehrreich.</p>
+<div class="meta">
+    dunkelfeld.report  ·  Recherche: Juli 2026  ·  Quellen: RKI, WHO, ECDC, Statista/ECDC-Meldedaten, dpa-/APA-Faktenchecks
+  </div>
+<p>Am 1. April 2026 lief die <em>MV Hondius</em> im argentinischen Ushuaia aus. An Bord: 114 Passagiere, 61 Besatzungsmitglieder. Ziel war eine Expeditionsfahrt durch den Südatlantik, Kabinenpreise zwischen 14.000 und 22.000 Euro. Fünf Wochen später war das Schiff das meistfotografierte Objekt der internationalen Gesundheitsberichterstattung.</p>
+<p>Was zwischendurch geschah, ist gut dokumentiert. Was es über die Mechanik öffentlicher Aufmerksamkeit verrät, weniger.</p>
+<h2>Die Chronologie</h2>
+<div class="timeline">
+<div class="entry">
+<span class="date">1. April 2026</span>
+<span class="body">Abfahrt aus Ushuaia. Zwei der später Erkrankten waren zuvor durch Südamerika gereist, einschließlich Argentinien.</span>
+</div>
+<div class="entry">
+<span class="date">6.–28. April</span>
+<span class="body">Symptombeginn bei nahezu allen später bestätigten Fällen: Fieber, Magen-Darm-Beschwerden, rasche Verschlechterung.</span>
+</div>
+<div class="entry">
+<span class="date">24. April</span>
+<span class="body">Ein erwachsener Mann stellt sich beim Schiffsarzt vor — Fieber, Kurzatmigkeit, Zeichen einer Lungenentzündung.</span>
+</div>
+<div class="entry">
+<span class="date">24. April</span>
+<span class="body">29 Passagiere verlassen das Schiff planmäßig auf St. Helena. Zu diesem Zeitpunkt ist noch kein Hantavirus bekannt. Sie kommen aus rund zwölf Ländern.</span>
+</div>
+<div class="entry">
+<span class="date">27. April</span>
+<span class="body">Medizinische Evakuierung von Ascension nach Südafrika. Laboruntersuchungen auf ein breites Spektrum an Atemwegserregern verlaufen negativ.</span>
+</div>
+<div class="entry">
+<span class="date">2. Mai</span>
+<span class="body">PCR-Test in Südafrika bestätigt eine Hantavirus-Infektion. Die WHO wird über den nationalen IHR-Kontaktpunkt des Vereinigten Königreichs informiert. Am selben Tag stirbt eine Passagierin.</span>
+</div>
+<div class="entry">
+<span class="date">6. Mai</span>
+<span class="body">Die WHO bestätigt den Erreger als Andes-Virus. Evakuierungsflug landet um 19:47 Uhr in Amsterdam-Schiphol. Deutsche Kranken- und Feuerwehrfahrzeuge aus Düsseldorf warten am Flughafen.</span>
+</div>
+<div class="entry">
+<span class="date">10. Mai</span>
+<span class="body">Forschende aus der Schweiz, den Niederlanden und Südafrika gleichen Sequenzdaten ab. Die Viren sind nahezu identisch — ein Hinweis auf eine einzige Infektionsquelle. Der Stamm ist aus argentinischen Mauspopulationen bekannt.</span>
+</div>
+<div class="entry">
+<span class="date">18. Mai</span>
+<span class="body">Die Hondius erreicht Rotterdam zur Desinfektion.</span>
+</div>
+<div class="entry">
+<span class="date">2. Juni</span>
+<span class="body">Die WHO meldet 13 Fälle insgesamt, davon drei tödlich. 18 US-Amerikaner befinden sich in einer Biokontainment-Einheit in Nebraska.</span>
+</div>
+</div>
+<h2>Warum die Aufmerksamkeit begründet war</h2>
+<p>Ein Einwand vorweg, den dieser Text nicht erheben will: Die Reaktion war keine Hysterie. Es gibt harte medizinische Gründe, warum dieser Ausbruch anders behandelt wurde als die Ausbruchsjahre in Baden-Württemberg.</p>
+<p><span class="tag t-belegt">Belegt</span> Das Andes-Virus ist nach derzeitigem Kenntnisstand das einzige Hantavirus, das von Mensch zu Mensch übertragen werden kann. Es verursacht ein hantavirus-assoziiertes kardiopulmonales Syndrom mit rascher Verschlechterung und hoher Letalität — im Gegensatz zu den in Deutschland vorherrschenden Typen, die überwiegend mildere Verläufe mit Nierenbeteiligung zeigen. Die Inkubationszeit kann bis zu sechs Wochen betragen, was Kontaktnachverfolgung über Monate erzwingt.</p>
+<p>Ein Hantavirus-Ausbruch auf einem Kreuzfahrtschiff war zudem beispiellos. Ein Hantavirus-Forscher der University of New Mexico bezeichnete den Fall als Überraschung — von einem vergleichbaren Geschehen habe er zuvor nie gehört. Auf Schiffen dominieren Norovirus und E. coli.</p>
+<p>Drei Tote, zwölf betroffene Nationalitäten, WHO-Meldepflicht nach den Internationalen Gesundheitsvorschriften, eine unbekannte Zahl bereits ausgeschiffter Kontaktpersonen: Jeder einzelne Faktor rechtfertigt Berichterstattung.</p>
+<h2>Der Vergleich, der nicht gezogen wurde</h2>
+<p>Was in kaum einem der Berichte auftauchte: Hantaviren sind in Deutschland seit 2001 meldepflichtig — und die Fallzahlen bewegen sich in einer Größenordnung, die zum medialen Echo in keinem Verhältnis steht.</p>
+<div class="statgrid">
+<div class="stat">
+<span class="num">2.825</span>
+<span class="lbl">Fälle in Deutschland<br/>im Jahr 2012</span>
+</div>
+<div class="stat">
+<span class="num">1.740</span>
+<span class="lbl">Fälle in Deutschland<br/>im Jahr 2021</span>
+</div>
+<div class="stat">
+<span class="num">18.053</span>
+<span class="lbl">Fälle gesamt<br/>seit 2001</span>
+</div>
+<div class="stat">
+<span class="num">13</span>
+<span class="lbl">Fälle im<br/>Hondius-Ausbruch</span>
+</div>
+</div>
+<p><span class="tag t-belegt">Belegt</span> Das RKI beschreibt die Schwankungsbreite selbst: zwischen einem Tiefstwert von 72 gemeldeten Fällen im Jahr 2006 und 2.825 Fällen im Jahr 2012. Ein starker Anstieg der Puumala-Infektionen ist etwa alle zwei bis drei Jahre zu beobachten — sogenannte Ausbruchsjahre, konzentriert auf bestimmte Regionen.</p>
+<table>
+<tr>
+<th>Jahr</th>
+<th>Fälle Deutschland</th>
+<th>Fälle EU/EWR</th>
+</tr>
+<tr><td>2010</td><td class="num-cell">2.016</td><td class="num-cell">4.042</td></tr>
+<tr><td>2012</td><td class="num-cell">2.825</td><td class="num-cell">4.670</td></tr>
+<tr><td>2017</td><td class="num-cell">1.731</td><td class="num-cell">4.182</td></tr>
+<tr><td>2019</td><td class="num-cell">1.535</td><td class="num-cell">4.080</td></tr>
+<tr><td>2021</td><td class="num-cell">1.740</td><td class="num-cell">4.909</td></tr>
+<tr><td>2022</td><td class="num-cell">143</td><td class="num-cell">2.165</td></tr>
+</table>
+<p>Im Jahr 2010 gehörte das Hantavirus zu den fünf häufigsten meldepflichtigen Viruserkrankungen Deutschlands. Betroffene Regionen waren unter anderem die Schwäbische Alb, der Bayerische Wald, das Münsterland, Nordosthessen und der Teutoburger Wald. Allein Baden-Württemberg verzeichnete 2012 rund 1.797 Erkrankungen.</p>
+<div class="pullquote">Ein einzelnes Bundesland meldete in einem Jahr mehr als das Hundertfache der Fallzahl, die 2026 weltweite Schlagzeilen erzeugte.</div>
+<p><span class="tag t-extra">Extrapolation</span> Der Unterschied ist nicht allein durch die höhere Letalität des Andes-Virus erklärbar. Nach RKI-Angaben verlaufen die deutschen Puumala-Infektionen zwar überwiegend milder — aber bei 2.825 Erkrankten in einem Jahr, teils mit Dialysepflicht, ist die absolute Krankheitslast erheblich. Die Aufmerksamkeitsverteilung folgt daher nicht primär der Krankheitslast, sondern anderen Faktoren: Neuheit, Erzählbarkeit, Bildverfügbarkeit und internationaler Betroffenheit.</p>
+<h2>Die Ökonomie der Pressefotos</h2>
+<p><span class="tag t-belegt">Belegt</span> Die visuelle Signatur des Ausbruchs — Sanitäter in Schutzkleidung, die eine Person zu einem Krankenwagen begleiten — stammt in den meisten deutschsprachigen Veröffentlichungen aus einer einzigen Quelle: Aufnahmen des AP-Fotografen Peter Dejong vom Flughafen Schiphol, verbreitet über picture alliance.</p>
+<p>Dieselben Motive erscheinen im <em>Deutschen Ärzteblatt</em>, beim <em>Tagesanzeiger</em>, auf Nachrichtenportalen und in einer 29-teiligen Bildergalerie. Eine dieser Galerien weist ihr Aufmacherbild ausdrücklich als KI-generierte Montage aus mehreren Agenturfotos aus.</p>
+<div class="source">
+<span class="label">Struktureller Befund</span>
+    Die Bildagenturlogik erzeugt einen Verstärkungseffekt: Wenige Originalaufnahmen werden von Dutzenden Redaktionen lizenziert und parallel publiziert. Für Leserinnen und Leser entsteht der Eindruck massiver, unabhängiger Dokumentation eines Geschehens. Tatsächlich handelt es sich um mehrfach reproduzierte Einzelmotive eines Fotografen an einem Ort an einem Abend.
+  </div>
+<p><span class="tag t-offen">Offen</span> Die vielfach kolportierte Polizeieskorte für Krankenwagen ließ sich in den geprüften Quellen nicht belegen. Dokumentiert sind ein „Großaufgebot an Einsatzkräften" im Hafen von Praia und eine Fahrzeugkolonne aus Düsseldorf, die zur Übernahme einer Patientin nach Amsterdam fuhr. Ob und wo Polizei eskortierte, ist unklar — ebenso, ob das Motiv aus der Berichterstattung stammt oder in der Weiterverbreitung entstanden ist.</p>
+<h3>Die Dementis als Verstärker</h3>
+<p><span class="tag t-belegt">Belegt</span> Die WHO bemühte sich früh um Dämpfung. Die Infektionsgefahr sei gering und dies nicht mit dem Coronavirus vergleichbar. Der WHO-Regionaldirektor für Europa betonte, der Ausbruch stelle keine allgemeine Gefahr für die öffentliche Gesundheit dar. Das ECDC bewertete das Risiko für die Allgemeinbevölkerung im EU-/EWR-Raum am 6. Mai 2026 als sehr gering. Nach Medienberichten stellte die WHO ausdrücklich klar, dies sei nicht der Beginn einer neuen Pandemie.</p>
+<p><span class="tag t-extra">Extrapolation</span> Solche Klarstellungen erzeugen eigene Berichterstattung. Die Formulierung „keine neue Pandemie" enthält das Wort, das sie ausschließen soll — und reproduziert es in jeder Schlagzeile, die sie zitiert. Ob dieser Effekt intendiert, unvermeidlich oder nachlässig ist, lässt sich aus den Dokumenten nicht bestimmen.</p>
+<h2>Der Ground Zero, den es noch nicht gibt</h2>
+<p><span class="tag t-offen">Offen</span> Der Ursprung des Ausbruchs ist nicht abschließend geklärt. Die Sequenzdaten weisen auf einen Stamm aus argentinischen Mauspopulationen und auf eine gemeinsame Infektionsquelle hin. Der Auslaufhafen Ushuaia liegt jedoch rund 1.500 Kilometer südlich des bekannten Verbreitungsgebiets der virustragenden Langschwanz-Reisratte, und aus der Region Feuerland sind bislang keine Fälle dokumentiert.</p>
+<p>Die plausibelste Rekonstruktion — eine zufällige Ansteckung an Land, verzögerte Diagnose bei den ersten Erkrankten, enger Kontakt an Bord — beschreibt eine Verkettung von Umständen, keine neue Eigenschaft des Virus.</p>
+<h2>Was daraus im Netz wurde</h2>
+<p><span class="tag t-vt">VT-widerlegt</span> Binnen Tagen kursierte ein Screenshot, der einen Zusammenhang zwischen dem Covid-19-Impfstoff BNT162b2 und Hantavirus-Lungeninfektionen belegen sollte. Das zugrundeliegende Dokument ist echt. Es handelt sich um einen Sicherheitsbericht des Herstellers aus dem Jahr 2021 — nicht um eine Liste bestätigter Nebenwirkungen, sondern um eine Sammlung gemeldeter Ereignisse nach Impfungen, unabhängig von jeder Kausalität. Weder in der Gebrauchsinformation noch in der offiziellen Produktinformation des Impfstoffs findet sich das Hantavirus.</p>
+<p>Warum solche Sicherheitsberichte funktionieren, wie sie funktionieren — und warum ihre Fehlinterpretation ein wiederkehrendes Muster ist, das lange vor 2026 begann — behandeln wir gesondert auf <strong>richtig-erinnern.de</strong>.</p>
+<p>Für diesen Text genügt der zeitliche Befund: Hantaviren sind seit den 1950er-Jahren bekannt, das Andes-Virus seit den 1990er-Jahren. Die Covid-Impfstoffe kamen ab Dezember 2020 auf den Markt.</p>
+<h2>Die eigentliche Lücke</h2>
+<p>Ein Detail aus der Chronologie verdient mehr Aufmerksamkeit, als es bekommen hat.</p>
+<p><span class="tag t-belegt">Belegt</span> Bei dem am 27. April evakuierten Patienten verliefen die Untersuchungen auf ein breites Spektrum an Atemwegserregern negativ. Erst danach führte ein gezielter PCR-Test zum Nachweis. Zu diesem Zeitpunkt waren bereits ein Passagier an Bord und eine weitere Person auf der Heimreise verstorben — ohne dass ein Zusammenhang erkannt worden war. 29 Passagiere hatten das Schiff bereits verlassen.</p>
+<p><span class="tag t-extra">Extrapolation</span> Der Erreger wurde gefunden, weil die Standarddiagnostik versagte und jemand weitersuchte. Ohne Evakuierung in ein spezialisiertes Zentrum, ohne die Hartnäckigkeit der behandelnden Ärzte und ohne den internationalen Sequenzabgleich vom 10. Mai wäre der Ausbruch möglicherweise als Häufung unklarer Lungenentzündungen bei älteren Reisenden in die Statistik eingegangen.</p>
+<p>Nach Angaben aus der Branche sterben jährlich rund 200 Menschen auf Kreuzfahrtschiffen, Verbrechen nicht eingerechnet. Das Standardverfahren ist etabliert: Der Schiffsarzt stellt den Totenschein aus, der Leichnam wird gekühlt gelagert und im nächsten Hafen übergeben. Eine weitergehende Untersuchung erfolgt, wenn die Todesursache unklar ist oder ein Fremdverschulden im Raum steht.</p>
+<p><span class="tag t-offen">Offen</span> Wie häufig „unklar" tatsächlich zu einer Obduktion führt, in welchem Land diese stattfindet und nach welchen Standards — dazu liegen uns keine belastbaren Zahlen vor. Eine zentrale Statistik über Todesursachen an Bord von Kreuzfahrtschiffen unter wechselnden Flaggenstaaten existiert nach unserer Recherche nicht.</p>
+<div class="closing">
+<p>Offene Fragen: Welche Todesfälle an Bord werden tatsächlich pathologisch abgeklärt, und wer erhebt diese Daten über Flaggenstaaten hinweg? Warum erzeugten 2.825 Erkrankungen in einem deutschen Ausbruchsjahr keine vergleichbare Aufmerksamkeit — und was folgt daraus für die Präventionsbereitschaft in den betroffenen Regionen? Und ab welcher Zahl von Redaktionen, die dasselbe Agenturfoto verwenden, entsteht in der öffentlichen Wahrnehmung eine Dokumentationsdichte, die es faktisch nicht gibt?</p>
+</div>
+<div class="series-nav">
+<span class="label">Serie: Regulierung &amp; Wahrnehmung</span>
+    Teil 1 — <a href="rattenplage-hantavirus.html">Das Ende der Dauerbeköderung</a><br/>
+<strong>Teil 2 — 2.825 zu 13</strong> (Sie lesen diesen Teil)<br/>
+<span style="color:var(--muted);">Ergänzend auf richtig-erinnern.de: Wie Nebenwirkungsdatenbanken funktionieren</span>
+</div>
+<div class="sources-list">
+<h3>Quellen</h3>
+<ol>
+<li>Robert Koch-Institut: RKI-Ratgeber Hantavirus-Erkrankung (Stand Mai 2026)</li>
+<li>Robert Koch-Institut: Informationen zum Hantavirus-Ausbruch auf Kreuzfahrtschiff, Themenseite</li>
+<li>Robert Koch-Institut: Handreichung für den ÖGD — Quarantäne von Kontaktpersonen nach möglicher Exposition gegenüber Andes-Hantavirus (19.5.2026)</li>
+<li>WHO Disease Outbreak News zum Ausbruchsgeschehen, ab 5. Mai 2026</li>
+<li>ECDC: Risikoeinschätzung vom 6. Mai 2026</li>
+<li>ECDC-Meldedaten zu Hantavirus-Infektionen EU/EWR und Deutschland 2008–2022</li>
+<li>Deutsches Ärzteblatt: Hantavirus — Länder suchen Passagiere der „Hondius"</li>
+<li>National Geographic: Ausbruch auf Kreuzfahrtschiff — Was steckt hinter dem Hantavirus? (8.5.2026)</li>
+<li>dpa-Faktencheck / APA-Faktencheck / GADMO zum Pfizer-Sicherheitsbericht, Mai 2026</li>
+<li>Tropeninstitut: WHO-Meldung vom 2.6.2026 zum Anstieg auf 13 Fälle</li>
+</ol>
+<p style="margin-top:1.5rem;font-size:0.8rem;">Hinweis zur Quellenlage: Mehrere Detailangaben zur Chronologie stammen aus Agenturmeldungen (AFP, dpa, AP), die von verschiedenen Medien parallel wiedergegeben wurden. Wo Primärquellen von WHO, ECDC oder RKI verfügbar waren, wurde diesen der Vorzug gegeben. Die Fallzahlen für Deutschland und die EU basieren auf ECDC-Meldedaten in sekundärer Aufbereitung; Abweichungen zu RKI-Direktangaben sind möglich, da Referenzdefinitionen und Stichtage differieren.</p>
+</div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

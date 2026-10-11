@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Okupas in Spanien: Zwischen realem Problem und viraler Zuspitzung — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --box-bg: #1a1a2e;
+    --amber: #e8c547;
+    --green: #7fbf7f;
+    --orange: #e8a547;
+    --grey: #8a8a8a;
+    --text: #e4e4e7;
+    --text-dim: #a1a1aa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 40px 20px 80px;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  .masthead {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    letter-spacing: 2px;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    border-bottom: 1px solid #2a2a3a;
+    padding-bottom: 14px;
+    margin-bottom: 30px;
+  }
+  .masthead .sub {
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    font-size: 0.9em;
+    margin-top: 6px;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--text-dim);
+    font-size: 0.8em;
+    margin-bottom: 8px;
+  }
+  h1 {
+    font-size: 1.9em;
+    line-height: 1.25;
+    margin: 10px 0 6px;
+    color: #fff;
+  }
+  .dek {
+    color: var(--text-dim);
+    font-size: 1.05em;
+    font-style: italic;
+    margin-bottom: 30px;
+  }
+  h2 {
+    color: var(--amber);
+    font-size: 1.3em;
+    margin-top: 46px;
+    border-left: 3px solid var(--amber);
+    padding-left: 14px;
+  }
+  h3 {
+    color: #fff;
+    font-size: 1.05em;
+    margin-top: 28px;
+  }
+  p { margin: 14px 0; }
+  a { color: var(--amber); }
+
+  /* Tag system */
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7em;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .tag-belegt { background: rgba(127,191,127,0.15); color: var(--green); border: 1px solid var(--green); }
+  .tag-extrapolation { background: rgba(232,165,71,0.15); color: var(--orange); border: 1px solid var(--orange); }
+  .tag-offen { background: rgba(138,138,138,0.15); color: var(--grey); border: 1px solid var(--grey); }
+  .tag-widerlegt { background: rgba(200,80,80,0.15); color: #d97a7a; border: 1px solid #d97a7a; text-decoration: line-through; }
+
+  /* Stat grid */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .stat-box {
+    background: var(--box-bg);
+    padding: 16px;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 1.5em;
+    font-weight: bold;
+    display: block;
+  }
+  .stat-label {
+    color: var(--text-dim);
+    font-size: 0.78em;
+    margin-top: 4px;
+  }
+
+  /* Source box */
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--amber);
+    padding: 14px 18px;
+    margin: 18px 0;
+    font-size: 0.88em;
+    color: var(--text-dim);
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.85em;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* Person card */
+  .person-card {
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 20px;
+    margin: 22px 0;
+  }
+  .person-card h4 {
+    margin: 0 0 4px;
+    color: #fff;
+    font-size: 1.05em;
+  }
+  .person-card .loc {
+    font-family: 'Courier New', monospace;
+    color: var(--text-dim);
+    font-size: 0.78em;
+    margin-bottom: 12px;
+  }
+
+  /* Timeline */
+  .timeline { margin: 26px 0; }
+  .tl-step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 22px;
+    position: relative;
+  }
+  .tl-num {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-weight: bold;
+    font-size: 1.1em;
+    min-width: 28px;
+  }
+  .tl-content h4 {
+    margin: 0 0 6px;
+    color: #fff;
+    font-size: 1em;
+  }
+  .tl-content p { margin: 0; font-size: 0.95em; color: var(--text-dim); }
+
+  /* Comparison table */
+  table.cmp {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.9em;
+  }
+  table.cmp th, table.cmp td {
+    border: 1px solid #2a2a3a;
+    padding: 10px 12px;
+    text-align: left;
+  }
+  table.cmp th {
+    background: var(--box-bg);
+    color: var(--amber);
+    font-family: 'Courier New', monospace;
+    font-size: 0.85em;
+  }
+
+  /* Widerlegt box */
+  .widerlegt-box {
+    background: rgba(200,80,80,0.08);
+    border-left: 3px solid #d97a7a;
+    padding: 16px 18px;
+    margin: 24px 0;
+  }
+  .widerlegt-box .label {
+    font-family: 'Courier New', monospace;
+    color: #d97a7a;
+    font-size: 0.85em;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .widerlegt-box ul { margin: 8px 0; padding-left: 20px; }
+  .widerlegt-box li { margin-bottom: 8px; font-size: 0.95em; }
+
+  /* Open questions */
+  .open-questions {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #2a2a3a;
+  }
+  .open-questions h2 { color: var(--grey); border-left-color: var(--grey); }
+  .open-questions p { font-style: italic; color: var(--text-dim); }
+
+  /* Footer nav */
+  .series-nav {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #2a2a3a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8em;
+    color: var(--text-dim);
+    text-align: center;
+  }
+</style>
+<meta name="description" content="Ein Facebook-Post über einen &quot;gefesselten&quot; Eigentümer und Windelrechnungen ging viral. Die Wahrheit dahinter ist nüchterner — und trotzdem beunruhigend genug.">
+<meta name="rubrik" content="cat-geo">
+<meta name="kachel-titel" content="Okupas in Spanien: Zwischen realem Problem und viraler Zuspitzung">
+<link rel="canonical" href="https://dunkelfeld.report/okupas-spanien.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Okupas in Spanien: Zwischen realem Problem und viraler Zuspitzung">
+<meta property="og:description" content="Ein Facebook-Post über einen &quot;gefesselten&quot; Eigentümer und Windelrechnungen ging viral. Die Wahrheit dahinter ist nüchterner — und trotzdem beunruhigend genug.">
+<meta property="og:url" content="https://dunkelfeld.report/okupas-spanien.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="masthead">
+    dunkelfeld.report
+    <div class="sub">Hidden in Plain Sight</div>
+</div>
+<div class="meta">August 2026 · Lesedauer: ca. 9 Minuten</div>
+<h1>Okupas in Spanien: Zwischen realem Problem und viraler Zuspitzung</h1>
+<p class="dek">Ein Facebook-Post über einen "gefesselten" Eigentümer und Windelrechnungen ging viral. Die Wahrheit dahinter ist nüchterner — und trotzdem beunruhigend genug.</p>
+<p>Ein Screenshot kursiert im Netz: Ein Mann kommt nach 13 Stunden Arbeit heim, sein Haus ist besetzt, die Polizei fesselt ihn statt der Besetzer, er muss angeblich sogar die Windeln der Hausbesetzer-Familie bezahlen. Der Post ist plakativ, unbelegt — und trotzdem sitzt ein reales Problem darunter. Dieser Artikel trennt beides: was dokumentiert ist, und was Zuspitzung für Reichweite ist.</p>
+<div class="stat-grid">
+<div class="stat-box"><span class="stat-num">~100.000</span><span class="stat-label">besetzte Immobilien in Spanien (Plataforma de Afectados por la Ocupación)</span></div>
+<div class="stat-box"><span class="stat-num">48 Std.</span><span class="stat-label">Faustregel der Polizeipraxis — kein Gesetz</span></div>
+<div class="stat-box"><span class="stat-num">April 2025</span><span class="stat-label">Ley Orgánica 1/2025, "Anti-Okupa-Gesetz"</span></div>
+</div>
+<h2>1. Der virale Post im Faktencheck</h2>
+<span class="tag tag-widerlegt">VT-WIDERLEGT</span>
+<p>Der Post nennt weder Namen, Ort noch Datum — ein typisches Muster nicht verifizierbarer Empörungsinhalte. Die zentrale Behauptung, der Eigentümer müsse zwingend die Strom- und Wasserrechnungen der Besetzer tragen, widerspricht der Rechtsprechung:</p>
+<div class="source-box">
+<span class="label">QUELLE</span>
+    Der spanische Oberste Gerichtshof hat geurteilt, dass Eigentümer die Versorgung illegaler Hausbesetzer mit Strom, Wasser oder Gas grundsätzlich nicht auf eigene Kosten aufrechterhalten müssen. Eigentümern wird sogar geraten, Nebenleistungen auf ein vertragliches Minimum zu reduzieren. (Rövenich-Immobilien, Dez. 2023; ANA-Mietagentur-Ratgeber, 2022)
+  </div>
+<p>Real ist dagegen: Eigenmächtiges Abstellen von Strom oder Wasser kann als Nötigung strafbar sein — das ist vermutlich der reale Kern, der zur "Windel"-Anekdote zugespitzt wurde. Das Fesseln des Eigentümers ist in keiner der ausgewerteten Quellen dokumentiert.</p>
+<h2>2. Was tatsächlich dokumentiert ist</h2>
+<span class="tag tag-belegt">BELEGT</span>
+<p>Das Okupa-Phänomen selbst ist real und seit Jahren Thema spanischer und deutscher Regionalmedien. Vier Fälle mit Namen, Ort und nachvollziehbarem Verlauf:</p>
+<div class="person-card">
+<h4>Günther S. (84–87), Altea / Moraira, Costa Blanca</h4>
+<div class="loc">Deutscher Rentner, auf Krücken angewiesen</div>
+<p>Kam Anfang 2026 zu seinem Ferienhaus zurück und fand ein fremdes Vorhängeschloss am Tor vor. Eine Familie hatte sich im Wohnzimmer eingerichtet, behauptete gegenüber der Ortspolizei einen Mietvertrag zu haben. Verlangte zunächst 2.000 € für den Auszug. Trotz des seit April 2025 geltenden Anti-Okupa-Gesetzes zog sich der Fall über Monate — ein Gericht gewährte dem Besetzer sogar 30 statt der üblichen 3 Tage Räumungsfrist.</p>
+</div>
+<div class="person-card">
+<h4>Gustavo (Nachname unbekannt), Jávea, Costa Blanca</h4>
+<div class="loc">Vermittler im Auftrag eines englischen Eigentümers</div>
+<p>Putzfrau entdeckte kurz vor Ankunft der Eigentümer zwei junge Hausbesetzer im Ferienhaus, weitere Personen flohen. Verhandlungen führten zu einer Geldforderung der Besetzer für den Auszug. Der Eigentümer weigerte sich zunächst zu zahlen. Gustavo vermutet organisierte Strukturen hinter den Besetzern, die das systematisch als Geschäftsmodell betreiben.</p>
+</div>
+<div class="person-card">
+<h4>Eigentümer eines Bungalows, Arguineguín, Gran Canaria</h4>
+<div class="loc">Bis zu 17 Besetzer gleichzeitig im Haus</div>
+<p>Zahlten rund 20.000 € — Auszugsgeld, Renovierung, Ersatz gestohlener Gegenstände. Polizei war vor Ort, griff aber nicht ein ("Sache der Gerichte"). Nach drei Wochen erhielten die Eigentümer ihr verwüstetes Haus zurück.</p>
+</div>
+<div class="person-card">
+<h4>Fall "Hiller"</h4>
+<div class="loc">Ende 2025, Costa Blanca</div>
+<p>Besetzer verließ das Haus freiwillig, Schlüssel wurden am Eingang hinterlegt. Zustand innen: chaotisch, dreckig, unsinnig umgestaltet — aber nicht mutwillig zerstört.</p>
+</div>
+<h2>3. Typischer Ablauf bis zum Wiedereinzug</h2>
+<span class="tag tag-belegt">BELEGT</span>
+<div class="timeline">
+<div class="tl-step">
+<div class="tl-num">1</div>
+<div class="tl-content">
+<h4>Entdeckung</h4>
+<p>Meist durch Nachbarn, Hausverwalter oder bei Rückkehr aus dem Ausland — abwesende Ferienhausbesitzer sind das Hauptrisikoprofil.</p>
+</div>
+</div>
+<div class="tl-step">
+<div class="tl-num">2</div>
+<div class="tl-content">
+<h4>Das 48-Stunden-Fenster</h4>
+<p>Keine gesetzliche Frist, sondern etablierte Polizeipraxis: Wird die Besetzung sofort gemeldet, kann die Polizei bei erkennbar bewohnter Immobilie direkt räumen (desalojo exprés), ohne Gerichtsbeschluss.</p>
+</div>
+</div>
+<div class="tl-step">
+<div class="tl-num">3</div>
+<div class="tl-content">
+<h4>Nach Ablauf der 48 Stunden</h4>
+<p>Nur noch über Räumungsklage (desahucio) möglich. Nötig: Anwalt, Eigentumsnachweis (Escritura/Grundbuchauszug), Fotos, Zeugenaussagen.</p>
+</div>
+</div>
+<div class="tl-step">
+<div class="tl-num">4</div>
+<div class="tl-content">
+<h4>Schnellverfahren seit 2025</h4>
+<p>Soll Gerichtstermin innerhalb von ca. 15 Tagen ermöglichen. Funktioniert in kleineren Bezirken (z. B. Mallorca: 2–3 Wochen), scheitert aber häufig an überlasteten Gerichten in Ballungsräumen wie Barcelona oder Alicante — dort weiterhin Monate.</p>
+</div>
+</div>
+<div class="tl-step">
+<div class="tl-num">5</div>
+<div class="tl-content">
+<h4>"Inmocupación" — die subtilere Variante</h4>
+<p>Kein Einbruch mehr: Täter treten als seriöse Mietinteressenten auf, mit gefälschten Verträgen und Gehaltsnachweisen, zahlen einmal und dann nie wieder. Rechtlich Betrug, nicht Hausfriedensbruch — Begriff geprägt von Richter Vicente Magro (Oberster Gerichtshof) auf einem Polizeikongress in L'Alfàs del Pi.</p>
+</div>
+</div>
+<div class="tl-step">
+<div class="tl-num">6</div>
+<div class="tl-content">
+<h4>Private "Räumungsdienste"</h4>
+<p>Kosten zwischen 3.000 und 10.000 € an der Costa Blanca. Rechtliche Grauzone: unrechtmäßiges Vorgehen kann teurer werden als die Besetzung selbst, wenn Gegenklagen wegen Nötigung folgen.</p>
+</div>
+</div>
+<div class="tl-step">
+<div class="tl-num">7</div>
+<div class="tl-content">
+<h4>Rückerhalt</h4>
+<p>Zustand meist verwahrlost und chaotisch, aber in den dokumentierten Fällen selten mutwillig zerstört.</p>
+</div>
+</div>
+</div>
+<h2>4. Was die Reform von 2025 wirklich verändert hat</h2>
+<span class="tag tag-extrapolation">EXTRAPOLATION</span>
+<table class="cmp">
+<tr><th>Vor der Reform</th><th>Seit April 2025</th></tr>
+<tr><td>Soziale Situation der Besetzer musste vor Räumung geprüft werden</td><td>Prüfpflicht entfällt</td></tr>
+<tr><td>Pandemie-Räumungsmoratorium erfasste auch Privateigentümer</td><td>Seit Anfang 2026 nur noch für Großeigentümer gültig — private Ferienhausbesitzer ausgenommen</td></tr>
+<tr><td>Kein einheitliches Schnellverfahren</td><td>Ziel: Gerichtstermin binnen 15 Tagen</td></tr>
+<tr><td>Gerichtsbelastung</td><td>Weiterhin unverändert hoch — Reform trifft auf chronisch unterbesetzte Justiz</td></tr>
+</table>
+<p>Regionale Presse zieht ein Jahr nach Inkrafttreten ein gemischtes Fazit: Die Reform sei "ein echter Fortschritt", stoße aber in der Praxis an eine überlastete Justiz — in kleineren Bezirken funktioniere das Schnellverfahren, in Ballungsräumen kaum.</p>
+<div class="widerlegt-box">
+<span class="label">HÄUFIGE VERWECHSLUNG</span>
+<ul>
+<li>Viele als "Okupa-Horrorgeschichten" kursierende Fälle sind rechtlich Mietstreitigkeiten: Ein Mieter hat unterschrieben und zahlt dann nicht mehr. Das unterliegt dem Mietrecht mit deutlich stärkerem Mieterschutz — ein anderes Verfahren als bei echtem Hausfriedensbruch.</li>
+<li>Die "48-Stunden-Regel" steht in keinem Gesetzestext. Sie ist reine Polizeipraxis und kein Eigentumsübergang nach zwei Tagen, wie mancher Post suggeriert.</li>
+</ul>
+</div>
+<div class="open-questions">
+<h2>Offene Fragen</h2>
+<p><em>Wie groß die Dunkelziffer stiller Vergleichszahlungen ist, lässt sich mangels zentraler Erfassung nicht beziffern. Ebenso offen: ob die Ausnahme privater Eigentümer vom Räumungsmoratorium (seit 2026) die Fallzahlen an der Küste bereits messbar verändert hat — dafür fehlen bislang belastbare Folgestudien.</em></p>
+</div>
+<div class="series-nav">
+    dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.
+  </div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

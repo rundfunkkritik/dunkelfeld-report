@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Die Bevölkerung als Ressource: Vom Panikpapier zum Grünbuch — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --bg-box: #1a1a2e;
+    --accent: #e8c547;
+    --text: #e4e4e7;
+    --muted: #8a8a94;
+    --border: #262636;
+    --green: #6fbf73;
+    --orange: #e0954f;
+    --grey: #9a9aa4;
+    --red: #c9605f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.7;
+  }
+  .mono { font-family: 'Courier New', Courier, monospace; }
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.3rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+  .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+  header .label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; }
+  header .stand { margin-left: auto; font-size: 0.68rem; color: var(--muted); }
+  main { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+  .kicker { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 1.5rem; }
+  h1 { font-size: clamp(2rem, 6vw, 2.9rem); line-height: 1.15; margin: 0 0 1.2rem; color: var(--text); }
+  h1 .sub { color: var(--muted); font-size: 0.6em; display: block; margin-top: 0.5rem; }
+  .lede { font-size: 1.08rem; color: var(--muted); margin-bottom: 2.5rem; }
+  h2 { font-size: 1.5rem; color: var(--accent); margin-top: 3.5rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.6rem; }
+  h3 { font-size: 1.1rem; color: var(--text); margin-top: 2rem; }
+  p { margin: 1rem 0; }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+    font-weight: bold;
+  }
+  .tag-belegt { background: rgba(111,191,115,0.12); color: var(--green); border: 1px solid rgba(111,191,115,0.35); }
+  .tag-extra { background: rgba(224,149,79,0.12); color: var(--orange); border: 1px solid rgba(224,149,79,0.35); }
+  .tag-offen { background: rgba(154,154,164,0.12); color: var(--grey); border: 1px solid rgba(154,154,164,0.35); }
+  .tag-widerlegt { background: rgba(201,96,95,0.12); color: var(--red); border: 1px solid rgba(201,96,95,0.35); text-decoration: line-through; }
+
+  .source-box {
+    background: var(--bg-box);
+    border-left: 3px solid var(--accent);
+    padding: 1.2rem 1.4rem;
+    margin: 1.6rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .source-box .src-title { font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6rem; }
+  .source-box p { margin: 0.5rem 0; font-size: 0.96rem; }
+  .source-box .src-link { font-family: 'Courier New', monospace; font-size: 0.78rem; color: var(--muted); word-break: break-all; margin-top: 0.6rem; }
+
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1px; background: var(--border); margin: 2rem 0; }
+  .stat-card { background: var(--bg); padding: 1.4rem 1.2rem; }
+  .stat-card .num { font-family: 'Courier New', monospace; font-size: 1.5rem; color: var(--accent); font-weight: bold; }
+  .stat-card .lbl { font-size: 0.78rem; color: var(--muted); margin-top: 0.3rem; }
+
+  .timeline { border-left: 2px solid var(--border); margin: 2rem 0 2rem 0.5rem; padding-left: 1.5rem; }
+  .timeline-item { position: relative; margin-bottom: 1.6rem; }
+  .timeline-item::before { content: ''; position: absolute; left: -1.75rem; top: 0.3rem; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .timeline-date { font-family: 'Courier New', monospace; font-size: 0.78rem; color: var(--accent); }
+  .timeline-text { margin-top: 0.2rem; font-size: 0.97rem; }
+
+  .pullquote { font-size: 1.25rem; color: var(--text); border-left: 3px solid var(--accent); padding-left: 1.3rem; margin: 2.2rem 0; font-style: italic; line-height: 1.5; }
+  .pullquote cite { display: block; font-style: normal; font-family: 'Courier New', monospace; font-size: 0.72rem; color: var(--muted); margin-top: 0.6rem; }
+
+  table.compare { width: 100%; border-collapse: collapse; margin: 1.6rem 0; font-size: 0.92rem; }
+  table.compare th, table.compare td { border: 1px solid var(--border); padding: 0.7rem 0.8rem; text-align: left; vertical-align: top; }
+  table.compare th { background: var(--bg-box); color: var(--accent); font-family: 'Courier New', monospace; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .person-card { display: flex; gap: 1rem; background: var(--bg-box); border-radius: 4px; padding: 1rem 1.2rem; margin: 1rem 0; align-items: flex-start; }
+  .person-card .initials { font-family: 'Courier New', monospace; font-weight: bold; color: var(--accent); font-size: 0.9rem; border: 1px solid var(--accent); border-radius: 50%; width: 2.4rem; height: 2.4rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .person-card .name { font-weight: bold; }
+  .person-card .role { font-size: 0.82rem; color: var(--muted); }
+
+  .closing { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--border); font-style: italic; color: var(--muted); font-size: 1.05rem; }
+  .closing p { margin: 1rem 0; }
+
+  .series-nav { margin-top: 3rem; padding: 1.4rem; background: var(--bg-box); border-radius: 4px; font-size: 0.85rem; }
+  .series-nav .label { font-family: 'Courier New', monospace; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6rem; }
+  .series-nav a { color: var(--accent); text-decoration: none; display: block; margin: 0.3rem 0; }
+  .series-nav a:hover { text-decoration: underline; }
+
+  footer { max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem 3rem; font-size: 0.72rem; color: var(--muted); line-height: 1.8; }
+</style>
+<meta name="description" content="Ein historisches Vorratsprogramm, ein Kabinettsbeschluss, jährliche Zustimmungsmessungen und ein Kriegsszenario für 2030 — vier öffentlich zugängliche …">
+<meta name="rubrik" content="cat-staat">
+<meta name="kachel-titel" content="Die Bevölkerung als Ressource: Vom Panikpapier zum Grünbuch">
+<link rel="canonical" href="https://dunkelfeld.report/kriegstuechtig.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Die Bevölkerung als Ressource: Vom Panikpapier zum Grünbuch">
+<meta property="og:description" content="Ein historisches Vorratsprogramm, ein Kabinettsbeschluss, jährliche Zustimmungsmessungen und ein Kriegsszenario für 2030 — vier öffentlich zugängliche …">
+<meta property="og:url" content="https://dunkelfeld.report/kriegstuechtig.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<header>
+<div class="dot"></div>
+<div class="label">Dokumentation · Fakten · Quellen</div>
+<div class="stand mono">Stand: Juli 2026</div>
+</header>
+<main>
+<div class="kicker">Strukturanalyse · Gesamtverteidigung &amp; Gesellschaftliche Mobilisierung</div>
+<h1>Die Bevölkerung als Ressource<span class="sub">Vom Panikpapier zum Grünbuch ZMZ</span></h1>
+<p class="lede">
+    Ein historisches Vorratsprogramm, ein Kabinettsbeschluss, jährliche Zustimmungsmessungen
+    und ein Kriegsszenario für 2030 — vier öffentlich zugängliche Dokumente zeichnen den Weg
+    nach, wie die deutsche Zivilbevölkerung schrittweise zum Bestandteil der
+    Landesverteidigung erklärt wird.
+  </p>
+<h2>1. Die Blaupause: "Aktion Eichhörnchen" (1961)</h2>
+<p>
+<span class="tag tag-belegt">BELEGT</span>
+    Bereits in den 1960er Jahren rief die Bundesrepublik ihre Bürger im Rahmen der
+    <strong>"Aktion Eichhörnchen"</strong> dazu auf, einen 14-Tage-Vorrat an staubdicht verpackten
+    Lebensmitteln anzulegen — zum Schutz vor radioaktivem Niederschlag im Kriegsfall. Die
+    heutigen Checklisten des Bundesamts für Bevölkerungsschutz und Katastrophenhilfe (BBK)
+    ähneln dieser Kampagne inhaltlich stark. Das Prinzip wird nicht neu erfunden, sondern
+    alle paar Jahrzehnte reaktiviert.
+  </p>
+<h2>2. Die "Konzeption Zivile Verteidigung" (2016)</h2>
+<p>
+<span class="tag tag-belegt">BELEGT</span>
+    Am 24. August 2016 beschloss das Bundeskabinett die <strong>KZV</strong> als
+    "konzeptionelles Basisdokument für die ressortabgestimmte Aufgabenerfüllung im Bereich
+    der Zivilen Verteidigung". Rechtsgrundlage: Art. 73 Nr. 1 Grundgesetz (ausschließliche
+    Bundesgesetzgebung), ergänzt durch Notstandsverfassung und Zivilschutzgesetz.
+  </p>
+<p>
+    Öffentlich wurde die KZV vor allem wegen einer Passage: der Empfehlung an Bürger,
+    Lebensmittel- und Wasservorräte für <strong>10 Tage</strong> anzulegen — in einer Zeit ohne
+    akute Kriegsgefahr wirkte das 2016 wie ein unerwarteter Weckruf.
+  </p>
+<div class="source-box">
+<div class="src-title">Primärquelle</div>
+<p>Konzeption Zivile Verteidigung, Bundeskabinett, 24.08.2016</p>
+<div class="src-link">bmi.bund.de/SharedDocs/downloads/DE/veroeffentlichungen/themen/bevoelkerungsschutz/konzeption-zivile-verteidigung.pdf</div>
+</div>
+<h2>3. Das Monitoring: Jährliche Zustimmungsmessung</h2>
+<p>
+<span class="tag tag-belegt">BELEGT</span>
+    Seit 1996 führt das Zentrum für Militärgeschichte und Sozialwissenschaften der Bundeswehr
+    (ZMSBw) eine jährliche <strong>Bevölkerungsbefragung</strong> durch. Seit dem russischen
+    Angriffskrieg gegen die Ukraine 2022 verschiebt sich ihr Fokus spürbar: von allgemeiner
+    Bundeswehr-Akzeptanz hin zu konkreter Kriegsbereitschaft der Zivilbevölkerung.
+  </p>
+<div class="stat-grid">
+<div class="stat-card"><div class="num">64%</div><div class="lbl">für mehr Verteidigungsausgaben (2025, +7 Pkt.)</div></div>
+<div class="stat-card"><div class="num">65%</div><div class="lbl">für mehr Bundeswehr-Personal (2025, +7 Pkt.)</div></div>
+<div class="stat-card"><div class="num">67%</div><div class="lbl">sehen russische Aufrüstung als Bedrohung</div></div>
+<div class="stat-card"><div class="num">49%</div><div class="lbl">glauben, Wehrdienst verbessere Bundeswehr-Gesellschafts-Verhältnis</div></div>
+</div>
+<p>
+    Kritiker (u.a. das Netzwerk Friedenskooperative) lesen dieses kontinuierliche Monitoring
+    als Instrument, um Fortschritt beim gewünschten "Mentalitätswandel" messbar zu machen —
+    eine <span class="tag tag-extra">EXTRAPOLATION</span>, die von den Zahlen selbst nicht
+    bewiesen, aber durch die explizite Verwendung des Begriffs "Kriegstüchtigkeit" in der
+    öffentlichen Debatte seit 2024 gestützt wird.
+  </p>
+<div class="source-box">
+<div class="src-title">Primärquelle</div>
+<p>ZMSBw-Forschungsbericht 139, Bevölkerungsbefragung 2025</p>
+<div class="src-link">zms.bundeswehr.de/resource/blob/5990826/.../zmsbw-forschungsbericht-139-bevoelkerungsbefragung-2025-data.pdf</div>
+</div>
+<h2>4. Das Szenario: Grünbuch ZMZ 4.0 (Januar 2025)</h2>
+<p>
+<span class="tag tag-belegt">BELEGT</span>
+    Kein Regierungsdokument, sondern eine Publikation des <strong>Zukunftsforum Öffentliche
+    Sicherheit e.V. (ZOES)</strong> — parteiübergreifend herausgegeben von fünf
+    Bundestagsabgeordneten (CDU, SPD, FDP, Grüne, Linke), erarbeitet von einem 20-köpfigen
+    Kernteam aus Bundeswehr-Generalstabsoffizieren, Ministerialbeamten, Vertretern dreier
+    Verfassungsschutzämter und Beratern von PricewaterhouseCoopers.
+  </p>
+<div class="person-card">
+<div class="initials">ZOES</div>
+<div>
+<div class="name">Zukunftsforum Öffentliche Sicherheit e.V.</div>
+<div class="role">Herausgeber: 5 MdB fraktionsübergreifend · Kernteam: Militär, Ministerien, Verfassungsschutz, PwC</div>
+</div>
+</div>
+<h3>Das Szenario 2030</h3>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-date">Ausgangspunkt</div>
+<div class="timeline-text">Russische Truppenverlegung nach Kaliningrad und in den Raum St. Petersburg.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">Reaktion</div>
+<div class="timeline-text">Bundeswehr verlegt ~30.000 Soldaten (verstärkt durch NL, Kroatien, Norwegen) nach Litauen; USA 25.000 nach Polen; Frankreich/UK/Kanada 15.000 nach Estland/Lettland.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">Rolle Deutschlands</div>
+<div class="timeline-text">"Drehscheibe" für bis zu 800.000 Soldaten Richtung Ostflanke — als "Transit- und Gastnation".</div>
+</div>
+</div>
+<p>
+    Zentrale Forderung des Grünbuchs: Zivilisten sollen in militärische Logistik eingebunden
+    werden — Convoy Support Center, Verpflegung, Treibstoffe, Verkehrslenkung, medizinische
+    Versorgung (kalkuliert bis zu 1.000 Verwundete pro Tag, Zivilisten dabei "nachrangig"
+    behandelt).
+  </p>
+<div class="pullquote">
+    Ziel sei die Schaffung von "Kriegstüchtigkeit" und einer "Widerstandsfähigkeit" der
+    Gesellschaft, damit "jede und jeder einzelne mitwirkt", um den Krieg militärisch gewinnen
+    zu können.
+    — Grünbuch ZMZ 4.0, Zukunftsforum Öffentliche Sicherheit, Januar 2025
+  </div>
+<p>
+    Weitere Forderung: Aufhebung der bisherigen Trennung von Polizei und Geheimdiensten zugunsten
+    einer "interdisziplinären Lagebildung".
+  </p>
+<div class="source-box">
+<div class="src-title">Primärquelle</div>
+<p>Grünbuch "Zivil-Militärische Zusammenarbeit 4.0 im militärischen Krisenfall", ZOES, 30.01.2025</p>
+<div class="src-link">zoes-bund.de/wp-content/uploads/2025/03/250306_Gruenbuch_ZMZ_digital.pdf</div>
+</div>
+<h3>Warum ist das öffentlich, und was bleibt geheim?</h3>
+<p>
+<span class="tag tag-belegt">BELEGT</span>
+    Der tatsächliche <strong>"Operationsplan Deutschland" (OPLAN DEU)</strong> — das militärische
+    Kerndokument, auf das sich das Grünbuch bezieht — ist als Verschlusssache klassifiziert und
+    nicht öffentlich. Das Grünbuch selbst ist kein Staatsdokument, sondern die Publikation eines
+    eingetragenen Vereins, der bewusst öffentlich Politik beeinflussen will. Offizielle
+    Konzeptpapiere wie das Weißbuch 2016 zur Sicherheitspolitik oder die KZV sind dagegen aus
+    demokratischer Rechenschaftspflicht heraus öffentlich: Parlamente müssen Haushaltsmittel
+    begründen, NATO-Partner erwarten abgestimmte Transparenz über allgemeine Konzepte —
+    nur die operativen Details bleiben klassifiziert.
+  </p>
+<h2>5. Die Gegenrede: Stimmen aus der Fachwelt</h2>
+<p>
+<span class="tag tag-belegt">BELEGT</span>
+    Eine im Mai 2025 veröffentlichte Studie (Datenbasis: NATO) zeigt: Die europäischen
+    NATO-Staaten plus Kanada verfügten 2025 über etwa 1,96 Mio. aktive Soldaten und gaben rund
+    626 Mrd. USD für Verteidigung aus. Russland: ca. 1,26 Mio. Soldaten, ca. 190 Mrd. USD.
+  </p>
+<table class="compare">
+<tr><th></th><th>NATO-Europa + Kanada</th><th>Russland</th></tr>
+<tr><td>Aktive Soldaten (2025)</td><td>~1,96 Mio.</td><td>~1,26 Mio.</td></tr>
+<tr><td>Verteidigungsausgaben (2025)</td><td>~626 Mrd. USD</td><td>~190 Mrd. USD</td></tr>
+<tr><td>Mit USA gesamt (Soldaten)</td><td>~3,3 Mio.</td><td>–</td></tr>
+</table>
+<p>
+    Oberst a.D. Wolfgang Richter (SWP/GCSP) bezeichnet viele kursierende Bedrohungsszenarien
+    öffentlich als <strong>"überzogen"</strong>: Ein russischer "Test" der NATO würde unmittelbar
+    auf über 24 alliierte Kontingente treffen, in Estland sogar auf drei Atommächte — der
+    strategische Sinn eines solchen Risikos für Russland erschließe sich nicht.
+  </p>
+<p>
+    Dem gegenüber steht das <strong>Fait-Accompli-Argument</strong> der Planer: Nicht die
+    Gesamtkräfte entscheiden, sondern ob ein begrenzter Raum (Baltikum, Suwałki-Lücke) schneller
+    besetzt werden kann, als NATO-Verstärkung eintrifft — verbunden mit nuklearer Abschreckung
+    gegen eine Rückeroberung. Ein Kriegsspiel der Bundeswehr-Universität München (Ende 2025) kam
+    zu dem Ergebnis, dass genau das die Bündnisreaktion lähmen könnte.
+  </p>
+<div class="source-box">
+<div class="src-title">Quellen</div>
+<p>Greenpeace, "Kräftevergleich NATO-Russland", Mai 2025 (Datenbasis NATO)</p>
+<div class="src-link">greenpeace.de/frieden/kraeftevergleich-nato-russland</div>
+<p style="margin-top:0.8rem;">Telepolis-Interview mit Wolfgang Richter (SWP/GCSP)</p>
+<div class="src-link">telepolis.de/article/Militaerexperte-sicher-Russischer-Angriff-auf-die-Nato-ist-nicht-plausibel-11330829.html</div>
+</div>
+<div class="closing">
+<p>
+<em>Ist die kontinuierliche Zustimmungsmessung Vorsorge einer wehrhaften Demokratie —
+      oder Fortschrittskontrolle eines Mentalitätswandels, der zuvor politisch beschlossen wurde?</em>
+</p>
+<p>
+<em>Und wenn selbst erfahrene Sicherheitsexperten die zugrunde liegenden Bedrohungsszenarien
+      für überzogen halten — wessen Rechnung folgt dann das Grünbuch?</em>
+</p>
+</div>
+<div class="series-nav">
+<div class="label">Weiterführend</div>
+<a href="spaltung-methode.html">← Vorheriger Teil: Teile und Herrsche — Vom COIN-Handbuch zur Corona-Kommunikation</a>
+</div>
+</main>
+<footer>
+  Alle dargestellten Informationen basieren auf öffentlich zugänglichen Primärquellen:
+  Kabinettsbeschlüsse, Bundeswehr-Forschungsberichte, Vereinspublikationen und
+  Presseauswertungen. Diese Seite erhebt keinen Anspruch auf Vollständigkeit und trifft keine
+  Aussage über die inneren Motive beteiligter Personen oder Institutionen, die nicht durch
+  Primärquellen gedeckt ist.
+</footer>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

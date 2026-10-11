@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Der patentierte Mensch — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --box-bg: #1a1a2e;
+    --text: #d8d8dc;
+    --text-dim: #8a8a92;
+    --green: #4caf6d;
+    --orange: #d98a34;
+    --grey: #8a8a92;
+    --red: #b04a4a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .meta span { color: var(--text-dim); text-transform: none; }
+  h1 {
+    font-size: 2rem;
+    line-height: 1.25;
+    margin: 0 0 0.4rem;
+    color: #f2f2f4;
+  }
+  .subtitle {
+    font-family: 'Courier New', monospace;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #2a2a35;
+    padding-bottom: 1.5rem;
+  }
+  .standfirst {
+    font-size: 1.2rem;
+    color: #eee;
+    padding-bottom: 1.2rem;
+  }
+  p { padding-bottom: 1.2rem; margin: 0; }
+  h2 {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 2.5rem 0 1rem;
+    border-left: 3px solid var(--accent);
+    padding-left: 0.7rem;
+  }
+  h3 {
+    font-family: Georgia, serif;
+    font-style: italic;
+    color: #f2f2f4;
+    font-size: 1.2rem;
+    margin: 1.6rem 0 0.8rem;
+  }
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1.2rem 1.4rem;
+    margin: 1.2rem 0 1.6rem;
+    font-size: 1rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+  .source-box p:last-child { padding-bottom: 0; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-weight: bold;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    display: inline-block;
+    letter-spacing: 0.03em;
+    margin-right: 0.4rem;
+  }
+  .tag-belegt { background: rgba(76,175,109,0.15); color: var(--green); border: 1px solid var(--green); }
+  .tag-extra { background: rgba(217,138,52,0.15); color: var(--orange); border: 1px solid var(--orange); }
+  .tag-offen { background: rgba(138,138,146,0.15); color: var(--grey); border: 1px solid var(--grey); }
+  .tag-vt { background: rgba(176,74,74,0.12); color: var(--red); border: 1px solid var(--red); text-decoration: line-through; }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .stat {
+    background: var(--box-bg);
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 2px solid var(--accent);
+  }
+  .stat .num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.8rem;
+    color: var(--accent);
+    font-weight: bold;
+  }
+  .stat .label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 0.3rem;
+  }
+  .timeline {
+    border-left: 2px solid #2a2a35;
+    margin: 1.5rem 0 2rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline .item { position: relative; padding-bottom: 1.4rem; }
+  .timeline .item::before {
+    content: '';
+    position: absolute;
+    left: -1.86rem;
+    top: 0.35rem;
+    width: 9px;
+    height: 9px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .timeline .year {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .person-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .person-card {
+    background: var(--box-bg);
+    padding: 1.1rem 1.3rem;
+    border-left: 3px solid #3a3a4a;
+  }
+  .person-card .name {
+    font-family: 'Courier New', monospace;
+    color: #f2f2f4;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  .person-card .role {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+  .person-card p { padding-bottom: 0; font-size: 0.98rem; }
+  ul { padding-left: 1.3rem; margin: 0 0 1.2rem; }
+  li { padding-bottom: 0.5rem; }
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--accent);
+    border-left: 3px solid var(--accent);
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a35;
+    font-style: italic;
+    color: #c8c8ce;
+  }
+  .footer-nav {
+    margin-top: 3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+  }
+  .footer-nav a { color: var(--accent); text-decoration: none; }
+</style>
+<meta name="description" content="Ein Weltkonzern sichert sich das Recht, Körperaktivität in eine Finanztransaktion zu verwandeln. Ein Milliardär verbindet Gehirne direkt mit Maschinen und …">
+<meta name="rubrik" content="cat-technik">
+<meta name="kachel-titel" content="Der patentierte Mensch">
+<link rel="canonical" href="https://dunkelfeld.report/der-patentierte-mensch.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Der patentierte Mensch">
+<meta property="og:description" content="Ein Weltkonzern sichert sich das Recht, Körperaktivität in eine Finanztransaktion zu verwandeln. Ein Milliardär verbindet Gehirne direkt mit Maschinen und …">
+<meta property="og:url" content="https://dunkelfeld.report/der-patentierte-mensch.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="meta">DUNKELFELD.REPORT <span>— TECHNOLOGIE &amp; KONTROLLE</span></div>
+<h1>Der patentierte Mensch</h1>
+<div class="subtitle">Körperdaten als Ressource, Gehirn als Schnittstelle: Ein Patent, ein Implantat, eine Bewegung — und was von ihr belegbar ist</div>
+<p class="standfirst">Ein Weltkonzern sichert sich das Recht, Körperaktivität in eine Finanztransaktion zu verwandeln. Ein Milliardär verbindet Gehirne direkt mit Maschinen und kündigt Serienproduktion an. Im Hintergrund steht eine seit Jahrzehnten organisierte Denkbewegung mit eigenen Instituten, Zeitschriften und Fahrplänen. Was ist dokumentiert — und wo beginnt die Projektion?</p>
+<h2>Das Patent</h2>
+<p>Am 26. März 2020 veröffentlichte die WIPO (Weltorganisation für geistiges Eigentum) die internationale Patentanmeldung <strong>WO/2020/060606</strong> — <em>"Cryptocurrency System Using Body Activity Data"</em>. Angemeldet am 20. Juni 2019 von <strong>Microsoft Technology Licensing, LLC</strong>, Erfinder: Dustin Abramson, Derrick Fu, Joseph Edwin Johnson Jr.</p>
+<div class="source-box">
+<div class="label">Primärquelle — Patentanmeldung, sinngemäß</div>
+<p><span class="tag tag-belegt">BELEGT</span> Ein Server stellt einem Nutzer eine Aufgabe. Ein mit dem Gerät des Nutzers verbundener Sensor erfasst dessen Körperaktivität. Aus diesen Daten wird geprüft, ob festgelegte Bedingungen erfüllt sind — und bei Erfüllung Kryptowährung ausgezahlt.</p>
+<p>Quelle: WIPO Patentscope / Google Patents, Dok.-Nr. WO2020060606A1, Anmelder Microsoft Technology Licensing LLC.</p>
+</div>
+<p><span class="tag tag-offen">OFFEN</span> Rechtsstatus laut Google Patents: <em>"Ceased"</em> — die Anmeldung wurde nicht weiterverfolgt. Ob und in welcher Form ein Produkt daraus entstand, ist nicht dokumentiert.</p>
+<div class="source-box">
+<div class="label">Zur Einordnung</div>
+<p><span class="tag tag-vt">VT-WIDERLEGT</span> Seit 2020 kursiert eine Version, die das Patent mit Zwangsimplantaten, 5G-Kopplung, Impfstoff-Nanotechnologie und dem biblischen "Malzeichen des Tieres" verknüpft. Ein Faktencheck stellt fest: Die Anmeldung stammt aus 2019, erwähnt weder Implantate noch 5G noch Impfstoffe. Diese Zusätze sind nicht Teil des Dokuments.</p>
+</div>
+<p>Was bleibt, ohne jede Zusatzbehauptung: Ein Konzern von globaler Marktmacht hat sich das Konzept patentrechtlich gesichert, menschliche Körperaktivität als Grundlage einer wirtschaftlichen Transaktion zu nutzen. Das allein — unabhängig von Umsetzung oder Absicht — ist ein Datenschutz- und Ethikthema. <em>Die Fakten sprechen für sich.</em></p>
+<h2>Neuralink — Der Stand der Technik</h2>
+<p>Elon Musks Neurotechnologie-Unternehmen implantiert seit Januar 2024 Gehirn-Computer-Schnittstellen in Menschen mit Querschnittslähmung, ALS oder Erblindung. Die Wachstumskurve der Patientenzahlen ist dokumentiert:</p>
+<div class="stat-grid">
+<div class="stat"><div class="num">1</div><div class="label">Jan. 2024 — erster Patient</div></div>
+<div class="stat"><div class="num">12</div><div class="label">Sept. 2025</div></div>
+<div class="stat"><div class="num">21</div><div class="label">Anfang 2026</div></div>
+<div class="stat"><div class="num">26</div><div class="label">Juni 2026</div></div>
+</div>
+<p><span class="tag tag-belegt">BELEGT</span> Das Implantat ("Link") ersetzt ein münzgroßes Stück Schädelknochen, verfügt über bis zu 3.072 Elektroden und ist über feine Fäden mit dem Gehirn verbunden. Patienten steuern damit Computerspiele, Cursor und Sprachfunktionen allein durch Gedanken. Neuralink erhielt von der FDA den Status "Breakthrough Device" sowohl für Sprachwiederherstellung als auch für das Sehprojekt "Blindsight".</p>
+<div class="timeline">
+<div class="item"><span class="year">Ende 2025</span>Musk kündigt für 2026 "High-Volume-Produktion" und ein weitgehend automatisiertes Operationsverfahren an.</div>
+<div class="item"><span class="year">Mai 2026</span>Erstmals wird in Toronto ein Verfahren getestet, bei dem die Elektroden durch die harte Hirnhaut (Dura) geführt werden, ohne sie zu entfernen.</div>
+<div class="item"><span class="year">2026 laufend</span>Klinische Studie mit geplanter Erstauswertung 2026, vollständigem Studienabschluss laut Registereintrag erst 2031.</div>
+</div>
+<p><span class="tag tag-offen">OFFEN</span> Langzeitsicherheit der Implantate, Umgang mit den erzeugten Hirndaten, und der Übergang von medizinischer Wiederherstellung zu "Enhancement" sind nicht abschließend geklärt — auch nicht von Neuralink selbst öffentlich beantwortet.</p>
+<h2>Die Koryphäen</h2>
+<p>Ray Kurzweil ist der bekannteste, aber nicht der einzige Kopf hinter der transhumanistischen Bewegung. Sie ist seit den 1990ern institutionell organisiert — mit eigenen Instituten, einer gemeinsamen Organisation (World Transhumanist Association, heute Humanity+) und unterschiedlichen Schwerpunkten:</p>
+<div class="person-grid">
+<div class="person-card">
+<div class="name">Nick Bostrom</div>
+<div class="role">Philosoph, Oxford — Future of Humanity Institute</div>
+<p>Mitbegründer der World Transhumanist Association. Zentrale Figur der Debatte über existenzielle Risiken durch Superintelligenz — bemerkenswert: gerade er warnt am intensivsten vor den Risiken der eigenen Bewegung.</p>
+</div>
+<div class="person-card">
+<div class="name">Aubrey de Grey</div>
+<div class="role">Biogerontologe — SENS / Longevity Escape Velocity Foundation</div>
+<p>Vertritt die These, medizinische Technologie könne heute lebende Menschen vor altersbedingtem Tod bewahren. Verließ die von ihm mitgegründete SENS Research Foundation 2021, nachdem ihm vorgeworfen wurde, Ermittlungen zu Belästigungsvorwürfen behindert zu haben.</p>
+</div>
+<div class="person-card">
+<div class="name">Max More &amp; Natasha Vita-More</div>
+<div class="role">Extropianismus / Humanity+</div>
+<p>More begründete in den 1990ern den Extropianismus — Philosophie unbegrenzten Fortschritts und Selbsttransformation. Vita-More prägt das Konzept "morphologische Freiheit": das Recht, den eigenen Körper technologisch zu verändern.</p>
+</div>
+<div class="person-card">
+<div class="name">David Pearce</div>
+<div class="role">Philosoph, Mitbegründer WTA</div>
+<p>Vertritt den "Hedonistischen Imperativ" — die Abschaffung allen Leidens durch Biotechnologie als erklärtes Ziel.</p>
+</div>
+<div class="person-card">
+<div class="name">Bryan Johnson</div>
+<div class="role">Unternehmer — "Don't Die"-Bewegung</div>
+<p>Positioniert Langlebigkeits-Optimierung explizit als neue Ideologie. Kritiker bezeichneten die Bewegung jüngst öffentlich als "Todeskult" — eine Zuspitzung, die zeigt, wie kontrovers das Feld inzwischen diskutiert wird.</p>
+</div>
+<div class="person-card">
+<div class="name">Elon Musk &amp; Peter Thiel</div>
+<div class="role">Unternehmer — Neuralink / PayPal-Mafia</div>
+<p>Musk verbindet Biologie und Maschine unmittelbar (Neuralink). Thiel — bereits dokumentiert in #16 (PayPal-Mafia/Dialog Society) — fördert Anti-Aging-Forschung und kryonik-nahe Projekte. Beide stehen für die Verschiebung transhumanistischer Ziele von der akademischen Theorie in die unternehmerische Praxis.</p>
+</div>
+</div>
+<h2>Kurzweils Fahrplan</h2>
+<p><span class="tag tag-extra">EXTRAPOLATION</span> Kurzweil selbst präsentiert seine Daten im Futur, nicht im Konjunktiv — Kritiker bemängeln genau das als unwissenschaftlich. Die folgenden Jahreszahlen sind seine Prognose, keine gesicherte Tatsache:</p>
+<div class="timeline">
+<div class="item"><span class="year">2029</span>KI erreicht laut Kurzweil menschliches Niveau (AGI).</div>
+<div class="item"><span class="year">2030er</span>Direkte Gehirn-Computer-Kopplung: KI nicht mehr über Bildschirme genutzt, sondern unmittelbar mit dem Gehirn verbunden.</div>
+<div class="item"><span class="year">2045</span>"Singularität" — Verschmelzung von Mensch und Maschine, Nanoroboter sollen laut Kurzweil biologische Sterblichkeit aufheben.</div>
+</div>
+<h2>Ethische Kernfragen</h2>
+<ul>
+<li>Wem gehören Körper- und Hirndaten, sobald sie ökonomisch verwertbar sind (Patent) oder direkt aus dem Gehirn stammen (Neuralink)?</li>
+<li>Wo verläuft die Grenze zwischen medizinischer Wiederherstellung — Querschnittslähmung, Blindheit — und Enhancement?</li>
+<li>Wer kontrolliert die Infrastruktur, wenn dieselben Akteure gleichzeitig Plattform, KI-Entwicklung und Zahlungssysteme besitzen?</li>
+<li>Was bedeutet informierte Einwilligung bei einer Technologie, deren Langzeitfolgen niemand — auch die Hersteller nicht — kennt?</li>
+</ul>
+<div class="pull-quote">Die Technologie ist dokumentiert. Die Motive dahinter sind es nicht.</div>
+<div class="closing">
+<p><em>Ist ein erloschenes Patent bloß ein verworfenes Konzept — oder ein Blick auf ein Denkmodell, das später anderswo auftaucht? Wo endet Therapie und beginnt Optimierung, wenn 26 Patienten heute die Speerspitze einer für 2026 angekündigten Serienproduktion sind? Und: Wer entscheidet, wessen Fahrplan — Kurzweils, Musks, oder keiner von beiden — tatsächlich eintritt?</em></p>
+</div>
+<div class="footer-nav">
+    Verwandt: #15 Infrastruktur der Kontrolle (Hollerith→eIDAS) · #16 PayPal-Mafia/Dialog Society (Thiel)
+  </div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

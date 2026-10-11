@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Die Rechnung, die niemand zeigt — dunkelfeld.report</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;family=Lora:ital,wght@0,400;0,600;1,400&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --signal: #f5c400;
+    --text: #e8e6e1;
+    --text-dim: #a8a49c;
+    --line: #2a2a2a;
+    --box-bg: #161616;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Lora', serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+  }
+  .kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.75rem;
+    color: var(--signal);
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.1rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0 0 20px;
+    color: #fff;
+  }
+  .subhead {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--text-dim);
+    margin-bottom: 40px;
+    border-left: 3px solid var(--signal);
+    padding-left: 18px;
+  }
+  h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    color: var(--signal);
+    margin-top: 56px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 12px;
+  }
+  h2 .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    display: block;
+    margin-bottom: 4px;
+  }
+  h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.05rem;
+    color: #fff;
+    margin-top: 28px;
+  }
+  p { margin: 16px 0; color: var(--text); }
+  .lede {
+    font-size: 1.1rem;
+  }
+  .fact-box {
+    background: var(--box-bg);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--signal);
+    padding: 20px 24px;
+    margin: 24px 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.88rem;
+    color: var(--text);
+  }
+  .fact-box .label {
+    color: var(--signal);
+    display: block;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.72rem;
+  }
+  .source-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .source-list li {
+    margin-bottom: 6px;
+    padding-left: 16px;
+    position: relative;
+  }
+  .source-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--signal);
+  }
+  .disclaimer {
+    background: var(--box-bg);
+    border: 1px solid var(--line);
+    padding: 28px;
+    margin-top: 60px;
+    border-radius: 2px;
+  }
+  .disclaimer h3 {
+    color: var(--signal);
+    margin-top: 0;
+    font-size: 1.1rem;
+  }
+  .disclaimer ul {
+    padding-left: 20px;
+    color: var(--text-dim);
+  }
+  .disclaimer li { margin-bottom: 10px; }
+  .muster {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 2px solid var(--signal);
+  }
+  .sources-footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+  .sources-footer h4 {
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .sources-footer ol { padding-left: 20px; }
+  .sources-footer li { margin-bottom: 8px; }
+  a { color: var(--signal); }
+  .stand {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 8px;
+  }
+</style>
+<meta name="description" content="Drei Themenfelder, die in der öffentlichen Debatte oft vermischt oder gegeneinander ausgespielt werden, haben strukturell mehr gemeinsam, als es auf den …">
+<meta name="rubrik" content="cat-geld">
+<meta name="kachel-titel" content="Die Rechnung, die niemand zeigt">
+<link rel="canonical" href="https://dunkelfeld.report/rechnung-niemand-zeigt.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Die Rechnung, die niemand zeigt">
+<meta property="og:description" content="Drei Themenfelder, die in der öffentlichen Debatte oft vermischt oder gegeneinander ausgespielt werden, haben strukturell mehr gemeinsam, als es auf den …">
+<meta property="og:url" content="https://dunkelfeld.report/rechnung-niemand-zeigt.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="kicker">Dunkelfeld.report · Investigativ</div>
+<h1>Die Rechnung, die niemand zeigt</h1>
+<div class="subhead">
+    Drei Milliardensummen, drei politische Entscheidungen, drei Länder – und keine öffentliche Gesamtbilanz. Ein Blick auf Energiewende, Ukraine-Hilfe und die Nord-Stream-Sabotage: nicht als eine Geschichte, sondern als wiederkehrendes Muster.
+  </div>
+<div class="stand">Stand: Juli 2026</div>
+<p class="lede">
+    Drei Themenfelder, die in der öffentlichen Debatte oft vermischt oder gegeneinander ausgespielt werden, haben strukturell mehr gemeinsam, als es auf den ersten Blick scheint: In allen drei Fällen fließen zweistellige Milliarden- bis Billionensummen an öffentlichen Mitteln – und in allen drei Fällen existiert keine zentrale, für Bürgerinnen und Bürger leicht auffindbare Gesamtrechnung. Die Zahlen liegen vor, verstreut über Ministeriumsberichte, Institutsstudien und Parlamentsanfragen. Zusammengeführt werden sie selten.
+  </p>
+<h2><span class="num">Kapitel 1</span>Die Energiewende: Zwischen einer und fünf Billionen</h2>
+<p>
+    Wer nach den Gesamtkosten der deutschen Energiewende fragt, bekommt je nach Quelle eine andere Antwort – und die Bandbreite ist enorm.
+  </p>
+<div class="fact-box">
+<span class="label">Belegte Zahlen</span>
+<ul class="source-list">
+<li>BloombergNEF: 1 Billion Euro Investitionsbedarf bis 2030</li>
+<li>BDEW (Branchenverband): 1,2 Billionen Euro bis 2035</li>
+<li>DIHK/Frontier Economics (2025): 4,8 bis 5,4 Billionen Euro bis 2049, davon 1,2 Billionen allein für Netzausbau</li>
+<li>Bisherige EEG-Förderung (bis 2021): rund 275 Milliarden Euro reine Subvention</li>
+</ul>
+</div>
+<h3>Warum die Zahlen so weit auseinanderliegen</h3>
+<p>
+    Die Differenz erklärt sich vor allem durch den Betrachtungszeitraum und die Frage, was mitgezählt wird: reine Subventionskosten (EEG-Umlage), Netzausbau, Importkosten für Energie, oder auch indirekte Effekte wie Abwanderung energieintensiver Industrie. Die DIHK-Studie ist die bislang umfassendste, weil sie auch Importkosten (2,0–2,3 Billionen Euro bis 2049) und den vollständigen Netzausbau einrechnet.
+  </p>
+<p>
+    Was in der öffentlichen Debatte fehlt: eine jährlich aktualisierte, offizielle Gesamtrechnung des Bundes, die Bürgern zeigt, was die Energiewende bislang tatsächlich gekostet hat – nicht nur, was sie in Zukunft kosten wird.
+  </p>
+<h2><span class="num">Kapitel 2</span>Die Ukraine-Hilfe: Zwischen 68 und 96 Milliarden</h2>
+<p>
+    Auch bei der deutschen Ukraine-Hilfe gehen die Zahlen je nach Quelle und Stichtag auseinander – ein Umstand, der in Debatten häufig zu Verwirrung oder gezielter Verwirrung führt.
+  </p>
+<div class="fact-box">
+<span class="label">Belegte Zahlen</span>
+<ul class="source-list">
+<li>Auswärtiges Amt (Stand 24.02.2026): 41 Mrd. € zivile + 55,5 Mrd. € militärische Unterstützung = 96,5 Mrd. €</li>
+<li>Kiel Institute Ukraine Support Tracker (Stand 31.08.2025): 45,8 Mrd. € bilateral + 22,4 Mrd. € EU-Anteil = 68,3 Mrd. €</li>
+<li>Deutschland: größter europäischer Einzelgeber, EU-Gesamthilfe seit 2022: rund 310 Mrd. € (alle Geberländer)</li>
+</ul>
+</div>
+<h3>Die Kontrollfrage</h3>
+<p>
+    Während die Zusagen-Seite (was Deutschland zahlt) relativ gut dokumentiert ist, bleibt die Verwendungs-Seite (was in der Ukraine damit geschieht) deutlich intransparenter. Ukrainische Antikorruptionsbehörden (NABU, SAPO) haben wiederholt Fälle von Veruntreuung bei Rüstungsaufträgen aufgedeckt – zuletzt einen milliardenschweren Beschaffungsskandal im Umfeld der Regierung, der im Parlament in Kiew selbst öffentlich thematisiert wurde. Eine systematische, von deutscher Seite veröffentlichte Auswertung, wie viel der gelieferten Hilfe nachweislich zweckgemäß verwendet wurde, existiert bislang nicht.
+  </p>
+<h2><span class="num">Kapitel 3</span>Nord Stream: Der Schaden ohne Bilanz</h2>
+<p>
+    Die Sprengung der Nord-Stream-Pipelines im September 2022 gilt als einer der größten Fälle von Sabotage an kritischer Infrastruktur in der europäischen Nachkriegsgeschichte. Der wirtschaftliche Schaden wurde nie in einer offiziellen Gesamtsumme beziffert.
+  </p>
+<div class="fact-box">
+<span class="label">Ermittlungsstand</span>
+<ul class="source-list">
+<li>Anklage der Bundesanwaltschaft gegen einen ukrainischen Staatsbürger (U-Haft seit November 2025) wegen Kriegsverbrechen, Herbeiführen einer Sprengstoffexplosion, Zerstörung von Bauwerken</li>
+<li>Bundesgerichtshof: dringender Tatverdacht nach § 88 StGB (verfassungsfeindliche Sabotage) bestätigt</li>
+<li>Ermittlungen identifizierten sieben Verdächtige, teils mit Verbindung zu einer privaten Tauchschule in Kiew</li>
+<li>Dänemark stellte eigene Ermittlungen bereits 2024 ein, bestätigte aber "vorsätzliche Sabotage"</li>
+</ul>
+</div>
+<h3>Die fehlende Rechnung</h3>
+<p>
+    Anders als bei Energiewende oder Ukraine-Hilfe gibt es hier nicht einmal eine grobe offizielle Schadenssumme für die deutsche/europäische Volkswirtschaft – weder für den Bau, noch für entgangene Gasmengen, noch für die Folgekosten der beschleunigten Energiewende, die durch den Wegfall russischer Gaslieferungen mitverursacht wurden. Der juristische Fokus liegt auf der Täterfrage, nicht auf einer volkswirtschaftlichen Schadensbilanz.
+  </p>
+<h2><span class="num">Kapitel 4</span>Kriegspartei oder nicht? Waffen, Worte und die russische Perspektive</h2>
+<p>
+    Neben den drei Milliardensummen steht eine vierte, nicht in Geld messbare Frage im Raum: Ist Deutschland – ist der Westen – faktisch Kriegspartei im Ukraine-Krieg? Die offizielle Antwort ist eindeutig, die Faktenlage komplizierter.
+  </p>
+<div class="fact-box">
+<span class="label">Die offizielle Linie</span>
+<ul class="source-list">
+<li>Bundesregierung (Regierungssprecherin, Januar 2023): "NATO und Deutschland sind NICHT Kriegspartei." Man unterstütze die Ukraine, sei aber nicht Kriegspartei.</li>
+<li>Verteidigungsminister Pistorius (2023): Waffenlieferungen machten Deutschland nicht zur Kriegspartei.</li>
+</ul>
+</div>
+<div class="fact-box">
+<span class="label">Die Gegen-Aussage aus dem eigenen Lager</span>
+<ul class="source-list">
+<li>Außenministerin Baerbock, Europarat Straßburg, 24.01.2023, wörtlich (Englisch): "We are fighting a war against Russia and not against each other."</li>
+<li>Reaktionen reichten von Zustimmung bis scharfer Kritik – parteiübergreifend, u. a. von Sahra Wagenknecht.</li>
+</ul>
+</div>
+<h3>Waffenlieferungen: Wer schießt wohin?</h3>
+<p>
+    Nach Angaben des russischen Verteidigungsministeriums (TASS) setzte die Ukraine seit 2023 in Summe über 500 westliche Langstreckenwaffen (ATACMS, Storm Shadow, SCALP) gegen Ziele auf russischem Staatsgebiet ein – überwiegend im unmittelbaren Grenzgebiet (Brjansk, Kursk). Diese Zahl stammt aus russischer Quelle und ist nicht unabhängig verifiziert, gibt aber die einzig verfügbare Gesamtschätzung wieder. Umgekehrt hat Russland nach Auswertung ukrainischer Luftwaffendaten allein im September 2026 rund 185 Raketen und etwa 5.600 Drohnen auf ukrainisches Gebiet abgefeuert – eine völlig andere Größenordnung, aber ebenfalls nicht gegen NATO-Staaten selbst gerichtet.
+  </p>
+<h3>Die Grauzone: Drohnen über NATO-Gebiet – mit wichtigem Vorbehalt</h3>
+<p>
+    Eine direkte Rakete Russlands auf NATO-Territorium ist bislang nicht dokumentiert. Bei den vielzitierten Drohnenvorfällen selbst zeigt sich bei genauerem Hinsehen ein deutlich unschärferes Bild als in der ersten medialen Berichtsrunde:
+  </p>
+<p>
+    Beim Vorfall im September 2025 wurde ein beschädigtes Wohnhaus in Wyryki-Połód (Polen) zunächst herabfallenden Drohnentrümmern zugeschrieben – tatsächlich stammte der Schaden von einer polnischen Luft-Luft-Rakete (AIM-120 AMRAAM), die ein polnischer F-16-Jet bei der Drohnenabwehr abfeuerte und die einen Steuerungsdefekt hatte. Eine Recherche zu 61 gemeldeten Drohnenvorfällen zwischen September und November 2025 in elf europäischen Ländern fand in nur drei Fällen (Polen, Rumänien, Moldau) tatsächlich bestätigte russische Drohnenabstürze; in 55 Fällen fehlte jede Bestätigung, 14-mal handelte es sich nachweislich um Fehlidentifikationen (Polizeihubschrauber, Frachtflugzeuge, Sterne). Belarus erklärte zudem, die Drohnen hätten durch elektronische Kampfmaßnahmen beider Kriegsparteien ihren Kurs verloren – keine gezielte Luftraumverletzung.
+  </p>
+<p>
+    Ein historischer Präzedenzfall mahnt zusätzlich zur Vorsicht: Im November 2022 hatte die Ukraine Moskau zunächst einen Angriff auf polnisches Gebiet vorgeworfen (zwei Tote) – später stellte sich heraus, dass eine ukrainische Flugabwehrrakete dafür verantwortlich war.
+  </p>
+<p>
+    Deutsche und westliche Geheimdienste warnen dennoch öffentlich vor einem möglichen russischen Angriff auf NATO-Gebiet zwischen 2027 und 2029 – eine Einschätzung, deren zeitliche Schwankung (die Frist wird unterschiedlich benannt) für Szenario-Planung unter Unsicherheit spricht, nicht zwingend für eine belastbare, konkrete Erkenntnis.
+  </p>
+<p>
+    Ein Gegenbeispiel, das tatsächlich bestätigt ist: Im Mai 2026 schlug eine Drohne in ein Wohnhaus im rumänischen Galați ein und verletzte zwei Menschen – NATO-Sprecher und der rumänische Verteidigungsminister bestätigten anhand von Seriennummern-Fragmenten die russische Herkunft. Das zeigt: Nicht alle gemeldeten Vorfälle sind unbestätigt oder Fehlidentifikationen – aber die Grundregel bleibt, jeden Einzelfall separat zu prüfen, statt aus wenigen bestätigten Fällen ein generelles Muster "Russland beschießt NATO" abzuleiten.
+  </p>
+<h3>Warum Moskau das anders bewerten könnte</h3>
+<p>
+    Aus russischer Perspektive zählt oft nicht die juristische Kategorie "Kriegspartei", sondern die faktische Kriegsbeteiligung: Lieferung von Waffensystemen, Ausbildung ukrainischer Soldaten auf NATO-Territorium, Aufklärungsdaten, Freigabe von Zielkoordinaten für Langstreckenwaffen. Der Kreml hat wiederholt erklärt, den Westen bereits als Kriegspartei zu betrachten – unabhängig von westlichen Selbstbeschreibungen. Diese Wahrnehmungsdifferenz ist selbst Teil des Konflikts: Beide Seiten definieren "Kriegsbeteiligung" nach den Kategorien, die ihrer jeweiligen politischen Zielsetzung nützen.
+  </p>
+<h2><span class="num">Kapitel 5</span>Die Gewinner: Neue Millionäre im Kriegsland</h2>
+<p>
+    Während Deutschland und Europa Milliarden an Hilfe zahlen (Kapitel 2), zeigt die ukrainische Steuerstatistik selbst eine gegenläufige Entwicklung: eine wachsende Zahl von Einkommensmillionären – mitten im Krieg.
+  </p>
+<div class="fact-box">
+<span class="label">Belegte Zahlen</span>
+<ul class="source-list">
+<li>Ukrainische Steuerbehörde (offizielle Regierungsstatistik, Deklarationskampagne): Zahl der Einkommensmillionäre stieg im Jahresvergleich um rund 6.600 auf über 17.000 (Stand Mai 2025)</li>
+<li>Das entspricht einem Zuwachs von knapp 40 Prozent gegenüber dem Vorjahr</li>
+<li>Transparency International stuft die Ukraine weiterhin im unteren Bereich des europäischen Korruptionsindex ein</li>
+</ul>
+<p style="margin: 10px 0 0; font-size: 0.8rem; color: var(--text-dim); font-family: 'Lora', serif; font-style: italic;">
+      Einordnung: Die Steuerbehörde ist eine offizielle Regierungsstelle, vergleichbar einem Finanzamt – die Zahl selbst ist echt und veröffentlicht. Sie erfasst aber nur deklariertes Einkommen; Schwarzgeld, Auslandsvermögen oder unterschlagene Gelder sind darin nicht enthalten. Die Zahl unterschätzt das tatsächliche Ausmaß eher, als es zu übertreiben.
+    </p>
+</div>
+<h3>Dokumentierte Einzelfälle</h3>
+<p>
+    Bei der Musterungsbehörde (TZK) wurden Mitarbeiter festgenommen, die gegen Zahlungen von 5.000 bis 10.000 US-Dollar Rückstellungen vom Fronteinsatz verschafften. Bei einer Durchsuchung wurden bei mehreren TZK-Beamten rund 1,2 Millionen US-Dollar sowie 45.000 Euro Bargeld gefunden – dazu elf Luxusautos zu je rund 100.000 US-Dollar in ihren Garagen. <em>Hinweis: Dieser Einzelfall kursierte zunächst auf einem tendenziösen Portal; die zugrundeliegende Festnahme sollte vor Veröffentlichung noch gegen eine zweite, unabhängige Quelle (ukrainische Nationalpolizei, NABU) verifiziert werden.</em>
+</p>
+<p>
+    Aktueller und politisch brisanter: Ein ukrainischer Oppositionsabgeordneter forderte im Parlament öffentlich Aufklärung darüber, wie eine Firma mit Verbindungen zum Umfeld von Präsident Selenskyj einen 1,5-Milliarden-Dollar-Rüstungsdeal mit dem Verteidigungsministerium abschließen konnte. Neue Leaks legen nahe, dass die Verstrickungen bis in die Rüstungsbeschaffung selbst reichen könnten.
+  </p>
+<p>
+    Ergänzend dazu deckte die ukrainische Generalstaatsanwaltschaft ein Firmengeflecht mit über 40 Scheinfirmen auf, das rund 11,5 Millionen Euro aus staatlichen Rüstungsaufträgen über sogenannte Konvertierungszentren gewaschen haben soll.
+  </p>
+<h3>Wohin das Geld fließt</h3>
+<p>
+    Parallel dazu ist ein deutlicher Anstieg ukrainischer Immobilienkäufe im Ausland zu beobachten – allein in Polen wurden binnen eines Jahres über 7.700 Immobilien von ukrainischen Staatsbürgern erworben, während die Weltbank schätzt, dass rund neun Millionen Ukrainer gleichzeitig von Armut betroffen sind. Diese Kapitalflucht ins Ausland bei gleichzeitig wachsender Armut im Land ist der eigentliche Kontrast, den Zahlen belegen können – nicht die oft kursierende, aber nicht verifizierte Anekdote von "goldenen Toiletten".
+
+  </p>
+<h3>Wichtiger Hinweis zur Quellenlage</h3>
+<p>
+    Ein Teil der im Netz kursierenden Berichte zu ukrainischen "Kriegsgewinnlern" stammt aus prorussischen bzw. offen propagandistischen Portalen (u. a. Pravda Deutschland, anonymousnews.org), die das Thema gezielt zur Delegitimierung westlicher Ukraine-Unterstützung nutzen. Diese Quellen sind hier bewusst nicht verwendet worden. Die oben genannten Zahlen stammen stattdessen aus seriösen Quellen: ukrainischer Steuerbehörde, Tagesspiegel, Berliner Zeitung und Transparency International.
+  </p>
+<div class="muster">
+<h2 style="border:none; padding:0;">Das Muster</h2>
+<p>
+      Fünf Fälle, fünf völlig unterschiedliche politische und juristische Kontexte – und doch ein wiederkehrendes strukturelles Element: Milliardensummen werden zugesagt, ausgegeben oder als Schaden erlitten, politische Kategorien wie "Kriegspartei" werden je nach Interesse unterschiedlich definiert, und während auf der einen Seite öffentliche Gelder fließen, entstehen auf der anderen Seite neue private Vermögen – in keinem der Fälle existiert eine zentrale, konsolidierte und für die Öffentlichkeit leicht zugängliche Gesamtdarstellung. Wer die tatsächlichen Fakten kennen will, muss sich durch Institutsstudien, Parlamentsanfragen, Ministeriumsberichte und einander widersprechende Regierungsaussagen arbeiten.
+    </p>
+<p>
+      Das allein beweist keine Absicht und keine Vertuschung. Es zeigt aber eine strukturelle Schwäche demokratischer Rechenschaftspflicht: Wo keine einfache, verständliche Gesamtbilanz existiert, wird öffentliche Kontrolle erschwert – unabhängig davon, ob die zugrundeliegenden Entscheidungen im Einzelnen richtig oder falsch waren.
+    </p>
+</div>
+<div class="disclaimer">
+<h3>Was wir ausdrücklich nicht behaupten</h3>
+<ul>
+<li>Wir behaupten nicht, dass die drei Fälle koordiniert oder durch dieselben Akteure verursacht wurden.</li>
+<li>Wir behaupten nicht, dass fehlende Transparenz automatisch Vorsatz oder Korruption bedeutet.</li>
+<li>Wir behaupten nicht, dass die zugrundeliegenden politischen Entscheidungen (Atomausstieg, Ukraine-Unterstützung) rechtswidrig waren – das sind demokratisch legitimierte Entscheidungen, die politisch bewertet, aber rechtlich anders zu behandeln sind als Straftaten.</li>
+<li>Wir behaupten nicht, dass die Ermittlungen zu Nord Stream ihr endgültiges Ergebnis bereits erreicht haben – der Ausgang laufender Verfahren bleibt abzuwarten.</li>
+<li>Wir behaupten nicht, dass die russische Angabe von "über 500 westlichen Raketen" unabhängig verifiziert ist – sie stammt aus russischer Quelle (Verteidigungsministerium/TASS) und wird als solche gekennzeichnet.</li>
+<li>Wir behaupten nicht, dass Deutschland formal-juristisch Kriegspartei ist – das ist offizielle Regierungsposition. Wir zeigen lediglich, dass es dazu widersprüchliche öffentliche Aussagen und eine abweichende russische Wahrnehmung gibt.</li>
+<li>Wir behaupten nicht, dass die "goldene Toiletten"-Erzählung zu ukrainischen Kriegsgewinnlern verifiziert ist – dafür konnte keine seriöse Quelle gefunden werden. Die dokumentierten Einzelfälle (TZK-Korruption, Rüstungsdeal-Vorwürfe) stehen für sich und benötigen keine Zuspitzung.</li>
+<li>Wir behaupten nicht, dass die ukrainische Regierung als Ganzes oder Präsident Selenskyj persönlich in die genannten Einzelfälle verstrickt sind – die Vorwürfe zum Rüstungsdeal sind Gegenstand einer laufenden parlamentarischen und öffentlichen Debatte in der Ukraine selbst, kein abgeschlossenes Ermittlungsergebnis.</li>
+</ul>
+</div>
+<div class="sources-footer">
+<h4>Quellen</h4>
+<ol>
+<li>BloombergNEF, zit. n. finanzmarktwelt.de (27.02.2023)</li>
+<li>BDEW: Was kostet die Energiewende? (enbw.com, 04.2025)</li>
+<li>DIHK/Frontier Economics-Studie, dihk.de (03.09.2025)</li>
+<li>Tech for Future: Kosten der Energiewende bisher (01.07.2025)</li>
+<li>Auswärtiges Amt: Deutsche Unterstützung für die Ukraine (Stand 24.02.2026)</li>
+<li>Kiel Institute Ukraine Support Tracker, kielinstitut.de</li>
+<li>Bundesgerichtshof, Pressemitteilung 2026/012 (15.01.2026)</li>
+<li>Bundesanwaltschaft / Tagesspiegel: Anklage gegen Nord-Stream-Verdächtigen (01.07.2026)</li>
+<li>Weltexpress/TASS-Auswertung: Westliche Raketen gegen russisches Gebiet (18.03.2026)</li>
+<li>AFP-Analyse ukrainischer Luftwaffendaten, zit. n. Yahoo Nachrichten (09.2026)</li>
+<li>Euronews/Berliner Zeitung: Baerbock-Zitat Europarat Straßburg (26.–30.01.2023)</li>
+<li>ZDFheute: Drohneneinschlag Galați, Rumänien (29.05.2026)</li>
+<li>ZDFheute: Drohnenvorfälle Polen, NATO-Reaktion (14.09.2025)</li>
+<li>Berliner Zeitung: Anstieg ukrainischer Einkommensmillionäre (22.05.2025)</li>
+<li>anonymousnews.org-Bericht zu TZK-Korruption, hier nur die darin zitierten Ermittlungsfakten übernommen (07.11.2024) – Einordnung als unseriöse Quelle beachtet</li>
+<li>Tagesspiegel: Luxusvillen und Drohnendeals – Selenskyj-Umfeld (08.05.2026)</li>
+<li>ukrainejournal.de: Millionenbetrug bei Rüstungsaufträgen (27.04.2026)</li>
+<li>Wikipedia: Eindringen russischer Drohnen in polnischen Luftraum im September 2025 (Stand 10.09.2025)</li>
+<li>ZDFheute: Drohnen über Polen abgeschossen – Folgen (10.09.2025)</li>
+<li>nd-aktuell.de: Drohnenpanik – Zwei Recherchen, zwei Welten (23.01.2026)</li>
+<li>nachdenkseiten.de: O-Töne zum Drohnenvorfall Polen, inkl. belarussischer Erklärung (16.09.2025)</li>
+</ol>
+</div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>So schnell wird man Reichsbürger — dunkelfeld.report</title>
+
+<meta content="index, follow" name="robots"/>
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #09090b;
+      --bg-card:   #111113;
+      --bg-source: #1a1a2e;
+      --amber:     #e8c547;
+      --amber-dim: #b89a2a;
+      --text:      #e2e2e2;
+      --text-dim:  #999;
+      --border:    #2a2a2a;
+      --red-flag:  #c0392b;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      padding: 0 1rem;
+    }
+
+    /* ── NAV ── */
+    nav {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+    .site-logo {
+      font-family: 'Courier New', monospace;
+      font-size: .95rem;
+      color: var(--amber);
+      text-decoration: none;
+      letter-spacing: .05em;
+    }
+    .nav-links { display: flex; gap: 1.4rem; flex-wrap: wrap; }
+    .nav-links a {
+      font-family: 'Courier New', monospace;
+      font-size: .8rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .nav-links a:hover { color: var(--amber); }
+
+    /* ── WRAPPER ── */
+    .wrapper {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2.5rem 0 4rem;
+    }
+
+    /* ── LABEL ── */
+    .article-label {
+      font-family: 'Courier New', monospace;
+      font-size: .78rem;
+      color: var(--amber);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── HERO ── */
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+      margin-bottom: 1.8rem;
+      border-left: 3px solid var(--amber);
+      padding-left: 1rem;
+    }
+    .meta {
+      font-family: 'Courier New', monospace;
+      font-size: .78rem;
+      color: var(--text-dim);
+      margin-bottom: 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem 1.4rem;
+    }
+
+    /* ── STAT GRID ── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0 2.5rem;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--amber);
+      padding: 1rem 1.1rem;
+    }
+    .stat-number {
+      font-family: 'Courier New', monospace;
+      font-size: 1.6rem;
+      color: var(--amber);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: .3rem;
+    }
+    .stat-label {
+      font-family: 'Courier New', monospace;
+      font-size: .72rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2.5rem 0;
+    }
+
+    /* ── HEADINGS ── */
+    h2 {
+      font-size: 1.35rem;
+      color: var(--amber);
+      margin: 2.2rem 0 .9rem;
+      font-weight: 700;
+    }
+    h3 {
+      font-size: 1.05rem;
+      color: #fff;
+      margin: 1.6rem 0 .6rem;
+      font-weight: 700;
+    }
+
+    /* ── PARAGRAPHS ── */
+    p { padding-bottom: 1.2rem; }
+
+    /* ── SCREENSHOT DOC ── */
+    .screenshot-doc {
+      background: #0d0d1a;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--amber-dim);
+      padding: 1.2rem 1.4rem;
+      margin: 1.5rem 0 2rem;
+      font-family: 'Courier New', monospace;
+      font-size: .82rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+    .screenshot-doc .doc-label {
+      color: var(--amber);
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: .7rem;
+    }
+    .screenshot-doc p {
+      padding-bottom: .5rem;
+      border-bottom: 1px solid #1e1e2e;
+      margin-bottom: .5rem;
+    }
+    .screenshot-doc p:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    /* ── IMAGE PLACEHOLDER ── */
+    .img-placeholder {
+      background: #111;
+      border: 2px dashed #333;
+      padding: 2rem;
+      text-align: center;
+      margin: 1rem 0 1.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: .78rem;
+      color: #555;
+    }
+
+    /* ── SOURCE BOX ── */
+    .source-box {
+      background: var(--bg-source);
+      border-left: 3px solid var(--amber);
+      padding: 1rem 1.2rem;
+      margin: 1rem 0 1.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: .8rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+    .source-box .source-label {
+      color: var(--amber);
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: .4rem;
+    }
+    .source-box a {
+      color: var(--amber);
+      text-decoration: none;
+    }
+    .source-box a:hover { text-decoration: underline; }
+
+    /* ── STATUS TAGS ── */
+    .tag {
+      display: inline-block;
+      font-family: 'Courier New', monospace;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      padding: .15em .5em;
+      border-radius: 2px;
+      vertical-align: middle;
+      margin-left: .4rem;
+    }
+    .tag-belegt    { background: #1a3a1a; color: #5cb85c; border: 1px solid #2d5a2d; }
+    .tag-extra     { background: #2a2000; color: #e8c547; border: 1px solid #4a3800; }
+    .tag-offen     { background: #2a0a0a; color: #e05555; border: 1px solid #4a1a1a; }
+
+    /* ── QUOTE BLOCK ── */
+    blockquote {
+      border-left: 3px solid var(--amber);
+      margin: 1.5rem 0;
+      padding: .8rem 1.2rem;
+      background: #0f0f18;
+      font-style: italic;
+      color: #ccc;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    blockquote cite {
+      display: block;
+      font-style: normal;
+      font-family: 'Courier New', monospace;
+      font-size: .75rem;
+      color: var(--amber);
+      margin-top: .5rem;
+    }
+
+    /* ── DATA TABLE ── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.2rem 0 1.8rem;
+      font-size: .88rem;
+    }
+    .data-table th {
+      background: #151520;
+      color: var(--amber);
+      font-family: 'Courier New', monospace;
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      padding: .7rem .9rem;
+      text-align: left;
+      border-bottom: 2px solid var(--amber);
+    }
+    .data-table td {
+      padding: .65rem .9rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: #111118; }
+
+    /* ── CLOSING QUESTION ── */
+    .closing-question {
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      font-style: italic;
+      color: var(--text-dim);
+      font-size: 1rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: 720px;
+      margin: 3rem auto 0;
+      padding: 1.5rem 0 2rem;
+      border-top: 1px solid var(--border);
+      font-family: 'Courier New', monospace;
+      font-size: .75rem;
+      color: var(--text-dim);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+    footer a { color: var(--amber); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+<meta name="description" content="Wie eine legitime Debatte über Bargeld und digitalen Euro delegitimiert wird — und wer dabei hilft.">
+<meta name="rubrik" content="cat-geld">
+<meta name="kachel-titel" content="So schnell wird man Reichsbürger">
+<link rel="canonical" href="https://dunkelfeld.report/bargeld-framing.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="So schnell wird man Reichsbürger">
+<meta property="og:description" content="Wie eine legitime Debatte über Bargeld und digitalen Euro delegitimiert wird — und wer dabei hilft.">
+<meta property="og:url" content="https://dunkelfeld.report/bargeld-framing.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+</head>
+<body>
+<nav>
+<a class="site-logo" href="index.html">dunkelfeld.report</a>
+<div class="nav-links">
+<a href="index.html">Dossiers</a>
+<a href="index.html">Über</a>
+<a href="impressum.html">Impressum</a>
+</div>
+</nav>
+<div class="wrapper">
+<div class="article-label">Analyse · Medienkritik · Systemkritik</div>
+<h1>So schnell wird man Reichsbürger</h1>
+<p class="hero-subtitle">
+    Wie eine sachliche Debatte über Bargeld, digitalen Euro und Zahlungsfreiheit in den Extremismus-Frame verschoben wird — und welche Dokumente dabei unter den Tisch fallen.
+  </p>
+<div class="meta">
+<span>dunkelfeld.report</span>
+<span>Juni 2026</span>
+<span>Lesedauer: ca. 9 Minuten</span>
+</div>
+<div class="stat-grid">
+<div class="stat-card">
+<div class="stat-number">350.000</div>
+<div class="stat-label">Unterschriften EU-Petition Bargelderhalt</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">7</div>
+<div class="stat-label">Punkte, in denen Bargeld gegenüber dig. Euro benachteiligt wird</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">8/30</div>
+<div class="stat-label">Ämter ohne Barzahlung (Bundesbank 2025)</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">40 S.</div>
+<div class="stat-label">Programmbeschwerde gegen ZDF-Faktencheck</div>
+</div>
+</div>
+<hr class="divider"/>
+<h2>I. Der Ausgangsbefund</h2>
+<p>Zwei Dokumente, aufgenommen am selben Tag im Januar 2026:</p>
+<!-- OPTION A: Screenshot-Beschreibung als Textdokument -->
+<div class="screenshot-doc">
+<div class="doc-label">Dokumentiert · 7. Januar 2026 · 17:02 Uhr</div>
+<p><strong>ZEIT Online, Ressort Bargeld.</strong> Headline: „Am Bargeld hängt unsere Freiheit." Untertitel: „Ihre Gegner: der digitale Euro, PayPal, Visa, Münzen-Hasser. Bargeldverfechter finden, am 50-Euro-Schein hänge unsere Freiheit. Und finden Zuspruch. <em>Besonders von rechts.</em>" Autorin: Fabian Franke, Wiesbaden/Friedrichshafen. Erschienen: 7. Januar 2026, 12:30 Uhr. Lesedauer: 16 Minuten. Kommentare: 361.</p>
+<p><strong>Google-Suche, selber Tag · 17:08 Uhr.</strong> Suchanfrage: „Kämpfer für Bargeld". Direkte Autocomplete-Vorschläge unter dem ersten Ergebnis — ohne eigene Eingabe, automatisch generiert: „Hansjörg Stützle Partei" — „Hansjörg Stützle Reichsbürger" — „Petition Bargeld Erhalt" — „Petition Bargeld in Europa gesetzlich schützen" — „Wer ist Hansjörg Stützle" — „Bargeldverbot in Deutschland kommt."</p>
+</div>
+<!-- BILDPLATZHALTER — für spätere Einbettung vom PC -->
+<!--
+    BILD-PLATZHALTER: Hier die beiden Screenshots einbinden
+    <img src="assets/screenshot-zeit-bargeld.jpg" alt="ZEIT Online: Am Bargeld hängt unsere Freiheit, 7. Januar 2026" style="width:100%;margin:1rem 0;">
+    <img src="assets/screenshot-google-bargeld.jpg" alt="Google Autocomplete: Kämpfer für Bargeld → Reichsbürger, 7. Januar 2026" style="width:100%;margin:1rem 0 2rem;">
+  -->
+<p>Kein Argument gegen Bargeld. Kein Verweis auf die laufenden EU-Gesetzgebungsverfahren. Keine Auseinandersetzung mit den zitierten Ökonomen. Nur die Platzierung: Bargeld — rechts — Reichsbürger.</p>
+<hr class="divider"/>
+<h2>II. Was tatsächlich verhandelt wird <span class="tag tag-belegt">BELEGT</span></h2>
+<p>Während der Framing-Mechanismus läuft, liegt ein konkreter Gesetzgebungsvorgang auf dem Tisch des EU-Parlaments.</p>
+<p>Der EU-Kommissionsentwurf sieht für den digitalen Euro eine klar definierte Annahmepflicht vor und stellt sicher, dass Bankkunden sich kostenfrei Kontoguthaben in digitalem Euro auszahlen lassen können. Beim Bargeld — dem einzigen gesetzlichen Zahlungsmittel, das seit Jahrzehnten existiert — ist beides nicht der Fall.</p>
+<p>Hansjörg Stützle, der seit zehn Jahren eine Bürgerbewegung für den Bargelderhalt aufbaut und mehrfach in ARD, MDR, SWR und ServusTV aufgetreten ist, dokumentierte die Ungleichbehandlung in einer Fachanalyse:</p>
+<table class="data-table">
+<thead>
+<tr>
+<th>Kriterium</th>
+<th>Digitaler Euro</th>
+<th>Bargeld</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Annahmepflicht Handel</td>
+<td>Klar geregelt, Vertragsfreiheit eingeschränkt</td>
+<td>Keine klare Verpflichtung</td>
+<td><span class="tag tag-belegt">BELEGT</span></td>
+</tr>
+<tr>
+<td>Annahmepflicht öffentliche Stellen</td>
+<td>Vorgesehen</td>
+<td>Hintertüren zur Ablehnung möglich</td>
+<td><span class="tag tag-belegt">BELEGT</span></td>
+</tr>
+<tr>
+<td>Kostenfreie Auszahlung</td>
+<td>Garantiert</td>
+<td>Nicht garantiert, Gebühren steigen</td>
+<td><span class="tag tag-belegt">BELEGT</span></td>
+</tr>
+<tr>
+<td>Einzahlung auf Bankkonto</td>
+<td>Problemlos vorgesehen</td>
+<td>Zunehmend kostenpflichtig oder verwehrt</td>
+<td><span class="tag tag-belegt">BELEGT</span></td>
+</tr>
+<tr>
+<td>Subventionierung / Werbebudget</td>
+<td>EZB subventioniert digitalen Euro</td>
+<td>Keine staatliche Unterstützung</td>
+<td><span class="tag tag-belegt">BELEGT</span></td>
+</tr>
+</tbody>
+</table>
+<div class="source-box">
+<div class="source-label">Primärquellen</div>
+    Stützle / von Holst: „Ungleichbehandlung des Bargelds gegenüber dem Digitalen Euro", Dezember 2025 — <a href="https://bargeldverbot.info/wp-content/uploads/2025/12/dok-ungleichbehandlung-v2.pdf" target="_blank">bargeldverbot.info</a><br/>
+    EU-Kommission: Verordnungsentwurf Digitaler Euro — EUR-Lex<br/>
+    EU-Kommission: Verordnungsentwurf Bargeld — EUR-Lex
+  </div>
+<hr class="divider"/>
+<h2>III. Die Stimmen — wer spricht hier eigentlich? <span class="tag tag-belegt">BELEGT</span></h2>
+<p>Hansjörg Stützle ist kein Reichsbürger. Er ist ein Schuldenberater, der über Jahrzehnte in der finanziellen Sanierung von kleinen und mittelständischen Unternehmen gearbeitet hat und erlebt hat, dass Bargeld Menschen helfen kann, aus einer Schieflage herauszufinden.</p>
+<p>Prof. Dr. Christian Rieck ist kein Reichsbürger. Er ist Wirtschaftsprofessor an der Frankfurt University of Applied Sciences, Spieltheoretiker und Autor mehrerer Bücher über Geld und Ökonomie. Sein Urteil zur EU-Gesetzgebung:</p>
+<blockquote>
+    „Ein gesetzliches Zahlungsmittel, das privilegiert wird, verdrängt das andere durch ökonomische Incentives, nicht durch demokratische Entscheidung."
+    Prof. Dr. Christian Rieck, Frankfurt University of Applied Sciences — LinkedIn-Statement, November 2025
+  </blockquote>
+<p>Rieck analysierte weiter: Die geplante Annahmepflicht für den digitalen Euro bei gleichzeitiger Ermöglichung der Bargeldablehnung durch Händler schaffe eine asymmetrische Wettbewerbssituation. Bargeld gewährleiste seit Jahrhunderten anonyme Transaktionsfreiheit, finanzielle Inklusion aller Bevölkerungsschichten und Systemresilienz bei Infrastrukturausfällen.</p>
+<p>Prof. Dr. habil. Dirk Löhr, Ökonom: „Freiheit beginnt in der Hosentasche — und sie kann dort enden."</p>
+<p>Dr. Norbert Häring, Wirtschaftsjournalist, bezeichnete Stützles Buch „Krieg gegen das Bargeld" als hervorragend recherchiert.</p>
+<div class="source-box">
+<div class="source-label">Quellen</div>
+    Prof. Christian Rieck: LinkedIn-Statement, November 2025 — linkedin.com/in/profrieck<br/>
+    Prof. Christian Rieck: Podcast-Episode 248, „Bargeldverbot durch die Hintertür", November 2025<br/>
+    Petition bargelderhalt.eu — 350.000 Unterschriften, übergeben an EU-Parlament Straßburg, Mai 2026
+  </div>
+<hr class="divider"/>
+<h2>IV. Die Testballons — was dokumentiert ist <span class="tag tag-belegt">BELEGT</span></h2>
+<p>Parallel zur Gesetzgebungsdebatte verändert sich die Alltagsrealität. Die Deutsche Bundesbank untersuchte 2025, wie es um die Bargeld-Akzeptanz in deutschen Behörden steht.</p>
+<table class="data-table">
+<thead>
+<tr>
+<th>Ort / Akteur</th>
+<th>Befund</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bürgerbüros / Kfz-Stellen Deutschland</td>
+<td>8 von 30 untersuchten Ämtern: keine Barzahlung mehr möglich (Bundesbank 2025)</td>
+<td><span class="tag tag-belegt">BELEGT</span></td>
+</tr>
+<tr>
+<td>Nahverkehr Stuttgart, Dortmund, Düsseldorf</td>
+<td>Betriebe nehmen zunehmend keine Banknoten und Münzen mehr an</td>
+<td><span class="tag tag-belegt">BELEGT</span></td>
+</tr>
+<tr>
+<td>Kommunale Schwimmbäder (Stockach, Witzenhausen)</td>
+<td>Kartenzahlung vorgeschrieben</td>
+<td><span class="tag tag-belegt">BELEGT</span></td>
+</tr>
+<tr>
+<td>Niederlande — Apotheken</td>
+<td>2021: 10 % lehnen Bargeld ab. 2025: bereits 21 % (Niederländische Nationalbank)</td>
+<td><span class="tag tag-belegt">BELEGT</span></td>
+</tr>
+<tr>
+<td>Niederlande — Kinos</td>
+<td>38 % nehmen kein Bargeld mehr an (Niederländische Nationalbank 2025)</td>
+<td><span class="tag tag-belegt">BELEGT</span></td>
+</tr>
+<tr>
+<td>Bankfilialen Deutschland</td>
+<td>Frühjahr 2000: 135 Bundesbank-Zweigstellen. Stand 2025: 31. Prognose 2039: weitere Reduktion</td>
+<td><span class="tag tag-belegt">BELEGT</span></td>
+</tr>
+<tr>
+<td>EU-Bargeld-Obergrenze</td>
+<td>Ab Juli 2027: maximal 10.000 Euro bei gewerblichen Barzahlungen</td>
+<td><span class="tag tag-belegt">BELEGT</span></td>
+</tr>
+</tbody>
+</table>
+<p>Stützle fasst den strukturellen Mechanismus zusammen: Je weniger Menschen Bargeld nutzen, desto mehr Geldautomaten gehen verloren — bis die gesamte Bargeld-Infrastruktur nicht mehr tragfähig ist. Der Staat lehnt dabei zunehmend sein eigenes Zahlungsmittel ab.</p>
+<div class="source-box">
+<div class="source-label">Primärquellen</div>
+    Deutsche Bundesbank: Studie zur Bargeld-Akzeptanz in Behörden, 2025<br/>
+    De Nederlandsche Bank: Umfragen zur Bargeld-Akzeptanz, November 2021 und Mai 2025 — dnb.nl<br/>
+    EU-Verordnung zur Bargeld-Obergrenze, in Kraft ab Juli 2027 — EUR-Lex
+  </div>
+<hr class="divider"/>
+<h2>V. Der Faktencheck-Mechanismus <span class="tag tag-belegt">BELEGT</span></h2>
+<p>Im April 2026 reichten Hansjörg Stützle und Hakon von Holst eine förmliche Programmbeschwerde beim Intendanten des ZDF, Dr. Norbert Himmler, ein. Gleichzeitig erhielten alle 630 Bundestagsabgeordneten eine Kopie.</p>
+<p>Gegenstand: Ein ZDF-Faktencheck des Autors Nils Metzger, der „Pläne zur Bargeld-Abschaffung" als unbegründet darstellte.</p>
+<p>Die Beschwerde umfasst 40 Seiten mit mehr als 130 Quellenangaben. Kernvorwürfe:</p>
+<blockquote>
+    „Regelmäßig äußern sich Faktenchecker über die Existenz einer Bargeldabschaffung, ohne zu definieren, welche These sie überhaupt prüfen. Der Erhalt des Bargelds wird als Masche niederträchtiger Gruppierungen hingestellt, die angeblich Ängste schüren und damit Unterstützer um sich scharen wollen. Seriöse und begründete Kritik fällt unter den Tisch."
+    Hakon von Holst, Programmbeschwerde an das ZDF, April 2026
+  </blockquote>
+<p>Konkret dokumentiert die Beschwerde: Der ZDF-Autor verkennt, dass die Währungshoheit bei der Europäischen Union liegt, wenn er mit deutschen Gesetzen und dem Ansinnen der Bundesregierung argumentiert, um kritische Stimmen zu widerlegen. Der Beitrag nutze stellenweise ein diffamierendes Vokabular. Er ergreife einseitig Partei für die Politik der Bundesregierung.</p>
+<p>Eine Reaktion des ZDF auf die Beschwerde ist — Stand Redaktionsschluss — nicht dokumentiert.</p>
+<p>Dass dieser Mechanismus nicht auf Bargeld beschränkt ist, dokumentiert Norbert Häring auf seiner Website mit einer Übersicht von Faktenchecks zu verschiedenen Themen, darunter: „ARD-Faktenchecker tief im Abseits", „ZDF blamiert sich mit Video zur Nordstream-Sabotage bis auf die Knochen", „Tagesschau-Bericht stellt eigene kulturkämpfende Faktenchecker bloß."</p>
+<div class="source-box">
+<div class="source-label">Primärquellen</div>
+    Stützle / von Holst: Programmbeschwerde an den Intendanten des ZDF, April 2026, 40 Seiten, 130+ Quellenangaben — <a href="https://bargeldverbot.info/wp-content/uploads/2026/04/ZDF-Programmbeschwerde-FINAL.pdf" target="_blank">bargeldverbot.info (PDF)</a><br/>
+    Hakon von Holst: Begleittext zur Programmbeschwerde, 20. April 2026 — hakonvonholst.de<br/>
+    Norbert Häring: Übersicht Faktenchecks — norberthaering.de/wahrheitskomplex/faktenchecks/
+  </div>
+<hr class="divider"/>
+<h2>VI. Die Architektur des Framings</h2>
+<p>Die beschriebenen Vorgänge folgen einem erkennbaren Muster, das sich ohne Motive benennen lässt:</p>
+<p>Eine Debatte über einen konkreten EU-Gesetzgebungsvorgang — mit Primärquellen, Ökonomen, Petitionen, Parlamentsbriefen — wird in der medialen Darstellung nicht inhaltlich geführt. Stattdessen wird die Debatte selbst zum Problem erklärt. Wer sie führt, findet sich in Gesellschaft von Reichsbürgern — per Autocomplete, per Untertitel, per Framing.</p>
+<p>Der Berliner Zeitung fiel auf, was in dem Zusammenhang dokumentiert ist: Parallel zur europäischen Bargeld-Debatte verdichten sich in Deutschland Fälle politisch motivierter Kontokündigungen zu einem Muster, das quer durch das politische Spektrum reicht — von der AfD bis zu marxistischen Kleinparteien, von Kritikern der Coronamaßnahmen bis zu propalästinensischen Organisationen, von linken Verlagen bis zu regierungskritischen Onlinemedien. Bargeld ist dabei das einzige gesetzliche Zahlungsmittel, das strukturell nicht gesperrt, nicht überwacht und nicht von einer Kontobeziehung abhängig ist.</p>
+<div class="source-box">
+<div class="source-label">Quelle</div>
+    Berliner Zeitung: „Bargeld oder Kontrolle — Europa entscheidet sich bald", Mai/Juni 2026 — berliner-zeitung.de
+  </div>
+<hr class="divider"/>
+<div class="closing-question">
+<p>Welches Interesse haben Akteure daran, dass diese Debatte nicht geführt wird — und wer profitiert davon, dass derjenige, der sie führt, zuerst seine politische Unbedenklichkeit beweisen muss?</p>
+</div>
+</div><!-- /wrapper -->
+<footer>
+<span>dunkelfeld.report — Fakten, die das Licht nicht scheuen müssen.</span>
+<span>
+<a href="impressum.html">Impressum</a> ·
+    <a href="datenschutz.html">Datenschutz</a>
+</span>
+</footer>
+</body>
+</html>

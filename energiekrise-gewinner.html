@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wer zahlt, wer verdient: Die Energiekrise 2026 — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --box-bg: #1a1a2e;
+    --text: #e6e6e6;
+    --text-dim: #a0a0a8;
+    --belegt: #6fbf73;
+    --extrapolation: #e8a23c;
+    --offen: #9a9aa2;
+    --widerlegt: #7a7a82;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0 1.2rem 6rem;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  header.masthead {
+    text-align: center;
+    padding: 3rem 0 1.5rem;
+    border-bottom: 1px solid #2a2a3a;
+    margin-bottom: 2.5rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  h1 {
+    font-size: 2rem;
+    line-height: 1.3;
+    margin: 0.8rem 0 0.6rem;
+    color: #fff;
+  }
+  .subtitle {
+    font-size: 1.15rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+  h2 {
+    font-size: 1.4rem;
+    color: var(--accent);
+    margin-top: 2.8rem;
+    border-left: 3px solid var(--accent);
+    padding-left: 0.7rem;
+  }
+  h3 {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-top: 2rem;
+  }
+  p { margin: 1.1rem 0; }
+  a { color: var(--accent); }
+
+  /* Evidence tags */
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+    margin: 0 0.3rem 0.2rem 0;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  .tag-belegt { background: rgba(111,191,115,0.15); color: var(--belegt); border: 1px solid rgba(111,191,115,0.4); }
+  .tag-extrapolation { background: rgba(232,162,60,0.15); color: var(--extrapolation); border: 1px solid rgba(232,162,60,0.4); }
+  .tag-offen { background: rgba(154,154,162,0.15); color: var(--offen); border: 1px solid rgba(154,154,162,0.4); }
+  .tag-widerlegt { background: rgba(122,122,130,0.1); color: var(--widerlegt); border: 1px solid rgba(122,122,130,0.3); text-decoration: line-through; }
+
+  /* Stat grid */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.8rem 0;
+  }
+  .stat-box {
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 1rem 0.9rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    color: var(--accent);
+    font-weight: bold;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    margin-top: 0.3rem;
+    line-height: 1.4;
+  }
+
+  /* Source box */
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .source-box .src-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+
+  /* Pull quote */
+  blockquote.pull {
+    font-size: 1.25rem;
+    font-style: italic;
+    color: #fff;
+    border-left: 3px solid var(--accent);
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+  }
+  blockquote.pull cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-style: normal;
+    color: var(--text-dim);
+    margin-top: 0.5rem;
+  }
+
+  /* Comparison table */
+  table.compare {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.92rem;
+  }
+  table.compare th, table.compare td {
+    border-bottom: 1px solid #2a2a3a;
+    padding: 0.6rem 0.5rem;
+    text-align: left;
+  }
+  table.compare th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Person / entity card */
+  .entity-card {
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 1.1rem 1.3rem;
+    margin: 1.3rem 0;
+  }
+  .entity-card .entity-name {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.05rem;
+  }
+  .entity-card .entity-role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+  }
+
+  footer.closing {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a3a;
+  }
+  .open-questions {
+    font-style: italic;
+    color: var(--text-dim);
+  }
+  .open-questions p { margin: 0.9rem 0; }
+
+  .series-nav {
+    margin-top: 3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    text-align: center;
+  }
+  .series-nav a { color: var(--accent); }
+</style>
+<meta name="description" content="Die Ausgangslage lässt sich in drei Zahlen zusammenfassen: knapp über 50 Prozent, rund 100 Dollar, 1,14. Der Gasspeicher-Füllstand der EU, der Ölpreis pro …">
+<meta name="rubrik" content="cat-geld">
+<meta name="kachel-titel" content="Wer zahlt, wer verdient: Die Energiekrise 2026">
+<link rel="canonical" href="https://dunkelfeld.report/energiekrise-gewinner.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wer zahlt, wer verdient: Die Energiekrise 2026">
+<meta property="og:description" content="Die Ausgangslage lässt sich in drei Zahlen zusammenfassen: knapp über 50 Prozent, rund 100 Dollar, 1,14. Der Gasspeicher-Füllstand der EU, der Ölpreis pro …">
+<meta property="og:url" content="https://dunkelfeld.report/energiekrise-gewinner.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<header class="masthead">
+<div class="meta">dunkelfeld.report · dossier · energie &amp; geopolitik</div>
+<h1>Wer zahlt, wer verdient: Die Energiekrise 2026</h1>
+<div class="subtitle">Leere Speicher, Rekordölpreise, ein starker Dollar — und einige Bilanzen, die genau in diesem Zeitfenster auffällig gut aussehen.</div>
+<div class="meta">Stand: 25. Juli 2026</div>
+</header>
+<p>Die Ausgangslage lässt sich in drei Zahlen zusammenfassen: knapp über 50 Prozent, rund 100 Dollar, 1,14. Der Gasspeicher-Füllstand der EU, der Ölpreis pro Barrel, der Euro-Dollar-Kurs. Drei Kennzahlen, die auf den ersten Blick nichts miteinander zu tun haben — und die in diesem Sommer alle in dieselbe Richtung zeigen: teurer für die einen, profitabler für die anderen.</p>
+<p>Dieses Dossier verknüpft keine Motive. Es legt lediglich nebeneinander, was öffentlich dokumentiert ist: die Rechnung der Verbraucher, die Bilanzen der Konzerne, den Zeitpunkt.</p>
+<h2>1. Die Lage: leer, teuer, volatil</h2>
+<div class="stat-grid">
+<div class="stat-box">
+<span class="stat-num">52,5%</span>
+<div class="stat-label">EU-Gasspeicher-Füllstand, Mitte Juli 2026 <span class="tag tag-belegt">BELEGT</span></div>
+</div>
+<div class="stat-box">
+<span class="stat-num">~41%</span>
+<div class="stat-label">Füllstand Deutschland — niedrigster Julistand seit 2021/22 <span class="tag tag-belegt">BELEGT</span></div>
+</div>
+<div class="stat-box">
+<span class="stat-num">~100$</span>
+<div class="stat-label">Brent-Ölpreis, 23. Juli 2026 <span class="tag tag-belegt">BELEGT</span></div>
+</div>
+<div class="stat-box">
+<span class="stat-num">1,137</span>
+<div class="stat-label">EUR/USD-Tief, 23. Juli 2026 <span class="tag tag-belegt">BELEGT</span></div>
+</div>
+</div>
+<p><span class="tag tag-belegt">BELEGT</span> Der durchschnittliche Gasspeicher-Füllstand in Europa liegt bei knapp über 52 Prozent — zum Vergleich: der Fünfjahresschnitt 2020–2024 lag bei 67,5 Prozent. Deutschland und die Niederlande liegen sogar deutlich darunter. Am 1. Juli 2026 waren die deutschen Speicher nur zu rund 41 Prozent gefüllt, der niedrigste Wert zu diesem Zeitpunkt im Jahr seit der Energiekrise 2021/22.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Der europäische Gaspreis stieg Mitte Juli auf über 56 Euro pro Megawattstunde — der höchste Stand seit vier Monaten. Die EU-Verordnung 2022/1032 schreibt vor, dass die Speicher bis zum 1. November auf mindestens 90 Prozent gefüllt sein müssen. Bei aktuellem Tempo ist das ambitioniert.</p>
+<div class="source-box">
+<span class="src-label">Quellen</span>
+    agrarheute.com (17.07.2026) · energynewsmagazine.at (17.07.2026) · Statista/AGSI (28.05.2026) · Gas Infrastructure Europe (GIE)
+  </div>
+<p><span class="tag tag-belegt">BELEGT</span> Auslöser der Marktbewegung: der am 28. Februar 2026 begonnene Krieg zwischen den USA/Israel und Iran, inklusive der Tötung des obersten Führers Ali Chamenei. Iran reagierte mit einer faktischen Blockade der Straße von Hormus — durch die normalerweise etwa ein Viertel des weltweiten Ölhandels und ein Fünftel des LNG-Handels läuft. Der Schiffsverkehr durch die Meerenge brach Anfang März nahezu vollständig ein.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Der Ölpreis folgte dieser Eskalation in Wellenbewegungen: Anfang Juli war Brent zeitweise auf rund 70 Dollar gefallen, stieg dann mit neuer Eskalation — unter anderem durch Huthi-Angriffe auf saudi-arabische Tanker im Roten Meer — bis zum 23. Juli wieder auf rund 100 Dollar je Barrel.</p>
+<blockquote class="pull">
+    "Der Krieg zwischen den USA und dem Iran treibt die Ölpreise weiter in die Höhe."
+    dpa / wiwo.de, 23.07.2026
+  </blockquote>
+<h2>2. Wer zahlt: Haushalte, Landwirte, Industrie</h2>
+<p><span class="tag tag-belegt">BELEGT</span> Steigende Gaspreise wirken direkt auf Verbraucher, Industrie und Landwirtschaft — etwa über die Kosten der Düngemittelherstellung, die energieintensiv ist und stark von Erdgaspreisen abhängt. Die niedrigen Speicherstände verschärfen das Problem zusätzlich: Weil die Preisdifferenz zwischen Sommer- und Wintergas ins Negative gedreht ist, lohnt sich die Einspeicherung wirtschaftlich kaum noch — ein Teufelskreis, der die Versorgungssicherheit für den kommenden Winter infrage stellt.</p>
+<h3>2b. Der unsichtbare Verstärker: ein starker Dollar</h3>
+<p><span class="tag tag-belegt">BELEGT</span> Parallel zur Energiekrise hat sich der US-Dollar deutlich aufgewertet. Am 23. Juli 2026 fiel der Euro auf ein Julitief von 1,137 Dollar, der Dollar-Index (DXY) stieg auf 101,45. Grund: verstärkte Nachfrage nach dem Dollar als "sicherer Hafen" angesichts der Nahost-Eskalation, kombiniert mit einer restriktiven US-Notenbankpolitik (Leitzins unverändert bei 2,25 Prozent, weitere Zinsschritte signalisiert).</p>
+<p><span class="tag tag-extrapolation">EXTRAPOLATION</span> Da Rohöl international in Dollar gehandelt wird, wirkt sich ein schwacher Euro wie ein zweiter, zusätzlicher Preisaufschlag aus: Europa zahlt nicht nur den höheren Dollar-Ölpreis, sondern verliert zusätzlich durch den ungünstigeren Wechselkurs. Diese Mechanik ist strukturell gut belegt (Safe-Haven-Nachfrage in geopolitischen Krisen ist ein etabliertes Marktmuster), die konkrete Bezifferung des Effekts für deutsche Verbraucherpreise liegt derzeit nicht in Primärquellen vor.</p>
+<p><span class="tag tag-belegt">BELEGT</span> EZB-Präsidentin Christine Lagarde erklärte, ein günstiges Energieszenario sei unwahrscheinlich; der Markt rechnet mit zwei weiteren EZB-Zinserhöhungen bis Jahresende, getrieben durch die steigenden Energiepreise. Auch das verteuert die Situation für Verbraucher und Unternehmen zusätzlich — über höhere Kreditkosten.</p>
+<div class="source-box">
+<span class="src-label">Quellen</span>
+    interactivecrypto.com (17.07. &amp; 24.07.2026) · Statista/Bundesbank (Wechselkursdaten) · wise.com (Kursverlauf)
+  </div>
+<h2>3. Wer verdient: die Ölkonzerne</h2>
+<p><span class="tag tag-belegt">BELEGT</span> Die vier größten Tankstellenbetreiber in Deutschland — BP (Aral), Shell, TotalEnergies und ExxonMobil (Esso) — legten im ersten Quartal 2026 ihre Zahlen seit Kriegsbeginn vor. Gemeinsam steigerten sie ihre globalen Gewinne gegenüber dem Vorquartal um 30 Prozent auf knapp 19,7 Milliarden Dollar.</p>
+<table class="compare">
+<tr><th>Konzern</th><th>Q1-2026-Gewinn</th><th>Veränderung</th></tr>
+<tr><td>Shell</td><td>6,9 Mrd. $</td><td>mehr als verdoppelt ggü. Vorquartal</td></tr>
+<tr><td>TotalEnergies</td><td>5,4 Mrd. $</td><td>stärkster Performer neben Shell</td></tr>
+<tr><td>ExxonMobil</td><td>4,2 Mrd. $</td><td>übertraf Analystenschätzungen</td></tr>
+<tr><td>BP</td><td>3,2 Mrd. $</td><td>deutliche Steigerung ggü. Vorjahr</td></tr>
+</table>
+<p style="font-size:0.85rem; color:var(--text-dim);">Zahlen: Q1 2026, div. Quellen (s.u.) <span class="tag tag-belegt">BELEGT</span></p>
+<p><span class="tag tag-belegt">BELEGT</span> Shell-CEO Wael Sawan kommentierte die Zahlen mit den Worten, man habe gezeigt, "in einem volatilen makroökonomischen Umfeld starke Ergebnisse" erzielen zu können. Der Konzern kündigte parallel eine Dividendenerhöhung um 5 Prozent sowie ein Aktienrückkaufprogramm über 3 Milliarden Dollar an.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Ein zentraler Gewinntreiber ist dabei nicht die Förderung selbst, sondern das Handelsgeschäft: BP, Shell und TotalEnergies handeln täglich mit Öl- und Gasvolumina, die dem Fünf- bis Zehnfachen ihrer eigenen Fördermenge entsprechen. Schätzungen des Economist zufolge könnten die drei Konzerne 2026 gemeinsam 15 bis 20 Milliarden Dollar Vorsteuergewinn allein aus diesem Handelsgeschäft erzielen.</p>
+<p><span class="tag tag-offen">OFFEN</span> Nicht alle Konzerne profitieren gleichermaßen: Exxon und Chevron meldeten trotz eines Gewinns beim bereinigten Ergebnis den niedrigsten Nettogewinn seit fünf Jahren — bedingt durch Derivateverluste und kriegsbedingte Lieferausfälle, etwa durch iranische Raketentreffer auf eine LNG-Anlage in Katar, an der Exxon beteiligt ist. Die Gewinnlage der Branche ist also uneinheitlicher, als eine reine "Kriegsgewinnler"-Erzählung suggerieren würde.</p>
+<div class="source-box">
+<span class="src-label">Quellen</span>
+    surplusmagazin.de (08.05.2026) · euronews.com (07.05.2026) · finanznachrichten.de (Mai 2026) · newsflix.at (29.06.2026) · auto-motor-und-sport.de (04.05.2026)
+  </div>
+<h2>4. Die Rüstungsindustrie: Aufträge steigen, Kurse widersprechen</h2>
+<div class="entity-card">
+<div class="entity-name">Rheinmetall AG</div>
+<div class="entity-role">Größter deutscher Rüstungskonzern, Sitz Düsseldorf</div>
+<p style="margin:0.3rem 0 0;"><span class="tag tag-belegt">BELEGT</span> Kündigte während der eskalierenden Hormus-Krise das Joint Venture "Rheinmetall Destinus Strike Systems" mit dem niederländischen Unternehmen Destinus an — Ziel: Marschflugkörper und ballistische Raketenartillerie. Zusätzlich Ausbau der Raketenproduktion an neuen Standorten in Unterlüß (Niedersachsen) und Burgos (Spanien), Fertigstellung geplant für Q1 2027.</p>
+</div>
+<p><span class="tag tag-offen">OFFEN</span> Auffällig ist der Widerspruch zwischen Auftragslage und Aktienkurs: Trotz laufender Kriege in der Ukraine und im Nahen Osten sowie mehrfach vermeldeter neuer Aufträge notierte die Rheinmetall-Aktie im Juli 2026 zeitweise 18 bis 37 Prozent unter ihrem Jahreshoch. Das widerspricht der naheliegenden Annahme "Krieg treibt Rüstungsaktien automatisch nach oben" — und ist damit selbst eine offene Frage, keine bequeme Bestätigung.</p>
+<p><span class="tag tag-belegt">BELEGT</span> US-Rüstungskonzerne wie RTX und Lockheed Martin werden in der Berichterstattung ebenfalls als Profiteure der Luftkriegs-Eskalation genannt. Die allgemeine Nachfrage nach Verteidigungstechnologie wird von Marktbeobachtern als anhaltend hoch beschrieben.</p>
+<div class="source-box">
+<span class="src-label">Quellen</span>
+    deraktionaer.de (13.04. &amp; weitere, 2026) · stock-world.de (21.07.2026) · sharedeals.de (März 2026) · esg-aktien.de (16.04.2026)
+  </div>
+<h2>5. Zeitliche Überschneidung, kein unterstelltes Motiv</h2>
+<p>Dieses Dossier behauptet nicht, dass der Iran-Krieg zugunsten von Öl- oder Rüstungskonzernen geführt oder verlängert wird. Belegt ist ausschließlich: Der Krieg begann am 28. Februar 2026. Seither steigen mit Unterbrechungen die Gewinne der Ölmultis, wächst das Auftragsbuch der Rüstungsindustrie, und die Rechnung für europäische Verbraucher wird durch einen parallel erstarkenden Dollar zusätzlich verschärft. Diese drei Entwicklungen laufen synchron — die Ursachenkette dahinter ist komplex, teils gegenläufig (siehe Rüstungsaktienkurse, siehe Exxon/Chevron-Gewinneinbruch) und lässt sich nicht auf eine einzelne Absicht reduzieren.</p>
+<footer class="closing">
+<div class="open-questions">
+<p><em>Warum steigen Rüstungsaktien nicht einheitlich mit der Auftragslage, obwohl die Nachfrage laut allen vorliegenden Meldungen wächst?</em></p>
+<p><em>Wie viel des europäischen Energiepreisschocks lässt sich künftig separat dem Dollar-Wechselkurs zuordnen — und wie viel dem Ölpreis selbst?</em></p>
+<p><em>Wird die EU ihr 90-Prozent-Speicherziel bis November erreichen — und zu welchem Preis?</em></p>
+</div>
+</footer>
+<div class="series-nav">
+    dunkelfeld.report · dossier energie &amp; geopolitik · weitere Teile folgen
+  </div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

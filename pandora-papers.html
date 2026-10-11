@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pandora Papers: Der Anti-Korruptions-Kandidat und sein Offshore-Netzwerk — dunkelfeld.report</title>
+
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --box-bg: #1a1a2e;
+    --green: #4caf82;
+    --orange: #e39a3a;
+    --grey: #8a8a94;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.3;
+    margin: 0 0 1rem;
+    color: #fff;
+  }
+  .sub {
+    font-size: 1.2rem;
+    color: #b8b8c2;
+    font-style: italic;
+    margin-bottom: 2.5rem;
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    border-bottom: 1px solid #2a2a3a;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    color: #d8d8e0;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+  }
+  p { margin: 1.2rem 0; }
+  a { color: var(--accent); }
+
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.5rem;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(76,175,130,0.15); color: var(--green); border: 1px solid var(--green); }
+  .tag-extra { background: rgba(227,154,58,0.15); color: var(--orange); border: 1px solid var(--orange); }
+  .tag-offen { background: rgba(138,138,148,0.15); color: var(--grey); border: 1px solid var(--grey); }
+  .tag-vt { background: rgba(138,138,148,0.1); color: var(--grey); border: 1px solid var(--grey); text-decoration: line-through; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .stat {
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 1.2rem 1rem;
+    text-align: center;
+  }
+  .stat .num {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 1.6rem;
+    color: var(--accent);
+    font-weight: bold;
+  }
+  .stat .label {
+    display: block;
+    font-size: 0.8rem;
+    color: #a8a8b4;
+    margin-top: 0.3rem;
+  }
+
+  .source-box {
+    background: var(--box-bg);
+    border-left: 4px solid var(--accent);
+    border-radius: 4px;
+    padding: 1.2rem 1.5rem;
+    margin: 1.8rem 0;
+  }
+  .src-title {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.6rem;
+  }
+
+  .person-card {
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 1.3rem 1.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid #2a2a3a;
+  }
+  .person-name {
+    font-family: 'Courier New', monospace;
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+  }
+  .person-role {
+    color: var(--grey);
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-bottom: 0.8rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.8rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    border: 1px solid #2a2a3a;
+    padding: 0.7rem 0.8rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    color: var(--accent);
+    letter-spacing: 0.03em;
+  }
+
+  .pullquote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #fff;
+    border-left: 3px solid var(--accent);
+    padding-left: 1.2rem;
+    margin: 2.5rem 0;
+  }
+
+  .timeline {
+    margin: 2rem 0;
+    padding-left: 1.5rem;
+    border-left: 2px solid #2a2a3a;
+  }
+  .timeline-item {
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.58rem;
+    top: 0.4rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .open-questions {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a3a;
+    font-style: italic;
+    color: #c0c0ca;
+  }
+  .open-questions h2 { font-style: normal; }
+  .open-questions li { margin-bottom: 1rem; }
+
+  .source-list {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a3a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #8a8a94;
+    line-height: 1.6;
+  }
+  .source-list a { color: #a8a8b4; }
+
+  .series-nav {
+    margin-top: 3rem;
+    padding: 1.2rem;
+    background: var(--box-bg);
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+  }
+  .series-nav a { display: block; margin: 0.3rem 0; }
+</style>
+<meta name="description" content="Ein Anti-Korruptions-Kandidat, ein Offshore-Geflecht seit 2012, Londoner Luxuswohnungen — und mehr ukrainische Politiker in den Pandora Papers als aus jedem anderen Land.">
+<meta name="rubrik" content="cat-geld">
+<meta name="kachel-titel" content="Pandora Papers: Der Anti-Korruptions-Kandidat und sein Offshore-Netzwerk">
+<link rel="canonical" href="https://dunkelfeld.report/pandora-papers.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pandora Papers: Der Anti-Korruptions-Kandidat und sein Offshore-Netzwerk">
+<meta property="og:description" content="Ein Anti-Korruptions-Kandidat, ein Offshore-Geflecht seit 2012, Londoner Luxuswohnungen — und mehr ukrainische Politiker in den Pandora Papers als aus jedem anderen Land.">
+<meta property="og:url" content="https://dunkelfeld.report/pandora-papers.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="meta">Dunkelfeld.Report · Artikel · Geldsysteme &amp; Offshore</div>
+<h1>Pandora Papers: Der Anti-Korruptions-Kandidat und sein Offshore-Netzwerk</h1>
+<div class="sub">Kein anderes Land stellte mehr Politiker in den Pandora Papers als die Ukraine. Angeführt wird die Liste ausgerechnet von jenem Präsidenten, der mit dem Versprechen antrat, die Herrschaft der Oligarchen zu beenden.</div>
+<p><span class="tag tag-belegt">BELEGT</span> Am 3. Oktober 2021 veröffentlichte das ICIJ die "Pandora Papers" — einen 2,94 Terabyte umfassenden Datenschatz aus 14 verschiedenen Offshore-Dienstleistern, der die geheimen Vermögenswerte wohlhabender Eliten aus mehr als 200 Ländern und Territorien offenlegte. 11,9 Millionen Dokumente — damit der größte Leak in der Geschichte des ICIJ, noch vor den Panama Papers von 2016.</p>
+<div class="stat-grid">
+<div class="stat"><span class="num">11,9 Mio.</span><span class="label">Dokumente</span></div>
+<div class="stat"><span class="num">14</span><span class="label">Offshore-Dienstleister</span></div>
+<div class="stat"><span class="num">336</span><span class="label">Politiker/Amtsträger identifiziert</span></div>
+<div class="stat"><span class="num">91</span><span class="label">betroffene Länder</span></div>
+</div>
+<p><span class="tag tag-belegt">BELEGT</span> Insgesamt deckte die Recherche die Finanzgeheimnisse von 35 amtierenden und ehemaligen Staats- und Regierungschefs auf, darunter der König von Jordanien, die Präsidenten der Ukraine, Kenias und Ecuadors, der tschechische Ministerpräsident und der frühere britische Premierminister Tony Blair.</p>
+<h2>1. Die ukrainische Sonderstellung</h2>
+<p><span class="tag tag-belegt">BELEGT</span> Aus keinem anderen Land wurden mehr Politiker in den Pandora Papers genannt als aus der Ukraine — mit doppelt so vielen Amtsträgern wie das zweitplatzierte Land, Russland. Angeführt wird die ukrainische Liste ausgerechnet von Präsident Wolodymyr Selenskyj, der zum Zeitpunkt der Veröffentlichung gerade dabei war, ein Anti-Oligarchen-Gesetz durchs Parlament zu bringen.</p>
+<div class="person-card">
+<div class="person-name">Wolodymyr Selenskyj</div>
+<div class="person-role">Präsident der Ukraine (seit Mai 2019)</div>
+<p style="margin:0;"><span class="tag tag-belegt">BELEGT</span> Nach dem Wechsel von Kolomoiskyjs Fernsehsender "1+1" gründeten Selenskyj und seine engsten Mitarbeiter — Borys und Serhij Schefir sowie Andrij Jakowlew — ab 2012 ein Geflecht von Offshore-Firmen, darunter die Firma "Maltex" auf den Britischen Jungferninseln. Diese hielt wiederum die Hälfte an der Produktionsfirma "SVT", die für "1+1" das TV-Format "Bring den Komiker zum Lachen" produzierte — jenes Format, aus dem später "Diener des Volkes" hervorging, die Sitcom, die Selenskyj zum Präsidenten machte.</p>
+</div>
+<p><span class="tag tag-belegt">BELEGT</span> Wochen vor seinem Wahlsieg 2019 übertrug Selenskyj seinen Anteil an der auf den Britischen Jungferninseln registrierten Maltex Multicapital Corp. an seinen Geschäftspartner Serhij Schefir, der später zum engen Präsidentenberater wurde. Die Dokumente zeigen, dass Selenskyj Anteile an einer anonymen Offshore-Gesellschaft hielt — ebenso wie mehrere seiner Geschäftspartner, die inzwischen enge politische Verbündete sind.</p>
+<div class="source-box">
+<div class="src-title">Das Netzwerk im Detail</div>
+<span class="tag tag-belegt">BELEGT</span> Gemeinsam mit alten Freunden war Selenskyj Begünstigter mehrerer Offshore-Firmen mit Immobilien in London. Serhij Schefir, auf den Ende September 2021 ein Attentat verübt wurde und der als politischer Berater Selenskyjs arbeitet, besitzt laut den Papers zwei Wohnungen in einem teuren Londoner Stadtteil im Gesamtwert von rund 3,8 Millionen Pfund, erworben über eine der Offshore-Firmen. Auch Andrij Jakowlew soll eine Wohnung im Wert von rund 2 Millionen Pfund in London besitzen. Teil des Netzwerks soll außerdem Iwan Bakanow sein, ein weiterer Kindheitsfreund Selenskyjs, der zunächst die "Davegra Limited" hielt, die nominelle Muttergesellschaft von "Maltex".
+  </div>
+<h2>2. Die Verbindung zu Kolomoiskyj</h2>
+<p><span class="tag tag-belegt">BELEGT</span> Das Netzwerk entstand während Selenskyjs Zeit als TV-Produzent für den Sender "1+1", der bis 2016 dem Oligarchen Ihor Kolomoiskyj gehörte, dessen PrivatBank — die größte Bank der Ukraine — anschließend verstaatlicht wurde. Kolomoiskyj gilt als einer der einflussreichsten und umstrittensten ukrainischen Oligarchen.</p>
+<p><span class="tag tag-offen">OFFEN</span> Bereits 2019 kursierten Gerüchte, wonach Selenskyjs Offshore-Firmen über Zypern zwischen 2012 und 2016 mehr als 40 Millionen US-Dollar von der PrivatBank erhalten hätten — verbreitet damals von einem Verbündeten des politischen Rivalen Petro Poroschenko. Die Pandora Papers bestätigen zwar den strukturellen Zusammenhang zwischen den genannten Firmen und Selenskyj, laut der Rechercheorganisation OCCRP gibt es aber keine Beweise dafür, dass die Millionensumme tatsächlich überwiesen wurde. Diese Unterscheidung ist entscheidend: Die Existenz des Firmengeflechts ist belegt, ein konkreter Mittelzufluss in dieser Höhe nicht.</p>
+<p><span class="tag tag-offen">OFFEN</span> Auch zu angeblichen Dividendenzahlungen von rund 41 Millionen US-Dollar an eine der TV-Produktionsfirmen gibt es keine Nachweise: Weder die Einkommensdeklaration des Ehepaars Selenskyj für 2020 noch die Pandora Papers selbst enthalten Details darüber, ob und wie oft solche Zahlungen tatsächlich stattfanden. Die Firma, an die die Zahlungen angeblich fließen sollten, gehört seit 2019 ausschließlich Selenskyjs Ehefrau.</p>
+<h2>3. Was tatsächlich belegt ist</h2>
+<table>
+<tr><th>Sachverhalt</th><th>Status</th><th>Anmerkung</th></tr>
+<tr><td>Gründung des Offshore-Geflechts ab 2012 (Maltex, Davegra u.a.)</td><td><span class="tag tag-belegt">BELEGT</span></td><td>Von ICIJ und Slidstvo.info direkt aus den Dokumenten rekonstruiert</td></tr>
+<tr><td>Übertragung der Anteile vor Wahlsieg 2019</td><td><span class="tag tag-belegt">BELEGT</span></td><td>Zeitlich präzise dokumentiert</td></tr>
+<tr><td>Londoner Immobilienkäufe über Offshore-Firmen (Schefir, Jakowlew)</td><td><span class="tag tag-belegt">BELEGT</span></td><td>Konkrete Kaufsummen genannt</td></tr>
+<tr><td>40-Mio.-USD-Überweisung von PrivatBank via Zypern (2012–2016)</td><td><span class="tag tag-offen">OFFEN</span></td><td>Laut OCCRP kein Nachweis für tatsächlichen Geldfluss</td></tr>
+<tr><td>41-Mio.-USD-Dividendenzahlungen an TV-Firma</td><td><span class="tag tag-offen">OFFEN</span></td><td>Weder in Steuererklärung noch in Papers dokumentiert</td></tr>
+</table>
+<p class="pullquote">Die Struktur ist belegt. Der konkrete Geldfluss in Millionenhöhe ist es nicht. Genau in dieser Lücke bewegt sich seither die politische Auseinandersetzung.</p>
+<h2>4. Globaler Kontext: Kein Einzelfall</h2>
+<p><span class="tag tag-belegt">BELEGT</span> Die Selenskyj-Enthüllung steht nicht isoliert. In Kenia versuchte laut einem Mozilla-Foundation-Bericht eine koordinierte Desinformationskampagne, Erkenntnisse über Offshore-Vermögen von Präsident Kenyatta unter dem Hashtag #phonyleaks zu diskreditieren. In Jordanien zensierte der Geheimdienst die Berichterstattung über die Immobilienimperien von König Abdullah II. Insgesamt setzten 336 Politiker aus 91 Ländern Offshore-Dienstleister ein — mehr als zwei Drittel der Firmen mit Sitz auf den Britischen Jungferninseln.</p>
+<p><span class="tag tag-extra">EXTRAPOLATION</span> Das wiederkehrende Muster: Aufdeckung führt selten zu Rechenschaft, sondern häufiger zu Abwehrreaktionen — Desinformationskampagnen, Zensur, oder schlicht Zeitablauf. Der ukrainische Fall unterscheidet sich dadurch, dass die Aufarbeitung durch den seit 2022 laufenden Krieg zusätzlich in den Hintergrund gerückt ist.</p>
+<div class="series-nav">
+<strong>Weiterlesen:</strong>
+<a href="panama-papers.html">→ Panama Papers: Der größte Leak und seine Bilanz</a>
+<a href="wef-selenskyj-blackrock.html">→ Artikel #9: "Zwei Seiten, eine Agenda?"</a>
+<a href="finanzbetrug-anatomie.html">→ Die Anatomie des Finanzbetrugs</a>
+<a href="florian-homm.html">→ Florian Homm: Vom BVB-Retter zum FBI-Gesuchten</a>
+</div>
+<div class="open-questions">
+<h2>Offene Fragen</h2>
+<ul>
+<li><em>Warum wurde die belegte Offshore-Struktur eines Präsidenten, der explizit mit Anti-Korruptions-Rhetorik antrat, politisch kaum aufgearbeitet?</em></li>
+<li><em>Verändert der Kriegskontext seit 2022 systematisch, welche Vorwürfe öffentlich verhandelbar bleiben — unabhängig vom Wahrheitsgehalt der jeweiligen Vorwürfe?</em></li>
+</ul>
+</div>
+<div class="source-list">
+    Quellen: ICIJ (icij.org/investigations/pandora-papers), Newsweek, Länder-Analysen/bpb.de (Ukraine-Analysen Nr. 256), Tagesanzeiger, Berliner Zeitung, Ukraine verstehen, Correctiv-Faktencheck, OCCRP. Alle Zitate im Text mit Quellenverweis gekennzeichnet.
+  </div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

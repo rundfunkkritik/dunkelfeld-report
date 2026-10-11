@@ -147,6 +147,22 @@ def veroeffentliche(fn, cfg, reparieren=True):
         schreibe("sitemap.xml", sm[:i] + eintrag + sm[i:])
         print("  Sitemap ergänzt.")
 
+MONATE = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"]
+
+def startseite_aktualisieren(cfg):
+    """Gleicht Beitragszahl und 'Stand: Monat Jahr' auf index.html mit der Themen-Seite ab."""
+    if not os.path.exists("index.html"):
+        return
+    m = re.search(r"(\d+) Beiträge", lies(cfg["themen"]))
+    s = lies("index.html"); alt = s
+    if m:
+        s = re.sub(r"\d+( Beiträge)", m.group(1) + r"\1", s)
+    heute = datetime.date.today()
+    s = re.sub(r"Stand: (?:" + "|".join(MONATE) + r") \d{4}", f"Stand: {MONATE[heute.month-1]} {heute.year}", s)
+    if s != alt:
+        schreibe("index.html", s)
+        print(f"  Startseite aktualisiert ({m.group(1) if m else '?'} Beiträge, Stand {MONATE[heute.month-1]} {heute.year}).")
+
 def main():
     argv = [a for a in sys.argv[1:] if not a.startswith("--")]
     nur_pruefen = "--pruefen" in sys.argv
@@ -172,6 +188,7 @@ def main():
         veroeffentliche(fn, cfg)
         print(f"  {GRUEN}✓ fertig{ENDE}")
     if not nur_pruefen and fehler == 0:
+        startseite_aktualisieren(cfg)
         subprocess.run(["git", "add", "-A"])
         subprocess.run(["git", "commit", "-m",
                         f"Neue Artikel: {', '.join(os.path.basename(a) for a in argv)}"])

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Der Hegemon (4): Die Wirtschaft — dunkelfeld.report</title>
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #09090b;
+      --bg-card: #111113;
+      --bg-source: #1a1a2e;
+      --amber: #e8c547;
+      --amber-dim: rgba(232,197,71,0.12);
+      --amber-border: rgba(232,197,71,0.25);
+      --text: #d4d4d8;
+      --text-muted: #71717a;
+      --text-bright: #f4f4f5;
+      --green: #4ade80;
+      --orange: #fb923c;
+      --red: #f87171;
+      --serif: Georgia, 'Times New Roman', serif;
+      --mono: 'Courier New', Courier, monospace;
+    }
+
+    body { background: var(--bg); color: var(--text); font-family: var(--serif); font-size: 1.1rem; line-height: 1.85; padding: 2rem 1rem 6rem; }
+    .container { max-width: 720px; margin: 0 auto; }
+
+    nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--amber-border); }
+    .nav-logo { font-family: var(--mono); font-size: 0.85rem; color: var(--amber); text-decoration: none; letter-spacing: 0.05em; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-family: var(--mono); font-size: 0.78rem; color: var(--text-muted); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--amber); }
+
+    .series-badge { font-family: var(--mono); font-size: 0.72rem; color: var(--amber); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; }
+    .series-badge::before { content: ''; display: inline-block; width: 20px; height: 2px; background: var(--amber); }
+
+    h1 { font-family: var(--serif); font-size: clamp(1.9rem, 5vw, 2.8rem); font-weight: 700; color: var(--text-bright); line-height: 1.2; margin-bottom: 1rem; }
+    .subtitle { font-size: 1.15rem; color: var(--text-muted); font-style: italic; margin-bottom: 2rem; line-height: 1.6; }
+    .meta { font-family: var(--mono); font-size: 0.75rem; color: var(--text-muted); display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--amber-border); }
+
+    .opening-quote { background: var(--amber-dim); border-left: 4px solid var(--amber); padding: 1.5rem 1.8rem; margin: 2rem 0 2.5rem; border-radius: 0 4px 4px 0; }
+    .opening-quote p { font-size: 1.1rem; font-style: italic; color: var(--text-bright); line-height: 1.7; margin-bottom: 0.5rem; }
+    .opening-quote cite { font-family: var(--mono); font-size: 0.75rem; color: var(--amber); font-style: normal; }
+
+    .lead { font-size: 1.15rem; color: var(--text-bright); line-height: 1.9; margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+    h2 { font-size: 1.45rem; font-weight: 700; color: var(--amber); margin: 3rem 0 1.2rem; line-height: 1.3; }
+    p { margin-bottom: 1.3rem; }
+
+    .tag { display: inline-block; font-family: var(--mono); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; padding: 0.2em 0.55em; border-radius: 2px; vertical-align: middle; margin: 0 0.15em; position: relative; top: -1px; }
+    .tag-belegt { background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid rgba(74,222,128,0.3); }
+    .tag-extrapolation { background: rgba(251,146,60,0.15); color: var(--orange); border: 1px solid rgba(251,146,60,0.3); }
+    .tag-offen { background: rgba(248,113,113,0.15); color: var(--red); border: 1px solid rgba(248,113,113,0.3); }
+
+    .source-box { background: var(--bg-source); border-left: 3px solid var(--amber); padding: 1rem 1.3rem; margin: 1.5rem 0; font-family: var(--mono); font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; }
+    .source-box strong { color: var(--amber); display: block; margin-bottom: 0.3rem; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 2rem 0; }
+    .stat-card { background: var(--bg-card); border: 1px solid var(--amber-border); padding: 1.2rem; text-align: center; }
+    .stat-number { font-family: var(--mono); font-size: 1.6rem; font-weight: 700; color: var(--amber); display: block; line-height: 1.2; }
+    .stat-label { font-family: var(--mono); font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.4rem; }
+
+    .highlight { background: var(--amber-dim); border-left: 3px solid var(--amber); padding: 1.2rem 1.5rem; margin: 2rem 0; font-style: italic; color: var(--text-bright); font-size: 1.05rem; }
+
+    /* SAP-Mechanismus */
+    .sap-box {
+      background: var(--bg-card);
+      border: 1px solid var(--amber-border);
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+    .sap-title { font-family: var(--mono); font-size: 0.7rem; color: var(--amber); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.2rem; }
+    .sap-row { display: flex; gap: 1rem; margin-bottom: 0.9rem; align-items: flex-start; }
+    .sap-label { font-family: var(--mono); font-size: 0.72rem; color: var(--amber); width: 120px; flex-shrink: 0; padding-top: 0.15rem; }
+    .sap-text { font-size: 0.92rem; color: var(--text); line-height: 1.55; }
+
+    /* Vergleichstabelle */
+    .compare-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.9rem; }
+    .compare-table th { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--amber); border-bottom: 2px solid var(--amber-border); padding: 0.7rem 0.8rem; text-align: left; }
+    .compare-table td { padding: 0.65rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--text); vertical-align: top; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table td:first-child { font-family: var(--mono); font-size: 0.8rem; color: var(--text-muted); }
+
+    .divider { border: none; border-top: 1px solid var(--amber-border); margin: 2.5rem 0; }
+
+    /* Schulden-Barvisualisierung */
+    .debt-visual { margin: 2rem 0; }
+    .debt-visual-title { font-family: var(--mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
+    .debt-row { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.7rem; }
+    .debt-label { font-family: var(--mono); font-size: 0.75rem; color: var(--text-muted); width: 160px; flex-shrink: 0; }
+    .debt-bar-outer { flex: 1; background: rgba(255,255,255,0.05); height: 22px; }
+    .debt-bar-inner { height: 100%; background: var(--amber); opacity: 0.65; }
+    .debt-val { font-family: var(--mono); font-size: 0.75rem; color: var(--amber); width: 80px; flex-shrink: 0; text-align: right; }
+
+    .series-nav { background: var(--bg-card); border: 1px solid var(--amber-border); padding: 1.5rem 1.8rem; margin: 3rem 0 2rem; }
+    .series-nav-title { font-family: var(--mono); font-size: 0.7rem; color: var(--amber); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .series-nav ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .series-nav li { font-family: var(--mono); font-size: 0.82rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.8rem; }
+    .series-nav li::before { content: '→'; color: var(--amber); font-size: 0.8rem; }
+    .series-nav a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+    .series-nav a:hover { color: var(--amber); }
+    .series-nav .soon { color: var(--text-muted); font-style: italic; }
+
+    .closing-questions { border-top: 2px solid var(--amber); padding-top: 2rem; margin-top: 3rem; }
+    .closing-questions p { font-style: italic; color: var(--text-muted); font-size: 1rem; margin-bottom: 0.9rem; }
+    .closing-questions .label { font-family: var(--mono); font-size: 0.7rem; color: var(--amber); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; font-style: normal; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.7rem; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .sap-row { flex-direction: column; gap: 0.3rem; }
+      .sap-label { width: auto; }
+      .debt-label { width: 110px; }
+    }
+  </style>
+<meta name="description" content="IWF-Vetorecht, Strukturanpassungsprogramme und eine globale Schuldenarchitektur, die Entwicklungsländer systematisch unter Druck setzt — dokumentiert aus …">
+<meta name="rubrik" content="cat-geo">
+<meta name="kachel-titel" content="Der Hegemon (4): Die Wirtschaft">
+<link rel="canonical" href="https://dunkelfeld.report/hegemon-wirtschaft.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Der Hegemon (4): Die Wirtschaft">
+<meta property="og:description" content="IWF-Vetorecht, Strukturanpassungsprogramme und eine globale Schuldenarchitektur, die Entwicklungsländer systematisch unter Druck setzt — dokumentiert aus …">
+<meta property="og:url" content="https://dunkelfeld.report/hegemon-wirtschaft.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Der Hegemon (4): Die Wirtschaft", "description": "IWF-Vetorecht, Strukturanpassungsprogramme und eine globale Schuldenarchitektur, die Entwicklungsländer systematisch unter Druck setzt — dokumentiert aus …", "inLanguage": "de", "url": "https://dunkelfeld.report/hegemon-wirtschaft.html", "mainEntityOfPage": "https://dunkelfeld.report/hegemon-wirtschaft.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div class="container">
+<nav>
+<a class="nav-logo" href="index.html">dunkelfeld.report</a>
+<ul class="nav-links">
+<li><a href="hegemon-usa.html">← Überblick</a></li>
+<li><a href="hegemon-militaer.html">← Teil 3</a></li>
+</ul>
+</nav>
+<div class="series-badge">Serie · Der Hegemon · Teil 4 von 6</div>
+<h1>Die Wirtschaft</h1>
+<p class="subtitle">IWF-Vetorecht, Strukturanpassungsprogramme und eine globale Schuldenarchitektur, die Entwicklungsländer systematisch unter Druck setzt — dokumentiert aus UN-, IWF- und Weltbank-Primärdaten</p>
+<div class="meta">
+<span>Erstveröffentlichung 2025</span>
+<span>Lesedauer ~13 Min.</span>
+<span>Detailartikel · Teil 4</span>
+</div>
+<div class="opening-quote">
+<p>„3,4 Milliarden Menschen leben in Ländern, die mehr für Zinszahlungen ausgeben als für Gesundheit oder Bildung."</p>
+    — UNCTAD: „A World of Debt 2025", Vereinte Nationen, Juni 2025
+  </div>
+<div class="lead">
+<p>Kein anderes Land der Welt kann im Internationalen Währungsfonds eine Entscheidung alleine blockieren — außer den Vereinigten Staaten. Das ist keine Frage der Interpretation: Es steht so in den Articles of Agreement des IWF, dokumentiert seit 1944. Wer Kredite vom IWF oder der Weltbank möchte, unterzeichnet Auflagen. Wer die Auflagen nicht erfüllt, bekommt keine Kredite. Und wer keine Kredite bekommt, kann seine Schulden nicht bedienen — die in der Regel in US-Dollar denominiert sind.</p>
+<p>Dieser Artikel dokumentiert die Mechanismen dieses Wirtschaftssystems: das US-Vetorecht in globalen Finanzinstitutionen, die Geschichte der Strukturanpassungsprogramme und den aktuellen Stand der globalen Schuldenarchitektur. Alle Daten stammen aus Primärquellen — IWF, Weltbank, UNCTAD, UN-Generalversammlung.</p>
+</div>
+<div class="stat-grid">
+<div class="stat-card">
+<span class="stat-number">16,5 %</span>
+<span class="stat-label">US-Stimmanteil IWF — einziges Land mit Einzelveto</span>
+</div>
+<div class="stat-card">
+<span class="stat-number">85 %</span>
+<span class="stat-label">Quorum für wichtige IWF-Entscheidungen</span>
+</div>
+<div class="stat-card">
+<span class="stat-number">102 Bio.$</span>
+<span class="stat-label">Globale Staatsschulden 2024 (UNCTAD)</span>
+</div>
+<div class="stat-card">
+<span class="stat-number">921 Mrd.$</span>
+<span class="stat-label">Zinszahlungen Entwicklungsländer 2024 (UNCTAD)</span>
+</div>
+</div>
+<hr class="divider"/>
+<!-- KAPITEL 1 -->
+<h2>1. Das Vetorecht — IWF-Stimmstruktur</h2>
+<p>Der Internationale Währungsfonds wurde 1944 in Bretton Woods gegründet, mit Sitz in Washington, D.C. — wenige Gehminuten vom Weißen Haus. <span class="tag tag-belegt">BELEGT</span> Das Stimmrecht der Mitglieder richtet sich nicht nach Bevölkerungszahl, sondern nach Kapitaleinlage. Die USA sind mit einem Stimmanteil von 16,5 Prozent der mit Abstand größte Einzelaktionär. <span class="tag tag-belegt">BELEGT</span> Quelle: IWF-Gouverneursrat, imf.org/en/about/executive-board/members-quotas.</p>
+<p>Der entscheidende Mechanismus: Für eine Reihe wichtiger Entscheidungen — darunter Änderungen der IWF-Satzung, Quotenerhöhungen, Goldverkäufe und der Ausschluss von Mitgliedern — ist eine Mehrheit von 85 Prozent der Stimmen erforderlich. <span class="tag tag-belegt">BELEGT</span> Da die USA über 16,5 Prozent verfügen, können sie jede solche Entscheidung allein blockieren. Sie sind das einzige Land der Welt mit diesem Einzelveto.</p>
+<p>Diese Konstruktion ist kein Zufall. Der 85-Prozent-Schwellenwert wurde 1969 auf Druck der EWG-Gründungsstaaten von 80 auf 85 Prozent angehoben — mit dem Ziel, auch ihnen kollektiv ein Veto zu sichern. <span class="tag tag-belegt">BELEGT</span> Als Nebeneffekt blieb das US-Einzelveto erhalten, als der amerikanische Stimmanteil in den 1990er-Jahren unter 20 Prozent fiel.</p>
+<table class="compare-table">
+<thead>
+<tr>
+<th>Land / Gruppe</th>
+<th>IWF-Stimmanteil</th>
+<th>Bevölkerungsanteil weltweit</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>USA</td><td>16,5 % — Einzelveto</td><td>4,2 %</td></tr>
+<tr><td>EU-Mitglieder (gesamt)</td><td>~25 %</td><td>~5,5 %</td></tr>
+<tr><td>China</td><td>6,4 %</td><td>17,5 %</td></tr>
+<tr><td>67 klimavulnerabler Länder (V20)</td><td>6,7 %</td><td>~21 %</td></tr>
+<tr><td>138 Entwicklungsländer gesamt</td><td>~34 %</td><td>~85 %</td></tr>
+</tbody>
+</table>
+<p>Der Führungsposten des IWF ist durch informelle Übereinkunft seit Gründung stets mit einem Nicht-Amerikaner besetzt — ebenso wie die Weltbank traditionell einen US-Staatsbürger an der Spitze hat. <span class="tag tag-belegt">BELEGT</span> Beide Konventionen sind nirgends kodifiziert; sie wurden bisher ohne Ausnahme eingehalten.</p>
+<div class="source-box">
+<strong>Primärquellen</strong>
+    IMF Articles of Agreement, Art. XII §5(c): Supermajority-Regelung, imf.org — IMF Members' Quotas and Voting Power, imf.org/en/about/executive-board/members-quotas — Atlantic Council: „Understanding the debate over IMF quota reform", 2024 — Bretton Woods Project: „IMF and World Bank decision-making and governance", 2020, brettonwoodsproject.org — Rapkin/Strand: „Reforming the IMF's Weighted Voting System", G24, g24.org
+  </div>
+<hr class="divider"/>
+<!-- KAPITEL 2 -->
+<h2>2. Die Auflagen — Strukturanpassungsprogramme</h2>
+<p>IWF- und Weltbankkredite sind an Bedingungen geknüpft — sogenannte Strukturanpassungsprogramme (SAP). <span class="tag tag-belegt">BELEGT</span> Seit Ende der 1970er-Jahre wurden diese Auflagen systematisiert und im Rahmen der Schuldenkrise der 1980er-Jahre in Lateinamerika, Afrika und Asien flächendeckend angewendet.</p>
+<div class="sap-box">
+<div class="sap-title">▸ Typische Strukturanpassungsauflagen — IWF/Weltbank-Konditionalität</div>
+<div class="sap-row">
+<span class="sap-label">Privatisierung</span>
+<span class="sap-text">Staatliche Unternehmen (Wasser, Energie, Telekommunikation, Banken) müssen an private — häufig ausländische — Investoren veräußert werden. <span class="tag tag-belegt">BELEGT</span></span>
+</div>
+<div class="sap-row">
+<span class="sap-label">Marktöffnung</span>
+<span class="sap-text">Abbau von Zöllen und Importbeschränkungen; Öffnung für ausländisches Kapital und Konzerne. <span class="tag tag-belegt">BELEGT</span></span>
+</div>
+<div class="sap-row">
+<span class="sap-label">Sozialkürzungen</span>
+<span class="sap-text">Reduktion staatlicher Ausgaben für Gesundheit, Bildung und Subventionen für Grundnahrungsmittel zur Haushaltssanierung. <span class="tag tag-belegt">BELEGT</span></span>
+</div>
+<div class="sap-row">
+<span class="sap-label">Währungsfreigabe</span>
+<span class="sap-text">Aufhebung von Kapitalverkehrskontrollen; Wechselkurs dem Markt überlassen, auch wenn dies Abwertung und Inflation bedeutet. <span class="tag tag-belegt">BELEGT</span></span>
+</div>
+<div class="sap-row">
+<span class="sap-label">Rentenreform</span>
+<span class="sap-text">Weltbank vergab Kredite an mehrere Dutzend Länder unter der Auflage, staatliche Rentensysteme zu privatisieren. <span class="tag tag-belegt">BELEGT</span></span>
+</div>
+</div>
+<p>Die Auswirkungen dieser Programme auf Gesundheitssysteme, Lebensstandard und soziale Ungleichheit in betroffenen Ländern sind seit den 1980er-Jahren Gegenstand umfangreicher UN- und akademischer Forschung. <span class="tag tag-belegt">BELEGT</span> UNICEF veröffentlichte 1987 unter dem Titel „Adjustment with a Human Face" einen der ersten systematischen Berichte über die sozialen Folgekosten.</p>
+<p>Der IWF selbst hat ab den 2000er-Jahren Teile seiner Konditionierungspolitik intern evaluiert und kritisiert. <span class="tag tag-belegt">BELEGT</span> Das IWF-Independent Evaluation Office (IEO) veröffentlichte 2003 eine Bewertung, die strukturelle Mängel in der Anpassungspolitik dokumentierte. Die Programme wurden umbenannt — von „Structural Adjustment Facility" zu „Poverty Reduction and Growth Facility" — ohne dass die Grundstruktur der Kreditauflagen grundlegend verändert wurde. <span class="tag tag-extrapolation">EXTRAPOLATION</span>: Ob die Umbenennung eine inhaltliche Reform darstellte, ist in der Fachliteratur umstritten.</p>
+<div class="source-box">
+<strong>Primärquellen</strong>
+    UNICEF: „Adjustment with a Human Face", Cornia/Jolly/Stewart, 1987 — IMF Independent Evaluation Office: „The IMF and Aid to Sub-Saharan Africa", 2007, ieo-imf.org — Weltbank: „Annual Reports" (verschiedene Jahrgänge), worldbank.org — bpb.de: „Internationaler Währungsfonds und Weltbank", 2024 (Sekundär) — IMF: „Poverty Reduction and Growth Trust — Financing and Conditionality", imf.org
+  </div>
+<hr class="divider"/>
+<!-- KAPITEL 3 -->
+<h2>3. Die Zahlen — Globale Schuldenarchitektur 2024</h2>
+<p>Die globale öffentliche Verschuldung erreichte 2024 einen Rekordwert von 102 Billionen US-Dollar. <span class="tag tag-belegt">BELEGT</span> Auf Entwicklungsländer entfallen davon rund 31 Billionen Dollar — und ihre Schulden wachsen doppelt so schnell wie die der Industrieländer. Quelle: UNCTAD „A World of Debt 2025", basierend auf IWF-Daten.</p>
+<div class="debt-visual">
+<div class="debt-visual-title">Zinslast Entwicklungsländer 2024 — Kontext (UNCTAD/UN)</div>
+<div class="debt-row">
+<span class="debt-label">Zinszahlungen gesamt</span>
+<div class="debt-bar-outer"><div class="debt-bar-inner" style="width:100%"></div></div>
+<span class="debt-val">921 Mrd. $</span>
+</div>
+<div class="debt-row">
+<span class="debt-label">Anstieg ggü. Vorjahr</span>
+<div class="debt-bar-outer"><div class="debt-bar-inner" style="width:10%"></div></div>
+<span class="debt-val">+10 %</span>
+</div>
+<div class="debt-row">
+<span class="debt-label">Länder: Zinsen &gt; Bildung</span>
+<div class="debt-bar-outer"><div class="debt-bar-inner" style="width:60%"></div></div>
+<span class="debt-val">3,4 Mrd. Menschen</span>
+</div>
+<div class="debt-row">
+<span class="debt-label">Länder in Schuldennot</span>
+<div class="debt-bar-outer"><div class="debt-bar-inner" style="width:49%"></div></div>
+<span class="debt-val">49 % (Sep. 2025)</span>
+</div>
+<p style="font-family:var(--mono);font-size:0.68rem;color:var(--text-muted);margin-top:0.6rem;">Quelle: UNCTAD „A World of Debt 2025", unctad.org — IMF World Economic Outlook April 2025</p>
+</div>
+<p>49 Prozent der Länder, die beim IWF Anspruch auf Vorzugskredite haben, befinden sich laut IWF-Bewertung vom September 2025 entweder in akuter Schuldennot oder sind hochgradig gefährdet. <span class="tag tag-belegt">BELEGT</span> In den ärmsten Ländern (LDCs) flossen 2024 im Durchschnitt 22,3 Prozent der Staatseinnahmen in den Schuldendienst — der höchste Wert aller Entwicklungsländergruppen. <span class="tag tag-belegt">BELEGT</span></p>
+<p>Ein strukturelles Merkmal dieser Schuldenarchitektur: Externe Schulden von Entwicklungsländern sind überwiegend in US-Dollar denominiert. <span class="tag tag-belegt">BELEGT</span> Das bedeutet: Wenn der Dollar steigt — etwa weil die US-Notenbank die Zinsen erhöht — werden die Schulden für alle anderen automatisch teurer, ohne dass diese Länder irgendetwas daran ändern könnten. Die Zinserhöhungen der Fed 2022–2023 zur Bekämpfung der US-Inflation verteuerten gleichzeitig die Schuldendienstkosten für Dutzende Entwicklungsländer. <span class="tag tag-belegt">BELEGT</span></p>
+<div class="source-box">
+<strong>Primärquellen</strong>
+    UNCTAD: „A World of Debt 2025", unctad.org — UNCTAD: „External Debt Sustainability and Development 2025", UN Secretary-General Report, unctad.org — IMF World Economic Outlook, April 2025, imf.org — UN: „Sovereign Debt Vulnerabilities in Developing Countries", unctad.org — UNCTAD: „Rising Cost of Debt Squeezing Development Prospects", März 2026
+  </div>
+<hr class="divider"/>
+<!-- KAPITEL 4 -->
+<h2>4. Der Mechanismus — Wie das System sich selbst erhält</h2>
+<p>Die Struktur des globalen Schuldensystems ist selbstverstärkend. Das lässt sich in vier dokumentierten Schritten beschreiben:</p>
+<div class="sap-box">
+<div class="sap-title">▸ Dokumentierter Kreislauf: Verschuldung → Konditionalität → Abhängigkeit</div>
+<div class="sap-row">
+<span class="sap-label">① Ausgangslage</span>
+<span class="sap-text">Entwicklungsland benötigt Devisen — für Importe, Schuldenrückzahlung, Krisenfinanzierung. Devisen bedeuten: US-Dollar. <span class="tag tag-belegt">BELEGT</span></span>
+</div>
+<div class="sap-row">
+<span class="sap-label">② Kreditantrag</span>
+<span class="sap-text">Antrag beim IWF oder der Weltbank. Vergabe an Auflagen geknüpft: Privatisierung, Marktöffnung, Haushaltskürzungen. <span class="tag tag-belegt">BELEGT</span></span>
+</div>
+<div class="sap-row">
+<span class="sap-label">③ Auflagen</span>
+<span class="sap-text">Durchführung der Reformen schwächt staatliche Steuerungsfähigkeit, öffnet Märkte für ausländisches Kapital, reduziert Sozialausgaben. <span class="tag tag-belegt">BELEGT</span> Kausalität zwischen Auflagen und Entwicklungsergebnissen ist wissenschaftlich umstritten. <span class="tag tag-extrapolation">EXTRAPOLATION</span></span>
+</div>
+<div class="sap-row">
+<span class="sap-label">④ Neue Schulden</span>
+<span class="sap-text">Wachstum bleibt hinter Erwartungen zurück → neue Zahlungsbilanzschwierigkeiten → neuer Kreditantrag → neue Auflagen. <span class="tag tag-belegt">BELEGT</span> (UNCTAD: 75 % der Länder in Schuldennot 2025 waren es bereits 2018)</span>
+</div>
+</div>
+<p>UNCTAD dokumentiert: Drei Viertel der Länder, die der IWF und die Weltbank im September 2025 als in Schuldennot oder hochgefährdet einstufen, befanden sich bereits seit mindestens 2018 in dieser Lage. <span class="tag tag-belegt">BELEGT</span> Der Schuldenzyklus dauert an — trotz mehrerer Restrukturierungsrunden und trotz des G20 Common Framework für Schuldenbehandlung.</p>
+<div class="highlight">
+    In 99 Entwicklungsländern — 73 Prozent aller Entwicklungsländer — sank zwischen 2018 und 2024 der Anteil der Staatseinnahmen, der für Gesundheit, Bildung und Infrastruktur zur Verfügung stand. Der Grund: steigende Zinszahlungen fraßen den Handlungsspielraum auf. Quelle: UNCTAD, März 2026. <span class="tag tag-belegt">BELEGT</span>
+</div>
+<div class="source-box">
+<strong>Primärquellen</strong>
+    UNCTAD: „A World of Debt 2025", S. 4–12, unctad.org — IMF: „Debt Sustainability Assessments", September 2025 — G20 Common Framework for Debt Treatment: g20.org — UNCTAD: „Rising Cost of Debt", März 2026 — IMF IEO: „Structural Conditionality in IMF-Supported Programs", 2007
+  </div>
+<hr class="divider"/>
+<!-- KAPITEL 5 -->
+<h2>5. John Perkins und die Grenzen der Dokumentierbarkeit</h2>
+<p>John Perkins, früherer Wirtschaftsberater internationaler Beratungsfirmen, beschrieb 2004 in „Confessions of an Economic Hit Man" einen Mechanismus: Entwicklungsländer würden systematisch zu überdimensionierten Infrastrukturprojekten überredet, die von US-Konzernen realisiert werden und in Schulden münden, die das Land zahlungsunfähig machen — woraufhin Konzessionen bei Rohstoffen oder strategischen Ressourcen gefordert werden. <span class="tag tag-extrapolation">EXTRAPOLATION</span></p>
+<p>Perkins' Beschreibungen stützen sich auf seine eigene Arbeit — sie sind nicht durch unabhängige Dokumente vollständig verifiziert. Strukturelle Parallelen zu dokumentierten Fällen — Ecuador in den 1970er-Jahren, Indonesien, Panama — bestehen, sind aber keine Bestätigung des Gesamtmechanismus. Was sich belegen lässt: Der IWF-Kredit an Argentinien 2018 (57 Milliarden Dollar — größtes IWF-Darlehen der Geschichte) war mit Auflagen verknüpft, die argentinische Ökonomen und das IWF-eigene IEO später als kontraproduktiv beurteilten. <span class="tag tag-belegt">BELEGT</span></p>
+<p>Die Grenze zwischen dokumentierbarem Strukturmechanismus und zugeschriebener Absicht ist hier besonders relevant. Was sich sauber belegen lässt: die Stimmstruktur, die Auflagenpolitik, die Schuldendaten. Was sich nicht belegen lässt: koordinierte Absicht hinter den Strukturen. Dunkelfeld.report hält diese Grenze ein. <span class="tag tag-offen">OFFEN</span>: Ob die beschriebenen Mechanismen Ergebnis von Interessenkongruenz, struktureller Pfadabhängigkeit oder gezielter Steuerung sind, ist nicht dokumentarisch auflösbar.</p>
+<div class="source-box">
+<strong>Quellen</strong>
+    John Perkins: „Confessions of an Economic Hit Man", Berrett-Koehler Publishers, 2004 — IMF IEO: „The IMF and Argentina 1991–2001", 2004, ieo-imf.org — IMF: Argentina Stand-By Arrangement, Juni 2018, imf.org — Argentinisches Finanzministerium: Schuldenstatistik 2018–2020
+  </div>
+<hr class="divider"/>
+<!-- MUSTER -->
+<h2>Das Muster</h2>
+<p>Das System lässt sich in drei Ebenen beschreiben, die alle vollständig aus Primärquellen belegbar sind:</p>
+<p><strong>Strukturebene:</strong> Die USA verfügen im IWF über das einzige Einzelveto. Externe Schulden von Entwicklungsländern sind überwiegend in Dollar denominiert. IWF-Kredite sind an wirtschaftspolitische Auflagen geknüpft.</p>
+<p><strong>Datenebene:</strong> 102 Billionen Dollar globale Staatsschulden. 921 Milliarden Dollar Zinszahlungen aus Entwicklungsländern 2024 — plus zehn Prozent gegenüber 2023. 49 Prozent der IWF-berechtigten Länder in Schuldennot oder hochgefährdet. 3,4 Milliarden Menschen in Ländern, die mehr für Zinsen als für Gesundheit ausgeben.</p>
+<p><strong>Konsequenzebene:</strong> 75 Prozent der Länder in Schuldennot 2025 waren es bereits 2018. Die Zyklen wiederholen sich. Was sich nicht dokumentieren lässt, ist ob das so gewollt ist.</p>
+<!-- SERIES NAV -->
+<div class="series-nav">
+<div class="series-nav-title">▸ Serie: Der Hegemon — alle Teile</div>
+<ul>
+<li><a href="hegemon-usa.html">Teil 1: Überblick — fünf Instrumente im Überblick</a></li>
+<li><a href="hegemon-dollar.html">Teil 2: Das Geld — Dollarhegemonie, Petrodollar, SWIFT</a></li>
+<li><a href="hegemon-militaer.html">Teil 3: Die Streitkräfte — Basen, SOFA, Rüstungskomplex</a></li>
+<li><strong style="color:var(--text-bright)">Teil 4: Die Wirtschaft — IWF, Weltbank, Schuldenarchitektur</strong> — dieser Artikel</li>
+<li><a href="hegemon-geheimdienste.html">Teil 5: Die Operationen — dokumentierte Regime Changes</a> <span class="soon">(folgt)</span></li>
+<li><a href="hegemon-softpower.html">Teil 6: Die Narrative — Soft Power und Informationsinfrastruktur</a> <span class="soon">(folgt)</span></li>
+</ul>
+</div>
+<!-- CLOSING QUESTIONS -->
+<div class="closing-questions">
+<div class="label">Offene Fragen</div>
+<p>Die 85-Prozent-Hürde für wichtige IWF-Entscheidungen wurde 1969 auf Druck europäischer Staaten eingeführt — und konserviert seither das US-Einzelveto. Welche Reformvorschläge zur Stimmverteilung scheiterten wann und warum?</p>
+<p>75 Prozent der Länder in akuter Schuldennot 2025 waren es bereits 2018. Was genau hat sich verändert — und was nicht — seit den Hilfs- und Restrukturierungsrunden der vergangenen sieben Jahre?</p>
+<p>Wenn externe Schulden von Entwicklungsländern überwiegend in Dollar denominiert sind, und wenn US-Zinsentscheidungen diese Schulden automatisch verteuern — welche Institution ist für diesen transnationalen Effekt rechenschaftspflichtig?</p>
+<p>Der IWF hat seine eigene Konditionierungspolitik intern mehrfach kritisch evaluiert. Wie viel hat sich an der Praxis verändert — und gegenüber wem ist diese Evaluation verbindlich?</p>
+</div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

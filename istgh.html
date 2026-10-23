@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>IStGH: Weltgericht ohne Polizei — dunkelfeld.report</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #09090b;
+    color: #d4d4d8;
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.7;
+    font-size: 18px;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 60px 24px 100px; }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: #71717a;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .update-banner {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: #f4f4f5;
+    background: #451a03;
+    border-left: 3px solid #e8c547;
+    padding: 12px 16px;
+    margin-bottom: 32px;
+    letter-spacing: 0.02em;
+  }
+  h1 {
+    font-size: 34px;
+    line-height: 1.25;
+    color: #f4f4f5;
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+  .subtitle {
+    font-size: 19px;
+    color: #a1a1aa;
+    font-style: italic;
+    margin-bottom: 40px;
+    border-left: 3px solid #e8c547;
+    padding-left: 16px;
+  }
+  h2 {
+    font-size: 24px;
+    color: #e8c547;
+    margin-top: 56px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 10px;
+  }
+  h3 {
+    font-size: 19px;
+    color: #f4f4f5;
+    margin-top: 32px;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  p { margin-bottom: 20px; color: #d4d4d8; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-left: 6px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .belegt { background: #14532d; color: #86efac; }
+  .extrapolation { background: #7c2d12; color: #fdba74; }
+  .offen { background: #3f3f46; color: #d4d4d8; }
+  .vt-widerlegt { background: #3f3f46; color: #71717a; text-decoration: line-through; }
+  .stat-grid {
+    display: flex;
+    gap: 16px;
+    margin: 32px 0;
+    flex-wrap: wrap;
+  }
+  .stat-box {
+    flex: 1;
+    min-width: 140px;
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-top: 3px solid #e8c547;
+    padding: 18px 16px;
+  }
+  .stat-num {
+    font-family: 'Courier New', monospace;
+    font-size: 28px;
+    color: #e8c547;
+    font-weight: bold;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: #a1a1aa;
+    margin-top: 4px;
+  }
+  .timeline {
+    margin: 32px 0;
+    border-left: 2px solid #27272a;
+    padding-left: 24px;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 24px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -30px;
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #e8c547;
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: #e8c547;
+    margin-bottom: 4px;
+  }
+  .person-card {
+    background: #18181b;
+    border: 1px solid #27272a;
+    padding: 20px;
+    margin: 28px 0;
+  }
+  .person-name { font-size: 19px; color: #f4f4f5; margin-bottom: 4px; }
+  .person-role { font-size: 14px; color: #a1a1aa; font-family: 'Courier New', monospace; margin-bottom: 12px; }
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 16px 20px;
+    margin: 24px 0;
+    font-size: 15px;
+    color: #a1a1aa;
+  }
+  .source-box strong { color: #d4d4d8; }
+  .pull-quote {
+    font-size: 24px;
+    color: #f4f4f5;
+    font-style: italic;
+    border-left: 3px solid #e8c547;
+    padding: 8px 0 8px 24px;
+    margin: 40px 0;
+    line-height: 1.5;
+  }
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 15px;
+  }
+  .data-table th {
+    text-align: left;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #71717a;
+    border-bottom: 1px solid #27272a;
+    padding: 8px 12px;
+  }
+  .data-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #1c1c1f;
+    vertical-align: top;
+  }
+  .beleg-vor-motiv-box {
+    background: #18181b;
+    border: 1px solid #e8c547;
+    padding: 20px 24px;
+    margin: 32px 0;
+    font-size: 15px;
+  }
+  .beleg-vor-motiv-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: #e8c547;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  .closing {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid #27272a;
+    font-size: 17px;
+  }
+  .source-list {
+    margin-top: 56px;
+    font-size: 14px;
+    color: #71717a;
+    font-family: 'Courier New', monospace;
+    line-height: 1.9;
+  }
+  em { color: #e4e4e7; }
+</style>
+<meta name="description" content="Der Internationale Strafgerichtshof (IStGH) in Den Haag wurde 2002 gegründet, um die schwersten Verbrechen zu verfolgen: Völkermord, Verbrechen gegen die …">
+<meta name="rubrik" content="cat-geo">
+<meta name="kachel-titel" content="Weltgericht ohne Polizei — Der IStGH zwischen Anspruch und Abhängigkeit">
+<link rel="canonical" href="https://dunkelfeld.report/istgh.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Weltgericht ohne Polizei — Der IStGH zwischen Anspruch und Abhängigkeit">
+<meta property="og:description" content="Der Internationale Strafgerichtshof (IStGH) in Den Haag wurde 2002 gegründet, um die schwersten Verbrechen zu verfolgen: Völkermord, Verbrechen gegen die …">
+<meta property="og:url" content="https://dunkelfeld.report/istgh.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Weltgericht ohne Polizei — Der IStGH zwischen Anspruch und Abhängigkeit", "description": "Der Internationale Strafgerichtshof (IStGH) in Den Haag wurde 2002 gegründet, um die schwersten Verbrechen zu verfolgen: Völkermord, Verbrechen gegen die …", "inLanguage": "de", "url": "https://dunkelfeld.report/istgh.html", "mainEntityOfPage": "https://dunkelfeld.report/istgh.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="meta">dunkelfeld.report · Analyse &amp; Dokumentation · Stand: 25.07.2026</div>
+<div class="update-banner">NACHTRAG 25.07.2026: Chefankläger Karim Khan wurde von der Versammlung der Vertragsstaaten seines Amtes enthoben — siehe Abschnitt „Nachtrag: Die Amtsenthebung“ am Ende des Artikels.</div>
+<h1>Weltgericht ohne Polizei — Der IStGH zwischen Anspruch und Abhängigkeit</h1>
+<div class="subtitle">Ein Gericht, das jeden anklagen kann, aber nur manche verhaften lassen kann. Was das Komplementaritätsprinzip verspricht — und was die Vollstreckungsrealität davon übrig lässt.</div>
+<p>Der Internationale Strafgerichtshof (IStGH) in Den Haag wurde 2002 gegründet, um die schwersten Verbrechen zu verfolgen: Völkermord, Verbrechen gegen die Menschlichkeit, Kriegsverbrechen. 125 Staaten sind Vertragsparteien des Rom-Statuts. <span class="tag belegt">BELEGT</span></p>
+<p>Was der Gerichtshof nicht hat: eine eigene Polizei, eine eigene Vollzugsbehörde, ein Mittel, Haftbefehle gegen den Willen eines Staates durchzusetzen. Er ist strukturell vollständig auf die Kooperation seiner Mitgliedstaaten angewiesen. <span class="tag belegt">BELEGT</span></p>
+<div class="stat-grid">
+<div class="stat-box"><div class="stat-num">125</div><div class="stat-label">Vertragsstaaten (Rom-Statut)</div></div>
+<div class="stat-box"><div class="stat-num">18</div><div class="stat-label">Richter, aus aller Welt entsandt</div></div>
+<div class="stat-box"><div class="stat-num">24</div><div class="stat-label">Jahre seit Gründung (2002–2026)</div></div>
+</div>
+<h2>Komplementarität und Vollstreckungsschwäche</h2>
+<p>Das Komplementaritätsprinzip besagt: Der IStGH wird nur aktiv, wenn ein Staat selbst nicht willens oder in der Lage ist, Verbrechen zu verfolgen. Damit ist er als Ergänzung nationaler Justiz gedacht, nicht als deren Ersatz. <span class="tag belegt">BELEGT</span></p>
+<p>Das Problem zeigt sich, sobald ein Haftbefehl ergeht: Ein IStGH-Haftbefehl ist zahnlos, wenn der betroffene Staat nicht kooperiert. Wladimir Putin etwa kann seit dem Haftbefehl von 2023 keine IStGH-Mitgliedsstaaten mehr bereisen, ohne eine Festnahme zu riskieren — er kann aber weiterhin uneingeschränkt in Nicht-Mitgliedsstaaten reisen und regieren. <span class="tag belegt">BELEGT</span></p>
+<h3>Aktuelle Situationsländer und Verfahren</h3>
+<p>Der Gerichtshof führt Ermittlungen oder Vorermittlungen unter anderem zu: Ukraine, Afghanistan, Bangladesch/Myanmar, Elfenbeinküste, DR Kongo, Georgien, Kenia, Mali, den Palästinensischen Gebieten, Uganda, der Zentralafrikanischen Republik sowie — per Verweis des UN-Sicherheitsrats — Libyen und Sudan. <span class="tag belegt">BELEGT</span></p>
+<p>Zu den jüngsten Haftbefehlen zählen jene gegen Wladimir Putin (Ukraine, Verschleppung von Kindern), gegen Benjamin Netanjahu und den damaligen Verteidigungsminister Joav Gallant (Gaza), sowie gegen die Taliban-Führung — Emir Haibatullah Achundsada und Oberrichter Abdul Hakim Hakkani — wegen der systematischen Unterdrückung von Frauen und Mädchen in Afghanistan (Juli 2025). <span class="tag belegt">BELEGT</span></p>
+<h2>Fallauswahl-Asymmetrie: Wer trägt Konsequenzen?</h2>
+<p>Auffällig ist ein Muster: Ermittlungen gegen afrikanische Warlords und nicht-westliche Machthaber verlaufen ohne größere internationale Gegenreaktion gegen den Gerichtshof selbst. Ermittlungen, die US-Personal oder engste US-Verbündete betreffen, ziehen dagegen gezielte Sanktionen gegen einzelne Richter und Mitarbeiter nach sich. <span class="tag extrapolation">EXTRAPOLATION</span> Ob dies eine bewusste Abschreckungsstrategie ist oder Ausdruck realpolitischer Machtverhältnisse ohne koordinierte Absicht, lässt sich aus den vorliegenden Dokumenten nicht abschließend belegen.</p>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-date">2020–2023</div>
+      Erste US-Sanktionen (Trump-Administration) gegen damalige Chefanklägerin Fatou Bensouda wegen Ermittlungen zu US-Streitkräften in Afghanistan; später unter Biden aufgehoben. <span class="tag belegt">BELEGT</span>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">Juni 2025</div>
+      Die USA verhängen neue Sanktionen gegen vier IStGH-Richterinnen. Zwei von ihnen hatten die Afghanistan-Untersuchung gegen US-Soldaten genehmigt, zwei weitere die Haftbefehle gegen Netanjahu und Gallant ermöglicht. <span class="tag belegt">BELEGT</span>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">Mai 2025</div>
+      Chefankläger Karim Khan legt sein Amt wegen Vorwürfen sexuellen Fehlverhaltens gegenüber einer Mitarbeiterin vorläufig nieder. <span class="tag belegt">BELEGT</span>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">März 2026</div>
+      Ein eigens berufenes, dreiköpfiges Richtergremium kommt nach mehrfachen Fristverlängerungen zu dem Ergebnis, Khan sei nach dem strafrechtlichen Maßstab „beyond reasonable doubt" kein Fehlverhalten nachzuweisen — bei gleichzeitiger Kritik an der aus seiner Sicht mangelhaften Sachverhaltsaufklärung durch die interne UN-Aufsichtsstelle OIOS. <span class="tag belegt">BELEGT</span>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">9. Juni 2026</div>
+      Khan wird erneut — und diesmal formell — suspendiert, nachdem eine zweite ehemalige Mitarbeiterin öffentlich Vorwürfe erhebt. <span class="tag belegt">BELEGT</span>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">24./25. Juli 2026</div>
+      Die Versammlung der Vertragsstaaten stimmt in einer eigens einberufenen Sondersitzung in New York für die Amtsenthebung Khans — erstmals in der Geschichte des Gerichtshofs. <span class="tag belegt">BELEGT</span>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">Mai 2026</div>
+      Das russische Parlament verabschiedet ein Gesetz, das den Präsidenten ermächtigt, Militäreinsätze im Ausland durchzuführen, um im Ausland inhaftierte russische Staatsbürger zu befreien — anwendbar auch auf Fälle internationaler Strafverfolgung. <span class="tag belegt">BELEGT</span>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">Juni 2026</div>
+      Niger vollzieht den 2025 angekündigten Austritt aus dem IStGH. <span class="tag belegt">BELEGT</span>
+</div>
+</div>
+<div class="source-box"><strong>Einordnung:</strong> Die Afrikanische Union hat wiederholt formell kritisiert, dass ein unverhältnismäßig hoher Anteil der Verfahren afrikanische Situationsländer betrifft. Mehrere Staaten haben ihren Austritt mit dem Vorwurf neokolonialer Selektivität begründet. <span class="tag belegt">BELEGT</span> Ob diese Selektivität Ausdruck gezielter Politik oder struktureller Faktoren (Kooperationsbereitschaft, UN-Sicherheitsrats-Verweise, Ratifikationsstatus) ist, bleibt <span class="tag offen">OFFEN</span>.</div>
+<h2>Struktur im Vergleich: IStGH und EuGH</h2>
+<table class="data-table">
+<tr><th></th><th>IStGH</th><th>EuGH</th></tr>
+<tr><td>Rechtsnatur</td><td>Eigenständige internationale Organisation, nicht Teil der UN</td><td>Organ der Europäischen Union</td></tr>
+<tr><td>Richterbestellung</td><td>18 Richter, von Vertragsstaaten gewählt</td><td>Von Mitgliedstaaten entsandt (Art. 253 AEUV)</td></tr>
+<tr><td>Vollstreckung</td><td>Keine eigene Polizei/Vollzugsbehörde — abhängig von Kooperation der Staaten</td><td>Urteile in der EU unmittelbar vollstreckbar, eigener Durchsetzungsapparat</td></tr>
+<tr><td>Rechtsmittel</td><td>Kein letztinstanzliches Rechtsmittelgericht über dem IStGH</td><td>Eingebettet in mehrstufiges EU-Rechtssystem</td></tr>
+</table>
+<h2>Der Fall Karim Khan — eine Institution, die selbst schwer aufzuklären ist</h2>
+<div class="person-card">
+<div class="person-name">Karim Ahmad Khan</div>
+<div class="person-role">Chefankläger des IStGH, Juni 2021 – Juli 2026, britischer Jurist</div>
+<p style="margin-bottom:0;">Khan beantragte unter anderem die Haftbefehle gegen Wladimir Putin und gegen Netanjahu/Gallant. Ihm werden von zwei ehemaligen Mitarbeiterinnen sexuelle Übergriffe und Machtmissbrauch über einen längeren Zeitraum vorgeworfen. <span class="tag belegt">BELEGT</span></p>
+</div>
+<p>Die UN-interne Aufsichtsstelle OIOS (Office of Internal Oversight Services) untersuchte die ursprünglichen Vorwürfe. Am 11. Dezember 2025 erreichte ihr Bericht die Vertragsstaaten-Verwaltung („Bureau") des Gerichts — veröffentlicht wurde er bislang nicht. Ein eigens berufenes, dreiköpfiges Richtergremium (mit Vertretern aus Afrika, der Karibik und Europa) erstellte daraufhin ein Rechtsgutachten. <span class="tag belegt">BELEGT</span></p>
+<p>Kein dokumentierter Bezug zu Minderjährigen liegt vor — die Vorwürfe betreffen ausschließlich erwachsene ehemalige Mitarbeiterinnen. <span class="tag offen">OFFEN</span> (sollten abweichende Primärquellen vorliegen, wären diese gesondert zu prüfen)</p>
+<div class="pull-quote">„Bei einem derart großen Machtgefälle kann es unmöglich einvernehmlich sein."</div>
+<p style="font-size:14px; color:#71717a; margin-top:-12px;">— eine der Betroffenen, öffentlich unter dem Vornamen „Sarah" (CNN-Interview, Juli 2026)</p>
+<div class="beleg-vor-motiv-box">
+<div class="label">Beleg-vor-Motiv-Prinzip</div>
+<p style="margin-bottom:0;">Khan hatte selbst wiederholt den Verdacht geäußert, die Vorwürfe könnten politisch motiviert sein, um seine Ermittlungen — insbesondere gegen Netanjahu — zu diskreditieren. Israelische Vertreter werteten seine Entlassung umgekehrt als Bestätigung der Kritik an seiner Unparteilichkeit. <span class="tag belegt">BELEGT</span> Beide Deutungen sind dokumentierte Positionen von Beteiligten — keine ist aus den vorliegenden Quellen beweisbar. Was belegt ist: das Verfahren, die Fristen, die Abstimmung. Was Motiv war, bleibt <span class="tag offen">OFFEN</span>.</p>
+</div>
+<h2>Nachtrag: Die Amtsenthebung (Juli 2026)</h2>
+<p>Am 24./25. Juli 2026 stimmte die Versammlung der Vertragsstaaten (Assembly of States Parties, ASP) in einer eigens einberufenen Sondersitzung am UN-Hauptquartier in New York in geheimer Abstimmung für die Amtsenthebung Karim Khans. <span class="tag belegt">BELEGT</span> Es ist das erste Mal in der Geschichte des Gerichtshofs, dass ein amtierender Chefankläger auf diesem Weg entfernt wird. <span class="tag belegt">BELEGT</span></p>
+<p>Die genannten Abstimmungsergebnisse variieren zwischen Quellen — teils ist von 82 der 125 Staaten die Rede, teils von „mehr als 62". <span class="tag offen">OFFEN</span> (das offizielle ASP-Kommuniqué wäre hier als Primärquelle nachzuprüfen, sobald veröffentlicht). Übereinstimmend berichtet wird: Khan wird „schweres Fehlverhalten und eine schwere Pflichtverletzung" vorgeworfen; die stellvertretenden Chefankläger führen das Amt bis zu einer Neuwahl kommissarisch weiter. <span class="tag belegt">BELEGT</span></p>
+<p>Bemerkenswert im Vergleich zum März-2026-Rechtsgutachten: Das von der ASP selbst berufene Richtergremium hatte Khan nach strafrechtlichem Maßstab („beyond reasonable doubt") von den ursprünglichen Vorwürfen entlastet. Die politische Versammlung der Vertragsstaaten kam — auf Basis neuer, öffentlich gewordener Aussagen zweier Betroffener — zu einem gegenteiligen Ergebnis. <span class="tag belegt">BELEGT</span> <span class="tag extrapolation">EXTRAPOLATION</span> Ob dies eine Korrektur eines zu engen ersten Prüfmaßstabs darstellt oder eine politisch motivierte Entscheidung war, die durch neue Fakten lediglich legitimiert wurde, lässt sich aus den vorliegenden Dokumenten nicht trennen.</p>
+<p>Khans Anwälte hatten kurz vor der Abstimmung in einem offenen Brief auf der Plattform X die Mitgliedstaaten aufgefordert, ihn nicht abzusetzen, da kein Fehlverhalten formal nachgewiesen worden sei, und vor einer Präzedenzwirkung für die Unabhängigkeit künftiger Ankläger gewarnt. <span class="tag belegt">BELEGT</span></p>
+<p>Der politische Kontext bleibt Teil des Bildes: US-Außenminister Marco Rubio hatte zuvor angekündigt, den IStGH „Ziegel für Ziegel" demontieren zu wollen; Washington hatte bereits Sanktionen gegen Richter und Mitarbeiter verhängt (Einreiseverbote, Sperrung von Kreditkarten und Bankkonten). <span class="tag belegt">BELEGT</span> Israelische Vertreter kommentierten die Entlassung Khans als Bestätigung ihrer Kritik an seiner Unparteilichkeit. <span class="tag belegt">BELEGT</span> Dass diese externen Druckkampagnen die Entscheidung der Vertragsstaaten beeinflusst haben, ist strukturell plausibel, aber nicht kausal nachweisbar. <span class="tag extrapolation">EXTRAPOLATION</span></p>
+<div class="stat-grid">
+<div class="stat-box"><div class="stat-num">1.</div><div class="stat-label">Mal in der Geschichte des IStGH, dass ein Chefankläger abgesetzt wird</div></div>
+<div class="stat-box"><div class="stat-num">2</div><div class="stat-label">ehemalige Mitarbeiterinnen erheben Vorwürfe</div></div>
+<div class="stat-box"><div class="stat-num">März→Juli</div><div class="stat-label">2026: Entlastung durch Richtergremium → Amtsenthebung durch ASP</div></div>
+</div>
+<div class="closing">
+<p><em>Ein Gericht ohne eigene Polizei kann jeden anklagen — aber nur manche verhaften lassen. Ist das ein Konstruktionsfehler des Völkerrechts selbst, oder das bestmögliche Ergebnis eines Systems, das auf freiwillige Kooperation souveräner Staaten angewiesen ist? Und was bedeutet es für die Glaubwürdigkeit einer Institution, wenn das eigene, selbst berufene Rechtsgutachten zu einem anderen Ergebnis kommt als die politische Versammlung, die am Ende entscheidet? War die ASP-Entscheidung eine überfällige Korrektur — oder hat sich der Gerichtshof mit der Absetzung seines eigenen obersten Anklägers unter genau den externen Druck gebeugt, den er anderen Institutionen vorwirft?</em></p>
+</div>
+<div class="source-list">
+    Quellen: Rom-Statut des IStGH · Berichte der Versammlung der Vertragsstaaten (ASP) · Reuters, AP, dpa, BBC · ZDFheute (25.07.2026) · Legal Tribune Online (24./25.07.2026) · Al Jazeera / Middle East Eye (März 2026, Entlastungsbericht) · Wall Street Journal (ursprüngliche Berichterstattung der Vorwürfe) · US-Außenministerium (Sanktionsankündigungen) · Afrikanische Union (Stellungnahmen zur Fallauswahl) · IPG Journal, ZDFheute (Einordnung Prof. Florian Jeßberger, Humboldt-Universität)
+  </div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

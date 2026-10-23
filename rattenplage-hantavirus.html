@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rattenplage: Das Ende der Dauerbeköderung — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --text: #e4e4e7;
+    --muted: #8b8b93;
+    --box: #1a1a2e;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --grey: #71717a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+  .kicker {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.3rem;
+    line-height: 1.25;
+    margin: 0 0 1rem;
+    font-weight: normal;
+  }
+  .standfirst {
+    font-size: 1.25rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  .meta {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+    padding: 0.8rem 0;
+    margin-bottom: 3rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin: 3rem 0 1rem;
+    color: var(--accent);
+    line-height: 1.35;
+  }
+  h3 {
+    font-size: 1.15rem;
+    font-weight: normal;
+    margin: 2rem 0 0.8rem;
+    color: var(--text);
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 0.03em;
+  }
+  p { margin: 0 0 1.3rem; }
+  a { color: var(--accent); }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    padding: 0.15rem 0.5rem;
+    border: 1px solid;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-right: 0.4rem;
+    text-transform: uppercase;
+  }
+  .t-belegt { color: var(--green); border-color: var(--green); }
+  .t-extra { color: var(--orange); border-color: var(--orange); }
+  .t-offen { color: var(--grey); border-color: var(--grey); }
+  .t-vt { color: var(--grey); border-color: var(--grey); text-decoration: line-through; }
+  .source {
+    background: var(--box);
+    border-left: 3px solid var(--accent);
+    padding: 1.2rem 1.4rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+  .source .label {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+  .timeline {
+    border-left: 2px solid #27272a;
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+  }
+  .timeline .entry { margin-bottom: 1.6rem; position: relative; }
+  .timeline .entry::before {
+    content: '';
+    position: absolute;
+    left: -1.93rem;
+    top: 0.55rem;
+    width: 9px; height: 9px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .timeline .date {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    display: block;
+  }
+  .timeline .body { font-size: 0.98rem; color: var(--text); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.92rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.7rem 0.6rem;
+    border-bottom: 1px solid #27272a;
+    vertical-align: top;
+  }
+  th {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .pullquote {
+    font-size: 1.35rem;
+    line-height: 1.6;
+    color: var(--accent);
+    border: none;
+    margin: 2.5rem 0;
+    padding: 0 0 0 1.5rem;
+    border-left: 3px solid var(--accent);
+    font-style: italic;
+  }
+  .closing {
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid #27272a;
+    font-style: italic;
+    color: var(--muted);
+  }
+  .sources-list {
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid #27272a;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+  .sources-list h3 { color: var(--accent); font-size: 0.85rem; }
+  .sources-list ol { padding-left: 1.2rem; }
+  .sources-list li { margin-bottom: 0.5rem; }
+  .series-nav {
+    margin-top: 3rem;
+    padding: 1.2rem 1.4rem;
+    background: var(--box);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.82rem;
+    line-height: 1.8;
+  }
+  .series-nav .label {
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+</style>
+<meta name="description" content="Ab Mitte 2027 dürfen Betriebe kein vorbeugendes Rattengift mehr auslegen. Boulevardmedien machen daraus eine Entscheidung zweier SPD-Minister. Die …">
+<meta name="rubrik" content="cat-nahrung">
+<meta name="kachel-titel" content="Rattenplage: Das Ende der Dauerbeköderung">
+<link rel="canonical" href="https://dunkelfeld.report/rattenplage-hantavirus.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rattenplage: Das Ende der Dauerbeköderung">
+<meta property="og:description" content="Ab Mitte 2027 dürfen Betriebe kein vorbeugendes Rattengift mehr auslegen. Boulevardmedien machen daraus eine Entscheidung zweier SPD-Minister. Die …">
+<meta property="og:url" content="https://dunkelfeld.report/rattenplage-hantavirus.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Rattenplage: Das Ende der Dauerbeköderung", "description": "Ab Mitte 2027 dürfen Betriebe kein vorbeugendes Rattengift mehr auslegen. Boulevardmedien machen daraus eine Entscheidung zweier SPD-Minister. Die …", "inLanguage": "de", "url": "https://dunkelfeld.report/rattenplage-hantavirus.html", "mainEntityOfPage": "https://dunkelfeld.report/rattenplage-hantavirus.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="kicker">Regulierung &amp; Wahrnehmung — Teil 1 von 2</div>
+<h1>Das Ende der Dauerbeköderung</h1>
+<p class="standfirst">Ab Mitte 2027 dürfen Betriebe kein vorbeugendes Rattengift mehr auslegen. Boulevardmedien machen daraus eine Entscheidung zweier SPD-Minister. Die Aktenlage zeigt etwas anderes — und der befürchtete Seuchen-Zusammenhang ist nicht der, den die Schlagzeilen nahelegen.</p>
+<div class="meta">
+    dunkelfeld.report  ·  Recherche: Juli 2026  ·  Quellen: BAuA, Umweltbundesamt, RKI, Bundestagsdrucksache 19/26709, LAVES Niedersachsen
+  </div>
+<p>Am 27. Juli 2026 erschien auf einem reichweitenstarken Nachrichtenportal ein Text unter der Rubrik „SPD-Ministerien". Die Kernaussage: Deutschland drohe „dank Arbeitsministerin Bas und Umweltminister Schneider" eine Rattenplage. Ab 2027 sei kein präventives Rattengift mehr erlaubt.</p>
+<p>Die Meldung traf einen Nerv. Sie enthält einen wahren Kern. Und sie verschiebt gleichzeitig drei Dinge: wer entschieden hat, was genau entschieden wurde — und welche Gesundheitsgefahr daraus tatsächlich folgt.</p>
+<h2>Was tatsächlich beschlossen wurde</h2>
+<p><span class="tag t-belegt">Belegt</span> Die Bundesanstalt für Arbeitsschutz und Arbeitsmedizin (BAuA) ist in Deutschland die Zulassungsbehörde für Biozidprodukte. Auf ihrer Website beschreibt sie die kommende Wiederzulassung antikoagulanter Rodentizide — also blutgerinnungshemmender Rattengifte — in einer Formulierung, die den entscheidenden Punkt enthält.</p>
+<div class="source">
+<span class="label">Primärquelle — BAuA, Zulassungsverfahren Biozide</span>
+    Vor der Anwendung antikoagulanter Rodentizide werde künftig immer eine Befallsermittlung erforderlich sein. Die Anwendung erfolge dann nur noch bei zuvor festgestelltem Befall der auf dem Produkt ausgewiesenen Nagetierart. Entsprechend würden diese Mittel <em>nicht mehr zugelassen</em> für die befallsunabhängige Dauerbeköderung, zur Vorbeugung, zur Befallsermittlung oder zur Überwachung von Nagetieraktivität. Die bislang geltenden Ausnahmen vom Verbot der Permanentbeköderung seien damit nicht länger vorgesehen.
+  </div>
+<p>Der juristische Unterschied ist erheblich. Ein Fachbetrieb für Schädlingsbekämpfung formuliert ihn deutlicher, als es die meisten Medienberichte tun: Die Verfahren seien <em>nicht verboten</em> worden, sondern „auf Drängen des Umweltbundesamtes nicht mehr in die zugelassenen Anwendungen der Wiederzulassung aufgenommen".</p>
+<p>Es gibt also kein Verbotsgesetz, keine Verordnung, keinen Ministerbeschluss. Es gibt eine Zulassung, die ausläuft — und eine Neuzulassung, in der eine bisher erlaubte Anwendung nicht mehr aufgeführt ist. Was nicht in den Zulassungsbedingungen steht, ist nicht erlaubt. Das Ergebnis ähnelt einem Verbot. Der Weg dorthin ist ein anderer.</p>
+<h2>Die Zeitachse, die in den Schlagzeilen fehlt</h2>
+<p><span class="tag t-belegt">Belegt</span> Der Deutsche Schädlingsbekämpfer-Verband stellte bereits im November 2025 klar, dass kursierende Behauptungen über ein Verbot ab Januar 2026 nicht zutreffend seien. Die tatsächliche Abfolge ergibt sich aus den allgemeinen Abverkaufs- und Aufbrauchfristen der EU-Biozid-Verordnung 528/2012.</p>
+<div class="timeline">
+<div class="entry">
+<span class="date">30.06.2026</span>
+<span class="body">Ende der bestehenden Zulassungen antikoagulanter Rodentizide. Die BAuA hatte diese Frist zuvor um sechs Monate verlängert, um das Wiederzulassungsverfahren geordnet abzuwickeln.</span>
+</div>
+<div class="entry">
+<span class="date">01.07.2026</span>
+<span class="body">Neuzulassungen treten in Kraft — ohne die befallsunabhängige Dauerbeköderung im Anwendungskatalog.</span>
+</div>
+<div class="entry">
+<span class="date">31.12.2026</span>
+<span class="body">Ende der Abverkaufsfrist (180 Tage). Produkte mit alter Zulassung dürfen bis hierhin in Verkehr gebracht werden.</span>
+</div>
+<div class="entry">
+<span class="date">30.06.2027</span>
+<span class="body">Ende der Aufbrauchfrist (weitere 180 Tage). Bis zu diesem Datum dürfen Altbestände unter den ursprünglichen Anwendungsvorschriften weiterverwendet werden — die Dauerbeköderung also in gewohnter Form fortgeführt werden.</span>
+</div>
+</div>
+<p>Das Landesamt für Verbraucherschutz und Lebensmittelsicherheit Niedersachsen bestätigt diese 180/180-Regelung in einer eigenen Handreichung für Anwender. Die Umstellung erfolgt damit über zwölf Monate gestaffelt, nicht an einem Stichtag.</p>
+<h2>Wer hat entschieden?</h2>
+<p>Hier wird die Zuordnung heikel — und lohnt die Genauigkeit.</p>
+<table>
+<tr>
+<th>Behauptung</th>
+<th>Aktenlage</th>
+</tr>
+<tr>
+<td>Entscheidung von Arbeitsministerin Bas und Umweltminister Schneider</td>
+<td>Die Entscheidung trafen die BAuA als Zulassungsbehörde und das Umweltbundesamt als bewertende Fachbehörde. Beide sind nachgeordnete Behörden der genannten Ministerien. Ein Ministerbeschluss oder eine persönliche Beteiligung der Minister ist in den vorliegenden Dokumenten nicht ausgewiesen.</td>
+</tr>
+<tr>
+<td>Vorgabe aus Brüssel / EU-Zwang</td>
+<td>Teilweise zutreffend. Antikoagulanzien erfüllen Ausschlusskriterien der EU-Biozid-Verordnung (persistent, bioakkumulierend, toxisch) und gelten als Substitutionskandidaten mit verkürzter Zulassungsdauer. Die konkrete Streichung der Dauerbeköderung ist jedoch laut Branchenquellen eine nationale Entscheidung auf Expertise des UBA — sie findet sich zunächst nicht in den europäischen Vorschriften.</td>
+</tr>
+<tr>
+<td>Nationaler Alleingang</td>
+<td>Für die BuD-Streichung und die Kanalbeköderungsregeln: nach Branchendarstellung ja. Für den Rahmen (Substitutionskandidat, verkürzte Zulassung, Anwenderbeschränkungen): nein, EU-Recht.</td>
+</tr>
+</table>
+<p><span class="tag t-extra">Extrapolation</span> Beide gängigen Deutungen — „die Minister waren es" und „Brüssel zwingt uns" — greifen zu kurz. Die Entscheidung fiel auf Behördenebene, im Rahmen eines europäischen Verfahrens, mit nationalem Gestaltungsspielraum, den deutsche Fachbehörden restriktiver ausgeübt haben als vom EU-Recht gefordert. Das ist ein struktureller Befund, kein personeller.</p>
+<div class="pullquote">Wer nach einem Schuldigen sucht, findet einen Verwaltungsvorgang. Das ist die unbefriedigendste aller Antworten — und meistens die zutreffende.</div>
+<h2>Der Widerspruch aus dem eigenen Haus</h2>
+<p><span class="tag t-belegt">Belegt</span> Bemerkenswert bleibt: Nicht alle Bundesbehörden teilen die Bewertung. Das Bundesinstitut für Risikobewertung, dem Landwirtschaftsministerium zugeordnet, hat sich nach Medienberichten gegen die Streichung ausgesprochen und auf die Notwendigkeit des Erhalts der Dauerbeköderung verwiesen. <span class="tag t-offen">Offen</span> Die zugrundeliegende BfR-Stellungnahme liegt uns im Volltext nicht vor; die Formulierung stammt aus Sekundärberichterstattung.</p>
+<p>Damit steht Fachbehörde gegen Fachbehörde — Umweltschutz gegen Lebensmittelhygiene, beide mit legitimem Auftrag. Antikoagulanzien der zweiten Generation reichern sich in Nahrungsketten an und gefährden Wildtiere. Das ist der Grund für die Beschränkung. Ob die Alternative — sensorgestütztes Monitoring, giftfreie Köder, visuelle Kontrolle — in der Fläche verfügbar ist, ist eine andere Frage.</p>
+<h3>Der Verfügbarkeitseinwand</h3>
+<p>Der Vizechef des Verbands der Lebensmittelkontrolleure warnte in der <em>Welt</em>, es gebe schon jetzt nicht genug Schädlingsbekämpfer, um den künftigen Bedarf zu decken. Ein Vertreter des Raiffeisenverbands verwies auf Betriebsschließungen von bis zu 14 Tagen bei festgestelltem Befall. <span class="tag t-offen">Offen</span> Beide Aussagen stammen aus Sekundärzitaten; die zugrundeliegenden Zahlen zu Kapazität und Schließungsdauer konnten nicht aus Primärquellen verifiziert werden.</p>
+<p><span class="tag t-offen">Offen</span> Auch der niederländische Vergleichsfall — Abschaffung der Dauerbeköderung 2023, seither steigende Befallszahlen im Gastgewerbe laut niederländischer Lebensmittelsicherheitsbehörde — beruht auf Sekundärberichterstattung. Die NVWA-Originaldaten liegen nicht vor. Ein Kausalzusammenhang zwischen Regeländerung und Befallsanstieg wäre ohnehin gesondert zu belegen: Müllaufkommen, Wetter und Meldeverhalten wirken auf dieselben Zahlen.</p>
+<h2>Und die Seuchengefahr?</h2>
+<p>In den Kommentarspalten unter der Meldung tauchte binnen Stunden das Mittelalter auf, die Pest, das Hantavirus. Hier lohnt eine Unterscheidung, die in der öffentlichen Debatte fast durchgängig unterbleibt.</p>
+<p><span class="tag t-belegt">Belegt</span> „Das Hantavirus" gibt es nicht. Es handelt sich um eine Virusfamilie, deren einzelne Vertreter jeweils an bestimmte Nagetierarten als Reservoirwirte gebunden sind — mit vollkommen unterschiedlichen Übertragungswegen und Krankheitsbildern.</p>
+<table>
+<tr>
+<th>Virustyp</th>
+<th>Reservoir</th>
+<th>Relevanz in Deutschland</th>
+</tr>
+<tr>
+<td>Puumala (PUUV)</td>
+<td>Rötelmaus</td>
+<td>Häufigster Typ. Laut Bundesregierung entfielen 97,3 Prozent der Fälle mit Speziesangabe seit 2001 auf diesen Typ. <strong>Keine Ratte beteiligt.</strong></td>
+</tr>
+<tr>
+<td>Dobrava-Belgrad (DOBV)</td>
+<td>Brandmaus u. a. Apodemus-Arten</td>
+<td>Vor allem Nordostdeutschland. Schwerere Verläufe. <strong>Keine Ratte beteiligt.</strong></td>
+</tr>
+<tr>
+<td>Seoul (SEOV)</td>
+<td>Wanderratte, Hausratte</td>
+<td>Der einzige rattenassoziierte Typ. Sehr selten.</td>
+</tr>
+<tr>
+<td>Andes (ANDV)</td>
+<td>Langschwanz-Reisratte (Südamerika)</td>
+<td>Kommt in Deutschland nicht vor. Gegenstand von Teil 2.</td>
+</tr>
+</table>
+<p>Damit ist der naheliegende Schluss — mehr Stadtratten, mehr Hantavirus — für die weit überwiegende Mehrheit der deutschen Hantavirusfälle schlicht falsch. Rötelmäuse leben in Wäldern und Gärten, nicht in Supermarktlagern, und werden von der Dauerbeköderung in Lebensmittelbetrieben nicht adressiert.</p>
+<h3>Was über das Seoul-Virus bekannt ist</h3>
+<p><span class="tag t-belegt">Belegt</span> Das Seoul-Virus wird über Ratten übertragen — Hausratte und Wanderratte. Das RKI beschrieb diesen Übertragungsweg bereits 1998 im Epidemiologischen Bulletin. Der erste Nachweis einer Seoul-Virus-Infektion beim Menschen in Deutschland gelang jedoch erst im November 2020: Eine junge Frau aus Niedersachsen erkrankte mit akutem Nierenversagen. Die molekulare Spezialdiagnostik der Charité identifizierte den Erreger; am Friedrich-Loeffler-Institut wurde dasselbe Virus bei ihrem Haustier nachgewiesen. Beide Sequenzen waren identisch.</p>
+<p><span class="tag t-belegt">Belegt</span> Die Infektionsquelle war eine <strong>Heimratte</strong>. 2024 dokumentierte ein Fachartikel in <em>Emerging Infectious Diseases</em> einen Cluster von drei Erkrankten in Deutschland — ebenfalls auf Heimratten zurückgeführt. Von bislang sechs in Deutschland gemeldeten Seoul-Virus-Fällen standen nach Branchendarstellung fünf im Zusammenhang mit Heimratten.</p>
+<div class="source">
+<span class="label">Primärquelle — Bundestagsdrucksache 19/26709 (2021)</span>
+    Auf die Frage nach dem Vorkommen des Seoulvirus antwortete die Bundesregierung, das Virus sei auch in der Hausratte und weiteren Rattenarten gefunden worden. Inwieweit es in Wildrattenpopulationen in Deutschland aktuell vorkomme, werde gegenwärtig untersucht. Ein Monitoring bei als Haustieren gehaltenen Ratten sei nicht geplant.
+  </div>
+<p><span class="tag t-offen">Offen</span> Damit steht die entscheidende Frage weiterhin unbeantwortet: Wie stark sind deutsche Wildrattenpopulationen mit dem Seoul-Virus durchseucht? Die Bundesregierung erklärte 2021, dies werde untersucht. Ein publiziertes Ergebnis einer flächendeckenden Erhebung liegt uns nicht vor. Ohne diese Basislinie lässt sich weder belegen noch widerlegen, dass wachsende Rattenpopulationen das Infektionsrisiko erhöhen.</p>
+<p><span class="tag t-vt">VT-widerlegt</span> Die in Kommentarspalten verbreitete Pest-Analogie führt in die Irre. Die Übertragungskette der Beulenpest setzt das Bakterium <em>Yersinia pestis</em> in der Flohpopulation voraus. Dieses zirkuliert in Mitteleuropa nicht. Mehr Ratten bedeuten kein Pestrisiko.</p>
+<h2>Was übrig bleibt</h2>
+<p>Nach Abzug der Zuspitzungen bleibt ein realer Vorgang: Eine Fachbehörde hat eine seit Jahrzehnten geübte Praxis der Lebensmittelbetriebe beendet, gestützt auf Umweltbewertungen, gegen den Widerstand einer anderen Bundesbehörde und der betroffenen Branche. Der Übergang ist gestreckt, die Alternativen existieren, ihre flächendeckende Verfügbarkeit ist bestritten.</p>
+<p>Und es bleibt eine Diagnostiklücke: Der einzige rattenassoziierte Hantavirus-Typ in Deutschland ist bislang fast ausschließlich bei Heimrattenhaltern aufgetreten — bei einer Tierart, für die die Bundesregierung 2021 ausdrücklich kein Monitoring plante. Die öffentliche Debatte richtet sich auf Supermarktlager. Die dokumentierten Fälle stammen aus Wohnzimmern.</p>
+<div class="closing">
+<p>Offene Fragen: Warum liegen fünf Jahre nach der Ankündigung keine publizierten Ergebnisse zur Seoul-Virus-Prävalenz in deutschen Wildrattenpopulationen vor? Auf welcher Datengrundlage bewertete das Umweltbundesamt die Dauerbeköderung, und in welchem Verfahren wurde der Widerspruch des Bundesinstituts für Risikobewertung abgewogen? Und warum kommuniziert keine der beteiligten Behörden den Unterschied zwischen Rötelmaus- und Rattenhantaviren an eine Öffentlichkeit, die beides für dasselbe hält?</p>
+</div>
+<div class="series-nav">
+<span class="label">Serie: Regulierung &amp; Wahrnehmung</span>
+<strong>Teil 1 — Das Ende der Dauerbeköderung</strong> (Sie lesen diesen Teil)<br/>
+    Teil 2 — <a href="hondius-ausbruch.html">2.825 zu 13: Der Ausbruch auf der Hondius und die Ökonomie der Aufmerksamkeit</a><br/>
+<span style="color:var(--muted);">Ergänzend auf richtig-erinnern.de: Wie Nebenwirkungsdatenbanken funktionieren</span>
+</div>
+<div class="sources-list">
+<h3>Quellen</h3>
+<ol>
+<li>Bundesanstalt für Arbeitsschutz und Arbeitsmedizin (BAuA): Biozid-Verordnung — Informationen zum Zulassungsverfahren. baua.de</li>
+<li>Umweltbundesamt: Nagetierbekämpfung mit Antikoagulanzien — Was ändert sich durch die Biozid-Zulassung für die Praxis? (PDF)</li>
+<li>Deutscher Schädlingsbekämpfer-Verband e.V.: Aktuelle Rechtslage zur Anwendung von Rodentiziden, Stand November 2025</li>
+<li>Niedersächsisches Landesamt für Verbraucherschutz und Lebensmittelsicherheit (LAVES): Antikoagulante Wirkstoffe — was gilt ab 30.06.2026? (PDF)</li>
+<li>Deutscher Bundestag, Drucksache 19/26709: Antwort der Bundesregierung zu Hantaviren (2021)</li>
+<li>Robert Koch-Institut: RKI-Ratgeber Hantavirus-Erkrankung</li>
+<li>Robert Koch-Institut: Epidemiologisches Bulletin 7/98, 20. Februar 1998</li>
+<li>Hofmann J. et al.: Hantavirus Disease Cluster Caused by Seoul Virus, Germany. Emerging Infectious Diseases 30(1), 2024</li>
+<li>Deutsches Zentrum für Infektionsforschung (DZIF): Erstnachweis einer Seoul-Virus-Übertragung durch eine Heimratte</li>
+<li>Verordnung (EU) Nr. 528/2012 über die Bereitstellung auf dem Markt und die Verwendung von Biozidprodukten, insb. Art. 89</li>
+</ol>
+<p style="margin-top:1.5rem;font-size:0.8rem;">Sekundärquellen (nachrangig, im Text als solche gekennzeichnet): Branchendarstellungen von Fachbetrieben der Schädlingsbekämpfung; Zitate aus <em>Welt</em>-Berichterstattung, wiedergegeben über Drittmedien und nicht im Original geprüft.</p>
+</div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

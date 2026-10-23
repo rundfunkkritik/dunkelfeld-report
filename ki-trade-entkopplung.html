@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Die Entkopplung: KI-Aktien, Bitcoin und Gold — dunkelfeld.report</title>
+<style>
+  :root{
+    --bg:#09090b;
+    --amber:#e8c547;
+    --box-bg:#1a1a2e;
+    --text:#e4e4e7;
+    --muted:#9a9aa5;
+    --green:#5fbf6b;
+    --orange:#e8934a;
+    --grey:#8a8a94;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:Georgia,'Times New Roman',serif;
+    line-height:1.7;
+    margin:0;
+    padding:0 20px 80px;
+  }
+  .wrap{
+    max-width:720px;
+    margin:0 auto;
+  }
+  .meta{
+    font-family:'Courier New',monospace;
+    color:var(--muted);
+    font-size:0.8rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    margin-top:40px;
+  }
+  .meta .brand{color:var(--amber);}
+  h1{
+    font-size:2rem;
+    line-height:1.25;
+    color:#fff;
+    margin:14px 0 6px;
+  }
+  .subtitle{
+    font-family:'Courier New',monospace;
+    color:var(--muted);
+    font-size:0.95rem;
+    margin-bottom:30px;
+  }
+  h2{
+    font-family:'Courier New',monospace;
+    color:var(--amber);
+    font-size:1rem;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    border-bottom:1px solid #2a2a35;
+    padding-bottom:8px;
+    margin:48px 0 20px;
+  }
+  p{margin:0 0 18px; font-size:1.05rem;}
+  .tag{
+    display:inline-block;
+    font-family:'Courier New',monospace;
+    font-size:0.7rem;
+    letter-spacing:0.05em;
+    padding:2px 8px;
+    border-radius:3px;
+    margin-right:6px;
+    vertical-align:middle;
+  }
+  .tag-belegt{background:rgba(95,191,107,0.15); color:var(--green); border:1px solid var(--green);}
+  .tag-extrapolation{background:rgba(232,147,74,0.15); color:var(--orange); border:1px solid var(--orange);}
+  .tag-offen{background:rgba(138,138,148,0.15); color:var(--grey); border:1px solid var(--grey);}
+
+  .source-box{
+    background:var(--box-bg);
+    border-left:3px solid var(--amber);
+    padding:14px 18px;
+    margin:20px 0;
+    font-size:0.92rem;
+  }
+  .source-box .src-label{
+    font-family:'Courier New',monospace;
+    color:var(--amber);
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    display:block;
+    margin-bottom:6px;
+  }
+
+  .stat-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+    margin:24px 0;
+  }
+  .stat{
+    background:var(--box-bg);
+    padding:16px;
+    border-radius:4px;
+    text-align:center;
+  }
+  .stat .num{
+    font-family:'Courier New',monospace;
+    color:var(--amber);
+    font-size:1.5rem;
+    display:block;
+  }
+  .stat .label{
+    font-family:'Courier New',monospace;
+    color:var(--muted);
+    font-size:0.7rem;
+    text-transform:uppercase;
+    margin-top:4px;
+    display:block;
+  }
+
+  .timeline{
+    margin:24px 0;
+    border-left:2px solid #2a2a35;
+    padding-left:20px;
+  }
+  .timeline-item{
+    margin-bottom:20px;
+    position:relative;
+  }
+  .timeline-item::before{
+    content:'';
+    position:absolute;
+    left:-26px;
+    top:5px;
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:var(--amber);
+  }
+  .timeline-date{
+    font-family:'Courier New',monospace;
+    color:var(--amber);
+    font-size:0.8rem;
+    display:block;
+    margin-bottom:3px;
+  }
+
+  .pull-quote{
+    font-style:italic;
+    font-size:1.2rem;
+    color:#fff;
+    border-left:3px solid var(--amber);
+    padding-left:18px;
+    margin:30px 0;
+  }
+
+  .open-questions{
+    margin-top:50px;
+    padding-top:20px;
+    border-top:1px solid #2a2a35;
+  }
+  .open-questions h2{color:var(--grey);}
+  .open-questions p{
+    font-style:italic;
+    color:var(--muted);
+  }
+
+  .series-nav{
+    margin-top:60px;
+    padding-top:20px;
+    border-top:1px solid #2a2a35;
+    font-family:'Courier New',monospace;
+    font-size:0.8rem;
+    color:var(--muted);
+  }
+  .series-nav .series-label{color:var(--amber); display:block; margin-bottom:8px;}
+</style>
+<meta name="description" content="Im Sommer 2026 verlieren binnen wenigen Wochen drei scheinbar unabhängige Vermögenswerte gleichzeitig an Boden: KI-nahe Aktien, Bitcoin und Gold. Ein …">
+<meta name="rubrik" content="cat-geld">
+<meta name="kachel-titel" content="Die Entkopplung: KI-Aktien, Bitcoin und Gold">
+<link rel="canonical" href="https://dunkelfeld.report/ki-trade-entkopplung.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Die Entkopplung: KI-Aktien, Bitcoin und Gold">
+<meta property="og:description" content="Im Sommer 2026 verlieren binnen wenigen Wochen drei scheinbar unabhängige Vermögenswerte gleichzeitig an Boden: KI-nahe Aktien, Bitcoin und Gold. Ein …">
+<meta property="og:url" content="https://dunkelfeld.report/ki-trade-entkopplung.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Die Entkopplung: KI-Aktien, Bitcoin und Gold", "description": "Im Sommer 2026 verlieren binnen wenigen Wochen drei scheinbar unabhängige Vermögenswerte gleichzeitig an Boden: KI-nahe Aktien, Bitcoin und Gold. Ein …", "inLanguage": "de", "url": "https://dunkelfeld.report/ki-trade-entkopplung.html", "mainEntityOfPage": "https://dunkelfeld.report/ki-trade-entkopplung.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="meta"><span class="brand">DUNKELFELD.REPORT</span> · Serie: Der Fall Aschenbrenner · Teil 3</div>
+<h1>Die Entkopplung</h1>
+<div class="subtitle">Wie der KI-Boom Aktien, Bitcoin und Gold gleichzeitig erfasste</div>
+<p>Im Sommer 2026 verlieren binnen wenigen Wochen drei scheinbar unabhängige Vermögenswerte gleichzeitig an Boden: KI-nahe Aktien, Bitcoin und Gold. Ein spektakulärer Hedgefonds-Crash, ein jahrelanger Bitcoin-Maximalist, der plötzlich verkauft, und der weltgrößte Vermögensverwalter, der eine ungewöhnliche Beobachtung macht. Die Fakten im Einzelnen — und was sie tatsächlich verbindet.</p>
+<h2>Ausgangslage</h2>
+<p>Ende 2025 und zu Jahresbeginn 2026 laufen mehrere Trends parallel: KI-Aktien (Chiphersteller, Rechenzentrumsbetreiber) erleben eine Rally, Gold erreicht im Januar 2026 ein Allzeithoch, und Bitcoin wird von institutionellen Käufern wie Strategy (ehemals MicroStrategy) systematisch aufgekauft. Drei unterschiedliche "Story"-Assets, drei unterschiedliche Anlegergruppen.</p>
+<h2>Der Bruch: Ein Fonds implodiert</h2>
+<span class="tag tag-belegt">BELEGT</span>
+<p>Leopold Aschenbrenner, früherer OpenAI-Forscher und Autor des vielbeachteten KI-Manifests "Situational Awareness", gründet nach seinem Abgang von OpenAI 2024 einen gleichnamigen Hedgefonds. Mit hohem Leverage (bis zu 400%) setzt er auf KI-Infrastruktur-Aktien wie CoreWeave und SK Hynix und geht gleichzeitig gegen Software-Titel short.</p>
+<div class="stat-grid">
+<div class="stat"><span class="num">45 Mrd. $</span><span class="label">Fondsvermögen (Peak)</span></div>
+<div class="stat"><span class="num">~10 Mrd. $</span><span class="label">Nach dem Crash</span></div>
+</div>
+<p>Innerhalb von zwei Wochen im Juli 2026 fallen die favorisierten KI-Aktien stark. Der Fonds muss gehebelte Positionen mit Verlust an Ken Griffins Citadel verkaufen. Kritiker verweisen auf Aschenbrenners fehlende Investment-Erfahrung und frühere Nähe zu FTX.</p>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    CNBC (30./31.07.2026), The Free Press / Joe Nocera, Yahoo Finance — Fondszusammenbruch, Leverage-Grad, Verkauf an Citadel.
+  </div>
+<h2>Parallelbewegung: Der größte Käufer wird Verkäufer</h2>
+<span class="tag tag-belegt">BELEGT</span>
+<p>Michael Saylor, Executive Chairman von Strategy, hat das Unternehmen seit 2020 zur größten unternehmensseitigen Bitcoin-Kaufmaschine der Welt gemacht — finanziert über Aktien- und Anleiheausgaben. Sein wiederholtes öffentliches Credo: "You do not sell your Bitcoin."</p>
+<div class="timeline">
+<div class="timeline-item">
+<span class="timeline-date">Ende Mai 2026</span>
+      Strategy verkauft erstmals seit 2022 Bitcoin — 32 BTC (~2,5 Mio. $), Pflichtmeldung an die SEC.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">Juni/Juli 2026</span>
+      Weitere Verkäufe: insgesamt 3.620 BTC seit Jahresbeginn, u.a. zur Bedienung laufender Dividenden auf Vorzugsaktien und zur Auffüllung der Dollar-Barreserve.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">Ende Juli 2026</span>
+      Fünf Wochen ohne Neukauf — für den bis dahin lautesten Bitcoin-Maximalisten ein Novum.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">Anfang August 2026</span>
+      Verkauf von 1.638 BTC (~105 Mio. $) mit Verlust, laut Unternehmensangabe zur Begleichung von Verbindlichkeiten.
+    </div>
+</div>
+<p>Die verkauften Mengen sind im Verhältnis zum Gesamtbestand (843.775 BTC) klein. Die Signalwirkung — nach Jahren gegenteiliger Rhetorik — ist es nicht.</p>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    Handelsblatt (01.06. und 03.08.2026), t-online (03.06.2026), Trending Topics (Juli 2026), ingenieur.de (30.07.2026) — SEC-Pflichtmeldungen, Verkaufsvolumina, Verwendungszweck.
+  </div>
+<h2>Gold fällt mit — nicht "gewarnt", sondern beobachtet</h2>
+<span class="tag tag-belegt">BELEGT</span>
+<p>Eine verbreitete Zuspitzung lautet, BlackRock "warne vor Gold". Das trifft die Quellenlage nicht präzise. Tatsächlich dokumentiert BlackRock einen Kursrückgang: Nach einem Allzeithoch im Januar 2026 fällt Gold um rund 25% — begründet mit starkem Dollar, höheren Realzinsen und einer Investorenpräferenz für KI-Wachstumsaktien. BlackRocks eigener Stratege empfiehlt trotz der Korrektur weiterhin, einen moderaten Goldanteil im Portfolio zu halten.</p>
+<p>Relevanter als die Einzelbewegung ist eine Beobachtung aus BlackRocks "Investment Directions" (Frühjahr 2026): Im März 2026 fallen Aktien, Anleihen und Gold gleichzeitig — ein Muster, das BlackRock selbst als Neubewertung von Makrorisiken beschreibt, nicht als isolierten Einzelschock.</p>
+<div class="pull-quote">
+    "Simultaneous declines across equities, fixed income, and gold. This reflects a repricing of macro risks rather than a single shock." — BlackRock, Investment Directions, Frühjahr 2026
+  </div>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    BlackRock "2026 Spring Investment Directions"; BlackRock/Advisor Perspectives "What is going on with gold?" (24.07.2026); Kitco News (24.07.2026).
+  </div>
+<h2>Einordnung</h2>
+<span class="tag tag-extrapolation">EXTRAPOLATION</span>
+<p>Die drei Ereignisse — Aschenbrenners Fonds-Crash, Saylors Kurswechsel, der gleichzeitige Rückgang bei Aktien, Anleihen und Gold — fallen zeitlich in dasselbe Fenster: das Abkühlen eines stark gehebelten KI-Trades im Frühjahr/Sommer 2026. Das legt einen strukturellen Zusammenhang nahe: Wenn ein dominanter, kreditfinanzierter Trade (KI-Infrastruktur) unter Druck gerät, wird liquide Deckung gesucht — bei gehebelten Fondspositionen genauso wie bei Unternehmen, die Verbindlichkeiten bedienen müssen. Klassische "sichere Häfen" wie Gold werden dabei nicht automatisch verschont, wenn Liquidität allgemein knapp wird.</p>
+<p><strong>Was damit nicht belegt ist:</strong> eine Abstimmung oder ein gemeinsamer Akteur hinter den drei Bewegungen. Es handelt sich um zeitlich parallele, aber unabhängig dokumentierte Reaktionen auf dieselbe Marktphase — nicht um eine koordinierte Handlung. Die Wirkung auf das Marktvertrauen ist dabei unabhängig davon, ob strukturelle Gleichzeitigkeit oder Absicht vorliegt.</p>
+<div class="open-questions">
+<h2>Offene Fragen</h2>
+<span class="tag tag-offen">OFFEN</span>
+<p><em>Wie tief reicht die Korrektur des KI-Trades noch — handelt es sich um eine Verschnaufpause oder den Anfang einer längeren Neubewertung?</em></p>
+<p><em>Beschädigt Saylors Kurswechsel das "sicherer Hafen"-Narrativ von Bitcoin dauerhaft, oder bleibt es eine kurzfristige Randnotiz angesichts des geringen Anteils am Gesamtbestand?</em></p>
+<p><em>Welche Rolle spielen die geopolitischen Faktoren (Nahost-Konflikt, Ölpreisschock), die BlackRock parallel als Belastung nennt — reine Koinzidenz mit dem KI-Abschwung oder ein zusätzlicher, eigenständiger Treiber?</em></p>
+</div>
+<div class="series-nav">
+<span class="series-label">SERIE: DER FALL ASCHENBRENNER</span>
+    Teil 1: Wunderkind-Kult &amp; AGI-Alarmismus als Anlage-Narrativ (geplant)<br/>
+    Teil 2: OpenAI-Exodus — Whistleblower-Erzählung vs. offizielle Kündigungsgründe (geplant)<br/>
+    Teil 3: Die Entkopplung (dieser Artikel)<br/>
+    Teil 4: FTX-Nähe — was belegbar ist, was nicht (geplant)
+  </div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

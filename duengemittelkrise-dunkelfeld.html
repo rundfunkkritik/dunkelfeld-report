@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Das globale Düngemittel-Dominosystem — dunkelfeld.report</title>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Lora:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #0d0d0d;
+    --bg-elevated: #161616;
+    --signal: #f5c400;
+    --text: #e8e6e1;
+    --text-dim: #a8a49c;
+    --border: #2a2a2a;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Lora', Georgia, serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  header.masthead {
+    padding: 40px 24px 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 48px;
+  }
+
+  .masthead-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--signal);
+    margin-bottom: 12px;
+  }
+
+  h1.title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 0 0 16px;
+    color: var(--text);
+  }
+
+  .subtitle {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--text-dim);
+    margin: 0;
+  }
+
+  .meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 20px;
+  }
+
+  h2.part-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--signal);
+    margin-top: 64px;
+    margin-bottom: 8px;
+    padding-top: 24px;
+    border-top: 2px solid var(--border);
+  }
+
+  .part-number {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  h3.sub {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text);
+    margin-top: 32px;
+    margin-bottom: 10px;
+  }
+
+  .damals-heute-muster {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--signal);
+    margin-top: 28px;
+    margin-bottom: 6px;
+  }
+
+  p { margin: 0 0 18px; font-size: 17px; }
+
+  a { color: var(--signal); text-decoration: underline; text-decoration-color: rgba(245,196,0,0.4); }
+  a:hover { text-decoration-color: var(--signal); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0 32px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    background: var(--bg-elevated);
+  }
+
+  caption {
+    text-align: left;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 8px;
+    caption-side: top;
+  }
+
+  th, td {
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    background: #1c1c1c;
+    color: var(--signal);
+    font-weight: 500;
+  }
+
+  tr:nth-child(even) td { background: #131313; }
+
+  .callout {
+    background: var(--bg-elevated);
+    border-left: 3px solid var(--signal);
+    padding: 18px 22px;
+    margin: 28px 0;
+    font-size: 16px;
+  }
+
+  .callout strong { color: var(--signal); }
+
+  .disclaimer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 2px solid var(--border);
+  }
+
+  .disclaimer h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    color: var(--text-dim);
+  }
+
+  .disclaimer ul {
+    font-size: 15px;
+    color: var(--text-dim);
+  }
+
+  .disclaimer li { margin-bottom: 10px; }
+
+  .sources {
+    margin-top: 48px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .sources h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    color: var(--text);
+  }
+
+  .sources ol { padding-left: 20px; }
+  .sources li { margin-bottom: 8px; }
+
+  footer.site-footer {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    border-top: 1px solid var(--border);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    text-align: center;
+  }
+</style>
+<meta name="description" content="Krieg, Protektionismus, El Niño und die mediale Blindstelle: Wie vier unabhängige Krisenursachen 2026 zeitgleich kumulieren – und warum die Berichterstattung die Kausalkette kaum herstellt.">
+<meta name="rubrik" content="cat-nahrung">
+<meta name="kachel-titel" content="Das globale Düngemittel-Dominosystem">
+<link rel="canonical" href="https://dunkelfeld.report/duengemittelkrise-dunkelfeld.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Das globale Düngemittel-Dominosystem">
+<meta property="og:description" content="Krieg, Protektionismus, El Niño und die mediale Blindstelle: Wie vier unabhängige Krisenursachen 2026 zeitgleich kumulieren – und warum die Berichterstattung die Kausalkette kaum herstellt.">
+<meta property="og:url" content="https://dunkelfeld.report/duengemittelkrise-dunkelfeld.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Das globale Düngemittel-Dominosystem", "description": "Krieg, Protektionismus, El Niño und die mediale Blindstelle: Wie vier unabhängige Krisenursachen 2026 zeitgleich kumulieren – und warum die Berichterstattung die Kausalkette kaum herstellt.", "inLanguage": "de", "url": "https://dunkelfeld.report/duengemittelkrise-dunkelfeld.html", "mainEntityOfPage": "https://dunkelfeld.report/duengemittelkrise-dunkelfeld.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<header class="masthead">
+<div class="masthead-inner">
+<div class="kicker">Dunkelfeld.report — Investigativ</div>
+<h1 class="title">Das globale Düngemittel-Dominosystem</h1>
+<p class="subtitle">Krieg, Protektionismus, El Niño und die mediale Blindstelle: Wie vier unabhängige Ursachen 2026 zeitgleich kumulieren</p>
+<div class="meta">Veröffentlicht: 25. Juli 2026 · Vier-Teile-Serie · Lesezeit ca. 14 Min.</div>
+</div>
+</header>
+<div class="wrap">
+<p>Als das Weiße Haus am 29. Juni 2026 die Proklamation 11038 erließ und zollfreie marokkanische Phosphat-Importe genehmigte, wirkte das wie eine Reaktion auf eine plötzliche Krise. Tatsächlich ist es das jüngste sichtbare Glied einer Kette, die seit Jahren wächst: Kriegsblockade, europäische Energiepolitik, chinesischer Protektionismus und ein heraufziehendes Wetterphänomen greifen 2026 gleichzeitig ineinander. Diese Serie zeichnet die Kette nach – belegt, chronologisch, ohne Übertreibung.</p>
+<h2 class="part-title"><span class="part-number">Teil 1 / 4</span>Die Symptompolitik</h2>
+<span class="damals-heute-muster">Damals</span>
+<p>Am 28. Februar 2026 beginnt die Krise um die Straße von Hormus: Die iranischen Revolutionsgarden (IRGC) verhängen eine Sperrung für "unfreundliche Nationen", boarden Handelsschiffe und verlegen Seeminen. Die Meerenge ist keine Randnotiz – vor dem Konflikt liefen etwa 25 Prozent des weltweiten Öl-Seehandels und rund ein Drittel des Düngemittel-Seetransports hindurch. Am 13. April verhängen die USA eine Marineblockade gegen Iran, die bis zum 29. Mai andauert.</p>
+<span class="damals-heute-muster">Heute</span>
+<p>Am 29. Juni 2026 reagiert das Weiße Haus mit der Proklamation 11038: zollfreie Einfuhr marokkanischen Phosphatdüngers für bis zu acht Monate, begründet mit einem nationalen Versorgungsnotstand. Der US-Hersteller Mosaic weist zeitgleich darauf hin, dass nicht Phosphat, sondern Schwefel der eigentliche Engpass sei – ein Grundstoff, der zu großen Teilen über die Straße von Hormus verschifft wird und seit März 2026 praktisch nicht mehr fließt.</p>
+<span class="damals-heute-muster">Das Muster</span>
+<p>Die Proklamation adressiert ausschließlich das Phosphat-Problem. Schwefel-, Erdgas- und Schiffsverkehrsstörungen bleiben unerwähnt. Die Erklärung liest sich damit weniger als Lösung denn als politische Geste – ein sichtbares Signal des Handelns, das die tieferliegende Abhängigkeitsstruktur nicht berührt.</p>
+<table>
+<caption>Tabelle 1 — Zeitstrahl der Eskalation 2026</caption>
+<thead><tr><th>Datum</th><th>Ereignis</th></tr></thead>
+<tbody>
+<tr><td>28. Feb.</td><td>Beginn Hormuz-Krise, IRGC-Sperrung für "unfreundliche Nationen"</td></tr>
+<tr><td>12. März</td><td>Hormuz-Blockade verteuert Düngerrohstoffe (Urea +25–50 %, Schwefel +15–30 %)</td></tr>
+<tr><td>14. März</td><td>China stoppt Export von Stickstoff-Kalium-Mischdüngern und bestimmten Phosphatvarianten</td></tr>
+<tr><td>19. März</td><td>China gibt Düngemittelreserven vorzeitig frei (Vorbereitung Frühjahrsaussaat)</td></tr>
+<tr><td>9. April</td><td>Lateinamerika meldet Düngerknappheit; IICA/TFI-Partnerschaft angekündigt</td></tr>
+<tr><td>13. April</td><td>US-Marineblockade gegen Iran beginnt</td></tr>
+<tr><td>1. Mai</td><td>EU-Mercosur-Abkommen tritt vorläufig in Kraft</td></tr>
+<tr><td>29. Mai</td><td>Ende der US-Marineblockade</td></tr>
+<tr><td>29. Juni</td><td>Proklamation 11038 (zollfreies marokkanisches Phosphat)</td></tr>
+<tr><td>Sept.–Nov.</td><td>Prognostizierter Höhepunkt eines Super-El-Niño</td></tr>
+</tbody>
+</table>
+<h3 class="sub">Die umstrittene Herkunft der "Lösung"</h3>
+<p>Marokko verfügt – zusammen mit den Vorkommen in der besetzten Westsahara – laut Bundesanstalt für Geowissenschaften und Rohstoffe über geschätzt 50 Milliarden Tonnen Phosphat-Reserven. Das ist mit weitem Abstand die größte Lagerstätte der Welt: China, auf Platz zwei, kommt auf rund 3,2 Milliarden Tonnen – ein Faktor von etwa 15. Ein erheblicher Teil der marokkanischen Exporte stammt aus der Mine Bou Craa in der besetzten Westsahara, von wo aus das Phosphat über das längste Förderband der Welt zum Hafen El Aaiún transportiert wird. Die Organisation Western Sahara Resource Watch dokumentiert diesen Handel seit 2012 systematisch in ihrer Berichtsreihe "P for Plunder" als Konfliktressource.</p>
+<div class="callout"><strong>Einordnung:</strong> Trumps Proklamation 11038 präsentiert marokkanisches Phosphat als Lösung der Versorgungskrise – ohne zu erwähnen, dass ein Teil dieser Lieferungen aus völkerrechtlich umstrittenem Gebiet stammt. Die "Lösung" für ein globales Problem stützt sich damit selbst auf eine ungeklärte Herkunftsfrage.</div>
+<h2 class="part-title"><span class="part-number">Teil 2 / 4</span>Die deutsche und europäische Selbstentwaffnung</h2>
+<span class="damals-heute-muster">Damals</span>
+<p>Die Energiekrise 2022 zwingt die großen europäischen Düngemittelhersteller in die Knie: BASF und SKW Piesteritz drosseln ihre Ammoniak-Produktion massiv, weil Erdgas – zugleich Rohstoff und Energiequelle der Herstellung – unbezahlbar wird. Der Inlandsabsatz von Phosphat-Dünger halbiert sich, Stickstoffdünger geht um 18,5 Prozent zurück. Gleichzeitig steigen die deutschen Düngerimporte aus Russland im ersten Halbjahr 2023 auf das 3,3-fache des Fünfjahresschnitts – möglich, weil Düngemittel anders als Energie nicht direkt unter EU-Sanktionen fallen.</p>
+<span class="damals-heute-muster">Heute</span>
+<p>2026 steht SKW Piesteritz, Deutschlands größter Stickstoffhersteller mit über vier Millionen Tonnen Jahresproduktion, erneut vor derselben Situation wie 2022 – vollständig abhängig von Erdgas, dessen Preis durch die Hormuz-Blockade erneut steigt. Europa betreibt seine Stickstoffanlagen inzwischen nur noch mit etwa 75 Prozent der Vorkriegskapazität. Hinzu kommt ab 2026 ein neuer Kostenfaktor: Europäische Hersteller erhalten keine kostenlosen CO2-Zertifikate mehr, CBAM-bedingte Aufschläge erreichen bis zu 90 €/t bei AHL und 50 €/t bei Harnstoff.</p>
+<span class="damals-heute-muster">Das Muster</span>
+<p>Die Kapazität, die Deutschland und Europa hätten aufbauen können, um unabhängiger von externen Krisenherden zu werden, wurde stattdessen seit 2022 abgebaut. Die entstandene Lücke wurde durch russische Importe gefüllt – eine Abhängigkeit, die 2026 auf eine neue, unabhängige Krise (Hormuz, China) trifft und sich dadurch strukturell verschärft statt entschärft.</p>
+<table>
+<caption>Tabelle 2 — Belastungsfaktoren der deutschen Düngemittelproduktion im Zeitverlauf</caption>
+<thead><tr><th>Faktor</th><th>2022</th><th>2023</th><th>2026</th></tr></thead>
+<tbody>
+<tr><td>Gaspreis-Schock</td><td>Ammoniak-Drosselung bei BASF/Piesteritz</td><td>Russland-Importe +3,3× (vs. 5-Jahres-Schnitt)</td><td>Erneuter Gaspreisanstieg durch Hormuz-Blockade</td></tr>
+<tr><td>Phosphat-Absatz Inland</td><td>−50,6 % (Q2 vs. Vorjahr)</td><td>—</td><td>Produktionskürzungen an Standorten wie Leuna/Domo</td></tr>
+<tr><td>CO2-Kosten (CBAM/EU-ETS)</td><td>—</td><td>—</td><td>Aufschläge bis 90 €/t (AHL), 50 €/t (Harnstoff); keine Gratis-Zertifikate mehr</td></tr>
+<tr><td>Schwefelpreis</td><td>—</td><td>—</td><td>+50 % im Quartalsvergleich</td></tr>
+</tbody>
+</table>
+<h2 class="part-title"><span class="part-number">Teil 3 / 4</span>Die globale Verwundbarkeits-Hierarchie</h2>
+<span class="damals-heute-muster">Das Muster</span>
+<p>Nicht die geografische Nähe zum Konflikt entscheidet über die Betroffenheit, sondern Kapitalkraft und Verhandlungsmacht. China ist weitgehend autark, nutzt seine Marktposition aber aktiv aus. Deutschland und die EU können hohe Preise zahlen und besitzen mit dem neuen Mercosur-Abkommen einen Fallback. Brasilien, Indien und weite Teile Afrikas tragen die Hauptlast – ohne vergleichbare Verhandlungsmacht oder Kapitalpuffer.</p>
+<table>
+<caption>Tabelle 3 — Länder und Regionen im Vergleich</caption>
+<thead><tr><th>Region</th><th>Importabhängigkeit</th><th>Zusätzlicher Faktor</th><th>Einschätzung</th></tr></thead>
+<tbody>
+<tr><td>China</td><td>Gering (Netto-Exporteur)</td><td>Exportstopp seit 14.3.2026 blockiert 50–75 % der Vorjahresexporte</td><td>Autark, verschärft die Krise für andere aktiv mit</td></tr>
+<tr><td>Deutschland / EU</td><td>Mittel, kapitalstark</td><td>Eigene Produktion seit 2022 gedrosselt (~75 % Kapazität); CBAM verteuert zusätzlich</td><td>Kann Preise zahlen, hat Mercosur als neuen Fallback</td></tr>
+<tr><td>Brasilien / Mercosur</td><td>Sehr hoch (~92 % Importquote)</td><td>EU-Mercosur-Abkommen seit 1.5.2026, Timing kollidiert mit Krise</td><td>Stark exponiert, aber neue Handelsbrücke zur EU</td></tr>
+<tr><td>Indien</td><td>Hoch, direkt aus Golfregion</td><td>Chinas Reserve-Freigabe explizit auch zur Entlastung Indiens gedacht</td><td>Exponiert, ohne eigene Verhandlungsmacht</td></tr>
+<tr><td>Subsahara-Afrika</td><td>Sehr hoch, direkt aus Golfregion</td><td>Pflanzsaison endet in Wochen, kann Verzögerung nicht abfedern</td><td>Am stärksten exponiert, keine strukturelle Absicherung</td></tr>
+</tbody>
+</table>
+<table>
+<caption>Tabelle 4 — Prognostizierte humanitäre Größenordnung</caption>
+<thead><tr><th>Kennzahl</th><th>Wert</th><th>Quelle / Zeitpunkt</th></tr></thead>
+<tbody>
+<tr><td>Zusätzlich Hungerbetroffene durch Hormuz-Sperrung</td><td>bis zu 45 Mio.</td><td>UN-Task-Force-Leiter Hormuz, 2026</td></tr>
+<tr><td>Ernährungsunsichere Menschen weltweit</td><td>Anstieg von 318 auf 373 Mio.</td><td>UN-Welternährungsprogramm, März 2026</td></tr>
+<tr><td>Harnstoffpreis-Anstieg (Jan.–Apr. 2026)</td><td>mehr als verdoppelt</td><td>Weltbank-Daten</td></tr>
+<tr><td>Chinas Harnstoffexport-Rückgang</td><td>950.000 t → 13.000 t (−98 %)</td><td>Q1 2022 vs. März 2025</td></tr>
+</tbody>
+</table>
+<h2 class="part-title"><span class="part-number">Teil 4 / 4</span>Die mediale Blindstelle und El Niño als Brandbeschleuniger</h2>
+<span class="damals-heute-muster">Das Muster</span>
+<p>Die Berichterstattung zeigt Symptombilder – hungernde Bäuerinnen, Preisschocks, Hilfsaufrufe – verknüpft diese aber selten mit der strukturellen Kausalkette: europäischer Gasabbau seit 2022, Kriegsblockade, chinesischer Protektionismus und nun ein heraufziehendes Wetterphänomen. Aktionspläne der EU werden von eigenen Ministern als unzureichend eingeräumt, ohne dass die Systemfrage gestellt wird.</p>
+<h3 class="sub">El Niño als vierter, unabhängiger Faktor</h3>
+<p>Parallel zur geopolitischen Krise entwickelt sich 2026 ein Super-El-Niño. Die Meeresoberflächen-Anomalie in der Region Niño 3.4 erreichte bis Mitte Juni bereits +1,7 °C; rund die Hälfte der Klimamodelle rechnet mit einem sehr starken Ereignis (≥ 2,0 °C) zum Höhepunkt zwischen September und November 2026, andauernd bis Anfang 2027. Als Vergleichsmaßstab gilt das El-Niño-Ereignis 2014–2016, eines der intensivsten der modernen Wetteraufzeichnung – mit dokumentierten Hungerkrisen in Äthiopien, Somalia, Sudan und Südafrika.</p>
+<table>
+<caption>Tabelle 5 — El Niño 2026: zeitliche Überlagerung mit der Düngerkrise</caption>
+<thead><tr><th>Parameter</th><th>Wert</th></tr></thead>
+<tbody>
+<tr><td>Meeresoberflächen-Anomalie (Niño 3.4, Mitte Juni 2026)</td><td>+1,7 °C</td></tr>
+<tr><td>Prognostizierter Höhepunkt</td><td>Sept.–Nov. 2026, andauernd bis Anfang 2027</td></tr>
+<tr><td>Wahrscheinlichkeit "sehr starkes" Ereignis (≥ 2,0 °C)</td><td>ca. 50 % der Modelle</td></tr>
+<tr><td>Vergleichsereignis</td><td>2014–2016 (eines der intensivsten der modernen Aufzeichnung)</td></tr>
+<tr><td>Historischer Bezug</td><td>Hungerkrisen Äthiopien / Somalia / Sudan / Südafrika teils auf El Niño zurückgeführt</td></tr>
+<tr><td>Betroffene Anbaugüter</td><td>Reis, Mais, Weizen, Kakao, Zucker, Palmöl</td></tr>
+</tbody>
+</table>
+<div class="callout"><strong>Kernthese:</strong> Vier eigenständige, voneinander unabhängige Krisenursachen – europäische Energiepolitik seit 2022, die Hormuz-Kriegsblockade, chinesischer Marktprotektionismus und ein heraufziehender Super-El-Niño – kumulieren 2026 zeitgleich in einem globalen Versorgungssystem, das Fachleute bereits vor der Überlagerung als kaum belastbar beschrieben. Die öffentliche Berichterstattung zeigt die einzelnen Symptome, stellt die Verbindung zwischen den vier Ursachen jedoch kaum her.</div>
+<div class="disclaimer">
+<h2>Was wir ausdrücklich nicht behaupten</h2>
+<ul>
+<li>Wir behaupten nicht, dass eine Hungersnot in der Größenordnung von 1984/85 (Äthiopien, "Live Aid") bereits eingetreten ist. Die verfügbaren Daten zeigen ein erhöhtes Risiko und steigende Betroffenenzahlen, keine bestätigte Katastrophe dieser Dimension.</li>
+<li>Wir behaupten nicht, dass China die Krise verursacht hat. Die chinesischen Exportbeschränkungen sind in erster Linie eine Reaktion auf die eigene Versorgungssicherheit vor der Frühjahrsaussaat – sie verschärfen die globale Lage aber nachweislich zusätzlich.</li>
+<li>Wir behaupten nicht, dass einzelne Journalistinnen und Journalisten die Zusammenhänge bewusst verschleiern. Die Fragmentierung der Berichterstattung kann ebenso Ressourcen- und Ressortgrenzen widerspiegeln.</li>
+</ul>
+</div>
+</div>
+<footer class="site-footer">
+  dunkelfeld.report — Recherche, Chronologie, Quellen. Keine Meinung, keine Schlussfolgerung ohne Beleg.
+</footer>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

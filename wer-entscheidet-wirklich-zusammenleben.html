@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wer entscheidet wirklich? Das Zahnradsystem der Macht</title>
+<style>
+  :root{
+    --bg:#09090b; --accent:#e8c547; --box:#1a1a2e;
+    --green:#5fbf7a; --orange:#e8a147; --grey:#8a8a8a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:#e4e4e7; font-family:Georgia,'Times New Roman',serif;
+    font-size:1.1rem; line-height:1.8; margin:0; padding:0;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:2.5rem 1.25rem 5rem;}
+  .kicker{
+    font-family:'Courier New',monospace; color:var(--accent); font-size:0.85rem;
+    letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.5rem;
+  }
+  h1{font-family:Georgia,serif; font-size:2.1rem; line-height:1.25; margin:0 0 1rem; color:#f4f4f5;}
+  .subtitle{color:#b8b8bd; font-size:1.05rem; margin-bottom:2rem; font-style:italic;}
+  .meta{
+    font-family:'Courier New',monospace; font-size:0.8rem; color:var(--grey);
+    border-top:1px solid #2a2a35; border-bottom:1px solid #2a2a35;
+    padding:0.75rem 0; margin-bottom:2.5rem; display:flex; gap:1.5rem; flex-wrap:wrap;
+  }
+  p{padding-bottom:1.2rem;}
+  h2{
+    font-size:1.4rem; color:var(--accent); margin:2.5rem 0 1rem;
+    font-family:Georgia,serif; border-bottom:1px solid #2a2a35; padding-bottom:0.5rem;
+  }
+  h3{font-size:1.15rem; color:#f4f4f5; margin:1.8rem 0 0.8rem;}
+  .source-box{
+    background:var(--box); border-left:3px solid var(--accent);
+    padding:1.2rem 1.4rem; margin:1.5rem 0; border-radius:0 4px 4px 0;
+  }
+  .source-box .src-label{
+    font-family:'Courier New',monospace; font-size:0.75rem; color:var(--accent);
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem; display:block;
+  }
+  .source-box p{padding-bottom:0.5rem; font-size:1rem;}
+  .source-box cite{
+    display:block; font-family:'Courier New',monospace; font-size:0.78rem;
+    color:var(--grey); font-style:normal; margin-top:0.5rem;
+  }
+  .tag{
+    font-family:'Courier New',monospace; font-size:0.72rem; font-weight:bold;
+    padding:0.2rem 0.55rem; border-radius:3px; letter-spacing:0.05em;
+    display:inline-block; margin-right:0.4rem; margin-bottom:0.3rem;
+  }
+  .tag-belegt{background:rgba(95,191,122,0.15); color:var(--green); border:1px solid var(--green);}
+  .tag-belegt1{background:rgba(95,191,122,0.08); color:#8fcf9f; border:1px solid #3a6a45;}
+  .tag-extra{background:rgba(232,161,71,0.15); color:var(--orange); border:1px solid var(--orange);}
+  .tag-offen{background:rgba(138,138,138,0.15); color:var(--grey); border:1px solid var(--grey);}
+
+  .person-card{
+    display:flex; gap:1rem; border:1px solid #2a2a35; border-radius:6px;
+    padding:1.2rem 1.4rem; margin:1.3rem 0; background:#111116; align-items:flex-start;
+  }
+  .person-card .avatar{
+    width:42px; height:42px; border-radius:50%; background:var(--accent);
+    color:#09090b; font-family:'Courier New',monospace; font-weight:bold;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1rem;
+  }
+  .person-card h3{margin:0 0 0.3rem;}
+  .person-card .role{font-family:'Courier New',monospace; font-size:0.8rem; color:var(--grey); margin-bottom:0.6rem;}
+
+  .timeline{margin:2rem 0; border-left:2px solid var(--accent); padding-left:1.5rem;}
+  .timeline-item{margin-bottom:1.5rem; position:relative;}
+  .timeline-item::before{
+    content:''; position:absolute; left:-1.56rem; top:0.4rem;
+    width:8px; height:8px; border-radius:50%; background:var(--accent);
+  }
+  .timeline-date{
+    font-family:'Courier New',monospace; font-size:0.8rem; color:var(--accent); display:block;
+    margin-bottom:0.3rem;
+  }
+
+  .pull-quote{
+    font-size:1.3rem; font-style:italic; color:#f4f4f5; margin:2rem 0;
+    padding:0 1rem; border-left:3px solid var(--accent); line-height:1.5;
+  }
+
+  table{width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:0.95rem;}
+  th,td{border:1px solid #2a2a35; padding:0.6rem 0.8rem; text-align:left;}
+  th{background:var(--box); color:var(--accent); font-family:'Courier New',monospace; font-size:0.8rem;}
+
+  .open-question{
+    font-style:italic; color:#b8b8bd; margin-top:3rem; padding-top:1.5rem;
+    border-top:1px solid #2a2a35; font-size:1.05rem;
+  }
+
+  .series-nav{
+    margin-top:3.5rem; padding-top:1.5rem; border-top:1px solid #2a2a35;
+    font-family:'Courier New',monospace; font-size:0.85rem; color:var(--grey);
+  }
+  .series-nav a{color:var(--accent); text-decoration:none;}
+  .series-nav a:hover{text-decoration:underline;}
+
+  a{color:var(--accent);}
+
+  .legend{
+    font-family:'Courier New',monospace; font-size:0.72rem; color:var(--grey);
+    margin:1rem 0 2rem; line-height:2;
+  }
+
+  table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.95rem;} th,td{border:1px solid #2a2a35;padding:0.5rem;text-align:left;}
+  blockquote{background:var(--box);border-left:3px solid var(--accent);margin:1.5rem 0;padding:1rem 1.4rem;font-style:italic;}
+  .footnote{font-size:0.85rem;color:#a1a1aa;}
+</style>
+<meta name="description" content="Wahlen finden statt, Parlamente tagen, Gesetze werden verabschiedet — und trotzdem entsteht bei vielen der Eindruck, dass die eigentlichen Entscheidungen …">
+<meta name="rubrik" content="cat-staat">
+<meta name="kachel-titel" content="Wer entscheidet wirklich über unser Zusammenleben? Das Zahnradsystem der Macht">
+<link rel="canonical" href="https://dunkelfeld.report/wer-entscheidet-wirklich-zusammenleben.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wer entscheidet wirklich über unser Zusammenleben? Das Zahnradsystem der Macht">
+<meta property="og:description" content="Wahlen finden statt, Parlamente tagen, Gesetze werden verabschiedet — und trotzdem entsteht bei vielen der Eindruck, dass die eigentlichen Entscheidungen …">
+<meta property="og:url" content="https://dunkelfeld.report/wer-entscheidet-wirklich-zusammenleben.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Wer entscheidet wirklich über unser Zusammenleben? Das Zahnradsystem der Macht", "description": "Wahlen finden statt, Parlamente tagen, Gesetze werden verabschiedet — und trotzdem entsteht bei vielen der Eindruck, dass die eigentlichen Entscheidungen …", "inLanguage": "de", "url": "https://dunkelfeld.report/wer-entscheidet-wirklich-zusammenleben.html", "mainEntityOfPage": "https://dunkelfeld.report/wer-entscheidet-wirklich-zusammenleben.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="kicker">dunkelfeld.report · Dokumentation</div>
+<h1>Wer entscheidet wirklich über unser Zusammenleben? Das Zahnradsystem der Macht</h1>
+<p class="subtitle">Wahlen finden statt, Parlamente tagen, Gesetze werden verabschiedet — und trotzdem entsteht bei vielen der Eindruck, dass die eigentlichen Entscheidungen woanders fallen. Wer genauer hinschaut, erkennt kein einzelnes Machtzentrum, sondern ein System ineinandergreifender Zahnräder: zivilgesellschaftliche Netzwerke, Justiz, Medien und Verwaltung, die sich wechselseitig stützen und legitimieren.</p>
+<h2>Einleitung: Die Fassade der Zuständigkeit</h2>
+<p>Offiziell ist die Antwort einfach: Der Bundestag entscheidet, die Regierung setzt um, Gerichte kontrollieren die Einhaltung der Verfassung, Medien informieren die Öffentlichkeit. Das ist die Fassade — die "Windschutzscheibe", durch die das System sich selbst erklärt.</p>
+<p>Dahinter liegt ein zweites System: informelle, aber hochwirksame Zahnräder, die nicht zur Wahl stehen, aber an jedem wichtigen Entscheidungspunkt mitgreifen. Keines davon ist für sich genommen illegitim. Problematisch wird es, wenn diese Zahnräder sich so ineinanderfügen, dass demokratische Kontrolle faktisch umgangen wird — nicht durch Verschwörung, sondern durch Struktur.</p>
+<h2>Zahnrad 1: Zivilgesellschaftliche Netzwerke</h2>
+<p>NGOs und zivilgesellschaftliche Organisationen erfüllen offiziell eine Wächterfunktion: Sie sollen Grundrechte verteidigen, Machtmissbrauch aufdecken, Minderheiten schützen. In der Praxis agieren einzelne Akteure wie die Gesellschaft für Freiheitsrechte (GFF) zunehmend als quasi-judikative Instanz — etwa mit rechtlichen Gutachten, die politische Bewertungen vorwegnehmen, bevor ein Gericht überhaupt entschieden hat. Das wurde bereits in der Reihe "Wer kontrolliert wen?" am Beispiel der GFF-Stellungnahme zur AfD dokumentiert.</p>
+<p>Entscheidend ist der Mechanismus: Eine NGO liefert die juristische Vorlage, Medien greifen sie als "Expertenmeinung" auf, und Verwaltungsstellen berufen sich wiederum auf die mediale Rezeption, um eigenes Handeln zu rechtfertigen. Jedes einzelne Glied ist für sich genommen legal. Die Kette als Ganzes entzieht sich aber jeder direkten Wahlkontrolle.</p>
+<h2>Zahnrad 2: Justiz als politisches Werkzeug</h2>
+<p>Der Fall Prof. Bauer — Hausdurchsuchung und Anklage nach §188 StGB, einem Paragraphen, der eigentlich Amtsträger vor übler Nachrede schützen soll — zeigt, wie ein Instrument mit legitimem Ausgangszweck zur Waffe gegen Kritik werden kann. Das ist kein Einzelfall, sondern ein wiederkehrendes Muster: Strafanzeigen, die weniger auf Verurteilung als auf Einschüchterung und mediale Signalwirkung zielen.</p>
+<p>Auch hier gilt die Windschutzscheiben-Logik: Der Straftatbestand existiert aus gutem Grund. Die Frage ist, wer ihn wie oft gegen wen anwendet — und ob diese Verteilung selbst schon eine politische Aussage ist.</p>
+<h2>Zahnrad 3: Medien als Verstärker</h2>
+<p>Die Reihe "Das grüne Kartell" hat gezeigt, wie mediale Deutungsmuster in der Klima- und Energiepolitik über mehrere Redaktionen hinweg auffällig synchron laufen. Das muss keine zentrale Steuerung bedeuten — es reicht, wenn dieselben Quellen, dieselben Studien und dieselben Sprachregelungen zirkulieren, damit ein Eindruck von Einstimmigkeit entsteht, der tatsächliche Debatte ersetzt.</p>
+<p>Medien sind damit nicht nur Berichterstatter, sondern selbst ein Zahnrad: Sie verleihen NGO-Einschätzungen und behördlichem Handeln erst die öffentliche Legitimität, die diese für ihre nächste Runde brauchen.</p>
+<h2>Zahnrad 4: Verwaltung und Regulierungsbehörden</h2>
+<p>Medienregulierer wie im Fall Ben Berndt/LFM NRW oder Überwachungsinstrumente wie KIVI zeigen ein viertes Zahnrad: Verwaltungsstellen, die ursprünglich zur Aufsicht über Konzentration oder Missbrauch geschaffen wurden, zunehmend aber selbst als Akteure in Meinungskonflikten auftreten.</p>
+<h2>Das Muster: Kampagne als Geschäftsmodell</h2>
+<p>Was diese vier Zahnräder verbindet, ist ein wiederkehrendes Ablaufmuster, das sich von der Correctiv-Kampagne 2024 bis zur GFF-Stellungnahme 2026 nachzeichnen lässt: Eine These wird von einem zivilgesellschaftlichen oder journalistischen Akteur gesetzt, von anderen Medien unkritisch übernommen, von Behörden als Handlungsgrundlage zitiert — und am Ende steht ein politisches oder rechtliches Ergebnis, das sich niemand mehr direkt zurechnen lassen muss. Diesem Muster widmet sich der nächste Artikel dieser Reihe im Detail.</p>
+<h2>Fazit</h2>
+<p>Die Frage "Wer entscheidet wirklich?" hat keine einzelne Antwort — und genau das ist der Punkt. Kein Akteur trägt allein die Verantwortung, aber gemeinsam erzeugen NGOs, Justiz, Medien und Verwaltung eine Entscheidungsrealität, die an der Wahlurne kaum noch korrigierbar ist. Das ist keine Verschwörung. Es ist ein System, das sich selbst verstärkt, weil jedes Zahnrad dem nächsten Legitimität liefert. Genau diese Struktur muss benannt werden, um sie demokratisch wieder kontrollierbar zu machen.</p>
+<hr/>
+<p><strong>Quellen/Verweise:</strong>
+- Eigene Recherche, Reihe "Wer kontrolliert wen?" (rundfunkkritik.de / dunkelfeld.report): GFF-Stellungnahme, KIVI, Ben Berndt/LFM NRW
+- Eigene Recherche, "Das grüne Kartell" (dunkelfeld.report)
+- Eigene Recherche, "Kasperljustiz" (AHO-Impulse Video #2, §188 StGB)
+- Für vertiefende Einordnung: Bundesverfassungsgericht-Rechtsprechung zu §188 StGB, Transparenzregister zu NGO-Finanzierung</p>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

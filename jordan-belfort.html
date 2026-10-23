@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Jordan Belfort: Die 97 Millionen, die nie ankamen</title>
+
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --box-bg: #1a1a2e;
+    --green: #4caf82;
+    --orange: #e39a3a;
+    --grey: #8a8a94;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.3;
+    margin: 0 0 1rem;
+    color: #fff;
+  }
+  .sub {
+    font-size: 1.2rem;
+    color: #b8b8c2;
+    font-style: italic;
+    margin-bottom: 2.5rem;
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    border-bottom: 1px solid #2a2a3a;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    color: #d8d8e0;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+  }
+  p { margin: 1.2rem 0; }
+  a { color: var(--accent); }
+
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.5rem;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(76,175,130,0.15); color: var(--green); border: 1px solid var(--green); }
+  .tag-extra { background: rgba(227,154,58,0.15); color: var(--orange); border: 1px solid var(--orange); }
+  .tag-offen { background: rgba(138,138,148,0.15); color: var(--grey); border: 1px solid var(--grey); }
+  .tag-vt { background: rgba(138,138,148,0.1); color: var(--grey); border: 1px solid var(--grey); text-decoration: line-through; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .stat {
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 1.2rem 1rem;
+    text-align: center;
+  }
+  .stat .num {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 1.6rem;
+    color: var(--accent);
+    font-weight: bold;
+  }
+  .stat .label {
+    display: block;
+    font-size: 0.8rem;
+    color: #a8a8b4;
+    margin-top: 0.3rem;
+  }
+
+  .source-box {
+    background: var(--box-bg);
+    border-left: 4px solid var(--accent);
+    border-radius: 4px;
+    padding: 1.2rem 1.5rem;
+    margin: 1.8rem 0;
+  }
+  .src-title {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.6rem;
+  }
+
+  .person-card {
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 1.3rem 1.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid #2a2a3a;
+  }
+  .person-name {
+    font-family: 'Courier New', monospace;
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+  }
+  .person-role {
+    color: var(--grey);
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-bottom: 0.8rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.8rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    border: 1px solid #2a2a3a;
+    padding: 0.7rem 0.8rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    color: var(--accent);
+    letter-spacing: 0.03em;
+  }
+
+  .pullquote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #fff;
+    border-left: 3px solid var(--accent);
+    padding-left: 1.2rem;
+    margin: 2.5rem 0;
+  }
+
+  .timeline {
+    margin: 2rem 0;
+    padding-left: 1.5rem;
+    border-left: 2px solid #2a2a3a;
+  }
+  .timeline-item {
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.58rem;
+    top: 0.4rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .open-questions {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a3a;
+    font-style: italic;
+    color: #c0c0ca;
+  }
+  .open-questions h2 { font-style: normal; }
+  .open-questions li { margin-bottom: 1rem; }
+
+  .source-list {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a3a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #8a8a94;
+    line-height: 1.6;
+  }
+  .source-list a { color: #a8a8b4; }
+
+  .series-nav {
+    margin-top: 3rem;
+    padding: 1.2rem;
+    background: var(--box-bg);
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+  }
+  .series-nav a { display: block; margin: 0.3rem 0; }
+</style>
+<meta name="description" content="200 Millionen Dollar Anlegerschaden, ein selbst erfundener Spitzname, ein Oscar-nominierter Film — und eine Wiedergutmachung, die 2026 für &#x27;abgeschlossen&#x27; erklärt wurde, obwohl der Großteil nie bei den Opfern ankam.">
+<meta name="rubrik" content="cat-geld">
+<meta name="kachel-titel" content="Jordan Belfort: Der &quot;Wolf of Wall Street&quot; und die 97 Millionen, die nie ankamen">
+<link rel="canonical" href="https://dunkelfeld.report/jordan-belfort.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jordan Belfort: Der &quot;Wolf of Wall Street&quot; und die 97 Millionen, die nie ankamen">
+<meta property="og:description" content="200 Millionen Dollar Anlegerschaden, ein selbst erfundener Spitzname, ein Oscar-nominierter Film — und eine Wiedergutmachung, die 2026 für &#x27;abgeschlossen&#x27; erklärt wurde, obwohl der Großteil nie bei den Opfern ankam.">
+<meta property="og:url" content="https://dunkelfeld.report/jordan-belfort.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Jordan Belfort: Der \"Wolf of Wall Street\" und die 97 Millionen, die nie ankamen", "description": "200 Millionen Dollar Anlegerschaden, ein selbst erfundener Spitzname, ein Oscar-nominierter Film — und eine Wiedergutmachung, die 2026 für 'abgeschlossen' erklärt wurde, obwohl der Großteil nie bei den Opfern ankam.", "inLanguage": "de", "url": "https://dunkelfeld.report/jordan-belfort.html", "mainEntityOfPage": "https://dunkelfeld.report/jordan-belfort.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="meta">Dunkelfeld.Report · Artikel · Geldsysteme &amp; Offshore</div>
+<h1>Jordan Belfort: Der "Wolf of Wall Street" und die 97 Millionen, die nie ankamen</h1>
+<div class="sub">Ein Oscar-nominierter Film machte ihn zur Legende. Doch hinter der Hollywood-Version steckt eine simple Bilanz: 200 Millionen Dollar Anlegerschaden, 110 Millionen Dollar gerichtlich angeordnete Wiedergutmachung — und eine "Abschluss"-Erklärung 2026, die den Opfern kaum etwas brachte.</div>
+<div class="stat-grid">
+<div class="stat"><span class="num">200 Mio. USD</span><span class="label">Anlegerschaden</span></div>
+<div class="stat"><span class="num">1.513</span><span class="label">identifizierte Opfer</span></div>
+<div class="stat"><span class="num">110,4 Mio. USD</span><span class="label">gerichtlich angeordnete Wiedergutmachung</span></div>
+<div class="stat"><span class="num">22 Monate</span><span class="label">Haftzeit</span></div>
+</div>
+<h2>1. Das Geschäftsmodell: Stratton Oakmont</h2>
+<p><span class="tag tag-belegt">BELEGT</span> Stratton Oakmont wurde 1989 von Jordan Belfort und Danny Porush als Brokerhaus auf Long Island gegründet und entwickelte sich zur größten Over-the-Counter-Firma der USA. Nach Zählung der Firma selbst und der Anklage manipulierte Stratton mindestens 34 Börsengänge, darunter den bekannten Schuhhersteller Steve Madden.</p>
+<div class="source-box">
+<div class="src-title">Die Mechanik: Pump and Dump</div>
+<span class="tag tag-belegt">BELEGT</span> Belfort und leitende Mitarbeiter pumpten künstlich den Kurs einer bestimmten Aktie auf und ließen dann eine Armee von Brokern die Papiere an ahnungslose Anleger verkaufen. Das trieb den Kurs weiter, was Belfort und seinen Partnern einen erheblichen Gewinn garantierte — bevor die Aktie wieder auf ihren realen Wert zurückfiel und die Anleger den Verlust trugen. Junior-Broker in ihren frühen Zwanzigern, oft mit minimaler Finanzkenntnis, tätigten hunderte Kaltakquise-Anrufe täglich nach strikten Skripten, die schnelle Gewinne betonten und Risiken herunterspielten.
+  </div>
+<p><span class="tag tag-belegt">BELEGT</span> Die US-Börsenaufsicht SEC verhängte im März 1994 ein persönliches Berufsverbot gegen Belfort. Die Vorgängerorganisation der FINRA löschte Stratton Oakmont selbst am 5. Dezember 1996 aus dem Register. Zwei Jahre später erfolgte die strafrechtliche Anklage aus dem Eastern District of New York.</p>
+<h2>2. Anklage, Kooperation, Haft</h2>
+<div class="timeline">
+<div class="timeline-item">
+<span class="timeline-date">1999</span>
+<span class="tag tag-belegt">BELEGT</span> Belfort bekennt sich der Wertpapierbetrugs- und Geldwäscheanklage schuldig.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">2003</span>
+<span class="tag tag-belegt">BELEGT</span> Verurteilung zu dreieinhalb Jahren Haft. Anordnung, die Hälfte aller künftigen Einnahmen an die Opfer abzuführen, bis die 110,4 Mio. USD Wiedergutmachung beglichen sind. Er verbüßte die Strafe im Taft Correctional Institution, einer Einrichtung mit niedriger Sicherheitsstufe.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">2006</span>
+<span class="tag tag-belegt">BELEGT</span> Vorzeitige Entlassung nach 22 Monaten — Belfort hatte gegen frühere Partner und Mitarbeiter ausgesagt, dabei ein verdecktes Aufnahmegerät getragen.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">2007</span>
+<span class="tag tag-belegt">BELEGT</span> Veröffentlichung der Memoiren "The Wolf of Wall Street". <span class="tag tag-offen">OFFEN</span> Den Spitznamen "Wolf of Wall Street" hatte laut Belforts eigener Aussage niemand auf der echten Wall Street je benutzt — er gab ihn sich selbst beim Schreiben im Gefängnis, ermutigt von seinem Zellengenossen Tommy Chong (Cheech &amp; Chong). Ein Forbes-Artikel aus jener Zeit nannte ihn stattdessen einen "verdrehten Robin Hood, der von den Reichen nimmt und es sich selbst und seiner fröhlichen Bande von Brokern gibt".
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">2013</span>
+<span class="tag tag-belegt">BELEGT</span> Martin Scorsese verfilmt die Memoiren mit Leonardo DiCaprio in der Hauptrolle — fünf Oscar-Nominierungen.
+    </div>
+</div>
+<h2>3. Die eigentliche Geschichte: Wiedergutmachung</h2>
+<p><span class="tag tag-belegt">BELEGT</span> Die gerichtlich angeordneten 110,4 Mio. USD Wiedergutmachung für 1.513 Opfer deckten nur gut die Hälfte des tatsächlich verlorenen Betrags von rund 200 Mio. USD ab.</p>
+<div class="source-box">
+<div class="src-title">Die Zahlungsbilanz über die Jahre</div>
+<span class="tag tag-belegt">BELEGT</span> 2013 änderte die Regierung den Rückzahlungsplan von 50 Prozent aller Bruttoeinnahmen auf eine Mindestsumme von 10.000 USD monatlich auf Lebenszeit. Bis Ende November 2018 hatte Belfort laut Gerichtsunterlagen erst 12,8 Millionen der 110 Millionen zurückgezahlt — davon rund 11 Millionen aus bei der Verhaftung beschlagnahmten Immobilien, nicht aus späteren Einnahmen. Staatsanwälte warfen ihm vor, allein zwischen 2013 und 2015 mindestens 9 Millionen USD aus Vortragshonoraren verdient, davon aber nichts an die Opfer weitergegeben zu haben. 2014 äußerte Belfort auf einer Welttournee, er hoffe, "über 100 Millionen Dollar" mit Vorträgen über seine "Erlösung" zu verdienen, was ihm erlauben würde, die Opfer zu entschädigen.
+  </div>
+<p><span class="tag tag-belegt">BELEGT</span> 2018 ordnete ein Bundesrichter zusätzlich an, dass Belfort seinen gesamten Kapitalanteil an der Wellness-Firma Delos Living an die Opfer abtreten muss — eine New Yorker Richterin kommentierte damals trocken, es scheine, als habe er "etwas Kleingeld übrig".</p>
+<p class="pullquote">"Es scheint, als hätte er etwas Kleingeld übrig." — US-Bezirksrichterin Ann Donnelly, 2018</p>
+<h2>4. 2026: Die "Abschluss"-Erklärung</h2>
+<p><span class="tag tag-belegt">BELEGT</span> Laut TMZ lief Belforts rechtliche Zahlungsverpflichtung am 28. April 2026 aus. In einer Stellungnahme erklärte er, er habe seine gerichtlich angeordnete Wiedergutmachung nun "abgeschlossen" und empfinde dabei "ein Gefühl des Abschlusses, auf das ich den Großteil meines Erwachsenenlebens hingearbeitet habe".</p>
+<p><span class="tag tag-offen">OFFEN</span> Unklar bleibt dabei die genaue Schlussabrechnung: Die Zahlungen endeten im April 2026, ohne dass öffentlich im Detail nachvollziehbar wäre, wie der exakte Ausgleich zustande kam. <span class="tag tag-extra">EXTRAPOLATION</span> Angesichts der über Jahre dokumentierten Zahlungslücke — von 110 Mio. USD Soll waren selbst 2018 erst rund 12,8 Mio. USD geleistet — bleibt fraglich, ob mit "abgeschlossen" tatsächlich eine vollständige Begleichung gemeint ist oder lediglich das Ende der rechtlichen Zahlungspflicht selbst, unabhängig vom tatsächlich noch offenen Betrag.</p>
+<table>
+<tr><th>Kennzahl</th><th>Wert</th><th>Quelle/Status</th></tr>
+<tr><td>Tatsächlicher Anlegerschaden</td><td>~200 Mio. USD</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+<tr><td>Gerichtlich angeordnete Wiedergutmachung</td><td>110,4 Mio. USD</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+<tr><td>Gezahlt bis Ende 2018 (davon ~11 Mio. aus Beschlagnahmung)</td><td>12,8 Mio. USD</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+<tr><td>Von Ermittlern unentdeckte Vortragseinnahmen 2013–2015</td><td>mind. 9 Mio. USD</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+<tr><td>Status der vollständigen Rückzahlung per 2026</td><td>von Belfort behauptet "abgeschlossen"</td><td><span class="tag tag-offen">OFFEN</span></td></tr>
+</table>
+<h2>5. Die zweite Karriere</h2>
+<p><span class="tag tag-belegt">BELEGT</span> Belfort arbeitet heute als Vertriebstrainer, Redner, Podcast-Host und gelegentlicher Bitcoin-Kommentator. <span class="tag tag-extra">EXTRAPOLATION</span> Das Muster ähnelt strukturell anderen Fällen gestürzter Finanzfiguren: Die eigene Betrugsgeschichte wird zum vermarktbaren Produkt, während die eigentliche Wiedergutmachung an die Geschädigten über Jahrzehnte hinter den öffentlich verkündeten Ankündigungen zurückbleibt.</p>
+<div class="series-nav">
+<strong>Weiterlesen:</strong>
+<a href="finanzbetrug-anatomie.html">→ Die Anatomie des Finanzbetrugs: Ponzi, Schneeball, Bilanzbetrug</a>
+<a href="florian-homm.html">→ Florian Homm: Vom BVB-Retter zum FBI-Gesuchten</a>
+</div>
+<div class="open-questions">
+<h2>Offene Fragen</h2>
+<ul>
+<li><em>Wie kann eine Zahlungspflicht rechtlich "auslaufen", ohne dass öffentlich nachvollziehbar wird, ob die zugrundeliegende Schuld tatsächlich beglichen wurde?</em></li>
+<li><em>Was sagt es über den Markt für Redner und Bücher, dass die eigene Betrugsgeschichte über Jahrzehnte profitabler bleibt als die Wiedergutmachung an die Geschädigten selbst?</em></li>
+</ul>
+</div>
+<div class="source-list">
+    Quellen: CelebrityNetWorth, CNBC, InvestmentNews, Prisonpedia, Variety, Wikibooks, PrimeTimer, Plisio. Alle Zitate im Text mit Quellenverweis gekennzeichnet.
+  </div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

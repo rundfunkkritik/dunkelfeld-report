@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Zehn Jahre danach (2): Geburten — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --surface: #1a1a2e;
+    --accent: #e8c547;
+    --text: #e5e5e0;
+    --muted: #9a9aa5;
+    --border: #2a2a3a;
+    --belegt: #6fae6f;
+    --extrapolation: #d99a4e;
+    --offen: #8a8a95;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  header.site {
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+  header.site .dot {
+    width: 8px; height: 8px; background: var(--accent); border-radius: 50%;
+    flex-shrink: 0;
+  }
+  header.site .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 2rem;
+  }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    line-height: 1.15;
+    margin: 0 0 1rem;
+    font-weight: 700;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-size: 1.15rem;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.8rem 0;
+    margin-bottom: 3rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  p { padding-bottom: 1.2rem; }
+  h2 {
+    font-size: 1.6rem;
+    margin: 3rem 0 1.2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h2 .num {
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    margin-right: 0.5rem;
+  }
+  .source-box {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 0.98rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+  .tag.belegt { color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag.extrapolation { color: var(--extrapolation); border: 1px solid var(--extrapolation); }
+  .tag.offen { color: var(--offen); border: 1px solid var(--offen); }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    margin: 1.5rem 0;
+  }
+  .stat-grid .cell {
+    background: var(--surface);
+    padding: 1.2rem 1rem;
+  }
+  .stat-grid .num-big {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .stat-grid .lbl {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.3rem;
+  }
+  table.compare {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  table.compare th, table.compare td {
+    border: 1px solid var(--border);
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  table.compare th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    background: var(--surface);
+  }
+  .timeline {
+    margin: 1.5rem 0;
+    padding-left: 0;
+    list-style: none;
+  }
+  .timeline li {
+    border-left: 2px solid var(--border);
+    padding: 0 0 1.5rem 1.5rem;
+    position: relative;
+  }
+  .timeline li::before {
+    content: "";
+    position: absolute;
+    left: -5px;
+    top: 4px;
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .timeline .date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .open-question {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1.15rem;
+    text-align: center;
+    margin: 3rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+  }
+  .note {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  footer.series {
+    border-top: 1px solid var(--border);
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  footer.series .series-title {
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+    margin-bottom: 0.8rem;
+  }
+  footer.series ol {
+    padding-left: 1.2rem;
+    margin: 0;
+  }
+  footer.series li { padding-bottom: 0.4rem; }
+  footer.series li.current { color: var(--text); font-weight: bold; }
+  footer.site {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+</style>
+<meta name="description" content="Am 13. Juli 2026 veröffentlichte das Statistische Bundesamt die endgültigen Geburtenzahlen für 2025. Dieser Teil dokumentiert die zentralen Kennzahlen …">
+<meta name="rubrik" content="cat-migration">
+<meta name="kachel-titel" content="Zehn Jahre danach (2): Geburten">
+<link rel="canonical" href="https://dunkelfeld.report/zehn-jahre-danach-teil2.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zehn Jahre danach (2): Geburten">
+<meta property="og:description" content="Am 13. Juli 2026 veröffentlichte das Statistische Bundesamt die endgültigen Geburtenzahlen für 2025. Dieser Teil dokumentiert die zentralen Kennzahlen …">
+<meta property="og:url" content="https://dunkelfeld.report/zehn-jahre-danach-teil2.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Zehn Jahre danach (2): Geburten", "description": "Am 13. Juli 2026 veröffentlichte das Statistische Bundesamt die endgültigen Geburtenzahlen für 2025. Dieser Teil dokumentiert die zentralen Kennzahlen …", "inLanguage": "de", "url": "https://dunkelfeld.report/zehn-jahre-danach-teil2.html", "mainEntityOfPage": "https://dunkelfeld.report/zehn-jahre-danach-teil2.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<header class="site">
+<div class="dot"></div>
+<span class="tag">dunkelfeld.report — Dokumentation · Fakten · Quellen</span>
+</header>
+<main>
+<div class="kicker">Serie: Zehn Jahre danach — Teil 2 von 8</div>
+<h1>Geburten</h1>
+<div class="subtitle">Was Destatis für 2025 meldet — der niedrigste Stand seit 1946</div>
+<div class="meta">
+<span>Stand: Juli 2026</span>
+<span>Lesedauer: ca. 7 Minuten</span>
+</div>
+<p>Am 13. Juli 2026 veröffentlichte das Statistische Bundesamt die endgültigen Geburtenzahlen für 2025. Dieser Teil dokumentiert die zentralen Kennzahlen sowie deren Einordnung durch Destatis selbst — ohne eigene Interpretation der Ursachen.</p>
+<h2><span class="num">01</span>Die Grundzahlen 2025</h2>
+<div class="stat-grid">
+<div class="cell"><div class="num-big">654.241</div><div class="lbl">Geburten 2025 — niedrigster Stand seit 1946</div></div>
+<div class="cell"><div class="num-big">-3,4%</div><div class="lbl">gegenüber 2024 (677.117)</div></div>
+<div class="cell"><div class="num-big">1,01 Mio.</div><div class="lbl">Sterbefälle 2025</div></div>
+<div class="cell"><div class="num-big">-352.000</div><div class="lbl">Geburtendefizit — größtes der Nachkriegszeit</div></div>
+</div>
+<div class="source-box">
+<div class="label">Quelle</div>
+    Statistisches Bundesamt (Destatis), Pressemitteilung PD26_230_12 (13.7.2026), "Zusammengefasste Geburtenziffer sinkt im Jahr 2025 auf 1,32 Kinder je Frau" <span class="tag belegt">BELEGT</span>
+</div>
+<p>Destatis nennt zwei Gründe für den Rückgang: Erstens erreichen die zahlenmäßig kleinen Geburtsjahrgänge der 1990er-Jahre jetzt das Alter Anfang 30, in dem die meisten Frauen Kinder bekommen — es gibt schlicht weniger potenzielle Mütter. Zweitens sinkt seit 2022 zusätzlich die Geburtenziffer selbst, also wie viele Kinder eine Frau im Durchschnitt bekommt.</p>
+<h2><span class="num">02</span>Die Geburtenziffer nach Staatsangehörigkeit</h2>
+<p>Die zusammengefasste Geburtenziffer gibt an, wie viele Kinder eine Frau im Laufe ihres Lebens bekommen würde, wenn die Verhältnisse eines Jahres konstant blieben. Sie lag 2025 bei 1,32 Kindern je Frau — der niedrigste Wert seit 1997.</p>
+<div class="stat-grid">
+<div class="cell"><div class="num-big">1,32</div><div class="lbl">Gesamt (2024: 1,35)</div></div>
+<div class="cell"><div class="num-big">1,20</div><div class="lbl">Deutsche Staatsangehörigkeit (2024: 1,23)</div></div>
+<div class="cell"><div class="num-big">1,78</div><div class="lbl">Ausländische Staatsangehörigkeit (2024: 1,84)</div></div>
+</div>
+<p>Beide Gruppen verzeichneten 2025 einen Rückgang um jeweils rund 3 Prozent gegenüber dem Vorjahr. Bei deutschen Frauen war die Geburtenziffer zuletzt 1996 ähnlich niedrig (damals: 1,22). Die Geburtenhäufigkeit ausländischer Frauen sinkt laut Destatis "seit 2017 mit Ausnahme des Jahres 2021 kontinuierlich".</p>
+<div class="source-box">
+<div class="label">Quelle</div>
+    Destatis, PD26_230_12 (13.7.2026) <span class="tag belegt">BELEGT</span>
+</div>
+<h2><span class="num">03</span>Regionale Unterschiede</h2>
+<table class="compare">
+<tr><th>Region</th><th>Geburtenziffer 2025</th><th>Veränderung z. Vorjahr</th></tr>
+<tr><td>Niedersachsen (höchster Wert)</td><td>1,38</td><td>erstmals seit 16 Jahren unter 1,40</td></tr>
+<tr><td>Westdeutschland gesamt</td><td>1,34</td><td>—</td></tr>
+<tr><td>Ostdeutschland (Flächenländer)</td><td>1,22</td><td>—</td></tr>
+<tr><td>Brandenburg (höchster Ost-Wert)</td><td>1,30</td><td>—</td></tr>
+<tr><td>Sachsen (niedrigster Wert)</td><td>1,16</td><td>niedrigster Stand seit 1998</td></tr>
+<tr><td>Mecklenburg-Vorpommern</td><td>1,21</td><td>-6,3% — stärkster Rückgang aller Länder</td></tr>
+<tr><td>Hamburg (einziges Land mit Anstieg)</td><td>1,24</td><td>+0,4%</td></tr>
+</table>
+<div class="source-box">
+<div class="label">Quelle</div>
+    Destatis, PD26_230_12 (13.7.2026) <span class="tag belegt">BELEGT</span>
+</div>
+<h2><span class="num">04</span>Einordnung: kein deutsches Einzelphänomen</h2>
+<p>Destatis verweist explizit auf die europäische Dimension: Rückläufige Geburtenzahlen für 2025 melden auch Frankreich, Österreich, Italien und Schweden. Gegenläufig — also mit einer Stabilisierung — entwickeln sich dagegen Spanien, die Niederlande und Finnland.</p>
+<div class="source-box">
+<div class="label">Quelle</div>
+    Destatis, Pressemitteilung PD26_146_126 (29.4.2026) <span class="tag belegt">BELEGT</span>
+</div>
+<h2><span class="num">05</span>Weitere Kennzahlen</h2>
+<div class="stat-grid">
+<div class="cell"><div class="num-big">30,5</div><div class="lbl">Ø-Alter der Mutter beim 1. Kind (Jahre)</div></div>
+<div class="cell"><div class="num-big">33,3</div><div class="lbl">Ø-Alter des Vaters beim 1. Kind (Jahre)</div></div>
+<div class="cell"><div class="num-big">46,6%</div><div class="lbl">Anteil erste Kinder an allen Geburten</div></div>
+<div class="cell"><div class="num-big">4,3</div><div class="lbl">Totgeburtenquote je 1.000 Geborene</div></div>
+</div>
+<p class="note">Die Totgeburtenquote lag bei ausländischen Müttern mit 4,9 höher als bei deutschen Müttern (4,1). Destatis nennt hierzu keine Ursachenanalyse in der Pressemitteilung selbst. <span class="tag offen">OFFEN</span></p>
+<p>Die Bevölkerungsvorausberechnung von Destatis (16. koordinierte Vorausberechnung, Dezember 2025) hält einen künftigen Anstieg der Geburtenzahl nur bei gleichzeitig steigender Geburtenziffer <em>und</em> mindestens moderater Nettozuwanderung für möglich — selbst dann würde das Niveau des Jahres 2021 (rund 795.000 Geburten) laut Prognose nicht wieder erreicht.</p>
+<div class="source-box">
+<div class="label">Quelle</div>
+    Destatis, 16. koordinierte Bevölkerungsvorausberechnung, Pressemitteilung Nr. 446 / Webartikel (11.12.2025) <span class="tag belegt">BELEGT</span>
+</div>
+<div class="open-question">
+    Eine Zahl sinkt seit vier Jahren in Folge, in beiden betrachteten Gruppen, in fast allen Bundesländern und in mehreren Nachbarländern gleichzeitig. Was daraus über die nächsten zehn Jahre folgt, ist eine Frage der Politik — nicht der Statistik.
+  </div>
+<footer class="series">
+<div class="series-title">Serie: Zehn Jahre danach</div>
+<ol>
+<li>1. Die Zitate</li>
+<li class="current">2. Geburten ← Sie befinden sich hier</li>
+<li>3. Kinderarmut &amp; Bildung — der Arche-Bericht (in Arbeit)</li>
+<li>4. Sicherheit — die BKA-Kriminalstatistik 2025 (in Arbeit)</li>
+<li>5. Kinderehen &amp; Verwandtenehe</li>
+<li>6. Wohnraum &amp; Kosten (in Arbeit)</li>
+<li>7. Synthese — die Zahlen im Überblick (in Arbeit)</li>
+</ol>
+</footer>
+</main>
+<footer class="site">
+  dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.
+</footer>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Der Wirecard-Komplex — dunkelfeld.report</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --amber: #e8c547;
+    --card-bg: #1a1a2e;
+    --text: #d4d4d8;
+    --text-dim: #8a8a95;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --grey: #9ca3af;
+    --red: #f87171;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+  .masthead {
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .masthead .logo {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .masthead .tagline {
+    font-family: 'Courier New', monospace;
+    color: var(--text-dim);
+    font-size: 11px;
+    margin-top: 4px;
+    letter-spacing: 1px;
+  }
+  hr.divider {
+    border: none;
+    border-top: 1px solid #27272a;
+    margin: 24px 0;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--text-dim);
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+  h1.title {
+    font-size: 30px;
+    line-height: 1.25;
+    color: #f4f4f5;
+    text-align: center;
+    margin: 10px 0 6px;
+  }
+  .subtitle {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 15px;
+    font-style: italic;
+    margin-bottom: 30px;
+  }
+  .lead {
+    font-size: 18px;
+    color: #f4f4f5;
+    margin-bottom: 30px;
+  }
+  h2 {
+    font-family: Georgia, serif;
+    color: var(--amber);
+    font-size: 22px;
+    margin-top: 48px;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 8px;
+  }
+  h3 {
+    color: #f4f4f5;
+    font-size: 17px;
+    margin-top: 28px;
+  }
+  p { margin: 14px 0; }
+
+  /* Evidence tags */
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-right: 6px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.12); color: var(--green); border: 1px solid rgba(74,222,128,0.4); }
+  .tag-extra { background: rgba(251,146,60,0.12); color: var(--orange); border: 1px solid rgba(251,146,60,0.4); }
+  .tag-offen { background: rgba(156,163,175,0.12); color: var(--grey); border: 1px solid rgba(156,163,175,0.4); }
+  .tag-widerlegt { background: rgba(248,113,113,0.10); color: var(--red); border: 1px solid rgba(248,113,113,0.4); text-decoration: line-through; }
+
+  /* Stat grid */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .stat-box {
+    background: var(--card-bg);
+    padding: 16px;
+    border-radius: 6px;
+    border-left: 3px solid var(--amber);
+  }
+  .stat-box .num {
+    font-family: 'Courier New', monospace;
+    font-size: 22px;
+    color: var(--amber);
+    font-weight: bold;
+  }
+  .stat-box .label {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  /* Timeline */
+  .timeline {
+    margin: 24px 0;
+    border-left: 2px solid #27272a;
+    padding-left: 20px;
+  }
+  .timeline-item {
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -26px;
+    top: 4px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 13px;
+    font-weight: bold;
+  }
+  .timeline-text { margin-top: 4px; font-size: 15px; }
+
+  /* Person card */
+  .person-card {
+    background: var(--card-bg);
+    border-radius: 6px;
+    padding: 16px 18px;
+    margin: 16px 0;
+  }
+  .person-card .name {
+    font-size: 16px;
+    color: #f4f4f5;
+    font-weight: bold;
+  }
+  .person-card .role {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+
+  /* Source box */
+  .source-box {
+    background: var(--card-bg);
+    border-left: 3px solid var(--amber);
+    padding: 14px 18px;
+    margin: 20px 0;
+    font-size: 13px;
+    color: var(--text-dim);
+    border-radius: 0 6px 6px 0;
+  }
+  .source-box .source-label {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 11px;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* Pull quote */
+  .pull-quote {
+    font-size: 20px;
+    font-style: italic;
+    color: #f4f4f5;
+    border-left: 3px solid var(--amber);
+    padding: 6px 20px;
+    margin: 30px 0;
+  }
+
+  /* Comparison table */
+  table.comp {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+  table.comp th {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--amber);
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid #27272a;
+    letter-spacing: 0.5px;
+  }
+  table.comp td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #1f1f23;
+    vertical-align: top;
+  }
+
+  /* Open questions */
+  .open-questions {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px dashed #27272a;
+  }
+  .open-questions h2 { color: var(--grey); }
+  .open-questions p { font-style: italic; color: var(--text-dim); }
+
+  /* Footer nav */
+  .footer-nav {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    text-align: center;
+  }
+  .footer-nav .brand { color: var(--amber); }
+
+  ul { padding-left: 22px; }
+  li { margin: 6px 0; }
+  a { color: var(--amber); text-decoration: none; }
+</style>
+<meta name="description" content="Wie ein DAX-Konzern 21 Jahre lang Milliarden erfand — und wer alles wegsah">
+<meta name="rubrik" content="cat-geld">
+<meta name="kachel-titel" content="Der Wirecard-Komplex">
+<link rel="canonical" href="https://dunkelfeld.report/wirecard-komplex.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Der Wirecard-Komplex">
+<meta property="og:description" content="Wie ein DAX-Konzern 21 Jahre lang Milliarden erfand — und wer alles wegsah">
+<meta property="og:url" content="https://dunkelfeld.report/wirecard-komplex.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Der Wirecard-Komplex", "description": "Wie ein DAX-Konzern 21 Jahre lang Milliarden erfand — und wer alles wegsah", "inLanguage": "de", "url": "https://dunkelfeld.report/wirecard-komplex.html", "mainEntityOfPage": "https://dunkelfeld.report/wirecard-komplex.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="masthead">
+<div class="logo">dunkelfeld.report</div>
+<div class="tagline">Hidden in Plain Sight</div>
+</div>
+<hr class="divider"/>
+<div class="meta">DOSSIER · WIRTSCHAFTSKRIMINALITÄT · BEHÖRDENVERSAGEN</div>
+<h1 class="title">Der Wirecard-Komplex</h1>
+<p class="subtitle">Wie ein DAX-Konzern 21 Jahre lang Milliarden erfand — und wer alles wegsah</p>
+<p class="lead">
+    24 Milliarden Euro Marktwert. Fast 6.000 Mitarbeiter in 26 Ländern. Und am Ende: 1,9 Milliarden Euro, die es nie gab.
+    Wirecard ist der größte Finanzbetrug der deutschen Nachkriegsgeschichte — und eine Geschichte darüber, wie viele
+    Institutionen wegschauen können, wenn sie es wollen.
+  </p>
+<div class="stat-grid">
+<div class="stat-box"><div class="num">1999</div><div class="label">Gründung in München-Lehel</div></div>
+<div class="stat-box"><div class="num">24 Mrd. €</div><div class="label">Marktwert-Peak (2018)</div></div>
+<div class="stat-box"><div class="num">~6.000</div><div class="label">Mitarbeiter, 26 Länder</div></div>
+<div class="stat-box"><div class="num">1,9 Mrd. €</div><div class="label">Nie existierendes Treuhandguthaben</div></div>
+</div>
+<h2>1. Firmengeschichte — vom Nischenanbieter zum DAX-Konzern</h2>
+<p><span class="tag tag-belegt">BELEGT</span>Detlev Hoppenrath und Peter Herold gründeten 1999 in München-Lehel die
+  "Wire Card" — finanziert mit 4 Mio. DM Wagniskapital der Technologieholding (später 3i). Erste nennenswerte Kunden:
+  Online-Glücksspiel- und Erotikseiten, Branchen, die klassische Zahlungsdienstleister mieden.</p>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-date">2000</div>
+<div class="timeline-text">Jan Marsalek wird als "Director Technology" eingestellt.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2002</div>
+<div class="timeline-text">Markus Braun, Ex-KPMG-Consultant aus Wien, übernimmt als CEO das angeschlagene Unternehmen und bringt frisches Kapital ein.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2004/2005</div>
+<div class="timeline-text">Reverse Takeover über die EBS Electronic Billing Systems AG — Börsenzugang in Frankfurt.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2005</div>
+<div class="timeline-text">Übernahme der XCOM Bank, umbenannt in Wirecard Bank AG — Zugang zu Visa und Mastercard.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2007</div>
+<div class="timeline-text">Gründung von Wirecard Asia Pacific in Manila — Einstieg in das Geschäft, das später zum Zentrum des Betrugs wird.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2008</div>
+<div class="timeline-text">Erste BaFin-Ermittlungen wegen Marktmanipulationsverdachts und irreführender Angaben im Konzernabschluss — EY führt bereits eine Sonderprüfung durch. Das Muster ist zwölf Jahre vor dem Kollaps angelegt.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2018</div>
+<div class="timeline-text">Aufnahme in den DAX. Umsatz über 2 Mrd. € — mehr als das Vierfache von 2013. Kurs-Allzeithoch über 190€, Marktwert über 24 Mrd. € — mehr als die Deutsche Bank.</div>
+</div>
+</div>
+<div class="source-box">
+<span class="source-label">QUELLEN</span>
+    IT-Times: Firmenchronik Wirecard · gruender.de: Wirecard-Gründer · KWAG Recht: Skandal-Zeitstrahl · CGAA: Wirecard Scandal Overview
+  </div>
+<h2>2. Der Mechanismus — wie aus Verlusten Milliarden wurden</h2>
+<p><span class="tag tag-belegt">BELEGT</span>Kern des Betrugs war das sogenannte <strong>TPA-Modell (Third Party
+  Acquiring)</strong>: Weil Wirecard in bestimmten Ländern keine eigene Zahlungslizenz besaß oder Kunden aus
+  Hochrisikobranchen (Pornographie, Glücksspiel) bediente, wurde die eigentliche Zahlungsabwicklung an Drittfirmen
+  ausgelagert — Wirecard trat offiziell nur als Vermittler auf.</p>
+<p>Angebliche Haupt-TPA-Partner saßen in Dubai, auf den Philippinen und in Singapur. Die daraus resultierenden
+  "Erlöse" wurden entweder als direkte Forderungen gegen die TPA-Partner oder als Guthaben auf Treuhandkonten verbucht
+  — und flossen so in die Konzernbilanz ein. Sie existierten nicht.</p>
+<p>Nach Angaben der Staatsanwaltschaft München I war das kein Buchhaltungsfehler, sondern System: Spätestens Ende
+  2015 war den Beteiligten bewusst, dass das reale Geschäft nur Verluste erzeugte. Die fingierten TPA-Erlöse wurden
+  benötigt, um weitere Kreditaufnahmen und Anleiheausgaben zu rechtfertigen — ein Schneeballsystem aus Bilanzfiktion
+  und realer Verschuldung.</p>
+<div class="pull-quote">
+    "Ich glaube nicht, dass das Geld je ins philippinische Bankensystem gelangt ist — ein umsichtiger Geschäftsmann
+    hätte einen solchen Transfer registrieren lassen müssen."
+  </div>
+<p><span class="tag tag-belegt">BELEGT</span>Als die philippinische Notenbank BSP nach dem Kollaps prüfte, stellte
+  sich heraus: Zwei Junior-Mitarbeiter der Banken BDO Unibank und Bank of the Philippine Islands hatten mit gefälschten
+  Bestätigungen den Anschein erweckt, das Geld liege dort — es war nie angekommen.</p>
+<div class="source-box">
+<span class="source-label">QUELLEN</span>
+    Staatsanwaltschaft München I / Pressemitteilung Bayerisches Justizministerium 02/2022 · Phnom Penh Post: "Officials say Wirecard billions never entered the Philippines" · Business Insider: "Geklautes Geld oder Luftbuchung"
+  </div>
+<h2>3. Warnungen ab 2015 — die Financial Times</h2>
+<div class="person-card">
+<div class="name">Dan McCrum</div>
+<div class="role">Financial Times, Reporter</div>
+    Berichtete ab 2015 in einer Artikelserie ("The House of Wirecard") über Unregelmäßigkeiten im Asien-Geschäft —
+    nicht zusammenpassende Cashflows, schwer prüfbare Übernahmen in Mauritius und den Philippinen. Wirecards Reaktion:
+    Private Ermittler überwachten ihn, anonyme Blogs griffen ihn namentlich an, deutsche Kleinanleger warfen ihm einen
+    koordinierten Short-Angriff vor.
+  </div>
+<p><span class="tag tag-belegt">BELEGT</span>Statt der Sache nachzugehen, wurde Wirecard 2018 sogar in den DAX
+  aufgenommen — Kurshöhe als Persilschein. Die deutsche Öffentlichkeit behandelte die Berichterstattung lange als
+  Angriff auf einen "nationalen Champion", nicht als Warnung vor einem.</p>
+<div class="source-box">
+<span class="source-label">QUELLEN</span>
+    Silicon Canals: "Inside the FT investigation that took five years..." · bpb.de: Hintergrund aktuell — Wirecard und die BaFin
+  </div>
+<h2>4. BaFin greift ein — auf der falschen Seite</h2>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-date">Feb 2019</div>
+<div class="timeline-text">BaFin verhängt ein zweimonatiges Leerverkaufsverbot für Wirecard-Aktien — erstmals in der Geschichte des deutschen Aktienmarkts wird eine einzelne Aktie so geschützt. Die Bundesbank hatte die BaFin zuvor explizit vor diesem Schritt gewarnt.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">Apr 2019</div>
+<div class="timeline-text">BaFin stellt Strafanzeige gegen Dan McCrum und Stefania Palma (FT) wegen vermuteter Marktmanipulation. Die Ermittlungen führen zu keiner Anklage — McCrum wird zeitweise vor einer Reise nach München gewarnt, dort könne ihm die Verhaftung drohen.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">Okt 2019</div>
+<div class="timeline-text">Wirecards eigener Aufsichtsrat beauftragt eine Sonderprüfung bei KPMG.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">Apr 2020</div>
+<div class="timeline-text">KPMG-Sonderprüfung kann zentrale TPA-Umsätze nicht bestätigen — Wirecard-Partnerfirmen verweigern die Mitwirkung.</div>
+</div>
+</div>
+<p><span class="tag tag-belegt">BELEGT</span>Strukturell kam hinzu: Die BaFin beaufsichtigte nur die kleine
+  Wirecard Bank AG. Die börsennotierte Holding mit ihrem zweifelhaften Auslandsgeschäft unterlag keiner laufenden
+  Finanzaufsicht. Für die Bilanzkontrolle war die privatrechtliche Deutsche Prüfstelle für Rechnungslegung zuständig
+  — nur Stichproben, kein Durchgriffsrecht. Ein milliardenschwerer Betrug verschwand zwischen den Zuständigkeiten,
+  ohne dass eine einzige Stelle den Gesamtüberblick hatte.</p>
+<div class="source-box">
+<span class="source-label">QUELLEN</span>
+    IT-Times: "Bundesbank warnte die BaFin" · finanzwelt.de: "BaFin, EY und die Aufsichtslücken" · bpb.de: Wirecard und die BaFin
+  </div>
+<h2>5. Die illustren Namen — das Lobbynetz</h2>
+<p><span class="tag tag-belegt">BELEGT</span>Zwischen 2016 und 2020 zahlte Wirecard 62 Millionen Euro an Berater
+  und Lobbyisten — von der Tagesschau als "Honigtopf" bezeichnet.</p>
+<div class="person-card">
+<div class="name">Karl-Theodor zu Guttenberg</div>
+<div class="role">CSU · Ex-Wirtschafts- und Verteidigungsminister · Spitzberg Partners</div>
+    Unterstützte Wirecard über seine Firma Spitzberg Partners beim Markteintritt in China. Im September 2019 mit
+    Wirecard-Anliegen im Kanzleramt bei Angela Merkel vorstellig.
+  </div>
+<div class="person-card">
+<div class="name">Peter Harry Carstensen</div>
+<div class="role">CDU · Ex-Ministerpräsident Schleswig-Holstein · Kanzlei Hambach &amp; Hambach</div>
+    Vermittelte für Wirecard-Vorstand Burkhard Ley Kontakte zu Hessens Ministerpräsident Volker Bouffier (CDU) und
+    zum damaligen EU-Digitalkommissar Günther Oettinger (CDU). Nahm auch an einem Gespräch mit dem damaligen
+    Hamburger Bürgermeister Olaf Scholz (SPD) zum Thema Glücksspiel-Suchtprävention teil.
+  </div>
+<table class="comp">
+<tr><th>Politiker</th><th>Rolle / Kontext</th></tr>
+<tr><td>Angela Merkel (CDU)</td><td>Kanzlerin; warb 2019 bei Xi Jinping persönlich für Wirecard in China</td></tr>
+<tr><td>Olaf Scholz (SPD)</td><td>Finanzminister während BaFin-Aufsichtsversagen; BMF ab Juni 2020 eng eingebunden</td></tr>
+<tr><td>Friedrich Merz (CDU)</td><td>BlackRock-Aufsichtsratschef; zwei Treffen mit Braun (Nov. 2018 Hotel Tegernsee, Sept. 2019 Aschheim)</td></tr>
+<tr><td>Volker Bouffier (CDU)</td><td>Hessischer Ministerpräsident; Gespräch zu Online-Glücksspiel-Regulierung</td></tr>
+<tr><td>Günther Oettinger (CDU)</td><td>EU-Digitalkommissar; Kontakt über Carstensen vermittelt</td></tr>
+</table>
+<p><span class="tag tag-offen">OFFEN</span>Merz' Büro bestätigt die beiden Treffen mit Braun, bestreitet aber jede
+  Kontaktaufnahme mit Regierung oder Aufsichtsbehörden zu Wirecard. Eine dokumentierte Verbindungslinie zwischen den
+  Lobby-Kontakten und konkreten BaFin-Entscheidungen existiert nicht — belegt ist nur die zeitliche und personelle
+  Nähe.</p>
+<div class="source-box">
+<span class="source-label">QUELLEN</span>
+    finanzwende-recherche.de: "Wirecard und die helfenden Hände von Politik und Behörden" · Lobbypedia: Wirecard · bpb.de: Der Wirecard-Skandal und die BaFin · finanzen.net: "Merz traf sich anscheinend mehrfach mit Ex-Wirecard-Chef Braun"
+  </div>
+<h2>6. Kollaps — Juni 2020</h2>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-date">18. Juni 2020</div>
+<div class="timeline-text">EY teilt mit, keine ausreichenden Prüfungsnachweise für 1,9 Mrd. € auf Treuhandkonten zu haben — ein Viertel der Bilanzsumme des Konzerns.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">22. Juni 2020</div>
+<div class="timeline-text">Wirecard räumt ein, die Summe bestehe "mit überwiegender Wahrscheinlichkeit" nicht. Aktienkurs stürzt von über 100€ auf unter 3€.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">Juni 2020</div>
+<div class="timeline-text">Markus Braun tritt mit sofortiger Wirkung zurück. Jan Marsalek verschwindet.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">25. Juni 2020</div>
+<div class="timeline-text">Wirecard stellt Insolvenzantrag — erster DAX-Konzern in der Geschichte des Index, der pleitegeht.</div>
+</div>
+</div>
+<h2>7. Nachspiel — bis 2026</h2>
+<p><span class="tag tag-belegt">BELEGT</span>Der Wirecard-Prozess in München läuft seit über drei Jahren gegen
+  Braun und zwei Mitangeklagte; ein Urteil rückt 2026 näher. Braun stellt sich als getäuschtes Opfer dar, das Gericht
+  zweifelt zunehmend an dieser Version.</p>
+<p><span class="tag tag-belegt">BELEGT</span>Marsalek soll seit 2021 in einer "Gated Community" in Moskau leben,
+  "unter Betreuung des FSB" — der BND wusste davon laut Bild/DW bereits seit Anfang 2021. Im März 2026 zerschlugen
+  Ermittler im Rahmen der "Operation Chargeback" ein globales Betrugs- und Geldwäschenetzwerk mit zentraler Rolle
+  früherer Wirecard-Führungskräfte um Marsalek — mit Verbindungen zu sanktionierten Oligarchen und zur Finanzierung
+  von Russlands Krieg gegen die Ukraine.</p>
+<p><span class="tag tag-belegt">BELEGT</span>Ex-Geheimdienstkoordinator Bernd Schmidbauer (CDU) geriet in
+  Widerspruch: Er hatte dem Bundestags-Untersuchungsausschuss 2021 ein erstes Treffen mit Marsalek für Herbst 2018
+  angegeben — österreichische Ermittlungsakten legen laut ARD Kontraste nahe, dass die Kontakte enger und älter
+  waren.</p>
+<div class="source-box">
+<span class="source-label">QUELLEN</span>
+    Handelsblatt: "Operation Chargeback" · wiwo.de: Jan Marsalek News · Deutsche Welle: "Wanted Wirecard executive... hiding in Moscow" · finanznachrichten.de: ARD Kontraste zu Schmidbauer
+  </div>
+<div class="open-questions">
+<h2>Offene Fragen</h2>
+<p>Wo befindet sich Jan Marsalek heute wirklich, und wird er je vor ein deutsches Gericht gestellt?</p>
+<p>Welche Rolle spielte der BND tatsächlich — als Aufklärer oder als Teil des Problems?</p>
+<p>Wie viele der 62 Millionen Euro Beraterhonorare dienten nachweislich der direkten Einflussnahme auf
+    Aufsichtsentscheidungen — und wie viele blieben folgenlose Netzwerkpflege?</p>
+</div>
+<div class="footer-nav">
+<span class="brand">dunkelfeld.report</span> — Hidden in Plain Sight<br/>
+    Dossier · Wirecard-Komplex · 2026
+  </div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

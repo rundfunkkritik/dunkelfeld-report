@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sterbehilfe international: Zwischen Recht und Grauzone</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --source-bg: #1a1a2e;
+    --belegt: #4ade80;
+    --extrapolation: #fb923c;
+    --offen: #9ca3af;
+    --widerlegt: #6b7280;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: #e5e5e5;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+  }
+  .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  h1 {
+    font-size: 1.8rem;
+    line-height: 1.3;
+    margin: 0.5rem 0 0.3rem;
+    color: #fff;
+  }
+  .subtitle {
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    color: #a8a8a8;
+    margin-bottom: 2rem;
+  }
+  h2 {
+    font-size: 1.3rem;
+    color: var(--accent);
+    margin-top: 2.8rem;
+    border-bottom: 1px solid #2a2a2a;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    font-size: 1.05rem;
+    color: #fff;
+    margin-top: 1.8rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+    margin-right: 0.4rem;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag-extrapolation { background: rgba(251,146,60,0.15); color: var(--extrapolation); border: 1px solid var(--extrapolation); }
+  .tag-offen { background: rgba(156,163,175,0.15); color: var(--offen); border: 1px solid var(--offen); }
+  .source-box {
+    background: var(--source-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.98rem;
+  }
+  .source-box .label { display: block; margin-bottom: 0.4rem; }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat-card {
+    background: var(--source-bg);
+    padding: 1rem;
+    text-align: center;
+    border-top: 2px solid var(--accent);
+  }
+  .stat-number {
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: bold;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #a8a8a8;
+    margin-top: 0.3rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.93rem;
+  }
+  th, td {
+    border: 1px solid #2a2a2a;
+    padding: 0.6rem 0.7rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .timeline {
+    margin: 1.5rem 0;
+    border-left: 2px solid var(--accent);
+    padding-left: 1.2rem;
+  }
+  .timeline-item {
+    margin-bottom: 1.2rem;
+    position: relative;
+  }
+  .timeline-year {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+  .person-card {
+    background: var(--source-bg);
+    border-top: 2px solid var(--accent);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+  }
+  .person-card .label { display: block; margin-bottom: 0.4rem; }
+  .pull-quote {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--accent);
+    border-left: 3px solid var(--accent);
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+  }
+  .open-questions {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a2a;
+    font-style: italic;
+    color: #c0c0c0;
+  }
+  .open-questions p { padding-bottom: 0.8rem; }
+  .reader-note {
+    background: var(--source-bg);
+    border-left: 3px solid var(--belegt);
+    padding: 1rem 1.2rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+    font-style: italic;
+  }
+  .series-nav {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a2a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+  }
+  .series-nav a { color: var(--accent); text-decoration: none; }
+  a { color: var(--accent); }
+  .toc {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    background: var(--source-bg);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+  }
+  .toc a { display: block; padding: 0.15rem 0; text-decoration: none; }
+</style>
+<meta name="description" content="BELEGT Kanada legalisierte medizinisch assistiertes Sterben (MAID) 2016 mit Bill C-14. Fünf Jahre später folgte mit Bill C-7 die erste große Ausweitung.">
+<meta name="rubrik" content="cat-staat">
+<meta name="kachel-titel" content="Sterbehilfe-Legalisierung international: Zwischen Selbstbestimmung und Grauzone">
+<link rel="canonical" href="https://dunkelfeld.report/sterbehilfe-legalisierung-international.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sterbehilfe-Legalisierung international: Zwischen Selbstbestimmung und Grauzone">
+<meta property="og:description" content="BELEGT Kanada legalisierte medizinisch assistiertes Sterben (MAID) 2016 mit Bill C-14. Fünf Jahre später folgte mit Bill C-7 die erste große Ausweitung.">
+<meta property="og:url" content="https://dunkelfeld.report/sterbehilfe-legalisierung-international.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Sterbehilfe-Legalisierung international: Zwischen Selbstbestimmung und Grauzone", "description": "BELEGT Kanada legalisierte medizinisch assistiertes Sterben (MAID) 2016 mit Bill C-14. Fünf Jahre später folgte mit Bill C-7 die erste große Ausweitung.", "inLanguage": "de", "url": "https://dunkelfeld.report/sterbehilfe-legalisierung-international.html", "mainEntityOfPage": "https://dunkelfeld.report/sterbehilfe-legalisierung-international.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<span class="label">DUNKELFELD.REPORT — STRUKTURANALYSE</span>
+<h1>Sterbehilfe-Legalisierung international: Zwischen Selbstbestimmung und Grauzone</h1>
+<div class="subtitle">Kanada, Schweiz, Niederlande, Deutschland — eine Bestandsaufnahme in sechs Kapiteln</div>
+<div class="toc">
+<a href="#kanada">1. Kanada (MAID) — von der Ausnahme zur Infrastruktur</a>
+<a href="#schweiz">2. Schweiz — liberale Tradition, neue Technik (Sarco)</a>
+<a href="#kosten">3. Kosten im Vergleich</a>
+<a href="#ethik">4. Ethik &amp; Zeitpunkt — wann ist "freiwillig" noch freiwillig?</a>
+<a href="#druck">5. Sozialer Druck &amp; der Fall Kessler</a>
+<a href="#warum">6. Warum? Ökonomie, Kultur, offene Fragen</a>
+</div>
+<h2 id="kanada">1. Kanada (MAID) — von der Ausnahme zur Infrastruktur</h2>
+<p><span class="tag tag-belegt">BELEGT</span> Kanada legalisierte medizinisch assistiertes Sterben (MAID) 2016 mit Bill C-14. Fünf Jahre später folgte mit Bill C-7 die erste große Ausweitung.</p>
+<div class="timeline">
+<div class="timeline-item"><span class="timeline-year">2016</span> — Legalisierung (Bill C-14), Voraussetzung: natürlicher Tod "vernünftigerweise vorhersehbar"</div>
+<div class="timeline-item"><span class="timeline-year">2019</span> — 5.631 Fälle/Jahr, ca. 15 pro Tag</div>
+<div class="timeline-item"><span class="timeline-year">2021</span> — Bill C-7: "Track 2" eingeführt — Zugang auch ohne absehbaren Tod, bei schwerer Erkrankung/Behinderung mit unerträglichem Leiden</div>
+<div class="timeline-item"><span class="timeline-year">Ende 2023</span> — ca. 60.300 Fälle kumuliert seit 2016 (~1 von 20 Todesfällen in Kanada)</div>
+<div class="timeline-item"><span class="timeline-year">ab 2027</span> — geplante weitere Ausweitung auf Menschen, die ausschließlich an psychischen Störungen leiden</div>
+</div>
+<p><span class="tag tag-belegt">BELEGT</span> Der UN-Ausschuss für die Rechte von Menschen mit Behinderungen forderte 2025 formell die Abschaffung von "Track 2", mit der Begründung, das Programm beruhe auf einer "diskriminierenden Wahrnehmung" des Lebenswerts von Menschen mit Behinderungen.</p>
+<h2 id="schweiz">2. Schweiz — liberale Tradition, neue Technik</h2>
+<p><span class="tag tag-belegt">BELEGT</span> Suizidhilfe ist in der Schweiz seit Jahrzehnten straffrei, sofern keine "selbstsüchtigen Motive" vorliegen (Art. 115 StGB). Aktive Sterbehilfe bleibt verboten. Dignitas verlangt für die Freitodbegleitung eine Aufwandsentschädigung von mehreren Tausend Franken.</p>
+<h3>Die Sarco-Kapsel</h3>
+<p><span class="tag tag-belegt">BELEGT</span> Die 3D-gedruckte Stickstoff-Kapsel "Sarco" von Philip Nitschke (Exit International) kam am 23. September 2024 in Merishausen (Kanton Schaffhausen) erstmals zum Einsatz. Bundesrätin Elisabeth Baume-Schneider erklärte den Einsatz noch am selben Tag für rechtswidrig — die Kapsel erfülle weder die Anforderungen des Produktesicherheitsrechts noch sei der Stickstoffeinsatz mit dem Chemikaliengesetz vereinbar. Mehrere Personen wurden festgenommen, ein Strafverfahren wegen Verleitung und Beihilfe zum Suizid läuft.</p>
+<div class="source-box">
+<span class="label">Design-Einordnung</span>
+Die glaskuppelartige Bauform der Sarco wird in Schweizer Bioethik-Fachpublikationen selbst mit dem historischen Begriff "Schneewittchensarg" in Verbindung gebracht — einer Bezeichnung, die zuvor für Fahrzeuge und Geräte mit auffälliger Glasarchitektur verwendet wurde (etwa den Messerschmitt Kabinenroller KR175). Nitschke selbst positioniert sich in der Presse als "Elon Musk of assisted suicide", die Kapsel als "seine Tesla".
+</div>
+<h2 id="kosten">3. Kosten im Vergleich</h2>
+<table>
+<tr><th>Land / Anbieter</th><th>Kosten</th><th>Anmerkung</th></tr>
+<tr><td>Schweiz (Dignitas)</td><td>mehrere Tausend CHF</td><td>Aufwandsentschädigung für Freitodbegleitung</td></tr>
+<tr><td>Kanada (MAID)</td><td>über öffentliches Gesundheitssystem</td><td>PBO-Bericht: letzte Lebensmonate verursachen 10–20% der gesamten Gesundheitskosten bei ca. 1% der Bevölkerung (Berechnungsgrundlage: NL/Belgien-Daten)</td></tr>
+<tr><td>Niederlande</td><td>über Krankenversicherung</td><td>seit 2002 etabliert, "Lebensende-Klinik" seit 2012 zusätzlich verfügbar</td></tr>
+</table>
+<p><span class="tag tag-offen">OFFEN</span> Belastbare, direkt vergleichbare Kostendaten über alle Länder hinweg liegen nicht vor — Gesundheitssysteme und Abrechnungsmodalitäten unterscheiden sich zu stark für einen sauberen 1:1-Vergleich. Was belegt ist: der PBO-Bericht selbst beziffert das Einsparpotenzial als Rechengröße, nicht als politisches Ziel.</p>
+<h2 id="ethik">4. Ethik &amp; Zeitpunkt — wann ist "freiwillig" noch freiwillig?</h2>
+<p>Die zentrale ethische Frage lässt sich an einem einzigen dokumentierten Fall festmachen: Was gilt, wenn der Wunsch aus einer Zeit stammt, in der die Person noch entscheidungsfähig war — die Ausführung aber in einer Zeit erfolgt, in der sie es nicht mehr ist?</p>
+<div class="stat-grid">
+<div class="stat-card"><div class="stat-number">499</div><div class="stat-label">Sterbehilfe-Fälle bei Demenz, NL 2025</div></div>
+<div class="stat-card"><div class="stat-number">11</div><div class="stat-label">davon: Patient zum Zeitpunkt nicht mehr einwilligungsfähig</div></div>
+<div class="stat-card"><div class="stat-number">10.341</div><div class="stat-label">Sterbehilfe-Fälle NL gesamt 2025 (&gt;6% aller Todesfälle)</div></div>
+</div>
+<p><span class="tag tag-belegt">BELEGT</span> Der Oberste Gerichtshof der Niederlande bestätigte 2023 in einem Grundsatzurteil, dass Euthanasie bei Demenzkranken auch gegen den im Moment geäußerten Willen zulässig sein kann, sofern zuvor eine anderslautende Patientenverfügung vorlag. Verhandelt wurde der Fall einer Ärztin, die 2016 eine an Demenz erkrankte Patientin auf Wunsch des Ehemanns tötete — die Patientin hatte zuvor schriftlich verfügt, in einem bestimmten Fall sterben zu wollen.</p>
+<h3>Der Fall Willet: Wenn der Sicherheitsstandard bei den eigenen Leuten versagt</h3>
+<p><span class="tag tag-belegt">BELEGT</span> Florian Willet, Schweizer Sterbehilfe-Aktivist, war bei der ersten Sarco-Anwendung im September 2024 anwesend und wurde danach monatelang wegen des Verdachts auf Tötungsdelikt untersucht, ehe die Vorwürfe fallengelassen wurden. Im Mai 2025 nahm sich Willet selbst das Leben — vermittelt durch die Deutsche Gesellschaft für Humanes Sterben (DGHS). Recherchen des <em>Spiegel</em> ergaben: Willet war zum Zeitpunkt seines Todes erst rund zwei Monate DGHS-Mitglied, obwohl die Organisation eine sechsmonatige Wartezeit vorschreibt, bevor eine Freitodbegleitung vermittelt wird.</p>
+<p>Das ist kein hypothetisches Szenario für die Frage "was, wenn die Beteiligten selbst in Bedrängnis geraten" — es ist ein dokumentierter Fall, in dem eine Sterbehilfe-Organisation ihre eigene Wartefrist bei einem der eigenen, öffentlich bekannten Aktivisten nicht einhielt.</p>
+<h2 id="druck">5. Sozialer Druck &amp; der Fall Kessler</h2>
+<div class="person-card">
+<span class="label">Fall</span>
+Alice und Ellen Kessler, 89, beendeten am 17. November 2025 gemeinsam ihr Leben in ihrem Haus in Grünwald — begleitet von einer Ärztin und einem Juristen, vermittelt durch die DGHS. Die Zwillinge hatten der DGHS ausdrücklich erlaubt, öffentlich über ihren Freitod zu sprechen, um eine breitere Diskussion über legale Freitodbegleitung in Deutschland anzustoßen.
+</div>
+<p><span class="tag tag-belegt">BELEGT</span> Der Fall löste unmittelbar eine erneute politische Debatte aus. Caritas-Präsidentin Eva Welskop-Deffaa warnte ausdrücklich vor einer "Romantisierung von assistiertem Suizid": Ausführliche Berichterstattung könne insbesondere ältere Frauen unter sozialen und psychischen Druck setzen, sich verantwortlich zu fühlen, "niemandem zur Last zu fallen".</p>
+<p><span class="tag tag-belegt">BELEGT</span> Rechtlich bleibt Deutschland in der Grauzone, die das Bundesverfassungsgericht 2020 hinterließ: Das Gericht erklärte das Verbot der geschäftsmäßigen Sterbehilfe (§217 StGB) für verfassungswidrig und erkannte ein "Recht auf selbstbestimmtes Sterben" an — schuf aber keinen neuen gesetzlichen Rahmen. Zwei Versuche, das per Gesetz zu regeln, scheiterten am 6. Juli 2023 im Bundestag (Entwurf Castellucci: 304 Ja– zu 363 Nein-Stimmen; Entwurf Helling-Plahr/Künast: 287 zu 375).</p>
+<h2 id="warum">6. Warum? Ökonomie, Kultur, offene Fragen</h2>
+<p><span class="tag tag-extrapolation">EXTRAPOLATION</span> Der kanadische PBO-Bericht liefert eine belegte Rechengröße (10–20% der Gesundheitskosten in den letzten Lebensmonaten bei ~1% der Bevölkerung) — daraus ein politisches Motiv für die Ausweitung von MAID abzuleiten, ist eine Schlussfolgerung, keine Tatsache. Der Bericht selbst formuliert das als Kostenrechnung, nicht als Handlungsempfehlung.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Eine vom niederländischen Gesundheitsministerium in Auftrag gegebene Studie führt den fast fünffachen Anstieg der Fallzahlen seit den späten 1990er-Jahren primär auf "kulturellen Wandel" zurück — nicht auf ökonomische Erwägungen.</p>
+<div class="pull-quote">Track 1, Track 2, Patientenverfügung, sechs Monate Wartefrist: Jedes System hat Kriterien gebaut, um genau die Frage zu beantworten, die sich nicht endgültig beantworten lässt — wann ein Wunsch wirklich der eigene ist.</div>
+<div class="reader-note">
+Falls dich Suizidgedanken betreffen: Telefonseelsorge, kostenlos, rund um die Uhr erreichbar unter 0800 111 0 111 oder 0800 111 0 222 (international: 116 123).
+</div>
+<div class="open-questions">
+<p><em>Wenn eine Sterbehilfe-Organisation ihre eigene sechsmonatige Wartefrist bei einem der eigenen, öffentlich bekannten Aktivisten nicht einhält — was sagt das über die Praxis bei weniger bekannten Fällen?</em></p>
+<p><em>Wenn eine Patientenverfügung Jahre vor dem entscheidenden Moment verfasst wurde und die Person zum Zeitpunkt der Ausführung nicht mehr einwilligungsfähig ist — wessen Wille wird da eigentlich noch exekutiert?</em></p>
+<p><em>Und: Wenn ein Regierungsbericht selbst errechnet, wie viel Geld eine Ausweitung sparen würde — bleibt diese Zahl dann folgenlos für die politische Entscheidung, oder wird sie es nicht?</em></p>
+</div>
+<div class="series-nav">
+<a href="suizid-corona-statistik.html">← Zurück: Suizid-Statistik seit Corona</a>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

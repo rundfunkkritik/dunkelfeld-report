@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Schufa: Die zweite Datenbank — dunkelfeld.report</title>
+<style>
+  body {
+    background: #0a0a0a;
+    color: #e0e0e0;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+    line-height: 1.65;
+    font-size: 17px;
+  }
+  h1 {
+    color: #ff2b3d;
+    font-size: 2.1em;
+    line-height: 1.2;
+    border-bottom: 2px solid #ff2b3d;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+  }
+  .teaser {
+    color: #999;
+    font-size: 1.15em;
+    margin-bottom: 40px;
+    font-style: italic;
+  }
+  h2 {
+    color: #ff2b3d;
+    font-size: 1.3em;
+    margin-top: 50px;
+    border-left: 4px solid #ff2b3d;
+    padding-left: 14px;
+  }
+  a { color: #ff2b3d; }
+  strong { color: #fff; }
+  .factbox {
+    border: 1px solid #00e5ff;
+    background: rgba(0,229,255,0.05);
+    padding: 20px 24px;
+    margin: 30px 0;
+  }
+  .factbox .label {
+    color: #00e5ff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .dangerbox {
+    border: 1px solid #ff2b3d;
+    background: rgba(255,43,61,0.08);
+    padding: 20px 24px;
+    margin: 30px 0;
+  }
+  .dangerbox .label {
+    color: #ff2b3d;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .fairnessbox {
+    border: 1px solid #ffd60a;
+    background: rgba(255,214,10,0.06);
+    padding: 20px 24px;
+    margin: 30px 0;
+  }
+  .fairnessbox .label {
+    color: #ffd60a;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .pullquote {
+    font-size: 1.3em;
+    color: #fff;
+    border-left: 4px solid #00e5ff;
+    padding: 6px 0 6px 24px;
+    margin: 36px 0;
+    font-style: italic;
+  }
+  .pullquote span {
+    display: block;
+    font-size: 0.55em;
+    color: #999;
+    font-style: normal;
+    margin-top: 8px;
+  }
+  .timeline {
+    margin: 30px 0;
+    border-left: 2px solid #444;
+    padding-left: 20px;
+  }
+  .timeline-item {
+    margin-bottom: 18px;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -26px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    background: #ff2b3d;
+    border-radius: 50%;
+  }
+  .timeline-date {
+    color: #00e5ff;
+    font-weight: bold;
+    margin-right: 8px;
+  }
+  .fazit {
+    margin-top: 50px;
+    padding-top: 24px;
+    border-top: 2px solid #ff2b3d;
+  }
+  .fazit h2 { border: none; padding-left: 0; margin-top: 0; }
+  .quellen {
+    margin-top: 50px;
+    font-size: 0.85em;
+    color: #777;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+  }
+  .quellen a { color: #888; }
+</style>
+<meta name="description" content="68 Millionen Menschen in Deutschland sind bei der Schufa erfasst. Wer Auskunft über die eigenen Daten verlangt, bekommt ein Dokument – und geht davon aus, …">
+<meta name="rubrik" content="cat-kontrolle">
+<meta name="kachel-titel" content="Transparenzoffensive: Die Schufa und ihre zweite Datenbank">
+<link rel="canonical" href="https://dunkelfeld.report/schufa-schattendatenbank.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Transparenzoffensive: Die Schufa und ihre zweite Datenbank">
+<meta property="og:description" content="68 Millionen Menschen in Deutschland sind bei der Schufa erfasst. Wer Auskunft über die eigenen Daten verlangt, bekommt ein Dokument – und geht davon aus, …">
+<meta property="og:url" content="https://dunkelfeld.report/schufa-schattendatenbank.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Transparenzoffensive: Die Schufa und ihre zweite Datenbank", "description": "68 Millionen Menschen in Deutschland sind bei der Schufa erfasst. Wer Auskunft über die eigenen Daten verlangt, bekommt ein Dokument – und geht davon aus, …", "inLanguage": "de", "url": "https://dunkelfeld.report/schufa-schattendatenbank.html", "mainEntityOfPage": "https://dunkelfeld.report/schufa-schattendatenbank.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<h1>Transparenzoffensive: Die Schufa und ihre zweite Datenbank</h1>
+<div class="teaser">Während die Auskunftei öffentlich für mehr Datentransparenz wirbt, betreibt sie im Hintergrund ein System, das genau das Gegenteil liefert: eine Datensammlung, von der Betroffene nichts erfahren – und über die sie keine Auskunft bekommen.</div>
+<p>68 Millionen Menschen in Deutschland sind bei der Schufa erfasst. Wer Auskunft über die eigenen Daten verlangt, bekommt ein Dokument – und geht davon aus, es sei vollständig. Recherchen von NDR und Süddeutscher Zeitung, veröffentlicht am 15. Juli 2026 auf tagesschau.de, zeigen: Das stimmt nicht.</p>
+<div class="factbox">
+<div class="label">Factbox</div>
+<strong>Was bekannt ist:</strong>
+<ul>
+<li>Neben der offiziellen Auskunftsdatenbank betreibt die Schufa eine zweite, "historische" Datensammlung</li>
+<li>Enthalten: alte Kredite, Kreditkarten, Pfändungen, Privatinsolvenzen, längst beglichene Schulden</li>
+<li>Diese Daten erscheinen NICHT in der regulären Selbstauskunft der Verbraucher</li>
+<li>Nutzung: Berechnung rückwirkender Test-Scores für Firmenkunden (Banken, Energieversorger)</li>
+<li>Der Hessische Beauftragte für Datenschutz und Informationsfreiheit (HBDI) prüft den Vorgang seit Frühjahr 2025</li>
+</ul>
+</div>
+<h2>Die zwei Datenbanken</h2>
+<p>Nach eigentlich geltendem Recht müssen Bonitätsdaten gelöscht werden, sobald der Anlass entfällt – etwa wenn eine alte Schuld beglichen ist. Das Recht auf Vergessenwerden ist in der DSGVO verankert. Die Schufa hält sich formal daran: In der Datenkopie, die Verbraucher anfordern können, tauchen erledigte Fälle nicht mehr auf.</p>
+<p>Parallel dazu existiert offenbar eine zweite Sammlung derselben Daten, die nicht gelöscht wird. Sie dient laut Unternehmensangaben "Datentests": Firmenkunden können damit prüfen, wie ein Score zu einem bestimmten Zeitpunkt in der Vergangenheit ausgefallen wäre. Die Schufa bezeichnet das als wissenschaftliche Qualitätskontrolle ihrer Modelle.</p>
+<div class="pullquote">
+"Historische Scores geben einen gewissen Einblick in die finanzielle Situation der betroffenen Personen in der Vergangenheit. Das geht die Vertragspartnerinnen der Schufa schlichtweg überhaupt nichts an."
+<span>Ruth Janal, Professorin für Datenschutzrecht, Universität Bayreuth — gegenüber NDR</span>
+</div>
+<h2>Das strukturelle Problem: Wissen ohne Auskunft</h2>
+<p>Der Kern der Sache ist nicht die Existenz alter Daten – die lässt sich mit Aufbewahrungspflichten und Testzwecken erklären. Der Kern ist die Informationsasymmetrie: Verbraucher können nicht nachvollziehen, was über sie gespeichert wird, weil das offizielle Auskunftsrecht genau an der Stelle endet, an der die zweite Datenbank beginnt. Wer glaubt, seine Schufa-Akte zu kennen, kennt nur die Hälfte.</p>
+<div class="dangerbox">
+<div class="label">Dangerbox</div>
+Betroffene haben aktuell keine Möglichkeit, gezielt Auskunft über die "historischen" Daten zu verlangen – das reguläre Auskunftsformular deckt sie nicht ab. Die Organisation AlgorithmWatch bietet inzwischen ein eigenes Formular an, mit dem die 68 Millionen potenziell Betroffenen gesondert nachfragen können.
+</div>
+<h2>Wer profitiert – cui bono?</h2>
+<p>Nutznießer der Test-Scores sind nicht die Verbraucher, sondern die Firmenkunden: Banken, Energieversorger, Telekommunikationsanbieter. Sie erhalten über den Umweg der "Datentests" Einblicke in Bonitätsverläufe, die ihnen über den regulären Auskunftsweg nicht zustünden. Die Schufa wiederum kann ihre Scoring-Modelle validieren, ohne dass die dafür genutzten Rohdaten jemals für die Betroffenen sichtbar werden.</p>
+<div class="timeline">
+<div class="timeline-item"><span class="timeline-date">Frühjahr 2025</span> — HBDI leitet Prüfverfahren zur Rechtsgrundlage der historischen Datentests ein</div>
+<div class="timeline-item"><span class="timeline-date">15.07.2026</span> — NDR/SZ veröffentlichen Recherche, tagesschau.de berichtet</div>
+<div class="timeline-item"><span class="timeline-date">16.07.2026</span> — AlgorithmWatch startet Petition und eigenes Auskunftsformular für Betroffene</div>
+<div class="timeline-item"><span class="timeline-date">laufend</span> — Prüfverfahren des HBDI ist nach Behördenangaben noch nicht abgeschlossen</div>
+</div>
+<div class="fairnessbox">
+<div class="label">Fairnessbox</div>
+Die Schufa weist die Vorwürfe zurück und beruft sich auf mehrere, sich ergänzende datenschutzrechtliche Erlaubnistatbestände. Die historischen Daten würden ausschließlich zu Testzwecken genutzt und nach Abschluss bei den beteiligten Unternehmen gelöscht. Zudem verweist das Unternehmen darauf, dass Banken gesetzlich verpflichtet seien, die Qualität ihrer Scoring-Modelle regelmäßig zu überprüfen – die Tests dienten also einem legitimen, sogar vorgeschriebenen Zweck. Eine abschließende rechtliche Bewertung durch den HBDI steht noch aus.
+</div>
+<h2>Transparenz als Fassade</h2>
+<p>Die Schufa positioniert sich seit Jahren öffentlich als Vorreiterin für mehr Datentransparenz gegenüber Verbrauchern – etwa mit Ankündigungen zu verständlicheren Score-Erklärungen. Die Existenz einer zweiten, unauskunftsfähigen Datenbank steht dazu in einem auffälligen Widerspruch: Nach außen die Offensive für Nachvollziehbarkeit, nach innen ein System, das genau diese Nachvollziehbarkeit für einen Teil der Daten strukturell ausschließt. Ob das juristisch haltbar ist, entscheidet am Ende der HBDI. Dass es bislang niemandem aufgefallen ist, spricht für sich.</p>
+<div class="fazit">
+<h2>Dunkelfeld-Fazit</h2>
+<p>Wer wissen will, was eine Auskunftei wirklich über einen weiß, ist auf das Wohlwollen der Auskunftei angewiesen, offenzulegen, wonach man fragt. Solange das Auskunftsrecht an der Grenze der "historischen" Daten endet, bleibt die Transparenzoffensive ein Versprechen ohne Deckung. Betroffene, die es genau wissen wollen, können das gesonderte Formular von AlgorithmWatch nutzen – der reguläre Weg reicht dafür nicht.</p>
+</div>
+<div class="quellen">
+<strong>Quellen:</strong><br/>
+NDR/Süddeutsche Zeitung via tagesschau.de, 15.07.2026: "Verbraucherschutz – Die Schattendatenbank der Schufa"<br/>
+netzpolitik.org, 2026: "Daten-Skandal: Schufa speichert alte Datensätze über Millionen von Menschen"<br/>
+heise online, 2026: "Bericht: Schufa speichert veraltete Daten von Millionen Verbrauchern"<br/>
+AlgorithmWatch, 16.07.2026: Petition und Auskunftsformular zur Schufa-Schattendatenbank<br/>
+Statista: Anzahl der von Auskunfteien erfassten Personen
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Paris: Wenn Aufsicht zur Gefahr wird — dunkelfeld.report</title>
+<style>
+  :root{
+    --bg:#0a0a0b;
+    --surface:#111114;
+    --border:#1e1e24;
+    --text:#e8e8ec;
+    --muted:#6b6b7a;
+    --accent:#e8c547;
+    --accent2:#e84747;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Georgia','Times New Roman',serif;
+    line-height:1.6;
+  }
+  header{
+    border-bottom:1px solid var(--border);
+    padding:1.5rem 2rem;
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    position:sticky;
+    top:0;
+    background:var(--bg);
+    z-index:100;
+  }
+  header .dot{width:8px;height:8px;background:var(--accent);border-radius:50%;}
+  header .label{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;}
+  header .stand{margin-left:auto;font-size:.7rem;color:var(--muted);}
+
+  .hero{padding:5rem 2rem 4rem;max-width:900px;margin:0 auto;}
+  .kicker{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.15em;margin-bottom:2rem;}
+  h1{font-size:clamp(2.4rem,6vw,4.2rem);font-weight:700;line-height:1.08;margin:0 0 1.5rem;color:var(--text);}
+  h1 .sub{color:var(--muted);}
+  .desc{font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:620px;margin-bottom:3rem;}
+
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;}
+  .stat{border-left:3px solid var(--accent2);padding:1rem 0 1rem 1.5rem;}
+  .stat .val{font-size:2.2rem;font-weight:700;color:var(--accent2);line-height:1;}
+  .stat .lbl{font-size:.9rem;color:var(--text);margin-top:.4rem;}
+  .stat .src{font-size:.75rem;color:var(--muted);margin-top:.3rem;}
+
+  .divider{border-top:1px solid var(--border);margin:0 2rem;}
+
+  section.block{max-width:900px;margin:0 auto;padding:3rem 2rem;}
+  .block-kicker{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:1.5rem;}
+
+  details.fact{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:4px;
+    padding:1.1rem 1.4rem;
+    margin-bottom:.75rem;
+  }
+  details.fact[open]{border-color:#333340;}
+  details.fact summary{
+    cursor:pointer;
+    list-style:none;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:1rem;
+    font-size:.85rem;
+    font-weight:700;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+  details.fact summary::-webkit-details-marker{display:none;}
+  details.fact summary::after{content:"+";color:var(--muted);font-size:1.1rem;flex-shrink:0;margin-top:-2px;}
+  details.fact[open] summary::after{content:"−";}
+  details.fact p{margin:.8rem 0 0;font-size:.95rem;color:var(--text);line-height:1.75;}
+  details.fact p.quote{font-style:italic;color:#c8c8d0;}
+  details.fact .fsrc{margin-top:.5rem;font-size:.75rem;color:var(--muted);}
+
+  .section-title{font-size:1.3rem;color:var(--text);margin:0 0 1rem;font-weight:700;}
+
+  .sources-toggle{
+    background:none;border:1px solid var(--border);color:var(--muted);
+    padding:.7rem 1.5rem;cursor:pointer;font-size:.8rem;text-transform:uppercase;
+    letter-spacing:.1em;border-radius:2px;font-family:inherit;
+  }
+  .sources-list{margin-top:1.5rem;display:grid;gap:.6rem;}
+  .sources-list a{color:var(--muted);font-size:.85rem;text-decoration:none;}
+  .sources-list a:hover{color:var(--text);text-decoration:underline;}
+  .sources-list .arrow{color:var(--accent);font-size:.75rem;margin-right:.8rem;}
+
+  footer{padding:4rem 2rem 3rem;max-width:900px;margin:3rem auto 0;border-top:1px solid var(--border);}
+  footer p{font-size:.8rem;color:var(--muted);line-height:1.8;margin:.5rem 0 0;}
+  footer .help{color:var(--accent);font-size:.8rem;margin-top:1.5rem;}
+</style>
+<meta name="description" content="Seit 2021 sammelt die Elterninitiative „SOS Périscolaire&quot; Zeugenaussagen aus Pariser Kindergärten, Vor- und Grundschulen. Was als einzelne Verdachtsfälle …">
+<meta name="rubrik" content="cat-kinder">
+<meta name="kachel-titel" content="Paris: Wenn Aufsicht zur Gefahr wird">
+<link rel="canonical" href="https://dunkelfeld.report/frankreich-missbrauch-periscolaire.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Paris: Wenn Aufsicht zur Gefahr wird">
+<meta property="og:description" content="Seit 2021 sammelt die Elterninitiative „SOS Périscolaire&quot; Zeugenaussagen aus Pariser Kindergärten, Vor- und Grundschulen. Was als einzelne Verdachtsfälle …">
+<meta property="og:url" content="https://dunkelfeld.report/frankreich-missbrauch-periscolaire.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Paris: Wenn Aufsicht zur Gefahr wird", "description": "Seit 2021 sammelt die Elterninitiative „SOS Périscolaire\" Zeugenaussagen aus Pariser Kindergärten, Vor- und Grundschulen. Was als einzelne Verdachtsfälle …", "inLanguage": "de", "url": "https://dunkelfeld.report/frankreich-missbrauch-periscolaire.html", "mainEntityOfPage": "https://dunkelfeld.report/frankreich-missbrauch-periscolaire.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<header>
+<div class="dot"></div>
+<span class="label">Dokumentation · Fakten · Quellen</span>
+<span class="stand">Stand: Juli 2026</span>
+</header>
+<section class="hero">
+<div class="kicker">Frankreich · Institutionelle Aufsicht · Kindesmissbrauch</div>
+<h1>Wenn Aufsicht<br/><span class="sub">zur Gefahr wird.</span></h1>
+<p class="desc">Seit 2021 sammelt die Elterninitiative „SOS Périscolaire" Zeugenaussagen aus Pariser Kindergärten, Vor- und Grundschulen. Was als einzelne Verdachtsfälle begann, ist inzwischen eine Ermittlung gegen mehr als hundert Einrichtungen — und ein Fall, der zeigt, wie lange Behörden wegsehen können, wenn niemand offiziell zuständig ist.</p>
+<div class="stats">
+<div class="stat">
+<div class="val">114</div>
+<div class="lbl">Pariser Kitas, Vor- und Grundschulen unter Verdacht</div>
+<div class="src">Quelle: IBTimes UK / Staatsanwaltschaft Paris, Mai 2026</div>
+</div>
+<div class="stat">
+<div class="val">15.000</div>
+<div class="lbl">Betreuungskräfte allein bei der Stadt Paris — meist ohne pädagogische Ausbildung</div>
+<div class="src">Quelle: DW-Reportage, 2026</div>
+</div>
+<div class="stat">
+<div class="val">160+</div>
+<div class="lbl">suspendierte Betreuer seit 2025 (30+ im Vorjahr, 130+ seit Jahresbeginn 2026)</div>
+<div class="src">Quelle: DW-Reportage, 2026</div>
+</div>
+<div class="stat">
+<div class="val">20 Mio. €</div>
+<div class="lbl">Aktionsplan der Stadt Paris für bessere Kontrolle und Ausbildung</div>
+<div class="src">Quelle: Stadt Paris / DW-Reportage, 2026</div>
+</div>
+</div>
+</section>
+<div class="divider"></div>
+<section class="block">
+<div class="block-kicker">Die Betroffenen</div>
+<p class="section-title">Was Kinder erzählen, wenn sie es noch nicht erzählen können</p>
+<details class="fact">
+<summary>Eric, 4 Jahre</summary>
+<p>Seine Mutter holt ihn von einer öffentlichen Vorschule in Paris ab, als er sagt: „Mama, mir tut der Po weh." Sein Verhalten verändert sich in dieser Zeit — er zieht sich zurück, nässt wieder ein, will nicht mehr schlafen. Erst bei einem Psychologen kann der Junge mithilfe von Puppen nachstellen, was ihm widerfahren war: eine Vergewaltigung.</p>
+<div class="fsrc">Quelle: DW-Reportage, 2026 — Aussage der Mutter</div>
+</details>
+<details class="fact">
+<summary>Roxannes Tochter, spracheingeschränkt</summary>
+<p class="quote">„Sie sagt zu mir: ‚Killekille'. Ich sage: ‚Ach, killekille, er hat dich am Rücken oder am Arm gekitzelt?' Und sie sagt: ‚Wehgetan.' Ich sage: ‚Hat er dir wehgetan?' Und sie sagt: ‚Po.'"</p>
+<p>Roxannes Tochter hat eine Sprachstörung und drückt sich in Zeichensprache und Einzelwörtern aus. Nach diesem Gespräch reagiert das Kind mit einer Krise. Die Mutter sagt selbst: Sie weiß nicht mit Sicherheit, was genau passiert ist — aber sie befürchtet, dass etwas passiert ist.</p>
+<div class="fsrc">Quelle: DW-Reportage, 2026</div>
+</details>
+<details class="fact">
+<summary>Was Fachleute über kleine Kinder als Zeugen sagen</summary>
+<p class="quote">„Kinder im Vorschulalter, die Opfer solcher sexueller Übergriffe werden, können sich nichts ausdenken, wenn sie einen Missbrauch mit Worten beschreiben oder bildlich darstellen. Entweder haben sie gesehen, wie es an jemandem begangen wurde, oder sie haben es selbst erlebt, oder in einem Video gesehen."</p>
+<div class="fsrc">Quelle: DW-Reportage, 2026 — Elisabeth / SOS Périscolaire</div>
+</details>
+</section>
+<div class="divider"></div>
+<section class="block">
+<div class="block-kicker">Die Struktur</div>
+<p class="section-title">Warum ausgerechnet die Aufsicht zum Risiko wurde</p>
+<details class="fact">
+<summary>Wer beaufsichtigt französische Grundschulkinder wirklich?</summary>
+<p>Mittagspausen und Randzeiten in Kindergärten und Grundschulen werden in Frankreich größtenteils nicht von Lehrkräften betreut, sondern von „Aufsichtskräften" (agents périscolaires). Diese sind nicht bei Schulen oder dem Bildungsministerium angestellt, sondern bei den Kommunen — oft ohne pädagogische Ausbildung, häufig als Aushilfe mit Zwei-Stunden-Einsätzen zur Mittagszeit.</p>
+<div class="fsrc">Quelle: DW-Reportage, 2026</div>
+</details>
+<details class="fact">
+<summary>Schlechte Arbeitsbedingungen als Teil des Problems</summary>
+<p class="quote">„Man muss Leute, die diesen Beruf ausüben wollen, mit richtigen Verträgen und einem guten Gehalt gewinnen. Da wir all das nicht haben, haben wir mit unzuverlässigen Leuten zu tun und natürlich auch mit Menschen, die potenziell gefährlich sein können."</p>
+<p>Die Betreuer selbst weisen seit den Skandalen einen Generalverdacht zurück und fordern geregelte Arbeitszeiten und höhere Gehälter — viele würden nur stundenweise als Springer eingesetzt.</p>
+<div class="fsrc">Quelle: DW-Reportage, 2026</div>
+</details>
+</section>
+<div class="divider"></div>
+<section class="block">
+<div class="block-kicker">Die Ausweitung</div>
+<p class="section-title">Von Saint-Dominique bis Nantes</p>
+<details class="fact">
+<summary>Vorschule Saint-Dominique, unweit des Eiffelturms</summary>
+<p>2026 wurden dort 16 Personen festgenommen, zwei Betreuer kamen in Untersuchungshaft. Den Aussagen der Kinder zufolge sollen sich mehrere Betreuer abgestimmt und Kinder zur Mittagszeit gezielt in Räume gebracht haben. Die Eltern erfuhren davon zuerst aus der Presse, nicht von der Stadtverwaltung.</p>
+<div class="fsrc">Quelle: DW-Reportage, 2026</div>
+</details>
+<details class="fact">
+<summary>Von Einzelfällen zu 114 Einrichtungen</summary>
+<p>Was 2021 mit einzelnen Zeugenaussagen bei SOS Périscolaire begann, ist im Mai 2026 zu Ermittlungen gegen 114 Kitas, Vor- und Grundschulen in Paris angewachsen — in allen Arrondissements der Stadt. In über 50 Fällen vermuten die Behörden konkret sexuelle Übergriffe auf Kinder.</p>
+<div class="fsrc">Quelle: IBTimes UK, Irish Times, Bishop Accountability, Mai 2026</div>
+</details>
+<details class="fact">
+<summary>Juli 2026: Der erste bestätigte Fall außerhalb von Paris</summary>
+<p>Am 3. Juli 2026 wurde ein Betreuer in Saint-Sébastien-sur-Loire bei Nantes vorsorglich suspendiert, nachdem der Verdacht auf sexuellen Missbrauch an einem fünfjährigen Mädchen aufkam. Festnahmen gab es zu diesem Zeitpunkt noch keine — aber der Fall zeigt: Was in Paris als lokaler Skandal begann, wird zunehmend als strukturelles, landesweites Problem sichtbar.</p>
+<div class="fsrc">Quelle: Breitbart, 3. Juli 2026</div>
+</details>
+</section>
+<div class="divider"></div>
+<section class="block">
+<div class="block-kicker">Die Reaktion</div>
+<p class="section-title">Politik, Justiz — und ein Eingeständnis</p>
+<details class="fact">
+<summary>Was Politik und Stadt Paris jetzt ändern wollen</summary>
+<p>Das französische Parlament will die Kontrollen verschärfen: Betreuer müssen künftig bei Einstellung ein Führungszeugnis vorlegen und es alle drei Jahre erneuern. Die Stadt Paris hat einen Aktionsplan über 20 Millionen Euro beschlossen — unter anderem für bessere Qualifikationskontrolle und Ausbildung. Die zuständige Schulbeauftragte der Stadt Paris gab trotz mehrfacher Anfragen kein Interview.</p>
+<div class="fsrc">Quelle: DW-Reportage, 2026</div>
+</details>
+<details class="fact">
+<summary>„Eine Art kollektive Verblendung"</summary>
+<p class="quote">„Es stimmt, dass wir dazu neigen, schreckliche Dinge nicht sehen zu wollen. Es handelt sich also um eine Art kollektive Verblendung. Auch die Justiz muss sich kritisch hinterfragen und mit großer Offenheit und Demut anerkennen, dass sie bei der Bekämpfung dieser Probleme vielleicht nicht immer ihren Aufgaben gerecht geworden ist."</p>
+<p>So ein Vertreter der französischen Justiz zur Frage, warum die gerichtliche Aufarbeitung der Fälle nur schleppend vorankommt. Für viele Betroffene bleibt der Eindruck: Polizei, Stadtverwaltung, Regierung und Justiz haben es zugelassen, dass Kinder missbraucht wurden, statt frühzeitig etwas zu ändern.</p>
+<div class="fsrc">Quelle: DW-Reportage, 2026</div>
+</details>
+</section>
+<div class="divider"></div>
+<section class="block">
+<div style="border-top:1px solid var(--border);padding-top:2rem;">
+<button class="sources-toggle" onclick="const l=document.getElementById('src-list'); l.style.display = l.style.display==='none' ? 'grid' : 'none';">
+      Quellen &amp; Belege anzeigen
+    </button>
+<div class="sources-list" id="src-list" style="display:none;">
+<div><span class="arrow">→</span><a href="https://www.youtube.com/watch?v=18nysQrkzVE" rel="noopener" target="_blank">DW — Missbrauchsskandal an Pariser Kindergärten und Schulen (YouTube, Video-Reportage)</a></div>
+<div><span class="arrow">→</span><a href="https://www.france24.com/en/france/20260521-france-failure-protect-children-school-abuse-scandal-rocks-paris-gregoire" rel="noopener" target="_blank">France 24 — France ponders failure to protect children as school abuse scandal rocks Paris (21.05.2026)</a></div>
+<div><span class="arrow">→</span><a href="https://www.ibtimes.co.uk/france-child-abuse-scandal-paris-schools-1798782" rel="noopener" target="_blank">IBTimes UK — France School Abuse Scandal Widens to 114 Institutions (Mai 2026)</a></div>
+<div><span class="arrow">→</span><a href="https://www.irishtimes.com/world/europe/2026/05/27/paris-gripped-by-widening-sexual-abuse-scandal-in-schools/" rel="noopener" target="_blank">The Irish Times — Paris gripped by widening sexual abuse scandal in schools (27.05.2026)</a></div>
+<div><span class="arrow">→</span><a href="https://orf.at/stories/3431365/" rel="noopener" target="_blank">ORF — Über 100 Fälle: Missbrauch an Schulen schockiert Frankreich</a></div>
+<div><span class="arrow">→</span><a href="https://www.nzz.ch/panorama/missbrauchsskandal-in-paris-ermittlungen-gegen-betreuer-in-vorschulen-ld.1932598" rel="noopener" target="_blank">NZZ — Missbrauchsskandal in Paris: Ermittlungen gegen Betreuer in Vorschulen</a></div>
+<div><span class="arrow">→</span><a href="https://www.breitbart.com/europe/2026/07/03/another-preschool-worker-suspended-amid-french-after-school-club-sexual-violence-scandal/" rel="noopener" target="_blank">Breitbart — Another Preschool Worker Suspended Amid French After-School Club Sexual Violence Scandal (03.07.2026)</a></div>
+</div>
+</div>
+</section>
+<footer>
+<p>Alle dargestellten Informationen basieren auf einer DW-Videoreportage sowie öffentlich zugänglichen Presseberichten. Zitate wurden sinngemäß aus der Reportage übernommen.</p>
+<p>Diese Seite erhebt keinen Anspruch auf Vollständigkeit. Ermittlungen laufen; einzelne Zahlen und Vorwürfe können sich noch ändern.</p>
+<p class="help">Hilfe bei Verdacht auf sexuellen Missbrauch: Hilfetelefon Sexueller Missbrauch (Deutschland) 0800 22 55 530 · Nummer gegen Kummer (Kinder &amp; Jugendliche) 116 111 · Allô Enfance en Danger (Frankreich) 119</p>
+</footer>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

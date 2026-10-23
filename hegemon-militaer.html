@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Der Hegemon (3): Die Streitkräfte — dunkelfeld.report</title>
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #09090b;
+      --bg-card: #111113;
+      --bg-source: #1a1a2e;
+      --amber: #e8c547;
+      --amber-dim: rgba(232,197,71,0.12);
+      --amber-border: rgba(232,197,71,0.25);
+      --text: #d4d4d8;
+      --text-muted: #71717a;
+      --text-bright: #f4f4f5;
+      --green: #4ade80;
+      --orange: #fb923c;
+      --red: #f87171;
+      --serif: Georgia, 'Times New Roman', serif;
+      --mono: 'Courier New', Courier, monospace;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      line-height: 1.85;
+      padding: 2rem 1rem 6rem;
+    }
+
+    .container { max-width: 720px; margin: 0 auto; }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--amber-border);
+    }
+    .nav-logo { font-family: var(--mono); font-size: 0.85rem; color: var(--amber); text-decoration: none; letter-spacing: 0.05em; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-family: var(--mono); font-size: 0.78rem; color: var(--text-muted); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--amber); }
+
+    .series-badge { font-family: var(--mono); font-size: 0.72rem; color: var(--amber); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; }
+    .series-badge::before { content: ''; display: inline-block; width: 20px; height: 2px; background: var(--amber); }
+
+    h1 { font-family: var(--serif); font-size: clamp(1.9rem, 5vw, 2.8rem); font-weight: 700; color: var(--text-bright); line-height: 1.2; margin-bottom: 1rem; }
+    .subtitle { font-size: 1.15rem; color: var(--text-muted); font-style: italic; margin-bottom: 2rem; line-height: 1.6; }
+
+    .meta { font-family: var(--mono); font-size: 0.75rem; color: var(--text-muted); display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--amber-border); }
+
+    .opening-quote { background: var(--amber-dim); border-left: 4px solid var(--amber); padding: 1.5rem 1.8rem; margin: 2rem 0 2.5rem; border-radius: 0 4px 4px 0; }
+    .opening-quote p { font-size: 1.1rem; font-style: italic; color: var(--text-bright); line-height: 1.7; margin-bottom: 0.5rem; }
+    .opening-quote cite { font-family: var(--mono); font-size: 0.75rem; color: var(--amber); font-style: normal; }
+
+    .lead { font-size: 1.15rem; color: var(--text-bright); line-height: 1.9; margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+    h2 { font-size: 1.45rem; font-weight: 700; color: var(--amber); margin: 3rem 0 1.2rem; line-height: 1.3; }
+    p { margin-bottom: 1.3rem; }
+
+    .tag { display: inline-block; font-family: var(--mono); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; padding: 0.2em 0.55em; border-radius: 2px; vertical-align: middle; margin: 0 0.15em; position: relative; top: -1px; }
+    .tag-belegt { background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid rgba(74,222,128,0.3); }
+    .tag-extrapolation { background: rgba(251,146,60,0.15); color: var(--orange); border: 1px solid rgba(251,146,60,0.3); }
+    .tag-offen { background: rgba(248,113,113,0.15); color: var(--red); border: 1px solid rgba(248,113,113,0.3); }
+
+    .source-box { background: var(--bg-source); border-left: 3px solid var(--amber); padding: 1rem 1.3rem; margin: 1.5rem 0; font-family: var(--mono); font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; }
+    .source-box strong { color: var(--amber); display: block; margin-bottom: 0.3rem; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 2rem 0; }
+    .stat-card { background: var(--bg-card); border: 1px solid var(--amber-border); padding: 1.2rem; text-align: center; }
+    .stat-number { font-family: var(--mono); font-size: 1.6rem; font-weight: 700; color: var(--amber); display: block; line-height: 1.2; }
+    .stat-label { font-family: var(--mono); font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.4rem; }
+
+    .highlight { background: var(--amber-dim); border-left: 3px solid var(--amber); padding: 1.2rem 1.5rem; margin: 2rem 0; font-style: italic; color: var(--text-bright); font-size: 1.05rem; }
+
+    .bases-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.9rem; }
+    .bases-table th { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--amber); border-bottom: 2px solid var(--amber-border); padding: 0.7rem 0.8rem; text-align: left; }
+    .bases-table td { padding: 0.65rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--text); }
+    .bases-table tr:last-child td { border-bottom: none; }
+    .bases-table td:first-child { font-family: var(--mono); font-size: 0.82rem; color: var(--text-muted); }
+    .bases-table td.num { font-family: var(--mono); color: var(--amber); text-align: right; }
+
+    /* Revolving Door Karte */
+    .revolving-door {
+      background: var(--bg-card);
+      border: 1px solid var(--amber-border);
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+    .revolving-door-title {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--amber);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.2rem;
+    }
+    .door-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .door-arrow {
+      font-family: var(--mono);
+      color: var(--amber);
+      font-size: 1rem;
+      flex-shrink: 0;
+      padding-top: 0.1rem;
+    }
+    .door-text { font-size: 0.92rem; color: var(--text); line-height: 1.5; }
+    .door-text em { color: var(--text-muted); font-size: 0.83rem; }
+
+    .divider { border: none; border-top: 1px solid var(--amber-border); margin: 2.5rem 0; }
+
+    .series-nav { background: var(--bg-card); border: 1px solid var(--amber-border); padding: 1.5rem 1.8rem; margin: 3rem 0 2rem; }
+    .series-nav-title { font-family: var(--mono); font-size: 0.7rem; color: var(--amber); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .series-nav ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .series-nav li { font-family: var(--mono); font-size: 0.82rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.8rem; }
+    .series-nav li::before { content: '→'; color: var(--amber); font-size: 0.8rem; }
+    .series-nav a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+    .series-nav a:hover { color: var(--amber); }
+    .series-nav .soon { color: var(--text-muted); font-style: italic; }
+
+    .closing-questions { border-top: 2px solid var(--amber); padding-top: 2rem; margin-top: 3rem; }
+    .closing-questions p { font-style: italic; color: var(--text-muted); font-size: 1rem; margin-bottom: 0.9rem; }
+    .closing-questions .label { font-family: var(--mono); font-size: 0.7rem; color: var(--amber); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; font-style: normal; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.7rem; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+<meta name="description" content="~750 Basen, 100+ SOFA-Verträge, eine Billion Dollar pro Jahr — wie das US-Militär global verankert ist">
+<meta name="rubrik" content="cat-geo">
+<meta name="kachel-titel" content="Der Hegemon (3): Die Streitkräfte">
+<link rel="canonical" href="https://dunkelfeld.report/hegemon-militaer.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Der Hegemon (3): Die Streitkräfte">
+<meta property="og:description" content="~750 Basen, 100+ SOFA-Verträge, eine Billion Dollar pro Jahr — wie das US-Militär global verankert ist">
+<meta property="og:url" content="https://dunkelfeld.report/hegemon-militaer.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Der Hegemon (3): Die Streitkräfte", "description": "~750 Basen, 100+ SOFA-Verträge, eine Billion Dollar pro Jahr — wie das US-Militär global verankert ist", "inLanguage": "de", "url": "https://dunkelfeld.report/hegemon-militaer.html", "mainEntityOfPage": "https://dunkelfeld.report/hegemon-militaer.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div class="container">
+<nav>
+<a class="nav-logo" href="index.html">dunkelfeld.report</a>
+<ul class="nav-links">
+<li><a href="hegemon-usa.html">← Überblick</a></li>
+<li><a href="hegemon-dollar.html">← Teil 2</a></li>
+</ul>
+</nav>
+<div class="series-badge">Serie · Der Hegemon · Teil 3 von 6</div>
+<h1>Die Streitkräfte</h1>
+<p class="subtitle">~750 Basen, 100+ SOFA-Verträge, eine Billion Dollar pro Jahr — wie das US-Militär global verankert ist</p>
+<div class="meta">
+<span>Erstveröffentlichung 2025</span>
+<span>Lesedauer ~13 Min.</span>
+<span>Detailartikel · Teil 3</span>
+</div>
+<div class="opening-quote">
+<p>„Wir geben jährlich für militärische Sicherheit mehr aus als das Nettoeinkommen aller amerikanischen Unternehmen zusammen."</p>
+    — Dwight D. Eisenhower, Abschiedsrede, 17. Januar 1961
+  </div>
+<div class="lead">
+<p>Eisenhower sprach das 1961. Damals betrug der US-Verteidigungshaushalt rund 47 Milliarden Dollar. 2024 waren es laut SIPRI fast 997 Milliarden — das Zwanzigfache, und der Kalte Krieg ist seit über dreißig Jahren beendet. Kein anderes Land der Erde unterhält annähernd ein vergleichbares globales Militärnetzwerk: Basen auf jedem bewohnten Kontinent, Truppen in über 150 Ländern, Rechtskonstrukte, die US-Soldaten auf fremdem Boden weitgehend der lokalen Gerichtsbarkeit entziehen.</p>
+<p>Dieser Artikel dokumentiert die militärische Infrastruktur der Vereinigten Staaten anhand von Pentagon-Primärdaten, Kongressberichten und akademischen Auswertungen. Motive werden nicht unterstellt. Die Strukturen sprechen für sich.</p>
+</div>
+<div class="stat-grid">
+<div class="stat-card">
+<span class="stat-number">~750</span>
+<span class="stat-label">Auslandsbasen in 80+ Ländern (Vine/Quincy 2021)</span>
+</div>
+<div class="stat-card">
+<span class="stat-number">997 Mrd.$</span>
+<span class="stat-label">Verteidigungsbudget USA 2024 (SIPRI)</span>
+</div>
+<div class="stat-card">
+<span class="stat-number">100+</span>
+<span class="stat-label">SOFA-Verträge aktiv (Congressional Research Service)</span>
+</div>
+<div class="stat-card">
+<span class="stat-number">2,4 Bio.$</span>
+<span class="stat-label">Pentagon-Verträge an private Firmen 2020–2024 (Quincy)</span>
+</div>
+</div>
+<hr class="divider"/>
+<!-- KAPITEL 1 -->
+<h2>1. Das Netz — Auslandsbasen</h2>
+<p>Die Vereinigten Staaten unterhalten nach übereinstimmenden Quellen rund 750 Militärstützpunkte in über 80 Ländern. <span class="tag tag-belegt">BELEGT</span> Das ist mehr als jede andere Nation in der Menschheitsgeschichte je auf fremdem Territorium hatte. Die Zahlen stammen von David Vine (American University Washington DC) und dem Quincy Institute for Responsible Statecraft, basierend auf dem Pentagon Base Structure Report.</p>
+<p>Die offizielle Pentagon-Zahl — aus dem deklassifizierten Congressional Research Service-Bericht von Juli 2024 — nennt mindestens 128 Basen in 49 Ländern. <span class="tag tag-belegt">BELEGT</span> Die Differenz zwischen 128 und 750 erklärt sich durch Klassifizierung: Viele Stützpunkte, sogenannte „Lily Pads" (kleine Vorwärtsposten, Radar- und Drohnenanlagen, Kooperationsstandorte), erscheinen im öffentlichen Pentagon-Bericht nicht.</p>
+<table class="bases-table">
+<thead>
+<tr>
+<th>Land</th>
+<th>Militärstandorte (geschätzt)</th>
+<th>US-Truppen (DMDC, Dez. 2025)</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>Japan</td><td class="num">120+</td><td class="num">~53.000</td></tr>
+<tr><td>Deutschland</td><td class="num">119</td><td class="num">~35.000</td></tr>
+<tr><td>Südkorea</td><td class="num">73</td><td class="num">~26.000</td></tr>
+<tr><td>Italien</td><td class="num">~40</td><td class="num">~12.000</td></tr>
+<tr><td>Großbritannien</td><td class="num">~20</td><td class="num">~9.000</td></tr>
+<tr><td>Alle anderen Länder</td><td class="num">~378</td><td class="num">~50.000+</td></tr>
+</tbody>
+</table>
+<p>Auffällig: Japan, Deutschland und Südkorea — alle drei Länder sind Kriegsverlierer von 1945 bzw. Waffenstillstandsparteien von 1953. Die ursprüngliche Begründung war Wiederaufbau und Abschreckung. Die Basen sind geblieben. <span class="tag tag-belegt">BELEGT</span> Die Kriege endeten vor 70 bis 80 Jahren.</p>
+<p>Camp Humphreys in Südkorea ist die größte US-Auslandsbasis der Welt — 3.454 Hektar, eigene Schulen, Krankenhäuser, Golfplatz, über 30.000 Bewohner. <span class="tag tag-belegt">BELEGT</span> Südkorea finanzierte rund 10,7 von 11 Milliarden Dollar der Baukosten. Das ist dokumentiert im US-Korea Cost Sharing Agreement.</p>
+<div class="source-box">
+<strong>Primärquellen</strong>
+    Congressional Research Service: „U.S. Military Bases Abroad", R47055, Juli 2024, crs.gov — Pentagon Base Structure Report 2024, acq.osd.mil — Defense Manpower Data Center (DMDC), dezember 2025, dmdc.osd.mil — David Vine / Quincy Institute: „Drawdown: Improving U.S. and Global Security Through Military Base Closures Abroad", 2021 — Al Jazeera Infographic, 10.9.2021 (Vine-Daten)
+  </div>
+<hr class="divider"/>
+<!-- KAPITEL 2 -->
+<h2>2. Das Recht — SOFA-Verträge</h2>
+<p>Damit US-Streitkräfte dauerhaft auf fremdem Territorium operieren können, brauchen sie eine rechtliche Grundlage. Diese bilden Status of Forces Agreements (SOFAs) — bilaterale Verträge zwischen den USA und dem jeweiligen Gaststaat. <span class="tag tag-belegt">BELEGT</span> Die USA sind nach Angaben des Congressional Research Service aktuell Partei in über 100 solcher Abkommen.</p>
+<p>Der entscheidende Punkt ist die Frage der Gerichtsbarkeit. In vielen SOFA-Verträgen gilt: Vergehen von US-Soldaten gegen andere US-Soldaten oder im Rahmen des Dienstes werden von US-Militärtribunalen verhandelt — nicht von Gerichten des Gastlandes. <span class="tag tag-belegt">BELEGT</span> SOFAs können US-Personal vollständige Immunität von der lokalen Strafverfolgung gewähren — vergleichbar dem Status diplomatischen Personals nach der Wiener Konvention von 1961.</p>
+<p>Das NATO-SOFA (unterzeichnet 1951, zuletzt in Deutschland ergänzt 1993) gibt ein Beispiel für die Grundstruktur. <span class="tag tag-belegt">BELEGT</span> Für Afghanistan galt ab 2003 eine Vereinbarung, die US-Personal Status äquivalent zu Botschaftspersonal einräumte — einschließlich Immunität von afghaner Strafverfolgung. Das war noch im Einsatz, als 2012 der Massaker von Panjwai durch einen US-Soldaten 16 Zivilisten das Leben kostete.</p>
+<div class="highlight">
+    Das Massaker von Panjwai, Afghanistan, 11. März 2012: US-Soldat Robert Bales tötete 16 Zivilisten in zwei Dörfern. Er wurde vor einem US-Militärgericht verurteilt — nicht von einem afghanen Gericht. Das entsprach dem geltenden SOFA. <span class="tag tag-belegt">BELEGT</span>
+</div>
+<div class="source-box">
+<strong>Primärquellen</strong>
+    Congressional Research Service: „Status of Forces Agreement (SOFA): What Is It, and How Has It Been Utilized?", RL34531, 15.3.2012, everycrsreport.com — NATO SOFA, London, 19.6.1951, nato.int/cps/en/natohq/official_texts — Supplementary Agreement to the NATO SOFA (Deutschland), 1993 — Vienna Convention on Diplomatic Relations, 18.4.1961, Art. 37, treaties.un.org — US Air Force Academy / Judge Advocate: „STATUS OF FORCES AGREEMENT", usafa.af.mil
+  </div>
+<hr class="divider"/>
+<!-- KAPITEL 3 -->
+<h2>3. Das Geld — Rüstungsindustrie und militärisch-industrieller Komplex</h2>
+<p>Das US-Verteidigungsbudget betrug 2024 laut SIPRI 997 Milliarden Dollar — nahe einer Billion. <span class="tag tag-belegt">BELEGT</span> Das entspricht rund einem Drittel aller weltweiten Militärausgaben. Von diesen Mitteln fließt ein erheblicher Teil direkt an private Rüstungsunternehmen.</p>
+<p>Zwischen 2020 und 2024 vergab das Pentagon 2,4 Billionen Dollar in Verträgen an private Firmen — rund 54 Prozent aller Pentagon-Ausgaben in diesem Zeitraum. <span class="tag tag-belegt">BELEGT</span> Fünf Unternehmen erhielten davon allein 771 Milliarden Dollar:</p>
+<div class="stat-grid">
+<div class="stat-card">
+<span class="stat-number">313 Mrd.$</span>
+<span class="stat-label">Lockheed Martin 2020–2024 (Pentagon-Verträge)</span>
+</div>
+<div class="stat-card">
+<span class="stat-number">145 Mrd.$</span>
+<span class="stat-label">RTX / Raytheon 2020–2024</span>
+</div>
+<div class="stat-card">
+<span class="stat-number">116 Mrd.$</span>
+<span class="stat-label">General Dynamics 2020–2024</span>
+</div>
+<div class="stat-card">
+<span class="stat-number">115 Mrd.$</span>
+<span class="stat-label">Boeing Defense 2020–2024</span>
+</div>
+</div>
+<p>Zum Vergleich: Das US-Außenministerium sowie alle Diplomatie-, Entwicklungs- und humanitären Hilfsprogramme erhielten im selben Zeitraum zusammen 356 Milliarden Dollar. <span class="tag tag-belegt">BELEGT</span> Die USA investierten mehr als doppelt so viel in fünf Rüstungskonzerne wie in sämtliche internationale Hilfe und Diplomatie. Quelle: Quincy Institute / Watson Institute Brown University, 2025.</p>
+<p>Lockheed Martin allein erhielt im Fiskaljahr 2025 Bundesaufträge im Wert von 73,7 Milliarden Dollar — mehr als das gesamte Budget des US-Außenministeriums. <span class="tag tag-belegt">BELEGT</span></p>
+<div class="source-box">
+<strong>Primärquellen</strong>
+    Quincy Institute / Watson Institute Brown University: „Profits of War: Top Beneficiaries of Pentagon Spending, 2020–2024", Juli 2025, quincyinst.org — SIPRI Military Expenditure Database 2025, sipri.org — USASpending.gov: Federal Contract Awards FY2025 — Project On Government Oversight (POGO): Pentagon Budget analysis, pogo.org
+  </div>
+<hr class="divider"/>
+<!-- KAPITEL 4 -->
+<h2>4. Die Drehtür — Wechsel zwischen Pentagon und Industrie</h2>
+<p>Das sogenannte „Revolving Door"-Phänomen — der Wechsel von Regierungsbeamten und Militärs in die Privatindustrie und zurück — ist im US-Verteidigungssektor strukturell verankert und öffentlich dokumentiert. <span class="tag tag-belegt">BELEGT</span></p>
+<div class="revolving-door">
+<div class="revolving-door-title">▸ Dokumentierter Kreislauf: Pentagon ↔ Rüstungsindustrie</div>
+<div class="door-step">
+<span class="door-arrow">①</span>
+<div class="door-text">
+        General oder hoher Beamter verlässt Pentagon / Verteidigungsministerium<br/>
+<em>Beispiel: Zahlreiche frühere Generalstabschefs und Staatssekretäre wechseln zu Lockheed, Northrop, Raytheon</em>
+</div>
+</div>
+<div class="door-step">
+<span class="door-arrow">②</span>
+<div class="door-text">
+        Eintritt in Vorstand oder Beratungsfunktion beim Rüstungskonzern<br/>
+<em>Kenntnis der Pentagon-Entscheidungsstrukturen, Kontakte zu ehemaligen Kollegen</em>
+</div>
+</div>
+<div class="door-step">
+<span class="door-arrow">③</span>
+<div class="door-text">
+        Rüstungskonzerne finanzieren Think Tanks, die Verteidigungspolitik beraten<br/>
+<em>Top 100 US-Rüstungskonzerne: 34,7 Mio. $ an Top-50-Think-Tanks 2019–2023 (Quincy Institute)</em>
+</div>
+</div>
+<div class="door-step">
+<span class="door-arrow">④</span>
+<div class="door-text">
+        Think-Tank-Empfehlungen fließen in Kongressanhörungen und Budgetentscheidungen<br/>
+<em>Rüstungsbranche beschäftigt 2024: 950 Lobbyisten — 220 mehr als 2020</em>
+</div>
+</div>
+<div class="door-step">
+<span class="door-arrow">⑤</span>
+<div class="door-text">
+        Pentagon-Budget steigt → neue Aufträge → Kreislauf beginnt von vorn<br/>
+<em>Lockheed Martin: 1.163% Aktienrendite seit 10. September 2001 (ca. 3× S&amp;P 500)</em>
+</div>
+</div>
+</div>
+<p>Die Konsolidierung der Rüstungsbranche von 51 Hauptauftragnehmern in den 1990er-Jahren auf heute fünf Großkonzerne war kein Marktprozess. Sie wurde aktiv durch das Pentagon initiiert und mit Steuermitteln subventioniert — in einem als „Last Supper" bekannten Treffen 1993, bei dem Pentagon-Führung die Konzerne zur Fusion aufforderte. <span class="tag tag-belegt">BELEGT</span></p>
+<div class="source-box">
+<strong>Quellen</strong>
+    Quincy Institute: „Profits of War", 2025, quincyinst.org — Quincy Institute Think Tank Funding Tracker, thinktankfundingtracker.org — POGO: „Top Military Contractors Poised to Profit", pogo.org — WarCosts.org: Aktienperformance seit 9/11, warcosts.org — „Last Supper" 1993: Norman Augustine (Lockheed) bestätigt in Interviews; Referenz: Washington Post Archiv
+  </div>
+<hr class="divider"/>
+<!-- KAPITEL 5 -->
+<h2>5. Der Kontext — Was Eisenhower 1961 beschrieb</h2>
+<p>Eisenhower nannte 1961 zwei Bestandteile seines Komplexes: die Rüstungsindustrie und das Militär. Zu seiner Zeit hatte er noch einen dritten Teil im Blick, den er weniger bekannt formulierte: die wissenschaftlich-technologische Elite, finanziert durch Bundesgelder. <span class="tag tag-belegt">BELEGT</span> Er warnte vor der Gefahr, dass öffentliche Wissenschaft durch Bundesforschungsgelder zunehmend von staatlichen Prioritäten — und damit implizit von militärischen — geformt wird.</p>
+<p>Heute würde dieser dritte Kreis Silicon Valley und Tech-Konzerne umfassen. Palantir erhielt 2024 einen Armevertrag über 618,9 Millionen Dollar. <span class="tag tag-belegt">BELEGT</span> SpaceX hält kumulative Bundesverträge von über 22 Milliarden Dollar. <span class="tag tag-belegt">BELEGT</span> Das Pentagon beantragte für 2027 17,9 Milliarden Dollar allein für das sogenannte „Golden Dome"-Raketenabwehrsystem — geschätzte Lebenszykluskosten: 1,2 Billionen Dollar. <span class="tag tag-belegt">BELEGT</span></p>
+<p>Was Eisenhower 1961 als aufkommende Gefahr beschrieb, ist 2025 strukturell abgeschlossen. Der Komplex hat sich ausgedehnt: von Stahl und Flugzeugträgern zu Software, Datensystemen und Weltrauminfrastruktur. Die Grundstruktur — privater Profit aus staatlicher Kriegsvorbereitung — ist dieselbe.</p>
+<div class="source-box">
+<strong>Primärquellen</strong>
+    Eisenhower Farewell Address, 17.1.1961, Volltext: ourdocuments.gov — Palantir Army Vantage Contract: DoD Contracts 5.6.2023 / 18.12.2024, defense.gov — SpaceX Federal Contracts: usaspending.gov — CBO: „Golden Dome: Estimated Cost ~$1.2 Trillion", Congressional Budget Office, 2025 — Pentagon FY2027 Budget Request: comptroller.defense.gov
+  </div>
+<hr class="divider"/>
+<!-- MUSTER -->
+<h2>Das Muster</h2>
+<p>Auslandsbasis → SOFA-Immunität → lokale Rechtsentzug → Rüstungskonzern-Verträge → Drehtür → Lobbying → höheres Budget → neue Auslandsbasis. Es ist ein selbstverstärkender Kreislauf, in dem jedes Element das nächste bedingt. Eisenhower beschrieb die Entstehung dieses Kreislaufs. Was er nicht beschrieb — weil es noch nicht existierte — ist seine globale Ausdehnung in den Jahrzehnten nach seinem Tod.</p>
+<p>750 Auslandsbasen sind nicht das Ergebnis einer einzelnen strategischen Entscheidung. Sie sind das kumulierte Ergebnis von Jahrzehnten einzelner Entscheidungen, von denen jede für sich als notwendig galt. Die Summe war nie Gegenstand einer öffentlichen Debatte.</p>
+<!-- SERIES NAV -->
+<div class="series-nav">
+<div class="series-nav-title">▸ Serie: Der Hegemon — alle Teile</div>
+<ul>
+<li><a href="hegemon-usa.html">Teil 1: Überblick — fünf Instrumente im Überblick</a></li>
+<li><a href="hegemon-dollar.html">Teil 2: Das Geld — Dollarhegemonie, Petrodollar, SWIFT</a></li>
+<li><strong style="color:var(--text-bright)">Teil 3: Die Streitkräfte — Basen, SOFA, Rüstungskomplex</strong> — dieser Artikel</li>
+<li><a href="hegemon-wirtschaft.html">Teil 4: Die Wirtschaft — IWF, Weltbank, Schuldenarchitektur</a> <span class="soon">(folgt)</span></li>
+<li><a href="hegemon-geheimdienste.html">Teil 5: Die Operationen — dokumentierte Regime Changes</a> <span class="soon">(folgt)</span></li>
+<li><a href="hegemon-softpower.html">Teil 6: Die Narrative — Soft Power und Informationsinfrastruktur</a> <span class="soon">(folgt)</span></li>
+</ul>
+</div>
+<!-- CLOSING QUESTIONS -->
+<div class="closing-questions">
+<div class="label">Offene Fragen</div>
+<p>Nach welchem Kriterium wird entschieden, welche Auslandsbasen in den öffentlichen Pentagon-Bericht aufgenommen werden und welche nicht — und wer kontrolliert diese Entscheidung?</p>
+<p>SOFA-Verträge gewähren US-Militärpersonal in bestimmten Konstellationen vollständige Immunität vor lokaler Strafverfolgung. Welche demokratische Instanz im Gaststaat hat dieser Vereinbarung zugestimmt — und welche Möglichkeit hat die Bevölkerung des Gaststaates, sie anzufechten?</p>
+<p>Die Konsolidierung der Rüstungsindustrie von 51 auf fünf Hauptauftragnehmer wurde 1993 durch das Pentagon aktiv gefördert. Wie verändert eine Branche mit faktisch fünf Akteuren ohne echten Wettbewerb die Funktionsweise demokratischer Kontrolle über Verteidigungsausgaben?</p>
+<p>Lockheed Martin erhielt 2025 mehr Bundesgelder als das gesamte US-Außenministerium. Welche außenpolitischen Optionen sind strukturell schwerer finanzierbar, wenn die Ausgabenlogik so ausgerichtet ist?</p>
+</div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

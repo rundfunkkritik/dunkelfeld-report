@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wüstenexporte: Der blinde Fleck beim Wasser — dunkelfeld.report</title>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Lora:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #0d0d0d;
+    --bg-elevated: #161616;
+    --signal: #f5c400;
+    --text: #e8e6e1;
+    --text-dim: #a8a49c;
+    --border: #2a2a2a;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Lora', Georgia, serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+  }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px 80px; }
+
+  header.masthead {
+    padding: 40px 24px 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 48px;
+  }
+
+  .masthead-inner { max-width: 760px; margin: 0 auto; }
+
+  .kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--signal);
+    margin-bottom: 12px;
+  }
+
+  h1.title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 0 0 16px;
+  }
+
+  .subtitle {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--text-dim);
+    margin: 0;
+  }
+
+  .meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 20px;
+  }
+
+  h2.part-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--signal);
+    margin-top: 64px;
+    margin-bottom: 8px;
+    padding-top: 24px;
+    border-top: 2px solid var(--border);
+  }
+
+  .part-number {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  h3.sub {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 32px;
+    margin-bottom: 10px;
+  }
+
+  .damals-heute-muster {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--signal);
+    margin-top: 28px;
+    margin-bottom: 6px;
+  }
+
+  p { margin: 0 0 18px; font-size: 17px; }
+
+  a { color: var(--signal); text-decoration: underline; text-decoration-color: rgba(245,196,0,0.4); }
+  a:hover { text-decoration-color: var(--signal); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0 32px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    background: var(--bg-elevated);
+  }
+
+  caption {
+    text-align: left;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    caption-side: top;
+  }
+
+  th, td { border: 1px solid var(--border); padding: 10px 12px; text-align: left; vertical-align: top; }
+  th { background: #1c1c1c; color: var(--signal); font-weight: 500; }
+  tr:nth-child(even) td { background: #131313; }
+
+  .callout {
+    background: var(--bg-elevated);
+    border-left: 3px solid var(--signal);
+    padding: 18px 22px;
+    margin: 28px 0;
+    font-size: 16px;
+  }
+
+  .callout strong { color: var(--signal); }
+
+  .disclaimer { margin-top: 64px; padding-top: 24px; border-top: 2px solid var(--border); }
+  .disclaimer h2 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; color: var(--text-dim); }
+  .disclaimer ul { font-size: 15px; color: var(--text-dim); }
+  .disclaimer li { margin-bottom: 10px; }
+
+  footer.site-footer {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    border-top: 1px solid var(--border);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    text-align: center;
+  }
+</style>
+<meta name="description" content="Wie Marokko und Ägypten zu Obst- und Gemüse-Exporteuren wurden – auf Kosten nicht erneuerbaren Wassers. Und warum der deutsche Handel beim CO2-Fußabdruck trommelt, aber beim Wasserfußabdruck schweigt.">
+<meta name="rubrik" content="cat-nahrung">
+<meta name="kachel-titel" content="Wüstenexporte: Der blinde Fleck beim Wasser">
+<link rel="canonical" href="https://dunkelfeld.report/wuestenexporte-wasser-dunkelfeld.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wüstenexporte: Der blinde Fleck beim Wasser">
+<meta property="og:description" content="Wie Marokko und Ägypten zu Obst- und Gemüse-Exporteuren wurden – auf Kosten nicht erneuerbaren Wassers. Und warum der deutsche Handel beim CO2-Fußabdruck trommelt, aber beim Wasserfußabdruck schweigt.">
+<meta property="og:url" content="https://dunkelfeld.report/wuestenexporte-wasser-dunkelfeld.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Wüstenexporte: Der blinde Fleck beim Wasser", "description": "Wie Marokko und Ägypten zu Obst- und Gemüse-Exporteuren wurden – auf Kosten nicht erneuerbaren Wassers. Und warum der deutsche Handel beim CO2-Fußabdruck trommelt, aber beim Wasserfußabdruck schweigt.", "inLanguage": "de", "url": "https://dunkelfeld.report/wuestenexporte-wasser-dunkelfeld.html", "mainEntityOfPage": "https://dunkelfeld.report/wuestenexporte-wasser-dunkelfeld.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<header class="masthead">
+<div class="masthead-inner">
+<div class="kicker">Dunkelfeld.report — Investigativ</div>
+<h1 class="title">Wüstenexporte: Der blinde Fleck beim Wasser</h1>
+<p class="subtitle">Wie Marokko und Ägypten zu Obst- und Gemüse-Lieferanten Europas wurden – und warum der Handel beim CO2 trommelt, beim Wasser aber schweigt</p>
+<div class="meta">Veröffentlicht: 25. Juli 2026 · Zwei Teile · Lesezeit ca. 9 Min.</div>
+</div>
+</header>
+<div class="wrap">
+<p>Wenn im deutschen Supermarkt im Januar Tomaten, Paprika oder Beeren liegen, stammen sie fast immer aus Wüsten- oder Halbwüstenregionen: Marokko, Ägypten, Südspanien. Das wirkt wie ein Beleg für landwirtschaftlichen Fortschritt. Tatsächlich beruht es auf einer Ressource, die in beiden Ländern nicht nachwächst – und die im Werbematerial der Handelsketten, die sich sonst lautstark für Klimaschutz feiern lassen, nirgends auftaucht.</p>
+<h2 class="part-title"><span class="part-number">Teil 1 / 2</span>Wie Wüstenländer zu Exportnationen wurden</h2>
+<span class="damals-heute-muster">Ägypten: geliehenes Grundwasser aus der Eiszeit</span>
+<p>90 Prozent des ägyptischen Wasserverbrauchs stammen weiterhin aus dem Nil. Für die Ausweitung der Anbauflächen in die Wüste hinein setzt Ägypten aber zunehmend auf den Nubischen Sandstein-Aquifer – ein fossiles Grundwasserreservoir unter Ägypten, Libyen, Sudan und Tschad mit einem geschätzten Volumen von 370.000 Kubikkilometern, so viel, wie in 600 Jahren den Nil hinabfließt. Das Wasser bildete sich über Zehntausende Jahre in einer Zeit, als die Sahara feuchter war, und wird nicht wieder aufgefüllt. Allein in Ägypten werden jährlich rund 700 Millionen Kubikmeter aus tiefen Brunnen gepumpt; seit den 1980er-Jahren siedelt die Regierung gezielt Familien aus dem Niltal in die Wüste um. Weil der natürliche Wasserdruck im Aquifer nachlässt, muss inzwischen bis zu einen Kilometer tief gebohrt werden. Fast 2.000 Quadratkilometer Wüstenland wurden so in 60 Jahren urbar gemacht – auf einer Ressource, die sich nicht erneuert.</p>
+<span class="damals-heute-muster">Marokko: Bewässerung an der Belastungsgrenze, Entsalzung als teurer Ausweg</span>
+<p>Marokkos Landwirtschaft verbraucht über 80 Prozent der verfügbaren Wasserressourcen des Landes – bei einer der schwersten Dürren seit Jahrzehnten und einem Grundwasser-Defizit von 100 Prozent. Der Ausweg ist Meerwasserentsalzung: Bis 2030 will Marokko 50 Prozent seines Frischwassers daraus beziehen, aktuell sind es 11 Prozent. Der Haken: 45 Prozent der Entsalzungskosten entfallen auf Energie – die Marokko größtenteils importieren muss. Das Land finanziert seinen Wasserausweg also mit fossilen Energieimporten, deren Kosten das eigene Handelsdefizit weiter belasten.</p>
+<span class="damals-heute-muster">Das Muster</span>
+<p>Beide Länder wurden zu verlässlichen Obst- und Gemüse-Lieferanten Europas, indem sie eine nicht erneuerbare oder fremdfinanzierte Ressource in exportfähige Kalorien verwandelten. Ägypten zehrt von eiszeitlichem Grundwasser mit einer Uhr, die unbekannt, aber endlich tickt. Marokko finanziert seinen Wasserausweg über Energieimporte, die es sich angesichts der ohnehin hohen Gaspreise (siehe Teil 2 unserer Dünger-Serie) kaum leisten kann. Die Versorgungssicherheit, die europäische Supermarktregale ganzjährig zeigen, beruht also nicht auf nachhaltiger Produktion, sondern auf zwei sehr unterschiedlichen Formen von geliehener Zeit.</p>
+<h3 class="sub">Virtuelles Wasser: ein Handelssystem ohne Preisschild</h3>
+<p>Der Fachbegriff dafür ist "virtuelles Wasser" – das Wasser, das unsichtbar in einem Produkt steckt. Für ein Kilogramm Getreide werden in Marokko rund 2.700 Liter Wasser aufgewendet, in Deutschland nur 520 Liter. Das Konzept hat eine positive und eine kritische Seite: Grundsätzlich kann globaler Agrarhandel regionale Wasserknappigkeit mindern, wenn wasserarme Länder Grundnahrungsmittel importieren, statt sie selbst wasserintensiv anzubauen. Kritisch wird es, wenn es sich umkehrt: Der Handel mit virtuellem Wasser wird zu "Wasserraub", wenn wasserintensive Güter aus ohnehin wasserknappen Regionen exportiert werden – und genau das trifft auf viele der Obst- und Gemüseexporte aus Marokko und Ägypten zu, die primär für den europäischen Markt und nicht für die lokale Grundversorgung produziert werden.</p>
+<table>
+<caption>Tabelle 1 — Wasserbedarf im Vergleich (ausgewählte Produkte/Länder)</caption>
+<thead><tr><th>Produkt / Vergleich</th><th>Wasserbedarf</th><th>Einordnung</th></tr></thead>
+<tbody>
+<tr><td>1 kg Getreide, Marokko (Bewässerung)</td><td>ca. 2.700 Liter</td><td>ca. 5× höher als in Deutschland</td></tr>
+<tr><td>1 kg Getreide, Deutschland</td><td>ca. 520 Liter</td><td>Referenzwert (Regenfeldbau)</td></tr>
+<tr><td>1 kg Mais, Ägypten (Bewässerung)</td><td>ca. 1.100 Liter</td><td>gegenüber Frankreich (530 l) mehr als doppelt so hoch</td></tr>
+<tr><td>Deutscher Obst-Selbstversorgungsgrad</td><td>unter 20 %</td><td>Tomaten und Paprika werden "fast vollständig" importiert</td></tr>
+</tbody>
+</table>
+<h2 class="part-title"><span class="part-number">Teil 2 / 2</span>Die CO2-Bühne und der blinde Fleck Wasser</h2>
+<span class="damals-heute-muster">Damals bis heute</span>
+<p>Deutsche Handelsketten haben sich seit Jahren als Klimavorreiter positioniert: Rewe will bis 2040 konzernweit klimaneutral werden, wirbt mit "Pro Planet"-Label und weist inzwischen sogar "Klimapreise" für einzelne Produkte aus. Aldi Nord kompensierte seine "Wonderful World"-Fruchtgummis und "Fair &amp; gut"-Alpenmilch über Klimaschutzprojekte in Uruguay und Chile. Mehrere dieser "klimaneutral"-Werbeaussagen wurden jedoch von Verbraucherschützern wie Foodwatch als irreführend kritisiert – Rewe verzichtet inzwischen ganz auf das Label und investiert stattdessen in Moor-Renaturierung mit dem NABU.</p>
+<span class="damals-heute-muster">Das Muster</span>
+<p>Bei alldem existiert praktisch kein vergleichbares Label, keine Kampagne und keine "Wasserpreis"-Auszeichnung für den Wasserfußabdruck der Produkte in denselben Regalen. Während der CO2-Ausstoß bis auf die einzelne Falafel heruntergerechnet und beworben wird, bleibt unsichtbar, dass die Wintertomate aus Marokko oder die Kartoffel aus Ägypten auf einer Ressource beruht, die dort selbst knapp bis erschöpft ist. Das Umweltbundesamt kritisiert zwar den CO2-Ausstoß von Flugware und beheizten Gewächshäusern öffentlich – zur Wasserbilanz importierter Wüstenware äußert sich der Handel dagegen kaum.</p>
+<table>
+<caption>Tabelle 2 — Klimakommunikation vs. Wasserkommunikation im deutschen Handel</caption>
+<thead><tr><th>Handelskette</th><th>Klimaschutz-Kommunikation</th><th>Wasserfußabdruck-Kommunikation</th></tr></thead>
+<tbody>
+<tr><td>Rewe</td><td>"Pro Planet"-Label, Klimapreise pro Produkt, Ziel Klimaneutralität 2040, NABU-Moorprojekt</td><td>Keine vergleichbare Kennzeichnung</td></tr>
+<tr><td>Aldi Nord</td><td>Klimaneutrale Eigenmarken (kompensiert über Auslandsprojekte)</td><td>Keine vergleichbare Kennzeichnung</td></tr>
+<tr><td>Lidl</td><td>Eco-Score-Test (Nachhaltigkeitssiegel)</td><td>Nicht Bestandteil des Scores</td></tr>
+<tr><td>Branchenweit</td><td>CO2-Fußabdruck zunehmend Verkaufsargument</td><td>Wasserfußabdruck bleibt Nischenthema in Fachpublikationen (bpb, Welthungerhilfe), nicht im Regal</td></tr>
+</tbody>
+</table>
+<div class="callout"><strong>Einordnung:</strong> Das ist kein Vorwurf an einzelne Landwirte in Marokko oder Ägypten – für sie ist der Export oft die wirtschaftlich einzig tragfähige Option. Der blinde Fleck liegt beim Handel und bei der öffentlichen Kommunikation: CO2 ist messbar, medienwirksam und lässt sich mit Zertifikaten "ausgleichen". Wasserknappheit in fremden Ländern ist unsichtbar, unkompensierbar und taucht deshalb in keiner Nachhaltigkeitskampagne auf – obwohl beide Ressourcenprobleme demselben Konsumverhalten entspringen.</div>
+<div class="disclaimer">
+<h2>Was wir ausdrücklich nicht behaupten</h2>
+<ul>
+<li>Wir behaupten nicht, dass Rewe, Aldi, Edeka oder Lidl bewusst über Wasserknappheit hinwegtäuschen. Fehlende Kommunikation zu einem Thema ist nicht gleichzusetzen mit gezielter Verschleierung.</li>
+<li>Wir behaupten nicht, dass der Import von Obst und Gemüse aus Marokko oder Ägypten per se unverantwortlich ist – virtueller Wasserhandel kann, richtig eingesetzt, auch regionale Wasserknappheit lindern, wenn er Grundnahrungsmittel statt Exportkulturen betrifft.</li>
+<li>Wir behaupten nicht, dass die Erschöpfung des Nubischen Aquifers oder der marokkanischen Grundwasserreserven exakt datierbar ist – die verfügbaren Studien sprechen von einer nicht erneuerbaren, aber zeitlich nicht präzise bezifferten Ressource.</li>
+</ul>
+</div>
+</div>
+<footer class="site-footer">
+  dunkelfeld.report — Recherche, Chronologie, Quellen. Keine Meinung, keine Schlussfolgerung ohne Beleg.
+</footer>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

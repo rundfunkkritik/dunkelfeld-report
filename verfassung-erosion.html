@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vom Grundgesetz zum Lissabon-Vertrag — dunkelfeld.report</title>
+
+<meta content="Grundgesetz, Lissabon-Vertrag, EU, Souveränität, Demokratie, Volkssouveränität, Verfassungserosion, BVerfG" name="keywords"/>
+<style>
+  :root {
+    --bg: #09090b;
+    --bg-card: #111113;
+    --bg-source: #1a1a2e;
+    --bg-compare: #0f0f1a;
+    --amber: #e8c547;
+    --amber-dim: #b8982f;
+    --text: #e2e2e5;
+    --text-muted: #888890;
+    --text-dim: #555560;
+    --border: #2a2a35;
+    --green: #27ae60;
+    --red: #c0392b;
+    --orange: #d35400;
+    --blue: #2980b9;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.85;
+  }
+
+  .site-nav {
+    background: #0d0d10;
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-brand {
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    color: var(--amber);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--amber); }
+
+  .wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 4rem 0 2.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+  .article-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+  .series-badge {
+    display: inline-block;
+    background: #1a1a2e;
+    border: 1px solid var(--amber-dim);
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--amber-dim);
+    padding: 0.25rem 0.6rem;
+    margin-bottom: 1rem;
+  }
+  .hero h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 span { color: var(--amber); }
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  .meta-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+  .meta-row span { color: var(--amber-dim); }
+
+  /* STAT GRID */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+  .stat-card {
+    background: var(--bg-card);
+    padding: 1.4rem 1.2rem;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--amber);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+  }
+  .divider-amber {
+    border-color: var(--amber-dim);
+    opacity: 0.35;
+  }
+
+  h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 2.8rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--amber);
+    margin-top: 2rem;
+    margin-bottom: 0.7rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.04em;
+  }
+  p { padding-bottom: 1.2rem; }
+
+  /* COMPARE BLOCK — the core element of this article */
+  .compare-block {
+    margin: 2rem 0;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .compare-header {
+    background: #14141e;
+    padding: 0.8rem 1.2rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--amber);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+  .compare-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .compare-col {
+    padding: 1.2rem 1.2rem;
+  }
+  .compare-col:first-child {
+    border-right: 1px solid var(--border);
+    background: #0d1a0d;
+  }
+  .compare-col:last-child {
+    background: #1a0d0d;
+  }
+  .compare-col-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+    display: block;
+    font-weight: 700;
+  }
+  .compare-col:first-child .compare-col-label { color: var(--green); }
+  .compare-col:last-child .compare-col-label { color: var(--red); }
+  .compare-col p {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--text);
+    padding-bottom: 0;
+  }
+  .compare-col .law-ref {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    display: block;
+  }
+
+  /* SOURCE BOX */
+  .source-box {
+    background: var(--bg-source);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .source-box strong {
+    color: var(--amber);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  /* TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+  }
+  .tag-belegt { background: var(--green); color: #fff; }
+  .tag-offen { background: var(--orange); color: #fff; }
+  .tag-extrapolation { background: #555; color: #ddd; }
+
+  /* TIMELINE */
+  .timeline {
+    margin: 1.5rem 0;
+  }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #1a1a25;
+    align-items: start;
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .tl-year {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--amber-dim);
+    font-weight: 700;
+    padding-top: 0.1rem;
+  }
+  .tl-text {
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.65;
+    padding-bottom: 0;
+  }
+
+  /* DATA TABLE */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0 2rem;
+    font-size: 0.88rem;
+  }
+  .data-table th {
+    background: #1a1a2e;
+    color: var(--amber);
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.7rem 0.9rem;
+    text-align: left;
+    border-bottom: 1px solid var(--amber-dim);
+  }
+  .data-table td {
+    padding: 0.75rem 0.9rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .data-table tr:hover td { background: #111118; }
+  .data-table td.was { color: #7ec87e; }
+  .data-table td.now { color: #e07070; }
+
+  /* QUOTE BLOCK */
+  .quote-block {
+    border-left: 3px solid var(--amber-dim);
+    padding: 1rem 1.4rem;
+    margin: 1.5rem 0;
+    background: #0e0e18;
+  }
+  .quote-block p {
+    font-style: italic;
+    color: var(--text);
+    font-size: 1rem;
+    padding-bottom: 0.4rem;
+  }
+  .quote-attr {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    display: block;
+  }
+
+  /* CLOSING */
+  .closing {
+    margin: 3rem 0;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber-dim);
+    background: #0e0e15;
+  }
+  .closing p {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    padding-bottom: 0.8rem;
+  }
+  .closing p:last-child { padding-bottom: 0; }
+
+  .method-note {
+    background: #0f0f18;
+    border: 1px solid var(--border);
+    padding: 1.2rem 1.4rem;
+    margin: 2rem 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* RELATED */
+  .related {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 1.2rem 1.4rem;
+    margin: 2rem 0;
+  }
+  .related-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--amber-dim);
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+  .related a {
+    color: var(--amber);
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  .related a:hover { text-decoration: underline; }
+
+  .site-footer {
+    background: #0d0d10;
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 1.5rem;
+    margin-top: 5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+  .site-footer a { color: var(--amber-dim); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 2.5rem 0 2rem; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .compare-cols { grid-template-columns: 1fr; }
+    .compare-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+    .nav-links { display: none; }
+    .timeline-item { grid-template-columns: 75px 1fr; }
+  }
+</style>
+<meta name="description" content="Was das Grundgesetz 1949 garantierte. Was der Lissabon-Vertrag 2009 davon übrig ließ. Eine Strukturanalyse ohne Fazit.">
+<meta name="rubrik" content="cat-staat">
+<meta name="kachel-titel" content="Vom Grundgesetz zum Lissabon-Vertrag — Was übertragen wurde">
+<link rel="canonical" href="https://dunkelfeld.report/verfassung-erosion.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vom Grundgesetz zum Lissabon-Vertrag — Was übertragen wurde">
+<meta property="og:description" content="Was das Grundgesetz 1949 garantierte. Was der Lissabon-Vertrag 2009 davon übrig ließ. Eine Strukturanalyse ohne Fazit.">
+<meta property="og:url" content="https://dunkelfeld.report/verfassung-erosion.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Vom Grundgesetz zum Lissabon-Vertrag — Was übertragen wurde", "description": "Was das Grundgesetz 1949 garantierte. Was der Lissabon-Vertrag 2009 davon übrig ließ. Eine Strukturanalyse ohne Fazit.", "inLanguage": "de", "url": "https://dunkelfeld.report/verfassung-erosion.html", "mainEntityOfPage": "https://dunkelfeld.report/verfassung-erosion.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<nav class="site-nav">
+<a class="nav-brand" href="/">dunkelfeld.report</a>
+<ul class="nav-links">
+<li><a href="/">Alle Artikel</a></li>
+<li><a href="/ns-kontinuitaet.html">Teil I: Personalstruktur</a></li>
+<li><a href="/impressum.html">Impressum</a></li>
+</ul>
+</nav>
+<main class="wrapper">
+<header class="hero">
+<span class="series-badge">Teil II von II · Institutionelle Kontinuität</span>
+<span class="article-label">Analyse · Verfassungsrecht · EU-Vertragsgeschichte</span>
+<h1>Vom Grundgesetz zum Lissabon-Vertrag — <span>Was übertragen wurde</span></h1>
+<p class="hero-subtitle">Was das Grundgesetz 1949 garantierte. Was der Lissabon-Vertrag 2009 davon strukturell veränderte. Eine Gegenüberstellung ohne Fazit — auf Basis von Verfassungstext, BVerfG-Urteil und EU-Primärrecht.</p>
+<div class="meta-row">
+<span>Juni 2026</span>
+<span>Lesedauer: ca. 15 Minuten</span>
+<span>Quellen: GG · EUV · AEUV · BVerfG 2 BvE 2/08</span>
+</div>
+</header>
+<!-- STAT GRID -->
+<div class="stat-grid">
+<div class="stat-card">
+<span class="stat-number">137→181</span>
+<span class="stat-label">Politikbereiche mit qualifizierter Mehrheit: vor und nach Lissabon</span>
+</div>
+<div class="stat-card">
+<span class="stat-number">90 %</span>
+<span class="stat-label">Inhalt der abgelehnten EU-Verfassung im Lissabon-Vertrag übernommen (Giscard d'Estaing)</span>
+</div>
+<div class="stat-card">
+<span class="stat-number">0</span>
+<span class="stat-label">Volksabstimmungen in Deutschland über Maastricht (1992), Amsterdam, Nizza oder Lissabon</span>
+</div>
+<div class="stat-card">
+<span class="stat-number">33×</span>
+<span class="stat-label">Begriff „souverän" im Lissabon-Urteil des BVerfG — kein einziges Mal im Grundgesetz selbst</span>
+</div>
+</div>
+<div class="source-box">
+<strong>Quellen zu den Kennzahlen</strong>
+    Centrum für Europäische Politik: Zählung Mehrheitsbereiche vor/nach Lissabon. Giscard d'Estaing: Le Monde, 26. Oktober 2007. Abgeordnetenwatch.de: Bundestagsabstimmung Lissabon (kein Volksreferendum). BVerfG 2 BvE 2/08, Urteil 30. Juni 2009 (bundesverfassungsgericht.de).
+  </div>
+<hr class="divider"/>
+<h2>1. Das Grundgesetz 1949: Was es wirklich garantierte</h2>
+<p>Das Grundgesetz entstand als Reaktion auf zwei Staatszusammenbrüche: Weimar (1933) und das NS-Regime. Seine Väter und Mütter — darunter Carlo Schmid, Theodor Heuss, Elisabeth Selbert — haben bewusst Mechanismen eingebaut, die ein erneutes Abgleiten in autoritäre Strukturen verhindern sollten. Diese Mechanismen sind präzise und konkret.</p>
+<h3>Art. 20 GG — Die Ewigkeitsklausel</h3>
+<p>Artikel 20 Grundgesetz definiert die vier tragenden Staatsprinzipien: Demokratie, Sozialstaatlichkeit, Bundesstaatlichkeit, Rechtstaatlichkeit. Absatz 2 ist der Kern:</p>
+<div class="quote-block">
+<p>„Alle Staatsgewalt geht vom Volke aus. Sie wird vom Volke in Wahlen und Abstimmungen und durch besondere Organe der Gesetzgebung, der vollziehenden Gewalt und der Rechtsprechung ausgeübt."</p>
+<span class="quote-attr">Grundgesetz Art. 20 Abs. 2 — BELEGT, Volltext: gesetze-im-internet.de</span>
+</div>
+<p>Artikel 79 Abs. 3 stellt klar: Diese Prinzipien sind nicht durch Verfassungsänderung aufhebbar — auch nicht mit Zwei-Drittel-Mehrheit. Sie gelten absolut. Das BVerfG nennt dies die „Verfassungsidentität". <span class="tag tag-belegt">BELEGT</span></p>
+<h3>Art. 38 GG — Das Wahlrecht als subjektives Recht</h3>
+<p>Artikel 38 GG garantiert jedem Bürger nicht nur das Recht zu wählen, sondern das Recht, dass die gewählten Abgeordneten tatsächlich Entscheidungsgewalt haben. Wenn Kompetenzen so weit auf nicht gewählte Organe übertragen werden, dass der Bundestag substanzlos wird, verletzt das das individuelle Wahlrecht jedes Bürgers.</p>
+<p>Diese Konstruktion ist der Grund, warum Einzelpersonen wie Peter Gauweiler und andere direkt gegen den Lissabon-Vertrag klagen konnten — und warum das BVerfG die Klage annahm. <span class="tag tag-belegt">BELEGT</span></p>
+<hr class="divider"/>
+<h2>2. Der Übertragungsweg: Vier Vertragsschritte 1957–2009</h2>
+<p>Die Kompetenzverschiebung von nationalen Parlamenten zu EU-Institutionen verlief nicht in einem Schritt. Sie erfolgte schrittweise über 52 Jahre — jeder Schritt als technische Notwendigkeit oder Effizienzgewinn framed, keiner per Volksabstimmung in Deutschland entschieden.</p>
+<div class="timeline">
+<div class="timeline-item">
+<span class="tl-year">1957</span>
+<p class="tl-text"><strong>Römische Verträge:</strong> EWG gegründet. Kommissions-Initiativmonopol für Gesetzgebung eingeführt. Kein nationales Parlament kann EU-Gesetze initiieren. Keine Volksabstimmung in Deutschland. <span class="tag tag-belegt">BELEGT</span></p>
+</div>
+<div class="timeline-item">
+<span class="tl-year">1964</span>
+<p class="tl-text"><strong>EuGH: Costa v. ENEL:</strong> Der Europäische Gerichtshof erklärt EU-Recht für vorrangig gegenüber nationalem Recht — ohne dass ein Parlament darüber abgestimmt hätte. Kein Vertragstext schrieb dies explizit vor; der EuGH leitete es eigenständig ab. <span class="tag tag-belegt">BELEGT</span></p>
+</div>
+<div class="timeline-item">
+<span class="tl-year">1992</span>
+<p class="tl-text"><strong>Maastricht:</strong> Europäische Union gegründet. Währungsunion beschlossen. Dänemark stimmt zunächst mit 50,7 % dagegen — bekommt Opt-outs und stimmt 1993 erneut ab. Deutschland: parlamentarische Ratifizierung, keine Volksabstimmung. <span class="tag tag-belegt">BELEGT</span></p>
+</div>
+<div class="timeline-item">
+<span class="tl-year">2004</span>
+<p class="tl-text"><strong>EU-Verfassung:</strong> Giscard d'Estainng-Konvent erarbeitet formale EU-Verfassung. Frankreich lehnt mit 55 % ab, Niederlande mit 62 %. Prozess gestoppt. <span class="tag tag-belegt">BELEGT</span></p>
+</div>
+<div class="timeline-item">
+<span class="tl-year">2007</span>
+<p class="tl-text"><strong>Berliner Erklärung / Lissabon-Mandat:</strong> Unter deutschem EU-Ratsvorsitz (Merkel) wird beschlossen, die Verfassung als „Änderungsvertrag" neu zu verpacken. Damit entfällt die Volksabstimmungspflicht in den meisten Ländern. Giscard d'Estaing in Le Monde: „Die Substanz ist erhalten." <span class="tag tag-belegt">BELEGT</span></p>
+</div>
+<div class="timeline-item">
+<span class="tl-year">2008</span>
+<p class="tl-text"><strong>Irland I:</strong> Irland stimmt mit 53,4 % gegen Lissabon — das einzige Land mit Volksabstimmungspflicht. Die EU antwortet mit „Garantien" (deklaratorisch, nicht substanziell). <span class="tag tag-belegt">BELEGT</span></p>
+</div>
+<div class="timeline-item">
+<span class="tl-year">2009</span>
+<p class="tl-text"><strong>Irland II / Lissabon in Kraft:</strong> Irland stimmt nach Garantien mit 67,1 % zu. Lissabon tritt am 1. Dezember 2009 in Kraft. In Deutschland: parlamentarische Ratifizierung mit Zwei-Drittel-Mehrheit, Linke als einzige Fraktion dagegen. Keine Volksabstimmung. <span class="tag tag-belegt">BELEGT</span></p>
+</div>
+</div>
+<hr class="divider"/>
+<h2>3. Konkrete Gegenüberstellung: GG-Garantie vs. Lissabon-Realität</h2>
+<p>Die folgenden Vergleiche stützen sich auf Verfassungstext (GG), EU-Primärrecht (EUV/AEUV) und das BVerfG-Lissabon-Urteil vom 30. Juni 2009 (2 BvE 2/08).</p>
+<!-- COMPARE 1 -->
+<div class="compare-block">
+<div class="compare-header">Volksouveränität &amp; demokratische Legitimation</div>
+<div class="compare-cols">
+<div class="compare-col">
+<span class="compare-col-label">Grundgesetz 1949</span>
+<p>„Alle Staatsgewalt geht vom Volke aus." (Art. 20 Abs. 2 GG). Gesetze werden durch gewählte Abgeordnete beschlossen, die dem Volk gegenüber verantwortlich sind.</p>
+<span class="law-ref">Art. 20 Abs. 2 GG</span>
+</div>
+<div class="compare-col">
+<span class="compare-col-label">Lissabon-Vertrag 2009</span>
+<p>EU-Gesetze werden von der Kommission initiiert — einem nicht gewählten Gremium. Das BVerfG stellt fest: Das Europäische Parlament ist „kein Repräsentationsorgan eines souveränen europäischen Volkes". Es gibt kein europäisches demos, von dem Staatsgewalt ausgehen könnte.</p>
+<span class="law-ref">BVerfG 2 BvE 2/08, Rn. 280 · Art. 17 EUV</span>
+</div>
+</div>
+</div>
+<!-- COMPARE 2 -->
+<div class="compare-block">
+<div class="compare-header">Gesetzgebungskompetenz des Bundestages</div>
+<div class="compare-cols">
+<div class="compare-col">
+<span class="compare-col-label">Grundgesetz 1949</span>
+<p>Der Bundestag ist die zentrale Gesetzgebungskammer. Kein Gesetz kann ohne seine Zustimmung oder gegen seinen Willen erlassen werden. Art. 38 GG schützt das Recht des Wählers, dass sein gewählter Vertreter tatsächlich entscheidet.</p>
+<span class="law-ref">Art. 38, 70–78 GG</span>
+</div>
+<div class="compare-col">
+<span class="compare-col-label">Lissabon-Vertrag 2009</span>
+<p>In 181 Politikbereichen (vorher 137) wird im EU-Rat mit qualifizierter Mehrheit entschieden. Deutschland kann überstimmt werden. EU-Verordnungen gelten direkt als nationales Recht — ohne Bundestags-Beschluss. Richtlinien verpflichten den Bundestag zur Umsetzung.</p>
+<span class="law-ref">Art. 288 AEUV · Centrum für Europäische Politik</span>
+</div>
+</div>
+</div>
+<!-- COMPARE 3 -->
+<div class="compare-block">
+<div class="compare-header">Nationale Vetomacht</div>
+<div class="compare-cols">
+<div class="compare-col">
+<span class="compare-col-label">Römische Verträge 1957</span>
+<p>In den meisten Politikbereichen: Einstimmigkeit im Ministerrat erforderlich. Jedes Mitgliedsland hat Vetorecht. Deutschland kann Gesetze blockieren, die seinen Interessen schaden.</p>
+<span class="law-ref">EWG-Vertrag 1957</span>
+</div>
+<div class="compare-col">
+<span class="compare-col-label">Lissabon-Vertrag 2009</span>
+<p>Qualifizierte Mehrheit ist die Regel. Für eine Sperrminorität braucht es mindestens 4 Mitgliedsstaaten mit 35 % der EU-Bevölkerung. Deutschland kann allein überstimmt werden. Brückenklauseln erlauben weiteren Wechsel von Einstimmigkeit zu Mehrheit ohne neuen Vertrag.</p>
+<span class="law-ref">Art. 16 Abs. 4 EUV · Art. 48 Abs. 7 EUV</span>
+</div>
+</div>
+</div>
+<!-- COMPARE 4 -->
+<div class="compare-block">
+<div class="compare-header">Außenpolitische Souveränität</div>
+<div class="compare-cols">
+<div class="compare-col">
+<span class="compare-col-label">Grundgesetz 1949</span>
+<p>Außenpolitik ist ausschließlich Staatssache. Der Bundestag ratifiziert internationale Verträge. Deutschland spricht international mit einer Stimme — der deutschen Regierung.</p>
+<span class="law-ref">Art. 24, 59 GG</span>
+</div>
+<div class="compare-col">
+<span class="compare-col-label">Lissabon-Vertrag 2009</span>
+<p>Neues Amt: „Hoher Vertreter der Union für Außen- und Sicherheitspolitik" (faktischer EU-Außenminister). Europäischer Auswärtiger Dienst mit eigenen Botschaften. Gemeinsame Sicherheits- und Verteidigungspolitik auf EU-Ebene. Deutschland hat keine eigene EU-Außenpolitik mehr — nur EU-Außenpolitik mit nationalem Einfluss.</p>
+<span class="law-ref">Art. 18, 27 EUV · Art. 24 EUV</span>
+</div>
+</div>
+</div>
+<!-- COMPARE 5 -->
+<div class="compare-block">
+<div class="compare-header">Kontrolle von Strafrecht und Innenpolitik</div>
+<div class="compare-cols">
+<div class="compare-col">
+<span class="compare-col-label">Grundgesetz 1949</span>
+<p>Strafrecht, Polizei, Justiz: ausschließlich nationale Kompetenz. Kein übernationales Organ kann Deutsche anklagen, verhaften oder Sicherheitsbehörden einsetzen. Art. 16 GG: Kein Deutscher darf ausgeliefert werden.</p>
+<span class="law-ref">Art. 16, 92–104 GG</span>
+</div>
+<div class="compare-col">
+<span class="compare-col-label">Lissabon-Vertrag 2009</span>
+<p>Polizeiliche und justizielle Zusammenarbeit in Strafsachen wird vollständig in den EU-Rechtsrahmen überführt (ordentliches Gesetzgebungsverfahren). Europäischer Haftbefehl. Eurojust. Europäische Staatsanwaltschaft (Art. 86 AEUV). EU kann in nationales Strafrecht eingreifen.</p>
+<span class="law-ref">Art. 82–86 AEUV · Titel V AEUV</span>
+</div>
+</div>
+</div>
+<!-- COMPARE 6 -->
+<div class="compare-block">
+<div class="compare-header">Vertragsänderung und Souveränitätsprinzip</div>
+<div class="compare-cols">
+<div class="compare-col">
+<span class="compare-col-label">Grundgesetz 1949</span>
+<p>Verfassungsänderungen brauchen Zwei-Drittel-Mehrheit in Bundestag und Bundesrat (Art. 79 GG). Die Ewigkeitsgarantie (Art. 79 Abs. 3) ist überhaupt nicht änderbar. Deutschland tritt nur Organisationen bei, die demokratischen Grundsätzen entsprechen (Art. 23 GG).</p>
+<span class="law-ref">Art. 23, 79 GG</span>
+</div>
+<div class="compare-col">
+<span class="compare-col-label">Lissabon-Vertrag 2009</span>
+<p>„Brückenklauseln" (Art. 48 Abs. 7 EUV) erlauben es dem Europäischen Rat, weitere Politikbereiche per Mehrheitsbeschluss vom Veto- auf Mehrheitsprinzip umzustellen — ohne neues Ratifikationsverfahren. Nationalen Parlamenten bleibt ein zeitlich begrenztes Veto. Das BVerfG hält dies für grenzwertig, aber noch verfassungskonform. <span class="tag tag-belegt">BELEGT</span></p>
+<span class="law-ref">Art. 48 Abs. 7 EUV · BVerfG 2 BvE 2/08 Rn. 319</span>
+</div>
+</div>
+</div>
+<div class="source-box">
+<strong>Primärquellen zu den Vergleichen</strong>
+    Grundgesetz für die Bundesrepublik Deutschland (vollständiger Text: gesetze-im-internet.de/gg) · Vertrag über die Europäische Union (EUV, konsolidierte Fassung 2016, EUR-Lex) · Vertrag über die Arbeitsweise der EU (AEUV, konsolidierte Fassung 2016, EUR-Lex) · BVerfG: Urteil 2 BvE 2/08 vom 30. Juni 2009 (bundesverfassungsgericht.de) · Europäisches Parlament: Factsheet „Vertrag von Lissabon" (europarl.europa.eu)
+  </div>
+<hr class="divider divider-amber"/>
+<h2>4. Was das BVerfG selbst sagte — und was es nicht sagte</h2>
+<p>Das Bundesverfassungsgericht hat den Lissabon-Vertrag am 30. Juni 2009 für grundsätzlich verfassungskonform erklärt. Aber die Begründung enthält Formulierungen, die für sich sprechen.</p>
+<div class="quote-block">
+<p>„Das Europäische Parlament ist kein Repräsentationsorgan eines souveränen europäischen Volkes."</p>
+<span class="quote-attr">BVerfG 2 BvE 2/08, Rn. 280 — BELEGT, Volltext bundesverfassungsgericht.de</span>
+</div>
+<div class="quote-block">
+<p>„Die Europäische Union erreicht auch bei Inkrafttreten des Vertrags von Lissabon noch keine Ausgestaltung, die staatsanalog ist und deshalb dem Legitimationsniveau einer staatlich verfassten Demokratie entsprechen müsste."</p>
+<span class="quote-attr">BVerfG 2 BvE 2/08, Rn. 262 — BELEGT</span>
+</div>
+<div class="quote-block">
+<p>„Nicht jedoch ein Aufgehen in einem europäischen Bundesstaat unter Aufgabe der nationalen Souveränität; dazu bedürfe es einer neuen deutschen Verfassung auf Grundlage einer Volksabstimmung."</p>
+<span class="quote-attr">BVerfG-Pressemitteilung Nr. 72/2009 vom 30. Juni 2009 — BELEGT</span>
+</div>
+<p>Mit anderen Worten: Das BVerfG erklärt den Vertrag für zulässig — stellt aber fest, dass die EU kein demokratisch legitimiertes Staatsvolk hat, dass ihre Institutionen nicht dem Standard einer Demokratie entsprechen müssen, und dass ein weiterer Schritt zur Bundesstaatlichkeit eine neue deutsche Verfassung per Volksabstimmung erfordern würde.</p>
+<p>Diese neue Verfassung per Volksabstimmung hat es nie gegeben.</p>
+<hr class="divider"/>
+<h2>5. Der Strukturbogen: Von Monnet 1943 bis Lissabon 2009</h2>
+<p>Nebeneinandergestellt, ohne Motiv-Zuschreibung:</p>
+<table class="data-table">
+<thead>
+<tr>
+<th>Jahr</th>
+<th>Dokument / Ereignis</th>
+<th>Was übertragen / verändert wurde</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1943</td>
+<td>Monnet-Memorandum (Algier)</td>
+<td class="was">Erklärtes Ziel: Überwindung nationaler Souveränität durch technische Schritte. Volksabstimmungen explizit als ungeeignet bezeichnet.</td>
+</tr>
+<tr>
+<td>1949–1960</td>
+<td>ACUE / CIA-Finanzierung</td>
+<td class="was">Europäische Einigungsbewegung verdeckt finanziert. Empfänger zur Geheimhaltung verpflichtet. (FOIA-declassifiziert, Georgetown-Archiv)</td>
+</tr>
+<tr>
+<td>1957</td>
+<td>Römische Verträge</td>
+<td class="now">Kommissionsmonopol für Gesetzesinitiativen. Kein nationales Parlament kann EU-Recht initiieren.</td>
+</tr>
+<tr>
+<td>1964</td>
+<td>EuGH Costa v. ENEL</td>
+<td class="now">EU-Recht über nationalem Recht — ohne Volksabstimmung, ohne expliziten Vertragstext, durch Richterrecht gesetzt.</td>
+</tr>
+<tr>
+<td>1992</td>
+<td>Maastricht</td>
+<td class="now">Währungsunion, Unionsbürgerschaft. Dänemark stimmt Nein — bekommt Opt-outs, muss erneut abstimmen.</td>
+</tr>
+<tr>
+<td>2005</td>
+<td>EU-Verfassung gescheitert</td>
+<td class="now">Frankreich 55 % Nein, Niederlande 62 % Nein. Inhalt zu ~90 % erhalten — Form geändert, um Volksabstimmungen zu umgehen.</td>
+</tr>
+<tr>
+<td>2008</td>
+<td>Irland I</td>
+<td class="now">53,4 % Nein. Reaktion: Garantien, zweite Abstimmung. Nicht: Neuverhandlung des Vertrags.</td>
+</tr>
+<tr>
+<td>2009</td>
+<td>Lissabon in Kraft</td>
+<td class="now">181 Mehrheitsbereiche, Ratspräsident, EU-Außenminister, Rechtspersönlichkeit der EU, Strafrecht auf EU-Ebene. In Deutschland: keine Volksabstimmung.</td>
+</tr>
+</tbody>
+</table>
+<hr class="divider"/>
+<h2>6. Was das Grundgesetz noch garantiert — und was nicht mehr durchsetzbar ist</h2>
+<p>Das Grundgesetz steht formal weiterhin in Kraft. Seine Schutzversprechen sind jedoch in einer Reihe von Bereichen durch EU-Recht strukturell eingeschränkt — nicht aufgehoben, aber überlagert.</p>
+<table class="data-table">
+<thead>
+<tr>
+<th>GG-Garantie</th>
+<th>Formaler Status</th>
+<th>Strukturelle Einschränkung durch EU-Recht</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Volksouveränität (Art. 20 Abs. 2)</td>
+<td><span class="tag tag-belegt" style="margin:0">formal in Kraft</span></td>
+<td>EU-Kommission initiiert Gesetze ohne demokratisches Mandat. BVerfG: EU-Parlament kein Repräsentant eines souveränen Volkes.</td>
+</tr>
+<tr>
+<td>Bundestag als Gesetzgeber (Art. 77 ff.)</td>
+<td><span class="tag tag-belegt" style="margin:0">formal in Kraft</span></td>
+<td>EU-Verordnungen gelten direkt. Richtlinien verpflichten zur Umsetzung. In 181 Bereichen kann Deutschland überstimmt werden.</td>
+</tr>
+<tr>
+<td>Veto bei Verfassungsänderung (Art. 79)</td>
+<td><span class="tag tag-belegt" style="margin:0">formal in Kraft</span></td>
+<td>Brückenklauseln (Art. 48 Abs. 7 EUV) erlauben Kompetenzausweitungen ohne neues Ratifikationsverfahren.</td>
+</tr>
+<tr>
+<td>Ewigkeitsgarantie (Art. 79 Abs. 3)</td>
+<td><span class="tag tag-belegt" style="margin:0">formal in Kraft</span></td>
+<td>BVerfG: Bei weiterer Integration wäre neue Verfassung per Volksabstimmung nötig. Diese hat nie stattgefunden.</td>
+</tr>
+<tr>
+<td>Nationales Strafrecht (Art. 92 ff.)</td>
+<td><span class="tag tag-belegt" style="margin:0">formal in Kraft</span></td>
+<td>Europäische Staatsanwaltschaft, Eurojust, Europäischer Haftbefehl. EU-Strafrecht greift direkt.</td>
+</tr>
+<tr>
+<td>Auslieferungsverbot (Art. 16)</td>
+<td><span class="tag tag-offen" style="margin:0">eingeschränkt</span></td>
+<td>Europäischer Haftbefehl: Deutsche können an EU-Mitgliedsstaaten ausgeliefert werden. Art. 16 Abs. 2 GG 2000 geändert, um dies zu ermöglichen.</td>
+</tr>
+</tbody>
+</table>
+<div class="source-box">
+<strong>Zur Auslieferungsklausel</strong>
+    Art. 16 Abs. 2 GG wurde 2000 durch das 47. Gesetz zur Änderung des Grundgesetzes geändert, um den Europäischen Haftbefehl zu ermöglichen. Originaltext 1949: absolutes Auslieferungsverbot. Geänderter Text: Auslieferung an EU-Mitgliedsstaaten möglich. BGBl. 2000 I S. 1633. <span class="tag tag-belegt">BELEGT</span>
+</div>
+<hr class="divider divider-amber"/>
+<!-- CLOSING -->
+<div class="closing">
+<p>Das Grundgesetz von 1949 und der Lissabon-Vertrag von 2009 existieren gleichzeitig und nebeneinander. Das erste garantiert Volkssouveränität. Das zweite verankert eine Institutionenstruktur, in der — nach Aussage des Bundesverfassungsgerichts selbst — kein souveränes Volk existiert, dessen Staatsgewalt ausgehen könnte.</p>
+<p>Jean Monnet schrieb 1943: Nationalstaaten müssen überwunden werden. Technische Schritte sind der Weg. Volksabstimmungen sind ungeeignet.</p>
+<p>Walter Hallstein sagte 1965: „Dieses Endziel bleibt der europäische Bundesstaat."</p>
+<p>Das BVerfG sagte 2009: Ein weiterer Schritt zur Bundesstaatlichkeit würde eine neue Verfassung per Volksabstimmung erfordern.</p>
+<p>Diese Volksabstimmung hat nicht stattgefunden. Ob das Grundgesetz deshalb Makulatur ist — oder ob es das letzte verbliebene Instrument der Identitätskontrolle darstellt —, ist eine Frage, die jeder Leser für sich beantworten muss.</p>
+</div>
+<hr class="divider"/>
+<!-- SOURCES -->
+<h2>Quellenverzeichnis</h2>
+<h3>Rechtliche Primärquellen</h3>
+<div class="source-box">
+<strong>Volltext-Dokumente</strong>
+    Grundgesetz für die Bundesrepublik Deutschland (gesetze-im-internet.de/gg) · Vertrag über die Europäische Union, konsolidierte Fassung 2016 (EUR-Lex, eur-lex.europa.eu) · Vertrag über die Arbeitsweise der EU, konsolidierte Fassung 2016 (EUR-Lex) · BVerfG: Urteil 2 BvE 2/08, 30. Juni 2009 (bundesverfassungsgericht.de) · BVerfG-Pressemitteilung Nr. 72/2009 · 47. Gesetz zur Änderung des Grundgesetzes (BGBl. 2000 I S. 1633) — Änderung Art. 16 Abs. 2
+  </div>
+<h3>Historische Primärquellen</h3>
+<div class="source-box">
+<strong>Originalquellen</strong>
+    Monnet, Jean: Memorandum vom 5. August 1943 (Archives nationales, Paris) · Monnet, Jean: „Mémoires" (Fayard 1976) · Giscard d'Estaing, Valéry: Kommentar in Le Monde, 26. Oktober 2007 · Hallstein, Walter: „Der unvollendete Bundesstaat" (Econ Verlag 1969) · Hallstein, Walter: Rede vor dem Europäischen Parlament 1965 · ACUE-Records: Georgetown University Library (Aldrich, Richard J.: „OSS, CIA and European Unity", Journal of European Public Policy 4:3, 1997)
+  </div>
+<h3>Wissenschaftliche Analyse</h3>
+<div class="source-box">
+<strong>Fachliteratur</strong>
+    Moravcsik, Andrew: „The Choice for Europe" (Cornell University Press 1998) · Dingemann: „Zwischen Integrationsverantwortung und Identitätskontrolle — Das Lissabon-Urteil des BVerfG" (FU Berlin, Berliner Online-Beiträge zum Europarecht Nr. 57) · SWP-Berlin: „Der Vertrag von Lissabon — Ein Kurzkommentar" (Lieb/von Ondarza, 2009) · Centrum für Europäische Politik: Zählung Mehrheitsbereiche
+  </div>
+<div class="method-note">
+<strong>Methodischer Hinweis:</strong> Alle Gegenüberstellungen basieren auf zugänglichem Verfassungsrecht (GG), EU-Primärrecht (EUV/AEUV) und dem veröffentlichten BVerfG-Urteil. Interpretationen des BVerfG werden wörtlich zitiert und mit Randnummern belegt. Dieser Artikel enthält kein eigenes Fazit — die Schlussfolgerung liegt beim Leser. Teil I dieser Dokumentation: <a href="/ns-kontinuitaet.html" style="color:var(--amber)">Der nahtlose Übergang — Personaldokumentation NS-Funktionäre</a>.
+  </div>
+<div class="related">
+<span class="related-label">Teil I dieser Dokumentation</span>
+<a href="/ns-kontinuitaet.html">Der nahtlose Übergang — NS-Funktionäre in den Gründungsinstitutionen der Bundesrepublik, NATO und EWG</a>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrapper">
+<p><a href="/">dunkelfeld.report</a> · Analyse · Systemkritik · Quellenbasiert</p>
+<p style="margin-top:0.5rem;">© 2026 · <a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></p>
+</div>
+</footer>
+</body>
+</html>

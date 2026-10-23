@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Der Chinese — Systemanalyse — dunkelfeld.report</title>
+
+<style>
+  :root {
+    --bg: #09090b;
+    --bg2: #111113;
+    --bg3: #1a1a2e;
+    --amber: #e8c547;
+    --amber-dim: #a8902f;
+    --text: #d4d4d8;
+    --text-dim: #71717a;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --red: #f87171;
+    --red-dim: #7f1d1d;
+    --border: #27272a;
+    --max: 740px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.85;
+    padding: 0 1.2rem;
+  }
+
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+    margin-bottom: 0;
+  }
+  .site-header-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .site-name {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .site-tagline {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  .article-wrapper {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 3rem 0 5rem;
+  }
+
+  /* Hero */
+  .hero {
+    border-left: 4px solid var(--amber);
+    padding: 2rem 0 2rem 2rem;
+    margin-bottom: 3rem;
+  }
+  .hero-eyebrow {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--amber);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .hero-title {
+    font-size: 2.6rem;
+    font-weight: 700;
+    line-height: 1.15;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  .hero-title span {
+    color: var(--amber);
+  }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 580px;
+  }
+  .hero-meta {
+    margin-top: 1.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  /* Intro prose */
+  p { margin-bottom: 1.4rem; }
+
+  /* Section headers */
+  .block-header {
+    margin: 3.5rem 0 1.5rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+  .block-num {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--amber-dim);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    padding-top: 2px;
+  }
+  .block-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #fff;
+    border-bottom: 2px solid var(--amber);
+    padding-bottom: 0.3rem;
+    flex: 1;
+  }
+
+  /* Tags */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 0.15em 0.5em;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-left: 0.3em;
+    position: relative;
+    top: -1px;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid rgba(74,222,128,0.3); }
+  .tag-extra { background: rgba(251,146,60,0.15); color: var(--orange); border: 1px solid rgba(251,146,60,0.3); }
+  .tag-offen { background: rgba(248,113,113,0.15); color: var(--red); border: 1px solid rgba(248,113,113,0.3); }
+
+  /* Source boxes */
+  .source-box {
+    background: var(--bg3);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: #a1a1aa;
+    line-height: 1.6;
+  }
+  .source-box strong {
+    color: var(--amber);
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Stat grid */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 1.5rem 0;
+  }
+  .stat-cell {
+    background: var(--bg2);
+    padding: 1.2rem 1rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--amber);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  /* Comparison table */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.92rem;
+  }
+  .compare-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amber);
+    border-bottom: 2px solid var(--amber);
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+  }
+  .compare-table td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.5;
+    color: var(--text);
+  }
+  .compare-table tr:hover td { background: var(--bg2); }
+  .compare-table td:first-child {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--amber-dim);
+    white-space: nowrap;
+  }
+
+  /* Pull quote */
+  .pull-quote {
+    border-top: 2px solid var(--amber);
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 0;
+    margin: 2.5rem 0;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #e4e4e7;
+    font-style: italic;
+  }
+  .pull-quote cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+    font-style: normal;
+    margin-top: 0.6rem;
+    text-transform: uppercase;
+  }
+
+  /* Closing questions */
+  .closing {
+    border-top: 1px solid var(--border);
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+  }
+  .closing-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: var(--amber);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+  .closing p {
+    font-style: italic;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+  }
+  .closing .verse {
+    margin-top: 2rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.82rem;
+    color: var(--amber-dim);
+    letter-spacing: 0.04em;
+    border-left: 2px solid var(--amber-dim);
+    padding-left: 1rem;
+  }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin: 0 0 2.5rem;
+    padding: 0.8rem 1rem;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+  .legend span { display: flex; align-items: center; gap: 0.4rem; }
+
+  /* Separator */
+  .sep {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+  }
+
+  /* Note box */
+  .note-box {
+    background: rgba(248,113,113,0.07);
+    border: 1px solid var(--red-dim);
+    border-left: 3px solid var(--red);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    color: #fca5a5;
+    line-height: 1.6;
+  }
+  .note-box strong {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--red);
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 0;
+    margin-top: 3rem;
+    max-width: var(--max);
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 600px) {
+    .hero-title { font-size: 1.8rem; }
+    .stat-num { font-size: 1.4rem; }
+    .compare-table { font-size: 0.8rem; }
+    .compare-table td:first-child { white-space: normal; }
+    .block-header { flex-direction: column; gap: 0.3rem; }
+  }
+</style>
+<meta name="description" content="Machtarchitektur, Kontrollinfrastruktur, Wirtschaftsmacht — und was die Werkzeuge mit dem Westen gemeinsam haben.">
+<meta name="rubrik" content="cat-geo">
+<meta name="kachel-titel" content="Der Chinese — Systemanalyse">
+<link rel="canonical" href="https://dunkelfeld.report/china-systemanalyse.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Der Chinese — Systemanalyse">
+<meta property="og:description" content="Machtarchitektur, Kontrollinfrastruktur, Wirtschaftsmacht — und was die Werkzeuge mit dem Westen gemeinsam haben.">
+<meta property="og:url" content="https://dunkelfeld.report/china-systemanalyse.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Der Chinese — Systemanalyse", "description": "Machtarchitektur, Kontrollinfrastruktur, Wirtschaftsmacht — und was die Werkzeuge mit dem Westen gemeinsam haben.", "inLanguage": "de", "url": "https://dunkelfeld.report/china-systemanalyse.html", "mainEntityOfPage": "https://dunkelfeld.report/china-systemanalyse.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<header class="site-header">
+<div class="site-header-inner">
+<a class="site-name" href="index.html">dunkelfeld.report</a>
+<span class="site-tagline">Fakten, die kein Licht scheuen</span>
+</div>
+</header>
+<div class="article-wrapper">
+<article>
+<div class="hero">
+<div class="hero-eyebrow">Systemanalyse · Geopolitik</div>
+<h1 class="hero-title">Der <span>Chinese</span></h1>
+<p class="hero-sub">Machtarchitektur, Kontrollinfrastruktur, Wirtschaftsmacht — und was die Werkzeuge mit dem Westen gemeinsam haben.</p>
+<div class="hero-meta">dunkelfeld.report  ·  Alle Angaben mit Primärquellen belegt  ·  2026</div>
+</div>
+<div class="legend">
+<span><span class="tag tag-belegt">BELEGT</span> Primärquelle vorhanden</span>
+<span><span class="tag tag-extra">EXTRAPOLATION</span> Begründete Schlussfolgerung</span>
+<span><span class="tag tag-offen">OFFEN</span> Nicht ausreichend dokumentiert</span>
+</div>
+<p>Drei Systemdimensionen — Machtarchitektur, Kontrollinfrastruktur, Wirtschaftsmacht — werden hier dokumentiert und nebeneinandergestellt. Keine Motive werden zugeschrieben, keine Wertungen werden gefällt. Der Leser zieht Schlüsse.</p>
+<p>Wer China mit den Maßstäben des 20. Jahrhunderts analysiert — Kommunismus versus Kapitalismus, Ost gegen West — greift zu kurz. Was sich in den letzten zwei Jahrzehnten aufgebaut hat, ist etwas strukturell Neues: ein System, das Parteiherrschaft, digitale Kontrolle und Rohstoffmacht in einer einzigen Architektur integriert. Und das diese Architektur — Werkzeug für Werkzeug — in den Rest der Welt exportiert.</p>
+<!-- BLOCK 1 -->
+<div class="block-header">
+<span class="block-num">01 —</span>
+<h2 class="block-title">Machtarchitektur — Wer regiert tatsächlich?</h2>
+</div>
+<p>Die Volksrepublik China verfügt über einen Nationalen Volkskongress, eine Verfassung, einen Staatsrat und Gerichte. Diese Institutionen existieren. Aber sie sind nicht das Machtzentrum. <span class="tag tag-belegt">BELEGT</span></p>
+<p>Das reale Entscheidungsorgan ist der <strong>Ständige Ausschuss des Politbüros der KPCh</strong> — sieben Männer, die in einer nicht öffentlichen Sitzungsordnung über alle wesentlichen Fragen befinden. Ihre Arbeitsweise ist nicht dokumentiert. Ihre Entscheidungen sind es — in Form von Parteidokumenten, Fünfjahresplänen und Staatsratsbeschlüssen.</p>
+<div class="stat-grid">
+<div class="stat-cell">
+<div class="stat-num">7</div>
+<div class="stat-label">Mitglieder des Ständigen Ausschusses</div>
+</div>
+<div class="stat-cell">
+<div class="stat-num">98 Mio.</div>
+<div class="stat-label">KPCh-Mitglieder (2023)</div>
+</div>
+<div class="stat-cell">
+<div class="stat-num">3</div>
+<div class="stat-label">Ämter in einer Person: Xi Jinping</div>
+</div>
+<div class="stat-cell">
+<div class="stat-num">2018</div>
+<div class="stat-label">Amtszeitbegrenzung aufgehoben</div>
+</div>
+</div>
+<div class="source-box">
+<strong>Primärquellen</strong>
+      Bundeszentrale für politische Bildung (bpb.de): FAQ zur Volksrepublik China · China-Schul-Akademie: Ständiger Ausschuss des Politbüros · Verfassungsänderung 2018: Xinhua-Staatspresse, Volkskongressprotokoll · KPCh-Mitgliederzahl: Jahresbericht Organisationsabteilung der KPCh 2023
+    </div>
+<p>Seit Oktober 2022 sind alle sieben Ausschussmitglieder enge Vertraute Xi Jinpings. Das bisherige System informeller Faktionen — das einen begrenzten innerparteilichen Pluralismus ermöglichte — ist damit strukturell aufgehoben. <span class="tag tag-belegt">BELEGT</span></p>
+<p>Xi Jinping hält gleichzeitig drei Ämter: Generalsekretär der KPCh, Staatspräsident der Volksrepublik, Vorsitzender der Zentralen Militärkommission. Keine westliche Demokratie kennt eine vergleichbare institutionelle Machtkonzentration in einer Person. <span class="tag tag-belegt">BELEGT</span></p>
+<p>Die Partei überlagert den Staat strukturell: Jede staatliche Institution verfügt über eine parallele Parteistruktur, die de facto vorgesetzt ist. Der Nationale Volkskongress — formal das höchste Organ — dient nach Einschätzung politikwissenschaftlicher Quellen primär der Akklamation. <span class="tag tag-belegt">BELEGT</span></p>
+<div class="note-box">
+<strong>Historische Blaupause</strong>
+      Wie Einparteienherrschaft historisch mit Kulturkontrolle und physischer Eliminierung von Dissens verbunden war — dokumentiert ein separater Artikel zu Mao Zedong und Josef Stalin.
+    </div>
+<!-- BLOCK 2 -->
+<div class="block-header">
+<span class="block-num">02 —</span>
+<h2 class="block-title">Kontrollinfrastruktur — Das Nervensystem</h2>
+</div>
+<p>Das westliche Bild des chinesischen Sozialkreditsystems — ein einheitlicher numerischer Punktestand für 1,4 Milliarden Menschen — ist nach aktuellem Forschungsstand <strong>nicht korrekt</strong>. <span class="tag tag-belegt">BELEGT</span></p>
+<p>Was dokumentiert ist: ein vielschichtiges, noch im Aufbau befindliches System aus schwarzen Listen, Pilotprojekten und sektoralen Bewertungen — das strukturell mächtiger ist als sein vereinfachtes Bild.</p>
+<div class="source-box">
+<strong>Primärquelle</strong>
+      Staatsrat der VR China: „Planning Outline for the Construction of a Social Credit System (2014–2020)", beschlossen 14. Juni 2014 · MERICS (Mercator Institute for China Studies): „China's Social Credit System in 2021" · Universität Duisburg-Essen / Chaos Communication Congress 2018: mehr als 70 laufende Pilotprojekte
+    </div>
+<p>Was nachweislich existiert und operiert:</p>
+<p><strong>Schwarze Listen</strong> für Unternehmen und Privatpersonen — gerichtlich angeordnet, öffentlich einsehbar. Konsequenzen: Reiseverbote (Flug, Bahn), Ausschluss von Kreditvergabe, Schulzugang, öffentlichen Ausschreibungen. <span class="tag tag-belegt">BELEGT</span></p>
+<p><strong>Gesichtserkennungsinfrastruktur</strong>: Schätzungsweise 200 Millionen Überwachungskameras im öffentlichen und privaten Raum, verknüpft mit Gesichtserkennungssoftware. Hersteller: Hikvision, Megvii, Dahua. <span class="tag tag-belegt">BELEGT</span></p>
+<div class="source-box">
+<strong>Primärquelle</strong>
+      US Department of Commerce, Entity List (Oktober 2019): Hikvision, Megvii, Dahua und SenseTime auf Sanktionsliste wegen nachgewiesener Beteiligung an Verfolgung der uigurischen Minderheit in Xinjiang · netzpolitik.org / IPVM-Dokumentation: Hikvision-Polizeiplattform zur Echtzeit-Verfolgung von Demonstrierenden
+    </div>
+<p><strong>Xinjiang-Komplex</strong>: In der Minderheitenregion Xinjiang — Heimat der muslimischen Uiguren — hat die chinesische Regierung ein System aus Massenüberwachung, sogenannten Berufsbildungszentren und Arbeitstransferprogrammen errichtet. <span class="tag tag-belegt">BELEGT</span></p>
+<div class="note-box">
+<strong>Nicht belegt / Offen</strong>
+      Die genauen Häftlingszahlen in Xinjiang sind nicht unabhängig verifizierbar. Amnesty International bezeichnet das Vorgehen als Verbrechen gegen die Menschlichkeit (2021). China bestreitet die Einordnung. Unabhängige Verifikation vor Ort ist eingeschränkt.
+    </div>
+<p><strong>Überwachungsexport</strong>: Mindestens 80 Länder in Lateinamerika, Afrika und Asien haben Safe-City-Lösungen von Huawei oder anderen chinesischen Unternehmen übernommen. Das Geschäftsmodell: Infrastrukturkredit über die Belt-and-Road-Initiative, Überwachungstechnologie als integriertes Paket. <span class="tag tag-belegt">BELEGT</span></p>
+<div class="source-box">
+<strong>Primärquelle</strong>
+      Lowy Institute (Sydney): „Digital Authoritarianism, China and COVID", Dezember 2020 · South China Morning Post, April 2026: chinesische Safe-City-Projekte in Afrika (ZTE, Hikvision, Huawei)
+    </div>
+<!-- BLOCK 3 -->
+<div class="block-header">
+<span class="block-num">03 —</span>
+<h2 class="block-title">Wirtschaftsmacht — Die stille Abhängigkeit</h2>
+</div>
+<p>Seltene Erden sind keine Seltenheit — sie kommen in ausreichender Menge in der Erdkruste vor. Was sie strategisch macht: China kontrolliert nicht nur ihre Förderung, sondern vor allem ihre Verarbeitung. Ohne verarbeitete Seltene Erden keine Elektroautos, keine Windräder, keine modernen Waffensysteme. <span class="tag tag-belegt">BELEGT</span></p>
+<div class="stat-grid">
+<div class="stat-cell">
+<div class="stat-num">70%</div>
+<div class="stat-label">Weltweite Förderung Seltener Erden durch China (2024)</div>
+</div>
+<div class="stat-cell">
+<div class="stat-num">90%</div>
+<div class="stat-label">Verarbeitungsstufe weltweit kontrolliert durch China</div>
+</div>
+<div class="stat-cell">
+<div class="stat-num">97,7%</div>
+<div class="stat-label">Neodym/Praseodym/Samarium-Importe Deutschland aus China (2024)</div>
+</div>
+<div class="stat-cell">
+<div class="stat-num">800 Mrd.€</div>
+<div class="stat-label">EU–China Warenhandel 2025</div>
+</div>
+</div>
+<div class="source-box">
+<strong>Primärquellen</strong>
+      Statistisches Bundesamt (Destatis), Pressemitteilung April 2025: Seltene-Erden-Importe Deutschland 2024 · Eurostat 2024/2025: EU-Importstatistik · IEA (International Energy Agency) 2023: Förder- und Verarbeitungsanteile · EU-Amtsblatt März 2024: Critical Raw Materials Act (CRMA) · Bundesakademie für Sicherheitspolitik (BAKS), Februar 2026: Rohstoffgeopolitik China
+    </div>
+<p>Die Hebelwirkung dieser Marktstellung ist dokumentiert: 2010 verhängte China ein faktisches Seltene-Erden-Embargo gegen Japan — Auslöser eines Preisschocks. Zwischen 2009 und 2020 verneunfachte China seine Exportrestriktionen für kritische Rohstoffe. Ende 2023 folgte ein Exportverbot für Verarbeitungstechnologie. <span class="tag tag-belegt">BELEGT</span></p>
+<div class="source-box">
+<strong>Primärquellen</strong>
+      OECD-Daten zu Exportrestriktionen: Kowalski &amp; Legendre 2023 · Wirtschaftsdienst 2024, Heft 7: Analyse CRMA und China-Abhängigkeit · Amnesty International / Supply Chain Intelligence Institute Austria 2025: Zwangsarbeit in Lieferketten aus Xinjiang
+    </div>
+<p>Der Critical Raw Materials Act der EU (März 2024) formuliert als Ziel: maximal 65% eines kritischen Rohstoffs aus einem einzigen Land. Bei Neodym, Praseodym und Samarium liegt der aktuelle Wert bei 97,7%. <span class="tag tag-extra">EXTRAPOLATION</span> Ob dieses Ziel bis 2030 erreichbar ist, halten die zitierten Studien für unrealistisch.</p>
+<div class="pull-quote">
+      „Bei den Seltenen Erden zeigen drei Zahlen die erdrückende Übermacht Chinas: Chinesische Unternehmen fördern 70 Prozent der weltweiten Seltenen Erden und kontrollieren zu je 90 Prozent die Erzverarbeitung sowie neun von zehn Fertigungen von Permanentmagneten."
+      Bundesakademie für Sicherheitspolitik (BAKS), Februar 2026
+    </div>
+<!-- BLOCK 4 -->
+<div class="block-header">
+<span class="block-num">04 —</span>
+<h2 class="block-title">Was der Westen exportiert hat</h2>
+</div>
+<p>Die aktuelle Abhängigkeit Europas von China ist kein Naturgesetz. Sie ist das Ergebnis von Entscheidungen — über Jahrzehnte, von Unternehmen und Regierungen, die Kosten optimierten und strategische Risiken ignorierten. <span class="tag tag-belegt">BELEGT</span></p>
+<p>Westliche Technologiekonzerne lieferten bis zu den US-Exportbeschränkungen 2023 KI-Chips (NVIDIA) nach China, die in Überwachungs- und Rüstungssystemen einsetzbar sind. Deutsche Automobilhersteller bauten in China Produktionsstätten auf, die heute deren wichtigste Einzelmärkte sind — und damit strukturelle Abhängigkeiten schufen. Universitätskooperationen transferierten Forschungswissen in sensiblen Bereichen. <span class="tag tag-belegt">BELEGT</span></p>
+<div class="source-box">
+<strong>Primärquellen</strong>
+      US Bureau of Industry and Security: Export Administration Regulations, Chip-Exportbeschränkungen Oktober 2022 / Oktober 2023 · EU-Handelskammer China: Bericht „Gefährliche Bindung" 2025 (Basis: Umfrage 1.200+ europäische Unternehmen) · Deutsche Bundesbank 2024: volkswirtschaftliche Analyse China-Abhängigkeit
+    </div>
+<p>Die EU-Handelskammer berichtet 2025: 60 Prozent der befragten europäischen Unternehmen in China melden steigende regulatorische Hürden durch die chinesische Regierung. Marktöffnung war — nach diesem Befund — asymmetrisch. <span class="tag tag-extra">EXTRAPOLATION</span></p>
+<!-- BLOCK 5 -->
+<div class="block-header">
+<span class="block-num">05 —</span>
+<h2 class="block-title">Kontrollkonvergenz — An den Taten erkennen wir sie</h2>
+</div>
+<p>China baut Überwachungsinfrastruktur. Der Westen baut Überwachungsinfrastruktur. Die Werkzeuge sind dieselben. Die Begründungen unterscheiden sich. <span class="tag tag-belegt">BELEGT</span></p>
+<p>Was folgt, ist keine These über Koordination. Es ist eine Dokumentation struktureller Parallelen — aus Primärquellen beider Seiten.</p>
+<table class="compare-table">
+<thead>
+<tr>
+<th>Werkzeug</th>
+<th>China</th>
+<th>EU / Westen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Digitale Identität</td>
+<td>eID-Pflicht, verknüpft mit Parteidatenbanken und SCS</td>
+<td>eIDAS 2.0 (EU), verpflichtende digitale Wallet ab 2026</td>
+</tr>
+<tr>
+<td>Verhaltensscoring</td>
+<td>Social Credit: schwarze Listen für Unternehmen (dokumentiert), Pilotprojekte für Bürger</td>
+<td>SCHUFA-Modell, ESG-Ratings, Bonitäts-Scoring durch private Anbieter</td>
+</tr>
+<tr>
+<td>Zentralbankwährung</td>
+<td>e-CNY (digitaler Yuan): seit 2020 in Betrieb, Rollout läuft</td>
+<td>Digitaler Euro: EZB-Konsultation abgeschlossen, Gesetzgebungsverfahren läuft</td>
+</tr>
+<tr>
+<td>Bewegungskontrolle</td>
+<td>SkyNet-Kameras, 200+ Mio. Geräte, KFZ-Scanning, IMSI-Catcher</td>
+<td>Ausbau Videoüberwachung EU, ANPR-Systeme, Corona-Zertifikat als Präzedenz</td>
+</tr>
+<tr>
+<td>Plattformkontrolle</td>
+<td>Great Firewall, App-Sperren, Zensur in Echtzeit</td>
+<td>Digital Services Act (DSA), NetzDG, Artikel 17 Urheberrechtsreform</td>
+</tr>
+<tr>
+<td>Reiseeinschränkung</td>
+<td>Schwarze Listen: Bahn- und Flugsperrung dokumentiert</td>
+<td>CO₂-Budget-Diskussion (politisch), Corona-Zertifikat als Infrastruktur-Präzedenz</td>
+</tr>
+<tr>
+<td>Überwachungsexport</td>
+<td>Safe City: 80+ Länder, Belt-and-Road-Paket</td>
+<td>Europäische Biometrie-Datenbanken, Frontex, SIS II</td>
+</tr>
+</tbody>
+</table>
+<div class="source-box">
+<strong>Primärquellen EU-Seite</strong>
+      eIDAS 2.0: Verordnung (EU) 2024/1183, Amtsblatt der EU · Digitaler Euro: EZB-Bericht Oktober 2023, Legislativvorschlag Europäische Kommission Juni 2023 · DSA: Verordnung (EU) 2022/2065 · NetzDG: BGBl. 2017 I Nr. 61 · ANPR: Europol-Bericht zu automatisierter Kennzeichenerfassung 2022
+    </div>
+<p>Ob hinter dieser strukturellen Konvergenz eine gemeinsame Blaupause steht, eine unabhängige Parallelentwicklung — oder schlicht die Logik der Kontrolle selbst — lässt sich mit verfügbaren Primärquellen nicht entscheiden. <span class="tag tag-offen">OFFEN</span></p>
+<div class="closing">
+<div class="closing-label">Offene Fragen</div>
+<p>Wenn ein System Rohstoffkontrolle, Überwachungsinfrastruktur und Einparteienherrschaft strukturell integriert — welche Kategorien braucht man dann noch, um es zu beschreiben?</p>
+<p>Warum hat Europa vier Jahrzehnte lang Abhängigkeiten aufgebaut, die es heute als strategisches Risiko bezeichnet — und wer hat in dieser Zeit von diesen Abhängigkeiten profitiert?</p>
+<p>Ist der Unterschied zwischen dem chinesischen Social-Credit-System und dem europäischen SCHUFA-Modell, dem ESG-Score oder dem geplanten eIDAS-2.0-Wallet eine Frage des Grades — oder des Prinzips?</p>
+<p>Warum exportiert China Überwachungstechnologie, und warum importiert der Westen sie — von denselben Herstellern, die für ihre Anwendung in Xinjiang sanktioniert wurden?</p>
+<div class="verse">
+        „An ihren Früchten sollt ihr sie erkennen."<br/>
+        — Mt 7,16
+      </div>
+</div>
+</article>
+<footer>
+    dunkelfeld.report  ·  Alle zitierten Quellen sind Primärquellen oder geprüfte Sekundärquellen  ·  Leserbriefe und Quellenhinweise willkommen<br/>
+    Impressum  ·  Datenschutz  ·  Kein Sponsoring · Keine Werbung
+  </footer>
+</div>
+</body>
+</html>

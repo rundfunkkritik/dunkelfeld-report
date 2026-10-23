@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Der grüne Frosch erobert die Regale — dunkelfeld.report</title>
+
+<style>
+  :root {
+    --bg: #09090b;
+    --bg-card: #131316;
+    --accent: #e8c547;
+    --text: #e4e4e7;
+    --text-dim: #a1a1aa;
+    --border: #27272a;
+    --red: #b45050;
+    --green: #6b9080;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 0 1.2rem 6rem;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  header { padding: 3rem 0 2rem; border-bottom: 1px solid var(--border); }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h1 { font-size: 2.1rem; line-height: 1.25; margin-bottom: 1rem; }
+  .dek { color: var(--text-dim); font-size: 1.15rem; line-height: 1.6; }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  h2 {
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 3rem 0 1.2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  p { margin-bottom: 1.3rem; }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    margin: 2rem 0;
+    border: 1px solid var(--border);
+  }
+  .stat {
+    background: var(--bg-card);
+    padding: 1.5rem 1.2rem;
+  }
+  .stat .num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.8rem;
+    color: var(--accent);
+    display: block;
+  }
+  .stat .label {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-top: 0.3rem;
+  }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    display: inline-block;
+    margin-right: 0.4rem;
+  }
+  .tag-belegt { background: rgba(107,144,128,0.15); color: var(--green); border: 1px solid rgba(107,144,128,0.4); }
+  .tag-offen { background: rgba(232,197,71,0.1); color: var(--accent); border: 1px solid rgba(232,197,71,0.35); }
+  .tag-widerlegt { background: rgba(180,80,80,0.12); color: var(--red); border: 1px solid rgba(180,80,80,0.4); }
+  .source-box {
+    background: var(--bg-card);
+    border-left: 3px solid var(--accent);
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .src-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .case-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 1.5rem 1.7rem;
+    margin: 1.5rem 0;
+  }
+  .case-card h3 {
+    font-size: 1.15rem;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+  }
+  .case-card .case-meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-bottom: 0.8rem;
+  }
+  blockquote {
+    font-size: 1.3rem;
+    line-height: 1.5;
+    color: var(--text);
+    border-left: 3px solid var(--accent);
+    padding: 0.3rem 0 0.3rem 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+  .warn-box {
+    background: rgba(180,80,80,0.08);
+    border: 1px solid rgba(180,80,80,0.3);
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 0.98rem;
+  }
+  .warn-box .warn-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .open-questions {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    font-style: italic;
+    color: var(--text-dim);
+  }
+  .open-questions h2 { font-style: normal; }
+  .open-questions ul { list-style: none; }
+  .open-questions li {
+    margin-bottom: 1rem;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .open-questions li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+  footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+  a { color: var(--accent); }
+</style>
+<meta name="description" content="Ein Viertel der weltweiten Kakao- und Kaffeeproduktion trägt das Rainforest-Alliance-Siegel. Ananas-Plantagen in Costa Rica, Vergewaltigungsvorwürfe in Malawi, ein Mengenausgleich-System, das unzertifizierte Ware ins zertifizierte Produkt lässt — eine Bestandsaufnahme.">
+<meta name="rubrik" content="cat-nahrung">
+<meta name="kachel-titel" content="Der grüne Frosch erobert die Regale">
+<link rel="canonical" href="https://dunkelfeld.report/gruener-frosch-siegel.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Der grüne Frosch erobert die Regale">
+<meta property="og:description" content="Ein Viertel der weltweiten Kakao- und Kaffeeproduktion trägt das Rainforest-Alliance-Siegel. Ananas-Plantagen in Costa Rica, Vergewaltigungsvorwürfe in Malawi, ein Mengenausgleich-System, das unzertifizierte Ware ins zertifizierte Produkt lässt — eine Bestandsaufnahme.">
+<meta property="og:url" content="https://dunkelfeld.report/gruener-frosch-siegel.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Der grüne Frosch erobert die Regale", "description": "Ein Viertel der weltweiten Kakao- und Kaffeeproduktion trägt das Rainforest-Alliance-Siegel. Ananas-Plantagen in Costa Rica, Vergewaltigungsvorwürfe in Malawi, ein Mengenausgleich-System, das unzertifizierte Ware ins zertifizierte Produkt lässt — eine Bestandsaufnahme.", "inLanguage": "de", "url": "https://dunkelfeld.report/gruener-frosch-siegel.html", "mainEntityOfPage": "https://dunkelfeld.report/gruener-frosch-siegel.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<header>
+<div class="kicker">Konsum &amp; Zertifizierung — Dossier</div>
+<h1>Der grüne Frosch erobert die Regale</h1>
+<p class="dek">Ein Viertel der weltweiten Kakao- und Kaffeeproduktion trägt inzwischen das Rainforest-Alliance-Siegel. Parallel häufen sich dokumentierte Fälle von Arbeitsausbeutung, sexueller Gewalt und einem Kontrollsystem, das unzertifizierte Ware unbemerkt ins zertifizierte Produkt lässt.</p>
+<div class="meta">
+<span>dunkelfeld.report</span>
+<span>Stand: September 2026</span>
+</div>
+</header>
+<h2>Das Regal-Phänomen</h2>
+<p>Der kleine grüne Frosch ist auf Kaffee, Kakao, Bananen, Tee und Küchenpapier zu finden — auf Produkten von Rewe, Lidl, Nestlé, Mondelēz und Dutzenden anderen Herstellern. Nach eigenen Angaben der Rainforest Alliance ist inzwischen etwa ein Viertel der weltweiten Kakao- und Kaffeeproduktion zertifiziert. Die Organisation operiert nach eigenen Angaben in mehr als 70 Ländern.</p>
+<div class="stat-grid">
+<div class="stat"><span class="num">~25%</span><span class="label">der weltweiten Kakao- und Kaffeeproduktion zertifiziert</span></div>
+<div class="stat"><span class="num">90%</span><span class="label">Mindestanteil zertifizierter Zutat seit Standard 2020</span></div>
+<div class="stat"><span class="num">&lt;1%</span><span class="label">Sustainability Differential ggü. Kakao-Weltmarktpreis (Stand Juli 2024)</span></div>
+<div class="stat"><span class="num">1987</span><span class="label">Gründungsjahr der Rainforest Alliance</span></div>
+</div>
+<p><span class="tag tag-belegt">BELEGT</span> Die 90-Prozent-Schwelle ist real und aktuell: Seit dem Standard 2020 müssen fast alle Kernprodukte mindestens 90 Prozent zertifizierte Zutat enthalten, um das Logo zu tragen. Ausnahmen bilden Kräutertee (50 Prozent, wegen begrenzter Verfügbarkeit bestimmter Zutaten wie Beeren oder Süßholz) und — entscheidend — Kakao und Palmöl bei sogenannten Massenbilanz-Lieferketten.</p>
+<h2>Der strukturelle Webfehler: Mengenausgleich statt Rückverfolgbarkeit</h2>
+<p>Genau hier liegt der heute relevante Hebel für Verbrauchertäuschung — nicht mehr die alte 30-Prozent-Regel, die mit der Fusion mit UTZ 2018 abgelöst wurde. Bei Kakao gilt das System der <em>Massenbilanz</em> (Mass Balance): Physisch kann konventionelle, nicht zertifizierte Ware im Endprodukt landen, solange im Buchungssystem bilanziell die entsprechende Menge zertifizierter Ware eingekauft wurde.</p>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+  Die Rainforest Alliance beschreibt ihr "Origin Matching Mass Balance"-System für Kakao selbst: Zertifizierte Volumina werden im Handelssystem MultiTrace verbucht, ohne dass physische Ware zwingend vom zertifizierten Feld bis in die konkrete Tafel Schokolade rückverfolgbar sein muss.
+</div>
+<p><span class="tag tag-belegt">BELEGT</span> Der Greenpeace-Report "Destruction: Certified" (2021) bestätigt unabhängig: physische Rückverfolgbarkeit ist nicht verpflichtend, Massenbilanz ist eine zulässige und weit verbreitete Option — mit der Folge, dass nicht zertifizierte Ware theoretisch unter dem Rainforest-Alliance- oder UTZ-Siegel im Regal landen kann.</p>
+<p>Für Konsumentinnen und Konsumenten bedeutet das: Das Siegel auf der Packung sagt etwas über die Bilanz eines Unternehmens aus, nicht zwingend über die konkrete Herkunft des Inhalts.</p>
+<h2>Die Kontroll-Illusion: Audits im Drei-Jahres-Rhythmus</h2>
+<p>Wie belastbar ist die Kontrolle, die das Siegel verspricht? Laut Ethical Consumer verlangt die Rainforest Alliance physische Vor-Ort-Audits nur für Betriebe, die als mittleres oder hohes Risiko eingestuft werden — und selbst dann teils nur alle drei Jahre. Werden Verstöße festgestellt, führt das in der Regel nicht zum automatischen Entzug des Zertifikats, sondern zu Auflagen für Risikobewertungen, Beschwerdemechanismen und Abhilfemaßnahmen.</p>
+<p><span class="tag tag-offen">OFFEN</span> Eine belastbare, aktuelle Gesamtzahl entzogener Zertifikate (Decertifications) war in den öffentlich zugänglichen Impact-Reports der Rainforest Alliance nicht auffindbar. Dokumentiert ist: Im Jahr 2019 identifizierte die Organisation selbst schwere Verstöße bei Zertifikatsinhabern in Westafrika (Rückverfolgbarkeit, Entwaldung, Anbau in Schutzgebieten), was zu einzelnen Entzertifizierungen führte. Eine belastbare Jahresstatistik zu Entzügen insgesamt ließ sich nicht verifizieren.</p>
+<h2>Drei dokumentierte Fälle</h2>
+<div class="case-card">
+<h3>Costa Rica — Ananas-Plantagen (2020)</h3>
+<div class="case-meta">Quelle: The Guardian, Mai 2020 · Reaktion: Rainforest Alliance</div>
+<p>Ein ehemaliger Manager gab an, Plantagenbesitzer hätten mehr als 800 undokumentierte Arbeiter vor Auditoren der Rainforest Alliance versteckt — von 1.000 Erntearbeitern auf seiner ehemaligen Farm seien nur 150 offiziell angestellt gewesen. WhatsApp-Nachrichten, die dem Guardian vorlagen, zeigten offenbar, dass Plantagenleiter Vorgesetzte vor angekündigten Audit-Besuchen warnten. Weitere Arbeiter und Aktivisten berichteten von unbezahlten Löhnen, Gewerkschaftsunterdrückung und illegalem Chemikalieneinsatz auf zwei weiteren zertifizierten Plantagen. Die Rainforest Alliance bestätigte den Bericht öffentlich und erklärte, die Vorwürfe ernst zu nehmen.</p>
+</div>
+<div class="case-card">
+<h3>Malawi — Tee-Plantagen, Lujeri Tea Estates (2021)</h3>
+<div class="case-meta">Quelle: Leigh Day (Klage, High Court London) · Business &amp; Human Rights Centre</div>
+<p>Die britische Kanzlei Leigh Day reichte 2021 im Namen von zunächst 31, später weiterer Klägerinnen Klage gegen Lujeri Tea Estates und dessen britische Muttergesellschaft PGI ein. Dokumentiert wurden 22 Fälle sexueller Belästigung, 13 sexuelle Übergriffe, 11 Fälle erzwungener sexueller Handlungen und 10 Vergewaltigungsvorwürfe. Lujeri war zu diesem Zeitpunkt von Rainforest Alliance, UTZ und Fairtrade zertifiziert. Fairtrade suspendierte seine Zertifizierung nach einem durch die Klage ausgelösten Audit. Die Rainforest Alliance erklärte, sie habe unangekündigte Audits veranlasst, verwies jedoch auch auf pandemiebedingte Reiseeinschränkungen als Erschwernis. Lujeri verlor die Rainforest-Alliance-Zertifizierung in der Folge.</p>
+</div>
+<div class="case-card">
+<h3>Westafrika — Kakao (2019)</h3>
+<div class="case-meta">Quelle: Rainforest Alliance (Eigenangabe) · Greenpeace "Destruction: Certified" (2021)</div>
+<p>2019 räumte die Rainforest Alliance selbst schwere Regelverstöße bei Zertifikatsinhabern in Westafrika ein — betroffen waren Rückverfolgbarkeit, Entwaldung und Anbau in Schutzgebieten. Dies führte zu Entzertifizierungen sowie Verwarnungen und Suspendierungen einzelner Zertifizierungsstellen.</p>
+</div>
+<h2>Warum Bauern trotz Siegel arm bleiben</h2>
+<p>Das zentrale Unterscheidungsmerkmal zu Fairtrade: Die Rainforest Alliance garantiert keinen Mindestpreis. Stattdessen zahlt sie einen sogenannten "Sustainability Differential" — einen Aufschlag, der jedoch marktvolatil ist und nicht an einen Mindestpreis gebunden ist.</p>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+  Laut Ethical Consumer lag der Sustainability Differential für Kakao, Stand Juli 2024, bei unter einem Prozent des globalen Kakao-Weltmarktpreises.
+</div>
+<p><span class="tag tag-belegt">BELEGT</span> Die INKOTA-Kampagne "Rainforest Alliance: Sei kein Frosch!" dokumentierte bereits 2019, dass die Mehrheit der zertifizierten Kakaobäuerinnen und -bauern unterhalb der Armutsgrenze lebt. Der Vorwurf: Bei der Standard-Reform nach der UTZ-Fusion habe die Organisation die Chance verpasst, einen existenzsichernden Mindestpreis einzuführen.</p>
+<h2>Wer das Siegel nutzt</h2>
+<p>Konzerne wie Nestlé und Mondelēz verweisen in ihren eigenen Nachhaltigkeitsprogrammen auf Rainforest-Alliance-Zertifizierung ihrer Lieferketten. Für Verbraucherinnen und Verbraucher entsteht dadurch der Eindruck eines belastbaren, unabhängig geprüften Standards — während das Siegel selbst, anders als Fairtrade, keinen garantierten Mindestpreis für Erzeuger vorsieht.</p>
+<p><span class="tag tag-offen">OFFEN</span> Die konkrete vertragliche und kommunikative Verknüpfung einzelner Konzern-Nachhaltigkeitsprogramme mit dem Rainforest-Alliance-Siegel ließ sich im Rahmen dieser Recherche nicht bis auf Primärquellenebene nachvollziehen und bedarf einer eigenen Nachrecherche, sollte sie in einer Folgefassung mit Firmenbeispielen konkretisiert werden.</p>
+<h2>Die Nebelkerze</h2>
+<p>Parallel zur dokumentierten Kritik kursiert seit Jahren eine völlig andere Erzählung: Das Froschlogo markiere angeblich mRNA-Bestandteile oder giftige Substanzen in Lebensmitteln. Verbreitet wird diese Behauptung über Facebook, YouTube, TikTok und X.</p>
+<div class="warn-box">
+<span class="warn-label">VT-Widerlegt</span>
+  Es gibt keine Grundlage für die Behauptung, das Rainforest-Alliance-Siegel weise auf mRNA oder giftige Inhaltsstoffe hin. Verbraucherschutzorganisationen stellen unabhängig voneinander klar: Produkte mit dem Siegel unterliegen denselben EU-Kennzeichnungspflichten wie alle anderen Lebensmittel — eine Ausnahme existiert nicht. Das Logo informiert über Anbaustandards, nicht über Inhaltsstoffe.
+</div>
+<p>Diese Behauptungen sind mehr als nur falsch — sie sind kontraproduktiv für eine berechtigte Debatte. Wer den grünen Frosch mit Gift oder Impfstoffen in Verbindung bringt, macht die tatsächlich dokumentierten Probleme — Massenbilanz, seltene Audits, fehlender Mindestpreis, konkrete Missbrauchsfälle — leichter angreifbar und diskreditierbar. Genau das Muster, das auch in anderen Recherchen auf dieser Seite als "vergiftete Recherche" beschrieben wird: legitime, dokumentierte Anomalien werden durch ihre Nähe zu unbelegten Randbehauptungen entwertet.</p>
+<table>
+<tr><th>Ebene</th><th>Rainforest Alliance</th><th>Fairtrade</th></tr>
+<tr><td>Mindestpreis</td><td>Nein (marktvolatiler Aufschlag)</td><td>Ja (garantiert)</td></tr>
+<tr><td>Physische Rückverfolgbarkeit</td><td>Nicht zwingend (Massenbilanz zulässig)</td><td>Je nach Produkt unterschiedlich geregelt</td></tr>
+<tr><td>Audit-Frequenz</td><td>Bis zu alle 3 Jahre (mittleres Risiko)</td><td>Jährlich</td></tr>
+</table>
+<blockquote>
+  "Wir finden: Das ist nicht fair — und auch nicht nachhaltig."<br/>
+<span style="font-size:0.9rem; color: var(--text-dim);">— INKOTA-Kampagne "Rainforest Alliance: Sei kein Frosch!"</span>
+</blockquote>
+<div class="open-questions">
+<h2>Offene Fragen</h2>
+<ul>
+<li><em>Wie viele Zertifikate wurden in den letzten fünf Jahren tatsächlich entzogen — und in welchem Verhältnis steht das zur Gesamtzahl der Zertifikatsinhaber?</em></li>
+<li><em>Welche konkreten Konzerne nutzen das Siegel wofür in ihrer eigenen Nachhaltigkeitskommunikation — und wie verhält sich das zu ihren übrigen Lieferkettenpraktiken?</em></li>
+<li><em>Wie unterscheidet sich die reale Auszahlung des Sustainability Differential zwischen einzelnen Anbauländern und Kooperativen?</em></li>
+</ul>
+</div>
+<footer>
+  dunkelfeld.report — Dokumentieren statt behaupten.
+</footer>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

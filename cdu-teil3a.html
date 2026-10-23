@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Die dunkle Seite der CDU (IIIa): Die Merkel-Ära — dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 3rem 1.5rem 6rem;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #71717a;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    color: #f4f4f5;
+    margin-bottom: 0.5rem;
+  }
+  .subtitle {
+    font-size: 1.2rem;
+    color: #a1a1aa;
+    font-style: italic;
+    margin-bottom: 2.5rem;
+  }
+  h2 {
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #e8c547;
+    margin: 3rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #27272a;
+  }
+  h3.sub {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #a1a1aa;
+    margin: 1.8rem 0 0.8rem;
+  }
+  p { margin-bottom: 1.3rem; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.12); color: #4ade80; border: 1px solid rgba(74,222,128,0.35); }
+  .tag-extra { background: rgba(251,146,60,0.12); color: #fb923c; border: 1px solid rgba(251,146,60,0.35); }
+  .tag-offen { background: rgba(161,161,170,0.12); color: #a1a1aa; border: 1px solid rgba(161,161,170,0.35); }
+  .tag-vt { background: rgba(239,68,68,0.08); color: #71717a; border: 1px solid rgba(239,68,68,0.2); text-decoration: line-through; }
+
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.3rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .tag { margin-bottom: 0.6rem; }
+
+  .person-card {
+    background: #131316;
+    border: 1px solid #27272a;
+    border-radius: 6px;
+    padding: 1.3rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .person-card h3 {
+    font-size: 1.15rem;
+    color: #f4f4f5;
+    margin-bottom: 0.5rem;
+  }
+  .person-card .role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: #71717a;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat {
+    background: #131316;
+    border: 1px solid #27272a;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 6px;
+  }
+  .stat .num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.4rem;
+    color: #e8c547;
+    font-weight: bold;
+    display: block;
+  }
+  .stat .label {
+    font-size: 0.8rem;
+    color: #a1a1aa;
+    margin-top: 0.3rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.92rem;
+  }
+  th, td {
+    padding: 0.6rem 0.7rem;
+    text-align: left;
+    border-bottom: 1px solid #27272a;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #e8c547;
+    border-bottom: 2px solid #e8c547;
+  }
+
+  .timeline {
+    border-left: 2px solid #27272a;
+    margin: 1.5rem 0 1.5rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item { margin-bottom: 1.3rem; position: relative; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.82rem;
+    top: 0.35rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #e8c547;
+  }
+  .timeline-item .date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #e8c547;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #f4f4f5;
+    border-left: 3px solid #e8c547;
+    padding: 0.3rem 0 0.3rem 1.3rem;
+    margin: 2rem 0;
+  }
+
+  .open-questions {
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid #27272a;
+  }
+  .open-questions h2 { color: #a1a1aa; }
+  .open-questions p {
+    font-style: italic;
+    color: #d4d4d8;
+  }
+
+  .crossref {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+  }
+
+  a { color: #e8c547; }
+
+  .footnote {
+    font-size: 0.85rem;
+    color: #71717a;
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+  }
+</style>
+<meta name="description" content="Drei Politikfelder, ein wiederkehrendes Strukturmuster: eine Grundsatzentscheidung, die von früheren eigenen Positionen abweicht; eine kurzfristige, oft …">
+<meta name="rubrik" content="cat-staat">
+<meta name="kachel-titel" content="Die dunkle Seite der CDU (IIIa): Die Merkel-Ära">
+<link rel="canonical" href="https://dunkelfeld.report/cdu-teil3a.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Die dunkle Seite der CDU (IIIa): Die Merkel-Ära">
+<meta property="og:description" content="Drei Politikfelder, ein wiederkehrendes Strukturmuster: eine Grundsatzentscheidung, die von früheren eigenen Positionen abweicht; eine kurzfristige, oft …">
+<meta property="og:url" content="https://dunkelfeld.report/cdu-teil3a.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Die dunkle Seite der CDU (IIIa): Die Merkel-Ära", "description": "Drei Politikfelder, ein wiederkehrendes Strukturmuster: eine Grundsatzentscheidung, die von früheren eigenen Positionen abweicht; eine kurzfristige, oft …", "inLanguage": "de", "url": "https://dunkelfeld.report/cdu-teil3a.html", "mainEntityOfPage": "https://dunkelfeld.report/cdu-teil3a.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="meta">dunkelfeld.report — Serie: Parteien im Beleg-vor-Motiv-Verfahren — Teil 3a von 3</div>
+<div style="font-family:'Courier New',monospace;font-size:0.8rem;opacity:0.85;margin:0 0 1.5rem;padding-bottom:0.8rem;border-bottom:1px solid rgba(128,128,128,0.35);">Serie „Parteien im Beleg-vor-Motiv-Verfahren“: <a href="cdu-teil1.html">Teil 1</a> · <a href="cdu-teil2.html">Teil 2</a> · <strong>Teil 3a</strong> · <a href="cdu-teil3b.html">Teil 3b</a></div>
+<h1>Die dunkle Seite der CDU</h1>
+<div class="subtitle">Teil 3a: Die Merkel-Ära — Migration, Energie, Corona</div>
+<p>Drei Politikfelder, ein wiederkehrendes Strukturmuster: eine Grundsatzentscheidung, die von früheren eigenen Positionen abweicht; eine kurzfristige, oft binnen Tagen getroffene Kehrtwende; und im Nachhinein eine Aufarbeitung, die entweder ausblieb oder auf ein schwächeres Instrument als das eigentlich verfügbare verlagert wurde. Dieser Teil dokumentiert die drei Felder einzeln und mit ihren jeweils messbaren Kosten — ohne den Feldern eine gemeinsame Absicht zu unterstellen. Die Wiederholung des Musters selbst ist der Befund.</p>
+<h2>1 — Migration: Von der Kehrtwende zur Grenzöffnung</h2>
+<p>Merkels eigene Position vor 2015 war restriktiver, als es die spätere "Wir schaffen das"-Politik vermuten lässt — und primärquellenfest dokumentiert.</p>
+<div class="pull-quote">"Die Folge kann nur Steuerung und Begrenzung von Zuwanderung sein."</div>
+<p class="crossref">— Angela Merkel, 17. CDU-Bundesparteitag, Leipzig, 1. Dezember 2003 (offizielles Parteitagsprotokoll, KAS-Archiv, S. 32/33)</p>
+<p>Merkel sprach in Leipzig vom "Missbrauch des Asylrechts" und erklärte, alles andere als Steuerung und Begrenzung "wird in der Bevölkerung keine Akzeptanz finden". Ein 2019 kursierendes, angeblich schärferes Zitat über "Parallelgesellschaften" wurde von Correctiv als nicht durch das Protokoll gedeckt widerlegt — das oben zitierte Original bleibt davon unberührt und ist eigenständig belastbar.</p>
+<div class="person-card">
+<h3>Friedrich Merz</h3>
+<div class="role">CDU-Fraktionsvorsitzender ab 2000, später Bundeskanzler ab 2025</div>
+<p style="margin-bottom:0"><span class="tag tag-belegt">BELEGT</span> Oktober 2000: Forderung, Zuwanderer müssten sich einer "deutschen Leitkultur" unterordnen. Zugleich Vorschlag einer Zuwanderungs-Obergrenze von 200.000 Personen pro Jahr.</p>
+</div>
+<div class="source-box">
+<span class="tag tag-belegt">BELEGT</span>
+<p style="margin-bottom:0">Zwischen den dokumentierten Positionen von 2000/2003 und der Politik ab 2015 liegt eine Kehrtwende, die sich allein aus den Primärzitaten ergibt — ohne dass eine Motivunterstellung nötig wäre. Warum genau diese Wende erfolgte, bleibt unten als offene Frage stehen.</p>
+</div>
+<h3 class="sub">Kosten</h3>
+<table>
+<tr><th>Jahr</th><th>Bundesausgaben asylbezogen</th></tr>
+<tr><td>2023 (Ist)</td><td>29,7 Mrd. €</td></tr>
+<tr><td>2024 (Soll)</td><td>28,4 Mrd. €</td></tr>
+<tr><td>2025 (Entwurf)</td><td>24,3 Mrd. €</td></tr>
+</table>
+<p>Quelle: Bundesfinanzministerium-Finanzplan, über bpb.de. Zusätzlich gaben die Bundesländer 2024 rund 6,7 Mrd. € brutto für Leistungen nach dem Asylbewerberleistungsgesetz aus.</p>
+<h2>2 — Energie: Die Fukushima-Kehrtwende</h2>
+<div class="timeline">
+<div class="timeline-item">
+<span class="date">Herbst 2010</span>
+      Merkel-Regierung (CDU/CSU-FDP) beschließt Laufzeitverlängerung der Atomkraftwerke um bis zu 14 Jahre — Rücknahme des rot-grünen Ausstiegsbeschlusses von 2002. Merkel bezeichnet Kernkraft zuvor öffentlich als "Brückentechnologie".
+    </div>
+<div class="timeline-item">
+<span class="date">11. März 2011</span>
+      Fukushima-Katastrophe.
+    </div>
+<div class="timeline-item">
+<span class="date">14. März 2011</span>
+      Nur drei Tage später: Atom-Moratorium, sieben älteste Meiler sofort abgeschaltet — verkündet ohne vorherige Parlamentsbeteiligung.
+    </div>
+<div class="timeline-item">
+<span class="date">30. Juni 2011</span>
+      Bundestag beschließt mit breiter Mehrheit den endgültigen Ausstieg bis 2022.
+    </div>
+</div>
+<div class="source-box">
+<span class="tag tag-extra">EXTRAPOLATION</span>
+<p style="margin-bottom:0">Die zeitliche Nähe zu drei Landtagswahlen (Baden-Württemberg, Rheinland-Pfalz, Sachsen-Anhalt, alle März 2011) wurde von der Opposition als wahltaktisch kritisiert. Ein belegter Kausalzusammenhang zwischen Wahlterminen und Entscheidungstempo liegt nicht vor — das bleibt Vermutung, kein Fakt.</p>
+</div>
+<h3 class="sub">Kosten</h3>
+<div class="stat-grid">
+<div class="stat"><span class="num">63 → 77 Mrd. €</span><span class="label">Stromversorgungskosten gesamt, 2015 → 2025 (McKinsey-Energiewende-Index)</span></div>
+<div class="stat"><span class="num">335 €</span><span class="label">durchschnittliche Mehrbelastung pro Haushalt, 2025</span></div>
+</div>
+<h2>3 — Corona: Maßnahmen und blockierte Aufarbeitung</h2>
+<p>Der Bundestag hat 2025 eine Enquete-Kommission zur Corona-Aufarbeitung eingesetzt, Berichtsfrist Juni 2027. Bei einer Anhörung im Februar 2026 bewertete die Mehrheit der geladenen Sachverständigen Deutschlands Vorgehen im internationalen Vergleich als angemessen; ein einzelner, von der AfD benannter Sachverständiger widersprach.</p>
+<div class="source-box">
+<span class="tag tag-offen">OFFEN</span>
+<p style="margin-bottom:0">Eine Stellungnahme des als Sachverständigen geladenen Hans-Georg Maaßen behauptet anhand 2024 freigeklagter RKI-Akten eine politisch angeordnete Hochstufung der Risikobewertung am 17. März 2020. Das ist eine einzelne Stellungnahme, keine Feststellung der Kommission — hier klar als umstritten, nicht als Fakt zu behandeln.</p>
+</div>
+<p><strong>Der Untersuchungsausschuss, der nicht kam:</strong> Grüne und Linke fordern seit 2025 einen echten Untersuchungsausschuss zur Maskenaffäre (Art. 44 GG) — mit Akteneinsicht und Zeugenpflicht, anders als bei der Enquete-Kommission. Ohne Unionsstimmen fehlt die nötige Viertel-Mehrheit. Am 10. Juli 2025 lehnte der Bundestag einen Corona-Untersuchungsausschuss formal ab (146 Gegenstimmen dokumentiert) — Union und SPD setzten stattdessen auf die schwächere Enquete-Kommission ohne Zwangsmittel.</p>
+<h3 class="sub">Kosten</h3>
+<div class="stat-grid">
+<div class="stat"><span class="num">340 Mrd. €</span><span class="label">Wirtschaftsleistungsverlust 2020/21 (IW Köln)</span></div>
+<div class="stat"><span class="num">550 Mrd. €</span><span class="label">kombiniert mit Ukraine-Krise, 2020–2023</span></div>
+</div>
+<p>Die Staatsschuldenquote stieg von einem seit 2012 sinkenden Trend auf rund 70 % des BIP (2022) — deutlich unter dem Niveau der Finanzkrise 2009 (82 %), aber eine Trendumkehr.</p>
+<h2>4 — Zur Bilanz: Was sich beziffern lässt, und was nicht</h2>
+<p>Die drei Politikfelder lassen sich einzeln beziffern — Migration, Energie und Corona zusammen ergeben aber keine seriös addierbare Gesamtsumme, weil sich ihre volkswirtschaftlichen Wirkungen überlagern: gestiegene Energiekosten befeuerten die Inflation, die wiederum die Corona-Nachwirkungen verstärkte. Eine Studie, die diese drei Stränge sauber trennt und zusammenführt, liegt nach dieser Recherche nicht vor.</p>
+<div class="source-box">
+<span class="tag tag-offen">OFFEN</span>
+<p style="margin-bottom:0">Wer die jeweiligen Kosten in welchem Verhältnis trägt — Haushalte über den Strompreis, Kommunen bei der Unterbringung, künftige Generationen über die Staatsverschuldung — ist eine Verteilungsfrage, die einzelne Studien punktuell beleuchten, aber nicht abschließend beantworten. Langfristfolgen wie Standortverlagerung oder demografische Effekte sind Prognosen, keine abgeschlossenen Befunde.</p>
+</div>
+<div class="open-questions">
+<h2>Offene Fragen</h2>
+<p>Warum wichen die migrationspolitischen Entscheidungen ab 2015 so deutlich von den eigenen, klar dokumentierten Positionen aus 2000 und 2003 ab?</p>
+<p>Warum wurde der Atomausstieg 2011 ohne vorherige Parlamentsbeteiligung binnen drei Tagen nach Fukushima verkündet, obwohl die Laufzeitverlängerung erst wenige Monate zuvor mit ausführlicher Debatte beschlossen worden war?</p>
+<p>Warum entschied sich die Union wiederholt für das schwächere Aufarbeitungsinstrument (Enquete statt Untersuchungsausschuss), wenn nach eigener Darstellung nichts zu verbergen ist?</p>
+</div>
+<div class="footnote">
+    <a href="cdu-teil1.html">Teil 1</a> dieser Serie: Gründung, NS-Personalkontinuität, Fusion mit der Ost-CDU. <a href="cdu-teil2.html">Teil 2</a>: Postenpolitik, Spendenaffäre, Sachsensumpf. <a href="cdu-teil3b.html">Teil 3b</a> behandelt Merkels Russland/Ukraine-Politik gesondert.<br/><br/>
+    Quellen u. a.: KAS-Parteitagsprotokoll-Archiv, Correctiv-Faktencheck, Bundesfinanzministerium/bpb.de, McKinsey Energiewende-Index, IW Köln, Deutscher Bundestag (Plenarprotokolle, Enquete-Kommission), Statista/BDEW.
+  </div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ikonen der Moderne — dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b;
+    color: #d4d4d8;
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.7;
+    font-size: 18px;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 40px 24px 100px; }
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Courier New', monospace; font-size: 12px; letter-spacing: 0.05em;
+    color: #71717a; border-bottom: 1px solid #27272a; padding-bottom: 16px; margin-bottom: 32px;
+  }
+  header.top a { color: #e8c547; text-decoration: none; }
+  .dossier-label {
+    font-family: 'Courier New', monospace; font-size: 13px; letter-spacing: 0.08em;
+    color: #e8c547; text-transform: uppercase; margin-bottom: 12px;
+  }
+  h1 {
+    font-size: 40px; color: #f4f4f5; line-height: 1.15; margin-bottom: 16px; font-weight: 700;
+  }
+  .hero-sub { font-size: 20px; color: #a1a1aa; margin-bottom: 24px; font-style: italic; }
+  .meta-row {
+    display: flex; flex-wrap: wrap; gap: 16px; font-family: 'Courier New', monospace;
+    font-size: 12px; color: #71717a; border-top: 1px solid #27272a; padding-top: 16px; margin-bottom: 8px;
+  }
+  .editorial-note {
+    background: #141417; border-left: 3px solid #e8c547; padding: 18px 20px;
+    font-size: 15px; color: #a1a1aa; margin: 32px 0; font-family: Georgia, serif;
+  }
+  .person-nav {
+    display: flex; gap: 8px; margin: 32px 0; border-bottom: 1px solid #27272a; padding-bottom: 0;
+    flex-wrap: wrap;
+  }
+  .person-tab {
+    flex: 1; min-width: 160px; background: #141417; border: 1px solid #27272a;
+    border-bottom: none; padding: 12px 14px; font-family: 'Courier New', monospace;
+  }
+  .person-tab .era { display: block; font-size: 11px; color: #e8c547; }
+  .person-tab .name { display: block; font-size: 13px; color: #f4f4f5; margin: 2px 0; }
+  .person-tab .role { display: block; font-size: 11px; color: #71717a; }
+
+  h2 { font-size: 28px; color: #f4f4f5; margin: 56px 0 8px; }
+  h3 { font-size: 19px; color: #e8c547; margin: 32px 0 12px; font-family: Georgia, serif; font-style: italic; }
+  p { margin-bottom: 18px; color: #d4d4d8; }
+  .person-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    border-top: 2px solid #e8c547; padding-top: 20px; margin-top: 64px; flex-wrap: wrap; gap: 12px;
+  }
+  .person-number { font-family: 'Courier New', monospace; font-size: 12px; color: #71717a; letter-spacing: 0.05em; }
+  .person-name { font-size: 30px; color: #f4f4f5; margin-top: 4px; }
+  .person-dates { font-family: 'Courier New', monospace; font-size: 13px; color: #71717a; margin-top: 4px; }
+  .legend-badge {
+    font-family: 'Courier New', monospace; font-size: 11px; color: #09090b;
+    background: #e8c547; padding: 5px 10px; height: fit-content; white-space: nowrap;
+  }
+
+  .tag { font-family: 'Courier New', monospace; font-size: 12px; padding: 2px 8px; border-radius: 3px; font-weight: bold; }
+  .tag-belegt { background: rgba(74, 222, 128, 0.15); color: #4ade80; border: 1px solid rgba(74,222,128,0.4); }
+  .tag-extra { background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid rgba(251,146,60,0.4); }
+  .tag-offen { background: rgba(161, 161, 170, 0.15); color: #a1a1aa; border: 1px solid rgba(161,161,170,0.4); }
+  .tag-vt { background: rgba(248, 113, 113, 0.12); color: #f87171; border: 1px solid rgba(248,113,113,0.35); text-decoration: line-through; }
+
+  .source-box {
+    background: #141417; border-left: 3px solid #e8c547; padding: 16px 18px; margin: 20px 0;
+  }
+  .source-box .label { font-family: 'Courier New', monospace; font-size: 11px; color: #e8c547; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.05em; }
+  .source-box p { font-size: 15px; color: #a1a1aa; margin-bottom: 8px; }
+  .source-box a { color: #e8c547; word-break: break-word; font-size: 13px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 15px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #27272a; vertical-align: top; }
+  th { font-family: 'Courier New', monospace; font-size: 11px; color: #e8c547; text-transform: uppercase; letter-spacing: 0.04em; }
+  td { color: #d4d4d8; }
+  td.constraint { color: #71717a; font-size: 13px; font-style: italic; }
+
+  .fazit-box {
+    background: #141417; border: 1px solid #27272a; border-top: 3px solid #e8c547;
+    padding: 20px; margin: 28px 0;
+  }
+  .fazit-box .label { font-family: 'Courier New', monospace; font-size: 11px; color: #e8c547; text-transform: uppercase; margin-bottom: 10px; }
+
+  .pull-quote {
+    font-size: 22px; color: #f4f4f5; font-style: italic; border-left: 3px solid #e8c547;
+    padding-left: 20px; margin: 32px 0; line-height: 1.5;
+  }
+  .pull-quote .attr { display: block; font-family: 'Courier New', monospace; font-size: 13px; color: #71717a; font-style: normal; margin-top: 10px; }
+
+  .comparison-table th:first-child, .comparison-table td:first-child { color: #e8c547; font-family: 'Courier New', monospace; font-size: 13px; }
+
+  .closing {
+    margin-top: 72px; border-top: 1px solid #27272a; padding-top: 32px;
+  }
+  .closing h2 { margin-top: 0; }
+  .closing p { font-style: italic; color: #a1a1aa; font-size: 18px; }
+
+  footer.bottom {
+    margin-top: 64px; padding-top: 24px; border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace; font-size: 12px; color: #52525b;
+  }
+  footer.bottom a { color: #e8c547; text-decoration: none; }
+</style>
+<meta name="description" content="BELEGT Magnus Hirschfeld gründete 1897 das Wissenschaftlich-Humanitäre Komitee — die weltweit erste Organisation, die sich für die Entkriminalisierung von …">
+<meta name="rubrik" content="cat-kinder">
+<meta name="kachel-titel" content="Ikonen der Moderne">
+<link rel="canonical" href="https://dunkelfeld.report/ikonen-der-moderne.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ikonen der Moderne">
+<meta property="og:description" content="BELEGT Magnus Hirschfeld gründete 1897 das Wissenschaftlich-Humanitäre Komitee — die weltweit erste Organisation, die sich für die Entkriminalisierung von …">
+<meta property="og:url" content="https://dunkelfeld.report/ikonen-der-moderne.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Ikonen der Moderne", "description": "BELEGT Magnus Hirschfeld gründete 1897 das Wissenschaftlich-Humanitäre Komitee — die weltweit erste Organisation, die sich für die Entkriminalisierung von …", "inLanguage": "de", "url": "https://dunkelfeld.report/ikonen-der-moderne.html", "mainEntityOfPage": "https://dunkelfeld.report/ikonen-der-moderne.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<header class="top">
+<a href="../index.html">← dunkelfeld.report</a>
+<span>Dossier · Wissenschaftsgeschichte</span>
+</header>
+<div class="dossier-label">Dossier · Juni 2026</div>
+<h1>Ikonen der Moderne</h1>
+<div class="hero-sub">Drei Figuren, die das 20. Jahrhundert prägten — und Fragen, die in keinem Lehrbuch stehen.</div>
+<div class="meta-row">
+<span>Drei Personen</span>
+<span>Primärquellen: eigene Publikationen, Institutsberichte</span>
+<span>Kein Urteil — Dokumentation</span>
+</div>
+<div class="editorial-note">
+<strong>Redaktioneller Hinweis:</strong> Dieses Dossier dokumentiert belegte Fakten und explizit gekennzeichnete offene Fragen zu drei Figuren, die bis heute als Referenzpunkte in gegenwärtigen Debatten dienen. Die drei behandelten Personen vertreten unterschiedliche, teils gegensätzliche ideologische Positionen — das ist Teil des Befunds, nicht der Auswahl. Motive werden keiner Person zugeschrieben. Verbindungslinien zwischen historischen Figuren und gegenwärtigen Debatten werden nur dort gezogen, wo sie primär dokumentiert sind. Alles andere bleibt als offene Frage ausgewiesen.
+  </div>
+<div class="person-nav">
+<div class="person-tab"><span class="era">1868–1935</span><span class="name">Magnus Hirschfeld</span><span class="role">Sexualwissenschaftler · Berlin</span></div>
+<div class="person-tab"><span class="era">1894–1956</span><span class="name">Alfred C. Kinsey</span><span class="role">Zoologe / Sexualforscher · Indiana</span></div>
+<div class="person-tab"><span class="era">1852–1943</span><span class="name">John Harvey Kellogg</span><span class="role">Arzt / Sanatoriumsleiter · Michigan</span></div>
+</div>
+<main>
+<!-- ═══════════════ PERSON 1: HIRSCHFELD ═══════════════ -->
+<section>
+<div class="person-header">
+<div>
+<div class="person-number">01 · Magnus Hirschfeld</div>
+<div class="person-name">Der Pionier</div>
+<div class="person-dates">1868–1935 · Arzt, Sexualwissenschaftler, Aktivist</div>
+</div>
+<div class="legend-badge">Ikone der LGBTQ-Bewegung</div>
+</div>
+<h3>Was dokumentiert ist</h3>
+<p><span class="tag tag-belegt">BELEGT</span> Magnus Hirschfeld gründete 1897 das Wissenschaftlich-Humanitäre Komitee — die weltweit erste Organisation, die sich für die Entkriminalisierung von Homosexualität einsetzte. 1919 eröffnete er aus eigenem Vermögen das Institut für Sexualwissenschaft in Berlin, das erste seiner Art. Laut Bundesarchiv diente es als "Forschungs-, Lehr-, Heil- und Zufluchtsstätte" für Homosexuelle, Transsexuelle und Menschen mit sexuellen Problemen.</p>
+<p><span class="tag tag-belegt">BELEGT</span> 1933 plünderten Nationalsozialisten das Institut und verbrannten seine Bibliothek öffentlich — eines der ikonischen Bilder der NS-Bücherverbrennungen. Hirschfeld, zu diesem Zeitpunkt auf Weltreise, kehrte nicht nach Deutschland zurück und starb 1935 im Exil in Nizza.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Die 2011 gegründete Bundesstiftung Magnus Hirschfeld ist eine staatlich finanzierte Einrichtung, die im Namen Hirschfelds LSBTI-Projekte fördert.</p>
+<div class="source-box">
+<div class="label">Primärquellen</div>
+<p>Bundesarchiv zur Geschichte des Instituts für Sexualwissenschaft; Bundesstiftung Magnus Hirschfeld (mh-stiftung.de)</p>
+</div>
+<h3>Was umstritten ist</h3>
+<p><span class="tag tag-offen">OFFEN</span> Im deutschsprachigen alternativen Medienspektrum kursieren Behauptungen über "grausame Menschenexperimente" Hirschfelds. Diese Behauptungen stammen ausschließlich aus Quellen, die auf der Ausschlussliste dieser Redaktion stehen (u.a. report24, journalistenwatch), und sind nicht primärquellenbasiert belegt. Sie werden hier bewusst nicht wiedergegeben oder verlinkt — dunkelfeld.report zitiert solche Quellen grundsätzlich nicht, auch nicht zur Widerlegung.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Was sich stattdessen primärquellenbasiert einordnen lässt: Hirschfelds Institut führte im Rahmen der damaligen Sexualforschung auch Fallstudien und Beratungsgespräche mit Minderjährigen und Erwachsenen zu sexuellen Themen durch — üblich für sexualwissenschaftliche Praxis der Weimarer Zeit, dokumentiert in institutseigenen Publikationen. Eine belastbare, unabhängige historische Aufarbeitung einzelner Fallpraktiken nach heutigem Kindesschutz-Standard liegt der Redaktion nicht vor.</p>
+<div class="fazit-box">
+<div class="label">Fazit Hirschfeld</div>
+<p>Die Gründungsgeschichte, die Zerstörung des Instituts 1933 und die heutige staatliche Förderung über die Bundesstiftung sind solide belegt. Weitergehende Vorwürfe zirkulieren ausschließlich über nicht zitierfähige Quellen — sie bleiben damit außerhalb dessen, was dieses Dossier dokumentieren kann.</p>
+</div>
+</section>
+<!-- ═══════════════ PERSON 2: KINSEY ═══════════════ -->
+<section>
+<div class="person-header">
+<div>
+<div class="person-number">02 · Alfred C. Kinsey</div>
+<div class="person-name">Der Aufklärer</div>
+<div class="person-dates">1894–1956 · Zoologe, Begründer der modernen Sexualforschung</div>
+</div>
+<div class="legend-badge">Symbol der sexuellen Aufklärung</div>
+</div>
+<h3>Was dokumentiert ist</h3>
+<p><span class="tag tag-belegt">BELEGT</span> Kinsey veröffentlichte 1948 "Sexual Behavior in the Human Male" und 1953 "Sexual Behavior in the Human Female" (W. B. Saunders Co.) — die sogenannten Kinsey-Reports, die erstmals großflächig empirische Daten zum menschlichen Sexualverhalten sammelten und die öffentliche Debatte über Sexualität in den USA nachhaltig veränderten.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Die Reports enthalten Tabellen — darunter die als "Table 34" bekannte Datentabelle — mit Angaben zu physiologischen Reaktionen von Kindern. Kinsey selbst schreibt in den Fußnoten, die Daten stammten von externen Beobachtern; wer diese Beobachter im Einzelnen waren, ist in den Publikationen nicht vollständig dokumentiert.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Das Kinsey Institute an der Indiana University besteht bis heute als aktive Forschungseinrichtung (kinsey.indiana.edu).</p>
+<h3>Was umstritten ist</h3>
+<table>
+<tr><th>Behauptung</th><th>Quelle</th><th>Einschränkung</th></tr>
+<tr>
+<td>Hauptkritik an Table 34: Daten könnten von Missbrauchstätern stammen</td>
+<td>Judith Reisman, "Kinsey: Crimes &amp; Consequences" (1998)</td>
+<td class="constraint">Reisman ist Aktivistin, keine neutrale Wissenschaftlerin — ihre Kernfrage zur Datenherkunft wurde jedoch nie vollständig institutionell beantwortet</td>
+</tr>
+<tr>
+<td>Indiana University führte nach der Reisman-Kontroverse interne Prüfungen durch</td>
+<td>Universitätsberichte, 1990er Jahre</td>
+<td class="constraint">Ergebnisse wurden nicht vollständig transparent veröffentlicht</td>
+</tr>
+</table>
+<p><span class="tag tag-offen">OFFEN</span> Eine direkte Verbindung zwischen Kinseys Forschung und einer bewussten "Agenda" der heutigen Sexualpädagogik ist nicht belegt und bleibt Spekulation.</p>
+<div class="fazit-box">
+<div class="label">Fazit Kinsey</div>
+<p>Die Daten in Table 34 existieren nachweislich. Die Frage nach ihrer Herkunft ist legitim und institutionell nie restlos geklärt worden — das ist die dokumentierbare Story. Nicht: "Kinsey war ein Monster." Sondern: Wie wurden diese Daten gewonnen, und warum wurde das nie vollständig aufgeklärt?</p>
+</div>
+</section>
+<!-- ═══════════════ PERSON 3: KELLOGG ═══════════════ -->
+<section>
+<div class="person-header">
+<div>
+<div class="person-number">03 · John Harvey Kellogg</div>
+<div class="person-name">Der Zuchtwart</div>
+<div class="person-dates">1852–1943 · Arzt, Erfinder der Cornflakes, Eugeniker</div>
+</div>
+<div class="legend-badge">Ikone der Wellness-Industrie</div>
+</div>
+<h3>Was dokumentiert ist</h3>
+<p><span class="tag tag-belegt">BELEGT</span> Kellogg leitete das Battle Creek Sanitarium in Michigan und entwickelte dort gemeinsam mit seinem Bruder Will Keith die Cornflakes sowie zahlreiche weitere vegetarische Lebensmittelprodukte. Er gilt als einer der Begründer der modernen Wellness- und Frühstückscerealien-Industrie.</p>
+<p><span class="tag tag-belegt">BELEGT</span> 1914 gründete Kellogg gemeinsam mit dem Ökonomen Irving Fisher und dem Eugeniker Charles Davenport die Race Betterment Foundation in Battle Creek. Ziel laut Gründungsdokumenten: die "Verbesserung der Rasse" durch selektive Fortpflanzung, Sterilisation "Minderwertiger" und ein eugenisches Register in Kooperation mit dem Eugenics Record Office.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Die Foundation organisierte drei "National Conferences on Race Betterment" (1914, 1915, 1928) mit mehreren hundert Teilnehmern. Auf der Konferenz 1914 hielt Harry Laughlin einen zentralen Vortrag mit der Forderung nach 15 Millionen Zwangssterilisationen in den USA. Michigan führte 1923 ein Sterilisationsgesetz ein; bis 1935 wurden landesweit über 21.000 Zwangssterilisationen dokumentiert.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Kellogg befürwortete Rassentrennung und warnte vor "Rassenvermischung" — bei gleichzeitiger, in Quellen dokumentierter Praxis, selbst mehrere afroamerikanische und weiße Pflegekinder großzuziehen. Battle Creek College, dessen erster Präsident Kellogg war, definierte "Rassenverbesserung durch Eugenik" 1923 explizit als Vereinszweck.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Kellogg vertrat zudem radikale Ansichten zur Unterdrückung von Masturbation, unter anderem die Empfehlung chirurgischer Eingriffe ohne Betäubung als "Heilmittel". Die verbreitete Behauptung, er habe die routinemäßige Säuglingsbeschneidung in den USA begründet, gilt laut Quellenlage als historisch unzutreffend — die Praxis wurde bereits zuvor durch Lewis Sayre eingeführt.</p>
+<div class="source-box">
+<div class="label">Primärquellen</div>
+<p>Kellogg, "Needed — A New Human Race" (Race Betterment Foundation, 1914); "The Eugenics Registry" (1915); Encyclopædia Britannica; University of Michigan School of Public Health, Fachaufsatz zu Kelloggs Eugenik-Engagement</p>
+</div>
+<div class="fazit-box">
+<div class="label">Fazit Kellogg</div>
+<p>Anders als bei Hirschfeld und Kinsey ist hier keine Trennung zwischen "harmlosem Pionier" und "umstrittenen Randnotizen" nötig — die eugenische Programmatik ist durch die Foundation selbst, ihre Publikationen und die daraus folgende Gesetzgebung lückenlos dokumentiert. Die Ikone der Wellness-Bewegung und der Architekt eines eugenischen Sterilisationsregisters sind dieselbe Person.</p>
+</div>
+</section>
+<!-- ═══════════════ VERGLEICH ═══════════════ -->
+<section class="closing" style="border-top: none; margin-top: 56px; padding-top: 0;">
+<h2>Drei Ikonen, ein Muster?</h2>
+<p>Alle drei Figuren wurden und werden öffentlich fast ausschließlich über eine Facette ihres Wirkens wahrgenommen: Hirschfeld als Menschenrechtspionier, Kinsey als Aufklärer, Kellogg als Cornflakes-Erfinder. Bei allen dreien existiert daneben ein zweiter, weniger bekannter Strang — bei Kellogg vollständig dokumentiert und institutionell verankert, bei Kinsey eine bis heute unbeantwortete methodische Frage, bei Hirschfeld überwiegend unbelegte Behauptungen aus nicht zitierfähigen Quellen.</p>
+<table class="comparison-table">
+<tr><th></th><th>Öffentliches Bild</th><th>Dokumentierter Gegenstrang</th><th>Belegstatus</th></tr>
+<tr><td>Hirschfeld</td><td>Menschenrechtspionier</td><td>Praxis nach heutigem Standard nicht unabhängig aufgearbeitet</td><td><span class="tag tag-offen">OFFEN</span></td></tr>
+<tr><td>Kinsey</td><td>Sexualaufklärer</td><td>Datenherkunft Table 34 ungeklärt</td><td><span class="tag tag-extra">EXTRAPOLATION</span></td></tr>
+<tr><td>Kellogg</td><td>Wellness-Pionier</td><td>Eugenik-Foundation, Sterilisationsregister</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+</table>
+</section>
+<div class="closing">
+<h2>Offene Fragen</h2>
+<p><em>Warum wird bei einer der drei Figuren die dokumentierte Faktenlage kaum öffentlich thematisiert, während bei einer anderen unbelegte Behauptungen die Debatte dominieren? Wer entscheidet, welcher Strang einer historischen Biografie im kollektiven Gedächtnis bleibt — und welcher verschwindet?</em></p>
+</div>
+</main>
+<footer class="bottom">
+    dunkelfeld.report · Beleg-vor-Motiv-Prinzip · Juni 2026<br/>
+<a href="../index.html">← zur Übersicht</a>
+</footer>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

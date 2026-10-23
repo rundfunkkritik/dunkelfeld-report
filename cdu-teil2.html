@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Die dunkle Seite der CDU (II): Schwarzgeld und Kohl-Ära</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 3rem 1.5rem 6rem;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #71717a;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    color: #f4f4f5;
+    margin-bottom: 0.5rem;
+  }
+  .subtitle {
+    font-size: 1.2rem;
+    color: #a1a1aa;
+    font-style: italic;
+    margin-bottom: 2.5rem;
+  }
+  h2 {
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #e8c547;
+    margin: 3rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #27272a;
+  }
+  p { margin-bottom: 1.3rem; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.12); color: #4ade80; border: 1px solid rgba(74,222,128,0.35); }
+  .tag-extra { background: rgba(251,146,60,0.12); color: #fb923c; border: 1px solid rgba(251,146,60,0.35); }
+  .tag-offen { background: rgba(161,161,170,0.12); color: #a1a1aa; border: 1px solid rgba(161,161,170,0.35); }
+  .tag-vt { background: rgba(239,68,68,0.08); color: #71717a; border: 1px solid rgba(239,68,68,0.2); text-decoration: line-through; }
+
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.3rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .tag { margin-bottom: 0.6rem; }
+
+  .person-card {
+    background: #131316;
+    border: 1px solid #27272a;
+    border-radius: 6px;
+    padding: 1.3rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .person-card h3 {
+    font-size: 1.15rem;
+    color: #f4f4f5;
+    margin-bottom: 0.5rem;
+  }
+  .person-card .role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: #71717a;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat {
+    background: #131316;
+    border: 1px solid #27272a;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 6px;
+  }
+  .stat .num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    color: #e8c547;
+    font-weight: bold;
+    display: block;
+  }
+  .stat .label {
+    font-size: 0.85rem;
+    color: #a1a1aa;
+    margin-top: 0.3rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    padding: 0.6rem 0.7rem;
+    text-align: left;
+    border-bottom: 1px solid #27272a;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #e8c547;
+    border-bottom: 2px solid #e8c547;
+  }
+
+  .timeline {
+    border-left: 2px solid #27272a;
+    margin: 1.5rem 0 1.5rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item { margin-bottom: 1.3rem; position: relative; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.82rem;
+    top: 0.35rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #e8c547;
+  }
+  .timeline-item .date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #e8c547;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #f4f4f5;
+    border-left: 3px solid #e8c547;
+    padding: 0.3rem 0 0.3rem 1.3rem;
+    margin: 2rem 0;
+  }
+
+  .open-questions {
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid #27272a;
+  }
+  .open-questions h2 { color: #a1a1aa; }
+  .open-questions p {
+    font-style: italic;
+    color: #d4d4d8;
+  }
+
+  .crossref {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+  }
+  .crossref a { color: #e8c547; }
+
+  a { color: #e8c547; }
+
+  .footnote {
+    font-size: 0.85rem;
+    color: #71717a;
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+  }
+</style>
+<meta name="description" content="Teil 1 dieser Serie dokumentierte die Personalkontinuität der frühen Bundesrepublik und die Fusion mit der Ost-CDU 1990. Teil 2 wendet sich der Kohl-Ära …">
+<meta name="rubrik" content="cat-staat">
+<meta name="kachel-titel" content="Die dunkle Seite der CDU (II): Postenpolitik, Schwarzgeld, Kohl-Ära">
+<link rel="canonical" href="https://dunkelfeld.report/cdu-teil2.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Die dunkle Seite der CDU (II): Postenpolitik, Schwarzgeld, Kohl-Ära">
+<meta property="og:description" content="Teil 1 dieser Serie dokumentierte die Personalkontinuität der frühen Bundesrepublik und die Fusion mit der Ost-CDU 1990. Teil 2 wendet sich der Kohl-Ära …">
+<meta property="og:url" content="https://dunkelfeld.report/cdu-teil2.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Die dunkle Seite der CDU (II): Postenpolitik, Schwarzgeld, Kohl-Ära", "description": "Teil 1 dieser Serie dokumentierte die Personalkontinuität der frühen Bundesrepublik und die Fusion mit der Ost-CDU 1990. Teil 2 wendet sich der Kohl-Ära …", "inLanguage": "de", "url": "https://dunkelfeld.report/cdu-teil2.html", "mainEntityOfPage": "https://dunkelfeld.report/cdu-teil2.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="meta">dunkelfeld.report — Serie: Parteien im Beleg-vor-Motiv-Verfahren — Teil 2 von 3</div>
+<div style="font-family:'Courier New',monospace;font-size:0.8rem;opacity:0.85;margin:0 0 1.5rem;padding-bottom:0.8rem;border-bottom:1px solid rgba(128,128,128,0.35);">Serie „Parteien im Beleg-vor-Motiv-Verfahren“: <a href="cdu-teil1.html">Teil 1</a> · <strong>Teil 2</strong> · <a href="cdu-teil3a.html">Teil 3a</a> · <a href="cdu-teil3b.html">Teil 3b</a></div>
+<h1>Die dunkle Seite der CDU</h1>
+<div class="subtitle">Teil 2: Postenpolitik, Schwarzgeld und die Kohl-Ära</div>
+<p><a href="cdu-teil1.html">Teil 1</a> dieser Serie dokumentierte die Personalkontinuität der frühen Bundesrepublik und die Fusion mit der Ost-CDU 1990. Teil 2 wendet sich der Kohl-Ära und ihren strukturellen Nachwirkungen zu: einem Schwarzgeldsystem, das über zwei Jahrzehnte lief, einer Landespartei, die Auslandsvermögen als "jüdische Vermächtnisse" tarnte, und einem Muster der Ämterbesetzung nach Machtwechseln, das sich — wie zu zeigen sein wird — nicht auf eine Partei beschränkt.</p>
+<h2>1 — Die CDU-Spendenaffäre 1999/2000</h2>
+<p>Am 4. November 1999 erließ das Amtsgericht Augsburg Haftbefehl gegen den ehemaligen CDU-Bundesschatzmeister Walther Leisler Kiep wegen Steuerhinterziehung. Kiep stellte sich am 5. November und erklärte: Eine 1991 vom Waffenhändler Karlheinz Schreiber in bar übergebene Million D-Mark sei als Parteispende an die CDU geflossen — im Zusammenhang mit einer Panzerlieferung nach Saudi-Arabien. Kiep hatte von 1971 bis 1992 als CDU-Bundesschatzmeister ein System nicht deklarierter Konten aufgebaut.</p>
+<div class="timeline">
+<div class="timeline-item">
+<span class="date">5. Nov. 1999</span>
+      Kiep stellt sich der Justiz, bestätigt Barspende von Schreiber über den CDU-Steuerberater Horst Weyrauch.
+    </div>
+<div class="timeline-item">
+<span class="date">6. Nov. 1999</span>
+      Alt-Kanzler Kohl erklärt, keine Kenntnis von der Spende gehabt zu haben.
+    </div>
+<div class="timeline-item">
+<span class="date">2. Dez. 1999</span>
+      Bundestag setzt Parteispenden-Untersuchungsausschuss ein.
+    </div>
+<div class="timeline-item">
+<span class="date">16. Dez. 1999</span>
+      Kohl räumt öffentlich ein, während seiner Zeit als CDU-Vorsitzender Spenden am Parteihaushalt vorbei entgegengenommen zu haben. Er weigert sich, die Spender zu nennen — er habe ihnen sein "Ehrenwort" gegeben.
+    </div>
+<div class="timeline-item">
+<span class="date">10. Jan. 2000</span>
+      Wolfgang Schäuble räumt ein, 1994 selbst eine Barspende von 100.000 DM von Schreiber angenommen zu haben.
+    </div>
+<div class="timeline-item">
+<span class="date">18. Jan. 2000</span>
+      Kohl tritt auf Druck der Parteispitze vom CDU-Ehrenvorsitz zurück.
+    </div>
+<div class="timeline-item">
+<span class="date">Ende März 2000</span>
+      Bekannt wird: Das Ministerium für Staatssicherheit der DDR war spätestens seit 1976 über die Schweizer Konten und Schwarzspenden der West-CDU informiert und hatte u. a. Kiep, Weyrauch und Kohl selbst abgehört.
+    </div>
+<div class="timeline-item">
+<span class="date">28. Feb. 2001</span>
+      Die Bonner Staatsanwaltschaft stellt das Ermittlungsverfahren gegen Kohl ein.
+    </div>
+<div class="timeline-item">
+<span class="date">2017</span>
+      ARD-Dokumentation (Lamby/Koch) und begleitende Spiegel-Recherche: Kohls Mitarbeiter im Konrad-Adenauer-Haus hätten seit den 1970er Jahren ein System geheimer Kassen betrieben, aus dem sich Kohl nach Bedarf bedient habe — nicht zur persönlichen Bereicherung, aber zum politischen Vorteil. Das über die Schweiz verschobene Gesamtvolumen wird auf rund 200 Millionen Euro beziffert.
+    </div>
+</div>
+<div class="pull-quote">"Ich war nie bestechlich, ich habe nie Geld für mich persönlich genommen. In meine Kasse persönlich und privat ist nichts gegangen."</div>
+<p class="crossref">— Helmut Kohl, Bundestagsdebatte, Dezember 1999.</p>
+<div class="source-box">
+<span class="tag tag-belegt">BELEGT</span>
+<p style="margin-bottom:0">Kohl bestritt zeitlebens jede persönliche Bereicherung. Die 2017 öffentlich gewordene Version, gestützt auf ein späteres Interview Schäubles (2015), beschreibt ein System zum Zweck des politischen — nicht persönlichen — Vorteils. Diese Differenzierung ist für die Einordnung zentral: Der dokumentierte Vorwurf lautet auf illegale Parteienfinanzierung und Verstoß gegen das Parteiengesetz, nicht auf Selbstbereicherung.</p>
+</div>
+<h2>2 — Hessen: Die "jüdischen Vermächtnisse"</h2>
+<p>Parallel zur Bundesaffäre deckte sich ein eigenständiger Fall in der hessischen Landes-CDU auf. Manfred Kanther, damals CDU-Landesgeschäftsführer, transferierte 1983 gemeinsam mit dem Finanzberater Horst Weyrauch rund 20 Millionen D-Mark Parteivermögen — am Landesvorstand und an den Büchern der Partei vorbei — auf ein verschleiertes Konto in der Schweiz. Offizieller Grund laut späterer Einlassung: Das Geld sollte vor dem Zugriff im Kontext der "Flick-Spenden-Affäre" geschützt werden.</p>
+<div class="timeline">
+<div class="timeline-item">
+<span class="date">1983</span>
+      Kanther und Weyrauch transferieren rund 20 Mio. DM Parteivermögen auf ein Treuhandkonto der Schweizerischen Bankgesellschaft — unter Beteiligung des CDU-Hessen-Schatzmeisters Casimir Prinz zu Sayn-Wittgenstein.
+    </div>
+<div class="timeline-item">
+<span class="date">Ab Mitte 1980er</span>
+      Rückfluss von Teilbeträgen in die hessische Parteikasse — getarnt als Kredite und als <strong>"Vermächtnisse aus jüdischen Emigrantenkreisen"</strong>.
+    </div>
+<div class="timeline-item">
+<span class="date">1993</span>
+      Weyrauch überführt das Schweizer Guthaben auf Konten der eigens in Liechtenstein gegründeten Stiftung "Zaunkönig" — als Reaktion auf ein 1994 novelliertes Parteiengesetz mit schärferen Rechnungskontrollen.
+    </div>
+<div class="timeline-item">
+<span class="date">14. Jan. 2000</span>
+      Kanther räumt auf einer Pressekonferenz ein, 1983 über 20 Mio. DM ins Ausland transferiert zu haben. Die Affäre bringt Ministerpräsident Roland Koch (CDU) zu Beginn seiner ersten Legislaturperiode in Bedrängnis.
+    </div>
+<div class="timeline-item">
+<span class="date">April 2005</span>
+      Landgericht Wiesbaden verurteilt Kanther wegen Untreue zu 18 Monaten auf Bewährung und 25.000 Euro Geldstrafe; Weyrauch wegen Beihilfe zu 61.200 Euro Geldstrafe.
+    </div>
+<div class="timeline-item">
+<span class="date">2006</span>
+      Der Bundesgerichtshof bestätigt die Verurteilung im Kern.
+    </div>
+</div>
+<div class="person-card">
+<h3>Manfred Kanther</h3>
+<div class="role">Bundesinnenminister 1993–1998, CDU-Landesvorsitzender Hessen</div>
+<p style="margin-bottom:0"><span class="tag tag-belegt">BELEGT</span> Verurteilt wegen Untreue gegenüber der eigenen Partei — nicht wegen persönlicher Bereicherung; eine solche stellte das Landgericht ausdrücklich nicht fest. Die Tarnung als "jüdische Vermächtnisse" ist gerichtlich dokumentiert.</p>
+</div>
+<div class="source-box">
+<span class="tag tag-offen">OFFEN</span>
+<p style="margin-bottom:0">Die ursprüngliche Herkunft des 1983 verschobenen Geldes blieb laut Gerichtsverfahren bis heute ungeklärt. Vermutet — aber nicht gerichtsfest belegt — wurde ein Zusammenhang mit Restbeständen der "Staatsbürgerlichen Vereinigung", einer 1954 gegründeten und später aufgelösten Organisation zur verdeckten Kanalisierung von Industriespenden.</p>
+</div>
+<h2>3 — Postenpolitik nach Machtwechseln</h2>
+<p>Der Austausch von Führungspersonal in Sicherheitsbehörden nach Regierungswechseln ist keine CDU-Spezialität, sondern ein cross-parteilich dokumentiertes Muster — wie bereits in einem eigenen dunkelfeld-Dossier gezeigt. Zwei Fälle mit CDU-Beteiligung:</p>
+<table>
+<tr><th>Fall</th><th>Jahr</th><th>Vorgang</th></tr>
+<tr><td>Berlin, Innensenator Henkel (CDU)</td><td>2012</td><td>Installation eines CDU-nahen Polizeipräsidenten</td></tr>
+<tr><td>Hessen, LKA-Führung</td><td>2011</td><td>Absetzung des LKA-Chefs</td></tr>
+<tr><td>Hessen, Polizeipräsident</td><td>2020</td><td>Entlassung eines Polizeipräsidenten</td></tr>
+<tr><td>Hessen, Gesetzesänderung</td><td>2021</td><td>Ausweitung des Regierungseinflusses auf Polizeiernennungen — später als verfassungswidrig eingestuft</td></tr>
+</table>
+<div class="source-box">
+<span class="tag tag-extra">EXTRAPOLATION</span>
+<p style="margin-bottom:0">Die Fälle sind Einzelfälle, kein statistisch abgesichertes Gesamtmuster. Der strukturelle Befund — Postenbesetzung in Sicherheitsbehörden folgt Regierungswechseln parteiübergreifend — wird durch vergleichbare Fälle aus SPD- und ÖVP/FPÖ-geführten Regierungen gestützt (siehe Cross-Referenz unten).</p>
+</div>
+<p class="crossref">Vertiefend: „Postenpolitik in Sicherheitsbehörden" — cross-parteilicher Befund (<a href="postenpolitik-sicherheitsbehoerden.html">auf dunkelfeld.report</a>)</p>
+<h2>4 — Der "Sachsensumpf": Offene Fragen zu de Maizière</h2>
+<p>Ab 2005 kursierten Akten des sächsischen Verfassungsschutzes über ein angebliches Netzwerk aus organisierter Kriminalität, Justiz, Wirtschaft und Politik in Sachsen — in den Medien als "Sachsensumpf" bekannt geworden. Thomas de Maizière war bis November 2005 sächsischer Innenminister und damit Dienstherr des Landesverfassungsschutzes. Am 12. August 2005 wurde er nach mehreren Quellen vom Verfassungsschutz über die Vorwürfe informiert — kurz bevor er als Kanzleramtsminister nach Berlin wechselte, noch vor Einleitung strafrechtlicher Schritte in Sachsen.</p>
+<div class="person-card">
+<h3>Thomas de Maizière</h3>
+<div class="role">Sächsischer Innenminister bis Nov. 2005, später Kanzleramts-, Innen- und Verteidigungsminister</div>
+<p style="margin-bottom:0"><span class="tag tag-belegt">BELEGT</span> Erhielt am 12.8.2005 als Dienstherr des Landesverfassungsschutzes Kenntnis von den Vorwürfen, bevor er nach Berlin wechselte. Ein Dresdner Anwalt erstattete später Anzeige wegen des Vorwurfs der Strafvereitelung im Amt. <span class="tag tag-offen" style="margin-left:0.3rem">OFFEN</span> Zu einer Anklage gegen de Maizière kam es nicht; eine strafrechtliche Verantwortlichkeit ist nicht gerichtlich festgestellt.</p>
+</div>
+<p><strong>Was die Ermittlungen tatsächlich ergaben — und was nicht:</strong></p>
+<table>
+<tr><th>Ermittlungsstrang</th><th>Ergebnis</th></tr>
+<tr><td>Vorwürfe gegen einzelne Juristen (Bordellbesuche)</td><td>2008 mangels Beweisen eingestellt; Betroffene erhielten vom Freistaat Sachsen Schmerzensgeld</td></tr>
+<tr><td>Aussagen zweier ehemaliger Zwangsprostituierter, die Juristen als Freier identifizierten</td><td>Die Frauen wurden ihrerseits wegen Verleumdung angeklagt; Verfahren später wegen Retraumatisierungsgefahr ausgesetzt/eingestellt</td></tr>
+<tr><td>Untersuchungsausschuss Sächsischer Landtag</td><td>Kein einheitliches Ergebnis: CDU/FDP sahen Vorwürfe als widerlegt an, Grüne/Linke sahen sie weder be- noch entkräftet</td></tr>
+<tr><td>Vorwurf der Aktenmanipulation gegen ermittelnde VS-Referatsleiterin</td><td>Von zwei Untersuchungsausschüssen nicht festgestellt; separates Strafverfahren gegen sie und einen Kriminalhauptkommissar bis 2018 vor Gericht, Ausgang uneindeutig</td></tr>
+</table>
+<div class="source-box">
+<span class="tag tag-offen">OFFEN</span>
+<p style="margin-bottom:0">taz-Bilanz nach elf Jahren (2018): Die Verdächtigungen wurden "weder von der Justiz noch vom Untersuchungsausschuss eindeutig bewiesen oder entkräftet". Der Fall bleibt damit in beide Richtungen ungeklärt — weder eine bewiesene Vertuschung noch eine bewiesene Verleumdungskampagne. Auffällig bleibt laut taz allein der Ermittlungseifer, mit dem die Staatsanwaltschaft gegen Ermittlungsbeteiligte, Journalisten und die Betroffenen selbst vorging.</p>
+</div>
+<div class="open-questions">
+<h2>Offene Fragen</h2>
+<p>Wessen Interessen dienten die verdeckten Spenden an die Bundes-CDU der 1990er Jahre konkret — und in welchem Verhältnis standen sie zu Regierungsentscheidungen wie der Panzerlieferung nach Saudi-Arabien?</p>
+<p>Warum wurden nach Bekanntwerden der Verfassungsschutzakten 2005 keine zügigen strafrechtlichen Schritte gegen die benannten Justizangehörigen eingeleitet, bevor der zuständige Minister das Amt wechselte?</p>
+<p>Warum wurde ausgerechnet die Tarnung als "jüdische Vermächtnisse" gewählt — und was sagt das über die interne Risikoabwägung der Beteiligten 1983?</p>
+<p>Wie viele der beteiligten Finanzstrukturen der 1980er/90er Jahre bestehen in veränderter Form bis heute fort?</p>
+</div>
+<div class="footnote">
+    <a href="cdu-teil1.html">Teil 1</a> dieser Serie: Gründung, NS-Personalkontinuität, Fusion mit der Ost-CDU. <a href="cdu-teil3a.html">Teil 3</a> behandelt die Merkel-Ära als eigenständigen Themenkomplex.<br/><br/>
+    Quellen u. a.: Deutscher Bundestag (Plenarprotokolle, Untersuchungsausschuss Parteispenden), Bundesgerichtshof-Pressemitteilungen, Tagesspiegel-Archiv, taz-Archiv, Wikipedia (CDU-Spendenaffäre, mit Primärquellenverweisen).
+  </div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

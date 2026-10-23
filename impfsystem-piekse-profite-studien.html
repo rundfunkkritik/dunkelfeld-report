@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Das Impfsystem: Ausweitung, Anreize, offene Fragen — dunkelfeld.report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 2rem 1rem 4rem;
+  }
+  .container { max-width: 720px; margin: 0 auto; }
+  header { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid #27272a; }
+  .eyebrow {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: #e8c547;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: normal;
+    line-height: 1.25;
+    color: #fafafa;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.02em;
+  }
+  .subtitle {
+    font-size: 1.15rem;
+    color: #a1a1aa;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+  .meta { font-family: 'Courier New', monospace; font-size: 0.72rem; color: #52525b; letter-spacing: 0.08em; }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    padding: 0.2em 0.55em;
+    border-radius: 2px;
+    font-weight: bold;
+    vertical-align: middle;
+    margin-left: 0.3em;
+  }
+  .tag-belegt { background: #14532d; color: #86efac; }
+  .tag-extra  { background: #7c2d12; color: #fdba74; }
+  .tag-offen  { background: #3f3f46; color: #a1a1aa; }
+  h2 {
+    font-size: 1.25rem;
+    color: #e8c547;
+    font-weight: normal;
+    letter-spacing: 0.04em;
+    margin: 2.5rem 0 0.9rem;
+    text-transform: uppercase;
+    font-family: 'Courier New', monospace;
+  }
+  p { margin-bottom: 1.2rem; }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: #27272a;
+    margin: 2rem 0;
+  }
+  .stat-cell { background: #111113; padding: 1.2rem 1rem; text-align: center; }
+  .stat-number {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 1.6rem;
+    color: #e8c547;
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.62rem;
+    color: #71717a;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    margin: 1.8rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: #a1a1aa;
+    line-height: 1.6;
+  }
+  .source-box strong {
+    color: #e8c547;
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .pull-quote {
+    border-left: 4px solid #e8c547;
+    padding: 0.8rem 1.5rem;
+    margin: 2rem 0;
+    font-size: 1.1rem;
+    color: #d4d4d8;
+    font-style: italic;
+    line-height: 1.6;
+  }
+  .pull-quote cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: #71717a;
+    font-style: normal;
+    margin-top: 0.5rem;
+  }
+  .vergleich-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #27272a;
+    margin: 2rem 0;
+  }
+  .vergleich-cell { background: #111113; padding: 1.1rem 1rem; }
+  .vergleich-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: #e8c547;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .vergleich-text { font-size: 0.88rem; color: #d4d4d8; line-height: 1.6; }
+  .highlight-box {
+    background: #18181b;
+    border: 1px solid #3f3f46;
+    border-top: 3px solid #e8c547;
+    padding: 1.2rem 1.4rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+  }
+  .highlight-box-title {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: #e8c547;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+  }
+  .timeline { margin: 2rem 0; }
+  .tl-item {
+    display: flex;
+    gap: 1.2rem;
+    padding-bottom: 1.4rem;
+    position: relative;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: 3.2rem;
+    top: 1.5rem;
+    bottom: 0;
+    width: 1px;
+    background: #27272a;
+  }
+  .tl-item:last-child::before { display: none; }
+  .tl-year {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: #e8c547;
+    min-width: 2.8rem;
+    padding-top: 0.2rem;
+  }
+  .tl-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #3f3f46;
+    border: 2px solid #e8c547;
+    min-width: 10px;
+    margin-top: 0.35rem;
+  }
+  .tl-content { flex: 1; }
+  .tl-content strong { color: #fafafa; }
+  .tl-content p { font-size: 0.88rem; color: #a1a1aa; margin-bottom: 0; }
+  .disclaimer-box {
+    background: #111113;
+    border: 1px solid #3f3f46;
+    padding: 1.4rem 1.5rem;
+    margin: 2.5rem 0;
+    font-size: 0.92rem;
+  }
+  .disclaimer-title {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: #e8c547;
+    text-transform: uppercase;
+    margin-bottom: 0.9rem;
+  }
+  .disclaimer-box ul { margin: 0 0 0 1.1rem; }
+  .disclaimer-box li { margin-bottom: 0.7rem; color: #d4d4d8; font-size: 0.9rem; line-height: 1.6; }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #27272a;
+    font-style: italic;
+    color: #a1a1aa;
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+  .closing p { margin-bottom: 1rem; }
+  a { color: #e8c547; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  @media (max-width: 520px) { .vergleich-grid { grid-template-columns: 1fr; } }
+</style>
+<meta name="description" content="Mehr Impfungen pro Kind als je zuvor, eine neue finanzielle Impfquote für Hausärzte, Milliardenumsätze der Hersteller — und eine wissenschaftliche …">
+<meta name="rubrik" content="cat-nahrung">
+<meta name="kachel-titel" content="Das Impfsystem: Ausweitung, Anreize, offene Fragen">
+<link rel="canonical" href="https://dunkelfeld.report/impfsystem-piekse-profite-studien.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Das Impfsystem: Ausweitung, Anreize, offene Fragen">
+<meta property="og:description" content="Mehr Impfungen pro Kind als je zuvor, eine neue finanzielle Impfquote für Hausärzte, Milliardenumsätze der Hersteller — und eine wissenschaftliche …">
+<meta property="og:url" content="https://dunkelfeld.report/impfsystem-piekse-profite-studien.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Das Impfsystem: Ausweitung, Anreize, offene Fragen", "description": "Mehr Impfungen pro Kind als je zuvor, eine neue finanzielle Impfquote für Hausärzte, Milliardenumsätze der Hersteller — und eine wissenschaftliche …", "inLanguage": "de", "url": "https://dunkelfeld.report/impfsystem-piekse-profite-studien.html", "mainEntityOfPage": "https://dunkelfeld.report/impfsystem-piekse-profite-studien.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="container">
+<header>
+<div class="eyebrow">Dunkelfeld.Report  ·  Gesundheitssystem</div>
+<h1>Das Impfsystem: Ausweitung, Anreize, offene Fragen</h1>
+<p class="subtitle">Mehr Impfungen pro Kind als je zuvor, eine neue finanzielle Impfquote für Hausärzte, Milliardenumsätze der Hersteller — und eine wissenschaftliche Debatte, die keineswegs so abgeschlossen ist, wie sie oft dargestellt wird.</p>
+<div class="meta">Analyse · Juli 2026 · Quellen: RKI/STIKO, Bewertungsausschuss, Bundestag-Wissenschaftlicher Dienst, EMA/SEC-Daten, peer-reviewte Studien</div>
+</header>
+<p>Drei Fragen stehen am Anfang dieser Recherche: Wie stark hat sich die Zahl der empfohlenen Impfungen pro Kind über die Jahrzehnte verändert? Wer verdient an diesem System — und wie viel? Und sind die Sicherheitsstudien, auf die sich Behörden berufen, wirklich so eindeutig, wie es in der öffentlichen Kommunikation oft klingt? Alle drei Fragen lassen sich mit Primärquellen beantworten, ohne dass eine Behauptung über Absicht oder Verschwörung nötig wäre.</p>
+<div class="stat-grid">
+<div class="stat-cell">
+<span class="stat-number">9 → 34</span>
+<span class="stat-label">STIKO-Impfungen bis 15. Lebensmonat, 1980 vs. 2010</span>
+</div>
+<div class="stat-cell">
+<span class="stat-number">7–25%</span>
+<span class="stat-label">Neue Impfquote als Bonuskriterium, GKV-Hausärzte 2026</span>
+</div>
+<div class="stat-cell">
+<span class="stat-number">bis 40%</span>
+<span class="stat-label">Mögliche Kürzung der Grundvergütung bei Nichterfüllung</span>
+</div>
+<div class="stat-cell">
+<span class="stat-number">~4 Mrd. €</span>
+<span class="stat-label">Weltweiter Covid-Impfstoffumsatz 2025 (Schätzung)</span>
+</div>
+</div>
+<h2>Teil I — Die Ausweitung des Impfkalenders</h2>
+<p>Der Impfkalender der Ständigen Impfkommission (STIKO) am Robert Koch-Institut ist seit den 1980er-Jahren kontinuierlich gewachsen. Zusammenstellungen, die sich auf die historischen STIKO-Empfehlungen stützen, kommen für die Zeit bis zum 15. Lebensmonat auf rund 9 Impfdosen im Jahr 1980 gegenüber rund 34 im Jahr 2010 — wobei hier jeweils die Variante mit der höheren Dosiszahl gezählt wurde. <span class="tag tag-offen">OFFEN</span> Die genaue Zählweise variiert je nach Quelle; die zugrundeliegende Chronologie der STIKO-Empfehlungsänderungen selbst ist jedoch über das offizielle Archiv des Robert Koch-Instituts und des Deutschen Grünen Kreuzes nachvollziehbar. <span class="tag tag-belegt">BELEGT</span></p>
+<div class="timeline">
+<div class="tl-item">
+<span class="tl-year">1995</span>
+<div class="tl-dot"></div>
+<div class="tl-content">
+<strong>Hepatitis B wird generelle Standardimpfung</strong>
+<p>Für alle Kinder und Jugendlichen empfohlen.</p>
+</div>
+</div>
+<div class="tl-item">
+<span class="tl-year">2006–07</span>
+<div class="tl-dot"></div>
+<div class="tl-content">
+<strong>Pneumokokken, Meningokokken C, HPV werden Standard</strong>
+<p>HPV zunächst nur für Mädchen 12–17 Jahre.</p>
+</div>
+</div>
+<div class="tl-item">
+<span class="tl-year">2013</span>
+<div class="tl-dot"></div>
+<div class="tl-content">
+<strong>Rotavirus-Impfung neu empfohlen</strong>
+<p>Schluckimpfung ab der 6. Lebenswoche.</p>
+</div>
+</div>
+<div class="tl-item">
+<span class="tl-year">2018</span>
+<div class="tl-dot"></div>
+<div class="tl-content">
+<strong>HPV-Impfung auf Jungen ausgeweitet</strong>
+<p>Standardimpfung für 9- bis 14-jährige Jungen und Mädchen.</p>
+</div>
+</div>
+<div class="tl-item">
+<span class="tl-year">2021–23</span>
+<div class="tl-dot"></div>
+<div class="tl-content">
+<strong>COVID-19 wird Standardimpfung für zahlreiche Gruppen</strong>
+<p>Jährliche Auffrischung für Risikogruppen und Ältere empfohlen.</p>
+</div>
+</div>
+<div class="tl-item">
+<span class="tl-year">2024–26</span>
+<div class="tl-dot"></div>
+<div class="tl-content">
+<strong>RSV-Prophylaxe für alle Neugeborenen</strong>
+<p>Monoklonaler Antikörper Nirsevimab, ab Geburt bis zur ersten RSV-Saison.</p>
+</div>
+</div>
+</div>
+<p>Auch an den Rändern des Lebens wächst das Programm: Ab 60 Jahren kommen Herpes-Zoster-, ab 75 Jahren RSV-Impfungen hinzu, dazu jährliche Grippe- und Covid-Auffrischungen bei Risikofaktoren. <span class="tag tag-belegt">BELEGT</span> Die STIKO begründet jede einzelne Erweiterung mit spezifischer Evidenz zu Krankheitslast und Nutzen-Risiko-Abwägung der jeweiligen Impfung — das ist Teil des offiziellen Verfahrens und in den Epidemiologischen Bulletins einsehbar. Was auffällt, ist die Kumulation: Ein Kind, das 2026 geboren wird, durchläuft ein spürbar dichteres Impfprogramm als eines aus den 1990er-Jahren.</p>
+<h2>Teil II — Neue Anreize: Impfquoten für Hausärzte</h2>
+<p>Seit dem 1. Januar 2026 ist die hausärztliche Vorhaltepauschale in der Gesetzlichen Krankenversicherung erstmals an Impfquoten gekoppelt. <span class="tag tag-belegt">BELEGT</span> Der Bewertungsausschuss beschloss dies am 19.8.2025 auf Basis einer bereits 2025 vom Bundestag beschlossenen gesetzlichen Grundlage. Praxen müssen in den ersten drei Quartalen bei rund 7 Prozent, im vierten Quartal bei rund 25 Prozent ihrer GKV-Behandlungsfälle eine Impfung nachweisen — eines von zehn möglichen Bonuskriterien, von denen mindestens acht erfüllt sein müssen, um den vollen Zuschlag zu erhalten.</p>
+<div class="highlight-box">
+<div class="highlight-box-title">Zwei Lesarten derselben Regelung</div>
+<p style="font-size:0.9rem; margin-bottom:0.5rem"><strong>Kritik:</strong> Der Verband „Ärzte für individuelle Impfentscheidung" (ÄFI) spricht von einem Paradigmenwechsel, der die ärztliche Therapiefreiheit gefährde. Die Partei dieBasis hält die Kürzung für einen rechtswidrigen Grundrechtseingriff.</p>
+<p style="font-size:0.9rem; margin-bottom:0"><strong>Einordnung:</strong> Ein Telepolis-Faktencheck (Februar 2026) weist darauf hin, dass die Impfquote nur eines von zehn optionalen Kriterien ist — Praxen können den Bonus auch komplett ohne Impfquote erreichen, etwa über Abendsprechstunden. Die in sozialen Medien kursierende Zuspitzung „jede vierte Leistung muss eine Impfung sein" sei sachlich verzerrt.</p>
+</div>
+<p>Beide Punkte sind zutreffend dokumentiert und schließen sich nicht aus: Es existiert ein echter finanzieller Anreiz zur Impfquotenerfüllung — und dieser Anreiz ist zugleich weniger zwingend, als die schärfste Version der Kritik suggeriert. <span class="tag tag-offen">OFFEN</span> Wie stark der Anreiz die tatsächliche Impfpraxis in Arztpraxen verändert, ist noch nicht durch Daten aus dem laufenden Jahr belegt — das lässt sich erst nach Vorliegen der ersten Abrechnungszahlen 2026 beurteilen.</p>
+<div class="source-box">
+<strong>Primärquellen Teil II</strong>
+    Bewertungsausschuss, Beschluss zur Neuregelung der Vorhaltepauschale, 19.8.2025. — Kassenärztliche Bundesvereinigung (KBV) / GKV-Spitzenverband, Bundesmantelvertrag-Ärzte. — Ärzte für individuelle Impfentscheidung e.V., Stellungnahme „Aus Ärzten mache Impf-luencer". — Telepolis, Faktencheck „Impfzwang durch die Hintertür?", Februar 2026.
+  </div>
+<h2>Teil III — Wer verdient am System</h2>
+<p>Der weltweite Impfstoffumsatz erreichte 2021/22 pandemiebedingt rund 115 Milliarden Euro — bis zu 65 Prozent der gesamten Pharmaerlöse in diesem Zeitraum. <span class="tag tag-belegt">BELEGT</span> Mit abklingender Pandemie ist der Covid-Anteil auf ein Niveau von geschätzt rund 4 Milliarden Euro 2025 gesunken, das entspricht noch etwa 22 Prozent der Impfstofferlöse insgesamt. Marktführer sind Pfizer (rund 43 Prozent Marktanteil bei Covid-Impfstoffen), gefolgt von Moderna (18 Prozent) sowie Merck und GlaxoSmithKline (je 10 Prozent).</p>
+<div class="vergleich-grid">
+<div class="vergleich-cell">
+<div class="vergleich-label">Boomjahre 2021–22</div>
+<div class="vergleich-text">Pfizer verbuchte allein im zweiten Quartal 2021 knapp 28 Mrd. USD Umsatz (+47%), davon 8,8 Mrd. USD Comirnaty und 8,1 Mrd. USD Paxlovid — Nettogewinn von fast 10 Mrd. USD im Quartal.</div>
+</div>
+<div class="vergleich-cell">
+<div class="vergleich-label">Nach dem Boom, 2023–25</div>
+<div class="vergleich-text">Pfizers Gesamtumsatz brach 2023 um 41,7% ein, da Comirnaty- und Paxlovid-Erlöse um über 80% fielen. 2025 lag der Konzernumsatz wieder bei ca. 62,6 Mrd. USD — getragen von anderen Produkten.</div>
+</div>
+</div>
+<p>Deutschland ist mit rund 2,4 Milliarden Euro der viertgrößte Impfstoffmarkt weltweit, hinter USA, China und Japan. <span class="tag tag-belegt">BELEGT</span> Diese Zahlen beschreiben ein Geschäftsmodell mit realen, öffentlich bilanzierten Umsätzen — sie belegen für sich genommen keine unlauteren Absichten, sondern zeigen die schiere wirtschaftliche Größenordnung, in der über Impfpolitik entschieden wird.</p>
+<h2>Teil IV — Sind die Studien wirklich eindeutig?</h2>
+<p>Hier liegt der methodisch interessanteste Befund. Bei den Zulassungsstudien der COVID-19-Impfstoffe wurde die placebokontrollierte Kontrollgruppe nach rund sechs Monaten aufgelöst — die Teilnehmer erhielten die Möglichkeit zur Impfung. <span class="tag tag-belegt">BELEGT</span> Das ist kein Randgruppen-Vorwurf, sondern im Risikomanagementplan des Herstellers und in einer Ausarbeitung des Wissenschaftlichen Dienstes des Bundestags (WD-9-020-23, 2023) dokumentiert. Ursprünglich war eine Beobachtungszeit von 24 Monaten vorgesehen; durch die Entblindung fehlen belastbare Placebo-Vergleichsdaten für den Zeitraum danach.</p>
+<div class="pull-quote">
+    Auch Bioethiker diskutierten dieses Dilemma selbst kontrovers: Sobald ein Impfstoff zugelassen ist, gilt die für ethisch vertretbare Placebo-Studien nötige „klinische Equipoise" — die Ungewissheit, ob Wirkstoff oder Placebo besser ist — als nicht mehr gegeben.
+    — Diskussion in The Lancet, referiert bei Medscape, Bioethiker der McGill University, NYU und Yale
+  </div>
+<p>Am Beispiel der auf den eingangs gezeigten Social-Media-Screenshots genannten HPV-Impfung und primärer Ovarialinsuffizienz (POI) zeigt sich, wie uneinheitlich die Studienlage tatsächlich ist — in beide Richtungen:</p>
+<div class="vergleich-grid">
+<div class="vergleich-cell">
+<div class="vergleich-label">Signale, die auf ein Risiko hindeuten</div>
+<div class="vergleich-text">Mehrere VAERS-Data-Mining-Studien (Bayesian Confidence Propagation, Gamma Poisson Shrinker) fanden statistisch disproportionale POI-Meldungen nach der vierwertigen HPV-Impfung. Ein von Martin Kulldorff (ehem. Harvard-Biostatistiker, ehem. HHS) im Rahmen des Verfahrens Robi v. Merck erstelltes Gutachten wirft Merck methodische Mängel bei den vorgelegten Sicherheitsanalysen vor.</div>
+</div>
+<div class="vergleich-cell">
+<div class="vergleich-label">Studien, die keinen Zusammenhang finden</div>
+<div class="vergleich-text">Eine dänische Kohortenstudie mit rund 200.000 Frauen sowie eine US-Vaccine-Safety-Datalink-Studie fanden kein erhöhtes POI-Risiko nach HPV-Impfung. Ein systematischer Review von 2023 bewertet die VAERS-Signale als potenziell durch Meldeverzerrung (mediale Aufmerksamkeit erhöht Meldehäufigkeit) beeinflusst.</div>
+</div>
+</div>
+<p>Beide Seiten stützen sich auf reale, peer-reviewte oder behördlich anerkannte Quellen. <span class="tag tag-belegt">BELEGT</span> Wer nur eine Seite zitiert, zeichnet ein unvollständiges Bild — in beide Richtungen.</p>
+<div class="source-box">
+<strong>Primärquellen Teil III &amp; IV</strong>
+    Statista/Konzern-Geschäftsberichte Pfizer, Merck, GSK, Moderna 2021–2025. — Wissenschaftlicher Dienst des Deutschen Bundestags, WD-9-020-23 (2023). — The Lancet, Bioethik-Debatte zu Placebo-Auflösung, referiert bei Medscape (2021). — Kulldorff-Gutachten im Verfahren Robi v. Merck, referiert bei blog.maryannedemasi.com. — Naleway et al., Vaccine Safety Datalink-Kohortenstudie. — Skovlund et al., dänische Nationalkohorte, PMC8391101. — Arana et al., VAERS-Review 2018–2022, PubMed 36732165.
+  </div>
+<div class="disclaimer-box">
+<div class="disclaimer-title">Was wir ausdrücklich nicht behaupten</div>
+<ul>
+<li>Wir behaupten nicht, dass die Ausweitung des Impfkalenders, die Vorhaltepauschale oder die Umsatzzahlen der Hersteller Beweise für eine koordinierte Absicht oder ein „Impfbusiness" im Sinne bewusster Täuschung sind. Die Fakten stehen für sich; die Bewertung überlassen wir dem Leser.</li>
+<li>Wir behaupten nicht, dass HPV-Impfstoffe erwiesenermaßen primäre Ovarialinsuffizienz verursachen. Die Studienlage ist gemischt, und die größte verfügbare Kohortenstudie fand keinen Zusammenhang.</li>
+<li>Wir behaupten nicht, dass die neue Impfquote für Hausärzte eine verpflichtende Impfvorgabe ist. Sie ist ein optionales von zehn Bonuskriterien für einen Vergütungszuschlag.</li>
+<li>Wir behaupten nicht, dass die Auflösung der Placebo-Kontrollgruppen bei COVID-19-Impfstoffstudien rechtswidrig war — dazu gibt es widersprechende juristische Einschätzungen, die wir hier nicht abschließend bewerten.</li>
+</ul>
+</div>
+<div class="closing">
+<p>Was dokumentiert bleibt: Der Impfkalender ist heute deutlich dichter als vor vierzig Jahren. Ärztliche Vergütung ist erstmals direkt an Impfquoten gekoppelt. Die Hersteller haben an der Pandemie in einer historisch seltenen Größenordnung verdient. Und die wissenschaftliche Debatte über Langzeitsicherheit ist an mehreren Stellen — Placebo-Design, POI-Signale — nachweislich noch nicht abgeschlossen.</p>
+<p>Ob daraus ein sinkendes Vertrauen in Impfungen folgt und ob dieses Vertrauen berechtigt oder unberechtigt sinkt, ist keine Frage, die sich aus diesen Fakten allein beantworten lässt. Das muss jeder Leser selbst gewichten.</p>
+</div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+<a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Palantir, Bundeswehr und Polizei: Wer darf an die Daten?</title>
+<style>
+  :root{
+    --bg:#09090b; --accent:#e8c547; --box:#1a1a2e;
+    --green:#5fbf7a; --orange:#e8a147; --grey:#8a8a8a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:#e4e4e7; font-family:Georgia,'Times New Roman',serif;
+    font-size:1.1rem; line-height:1.8; margin:0; padding:0;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:2.5rem 1.25rem 5rem;}
+  .kicker{
+    font-family:'Courier New',monospace; color:var(--accent); font-size:0.85rem;
+    letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.5rem;
+  }
+  h1{font-family:Georgia,serif; font-size:2.1rem; line-height:1.25; margin:0 0 1rem; color:#f4f4f5;}
+  .subtitle{color:#b8b8bd; font-size:1.05rem; margin-bottom:2rem; font-style:italic;}
+  .meta{
+    font-family:'Courier New',monospace; font-size:0.8rem; color:var(--grey);
+    border-top:1px solid #2a2a35; border-bottom:1px solid #2a2a35;
+    padding:0.75rem 0; margin-bottom:2.5rem; display:flex; gap:1.5rem; flex-wrap:wrap;
+  }
+  p{padding-bottom:1.2rem;}
+  h2{
+    font-size:1.4rem; color:var(--accent); margin:2.5rem 0 1rem;
+    font-family:Georgia,serif; border-bottom:1px solid #2a2a35; padding-bottom:0.5rem;
+  }
+  h3{font-size:1.15rem; color:#f4f4f5; margin:1.8rem 0 0.8rem;}
+  .source-box{
+    background:var(--box); border-left:3px solid var(--accent);
+    padding:1.2rem 1.4rem; margin:1.5rem 0; border-radius:0 4px 4px 0;
+  }
+  .source-box .src-label{
+    font-family:'Courier New',monospace; font-size:0.75rem; color:var(--accent);
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem; display:block;
+  }
+  .source-box p{padding-bottom:0.5rem; font-size:1rem;}
+  .source-box cite{
+    display:block; font-family:'Courier New',monospace; font-size:0.78rem;
+    color:var(--grey); font-style:normal; margin-top:0.5rem;
+  }
+  .tag{
+    font-family:'Courier New',monospace; font-size:0.72rem; font-weight:bold;
+    padding:0.2rem 0.55rem; border-radius:3px; letter-spacing:0.05em;
+    display:inline-block; margin-right:0.4rem; margin-bottom:0.3rem;
+  }
+  .tag-belegt{background:rgba(95,191,122,0.15); color:var(--green); border:1px solid var(--green);}
+  .tag-belegt1{background:rgba(95,191,122,0.08); color:#8fcf9f; border:1px solid #3a6a45;}
+  .tag-extra{background:rgba(232,161,71,0.15); color:var(--orange); border:1px solid var(--orange);}
+  .tag-offen{background:rgba(138,138,138,0.15); color:var(--grey); border:1px solid var(--grey);}
+
+  .person-card{
+    display:flex; gap:1rem; border:1px solid #2a2a35; border-radius:6px;
+    padding:1.2rem 1.4rem; margin:1.3rem 0; background:#111116; align-items:flex-start;
+  }
+  .person-card .avatar{
+    width:42px; height:42px; border-radius:50%; background:var(--accent);
+    color:#09090b; font-family:'Courier New',monospace; font-weight:bold;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1rem;
+  }
+  .person-card h3{margin:0 0 0.3rem;}
+  .person-card .role{font-family:'Courier New',monospace; font-size:0.8rem; color:var(--grey); margin-bottom:0.6rem;}
+
+  .timeline{margin:2rem 0; border-left:2px solid var(--accent); padding-left:1.5rem;}
+  .timeline-item{margin-bottom:1.5rem; position:relative;}
+  .timeline-item::before{
+    content:''; position:absolute; left:-1.56rem; top:0.4rem;
+    width:8px; height:8px; border-radius:50%; background:var(--accent);
+  }
+  .timeline-date{
+    font-family:'Courier New',monospace; font-size:0.8rem; color:var(--accent); display:block;
+    margin-bottom:0.3rem;
+  }
+
+  .pull-quote{
+    font-size:1.3rem; font-style:italic; color:#f4f4f5; margin:2rem 0;
+    padding:0 1rem; border-left:3px solid var(--accent); line-height:1.5;
+  }
+
+  table{width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:0.95rem;}
+  th,td{border:1px solid #2a2a35; padding:0.6rem 0.8rem; text-align:left;}
+  th{background:var(--box); color:var(--accent); font-family:'Courier New',monospace; font-size:0.8rem;}
+
+  .open-question{
+    font-style:italic; color:#b8b8bd; margin-top:3rem; padding-top:1.5rem;
+    border-top:1px solid #2a2a35; font-size:1.05rem;
+  }
+
+  .series-nav{
+    margin-top:3.5rem; padding-top:1.5rem; border-top:1px solid #2a2a35;
+    font-family:'Courier New',monospace; font-size:0.85rem; color:var(--grey);
+  }
+  .series-nav a{color:var(--accent); text-decoration:none;}
+  .series-nav a:hover{text-decoration:underline;}
+
+  a{color:var(--accent);}
+
+  .legend{
+    font-family:'Courier New',monospace; font-size:0.72rem; color:var(--grey);
+    margin:1rem 0 2rem; line-height:2;
+  }
+
+  table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.95rem;} th,td{border:1px solid #2a2a35;padding:0.5rem;text-align:left;}
+  blockquote{background:var(--box);border-left:3px solid var(--accent);margin:1.5rem 0;padding:1rem 1.4rem;font-style:italic;}
+  .footnote{font-size:0.85rem;color:#a1a1aa;}
+</style>
+<meta name="description" content="Die Bundeswehr hat gerade einem der mächtigsten Softwarekonzerne der Welt eine Absage erteilt — aus Sorge um die nationale Datenhoheit. Gleichzeitig …">
+<meta name="rubrik" content="cat-kontrolle">
+<meta name="kachel-titel" content="Diagnose Deutschland (2): Wenn Konzerne die Datenhoheit wollen">
+<link rel="canonical" href="https://dunkelfeld.report/diagnose-deutschland-palantir-teil2.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Diagnose Deutschland (2): Wenn Konzerne die Datenhoheit wollen">
+<meta property="og:description" content="Die Bundeswehr hat gerade einem der mächtigsten Softwarekonzerne der Welt eine Absage erteilt — aus Sorge um die nationale Datenhoheit. Gleichzeitig …">
+<meta property="og:url" content="https://dunkelfeld.report/diagnose-deutschland-palantir-teil2.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Diagnose Deutschland (2): Wenn Konzerne die Datenhoheit wollen", "description": "Die Bundeswehr hat gerade einem der mächtigsten Softwarekonzerne der Welt eine Absage erteilt — aus Sorge um die nationale Datenhoheit. Gleichzeitig …", "inLanguage": "de", "url": "https://dunkelfeld.report/diagnose-deutschland-palantir-teil2.html", "mainEntityOfPage": "https://dunkelfeld.report/diagnose-deutschland-palantir-teil2.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="kicker">dunkelfeld.report · Dokumentation</div>
+<h1>Diagnose Deutschland: Der gewollte Niedergang</h1>
+<p class="subtitle">Die Bundeswehr hat gerade einem der mächtigsten Softwarekonzerne der Welt eine Absage erteilt — aus Sorge um die nationale Datenhoheit. Gleichzeitig setzen deutsche Polizeibehörden genau diese Software längst ein. Eine Geschichte über zwei sehr unterschiedliche Antworten auf dieselbe Frage: Wer darf mit unseren Daten arbeiten?</p>
+<h2>Teil 2 — Digitale Aufrüstung: Wenn Konzerne die Datenhoheit wollen</h2>
+<hr/>
+<h3>Die offizielle Erzählung</h3>
+<p>Digitalisierung der Streitkräfte gilt seit Jahren als Königsweg der Modernisierung. Wer Daten schneller auswerten kann als der Gegner, hat im 21. Jahrhundert einen entscheidenden Vorteil — das gilt für Logistik, Aufklärung und Zielerfassung gleichermaßen. Die Bundeswehr baut deshalb an einer eigenen, geschützten militärischen Cloud (pCloudBw), um Datenverarbeitung und KI-Anwendungen für die Truppe nutzbar zu machen.</p>
+<p>Der naheliegende Anbieter für diese Art von Technologie ist der US-Konzern Palantir Technologies. Das Unternehmen des Investors Peter Thiel gilt als weltweit führend in der Analyse großer, heterogener Datenbestände. Palantir-Software läuft bereits auf britischen und amerikanischen Militärsystemen sowie — seit einem Auftrag der NATO Communications and Information Agency vom März 2025 — auf den Servern des NATO Allied Command Operations, unter dem Namen Maven Smart System NATO.</p>
+<h3>Der Mechanismus: Warum die Bundeswehr trotzdem Nein sagt</h3>
+<p>Und genau hier weicht Deutschland vom Bündnis-Standard ab. Vizeadmiral Dr. Thomas Daum, Inspekteur des Cyber- und Informationsraums der Bundeswehr, hat gegenüber dem Handelsblatt und weiteren Medien klargestellt: Palantir wird beim Aufbau der Bundeswehr-Cloud nicht zum Zuge kommen. Die Begründung ist bemerkenswert konkret — es geht nicht um mangelnde technische Qualität, sondern um das Betriebsmodell des Unternehmens.</p>
+<p>Bei der NATO betreiben Mitarbeiter von Palantir selbst die Software auf den Systemen des Bündnisses. Für die Bundeswehr kommt dieses Modell nicht infrage: "So sehr wir an der Funktionalität interessiert sind für unseren eigenen Datenbestand, so unvorstellbar ist es eben momentan, Industriemitarbeiter auf den nationalen Datenbestand zuzulassen", so Daum. Der Zugriff privater Industriemitarbeiter auf staatliche, sicherheitsrelevante Datenbanken sei ein Risiko, das die Bundeswehr derzeit nicht tragen wolle.</p>
+<p>Statt Palantir prüft die Bundeswehr drei europäische Anbieter: Almato (Stuttgart), Orcrist (Berlin) und Chapsvision (Paris). Eine Entscheidung soll bis Jahresende fallen. Palantir selbst zeigte sich öffentlich enttäuscht, relativierte aber zugleich die Bedeutung für den Konzern insgesamt — für das Deutschlandgeschäft wäre der Auftrag allerdings "spannend" gewesen, wie ein Unternehmenssprecher einräumte.</p>
+<p>Bemerkenswert ist dabei auch, was im Hintergrund mitschwingt: In mehreren Bundesländern laufen aktuell Verfassungsbeschwerden gegen den Einsatz von Palantir-Software. Auch die Schweiz hat sich bei Militär und Sicherheitsbehörden gegen das Unternehmen entschieden. Die Bundeswehr reiht sich damit in eine wachsende Zahl staatlicher Akteure ein, die dem Geschäftsmodell des Konzerns skeptisch gegenüberstehen.</p>
+<h3>Der Widerspruch: Was für die Truppe zu riskant ist, ist für die Polizei in Ordnung</h3>
+<p>Hier zeigt sich die eigentliche Spannung dieser Geschichte — und sie verläuft nicht zwischen Deutschland und dem Rest der Welt, sondern innerhalb Deutschlands selbst.</p>
+<p>Während das Verteidigungsministerium den Zugriff von Palantir-Personal auf nationale Daten als "unvorstellbar" bezeichnet, setzt Bayern die Software bereits seit 2024 unter dem Namen "VeRa" bei der Polizei ein. Baden-Württemberg plant den Einsatz ebenfalls. Die Datenbestände, um die es dabei geht, sind keine Petitessen: Polizeiliche Analysesoftware verarbeitet Ermittlungsdaten, Kommunikationsdaten, Bewegungsprofile und Verdachtsmomente gegen Bürgerinnen und Bürger — Daten, die in ihrer Sensibilität den militärischen Datenbeständen in nichts nachstehen, in mancher Hinsicht sogar tiefer in die Privatsphäre einzelner Menschen eingreifen.</p>
+<p>Der Unterschied zwischen "unvorstellbar" beim Militär und "im Einsatz" bei der Polizei lässt sich nicht technisch erklären — Palantirs Betriebsmodell ist bei beiden Anwendungsfällen dasselbe. Er lässt sich nur politisch erklären: Die Kontrollstrukturen, die für Rüstungsbeschaffung und nationale Verteidigung gelten (siehe Teil 1 dieser Serie), fehlen bei der Ausstattung der Landespolizeien in vergleichbarer Schärfe. Genau das ist der Anschlusspunkt zur "Wer kontrolliert wen?"-Recherche zu PolizeiGrün und Chatkontrolle: Es ist nicht das Militär, das den größten ungeprüften Datenraum in Deutschland öffnet — es sind die Sicherheitsbehörden im Innern.</p>
+<h3>Die eingebaute Ambivalenz: Ukraine als Gegenbeispiel</h3>
+<p>Ein Gegenargument verdient Erwähnung, weil es die Debatte nicht einfacher, sondern ehrlicher macht: In der Ukraine ist Palantir-Software im Kriegseinsatz massiv im Einsatz und hilft nach übereinstimmenden Berichten dabei, Ziele mit hoher Präzision zu identifizieren. Diese Erfolge unter realen Kriegsbedingungen sorgen auch innerhalb der Bundeswehr für interne Diskussionen über das Tempo der eigenen Modernisierung. Die offizielle Haltung bleibt dennoch beim Nein — mit der Begründung, dass die Datenschutzanforderungen in einer Demokratie im Frieden fundamental andere sind als in einem Land im akuten Verteidigungskrieg. Diese Unterscheidung ist nachvollziehbar und sollte nicht kleingeredet werden.</p>
+<h3>Fazit</h3>
+<p>Die Palantir-Entscheidung der Bundeswehr ist ein seltener Fall, in dem eine deutsche Behörde eine nachvollziehbare, klar begründete Grenze gezogen hat, bevor ein Vertrag unterschrieben wurde — nicht danach, wie so oft bei den in Teil 1 beschriebenen 47.000 Beschaffungsverträgen. Das verdient Anerkennung, nicht Zynismus.</p>
+<p>Genau deshalb wiegt der Kontrast zur Praxis der Landespolizeien schwerer: Wenn eine Institution in der Lage ist, das Risiko eines Betriebsmodells klar zu benennen und daraus Konsequenzen zu ziehen, dann ist das kein technisches Naturgesetz, sondern eine Frage des politischen Willens. Die Frage, die sich daraus für Bayern, Baden-Württemberg und alle anderen Länder mit ähnlichen Plänen stellt, lautet: Warum gilt der Vizeadmiral-Maßstab nicht auch für die Polizei?</p>
+<hr/>
+<p><em>Diese Recherche knüpft an Teil 1 ("Wer bezahlt den Rüstungsboom?") sowie an die dunkelfeld.report-Serie "Wer kontrolliert wen?" (PolizeiGrün, Chatkontrolle) an.</em></p>
+<hr/>
+<p><strong>Quellen:</strong> Business Insider Deutschland, Behörden Spiegel, Handelsblatt (zitiert über Behörden Spiegel/Business Insider), Augen geradeaus!, borncity.com</p>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

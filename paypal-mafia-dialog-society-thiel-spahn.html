@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PayPal-Mafia, Dialog Society, Spahn: Das Netzwerk</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #09090b; color: #e4e4e7; font-family: Georgia, 'Times New Roman', serif; line-height: 1.7; font-size: 18px; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 60px 24px 100px; }
+  .masthead { text-align: center; margin-bottom: 48px; padding-bottom: 24px; border-bottom: 1px solid #27272a; }
+  .masthead .logo { font-family: 'Courier New', monospace; color: #e8c547; font-size: 15px; letter-spacing: 2px; text-transform: uppercase; }
+  .masthead .tagline { font-family: 'Courier New', monospace; color: #71717a; font-size: 12px; margin-top: 6px; letter-spacing: 1px; }
+  .meta { font-family: 'Courier New', monospace; color: #71717a; font-size: 13px; margin-bottom: 8px; }
+  h1 { font-size: 32px; line-height: 1.25; color: #f4f4f5; margin: 10px 0 20px; font-weight: 700; }
+  .lede { font-size: 19px; color: #d4d4d8; margin-bottom: 40px; }
+  h2 { font-size: 24px; color: #e8c547; margin: 52px 0 18px; padding-bottom: 10px; border-bottom: 1px solid #27272a; }
+  h3 { font-size: 19px; color: #f4f4f5; margin: 32px 0 14px; }
+  p { margin-bottom: 18px; color: #d4d4d8; }
+  a { color: #e8c547; text-decoration: none; border-bottom: 1px dotted #e8c547; }
+
+  .tag { font-family: 'Courier New', monospace; font-size: 11px; font-weight: bold; letter-spacing: 1px; padding: 2px 7px; border-radius: 3px; display: inline-block; vertical-align: middle; margin: 0 2px; }
+  .tag-belegt { background: rgba(74,222,128,0.12); color: #4ade80; border: 1px solid rgba(74,222,128,0.35); }
+  .tag-extrapolation { background: rgba(251,146,60,0.12); color: #fb923c; border: 1px solid rgba(251,146,60,0.35); }
+  .tag-offen { background: rgba(161,161,170,0.12); color: #a1a1aa; border: 1px solid rgba(161,161,170,0.35); }
+
+  .timeline { margin: 30px 0; }
+  .tl-item { position: relative; padding: 4px 0 26px 28px; border-left: 2px solid #3f3f46; margin-left: -2px; }
+  .tl-item:last-child { border-left: 2px solid transparent; padding-bottom: 4px; }
+  .tl-item::before { content: ''; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: #e8c547; border: 2px solid #09090b; }
+  .tl-year { font-family: 'Courier New', monospace; color: #e8c547; font-size: 14px; font-weight: bold; letter-spacing: 1px; }
+  .tl-title { color: #f4f4f5; font-size: 17px; margin: 4px 0 6px; font-weight: bold; }
+  .tl-body { color: #b4b4b8; font-size: 16px; }
+
+  .source-box { background: #1a1a2e; border-left: 3px solid #e8c547; padding: 16px 20px; margin: 20px 0 30px; font-size: 15px; color: #b4b4b8; }
+  .source-box .label { font-family: 'Courier New', monospace; color: #e8c547; font-size: 11px; letter-spacing: 1px; display: block; margin-bottom: 6px; }
+
+  .person-grid { display: flex; flex-wrap: wrap; gap: 16px; margin: 24px 0 30px; }
+  .person-card { flex: 1 1 300px; background: #131320; border: 1px solid #27272a; border-radius: 6px; padding: 18px 20px; }
+  .person-card .p-name { color: #f4f4f5; font-size: 17px; font-weight: bold; margin-bottom: 4px; }
+  .person-card .p-role { font-family: 'Courier New', monospace; color: #e8c547; font-size: 12px; margin-bottom: 10px; display: block; }
+  .person-card p { font-size: 15px; color: #b4b4b8; margin-bottom: 0; }
+
+  .stat-grid { display: flex; flex-wrap: wrap; gap: 14px; margin: 24px 0 30px; }
+  .stat { flex: 1 1 150px; background: #131320; border: 1px solid #27272a; border-radius: 6px; padding: 16px; text-align: center; }
+  .stat .num { font-family: 'Courier New', monospace; color: #e8c547; font-size: 22px; font-weight: bold; display: block; }
+  .stat .label { color: #a1a1aa; font-size: 12px; margin-top: 6px; }
+
+  table.comp { width: 100%; border-collapse: collapse; margin: 20px 0 30px; font-size: 15px; }
+  table.comp th { font-family: 'Courier New', monospace; color: #e8c547; text-align: left; padding: 10px 12px; border-bottom: 2px solid #3f3f46; font-size: 13px; letter-spacing: 0.5px; }
+  table.comp td { padding: 12px; border-bottom: 1px solid #27272a; color: #d4d4d8; vertical-align: top; }
+
+  .pullquote { font-size: 21px; color: #f4f4f5; font-style: italic; border-left: 3px solid #e8c547; padding: 6px 0 6px 22px; margin: 32px 0; }
+  .pullquote .attr { display: block; font-family: 'Courier New', monospace; font-size: 12px; font-style: normal; color: #71717a; margin-top: 10px; }
+
+  .closing { margin-top: 56px; padding-top: 24px; border-top: 1px solid #27272a; font-style: italic; color: #a1a1aa; }
+  .closing p { color: #a1a1aa; }
+
+  .series-nav { margin-top: 48px; padding: 18px 20px; background: #131320; border: 1px solid #27272a; border-radius: 6px; font-size: 15px; }
+  .series-nav .label { font-family: 'Courier New', monospace; color: #e8c547; font-size: 11px; letter-spacing: 1px; display: block; margin-bottom: 8px; }
+
+  footer { margin-top: 60px; text-align: center; font-family: 'Courier New', monospace; color: #52525b; font-size: 12px; }
+</style>
+<meta name="description" content="Zwei Jahrzehnte lang hatte die &quot;Dialog Society&quot; ihre Mitglieder nicht genannt. Im Juni 2026 legte ein Datenleck offen, wer sich hinter verschlossenen …">
+<meta name="rubrik" content="cat-stiftungen">
+<meta name="kachel-titel" content="PayPal Mafia, Dialog Society, Spahn: Das unsichtbare Netzwerk">
+<link rel="canonical" href="https://dunkelfeld.report/paypal-mafia-dialog-society-thiel-spahn.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PayPal Mafia, Dialog Society, Spahn: Das unsichtbare Netzwerk">
+<meta property="og:description" content="Zwei Jahrzehnte lang hatte die &quot;Dialog Society&quot; ihre Mitglieder nicht genannt. Im Juni 2026 legte ein Datenleck offen, wer sich hinter verschlossenen …">
+<meta property="og:url" content="https://dunkelfeld.report/paypal-mafia-dialog-society-thiel-spahn.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "PayPal Mafia, Dialog Society, Spahn: Das unsichtbare Netzwerk", "description": "Zwei Jahrzehnte lang hatte die \"Dialog Society\" ihre Mitglieder nicht genannt. Im Juni 2026 legte ein Datenleck offen, wer sich hinter verschlossenen …", "inLanguage": "de", "url": "https://dunkelfeld.report/paypal-mafia-dialog-society-thiel-spahn.html", "mainEntityOfPage": "https://dunkelfeld.report/paypal-mafia-dialog-society-thiel-spahn.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="masthead">
+<div class="logo">dunkelfeld.report</div>
+<div class="tagline">Hidden in Plain Sight</div>
+</div>
+<div class="meta">ARTIKEL #16 · KADERSCHMIEDEN DER MACHT · Juli 2026 · Lesedauer ca. 11 Minuten</div>
+<h1>PayPal Mafia, Dialog Society, Spahn: Das unsichtbare Netzwerk</h1>
+<p class="lede">Zwei Jahrzehnte lang hatte die "Dialog Society" ihre Mitglieder nicht genannt. Im Juni 2026 legte ein Datenleck offen, wer sich hinter verschlossenen Türen trifft — und dass ein deutscher Spitzenpolitiker seit Jahren dazugehört. Eine Chronologie von Stanford bis Berlin.</p>
+<h2>1. Der Gründer: Vom Stanford-Studenten zum Palantir-Mitgründer</h2>
+<p>Peter Thiel, geboren 1967 in Frankfurt und in Kalifornien aufgewachsen, gründete 1987 als Stanford-Student das konservative Blatt "The Stanford Review". 1998 war er Mitgründer von Confinity, das nach der Fusion mit Elon Musks X.com zu PayPal wurde. 2004 investierte er als erster externer Geldgeber in Facebook und gründete im selben Jahr Palantir Technologies — ein Datenanalyse-Unternehmen, das heute unter anderem mit der US-Einwanderungsbehörde ICE und deutschen Polizeibehörden zusammenarbeitet. 2005 folgte der Founders Fund.</p>
+<div class="source-box">
+<span class="label">QUELLE</span>
+    Tagesspiegel: "Spahn verteidigt Teilnahme an 'Dialog'-Veranstaltungen" (2026) · CORRECTIV: "Jens Spahn nahm an Geheim-Treffen von Peter Thiel teil" (18. Juni 2026)
+  </div>
+<h2>2. Das Manifest: Thiels eigene Worte</h2>
+<p>Am 13. April 2009 veröffentlichte Thiel im libertären Magazin "Cato Unbound" den Essay "The Education of a Libertarian". Darin distanziert er sich von der klassischen libertären Hoffnung, Freiheit über politische Mittel zu erreichen:</p>
+<div class="pullquote">
+    Ich glaube nicht länger, dass Freiheit und Demokratie miteinander vereinbar sind.
+    <span class="attr">— Peter Thiel, "The Education of a Libertarian", Cato Unbound, 13. April 2009</span>
+</div>
+<p>Im weiteren Verlauf des Essays begründet Thiel diese Position unter anderem mit der Ausweitung des Wahlrechts auf Frauen seit 1920 sowie dem Anstieg der Sozialleistungsempfänger — beides Entwicklungen, die aus seiner Sicht den Begriff "kapitalistische Demokratie" zum inneren Widerspruch gemacht hätten. Als Auswege beschreibt er drei technologische "Fluchträume" aus der Politik: Cyberspace, Weltraumbesiedlung und Seasteading (private, staatsferne Siedlungen auf dem Meer).</p>
+<div class="source-box">
+<span class="label">QUELLE</span>
+    Peter Thiel: "The Education of a Libertarian", cato-unbound.org, 13. April 2009 — vollständiger Primärtext frei zugänglich
+  </div>
+<h2>3. Die PayPal Mafia: Ein Netzwerk, viele Weltkonzerne</h2>
+<p>Rund zwanzig ehemalige PayPal-Mitarbeiter und Mitgründer haben seit 2002 einen unverhältnismäßig großen Teil der einflussreichsten Technologie- und Risikokapitalfirmen der Welt aufgebaut, finanziert oder geleitet: darunter YouTube, Tesla, SpaceX, LinkedIn, Yelp, Palantir, Founders Fund und — in jüngerer Zeit — OpenAI und Stripe. Mit dem Wechsel mehrerer Mitglieder in offizielle und inoffizielle Positionen der zweiten Trump-Regierung (u. a. JD Vance als Vizepräsident, David Sacks als "AI &amp; Crypto Czar") ist dieses Netzwerk direkt in die US-Regierungsspitze eingerückt.</p>
+<h2>4. Die Dialog Society: 20 Jahre Schweigen, ein Datenleck</h2>
+<p>2006 gründete Thiel mit anderen die "Dialog Society" (auch "Dialog"/"Dialogue") — ein privates, einladungsbasiertes Netzwerk, das jährliche, nicht-öffentliche Treffen zwischen US-Regierungsvertretern, ausländischen Amtsträgern und Silicon-Valley-Führungskräften organisiert. Zwei Jahrzehnte lang blieb die Mitgliederliste geheim.</p>
+<div class="timeline">
+<div class="tl-item">
+<div class="tl-year">Juni 2026</div>
+<div class="tl-title">Das Leck <span class="tag tag-belegt">BELEGT</span></div>
+<div class="tl-body">Die Schweizer Hacktivistin maia arson crimew — bekannt für die Aufdeckung der US-"No Fly List" und einen Einbruch beim Überwachungskamera-Anbieter Verkada — findet ein offenes Registrierungsverzeichnis im Quellcode der Dialog-Website. Das Magazin "Wired" verifiziert die Daten unabhängig.</div>
+</div>
+<div class="tl-item">
+<div class="tl-year">2026-Retreat</div>
+<div class="tl-title">222 Registrierte, 87 zum ersten Mal <span class="tag tag-belegt">BELEGT</span></div>
+<div class="tl-body">Für das Retreat vom 12.–16. August 2026 im Powerscourt Hotel bei Dublin listet das Verzeichnis 222 Registrierungen. Darunter: US-Senatoren, der Schatzsekretär, der NATO-Oberbefehlshaber Europa, der Stanford-Präsident, Elon Musk sowie Gründer großer Überwachungs-, Datenhandels- und Werbedaten-Firmen.</div>
+</div>
+<div class="tl-item">
+<div class="tl-year">Agenda</div>
+<div class="tl-title">Themen der Sitzungen <span class="tag tag-belegt">BELEGT</span></div>
+<div class="tl-body">Dokumentierte Sessionstitel umfassen "Navigating WWIII", "Battlefield Technologies", "Bring Back Nuclear" und "Build-a-Cult". Kein Teilnehmer registrierte sich mit einer Regierungs-E-Mail-Adresse — was die Treffen außerhalb der für Behörden geltenden Aktenpflicht hält.</div>
+</div>
+</div>
+<div class="source-box">
+<span class="label">QUELLE</span>
+    WIRED (Juni 2026), zit. n. Security Affairs: "Peter Thiel's Secret Society Leak..." · Moneywise: "Hacker reveals members of Peter Thiel's secret society" (2026)
+  </div>
+<h2>5. Der deutsche Anknüpfungspunkt: Jens Spahn</h2>
+<p>Im Quelltext der archivierten Dialog-Website findet sich auch der Name des heutigen Unionsfraktionsvorsitzenden Jens Spahn. Ein Sprecher bestätigte gegenüber CORRECTIV, dass Spahn in unregelmäßigen Abständen fünfmal am Dialog-Format teilgenommen habe: 2018 in Irland, 2019 in Italien, 2022 in Portugal, 2023 in Spanien und 2024 in Deutschland. Die ersten beiden Termine fanden statt, während Spahn amtierender Bundesgesundheitsminister war.</p>
+<div class="pullquote">
+    Diese Offenheit werde ich mir nicht nehmen lassen.
+    <span class="attr">— Jens Spahn zur Verteidigung seiner Teilnahme, gegenüber web.de, Juni 2026</span>
+</div>
+<p>Spahn betonte zugleich, Thiel selbst sei bei dem Dialog-Format seit Jahren nicht mehr zu Gast gewesen, und dass ihm der Austausch mit Menschen anderer Meinung wichtig sei.</p>
+<div class="person-grid">
+<div class="person-card">
+<div class="p-name">Peter Thiel</div>
+<span class="p-role">Mitgründer PayPal, Palantir, Founders Fund, Dialog Society</span>
+<p>Spendete 2016 1,25 Mio. Dollar an Trumps Wahlkampf, unterstützte JD Vance 2022 mit 15 Mio. Dollar im Senatswahlkampf Ohio. Zentrale Verbindungsfigur zwischen Silicon-Valley-Kapital und US-Regierungsspitze.</p>
+</div>
+<div class="person-card">
+<div class="p-name">Jens Spahn</div>
+<span class="p-role">Unionsfraktionsvorsitzender, CDU, ehem. Bundesgesundheitsminister</span>
+<p>Fünf dokumentierte Dialog-Teilnahmen 2018–2024, davon zwei als aktives Regierungsmitglied. Verteidigt die Teilnahme öffentlich als Teil eines Meinungsaustauschs.</p>
+</div>
+<div class="person-card">
+<div class="p-name">Christian Angermayer</div>
+<span class="p-role">Unternehmer, Atai Life Sciences</span>
+<p>Spendete laut CORRECTIV über Firmen knapp 300.000 Euro an die CDU, gilt als Trump-nah und gut mit Spahn vernetzt. Auch zentrale Figur im dunkelfeld.report-Dossier zu WEF und Psychedelika-Investments.</p>
+</div>
+</div>
+<h2>6. Belegstatus im Überblick</h2>
+<table class="comp">
+<tr><th>Aussage</th><th>Status</th></tr>
+<tr><td>Thiel schrieb 2009, Freiheit und Demokratie seien nicht vereinbar</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+<tr><td>Dialog Society besteht seit 2006, Mitgliederliste war 20 Jahre geheim</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+<tr><td>Spahn nahm fünfmal 2018–2024 teil, davon zweimal als Minister</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+<tr><td>Angermayer ist "gut mit Spahn verdrahtet" (CDU-Spenden)</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+<tr><td>Die Dialog Society dient primär der politischen Einflussnahme im Sinne Thiels</td><td><span class="tag tag-extrapolation">EXTRAPOLATION</span></td></tr>
+<tr><td>Was genau bei den Treffen inhaltlich besprochen und beschlossen wird</td><td><span class="tag tag-offen">OFFEN</span></td></tr>
+</table>
+<div class="stat-grid">
+<div class="stat"><span class="num">2006</span><div class="label">Gründungsjahr Dialog Society</div></div>
+<div class="stat"><span class="num">20 Jahre</span><div class="label">geheime Mitgliederliste</div></div>
+<div class="stat"><span class="num">222</span><div class="label">Registrierte 2026-Retreat</div></div>
+<div class="stat"><span class="num">5x</span><div class="label">Spahn-Teilnahmen 2018–2024</div></div>
+</div>
+<div class="closing">
+<p><em>Ein Politiker, der öffentlich Transparenz einfordert, nimmt seit Jahren an einem Netzwerk teil, das per Prinzip keine Aufzeichnungen zulässt und dessen Gründer öffentlich dokumentiert hat, Demokratie für ein Auslaufmodell zu halten. Was genau macht diese Art von "Meinungsaustausch" wertvoll — und für wen? Diese Frage beantwortet dieser Artikel nicht. Er dokumentiert nur, dass sie gestellt werden muss.</em></p>
+</div>
+<div class="series-nav">
+<span class="label">WEITERFÜHREND IM ARCHIV</span>
+    Dossier — Von Davos zur Depotbank: Wie Psychedelika im WEF-Ökosystem ankamen (Angermayer-Anschluss)<br/>
+    Artikel #17 — Palantir (geplant)
+  </div>
+<footer>dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.</footer>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

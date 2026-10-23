@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PRO ASYL: Finanzierung, Erfolge, Regierungsnähe</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b;
+    color: #e8e8ec;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+  header.site {
+    border-bottom: 1px solid #1e1e24;
+    padding: 1.2rem 0;
+    position: sticky;
+    top: 0;
+    background: #09090b;
+    z-index: 100;
+  }
+  header.site .wrap { display: flex; align-items: center; gap: 0.8rem; max-width: 720px; }
+  .dot { width: 8px; height: 8px; background: #e8c547; border-radius: 50%; flex-shrink: 0; }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #6b6b7a;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .meta-top { margin-left: auto; font-family: 'Courier New', monospace; font-size: 0.7rem; color: #6b6b7a; }
+
+  .hero { padding: 3.5rem 0 2rem; }
+  .hero .kicker { margin-bottom: 1.2rem; display: block; }
+  h1 {
+    font-size: clamp(2rem, 6vw, 2.9rem);
+    line-height: 1.15;
+    font-weight: 700;
+    color: #f2f2f5;
+    margin-bottom: 1rem;
+  }
+  .subtitle { color: #9a9aa8; font-size: 1.15rem; line-height: 1.6; margin-bottom: 1.5rem; }
+  .article-meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #6b6b7a;
+    border-top: 1px solid #1e1e24;
+    border-bottom: 1px solid #1e1e24;
+    padding: 0.8rem 0;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    color: #f2f2f5;
+    margin: 3rem 0 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #1e1e24;
+  }
+  h3 { font-size: 1.15rem; color: #e8e8ec; margin: 1.8rem 0 0.6rem; }
+  p { margin-bottom: 1.2rem; color: #d4d4dc; }
+  strong { color: #f2f2f5; }
+
+  /* Evidence tags */
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .tag-belegt { background: rgba(74, 222, 128, 0.12); color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.3); }
+  .tag-extra { background: rgba(251, 146, 60, 0.12); color: #fb923c; border: 1px solid rgba(251, 146, 60, 0.3); }
+  .tag-offen { background: rgba(160, 160, 175, 0.12); color: #a0a0af; border: 1px solid rgba(160, 160, 175, 0.3); }
+  .tag-widerlegt { background: rgba(160, 160, 175, 0.08); color: #7a7a88; border: 1px solid rgba(160, 160, 175, 0.2); text-decoration: line-through; }
+
+  /* Stat grid */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin: 2rem 0;
+  }
+  @media (max-width: 480px) { .stat-grid { grid-template-columns: 1fr; } }
+  .stat {
+    border-left: 3px solid #e8c547;
+    padding: 0.3rem 0 0.3rem 1rem;
+  }
+  .stat .value { font-size: 1.8rem; font-weight: 700; color: #e8c547; line-height: 1.1; }
+  .stat .label { font-size: 0.85rem; color: #b8b8c4; margin-top: 0.3rem; line-height: 1.4; }
+  .stat .src { font-family: 'Courier New', monospace; font-size: 0.68rem; color: #6b6b7a; margin-top: 0.3rem; }
+
+  /* Source box */
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.92rem;
+    color: #b8b8c4;
+  }
+  .source-box .src-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #e8c547;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  /* Timeline */
+  .timeline { margin: 2rem 0; border-left: 2px solid #2a2a34; padding-left: 1.5rem; }
+  .tl-item { position: relative; margin-bottom: 1.5rem; }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -1.62rem;
+    top: 0.4rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #e8c547;
+  }
+  .tl-date { font-family: 'Courier New', monospace; font-size: 0.78rem; color: #e8c547; }
+  .tl-text { font-size: 0.95rem; color: #c8c8d0; margin-top: 0.2rem; }
+
+  /* Comparison table */
+  table.compare {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+  table.compare th, table.compare td {
+    border: 1px solid #1e1e24;
+    padding: 0.7rem 0.8rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  table.compare th {
+    background: #1a1a2e;
+    color: #e8c547;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  table.compare td { color: #c8c8d0; }
+
+  /* Pull quote */
+  blockquote {
+    border-left: 3px solid #e8c547;
+    padding: 0.3rem 0 0.3rem 1.3rem;
+    margin: 1.8rem 0;
+    font-style: italic;
+    color: #e8e8ec;
+    font-size: 1.15rem;
+  }
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #6b6b7a;
+    margin-top: 0.5rem;
+  }
+
+  ul.factlist { margin: 1rem 0 1.5rem 1.3rem; }
+  ul.factlist li { margin-bottom: 0.6rem; color: #d4d4dc; }
+
+  .closing {
+    margin: 3rem 0 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #1e1e24;
+  }
+  .closing p { font-style: italic; color: #9a9aa8; }
+
+  footer.site {
+    border-top: 1px solid #1e1e24;
+    padding: 2.5rem 0 3rem;
+    margin-top: 2rem;
+  }
+  footer.site p { font-size: 0.78rem; color: #6b6b7a; margin-bottom: 0.5rem; }
+  footer.site .brand { color: #e8c547; font-family: 'Courier New', monospace; font-size: 0.8rem; }
+
+  a { color: #e8c547; }
+</style>
+<meta name="description" content="Ein Verein, der seine finanzielle Unabhängigkeit betont — und ein Netzwerk, das von genau den Staatsgeldern lebt, die der Verein selbst ablehnt zu nehmen. …">
+<meta name="rubrik" content="cat-migration">
+<meta name="kachel-titel" content="Das PRO ASYL-Netzwerk: Finanzierung, Erfolge, Regierung">
+<link rel="canonical" href="https://dunkelfeld.report/proasyl-netzwerk.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Das PRO ASYL-Netzwerk: Finanzierung, Erfolge, Regierung">
+<meta property="og:description" content="Ein Verein, der seine finanzielle Unabhängigkeit betont — und ein Netzwerk, das von genau den Staatsgeldern lebt, die der Verein selbst ablehnt zu nehmen. …">
+<meta property="og:url" content="https://dunkelfeld.report/proasyl-netzwerk.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Das PRO ASYL-Netzwerk: Finanzierung, Erfolge, Regierung", "description": "Ein Verein, der seine finanzielle Unabhängigkeit betont — und ein Netzwerk, das von genau den Staatsgeldern lebt, die der Verein selbst ablehnt zu nehmen. …", "inLanguage": "de", "url": "https://dunkelfeld.report/proasyl-netzwerk.html", "mainEntityOfPage": "https://dunkelfeld.report/proasyl-netzwerk.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<header class="site">
+<div class="wrap">
+<div class="dot"></div>
+<span class="kicker">Analyse · Systemkritik · Quellenbasiert</span>
+<span class="meta-top">dunkelfeld.report</span>
+</div>
+</header>
+<div class="wrap">
+<div class="hero">
+<span class="kicker">Dossier · NGO-Netzwerke &amp; Migrationspolitik</span>
+<h1>Das PRO ASYL-Netzwerk: Finanzierung, Erfolge, Regierung</h1>
+<p class="subtitle">Ein Verein, der seine finanzielle Unabhängigkeit betont — und ein Netzwerk, das von genau den Staatsgeldern lebt, die der Verein selbst ablehnt zu nehmen. Eine Bestandsaufnahme in Zahlen und Belegen.</p>
+<div class="article-meta">Juli 2026  |  Lesedauer: ca. 10 Minuten  |  Status: laufend aktualisiert</div>
+</div>
+<p>PRO ASYL e.V. gehört zu den bekanntesten migrationspolitischen Organisationen Deutschlands. Der Verein selbst betont bei jeder Gelegenheit seine finanzielle und politische Unabhängigkeit vom Staat. Gleichzeitig ist das Netzwerk, dem PRO ASYL vorsteht und das es mitfinanziert — die Landesflüchtlingsräte — in erheblichem Umfang von genau den Ministerien abhängig, gegen deren Politik PRO ASYL vor Gericht zieht. Dieser Artikel stellt beide Seiten nebeneinander: die Finanzierung, die dokumentierten juristischen Erfolge gegen die Bundesregierung, und den Rechtsrahmen, in dem sich das alles abspielt.</p>
+<div class="stat-grid">
+<div class="stat">
+<div class="value">~25.000</div>
+<div class="label">Fördermitglieder von PRO ASYL e.V.</div>
+<div class="src">PRO ASYL Transparenzbericht, Stand 2025</div>
+</div>
+<div class="stat">
+<div class="value">5,85 Mio. €</div>
+<div class="label">Jahresbudget (letzter öffentlich bezifferter Stand)</div>
+<div class="src">Tätigkeitsbericht 2022/23</div>
+</div>
+<div class="stat">
+<div class="value">33,75</div>
+<div class="label">Vollzeitstellen (41 Personen), Stand September 2025</div>
+<div class="src">PRO ASYL Transparenzbericht</div>
+</div>
+<div class="stat">
+<div class="value">62 Mio. €</div>
+<div class="label">Bundesmittel für §12a-Asylverfahrensberatung 2023–2025</div>
+<div class="src">BT-Drs. 21/6094, Juli 2026</div>
+</div>
+</div>
+<h2>1. Finanzierung: Unabhängigkeit auf zwei Ebenen</h2>
+<p>PRO ASYL e.V. selbst finanziert sich nach eigenen Angaben durch Mitgliedsbeiträge und Spenden. Der Transparenzbericht des Vereins weist keinen Einzelgeber aus, dessen Zahlungen mehr als 10 Prozent der Jahreseinnahmen ausmachen — ein Punkt, den der Verein aktiv zur Untermauerung seiner Unabhängigkeit anführt. Ergänzt wird das durch die eigenständige STIFTUNG PRO ASYL, die über Zustiftungen und Vermögenserträge langfristige Projekte finanziert, unabhängig von der Rücklagenbeschränkung, der gemeinnützige Vereine unterliegen.</p>
+<span class="tag tag-belegt">BELEGT</span>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    PRO ASYL: "Der Transparenz verpflichtet", proasyl.de/transparenz/ — Stand September 2025. PRO ASYL: "Unterstützen Sie die Stiftung PRO ASYL", proasyl.de.
+  </div>
+<h3>Das Netzwerk dahinter: die Landesflüchtlingsräte</h3>
+<p>Anders sieht es beim Netzwerk aus, das PRO ASYL koordiniert und mitfinanziert. Die Landesflüchtlingsräte — etwa in Bayern, Nordrhein-Westfalen oder Mecklenburg-Vorpommern — finanzieren sich aus einer Mischung aus Spenden, Mitgliedsbeiträgen, Zuschüssen von PRO ASYL selbst — und direkten staatlichen Fördermitteln. Der Bayerische Flüchtlingsrat etwa erhält nach eigenen Angaben Projektmittel unter anderem vom Bundesarbeits- und Sozialministerium.</p>
+<blockquote>
+    "Weitere Finanzierungen kommen aus Projekten, etwa vom Bundesarbeits- und Sozialministerium zur Integration Geflüchteter in Arbeit und Ausbildung."
+    Bayerischer Flüchtlingsrat, zit. nach Bayerische Staatszeitung
+  </blockquote>
+<p>Diese Konstruktion — unabhängiger Dachverband, staatlich mitfinanziertes Netzwerk — ist der politische Reibungspunkt. Der CSU-Haushaltsausschussvorsitzende im bayerischen Landtag, Josef Zellmeier, forderte öffentlich, die Förderung der Flüchtlingsräte einzustellen, mit der Begründung, es dürften keine staatlichen Mittel an Organisationen fließen, die "Tipps geben, wie man sich dem Rechtsstaat widersetzen kann". Das Bundessozialministerium wies das zurück und verwies auf klar definierte, für alle Träger gleiche Fördervoraussetzungen.</p>
+<span class="tag tag-belegt">BELEGT</span>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    "Millionen vom Staat für umstrittene Helfer", Bayerische Staatszeitung. Verifizierbare Aussagen von Zellmeier (CSU) und Bundessozialministerium im selben Artikel dokumentiert.
+  </div>
+<h3>Die größere Fördersumme: §12a AsylG</h3>
+<p>Unabhängig von PRO ASYL direkt fließt eine deutlich größere Summe in die behördenunabhängige Asylverfahrensberatung nach §12a Asylgesetz: rund 62 Millionen Euro Bundesmittel allein 2023 bis 2025, weitere 24,5 Millionen Euro für 2026. Größte Empfänger sind nach Angaben der Bundesregierung die großen Wohlfahrtsverbände — Diakonie, Caritas, Paritätischer Wohlfahrtsverband, AWO — nicht PRO ASYL selbst. Bemerkenswert ist die Antwort der Bundesregierung auf eine Kleine Anfrage der AfD-Fraktion vom Juli 2026: Sie kann nicht belegen, wie viele Asylverfahren durch die geförderte Beratung tatsächlich begleitet wurden, ob sich Verfahren dadurch beschleunigen, ob Klagezahlen sinken oder ob aussichtslose Anträge seltener gestellt werden. Begründung: Es würden keine personenbezogenen Daten erhoben.</p>
+<span class="tag tag-belegt">BELEGT</span>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    Antwort der Bundesregierung auf Kleine Anfrage der AfD-Fraktion, BT-Drs. 21/6094, Juli 2026 (zitiert nach Pressemitteilung AfD-Bundestagsfraktion, 1. Juli 2026).
+  </div>
+<h2>2. Erfolge: Klagen gegen die eigene Regierung</h2>
+<p>PRO ASYL tritt regelmäßig als Prozessbegleiter, öffentliche Stimme oder Lobbyakteur in Verfahren gegen Entscheidungen der Bundesregierung auf. Zwei aktuelle Fälle zeigen das Muster:</p>
+<div class="timeline">
+<div class="tl-item">
+<div class="tl-date">15. April 2026</div>
+<div class="tl-text">Bundesverfassungsgericht erklärt Teile der AsylbLG-Grundleistungen für im Wesentlichen grundgesetzkonform, mahnt aber erneut Nachbesserung bei der Bedarfsermittlung an — laufender Streit um Existenzminimum-Berechnung seit dem Grundsatzurteil von 2012.</div>
+</div>
+<div class="tl-item">
+<div class="tl-date">24. Juli 2026</div>
+<div class="tl-text">Bundesverfassungsgericht stuft den pauschalen Aufnahmestopp gefährdeter Afghan*innen durch Bundesinnenminister Alexander Dobrindt (CSU) als "Willkür" ein. Eine afghanische Mutter und ihre zwei minderjährigen Söhne erwirken, dass ihr Fall neu geprüft werden muss. PRO ASYL fordert die Bundesregierung öffentlich zu Konsequenzen auf.</div>
+</div>
+</div>
+<span class="tag tag-belegt">BELEGT</span>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    Tagesschau: "Pauschaler Aufnahmestopp von Afghanen ist 'Willkür'", 24.07.2026. Bundesverfassungsgericht, Beschluss vom 15. April 2026 (Az. 1 BvL 5/21).
+  </div>
+<p>Parallel dazu ist PRO ASYL im offiziellen Lobbyregister des Deutschen Bundestags registriert und hat sich 2026 unter anderem gegen einen Gesetzentwurf zur Stärkung digitaler Ermittlungsbefugnisse (biometrischer Internetabgleich, automatisierte Datenanalyse im BKA-Gesetz) positioniert und dessen Rücknahme empfohlen.</p>
+<span class="tag tag-belegt">BELEGT</span>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    Lobbyregister beim Deutschen Bundestag, Registereintrag "Bundesarbeitsgemeinschaft PRO ASYL e.V." (R002696), Stellungnahme datiert 12.03.2026.
+  </div>
+<h2>3. Der Rechtsweg: Was sich wirklich geändert hat</h2>
+<p>Im Zusammenhang mit PRO ASYL kursiert häufig die Behauptung, Asylsuchende könnten inzwischen "bis zu achtmal" gegen eine Entscheidung klagen. Diese konkrete Zahl lässt sich in keiner geprüften Quelle bestätigen — sie bleibt <span class="tag tag-offen">OFFEN</span>. Was sich tatsächlich belegen lässt, ist die reale Struktur des Instanzenwegs und eine konkrete Gesetzesänderung der Ampel-Koalition.</p>
+<table class="compare">
+<tr><th>Vor 2023</th><th>Seit 1. Januar 2023</th></tr>
+<tr>
+<td>BAMF-Bescheid → Klage Verwaltungsgericht → Berufung Oberverwaltungsgericht (nur bei Zulassung) → Revision Bundesverwaltungsgericht, <strong>beschränkt auf reine Rechtsfragen</strong> → ggf. Verfassungsbeschwerde BVerfG</td>
+<td>Zusätzlich: "Tatsachenrevision" nach §78 Abs. 8 AsylG. Das Bundesverwaltungsgericht darf erstmals auch <strong>Tatsachenfragen</strong> prüfen (z. B. Sicherheitslage in einem Herkunftsland) — aber nur, wenn Oberverwaltungsgerichte verschiedener Bundesländer sich widersprechen</td>
+</tr>
+</table>
+<p>Ein Widerspruchsverfahren gegen den eigentlichen BAMF-Bescheid gab es zu keinem Zeitpunkt — §11 AsylG schließt das seit Jahrzehnten aus, es geht direkt zur Klage. Die Tatsachenrevision wurde nicht eingeführt, um Einzelpersonen mehr Klagemöglichkeiten zu geben, sondern um uneinheitliche Rechtsprechung zwischen Bundesländern zu vereinheitlichen — das steht so in der Gesetzesbegründung der damaligen Ampel-Koalition. Kritiker in der Sachverständigenanhörung des Bundestags, etwa der Verwaltungsrechtler Winfried Kluth, hielten das Instrument für unnötig und schlugen stattdessen eine unabhängige Fachstelle beim Bundesverwaltungsgericht vor. Gesetzlich vorgeschrieben ist eine Evaluierung durch Bundesinnen- und Bundesjustizministerium drei Jahre nach Inkrafttreten — also 2026.</p>
+<span class="tag tag-belegt">BELEGT</span>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    §78 Abs. 8 AsylG (dejure.org). Bundesverwaltungsgericht, Pressemitteilungen Nr. 71/2023 und 91/2023. Bundestag, Textarchiv zur Sachverständigenanhörung "Beschleunigung der Asylgerichtsverfahren", 2022. Bündnis 90/Die Grünen, Bundestagsfraktion: "Reform stärkt Asylsuchende und entlastet Behörden".
+  </div>
+<h2>4. Grundsatzurteile: Wo Gerichte strukturell eingreifen</h2>
+<p>Neben Einzelfallentscheidungen gibt es eine kleinere Zahl von Urteilen, die nicht nur einen Fall, sondern ganze Verfahrenspraktiken betreffen — mit Wirkung weit über den jeweiligen Kläger hinaus. Zwei davon aus 2025 verdienen besondere Aufmerksamkeit, weil PRO ASYL und die Gesellschaft für Freiheitsrechte (GFF) als wiederkehrendes Duo dahinterstehen.</p>
+<div class="timeline">
+<div class="tl-item">
+<div class="tl-date">1. August 2025</div>
+<div class="tl-text">EuGH, Rs. C-758/24 und C-759/24 (Alace/Canpelli): Kippt die zentrale Voraussetzung von Italiens "Albanien-Modell" (Auslagerung der Asylprüfung nach Albanien). Ein Land darf nur dann pauschal als "sicherer Herkunftsstaat" gelten, wenn die Einstufung transparent begründet und gerichtlich überprüfbar ist — und wenn der Staat für alle Gruppen sicher ist, nicht nur für die meisten (konkret ging es um Ausnahmen für Homosexuelle in Bangladesch). Medien nannten es einen "harten Schlag" für Italiens Regierungschefin Meloni.</div>
+</div>
+<div class="tl-item">
+<div class="tl-date">30. September 2025</div>
+<div class="tl-text">BVerfG, 2 BvR 460/25 (veröffentlicht 20.11.2025): Wenn die Polizei zum Zweck einer Abschiebung das Zimmer einer Person in einer Gemeinschaftsunterkunft betritt, gilt das grundsätzlich als Durchsuchung und erfordert eine vorherige richterliche Anordnung — auch wenn der Gesetzgeber 2019 extra den Begriff "Betreten" ins Aufenthaltsgesetz eingefügt hatte, um genau das zu vermeiden. Unterstützt von PRO ASYL und GFF gemeinsam.</div>
+</div>
+</div>
+<span class="tag tag-belegt">BELEGT</span>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    Gerichtshof der Europäischen Union, Pressemitteilung Nr. 103/25, 01.08.2025. Bundesverfassungsgericht, Pressemitteilung Nr. 106/2025, 20.11.2025. LTO: "BVerfG: Abschiebung aus Flüchtlingszimmer ist Durchsuchung", 20.11.2025. PRO ASYL/GFF, gemeinsame Pressemitteilung "Karlsruhe stoppt verfassungswidrige Praxis", November 2025.
+  </div>
+<p>Warum das praktisch schwerwiegend ist: Ein richterlicher Durchsuchungsbeschluss braucht Vorlauf — und genau der Überraschungsmoment, auf den Abschiebe-Einsätze in der Praxis angewiesen sind, geht damit verloren. Das ist eine strukturelle Erschwernis, keine Einzelfallentscheidung.</p>
+<span class="tag tag-extra">EXTRAPOLATION</span>
+<p>Zur Fairness gehört das Gegenbild: Im selben Zeitraum gibt es ebenso Grundsatzentscheidungen, die staatliche Abschiebungspraxis stützen. Das Bundesverwaltungsgericht stellte 2025 klar, dass nicht-vulnerable männliche Drittstaatsangehörige nach Griechenland zurückgeführt werden können. Der EuGH entschied im Februar 2026, dass sich Italien der Rücknahme von Dublin-Fällen nicht durch eine einseitige Erklärung entziehen kann — was im konkreten Streit zwischen Deutschland und Italien die deutsche Abschiebungsposition stärkte, nicht die der Betroffenen. "Die Gerichte" sind kein einheitlicher Block mit einer politischen Richtung.</p>
+<span class="tag tag-belegt">BELEGT</span>
+<div class="closing">
+<p>Offen bleibt, wie die für 2026 vorgeschriebene Evaluierung der Tatsachenrevision ausfallen wird — und ob sie öffentlich einsehbar sein wird. Offen bleibt auch, ob die Bundesregierung ihre eigene Einschätzung zur Wirksamkeit der §12a-Förderung nachliefert, nachdem sie diese in der Antwort auf die Kleine Anfrage im Juli 2026 selbst verneint hat. Offen bleibt, wie sich die Doppelrolle des PRO ASYL-Netzwerks — unabhängiger Verein an der Spitze, staatlich mitfinanzierte Basisstruktur darunter — auf die öffentliche Debatte um seine Neutralität auswirkt. Und offen bleibt, ob das wiederkehrende Duo PRO ASYL/GFF eine feste Arbeitsteilung verfolgt — PRO ASYL als Öffentlichkeitsarbeit und Rechtshilfefonds, GFF als Prozessführung — oder ob sich das von Fall zu Fall unterschiedlich verteilt.</p>
+</div>
+</div>
+<footer class="site">
+<div class="wrap">
+<p>Alle Angaben in diesem Artikel basieren auf öffentlich zugänglichen Quellen: Gesetzestexten, Bundestagsdrucksachen, Gerichtsentscheidungen und Selbstauskünften der genannten Organisationen. Zahlen und Zitate sind mit Quellenangabe versehen. Wo eine Behauptung nicht belegbar war, ist sie ausdrücklich als offen gekennzeichnet, nicht als Tatsache dargestellt.</p>
+<p class="brand">dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.</p>
+</div>
+</footer>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

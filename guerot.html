@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Der Fall Guérot: Wenn Vernetzung nicht mehr schützt</title>
+<style>
+  :root{
+    --bg:#09090b; --accent:#e8c547; --box:#1a1a2e;
+    --green:#5fbf7a; --orange:#e8a147; --grey:#8a8a8a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:#e4e4e7; font-family:Georgia,'Times New Roman',serif;
+    font-size:1.1rem; line-height:1.8; margin:0; padding:0;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:2.5rem 1.25rem 5rem;}
+  .kicker{
+    font-family:'Courier New',monospace; color:var(--accent); font-size:0.85rem;
+    letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.5rem;
+  }
+  h1{font-family:Georgia,serif; font-size:2.1rem; line-height:1.25; margin:0 0 1rem; color:#f4f4f5;}
+  .subtitle{color:#b8b8bd; font-size:1.05rem; margin-bottom:2rem; font-style:italic;}
+  .meta{
+    font-family:'Courier New',monospace; font-size:0.8rem; color:var(--grey);
+    border-top:1px solid #2a2a35; border-bottom:1px solid #2a2a35;
+    padding:0.75rem 0; margin-bottom:2.5rem; display:flex; gap:1.5rem; flex-wrap:wrap;
+  }
+  p{padding-bottom:1.2rem;}
+  h2{
+    font-size:1.4rem; color:var(--accent); margin:2.5rem 0 1rem;
+    font-family:Georgia,serif; border-bottom:1px solid #2a2a35; padding-bottom:0.5rem;
+  }
+  h3{font-size:1.15rem; color:#f4f4f5; margin:1.8rem 0 0.8rem;}
+  .source-box{
+    background:var(--box); border-left:3px solid var(--accent);
+    padding:1.2rem 1.4rem; margin:1.5rem 0; border-radius:0 4px 4px 0;
+  }
+  .source-box .src-label{
+    font-family:'Courier New',monospace; font-size:0.75rem; color:var(--accent);
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem; display:block;
+  }
+  .source-box p{padding-bottom:0.5rem; font-size:1rem;}
+  .source-box cite{
+    display:block; font-family:'Courier New',monospace; font-size:0.78rem;
+    color:var(--grey); font-style:normal; margin-top:0.5rem;
+  }
+  .tag{
+    font-family:'Courier New',monospace; font-size:0.72rem; font-weight:bold;
+    padding:0.2rem 0.55rem; border-radius:3px; letter-spacing:0.05em;
+    display:inline-block; margin-right:0.4rem; margin-bottom:0.3rem;
+  }
+  .tag-belegt{background:rgba(95,191,122,0.15); color:var(--green); border:1px solid var(--green);}
+  .tag-belegt1{background:rgba(95,191,122,0.08); color:#8fcf9f; border:1px solid #3a6a45;}
+  .tag-extra{background:rgba(232,161,71,0.15); color:var(--orange); border:1px solid var(--orange);}
+  .tag-offen{background:rgba(138,138,138,0.15); color:var(--grey); border:1px solid var(--grey);}
+
+  .person-card{
+    display:flex; gap:1rem; border:1px solid #2a2a35; border-radius:6px;
+    padding:1.2rem 1.4rem; margin:1.3rem 0; background:#111116; align-items:flex-start;
+  }
+  .person-card .avatar{
+    width:42px; height:42px; border-radius:50%; background:var(--accent);
+    color:#09090b; font-family:'Courier New',monospace; font-weight:bold;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1rem;
+  }
+  .person-card h3{margin:0 0 0.3rem;}
+  .person-card .role{font-family:'Courier New',monospace; font-size:0.8rem; color:var(--grey); margin-bottom:0.6rem;}
+
+  .timeline{margin:2rem 0; border-left:2px solid var(--accent); padding-left:1.5rem;}
+  .timeline-item{margin-bottom:1.5rem; position:relative;}
+  .timeline-item::before{
+    content:''; position:absolute; left:-1.56rem; top:0.4rem;
+    width:8px; height:8px; border-radius:50%; background:var(--accent);
+  }
+  .timeline-date{
+    font-family:'Courier New',monospace; font-size:0.8rem; color:var(--accent); display:block;
+    margin-bottom:0.3rem;
+  }
+
+  .pull-quote{
+    font-size:1.3rem; font-style:italic; color:#f4f4f5; margin:2rem 0;
+    padding:0 1rem; border-left:3px solid var(--accent); line-height:1.5;
+  }
+
+  table{width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:0.95rem;}
+  th,td{border:1px solid #2a2a35; padding:0.6rem 0.8rem; text-align:left;}
+  th{background:var(--box); color:var(--accent); font-family:'Courier New',monospace; font-size:0.8rem;}
+
+  .open-question{
+    font-style:italic; color:#b8b8bd; margin-top:3rem; padding-top:1.5rem;
+    border-top:1px solid #2a2a35; font-size:1.05rem;
+  }
+
+  .series-nav{
+    margin-top:3.5rem; padding-top:1.5rem; border-top:1px solid #2a2a35;
+    font-family:'Courier New',monospace; font-size:0.85rem; color:var(--grey);
+  }
+  .series-nav a{color:var(--accent); text-decoration:none;}
+  .series-nav a:hover{text-decoration:underline;}
+
+  a{color:var(--accent);}
+
+  .legend{
+    font-family:'Courier New',monospace; font-size:0.72rem; color:var(--grey);
+    margin:1rem 0 2rem; line-height:2;
+  }
+
+  table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.95rem;} th,td{border:1px solid #2a2a35;padding:0.5rem;text-align:left;}
+  blockquote{background:var(--box);border-left:3px solid var(--accent);margin:1.5rem 0;padding:1rem 1.4rem;font-style:italic;}
+  .footnote{font-size:0.85rem;color:#a1a1aa;}
+</style>
+<meta name="description" content="Ulrike Guérot war keine Außenseiterin. Sie war Direktorin des Berliner Büros des European Council on Foreign Relations, Senior Associate bei George Soros&#x27; …">
+<meta name="rubrik" content="cat-staat">
+<meta name="kachel-titel" content="Der Fall Guérot: Wenn selbst die eigene Vernetzung nicht mehr schützt">
+<link rel="canonical" href="https://dunkelfeld.report/guerot.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Der Fall Guérot: Wenn selbst die eigene Vernetzung nicht mehr schützt">
+<meta property="og:description" content="Ulrike Guérot war keine Außenseiterin. Sie war Direktorin des Berliner Büros des European Council on Foreign Relations, Senior Associate bei George Soros&#x27; …">
+<meta property="og:url" content="https://dunkelfeld.report/guerot.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Der Fall Guérot: Wenn selbst die eigene Vernetzung nicht mehr schützt", "description": "Ulrike Guérot war keine Außenseiterin. Sie war Direktorin des Berliner Büros des European Council on Foreign Relations, Senior Associate bei George Soros' …", "inLanguage": "de", "url": "https://dunkelfeld.report/guerot.html", "mainEntityOfPage": "https://dunkelfeld.report/guerot.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<article style="background:#0a0a0a;color:#e0e0e0;font-family:'JetBrains Mono',monospace;max-width:820px;margin:0 auto;padding:40px 24px;line-height:1.7;">
+<div style="border-left:4px solid #ff2b3d;padding-left:16px;margin-bottom:32px;">
+<div style="color:#ff2b3d;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Wer kontrolliert wen? · Institutionen unter der Lupe</div>
+<h1 style="font-size:32px;color:#ffffff;margin:0 0 12px 0;line-height:1.2;">Der Fall Guérot: Wenn selbst die eigene Vernetzung nicht mehr schützt</h1>
+<div style="color:#999;font-size:14px;">Wie eine Professorin, die das System von innen mitgebaut hat, zur Zielscheibe des eigenen Systems wurde</div>
+</div>
+<p style="font-size:17px;">Ulrike Guérot war keine Außenseiterin. Sie war Direktorin des Berliner Büros des European Council on Foreign Relations, Senior Associate bei George Soros' Open Society Initiative for Europe, regelmäßige Teilnehmerin der Münchner Sicherheitskonferenz. Wer nach einem Lehrbuchbeispiel für institutionelle Nähe zum transatlantischen Establishment sucht, findet in ihrer Biografie bis 2021 kaum ein fehlendes Kapitel. Und genau das macht ihren Fall bemerkenswert: Nicht einmal diese Vernetzung hat sie geschützt, als sie in zwei Fragen vom Konsens abwich – Corona-Politik und Ukraine-Krieg.</p>
+<div style="background:#0d1a1a;border:1px solid #1a3a3a;border-left:4px solid #00d9d9;padding:20px;margin:28px 0;border-radius:2px;">
+<div style="color:#00d9d9;font-weight:bold;font-size:13px;letter-spacing:1px;margin-bottom:10px;">FACTBOX · STATIONEN EINER KARRIERE</div>
+<ul style="margin:0;padding-left:20px;color:#c0c0c0;font-size:15px;">
+<li>2000–2003: Leiterin Europa-Programm, Deutsche Gesellschaft für Auswärtige Politik (DGAP)</li>
+<li>2003–2007: Foreign Policy Director, German Marshall Fund, Berlin</li>
+<li>2007–2013: Gründerin und erste Direktorin des Berliner Büros, European Council on Foreign Relations (ECFR) – mitfinanziert von George Soros' Open Society Foundations</li>
+<li>Anschließend: Senior Associate/Senior Fellow, Open Society Initiative for Europe (OSIFE), ebenfalls Teil des Soros-Netzwerks</li>
+<li>Regelmäßige Teilnehmerin der Münchner Sicherheitskonferenz sowie der Ditchley Conferences, der deutsch-britischen Königswinter-Konferenz und der Bergedorfer Gespräche (Quelle: eigene Institutionsbiografie, Berliner Festspiele – neutral bestätigt)</li>
+<li>Ab 2016: Professur für Europapolitik, Donau-Universität Krems</li>
+<li>2021: Berufung auf eine Professur an der Universität Bonn</li>
+</ul>
+</div>
+<h2 style="color:#ff2b3d;font-size:22px;margin-top:40px;">Der Bruch: Corona, Ukraine, Lanz</h2>
+<p>Guérot machte sich während der Corona-Pandemie als Kritikerin der staatlichen Maßnahmen einen Namen – sie nannte sie "semi-autoritär" und unterstützte 2021 die Aktion #allesdichtmachen. Nach Beginn des russischen Angriffskriegs auf die Ukraine forderte sie wiederholt sofortige Verhandlungen und einen Waffenstillstand – eine Position, die ihr den Vorwurf einbrachte, Angreifer und Angegriffenen gleichzusetzen.</p>
+<p>Den öffentlichen Wendepunkt markiert ein Auftritt am 22. Juni 2022 bei "Markus Lanz" im ZDF, gemeinsam mit der FDP-Politikerin Marie-Agnes Strack-Zimmermann und dem CNN-Reporter Frederik Pleitgen. Die Konfrontation um ihre Haltung zum Ukraine-Krieg eskalierte auf offener Bühne. Ein Jahr später schilderte Guérot in einem Interview, der Auftritt habe sie gesundheitlich schwer mitgenommen – sie habe sich krankschreiben lassen und im Rückblick von "männlicher Brutalität" gesprochen, die ihr in der Sendung widerfahren sei.</p>
+<div style="background:#1a0d0d;border:1px solid #3a1a1a;padding:18px 20px;margin:28px 0;font-style:italic;color:#ff9999;border-radius:2px;">
+  "Was sich entfaltete, war eine Orgie von Gewalt und Hass. Bei einem Film hätten viele angewidert abgeschaltet." — zeitgenössischer Medienkommentar zur Sendung (Weltwoche, 4. Juni 2022)
+</div>
+<p>Vier Monate später, am 31. Oktober 2022, distanzierte sich die Universitätsleitung Bonn öffentlich von Guérots politischen Positionen – ohne sie namentlich zu nennen, aber unmissverständlich adressiert. Der offizielle Kündigungsgrund kam gut vier Monate später und lautete anders: Plagiat.</p>
+<h2 style="color:#ff2b3d;font-size:22px;margin-top:40px;">Der formale Grund: Ein populärwissenschaftliches Buch</h2>
+<p>Im Februar/März 2023 kündigte die Universität Bonn Guérots Vertrag. Grund: In einem im Berufungsverfahren eingereichten, populärwissenschaftlichen Buch soll sie an mehreren Stellen nicht die Standards wissenschaftlicher Redlichkeit eingehalten haben. Guérot bestritt die Vorwürfe – die beanstandeten Stellen seien allenfalls Zitierfehler geringer Zahl, das Werk sei nie als wissenschaftliche Publikation deklariert gewesen.</p>
+<div style="background:#0d1a1a;border:1px solid #1a3a3a;border-left:4px solid #00d9d9;padding:20px;margin:28px 0;border-radius:2px;">
+<div style="color:#00d9d9;font-weight:bold;font-size:13px;letter-spacing:1px;margin-bottom:10px;">TIMELINE · DER INSTANZENWEG</div>
+<table style="width:100%;border-collapse:collapse;font-size:14px;color:#c0c0c0;">
+<tr><td style="padding:6px 0;color:#888;white-space:nowrap;">31.10.2022</td><td>Öffentliche Distanzierung der Uni-Leitung Bonn</td></tr>
+<tr><td style="padding:6px 0;color:#888;">Feb/Mär 2023</td><td>Kündigung wegen Plagiatsvorwürfen</td></tr>
+<tr><td style="padding:6px 0;color:#888;">24.04.2024</td><td>ArbG Bonn weist Kündigungsschutzklage ab (Az. 2 Ca 345/23)</td></tr>
+<tr><td style="padding:6px 0;color:#888;">30.09.2025</td><td>LAG Köln weist Berufung zurück, Revision nicht zugelassen (Az. 10 SLa 289/24)</td></tr>
+<tr><td style="padding:6px 0;color:#888;">März 2026</td><td>BAG weist Nichtzulassungsbeschwerde zurück</td></tr>
+<tr><td style="padding:6px 0;color:#888;">17.04.2026</td><td>Verfassungsbeschwerde beim BVerfG eingereicht</td></tr>
+<tr><td style="padding:6px 0;color:#888;">19.06.2026</td><td>Hauptrednerin, Free Speech Conference, Westminster, London</td></tr>
+</table>
+</div>
+<p>Die Gerichte urteilten durchgängig auf derselben Linie: Ausschlaggebend sei nicht die politische Haltung, sondern eine Verletzung der Wahrheitspflicht im Bewerbungsverfahren gegenüber der Universität – ein im Kern arbeitsrechtlicher, kein politischer Maßstab. Guérots Anwälte halten dem entgegen, das Urteil beruhe auf "sachfremden Erwägungen" und sei mit Art. 3 GG (Willkürverbot) sowie Art. 5 GG (Wissenschaftsfreiheit) unvereinbar.</p>
+<h2 style="color:#ff2b3d;font-size:22px;margin-top:40px;">Cui bono: Die Ironie der eigenen Biografie</h2>
+<p>Der eigentlich bemerkenswerte Punkt liegt nicht im Plagiatsvorwurf selbst – über dessen Substanz haben inzwischen drei Gerichtsinstanzen geurteilt. Er liegt in der Reihenfolge der Ereignisse: Erst die politische Distanzierung, dann – vier Monate später – der formal-neutrale Grund. Und er liegt in der Ironie, dass ausgerechnet eine Frau, die das transatlantische Politik-Establishment über zwei Jahrzehnte von innen mitgeprägt hat – ECFR, Soros-Netzwerk OSIFE, Münchner Sicherheitskonferenz – von genau jenem institutionellen Ökosystem fallengelassen wurde, sobald sie in zwei Krisenfragen vom Konsens abwich.</p>
+<p>Das lässt sich strukturell lesen, ohne Absicht unterstellen zu müssen: Institutionen, die auf Reputation und politische Anschlussfähigkeit angewiesen sind, distanzieren sich schnell und öffentlich von abweichenden Stimmen aus den eigenen Reihen – unabhängig davon, wie tief diese Stimme zuvor im selben System verankert war. Nähe zum System schützt nicht vor dem System, wenn das System selbst die Richtung ändert.</p>
+<h2 style="color:#ff2b3d;font-size:22px;margin-top:40px;">Bestrafe einen, erziehe Tausende</h2>
+<p>Fälle wie dieser entfalten eine Wirkung, die weit über die betroffene Person hinausgeht – unabhängig davon, wie die Gerichte am Ende urteilen. In der Rechtswissenschaft heißt das "Chilling Effect": Das Bundesverfassungsgericht selbst spricht von "Einschüchterungs-" und "abschreckenden Wirkungen" auf Grundrechte. Gemeint ist, dass nicht nur die eine sichtbar bestrafte Person betroffen ist, sondern ein ganzes Umfeld, das die Botschaft empfängt und sein Verhalten vorsorglich anpasst – ohne dass es dafür je eine Anweisung oder Absicht bräuchte. Ein prominent gescheiterter Instanzenweg reicht als Signal.</p>
+<p>Mehrere aktuelle Bücher greifen genau dieses Phänomen auf, mit unterschiedlicher Schärfe: Julian Nida-Rümelins eher staatstragendes "Cancel Culture – Ende der Aufklärung?" (Piper), Kolja Zydatiss' "Cancel Culture. Demokratie in Gefahr", der Sammelband "Angriff auf die Wissenschaftsfreiheit" (verschiedene Autoren) sowie – methodisch umstrittener – Egner/Uhlenwinkels "Wer stört, muss weg!". Gemeinsamer Nenner aller Bücher: Nicht die Zahl der Fälle ist entscheidend, sondern deren Sichtbarkeit und die daraus folgende Schere im Kopf bei denen, die selbst nie belangt wurden.</p>
+<div style="background:#2a2000;border:1px solid #4a3a00;border-left:4px solid #e6c200;padding:20px;margin:32px 0;border-radius:2px;">
+<div style="color:#e6c200;font-weight:bold;font-size:13px;letter-spacing:1px;margin-bottom:10px;">FAIRNESSBOX · DIE GEGENPOSITION</div>
+<p style="margin:0 0 10px 0;color:#d0d0c0;font-size:14px;">Die Universität Bonn und alle drei bislang befassten Arbeitsgerichte bestreiten eine politische Motivation und stützen sich ausschließlich auf die Wahrheitspflicht im konkreten Bewerbungsverfahren. Die Erfolgsquote von Nichtzulassungsbeschwerden vor dem BAG liegt Fachanwälten zufolge ohnehin nur bei 4–11 Prozent – ein Scheitern allein ist daher kein Beleg für Willkür.</p>
+<p style="margin:0;color:#d0d0c0;font-size:14px;">Eine repräsentative Studie des DZHW mit der ZEIT-Stiftung Bucerius (Oktober 2024, über 9.000 befragte Wissenschaftler*innen) fand keine strukturelle "Cancel Culture" an deutschen Hochschulen. Das vielzitierte Buch "Wer stört, muss weg!" (Egner/Uhlenwinkel), das 61 Fälle über 20 Jahre dokumentiert, wurde in der Fachpresse (u.a. Spektrum der Wissenschaft) methodisch kritisiert: Die Fälle beruhen auf anonymisierter Selbstauskunft Betroffener, es fehlen belastbare offizielle Statistiken. Ein flächendeckendes Muster ist damit nicht bewiesen – einzelne, gut dokumentierte Fälle wie der von Guérot sind es.</p>
+</div>
+<p>Das ändert nichts an der Chronologie im Fall Guérot selbst – sie ist durch Gerichtsakten, Pressemitteilungen und die eigene Universität dokumentiert. Es bedeutet nur: Der Sprung von einem Einzelfall zu einem bewiesenen System ist ein eigener, gesondert zu führender Beleg. Genau darum geht es im Vergleichsstück auf kurswechsel.blog, das mehrere Fälle nebeneinanderstellt.</p>
+<p style="color:#888;font-size:13px;margin-top:36px;border-top:1px solid #2a2a2a;padding-top:16px;">Quellen: LTO (30.09.2025), t-online (24.04.2024), Wikipedia/openDemocracy (Biografie ECFR/OSIFE), Weltwoche (04.06.2022), Westendverlag-Pressemitteilung (17.04.2026), Verfassungsblog, Spektrum der Wissenschaft (Rezension "Wer stört, muss weg!"), DZHW/ZEIT-Stiftung Bucerius (Studie Akademische Redefreiheit, Okt. 2024). Stand: 25. Juli 2026 – Verfassungsbeschwerde beim BVerfG zum Zeitpunkt der Veröffentlichung unentschieden.</p>
+</article>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

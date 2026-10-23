@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Panama Papers: Bilanz aus Rücktritten und Freisprüchen</title>
+
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --box-bg: #1a1a2e;
+    --green: #4caf82;
+    --orange: #e39a3a;
+    --grey: #8a8a94;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.3;
+    margin: 0 0 1rem;
+    color: #fff;
+  }
+  .sub {
+    font-size: 1.2rem;
+    color: #b8b8c2;
+    font-style: italic;
+    margin-bottom: 2.5rem;
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    border-bottom: 1px solid #2a2a3a;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    color: #d8d8e0;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+  }
+  p { margin: 1.2rem 0; }
+  a { color: var(--accent); }
+
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.5rem;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(76,175,130,0.15); color: var(--green); border: 1px solid var(--green); }
+  .tag-extra { background: rgba(227,154,58,0.15); color: var(--orange); border: 1px solid var(--orange); }
+  .tag-offen { background: rgba(138,138,148,0.15); color: var(--grey); border: 1px solid var(--grey); }
+  .tag-vt { background: rgba(138,138,148,0.1); color: var(--grey); border: 1px solid var(--grey); text-decoration: line-through; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .stat {
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 1.2rem 1rem;
+    text-align: center;
+  }
+  .stat .num {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 1.6rem;
+    color: var(--accent);
+    font-weight: bold;
+  }
+  .stat .label {
+    display: block;
+    font-size: 0.8rem;
+    color: #a8a8b4;
+    margin-top: 0.3rem;
+  }
+
+  .source-box {
+    background: var(--box-bg);
+    border-left: 4px solid var(--accent);
+    border-radius: 4px;
+    padding: 1.2rem 1.5rem;
+    margin: 1.8rem 0;
+  }
+  .src-title {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.6rem;
+  }
+
+  .person-card {
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 1.3rem 1.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid #2a2a3a;
+  }
+  .person-name {
+    font-family: 'Courier New', monospace;
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+  }
+  .person-role {
+    color: var(--grey);
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-bottom: 0.8rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.8rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    border: 1px solid #2a2a3a;
+    padding: 0.7rem 0.8rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    color: var(--accent);
+    letter-spacing: 0.03em;
+  }
+
+  .pullquote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #fff;
+    border-left: 3px solid var(--accent);
+    padding-left: 1.2rem;
+    margin: 2.5rem 0;
+  }
+
+  .timeline {
+    margin: 2rem 0;
+    padding-left: 1.5rem;
+    border-left: 2px solid #2a2a3a;
+  }
+  .timeline-item {
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.58rem;
+    top: 0.4rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .open-questions {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a3a;
+    font-style: italic;
+    color: #c0c0ca;
+  }
+  .open-questions h2 {
+    font-style: normal;
+  }
+  .open-questions li { margin-bottom: 1rem; }
+
+  .source-list {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a3a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #8a8a94;
+    line-height: 1.6;
+  }
+  .source-list a { color: #a8a8b4; }
+
+  .series-nav {
+    margin-top: 3rem;
+    padding: 1.2rem;
+    background: var(--box-bg);
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+  }
+  .series-nav a { display: block; margin: 0.3rem 0; }
+</style>
+<meta name="description" content="11,5 Millionen Dokumente, ein Ministerpräsident-Rücktritt, tausende Ermittlungen — und am Ende Freisprüche. Eine Bestandsaufnahme der Panama Papers.">
+<meta name="rubrik" content="cat-geld">
+<meta name="kachel-titel" content="Panama Papers: Der größte Leak der Geschichte — und eine Bilanz aus Rücktritten und Freisprüchen">
+<link rel="canonical" href="https://dunkelfeld.report/panama-papers.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Panama Papers: Der größte Leak der Geschichte — und eine Bilanz aus Rücktritten und Freisprüchen">
+<meta property="og:description" content="11,5 Millionen Dokumente, ein Ministerpräsident-Rücktritt, tausende Ermittlungen — und am Ende Freisprüche. Eine Bestandsaufnahme der Panama Papers.">
+<meta property="og:url" content="https://dunkelfeld.report/panama-papers.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Panama Papers: Der größte Leak der Geschichte — und eine Bilanz aus Rücktritten und Freisprüchen", "description": "11,5 Millionen Dokumente, ein Ministerpräsident-Rücktritt, tausende Ermittlungen — und am Ende Freisprüche. Eine Bestandsaufnahme der Panama Papers.", "inLanguage": "de", "url": "https://dunkelfeld.report/panama-papers.html", "mainEntityOfPage": "https://dunkelfeld.report/panama-papers.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="meta">Dunkelfeld.Report · Artikel · Geldsysteme &amp; Offshore</div>
+<h1>Panama Papers: Der größte Leak der Geschichte — und eine Bilanz aus Rücktritten und Freisprüchen</h1>
+<div class="sub">11,5 Millionen Dokumente, 214.000 Offshore-Firmen, ein gestürzter Regierungschef — und am Ende, fast ein Jahrzehnt später, Freisprüche für die Verantwortlichen. Was von der größten Enthüllung der Offshore-Welt tatsächlich übrig blieb.</div>
+<p><span class="tag tag-belegt">BELEGT</span> Am 3. April 2016 veröffentlichte das International Consortium of Investigative Journalists (ICIJ) gemeinsam mit der Süddeutschen Zeitung und mehr als 100 Medienpartnern weltweit die "Panama Papers" — Dokumente aus der Datenbank der panamaischen Kanzlei Mossack Fonseca, die eine der größten Enthüllungen vertraulicher Unterlagen in der Geschichte darstellten. Das Datenvolumen: 2,6 Terabyte, 11,5 Millionen Dateien, an die Süddeutsche Zeitung geleakt und mit dem ICIJ geteilt.</p>
+<div class="stat-grid">
+<div class="stat"><span class="num">11,5 Mio.</span><span class="label">geleakte Dokumente</span></div>
+<div class="stat"><span class="num">214.488</span><span class="label">Offshore-Firmen erfasst</span></div>
+<div class="stat"><span class="num">14.153</span><span class="label">Klienten von Mossack Fonseca</span></div>
+<div class="stat"><span class="num">200+</span><span class="label">betroffene Länder</span></div>
+</div>
+<h2>1. Die Firma hinter dem Leak</h2>
+<p><span class="tag tag-belegt">BELEGT</span> Mossack Fonseca wurde 1977 vom Deutschen Jürgen Mossack und dem Panamaer Ramón Fonseca gegründet und spezialisierte sich auf Seerecht, Treuhanddienste, Vermögensverwaltung, internationale Unternehmensstrukturen und Handelsrecht. Die Kanzlei unterhielt Büros in mehr als 40 Ländern, darunter die Britischen Jungferninseln, die Schweiz und China, und galt als viertgrößter Anbieter von Offshore-Dienstleistungen weltweit.</p>
+<div class="source-box">
+<div class="src-title">Fallbeispiel: Die Eigendarstellung</div>
+<span class="tag tag-belegt">BELEGT</span> Die Kanzlei behauptete, seit 40 Jahren "über jeden Zweifel erhaben" gearbeitet zu haben und nie strafrechtlich belangt worden zu sein. Auf Anfragen des ICIJ und seiner Medienpartner erklärte Mossack Fonseca, man biete lediglich weltweite Registered-Agent-Dienstleistungen für professionelle Kunden wie Anwälte, Banken und Treuhänder an, die als Intermediäre fungierten — man selbst sei also nur Dienstleister, nicht Verantwortlicher für die Nutzung der Strukturen durch Dritte.
+  </div>
+<h2>2. Was die Dokumente zeigten</h2>
+<p><span class="tag tag-belegt">BELEGT</span> Die Dokumente offenbarten, wie die Kanzlei Unternehmen und Einzelpersonen aus mehr als 200 Ländern dabei half, Vermögen in Offshore-Konten, Steueroasen und Briefkastenfirmen zu verstecken. Unter den identifizierten Nutzern: Staats- und Regierungschefs wie der ukrainische Präsident Petro Poroschenko und der pakistanische Premierminister Nawaz Sharif, dazu 36 US-Bürger, die zuvor wegen Betrugs oder Finanzvergehen angeklagt oder verhaftet worden waren.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Die Leaks zeigten auch komplexe Offshore-Finanzgeschäfte, die Geld und Einfluss zu einem Netzwerk von Personen und Firmen mit Verbindungen zu Wladimir Putin kanalisierten — der Klientenkreis reichte bis zu mutmaßlichen Terrorfinanciers, Atomwaffen-Proliferateuren und Waffenhändlern.</p>
+<div class="person-card">
+<div class="person-name">Sigmundur Davíð Gunnlaugsson</div>
+<div class="person-role">Ministerpräsident Islands (2013–2016)</div>
+<p style="margin:0;"><span class="tag tag-belegt">BELEGT</span> Die Leaks zeigten, dass Gunnlaugsson gemeinsam mit seiner Frau eine Offshore-Firma namens Wintris auf den Britischen Jungferninseln besaß, die er bei seinem Amtsantritt nicht offengelegt hatte. Brisant: Wintris hielt Forderungen gegen genau jene isländischen Banken, die seine Regierung nach deren Kollaps beaufsichtigen sollte — ein direkter Interessenkonflikt. Nach tagelangen Massenprotesten vor dem Parlament in Reykjavík trat Gunnlaugsson am 5. April 2016 zurück und wurde damit der erste amtierende gewählte Regierungschef, der über die Panama-Papers-Enthüllungen zu Fall kam.</p>
+</div>
+<div class="person-card">
+<div class="person-name">Weitere genannte Akteure</div>
+<div class="person-role">Auswahl, ohne Wertung der jeweiligen Rechtslage</div>
+<p style="margin:0;"><span class="tag tag-belegt">BELEGT</span> FIFA-Präsident Gianni Infantino wurde ebenfalls mit den Papers in Verbindung gebracht. Der damalige britische Premierminister David Cameron sah sich gezwungen, öffentlich zu bestreiten, dass er oder seine Familie zusätzliche Einkünfte aus Offshore-Fonds bezögen — sein verstorbener Vater hatte über Jahre einen Offshore-Fonds mitverwaltet. <span class="tag tag-offen">OFFEN</span> Putin selbst wird in keinem der Dokumente namentlich genannt; der Kreml bezeichnete die Enthüllungen dennoch als direkten Angriff auf den russischen Präsidenten ("Putinophobie") — die Nähe zu seinem Umfeld ist belegt, eine direkte finanzielle Verbindung zu Putin persönlich nicht.</p>
+</div>
+<h2>3. Zeitlicher Ablauf</h2>
+<div class="timeline">
+<div class="timeline-item">
+<span class="timeline-date">3. April 2016</span>
+<span class="tag tag-belegt">BELEGT</span> Veröffentlichung der Panama Papers durch ICIJ, Süddeutsche Zeitung und 100+ Medienpartner.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">5. April 2016</span>
+<span class="tag tag-belegt">BELEGT</span> Rücktritt des isländischen Ministerpräsidenten Gunnlaugsson — erster politischer "Scalp" des Leaks.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">Mai 2016</span>
+<span class="tag tag-belegt">BELEGT</span> ICIJ öffnet eine öffentlich zugängliche Datenbank mit rund 214.000 Offshore-Firmen weltweit.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">2018</span>
+<span class="tag tag-belegt">BELEGT</span> Mossack Fonseca stellt nach polizeilicher Razzia in Panama den Geschäftsbetrieb ein.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">November 2022</span>
+<span class="tag tag-belegt">BELEGT</span> Prozessbeginn gegen 32 Personen wegen "Verbrechen gegen die öffentliche Wirtschaftsordnung" in Panama, darunter Jürgen Mossack und Ramón Fonseca.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">2022</span>
+<span class="tag tag-belegt">BELEGT</span> Mossack und Fonseca werden in einem separaten panamaischen Geldwäscheverfahren freigesprochen; beide bestreiten durchgängig jegliche Beteiligung an illegalen Aktivitäten.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">2026 (aktuell)</span>
+<span class="tag tag-belegt">BELEGT</span> Ein panamaischer Richter spricht alle 28 verbliebenen Angeklagten des 2016 eingeleiteten Verfahrens frei; Panamas neuer Präsident äußert, es sei "Zeit, weiterzuziehen".
+    </div>
+</div>
+<h2>4. Die Bilanz: Rücktritt hier, Freispruch dort</h2>
+<p>Genau hier liegt die eigentliche Pointe der Geschichte — nicht im Leak selbst, sondern in dem, was danach kam.</p>
+<table>
+<tr><th>Ebene</th><th>Konsequenz</th><th>Status</th></tr>
+<tr><td>Politisch (Island)</td><td>Rücktritt des Regierungschefs binnen 48 Stunden nach Enthüllung</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+<tr><td>Öffentlich (weltweit)</td><td>Massenproteste, Rufschädigung diverser Amtsträger</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+<tr><td>Unternehmerisch</td><td>Mossack Fonseca stellt 2018 den Betrieb ein</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+<tr><td>Strafrechtlich (Panama)</td><td>Freispruch der Gründer (2022) und aller 28 verbliebenen Angeklagten (2026)</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+</table>
+<p><span class="tag tag-belegt">BELEGT</span> Nach dem 2026er Freispruch erklärte ICIJ-Geschäftsführer Gerard Ryle sinngemäß, das Gericht habe die Angeklagten zwar nicht zur Verantwortung gezogen, die fortdauernde Wirkung der Recherche bleibe aber bestehen. Transparenzaktivisten fordern mehr Ressourcen für Korruptionsverfahren; Panamas neue Regierung signalisiert stattdessen, das Kapitel schließen zu wollen.</p>
+<p class="pullquote">Der größte Leak der Geschichte hat einen Ministerpräsidenten gestürzt — aber keinen einzigen der zentralen Verantwortlichen strafrechtlich zur Rechenschaft gezogen.</p>
+<p><span class="tag tag-extra">EXTRAPOLATION</span> Das Muster ist strukturell interessant: Politische und mediale Konsequenzen treten schnell ein, wenn gewählte Amtsträger betroffen sind und eine wache Öffentlichkeit reagieren kann (Island). Juristische Konsequenzen gegen die Infrastruktur-Anbieter selbst — die Kanzleien, die das System erst ermöglichen — erweisen sich dagegen als deutlich schwerer durchsetzbar, selbst bei einer derart erdrückenden Beweislage von 11,5 Millionen Dokumenten.</p>
+<div class="series-nav">
+<strong>Weiterlesen:</strong>
+<a href="artikel-007-geld-herrschaftsinstrument.html">→ Artikel #7: Geld als Herrschaftsinstrument</a>
+<a href="pandora-papers.html">→ Pandora Papers: Selenskyj und das Kwartal-95-Netzwerk</a>
+<a href="finanzbetrug-anatomie.html">→ Die Anatomie des Finanzbetrugs</a>
+<a href="florian-homm.html">→ Florian Homm: Vom BVB-Retter zum FBI-Gesuchten</a>
+</div>
+<div class="open-questions">
+<h2>Offene Fragen</h2>
+<ul>
+<li><em>Warum führte der größte Leak der Geschichte bei den zentralen Vermittlern zu keiner einzigen rechtskräftigen Verurteilung — während einzelne gewählte Amtsträger binnen Tagen politisch fielen?</em></li>
+<li><em>Mossack Fonseca repräsentierte laut Branchenschätzungen höchstens rund zehn Prozent der globalen Offshore-Dienstleistungsindustrie. Was verbirgt sich in den neun Zehnteln, die nie geleakt wurden?</em></li>
+</ul>
+</div>
+<div class="source-list">
+    Quellen: ICIJ (icij.org/investigations/panama-papers), Britannica Money, BBC News (April 2016), Al Jazeera, CBS News, The Register, EBSCO Research Starters. Alle Zitate im Text mit Quellenverweis gekennzeichnet.
+  </div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

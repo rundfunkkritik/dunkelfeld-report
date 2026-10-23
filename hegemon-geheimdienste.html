@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Der Hegemon (5): Die Operationen — dunkelfeld.report</title>
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #09090b;
+      --bg-card: #111113;
+      --bg-source: #1a1a2e;
+      --amber: #e8c547;
+      --amber-dim: rgba(232,197,71,0.12);
+      --amber-border: rgba(232,197,71,0.25);
+      --text: #d4d4d8;
+      --text-muted: #71717a;
+      --text-bright: #f4f4f5;
+      --green: #4ade80;
+      --orange: #fb923c;
+      --red: #f87171;
+      --serif: Georgia, 'Times New Roman', serif;
+      --mono: 'Courier New', Courier, monospace;
+    }
+
+    body { background: var(--bg); color: var(--text); font-family: var(--serif); font-size: 1.1rem; line-height: 1.85; padding: 2rem 1rem 6rem; }
+    .container { max-width: 720px; margin: 0 auto; }
+
+    nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--amber-border); }
+    .nav-logo { font-family: var(--mono); font-size: 0.85rem; color: var(--amber); text-decoration: none; letter-spacing: 0.05em; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-family: var(--mono); font-size: 0.78rem; color: var(--text-muted); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--amber); }
+
+    .series-badge { font-family: var(--mono); font-size: 0.72rem; color: var(--amber); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; }
+    .series-badge::before { content: ''; display: inline-block; width: 20px; height: 2px; background: var(--amber); }
+
+    h1 { font-family: var(--serif); font-size: clamp(1.9rem, 5vw, 2.8rem); font-weight: 700; color: var(--text-bright); line-height: 1.2; margin-bottom: 1rem; }
+    .subtitle { font-size: 1.15rem; color: var(--text-muted); font-style: italic; margin-bottom: 2rem; line-height: 1.6; }
+    .meta { font-family: var(--mono); font-size: 0.75rem; color: var(--text-muted); display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--amber-border); }
+
+    .opening-quote { background: var(--amber-dim); border-left: 4px solid var(--amber); padding: 1.5rem 1.8rem; margin: 2rem 0 2.5rem; border-radius: 0 4px 4px 0; }
+    .opening-quote p { font-size: 1.1rem; font-style: italic; color: var(--text-bright); line-height: 1.7; margin-bottom: 0.5rem; }
+    .opening-quote cite { font-family: var(--mono); font-size: 0.75rem; color: var(--amber); font-style: normal; }
+
+    .lead { font-size: 1.15rem; color: var(--text-bright); line-height: 1.9; margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+    h2 { font-size: 1.45rem; font-weight: 700; color: var(--amber); margin: 3rem 0 1.2rem; line-height: 1.3; }
+    p { margin-bottom: 1.3rem; }
+
+    .tag { display: inline-block; font-family: var(--mono); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; padding: 0.2em 0.55em; border-radius: 2px; vertical-align: middle; margin: 0 0.15em; position: relative; top: -1px; }
+    .tag-belegt { background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid rgba(74,222,128,0.3); }
+    .tag-extrapolation { background: rgba(251,146,60,0.15); color: var(--orange); border: 1px solid rgba(251,146,60,0.3); }
+    .tag-offen { background: rgba(248,113,113,0.15); color: var(--red); border: 1px solid rgba(248,113,113,0.3); }
+
+    .source-box { background: var(--bg-source); border-left: 3px solid var(--amber); padding: 1rem 1.3rem; margin: 1.5rem 0; font-family: var(--mono); font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; }
+    .source-box strong { color: var(--amber); display: block; margin-bottom: 0.3rem; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 2rem 0; }
+    .stat-card { background: var(--bg-card); border: 1px solid var(--amber-border); padding: 1.2rem; text-align: center; }
+    .stat-number { font-family: var(--mono); font-size: 1.5rem; font-weight: 700; color: var(--amber); display: block; line-height: 1.2; }
+    .stat-label { font-family: var(--mono); font-size: 0.63rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.4rem; }
+
+    .highlight { background: var(--amber-dim); border-left: 3px solid var(--amber); padding: 1.2rem 1.5rem; margin: 2rem 0; font-style: italic; color: var(--text-bright); font-size: 1.05rem; }
+
+    /* Dokument-Karten */
+    .doc-card {
+      background: var(--bg-card);
+      border: 1px solid var(--amber-border);
+      border-left: 3px solid var(--amber);
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 1rem;
+    }
+    .doc-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.8rem;
+      margin-bottom: 0.6rem;
+    }
+    .doc-card-title { font-family: var(--mono); font-size: 0.82rem; color: var(--text-bright); font-weight: 700; }
+    .doc-card-year { font-family: var(--mono); font-size: 0.72rem; color: var(--amber); flex-shrink: 0; }
+    .doc-card-text { font-size: 0.9rem; color: var(--text); line-height: 1.55; }
+
+    /* Zeitleiste */
+    .timeline { margin: 1.5rem 0; }
+    .timeline-item { display: grid; grid-template-columns: 90px 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .timeline-year { font-family: var(--mono); font-size: 0.8rem; color: var(--amber); font-weight: 700; padding-top: 0.15rem; }
+    .timeline-text { font-size: 0.95rem; color: var(--text); line-height: 1.6; }
+
+    .divider { border: none; border-top: 1px solid var(--amber-border); margin: 2.5rem 0; }
+
+    .series-nav { background: var(--bg-card); border: 1px solid var(--amber-border); padding: 1.5rem 1.8rem; margin: 3rem 0 2rem; }
+    .series-nav-title { font-family: var(--mono); font-size: 0.7rem; color: var(--amber); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .series-nav ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .series-nav li { font-family: var(--mono); font-size: 0.82rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.8rem; }
+    .series-nav li::before { content: '→'; color: var(--amber); font-size: 0.8rem; }
+    .series-nav a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+    .series-nav a:hover { color: var(--amber); }
+    .series-nav .soon { color: var(--text-muted); font-style: italic; }
+
+    .closing-questions { border-top: 2px solid var(--amber); padding-top: 2rem; margin-top: 3rem; }
+    .closing-questions p { font-style: italic; color: var(--text-muted); font-size: 1rem; margin-bottom: 0.9rem; }
+    .closing-questions .label { font-family: var(--mono); font-size: 0.7rem; color: var(--amber); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; font-style: normal; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.7rem; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .timeline-item { grid-template-columns: 65px 1fr; }
+    }
+  </style>
+<meta name="description" content="Von dokumentierten Regime Changes über NSA-Massenüberwachung bis zu CIA-Cyberwaffen — was deklassifizierte Akten, Gerichtsurteile und …">
+<meta name="rubrik" content="cat-geo">
+<meta name="kachel-titel" content="Der Hegemon (5): Die Operationen">
+<link rel="canonical" href="https://dunkelfeld.report/hegemon-geheimdienste.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Der Hegemon (5): Die Operationen">
+<meta property="og:description" content="Von dokumentierten Regime Changes über NSA-Massenüberwachung bis zu CIA-Cyberwaffen — was deklassifizierte Akten, Gerichtsurteile und …">
+<meta property="og:url" content="https://dunkelfeld.report/hegemon-geheimdienste.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Der Hegemon (5): Die Operationen", "description": "Von dokumentierten Regime Changes über NSA-Massenüberwachung bis zu CIA-Cyberwaffen — was deklassifizierte Akten, Gerichtsurteile und …", "inLanguage": "de", "url": "https://dunkelfeld.report/hegemon-geheimdienste.html", "mainEntityOfPage": "https://dunkelfeld.report/hegemon-geheimdienste.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div class="container">
+<nav>
+<a class="nav-logo" href="index.html">dunkelfeld.report</a>
+<ul class="nav-links">
+<li><a href="hegemon-usa.html">← Überblick</a></li>
+<li><a href="hegemon-wirtschaft.html">← Teil 4</a></li>
+</ul>
+</nav>
+<div class="series-badge">Serie · Der Hegemon · Teil 5 von 6</div>
+<h1>Die Operationen</h1>
+<p class="subtitle">Von dokumentierten Regime Changes über NSA-Massenüberwachung bis zu CIA-Cyberwaffen — was deklassifizierte Akten, Gerichtsurteile und Whistleblower-Dokumente belegen</p>
+<div class="meta">
+<span>Erstveröffentlichung 2025</span>
+<span>Lesedauer ~16 Min.</span>
+<span>Detailartikel · Teil 5</span>
+</div>
+<div class="opening-quote">
+<p>„Der Militärputsch gegen Mosaddegh wurde unter CIA-Führung als Akt der US-Außenpolitik durchgeführt."</p>
+    — CIA, internes Dokument „The Battle for Iran", ca. 1974 — deklassifiziert 2013 via FOIA, veröffentlicht durch das National Security Archive, George Washington University
+  </div>
+<div class="lead">
+<p>Dieser Artikel ist der quellenstärkste der gesamten Serie. Denn auf keinem anderen Gebiet existieren so viele Primärdokumente, die staatliches Handeln direkt belegen: deklassifizierte CIA-Akten, Kongressprotokolle, Gerichtsentscheidungen und — seit 2013 — Tausende von NSA-Originaldokumenten, deren Existenz die Regierung selbst bestätigt hat.</p>
+<p>Das Kapitel gliedert sich in drei Blöcke: verdeckte politische Operationen (historisch, aus Primärquellen), NSA-Massenüberwachung (Snowden-Dokumente + Gerichtsurteil 2020) und CIA-Cyberwaffen (Vault 7, 2017). Am Ende steht der Fall Julian Assange — als dokumentiertes Beispiel dafür, was mit dem Veröffentlichen dieser Informationen geschieht.</p>
+</div>
+<div class="stat-grid">
+<div class="stat-card">
+<span class="stat-number">72+</span>
+<span class="stat-label">Dokumentierte US-Regime-Change-Operationen 1947–1989 (O'Rourke 2018)</span>
+</div>
+<div class="stat-card">
+<span class="stat-number">120 Mio.</span>
+<span class="stat-label">Verizon-Kunden, deren Anrufdaten NSA täglich erfasste (2013)</span>
+</div>
+<div class="stat-card">
+<span class="stat-number">8.761</span>
+<span class="stat-label">CIA-Dokumente in Vault 7 — größte CIA-Publikation der Geschichte</span>
+</div>
+<div class="stat-card">
+<span class="stat-number">5 Jahre</span>
+<span class="stat-label">Assange in Belmarsh-Gefängnis ohne Verurteilung (2019–2024)</span>
+</div>
+</div>
+<hr class="divider"/>
+<!-- BLOCK 1: REGIME CHANGES -->
+<h2>Block I: Verdeckte Operationen — dokumentierte Regierungsstürze</h2>
+<p>Politikwissenschaftlerin Lindsey O'Rourke dokumentierte 2018 in ihrer bei Cornell University Press erschienenen Studie „Covert Regime Change" 72 verdeckte und offene US-Operationen zum Sturz ausländischer Regierungen zwischen 1947 und 1989. <span class="tag tag-belegt">BELEGT</span> Die folgenden Fälle sind durch US-Regierungsprimärquellen direkt belegt.</p>
+<div class="doc-card">
+<div class="doc-card-header">
+<span class="doc-card-title">Iran 1953 — Operation Ajax / TP-AJAX</span>
+<span class="doc-card-year">BELEGT</span>
+</div>
+<div class="doc-card-text">Premierminister Mohammad Mosaddegh hatte die britisch kontrollierte Ölindustrie nationalisiert. Am 19. August 1953 wurde er gestürzt. Im August 2013 veröffentlichte das National Security Archive via FOIA den CIA-internen Bericht „The Battle for Iran" (ca. 1974): „Der Militärputsch wurde unter CIA-Führung als Akt der US-Außenpolitik durchgeführt." Zwischen 200 und 300 Menschen starben. CIA zahlte Schläger- und Medientruppen bar aus. Mosaddegh wurde zu drei Jahren Haft und lebenslangem Hausarrest verurteilt. Quelle: National Security Archive / CIA FOIA, nsarchive.gwu.edu</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-header">
+<span class="doc-card-title">Guatemala 1954 — Operation PBSUCCESS</span>
+<span class="doc-card-year">BELEGT</span>
+</div>
+<div class="doc-card-text">Präsident Jacobo Árbenz hatte eine Landreform durchgeführt, die u.a. Besitz der United Fruit Company betraf. CIA-Operation PBSUCCESS organisierte seinen Sturz. Die CIA bestätigt ihre Rolle in deklassifizierten Dokumenten, die via FOIA freigegeben wurden. Die Intervention wurde 1954 vor dem UN-Sicherheitsrat von der US-Delegation blockiert. Quelle: CIA FOIA Release 1997, cia.gov — Nick Cullather: „Secret History: The CIA's Classified Account of its Operations in Guatemala 1952–1954", Stanford University Press.</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-header">
+<span class="doc-card-title">Chile 1973 — Sturz Allende</span>
+<span class="doc-card-year">BELEGT</span>
+</div>
+<div class="doc-card-text">Der vom Kongress gewählte Präsident Salvador Allende wurde am 11. September 1973 gestürzt. Der Senate Intelligence Committee (Church Committee) dokumentierte 1975 in einem 347-seitigen Bericht die US-Beteiligung: verdeckte Finanzierung von Medien und Oppositionsgruppen, Kontakte zum Militär. Nixon-Aufzeichnungen belegen: Er ordnete an, die chilenische Wirtschaft „zum Schreien zu bringen". Quelle: Church Committee Final Report, 1975, intelligence.senate.gov — Nixon Tape Transcripts, nixonlibrary.gov</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-header">
+<span class="doc-card-title">Nicaragua 1980er — Iran-Contra</span>
+<span class="doc-card-year">BELEGT</span>
+</div>
+<div class="doc-card-text">CIA finanzierte und bewaffnete die Contra-Rebellen gegen die sandinistische Regierung — trotz des ausdrücklichen Verbots durch den Kongress (Boland Amendment). Die Mittel wurden illegal über Waffenverkäufe an den Iran beschafft. Mehrere Regierungsbeamte wurden verurteilt, darunter Oliver North. Quelle: Independent Counsel Lawrence Walsh: „Final Report of the Independent Counsel for Iran/Contra Matters", 1993, archive.gov</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-header">
+<span class="doc-card-title">Irak 2003 — Invasion auf Basis widerlegter Geheimdienstangaben</span>
+<span class="doc-card-year">BELEGT</span>
+</div>
+<div class="doc-card-text">Die US-Regierung begründete die Invasion mit Massenvernichtungswaffen, die nicht gefunden wurden. Der britische Chilcot-Bericht (2016, 2,6 Millionen Wörter) dokumentiert, dass Geheimdienstinformationen selektiv verwendet und teilweise verfälscht präsentiert wurden. US-Außenminister Powell bestätigte 2005, dass seine UN-Rede vom Februar 2003 auf falschen Geheimdienstdaten beruhte. Quelle: Chilcot Report 2016, gov.uk/chilcot — Colin Powell Interview, ABC News, 3.9.2005</div>
+</div>
+<div class="source-box">
+<strong>Primärquellen Block I</strong>
+    CIA: „The Battle for Iran" (deklassifiziert 2013), nsarchive.gwu.edu/NSAEBB/NSAEBB435 — Church Committee Final Report, Vol. 1, 1975, intelligence.senate.gov — Walsh Report „Final Report of the Independent Counsel for Iran/Contra Matters", 1993 — CIA Guatemala FOIA Release 1997 (PBSUCCESS), cia.gov — Chilcot Inquiry Report, 6.7.2016, gov.uk/chilcot — O'Rourke, Lindsey: „Covert Regime Change", Cornell University Press, 2018
+  </div>
+<hr class="divider"/>
+<!-- BLOCK 2: NSA / SNOWDEN -->
+<h2>Block II: NSA-Massenüberwachung — Snowden-Dokumente und Gerichtsurteil</h2>
+<p>Im Juni 2013 veröffentlichten The Guardian und Washington Post erste Dokumente aus einem Archiv von rund 20.000 geheimen NSA-Dateien, die Edward Snowden, damals Auftragnehmer bei Booz Allen Hamilton, übergeben hatte. <span class="tag tag-belegt">BELEGT</span> Was folgte, war die umfangreichste dokumentierte Enthüllung eines staatlichen Überwachungssystems in der Geschichte.</p>
+<p>Entscheidend für die Einordnung: Am 7. Juni 2013 bestätigte der Director of National Intelligence James Clapper die Existenz des PRISM-Programms offiziell. <span class="tag tag-belegt">BELEGT</span> Die US-Regierung hat die Kernaussagen der Snowden-Dokumente damit selbst verifiziert. Drei Monate zuvor, am 12. März 2013, hatte Clapper in einer öffentlichen Senatsanhörung auf die Frage, ob die NSA Daten von Millionen Amerikanern sammle, geantwortet: „Nein, nicht wissentlich." <span class="tag tag-belegt">BELEGT</span> Dies war falsch. Clapper selbst bezeichnete seine Aussage später als „die am wenigsten unwahre" Antwort, die er in einem öffentlichen Rahmen geben konnte.</p>
+<div class="highlight">
+    Am 2. September 2020 — sieben Jahre nach Snowdens Enthüllungen — stellte der Neunte Bezirksgerichtshof der USA einstimmig fest: Das NSA-Massensammlungsprogramm für Telefonmetadaten war <strong>illegal</strong> und verstieß gegen den Foreign Intelligence Surveillance Act. Es war möglicherweise auch verfassungswidrig. Niemand wurde für das Lügen vor dem Kongress strafrechtlich verfolgt. <span class="tag tag-belegt">BELEGT</span> — United States v. Moalin, No. 13-50572, 9th Circuit, 2.9.2020
+  </div>
+<p>Was die Snowden-Dokumente, bestätigt durch Regierungsaussagen und Gerichtsentscheide, im Einzelnen belegen:</p>
+<div class="timeline">
+<div class="timeline-item">
+<span class="timeline-year">PRISM</span>
+<span class="timeline-text">NSA erhielt direkten Zugriff auf Nutzerdaten von Microsoft, Google, Facebook, Apple, Yahoo, Skype, YouTube u.a. PRISM war „die wichtigste Einzelquelle für Rohintelligenz in NSA-Analyseberichten" und lieferte 91 Prozent des via FISA Section 702 gesammelten Internetverkehrs. <span class="tag tag-belegt">BELEGT</span> — FISC-Entscheid 2011, bestätigt durch Director of National Intelligence 2013</span>
+</div>
+<div class="timeline-item">
+<span class="timeline-year">XKeyscore</span>
+<span class="timeline-text">NSA-Analyse-Tool zur Durchsuchung gesammelter E-Mails, Chats, Browserhistorien weltweit — ohne vorherige richterliche Genehmigung pro Suchabfrage. NSA-Trainingsfolie: „Number One Source of Raw Intelligence." BND erhielt Zugang; im Gegenzug transferierte der BND im Dezember 2012 allein 500 Millionen Metadatensätze an die NSA via Bad Aibling. <span class="tag tag-belegt">BELEGT</span> — NSA XKeyscore Training Slides, ACLU FOIA Archive</span>
+</div>
+<div class="timeline-item">
+<span class="timeline-year">UPSTREAM</span>
+<span class="timeline-text">NSA zapfte Glasfaserkabel des globalen Internetrückgrats physisch ab — über AT&amp;T-Infrastruktur, u.a. in San Francisco (Room 641A). Daten wurden erfasst, bevor sie ihr Ziel erreichten. <span class="tag tag-belegt">BELEGT</span> — NSA UPSTREAM Training Slides, ACLU, aclu.org/nsa-documents</span>
+</div>
+<div class="timeline-item">
+<span class="timeline-year">Verizon-Order</span>
+<span class="timeline-text">FISC-Anordnung vom 25. April 2013: Verizon musste täglich die vollständigen Anrufdaten aller 120+ Millionen Kunden an die NSA übergeben — Nummern beider Gesprächspartner, Standortdaten, Zeitstempel, Gesprächsdauer. <span class="tag tag-belegt">BELEGT</span> — FISC Primary Order, Section 215, April 2013, aclu.org</span>
+</div>
+<div class="timeline-item">
+<span class="timeline-year">Deutschland</span>
+<span class="timeline-text">NSA-Dokument April 2013: Deutschland ist der „produktivste Partner" der NSA. BND arbeitete aktiv daran, die deutsche Interpretation des G-10-Datenschutzgesetzes zu lockern. NSA bezeichnete Merkels Telefon als Überwachungsziel — was Merkel zur Aussage veranlasste: „Abhören unter Freunden geht gar nicht." NSA bestritt nicht die Überwachung, nur deren Umfang. <span class="tag tag-belegt">BELEGT</span></span>
+</div>
+<div class="timeline-item">
+<span class="timeline-year">Gericht 2020</span>
+<span class="timeline-text">9th Circuit Court, United States v. Moalin: Das Bulk-Sammelprogramm war illegal (FISA-Verstoß) und möglicherweise verfassungswidrig (4. Amendment). Die NSA hatte behauptet, das Programm habe über 50 Terroranschläge verhindert. Das Gericht widerlegte das: Als einziger belegbarer Fall verblieb Moalin selbst — dessen Verurteilung das Programm laut Gericht nicht wesentlich beeinflusst hatte. <span class="tag tag-belegt">BELEGT</span></span>
+</div>
+</div>
+<div class="source-box">
+<strong>Primärquellen Block II</strong>
+    ACLU NSA Documents Archive, aclu.org/nsa-documents — NSA PRISM Slides (FISC 2011), aclu.org — NSA XKeyscore Training Slides, aclu.org — FISC Primary Order (Verizon), 25.4.2013, aclu.org — DNI James Clapper: Erklärung 7.6.2013, odni.gov — Senate Judiciary Committee: Clapper Anhörung 12.3.2013, Transkript — United States v. Moalin, No. 13-50572, 9th Circuit, 2.9.2020, ca9.uscourts.gov — Snowden disclosures timeline, en.wikipedia.org/wiki/Snowden_disclosures
+  </div>
+<hr class="divider"/>
+<!-- BLOCK 3: VAULT 7 / CIA -->
+<h2>Block III: Vault 7 — Das CIA-Cyberarsenal</h2>
+<p>Am 7. März 2017 begann WikiLeaks mit der Veröffentlichung von 8.761 Dokumenten aus dem Netzwerk des CIA Center for Cyber Intelligence in Langley, Virginia. <span class="tag tag-belegt">BELEGT</span> WikiLeaks bezeichnete es als die größte Publikation vertraulicher CIA-Dokumente in der Geschichte. Im Februar 2024 wurde der CIA-Softwareingenieur Joshua Schulte als Quelle zu 40 Jahren Haft verurteilt.</p>
+<p>Was Vault 7 dokumentiert:</p>
+<div class="doc-card">
+<div class="doc-card-header">
+<span class="doc-card-title">Eigenes Signals-Intelligence-System</span>
+<span class="doc-card-year">BELEGT</span>
+</div>
+<div class="doc-card-text">Die CIA hatte parallel zur NSA ein vollständiges eigenes Überwachungs- und Hacking-System aufgebaut — für Smartphones, Computer, Smart-TVs, Netzwerkrouter. Die Hacking-Tools wurden von der Engineering Development Group (EDG) des CIA-Center for Cyber Intelligence entwickelt. Das interne Arsenal umfasste nach WikiLeaks-Angaben mehrere hundert Millionen Zeilen Code.</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-header">
+<span class="doc-card-title">Weeping Angel — Samsung Smart-TV</span>
+<span class="doc-card-year">BELEGT</span>
+</div>
+<div class="doc-card-text">Ein CIA-Tool namens „Weeping Angel" verwandelte Samsung-Fernseher in Abhörgeräte: Der TV erscheint ausgeschaltet, nimmt aber Umgebungsgespräche auf und sendet sie an CIA-Server. Entwickelt in Zusammenarbeit mit dem britischen GCHQ. Das Programm ist in den Vault-7-Dokumenten namentlich benannt und beschrieben.</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-header">
+<span class="doc-card-title">Kontrollverlust über Cyberwaffen</span>
+<span class="doc-card-year">BELEGT</span>
+</div>
+<div class="doc-card-text">Laut WikiLeaks hatte die CIA die Kontrolle über den Großteil ihres Hacking-Arsenals verloren, bevor Vault 7 veröffentlicht wurde. Teile davon kursierten bereits unter früheren US-Geheimdienstmitarbeitern. Die CIA klassifizierte die Cyberwaffen-Tools bewusst nicht als Verschlusssache — weil klassifizierte Tools nicht über das offene Internet kommunizieren dürften, was ihren Einsatz unmöglich gemacht hätte.</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-header">
+<span class="doc-card-title">CIA-Pläne gegen Assange</span>
+<span class="doc-card-year">BELEGT</span>
+</div>
+<div class="doc-card-text">Im September 2021 berichtete Yahoo News auf Basis von Interviews mit mehr als 30 ehemaligen US-Regierungsbeamten: Die CIA erwog 2017, nach den Vault-7-Leaks, die Entführung oder Ermordung Julian Assanges aus der ecuadorianischen Botschaft in London. CIA-Direktor Mike Pompeo hatte WikiLeaks kurz zuvor zum „nicht-staatlichen feindlichen Geheimdienst" erklärt. Die extremsten Pläne wurden laut Yahoo News aus rechtlichen und moralischen Gründen verworfen. Quelle: Dorfman/Naylor/Isikoff, Yahoo News, 26.9.2021.</div>
+</div>
+<div class="source-box">
+<strong>Primärquellen Block III</strong>
+    WikiLeaks Vault 7 „Year Zero", 7.3.2017, wikileaks.org/ciav7p1 — CIA Director Pompeo: Rede CSIS, 13.4.2017 (WikiLeaks als „hostile intelligence service") — Dorfman/Naylor/Isikoff: „Kidnapping, assassination and a London shoot-out: Inside the CIA's secret war plans against WikiLeaks", Yahoo News, 26.9.2021 — US v. Schulte: Urteil US District Court SDNY, 1.2.2024 (40 Jahre Haft)
+  </div>
+<hr class="divider"/>
+<!-- BLOCK 4: ASSANGE -->
+<h2>Block IV: Julian Assange — das dokumentierte Ende einer Aussage</h2>
+<p>Julian Assange gründete WikiLeaks 2006 und veröffentlichte ab 2010 Dokumente, die Chelsea Manning zugespielt hatte: Videoaufnahmen eines US-Luftangriffs in Bagdad mit getöteten Zivilisten und Journalisten, Kriegstagebücher aus Afghanistan und Irak, Diplomatenkabel. <span class="tag tag-belegt">BELEGT</span></p>
+<p>Was auf die Veröffentlichungen folgte, ist lückenlos dokumentiert:</p>
+<div class="timeline">
+<div class="timeline-item">
+<span class="timeline-year">2012</span>
+<span class="timeline-text">Assange floh in die ecuadorianische Botschaft London, nachdem ein Auslieferungsverfahren nach Schweden drohte. Ecuador gewährte Asyl mit Verweis auf drohende politische Verfolgung. <span class="tag tag-belegt">BELEGT</span></span>
+</div>
+<div class="timeline-item">
+<span class="timeline-year">2017</span>
+<span class="timeline-text">Nach Vault 7: CIA-Direktor Pompeo erklärte WikiLeaks zum „feindlichen Geheimdienst". CIA diskutierte intern Entführung oder Tötung Assanges. <span class="tag tag-belegt">BELEGT</span> (Yahoo News 2021)</span>
+</div>
+<div class="timeline-item">
+<span class="timeline-year">2019</span>
+<span class="timeline-text">Ecuador entzog Assange das Asyl. Britische Polizei verhaftete ihn. Einweisung in HM Prison Belmarsh — Hochsicherheitsgefängnis. US-Auslieferungsantrag wurde entsiegelt: 17 Anklagepunkte nach Espionage Act 1917, mögliche Höchststrafe 175 Jahre. <span class="tag tag-belegt">BELEGT</span></span>
+</div>
+<div class="timeline-item">
+<span class="timeline-year">2021</span>
+<span class="timeline-text">Hauptzeuge für die verschärfte US-Anklage erklärte öffentlich, er habe seine Aussage erfunden. US-Justizministerium hielt die Anklage aufrecht. <span class="tag tag-belegt">BELEGT</span></span>
+</div>
+<div class="timeline-item">
+<span class="timeline-year">2024</span>
+<span class="timeline-text">Assange verbrachte fünf Jahre in Belmarsh ohne Verurteilung. Im Juni 2024 schloss er einen Plea Deal: Schuldbekenntnis zu einem Anklagepunkt nach dem Espionage Act (Verschwörung zur Beschaffung und Veröffentlichung von Verteidigungsinformationen), Strafe: abgegoltene Haftzeit. Assange flog nach Australien. <span class="tag tag-belegt">BELEGT</span></span>
+</div>
+</div>
+<p>Das Obama-Justizministerium hatte Assange nicht angeklagt — weil es keinen Beweis fand, dass sein Handeln sich von dem eines Journalisten unterscheide. <span class="tag tag-belegt">BELEGT</span> Unter Trump wurde die Strafverfolgung erheblich verschärft. Was der Fall Assange als Präzedenz bedeutet — ob die Veröffentlichung von Regierungsdokumenten durch Journalisten unter den Espionage Act fallen kann — ist als juristische Frage bislang nicht abschließend entschieden. <span class="tag tag-offen">OFFEN</span></p>
+<div class="source-box">
+<strong>Primärquellen Block IV</strong>
+    US-Anklageschrift gegen Assange (entsiegelt 2019), justice.gov — Plea Agreement United States v. Assange, June 2024, justice.gov — Assange Wikipedia Zeitleiste, mit Einzelnachweisen — Yahoo News: CIA Pläne gegen Assange, 26.9.2021 — DoJ: Erklärung zu Manning-Leaks und Assange, 2013 (Grundlage: keine Anklage unter Obama)
+  </div>
+<hr class="divider"/>
+<!-- MUSTER -->
+<h2>Das Muster</h2>
+<p>Drei Generationen von Dokumenten, drei strukturell ähnliche Muster:</p>
+<p><strong>1947–1989:</strong> Verdeckte Operationen — Regierungsstürze, Finanzierung von Oppositionsgruppen, bezahlte Medien. Belegt durch deklassifizierte CIA-Akten und Kongressberichte.</p>
+<p><strong>2001–2013:</strong> Digitale Massenüberwachung — Bulk Collection, PRISM, UPSTREAM. Belegt durch Snowden-Dokumente, Regierungsbestätigung und Gerichtsurteil 2020, das das Programm für illegal erklärte. Niemand wurde verurteilt.</p>
+<p><strong>2013–2024:</strong> Cyberwaffen und Verfolgung von Informanten — Vault 7 belegt CIA-Cyberarsenal. Assange verbrachte fünf Jahre in Hochsicherheitshaft, ohne verurteilt zu sein. Der Informant Snowden lebt im russischen Exil. Chelsea Manning saß Jahre in Einzelhaft. Joshua Schulte: 40 Jahre Haft.</p>
+<p>Was Eisenhower 1961 als Warnung formulierte, hat im digitalen Zeitalter eine neue Dimension angenommen: Der militärisch-industrielle Komplex verfügt nun über Werkzeuge, die jeden vernetzten Menschen auf dem Planeten potenziell erreichbar machen. Das ist nicht Spekulation. Es steht in den Dokumenten.</p>
+<!-- SERIES NAV -->
+<div class="series-nav">
+<div class="series-nav-title">▸ Serie: Der Hegemon — alle Teile</div>
+<ul>
+<li><a href="hegemon-usa.html">Teil 1: Überblick — fünf Instrumente</a></li>
+<li><a href="hegemon-dollar.html">Teil 2: Das Geld — Dollarhegemonie, Petrodollar, SWIFT</a></li>
+<li><a href="hegemon-militaer.html">Teil 3: Die Streitkräfte — Basen, SOFA, Rüstungskomplex</a></li>
+<li><a href="hegemon-wirtschaft.html">Teil 4: Die Wirtschaft — IWF, Weltbank, Schuldenarchitektur</a></li>
+<li><strong style="color:var(--text-bright)">Teil 5: Die Operationen — Geheimdienste, Snowden, Vault 7</strong> — dieser Artikel</li>
+<li><a href="hegemon-softpower.html">Teil 6: Die Narrative — Soft Power und Informationsinfrastruktur</a> <span class="soon">(folgt)</span></li>
+</ul>
+</div>
+<!-- CLOSING QUESTIONS -->
+<div class="closing-questions">
+<div class="label">Offene Fragen</div>
+<p>James Clapper sagte dem US-Senat unter Eid, die NSA sammle keine Daten über Millionen Amerikaner. Das war falsch. Warum wurde Clapper nicht wegen Meineids verfolgt — und welche Precedenzwirkung hat das für zukünftige Geheimdienstaussagen vor dem Kongress?</p>
+<p>Der 9th Circuit stellte 2020 fest, dass das NSA-Bulk-Programm illegal war — und dass die von der Regierung behaupteten 54 verhinderten Terroranschläge auf einen einzigen Fall zusammengeschrumpft sind. Welche öffentliche Debatte hat dieses Urteil ausgelöst?</p>
+<p>Die CIA verlor laut Vault 7 die Kontrolle über ihr digitales Waffenarsenal — bevor WikiLeaks es veröffentlichte. Teile davon kursierten bereits unter ehemaligen Mitarbeitern. Wer kontrolliert, wohin diese Werkzeuge danach geflossen sind?</p>
+<p>Assange wurde nicht angeklagt, solange Obama Präsident war — weil sein Handeln dem eines Journalisten ähnelte. Unter Trump wurde er angeklagt. Was genau hatte sich verändert — an den Fakten, oder an der politischen Bewertung?</p>
+</div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

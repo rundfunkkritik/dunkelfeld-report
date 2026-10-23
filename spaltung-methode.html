@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Teile und herrsche: Vom COIN-Handbuch zu Corona</title>
+<style>
+  :root {
+    --bg: #09090b;
+    --bg-box: #1a1a2e;
+    --accent: #e8c547;
+    --text: #e4e4e7;
+    --muted: #8a8a94;
+    --border: #262636;
+    --green: #6fbf73;
+    --orange: #e0954f;
+    --grey: #9a9aa4;
+    --red: #c9605f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.7;
+  }
+  .mono {
+    font-family: 'Courier New', Courier, monospace;
+  }
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.3rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+  .dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  header .label {
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  header .stand {
+    margin-left: auto;
+    font-size: 0.68rem;
+    color: var(--muted);
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+  .kicker {
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 1.5rem;
+  }
+  h1 {
+    font-size: clamp(2rem, 6vw, 2.9rem);
+    line-height: 1.15;
+    margin: 0 0 1.2rem;
+    color: var(--text);
+  }
+  h1 .sub { color: var(--muted); font-size: 0.6em; display: block; margin-top: 0.5rem; }
+  .lede {
+    font-size: 1.08rem;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-top: 3.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.6rem;
+  }
+  h3 {
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-top: 2rem;
+  }
+  p { margin: 1rem 0; }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+    font-weight: bold;
+  }
+  .tag-belegt { background: rgba(111,191,115,0.12); color: var(--green); border: 1px solid rgba(111,191,115,0.35); }
+  .tag-extra { background: rgba(224,149,79,0.12); color: var(--orange); border: 1px solid rgba(224,149,79,0.35); }
+  .tag-offen { background: rgba(154,154,164,0.12); color: var(--grey); border: 1px solid rgba(154,154,164,0.35); }
+  .tag-widerlegt { background: rgba(201,96,95,0.12); color: var(--red); border: 1px solid rgba(201,96,95,0.35); text-decoration: line-through; }
+
+  .source-box {
+    background: var(--bg-box);
+    border-left: 3px solid var(--accent);
+    padding: 1.2rem 1.4rem;
+    margin: 1.6rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .source-box .src-title { font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6rem; }
+  .source-box p { margin: 0.5rem 0; font-size: 0.96rem; }
+  .source-box .src-link { font-family: 'Courier New', monospace; font-size: 0.78rem; color: var(--muted); word-break: break-all; margin-top: 0.6rem; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    margin: 2rem 0;
+  }
+  .stat-card {
+    background: var(--bg);
+    padding: 1.4rem 1.2rem;
+  }
+  .stat-card .num { font-family: 'Courier New', monospace; font-size: 1.6rem; color: var(--accent); font-weight: bold; }
+  .stat-card .lbl { font-size: 0.8rem; color: var(--muted); margin-top: 0.3rem; }
+
+  .timeline {
+    border-left: 2px solid var(--border);
+    margin: 2rem 0 2rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item { position: relative; margin-bottom: 1.6rem; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.75rem;
+    top: 0.3rem;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline-date { font-family: 'Courier New', monospace; font-size: 0.78rem; color: var(--accent); }
+  .timeline-text { margin-top: 0.2rem; font-size: 0.97rem; }
+
+  .pullquote {
+    font-size: 1.25rem;
+    color: var(--text);
+    border-left: 3px solid var(--accent);
+    padding-left: 1.3rem;
+    margin: 2.2rem 0;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .pullquote cite { display: block; font-style: normal; font-family: 'Courier New', monospace; font-size: 0.72rem; color: var(--muted); margin-top: 0.6rem; }
+
+  table.compare {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.6rem 0;
+    font-size: 0.92rem;
+  }
+  table.compare th, table.compare td {
+    border: 1px solid var(--border);
+    padding: 0.7rem 0.8rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  table.compare th {
+    background: var(--bg-box);
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .closing {
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1.05rem;
+  }
+  .closing p { margin: 1rem 0; }
+
+  .series-nav {
+    margin-top: 3rem;
+    padding: 1.4rem;
+    background: var(--bg-box);
+    border-radius: 4px;
+    font-size: 0.85rem;
+  }
+  .series-nav .label { font-family: 'Courier New', monospace; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6rem; }
+  .series-nav a { color: var(--accent); text-decoration: none; }
+  .series-nav a:hover { text-decoration: underline; }
+
+  footer {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+    font-size: 0.72rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+</style>
+<meta name="description" content="Zwei öffentlich zugängliche Dokumente, ein gemeinsames Prinzip: Die unentschlossene Bevölkerung ist das eigentliche Schlachtfeld. Was US-Militärdoktrin …">
+<meta name="rubrik" content="cat-medien">
+<meta name="kachel-titel" content="Teile und Herrsche: Vom COIN-Handbuch zur Corona-Kommunikation">
+<link rel="canonical" href="https://dunkelfeld.report/spaltung-methode.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Teile und Herrsche: Vom COIN-Handbuch zur Corona-Kommunikation">
+<meta property="og:description" content="Zwei öffentlich zugängliche Dokumente, ein gemeinsames Prinzip: Die unentschlossene Bevölkerung ist das eigentliche Schlachtfeld. Was US-Militärdoktrin …">
+<meta property="og:url" content="https://dunkelfeld.report/spaltung-methode.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Teile und Herrsche: Vom COIN-Handbuch zur Corona-Kommunikation", "description": "Zwei öffentlich zugängliche Dokumente, ein gemeinsames Prinzip: Die unentschlossene Bevölkerung ist das eigentliche Schlachtfeld. Was US-Militärdoktrin …", "inLanguage": "de", "url": "https://dunkelfeld.report/spaltung-methode.html", "mainEntityOfPage": "https://dunkelfeld.report/spaltung-methode.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<header>
+<div class="dot"></div>
+<div class="label">Dokumentation · Fakten · Quellen</div>
+<div class="stand mono">Stand: Juli 2026</div>
+</header>
+<main>
+<div class="kicker">Strukturanalyse · Informationskrieg &amp; Bevölkerungssteuerung</div>
+<h1>Teile und Herrsche<span class="sub">Vom COIN-Handbuch zur Corona-Kommunikation</span></h1>
+<p class="lede">
+    Zwei öffentlich zugängliche Dokumente, ein gemeinsames Prinzip: Die unentschlossene Bevölkerung
+    ist das eigentliche Schlachtfeld. Was US-Militärdoktrin für Aufstandsgebiete beschreibt,
+    taucht in der Kommunikationsstrategie eines deutschen Ministeriums während der Corona-Pandemie
+    in erstaunlich ähnlicher Form wieder auf.
+  </p>
+<h2>1. Das Handbuch: Bevölkerung als umkämpftes Zentrum</h2>
+<p>
+<span class="tag tag-belegt">BELEGT</span>
+    Das US-Feldhandbuch <strong>FM 3-24 "Counterinsurgency"</strong> (Dezember 2006, überarbeitet 2014)
+    ist die zentrale, öffentlich zugängliche Doktrin der US-Armee und des Marine Corps zur
+    Aufstandsbekämpfung. Es entstand, weil die US-Streitkräfte beim Einmarsch in den Irak 2003
+    keine aktuelle Doktrin für diese Art von Konflikt mehr besaßen — das letzte Mal war Vietnam
+    das Referenzfeld gewesen.
+  </p>
+<div class="stat-grid">
+<div class="stat-card"><div class="num">2006</div><div class="lbl">Veröffentlichung FM 3-24</div></div>
+<div class="stat-card"><div class="num">472</div><div class="lbl">Seiten Doktrin</div></div>
+<div class="stat-card"><div class="num">9</div><div class="lbl">"Paradoxien" der Aufstandsbekämpfung</div></div>
+<div class="stat-card"><div class="num">1963</div><div class="lbl">Vorläufer FM 31-22 (Vietnam-Ära)</div></div>
+</div>
+<p>
+    Die Kernthese des Handbuchs: Ein Aufstand wird nicht auf dem Schlachtfeld entschieden,
+    sondern im Kampf um die <strong>"unentschlossene Bevölkerung"</strong>. Wer ihre Unterstützung
+    gewinnt — durch Legitimität, Versorgung, Sicherheit — gewinnt den Konflikt. Zentrales
+    Werkzeug dabei: <strong>Information Operations</strong>, im Handbuch selbst als die
+    Verbindungslinie beschrieben, die alle anderen Maßnahmen zusammenhält. Nicht nur die Botschaft
+    zählt, sondern auch, wer sie überbringt.
+  </p>
+<div class="pullquote">
+    "Sometimes the More You Protect Your Force, the Less Secure You May Be."
+    — FM 3-24, Kapitel 1: Paradoxes of Counterinsurgency Operations
+  </div>
+<p>
+    Strategisch verfolgt die Doktrin ein klares Ziel: Aufständische von der Bevölkerung
+    <strong>isolieren</strong>, die Legitimität der bestehenden Ordnung stärken, "Hearts and Minds"
+    gewinnen. Der Vorläufer <strong>FM 31-22</strong> von 1963 ist reine Kalter-Kriegs-Prävention:
+    Aufstandsverhütung, Ausbildung einheimischer Kräfte, ideologische Frühwarnung.
+  </p>
+<h3>Warum ist das öffentlich?</h3>
+<p>
+<span class="tag tag-belegt">BELEGT</span>
+    Nicht trotz, sondern wegen seiner Funktion: Militärdoktrin muss an tausende Offiziere,
+    Militärakademien und verbündete Streitkräfte verteilt werden können — Geheimhaltung wäre
+    für das eigene Ausbildungssystem kontraproduktiv. Dokumentierter Nebeneffekt: FM 3-24 tauchte
+    nachweislich auch in gegnerischen Lagern im Irak auf. Die breite Verbreitung war einkalkuliert,
+    nicht nur toleriert.
+  </p>
+<div class="source-box">
+<div class="src-title">Primärquelle</div>
+<p>FM 3-24 MCWP 3-33.5, "Insurgencies and Countering Insurgencies", Mai 2014</p>
+<div class="src-link">irp.fas.org/doddir/army/fm3-24.pdf</div>
+<p style="margin-top:0.8rem;">FM 31-22, "US Army Counterinsurgency Forces", 1963</p>
+<div class="src-link">bits.de/NRANEU/others/amd-us-archive/FM31-22(63).pdf</div>
+</div>
+<h2>2. Das Papier: "Schockwirkung" in Berlin, März 2020</h2>
+<p>
+<span class="tag tag-belegt">BELEGT</span>
+    Im März 2020 beauftragte das Bundesinnenministerium unter Horst Seehofer Wissenschaftler
+    mehrerer Institute mit der Ausarbeitung eines internen, ursprünglich als
+    <span class="mono">"VS – Nur für den Dienstgebrauch"</span> eingestuften Strategiepapiers:
+    <strong>"Wie wir COVID-19 unter Kontrolle bekommen"</strong>. Es wurde am 1. April 2020 durch
+    das Portal FragDenStaat veröffentlicht, später auch vom BMI selbst online gestellt.
+  </p>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-date">18.–22. März 2020</div>
+<div class="timeline-text">17-seitiges Papier verfasst, an Ministerien und Bundeskanzleramt verteilt.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">1. April 2020</div>
+<div class="timeline-text">Veröffentlichung durch FragDenStaat, nachdem Medien nur auszugsweise zitiert hatten.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">Juni 2020</div>
+<div class="timeline-text">RKI per Gerichtsbeschluss zur Herausgabe von Mailverkehr mit dem Ministerium verpflichtet.</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">20. Mai 2020</div>
+<div class="timeline-text">BMI stellt eine Version des Papiers offiziell auf eigener Website bereit.</div>
+</div>
+</div>
+<p>
+    Das Papier empfiehlt explizit, eine <strong>"Schockwirkung"</strong> zu erzielen. Wörtlich
+    heißt es, Kindern solle vermittelt werden, dass sie durch eigene Unachtsamkeit
+    (etwa vergessenes Händewaschen) am qualvollen Erstickungstod eines Elternteils schuld sein könnten.
+  </p>
+<div class="pullquote">
+    "Wenn sie dann ihre Eltern anstecken, und einer davon qualvoll zu Hause stirbt und sie das
+    Gefühl haben, Schuld daran zu sein […], ist es das Schrecklichste, was ein Kind je erleben kann."
+    — BMI-Strategiepapier, März 2020
+  </div>
+<div class="source-box">
+<div class="src-title">Primärquelle</div>
+<p>Strategiepapier "Wie wir COVID-19 unter Kontrolle bekommen", Bundesinnenministerium, März 2020</p>
+<div class="src-link">fragdenstaat.de/blog/2020/04/01/strategiepapier-des-innenministeriums-corona-szenarien/</div>
+<p style="margin-top:0.8rem;">Bundestags-Drucksache 19/20301 — Regierungsantwort zum Papier</p>
+<div class="src-link">dserver.bundestag.de/btd/19/203/1920301.pdf</div>
+</div>
+<h2>3. Die Spaltung: Gehorsame gegen Querdenker</h2>
+<p>
+<span class="tag tag-extra">EXTRAPOLATION</span>
+    Das Strategiepapier selbst benennt keine Spaltung der Bevölkerung in Lager. Was es belegt
+    beschreibt, ist eine gezielte Angst-Kommunikationsstrategie. Die Deutung, dass daraus eine
+    gesellschaftliche Spaltung in "Gehorsame" und "Ungehorsame" hervorging, ist eine spätere,
+    weit verbreitete Interpretation von Kommentatoren und Wissenschaftlern — kein Bestandteil
+    des Dokuments selbst.
+  </p>
+<p>
+    Diese Interpretation stützt sich auf einen belegbaren, empirischen Befund: Die
+    öffentliche Wahrnehmung der Corona-Proteste ("Querdenken") war 2020 tatsächlich stark
+    polarisiert — Medien beschrieben Teilnehmer als "Mischung aus Corona-Zweiflern,
+    Verschwörungsideologen, Reichsbürgern und Rechtsextremen", während gleichzeitig ein
+    relevanter Bevölkerungsanteil (rund 20 Prozent laut Umfragedaten 2020) Verständnis für die
+    Proteste äußerte.
+  </p>
+<table class="compare">
+<tr><th>Ebene</th><th>Status</th></tr>
+<tr><td>"Schockwirkung"-Empfehlung im BMI-Papier</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+<tr><td>Mediale Polarisierung rund um "Querdenken"</td><td><span class="tag tag-belegt">BELEGT</span></td></tr>
+<tr><td>Bewusste Spaltungsstrategie als Regierungsziel</td><td><span class="tag tag-offen">OFFEN</span></td></tr>
+<tr><td>Direkte Verbindung BMI-Papier → COIN-Doktrin</td><td><span class="tag tag-offen">OFFEN</span></td></tr>
+</table>
+<h2>4. Die strukturelle Parallele</h2>
+<p>
+<span class="tag tag-extra">EXTRAPOLATION</span>
+    Auffällig ist die gemeinsame Denklogik, nicht ein dokumentierter Kopiervorgang: In beiden
+    Fällen wird die Bevölkerung als <strong>zu gewinnendes, nicht als zu informierendes Subjekt</strong>
+    behandelt. Information Operations in FM 3-24 zielen darauf, Legitimität und Zustimmung zu
+    erzeugen. Die "Schockwirkung"-Strategie des BMI verfolgt strukturell dasselbe Ziel — nur
+    gegenüber der eigenen Bevölkerung statt gegenüber einer fremden.
+  </p>
+<div class="closing">
+<p>
+<em>Ist das Konvergenz — zwei unabhängige Antworten auf dieselbe Frage, wie man große
+      Gruppen von Menschen zu koordiniertem Verhalten bewegt? Oder Kontinuität — eine
+      Denkschule, die sich von der Aufstandsbekämpfung im Ausland in die Krisenkommunikation
+      im Inland verschoben hat?</em>
+</p>
+<p>
+<em>Das Papier ist geschrieben. Die Frage steht offen.</em>
+</p>
+</div>
+<div class="series-nav">
+<div class="label">Weiterführend</div>
+<a href="kriegstuechtig.html">Nächster Teil: Die Bevölkerung als Ressource — Vom Panikpapier zum Grünbuch ZMZ →</a>
+</div>
+</main>
+<footer>
+  Alle dargestellten Informationen basieren auf öffentlich zugänglichen Primärquellen:
+  US-Militärdoktrin, Bundestags-Drucksachen und durch Informationsfreiheitsanfragen veröffentlichte
+  Regierungsdokumente. Diese Seite erhebt keinen Anspruch auf Vollständigkeit und trifft keine
+  Aussage über die inneren Motive beteiligter Personen, die nicht durch Primärquellen gedeckt ist.
+</footer>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

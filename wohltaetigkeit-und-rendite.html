@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wohltätigkeit und Rendite — dunkelfeld.report</title>
+<style>
+  :root{
+    --bg:#09090b; --accent:#e8c547; --box:#1a1a2e;
+    --green:#5fbf7a; --orange:#e8a147; --grey:#8a8a8a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:#e4e4e7; font-family:Georgia,'Times New Roman',serif;
+    font-size:1.1rem; line-height:1.8; margin:0; padding:0;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:2.5rem 1.25rem 5rem;}
+  .kicker{
+    font-family:'Courier New',monospace; color:var(--accent); font-size:0.85rem;
+    letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.5rem;
+  }
+  h1{font-family:Georgia,serif; font-size:2.1rem; line-height:1.25; margin:0 0 1rem; color:#f4f4f5;}
+  .subtitle{color:#b8b8bd; font-size:1.05rem; margin-bottom:2rem; font-style:italic;}
+  .meta{
+    font-family:'Courier New',monospace; font-size:0.8rem; color:var(--grey);
+    border-top:1px solid #2a2a35; border-bottom:1px solid #2a2a35;
+    padding:0.75rem 0; margin-bottom:2.5rem; display:flex; gap:1.5rem; flex-wrap:wrap;
+  }
+  p{padding-bottom:1.2rem;}
+  h2{
+    font-size:1.4rem; color:var(--accent); margin:2.5rem 0 1rem;
+    font-family:Georgia,serif; border-bottom:1px solid #2a2a35; padding-bottom:0.5rem;
+  }
+  h3{font-size:1.15rem; color:#f4f4f5; margin:1.8rem 0 0.8rem;}
+  .source-box{
+    background:var(--box); border-left:3px solid var(--accent);
+    padding:1.2rem 1.4rem; margin:1.5rem 0; border-radius:0 4px 4px 0;
+  }
+  .source-box .src-label{
+    font-family:'Courier New',monospace; font-size:0.75rem; color:var(--accent);
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem; display:block;
+  }
+  .source-box p{padding-bottom:0.5rem; font-size:1rem;}
+  .source-box cite{
+    display:block; font-family:'Courier New',monospace; font-size:0.78rem;
+    color:var(--grey); font-style:normal; margin-top:0.5rem;
+  }
+  .tag{
+    font-family:'Courier New',monospace; font-size:0.72rem; font-weight:bold;
+    padding:0.2rem 0.55rem; border-radius:3px; letter-spacing:0.05em;
+    display:inline-block; margin-right:0.4rem; margin-bottom:0.3rem;
+  }
+  .tag-belegt{background:rgba(95,191,122,0.15); color:var(--green); border:1px solid var(--green);}
+  .tag-belegt1{background:rgba(95,191,122,0.08); color:#8fcf9f; border:1px solid #3a6a45;}
+  .tag-extra{background:rgba(232,161,71,0.15); color:var(--orange); border:1px solid var(--orange);}
+  .tag-offen{background:rgba(138,138,138,0.15); color:var(--grey); border:1px solid var(--grey);}
+
+  .person-card{
+    display:flex; gap:1rem; border:1px solid #2a2a35; border-radius:6px;
+    padding:1.2rem 1.4rem; margin:1.3rem 0; background:#111116; align-items:flex-start;
+  }
+  .person-card .avatar{
+    width:42px; height:42px; border-radius:50%; background:var(--accent);
+    color:#09090b; font-family:'Courier New',monospace; font-weight:bold;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1rem;
+  }
+  .person-card h3{margin:0 0 0.3rem;}
+  .person-card .role{font-family:'Courier New',monospace; font-size:0.8rem; color:var(--grey); margin-bottom:0.6rem;}
+
+  .timeline{margin:2rem 0; border-left:2px solid var(--accent); padding-left:1.5rem;}
+  .timeline-item{margin-bottom:1.5rem; position:relative;}
+  .timeline-item::before{
+    content:''; position:absolute; left:-1.56rem; top:0.4rem;
+    width:8px; height:8px; border-radius:50%; background:var(--accent);
+  }
+  .timeline-date{
+    font-family:'Courier New',monospace; font-size:0.8rem; color:var(--accent); display:block;
+    margin-bottom:0.3rem;
+  }
+
+  .pull-quote{
+    font-size:1.3rem; font-style:italic; color:#f4f4f5; margin:2rem 0;
+    padding:0 1rem; border-left:3px solid var(--accent); line-height:1.5;
+  }
+
+  table{width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:0.95rem;}
+  th,td{border:1px solid #2a2a35; padding:0.6rem 0.8rem; text-align:left;}
+  th{background:var(--box); color:var(--accent); font-family:'Courier New',monospace; font-size:0.8rem;}
+
+  .open-question{
+    font-style:italic; color:#b8b8bd; margin-top:3rem; padding-top:1.5rem;
+    border-top:1px solid #2a2a35; font-size:1.05rem;
+  }
+
+  .series-nav{
+    margin-top:3.5rem; padding-top:1.5rem; border-top:1px solid #2a2a35;
+    font-family:'Courier New',monospace; font-size:0.85rem; color:var(--grey);
+  }
+  .series-nav a{color:var(--accent); text-decoration:none;}
+  .series-nav a:hover{text-decoration:underline;}
+
+  a{color:var(--accent);}
+
+  .legend{
+    font-family:'Courier New',monospace; font-size:0.72rem; color:var(--grey);
+    margin:1rem 0 2rem; line-height:2;
+  }
+
+  table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.95rem;} th,td{border:1px solid #2a2a35;padding:0.5rem;text-align:left;}
+  blockquote{background:var(--box);border-left:3px solid var(--accent);margin:1.5rem 0;padding:1rem 1.4rem;font-style:italic;}
+  .footnote{font-size:0.85rem;color:#a1a1aa;}
+</style>
+<meta name="description" content="Ein verurteilter Straftäter im selben E-Mail-Verteiler wie die WHO-Chefin. Eine Stiftung mit einem Aktiendepot von 40 Milliarden Dollar. Zwei Fragen, die …">
+<meta name="rubrik" content="cat-stiftungen">
+<meta name="kachel-titel" content="Wohltätigkeit und Rendite">
+<link rel="canonical" href="https://dunkelfeld.report/wohltaetigkeit-und-rendite.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wohltätigkeit und Rendite">
+<meta property="og:description" content="Ein verurteilter Straftäter im selben E-Mail-Verteiler wie die WHO-Chefin. Eine Stiftung mit einem Aktiendepot von 40 Milliarden Dollar. Zwei Fragen, die …">
+<meta property="og:url" content="https://dunkelfeld.report/wohltaetigkeit-und-rendite.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Wohltätigkeit und Rendite", "description": "Ein verurteilter Straftäter im selben E-Mail-Verteiler wie die WHO-Chefin. Eine Stiftung mit einem Aktiendepot von 40 Milliarden Dollar. Zwei Fragen, die …", "inLanguage": "de", "url": "https://dunkelfeld.report/wohltaetigkeit-und-rendite.html", "mainEntityOfPage": "https://dunkelfeld.report/wohltaetigkeit-und-rendite.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="kicker">dunkelfeld.report · Dokumentation</div>
+<h1>Wohltätigkeit und Rendite</h1>
+<p class="subtitle"><em>Ein verurteilter Straftäter im selben E-Mail-Verteiler wie die WHO-Chefin. Eine Stiftung mit einem Aktiendepot von 40 Milliarden Dollar. Zwei Fragen, die sich trennen lassen – und die man auch trennen sollte.</em></p>
+<h2>Damals</h2>
+<p><strong>2013:</strong> Jeffrey Epstein schreibt in einer E-Mail, er trete von einer Rolle bei der Gates-Stiftung und bei „BG3" (Bill Gates' privatem Think Tank Gates Ventures) zurück¹.</p>
+<p><strong>19./20. März 2015:</strong> Eine E-Mail-Kette mit dem Betreff „Preparing for pandemics" wird an Epstein weitergeleitet – mit Entwurfs-Agenda für ein Treffen in Genf, unter Einbindung von WHO und Rotem Kreuz².</p>
+<p><strong>2. Juni 2015:</strong> Der norwegische Diplomat Terje Rød-Larsen, damals Präsident des International Peace Institute, lädt sowohl Bill Gates als auch Epstein zu einer Genfer Konferenz ein: „Preparing for Pandemics: Lessons Learned for More Effective Responses". Mit dabei: WHO-Generaldirektorin Margaret Chan, IKRK-Präsident Peter Maurer, der amtierende UN-Genf-Chef Michael Møller, Ex-Premierminister Kevin Rudd³.</p>
+<p><strong>2017:</strong> Ein Dokument von BGC3 (Gates Ventures) mit Projektvorschlägen erwähnt eine „strain pandemic simulation" – auch dieses wird mit Epstein ausgetauscht⁴.</p>
+<p>Im selben Jahr, <strong>Januar 2017</strong>, wird in Davos die „Coalition for Epidemic Preparedness Innovations" (CEPI) gegründet – eine Impfstoff-Finanzierungsallianz aus Gates-Stiftung, Wellcome Trust, Norwegen, Indien und dem Weltwirtschaftsforum, mit einer Anschubfinanzierung von 460 Millionen Dollar allein von Gates-Stiftung und Wellcome Trust⁵.</p>
+<h2>Heute</h2>
+<p>Alle diese Mails sind erst durch die 2025/26 vom US-Justizministerium freigegebenen Epstein-Akten öffentlich geworden – Millionen Seiten Dokumente. Mehrere unabhängige Faktenchecks (u.a. AFP) haben sie geprüft und kommen einhellig zu demselben Schluss: Es gibt darin <strong>keinen Beleg</strong>, dass Epstein, Gates oder sonst jemand die Corona-Pandemie geplant oder vorhergesehen hätte. Eine Stichwortsuche nach „Coronavirus" in den Akten findet zwar hunderte Treffer – aber ausnahmslos aus der Zeit nach 2019, meist Gerichtsdokumente und Pressetexte⁶.</p>
+<p>Was die Mails stattdessen zeigen: Epstein bewegte sich als Financier in denselben Kreisen, die Pandemie-Vorsorge seit Jahrzehnten als Politik- und Finanzierungsfeld behandeln – eine Infrastruktur, die es seit den internationalen Gesundheitsvorschriften von 2005, verstärkt nach SARS, H1N1 (2009) und vor allem nach der Ebola-Krise 2014 durchgehend gab. Genau in dieser Kontinuität liegt die Vorsicht, die hier nötig ist: Wer heute rückwärts eine mehrjährige Vorlaufkette zu Corona sucht, findet sie <em>immer</em> – weil es diese Vorsorge-Ketten zu jeder denkbaren künftigen Pandemie ununterbrochen gab, die meisten davon ohne dass je ein passendes Ereignis folgte.</p>
+<h2>Das Muster</h2>
+<p>Getrennt von der Frage nach Absicht steht eine andere, die sich sauber belegen lässt: Wie ist diese Vorsorge-Infrastruktur eigentlich finanziert?</p>
+<p>Die Gates-Stiftung ist keine reine Spendenorganisation. Ihr Vermögen wird über den „Bill &amp; Melinda Gates Foundation Trust" verwaltet – mit einem öffentlich ausgewiesenen Aktienportfolio von rund 40 bis 45 Milliarden Dollar⁷. Weil das Vermögen die gesetzliche Schwelle übersteigt, muss der Trust wie jeder große institutionelle Investor vierteljährlich seine Beteiligungen bei der US-Börsenaufsicht SEC offenlegen (Formular 13F) – öffentlich einsehbar. Die größten Positionen Anfang 2025: Microsoft, Berkshire Hathaway, Canadian National Railway, Waste Management, Caterpillar⁸ – ein breit gestreutes, konservatives Portfolio, keine auffällige Pharma-Lastigkeit.</p>
+<p>CEPI wiederum, mitgegründet und mitfinanziert von genau dieser Stiftung, ist von Beginn an als Public-Private-Partnership konzipiert – Staaten, Stiftungen und Pharmaindustrie gemeinsam in einer Struktur, die Impfstoffentwicklung vorfinanziert⁹.</p>
+<p>Damit lässt sich die Frage präziser stellen, als „war es geplant?" es könnte: Wie verhalten sich in dieser Struktur humanitäres Ziel und kommerzielles Interesse zueinander? Beides läuft hier nicht getrennt, sondern in denselben Organisationen und häufig durch dieselben Personen. Ob und wie stark das eine das andere beeinflusst hat, lässt sich aus den öffentlichen Dokumenten allein nicht beantworten – nur, dass die Struktur so angelegt ist, dass beides zusammenkommt.</p>
+<h2>Und jetzt?</h2>
+<p>Zwei Dinge lassen sich also klar trennen. Erstens: Es gibt keinen belastbaren Hinweis, dass irgendjemand Corona geplant hat – das ist geprüft und widerlegt, und wer das Gegenteil behauptet, verlässt den Boden der Fakten. Zweitens: Es gibt eine öffentlich einsehbare, SEC-registrierte Finanzstruktur hinter der globalen Pandemievorsorge, in der wohltätige und kommerzielle Interessen strukturell zusammenlaufen – das ist keine Verschwörungstheorie, sondern Aktenlage. Beides gleichzeitig im Blick zu behalten, ohne das eine mit dem anderen zu verwechseln, ist die eigentliche Aufgabe der Aufarbeitung.</p>
+<hr/>
+<hr/>
+<h3>Quellen</h3>
+<ol>
+<li>AFP Fact Check / factually.co, Auswertung der 2025/26 freigegebenen Epstein-Akten, Abschnitt zu Epsteins Rücktritt von Gates-naher Funktion 2013</li>
+<li>AFP Fact Check, „Posts falsely link email in Epstein files to Covid conspiracy", Auswertung der E-Mail-Kette vom 19./20.03.2015</li>
+<li>WION News, „Epstein files reveal 2015 email linking Bill Gates, Jeffrey Epstein to global pandemic preparedness conference", Auswertung der Einladung vom 02.06.2015</li>
+<li>factually.co, „Is it true that Bill Gates wrote in the Epstein files...", Auswertung des BGC3-Dokuments von 2017</li>
+<li>Wikipedia, „Coalition for Epidemic Preparedness Innovations" – Gründungsdaten Davos, Januar 2017, Finanzierungssumme</li>
+<li>AFP Fact Check, „Posts falsely link email in Epstein files to Covid conspiracy" – Ergebnis der Stichwortsuche nach „Coronavirus" in den Akten</li>
+<li>finanzen.ch/finanzen.at, Auswertungen der SEC-13F-Meldungen des Bill &amp; Melinda Gates Foundation Trust, Q3 2024 und Q1 2025</li>
+<li>tikr.com, Auswertung der größten Positionen im Gates Foundation Trust, Stand 31.03.2025</li>
+<li>Wellcome Open Research, „The formation of the Coalition for Epidemic Preparedness Innovations" – zur Public-Private-Partnership-Struktur von CEPI</li>
+</ol>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

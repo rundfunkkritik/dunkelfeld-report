@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Messerverbotszonen: Kontrolle ohne Evaluation — dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    color: #71717a;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-size: 1.9rem;
+    line-height: 1.3;
+    margin: 0.8rem 0 0.4rem;
+    color: #f4f4f5;
+  }
+  h2 {
+    font-size: 1.3rem;
+    color: #e8c547;
+    margin: 2.5rem 0 1rem;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 0.5rem;
+  }
+  p { padding-bottom: 1.2rem; }
+  .subtitle {
+    color: #a1a1aa;
+    font-style: italic;
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #52525b;
+    margin-bottom: 2rem;
+  }
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .quelle {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #a1a1aa;
+    margin-top: 0.6rem;
+    display: block;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+  }
+  .tag-belegt { background: rgba(74, 222, 128, 0.15); color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.4); }
+  .tag-extrapolation { background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid rgba(251, 146, 60, 0.4); }
+  .tag-offen { background: rgba(161, 161, 170, 0.15); color: #a1a1aa; border: 1px solid rgba(161, 161, 170, 0.4); }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat-box {
+    background: #18181b;
+    border: 1px solid #27272a;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-box .num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.6rem;
+    color: #e8c547;
+    display: block;
+  }
+  .stat-box .desc {
+    font-size: 0.85rem;
+    color: #a1a1aa;
+  }
+
+  .timeline {
+    margin: 1.5rem 0;
+    border-left: 2px solid #27272a;
+    padding-left: 1.2rem;
+  }
+  .timeline-item { margin-bottom: 1rem; }
+  .timeline-item .date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #e8c547;
+    display: block;
+  }
+
+  .pull-quote {
+    font-size: 1.25rem;
+    color: #f4f4f5;
+    font-style: italic;
+    padding: 1rem 0 1rem 1.2rem;
+    border-left: 3px solid #e8c547;
+    margin: 2rem 0;
+  }
+
+  .closing-question {
+    font-style: italic;
+    color: #a1a1aa;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+  }
+
+  .series-nav {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+  }
+  a { color: #e8c547; }
+</style>
+<meta name="description" content="Nach den Messerattacken von Mannheim und Solingen 2024 verschärfte der Bundestag das Waffengesetz: Messerverbotszonen, ein Verbot des Mitführens von …">
+<meta name="rubrik" content="cat-kontrolle">
+<meta name="kachel-titel" content="Messerverbotszonen: Kontrollinstrument ohne Evaluation">
+<link rel="canonical" href="https://dunkelfeld.report/messerverbotszonen-ohne-evaluation.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Messerverbotszonen: Kontrollinstrument ohne Evaluation">
+<meta property="og:description" content="Nach den Messerattacken von Mannheim und Solingen 2024 verschärfte der Bundestag das Waffengesetz: Messerverbotszonen, ein Verbot des Mitführens von …">
+<meta property="og:url" content="https://dunkelfeld.report/messerverbotszonen-ohne-evaluation.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Messerverbotszonen: Kontrollinstrument ohne Evaluation", "description": "Nach den Messerattacken von Mannheim und Solingen 2024 verschärfte der Bundestag das Waffengesetz: Messerverbotszonen, ein Verbot des Mitführens von …", "inLanguage": "de", "url": "https://dunkelfeld.report/messerverbotszonen-ohne-evaluation.html", "mainEntityOfPage": "https://dunkelfeld.report/messerverbotszonen-ohne-evaluation.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="label">Dunkelfeld.Report — Innere Sicherheit &amp; Symbolpolitik</div>
+<h1>Messerverbotszonen: Kontrollinstrument ohne Evaluation</h1>
+<div class="subtitle">Schilder, Kontrollen, widersprüchliche Zahlen – und die offizielle Aussage, dass eine echte Wirksamkeitsprüfung gar nicht geplant ist</div>
+<div class="meta">STAND: JULI 2026 · BELEG-VOR-MOTIV-PRINZIP ANGEWANDT</div>
+<p>Nach den Messerattacken von Mannheim und Solingen 2024 verschärfte der Bundestag das Waffengesetz: Messerverbotszonen, ein Verbot des Mitführens von Messern im öffentlichen Personenfernverkehr, erweiterte Länderbefugnisse. Die Idee klingt einfach – Schilder, die anzeigen, wo Waffen und Messer verboten sind. Was diese Zonen tatsächlich bewirken, ist zwei Jahre später weiterhin unklar. Nicht, weil es an Daten fehlt, sondern weil die vorhandenen Daten sich widersprechen und eine systematische Prüfung bislang nicht stattgefunden hat.</p>
+<h2>Was die Zonen rechtlich eigentlich tun</h2>
+<p>Der praktisch entscheidende Effekt einer Messerverbotszone ist nicht das Schild selbst. Es ist die damit verbundene Befugnis der Polizei zu verdachtsunabhängigen Kontrollen. Ohne eine solche Zone bräuchte es einen konkreten Anlass, um jemanden zu durchsuchen. Mit ihr darf grundsätzlich jede Person angehalten und kontrolliert werden – unabhängig von einem individuellen Verdacht.</p>
+<div class="source-box">
+<span class="tag tag-belegt">BELEGT</span>
+Eine Kommentierung der Regelung stellt fest, dass Messerverbotszonen "nur einen wirklichen Sinn" haben: die verdachtsunabhängige Kontrolle. Einen darüber hinausgehenden Abschreckungseffekt gegenüber Tätern, die ohnehin zustechen wollen, gebe es nicht.
+<span class="quelle">Quelle: taz, Januar 2025</span>
+</div>
+<h2>Der Berliner Fall: zwei Bilanzen, ein Widerspruch</h2>
+<p>Berlin richtete im Februar 2025 drei dauerhafte Waffen- und Messerverbotszonen ein (Görlitzer Park, Kottbusser Tor, Leopoldplatz), im Juli 2025 folgte das Verbot im gesamten ÖPNV. Was seither an Zahlen veröffentlicht wurde, ergibt kein einheitliches Bild.</p>
+<div class="stat-grid">
+<div class="stat-box"><span class="num">−25 bis −45 %</span><span class="desc">Rückgang von Messerangriffen in den drei Zonen laut Innensenatorin Spranger, Stand März 2026</span></div>
+<div class="stat-box"><span class="num">76</span><span class="desc">Messerattacken innerhalb der drei Zonen zwischen Feb. 2025 und Ende Jan. 2026, laut B.Z.-Auswertung</span></div>
+<div class="stat-box"><span class="num">~31.000</span><span class="desc">Kontrollen in den Verbotszonen bis April 2026, davon Durchsuchung bei ca. 81 %</span></div>
+<div class="stat-box"><span class="num">149+</span><span class="desc">sichergestellte Messer im ersten knappen Jahr, laut Senatsangaben</span></div>
+</div>
+<p>Beide Zahlenreihen können gleichzeitig zutreffen: ein prozentualer Rückgang gegenüber einer vorherigen, höheren Basis – und trotzdem eine zweistellige Zahl an Vorfällen pro Jahr in genau den Bereichen, die als besonders kontrolliert gelten. Das eine widerlegt das andere nicht zwangsläufig, es zeigt aber, wie unterschiedlich sich dieselbe Maßnahme darstellen lässt, je nachdem, welche Zahl man in den Vordergrund stellt.</p>
+<h2>Die entscheidende Leerstelle</h2>
+<div class="source-box">
+<span class="tag tag-belegt">BELEGT</span>
+Auf eine schriftliche Anfrage der Linksfraktion im Berliner Abgeordnetenhaus antwortete der Senat im Juni 2026: Eine umfassende Evaluation der Waffen- und Messerverbotszonen ist gegenwärtig nicht geplant.
+<span class="quelle">Quelle: Drucksache 19/26130, Abgeordnetenhaus Berlin, Juni 2026</span>
+</div>
+<p>Das ist der eigentliche Kern der Sache. Zwei Jahre nach Einführung der ersten Zonen im Rahmen des Bundes-Sicherheitspakets existiert keine systematische, methodisch saubere Untersuchung, ob die Maßnahme tatsächlich zu weniger Messerkriminalität führt oder ob die Polizei lediglich mehr kontrolliert, ohne dass sich am zugrunde liegenden Geschehen etwas ändert. Beide Fragen sind nicht dasselbe – aber genau diese Unterscheidung fehlt in der öffentlichen Debatte fast vollständig.</p>
+<h2>Der historische Vergleichsfall: Reeperbahn seit 2007</h2>
+<p>Deutschlands älteste Waffenverbotszone liegt in Hamburg, auf der Reeperbahn, seit 2007. Fast zwei Jahrzehnte Erfahrung liegen also vor. Nach kriminologischen Auswertungen haben Waffenstraftaten in diesem Zeitraum durch das Verbot selbst nicht nachweisbar abgenommen.</p>
+<div class="timeline">
+<div class="timeline-item"><span class="date">2007</span>Erste deutsche Waffenverbotszone: Reeperbahn, Hamburg.</div>
+<div class="timeline-item"><span class="date">Mai/Aug. 2024</span>Messerattacken Mannheim und Solingen lösen bundesweite Debatte aus.</div>
+<div class="timeline-item"><span class="date">Okt. 2024</span>Bundestag und Bundesrat beschließen Sicherheitspaket: Messerverbotszonen, ÖPV-Verbot.</div>
+<div class="timeline-item"><span class="date">Feb. 2025</span>Berlin richtet drei dauerhafte Zonen ein.</div>
+<div class="timeline-item"><span class="date">Juli 2025</span>Ausweitung auf den gesamten Berliner ÖPNV.</div>
+<div class="timeline-item"><span class="date">März 2026</span>Senat vermeldet Rückgänge von 25–45 % in den drei Zonen.</div>
+<div class="timeline-item"><span class="date">Juni 2026</span>Senat bestätigt: keine umfassende Evaluation geplant.</div>
+</div>
+<h2>Zwei Lesarten, beide mit Beleg</h2>
+<p><strong>Lesart eins:</strong> Die Zonen wirken zumindest teilweise – die von Berlin gemeldeten Rückgänge sind real gemessene Zahlen, keine Erfindung. Über 30.000 Kontrollen und mehrere Hundert sichergestellte Messer sind ein konkretes, nicht symbolisches Ergebnis.</p>
+<p><strong>Lesart zwei:</strong> Ohne systematische Evaluation lässt sich nicht zwischen echter Prävention und bloßer Verlagerung unterscheiden. Wenn Täter in benachbarte, nicht kontrollierte Bereiche ausweichen, sinkt die Zahl in der Zone, während das Gesamtproblem unverändert bleibt. Genau diese Kontrollrechnung fehlt.</p>
+<div class="pull-quote">
+Was fehlt, ist nicht der politische Wille zu handeln. Was fehlt, ist der Wille, das eigene Handeln nachträglich ernsthaft zu überprüfen.
+</div>
+<p class="closing-question"><em>Bleibt offen: Warum wird eine Maßnahme, die tief in Grundrechte eingreift und seit fast zwei Jahrzehnten in unterschiedlichen Städten läuft, bis heute nicht sauber evaluiert – und wem nützt es, dass diese Frage unbeantwortet bleibt?</em></p>
+<div class="series-nav">
+QUELLEN: taz (Jan. 2025) · nd-aktuell (Feb. 2025) · Senatsverwaltung für Inneres und Sport Berlin (März 2026) · Tagesspiegel (Juni 2026) · Drucksache 19/26130, Abgeordnetenhaus Berlin (Juni 2026) · netzpolitik.org (Juli 2025) · BMI Waffenrecht FAQ
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

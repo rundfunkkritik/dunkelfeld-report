@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Die dunkle Seite der CDU (I): Gründung und Blockpartei</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 3rem 1.5rem 6rem;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #71717a;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    color: #f4f4f5;
+    margin-bottom: 0.5rem;
+  }
+  .subtitle {
+    font-size: 1.2rem;
+    color: #a1a1aa;
+    font-style: italic;
+    margin-bottom: 2.5rem;
+  }
+  h2 {
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #e8c547;
+    margin: 3rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #27272a;
+  }
+  p { margin-bottom: 1.3rem; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.12); color: #4ade80; border: 1px solid rgba(74,222,128,0.35); }
+  .tag-extra { background: rgba(251,146,60,0.12); color: #fb923c; border: 1px solid rgba(251,146,60,0.35); }
+  .tag-offen { background: rgba(161,161,170,0.12); color: #a1a1aa; border: 1px solid rgba(161,161,170,0.35); }
+  .tag-vt { background: rgba(239,68,68,0.08); color: #71717a; border: 1px solid rgba(239,68,68,0.2); text-decoration: line-through; }
+
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.3rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .tag { margin-bottom: 0.6rem; }
+
+  .person-card {
+    background: #131316;
+    border: 1px solid #27272a;
+    border-radius: 6px;
+    padding: 1.3rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .person-card h3 {
+    font-size: 1.15rem;
+    color: #f4f4f5;
+    margin-bottom: 0.5rem;
+  }
+  .person-card .role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: #71717a;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat {
+    background: #131316;
+    border: 1px solid #27272a;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 6px;
+  }
+  .stat .num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.7rem;
+    color: #e8c547;
+    font-weight: bold;
+    display: block;
+  }
+  .stat .label {
+    font-size: 0.85rem;
+    color: #a1a1aa;
+    margin-top: 0.3rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    padding: 0.6rem 0.7rem;
+    text-align: left;
+    border-bottom: 1px solid #27272a;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #e8c547;
+    border-bottom: 2px solid #e8c547;
+  }
+
+  .timeline {
+    border-left: 2px solid #27272a;
+    margin: 1.5rem 0 1.5rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item { margin-bottom: 1.3rem; position: relative; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.82rem;
+    top: 0.35rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #e8c547;
+  }
+  .timeline-item .date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #e8c547;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #f4f4f5;
+    border-left: 3px solid #e8c547;
+    padding: 0.3rem 0 0.3rem 1.3rem;
+    margin: 2rem 0;
+  }
+
+  .open-questions {
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid #27272a;
+  }
+  .open-questions h2 { color: #a1a1aa; }
+  .open-questions p {
+    font-style: italic;
+    color: #d4d4d8;
+  }
+
+  .crossref {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+  }
+  .crossref a { color: #e8c547; }
+
+  a { color: #e8c547; }
+
+  .footnote {
+    font-size: 0.85rem;
+    color: #71717a;
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+  }
+</style>
+<meta name="description" content="Die CDU stellte mit Konrad Adenauer, Helmut Kohl und Angela Merkel drei der prägendsten Kanzler der Bundesrepublik. Zugleich gehört sie zu den Parteien …">
+<meta name="rubrik" content="cat-staat">
+<meta name="kachel-titel" content="Die dunkle Seite der CDU (I): Gründung, Personalkontinuität, Blockpartei">
+<link rel="canonical" href="https://dunkelfeld.report/cdu-teil1.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Die dunkle Seite der CDU (I): Gründung, Personalkontinuität, Blockpartei">
+<meta property="og:description" content="Die CDU stellte mit Konrad Adenauer, Helmut Kohl und Angela Merkel drei der prägendsten Kanzler der Bundesrepublik. Zugleich gehört sie zu den Parteien …">
+<meta property="og:url" content="https://dunkelfeld.report/cdu-teil1.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Die dunkle Seite der CDU (I): Gründung, Personalkontinuität, Blockpartei", "description": "Die CDU stellte mit Konrad Adenauer, Helmut Kohl und Angela Merkel drei der prägendsten Kanzler der Bundesrepublik. Zugleich gehört sie zu den Parteien …", "inLanguage": "de", "url": "https://dunkelfeld.report/cdu-teil1.html", "mainEntityOfPage": "https://dunkelfeld.report/cdu-teil1.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="meta">dunkelfeld.report — Serie: Parteien im Beleg-vor-Motiv-Verfahren — Teil 1 von 3</div>
+<div style="font-family:'Courier New',monospace;font-size:0.8rem;opacity:0.85;margin:0 0 1.5rem;padding-bottom:0.8rem;border-bottom:1px solid rgba(128,128,128,0.35);">Serie „Parteien im Beleg-vor-Motiv-Verfahren“: <strong>Teil 1</strong> · <a href="cdu-teil2.html">Teil 2</a> · <a href="cdu-teil3a.html">Teil 3a</a> · <a href="cdu-teil3b.html">Teil 3b</a></div>
+<h1>Die dunkle Seite der CDU</h1>
+<div class="subtitle">Teil 1: Gründung, Personalkontinuität und die Fusion mit der Blockpartei</div>
+<p>Die CDU stellte mit Konrad Adenauer, Helmut Kohl und Angela Merkel drei der prägendsten Kanzler der Bundesrepublik. Zugleich gehört sie zu den Parteien mit der am besten dokumentierten NS-Personalkontinuität in der frühen Bundesrepublik — und sie ist die einzige westdeutsche Partei, die sich 1990 mit einer vierzig Jahre lang als Blockpartei im SED-System eingebundenen "Schwesterpartei" zusammenschloss. Dieser Teil dokumentiert beide Stränge: die Nachkriegs-Personalfrage und die Vereinigung 1990.</p>
+<h2>1 — Gründung 1945–1949</h2>
+<p>Die CDU entstand 1945 zeitgleich und unabhängig in mehreren deutschen Regionen als überkonfessionelle Sammlungspartei aus politischem Katholizismus, evangelischem Sozialengagement und Teilen des ehemaligen bürgerlich-konservativen Lagers. Am 1. Bundesparteitag 1950 in Goslar konstituierte sich die gesamtdeutsche Bundespartei unter Konrad Adenauer als Vorsitzendem.</p>
+<div class="source-box">
+<span class="tag tag-belegt">BELEGT</span>
+<p style="margin-bottom:0">Die Selbstbeschreibung als "Partei des Neuanfangs" ist zeitgeschichtlich dokumentiert — ebenso wie die parallele Aufnahme ehemaliger NSDAP-Mitglieder in erhebliche Umfang, siehe Abschnitt 3.</p>
+</div>
+<h2>2 — Der Globke-Fall: Belastung ohne Parteibuch</h2>
+<p>Hans Globke war <strong>kein NSDAP-Mitglied</strong> — sein Aufnahmeantrag wurde 1943 wegen seiner Zentrums-Vergangenheit abgelehnt. Seine Belastung liegt woanders: Globke verfasste 1936 gemeinsam mit Wilhelm Stuckart den amtlichen Kommentar zu den Nürnberger Rassegesetzen und war an der Ausarbeitung der Namensänderungsverordnung beteiligt, die jüdische Bürger zur Zwangsannahme der Vornamen "Israel" bzw. "Sara" verpflichtete. Von 1953 bis 1963 war er Staatssekretär im Bundeskanzleramt unter Adenauer — eine der einflussreichsten Positionen der jungen Bundesrepublik.</p>
+<div class="person-card">
+<h3>Hans Globke</h3>
+<div class="role">Staatssekretär im Bundeskanzleramt, 1953–1963</div>
+<p style="margin-bottom:0"><span class="tag tag-belegt">BELEGT</span> Kein NSDAP-Mitglied. Mitverfasser des Kommentars zu den Nürnberger Gesetzen (1936) und der Namensänderungsverordnung. Sachlich schwerer wiegende Belastung als eine reine Parteimitgliedschaft — kein formaler, sondern ein inhaltlicher Befund.</p>
+</div>
+<h2>3 — Personalkontinuität: Drei Fälle, drei Belastungsgrade</h2>
+<p>Der wissenschaftliche Dienst des Bundestages stellt fest, dass es <strong>keine abgeschlossene Gesamtstudie zur NSDAP-Vergangenheit im Bundestag</strong> gibt (WD 1-3000-045/18, WD 1-015/19). Was vorliegt, sind Einzelfallstudien und Institutionsberichte. Drei Fälle aus der CDU/CSU zeigen unterschiedliche Belastungsgrade — von formaler Mitgliedschaft bis zu aktiver richterlicher Tätigkeit im NS-Militärapparat.</p>
+<div class="person-card">
+<h3>Kurt Georg Kiesinger</h3>
+<div class="role">Bundeskanzler 1966–1969</div>
+<p style="margin-bottom:0"><span class="tag tag-belegt">BELEGT</span> NSDAP-Eintritt 1. Mai 1933, Mitgliedsnummer 2.633.930. Ab 1940 stellvertretender Leiter der Rundfunkpolitischen Abteilung im Auswärtigen Amt.</p>
+</div>
+<div class="person-card">
+<h3>Theodor Oberländer</h3>
+<div class="role">Bundesminister für Vertriebene, 1953–1960</div>
+<p style="margin-bottom:0"><span class="tag tag-belegt">BELEGT</span> NSDAP-Eintritt 1. Mai 1933, Mitgliedsnummer 2.331.552. Teilnehmer am Hitlerputsch 1923. Reichsleiter des Bundes Deutscher Osten. Nachweislich am 29. Juni–6. Juli 1941 in Lemberg anwesend — der genaue Charakter seiner dortigen Rolle bleibt in der Forschung umstritten.</p>
+</div>
+<div class="person-card">
+<h3>Hans Filbinger</h3>
+<div class="role">Ministerpräsident Baden-Württemberg, Rücktritt 7.8.1978</div>
+<p style="margin-bottom:0"><span class="tag tag-belegt">BELEGT</span> NSDAP-Eintritt 1. Mai 1937, Mitgliedsnummer 4.026.789. Als Marinerichter in mindestens 234 Verfahren tätig — 169-mal als Richter, 63-mal als Ankläger. Für 1978 sind vier Todesurteilsfälle bekannt. Rücktritt nach öffentlichem Druck. Zitat, öffentlich dokumentiert: "Was damals rechtens war, kann heute nicht Unrecht sein."</p>
+</div>
+<div class="pull-quote">"Was damals rechtens war, kann heute nicht Unrecht sein."</div>
+<p class="crossref">— Hans Filbinger, 1978, öffentlich dokumentiert.</p>
+<h2>4 — Die Zahlenfrage: 1. Bundestag 1949</h2>
+<p>Auf der Tagung "Der frühe Bundestag" (26./27. Februar 2026, Kommission für Geschichte des Parlamentarismus) wurde ein Forschungs-Zwischenstand vorgetragen, der als solcher gekennzeichnet werden muss — es handelt sich nicht um eine publizierte Gesamtstudie:</p>
+<table>
+<tr><th>Fraktion</th><th>Ehem. NSDAP-Anteil</th><th>Vorgetragen von</th></tr>
+<tr><td>FDP</td><td>≈ 36 % (19 von 53)</td><td>Ines Soldwisch</td></tr>
+<tr><td>CDU/CSU</td><td>14,5 %</td><td>Frank Bösch</td></tr>
+<tr><td>SPD</td><td>4,5 %</td><td>Kristina Meyer</td></tr>
+</table>
+<div class="source-box">
+<span class="tag tag-extra">EXTRAPOLATION</span>
+<p style="margin-bottom:0">Die CDU/CSU-Führung selbst bezifferte den Anteil ehemaliger NSDAP-Mitglieder in der eigenen Fraktion 1949 offiziell auf rund 3 % — ein Wert, der von der oben zitierten Forschung (14,5 %) deutlich abweicht. Die Differenz ist der eigentliche Befund: nicht nur die Mitgliederzahl selbst, sondern die Diskrepanz zwischen öffentlicher Selbstdarstellung und heutigem Forschungsstand.</p>
+</div>
+<p><span class="tag tag-belegt">BELEGT</span> Für den 2. Bundestag 1953 liegt eine belastbarere Zahl vor: 129 von 487 Abgeordneten insgesamt — 26,5 % — waren ehemalige NSDAP-Mitglieder (Historikerkommission des Auswärtigen Amts).</p>
+<h2>5 — 1990: Die Fusion mit der Blockpartei</h2>
+<p>Die Ost-CDU (offiziell: Christlich-Demokratische Union Deutschlands, CDUD) wurde im Juni 1945 in der Sowjetischen Besatzungszone gegründet — ebenfalls als überkonfessionelle christliche Partei. Anders als die Westpartei musste sie sich jedoch bereits in den ersten Nachkriegsjahren der SED unterordnen. Fast alle demokratisch gesinnten Gründungspolitiker wurden ausgeschaltet und durch linientreue Funktionäre ersetzt.</p>
+<div class="source-box">
+<span class="tag tag-belegt">BELEGT</span>
+<p style="margin-bottom:0">Die Ost-CDU war von 1950 bis 1990 formal Teil der Nationalen Front unter Führung der SED — eine sogenannte Blockpartei ohne eigenständige Machtausübung, aber mit fester Funktion im Kadersystem der DDR. Ihre Mitglieder ("Unionsfreunde") gehörten zu den Funktionseliten der DDR-Gesellschaft, waren an politischen Entscheidungen nicht beteiligt, wohl aber an deren Umsetzung.</p>
+</div>
+<div class="timeline">
+<div class="timeline-item">
+<span class="date">Juni 1945</span>
+      Gründung der Ost-CDU in der SBZ, zunächst eigenständig-demokratisch orientiert.
+    </div>
+<div class="timeline-item">
+<span class="date">1950</span>
+      Eingliederung in die Nationale Front unter SED-Führung. Formale Regierungsbeteiligung ohne reale Machtausübung.
+    </div>
+<div class="timeline-item">
+<span class="date">15./16. Dezember 1989</span>
+      Sonderparteitag der Ost-CDU: Bruch mit der bisherigen Linie, Wahl Lothar de Maizières zum Vorsitzenden.
+    </div>
+<div class="timeline-item">
+<span class="date">Februar 1990</span>
+      Bündnis "Allianz für Deutschland" mit Demokratischem Aufbruch (DA) und Deutscher Sozialer Union (DSU) zur Volkskammerwahl.
+    </div>
+<div class="timeline-item">
+<span class="date">12. April – 2. Oktober 1990</span>
+      Lothar de Maizière (CDU) als letzter Ministerpräsident der DDR, Verhandlungsführung zum Einigungsvertrag gemeinsam mit Bundesinnenminister Wolfgang Schäuble (CDU).
+    </div>
+<div class="timeline-item">
+<span class="date">1./2. Oktober 1990</span>
+      Vereinigungsparteitag in Hamburg: formaler Zusammenschluss von West-CDU und Ost-CDU zur gesamtdeutschen Partei.
+    </div>
+</div>
+<p>Nach der Vereinigung übernahmen zahlreiche ehemalige Ost-CDU-Funktionäre Ämter in der gesamtdeutschen Partei und in ostdeutschen Landesregierungen. Zwei Fälle stehen exemplarisch für unterschiedliche Verläufe:</p>
+<div class="person-card">
+<h3>Lothar de Maizière</h3>
+<div class="role">Letzter Ministerpräsident der DDR, stellv. CDU-Bundesvorsitzender 1990–1991</div>
+<p style="margin-bottom:0"><span class="tag tag-belegt">BELEGT</span> Ende 1990 wurde öffentlich der Vorwurf erhoben, de Maizière sei als inoffizieller Mitarbeiter ("Czerni") für die Stasi tätig gewesen. Er trat am 19. Dezember 1990 als Bundesminister zurück. Das Bundesinnenministerium kam in seinem Abschlussbericht zu dem Ergebnis, es "überwiege der Eindruck" einer Identität von de Maizière und "Czerni", schloss eine unwissentliche Führung als IM aber nicht aus. Im September 1991 legte er nach Kritik des CDU-Generalsekretärs Volker Rühe an der "inneren Erneuerung" der Ost-Landesverbände seine verbliebenen Parteiämter nieder und schied im Oktober aus dem Bundestag aus. <span class="tag tag-offen" style="margin-left:0.3rem">OFFEN</span> Eine juristisch abschließende Klärung der IM-Frage liegt nicht vor.</p>
+</div>
+<div class="person-card">
+<h3>Günther Krause</h3>
+<div class="role">Verhandlungsführer Einigungsvertrag (Ost-Seite), Bundesverkehrsminister 1991–1993</div>
+<p style="margin-bottom:0"><span class="tag tag-belegt">BELEGT</span> Krause trat 1975 der Ost-CDU bei und wurde dort Kreisvorsitziger. 1990 Landesvorsitzender der CDU Mecklenburg-Vorpommern, Fraktionsvorsitzender CDU/DA in der Volkskammer, Chef-Unterhändler beim Einigungsvertrag — gemeinsam mit Bundesinnenminister Wolfgang Schäuble unterzeichnete er das Dokument. Nach mehreren Affären Rücktritt als Verkehrsminister 1993. 2009 durch den Bundesgerichtshof zu 14 Monaten Haft auf Bewährung verurteilt (Insolvenzverschleppung, Untreue, Betrug, Steuerhinterziehung im Zusammenhang mit einer insolventen Firma). 2023 erneut vor Gericht wegen mutmaßlichen Betrugs in Höhe von rund 400.000 Euro.</p>
+</div>
+<div class="source-box">
+<span class="tag tag-offen">OFFEN</span>
+<p style="margin-bottom:0">Wie viele der rund 140.000 Ost-CDU-Mitglieder (Stand 1987) nach 1990 dauerhaft Partei- oder Regierungsämter in der gesamtdeutschen CDU oder in ostdeutschen Landesregierungen übernahmen, ist nicht abschließend quantifiziert. Einzelne Fälle sind dokumentiert (siehe oben sowie Diestel, Duchač, Viehweger u. a.), eine systematische Gesamterhebung der Elitenkontinuität liegt — anders als für die NSDAP-Frage der 1950er Jahre — nicht in vergleichbarer Form vor.</p>
+</div>
+<div class="open-questions">
+<h2>Offene Fragen</h2>
+<p>Warum wurde die Differenz zwischen offiziell behaupteten 3 % und den heute erforschten 14,5 % ehemaliger NSDAP-Mitglieder in der CDU/CSU-Fraktion nie öffentlich aufgearbeitet?</p>
+<p>Warum blieb die IM-Frage bei Lothar de Maizière juristisch ungeklärt, während sie politisch bereits 1991 zu seinem faktischen Rückzug führte?</p>
+<p>Existiert eine systematische Untersuchung darüber, wie viele Ost-CDU-Funktionäre nach 1990 in Ämter der gesamtdeutschen Partei wechselten — und mit welchen biografischen Vorbelastungen aus der Blockparteizeit?</p>
+</div>
+<div class="footnote">
+    <a href="cdu-teil2.html">Teil 2</a> dieser Serie behandelt Postenpolitik, die CDU-Spendenaffäre und Vetternwirtschaft in der Nachkriegs- bis Kohl-Ära. <a href="cdu-teil3a.html">Teil 3</a> behandelt die Merkel-Ära als eigenständigen Themenkomplex.<br/><br/>
+    Quellen u. a.: Bundeszentrale für politische Bildung, Konrad-Adenauer-Stiftung/Geschichte der CDU, Wissenschaftliche Dienste des Deutschen Bundestages (WD 1-3000-045/18, WD 1-015/19), Historikerkommission des Auswärtigen Amts, taz-Archiv, t-online.
+  </div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

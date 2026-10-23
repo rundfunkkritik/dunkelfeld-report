@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Verteufelt, verboten, gefeiert — dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #09090b; color: #d4d4d8; font-family: Georgia, 'Times New Roman', serif; line-height: 1.7; font-size: 18px; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 40px 24px 100px; }
+  header.top { display: flex; justify-content: space-between; align-items: center; font-family: 'Courier New', monospace; font-size: 12px; letter-spacing: 0.05em; color: #71717a; border-bottom: 1px solid #27272a; padding-bottom: 16px; margin-bottom: 32px; }
+  header.top a { color: #e8c547; text-decoration: none; }
+  .dossier-label { font-family: 'Courier New', monospace; font-size: 13px; letter-spacing: 0.08em; color: #e8c547; text-transform: uppercase; margin-bottom: 12px; }
+  h1 { font-size: 38px; color: #f4f4f5; line-height: 1.15; margin-bottom: 16px; font-weight: 700; }
+  .hero-sub { font-size: 20px; color: #a1a1aa; margin-bottom: 24px; font-style: italic; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 16px; font-family: 'Courier New', monospace; font-size: 12px; color: #71717a; border-top: 1px solid #27272a; padding-top: 16px; margin-bottom: 8px; }
+  .editorial-note { background: #141417; border-left: 3px solid #e8c547; padding: 18px 20px; font-size: 15px; color: #a1a1aa; margin: 32px 0; }
+  h2 { font-size: 27px; color: #f4f4f5; margin: 56px 0 8px; border-top: 2px solid #e8c547; padding-top: 20px; }
+  .h2-era { font-family: 'Courier New', monospace; font-size: 12px; color: #71717a; letter-spacing: 0.05em; display: block; margin-bottom: 4px; }
+  h3 { font-size: 18px; color: #e8c547; margin: 28px 0 10px; font-style: italic; }
+  p { margin-bottom: 16px; color: #d4d4d8; }
+  .tag { font-family: 'Courier New', monospace; font-size: 12px; padding: 2px 8px; border-radius: 3px; font-weight: bold; }
+  .tag-belegt { background: rgba(74, 222, 128, 0.15); color: #4ade80; border: 1px solid rgba(74,222,128,0.4); }
+  .tag-extra { background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid rgba(251,146,60,0.4); }
+  .tag-offen { background: rgba(161, 161, 170, 0.15); color: #a1a1aa; border: 1px solid rgba(161,161,170,0.4); }
+  .source-box { background: #141417; border-left: 3px solid #e8c547; padding: 14px 18px; margin: 18px 0; }
+  .source-box .label { font-family: 'Courier New', monospace; font-size: 11px; color: #e8c547; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.05em; }
+  .source-box p { font-size: 14px; color: #a1a1aa; margin-bottom: 4px; }
+  table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 15px; }
+  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid #27272a; vertical-align: top; }
+  th { font-family: 'Courier New', monospace; font-size: 11px; color: #e8c547; text-transform: uppercase; letter-spacing: 0.04em; }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0; }
+  .stat-cell { background: #141417; border: 1px solid #27272a; padding: 16px; }
+  .stat-cell .num { font-family: 'Courier New', monospace; font-size: 26px; color: #e8c547; display: block; }
+  .stat-cell .lbl { font-size: 13px; color: #a1a1aa; }
+  .pull-quote { font-size: 21px; color: #f4f4f5; font-style: italic; border-left: 3px solid #e8c547; padding-left: 20px; margin: 28px 0; line-height: 1.5; }
+  .pull-quote .attr { display: block; font-family: 'Courier New', monospace; font-size: 13px; color: #71717a; font-style: normal; margin-top: 8px; }
+  .timeline { margin: 24px 0; border-left: 2px solid #27272a; padding-left: 20px; }
+  .timeline-item { margin-bottom: 20px; position: relative; }
+  .timeline-item::before { content: ''; position: absolute; left: -25px; top: 6px; width: 8px; height: 8px; border-radius: 50%; background: #e8c547; }
+  .timeline-item .year { font-family: 'Courier New', monospace; color: #e8c547; font-size: 13px; }
+  .fazit-box { background: #141417; border: 1px solid #27272a; border-top: 3px solid #e8c547; padding: 18px 20px; margin: 24px 0; }
+  .fazit-box .label { font-family: 'Courier New', monospace; font-size: 11px; color: #e8c547; text-transform: uppercase; margin-bottom: 8px; }
+  .closing { margin-top: 64px; border-top: 1px solid #27272a; padding-top: 32px; }
+  .closing p { font-style: italic; color: #a1a1aa; font-size: 18px; }
+  footer.bottom { margin-top: 56px; padding-top: 24px; border-top: 1px solid #27272a; font-family: 'Courier New', monospace; font-size: 12px; color: #52525b; }
+  footer.bottom a { color: #e8c547; text-decoration: none; }
+</style>
+<meta name="description" content="BELEGT Im antiken Griechenland war eine spezifische Form männlicher gleichgeschlechtlicher Beziehung — die Paiderastia zwischen einem erwachsenen Mann …">
+<meta name="rubrik" content="cat-kinder">
+<meta name="kachel-titel" content="Verteufelt, verboten, gefeiert">
+<link rel="canonical" href="https://dunkelfeld.report/verteufelt-verboten-gefeiert.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Verteufelt, verboten, gefeiert">
+<meta property="og:description" content="BELEGT Im antiken Griechenland war eine spezifische Form männlicher gleichgeschlechtlicher Beziehung — die Paiderastia zwischen einem erwachsenen Mann …">
+<meta property="og:url" content="https://dunkelfeld.report/verteufelt-verboten-gefeiert.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Verteufelt, verboten, gefeiert", "description": "BELEGT Im antiken Griechenland war eine spezifische Form männlicher gleichgeschlechtlicher Beziehung — die Paiderastia zwischen einem erwachsenen Mann …", "inLanguage": "de", "url": "https://dunkelfeld.report/verteufelt-verboten-gefeiert.html", "mainEntityOfPage": "https://dunkelfeld.report/verteufelt-verboten-gefeiert.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<header class="top">
+<a href="../index.html">← dunkelfeld.report</a>
+<span>Dossier · Gesellschaftsgeschichte</span>
+</header>
+<div class="dossier-label">Dossier · Juli 2026</div>
+<h1>Verteufelt, verboten, gefeiert</h1>
+<div class="hero-sub">Homosexualität von der Antike bis zur Gegenwart — 2.500 Jahre Statuswechsel, dokumentiert an Gesetzen, Zahlen und Selbstzeugnissen.</div>
+<div class="meta-row">
+<span>Zeitraum: 6. Jh. v. Chr. – 2026</span>
+<span>Primärquellen: Gesetzestexte, Bundestagsprotokolle, RKI, Bundesarchiv</span>
+<span>Kein Urteil — Dokumentation</span>
+</div>
+<div class="editorial-note">
+<strong>Redaktioneller Hinweis:</strong> Dieses Dossier dokumentiert den rechtlichen und gesellschaftlichen Statuswechsel gleichgeschlechtlicher Beziehungen über zweieinhalb Jahrtausende. Es ordnet keiner Seite der aktuellen Debatte Motive zu, die nicht primär belegt sind. Der Schlussabschnitt zur gegenwärtigen Sichtbarkeits- und Kategoriendebatte trennt strikt zwischen dokumentierten Zahlen und offenen, subjektiven Wahrnehmungsfragen.
+  </div>
+<main>
+<!-- ═══════════ ANTIKE ═══════════ -->
+<section>
+<h2><span class="h2-era">01 · ca. 600 v. Chr. – 400 n. Chr.</span>Antike: Akzeptanz mit Regeln, nicht ohne</h2>
+<p><span class="tag tag-belegt">BELEGT</span> Im antiken Griechenland war eine spezifische Form männlicher gleichgeschlechtlicher Beziehung — die Paiderastia zwischen einem erwachsenen Mann (Erastes) und einem jugendlichen Freien (Eromenos) — gesellschaftlich institutionalisiert und in Philosophie, Kunst und Erziehungswesen dokumentiert (u. a. Platons "Symposion"). Sie war jedoch kein "Akzeptieren von Homosexualität" im heutigen Sinne einer gleichberechtigten Partnerschaftsform, sondern ein reglementiertes System mit klaren Altersrollen, sozialem Status und Erwartungen an spätere heterosexuelle Ehe und Vaterschaft.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Beziehungen zwischen zwei erwachsenen, sozial gleichgestellten Männern sowie die passive Rolle eines erwachsenen freien Bürgers galten hingegen als gesellschaftlich anrüchig bis inakzeptabel. Sexuelle Handlungen zwischen Frauen sind literarisch weit seltener dokumentiert — die Dichterin Sappho von Lesbos (ca. 630–570 v. Chr.) ist die zentrale erhaltene Primärquelle, ihre Gedichte an Frauen sind namensgebend für den Begriff "lesbisch".</p>
+<p><span class="tag tag-belegt">BELEGT</span> Im republikanischen und kaiserzeitlichen Rom galt eine vergleichbare Statusregel: Sexuelle Handlungen zwischen Männern waren toleriert, solange ein freier römischer Bürger die aktive Rolle einnahm; die passive Rolle eines freien Bürgers galt als Verlust der Männlichkeit (Virtus). Mehrere römische Kaiser (u. a. Hadrian, mit seinem dokumentierten Verhältnis zu Antinous) hatten öffentlich bekannte männliche Partner.</p>
+<div class="fazit-box">
+<div class="label">Einordnung</div>
+<p>"Akzeptiert" ist für die Antike eine Vereinfachung. Belegt ist: bestimmte, hierarchisch geregelte Formen männlicher Homoerotik waren gesellschaftlich eingebettet — nicht Homosexualität als gleichberechtigte Lebensform zwischen Gleichen.</p>
+</div>
+</section>
+<!-- ═══════════ VERTEUFELUNG ═══════════ -->
+<section>
+<h2><span class="h2-era">02 · 4. – 19. Jh.</span>Der Umbruch: Christianisierung und Sodomie-Recht</h2>
+<p><span class="tag tag-belegt">BELEGT</span> Mit der Christianisierung des Römischen Reichs ab dem 4. Jahrhundert änderte sich die Rechtslage grundlegend. Kaiser Theodosius I. erließ 390 n. Chr. ein Edikt, das gleichgeschlechtliche sexuelle Handlungen zwischen Männern mit dem Feuertod bedrohte — die erste bekannte reichsweite Todesstrafen-Norm dieser Art in der römischen Rechtsgeschichte.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Im weiteren Verlauf des Mittelalters wurde gleichgeschlechtliche Sexualität kirchenrechtlich und weltlich zunehmend als "Sodomie" kategorisiert — ein Sammelbegriff, der neben männlicher Homosexualität teils auch andere als "widernatürlich" eingestufte sexuelle Handlungen umfasste. Die theologische Begründung stützte sich auf alttestamentliche Texte (u. a. Levitikus 18,22 und 20,13) sowie auf die Erzählung von Sodom und Gomorrha (Genesis 19).</p>
+<p><span class="tag tag-extra">EXTRAPOLATION</span> Neben der religiösen Begründung lassen sich in der historischen Forschung auch bevölkerungspolitische und ökonomische Interessen als Erklärungsfaktoren für die zunehmende Kriminalisierung diskutieren — etwa der Bedarf feudaler und kirchlicher Ordnungen an gesicherter ehelicher Reproduktion und Erbfolge. Eine einzelne, dominante Ursache ist historisch nicht abschließend belegt; die Forschung geht von einem Zusammenwirken religiöser, rechtlicher und ökonomischer Faktoren aus.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Die "Constitutio Criminalis Carolina", das 1532 unter Kaiser Karl V. erlassene Strafgesetzbuch des Heiligen Römischen Reichs, sah für "Unzucht wider die Natur" (Art. 116) die Todesstrafe durch Verbrennung vor. Diese Norm blieb über Jahrhunderte Grundlage regionaler Strafverfolgung in deutschen Territorien.</p>
+</section>
+<!-- ═══════════ §175 ═══════════ -->
+<section>
+<h2><span class="h2-era">03 · 1871 – 1994</span>Paragraph 175: Kaiserreich, NS, geteiltes Deutschland</h2>
+<p><span class="tag tag-belegt">BELEGT</span> Mit der Reichsgründung 1871 übernahm das Reichsstrafgesetzbuch den preußischen § 143 als neuen § 175: <em>"Die widernatürliche Unzucht, welche zwischen Personen männlichen Geschlechts (…) begangen wird, ist mit Gefängniß zu bestrafen."</em> Erfasst waren ausschließlich Männer, nicht Frauen.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Am 1. September 1935 verschärften die Nationalsozialisten den Paragrafen erheblich: Der Tatbestand wurde von konkreten beischlafähnlichen Handlungen auf jede als "unzüchtig" gewertete Handlung ausgeweitet, der neue § 175a sah für "schwere Fälle" bis zu zehn Jahre Zuchthaus vor. Nach Angaben der Antidiskriminierungsstelle des Bundes wurden im "Dritten Reich" bis zu 50.000 Männer nach § 175 verurteilt, etwa 15.000 kamen in Konzentrationslager (Kennzeichnung: rosa Winkel).</p>
+<div class="stat-grid">
+<div class="stat-cell"><span class="num">~50.000</span><span class="lbl">Verurteilungen NS-Zeit (BRD-Schätzung)</span></div>
+<div class="stat-cell"><span class="num">~15.000</span><span class="lbl">KZ-Einweisungen nach § 175/175a</span></div>
+<div class="stat-cell"><span class="num">~50.000</span><span class="lbl">Verurteilungen BRD 1950–1969</span></div>
+<div class="stat-cell"><span class="num">1994</span><span class="lbl">Ersatzlose Streichung § 175 (BRD)</span></div>
+</div>
+<h3>BRD und DDR im Vergleich — ein dokumentierter Gegensatz</h3>
+<p><span class="tag tag-belegt">BELEGT</span> Das Bundesverfassungsgericht entschied 1957, § 175 sei nicht spezifisch nationalsozialistisch geprägt und dürfe in der verschärften NS-Fassung weiter angewendet werden. Bis 1969 war männliche Homosexualität in der BRD generell strafbar. Erst am 1. September 1969 trat eine Reform in Kraft: straflos blieben fortan einvernehmliche Handlungen zwischen Männern über 21 Jahren. Vollständig gestrichen wurde § 175 erst am 11. Juni 1994 durch das 29. Strafrechtsänderungsgesetz.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Die DDR kehrte 1950 zunächst zur milderen vor-nationalsozialistischen Fassung von 1871 zurück. Ab Ende der 1950er-Jahre wurde nicht mehr systematisch verfolgt, 1968 strich das neue DDR-Strafgesetzbuch § 175 vollständig und ersetzte ihn durch § 151 StGB-DDR, der lediglich unterschiedliche Schutzaltersgrenzen für homo- und heterosexuelle Handlungen vorsah. Diese letzte Ungleichbehandlung wurde am 1. Juli 1989 — kurz vor dem Mauerfall — ersatzlos gestrichen.</p>
+<table>
+<tr><th></th><th>BRD</th><th>DDR</th></tr>
+<tr><td>Vollständige Entkriminalisierung Erwachsener</td><td>1969 (Teilreform), 1994 (vollständig)</td><td>1968</td></tr>
+<tr><td>Gleiches Schutzalter homo-/heterosexuell</td><td>1994</td><td>1989</td></tr>
+<tr><td>Aufhebung aller Nachkriegsurteile</td><td>2017</td><td>entfällt (Recht bereits geändert)</td></tr>
+</table>
+<div class="fazit-box">
+<div class="label">Fazit</div>
+<p>In der rein rechtlichen Chronologie lag die DDR der BRD in diesem Punkt um 26 Jahre voraus. Das ändert nichts an der zeitgleich in der DDR dokumentierten gesellschaftlichen und teils medizinisch-psychiatrischen Stigmatisierung Homosexueller — Rechtslage und gesellschaftliche Praxis liefen auch dort auseinander.</p>
+</div>
+<div class="source-box">
+<div class="label">Primärquellen</div>
+<p>§ 175 StGB (Reichsstrafgesetzbuch 1871, Novelle 1935); 29. Strafrechtsänderungsgesetz (1994); Antidiskriminierungsstelle des Bundes; BMFSFJ, "30 Jahre Ende des § 175" (2024); bpb.de, Hintergrund aktuell</p>
+</div>
+</section>
+<!-- ═══════════ WILDE/WOOLF ═══════════ -->
+<section>
+<h2><span class="h2-era">04 · 1895 – 1941</span>Zwei literarische Selbstzeugnisse: Wilde und Woolf</h2>
+<h3>Oscar Wilde — der Prozess, der eine Ära markierte</h3>
+<p><span class="tag tag-belegt">BELEGT</span> Der irisch-britische Schriftsteller Oscar Wilde wurde am 25. Mai 1895 am Old Bailey wegen "grober Unzucht" ("gross indecency") nach dem britischen Criminal Law Amendment Act von 1885 verurteilt — jenem Gesetz, das jede sexuelle Handlung zwischen Männern kriminalisierte, unabhängig von Einvernehmlichkeit oder Öffentlichkeit. Wilde wurde zur Höchststrafe von zwei Jahren Zwangsarbeit verurteilt, die er im Reading Gaol verbüßte.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Auslöser war eine von Wilde selbst angestrengte Verleumdungsklage gegen den Marquess of Queensberry, Vater seines Liebhabers Lord Alfred Douglas, der Wilde öffentlich der Homosexualität bezichtigt hatte. Die Klage scheiterte, woraufhin Wilde selbst angeklagt und in einem zweiten Prozess verurteilt wurde. Wilde starb 1900, drei Jahre nach seiner Entlassung, verarmt im Pariser Exil.</p>
+<p><span class="tag tag-belegt">BELEGT</span> 2017 wurden Wilde und rund 59.000 weitere verstorbene britische Männer, die nach inzwischen aufgehobenen Gesetzen wegen einvernehmlicher gleichgeschlechtlicher Handlungen verurteilt worden waren, posthum begnadigt ("Alan Turing Law"). Männliche Homosexualität wurde in England und Wales erst 1967 entkriminalisiert — in Schottland 1981, in Nordirland 1982.</p>
+<div class="source-box">
+<div class="label">Primärquellen</div>
+<p>Verhandlungsprotokolle "The Crown v. Wilde" (1895); Criminal Law Amendment Act 1885, Sec. 11; UK Policing and Crime Act 2017 (postume Begnadigungen)</p>
+</div>
+<h3>Virginia Woolf — dokumentiert in eigenen Briefen und Tagebüchern</h3>
+<p><span class="tag tag-belegt">BELEGT</span> Die britische Schriftstellerin Virginia Woolf (1882–1941) führte ab 1922 eine mehrjährige, in einem umfangreichen erhaltenen Briefwechsel und in Tagebucheinträgen beider Frauen dokumentierte Liebesbeziehung zur Schriftstellerin Vita Sackville-West. Beide waren zu dieser Zeit mit Männern verheiratet; Sackville-Wests Ehemann Harold Nicolson lebte seinerseits offen dokumentierte gleichgeschlechtliche Beziehungen, worüber sich beide Ehepartner brieflich austauschten.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Woolf widmete Sackville-West 1928 den Roman "Orlando: A Biography", dessen Titelfigur über vier Jahrhunderte lebt und dabei das Geschlecht wechselt. Der Roman gilt literaturwissenschaftlich als Schlüsselwerk zur Auseinandersetzung mit Geschlechteridentität und ist unmittelbar durch die Beziehung zu Sackville-West sowie deren Familiensitz Knole inspiriert — von Woolfs Sohn Nigel Nicolson rückblickend als "der längste und bezauberndste Liebesbrief der Literatur" bezeichnet.</p>
+<p><span class="tag tag-offen">OFFEN</span> Woolf litt nachweislich unter wiederkehrenden schweren depressiven Episoden und starb 1941 durch Suizid. Ob und in welchem Ausmaß ein in biografischer Literatur diskutierter sexueller Missbrauch durch ihre Halbbrüder in der Kindheit ursächlich mit ihren psychischen Erkrankungen zusammenhing, wird in der Forschung unterschiedlich bewertet und ist nicht abschließend belegt.</p>
+<div class="fazit-box">
+<div class="label">Einordnung</div>
+<p>Wilde und Woolf markieren zwei gegensätzliche Pole derselben Epoche: Der eine wurde durch denselben Staat, der seine Werke feierte, strafrechtlich vernichtet. Die andere lebte ihre Beziehung im diskreten, aber selbstbewussten Kreis der Bloomsbury Group — ohne strafrechtliche Konsequenz, aber ebenfalls ohne öffentliche Anerkennung. Beides ist durch die eigenen Worte der Beteiligten belegt, nicht durch Fremdzuschreibung.</p>
+</div>
+</section>
+<!-- ═══════════ STONEWALL/CSD ═══════════ -->
+<section>
+<h2><span class="h2-era">05 · 1969 – 1979</span>Stonewall und der erste deutsche CSD</h2>
+<p><span class="tag tag-belegt">BELEGT</span> In der Nacht vom 27. auf den 28. Juni 1969 leisteten Gäste der New Yorker Bar Stonewall Inn erstmals dokumentiert kollektiven Widerstand gegen eine der routinemäßigen Polizeirazzien in Schwulenbars. Die tagelangen Straßenproteste gelten als Ausgangspunkt der organisierten LGBT-Bewegung. Ein Jahr später fand am 28. Juni 1970 in New York der erste "Christopher Street Liberation Day"-Marsch statt.</p>
+<p><span class="tag tag-belegt">BELEGT</span> In Deutschland fand der erste offizielle Christopher Street Day am 30. Juni 1979 zeitgleich in Berlin (ca. 450 Teilnehmende) und Bremen (ca. 700 Teilnehmende, unter dem Namen "Schwuler Karneval") statt — zehn Jahre nach Stonewall und wenige Wochen nach der Bremer Veranstaltung auch in Köln. Zuvor gab es bereits ab 1972 kleinere Demonstrationen ohne die CSD-Bezeichnung.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Der CSD wuchs seither kontinuierlich. Nach Veranstalterangaben ist der Kölner CSD (ColognePride) mit zuletzt rund 1,5 Millionen Teilnehmenden (2026) inzwischen die größte LGBT-Veranstaltung Deutschlands, vor Berlin (ca. 600.000 bis 1 Million, je nach Jahr). Bereits 2002, als EuroPride, hatte Köln mit rund 1,2 Millionen Besuchern den bis dahin größten CSD Europas ausgerichtet. Pro Kopf der Bevölkerung liegt Köln ohnehin deutlich vorn (rund 94 Besucher je 100 Einwohner gegenüber rund 28 in Berlin).</p>
+</section>
+<!-- ═══════════ AIDS ═══════════ -->
+<section>
+<h2><span class="h2-era">06 · 1981 – 1996</span>Die AIDS-Krise</h2>
+<p><span class="tag tag-belegt">BELEGT</span> 1981 meldete die US-Gesundheitsbehörde CDC erstmals Fälle einer ungeklärten Immunschwäche bei jungen, homosexuellen Männern. Da anfangs ausschließlich homosexuelle Männer betroffen zu sein schienen, etablierte sich zunächst der Begriff "Gay-Related Immune Deficiency" (GRID) — erst 1982, nach Fällen bei heterosexuellen Menschen, setzte sich die Bezeichnung AIDS durch.</p>
+<p><span class="tag tag-belegt">BELEGT</span> In Deutschland wurde der erste Patient am Universitätsklinikum Frankfurt diagnostiziert; das Robert Koch-Institut richtete daraufhin ein AIDS-Fallregister ein. Im September 1983 gründete sich in Berlin die Deutsche AIDS-Hilfe, zwei Jahre später bereits Dachverband von rund 30 regionalen Selbsthilfegruppen.</p>
+<div class="pull-quote">
+      "Wir bekämpfen die Krankheit, nicht die Betroffenen."
+      <span class="attr">— Rita Süssmuth, Bundesgesundheitsministerin (CDU), 1987</span>
+</div>
+<p><span class="tag tag-belegt">BELEGT</span> In der politischen Debatte um AIDS-Maßnahmen kollidierten 1987 in einer nächtlichen Koalitionsverhandlung zwei dokumentierte Positionen: Gesundheitsministerin Süssmuth setzte auf Aufklärung und Eigenverantwortung, ihr CSU-Parteikollege Peter Gauweiler forderte demgegenüber Zwangstests, eine Kennzeichnung Erkrankter und im Zweifel deren Internierung. Bayern diskutierte in der Folge öffentlich über die Schließung von Schwulenclubs.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Nach RKI-Schätzung starben in Deutschland von Epidemiebeginn bis Ende 2021 rund 32.000 Menschen an den Folgen einer HIV-Infektion. 2021 lebten laut RKI rund 90.800 Menschen in Deutschland mit HIV, bei rund 1.800 dokumentierten Neuinfektionen im selben Jahr — bei stark rückläufiger Tendenz gegenüber den 1980er/1990er-Jahren.</p>
+<div class="fazit-box">
+<div class="label">Einordnung</div>
+<p>Die AIDS-Krise verband erstmals eine reale medizinische Bedrohung mit einer bereits bestehenden gesellschaftlichen Stigmatisierung Homosexueller — und wurde zugleich zum Katalysator einer der ersten organisierten schwulen Selbsthilfestrukturen in der BRD.</p>
+</div>
+</section>
+<!-- ═══════════ EHE FÜR ALLE ═══════════ -->
+<section>
+<h2><span class="h2-era">07 · 2001 – 2017</span>Von der Lebenspartnerschaft zur Ehe für alle</h2>
+<p><span class="tag tag-belegt">BELEGT</span> 2001 trat das Lebenspartnerschaftsgesetz in Kraft und schuf erstmals eine rechtlich anerkannte, wenn auch gegenüber der Ehe eingeschränkte gleichgeschlechtliche Partnerschaftsform in Deutschland.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Am 30. Juni 2017 verabschiedete der Bundestag in namentlicher Abstimmung die Öffnung der Ehe für gleichgeschlechtliche Paare mit 393 Ja-Stimmen gegen 226 Nein-Stimmen bei vier Enthaltungen. Die Abstimmung war fraktionsübergreifend freigegeben; etwa ein Viertel der Unionsabgeordneten stimmte dafür, die Mehrheit der CDU/CSU-Fraktion dagegen — darunter auch die damalige Bundeskanzlerin Angela Merkel, die öffentlich dokumentiert mit Nein votierte.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Bereits 2002 hatte der Bundestag NS-Urteile nach § 175 pauschal aufgehoben; erst am 22. Juli 2017 — wenige Wochen nach der Ehe-für-alle-Abstimmung — wurden auch alle Nachkriegsurteile der BRD nach § 175 aufgehoben, nachdem ein im Auftrag der Antidiskriminierungsstelle erstelltes Gutachten dies für verfassungsrechtlich geboten erklärt hatte. Seit 2019 können Betroffene ohne konkretes Urteil eine einmalige Entschädigung beantragen.</p>
+</section>
+<!-- ═══════════ GEGENWARTSDEBATTE ═══════════ -->
+<section>
+<h2><span class="h2-era">08 · 2014 – heute</span>Sichtbarkeit, Kategorien, Übersättigung?</h2>
+<p><span class="tag tag-belegt">BELEGT</span> 2014 erweiterte Facebook seine Geschlechtsoptionen: In den USA zunächst 56 Kategorien (Februar), im britischen Sprachraum 71 Kategorien (Juni), in der deutschen Version 60 Kategorien (September) — jeweils zusätzlich zu einem Freitextfeld. 2015 reduzierte Facebook die voreingestellte Auswahl weltweit auf 14 Kategorien plus Freitextfeld.</p>
+<p><span class="tag tag-offen">OFFEN</span> Die im öffentlichen Diskurs kursierende Zahl "75 Geschlechter" lässt sich keiner einzelnen dokumentierten Quelle eindeutig zuordnen — die real belegten Zahlen liegen je nach Plattform, Sprachversion und Jahr zwischen 14 und 71. Die Rundung auf "75" scheint ein zirkulierender Näherungswert zu sein, keine primärquellenbasierte Angabe.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Der CSD hat sich seit 1979 von einer Demonstration mit einigen hundert Teilnehmenden zu einer der größten öffentlichen Veranstaltungsreihen Deutschlands entwickelt (Köln: rund 1,5 Millionen, Berlin: rund 600.000 bis 1 Million Teilnehmende). Parallel dazu ist seit den 1990er-Jahren eine anhaltende öffentliche Debatte über zunehmende Kommerzialisierung des CSD dokumentiert.</p>
+<p><span class="tag tag-extra">EXTRAPOLATION</span> Ob die zunehmende Sichtbarkeit von Regenbogenflaggen im öffentlichen und institutionellen Raum (Ministerien, Unternehmen, Sportverbände) sowie die wachsende Zahl institutionell verwendeter Geschlechtskategorien als angemessene Repräsentation einer realen Vielfalt oder als symbolische Übersteigerung wahrgenommen wird, ist eine Wertungsfrage, keine Faktenfrage. Beide Positionen — "zunehmende Sichtbarkeit spiegelt reale Diversität wider" und "symbolische Präsenz hat sich von der zugrundeliegenden gesellschaftlichen Realität entkoppelt" — werden von jeweils eigenen gesellschaftlichen Lagern mit unterschiedlichen Kriterien für "Normalität" vertreten. Eine primärquellenbasierte Entscheidung zwischen beiden ist nicht möglich, da es sich um unterschiedliche normative Maßstäbe handelt, nicht um konkurrierende Faktenbehauptungen.</p>
+<div class="fazit-box">
+<div class="label">Einordnung</div>
+<p>Belegbar ist: Die real institutionell verwendeten Kategorienzahlen sind kleiner als die im Diskurs kursierenden Rundungszahlen. Nicht belegbar — weil keine Faktenfrage, sondern eine Wertungsfrage — ist, ob das heutige Ausmaß öffentlicher Sichtbarkeit angemessen, unzureichend oder übersteigert ist.</p>
+</div>
+</section>
+<div class="closing">
+<h2 style="border-top: none; padding-top: 0;">Offene Fragen</h2>
+<p><em>Was sagt es über eine Gesellschaft aus, dass dieselbe Handlung innerhalb von 2.500 Jahren zwischen Institutionalisierung, Todesstrafe, Straflosigkeit unter Auflagen und schließlich voller Rechtsgleichheit pendelte — und nach welchem Muster entscheidet sich, wann eine Gesellschaft eine solche Wende vollzieht? Und: Wenn selbst die Zahlen der aktuellen Debatte häufiger gerundet als belegt zitiert werden — wie viel der heutigen Auseinandersetzung dreht sich um reale Fakten und wie viel um Symbolik, die für unterschiedliche Lager unterschiedliche Bedeutung trägt?</em></p>
+</div>
+</main>
+<footer class="bottom">
+    dunkelfeld.report · Beleg-vor-Motiv-Prinzip · Juli 2026<br/>
+<a href="../index.html">← zur Übersicht</a>
+</footer>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>6G und ISAC: Wenn das Mobilfunknetz zum Radar wird</title>
+<style>
+  body {
+    background-color: #0a0a0a;
+    color: #e8e8e8;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+    line-height: 1.7;
+    font-size: 16px;
+  }
+  h1 {
+    color: #ffffff;
+    font-size: 1.9em;
+    line-height: 1.3;
+    border-bottom: 3px solid #ff2b3d;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+  }
+  .kicker {
+    color: #ff2b3d;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85em;
+    margin-bottom: 8px;
+  }
+  .meta {
+    color: #888;
+    font-size: 0.85em;
+    margin-bottom: 30px;
+  }
+  h2 {
+    color: #00d4d4;
+    font-size: 1.3em;
+    margin-top: 45px;
+    border-left: 4px solid #00d4d4;
+    padding-left: 14px;
+  }
+  p { margin: 18px 0; }
+  a { color: #00d4d4; }
+  strong { color: #ffffff; }
+
+  .factbox, .dangerbox, .fairnessbox {
+    border-radius: 4px;
+    padding: 22px 24px;
+    margin: 30px 0;
+    font-size: 0.95em;
+  }
+  .factbox { border: 1px solid #00d4d4; background: rgba(0, 212, 212, 0.06); }
+  .factbox .label { color: #00d4d4; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8em; margin-bottom: 10px; }
+
+  .dangerbox { border: 1px solid #ff2b3d; background: rgba(255, 43, 61, 0.06); }
+  .dangerbox .label { color: #ff2b3d; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8em; margin-bottom: 10px; }
+
+  .fairnessbox { border: 1px solid #e0c200; background: rgba(224, 194, 0, 0.06); }
+  .fairnessbox .label { color: #e0c200; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8em; margin-bottom: 10px; }
+
+  .pullquote {
+    border-left: 4px solid #ff2b3d;
+    padding: 8px 0 8px 22px;
+    margin: 34px 0;
+    font-size: 1.2em;
+    color: #f0f0f0;
+    font-style: italic;
+  }
+  .pullquote cite { display: block; margin-top: 10px; font-style: normal; color: #888; font-size: 0.7em; }
+
+  .timeline {
+    margin: 34px 0;
+    border-left: 2px solid #444;
+    padding-left: 24px;
+  }
+  .timeline-item { position: relative; margin-bottom: 22px; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -30px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #e0c200;
+  }
+  .timeline-date { color: #e0c200; font-weight: bold; display: block; margin-bottom: 4px; }
+
+  .cuibono {
+    margin-top: 50px;
+    padding: 26px;
+    background: rgba(255, 43, 61, 0.04);
+    border: 1px dashed #ff2b3d;
+    border-radius: 4px;
+  }
+  .cuibono h2 { margin-top: 0; color: #ff2b3d; border-left-color: #ff2b3d; }
+
+  .quellen {
+    margin-top: 50px;
+    font-size: 0.85em;
+    color: #999;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+  }
+  .quellen li { margin-bottom: 6px; }
+
+  .ai-notice {
+    margin-top: 40px;
+    font-size: 0.75em;
+    color: #666;
+    border-top: 1px solid #222;
+    padding-top: 16px;
+  }
+</style>
+<meta name="description" content="Beim Fahrzeugdaten-Zugriff der Geheimdienstreform braucht es noch ein Auto, eine SIM-Karte, ein Gerät, das Daten sendet. Die nächste Stufe kommt ohne all …">
+<meta name="rubrik" content="cat-kontrolle">
+<meta name="kachel-titel" content="Das Netz, das zurückschaut: Wie 6G jeden Raum in einen Sensor verwandelt">
+<link rel="canonical" href="https://dunkelfeld.report/6g-isac-radar-ueberwachung.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Das Netz, das zurückschaut: Wie 6G jeden Raum in einen Sensor verwandelt">
+<meta property="og:description" content="Beim Fahrzeugdaten-Zugriff der Geheimdienstreform braucht es noch ein Auto, eine SIM-Karte, ein Gerät, das Daten sendet. Die nächste Stufe kommt ohne all …">
+<meta property="og:url" content="https://dunkelfeld.report/6g-isac-radar-ueberwachung.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Das Netz, das zurückschaut: Wie 6G jeden Raum in einen Sensor verwandelt", "description": "Beim Fahrzeugdaten-Zugriff der Geheimdienstreform braucht es noch ein Auto, eine SIM-Karte, ein Gerät, das Daten sendet. Die nächste Stufe kommt ohne all …", "inLanguage": "de", "url": "https://dunkelfeld.report/6g-isac-radar-ueberwachung.html", "mainEntityOfPage": "https://dunkelfeld.report/6g-isac-radar-ueberwachung.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="kicker">Cui Bono // Überwachung &amp; Kontrolle</div>
+<h1>Das Netz, das zurückschaut: Wie 6G jeden Raum in einen Sensor verwandelt</h1>
+<div class="meta">dunkelfeld.report · Stand: 15. August 2026</div>
+<p>Beim Fahrzeugdaten-Zugriff der Geheimdienstreform braucht es noch ein Auto, eine SIM-Karte, ein Gerät, das Daten sendet. Die nächste Stufe kommt ohne all das aus. Mit dem Mobilfunkstandard 6G soll das Funknetz selbst zum Radar werden – fähig, jeden Menschen in Reichweite zu erfassen, ganz gleich, ob er ein Smartphone bei sich trägt oder nicht. Das ist kein Zukunftsszenario aus einem Thriller, sondern eine Technologie, über die eine deutsche Aufsichtsbehörde bereits jetzt ein Positionspapier verfasst hat, weil sie sich sorgt.</p>
+<div class="factbox">
+<div class="label">Factbox: Was ISAC technisch kann</div>
+<ul>
+<li>ISAC = Integrated Sensing and Communication: dieselben Funkwellen, die Daten übertragen, dienen gleichzeitig als aktives Radar</li>
+<li>Reflektierte Signale liefern Position, Geschwindigkeit und Bewegung von Objekten und Menschen in Echtzeit</li>
+<li>Erfasst werden auch Personen ohne Endgerät – ISAC benötigt weder Smartphone noch SIM noch App</li>
+<li>Vodafone demonstriert entsprechende Sensorik bereits testweise in bestehenden 5G-Netzen</li>
+<li>Die EU-Standardisierungsbehörde ETSI hat nach Angaben der deutschen Datenschutzkonferenz bereits 19 kritische Risikopunkte identifiziert</li>
+<li>Kommerzieller Rollout von 6G wird ab etwa 2030 erwartet</li>
+</ul>
+</div>
+<h2>Die Windschutzscheibe: Rettungseinsätze, Fabriken, Drohnenabwehr</h2>
+<p>Die offiziell präsentierten Anwendungsfälle klingen zunächst unverdächtig, teils sogar wohltätig: Fahrzeugerkennung im Straßenverkehr, Drohnenortung, Überwachung von Produktionsanlagen, Unterstützung bei Rettungseinsätzen. Forscher am Barkhausen-Institut in Dresden arbeiten seit Jahren daran, die Technologie sicher und datenschutzkonform nutzbar zu machen. Das ist die Vorderseite der Geschichte, mit der ISAC in Industrie- und Fachkreisen vorgestellt wird.</p>
+<p>Was in dieser Darstellung selten mitschwingt: Die gleiche Sensorik, die ein Rettungsteam durch Rauch navigiert, kann grundsätzlich auch Gangbild und Herzschlag von Passanten in einer Fußgängerzone erfassen – unabhängig davon, ob diese davon wissen oder zugestimmt haben.</p>
+<div class="timeline">
+<div class="timeline-item">
+<span class="timeline-date">Seit Jahren</span>
+Barkhausen-Institut Dresden forscht an datenschutzkonformen ISAC-Verfahren.
+</div>
+<div class="timeline-item">
+<span class="timeline-date">16.–18. Juni 2026</span>
+Die deutsche Datenschutzkonferenz (DSK) verabschiedet auf ihrer 111. Konferenz in Stuttgart ein Positionspapier zu ISAC – bewusst vor Abschluss der internationalen Standardisierung.
+</div>
+<div class="timeline-item">
+<span class="timeline-date">2027–2029</span>
+3GPP-Standardisierungsphase (Release 21): Die technischen ISAC-Spezifikationen für 6G werden endgültig festgelegt.
+</div>
+<div class="timeline-item">
+<span class="timeline-date">Ab ca. 2030</span>
+Geplanter kommerzieller Rollout von 6G-Netzen, ISAC als integraler Bestandteil der Infrastruktur.
+</div>
+</div>
+<h2>Der Mechanismus: Erfassung ohne Einwilligungsmöglichkeit</h2>
+<p>Die Datenschutzkonferenz benennt in ihrem Positionspapier den zentralen Bruch mit bisherigen Datenschutzkonzepten: Klassisches Tracking setzt ein Gerät voraus, über das zumindest theoretisch eine Einwilligung eingeholt werden könnte. ISAC erfasst dagegen den Raum als Ganzes. DSK-Vorsitzender Tobias Keber bringt den Unterschied auf den Punkt – der Technik sei es gleichgültig, ob jemand ein Gerät bei sich trage oder nicht.</p>
+<p>Das Positionspapier der Datenschutzaufsichtsbehörden weist zudem auf ein praktisches Problem hin: Während sich bei fest installierten Kameras noch mit einem Hinweisschild eine gewisse Transparenz herstellen lässt, ist das bei mobiler, flächendeckender Radar-Sensorik – etwa in Smartphones, Drohnen, AR-Brillen oder Fahrzeugen – kaum umsetzbar. Wer kein eigenes Endgerät besitzt, bleibt von jeder auch nur digitalen Information über die Erfassung vollständig ausgeschlossen.</p>
+<div class="pullquote">
+Die Technik unterscheidet nicht, ob jemand ein Gerät bei sich trägt oder nicht.
+— sinngemäß: Tobias Keber, Vorsitzender der Datenschutzkonferenz, zit. n. blogspan.net
+</div>
+<div class="dangerbox">
+<div class="label">Dangerbox: Standardisierung statt Gesetzgebung</div>
+<p>Anders als beim Fahrzeugdaten-Zugriff, der über ein Gesetz und damit über Bundestag und öffentliche Debatte läuft, wird die technische Grundarchitektur von ISAC in internationalen Gremien wie 3GPP und ETSI festgelegt – lange bevor ein einzelnes Parlament je darüber abstimmt. Ist die Sensorik erst als Basisstandard in der Netzinfrastruktur verankert, lässt sie sich technisch kaum noch "abschalten", ohne den gesamten Netzstandard infrage zu stellen.</p>
+</div>
+<div class="fairnessbox">
+<div class="label">Fairnessbox: Die Gegenposition</div>
+<p>Dass die Datenschutzkonferenz bereits im Juni 2026 aktiv wurde – Jahre vor dem geplanten kommerziellen Rollout und noch während der 3GPP-Standardisierungsphase –, ist selbst ein Gegenargument gegen den Verdacht heimlicher Durchsetzung: Die Aufsicht meldet sich hier ungewöhnlich früh zu Wort, nicht erst im Nachhinein. Auch verweist das Positionspapier selbst auf technische Lösungsansätze aus der Privacy-Forschung, etwa Verfahren nach dem Prinzip "Privacy by Design", mit denen Datenminimierung von Beginn an in den Standard eingebaut werden könnte. Befürworter der Technologie betonen zudem den gesellschaftlichen Nutzen in Rettungswesen und Industrie, der ohne ISAC technisch aufwendiger und teurer zu realisieren wäre.</p>
+</div>
+<div class="cuibono">
+<h2>Cui Bono?</h2>
+<p>Auch hier gilt: Niemand muss ISAC bewusst als Überwachungsinstrument entworfen haben, damit die strukturelle Schieflage real ist. Entscheidend ist der Ort, an dem die eigentliche Weichenstellung stattfindet – nicht im Bundestag, sondern in technischen Standardisierungsgremien, deren Beschlüsse erst Jahre später als fertige Infrastruktur bei den Bürgern ankommen, ohne dass diese je darüber abgestimmt hätten. Wenn ein Datenschutzgremium 19 offene Risikopunkte zählt, während der Standard gleichzeitig weiter finalisiert wird, stellt sich weniger die Frage nach einem Schuldigen als die Frage, wer die Beweislast trägt: Muss die Technologie ihre Unbedenklichkeit belegen, bevor sie zum Netzstandard wird – oder die Öffentlichkeit ihre Bedenken, nachdem der Standard längst steht?</p>
+</div>
+<div class="quellen">
+<strong>Quellen (Tier 1–2):</strong>
+<ul>
+<li>Datenschutzkonferenz (DSK): Positionspapier "Datenschutz im Kontext von Integrated Sensing and Communication (ISAC)", 111. Konferenz, Stuttgart, 16.–18. Juni 2026</li>
+<li>Landesbeauftragte für den Datenschutz Brandenburg: Beschluss zum DSK-Positionspapier ISAC</li>
+<li>basicthinking.de, 29.07.2026: "Mobilfunk als Radar: 6G soll auch Menschen ohne Smartphone erfassen"</li>
+<li>blogspan.net: "6G wird zum Radar: Datenschützer warnen vor Massenüberwachung"</li>
+<li>3GPP / Ericsson: offizielle Zeitpläne zur Release-21-Standardisierung</li>
+</ul>
+</div>
+<div class="ai-notice">
+Hinweis gemäß Art. 50 EU-KI-Verordnung: Dieser Artikel wurde unter Einsatz eines KI-Sprachmodells recherchiert und redaktionell erstellt. Alle Fakten wurden anhand der genannten Quellen geprüft.
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

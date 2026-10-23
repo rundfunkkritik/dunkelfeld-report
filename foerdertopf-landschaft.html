@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Die Fördertopf-Landschaft — dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b;
+    color: #e8e8ec;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+  header.site {
+    border-bottom: 1px solid #1e1e24;
+    padding: 1.2rem 0;
+    position: sticky;
+    top: 0;
+    background: #09090b;
+    z-index: 100;
+  }
+  header.site .wrap { display: flex; align-items: center; gap: 0.8rem; max-width: 720px; }
+  .dot { width: 8px; height: 8px; background: #e8c547; border-radius: 50%; flex-shrink: 0; }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #6b6b7a;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .meta-top { margin-left: auto; font-family: 'Courier New', monospace; font-size: 0.7rem; color: #6b6b7a; }
+
+  .hero { padding: 3.5rem 0 2rem; }
+  .hero .kicker { margin-bottom: 1.2rem; display: block; }
+  h1 {
+    font-size: clamp(2rem, 6vw, 2.9rem);
+    line-height: 1.15;
+    font-weight: 700;
+    color: #f2f2f5;
+    margin-bottom: 1rem;
+  }
+  .subtitle { color: #9a9aa8; font-size: 1.15rem; line-height: 1.6; margin-bottom: 1.5rem; }
+  .article-meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #6b6b7a;
+    border-top: 1px solid #1e1e24;
+    border-bottom: 1px solid #1e1e24;
+    padding: 0.8rem 0;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    color: #f2f2f5;
+    margin: 3rem 0 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #1e1e24;
+  }
+  h3 { font-size: 1.15rem; color: #e8e8ec; margin: 1.8rem 0 0.6rem; }
+  p { margin-bottom: 1.2rem; color: #d4d4dc; }
+  strong { color: #f2f2f5; }
+
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .tag-belegt { background: rgba(74, 222, 128, 0.12); color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.3); }
+  .tag-extra { background: rgba(251, 146, 60, 0.12); color: #fb923c; border: 1px solid rgba(251, 146, 60, 0.3); }
+  .tag-offen { background: rgba(160, 160, 175, 0.12); color: #a0a0af; border: 1px solid rgba(160, 160, 175, 0.3); }
+  .tag-widerlegt { background: rgba(160, 160, 175, 0.08); color: #7a7a88; border: 1px solid rgba(160, 160, 175, 0.2); text-decoration: line-through; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin: 2rem 0;
+  }
+  @media (max-width: 480px) { .stat-grid { grid-template-columns: 1fr; } }
+  .stat {
+    border-left: 3px solid #e8c547;
+    padding: 0.3rem 0 0.3rem 1rem;
+  }
+  .stat .value { font-size: 1.8rem; font-weight: 700; color: #e8c547; line-height: 1.1; }
+  .stat .label { font-size: 0.85rem; color: #b8b8c4; margin-top: 0.3rem; line-height: 1.4; }
+  .stat .src { font-family: 'Courier New', monospace; font-size: 0.68rem; color: #6b6b7a; margin-top: 0.3rem; }
+
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.92rem;
+    color: #b8b8c4;
+  }
+  .source-box .src-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #e8c547;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline { margin: 2rem 0; border-left: 2px solid #2a2a34; padding-left: 1.5rem; }
+  .tl-item { position: relative; margin-bottom: 1.5rem; }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -1.62rem;
+    top: 0.4rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #e8c547;
+  }
+  .tl-date { font-family: 'Courier New', monospace; font-size: 0.78rem; color: #e8c547; }
+  .tl-text { font-size: 0.95rem; color: #c8c8d0; margin-top: 0.2rem; }
+
+  table.compare {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+  table.compare th, table.compare td {
+    border: 1px solid #1e1e24;
+    padding: 0.7rem 0.8rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  table.compare th {
+    background: #1a1a2e;
+    color: #e8c547;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  table.compare td { color: #c8c8d0; }
+  table.compare td.num { color: #e8c547; font-weight: 700; }
+
+  blockquote {
+    border-left: 3px solid #e8c547;
+    padding: 0.3rem 0 0.3rem 1.3rem;
+    margin: 1.8rem 0;
+    font-style: italic;
+    color: #e8e8ec;
+    font-size: 1.15rem;
+  }
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #6b6b7a;
+    margin-top: 0.5rem;
+  }
+
+  ul.factlist { margin: 1rem 0 1.5rem 1.3rem; }
+  ul.factlist li { margin-bottom: 0.6rem; color: #d4d4dc; }
+
+  .person-card {
+    background: #1a1a2e;
+    border: 1px solid #2a2a34;
+    border-radius: 6px;
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+  }
+  .person-card .name { color: #e8c547; font-weight: 700; font-size: 1.05rem; }
+  .person-card .role { font-family: 'Courier New', monospace; font-size: 0.75rem; color: #6b6b7a; margin-bottom: 0.6rem; }
+
+  .closing {
+    margin: 3rem 0 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #1e1e24;
+  }
+  .closing p { font-style: italic; color: #9a9aa8; }
+
+  footer.site {
+    border-top: 1px solid #1e1e24;
+    padding: 2.5rem 0 3rem;
+    margin-top: 2rem;
+  }
+  footer.site p { font-size: 0.78rem; color: #6b6b7a; margin-bottom: 0.5rem; }
+  footer.site .brand { color: #e8c547; font-family: 'Courier New', monospace; font-size: 0.8rem; }
+
+  a { color: #e8c547; }
+</style>
+<meta name="description" content="Migration und Integration in Deutschland sind auch ein Milliardenmarkt. Wo viel Geld schnell und mit wenig Kontrolle fließt, entstehen Geschäftsmodelle — …">
+<meta name="rubrik" content="cat-migration">
+<meta name="kachel-titel" content="Die Fördertopf-Landschaft">
+<link rel="canonical" href="https://dunkelfeld.report/foerdertopf-landschaft.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Die Fördertopf-Landschaft">
+<meta property="og:description" content="Migration und Integration in Deutschland sind auch ein Milliardenmarkt. Wo viel Geld schnell und mit wenig Kontrolle fließt, entstehen Geschäftsmodelle — …">
+<meta property="og:url" content="https://dunkelfeld.report/foerdertopf-landschaft.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Die Fördertopf-Landschaft", "description": "Migration und Integration in Deutschland sind auch ein Milliardenmarkt. Wo viel Geld schnell und mit wenig Kontrolle fließt, entstehen Geschäftsmodelle — …", "inLanguage": "de", "url": "https://dunkelfeld.report/foerdertopf-landschaft.html", "mainEntityOfPage": "https://dunkelfeld.report/foerdertopf-landschaft.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<header class="site">
+<div class="wrap">
+<div class="dot"></div>
+<span class="kicker">Analyse · Systemkritik · Quellenbasiert</span>
+<span class="meta-top">dunkelfeld.report</span>
+</div>
+</header>
+<div class="wrap">
+<div class="hero">
+<span class="kicker">Dossier · Fördermittel &amp; Migrationswirtschaft</span>
+<h1>Die Fördertopf-Landschaft</h1>
+<p class="subtitle">Migration und Integration in Deutschland sind auch ein Milliardenmarkt. Wo viel Geld schnell und mit wenig Kontrolle fließt, entstehen Geschäftsmodelle — manche legal, manche nicht, alle mit demselben Grundmuster: Kontrolllücken werden zu Geschäftsgrundlagen.</p>
+<div class="article-meta">Juli 2026  |  Lesedauer: ca. 12 Minuten  |  Status: laufend aktualisiert</div>
+</div>
+<p>Vier Akteurstypen, vier verschiedene Arten, an denselben Fördertöpfen zu verdienen: die lokale Vereinsstruktur, der private Unterkunftsbetreiber, der Sicherheitsdienst — und, am Rand der Legalität, der Zertifikatehandel. Keiner dieser Bereiche ist neu erfunden für dieses Dossier; alle vier sind seit Jahren dokumentiert, mit Gerichtsverfahren, amtlichen Ausschreibungen und Rechnungshofberichten belegt.</p>
+<h2>1. Der lokale Verein: Fall Iri</h2>
+<p>Hülya Iri, SPD-Ratsfrau und stellvertretende Fraktionsvorsitzende im Rat der Stadt Hannover, gründete den Verein "Integrationsarbeit Kronsberg" — und beantragte in ihrer Funktion als Kommunalpolitikerin bei genau den Stellen Fördermittel, über deren Vergabe sie selbst politisch mitentschied.</p>
+<div class="person-card">
+<div class="name">Hülya Iri</div>
+<div class="role">Ex-SPD-Ratsfrau Hannover · Gründerin &amp; Vorsitzende, Integrationsarbeit Kronsberg e.V.</div>
+<p style="margin-bottom:0;">Mindestens 1,2 Millionen Euro an Fördermitteln für ihren Verein eingeworben — darunter 750.000 Euro für ein "Respekt Café", das nach Angaben von Nachbarn nie eröffnet wurde. Tochter Esma B. stieg in den SPD-Vorstand Hannover auf, Sohn Emre B. war im Juso-Vorstand — beide haben inzwischen Verwaltungsjobs bei der Stadt Hannover.</p>
+</div>
+<span class="tag tag-belegt">BELEGT</span>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    taz: "Staatsanwaltschaft ermittelt: Die Ratsfrau, ihr Integrationsverein und ein böser Verdacht", April 2026. taz: "Mutmaßlicher Subventionsbetrug: So leicht kommt man an 1 Million Euro aus Steuergeldern", Juni 2026. Junge Freiheit: "Steuergeld-Millionen versickert: Nach JF-Recherche ermitteln die Staatsanwälte", Juni 2026.
+  </div>
+<p>Ermittelt wird inzwischen von zwei Stellen gleichzeitig: der Staatsanwaltschaft Hannover und der Europäischen Staatsanwaltschaft, wegen des Verdachts auf Subventionsbetrug, Betrug und Untreue. Sowohl das BAMF als auch das Land Niedersachsen fordern Fördergelder zurück. Es gilt die Unschuldsvermutung — das Verfahren läuft.</p>
+<span class="tag tag-belegt">BELEGT</span>
+<h2>2. Der Betreiber: European Homecare</h2>
+<div class="timeline">
+<div class="tl-item">
+<div class="tl-date">2014</div>
+<div class="tl-text">Notunterkunft Burbach (NRW): NRW-Innenminister Ralf Jäger (SPD) entzieht European Homecare (EHC) alle Aufgaben, nachdem Vorwürfe gegen den Einrichtungsleiter und Mitarbeiter laut werden. Das DRK übernimmt. Ermittlungen gegen Firmenchef und Leiter laufen parallel.</div>
+</div>
+<div class="tl-item">
+<div class="tl-date">2017</div>
+<div class="tl-text">Flüchtlingsrat NRW kritisiert die Vergabepraxis: Bei Ausschreibungen konkurrieren Betreiber vor allem über den Preis — "das Einzige, woran man sparen kann, ist Personal" (Birgit Naujoks, Flüchtlingsrat NRW).</div>
+</div>
+<div class="tl-item">
+<div class="tl-date">2024</div>
+<div class="tl-text">European Homecare wird für 40 Millionen Euro vom britischen Serco-Konzern übernommen — einem Unternehmen, das international auch in der Rüstungsindustrie und Kriegslogistik tätig ist. Der Flüchtlingsrat Mecklenburg-Vorpommern kritisiert die Vergabe einer Erstaufnahmeeinrichtung an EHC/Serco und fordert eine Wiederholung des Ausschreibungsverfahrens.</div>
+</div>
+</div>
+<span class="tag tag-belegt">BELEGT</span>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    taz: "Skandal um Flüchtlingsunterkunft: Neuer Betreiber in Burbach", 2014. taz: "Machtmissbrauch in Unterkünften: Sie suchten Schutz", 2017. Flüchtlingsrat Mecklenburg-Vorpommern: "European Homecare: Geschäft mit dem Krieg, Geschäft mit Geflüchteten", Oktober 2024, inkl. Schreiben an Innenminister Pegel.
+  </div>
+<p>Das Muster: Betreiberverträge werden im Preiswettbewerb vergeben, Qualitätskriterien sind schwer zu prüfen, und Konzernstrukturen ändern sich schneller als die politische Aufmerksamkeit dafür reicht.</p>
+<span class="tag tag-extra">EXTRAPOLATION</span>
+<h2>3. Der Sicherheitsdienst: Ein Jahrzehnt Muster, ein Milliardenmarkt</h2>
+<p>Misshandlungsfälle durch Wachpersonal in Flüchtlingsunterkünften sind seit über zehn Jahren dokumentiert — nicht als Einzelfall, sondern als wiederkehrendes Branchenmuster: Burbach 2014 (Video zeigt gefesselten Mann, Fuß eines Wachmanns im Nacken; WhatsApp-Gruppe mit Erniedrigungsbildern), Bad Berleburg 2014, Lingen 2017 (Prozess wegen Misshandlung dreier pakistanischer Geflüchteter, Nasenbruch dokumentiert), Suhl 2024 (Volksverhetzungs-Ermittlungen, zwei Mitarbeiter suspendiert und gekündigt), Berlin-Karlshorst (laufendes Verfahren).</p>
+<span class="tag tag-belegt">BELEGT</span>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    taz: "Prozess gegen Sicherheitspersonal einer Flüchtlingsunterkunft", 2017. Belltower.News: "Übergriffe auf Flüchtlinge durch Sicherheitsmitarbeiter", 2018. LabourNet Germany, Dossier Sicherheitsdienst-Übergriffe (MDR Thüringen, N-TV, WDR-Quellen zusammengeführt). nd-aktuell: "Security von Flüchtlingsunterkunft – Gewalt statt Schutz", 2023.
+  </div>
+<p>Der wirtschaftliche Rahmen dazu: Die private Sicherheitsbranche hat ihren Umsatz seit 2014 fast verdoppelt — von sechs auf über elf Milliarden Euro. Die Bewachung von Flüchtlingsunterkünften trug zu diesem Wachstum maßgeblich bei.</p>
+<span class="tag tag-belegt">BELEGT</span>
+<p>Ob und wie stark Menschen mit Migrationshintergrund selbst in der Sicherheitsbranche beschäftigt sind, lässt sich mit offiziellen Zahlen nicht beziffern — weder der Branchenverband BDSW noch die Bundesagentur für Arbeit veröffentlichen dazu eine branchenspezifische Aufschlüsselung. Naheliegend, aber nicht belegt: Die Branche teilt mit dem Gastgewerbe (2023: über 40 Prozent ausländische Beschäftigte, in der Gastronomie sogar 50 Prozent, gegenüber 15,3 Prozent im Wirtschaftsdurchschnitt) niedrige Einstiegshürden und hohe Fluktuation — Merkmale, die in anderen Branchen mit überdurchschnittlichem Ausländeranteil einhergehen. Wer in einer Stadt mit sichtbarer Wachpräsenz an Unterkünften lebt, kann diese Beobachtung selbst überprüfen.</p>
+<span class="tag tag-offen">OFFEN</span>
+<h3>Zwei Städte, zwei belegte Zahlen</h3>
+<table class="compare">
+<tr><th>Stadt</th><th>Sicherheitskosten</th></tr>
+<tr><td>Berlin</td><td class="num">134 Mio. € (2024, allein Unterkunft Tegel) · 94 Mio. € (2023, alle 117 Unterkünfte) · +150 % Gesamtkosten Unterbringung seit 2020</td></tr>
+<tr><td>Köln</td><td class="num">216,6 Mio. € über 5 Jahre (160 Unterkünfte, 550 Sicherheitskräfte) · +75 % ggü. 2019–2023</td></tr>
+</table>
+<span class="tag tag-belegt">BELEGT</span>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    Apollo News: "Berlin: 900 Millionen Euro für Flüchtlingsunterkünfte" (Basis: Tagesspiegel-Berechnung des Senats sowie Feststellung des Berliner Rechnungshofs), Dezember 2025. Junge Freiheit: "Berlin gibt Abermillionen für Schutz von Asyl-Mitarbeitern aus", Dezember 2024. Apollo News: "Köln zahlt über 200 Millionen Euro für Sicherheitsdienste in Flüchtlingsunterkünften" (Basis: Ausschreibung der Stadt Köln, Zitat Sozialdezernent Harald Rau im Kölner Stadt-Anzeiger), Februar 2024.
+  </div>
+<p>Für München, Hamburg und Frankfurt ließen sich in vergleichbarer Qualität keine aggregierten Jahresgesamtsummen finden — die Ausschreibungen laufen dort offenbar objektweise, ohne öffentlich zusammengefasste Zahl. Das ist keine Aussage darüber, ob dort mehr oder weniger ausgegeben wird, sondern über die Transparenz der Kostendarstellung selbst.</p>
+<span class="tag tag-offen">OFFEN</span>
+<h2>4. Der Zertifikatehandel: Sprachnachweise als Ware</h2>
+<div class="timeline">
+<div class="tl-item">
+<div class="tl-date">November 2024</div>
+<div class="tl-text">Landgericht Bonn: Prozess gegen drei Männer wegen millionenschweren Betrugs mit gefälschten Sprachzertifikaten, 500 Fälle angeklagt.</div>
+</div>
+<div class="tl-item">
+<div class="tl-date">Januar 2026</div>
+<div class="tl-text">Nürnberg: Bayerische Polizei nimmt einen 22-jährigen Deutschen fest, der gegen Bezahlung Sprach- und Einbürgerungstests unter falscher Identität für andere ablegte — mitten in der Prüfung. Im Dezember 2025 waren rund 20 solcher "Stellvertreter" allein in NRW unterwegs, in einem Prüfungsraum wurden zehn Personen mit falschen Personalien festgestellt.</div>
+</div>
+<div class="tl-item">
+<div class="tl-date">Juli 2026</div>
+<div class="tl-text">Berlin: Staatsanwaltschaft und LKA durchsuchen fünf Wohnungen und einen Geschäftsraum. Zwei Frauen sollen seit Mai 2024 in mindestens 37 Fällen Ausländer, vornehmlich aus der Türkei, gewerbsmäßig eingeschleust und dafür gefälschte Sprachzertifikate sowie Wohnungsgeberbestätigungen gegen 1.000 bis 1.500 Euro pro Fall verkauft haben.</div>
+</div>
+</div>
+<span class="tag tag-belegt">BELEGT</span>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    Generalstaatsanwaltschaft Berlin, Pressemitteilung Nr. 125, 07.07.2026. Bayerische Polizei, Pressemitteilung Nürnberger Kriminalpolizei, Februar 2026. WDR-Berichterstattung zum Bonner Verfahren, November 2024 (zitiert nach Sekundärquelle).
+  </div>
+<p>Die Bundesregierung reagiert darauf mit angekündigten schärferen Prüfverfahren bei anerkannten Zertifikatsanbietern (Goethe-Institut, telc, Volkshochschulen, IHK, BAMF) — Angebote außerhalb dieser Stellen, die "schnelle" oder "prüfungsfreie" Sprachzertifikate versprechen, gelten nach Angaben der Behörden nahezu ausnahmslos als illegal.</p>
+<span class="tag tag-belegt">BELEGT</span>
+<div class="closing">
+<p>Offen bleibt, warum ausgerechnet die Sicherheitskosten großer Städte — anders als etwa Unterbringungskosten insgesamt — so selten in einer klaren, jährlich vergleichbaren Gesamtzahl veröffentlicht werden. Offen bleibt auch, ob die angekündigten schärferen Zertifikatsprüfungen den Zertifikatehandel tatsächlich eindämmen oder nur den Preis pro gefälschtem Dokument erhöhen. Und offen bleibt, wie viele Fälle wie der von Hülya Iri es in anderen Kommunen gibt, die schlicht noch nicht aufgefallen sind — dokumentiert ist naturgemäß nur, was auffliegt.</p>
+</div>
+</div>
+<footer class="site">
+<div class="wrap">
+<p>Alle Angaben in diesem Artikel basieren auf öffentlich zugänglichen Quellen: Gerichtsverfahren, amtlichen Pressemitteilungen, Ausschreibungsunterlagen und Medienberichten mit Primärquellenbezug. Für laufende Ermittlungsverfahren gilt die Unschuldsvermutung. Wo eine Einordnung nicht abschließend belegbar war, ist sie ausdrücklich als offen oder als Extrapolation gekennzeichnet.</p>
+<p class="brand">dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.</p>
+</div>
+</footer>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

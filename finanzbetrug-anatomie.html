@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Anatomie des Finanzbetrugs: Ponzi, Schneeball, Bilanz</title>
+
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --box-bg: #1a1a2e;
+    --green: #4caf82;
+    --orange: #e39a3a;
+    --grey: #8a8a94;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.3;
+    margin: 0 0 1rem;
+    color: #fff;
+  }
+  .sub {
+    font-size: 1.2rem;
+    color: #b8b8c2;
+    font-style: italic;
+    margin-bottom: 2.5rem;
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    border-bottom: 1px solid #2a2a3a;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    color: #d8d8e0;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+  }
+  p { margin: 1.2rem 0; }
+  a { color: var(--accent); }
+
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.5rem;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(76,175,130,0.15); color: var(--green); border: 1px solid var(--green); }
+  .tag-extra { background: rgba(227,154,58,0.15); color: var(--orange); border: 1px solid var(--orange); }
+  .tag-offen { background: rgba(138,138,148,0.15); color: var(--grey); border: 1px solid var(--grey); }
+  .tag-vt { background: rgba(138,138,148,0.1); color: var(--grey); border: 1px solid var(--grey); text-decoration: line-through; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .stat {
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 1.2rem 1rem;
+    text-align: center;
+  }
+  .stat .num {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 1.6rem;
+    color: var(--accent);
+    font-weight: bold;
+  }
+  .stat .label {
+    display: block;
+    font-size: 0.8rem;
+    color: #a8a8b4;
+    margin-top: 0.3rem;
+  }
+
+  .source-box {
+    background: var(--box-bg);
+    border-left: 4px solid var(--accent);
+    border-radius: 4px;
+    padding: 1.2rem 1.5rem;
+    margin: 1.8rem 0;
+  }
+  .src-title {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.6rem;
+  }
+
+  .person-card {
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 1.3rem 1.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid #2a2a3a;
+  }
+  .person-name {
+    font-family: 'Courier New', monospace;
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+  }
+  .person-role {
+    color: var(--grey);
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-bottom: 0.8rem;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.8rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    border: 1px solid #2a2a3a;
+    padding: 0.7rem 0.8rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    color: var(--accent);
+    letter-spacing: 0.03em;
+  }
+
+  .pullquote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #fff;
+    border-left: 3px solid var(--accent);
+    padding-left: 1.2rem;
+    margin: 2.5rem 0;
+  }
+
+  .timeline {
+    margin: 2rem 0;
+    padding-left: 1.5rem;
+    border-left: 2px solid #2a2a3a;
+  }
+  .timeline-item {
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.58rem;
+    top: 0.4rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .open-questions {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a3a;
+    font-style: italic;
+    color: #c0c0ca;
+  }
+  .open-questions h2 { font-style: normal; }
+  .open-questions li { margin-bottom: 1rem; }
+
+  .source-list {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a3a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #8a8a94;
+    line-height: 1.6;
+  }
+  .source-list a { color: #a8a8b4; }
+
+  .series-nav {
+    margin-top: 3rem;
+    padding: 1.2rem;
+    background: var(--box-bg);
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+  }
+  .series-nav a { display: block; margin: 0.3rem 0; }
+
+  .lever-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .lever {
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+    border-left: 3px solid var(--orange);
+  }
+  .lever-title {
+    font-family: 'Courier New', monospace;
+    color: var(--orange);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+</style>
+<meta name="description" content="Von Charles Ponzi über Madoff bis FTX: Wie die immer gleichen Betrugsmodelle funktionieren, warum kluge Menschen darauf hereinfallen — und warum sich das Muster nie ändert.">
+<meta name="rubrik" content="cat-geld">
+<meta name="kachel-titel" content="Die Anatomie des Finanzbetrugs: Ponzi, Schneeball, Bilanzbetrug">
+<link rel="canonical" href="https://dunkelfeld.report/finanzbetrug-anatomie.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Die Anatomie des Finanzbetrugs: Ponzi, Schneeball, Bilanzbetrug">
+<meta property="og:description" content="Von Charles Ponzi über Madoff bis FTX: Wie die immer gleichen Betrugsmodelle funktionieren, warum kluge Menschen darauf hereinfallen — und warum sich das Muster nie ändert.">
+<meta property="og:url" content="https://dunkelfeld.report/finanzbetrug-anatomie.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Die Anatomie des Finanzbetrugs: Ponzi, Schneeball, Bilanzbetrug", "description": "Von Charles Ponzi über Madoff bis FTX: Wie die immer gleichen Betrugsmodelle funktionieren, warum kluge Menschen darauf hereinfallen — und warum sich das Muster nie ändert.", "inLanguage": "de", "url": "https://dunkelfeld.report/finanzbetrug-anatomie.html", "mainEntityOfPage": "https://dunkelfeld.report/finanzbetrug-anatomie.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="meta">Dunkelfeld.Report · Artikel · Geldsysteme &amp; Offshore</div>
+<h1>Die Anatomie des Finanzbetrugs: Ponzi, Schneeball, Bilanzbetrug</h1>
+<div class="sub">Von Charles Ponzi in den 1920ern bis FTX 2022 — die Modelle wiederholen sich, die Namen wechseln, die psychologischen Hebel bleiben exakt dieselben. Ein Überblick über die Mechanik der Täuschung und warum auch kluge Menschen ihr erliegen.</div>
+<h2>1. Typologie: Vier verschiedene Modelle, oft verwechselt</h2>
+<p>Die Begriffe werden im Alltag oft synonym verwendet, bezeichnen aber unterschiedliche Mechanismen.</p>
+<div class="source-box">
+<div class="src-title">Ponzi-Schema</div>
+<span class="tag tag-belegt">BELEGT</span> Benannt nach dem Italo-Amerikaner Charles Ponzi, der in den 1920er-Jahren Investoren fünfzig Prozent Zinsen versprach, auszuzahlen alle 45 Tage. Das Prinzip: Abgehende Investoren werden mit dem Geld neuer Investoren bezahlt, keine echten Gewinne entstehen — solange das System wächst, funktioniert der Schwindel. Kein Vertriebsdruck auf die Anleger selbst nötig, sie werben nicht aktiv neue Mitglieder.
+  </div>
+<div class="source-box">
+<div class="src-title">Schneeballsystem / MLM</div>
+<span class="tag tag-belegt">BELEGT</span> Strukturell mit dem Ponzi-Schema verwandt, aber mit einem entscheidenden Unterschied: Hier werden die Anleger selbst zu Vertriebspersonen und müssen aktiv weitere Investoren anwerben (bei Ponzi ursprünglich fünf pro Kopf), oft getarnt hinter einem echten oder scheinbaren Produkt.
+  </div>
+<div class="source-box">
+<div class="src-title">Bilanzbetrug / Luftbuchungen</div>
+<span class="tag tag-belegt">BELEGT</span> Andere Kategorie: kein Anlegergeld-Kreislauf, sondern gefälschte Unternehmenszahlen. Standardmethode: Das Unternehmen erstellt Rechnungen über nie erbrachte Leistungen, die als Forderungen in der Bilanz aktiviert werden — Umsatz und Vermögen existieren nur auf dem Papier.
+  </div>
+<div class="source-box">
+<div class="src-title">Verdecktes Vermischungsmodell</div>
+<span class="tag tag-belegt">BELEGT</span> Die modernste Variante: Zwei Firmen werden öffentlich als unabhängig dargestellt, intern aber wie eine Einheit geführt. Kundengelder der einen Firma werden ohne Offenlegung zur Finanzierung der anderen verwendet — kein klassischer Zinsschwindel, sondern verdeckte Selbstbedienung.
+  </div>
+<h2>2. Fallbeispiele</h2>
+<div class="person-card">
+<div class="person-name">Bernie Madoff — Ponzi-Schema</div>
+<div class="person-role">1960–2008, USA</div>
+<div class="stat-grid">
+<div class="stat"><span class="num">65 Mrd. USD</span><span class="label">fiktiver Bestand</span></div>
+<div class="stat"><span class="num">17,5 Mrd. USD</span><span class="label">tatsächlicher Verlust</span></div>
+<div class="stat"><span class="num">20 Jahre</span><span class="label">unentdeckt</span></div>
+</div>
+<p style="margin:0;"><span class="tag tag-belegt">BELEGT</span> Madoff behauptete, mit einer Strategie namens "Split-Strike Conversion" stetige Renditen von 10–12 Prozent zu erzielen. Tatsächlich zahlte er neue Kundengelder direkt an Alt-Investoren aus einem einzigen Bankkonto aus — es fand überhaupt kein echter Wertpapierhandel statt. Ein Whistleblower entdeckte den Betrug bereits 1999, wurde von der SEC aber jahrelang ignoriert. Erst der Markteinbruch 2008 und die daraus folgende Auszahlungswelle brachten das System zum Kollabieren.</p>
+</div>
+<div class="person-card">
+<div class="person-name">Allen Stanford — Ponzi-Schema</div>
+<div class="person-role">USA/Antigua, verurteilt 2012</div>
+<p style="margin:0;"><span class="tag tag-belegt">BELEGT</span> Stanford prellte über 30.000 Investoren um sieben Milliarden Dollar durch ein Pyramidensystem, das konstant überdurchschnittliche Renditen versprach. Er wurde zu 110 Jahren Haft verurteilt.</p>
+</div>
+<div class="person-card">
+<div class="person-name">Wirecard — Bilanzbetrug</div>
+<div class="person-role">Deutschland, 1999–2020</div>
+<div class="stat-grid">
+<div class="stat"><span class="num">1,9 Mrd. €</span><span class="label">"fehlende" Bankguthaben</span></div>
+<div class="stat"><span class="num">12+ Mrd. €</span><span class="label">Gläubigerforderungen</span></div>
+</div>
+<p style="margin:0;"><span class="tag tag-belegt">BELEGT</span> Insgesamt 1,9 Milliarden Euro in der Konzernbilanz waren frei erfunden — rund 25 Prozent der gesamten Bilanzsumme. Der langjährige Wirtschaftsprüfer EY testierte die Zahlen jahrelang anstandslos, trotz zahlreicher Presse- und Anlegerhinweise auf Ungereimtheiten. Vorstandschef Markus Braun trat im Juni 2020 zurück und wurde wenige Tage später wegen des Verdachts auf falsche Buchführung und Marktmanipulation verhaftet.</p>
+</div>
+<div class="person-card">
+<div class="person-name">FTX / Sam Bankman-Fried — Vermischungsmodell</div>
+<div class="person-role">Bahamas/USA, 2019–2022</div>
+<p style="margin:0;"><span class="tag tag-belegt">BELEGT</span> Bankman-Fried und Mitgründer Gary Wang bauten eine geheime "Hintertür" ein, über die die Handelsfirma Alameda Research Kundengelder von der Börse FTX borgen konnte — ohne Zustimmung der Kunden. Die SEC stellte fest, es habe faktisch keinen bedeutsamen Unterschied zwischen FTX-Kundengeldern und Alamedas eigenem Geld gegeben. Bankman-Fried verschleierte gegenüber Investoren gezielt diese Umleitung sowie das Risiko durch Alamedas Bestand an überbewerteten, illiquiden FTX-eigenen Token.</p>
+</div>
+<div class="person-card">
+<div class="person-name">Do Kwon / Terra-Luna — Vermischungsmodell/Krypto</div>
+<div class="person-role">Südkorea, Kollaps 2022</div>
+<p style="margin:0;"><span class="tag tag-belegt">BELEGT</span> Der Zusammenbruch von Kwons Firma Terraform Labs vernichtete rund 40 Milliarden US-Dollar an Anlegervermögen. Kwon wurde im Dezember 2025 zu 15 Jahren Haft wegen Wertpapier- und Warenbetrugs verurteilt.</p>
+</div>
+<h3>Deutsche Fälle im Überblick</h3>
+<table>
+<tr><th>Fall</th><th>Modell</th><th>Schaden</th><th>Besonderheit</th></tr>
+<tr><td>Helmut Kiener ("Mini-Madoff", K1)</td><td>Ponzi</td><td><span class="tag tag-belegt">BELEGT</span> ~300 Mio. €</td><td>Betrog auch Barclays, JP Morgan, BNP Paribas; Audienz bei Papst Benedikt</td></tr>
+<tr><td>Infinus (Dresden)</td><td>Schneeball</td><td><span class="tag tag-belegt">BELEGT</span> ~312 Mio. €</td><td>22.000 Anleger, von BaFin kontrolliert</td></tr>
+<tr><td>S&amp;K-Gruppe</td><td>Schneeball + Bilanzmanipulation</td><td><span class="tag tag-belegt">BELEGT</span> ~240 Mio. €</td><td>Produkte trugen ein TÜV-Siegel</td></tr>
+<tr><td>Jürgen Harksen</td><td>Anlagebetrug</td><td><span class="tag tag-belegt">BELEGT</span> 150+ Mio. DM</td><td>Prominente Opfer: Dieter Bohlen, Udo Lindenberg; versprach 1.300 % Rendite</td></tr>
+</table>
+<p>Ein weiterer, eigenständig ausführlich behandelter deutscher Fall — <strong>Florian Homm</strong> — zeigt eine seltene Variante: gefeierter Investor, dann international gesuchter Betrüger, am Ende unbehelligt zurück in Deutschland. <a href="florian-homm.html">→ Vollständige Geschichte hier</a>.</p>
+<h2>3. Die Psychologie: Warum auch kluge Menschen darauf hereinfallen</h2>
+<p><span class="tag tag-belegt">BELEGT</span> Die Antwort liegt nicht in mangelnder Intelligenz. Intelligenz schützt nicht vor Emotion, und Bildung schützt nicht vor Manipulation — das ist keine Ausnahme, sondern die logische Folge davon, dass Betrug tief verankerte menschliche Mechanismen anspricht: Vertrauen, Gier, Angst, Scham.</p>
+<div class="lever-grid">
+<div class="lever">
+<span class="lever-title">Soziale Bewährtheit</span>
+<span class="tag tag-belegt">BELEGT</span> Betrüger arbeiten mit Fake-Testimonials, gefälschten Forenbeiträgen oder inszenierten Erfolgsgeschichten. Der Gedanke "wenn so viele andere investieren, muss es seriös sein" wirkt stärker als jede rationale Analyse.
+    </div>
+<div class="lever">
+<span class="lever-title">Autorität</span>
+<span class="tag tag-belegt">BELEGT</span> Titel, Anzüge und Fachjargon erzeugen Vertrauen. Betrüger inszenieren sich als Experten mit exklusivem Wissen.
+    </div>
+<div class="lever">
+<span class="lever-title">Emotionale Isolation</span>
+<span class="tag tag-belegt">BELEGT</span> Opfer werden ermutigt, niemandem von ihren Investitionen zu erzählen — "Sagen Sie es nicht einmal Ihrem Steuerberater". Ziel ist, das Opfer von kritischem Feedback abzuschneiden.
+    </div>
+<div class="lever">
+<span class="lever-title">Künstliche Exklusivität</span>
+<span class="tag tag-belegt">BELEGT</span> Madoff kultivierte gezielt Exklusivität — Investoren mussten teils regelrecht betteln, um bei ihm investieren zu dürfen.
+    </div>
+<div class="lever">
+<span class="lever-title">Wunsch nach schnellem Reichtum</span>
+<span class="tag tag-belegt">BELEGT</span> Der Wunsch nach schnellem Reichtum überschreibt rationales Denken. Betrüger versprechen genau das, was sich Menschen wünschen.
+    </div>
+<div class="lever">
+<span class="lever-title">Emotionale Abhängigkeit</span>
+<span class="tag tag-belegt">BELEGT</span> Betrüger rufen regelmäßig an, fragen nach dem Befinden, geben Tipps. Opfer entwickeln das Gefühl, Teil einer exklusiven Beziehung zu sein.
+    </div>
+</div>
+<p class="pullquote">Der eigentliche Skandal ist nicht, dass Menschen auf diese Mechanismen hereinfallen — sondern dass Aufsichtsbehörden sie ebenso gut kennen und trotzdem regelmäßig zu spät reagieren.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Prominente Opfer widerlegen die Bildungs-These besonders deutlich: Zu Madoffs Kundenkreis zählten Prominente wie Kevin Bacon, Kyra Sedgwick und Steven Spielberg sowie die Stiftung des Holocaust-Überlebenden Elie Wiesel. Im Fall Harksen gehörten Dieter Bohlen und Udo Lindenberg zu den Geschädigten.</p>
+<h2>4. Warum Aufsicht regelmäßig zu spät kommt</h2>
+<p><span class="tag tag-belegt">BELEGT</span> Ein Whistleblower entdeckte Madoffs Betrug bereits 1999 — die SEC ignorierte die Hinweise fast ein Jahrzehnt lang. Bei Wirecard testierte derselbe Wirtschaftsprüfer über Jahre anstandslos, trotz einer eigenen Artikelserie der Financial Times ("House of Wirecard"), die seit Jahren auf Ungereimtheiten hinwies. <span class="tag tag-extra">EXTRAPOLATION</span> Das wiederkehrende Muster: Warnsignale existieren fast immer frühzeitig — öffentlich, dokumentiert, teils jahrelang. Was fehlt, ist nicht Information, sondern die institutionelle Bereitschaft, ihr nachzugehen, bevor der Schaden systemisch wird.</p>
+<div class="series-nav">
+<strong>Weiterlesen:</strong>
+<a href="florian-homm.html">→ Florian Homm: Vom BVB-Retter zum FBI-Gesuchten</a>
+<a href="panama-papers.html">→ Panama Papers: Der größte Leak und seine Bilanz</a>
+<a href="pandora-papers.html">→ Pandora Papers: Selenskyj und das Kwartal-95-Netzwerk</a>
+</div>
+<div class="open-questions">
+<h2>Offene Fragen</h2>
+<ul>
+<li><em>Warum ändert sich das grundlegende Muster seit Charles Ponzi in den 1920ern kaum — trotz hundert Jahren bekannter Warnsignale und wiederholter Aufklärung?</em></li>
+<li><em>Wie viele der aktuell als seriös geltenden Finanzprodukte folgen bereits heute derselben Struktur, ohne dass es bereits öffentlich geworden ist?</em></li>
+</ul>
+</div>
+<div class="source-list">
+    Quellen: SEC.gov, Handelsblatt, Wikipedia (Bernard L. Madoff, Allen Stanford, Do Kwon), EBSCO Research Starters, LegalClarity, Finanzwende.de, Business Insider, Resch Rechtsanwälte (Psychologie der Opfer), Psychologie Heute, Ritschel &amp; Keller, rechtecheck.de, WirtschaftsWoche. Alle Zitate im Text mit Quellenverweis gekennzeichnet.
+  </div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

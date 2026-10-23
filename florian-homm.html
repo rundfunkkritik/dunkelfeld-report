@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Florian Homm: Vom BVB-Retter zum FBI-Gesuchten</title>
+
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --box-bg: #1a1a2e;
+    --green: #4caf82;
+    --orange: #e39a3a;
+    --grey: #8a8a94;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.3;
+    margin: 0 0 1rem;
+    color: #fff;
+  }
+  .sub {
+    font-size: 1.2rem;
+    color: #b8b8c2;
+    font-style: italic;
+    margin-bottom: 2.5rem;
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    border-bottom: 1px solid #2a2a3a;
+    padding-bottom: 0.5rem;
+  }
+  h3 {
+    color: #d8d8e0;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+  }
+  p { margin: 1.2rem 0; }
+  a { color: var(--accent); }
+
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.5rem;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(76,175,130,0.15); color: var(--green); border: 1px solid var(--green); }
+  .tag-extra { background: rgba(227,154,58,0.15); color: var(--orange); border: 1px solid var(--orange); }
+  .tag-offen { background: rgba(138,138,148,0.15); color: var(--grey); border: 1px solid var(--grey); }
+  .tag-vt { background: rgba(138,138,148,0.1); color: var(--grey); border: 1px solid var(--grey); text-decoration: line-through; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .stat {
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 1.2rem 1rem;
+    text-align: center;
+  }
+  .stat .num {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 1.6rem;
+    color: var(--accent);
+    font-weight: bold;
+  }
+  .stat .label {
+    display: block;
+    font-size: 0.8rem;
+    color: #a8a8b4;
+    margin-top: 0.3rem;
+  }
+
+  .source-box {
+    background: var(--box-bg);
+    border-left: 4px solid var(--accent);
+    border-radius: 4px;
+    padding: 1.2rem 1.5rem;
+    margin: 1.8rem 0;
+  }
+  .src-title {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.6rem;
+  }
+
+  .person-card {
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 1.3rem 1.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid #2a2a3a;
+  }
+  .person-name {
+    font-family: 'Courier New', monospace;
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+  }
+  .person-role {
+    color: var(--grey);
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-bottom: 0.8rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.8rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    border: 1px solid #2a2a3a;
+    padding: 0.7rem 0.8rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    color: var(--accent);
+    letter-spacing: 0.03em;
+  }
+
+  .pullquote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #fff;
+    border-left: 3px solid var(--accent);
+    padding-left: 1.2rem;
+    margin: 2.5rem 0;
+  }
+
+  .timeline {
+    margin: 2rem 0;
+    padding-left: 1.5rem;
+    border-left: 2px solid #2a2a3a;
+  }
+  .timeline-item {
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.58rem;
+    top: 0.4rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .open-questions {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a3a;
+    font-style: italic;
+    color: #c0c0ca;
+  }
+  .open-questions h2 { font-style: normal; }
+  .open-questions li { margin-bottom: 1rem; }
+
+  .source-list {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a3a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #8a8a94;
+    line-height: 1.6;
+  }
+  .source-list a { color: #a8a8b4; }
+
+  .series-nav {
+    margin-top: 3rem;
+    padding: 1.2rem;
+    background: var(--box-bg);
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+  }
+  .series-nav a { display: block; margin: 0.3rem 0; }
+</style>
+<meta name="description" content="200 Millionen Dollar Anlegerverlust, fünf Jahre auf der Flucht vor FBI, SEC und DEA, ein Kopfgeldjäger, eine Verhaftung in den Uffizien — und am Ende keine Auslieferung. Die Geschichte des Florian Homm.">
+<meta name="rubrik" content="cat-geld">
+<meta name="kachel-titel" content="Florian Homm: Vom BVB-Retter zum FBI-Gesuchten — und unbehelligt zurück">
+<link rel="canonical" href="https://dunkelfeld.report/florian-homm.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Florian Homm: Vom BVB-Retter zum FBI-Gesuchten — und unbehelligt zurück">
+<meta property="og:description" content="200 Millionen Dollar Anlegerverlust, fünf Jahre auf der Flucht vor FBI, SEC und DEA, ein Kopfgeldjäger, eine Verhaftung in den Uffizien — und am Ende keine Auslieferung. Die Geschichte des Florian Homm.">
+<meta property="og:url" content="https://dunkelfeld.report/florian-homm.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Florian Homm: Vom BVB-Retter zum FBI-Gesuchten — und unbehelligt zurück", "description": "200 Millionen Dollar Anlegerverlust, fünf Jahre auf der Flucht vor FBI, SEC und DEA, ein Kopfgeldjäger, eine Verhaftung in den Uffizien — und am Ende keine Auslieferung. Die Geschichte des Florian Homm.", "inLanguage": "de", "url": "https://dunkelfeld.report/florian-homm.html", "mainEntityOfPage": "https://dunkelfeld.report/florian-homm.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="meta">Dunkelfeld.Report · Artikel · Geldsysteme &amp; Offshore</div>
+<h1>Florian Homm: Vom BVB-Retter zum FBI-Gesuchten — und unbehelligt zurück</h1>
+<div class="sub">200 Millionen Dollar Anlegerverlust, ein Kopfgeld von 1,5 Millionen Euro auf den eigenen Kopf, eine Verhaftung in den Uffizien — und am Ende keine Auslieferung. Heute verkauft er Finanztipps auf YouTube.</div>
+<div class="stat-grid">
+<div class="stat"><span class="num">3 Mrd. USD</span><span class="label">Fondsvolumen ACM (Höchststand)</span></div>
+<div class="stat"><span class="num">200 Mio. USD</span><span class="label">Anlegerverlust laut Bloomberg</span></div>
+<div class="stat"><span class="num">5 Jahre</span><span class="label">auf der Flucht</span></div>
+<div class="stat"><span class="num">1,5 Mio. €</span><span class="label">privates Kopfgeld auf ihn</span></div>
+</div>
+<h2>1. Der Aufstieg</h2>
+<p><span class="tag tag-belegt">BELEGT</span> Florian Wilhelm Jürgen Homm, geboren 1959 in Oberursel, war deutscher Investmentbanker und Hedgefonds-Manager. 1999 gründete er die Fondsgesellschaft Absolute Capital Management Holdings (ACM), die in den folgenden Jahren rasch zu einer der erfolgreichsten Investmentfirmen Europas expandierte. Zur Hochphase verwaltete Homm rund 3 Milliarden Euro Kundenvermögen und stand mit geschätzt 400 Millionen Euro Privatvermögen auf der Liste der 300 reichsten Deutschen.</p>
+<div class="person-card">
+<div class="person-name">Der "BVB-Retter"</div>
+<div class="person-role">2004</div>
+<p style="margin:0;"><span class="tag tag-belegt">BELEGT</span> Homm investierte 2004 über seine Firma ACMH 20 Millionen Euro und übernahm damit knapp 26 Prozent der Anteile am finanziell schwer angeschlagenen Bundesligisten Borussia Dortmund — eine finanzielle Rettung, die den Verein vor der Insolvenz bewahrte und ihm zugleich, wie in den Konditionen des Investments verankert, Einfluss auf die Ablösung der Klubführung verschaffte. Die Presse feierte ihn als Retter des Klubs.</p>
+</div>
+<h2>2. Das Kindheitsmuster — nach eigener Schilderung</h2>
+<p><span class="tag tag-offen">OFFEN</span> Über seine Kindheit lässt sich nur das heranziehen, was Homm selbst in Interviews und seiner Autobiografie erzählt hat — sein Vater kann dazu nicht mehr befragt werden, eine unabhängige Bestätigung ist nicht möglich. Die Schilderung selbst ist in sich stimmig und wird hier als das behandelt, was sie ist: seine eigene, nicht extern verifizierbare Version.</p>
+<div class="source-box">
+<div class="src-title">Homms eigene Schilderung</div>
+<span class="tag tag-offen">OFFEN</span> Liebe habe es im Elternhaus Homm wenig gegeben, so schildert er es selbst — stattdessen wurde von ihm in jedem Bereich Höchstleistung erwartet. In einem YouTube-Interview zitierte er die Botschaft seines Vaters sinngemäß so: "Du kannst dir alles erlauben. Du kannst grenzenlos sein. Lass dich nicht erwischen." Er sei, in seinen eigenen Worten, "amoralisch aufgewachsen". Als Kind trug er den Spitznamen "Hans Christian Andersen" — nach dem Märchenerzähler — und ließ gelegentlich etwas im Laden mitgehen.
+  </div>
+<p><span class="tag tag-extra">EXTRAPOLATION</span> Diese Schilderung liefert, wenn man sie als authentisch akzeptiert, ein plausibles Deutungsmuster für den späteren Werdegang: grenzenloser Ehrgeiz als früh anerzogene Überlebensstrategie, verbunden mit einer expliziten elterlichen Botschaft, wonach Regelbruch akzeptabel sei, solange man nicht erwischt wird. <span class="tag tag-offen">OFFEN</span> Ob dieses Muster tatsächlich ursächlich für die spätere Betrugsserie war oder nachträglich als Erklärung konstruiert wurde, lässt sich nicht objektiv feststellen.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Der Ehrgeiz selbst prägte auch sein späteres Leben unabhängig von der Erklärung: In seinem Palazzo in Marbella, den er vom saudischen Königshaus gekauft hatte, verbrachte er nur eine einzige Nacht. Er schlief maximal vier Stunden, arbeitete ununterbrochen und pflegte Kontakte nur, wenn für ihn etwas dabei herumsprang. Seine eigenen Kinder nannten ihn nicht Vater oder Dad, sondern "Big Guy" — ein Detail, das er selbst so wiedergegeben hat.</p>
+<h2>3. Der Zusammenbruch</h2>
+<div class="timeline">
+<div class="timeline-item">
+<span class="timeline-date">September 2007</span>
+<span class="tag tag-belegt">BELEGT</span> Homm verschwindet über Nacht aus seinem eigenen Hedgefonds ACM. Kurz zuvor war der Fonds auf über 3 Mrd. USD angewachsen. Er taucht unter — mit geschätzt 150 Millionen Euro.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">2007–2009</span>
+<span class="tag tag-belegt">BELEGT</span> Die ACM-Aktien brechen um 93 Prozent ein. Homm wird wegen Anlagebetrugs in den USA angeklagt und von FBI, SEC und DEA auf die Fahndungsliste gesetzt. Die DEA ermittelt zusätzlich wegen mutmaßlicher Geldwäsche.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">2007–2013</span>
+<span class="tag tag-belegt">BELEGT</span> Fünf Jahre auf der Flucht durch mehrere Länder, verfolgt von FBI und einem privaten Kopfgeldjäger — auf Homm war zwischenzeitlich ein Kopfgeld von 1,5 Millionen Euro ausgesetzt.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">März 2013</span>
+<span class="tag tag-belegt">BELEGT</span> Verhaftung ausgerechnet in den Uffizien in Florenz, wenige Tage nachdem er sich noch öffentlich im ZDF verteidigt hatte. Die Anklage wirft ihm vor, Penny Stocks künstlich hochmanipuliert und eigene Bestände zu überteuerten Preisen an die eigenen Fonds verkauft zu haben — im Kern Selbstbedienung aus den Kundengeldern. Die SEC fordert rund 56 Mio. USD von ihm zurück.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">2014</span>
+<span class="tag tag-belegt">BELEGT</span> Ein italienisches Gericht entscheidet, dass die zulässige Auslieferungshaft abgelaufen ist. Homm wird freigelassen und kehrt nach Deutschland zurück.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">seither</span>
+<span class="tag tag-belegt">BELEGT</span> Da Deutschland eigene Staatsbürger grundsätzlich nicht an Drittstaaten ausliefert, wurde Homm trotz Haftbefehls aus den USA und der Schweiz nie ausgeliefert und lebt seither unbehelligt in Deutschland.
+    </div>
+</div>
+<h2>4. Nicht nur die USA — auch die Schweiz</h2>
+<p><span class="tag tag-belegt">BELEGT</span> In der Schweiz wurde Homm wegen qualifizierter ungetreuer Geschäftsbesorgung und mehrfacher Urkundenfälschung zu einer Haftstrafe verurteilt — just im Zusammenhang mit demselben Investment, das ihm einst den Ruf als "BVB-Retter" eingebracht hatte. Der Rettungsakt und die Straftat entstammen also derselben Transaktion.</p>
+<p class="pullquote">Vom gefeierten Klub-Retter zum FBI-Gesuchten zum unbehelligten Finanz-Kommentator — ohne Auslieferung, ohne belegte Rückzahlung an die Geschädigten.</p>
+<h2>5. Die zweite Karriere</h2>
+<p><span class="tag tag-belegt">BELEGT</span> Heute ist Homm Herausgeber eines eigenen Börsenbriefs, Marktkommentator und Autor von acht Büchern über Short Selling, Börsencrashs und seine eigene Vergangenheit. Über seine "Florian Homm Academy" bietet er kostenpflichtige Analysen und "vertrauliche Strategien zur Vermögenssicherung und -vermehrung" an — ein Geschäftsmodell, das direkt von seiner öffentlichen Erzählung als geläuterter Insider profitiert.</p>
+<p><span class="tag tag-belegt">BELEGT</span> Er tritt regelmäßig als Kommentator zur "Welt der Eliten" auf, mit Videotiteln wie "Warum die Eliten Deutschland zerstören" oder "Die wahre Elite sitzt nicht im Bundestag". <span class="tag tag-offen">OFFEN</span> Diese Rolle als Elite-Insider-Kommentator ist nicht unabhängig verifizierbar — sie beruht auf seiner eigenen Selbstdarstellung als jemand, der "von innen" gesehen hat, wie diese Welt funktioniert.</p>
+<p><span class="tag tag-extra">EXTRAPOLATION</span> Bemerkenswert ist die Doppelrolle: Derselbe Mann, der wegen systematischen Anlagebetrugs gesucht wurde, positioniert sich heute als Aufklärer über genau jene Finanzwelt, deren Regeln er selbst gebrochen hat — und monetarisiert diese Position erneut über kostenpflichtige Finanzprodukte.</p>
+<table>
+<tr><th>Ebene</th><th>Status</th><th>Konsequenz</th></tr>
+<tr><td>Strafrechtlich (USA)</td><td>Anklage seit 2013, keine Auslieferung</td><td>Bis heute unbehelligt in Deutschland</td></tr>
+<tr><td>Strafrechtlich (Schweiz)</td><td>Verurteilt</td><td>Haftstrafe wegen ungetreuer Geschäftsbesorgung</td></tr>
+<tr><td>Zivilrechtlich (SEC)</td><td>Forderung ~56 Mio. USD</td><td>Kein belegter Vollzug bekannt</td></tr>
+<tr><td>Öffentlich/Medial</td><td>Aktive zweite Karriere als Finanz-Kommentator</td><td>Fortlaufend, kommerziell erfolgreich</td></tr>
+</table>
+<div class="series-nav">
+<strong>Weiterlesen:</strong>
+<a href="finanzbetrug-anatomie.html">→ Die Anatomie des Finanzbetrugs: Ponzi, Schneeball, Bilanzbetrug</a>
+<a href="panama-papers.html">→ Panama Papers: Der größte Leak und seine Bilanz</a>
+<a href="pandora-papers.html">→ Pandora Papers: Selenskyj und das Kwartal-95-Netzwerk</a>
+</div>
+<div class="open-questions">
+<h2>Offene Fragen</h2>
+<ul>
+<li><em>Warum verhindert das deutsche Auslieferungsverbot für eigene Staatsbürger faktisch jede strafrechtliche Aufarbeitung eines im Ausland verübten Milliardenbetrugs — und ist das ein Einzelfall oder ein strukturelles Schlupfloch?</em></li>
+<li><em>Was sagt es über die Medienlandschaft, dass ein gesuchter Anlagebetrüger ohne Auflagen zum gefragten Finanzkommentator werden kann?</em></li>
+</ul>
+</div>
+<div class="source-list">
+    Quellen: Wikipedia (Florian Homm), Business Insider, Handelsblatt, Bloomberg, U.S. Department of Justice (usao-cdca), Goal.com, kagels-trading.de, trading.de. Kindheitsschilderung: Homms eigene Interview- und Buchaussagen, als solche gekennzeichnet.
+  </div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Drei Kriegskassen, drei Kontrolllücken — dunkelfeld.report</title>
+
+<meta content="Ukraine, Kriegsfinanzierung, Korruption, NABU, USAID, EU-Kredit, Rüstungsindustrie, Cui bono" name="keywords"/>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-panel: #141414;
+    --border: #2a2a2a;
+    --text: #e6e6e6;
+    --text-dim: #999999;
+    --red: #ff2b3d;
+    --cyan: #00d4d4;
+    --gold: #e0c200;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+  .kicker {
+    color: var(--red);
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: 1.9rem;
+    line-height: 1.25;
+    margin: 0 0 8px;
+    color: #ffffff;
+  }
+  .subhead {
+    color: var(--text-dim);
+    font-size: 1rem;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+  }
+  h2 {
+    color: var(--cyan);
+    font-size: 1.25rem;
+    margin-top: 48px;
+    border-left: 3px solid var(--cyan);
+    padding-left: 12px;
+  }
+  p { margin: 16px 0; }
+  strong { color: #ffffff; }
+  a { color: var(--cyan); }
+
+  .factbox, .dangerbox, .fairnessbox {
+    border-radius: 4px;
+    padding: 20px 22px;
+    margin: 28px 0;
+    font-size: 0.95rem;
+  }
+  .factbox {
+    background: rgba(0,212,212,0.06);
+    border: 1px solid var(--cyan);
+  }
+  .factbox .label { color: var(--cyan); font-weight: bold; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 10px; }
+  .dangerbox {
+    background: rgba(255,43,61,0.07);
+    border: 1px solid var(--red);
+  }
+  .dangerbox .label { color: var(--red); font-weight: bold; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 10px; }
+  .fairnessbox {
+    background: rgba(224,194,0,0.06);
+    border: 1px solid var(--gold);
+  }
+  .fairnessbox .label { color: var(--gold); font-weight: bold; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 10px; }
+  .fairnessbox ul, .factbox ul, .dangerbox ul { margin: 8px 0 0; padding-left: 20px; }
+  .fairnessbox li, .factbox li { margin-bottom: 6px; }
+
+  .pullquote {
+    font-size: 1.2rem;
+    color: var(--gold);
+    border-left: 3px solid var(--gold);
+    padding-left: 18px;
+    margin: 36px 0;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  table.datatable {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.88rem;
+  }
+  table.datatable th, table.datatable td {
+    border: 1px solid var(--border);
+    padding: 8px 10px;
+    text-align: left;
+  }
+  table.datatable th {
+    background: var(--bg-panel);
+    color: var(--cyan);
+  }
+
+  .timeline {
+    margin: 32px 0;
+    border-left: 2px solid var(--border);
+    padding-left: 24px;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 22px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -30px;
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--red);
+  }
+  .timeline-date {
+    color: var(--red);
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+  }
+
+  .cuibono {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--red);
+    padding: 22px;
+    margin: 36px 0;
+  }
+  .cuibono h3 {
+    color: var(--red);
+    margin-top: 0;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .footer-note {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    line-height: 1.6;
+  }
+  .series-tag {
+    display: inline-block;
+    background: rgba(255,43,61,0.1);
+    color: var(--red);
+    border: 1px solid var(--red);
+    padding: 3px 10px;
+    font-size: 0.75rem;
+    border-radius: 3px;
+    margin-bottom: 16px;
+  }
+</style>
+<meta name="description" content="90 Mrd. € EU-Kredit, 25,9 Mrd. $ US-Budgethilfe, 100 Mio. $ Energoatom-Skandal: drei getrennte Geldtöpfe der Ukraine-Kriegsfinanzierung im Cui-bono-Check.">
+<meta name="rubrik" content="cat-geld">
+<meta name="kachel-titel" content="Drei Kriegskassen, drei Kontrolllücken">
+<link rel="canonical" href="https://dunkelfeld.report/drei-kriegskassen.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Drei Kriegskassen, drei Kontrolllücken">
+<meta property="og:description" content="90 Mrd. € EU-Kredit, 25,9 Mrd. $ US-Budgethilfe, 100 Mio. $ Energoatom-Skandal: drei getrennte Geldtöpfe der Ukraine-Kriegsfinanzierung im Cui-bono-Check.">
+<meta property="og:url" content="https://dunkelfeld.report/drei-kriegskassen.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Drei Kriegskassen, drei Kontrolllücken", "description": "90 Mrd. € EU-Kredit, 25,9 Mrd. $ US-Budgethilfe, 100 Mio. $ Energoatom-Skandal: drei getrennte Geldtöpfe der Ukraine-Kriegsfinanzierung im Cui-bono-Check.", "inLanguage": "de", "url": "https://dunkelfeld.report/drei-kriegskassen.html", "mainEntityOfPage": "https://dunkelfeld.report/drei-kriegskassen.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<span class="series-tag">WER KONTROLLIERT WEN? — DOSSIER</span>
+<div class="kicker">Kriegsfinanzierung · Kontrollversagen</div>
+<h1>Drei Kriegskassen, drei Kontrolllücken</h1>
+<div class="subhead">90 Milliarden Euro EU-Kredit, 25,9 Milliarden Dollar US-Budgethilfe, 100 Millionen Dollar Energoatom-Skandal — drei Geldtöpfe für die Ukraine, drei getrennte Aufsichtssysteme, drei dokumentierte Schwachstellen. Wer sie vermischt, verliert die Story.</div>
+<p>Ein Handshake-Foto, ein wütender X-Kommentar, eine Schlagzeile über Milliardensummen — in wenigen Wochen kursierten im September 2026 gleich drei große Ukraine-Geldgeschichten parallel. Der Reflex: alles ist derselbe Sumpf. Die Recherche zeigt etwas anderes.</p>
+<div class="factbox">
+<div class="label">Factbox — Die drei Kassen</div>
+<table class="datatable">
+<tr><th>Kasse</th><th>Volumen</th><th>Kontrollorgan</th><th>Dokumentierter Fehler</th></tr>
+<tr><td>Ukrainischer Staatshaushalt (Energoatom)</td><td>~100 Mio. $</td><td>NABU / SAPO</td><td>Korruption im engsten Machtzirkel — aufgedeckt</td></tr>
+<tr><td>EU-Verteidigungskredit</td><td>90 Mrd. €</td><td>EU-Gremien / Bundestag</td><td>Kein Kontrollversagen belegt — offene Rüstungsfinanzierung</td></tr>
+<tr><td>US-Direktbudgethilfe (PEACE Fund)</td><td>25,9 Mrd. $</td><td>USAID-OIG / Deloitte / KPMG</td><td>Prüfberichte verspätet oder gar nicht geliefert</td></tr>
+</table>
+</div>
+<h2>Kasse 1 — Kiew: Villen, Schmiergeld, ein Präsidialamtschef in Haft</h2>
+<p>Im November 2025 durchsuchte die ukrainische Antikorruptionsbehörde NABU die Wohnung von Andrij Jermak, bis dahin Selenskyjs mächtigster Vertrauter. Ermittler werfen einem Netzwerk um den Geschäftsmann Timur Minditsch vor, zehn bis fünfzehn Prozent der Auftragssumme als Kickback von Firmen kassiert zu haben, die Schutzbauten für die Energieinfrastruktur errichteten. Gesamtvolumen des Systems: rund <strong>100 Millionen US-Dollar</strong>. Konkret nachgewiesen: <strong>8,9 bis 10,5 Millionen Euro</strong>, gewaschen über ein Villenprojekt bei Kiew.</p>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-date">SOMMER 2025</div>
+      Selenskyj unterzeichnet Gesetz zur Einschränkung der NABU-Unabhängigkeit — nach Protesten und EU-Kritik zurückgenommen.
+    </div>
+<div class="timeline-item">
+<div class="timeline-date">NOVEMBER 2025</div>
+      NABU deckt "Operation Midas" auf, durchsucht Jermaks Wohnung. Energieministerin und Justizminister treten zurück.
+    </div>
+<div class="timeline-item">
+<div class="timeline-date">11. MAI 2026</div>
+      NABU stellt Jermak offiziell Verdachtsmitteilung zu. 60 Tage Untersuchungshaft folgen.
+    </div>
+</div>
+<div class="dangerbox">
+<div class="label">Dangerbox — Verwechslungsgefahr</div>
+    Dieses Geld stammt aus dem <strong>ukrainischen Staatshaushalt</strong> bzw. dem Budget des Konzerns Energoatom. Es ist <strong>nicht identisch</strong> mit EU-Rüstungskrediten oder deutscher Militärhilfe. Wer beides vermischt, liefert Kritikern einen kostenlosen Angriffspunkt.
+  </div>
+<h2>Kasse 2 — Berlin/Brüssel: Der offene Geldfluss zur Rüstungsindustrie</h2>
+<p>Seit 27. Februar 2026 läuft ein <strong>90-Milliarden-Euro-Kredit</strong> der EU (Verordnung 2026/467) — Rückzahlung vorgesehen aus künftigen russischen Reparationen, abgesichert durch eingefrorene russische Vermögenswerte. Aus diesem Topf bestellt Deutschland laut Verteidigungsminister Pistorius nun mehrere Tausend zusätzliche IRIS-T-Lenkflugkörper. Parallel: ein 2,2-Milliarden-Euro-Einzelvertrag mit Diehl Defence, ein 4-Milliarden-Euro-Rüstungspakt vom April 2026, ein deutsches Gesamthilfspaket, das 2026 auf 11,5 Milliarden Euro steigen soll.</p>
+<p>Der Teil, der selten mitgeliefert wird: Diehl verhandelt zugleich mit dem ukrainischen "Flamingo"-Entwickler Fire Point über eine Lizenzproduktion in Deutschland. Auterion/Airlogix produziert bereits Kampfdrohnen in München und Ostdeutschland — Auftragswert rund 300 Millionen Euro, aus deutschen Haushaltsmitteln.</p>
+<div class="pullquote">"EU- und Bundeshaushaltsmittel fließen an westliche Rüstungsunternehmen, die im Gegenzug Waffensysteme für die Ukraine liefern." — kein Geheimnis, sondern Regierungspolitik mit Pressemitteilung.</div>
+<h2>Kasse 3 — Washington: Wenn die Kontrolleure selbst versagen</h2>
+<p>Die dritte Kasse liefert den greifbarsten Beleg für tatsächliches Aufsichtsversagen — interessanterweise in den USA. Ein USAID-Prüfbericht vom März 2026 untersuchte den "PEACE Fund", <strong>25,9 Milliarden US-Dollar</strong> Direktbudgethilfe. Befund: Der beauftragte Prüfer Deloitte lieferte fast ein Drittel seiner Pflichtberichte verspätet oder gar nicht. Der Prüfer KPMG legte von sechs verbindlichen Finanzaudits <strong>keinen einzigen</strong> fristgerecht vor.</p>
+<div class="cuibono">
+<h3>Cui bono — wer profitiert vom Kontrollversagen?</h3>
+<p style="margin:0;">Die Trump-Administration nutzt den Bericht seit Januar 2025 zur Begründung von Kürzungen und Programmpausen. Das ändert nichts an den dokumentierten Befunden — verlangt aber Vorsicht, wer die Zahlen wofür instrumentalisiert. Strukturelles Motiv, keine individuelle Unterstellung: Ein Kontrollversagen, das politisch verwertbar ist, wird eher aufgedeckt als eines, das niemandem nützt.</p>
+</div>
+<div class="fairnessbox">
+<div class="label">Fairnessbox</div>
+<ul>
+<li>20-Behörden-Aufsichtsprogramm in den USA mit 64 laufenden/geplanten Audits — der Fehler liegt bei externen Prüfern, nicht im Fehlen von Struktur.</li>
+<li>Nur ~20 % der gesamten US-Hilfe läuft als Direktbudgethilfe; der Rest ist zweckgebunden und wird erst nach Verifizierung ausgezahlt.</li>
+<li>Gelieferte Waffensysteme werden laut US-Verteidigungsministerium mit Barcodes/Seriennummern erfasst, ukrainische Empfänger erhielten Scanner und Software.</li>
+<li>NABU/SAPO ermitteln aktiv gegen die eigene Regierungsspitze — kein Bild vollständiger Straflosigkeit.</li>
+<li>Bundestags-Drucksache 21/3848 (27.01.2026): Bundesregierung äußert sich ausführlich zu Kontrollmechanismen, inkl. möglicher Einbindung des Bundesrechnungshofs.</li>
+</ul>
+</div>
+<h2>Absence of Data</h2>
+<p>Zu weiteren kursierenden Vorwürfen — Behindertenrenten-Betrug bei Staatsanwälten (2024), der Fall Kolomojskyj (2023), der "Eier-Skandal" bei Armeeverpflegung (2023) — ließen sich keine belastbaren Eurosummen ermitteln. Breit diskutiert, selten beziffert. Das ist selbst ein Befund.</p>
+<h2>Fazit</h2>
+<p>Drei unabhängige Kontrollsysteme — ukrainisch, europäisch, amerikanisch — mit drei unterschiedlichen, jeweils belegten Schwachstellen. In Kiew: nachgewiesene Korruption, aufgedeckt von funktionierenden Eigenkontrollen. In Washington: Untätigkeit beauftragter externer Prüfer bei einer regelkonform aufgesetzten Struktur. In Berlin/Brüssel: kein verstecktes Kontrollversagen, sondern eine offen zutage liegende politische Frage — wer wirtschaftlich profitiert, wenn ein Krieg andauert.</p>
+<p><strong>Die Frage, die zählt:</strong> In welcher der drei Kassen, und welches Kontrollorgan hat dort versagt? Diese eine Frage trennt begründete Kritik von diffusem Verdacht.</p>
+<div class="footer-note">
+    KI-Transparenzhinweis gemäß Art. 50 EU-KI-VO: Recherche- und Textunterstützung durch Claude (Anthropic). Redaktionelle Verantwortung: Manfred Seeböck, kontakt@kurswechsel.blog. Quellen: USAID-OIG-Prüfbericht 9-121-26-001-P, US-Kongress-Anhörung (congress.gov), EU-Verordnung 2026/467, Bundestags-Drucksache 21/3848, NABU/SAPO-Mitteilungen, taz, Berliner Zeitung, esut.de, Defence Industry Europe, t-online.
+  </div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Die sinkende Kriminalität, die keine ist — dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b;
+    color: #e8e8ec;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+  header.site {
+    border-bottom: 1px solid #1e1e24;
+    padding: 1.2rem 0;
+    position: sticky;
+    top: 0;
+    background: #09090b;
+    z-index: 100;
+  }
+  header.site .wrap { display: flex; align-items: center; gap: 0.8rem; max-width: 720px; }
+  .dot { width: 8px; height: 8px; background: #e8c547; border-radius: 50%; flex-shrink: 0; }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #6b6b7a;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .meta-top { margin-left: auto; font-family: 'Courier New', monospace; font-size: 0.7rem; color: #6b6b7a; }
+
+  .hero { padding: 3.5rem 0 2rem; }
+  .hero .kicker { margin-bottom: 1.2rem; display: block; }
+  h1 {
+    font-size: clamp(2rem, 6vw, 2.9rem);
+    line-height: 1.15;
+    font-weight: 700;
+    color: #f2f2f5;
+    margin-bottom: 1rem;
+  }
+  .subtitle { color: #9a9aa8; font-size: 1.15rem; line-height: 1.6; margin-bottom: 1.5rem; }
+  .article-meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #6b6b7a;
+    border-top: 1px solid #1e1e24;
+    border-bottom: 1px solid #1e1e24;
+    padding: 0.8rem 0;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    color: #f2f2f5;
+    margin: 3rem 0 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #1e1e24;
+  }
+  h3 { font-size: 1.15rem; color: #e8e8ec; margin: 1.8rem 0 0.6rem; }
+  p { margin-bottom: 1.2rem; color: #d4d4dc; }
+  strong { color: #f2f2f5; }
+
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .tag-belegt { background: rgba(74, 222, 128, 0.12); color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.3); }
+  .tag-extra { background: rgba(251, 146, 60, 0.12); color: #fb923c; border: 1px solid rgba(251, 146, 60, 0.3); }
+  .tag-offen { background: rgba(160, 160, 175, 0.12); color: #a0a0af; border: 1px solid rgba(160, 160, 175, 0.3); }
+  .tag-widerlegt { background: rgba(160, 160, 175, 0.08); color: #7a7a88; border: 1px solid rgba(160, 160, 175, 0.2); text-decoration: line-through; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin: 2rem 0;
+  }
+  @media (max-width: 480px) { .stat-grid { grid-template-columns: 1fr; } }
+  .stat {
+    border-left: 3px solid #e8c547;
+    padding: 0.3rem 0 0.3rem 1rem;
+  }
+  .stat .value { font-size: 1.8rem; font-weight: 700; color: #e8c547; line-height: 1.1; }
+  .stat .label { font-size: 0.85rem; color: #b8b8c4; margin-top: 0.3rem; line-height: 1.4; }
+  .stat .src { font-family: 'Courier New', monospace; font-size: 0.68rem; color: #6b6b7a; margin-top: 0.3rem; }
+
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.92rem;
+    color: #b8b8c4;
+  }
+  .source-box .src-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #e8c547;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline { margin: 2rem 0; border-left: 2px solid #2a2a34; padding-left: 1.5rem; }
+  .tl-item { position: relative; margin-bottom: 1.5rem; }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -1.62rem;
+    top: 0.4rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #e8c547;
+  }
+  .tl-date { font-family: 'Courier New', monospace; font-size: 0.78rem; color: #e8c547; }
+  .tl-text { font-size: 0.95rem; color: #c8c8d0; margin-top: 0.2rem; }
+
+  table.compare {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+  table.compare th, table.compare td {
+    border: 1px solid #1e1e24;
+    padding: 0.7rem 0.8rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  table.compare th {
+    background: #1a1a2e;
+    color: #e8c547;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  table.compare td { color: #c8c8d0; }
+  table.compare td.num { color: #e8c547; font-weight: 700; }
+
+  blockquote {
+    border-left: 3px solid #e8c547;
+    padding: 0.3rem 0 0.3rem 1.3rem;
+    margin: 1.8rem 0;
+    font-style: italic;
+    color: #e8e8ec;
+    font-size: 1.15rem;
+  }
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #6b6b7a;
+    margin-top: 0.5rem;
+  }
+
+  ul.factlist { margin: 1rem 0 1.5rem 1.3rem; }
+  ul.factlist li { margin-bottom: 0.6rem; color: #d4d4dc; }
+
+  .closing {
+    margin: 3rem 0 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #1e1e24;
+  }
+  .closing p { font-style: italic; color: #9a9aa8; }
+
+  footer.site {
+    border-top: 1px solid #1e1e24;
+    padding: 2.5rem 0 3rem;
+    margin-top: 2rem;
+  }
+  footer.site p { font-size: 0.78rem; color: #6b6b7a; margin-bottom: 0.5rem; }
+  footer.site .brand { color: #e8c547; font-family: 'Courier New', monospace; font-size: 0.8rem; }
+
+  a { color: #e8c547; }
+</style>
+<meta name="description" content="Jedes Jahr im Frühjahr verkündet das Bundesinnenministerium: Die Kriminalität in Deutschland sinkt. Jedes Jahr fragen sich Menschen, warum sich das nicht …">
+<meta name="rubrik" content="cat-staat">
+<meta name="kachel-titel" content="Die sinkende Kriminalität, die keine ist">
+<link rel="canonical" href="https://dunkelfeld.report/statistik-verwaesserung.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Die sinkende Kriminalität, die keine ist">
+<meta property="og:description" content="Jedes Jahr im Frühjahr verkündet das Bundesinnenministerium: Die Kriminalität in Deutschland sinkt. Jedes Jahr fragen sich Menschen, warum sich das nicht …">
+<meta property="og:url" content="https://dunkelfeld.report/statistik-verwaesserung.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Die sinkende Kriminalität, die keine ist", "description": "Jedes Jahr im Frühjahr verkündet das Bundesinnenministerium: Die Kriminalität in Deutschland sinkt. Jedes Jahr fragen sich Menschen, warum sich das nicht …", "inLanguage": "de", "url": "https://dunkelfeld.report/statistik-verwaesserung.html", "mainEntityOfPage": "https://dunkelfeld.report/statistik-verwaesserung.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<header class="site">
+<div class="wrap">
+<div class="dot"></div>
+<span class="kicker">Analyse · Systemkritik · Quellenbasiert</span>
+<span class="meta-top">dunkelfeld.report</span>
+</div>
+</header>
+<div class="wrap">
+<div class="hero">
+<span class="kicker">Dossier · Kriminalstatistik &amp; Migration</span>
+<h1>Die sinkende Kriminalität, die keine ist</h1>
+<p class="subtitle">Jedes Jahr im Frühjahr verkündet das Bundesinnenministerium: Die Kriminalität in Deutschland sinkt. Jedes Jahr fragen sich Menschen, warum sich das nicht so anfühlt. Ein Blick in die Zahlen zeigt: Beide Wahrnehmungen sind richtig — sie messen nur nicht dasselbe.</p>
+<div class="article-meta">Juli 2026  |  Lesedauer: ca. 11 Minuten  |  Status: laufend aktualisiert</div>
+</div>
+<p>Drei Mechanismen sorgen aktuell dafür, dass eine einzelne Kennzahl — "die Kriminalität insgesamt" oder "der Ausländeranteil an der Kriminalität" — ein anderes Bild zeichnet als die Zusammensetzung darunter. Keiner dieser Mechanismen ist eine Verschwörung. Alle drei sind offizielle, dokumentierte Effekte von Gesetzesänderungen und Zähllogik — aber sie werden in der öffentlichen Debatte selten mitgeliefert.</p>
+<div class="stat-grid">
+<div class="stat">
+<div class="value">-1,7 %</div>
+<div class="label">Gesamtstraftaten 2024 — vor allem durch Cannabis-Teillegalisierung</div>
+<div class="src">BMI/BKA, PKS 2024</div>
+</div>
+<div class="stat">
+<div class="value">+9,3 %</div>
+<div class="label">Vergewaltigung/sexuelle Nötigung 2024, sechster Anstieg in Folge</div>
+<div class="src">BMI/BKA, PKS 2024</div>
+</div>
+<div class="stat">
+<div class="value">44 %</div>
+<div class="label">Ausländeranteil aller JVA-Insassen (inkl. U-Haft), Stand März 2025</div>
+<div class="src">Statistisches Bundesamt</div>
+</div>
+<div class="stat">
+<div class="value">+46 %</div>
+<div class="label">Einbürgerungen 2024 ggü. Vorjahr — neuer Höchststand</div>
+<div class="src">Destatis, Juni 2025</div>
+</div>
+</div>
+<h2>1. Die Cannabis-Maske</h2>
+<p>Die Schlagzeile "Kriminalität sinkt" stimmt auf den ersten Blick: 2024 registrierte die Polizei rund 5,84 Millionen Straftaten, 1,7 Prozent weniger als im Vorjahr. Das Bundesinnenministerium selbst nennt den Grund direkt: die Teillegalisierung von Cannabisbesitz und -anbau seit April 2024. Ein ganzer Deliktbereich ist über Nacht keine Straftat mehr — das senkt die Gesamtzahl, sagt aber nichts über die tatsächliche Sicherheitslage.</p>
+<span class="tag tag-belegt">BELEGT</span>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    Bundesministerium des Innern, Pressemitteilung "Polizeiliche Kriminalstatistik für das Jahr 2024", 02.04.2025.
+  </div>
+<p>Während die Gesamtzahl sinkt, steigen ausgerechnet die Deliktbereiche, die das Sicherheitsgefühl am stärksten prägen — seit Jahren, nicht nur punktuell:</p>
+<table class="compare">
+<tr><th>Delikt</th><th>Entwicklung</th></tr>
+<tr><td>Gewaltkriminalität gesamt</td><td class="num">+1,5 % (2024) auf 217.277 Fälle</td></tr>
+<tr><td>Messerangriffe</td><td class="num">29.014 Fälle (2024), +0,8 % (2025)</td></tr>
+<tr><td>Vergewaltigung / sexuelle Nötigung</td><td class="num">+9,3 % (2024), +9,0 % (2025) — 6. Anstieg in Folge</td></tr>
+<tr><td>Vergewaltigung seit 2018</td><td class="num">+72 %</td></tr>
+<tr><td>Schusswaffengebrauch bei Gewaltkriminalität</td><td class="num">+9,7 % (2025) — Höchststand seit 2016</td></tr>
+</table>
+<span class="tag tag-belegt">BELEGT</span>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    BKA/BMI, Polizeiliche Kriminalstatistik 2024 und 2025 (Pressemitteilungen und Vollpublikation, bmi.bund.de, bka.de). Tagesspiegel: "Kriminalstatistik 2024: Rekordhoch bei Gewaltverbrechen", 02.04.2025.
+  </div>
+<p>Fairerweise gehört dazu: Das BKA selbst nennt bei Sexualdelikten auch eine gestiegene Anzeigebereitschaft als möglichen Teilgrund für den Anstieg — nicht jede zusätzlich gezählte Tat ist zwangsläufig eine zusätzlich begangene Tat. Der mehrjährige, breite Trend über sechs Jahre hinweg lässt sich damit allein aber nicht erklären.</p>
+<span class="tag tag-extra">EXTRAPOLATION</span>
+<h2>2. Wer zählt als "Ausländer"? Der Einbürgerungs-Effekt</h2>
+<p>Der Ausländeranteil an der Gefängnispopulation liegt aktuell bei rund 44 Prozent aller in Justizvollzugsanstalten untergebrachten Personen (inklusive Untersuchungshaft) — bei den verurteilten Strafgefangenen allein sind es 37 bis 39 Prozent. Diese Zahl kann sich verändern, ohne dass sich an der Kriminalitätsbelastung einer Person irgendetwas ändert: durch Einbürgerung.</p>
+<div class="timeline">
+<div class="tl-item">
+<div class="tl-date">27. Juni 2024</div>
+<div class="tl-text">Gesetz zur Modernisierung des Staatsangehörigkeitsrechts tritt in Kraft. Erforderliche Aufenthaltsdauer für Einbürgerung sinkt von acht auf fünf Jahre, bei "besonderen Integrationsleistungen" auf drei Jahre. Mehrstaatigkeit wird generell erlaubt.</div>
+</div>
+<div class="tl-item">
+<div class="tl-date">2024</div>
+<div class="tl-text">291.955 Einbürgerungen — neuer Höchststand seit Einführung der Statistik im Jahr 2000, ein Plus von 46 Prozent gegenüber 2023. Größte Gruppe: Syrische Staatsangehörige (83.150 bzw. 28 Prozent).</div>
+</div>
+<div class="tl-item">
+<div class="tl-date">2025</div>
+<div class="tl-text">Nordrhein-Westfalen beginnt, doppelte Staatsangehörigkeit gesondert in der Kriminalstatistik zu erfassen. Ergebnis: Jeder sechste "deutsche" Tatverdächtige in NRW hat 2024 zusätzlich eine weitere Staatsangehörigkeit. SPD und Grüne im Landtag kritisieren den Schritt.</div>
+</div>
+</div>
+<span class="tag tag-belegt">BELEGT</span>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    Statistisches Bundesamt, Pressemitteilung "291.955 Einbürgerungen im Jahr 2024", destatis.de, Juni 2025. Amt für Statistik Berlin-Brandenburg, Pressemitteilung Nr. 85/2025. migrando.de: "NRW erfasst doppelte Staatsbürgerschaft in Kriminalstatistik", 2025.
+  </div>
+<p>Der Mechanismus dahinter ist einfach: Sobald eine Person eingebürgert wird, zählt sie in der Polizeilichen Kriminalstatistik als "deutsch" — unabhängig davon, ob vorher oder nachher ein Strafverfahren gegen sie läuft. Der ausgewiesene "Ausländeranteil an der Kriminalität" sinkt dadurch rein rechnerisch, ohne dass sich am tatsächlichen Verhalten von irgendjemandem etwas ändert. NRW hat mit der separaten Doppelpass-Erfassung genau diesen Effekt sichtbar machen wollen — das ist der seltene Fall, in dem eine Landesbehörde die eigene Statistik-Systematik selbst hinterfragt.</p>
+<span class="tag tag-belegt">BELEGT</span>
+<p>Zur Fairness gehört auch die Gegenposition: Einbürgerung ist an Voraussetzungen geknüpft — Mindestaufenthaltsdauer, Deutschkenntnisse, gesicherter Lebensunterhalt. Eingebürgerte sind damit eine vorselektierte Gruppe, die im Schnitt länger in Deutschland integriert ist als frisch Angekommene. Ein Teil des sinkenden "Ausländeranteils" könnte also durchaus reale, nicht nur statistische Verbesserung widerspiegeln. Beide Effekte — Verwässerung und echte Verbesserung — dürften gleichzeitig wirken; wie groß jeder Anteil ist, lässt sich mit den vorliegenden Daten nicht auseinanderrechnen.</p>
+<span class="tag tag-extra">EXTRAPOLATION</span>
+<h2>3. Regionale Spreizung — eine Zahl, viele Wirklichkeiten</h2>
+<p>Der bundesweite Durchschnitt von 44 Prozent Ausländeranteil in JVA verdeckt eine erhebliche Spannbreite zwischen den Bundesländern:</p>
+<table class="compare">
+<tr><th>Bundesland</th><th>Ausländeranteil JVA</th></tr>
+<tr><td>Berlin</td><td class="num">58,9 %</td></tr>
+<tr><td>Hamburg</td><td class="num">~58 %</td></tr>
+<tr><td>Bayern, Baden-Württemberg, Hessen</td><td class="num">jeweils &gt; 50 %</td></tr>
+<tr><td>Mecklenburg-Vorpommern, Sachsen-Anhalt, Thüringen</td><td class="num">~25 %</td></tr>
+</table>
+<span class="tag tag-belegt">BELEGT</span>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    Statistisches Bundesamt, Sonderauswertung Strafvollzugsstatistik, Stand 31. März 2025 (zitiert nach mehreren Medienberichten, u.a. Junge Freiheit, Juli 2026).
+  </div>
+<p>Die Differenz folgt erkennbar der Siedlungsstruktur von Zuwanderung seit den 1960er-Jahren und der jüngeren Fluchtmigration seit 2015 — Stadtstaaten und wirtschaftsstarke Flächenländer haben historisch höhere Ausländeranteile in der Gesamtbevölkerung, ostdeutsche Flächenländer deutlich niedrigere. Eine bundesweite Durchschnittszahl allein sagt daher wenig über die Situation vor Ort aus.</p>
+<span class="tag tag-extra">EXTRAPOLATION</span>
+<div class="closing">
+<p>Offen bleibt, wie sich der Doppelpass-Erfassungsversuch aus NRW entwickelt — ob andere Bundesländer nachziehen oder das Land isoliert bleibt. Offen bleibt auch, wie viel vom sinkenden Ausländeranteil an der Kriminalität echte Integration ist und wie viel reine Verschiebung in die Zählkategorie "deutsch". Und offen bleibt, ob die für 2026 fällige Evaluierung migrationspolitischer Reformen diese Definitionsfragen überhaupt aufgreift — oder ob auch sie sich auf die eine, große, wenig aussagekräftige Gesamtzahl beschränkt.</p>
+</div>
+</div>
+<footer class="site">
+<div class="wrap">
+<p>Alle Angaben in diesem Artikel basieren auf öffentlich zugänglichen Quellen: Statistiken des Bundeskriminalamts, des Statistischen Bundesamts und offiziellen Pressemitteilungen der zuständigen Ministerien. Zahlen und Zitate sind mit Quellenangabe versehen. Wo eine Einordnung nicht abschließend belegbar war, ist sie ausdrücklich als Extrapolation gekennzeichnet, nicht als Tatsache dargestellt.</p>
+<p class="brand">dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.</p>
+</div>
+</footer>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

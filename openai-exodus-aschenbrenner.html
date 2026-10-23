@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>OpenAI-Exodus — dunkelfeld.report</title>
+<style>
+  :root{
+    --bg:#09090b;
+    --amber:#e8c547;
+    --box-bg:#1a1a2e;
+    --text:#e4e4e7;
+    --muted:#9a9aa5;
+    --green:#5fbf6b;
+    --orange:#e8934a;
+    --grey:#8a8a94;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:Georgia,'Times New Roman',serif;
+    line-height:1.7;
+    margin:0;
+    padding:0 20px 80px;
+  }
+  .wrap{
+    max-width:720px;
+    margin:0 auto;
+  }
+  .meta{
+    font-family:'Courier New',monospace;
+    color:var(--muted);
+    font-size:0.8rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    margin-top:40px;
+  }
+  .meta .brand{color:var(--amber);}
+  h1{
+    font-size:2rem;
+    line-height:1.25;
+    color:#fff;
+    margin:14px 0 6px;
+  }
+  .subtitle{
+    font-family:'Courier New',monospace;
+    color:var(--muted);
+    font-size:0.95rem;
+    margin-bottom:30px;
+  }
+  h2{
+    font-family:'Courier New',monospace;
+    color:var(--amber);
+    font-size:1rem;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    border-bottom:1px solid #2a2a35;
+    padding-bottom:8px;
+    margin:48px 0 20px;
+  }
+  p{margin:0 0 18px; font-size:1.05rem;}
+  .tag{
+    display:inline-block;
+    font-family:'Courier New',monospace;
+    font-size:0.7rem;
+    letter-spacing:0.05em;
+    padding:2px 8px;
+    border-radius:3px;
+    margin-right:6px;
+    vertical-align:middle;
+  }
+  .tag-belegt{background:rgba(95,191,107,0.15); color:var(--green); border:1px solid var(--green);}
+  .tag-extrapolation{background:rgba(232,147,74,0.15); color:var(--orange); border:1px solid var(--orange);}
+  .tag-offen{background:rgba(138,138,148,0.15); color:var(--grey); border:1px solid var(--grey);}
+
+  .source-box{
+    background:var(--box-bg);
+    border-left:3px solid var(--amber);
+    padding:14px 18px;
+    margin:20px 0;
+    font-size:0.92rem;
+  }
+  .source-box .src-label{
+    font-family:'Courier New',monospace;
+    color:var(--amber);
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    display:block;
+    margin-bottom:6px;
+  }
+
+  /* Comparison table: Aschenbrenner's account vs. OpenAI's account */
+  .compare-table{
+    width:100%;
+    border-collapse:collapse;
+    margin:24px 0;
+    font-size:0.95rem;
+  }
+  .compare-table th{
+    font-family:'Courier New',monospace;
+    text-transform:uppercase;
+    font-size:0.72rem;
+    letter-spacing:0.03em;
+    text-align:left;
+    padding:10px 12px;
+    background:#151520;
+    color:var(--amber);
+    border-bottom:1px solid #2a2a35;
+  }
+  .compare-table td{
+    padding:12px;
+    vertical-align:top;
+    border-bottom:1px solid #202028;
+    background:var(--box-bg);
+  }
+  .compare-table td:first-child{
+    font-family:'Courier New',monospace;
+    color:var(--muted);
+    font-size:0.8rem;
+    white-space:nowrap;
+    background:transparent;
+  }
+
+  .timeline{
+    margin:24px 0;
+    border-left:2px solid #2a2a35;
+    padding-left:20px;
+  }
+  .timeline-item{
+    margin-bottom:20px;
+    position:relative;
+  }
+  .timeline-item::before{
+    content:'';
+    position:absolute;
+    left:-26px;
+    top:5px;
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:var(--amber);
+  }
+  .timeline-date{
+    font-family:'Courier New',monospace;
+    color:var(--amber);
+    font-size:0.8rem;
+    display:block;
+    margin-bottom:3px;
+  }
+
+  .pull-quote{
+    font-style:italic;
+    font-size:1.2rem;
+    color:#fff;
+    border-left:3px solid var(--amber);
+    padding-left:18px;
+    margin:30px 0;
+  }
+
+  .open-questions{
+    margin-top:50px;
+    padding-top:20px;
+    border-top:1px solid #2a2a35;
+  }
+  .open-questions h2{color:var(--grey);}
+  .open-questions p{
+    font-style:italic;
+    color:var(--muted);
+  }
+
+  .series-nav{
+    margin-top:60px;
+    padding-top:20px;
+    border-top:1px solid #2a2a35;
+    font-family:'Courier New',monospace;
+    font-size:0.8rem;
+    color:var(--muted);
+  }
+  .series-nav .series-label{color:var(--amber); display:block; margin-bottom:8px;}
+  .series-nav .current{color:var(--text);}
+</style>
+<meta name="description" content="Im April 2024 entlässt OpenAI einen jungen Forscher aus seinem Superalignment-Team. Ein Monat später löst sich dieses Team faktisch auf. Zwei Erzählungen …">
+<meta name="rubrik" content="cat-technik">
+<meta name="kachel-titel" content="OpenAI-Exodus">
+<link rel="canonical" href="https://dunkelfeld.report/openai-exodus-aschenbrenner.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenAI-Exodus">
+<meta property="og:description" content="Im April 2024 entlässt OpenAI einen jungen Forscher aus seinem Superalignment-Team. Ein Monat später löst sich dieses Team faktisch auf. Zwei Erzählungen …">
+<meta property="og:url" content="https://dunkelfeld.report/openai-exodus-aschenbrenner.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "OpenAI-Exodus", "description": "Im April 2024 entlässt OpenAI einen jungen Forscher aus seinem Superalignment-Team. Ein Monat später löst sich dieses Team faktisch auf. Zwei Erzählungen …", "inLanguage": "de", "url": "https://dunkelfeld.report/openai-exodus-aschenbrenner.html", "mainEntityOfPage": "https://dunkelfeld.report/openai-exodus-aschenbrenner.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="meta"><span class="brand">DUNKELFELD.REPORT</span> · Serie: Der Fall Aschenbrenner · Teil 2</div>
+<h1>OpenAI-Exodus</h1>
+<div class="subtitle">Whistleblower-Erzählung vs. offizielle Kündigungsgründe</div>
+<p>Im April 2024 entlässt OpenAI einen jungen Forscher aus seinem Superalignment-Team. Ein Monat später löst sich dieses Team faktisch auf. Zwei Erzählungen stehen sich seither gegenüber — die des Unternehmens und die des Entlassenen. Beide sind dokumentiert. Beide widersprechen sich in einem entscheidenden Punkt.</p>
+<h2>Die Entlassung</h2>
+<span class="tag tag-belegt">BELEGT</span>
+<p>Leopold Aschenbrenner war seit 2023 Mitglied von OpenAIs "Superalignment"-Team — jener Abteilung, die dafür zuständig sein sollte, künftige, dem Menschen weit überlegene KI-Systeme kontrollierbar zu halten. Im April 2024 wird er entlassen. Die Begründungen von Unternehmen und Betroffenem widersprechen sich in einem zentralen Punkt: dem Motiv.</p>
+<table class="compare-table">
+<tr>
+<th>Aspekt</th>
+<th>OpenAI (offizielle Version)</th>
+<th>Aschenbrenner (eigene Darstellung)</th>
+</tr>
+<tr>
+<td>Kündigungsgrund</td>
+<td>Unzulässige Weitergabe interner Informationen ("Leak")</td>
+<td>Sicherheits-Memo an den Vorstand über unzureichenden Schutz vor Industriespionage</td>
+</tr>
+<tr>
+<td>Das strittige Dokument</td>
+<td>Vertrauliche interne Informationen an Externe weitergegeben</td>
+<td>"Harmloses" Brainstorming-Dokument, von sensiblen Inhalten bereinigt, an drei externe Forscher zur Rückmeldung geteilt</td>
+</tr>
+<tr>
+<td>Zeitlicher Ablauf</td>
+<td>Entlassung wegen des Leak-Vorfalls; Sicherheits-Memo als Grund bestritten</td>
+<td>Erst HR-Verwarnung nach dem Memo, Monate später Entlassung — bei der ihm laut eigener Aussage explizit gesagt wurde, das Memo sei mitentscheidend gewesen</td>
+</tr>
+</table>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    Wikipedia (Leopold Aschenbrenner, mit Verweis auf OpenAIs und Aschenbrenners jeweilige Stellungnahmen); Transformer/Shakeel Hashim (04.06.2024); Yahoo Finance (31.07.2026).
+  </div>
+<h2>Die eigene Darstellung im Detail</h2>
+<span class="tag tag-belegt">BELEGT</span>
+<p>Im Juni 2024, im Dwarkesh-Patel-Podcast, schildert Aschenbrenner seine Version erstmals ausführlich öffentlich: Er habe ein internes Memo verfasst, das die Sicherheitspraktiken von OpenAI gegen den Diebstahl von Modellgewichten oder algorithmischen Geheimnissen durch ausländische Akteure als unzureichend einstufte.</p>
+<div class="pull-quote">
+    "I wrote an internal memo about OpenAI's security, which I thought was egregiously insufficient to protect against the theft of model weights or key algorithmic secrets from foreign actors." — Leopold Aschenbrenner, Juni 2024
+  </div>
+<p>Nach eigener Aussage teilte er das Memo zunächst mit Kollegen und Teilen der Führungsebene, die es überwiegend als hilfreich einstuften. Nach einem "größeren Sicherheitsvorfall" habe er es dann mit zwei Vorstandsmitgliedern geteilt — woraufhin ihm signalisiert worden sei, die Führungsebene sei darüber "sehr unzufrieden" gewesen. Es folgte eine offizielle HR-Verwarnung; die eigentliche Entlassung kam erst Monate später.</p>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    Transformer/Shakeel Hashim (04.06.2024), direkte Wiedergabe des Podcast-Interviews; ChainCatcher (2026) — Kontext "unter dem Vorwand des Leakens".
+  </div>
+<h2>Die Auflösung des Superalignment-Teams</h2>
+<span class="tag tag-belegt">BELEGT</span>
+<p>Einen Monat nach Aschenbrenners Entlassung verlässt auch Ilya Sutskever, Mitgründer und Chefwissenschaftler von OpenAI, das Unternehmen — sechs Monate, nachdem er an der gescheiterten Absetzung von CEO Sam Altman beteiligt war, laut Berichten teilweise wegen Uneinigkeiten über Sicherheitsfragen. Mit weiteren Abgängen löst sich das Superalignment-Team in der Folge faktisch auf.</p>
+<div class="timeline">
+<div class="timeline-item">
+<span class="timeline-date">April 2024</span>
+      Entlassung Aschenbrenners.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">Mai 2024</span>
+      Ilya Sutskever verlässt OpenAI; Superalignment-Team löst sich faktisch auf.
+    </div>
+<div class="timeline-item">
+<span class="timeline-date">Juni 2024</span>
+      Aschenbrenner schildert seine Version erstmals öffentlich (Dwarkesh-Patel-Podcast); wenige Tage später Veröffentlichung von "Situational Awareness".
+    </div>
+</div>
+<p>Die zeitliche Nähe zwischen Entlassung und Team-Auflösung ist dokumentiert. Ob sie kausal zusammenhängen oder ob unabhängige, aber zeitlich koinzidierende Ursachen vorliegen (z.B. generelle Spannungen zwischen Sicherheits- und Kommerzialisierungs-Fraktion bei OpenAI), lässt sich aus den vorliegenden Quellen nicht abschließend klären.</p>
+<div class="source-box">
+<span class="src-label">Quelle</span>
+    Yahoo Tech — Kontext Sutskever-Abgang und Altman-Ousting; Wikipedia Leopold Aschenbrenner.
+  </div>
+<h2>Einordnung</h2>
+<span class="tag tag-extrapolation">EXTRAPOLATION</span>
+<p>Beide Versionen — "Leak" und "Whistleblowing" — schließen sich nicht zwingend gegenseitig aus: Es ist möglich, dass das geteilte Dokument formal gegen interne Richtlinien verstieß und gleichzeitig das Sicherheits-Memo zu Spannungen mit der Führungsebene führte, die die Entlassung mitbeeinflussten. Nach dem Beleg-vor-Motiv-Prinzip gilt: Belegt ist der Widerspruch zwischen den beiden Darstellungen selbst, nicht welche davon zutrifft. OpenAI hat die Version Aschenbrenners öffentlich bestritten; unabhängige, verifizierbare Belege für eine der beiden Versionen liegen öffentlich nicht vor.</p>
+<p>Bemerkenswert ist der Kontrast zur späteren Selbstinszenierung: Wer als Whistleblower gegen unzureichende Sicherheitspraktiken auftritt, positioniert sich damit auch moralisch — eine Positionierung, die zwei Monate später in "Situational Awareness" und in der Fondsgründung wirtschaftlich nutzbar gemacht wurde (siehe Teil 1).</p>
+<div class="open-questions">
+<h2>Offene Fragen</h2>
+<span class="tag tag-offen">OFFEN</span>
+<p><em>Was genau enthielt das strittige Brainstorming-Dokument — und lässt sich unabhängig beurteilen, ob es "sensible" Informationen enthielt, wie OpenAI behauptet, oder nicht, wie Aschenbrenner behauptet?</em></p>
+<p><em>Gab es einen dokumentierten kausalen Zusammenhang zwischen dem Sicherheits-Memo und der Team-Auflösung einen Monat später, oder handelt es sich um zeitlich zufällige Koinzidenz innerhalb eines Unternehmens mit ohnehin bekannten internen Sicherheits-Spannungen?</em></p>
+</div>
+<div class="series-nav">
+<span class="series-label">SERIE: DER FALL ASCHENBRENNER</span>
+    Teil 1: Der Prophet von San Francisco (veröffentlicht)<br/>
+<span class="current">Teil 2: OpenAI-Exodus (dieser Artikel)</span><br/>
+    Teil 3: Die Entkopplung (veröffentlicht)<br/>
+    Teil 4: FTX-Nähe — was belegbar ist, was nicht (geplant)
+  </div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

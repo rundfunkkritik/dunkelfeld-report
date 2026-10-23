@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Die WerteUnion und der Fall Maaßen — dunkelfeld.report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 3rem 1.5rem 6rem;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #71717a;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    color: #f4f4f5;
+    margin-bottom: 0.5rem;
+  }
+  .subtitle {
+    font-size: 1.2rem;
+    color: #a1a1aa;
+    font-style: italic;
+    margin-bottom: 2.5rem;
+  }
+  h2 {
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #e8c547;
+    margin: 3rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #27272a;
+  }
+  p { margin-bottom: 1.3rem; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.12); color: #4ade80; border: 1px solid rgba(74,222,128,0.35); }
+  .tag-extra { background: rgba(251,146,60,0.12); color: #fb923c; border: 1px solid rgba(251,146,60,0.35); }
+  .tag-offen { background: rgba(161,161,170,0.12); color: #a1a1aa; border: 1px solid rgba(161,161,170,0.35); }
+  .tag-vt { background: rgba(239,68,68,0.08); color: #71717a; border: 1px solid rgba(239,68,68,0.2); text-decoration: line-through; }
+
+  .source-box {
+    background: #1a1a2e;
+    border-left: 3px solid #e8c547;
+    padding: 1rem 1.3rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  .source-box .tag { margin-bottom: 0.6rem; }
+
+  .person-card {
+    background: #131316;
+    border: 1px solid #27272a;
+    border-radius: 6px;
+    padding: 1.3rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .person-card h3 {
+    font-size: 1.15rem;
+    color: #f4f4f5;
+    margin-bottom: 0.5rem;
+  }
+  .person-card .role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: #71717a;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .stat {
+    background: #131316;
+    border: 1px solid #27272a;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 6px;
+  }
+  .stat .num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    color: #e8c547;
+    font-weight: bold;
+    display: block;
+  }
+  .stat .label {
+    font-size: 0.8rem;
+    color: #a1a1aa;
+    margin-top: 0.3rem;
+  }
+
+  .timeline {
+    border-left: 2px solid #27272a;
+    margin: 1.5rem 0 1.5rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item { margin-bottom: 1.3rem; position: relative; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.82rem;
+    top: 0.35rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #e8c547;
+  }
+  .timeline-item .date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #e8c547;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #f4f4f5;
+    border-left: 3px solid #e8c547;
+    padding: 0.3rem 0 0.3rem 1.3rem;
+    margin: 2rem 0;
+  }
+
+  .open-questions {
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid #27272a;
+  }
+  .open-questions h2 { color: #a1a1aa; }
+  .open-questions p {
+    font-style: italic;
+    color: #d4d4d8;
+  }
+
+  .crossref {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+  }
+
+  a { color: #e8c547; }
+
+  .footnote {
+    font-size: 0.85rem;
+    color: #71717a;
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #27272a;
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+  }
+</style>
+<meta name="description" content="Die WerteUnion begann 2017 als konservative Plattform innerhalb von CDU und CSU. Sieben Jahre später ist sie eine eigenständige Partei mit ihrem …">
+<meta name="rubrik" content="cat-staat">
+<meta name="kachel-titel" content="Die WerteUnion und der Fall Maaßen">
+<link rel="canonical" href="https://dunkelfeld.report/werteunion-maassen.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Die WerteUnion und der Fall Maaßen">
+<meta property="og:description" content="Die WerteUnion begann 2017 als konservative Plattform innerhalb von CDU und CSU. Sieben Jahre später ist sie eine eigenständige Partei mit ihrem …">
+<meta property="og:url" content="https://dunkelfeld.report/werteunion-maassen.html">
+<meta property="og:site_name" content="dunkelfeld.report">
+<style>/* mobil */ body{overflow-wrap:break-word;} img,svg,video{max-width:100%;height:auto;} @media(max-width:600px){table{display:block;overflow-x:auto;max-width:100%;} pre{white-space:pre-wrap;} [class*="stats"],[class*="zahlen"],.grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))!important;} [class*="grid"]>*,[class*="row"]>*{min-width:0;}}</style>
+<meta property="og:image" content="https://dunkelfeld.report/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Die WerteUnion und der Fall Maaßen", "description": "Die WerteUnion begann 2017 als konservative Plattform innerhalb von CDU und CSU. Sieben Jahre später ist sie eine eigenständige Partei mit ihrem …", "inLanguage": "de", "url": "https://dunkelfeld.report/werteunion-maassen.html", "mainEntityOfPage": "https://dunkelfeld.report/werteunion-maassen.html", "image": "https://dunkelfeld.report/og-image.png", "dateModified": "2026-10-11", "publisher": {"@type": "Organization", "name": "dunkelfeld.report", "url": "https://dunkelfeld.report"}}</script>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto;padding:1.2rem 1.25rem 0;font-family:'Courier New',monospace;font-size:0.75rem;"><a href="index.html" style="color:#52525b;text-decoration:none;letter-spacing:0.08em;">← DUNKELFELD.REPORT</a></div>
+
+<div class="wrap">
+<div class="meta">dunkelfeld.report — Einzeldossier</div>
+<h1>Die WerteUnion und der Fall Maaßen</h1>
+<div class="subtitle">Vom konservativen CDU-Flügel zur Partei — und zum eigenen Beobachtungsfall des Verfassungsschutzes</div>
+<p>Die WerteUnion begann 2017 als konservative Plattform innerhalb von CDU und CSU. Sieben Jahre später ist sie eine eigenständige Partei mit ihrem prominentesten Gesicht — einem ehemaligen Verfassungsschutzpräsidenten — der inzwischen selbst vom eigenen früheren Amt beobachtet wird. Dieses Dossier dokumentiert die Chronologie ohne Bewertung der beteiligten Motive.</p>
+<h2>Gründung als Reaktion auf 2015</h2>
+<p>Die WerteUnion entstand im Juni 2017 als eingetragener Verein, zunächst unter dem Namen "Freiheitlich-konservativer Aufbruch". Sie verstand sich als Plattform für wertkonservative Mitglieder von CDU und CSU, die Angela Merkels Entscheidung zur Grenzöffnung 2015 kritisch sahen. Der Verein war nie eine offizielle Parteigliederung und blieb innerhalb der Union von Beginn an umstritten — ihr wurde wiederholt Nähe zur AfD vorgeworfen.</p>
+<div class="timeline">
+<div class="timeline-item">
+<span class="date">Juni 2017</span>
+      Gründung als Verein, Positionierung für restriktivere Migrationspolitik, nationale Identität und konservativere Wirtschaftspolitik.
+    </div>
+<div class="timeline-item">
+<span class="date">21. Februar 2019</span>
+      Hans-Georg Maaßen, kurz zuvor als BfV-Präsident abgelöst, tritt der WerteUnion bei.
+    </div>
+<div class="timeline-item">
+<span class="date">10. Februar 2023</span>
+      Maaßen erklärt öffentlich, die CDU müsse klären, ob sie "zu einer von vier linken Parteien im Bundestag" werde.
+    </div>
+<div class="timeline-item">
+<span class="date">Anfang 2023</span>
+      Maaßen sorgt mit einer Äußerung über "eliminatorischen Rassismus" für erhebliche Kritik. Die CDU-Spitze fordert seinen Parteiaustritt und leitet ein Ausschlussverfahren ein.
+    </div>
+<div class="timeline-item">
+<span class="date">Januar 2024</span>
+      Mitgliederversammlung der WerteUnion beschließt, die Namensrechte auf eine neu zu gründende Partei zu übertragen.
+    </div>
+<div class="timeline-item">
+<span class="date">17. Februar 2024</span>
+      Offizielle Gründung der WerteUnion als eigenständige Partei. Maaßen wird Bundesvorsitzender, zweiter Vorsitzender wird der frühere AfD-Bundessprecher (2015–2022) Jörg Meuthen.
+    </div>
+<div class="timeline-item">
+<span class="date">31. Januar 2024</span>
+      Das Bundesamt für Verfassungsschutz bestätigt in einem offiziellen Bescheid, Maaßen selbst als "Beobachtungsfall" im Bereich Rechtsextremismus zu führen.
+    </div>
+<div class="timeline-item">
+<span class="date">1. September 2024</span>
+      Landtagswahlen in Sachsen und Thüringen: Die WerteUnion tritt erstmals als Partei an.
+    </div>
+<div class="timeline-item">
+<span class="date">Oktober 2025</span>
+      Maaßen tritt nach parteiinternen Auseinandersetzungen aus der von ihm mitgegründeten Partei aus.
+    </div>
+</div>
+<h2>Die Beobachtung durch das eigene frühere Amt</h2>
+<p>Die eigentliche Pointe der Geschichte liegt im Januar 2024: Das Bundesamt für Verfassungsschutz — die Behörde, die Maaßen selbst von 2012 bis 2018 leitete — stufte ihren ehemaligen Präsidenten offiziell als Beobachtungsfall ein. Amtsinhaber ist seit 2018 Thomas Haldenwang, ebenfalls CDU-Mitglied.</p>
+<div class="person-card">
+<h3>Hans-Georg Maaßen</h3>
+<div class="role">BfV-Präsident 2012–2018, Werteunion-Vorsitzender 2023–2025</div>
+<p style="margin-bottom:0"><span class="tag tag-belegt">BELEGT</span> Am 31.1.2024 durch offiziellen Bescheid des BfV als "Beobachtungsfall" im Bereich Rechtsextremismus eingestuft — bestätigt durch Maaßens eigene Veröffentlichung des Bescheids sowie durch Hintergrundgespräche des amtierenden BfV-Präsidenten mit Journalisten. Maaßen ging juristisch gegen die Einstufung vor dem Verwaltungsgericht Köln vor.</p>
+</div>
+<div class="source-box">
+<span class="tag tag-offen">OFFEN</span>
+<p style="margin-bottom:0">Der Ausgang von Maaßens Klage vor dem Verwaltungsgericht Köln war zum Zeitpunkt dieser Recherche nicht abschließend geklärt bzw. nicht öffentlich belastbar dokumentiert.</p>
+</div>
+<h2>Wahlantritt 2024</h2>
+<p>Bei ihrem ersten Antreten als eigenständige Partei bei den Landtagswahlen in Sachsen, Thüringen und Brandenburg im September 2024 blieb die WerteUnion bei allen drei Wahlen im Bereich unter einem Prozent der Stimmen. Maaßen selbst führte das Ergebnis öffentlich auf "mangelnde organisatorische Reife und Professionalität" sowie "unzureichende Sichtbarkeit" zurück.</p>
+<div class="open-questions">
+<h2>Offene Fragen</h2>
+<p>Wie wird das Verwaltungsgericht Köln über Maaßens Klage gegen die eigene Beobachtung entscheiden — und was bedeutet der Ausgang für die Einstufungspraxis des Verfassungsschutzes gegenüber ehemaligen eigenen Amtsträgern?</p>
+<p>Was genau führte im Oktober 2025 zu Maaßens Austritt aus der von ihm mitgegründeten Partei — und welche Richtung nimmt die WerteUnion ohne ihn?</p>
+</div>
+<div class="footnote">
+    Quellen u. a.: Wikipedia (WerteUnion, mit Primärquellenverweisen), Bundeszentrale für politische Bildung, taz-Archiv, Tagesspiegel-Archiv, t-online-Archiv.
+  </div>
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

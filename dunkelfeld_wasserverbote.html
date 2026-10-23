@@ -130,5 +130,18 @@ Der Rasensprenger wird kontrolliert.<br>Der Chemiepark bekommt eine Einzelfallpr
 Quellen: CORRECTIV.org — "Wasserstress: Sparen sollen die anderen" (Juli 2026) · t-online.de — Übersicht Bewässerungsverbote (27.06.2026) · Süddeutsche Zeitung (zit. n. Apollo News) — Münchner Allgemeinverfügung
 </div>
 
+<script>
+(function(){
+  try {
+    var k = "df_read";
+    var read = JSON.parse(localStorage.getItem(k) || "[]");
+    var here = location.pathname.split("/").pop();
+    if (here && read.indexOf(here) === -1) {
+      read.push(here);
+      localStorage.setItem(k, JSON.stringify(read));
+    }
+  } catch(e) {}
+})();
+</script>
 </body>
 </html>

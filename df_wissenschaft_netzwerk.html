@@ -127,5 +127,18 @@ Naomi Oreskes, Erik M. Conway: "Merchants of Doubt", Bloomsbury 2010<br>
 Susanne Götze, Annika Joeres: "Die Klimaschmutzlobby", München 2020
 </div>
 
+<script>
+(function(){
+  try {
+    var k = "df_read";
+    var read = JSON.parse(localStorage.getItem(k) || "[]");
+    var here = location.pathname.split("/").pop();
+    if (here && read.indexOf(here) === -1) {
+      read.push(here);
+      localStorage.setItem(k, JSON.stringify(read));
+    }
+  } catch(e) {}
+})();
+</script>
 </body>
 </html>

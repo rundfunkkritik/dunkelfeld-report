@@ -193,5 +193,18 @@
     <a href="artikel-012-faktenchecker-system.html" style="color:#a1a1aa;text-decoration:none;max-width:44%;text-align:right;">Das Faktenchecker-System →</a>
   </div>
 </nav>
+<script>
+(function(){
+  try {
+    var k = "df_read";
+    var read = JSON.parse(localStorage.getItem(k) || "[]");
+    var here = location.pathname.split("/").pop();
+    if (here && read.indexOf(here) === -1) {
+      read.push(here);
+      localStorage.setItem(k, JSON.stringify(read));
+    }
+  } catch(e) {}
+})();
+</script>
 </body>
 </html>

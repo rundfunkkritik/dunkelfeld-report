@@ -9,5 +9,18 @@
 </head>
 <body style="background:#09090b;color:#d4d4d8;font-family:Georgia,serif;max-width:720px;margin:4rem auto;padding:0 2rem;">
 <p>Diese Seite ist umgezogen zu <a href="dossier-002-jahrzehnte-des-schweigens.html" style="color:#e8c547;">dossier-002-jahrzehnte-des-schweigens.html</a>.</p>
+<script>
+(function(){
+  try {
+    var k = "df_read";
+    var read = JSON.parse(localStorage.getItem(k) || "[]");
+    var here = location.pathname.split("/").pop();
+    if (here && read.indexOf(here) === -1) {
+      read.push(here);
+      localStorage.setItem(k, JSON.stringify(read));
+    }
+  } catch(e) {}
+})();
+</script>
 </body>
 </html>

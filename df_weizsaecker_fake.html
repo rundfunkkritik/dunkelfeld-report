@@ -122,5 +122,18 @@ Carl Friedrich von Weizsäcker: "Der bedrohte Friede. Politische Aufsätze 1945�
 Deutsche Stiftung Friedensforschung: Biografie und Publikationsverzeichnis C. F. von Weizsäcker
 </div>
 
+<script>
+(function(){
+  try {
+    var k = "df_read";
+    var read = JSON.parse(localStorage.getItem(k) || "[]");
+    var here = location.pathname.split("/").pop();
+    if (here && read.indexOf(here) === -1) {
+      read.push(here);
+      localStorage.setItem(k, JSON.stringify(read));
+    }
+  } catch(e) {}
+})();
+</script>
 </body>
 </html>

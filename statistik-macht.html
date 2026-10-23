@@ -530,5 +530,18 @@
   <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted); letter-spacing: 0.06em;">dunkelfeld.report · statistik-macht · Juni 2026</span>
 </footer>
 
+<script>
+(function(){
+  try {
+    var k = "df_read";
+    var read = JSON.parse(localStorage.getItem(k) || "[]");
+    var here = location.pathname.split("/").pop();
+    if (here && read.indexOf(here) === -1) {
+      read.push(here);
+      localStorage.setItem(k, JSON.stringify(read));
+    }
+  } catch(e) {}
+})();
+</script>
 </body>
 </html>

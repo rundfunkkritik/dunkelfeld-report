@@ -64,6 +64,12 @@ a.stat{cursor:pointer;text-decoration:none}a.stat:hover{border-color:var(--gold)
   .hero,.searchbox{animation:none}
   .card{transition:none!important}
 }
+
+.card.read { opacity: .5; }
+.card.read .ct::before { content: "✓ "; color: var(--gruen); }
+#progress-line { font-family: var(--mono); font-size: .66rem; color: var(--muted); margin-top: .6rem; }
+#progress-reset { font-family: var(--mono); font-size: .62rem; color: #6b6b75; text-decoration: underline; cursor: pointer; background: none; border: none; padding: 0; }
+#progress-reset:hover { color: var(--gold); }
 </style>
 
 <link rel="canonical" href="https://dunkelfeld.report/themen.html">
@@ -89,10 +95,11 @@ a.stat{cursor:pointer;text-decoration:none}a.stat:hover{border-color:var(--gold)
     <h1>Themen &amp; Archiv</h1>
     <p>Das vollständige Verzeichnis aller Artikel und Dossiers — nach Themen geordnet. Die Suche läuft vollständig in deinem Browser, es werden keine Daten übertragen.</p>
     <div class="stats">
-<a class="stat" href="#liste">447 Beiträge</a>
+<a class="stat" href="#liste" id="stat-count">447 Beiträge</a>
 <a class="stat" href="#rubrikmenu" id="stat-rubriken">15 Rubriken ▾</a>
 <a class="stat" href="#q" id="stat-search">Lokale Volltextsuche</a>
 </div>
+<div id="progress-line" style="display:none;"><span id="progress-text"></span> &nbsp;·&nbsp; <button id="progress-reset" type="button">Fortschritt zurücksetzen</button></div>
 <nav id="rubrikmenu"><a href="#cat-geld">Geld, Digitalwährung &amp; Wirtschaftsmacht (36)</a><a href="#cat-stiftungen">Stiftungen, Eliten &amp; Machtnetzwerke (41)</a><a href="#cat-medien">Medien, Narrative &amp; Zensur (40)</a><a href="#cat-kontrolle">Überwachung &amp; Kontrolle (23)</a><a href="#cat-gewalt">Politische Gewalt &amp; Extremismus (6)</a><a href="#cat-staat">Deutschland: Staat, Justiz &amp; Bildung (36)</a><a href="#cat-migration">Islam, Moscheen &amp; Migration (12)</a><a href="#cat-kirche">Kirche, Religion &amp; Missbrauch (11)</a><a href="#cat-kinder">Kindesmissbrauch, Grooming &amp; Ausbeutung (14)</a><a href="#cat-gruene">Grüne &amp; Klima-Kartell (15)</a><a href="#cat-nahrung">Ernährung, Landwirtschaft &amp; Gesundheit (22)</a><a href="#cat-geo">Geopolitik &amp; Regime-Change (42)</a><a href="#cat-endzeit">Naher Osten &amp; Endzeit-Lobbying (2)</a><a href="#cat-technik">Wissenschaft, Technik &amp; Zukunft (10)</a><a href="#cat-seiten">Seiten &amp; Rechtliches (2)</a></nav>
   </section>
 
@@ -194,5 +201,59 @@ a.stat{cursor:pointer;text-decoration:none}a.stat:hover{border-color:var(--gold)
 </script>
 
 <script>(function(){var r=document.getElementById("stat-rubriken"),m=document.getElementById("rubrikmenu"),s=document.getElementById("stat-search"),q=document.getElementById("q");if(r&&m){r.addEventListener("click",function(e){e.preventDefault();m.classList.toggle("open");});m.addEventListener("click",function(e){if(e.target.tagName==="A")m.classList.remove("open");});}if(s&&q){s.addEventListener("click",function(e){e.preventDefault();q.focus();q.scrollIntoView({block:"center"});});}})();</script>
+
+<script>
+(function(){
+  var read;
+  try{ read = JSON.parse(localStorage.getItem('df_read')||'[]'); }catch(e){ read = []; }
+  var readSet = {};
+  read.forEach(function(h){ readSet[h]=true; });
+
+  function hrefKey(a){ return (a.getAttribute('href')||'').split('/').pop(); }
+
+  var cards = [].slice.call(document.querySelectorAll('.card'));
+  var readCount = 0;
+  cards.forEach(function(c){
+    if(readSet[hrefKey(c)]){ c.classList.add('read'); readCount++; }
+  });
+  var total = cards.length;
+
+  var statCount = document.getElementById('stat-count');
+  if(statCount && readCount > 0){
+    statCount.textContent = readCount + ' von ' + total + ' gelesen';
+  }
+
+  [].slice.call(document.querySelectorAll('nav#rubrikmenu a')).forEach(function(a){
+    var id = (a.getAttribute('href')||'').replace('#','');
+    var sec = document.getElementById(id);
+    if(!sec) return;
+    var secCards = [].slice.call(sec.querySelectorAll('.card'));
+    var secRead = secCards.filter(function(c){ return c.classList.contains('read'); }).length;
+    if(secRead > 0){
+      a.textContent = a.textContent.replace(/\((\d+)\)$/, function(m, n){ return '('+secRead+'/'+n+')'; });
+    }
+  });
+
+  if(readCount > 0){
+    var line = document.getElementById('progress-line');
+    var text = document.getElementById('progress-text');
+    if(line && text){
+      text.textContent = 'Dein Fortschritt: ' + readCount + ' von ' + total + ' gelesen (' + Math.round(readCount/total*100) + '%)';
+      line.style.display = 'block';
+    }
+  }
+
+  var resetBtn = document.getElementById('progress-reset');
+  if(resetBtn){
+    resetBtn.addEventListener('click', function(){
+      if(confirm('Gelesen-Markierungen wirklich zurücksetzen?')){
+        localStorage.removeItem('df_read');
+        location.reload();
+      }
+    });
+  }
+})();
+</script>
+
 </body>
 </html>

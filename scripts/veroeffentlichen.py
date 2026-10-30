@@ -140,7 +140,13 @@ def veroeffentliche(fn, cfg, reparieren=True):
             print(f"  Kachel in {rubrik} eingetragen, Zähler erhöht.")
     # 4. Sitemap
     sm = lies("sitemap.xml")
-    if fn not in sm:
+    loc_zeile = "<loc>" + cfg["url"] + "/" + fn + "</loc>"
+    intern = fn.startswith("_") or "snippet" in fn or "preview" in fn or re.search(r"index_\d{6}\.html$", fn)
+    if intern:
+        print("  Interne Hilfsdatei - nicht in Sitemap aufgenommen.")
+    elif loc_zeile in sm:
+        print("  Sitemap-Eintrag existiert bereits, uebersprungen.")
+    else:
         eintrag = cfg["sitemap_eintrag"].format(url=cfg["url"], fn=fn,
                     datum=datetime.date.today().isoformat())
         i = sm.rfind("</urlset>")

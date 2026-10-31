@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artikel #19 · Selektiver Pluralismus — dunkelfeld.report</title>
+<meta name="rubrik" content="cat-medien">
+<meta name="kachel-titel" content="Selektiver Pluralismus">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #09090b;
+      --surface:   #111113;
+      --border:    #27272a;
+      --amber:     #e8c547;
+      --amber-dim: #a88c2e;
+      --text:      #e4e4e7;
+      --muted:     #71717a;
+      --green:     #4ade80;
+      --red:       #f87171;
+      --yellow:    #fbbf24;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      padding: 0 1rem 4rem;
+    }
+
+    /* ── Header ── */
+    header {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 3rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .meta-label {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.72rem;
+      letter-spacing: .12em;
+      color: var(--amber);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: normal;
+      line-height: 1.25;
+      color: #fff;
+      margin-bottom: .75rem;
+    }
+
+    .subtitle {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: .85rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .tag {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: .68rem;
+      letter-spacing: .08em;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: .2rem .6rem;
+      border-radius: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ── Main layout ── */
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    section { margin-top: 3rem; }
+
+    h2 {
+      font-size: 1.15rem;
+      font-weight: normal;
+      color: var(--amber);
+      font-family: 'Courier New', Courier, monospace;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      padding-bottom: .4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h3 {
+      font-size: 1rem;
+      color: #fff;
+      font-weight: bold;
+      margin: 1.5rem 0 .5rem;
+    }
+
+    p { margin-bottom: 1rem; color: var(--text); }
+
+    /* ── Intro box ── */
+    .intro-box {
+      background: var(--surface);
+      border-left: 3px solid var(--amber);
+      padding: 1.25rem 1.5rem;
+      margin: 2rem 0;
+      font-style: italic;
+      color: #c4c4c8;
+    }
+
+    /* ── Parallel columns ── */
+    .parallel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    @media (max-width: 620px) {
+      .parallel { grid-template-columns: 1fr; }
+    }
+
+    .col-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.25rem;
+    }
+
+    .col-card .col-title {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: .7rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1rem;
+      padding-bottom: .4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .col-card p { font-size: .95rem; }
+
+    /* ── Source table ── */
+    .source-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1rem 1.25rem;
+      margin: 1.25rem 0;
+    }
+
+    .source-block .src-label {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: .65rem;
+      letter-spacing: .1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+    }
+
+    .source-block p {
+      font-size: .88rem;
+      margin-bottom: .3rem;
+      color: #b4b4b8;
+    }
+
+    .source-block a {
+      color: var(--amber-dim);
+      text-decoration: none;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: .78rem;
+    }
+
+    .source-block a:hover { color: var(--amber); }
+
+    /* ── Status badges ── */
+    .status-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: .88rem;
+    }
+
+    .status-table th {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: .65rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: left;
+      padding: .5rem .75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .status-table td {
+      padding: .65rem .75rem;
+      border-bottom: 1px solid #1c1c1f;
+      vertical-align: top;
+      color: #c4c4c8;
+    }
+
+    .status-table tr:last-child td { border-bottom: none; }
+
+    .badge {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: .62rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .15rem .45rem;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+
+    .badge-green  { background: #14532d; color: var(--green); }
+    .badge-red    { background: #450a0a; color: var(--red); }
+    .badge-yellow { background: #451a03; color: var(--yellow); }
+
+    /* ── Pull quote ── */
+    .pull-quote {
+      border-left: 3px solid var(--border);
+      padding: .75rem 1.25rem;
+      margin: 1.5rem 0;
+      color: var(--muted);
+      font-style: italic;
+      font-size: .95rem;
+    }
+
+    .pull-quote cite {
+      display: block;
+      margin-top: .4rem;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: .72rem;
+      font-style: normal;
+      color: #52525b;
+    }
+
+    /* ── Divider ── */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2.5rem 0;
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 780px;
+      margin: 4rem auto 0;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .closing-question {
+      font-size: 1.1rem;
+      font-style: italic;
+      color: #a1a1aa;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .footer-meta {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: .7rem;
+      color: #3f3f46;
+      letter-spacing: .06em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .nav-links a {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: .72rem;
+      color: var(--amber-dim);
+      text-decoration: none;
+      letter-spacing: .06em;
+    }
+
+    .nav-links a:hover { color: var(--amber); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="meta-label">dunkelfeld.report · Artikel #19 · Juni 2026</div>
+  <h1>Selektiver Pluralismus</h1>
+  <p class="subtitle">Zwei Debatten. Zwei Maßstäbe. Eine Frage.</p>
+  <div class="tag-row">
+    <span class="tag">EU-Recht</span>
+    <span class="tag">Meinungsfreiheit</span>
+    <span class="tag">Migration</span>
+    <span class="tag">Transgender</span>
+    <span class="tag">Grundrechtecharta</span>
+    <span class="tag">Primärquellen</span>
+  </div>
+</header>
+
+<main>
+
+  <div class="intro-box">
+    Die Europäische Union verankert Pluralismus als Gründungswert. Artikel 2 des EU-Vertrags nennt ihn explizit. Gleichzeitig existieren Mechanismen — rechtlicher, institutioneller und medialer Art — die bestimmte Positionen aus dem legitimen Diskurs ausgrenzen. Diese Dokumentation stellt zwei Fallbeispiele nebeneinander: die Debatte um Geschlechtsidentität und die Debatte um Migration. Die Quellen sprechen für sich.
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <section>
+    <h2>01 · Der erklärte Wert: Pluralismus</h2>
+
+    <p>Der Vertrag über die Europäische Union (EUV) definiert in Artikel 2, auf welchen Werten die Union gründet. Pluralismus ist dort namentlich aufgeführt — neben Demokratie, Rechtsstaatlichkeit und Menschenwürde.</p>
+
+    <div class="source-block">
+      <div class="src-label">Primärquelle · Vertrag über die Europäische Union, Art. 2</div>
+      <p>„Die Werte, auf die sich die Union gründet, sind die Achtung der Menschenwürde, Freiheit, Demokratie, Gleichheit, Rechtsstaatlichkeit und die Wahrung der Menschenrechte einschließlich der Rechte der Personen, die Minderheiten angehören. Diese Werte sind allen Mitgliedstaaten in einer Gesellschaft gemeinsam, die sich durch <strong style="color:#e4e4e7">Pluralismus</strong>, Nichtdiskriminierung, Toleranz, Gerechtigkeit, Solidarität und die Gleichheit von Frauen und Männern auszeichnet."</p>
+      <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A12012M002" target="_blank">→ EUR-Lex: EUV Art. 2</a>
+    </div>
+
+    <p>Die EU-Grundrechtecharta ergänzt in Artikel 11 das Recht auf freie Meinungsäußerung und Informationsfreiheit, in Artikel 10 die Gedanken- und Gewissensfreiheit.</p>
+
+    <div class="source-block">
+      <div class="src-label">Primärquelle · EU-Grundrechtecharta, Art. 11</div>
+      <p>„Jede Person hat das Recht auf freie Meinungsäußerung. Dieses Recht schließt die Meinungsfreiheit und die Freiheit ein, Informationen und Ideen ohne behördliche Eingriffe und ohne Rücksicht auf Staatsgrenzen zu empfangen und weiterzugeben."</p>
+      <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A12012P011" target="_blank">→ EUR-Lex: Grundrechtecharta Art. 11</a>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ════════════════════════════════════════ -->
+  <section>
+    <h2>02 · Zwei Debatten — dokumentiert nebeneinander</h2>
+
+    <p>Im Folgenden werden zwei gesellschaftliche Debatten nach demselben Schema dokumentiert: Welche Positionen existieren? Welche institutionellen Reaktionen erfolgten? Was ist durch Primärquellen belegt — was nicht?</p>
+
+    <div class="parallel">
+      <div class="col-card">
+        <div class="col-title">Debatte A · Geschlechtsidentität</div>
+        <p>Seit etwa 2015 intensiviert sich in Europa die Auseinandersetzung über die rechtliche und soziale Anerkennung von Geschlechtsidentität jenseits biologischer Kategorien. Zwei Positionen stehen sich gegenüber: die Auffassung, Geschlecht sei ausschließlich biologisch definiert, und die Auffassung, Geschlechtsidentität sei eine eigenständige, rechtlich relevante Kategorie.</p>
+      </div>
+      <div class="col-card">
+        <div class="col-title">Debatte B · Migration</div>
+        <p>Seit spätestens 2015 wird in Europa intensiv über Umfang, Steuerung und Folgen irregulärer Migration diskutiert. Zwei Positionen stehen sich gegenüber: die Auffassung, Einwanderung sei in ihrer bestehenden Form sozial und fiskalisch belastend, und die Auffassung, Migration sei wirtschaftlich und kulturell bereichernd und humanitär geboten.</p>
+      </div>
+    </div>
+
+    <h3>Institutionelle Reaktionen im Vergleich</h3>
+
+    <table class="status-table">
+      <thead>
+        <tr>
+          <th>Kriterium</th>
+          <th>Debatte A · Geschlecht</th>
+          <th>Debatte B · Migration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Kritische Position im öffentlichen Diskurs</td>
+          <td>Teilweise als „transphob" klassifiziert</td>
+          <td>Teilweise als „rassistisch" oder „rechtsextrem" klassifiziert</td>
+        </tr>
+        <tr>
+          <td>Parlamentarische Debatte möglich?</td>
+          <td><span class="badge badge-green">Belegt: ja</span></td>
+          <td><span class="badge badge-green">Belegt: ja</span></td>
+        </tr>
+        <tr>
+          <td>Öffentliche Äußerung mit beruflichen Konsequenzen verbunden?</td>
+          <td><span class="badge badge-yellow">Belegt: Einzelfälle</span></td>
+          <td><span class="badge badge-yellow">Belegt: Einzelfälle</span></td>
+        </tr>
+        <tr>
+          <td>EU-Institutionen positionieren sich inhaltlich</td>
+          <td><span class="badge badge-green">Belegt: LGBTIQ-Strategie 2020–2025</span></td>
+          <td><span class="badge badge-green">Belegt: Neuer Migrations- und Asylpakt 2024</span></td>
+        </tr>
+        <tr>
+          <td>Kritische Wissenschaftler öffentlich unter Druck gesetzt</td>
+          <td><span class="badge badge-yellow">Belegt: Einzelfälle (UK, USA)</span></td>
+          <td><span class="badge badge-yellow">Belegt: Einzelfälle (DE, AT)</span></td>
+        </tr>
+        <tr>
+          <td>Plattformsperrungen dokumentiert</td>
+          <td><span class="badge badge-yellow">Belegt: Einzelfälle</span></td>
+          <td><span class="badge badge-yellow">Belegt: Einzelfälle</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:.82rem; color:var(--muted); font-family:'Courier New',monospace;">
+      Farbcode: <span class="badge badge-green" style="margin:0 .3rem">Belegt</span> durch Primärquellen nachweisbar · <span class="badge badge-yellow" style="margin:0 .3rem">Belegt: Einzelfälle</span> dokumentiert, kein systematischer Nachweis · <span class="badge badge-red" style="margin:0 .3rem">Nicht belegt</span> keine unabhängige Quelle
+    </p>
+  </section>
+
+  <hr>
+
+  <!-- ════════════════════════════════════════ -->
+  <section>
+    <h2>03 · Fallbeispiel: EU-Institutionen und Geschlechtsidentität</h2>
+
+    <p>Die Europäische Kommission verabschiedete im November 2020 die <em>LGBTIQ Equality Strategy 2020–2025</em>. Das Dokument enthält inhaltliche Positionierungen zur Frage rechtlicher Geschlechtskategorien.</p>
+
+    <div class="source-block">
+      <div class="src-label">Primärquelle · EU-Kommission, LGBTIQ Equality Strategy 2020–2025</div>
+      <p>Die Strategie fordert u.a. die Anerkennung rechtlicher Geschlechtsänderungen auf Basis von Selbstidentifikation und kritisiert Mitgliedstaaten, die entsprechende Gesetze nicht umsetzen.</p>
+      <a href="https://ec.europa.eu/info/policies/justice-and-fundamental-rights/combatting-discrimination/lesbian-gay-bi-trans-and-intersex-equality/lgbtiq-equality-strategy-2020-2025_en" target="_blank">→ EU-Kommission: LGBTIQ Strategy</a>
+    </div>
+
+    <p>Gleichzeitig verabschiedete das Europaparlament Resolutionen, die Mitgliedstaaten wie Ungarn und Polen für Gesetze kritisieren, die den Unterricht über Geschlechtsidentität einschränken.</p>
+
+    <div class="source-block">
+      <div class="src-label">Primärquelle · Europaparlament, Resolution vom 11. März 2021</div>
+      <p>Das Europaparlament erklärte die EU zur „LGBTIQ Freedom Zone" und verurteilte national eingeführte sogenannte „LGBT-freie Zonen" in Polen.</p>
+      <a href="https://www.europarl.europa.eu/doceo/document/TA-9-2021-0089_DE.html" target="_blank">→ Europaparlament: Resolution TA-9-2021-0089</a>
+    </div>
+
+    <h3>Dokumentierter Widerspruch innerhalb der EU</h3>
+    <p>Mehrere Mitgliedstaaten widersprechen der institutionellen EU-Position formal. Ungarn verabschiedete 2021 ein Gesetz, das geschlechtssensible Bildungsinhalte für Minderjährige einschränkt. Das Vereinigte Königreich (nach Brexit) erließ 2024 ein Verbot medizinischer Geschlechtsangleichung für Minderjährige (Cass-Report als Grundlage).</p>
+
+    <div class="source-block">
+      <div class="src-label">Primärquelle · Cass Review, April 2024 (UK)</div>
+      <p>Die unabhängige Überprüfung unter Hilary Cass gelangte zu dem Ergebnis, die Evidenzbasis für hormonelle Behandlungen bei minderjährigen Patienten mit Geschlechtsdysphorie sei „erschreckend schwach".</p>
+      <a href="https://cass.independent-review.uk/home/publications/final-report/" target="_blank">→ Cass Review: Final Report</a>
+    </div>
+
+    <div class="pull-quote">
+      „The evidence base for the use of puberty blockers is remarkably weak."
+      — Cass Review, Final Report, April 2024, S. 181
+    </div>
+
+    <p>Die Position, die der Cass-Report wissenschaftlich belegt, war in Deutschland öffentlich lange als diskriminierend eingestuft worden. Der Report selbst wurde von deutschen Institutionen zunächst kaum rezipiert.</p>
+
+    <div class="source-block">
+      <div class="src-label">Vergleichsquelle · Bundeszentrale für gesundheitliche Aufklärung (BZgA)</div>
+      <p>Die BZgA empfahl bis 2023 in ihren Leitlinien eine affirmative Begleitung bei Jugendlichen mit Geschlechtsdysphorie ohne expliziten Verweis auf Evidenzlücken.</p>
+      <a href="https://www.bzga.de" target="_blank">→ BZgA</a>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ════════════════════════════════════════ -->
+  <section>
+    <h2>04 · Fallbeispiel: EU-Institutionen und Migration</h2>
+
+    <p>Der Neue Migrations- und Asylpakt der EU (angenommen Mai 2024) kodifiziert die institutionelle Position zu irregulärer Migration. Gleichzeitig existieren durch Eurostat und Europol quantifizierbare Daten, die in der öffentlichen Debatte unterschiedlich interpretiert werden.</p>
+
+    <div class="source-block">
+      <div class="src-label">Primärquelle · Europol, SOCTA 2021</div>
+      <p>Europol dokumentiert, dass irreguläre Migration in Europa weitgehend durch kriminelle Schleusernetzwerke organisiert wird. Der SOCTA-Bericht 2021 klassifiziert Menschenschmuggel als eines der profitabelsten Felder des organisierten Verbrechens in der EU.</p>
+      <a href="https://www.europol.europa.eu/cms/sites/default/files/documents/socta2021_1.pdf" target="_blank">→ Europol: SOCTA 2021</a>
+    </div>
+
+    <div class="source-block">
+      <div class="src-label">Primärquelle · Eurostat, Asylstatistik 2023</div>
+      <p>2023 wurden in der EU 1.143.500 erstmalige Asylanträge gestellt — der höchste Stand seit 2016. Anerkennungsquoten variieren stark nach Herkunftsland und Mitgliedstaat.</p>
+      <a href="https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Asylum_statistics" target="_blank">→ Eurostat: Asylum Statistics</a>
+    </div>
+
+    <h3>Klassifizierung kritischer Positionen</h3>
+
+    <p>Das Bundesverfassungsschutzamt (BfV) klassifiziert in seinem Jahresbericht Positionen zur Migration, wenn sie eine „ethnische Homogenität" der Bevölkerung als Ziel formulieren, als Verfassungsschutzrelevant. Dagegen sind demografische Analysen, die Integrationsprobleme auf Basis von Statistiken benennen, per se nicht als extremistisch eingestuft.</p>
+
+    <div class="source-block">
+      <div class="src-label">Primärquelle · BfV Verfassungsschutzbericht 2023</div>
+      <p>Der Bericht unterscheidet zwischen verfassungsschutzrelevantem Rechtsextremismus und dem Thematisieren von Migrationsproblemen als solchem. Die Grenzziehung erfolgt anhand der Frage, ob eine „völkische" Ideologie erkennbar ist.</p>
+      <a href="https://www.verfassungsschutz.de/DE/service/publikationen/verfassungsschutzberichte/verfassungsschutzbericht-2023.html" target="_blank">→ BfV: Verfassungsschutzbericht 2023</a>
+    </div>
+
+    <p>Empirisch belegte Kritik an Migrationspolitik — etwa durch Ökonomen des DIW, des IfW Kiel oder des IAB — wird in der öffentlichen Wahrnehmung nicht einheitlich von politisch motivierter Kritik unterschieden. Diese Vermischung ist dokumentierbar, ihr Ursprung jedoch nicht eindeutig einer einzelnen Institution zuschreibbar.</p>
+
+    <div class="source-block">
+      <div class="src-label">Forschungsquelle · IAB-Kurzbericht 4/2023</div>
+      <p>Das Institut für Arbeitsmarkt- und Berufsforschung (IAB) dokumentiert differenzierte fiskalische Effekte von Zuwanderung: positive Effekte bei Hochqualifizierten, negative kurzfristige Effekte bei niedrigqualifizierter Zuwanderung auf bestimmte Lohnsegmente.</p>
+      <a href="https://www.iab.de/de/publikationen/kurzbericht.aspx" target="_blank">→ IAB: Kurzberichte</a>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ════════════════════════════════════════ -->
+  <section>
+    <h2>05 · Der Mechanismus: DSA, NetzDG und Klassifizierungsinfrastruktur</h2>
+
+    <p>Beide Debatten werden nicht nur auf institutioneller Ebene geführt. Der Digital Services Act (DSA, in Kraft seit Februar 2024) und das deutsche Netzwerkdurchsetzungsgesetz (NetzDG, 2017) schaffen rechtliche Rahmen, in denen Plattformen Inhalte moderieren müssen.</p>
+
+    <div class="parallel">
+      <div class="col-card">
+        <div class="col-title">DSA · Digital Services Act</div>
+        <p>Sehr große Plattformen (VLOP) müssen „systemische Risiken" für gesellschaftliche Debatten identifizieren und mindern. Die Klassifizierung, was ein systemisches Risiko darstellt, liegt wesentlich bei der EU-Kommission und designierten „Trusted Flaggers".</p>
+        <p style="margin-top:.75rem; font-size:.82rem; color:var(--muted);">Quelle: Verordnung (EU) 2022/2065, Art. 34–36</p>
+      </div>
+      <div class="col-card">
+        <div class="col-title">NetzDG · Deutschland</div>
+        <p>Plattformen mit mehr als 2 Millionen Nutzern müssen „offensichtlich rechtswidrige Inhalte" binnen 24 Stunden entfernen. Kritiker dokumentieren Overblocking: voreilige Löschung von Inhalten, die rechtlich zulässig wären.</p>
+        <p style="margin-top:.75rem; font-size:.82rem; color:var(--muted);">Quelle: NetzDG §3; UN-Sonderberichterstatter Meinungsfreiheit, A/HRC/38/35 (2018)</p>
+      </div>
+    </div>
+
+    <div class="source-block">
+      <div class="src-label">Primärquelle · UN-Sonderberichterstatter Meinungsfreiheit, 2018</div>
+      <p>Der UN-Sonderberichterstatter für Meinungs- und Informationsfreiheit kritisierte das NetzDG explizit als Modell, das Privatunternehmen die Entscheidung über rechtmäßige Meinungsäußerung übertrage und damit gegen internationale Menschenrechtsstandards verstoße.</p>
+      <a href="https://undocs.org/A/HRC/38/35" target="_blank">→ UN Doc. A/HRC/38/35 (2018)</a>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ════════════════════════════════════════ -->
+  <section>
+    <h2>06 · Was dokumentiert ist — was nicht</h2>
+
+    <table class="status-table">
+      <thead>
+        <tr>
+          <th>Behauptung</th>
+          <th>Status</th>
+          <th>Quelle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>EU-Vertrag nennt Pluralismus als Grundwert</td>
+          <td><span class="badge badge-green">Belegt</span></td>
+          <td>EUV Art. 2</td>
+        </tr>
+        <tr>
+          <td>EU-Kommission bezieht inhaltlich Stellung zur Geschlechtsdebatte</td>
+          <td><span class="badge badge-green">Belegt</span></td>
+          <td>LGBTIQ Strategy 2020–2025</td>
+        </tr>
+        <tr>
+          <td>Cass Review dokumentiert schwache Evidenzbasis für Pubertätsblocker</td>
+          <td><span class="badge badge-green">Belegt</span></td>
+          <td>Cass Review 2024</td>
+        </tr>
+        <tr>
+          <td>Irreguläre Migration überwiegend durch kriminelle Netzwerke organisiert</td>
+          <td><span class="badge badge-green">Belegt</span></td>
+          <td>Europol SOCTA 2021</td>
+        </tr>
+        <tr>
+          <td>DSA ermöglicht Inhaltsklassifizierung durch EU-Kommission</td>
+          <td><span class="badge badge-green">Belegt</span></td>
+          <td>Verordnung (EU) 2022/2065</td>
+        </tr>
+        <tr>
+          <td>NetzDG führt zu Overblocking rechtmäßiger Inhalte</td>
+          <td><span class="badge badge-yellow">Belegt: Einzelfälle</span></td>
+          <td>UN A/HRC/38/35; Juristische Fachliteratur</td>
+        </tr>
+        <tr>
+          <td>Es gibt eine koordinierte Strategie, bestimmte Meinungen aus dem Diskurs zu entfernen</td>
+          <td><span class="badge badge-red">Nicht belegt</span></td>
+          <td>Kein unabhängig verifizierbares Primärdokument</td>
+        </tr>
+        <tr>
+          <td>Pluralismus wird bewusst als Werkzeug eingesetzt</td>
+          <td><span class="badge badge-red">Nicht belegt</span></td>
+          <td>Absicht ist durch Dokumente nicht nachweisbar</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <hr>
+
+  <!-- ════════════════════════════════════════ -->
+  <section>
+    <h2>07 · Verwandte Dokumentationen</h2>
+    <p>Dieser Artikel ist Teil einer Reihe. Ein eigenständiger Artikel zur Transgender-Debatte (Artikel #18, in Vorbereitung) dokumentiert den medizinischen und rechtlichen Kontext ausführlicher. Artikel #10 dokumentiert die Finanzierungsstruktur der Faktenchecker-Infrastruktur, die bei der Klassifizierung beider Debatten eine Rolle spielt.</p>
+  </section>
+
+</main>
+
+<!-- ════════════════════════════════════════ -->
+<footer>
+  <p class="closing-question">
+    Eine Gesellschaft, die Pluralismus als Wert proklamiert, steht vor einer messbaren Frage: Nach welchen Kriterien wird entschieden, welche Positionen zum legitimen Diskurs gehören — und wer trifft diese Entscheidung?
+  </p>
+
+  <div class="footer-meta">
+    DUNKELFELD.REPORT · ARTIKEL #19 · JUNI 2026<br>
+    Alle Quellenangaben verweisen auf öffentlich zugängliche Primärdokumente.<br>
+    Spekulation ist als solche gekennzeichnet. Motive werden nicht attribuiert.
+  </div>
+
+  <nav class="nav-links">
+    <a href="/artikel-18.html">← Artikel #18 · Transgender</a>
+    <a href="/artikel-10.html">Artikel #10 · Faktenchecker</a>
+    <a href="/index.html">Startseite</a>
+  </nav>
+</footer>
+
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baphomet — dunkelfeld.report</title>
+<meta name="rubrik" content="cat-kirche">
+<meta name="kachel-titel" content="Baphomet">
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --box-bg: #1a1a2e;
+    --text: #d8d8dc;
+    --text-dim: #8a8a92;
+    --green: #4caf6d;
+    --orange: #d98a34;
+    --grey: #8a8a92;
+    --red: #b04a4a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .meta span { color: var(--text-dim); text-transform: none; }
+  h1 {
+    font-size: 2rem;
+    line-height: 1.25;
+    margin: 0 0 0.4rem;
+    color: #f2f2f4;
+  }
+  .subtitle {
+    font-family: 'Courier New', monospace;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #2a2a35;
+    padding-bottom: 1.5rem;
+  }
+  .standfirst {
+    font-size: 1.2rem;
+    color: #eee;
+    padding-bottom: 1.2rem;
+  }
+  p { padding-bottom: 1.2rem; margin: 0; }
+  h2 {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 2.5rem 0 1rem;
+    border-left: 3px solid var(--accent);
+    padding-left: 0.7rem;
+  }
+  h3 {
+    font-family: Georgia, serif;
+    font-style: italic;
+    color: #f2f2f4;
+    font-size: 1.2rem;
+    margin: 1.6rem 0 0.8rem;
+  }
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1.2rem 1.4rem;
+    margin: 1.2rem 0 1.6rem;
+    font-size: 1rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+  .source-box p:last-child { padding-bottom: 0; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-weight: bold;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    display: inline-block;
+    letter-spacing: 0.03em;
+    margin-right: 0.4rem;
+  }
+  .tag-belegt { background: rgba(76,175,109,0.15); color: var(--green); border: 1px solid var(--green); }
+  .tag-extra { background: rgba(217,138,52,0.15); color: var(--orange); border: 1px solid var(--orange); }
+  .tag-offen { background: rgba(138,138,146,0.15); color: var(--grey); border: 1px solid var(--grey); }
+  .tag-vt { background: rgba(176,74,74,0.12); color: var(--red); border: 1px solid var(--red); text-decoration: line-through; }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .stat {
+    background: var(--box-bg);
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 2px solid var(--accent);
+  }
+  .stat .num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.8rem;
+    color: var(--accent);
+    font-weight: bold;
+  }
+  .stat .label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 0.3rem;
+  }
+  .timeline {
+    border-left: 2px solid #2a2a35;
+    margin: 1.5rem 0 2rem 0.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline .item { position: relative; padding-bottom: 1.4rem; }
+  .timeline .item::before {
+    content: '';
+    position: absolute;
+    left: -1.86rem;
+    top: 0.35rem;
+    width: 9px;
+    height: 9px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .timeline .year {
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .person-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .person-card {
+    background: var(--box-bg);
+    padding: 1.1rem 1.3rem;
+    border-left: 3px solid #3a3a4a;
+  }
+  .person-card .name {
+    font-family: 'Courier New', monospace;
+    color: #f2f2f4;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  .person-card .role {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+  .person-card p { padding-bottom: 0; font-size: 0.98rem; }
+  ul { padding-left: 1.3rem; margin: 0 0 1.2rem; }
+  li { padding-bottom: 0.5rem; }
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--accent);
+    border-left: 3px solid var(--accent);
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+  }
+  .closing {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a35;
+    font-style: italic;
+    color: #c8c8ce;
+  }
+  .footer-nav {
+    margin-top: 3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+  }
+  .footer-nav a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+
+  <div class="meta">DUNKELFELD.REPORT <span>— MYTHOS &amp; MANIPULATION</span></div>
+  <h1>Baphomet</h1>
+  <div class="subtitle">Ein Idol, das nie existierte, ein Bild, das ein Philosoph erfand, und ein Symbol, das seither jede Elite tragen soll, die man verdächtigt — Herkunft und Behauptung im Vergleich</div>
+
+  <p class="standfirst">Eine Foltererzählung aus dem 14. Jahrhundert, eine Zeichnung eines französischen Okkultisten aus dem 19. Jahrhundert, eine Bronzestatue aus dem 21. Jahrhundert — und dazwischen eine ununterbrochene Kette von Behauptungen, wer dieses Wesen heimlich anbetet. Was ist tatsächlich dokumentiert, und wo beginnt die Projektion auf eine Figur, die von Anfang an für fast alles herhalten musste?</p>
+
+  <h2>Der Ursprung — Templer-Prozess 1307</h2>
+  <p>Der Name "Baphomet" taucht erstmals in den Verhörprotokollen gegen den Templerorden auf, den König Philipp IV. von Frankreich ab dem 13. Oktober 1307 zerschlagen ließ. Unter Folter "gestanden" mehrere Templer, ein Idol namens Baphomet verehrt zu haben.</p>
+
+  <div class="source-box">
+    <div class="label">Zur Herkunft des Namens</div>
+    <p><span class="tag tag-belegt">BELEGT</span> Historiker gehen mehrheitlich davon aus, dass "Baphomet" eine altfranzösische Verballhornung von "Mahomet" (Mohammed) ist — ein Name, der in Kreuzzugskontexten kursierte, ohne dass die Templer je den Islam praktiziert hätten. Der Vorwurf war Teil eines politisch motivierten Ketzerprozesses: Philipp IV. war hoch bei den Templern verschuldet, der Orden wurde entmachtet und sein Vermögen eingezogen.</p>
+    <p>Kein einziges der angeblichen Idole wurde je vorgelegt. Die Geständnisse stammen ausschließlich aus Verhören unter Folter.</p>
+  </div>
+
+  <p><span class="tag tag-offen">OFFEN</span> Ob es überhaupt ein Objekt oder eine Praxis gab, auf die sich der Begriff ursprünglich bezog, ist unter Historikern nicht abschließend geklärt — die Mehrheitsmeinung lautet: nein, es war Foltergeständnis, nicht Befund.</p>
+
+  <h2>Das Bild — Éliphas Lévi, 1856</h2>
+  <p>Die heute bekannte Darstellung — Ziegenkopf, Frauenbrüste, Flügel, ein Pentagramm auf der Stirn, ein Arm nach oben, einer nach unten — stammt nicht aus dem Mittelalter. Sie wurde 1856 vom französischen Okkultisten Éliphas Lévi (bürgerlich Alphonse-Louis Constant) für sein Werk <em>Dogme et Rituel de la Haute Magie</em> gezeichnet.</p>
+
+  <div class="source-box">
+    <div class="label">Primärquelle — Lévis eigene Deutung, sinngemäß</div>
+    <p><span class="tag tag-belegt">BELEGT</span> Lévi beschrieb seine Zeichnung ausdrücklich als philosophisch-alchemistisches Symbol: die Vereinigung von Gegensätzen — männlich und weiblich, Geist und Materie, Auflösung und Verdichtung ("solve et coagula", eingeschrieben auf den Armen der Figur). Als Vorlage nannte er unter anderem den Ziegenbock von Mendes, ein ägyptisches Fruchtbarkeitssymbol.</p>
+    <p>Von einer Anbetung, einem Kult oder einer satanischen Zuschreibung ist bei Lévi nicht die Rede.</p>
+  </div>
+
+  <p>Erst rund hundert Jahre später übernahm Anton LaVey Lévis Zeichnung als Logo für die 1966 gegründete Church of Satan — und schuf damit die bis heute wirksame Verknüpfung von Baphomet mit organisiertem Satanismus.</p>
+
+  <h2>Die Statue — Detroit, 2015</h2>
+  <p>Die bislang konkreteste öffentliche Manifestation der Figur ist eine reale, dokumentierte Bronzestatue.</p>
+
+  <div class="stat-grid">
+    <div class="stat"><div class="num">2015</div><div class="label">Enthüllung, Detroit</div></div>
+    <div class="stat"><div class="num">1</div><div class="label">Tonne Gewicht</div></div>
+    <div class="stat"><div class="num">~2,7 m</div><div class="label">Höhe</div></div>
+    <div class="stat"><div class="num">$28.000+</div><div class="label">per Crowdfunding finanziert</div></div>
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Der Satanic Temple ließ die Statue vom Bildhauer Mark Porter nach Lévis Vorlage anfertigen. Sie sollte ursprünglich neben einem Zehn-Gebote-Monument auf dem Gelände des Kapitols von Oklahoma stehen, als Klage gegen religiöse Symbole auf staatlichem Grund — der Antrag wurde abgelehnt, die Statue am 25. Juli 2015 stattdessen bei einer privaten Veranstaltung in Detroit enthüllt, begleitet von Protesten christlicher Gruppen.</p>
+
+  <div class="source-box">
+    <div class="label">Zur Einordnung</div>
+    <p><span class="tag tag-belegt">BELEGT</span> Der Satanic Temple bezeichnet sich selbst als nicht-theistisch und atheistisch. Die Organisation verehrt Satan nicht als reale Entität, sondern nutzt die Figur als politisches und literarisches Symbol für Individualismus und die Trennung von Kirche und Staat — vergleichbar einer Kunstaktion, nicht einer Religionsausübung im klassischen Sinn.</p>
+  </div>
+
+  <h2>Die Verschwörungen</h2>
+  <p>Genau diese Mehrdeutigkeit — halb Mensch, halb Tier, halb männlich, halb weiblich, von Anfang an als "Vereinigung der Gegensätze" gedacht — macht Baphomet zur idealen Projektionsfläche. Wer fast alles hineinlesen kann, dessen Symbol lässt sich auch fast überall wiederfinden.</p>
+
+  <div class="source-box">
+    <div class="label">Wiederkehrendes Muster</div>
+    <p><span class="tag tag-vt">VT-UNBELEGT</span> "Satanische Elite"-Erzählungen deuten Firmenlogos, Bühnenshows, Architektur oder Kunstwerke, die entfernt an Hörner, Pentagramme oder symmetrische Posen erinnern, als Beweis geheimer Baphomet-Verehrung durch Banken, Regierungen oder Unterhaltungskonzerne. Kein einziger dieser Fälle verfügt über ein dokumentiertes Ritual, eine Organisation oder ein Bekenntnis — die "Beweisführung" besteht durchgehend aus visueller Ähnlichkeit, nicht aus Handlung.</p>
+  </div>
+
+  <div class="source-box">
+    <div class="label">Historischer Vorläufer</div>
+    <p><span class="tag tag-belegt">BELEGT</span> In den USA kam es zwischen den frühen 1980er und den frühen 1990er Jahren zur sogenannten "Satanic Panic": unbegründete Missbrauchsvorwürfe gegen Kindertagesstätten und Einzelpersonen, oft gestützt auf unter fragwürdigen Verhörmethoden gewonnene Kinderaussagen. Die überwiegende Mehrheit der Fälle erwies sich in späteren Überprüfungen als haltlos, mehrere Verurteilte wurden nach Jahrzehnten im Gefängnis freigesprochen.</p>
+    <p><span class="tag tag-extra">EXTRAPOLATION</span> Forscher und Journalisten, die QAnon-nahe Erzählungen untersucht haben, beschreiben deren Kernbehauptung — ein Netzwerk von Eliten missbrauche Kinder in satanischen Ritualen — als direkte inhaltliche Fortsetzung der Satanic-Panic-Motive der 1980er Jahre, in neuem digitalem Gewand.</p>
+  </div>
+
+  <p><span class="tag tag-offen">OFFEN</span> Es gibt keine dokumentierte Organisation von gesellschaftlicher Relevanz, die Baphomet als reale Gottheit anbetet oder ihm zugeschriebene Rituale praktiziert. Die einzige öffentlich bekannte Gruppe, die die Figur überhaupt aktiv nutzt, erklärt selbst, nicht an sie zu glauben.</p>
+
+  <h2>Verwandte Gestalten</h2>
+  <p>Baphomet steht nicht allein. Das Muster — eine reale oder erfundene Randfigur wird Jahrhunderte später neu aufgeladen — wiederholt sich mit ähnlichen Mischwesen:</p>
+
+  <div class="person-grid">
+    <div class="person-card">
+      <div class="name">Pan</div>
+      <div class="role">griechische Mythologie</div>
+      <p>Hirtengott mit Bockbeinen und Hörnern. Wurde in der frühchristlichen Ikonografie zur bildlichen Vorlage für Teufelsdarstellungen — ohne dass Pan selbst je als bösartig galt.</p>
+    </div>
+    <div class="person-card">
+      <div class="name">Der Ziegenbock von Mendes</div>
+      <div class="role">altägyptisches Fruchtbarkeitssymbol</div>
+      <p>Von Lévi selbst als eine seiner Vorlagen benannt. Ursprünglich ein Symbol für Zeugungskraft, nicht für Bosheit.</p>
+    </div>
+    <div class="person-card">
+      <div class="name">Azazel</div>
+      <div class="role">biblische Wüstenfigur</div>
+      <p>An ihn wurde im jüdischen Ritus der "Sündenbock" geschickt. Spätere Texte machten aus der Randfigur einen gefallenen Engel.</p>
+    </div>
+    <div class="person-card">
+      <div class="name">Melek Taus</div>
+      <div class="role">Pfauenengel der Jesiden</div>
+      <p>Religionsgeschichtlich eigenständige Figur, wird jedoch bis heute fälschlich mit Satan gleichgesetzt — eine Fehldeutung, die der jesidischen Minderheit seit Jahrhunderten Verfolgung eingebracht hat.</p>
+    </div>
+  </div>
+
+  <h2>Offene Fragen</h2>
+  <ul>
+    <li>Warum überlebt eine unter Folter erpresste Anschuldigung aus dem 14. Jahrhundert als Referenzpunkt bis in aktuelle Elitenerzählungen?</li>
+    <li>Was macht ausgerechnet mehrdeutige Mischwesen zu bevorzugten Projektionsflächen — gegenüber eindeutig definierten Symbolen?</li>
+    <li>Wie unterscheidet man seriös zwischen einer realen organisierten Praxis und einer optischen Ähnlichkeit, die als Beweis verkauft wird?</li>
+    <li>Welche Rolle spielt es, dass die einzige tatsächlich dokumentierte "Baphomet-Verehrung" von einer Gruppe stammt, die erklärtermaßen nicht an das glaubt, was sie darstellt?</li>
+  </ul>
+
+  <div class="pull-quote">Das Bild ist real. Die Anbetung, um die sich alles dreht, ist es nicht.</div>
+
+  <div class="closing">
+    <p><em>Eine Foltererzählung ohne Objekt, ein philosophisches Kunstwerk ohne Kult, eine Statue einer Gruppe, die selbst nicht glaubt — und trotzdem trägt "Baphomet" bis heute Verschwörungserzählungen über angebliche Eliten-Rituale. Was sagt es über eine Behauptung, wenn ihre einzige durchgehende Konstante die Abwesenheit eines Belegs ist?</em></p>
+  </div>
+
+  <div class="footer-nav">
+    Verwandt: Mythos &amp; Manipulation — Symbole, die für alles herhalten müssen
+  </div>
+
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

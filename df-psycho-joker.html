@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Psycho-Joker — dunkelfeld.report</title>
+<meta name="rubrik" content="cat-nahrung">
+<meta name="kachel-titel" content="Der Psycho-Joker">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;600&display=swap');
+
+  :root {
+    --bg:        #0d0d0d;
+    --bg2:       #141414;
+    --bg3:       #1a1a1a;
+    --red:       #8b1a1a;
+    --red-light: #c0392b;
+    --text:      #d4cfc9;
+    --muted:     #7a756e;
+    --border:    #2a2a2a;
+    --stamp:     #8b1a1a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.75;
+    padding: 0;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .site-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .site-logo span {
+    color: var(--red-light);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 5rem 2rem 3rem;
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red-light);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: var(--red-light);
+  }
+
+  h1 {
+    font-family: 'Special Elite', serif;
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: #f0ebe4;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .lead {
+    font-size: 1.15rem;
+    color: var(--muted);
+    font-style: italic;
+    border-left: 3px solid var(--red);
+    padding-left: 1.2rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  .disclaimer {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 0.8rem 1rem;
+    margin-bottom: 3rem;
+    letter-spacing: 0.05em;
+  }
+  .disclaimer strong { color: var(--red-light); }
+
+  /* ── CONTENT ── */
+  .content {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+
+  h2 {
+    font-family: 'Special Elite', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #f0ebe4;
+    margin: 3.5rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  p { margin-bottom: 1.3rem; }
+
+  /* ── AKTE-BLOCK (Roter Aktenrand) ── */
+  .akte {
+    border-left: 4px solid var(--red);
+    padding: 1.2rem 1.5rem;
+    margin: 2rem 0;
+    background: var(--bg2);
+    position: relative;
+  }
+  .akte-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red-light);
+    margin-bottom: 0.6rem;
+  }
+  .akte p { margin-bottom: 0.5rem; color: var(--text); }
+  .akte .datum {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.5rem;
+  }
+
+  /* ── VERGLEICHSTABELLE ── */
+  .vergleich {
+    margin: 2.5rem 0;
+    overflow-x: auto;
+  }
+  .vergleich table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  .vergleich th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .vergleich td {
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text);
+  }
+  .vergleich tr:hover td { background: var(--bg2); }
+  .vergleich td.rot { color: var(--red-light); font-weight: 600; }
+  .vergleich td.gruen { color: #5a8a5a; }
+  .vergleich .col-head {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: #f0ebe4;
+  }
+
+  /* ── DREIECK ── */
+  .dreieck {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    margin: 2.5rem 0;
+  }
+  .dreieck-item {
+    background: var(--bg2);
+    padding: 1.5rem;
+  }
+  .dreieck-num {
+    font-family: 'Special Elite', serif;
+    font-size: 2.5rem;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .dreieck-titel {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red-light);
+    margin-bottom: 0.7rem;
+  }
+  .dreieck-text {
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── FRAGEN-BLOCK ── */
+  .fragen {
+    background: var(--bg3);
+    border: 1px solid var(--red);
+    padding: 2rem;
+    margin: 3rem 0;
+  }
+  .fragen-titel {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red-light);
+    margin-bottom: 1.2rem;
+  }
+  .fragen ol {
+    padding-left: 1.5rem;
+    color: var(--text);
+  }
+  .fragen li { margin-bottom: 0.8rem; font-size: 0.95rem; }
+
+  /* ── HINWEIS ── */
+  .hinweis {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    margin-top: 3rem;
+    line-height: 1.8;
+  }
+  .hinweis a { color: var(--red-light); text-decoration: none; }
+
+  /* ── STEMPEL ── */
+  .stempel {
+    display: inline-block;
+    border: 2px solid var(--stamp);
+    color: var(--stamp);
+    font-family: 'Special Elite', serif;
+    font-size: 1rem;
+    padding: 0.3rem 0.8rem;
+    transform: rotate(-3deg);
+    margin: 2rem 0 1rem;
+    opacity: 0.7;
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 600px) {
+    .hero, .content { padding-left: 1.2rem; padding-right: 1.2rem; }
+    h1 { font-size: 2rem; }
+    .dreieck { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-logo">dunkelfeld<span>.</span>report &nbsp;—&nbsp; Fragen ohne gesicherte Antworten</div>
+</header>
+
+<div class="hero">
+  <div class="eyebrow">Analyse · Juni 2026</div>
+  <h1>Der Psycho-Joker</h1>
+  <p class="lead">Eine Adresse. Drei Erreger. Und ein Muster, das man nicht offiziell ankündigen würde. Dies ist kein Artikel mit Antworten. Es ist ein Artikel mit Fragen — Fragen, die man stellen darf, weil die Fakten öffentlich sind.</p>
+  <div class="disclaimer">
+    <strong>dunkelfeld.report:</strong> Dieses Material befindet sich im Erkundungsstadium. Primärquellen sind angegeben, Schlussfolgerungen sind offen. Für verifizierten Journalismus: <strong>richtig-erinnern.de</strong>
+  </div>
+</div>
+
+<div class="content">
+
+  <h2>Die Adresse</h2>
+
+  <p>München Klinik Schwabing, Abteilung Infektiologie. Offiziell: Bayerns STAKOB-Zentrum für hochpathogene Erreger. Wenn in Bayern etwas Gefährliches auftaucht, landet es dort. Das ist keine Verschwörung — das ist Zuständigkeit, geregelt durch den Ständigen Arbeitskreis der Kompetenz- und Behandlungszentren des RKI.</p>
+
+  <p>Aber die Chronik dieser Zuständigkeit wirft eine Frage auf, die man stellen darf.</p>
+
+  <h2>Drei Akte</h2>
+
+  <div class="akte">
+    <div class="akte-label">Akt I · Corona</div>
+    <p>Ein Webasto-Mitarbeiter, keine Symptome beim Erstkontakt, kommt nach Schwabing. Was dort herausgefunden wird, verändert alles: Das Virus überträgt sich asymptomatisch. Der Schluss, den die Politik zieht: Wer keine Symptome hat, ist trotzdem gefährlich. Wer gefährlich <em>sein könnte</em>, wird isoliert.</p>
+    <p>Das ist der Moment, in dem Freiheitsentzug von der Krankheit entkoppelt wird.</p>
+    <div class="datum">27. Januar 2020 · Quelle: München Klinik Schwabing (Pressemitteilung)</div>
+  </div>
+
+  <div class="akte">
+    <div class="akte-label">Akt II · Affenpocken</div>
+    <p>Wieder Schwabing. Erster Affenpocken-Fall Deutschlands. Milder Verlauf. Patient gesund entlassen. Das Gesundheitsministerium definiert: 21 Tage Isolation — ab Symptombeginn. Man braucht also Symptome, um isoliert zu werden. Das ist noch der alte Maßstab.</p>
+    <div class="datum">20. Mai 2022 · Quelle: München Klinik Schwabing (Pressemitteilung)</div>
+  </div>
+
+  <div class="akte">
+    <div class="akte-label">Akt III · Hantavirus</div>
+    <p>Schwabing, Mai 2026. Eine Person liegt in Isolation. Sie hat kein Hantavirus. Sie hat keine Symptome. Das LGL kommuniziert offiziell: <em>"stabile klinische Verfassung, keine Symptome einer Hantavirus-Infektion."</em> Das RKI schreibt: Sechs Wochen Quarantäne. Kein Freitesten. Negativer Test zählt nicht.</p>
+    <p>Auf der Bundespressekonferenz fragt Florian Warweg (OAZ) nach der Evidenz. Die BMG-Sprecherin antwortet nicht. Sie verstrickt sich in Widersprüche.</p>
+    <div class="datum">Mai 2026 · Quellen: LGL Bayern, OAZ/BPK 19.05.2026</div>
+  </div>
+
+  <h2>Was sich verändert hat</h2>
+
+  <div class="vergleich">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>2020 Corona</th>
+          <th>2022 Mpox</th>
+          <th>2026 Hanta</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-head">Patient infiziert?</td>
+          <td class="gruen">Ja</td>
+          <td class="gruen">Ja</td>
+          <td class="rot">Nein — Kontaktperson</td>
+        </tr>
+        <tr>
+          <td class="col-head">Symptome?</td>
+          <td class="gruen">Mild</td>
+          <td class="gruen">Mild</td>
+          <td class="rot">Keine</td>
+        </tr>
+        <tr>
+          <td class="col-head">Risiko (Behörde)</td>
+          <td>Unbekannt, neu</td>
+          <td>Gering</td>
+          <td class="rot">ECDC: sehr gering</td>
+        </tr>
+        <tr>
+          <td class="col-head">Quarantänedauer</td>
+          <td>14 Tage</td>
+          <td>21 Tage ab Symptom</td>
+          <td class="rot">42 Tage, kein Freitesten</td>
+        </tr>
+        <tr>
+          <td class="col-head">Begründung öffentlich?</td>
+          <td class="gruen">Ja</td>
+          <td class="gruen">Ja</td>
+          <td class="rot">BMG: nein</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Die Reaktion wird nicht kleiner, wenn die Gefahr kleiner wird. Sie wird größer.</p>
+
+  <h2>Was die DDR dazu sagen würde</h2>
+
+  <p>In einem anderen deutschen Staat gab es eine Methode, um unbequeme Menschen zu isolieren, ohne sie offiziell zu bestrafen. Man erklärte sie nicht zu Kriminellen — das wäre zu offensichtlich. Man erklärte sie zu Kranken. Oder zu Gefährlichen. Oder zu Menschen, die für andere gefährlich sein <em>könnten</em>.</p>
+
+  <div class="akte">
+    <div class="akte-label">Historischer Befund · SpringerMedizin.de</div>
+    <p>Wer das System der DDR kritisierte, lief Gefahr, als "asozial", "psychopathisch" oder "gemeingefährlich" eingestuft zu werden. Die Staatssicherheit arbeitete dabei eng mit Psychiatern und Amtsärzten zusammen. Unbequeme Bürger wurden ohne medizinischen Grund weggesperrt, um sie zu diskreditieren und von der Gesellschaft zu isolieren.</p>
+    <div class="datum">Quelle: SpringerMedizin.de — Politischer Missbrauch der Psychiatrie in der DDR</div>
+  </div>
+
+  <p>Das war die DDR. Das ist Vergangenheit. Aber der Mechanismus — Freiheitsentzug nicht als Strafe, sondern als Gesundheitsmaßnahme — braucht kein Unrechtssystem. Er braucht nur ein Gesetz, eine Behörde, und einen Erreger.</p>
+
+  <div class="stempel">KEINE GLEICHSETZUNG</div>
+
+  <h2>Das Dreieck</h2>
+
+  <p>Drei Werkzeuge existieren heute gleichzeitig und legal:</p>
+
+  <div class="dreieck">
+    <div class="dreieck-item">
+      <div class="dreieck-num">01</div>
+      <div class="dreieck-titel">Quarantäne ohne Diagnose</div>
+      <div class="dreieck-text">Körperfreiheit entzogen, ohne dass eine Krankheit nachgewiesen werden muss. Kein positiver Test erforderlich. 42 Tage. Präzedenz: geschaffen.</div>
+    </div>
+    <div class="dreieck-item">
+      <div class="dreieck-num">02</div>
+      <div class="dreieck-titel">Psychiatrie als Reaktion</div>
+      <div class="dreieck-text">Eine Rechtsanwältin klagt 2020 gegen Corona-Maßnahmen. Zwei Wochen später bringt die Polizei sie in die Psychiatrie. Sie kommt wieder raus. Aber der Vorgang existiert — dokumentiert, in Mainstream-Medien.</div>
+    </div>
+    <div class="dreieck-item">
+      <div class="dreieck-num">03</div>
+      <div class="dreieck-titel">Strafverfolgung für Aussagen</div>
+      <div class="dreieck-text">Ein Professor zitiert eine historische Parole — als Zitat. Er wird verurteilt. Der ermittelnde Staatsanwalt ist derjenige, dessen Lachen über beschlagnahmte Bürger-Handys weltweit für Entsetzen sorgte.</div>
+    </div>
+  </div>
+
+  <h2>Was man nicht behaupten sollte</h2>
+
+  <p>Dass das alles koordiniert ist. Dass es einen Plan gibt. Dass Schwabing bewusst als Labor dient. Das lässt sich nicht belegen — und wer es behauptet, macht sich angreifbar.</p>
+
+  <p>Was man sagen kann: Diese Werkzeuge existieren. Sie wurden erprobt. Sie funktionieren. Und wer sie einsetzen wollte — für welchen Zweck auch immer — bräuchte keinen neuen Mechanismus zu erfinden. Er könnte einfach auf die letzten sechs Jahre zurückgreifen.</p>
+
+  <div class="fragen">
+    <div class="fragen-titel">Die Fragen, die bleiben</div>
+    <ol>
+      <li>Warum kann das Bundesgesundheitsministerium seine eigenen Quarantäne-Regeln nicht begründen?</li>
+      <li>Warum gilt ein negativer Test nichts?</li>
+      <li>Warum wird die Reaktion größer, wenn die Gefahr kleiner wird?</li>
+      <li>Wer trifft diese Entscheidungen — und auf welcher Grundlage?</li>
+      <li>Wenn es das nächste Mal nicht ein Kreuzfahrtschiff mit 13 Fällen ist, sondern etwas, das sich wirklich ausbreitet — welche dieser Werkzeuge werden dann aktiviert?</li>
+    </ol>
+  </div>
+
+  <p style="font-style: italic; color: var(--muted); font-size: 1rem;">Manfred zählt zusammen. Ihr dürft das auch.</p>
+
+  <div class="hinweis">
+    <strong>Quellen:</strong> SpringerMedizin.de (DDR-Psychiatrie) · München Klinik Schwabing Pressemitteilungen 2020, 2022, 2026 · LGL Bayern Mai 2026 · Ostdeutsche Allgemeine / Florian Warweg, BPK 19.05.2026 · WELT 14.04.2020 · RKI Handreichung Andes-Hantavirus 19.05.2026<br><br>
+    Für den verifizierten Primärquellen-Artikel: <a href="https://richtig-erinnern.de/das-lehrkrankenhaus">richtig-erinnern.de/das-lehrkrankenhaus</a>
+  </div>
+
+</div>
+
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

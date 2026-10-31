@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dossier 017 — Wem gehört das Geld? | dunkelfeld.report</title>
+<meta name="rubrik" content="cat-geld">
+<meta name="kachel-titel" content="Wem gehört das Geld?">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #1a1a1a;
+    --amber: #d4a017;
+    --amber-dim: #a07810;
+    --amber-bright: #f0c040;
+    --text: #c8c8c8;
+    --text-dim: #888888;
+    --border: #2a2a2a;
+    --red: #c0392b;
+    --green: #27ae60;
+    --yellow: #f39c12;
+    --blue: #2980b9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  .site-header {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--amber-dim);
+    padding: 12px 0;
+  }
+  .site-header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .site-brand {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: var(--amber);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .site-nav {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+  }
+
+  .dossier-meta {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 24px 32px;
+  }
+  .dossier-meta-inner { max-width: 960px; margin: 0 auto; }
+  .dossier-label {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--amber-dim);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .dossier-title {
+    font-size: 2.2rem;
+    font-weight: normal;
+    color: var(--amber-bright);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .dossier-subtitle {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 24px;
+  }
+  .dossier-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 3px 8px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .dossier-standfirst {
+    font-size: 1.05rem;
+    color: var(--text);
+    border-left: 3px solid var(--amber);
+    padding-left: 16px;
+    max-width: 720px;
+    line-height: 1.6;
+  }
+
+  .content-wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+
+  .toc {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 24px 28px;
+    margin-bottom: 48px;
+  }
+  .toc-title {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--amber-dim);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .toc ol { list-style: none; counter-reset: toc; }
+  .toc ol li {
+    counter-increment: toc;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc ol li:last-child { border-bottom: none; }
+  .toc ol li::before {
+    content: "0" counter(toc) " —";
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--amber-dim);
+    margin-right: 10px;
+  }
+  .toc a { color: var(--text); text-decoration: none; font-size: 14px; }
+  .toc a:hover { color: var(--amber); }
+
+  .section {
+    margin-bottom: 64px;
+    border-top: 1px solid var(--border);
+    padding-top: 40px;
+  }
+  .section-number {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--amber-dim);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  h2 {
+    font-size: 1.6rem;
+    font-weight: normal;
+    color: var(--amber-bright);
+    margin-bottom: 24px;
+    line-height: 1.3;
+  }
+  h3 {
+    font-size: 1.05rem;
+    color: var(--amber);
+    font-weight: normal;
+    margin: 32px 0 14px;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+  p {
+    margin-bottom: 16px;
+    max-width: 720px;
+    color: var(--text);
+  }
+
+  /* ZENTRALBANK-KARTEN */
+  .zb-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 24px 0 32px;
+  }
+  .zb-card {
+    background: var(--bg2);
+    padding: 24px 28px;
+  }
+  .zb-card:hover { background: var(--bg3); }
+  .zb-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .zb-name {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    color: var(--amber-bright);
+    font-weight: bold;
+  }
+  .zb-type {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    padding: 3px 10px;
+    border: 1px solid;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+  .type-staatlich { color: var(--green); border-color: var(--green); }
+  .type-hybrid { color: var(--yellow); border-color: var(--yellow); }
+  .type-privat { color: var(--red); border-color: var(--red); }
+  .type-supra { color: var(--blue); border-color: var(--blue); }
+
+  .zb-body { font-size: 14px; line-height: 1.7; }
+  .zb-body strong { color: var(--amber); }
+
+  /* MACHT-MATRIX */
+  .matrix {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 32px;
+    font-size: 13px;
+  }
+  .matrix th {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber-dim);
+    background: var(--bg3);
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--amber-dim);
+  }
+  .matrix td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .matrix tr:last-child td { border-bottom: none; }
+  .matrix tr:hover td { background: var(--bg3); }
+
+  /* FACT-CHECK */
+  .factcheck {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 32px;
+    font-size: 13.5px;
+  }
+  .factcheck th {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber-dim);
+    background: var(--bg3);
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--amber-dim);
+  }
+  .factcheck td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text);
+  }
+  .factcheck tr:last-child td { border-bottom: none; }
+  .factcheck tr:hover td { background: var(--bg3); }
+  .factcheck td:first-child { font-style: italic; }
+
+  .status {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+  .status-ok { color: var(--green); }
+  .status-partial { color: var(--yellow); }
+  .status-nein { color: var(--red); }
+
+  .pull-quote {
+    border-left: 3px solid var(--amber);
+    padding: 14px 20px;
+    margin: 24px 0;
+    background: var(--bg2);
+  }
+  .pull-quote p {
+    font-size: 1rem;
+    color: var(--amber-bright);
+    font-style: italic;
+    margin: 0;
+    max-width: none;
+  }
+  .pull-quote cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 8px;
+    font-style: normal;
+  }
+
+  .callout {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber-dim);
+    padding: 16px 20px;
+    margin: 24px 0;
+  }
+  .callout-label {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: var(--amber-dim);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .callout p { font-size: 13.5px; color: var(--text); margin: 0; max-width: none; }
+
+  .mechanism {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+  .mechanism-title {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--amber);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .mechanism ul { list-style: none; padding: 0; }
+  .mechanism ul li {
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+    color: var(--text);
+  }
+  .mechanism ul li:last-child { border-bottom: none; }
+  .mechanism ul li::before {
+    content: "→ ";
+    color: var(--amber-dim);
+    font-family: 'Courier New', monospace;
+  }
+
+  /* TIMELINE */
+  .timeline { margin: 24px 0 32px; }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .tl-item:last-child { border-bottom: none; }
+  .tl-year {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--amber);
+    padding-top: 2px;
+  }
+  .tl-text { font-size: 13.5px; color: var(--text); }
+
+  footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    padding: 32px 24px;
+    margin-top: 64px;
+  }
+  .footer-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .footer-meta {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.8;
+  }
+  .footer-disclaimer {
+    font-size: 12px;
+    color: var(--text-dim);
+    max-width: 460px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 640px) {
+    .dossier-title { font-size: 1.6rem; }
+    .zb-header { flex-direction: column; }
+    .tl-item { grid-template-columns: 60px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="site-brand" href="/">dunkelfeld.report</a>
+    <span class="site-nav">DOSSIER-ARCHIV &nbsp;/&nbsp; 017</span>
+  </div>
+</header>
+
+<div class="dossier-meta">
+  <div class="dossier-meta-inner">
+    <div class="dossier-label">Dossier 017 &nbsp;·&nbsp; Finanzsystem &nbsp;·&nbsp; Zentralbanken</div>
+    <h1 class="dossier-title">Wem gehört das Geld?</h1>
+    <div class="dossier-subtitle">Zentralbanken zwischen Staatskontrolle, Privatinteressen und völkerrechtlicher Immunität</div>
+    <div class="dossier-tags">
+      <span class="tag">Federal Reserve</span>
+      <span class="tag">EZB</span>
+      <span class="tag">BIZ Basel</span>
+      <span class="tag">Geldpolitik</span>
+      <span class="tag">Demokratiedefizit</span>
+      <span class="tag">Fact-Check</span>
+    </div>
+    <p class="dossier-standfirst">
+      "Die Länder kontrollieren ihre Zentralbanken" — diese Antwort ist je nach Land falsch, halbwahr oder strukturell irreführend. Dunkelfeld.report dokumentiert die tatsächlichen Eigentümer- und Kontrollstrukturen der wichtigsten Geldinstitutionen der Welt. Und trennt belegbare Strukturkritik von Verschwörungsmythos.
+    </p>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <nav class="toc">
+    <div class="toc-title">Inhalt dieses Dossiers</div>
+    <ol>
+      <li><a href="#grundfrage">Die Grundfrage: Eigentum vs. Kontrolle</a></li>
+      <li><a href="#modelle">Die vier Modelle — Ein internationaler Vergleich</a></li>
+      <li><a href="#fed">Federal Reserve — Das Hybrid-Modell</a></li>
+      <li><a href="#ezb">EZB — Formal staatlich, strukturell komplex</a></li>
+      <li><a href="#national">Nationale Sonderfälle</a></li>
+      <li><a href="#biz">BIZ Basel — Die Zentralbank der Zentralbanken</a></li>
+      <li><a href="#macht">Die eigentliche Machtfrage</a></li>
+      <li><a href="#factcheck">Fact-Check: Was stimmt, was nicht?</a></li>
+      <li><a href="#quellen">Quellennachweis</a></li>
+    </ol>
+  </nav>
+
+  <!-- 01 GRUNDFRAGE -->
+  <section class="section" id="grundfrage">
+    <div class="section-number">01 — Grundfrage</div>
+    <h2>Eigentum vs. Kontrolle — warum die falsche Frage falsche Antworten produziert</h2>
+
+    <p>Die öffentliche Debatte über Zentralbanken dreht sich meist um eine Frage: "Wem gehören sie?" Das ist die falsche Frage — oder zumindest eine unvollständige.</p>
+
+    <p>Die entscheidenden Fragen lauten:</p>
+
+    <div class="mechanism">
+      <div class="mechanism-title">Die richtigen Fragen</div>
+      <ul>
+        <li>Wer bestimmt die Führung? (Personalhoheit)</li>
+        <li>Wer sitzt in den geldpolitischen Entscheidungsgremien?</li>
+        <li>Wer profitiert von Gewinnen und Dividenden?</li>
+        <li>Wer kann die Zentralbank kontrollieren, klagen oder abberufen?</li>
+        <li>Welchem Mandat ist sie verpflichtet — und wer hat dieses Mandat definiert?</li>
+      </ul>
+    </div>
+
+    <p>Die Antworten auf diese Fragen unterscheiden sich je nach Zentralbank erheblich. Und sie ergeben ein Bild, das weder der offiziellen Darstellung ("alles demokratisch kontrolliert") noch dem Verschwörungsmythos ("Rothschilds steuern alle Zentralbanken") entspricht.</p>
+
+    <div class="callout">
+      <div class="callout-label">Redaktioneller Grundsatz</div>
+      <p>Dieses Dossier unterscheidet strikt zwischen Eigentümerstruktur (wer hält Anteile) und Kontrollstruktur (wer trifft Entscheidungen). Beide können auseinanderfallen — und tun es regelmäßig.</p>
+    </div>
+  </section>
+
+  <!-- 02 MODELLE -->
+  <section class="section" id="modelle">
+    <div class="section-number">02 — Modelle</div>
+    <h2>Die vier Modelle — Ein internationaler Vergleich</h2>
+
+    <div class="zb-grid">
+
+      <div class="zb-card">
+        <div class="zb-header">
+          <div class="zb-name">Modell 1 — Vollständig staatlich</div>
+          <span class="zb-type type-staatlich">Staatlich</span>
+        </div>
+        <div class="zb-body">
+          <strong>Beispiel:</strong> Bank of England (seit 1946 verstaatlicht), Deutsche Bundesbank, Schweizerische Nationalbank (mehrheitlich Kantone und Bund).<br><br>
+          <strong>Struktur:</strong> Staat ist alleiniger oder Mehrheitseigentümer. Führung wird durch Regierung oder Parlament bestellt. Gewinne fließen an den Staatshaushalt.<br><br>
+          <strong>Einschränkung:</strong> "Staatlich" bedeutet nicht automatisch "demokratisch kontrolliert." Die meisten modernen Zentralbanken haben ein verfassungsähnlich fixiertes Mandat (z.B. Preisstabilität), das kein gewähltes Parlament ändern kann, ohne die Zentralbank grundlegend umzustrukturieren.
+        </div>
+      </div>
+
+      <div class="zb-card">
+        <div class="zb-header">
+          <div class="zb-name">Modell 2 — Hybrid privat/öffentlich</div>
+          <span class="zb-type type-hybrid">Hybrid</span>
+        </div>
+        <div class="zb-body">
+          <strong>Beispiel:</strong> Federal Reserve (USA).<br><br>
+          <strong>Struktur:</strong> Zwölf regionale Federal Reserve Banks sind im Besitz privater Mitgliedsbanken. Das Board of Governors in Washington ist eine staatliche Behörde, deren Mitglieder vom Präsidenten ernannt werden. Gewinne fließen überwiegend ans US-Schatzamt — aber Mitgliedsbanken erhalten eine gesetzlich fixierte Dividende.<br><br>
+          <strong>Entscheidend:</strong> Sechs der neun Vorstandsmitglieder jeder regionalen Fed-Bank werden von den privaten Mitgliedsbanken gewählt. Diese sitzen im Federal Open Market Committee (FOMC) — dem Gremium, das den US-Leitzins setzt.
+        </div>
+      </div>
+
+      <div class="zb-card">
+        <div class="zb-header">
+          <div class="zb-name">Modell 3 — Formal privat</div>
+          <span class="zb-type type-privat">Privat</span>
+        </div>
+        <div class="zb-body">
+          <strong>Beispiel:</strong> Banca d'Italia, Nationale Bank van België.<br><br>
+          <strong>Struktur:</strong> Das Kapital der Banca d'Italia wird von 60 Kreditinstituten und Versicherungsgesellschaften gehalten. Die Bank ist formal eine Privatnotenbank. Aktionäre erhalten Dividenden — aber haben faktisch keinen Einfluss auf Geldpolitik, die durch die EZB-Mitgliedschaft europäisch koordiniert wird.<br><br>
+          <strong>Besonderheit:</strong> Die Banca d'Italia beaufsichtigt als Bankenaufsichtsbehörde dieselben Banken, die ihre Anteilseigner sind. Ein struktureller Interessenkonflikt, der legal ist, aber selten diskutiert wird.
+        </div>
+      </div>
+
+      <div class="zb-card">
+        <div class="zb-header">
+          <div class="zb-name">Modell 4 — Supranational mit Immunität</div>
+          <span class="zb-type type-supra">Supranational</span>
+        </div>
+        <div class="zb-body">
+          <strong>Beispiel:</strong> Bank für Internationalen Zahlungsausgleich (BIZ), Basel.<br><br>
+          <strong>Struktur:</strong> Anteilseigner sind überwiegend Zentralbanken. Keine privaten Anteilseigner seit 2001. Koordiniert globale Zentralbankpolitik und entwickelt Regulierungsstandards (Basel I/II/III/IV).<br><br>
+          <strong>Entscheidend:</strong> Die BIZ genießt weitgehende Immunität gegenüber schweizerischer Gerichtsbarkeit, ist keinem nationalen Parlament rechenschaftspflichtig und kann von keiner demokratisch gewählten Institution kontrolliert oder abberufen werden. Die Basler Eigenkapitalregeln gelten für alle Banken weltweit — wurden aber nie demokratisch beschlossen.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 03 FED -->
+  <section class="section" id="fed">
+    <div class="section-number">03 — Federal Reserve</div>
+    <h2>Federal Reserve — Das Hybrid-Modell im Detail</h2>
+
+    <p>Die Fed ist der am häufigsten misverstandene und am häufigsten missdeutete Fall. Sie ist weder vollständig privat noch vollständig staatlich — und genau diese Uneindeutigkeit produziert sowohl offizielle Verharmlosung als auch verschwörungsideologische Übertreibung.</p>
+
+    <h3>Was die Fed selbst sagt</h3>
+    <p>Die Federal Reserve Bank of St. Louis beschreibt die Eigentümerstruktur so: Die regionalen Fed-Banken sind nicht Teil der US-Bundesregierung, existieren aber aufgrund eines Gesetzes des Kongresses. Der Besitz von Anteilen bringt nicht die Kontrolle und das finanzielle Interesse mit sich, die Inhabern von Stammaktien in gewinnorientierten Unternehmen zustehen. Die Anteile können nicht verkauft oder als Sicherheit verpfändet werden.</p>
+
+    <h3>Was das Bundestags-Wissenschaftsdienst dazu feststellt</h3>
+    <p>In einem Gutachten des Deutschen Bundestages (WD-4-037-08) heißt es: "Anteilseigner der zwölf Federal Reserve Banks sind die dem System angeschlossenen privaten Mitgliedsbanken. Da der Board of Governors sieben der zwölf Mitglieder des FOMC stellt, kommt ihm indirekt auch die Entscheidung über die Offenmarktpolitik zu."</p>
+
+    <div class="mechanism">
+      <div class="mechanism-title">Personalhoheit — die entscheidende Hebelfrage</div>
+      <ul>
+        <li>Board of Governors (7 Mitglieder): ernannt vom US-Präsidenten, bestätigt vom Senat — staatlich</li>
+        <li>Jede regionale Fed-Bank hat 9 Vorstandsmitglieder</li>
+        <li>6 davon werden von den privaten Mitgliedsbanken gewählt — privat</li>
+        <li>Diese regionalen Präsidenten sitzen im FOMC — dem Gremium, das den Leitzins setzt</li>
+        <li>Der US-Leitzins ist der Referenzpunkt für Kreditkosten weltweit</li>
+      </ul>
+    </div>
+
+    <h3>Geschichte: Jekyll Island 1910 (dokumentiert)</h3>
+    <p>Im November 1910 trafen sich sieben Männer — darunter Vertreter von J.P. Morgan, Kuhn Loeb & Co., Rockefeller-nahe Bankiers und ein Senator — auf Jekyll Island, Georgia, um in strikter Geheimhaltung das Konzept der Federal Reserve zu entwerfen. Das Treffen ist historisch belegt durch die Memoiren von Teilnehmer Frank Vanderlip, veröffentlicht im Saturday Evening Post, 9. Februar 1935: "Wir waren so geheimnisvoll — ja, verschwörerisch — wie es nur möglich war."</p>
+
+    <p>Die Fed wurde am 23. Dezember 1913 gegründet — kurz vor Weihnachten, als viele Kongressmitglieder nicht anwesend waren. Dieser Zeitpunkt ist dokumentiert und wird von Kritikern aller politischen Richtungen als problematisch bewertet.</p>
+
+    <div class="callout">
+      <div class="callout-label">Belegbar vs. Mythos</div>
+      <p>Belegbar: Private Mitgliedsbanken wählen Führungspersonal der Regionalbanken, die im Leitzins-Gremium sitzen. Jekyll Island: dokumentiert. — Mythos: "Rothschilds besitzen die Fed." Keine Primärquelle. Die Mitgliedsbanken sind heute JPMorgan Chase, Bank of America, Citigroup, Wells Fargo und andere — keine Rothschild-Bank.</p>
+    </div>
+
+    <h3>Timeline: Entstehung der Fed</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">1907</div>
+        <div class="tl-text">Bankpanik in den USA — J.P. Morgan organisiert privat die Stabilisierung. Der Kongress erkennt: Ein institutioneller Lender of Last Resort wird gebraucht.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1910</div>
+        <div class="tl-text">Jekyll Island: Geheimtreffen von Bankiers und Senator Aldrich — Entwurf des Fed-Konzepts. Dokumentiert durch Frank Vanderlip (Saturday Evening Post, 1935).</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1913</div>
+        <div class="tl-text">Federal Reserve Act, 23. Dezember — kurz vor Weihnachten unterzeichnet. Die Fed wird gegründet als Hybrid aus privaten Mitgliedsbanken und staatlichem Oversight.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1913</div>
+        <div class="tl-text">Im selben Jahr: 16. Zusatzartikel zur US-Verfassung — Einkommensteuer auf Bundesebene. Historisch auffällige Koinzidenz, aber kein belegbarer Kausalzusammenhang.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1935</div>
+        <div class="tl-text">Umbau der Fed: Board of Governors erhält mehr Kontrolle. Regionale Banken verlieren Einfluss — aber Personalhoheit der Mitgliedsbanken bleibt.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 EZB -->
+  <section class="section" id="ezb">
+    <div class="section-number">04 — EZB</div>
+    <h2>EZB — Formal staatlich, strukturell komplex</h2>
+
+    <p>Die EZB gehört den nationalen Zentralbanken der EU-Mitgliedstaaten. Es gibt keine privaten Eigentümer — das ist die offizielle und formal korrekte Darstellung der EZB selbst.</p>
+
+    <p>Die strukturelle Komplexität liegt jedoch darunter:</p>
+
+    <div class="mechanism">
+      <div class="mechanism-title">Die Kette der Eigentümerschaft</div>
+      <ul>
+        <li>EZB gehört den nationalen Zentralbanken (z.B. Bundesbank 21,8%)</li>
+        <li>Nationale Zentralbanken gehören dem jeweiligen Staat — in den meisten Fällen</li>
+        <li>Ausnahme: Banca d'Italia gehört 60 privaten Kreditinstituten und Versicherungen</li>
+        <li>Banca d'Italia hält Anteile an der EZB</li>
+        <li>Indirekt sind damit private Finanzinstitute mittelbar an der EZB beteiligt</li>
+      </ul>
+    </div>
+
+    <h3>Das Demokratiedefizit des Mandats</h3>
+    <p>Das EZB-Mandat — primär Preisstabilität, Zielinflation 2% — ist im EU-Vertrag (Art. 127 AEUV) festgeschrieben. Kein nationaler Gesetzgeber und kein EU-Parlament kann dieses Mandat einfach ändern. Das Europäische Parlament kann die EZB befragen, aber nicht anweisen. Die EZB ist rechenschaftspflichtig — aber nicht weisungsgebunden.</p>
+
+    <p>Das ist keine Verschwörung, sondern Konstruktionsprinzip: Unabhängigkeit der Geldpolitik von politischem Druck wurde nach den Inflationserfahrungen des 20. Jahrhunderts bewusst eingebaut. Die Frage, ob dieses Konstruktionsprinzip in einer Demokratie legitimierbar ist, ist eine offene politische Debatte — keine Verschwörungstheorie.</p>
+
+    <div class="pull-quote">
+      <p>"Die EZB ist rechenschaftspflichtig — aber nicht demokratisch kontrollierbar. Das ist kein Fehler im System. Das ist das System."</p>
+      — Redaktionelle Einordnung, dunkelfeld.report
+    </div>
+
+    <h3>Kapitalschlüssel der EZB (Stand 2024)</h3>
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th>Zentralbank</th>
+          <th>Land</th>
+          <th>Anteil</th>
+          <th>Eigentümer der Zentralbank</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Deutsche Bundesbank</td>
+          <td>Deutschland</td>
+          <td>21,8%</td>
+          <td>Bundesrepublik Deutschland (100%)</td>
+        </tr>
+        <tr>
+          <td>Banque de France</td>
+          <td>Frankreich</td>
+          <td>16,4%</td>
+          <td>Französischer Staat (100%)</td>
+        </tr>
+        <tr>
+          <td>Banca d'Italia</td>
+          <td>Italien</td>
+          <td>13,1%</td>
+          <td>60 private Kreditinstitute &amp; Versicherungen</td>
+        </tr>
+        <tr>
+          <td>Banco de España</td>
+          <td>Spanien</td>
+          <td>9,7%</td>
+          <td>Spanischer Staat (100%)</td>
+        </tr>
+        <tr>
+          <td>Weitere 16 Zentralbanken</td>
+          <td>EU</td>
+          <td>39%</td>
+          <td>Überwiegend staatlich</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 05 NATIONAL -->
+  <section class="section" id="national">
+    <div class="section-number">05 — Sonderfälle</div>
+    <h2>Nationale Sonderfälle</h2>
+
+    <h3>Banca d'Italia — Der unbekannte Privatfall</h3>
+    <p>Die Banca d'Italia ist formal eine Privatnotenbank. Ihr Kapital liegt bei 60 Kreditinstituten und Versicherungen — darunter Intesa Sanpaolo, UniCredit, Generali. 2013 wurde das Kapital durch Gesetzesdekret von 300.000 Aktien auf einen Wert von 7,5 Milliarden Euro aufgewertet. Die Aktionäre profitieren direkt: Dividenden werden jährlich ausgeschüttet.</p>
+
+    <p>Der strukturelle Interessenkonflikt: Die Banca d'Italia ist gleichzeitig Bankenaufsichtsbehörde für dieselben Banken, die ihre Anteilseigner sind. Dies ist rechtlich zulässig — aber demokratietheoretisch bemerkenswert.</p>
+
+    <h3>Schweizerische Nationalbank — Der börsennotierte Sonderfall</h3>
+    <p>Die SNB ist börsennotiert. Aktien der SNB werden an der Schweizer Börse gehandelt. Hauptanteilseigner sind Kantone und Kantonalbanken (zusammen über 50%), aber private Anleger können und halten SNB-Aktien. Die Geldpolitik liegt beim SNB-Rat — der von der Bundesversammlung gewählt wird.</p>
+
+    <h3>Banco de Portugal / Nationale Bank van België</h3>
+    <p>Belgien ist ein weiterer Fall mit privaten Anteilseignern: Die Nationale Bank van België ist an der Brüsseler Börse notiert. Der belgische Staat hält 50%, der Rest liegt bei privaten und institutionellen Anlegern. Dividenden werden ausgeschüttet.</p>
+  </section>
+
+  <!-- 06 BIZ -->
+  <section class="section" id="biz">
+    <div class="section-number">06 — BIZ Basel</div>
+    <h2>BIZ Basel — Die Zentralbank der Zentralbanken</h2>
+
+    <p>Die Bank für Internationalen Zahlungsausgleich ist die am wenigsten bekannte und strukturell bedeutsamste Institution des globalen Finanzsystems. Sie koordiniert die Politik der Zentralbanken weltweit — ohne demokratisches Mandat, ohne parlamentarische Kontrolle und mit weitreichender völkerrechtlicher Immunität.</p>
+
+    <h3>Gründung und Immunität</h3>
+    <p>Die BIZ wurde 1930 durch das Haager Abkommen gegründet — ursprünglich zur Abwicklung deutscher Reparationszahlungen nach dem Ersten Weltkrieg. Ihr Rechtsrahmen basiert auf dem Hauptsitzabkommen mit der Schweiz, das ihr weitgehende Befreiung von schweizerischer Gerichtsbarkeit und Steuerpflicht gewährt.</p>
+
+    <p>Der Bundestag-Wissenschaftsdienst hält in einem Gutachten von 2024 fest: Die Bezeichnung der BIZ als Völkerrechtssubjekt war in den Gründungsdokumenten bewusst vermieden worden — die weitreichenden Privilegien und Immunitäten existieren dennoch aufgrund des Haager Abkommens.</p>
+
+    <div class="mechanism">
+      <div class="mechanism-title">Was die BIZ tut — und wer sie kontrolliert</div>
+      <ul>
+        <li>Entwickelt Basler Eigenkapitalregeln (Basel I/II/III/IV) — gelten für alle Banken weltweit</li>
+        <li>Koordiniert geldpolitische Positionen der G10-Zentralbanken</li>
+        <li>Betreibt Forschungsabteilung mit erheblichem Einfluss auf akademische Wirtschaftsdebatte</li>
+        <li>Hält und verwaltet Devisenreserven von Zentralbanken</li>
+        <li>Anteilseigner: ausschließlich Zentralbanken (seit 2001, keine privaten Anteile mehr)</li>
+        <li>Kontrolliert von: niemandem — kein Parlament, kein Gericht, keine internationale Institution</li>
+      </ul>
+    </div>
+
+    <h3>Die Basler Eigenkapitalregeln — Soft Law mit globaler Wirkung</h3>
+    <p>Basel I (1988), Basel II (2004), Basel III (2010), Basel IV (2017) — diese Regelwerke bestimmen, wie viel Eigenkapital Banken weltweit vorhalten müssen. Sie beeinflussen damit direkt die Kreditvergabe, die Kosten von Hypotheken und Unternehmenskrediten und letztlich die Wirtschaftspolitik aller Länder.</p>
+
+    <p>Der Basler Ausschuss für Bankenaufsicht — das Gremium, das diese Regeln entwickelt — besitzt keine supranationale Rechtspersönlichkeit, gibt keine unmittelbar verbindlichen Vorschriften heraus und wurde nie von einem demokratisch gewählten Gremium beauftragt. Die Mitglieder verpflichten sich politisch zur Umsetzung — nicht rechtlich.</p>
+
+    <div class="callout">
+      <div class="callout-label">Das strukturelle Paradox</div>
+      <p>Die Basler Regeln werden von Zentralbankern und Aufsehern entwickelt, die selbst Vertreter der Institutionen sind, die sie regulieren sollen. Das Ergebnis wird weltweit als quasi-bindend behandelt — ohne demokratische Legitimation, ohne Klagerecht, ohne Abwahlmöglichkeit. Das ist keine Behauptung von Verschwörungstheoretikern. Das ist die dokumentierte Funktionsweise der BIZ.</p>
+    </div>
+
+    <h3>Die BIZ und CBDC</h3>
+    <p>Die BIZ koordiniert seit etwa 2020 aktiv die Entwicklung von Central Bank Digital Currencies (CBDCs) — digitale Zentralbankwährungen — weltweit. Die BIZ Innovation Hubs in mehreren Ländern arbeiten an technischen Standards, die die Grundlage für einen digitalen Euro, einen digitalen Yuan oder andere CBDCs bilden sollen. Diese Arbeit findet ohne öffentliche Debatte und ohne parlamentarische Beauftragung statt.</p>
+  </section>
+
+  <!-- 07 MACHT -->
+  <section class="section" id="macht">
+    <div class="section-number">07 — Analyse</div>
+    <h2>Die eigentliche Machtfrage</h2>
+
+    <p>Wer eine Zentralbank "besitzt", entscheidet selten darüber, wer sie kontrolliert. Die Macht liegt in drei anderen Strukturen:</p>
+
+    <div class="mechanism">
+      <div class="mechanism-title">Die drei realen Machthebel</div>
+      <ul>
+        <li><strong>Personalhoheit:</strong> Wer bestimmt, wer in den entscheidenden Gremien sitzt? Bei der Fed: zu 2/3 private Mitgliedsbanken. Bei der EZB: Regierungen der Mitgliedstaaten. Bei der BIZ: niemand Gewähltes.</li>
+        <li><strong>Mandatsdefinition:</strong> Wer hat festgelegt, was die Zentralbank tun soll? Das EZB-Mandat ist im EU-Vertrag fixiert — kein Parlament kann es einfach ändern. Das Basler Rahmenwerk wurde nie demokratisch beauftragt.</li>
+        <li><strong>Informationsasymmetrie:</strong> Zentralbanken treffen Entscheidungen auf Basis von Daten und Modellen, die die Öffentlichkeit nicht vollständig einsehen kann. Die Fed veröffentlicht ihre Protokolle mit Verzögerung — die BIZ veröffentlicht ihre internen Beratungen kaum.</li>
+      </ul>
+    </div>
+
+    <p>Das Ergebnis ist eine Struktur, die man als "funktionale Privatisierung öffentlicher Macht" beschreiben kann: Formal staatliche oder staatsnahe Institutionen, deren Entscheidungen strukturell von privaten Finanzinteressen mitgeformt werden — ohne dass dies als Interessenkonflikt gilt, weil es systemisch ist.</p>
+
+    <div class="pull-quote">
+      <p>"Der Cantillon-Effekt zeigt: Wer als Erster Zugang zu neu geschaffenem Geld hat, profitiert am stärksten — bevor die Preise steigen. Großbanken mit direktem Zugang zu Zentralbankkrediten kaufen Vermögenswerte, bevor Inflation sie verteuert. Wer am Ende der Kette steht — Löhne, Renten, Ersparnisse — verliert."</p>
+      — Richard Cantillon: "Essai sur la Nature du Commerce en Général" (1755) / Aufarbeitung: Ryan McMaken, Mises Institute (2021)
+    </div>
+  </section>
+
+  <!-- 08 FACTCHECK -->
+  <section class="section" id="factcheck">
+    <div class="section-number">08 — Fact-Check</div>
+    <h2>Fact-Check: Was stimmt, was nicht?</h2>
+
+    <table class="factcheck">
+      <thead>
+        <tr>
+          <th>Behauptung</th>
+          <th>Status</th>
+          <th>Anmerkung</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>"Länder kontrollieren ihre Zentralbanken vollständig"</td>
+          <td><span class="status status-nein">FALSCH / DIFFERENZIERT</span></td>
+          <td>Fed: private Mitgliedsbanken wählen 2/3 des Regionalbankvorstands. Banca d'Italia: formal privat. BIZ: keiner Kontrolle unterworfen.</td>
+        </tr>
+        <tr>
+          <td>Mitgliedsbanken der Fed wählen Führungspersonal der Regionalbanken</td>
+          <td><span class="status status-ok">BELEGBAR</span></td>
+          <td>Federal Reserve Act, Bundestag WD-4-037-08, eigene Fed-Dokumentation</td>
+        </tr>
+        <tr>
+          <td>Jekyll Island 1910 — Geheimtreffen zur Fed-Planung</td>
+          <td><span class="status status-ok">BELEGBAR</span></td>
+          <td>Frank Vanderlip, Saturday Evening Post, 9. Feb. 1935. Nicht bestritten.</td>
+        </tr>
+        <tr>
+          <td>"Rothschilds besitzen die Fed"</td>
+          <td><span class="status status-nein">NICHT BELEGBAR</span></td>
+          <td>Keine Primärquelle. Mitgliedsbanken sind JPMorgan, BofA, Citigroup etc. Antisemitischer Ursprung des Narrativs dokumentiert.</td>
+        </tr>
+        <tr>
+          <td>Banca d'Italia ist formal eine Privatnotenbank</td>
+          <td><span class="status status-ok">BELEGBAR</span></td>
+          <td>Wikipedia (DE), eigene Satzung der Banca d'Italia, Gesetzesdekret 2013</td>
+        </tr>
+        <tr>
+          <td>BIZ entwickelt globale Bankenregeln ohne demokratisches Mandat</td>
+          <td><span class="status status-ok">BELEGBAR</span></td>
+          <td>Bundestag WD-1-003-24, Basler Ausschuss eigene Dokumente: "soft law", keine Rechtspersönlichkeit, keine Durchsetzungsbefugnis</td>
+        </tr>
+        <tr>
+          <td>BIZ genießt weitgehende Immunität gegenüber Schweizer Justiz</td>
+          <td><span class="status status-ok">BELEGBAR</span></td>
+          <td>Haager Abkommen 1930, Hauptsitzabkommen mit der Schweiz — Bundestag WD-1-003-24</td>
+        </tr>
+        <tr>
+          <td>EZB hat keine privaten Eigentümer</td>
+          <td><span class="status status-partial">DIFFERENZIERT</span></td>
+          <td>Formal korrekt. Aber: Banca d'Italia (13,1% EZB-Anteil) ist formal privat. Indirekte private Beteiligung strukturell vorhanden.</td>
+        </tr>
+        <tr>
+          <td>"Kennedy wurde ermordet, weil er die Fed abschaffen wollte"</td>
+          <td><span class="status status-nein">NICHT BELEGBAR</span></td>
+          <td>Executive Order 11110 (1963) ermächtigte das Schatzamt zu Silberzertifikaten — keine Fed-Abschaffung. Verschwörungsmythos ohne Primärquelle.</td>
+        </tr>
+        <tr>
+          <td>EZB-Mandat kann kein Parlament einfach ändern</td>
+          <td><span class="status status-ok">BELEGBAR</span></td>
+          <td>Art. 127 AEUV — Vertragsänderung erfordert Einstimmigkeit aller EU-Mitgliedstaaten</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 09 QUELLEN -->
+  <section class="section" id="quellen">
+    <div class="section-number">09 — Quellen</div>
+    <h2>Quellennachweis</h2>
+
+    <div class="mechanism">
+      <div class="mechanism-title">Primär- und Sekundärquellen</div>
+      <ul>
+        <li>Deutscher Bundestag, Wissenschaftlicher Dienst: WD-4-037-08 — "Das Federal Reserve System" (2008)</li>
+        <li>Deutscher Bundestag, Wissenschaftlicher Dienst: WD-1-003-24 — "Zur Rechtsstellung der BIZ" (2024)</li>
+        <li>Federal Reserve Bank of St. Louis: Eigene Erklärung zur Eigentümerstruktur — stlouisfed.org</li>
+        <li>Frank Vanderlip: "Farm Boy to Financier" — Saturday Evening Post, 9. Februar 1935 (Jekyll Island)</li>
+        <li>EZB: "Wem gehört die EZB?" — ecb.europa.eu/ecb-and-you/explainers</li>
+        <li>Deutsche Bundesbank: "Das steckt hinter dem Kapitalschlüssel" — bundesbank.de</li>
+        <li>Banca d'Italia: Satzung und Gesetzesdekret 133/2013 — bancaditalia.it</li>
+        <li>BIZ: "Grundlegende Texte" — Haager Abkommen 1930, Hauptsitzabkommen Schweiz — bis.org</li>
+        <li>Mtrlegal.com: "Basler Ausschuss für Bankenaufsicht" — Rechtsstatus, soft law</li>
+        <li>Gabler Banklexikon: "Federal Reserve System (FED)"</li>
+        <li>Richard Cantillon: "Essai sur la Nature du Commerce en Général" (1755)</li>
+        <li>Ryan McMaken / Mises Institute: "Cantillon Effects and Monetary Policy" (2021)</li>
+        <li>Adam Lebor: "Tower of Basel — The Shadowy History of the Secret Bank that Runs the World" (2013)</li>
+        <li>Art. 127 AEUV — Vertrag über die Arbeitsweise der Europäischen Union</li>
+        <li>Comdirect Magazin: "Wem gehören die Notenbanken wirklich?" (2019)</li>
+      </ul>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Verknüpfte Dossiers</div>
+      <p>Dossier 016 (Die Dynastien) — Familien wie Rockefeller und Morgan im Kontext der Fed-Gründung. &nbsp;|&nbsp; Folgedossier geplant: Digitales Zentralbankgeld (CBDC) — BIZ-Koordination, eIDAS 2.0, digitaler Euro.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-meta">
+      DUNKELFELD.REPORT<br>
+      Dossier 017 · Wem gehört das Geld?<br>
+      Erstellt: Juni 2026<br>
+      Format: GitHub Pages / Statisches HTML
+    </div>
+    <div class="footer-disclaimer">
+      Alle Angaben basieren auf öffentlich zugänglichen Quellen. Kein Inhalt dieses Dossiers stellt eine juristische, finanzielle oder politische Beratung dar. Fehler können per Issue im GitHub-Repository gemeldet werden.
+    </div>
+  </div>
+</footer>
+
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

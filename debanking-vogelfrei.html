@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vogelfrei — Debanking und EU-Sanktionen gegen eigene Bürger | dunkelfeld.report</title>
+<meta name="rubrik" content="cat-geld">
+<meta name="kachel-titel" content="Vogelfrei —Debanking und EU-Sanktionengegen eigene Bürger">
+<meta name="description" content="Konten ohne Gerichtsverfahren gesperrt, Existenzen vernichtet. Dokumentation von Debanking-Fällen in Deutschland und EU-Sanktionen gegen eigene Staatsbürger.">
+<meta name="keywords" content="Debanking, Kontokündigung, EU-Sanktionen, Meinungsfreiheit, Pressefreiheit, Deutschland, Rechtsstaat">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  :root {
+    --bg: #09090b;
+    --surface: #111113;
+    --surface2: #1a1a2e;
+    --border: #2a2a3a;
+    --text: #e2e2e5;
+    --muted: #8888a0;
+    --amber: #e8c547;
+    --amber-dim: #c9a83a;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --red: #f87171;
+    --blue: #60a5fa;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.05rem;
+    line-height: 1.85;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+  .site-logo {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--amber);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+  .site-nav {
+    display: flex;
+    gap: 1.5rem;
+    margin-left: auto;
+    list-style: none;
+  }
+  .site-nav a {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color 0.2s;
+  }
+  .site-nav a:hover { color: var(--amber); }
+
+  /* LAYOUT */
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .dossier-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 2.9rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--amber);
+  }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--muted);
+    margin-bottom: 1.8rem;
+    line-height: 1.6;
+    max-width: 620px;
+  }
+  .hero-meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  /* STAT GRID */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    margin: 3rem 0;
+    border: 1px solid var(--border);
+  }
+  .stat-card {
+    background: var(--surface);
+    padding: 1.5rem 1.2rem;
+  }
+  .stat-number {
+    font-family: 'Courier New', monospace;
+    font-size: 1.8rem;
+    color: var(--amber);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+  }
+
+  /* CONTENT */
+  .content {
+    padding: 2.5rem 0 4rem;
+  }
+  .content h2 {
+    font-size: 1.4rem;
+    color: var(--amber);
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+  }
+  .content h3 {
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+  }
+  .content p {
+    padding-bottom: 1.2rem;
+    color: var(--text);
+  }
+
+  /* SOURCE BOX */
+  .source-box {
+    background: var(--surface2);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .source-box strong {
+    color: var(--amber);
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* STATUS TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 0.15em 0.5em;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-left: 0.4em;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid rgba(74,222,128,0.3); }
+  .tag-extrapolation { background: rgba(251,146,60,0.15); color: var(--orange); border: 1px solid rgba(251,146,60,0.3); }
+  .tag-offen { background: rgba(248,113,113,0.15); color: var(--red); border: 1px solid rgba(248,113,113,0.3); }
+
+  /* CASE BLOCK */
+  .case-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber-dim);
+    padding: 1.2rem 1.4rem;
+    margin: 1rem 0;
+  }
+  .case-block .case-name {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--amber);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .case-block p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    padding-bottom: 0;
+  }
+
+  /* ESCALATION BLOCK (EU sanctions = red border) */
+  .case-block.eskalation {
+    border-left-color: var(--red);
+  }
+  .case-block.eskalation .case-name {
+    color: var(--red);
+  }
+
+  /* QUOTE */
+  blockquote {
+    border-left: 3px solid var(--amber);
+    padding: 0.8rem 1.2rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1rem;
+  }
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--amber);
+    margin-top: 0.6rem;
+  }
+
+  /* DATA TABLE */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.88rem;
+  }
+  .data-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--amber);
+    border-bottom: 1px solid var(--border);
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+  }
+  .data-table td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+    vertical-align: top;
+  }
+  .data-table tr:hover td { background: var(--surface); }
+
+  /* CLOSING QUESTION */
+  .closing {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1rem;
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+    margin-top: 3rem;
+  }
+
+  /* FOOTER */
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 0 2rem;
+    margin-top: 4rem;
+  }
+  .site-footer p {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    line-height: 1.8;
+    padding-bottom: 0.5rem;
+  }
+  .footer-nav {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  .footer-nav a {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .footer-nav a:hover { color: var(--amber); }
+
+  a { color: var(--amber); text-decoration: none; }
+  a:hover { color: var(--amber-dim); }
+
+  @media (max-width: 600px) {
+    .site-nav { display: none; }
+    .hero h1 { font-size: 1.8rem; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/" class="site-logo">dunkelfeld.report</a>
+  <nav>
+    <ul class="site-nav">
+      <li><a href="/dossiers.html">Dossiers</a></li>
+      <li><a href="/quellen.html">Quellen</a></li>
+      <li><a href="/impressum.html">Impressum</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <div class="container">
+
+    <section class="hero">
+      <p class="dossier-label">Dokumentation · Rechtsstaat · Meinungsfreiheit</p>
+      <h1>Vogelfrei —<br><em>Debanking und EU-Sanktionen<br>gegen eigene Bürger</em></h1>
+      <p class="hero-sub">Konten werden ohne Anklage gesperrt, Existenzen vernichtet, Bewegungsfreiheit entzogen. Zwei Ebenen — ein Muster: In Deutschland kündigen Banken auf Zuruf von Medien und Behörden. Auf EU-Ebene frieren Brüsseler Bürokraten Konten europäischer Staatsbürger ein — ohne Gerichtsverfahren, ohne Anhörung, ohne Berufungsmöglichkeit, die wirkt.</p>
+      <div class="hero-meta">
+        <span>Stand: Juni 2026</span>
+        <span>Alle Angaben mit Primärquellen belegt oder als OFFEN gekennzeichnet</span>
+      </div>
+    </section>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-number">15+</div>
+        <div class="stat-label">dokumentierte Debanking-Fälle in Deutschland seit 2020</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">12+</div>
+        <div class="stat-label">Banken, bei denen Anwalt Haintz 2020–2023 abgelehnt wurde</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">109</div>
+        <div class="stat-label">Konten, die BR-Journalisten an Banken meldeten (BR selbst dokumentiert)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">0</div>
+        <div class="stat-label">Gerichtsverfahren vor EU-Sanktionen gegen eigene Staatsbürger</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <section class="content">
+
+      <h2>I. Was ist Debanking?</h2>
+
+      <p>Eine Bank kündigt ein Konto. Das ist legal — Banken sind privatrechtliche Unternehmen und dürfen Geschäftsbeziehungen beenden. Der entscheidende Unterschied zu einer normalen Kündigung: Es gibt keine Begründungspflicht, kein vorheriges Gerichtsverfahren, keine Anklage, keine Möglichkeit zur Stellungnahme.</p>
+
+      <p>In Deutschland hat sich seit 2020 ein Muster herausgebildet: Konten von Personen, die öffentlich als politisch unerwünscht eingestuft werden, werden gekündigt — oft kurz nach medialer oder behördlicher Intervention. Die Betroffenen verlieren damit nicht nur ein Konto, sondern in vielen Fällen ihre wirtschaftliche Handlungsfähigkeit.</p>
+
+      <div class="source-box">
+        <strong>Rechtlicher Rahmen</strong>
+        § 675f BGB: Zahlungsdienstleister können den Rahmenvertrag jederzeit mit 2-monatiger Kündigungsfrist beenden. § 31 ZKG (Zahlungskontengesetz): Jeder hat Anspruch auf ein Basiskonto — aber kein Anspruch auf ein reguläres Konto. Begründung der Kündigung: nicht gesetzlich vorgeschrieben. <span class="tag tag-belegt">BELEGT</span>
+      </div>
+
+      <h2>II. Dokumentierte Fälle — Ebene 1: Privatrechtliches Debanking</h2>
+
+      <div class="case-block">
+        <p class="case-name">Michael Ballweg — Volksbank Württemberg, Mai 2022 <span class="tag tag-belegt">BELEGT</span></p>
+        <p>Konten des Querdenken-Gründers wurden von der Volksbank Württemberg gekündigt. Laut Gerichtsdokumenten erfolgte zuvor eine FIU-Meldung (Financial Intelligence Unit) mit dem Vermerk "staatsschutzrelevant". Spätere LKA-Dokumente, die im Rahmen des Strafverfahrens aktenkundig wurden, belegen, dass die Behördenbeteiligung dokumentiert ist. Die ursprünglichen Vorwürfe gegen Ballweg wurden im Laufe des Verfahrens weitgehend fallengelassen oder korrigiert.</p>
+      </div>
+
+      <div class="case-block">
+        <p class="case-name">Tino Chrupalla — Postbank, 2023 <span class="tag tag-belegt">BELEGT</span></p>
+        <p>Der AfD-Bundesvorsitzende bestätigte öffentlich die Kündigung seines Postbank-Kontos. Der Fall wurde in der ARD-Sendung "Hart aber fair" thematisiert und medial diskutiert.</p>
+      </div>
+
+      <div class="case-block">
+        <p class="case-name">Björn Höcke — Kontokündigung, 2020 <span class="tag tag-belegt">BELEGT</span></p>
+        <p>Thüringens AfD-Landeschef Höcke berichtete öffentlich über die Kündigung seines Bankkontos. Der Fall ist Teil einer Reihe ähnlicher Vorgänge gegen AfD-nahe Personen in diesem Zeitraum.</p>
+      </div>
+
+      <div class="case-block">
+        <p class="case-name">AfD NRW-Landesverband + Bundespartei — mitten im Wahlkampf <span class="tag tag-belegt">BELEGT</span></p>
+        <p>Mehrere AfD-Gliederungen berichteten über Kontokündigungen durch verschiedene Kreditinstitute, teilweise unmittelbar vor Wahlterminen. Die Bundespartei bestätigte entsprechende Vorgänge öffentlich.</p>
+      </div>
+
+      <div class="case-block">
+        <p class="case-name">Flavio von Witzleben — Sparkasse Karlsruhe <span class="tag tag-belegt">BELEGT</span></p>
+        <p>Von Witzleben, 15 Jahre Kunde der Sparkasse Karlsruhe, klagte gegen seine Kontokündigung. Der Fall wurde medial dokumentiert und ist Teil einer wachsenden Zahl juristischer Auseinandersetzungen zu diesem Thema.</p>
+      </div>
+
+      <div class="case-block">
+        <p class="case-name">Aya Velázquez — Journalistin <span class="tag tag-belegt">BELEGT</span></p>
+        <p>Die Journalistin Velázquez dokumentierte ihre Kontokündigung öffentlich. Ihr Fall ist Teil einer von Multipolar geführten Chronik von Debanking-Fällen gegen kritische Medienvertreter.</p>
+      </div>
+
+      <div class="case-block">
+        <p class="case-name">Alexander Wallasch — Solaris-Bank, 24h nach Twitter-Denunziation <span class="tag tag-belegt">BELEGT</span></p>
+        <p>Der Blogger und Autor berichtete, sein Konto sei bei der Solaris-Bank innerhalb von 24 Stunden nach einer öffentlichen Denunziation auf Twitter gekündigt worden. Die zeitliche Abfolge ist dokumentiert.</p>
+      </div>
+
+      <div class="case-block">
+        <p class="case-name">Hadmut Danisch — Deutsche Bank <span class="tag tag-belegt">BELEGT</span></p>
+        <p>Danisch, IT-Sicherheitsexperte und Blogger, dokumentierte auf seinem Blog detailliert, dass seine Kontokündigung bei der Deutschen Bank kurz nach einer LKA-Kontoauskunft erfolgte. Er machte entsprechende Korrespondenz öffentlich zugänglich.</p>
+      </div>
+
+      <div class="case-block">
+        <p class="case-name">Boris Reitschuster — Bankhaus Bauer, Spendenkonto 2022 <span class="tag tag-belegt">BELEGT</span></p>
+        <p>Der Journalist und frühere Moskau-Korrespondent berichtete über die Kündigung seines Spendenkontos beim Bankhaus Bauer im Jahr 2022. Reitschuster dokumentierte den Vorgang auf seiner Plattform.</p>
+      </div>
+
+      <div class="case-block">
+        <p class="case-name">Anselm Lenz (Demokratischer Widerstand) — 12 Banken + 1 Sparkasse, 2020–2023 <span class="tag tag-belegt">BELEGT</span></p>
+        <p>Lenz, Herausgeber der Zeitung "Demokratischer Widerstand", berichtete über systematische Ablehnungen bei insgesamt 12 Banken und einer Sparkasse im Zeitraum 2020 bis 2023. Der Fall dokumentiert die Schwierigkeit, nach einer Kontokündigung überhaupt eine neue Bankverbindung zu eröffnen.</p>
+      </div>
+
+      <div class="case-block">
+        <p class="case-name">Markus Haintz — Rechtsanwalt, 20–25 Konten in 3 Ländern, 2020–2023 <span class="tag tag-belegt">BELEGT</span></p>
+        <p>Der auf Corona-Maßnahmen spezialisierte Rechtsanwalt berichtete, in einem Zeitraum von drei Jahren bei 20 bis 25 Instituten in drei verschiedenen Ländern kein Konto eröffnen zu können. Haintz machte seine Erfahrungen in Interviews öffentlich.</p>
+      </div>
+
+      <div class="case-block">
+        <p class="case-name">Scott Ritter — US-Journalist, 2025 <span class="tag tag-belegt">BELEGT</span></p>
+        <p>Der frühere UN-Waffeninspekteur und Journalist berichtete 2025 über die Kündigung seiner Bankkonten. Ritter hatte zuvor kritisch über die NATO-Russland-Politik berichtet.</p>
+      </div>
+
+      <div class="case-block">
+        <p class="case-name">Auf1 (Österreich) — MBH-Bank Ungarn, Mai 2025 <span class="tag tag-belegt">BELEGT</span></p>
+        <p>Der österreichische Fernsehsender Auf1 verlor zum 1. Mai 2025 sein einziges Bankkonto bei der ungarischen MBH-Bank. Zuvor hatte Auf1 nach eigenen Angaben Dutzende Absagen von Banken in Österreich und anderen EU-Ländern erhalten. Der Sender wandte sich öffentlich an sein Publikum um Hilfe — ohne Bankkonto drohte das Einstellen des Betriebs. Das österreichische Magazin Profil berichtete darüber mit erkennbarer Genugtuung. Ob man Auf1 für seriös hält oder nicht, ändert nichts an der strukturellen Frage: Medienkritik per Kontokündigung ist kein rechtsstaatliches Instrument. Quellen: Profil (März 2025), Norbert Häring (norberthaering.de, März 2025).</p>
+      </div>
+
+      <h2>III. Drei Steuerungskanäle</h2>
+
+      <p>Die dokumentierten Fälle lassen drei wiederkehrende Muster erkennen:</p>
+
+      <h3>Kanal 1: Medien als Denunzianten</h3>
+
+      <div class="source-box">
+        <strong>Primärquelle — BR selbst berichtet</strong>
+        Bayerischer Rundfunk (BR): Journalisten des BR übermittelten 109 Konten sowie 38 PayPal-Accounts an die entsprechenden Finanzinstitute. Der BR hat über diesen Vorgang selbst berichtet. Darüber hinaus sind Fälle dokumentiert, in denen Tagesspiegel, taz und Correctiv Informationen über Kontoinhabende an Banken weiterleiteten. <span class="tag tag-belegt">BELEGT</span>
+      </div>
+
+      <div class="source-box">
+        <strong>Sekundärquelle — Multipolar-Chronik (Hakon von Holst, Juli 2025)</strong>
+        Das Onlinemagazin Multipolar veröffentlichte im Juli 2025 eine umfassende Fallchronik unter dem Titel "De-Banking von Regierungskritikern" (Autor: Hakon von Holst). Sie enthält zwei Listen: Medien und Journalisten, denen Konten gekündigt wurden; Politiker, Parteien und Personen des öffentlichen Lebens. PEN International reagierte: Kontokündigungen bei unabhängigen Medien seien "eine Form der indirekten Zensur". Handelsblatt-Journalist Norbert Häring kommentierte auf seinem Blog, es handle sich "nicht um Einzelfälle, sondern um eine systematische Schikane gegen regierungskritische Berichterstattung". Häring ist in diesem Kontext Beobachter und Dokumentator — nicht selbst Opfer einer Kontokündigung. URL: multipolar-magazin.de/artikel/de-banking-chronik <span class="tag tag-belegt">BELEGT</span>
+      </div>
+
+      <h3>Kanal 2: Behörden als Hebel</h3>
+
+      <p>Im Fall Danisch ist dokumentiert, dass das LKA vor der Kontokündigung eine Kontoauskunft bei der Bank angefordert hatte. Im Fall Ballweg belegen Gerichtsakten, dass die FIU eine Meldung mit dem Vermerk "staatsschutzrelevant" übermittelte — bevor die Kündigung ausgesprochen wurde. <span class="tag tag-belegt">BELEGT</span></p>
+
+      <div class="source-box">
+        <strong>FIU — Financial Intelligence Unit</strong>
+        Die FIU ist die deutsche Zentralstelle für Finanztransaktionsuntersuchungen beim Zoll. Banken sind nach dem Geldwäschegesetz (GwG) zur Meldung verdächtiger Transaktionen verpflichtet. Behörden können umgekehrt Auskunftsersuchen an Banken stellen. Dass diese Auskunftsersuchen de facto zu Kontokündigungen führen können, ist in mehreren Fällen zeitlich dokumentiert. <span class="tag tag-belegt">BELEGT</span>
+      </div>
+
+      <h3>Kanal 3: Banken aus Compliance-Angst</h3>
+
+      <p>Banken sind nach Anti-Geldwäsche-Regulierung (AML) zur Risikovermeidung verpflichtet. Juristen sprechen von "Derisking": Um Compliance-Risiken zu minimieren, werden Kunden präventiv abgestoßen. Die rechtliche Zulässigkeit dieser Praxis ist unbestritten — was fehlt, ist eine Begründungspflicht. <span class="tag tag-belegt">BELEGT</span></p>
+
+      <h2>IV. Was die Politik dazu sagt</h2>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Akteur</th>
+            <th>Aussage</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Claudia Roth (Kulturstaatsministerin)</td>
+            <td>"Uns ist das Phänomen von Kontokündigungen bei Medien nicht bekannt."</td>
+            <td><span class="tag tag-belegt">BELEGT</span></td>
+          </tr>
+          <tr>
+            <td>Bundesfinanzministerium</td>
+            <td>Kontokündigungen lägen "im freien Ermessen" der Kreditinstitute und seien "geschäftspolitische Entscheidungen".</td>
+            <td><span class="tag tag-belegt">BELEGT</span></td>
+          </tr>
+          <tr>
+            <td>CDU-Abgeordneter Brodesser</td>
+            <td>Betroffene sollten sich fragen, "was sie zur Kündigung beigetragen haben".</td>
+            <td><span class="tag tag-belegt">BELEGT</span></td>
+          </tr>
+          <tr>
+            <td>AfD-Antrag im Bundestag</td>
+            <td>Antrag zum gesetzlichen Verbot von politisch motiviertem Debanking — abgelehnt von CDU, SPD, Grünen, Linken.</td>
+            <td><span class="tag tag-belegt">BELEGT</span></td>
+          </tr>
+          <tr>
+            <td>Donald Trump (USA)</td>
+            <td>Unterzeichnete August 2025 eine Exekutivanordnung, die politisch motiviertes Debanking in den USA verbietet.</td>
+            <td><span class="tag tag-belegt">BELEGT</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <hr class="divider">
+
+      <h2>V. Ebene 2 — EU-Sanktionen gegen eigene Staatsbürger</h2>
+
+      <p>Was auf nationaler Ebene als privatrechtliches Debanking stattfindet, hat auf EU-Ebene eine staatliche Entsprechung: Sanktionslisten. Das Besondere: Die betroffenen Personen sind keine feindlichen Ausländer. Es sind europäische Staatsbürger, teils mit Wohnsitz in der EU — und sie wurden ohne Gerichtsverfahren, ohne Anhörung und ohne wirksame Berufungsmöglichkeit mit allen Konsequenzen eines Vermögenseinfrierens belegt.</p>
+
+      <div class="case-block eskalation">
+        <p class="case-name">Thomas Röper (Antispiegel) + Alina Lipp — erste deutsche EU-Bürger auf Sanktionsliste, Mai 2025 <span class="tag tag-belegt">BELEGT</span></p>
+        <p>Röper (Blogger, "Anti-Spiegel") und Lipp (Journalistin, lebt in Russland) wurden im Mai 2025 auf die EU-Sanktionsliste gesetzt. Konten eingefroren. De-facto-Einreiseverbot in die EU. Der Westend Verlag darf Röpers Bücher verkaufen — aber die Tantiemen nicht weiterleiten. Beide leben in Russland.</p>
+      </div>
+
+      <div class="case-block eskalation">
+        <p class="case-name">Hüseyin Doğru (Journalist, Red Media) — lebt in Berlin, Frau + 3 Kinder <span class="tag tag-belegt">BELEGT</span></p>
+        <p>Doğru ist türkischstämmiger Journalist mit Wohnsitz Berlin und europäischer Familie. Nach seiner Listung: Konto gesperrt, Arbeitsverbot, Hilfe leisten für Dritte strafbar. Genehmigte Barabhebung: 560 Euro pro Monat. Er lebt und arbeitet weiterhin in Deutschland.</p>
+      </div>
+
+      <div class="case-block eskalation">
+        <p class="case-name">Jacques Baud — Schweizer, ehem. NATO/UN/Schweizer Geheimdienst, Bestsellerautor — Dezember 2025 <span class="tag tag-belegt">BELEGT</span></p>
+        <p>Baud, pensionierter Schweizer Geheimdienstoffizier und Autor mehrerer Bücher über den Ukraine-Krieg, wurde im Dezember 2025 sanktioniert. Wohnsitz: Brüssel. Konto gesperrt. Einreiseverbot EU — obwohl er in der EU wohnt. Anfangs konnte er weder Lebensmittel kaufen noch Miete zahlen. Die Schweizer Behörden protestierten offiziell bei der EU.</p>
+      </div>
+
+      <div class="case-block eskalation">
+        <p class="case-name">Elena Kolbasnikowa + Max Schlund — russisches Paar, lange in Deutschland gelebt, Mai 2025 <span class="tag tag-belegt">BELEGT</span></p>
+        <p>Das Paar, das lange in Deutschland ansässig war, wurde im Mai 2025 sanktioniert und de facto ausgebürgert. Ihre Möglichkeit, in der EU zu leben und zu arbeiten, wurde durch die Listung faktisch beendet.</p>
+      </div>
+
+      <h2>VI. Was Juristen dazu sagen</h2>
+
+      <div class="source-box">
+        <strong>BSW-Rechtsgutachten (von der Schulenburg / Firmenich) — BELEGT</strong>
+        Ein im Auftrag der BSW-Fraktion erstelltes Rechtsgutachten kommt zu dem Ergebnis, dass die EU-Sanktionen gegen eigene Staatsbürger dem EU-Recht und dem Völkerrecht widersprechen. Zentraler Kritikpunkt: Der Begriff "Informationsmanipulation" als Sanktionsgrund lässt unbegrenzte Ermessensfreiheit und ist nicht hinreichend bestimmt im Sinne rechtsstaatlicher Anforderungen.
+      </div>
+
+      <div class="source-box">
+        <strong>EuGH-Urteile — BELEGT</strong>
+        Sanktionierte EU-Bürger haben vor dem Europäischen Gerichtshof Recht bekommen. Das Ergebnis: Sie blieben trotzdem auf der Liste oder wurden direkt auf eine neue Liste gesetzt. Eine effektive Berufungsmöglichkeit existiert damit faktisch nicht.
+      </div>
+
+      <blockquote>
+        "Ein rechtsstaatlicher Albtraum. Die Willkürverfügung eines nichtstaatlichen Gebildes — einhundertundzehn Jahre nach Kafkas 'Der Prozess'."
+        Martin Sonneborn, EU-Parlamentarier
+      </blockquote>
+
+      <blockquote>
+        "Rückfall in vordemokratische Zeiten."
+        Andrej Hunko, MdB
+      </blockquote>
+
+      <p>Die Bundesregierung hat angekündigt, weitere Publizisten sanktionieren zu wollen. EU-Außenbeauftragte Kaja Kallas hat nach Berichten aktiv daran gearbeitet, Sanktionsopfer innerhalb der EU aufzuspüren. <span class="tag tag-belegt">BELEGT</span></p>
+
+      <h2>VII. Ein Blick in die Geschichte</h2>
+
+      <p>Die Praxis, Personen ohne Gerichtsverfahren für vogelfrei zu erklären, ist historisch nicht neu:</p>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Epoche / Fall</th>
+            <th>Instrument</th>
+            <th>Folgen</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cicero, Rom 43 v. Chr.</td>
+            <td>Proskriptionsliste</td>
+            <td>Vogelfrei erklärt → Vermögenseinzug → sein Kopf wurde auf dem Forum ausgestellt</td>
+          </tr>
+          <tr>
+            <td>Mittelalter (u.a. Martin Luther 1521)</td>
+            <td>Reichsacht</td>
+            <td>Vermögensentzug, Bewegungsverbot, kein Rechtsschutz durch das Reich</td>
+          </tr>
+          <tr>
+            <td>Deutschland 1933–1945</td>
+            <td>Ausbürgerung</td>
+            <td>"Who is Who der deutschen Schriftsteller" verlor Staatsangehörigkeit, Vermögen, Heimkehrrecht</td>
+          </tr>
+          <tr>
+            <td>EU, ab 2022 (beschleunigt 2024/25)</td>
+            <td>Sanktionsliste (Verordnung 2022/350 ff.)</td>
+            <td>Konto gesperrt, Einreiseverbot, Hilfe leisten strafbar — ohne Gerichtsverfahren</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="source-box">
+        <strong>Historische Einordnung — Quellen</strong>
+        Cicero-Proskription: Plutarch, Vita Ciceronis (Primärquelle, gemeinfrei). Reichsacht Luther: Wormser Edikt 1521, Reichsarchiv (Primärquelle, gemeinfrei). NS-Ausbürgerung: Bundesarchiv, Ausbürgerungslisten 1933–1945 (online zugänglich). Historische Parallele zum aktuellen EU-Vorgehen: Der Freitag, Ausgabe 2025 (Sekundärquelle). <span class="tag tag-belegt">BELEGT</span>
+      </div>
+
+      <h2>VIII. Großbritannien: Der Farage-Coutts-Skandal als Blaupause</h2>
+
+      <p>Was in Deutschland ohne größere öffentliche Debatte geschieht, wurde in Großbritannien 2023 zum politischen Eklat — weil die interne Begründung einer Bank durch Akteneinsicht öffentlich wurde.</p>
+
+      <div class="case-block">
+        <p class="case-name">Nigel Farage — Coutts/NatWest, Juni 2023 <span class="tag tag-belegt">BELEGT</span></p>
+        <p>Die Privatbank Coutts (Tochter von NatWest) kündigte dem Brexit-Politiker und Broadcaster Nigel Farage das Konto. NatWest behauptete zunächst, er erfülle die Mindestvermögensanforderungen nicht. Farage beantragte Akteneinsicht und veröffentlichte ein internes 40-seitiges Dossier des "Wealth Reputational Risk Committee": Seine Ansichten seien "not compatible with Coutts" — er wurde intern als "disingenuous grifter" und "xenophobic" beschrieben. NatWest-CEO Alison Rose trat zurück, nachdem bekannt wurde, dass sie vertrauliche Details über den Fall an einen BBC-Journalisten weitergegeben hatte. Coutts-CEO Peter Flavel trat ebenfalls zurück. Die britische Financial Conduct Authority leitete eine Untersuchung wegen möglicher Regulierungsverstöße ein. Quellen: Wikipedia (Nigel Farage Coutts bank scandal, mit umfangreichen Primärquellverweisen), CNN Business (Oktober 2023).</p>
+      </div>
+
+      <p>Der Fall ist deshalb europäisch relevant: Er belegt erstmals durch interne Bankdokumente, dass "Reputationsrisiko" und politische Einschätzung explizit als Kündigungsgrund formuliert wurden — und er zeigt, was ohne Akteneinsichtsrecht verborgen bleibt. In Deutschland gibt es keine vergleichbare gesetzliche Verpflichtung der Banken zur Offenlegung.</p>
+
+      <div class="source-box">
+        <strong>UK-Zahlen — FOI-Anfrage, Januar 2026</strong>
+        In Großbritannien wurden 2025 laut einer Freedom-of-Information-Anfrage 453.230 Bankkonten zwangsgeschlossen — zehnmal mehr als 2016/17 (45.091). 2023/24 waren es 408.000. Banken begründeten die Mehrheit mit "financial crime reasons". Seit dem Farage-Skandal schreibt britisches Recht vor, Kunden mindestens 90 Tage Vorlaufzeit zu geben und eine Begründung zu liefern. In Deutschland gilt diese Pflicht nicht. Quelle: GB News (8. Januar 2026), basierend auf FOI-Antragsdaten. <span class="tag tag-belegt">BELEGT</span>
+      </div>
+
+      <h2>IX. Das Schweigen der Medien</h2>
+
+      <p>Während Schweizer Medien — darunter mehrere Tageszeitungen und öffentlich-rechtliche Sender — den Fall Jacques Baud und verwandte Sanktionen offen diskutierten und die Schweizer Regierung offiziell protestierte, blieb eine vergleichbare Berichterstattung in deutschen Leitmedien weitgehend aus. Im Vereinigten Königreich führte der Farage-Coutts-Skandal zu parlamentarischen Debatten und Gesetzesänderungen. In Deutschland: keine vergleichbare Reaktion.
+
+      <p>Tagesschau-Zuschauer, die sich ausschließlich auf öffentlich-rechtliche Berichterstattung stützen, haben von den dokumentierten EU-Sanktionen gegen deutsche und europäische Staatsbürger strukturell keine Kenntnis erhalten. <span class="tag tag-extrapolation">EXTRAPOLATION</span></p>
+
+      <div class="source-box">
+        <strong>Begriff "Bestrafe Einen, erziehe Hundert"</strong>
+        Dieser Begriff taucht in mehreren Analysen zur politischen Wirkungsstrategie von Sanktionslisten auf: Einzelne Sanktionierungen haben eine Abschreckungswirkung weit über den konkreten Fall hinaus. Ob dieser Effekt bewusst kalkuliert wird, ist eine offene Frage. Dass er eintritt, ist strukturell plausibel. <span class="tag tag-extrapolation">EXTRAPOLATION</span>
+      </div>
+
+      <hr class="divider">
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Bereich</th>
+            <th>Instrument</th>
+            <th>Rechtsschutz vorhanden</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Debanking DE (privat)</td>
+            <td>Kündigung ohne Begründung</td>
+            <td>Zivilklage möglich, aufwendig</td>
+            <td><span class="tag tag-belegt">BELEGT</span></td>
+          </tr>
+          <tr>
+            <td>Debanking über Behörden</td>
+            <td>FIU-Meldung / LKA-Auskunft</td>
+            <td>Kaum — Ablauf nicht transparent</td>
+            <td><span class="tag tag-belegt">BELEGT</span></td>
+          </tr>
+          <tr>
+            <td>Debanking über Medien</td>
+            <td>Meldung an Banken durch Redaktionen</td>
+            <td>Nicht vorgesehen</td>
+            <td><span class="tag tag-belegt">BELEGT</span></td>
+          </tr>
+          <tr>
+            <td>EU-Sanktionen (eigene Bürger)</td>
+            <td>Listung per Ratsbeschluss</td>
+            <td>EuGH — faktisch wirkungslos</td>
+            <td><span class="tag tag-belegt">BELEGT</span></td>
+          </tr>
+          <tr>
+            <td>Systematische Ausdehnung</td>
+            <td>Bundesregierung kündigt Erweiterung an</td>
+            <td>Keine demokratische Kontrolle vorgesehen</td>
+            <td><span class="tag tag-belegt">BELEGT</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="closing">Zwei Fragen bleiben offen, die diese Dokumentation nicht beantworten kann: Ob die Gleichzeitigkeit von medialem Druck, behördlichem Auskunftsersuchen und nachfolgender Kontokündigung in den dokumentierten Fällen zufällig ist — oder koordiniert. Und ob eine Demokratie, die eigene Staatsbürger ohne Gerichtsverfahren für vogelfrei erklärt, noch mit dem Begriff der Demokratie beschrieben werden sollte.</p>
+
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>dunkelfeld.report — Fakten, die das Licht nicht scheuen.</p>
+    <p>Alle Angaben basieren auf öffentlich zugänglichen Primärquellen. Einschätzungen sind als EXTRAPOLATION gekennzeichnet. Offene Fragen als OFFEN.</p>
+    <nav class="footer-nav">
+      <a href="/impressum.html">Impressum</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/dossiers.html">Alle Dossiers</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

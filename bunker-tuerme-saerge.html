@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bunker, Wachtürme, Särge — dunkelfeld.report</title>
+<meta name="rubrik" content="cat-medien">
+<meta name="kachel-titel" content="Bunker, Wachtürme, Särge">
+<style>
+  :root{
+    --bg:#09090b;
+    --bg-card:#111114;
+    --bg-source:#1a1a2e;
+    --border:#27272a;
+    --amber:#e8c547;
+    --text:#e4e4e7;
+    --text-dim:#a1a1aa;
+    --green:#4ade80;
+    --orange:#f59e0b;
+    --grey:#9ca3af;
+    --red:#e84747;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:Georgia, 'Times New Roman', serif;
+    line-height:1.7;
+    margin:0;
+    padding:0 1.25rem 4rem;
+  }
+  .wrap{max-width:720px;margin:0 auto;}
+  .site-head{
+    font-family:'Courier New', monospace;
+    color:var(--amber);
+    letter-spacing:0.08em;
+    font-size:0.85rem;
+    padding-top:2.5rem;
+    text-transform:uppercase;
+  }
+  .site-tagline{
+    font-family:'Courier New', monospace;
+    color:var(--text-dim);
+    font-size:0.75rem;
+    margin-top:0.25rem;
+    font-style:italic;
+  }
+  h1.title{
+    font-size:2rem;
+    line-height:1.25;
+    margin:1.75rem 0 0.5rem;
+    color:#fff;
+  }
+  .subtitle{
+    color:var(--amber);
+    font-size:1.05rem;
+    font-style:italic;
+    margin-bottom:1rem;
+  }
+  .meta{
+    font-family:'Courier New', monospace;
+    font-size:0.75rem;
+    color:var(--text-dim);
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    padding:0.6rem 0;
+    margin-bottom:2rem;
+  }
+  h2{
+    color:var(--amber);
+    font-size:1.3rem;
+    margin-top:3rem;
+    border-bottom:1px solid var(--border);
+    padding-bottom:0.4rem;
+  }
+  h3{
+    color:#fff;
+    font-size:1.05rem;
+    margin-top:2rem;
+  }
+  p{margin:1rem 0;}
+  .lede{font-size:1.08rem;color:#f4f4f5;}
+  a{color:var(--amber);}
+
+  .tag{
+    display:inline-block;
+    font-family:'Courier New', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.04em;
+    padding:2px 7px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+  .tag-belegt{background:rgba(74,222,128,0.12);color:var(--green);border:1px solid rgba(74,222,128,0.5);}
+  .tag-extrapolation{background:rgba(245,158,11,0.12);color:var(--orange);border:1px solid rgba(245,158,11,0.5);}
+  .tag-offen{background:rgba(156,163,175,0.12);color:var(--grey);border:1px solid rgba(156,163,175,0.5);}
+  .tag-widerlegt{background:rgba(232,71,71,0.12);color:var(--red);border:1px solid rgba(232,71,71,0.5);text-decoration:line-through;}
+
+  .stat-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    margin:1.75rem 0;
+  }
+  .stat{
+    background:var(--bg-card);
+    padding:1rem;
+    text-align:center;
+  }
+  .stat .value{
+    font-family:'Courier New', monospace;
+    color:var(--amber);
+    font-size:1.3rem;
+    display:block;
+  }
+  .stat .label{
+    font-size:0.72rem;
+    color:var(--text-dim);
+    margin-top:0.3rem;
+  }
+
+  .timeline{margin:1.75rem 0;border-left:2px solid var(--border);padding-left:1.25rem;}
+  .timeline-item{margin-bottom:1.5rem;position:relative;}
+  .timeline-item::before{
+    content:"";
+    position:absolute;
+    left:-1.56rem;
+    top:0.35rem;
+    width:9px;height:9px;
+    border-radius:50%;
+    background:var(--amber);
+  }
+  .timeline-year{
+    font-family:'Courier New', monospace;
+    color:var(--amber);
+    font-size:0.8rem;
+    letter-spacing:0.04em;
+  }
+
+  .person-card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:1.25rem 1.5rem;
+    margin:1.75rem 0;
+  }
+  .person-card .role{
+    font-family:'Courier New', monospace;
+    font-size:0.75rem;
+    color:var(--amber);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+  }
+
+  .source-box{
+    background:var(--bg-source);
+    border-left:3px solid var(--amber);
+    padding:0.85rem 1.1rem;
+    margin:1.25rem 0 2rem;
+    font-family:'Courier New', monospace;
+    font-size:0.8rem;
+    color:#c9c9d0;
+    line-height:1.6;
+  }
+  .source-box .label{color:var(--amber);}
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:1.5rem 0;
+    font-size:0.9rem;
+  }
+  th{
+    font-family:'Courier New', monospace;
+    font-size:0.68rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--amber);
+    text-align:left;
+    padding:0.6rem 0.6rem;
+    border-bottom:1px solid var(--border);
+  }
+  td{
+    padding:0.7rem 0.6rem;
+    border-bottom:1px solid var(--border);
+    vertical-align:top;
+  }
+  tr:last-child td{border-bottom:none;}
+
+  blockquote{
+    border-left:3px solid var(--amber);
+    padding:0.25rem 0 0.25rem 1.25rem;
+    margin:2rem 0;
+    font-style:italic;
+    color:var(--amber);
+    font-size:1.08rem;
+  }
+  blockquote cite{
+    display:block;
+    font-family:'Courier New', monospace;
+    font-size:0.7rem;
+    color:var(--text-dim);
+    font-style:normal;
+    margin-top:0.4rem;
+  }
+
+  .open-questions{
+    margin-top:2.5rem;
+    padding-top:1.5rem;
+    border-top:1px solid var(--border);
+    font-style:italic;
+    color:var(--text-dim);
+  }
+
+  .methodik{
+    font-family:'Courier New', monospace;
+    font-size:0.78rem;
+    color:var(--text-dim);
+    margin-top:2rem;
+    line-height:1.7;
+  }
+
+  .series-nav{
+    font-family:'Courier New', monospace;
+    font-size:0.75rem;
+    color:var(--text-dim);
+    margin-top:2rem;
+    padding-top:1rem;
+    border-top:1px dashed var(--border);
+  }
+
+  footer{
+    margin-top:4rem;
+    padding-top:1.5rem;
+    border-top:1px solid var(--border);
+    font-family:'Courier New', monospace;
+    font-size:0.75rem;
+    color:var(--text-dim);
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="site-head">dunkelfeld.report</div>
+  <div class="site-tagline">Analyse · Systemkritik · Quellenbasiert</div>
+
+  <h1 class="title">Bunker, Wachtürme, Särge</h1>
+  <div class="subtitle">Die Architektur der amerikanischen Angst — drei Fälle, ein Muster</div>
+  <div class="meta">Juli 2026 &nbsp;|&nbsp; Lesedauer ca. 14 Minuten &nbsp;|&nbsp; Format: Faktencheck</div>
+
+  <p class="lede">Ein geheimer Bunker unter dem Weißen Haus. Wachtürme auf Walmart-Parkplätzen. Ein Feld voller Särge in Georgia. Drei Bilder, die seit Jahren durchs Netz kursieren — und drei Fälle, in denen echte, dokumentierte Ereignisse und erfundene Zusatzbehauptungen so eng verwoben sind, dass man sie kaum noch auseinanderhalten kann. Dieser Artikel trennt beides: was belegt ist, was widerlegt ist — und wie aus dem einen jeweils das andere wurde.</p>
+
+  <h2>1. Die Bunker-Linie: Von Roosevelt bis zum Ballsaal</h2>
+
+  <p>Dass unter dem Weißen Haus ein Bunker liegt, ist keine Verschwörungstheorie — es ist seit Jahrzehnten Aktenlage. Neu ist nur, wie sichtbar der Ausbau gerade wird.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">2. Weltkrieg</div>
+      Die Presidential Emergency Operations Center (PEOC) entsteht als Luftschutzraum unter dem East Wing — gebaut für Franklin D. Roosevelt.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">Kalter Krieg (1950er)</div>
+      Mount Weather (Virginia, FEMA-Hauptausweichsitz) und Raven Rock / "Site R" (Pennsylvania, militärischer Ausweichsitz) werden gebaut — zusammen rund 600.000–700.000 Quadratfuß unterirdische Fläche, Teil der "Continuity of Government"-Planung.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1979</div>
+      Präsident Carter gründet per Executive Order FEMA und bündelt Katastrophenschutz- und Zivilverteidigungs-Zuständigkeiten mehrerer Behörden in einer Institution.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2008 (Bush)</div>
+      Ein Bericht stellt "unmittelbaren Ausfall" der Elektrik-, Klima- und Sicherheitssysteme im Weißen Haus fest. Der Kongress genehmigt eine umfassende Sanierung.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2010–2013 (Obama)</div>
+      Eine große Grube wird am North Lawn ausgehoben, umzäunt, streng abgeschirmt. Kostenpunkt: rund 375–376 Mio. USD. Die ungewöhnliche Geheimhaltung löst Medienspekulationen über einen "Superbunker" aus — die GSA dementiert einen primären Bunker-Bezug und spricht offiziell von Infrastruktur-Modernisierung.
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2025–2026 (Trump)</div>
+      Der East Wing wird für einen 300–400-Mio.-Dollar-Ballsaal abgerissen. Laut CBS, Time, NPR und Axios baut das Militär darunter einen "massiven" unterirdischen Komplex; das PEOC wird nach Angaben anonymer Quellen aufgerüstet. Ein Bundesrichter stoppt das Projekt zunächst per einstweiliger Verfügung wegen fehlender gesetzlicher Grundlage.
+    </div>
+  </div>
+
+  <table>
+    <tr><th>Phase</th><th>Was belegt ist</th><th>Einordnung</th></tr>
+    <tr>
+      <td>PEOC / Mount Weather / Raven Rock</td>
+      <td>Reale, jahrzehntealte Continuity-of-Government-Infrastruktur, öffentlich dokumentiert</td>
+      <td><span class="tag tag-belegt">BELEGT</span></td>
+    </tr>
+    <tr>
+      <td>Obama-Bauprojekt 2010–2013</td>
+      <td>375–376 Mio. USD, reale Baustelle, reale Geheimhaltung — aber genauer Umfang/Zweck nicht vollständig öffentlich einsehbar</td>
+      <td><span class="tag tag-extrapolation">EXTRAPOLATION</span></td>
+    </tr>
+    <tr>
+      <td>Trump-Ballsaal + Komplex 2025–2026</td>
+      <td>Aktuelle, mehrfach unabhängig bestätigte Berichterstattung, gerichtlich vorläufig gestoppt</td>
+      <td><span class="tag tag-belegt">BELEGT</span></td>
+    </tr>
+  </table>
+
+  <div class="source-box">
+    <span class="label">Quellen:</span> Center for Land Use Interpretation: "Mount Weather Federal Bunker" · Wikipedia: "Mount Weather Emergency Operations Center" · National Interest: "What to Know About 'Raven Rock'" · Yahoo/AP: "Unraveling claims about $376M White House renovation under Obama" · TWZ: "White House Sinkhole Is A Reminder Of The Bunkers That Are Buried Beneath It" · Time: "What We Know About the 'Massive' Military Complex Being Built Beneath the White House" (17.04.2026) · NPR/Houston Public Media (03.04.2026) · Axios: "Ballroom above, bunker below" (30.03.2026).
+  </div>
+
+  <p>Bemerkenswert an der Obama-Phase: Sie fiel weder in den Kalten Krieg noch in eine unmittelbare 9/11-Krisenlage. Das ist der Punkt, an dem berechtigte Nachfrage anfängt — nicht, weil daraus eine Verschwörung folgt, sondern weil die Geheimhaltung selbst dokumentiert und damals wie heute medial hinterfragt wurde, ohne dass ein vollständiges Bild öffentlich vorliegt. Genau diese Lücke — real existierende Geheimhaltung ohne vollständige Aufklärung — ist der Nährboden für die nächsten beiden Fälle.</p>
+
+  <h2>2. Walmart, 2015: Wie ein Bild entsteht</h2>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="value">5</span><span class="label">Walmart-Filialen geschlossen, April 2015</span></div>
+    <div class="stat"><span class="value">6 Mon.</span><span class="label">angekündigte Schließdauer</span></div>
+    <div class="stat"><span class="value">2011</span><span class="label">Baujahr der realen Parkplatz-Kameratürme</span></div>
+  </div>
+
+  <p>Im April 2015 schlossen fünf Walmart-Filialen in Kalifornien, Texas (zwei Standorte), Florida und Oklahoma — offiziell wegen Klempnerproblemen, für mindestens sechs Monate. Die kurze Vorankündigung und die fehlenden sichtbaren Bautrupps ließen Zweifel an dieser Erklärung wachsen. Zeitgleich lief die reale, angekündigte US-Militärübung "Jade Helm 15" in mehreren Südstaaten. Aus der Kombination entstand eine ganze Reihe von Theorien: unterirdische Tunnel zu geheimen Militärbasen, FEMA-Internierungslager, radioaktiv kontaminierte Ware aus Fukushima, chinesische Besatzungstruppen.</p>
+
+  <table>
+    <tr><th>Bild / Behauptung</th><th>Was es tatsächlich war</th><th>Einordnung</th></tr>
+    <tr>
+      <td>Fünf Walmart-Filialen schließen plötzlich</td>
+      <td>Offizielle Begründung: Klempnerprobleme (Walmart-Unternehmenskommunikation)</td>
+      <td><span class="tag tag-belegt">BELEGT</span> <span style="color:var(--text-dim);font-size:0.78rem;">(als Faktum, nicht als Deckmantel-Beweis)</span></td>
+    </tr>
+    <tr>
+      <td>Tunnel zu "Deep Underground Military Bases", FEMA-Lager, chinesische Truppen</td>
+      <td>Keine der Theorien hält einer Prüfung stand — u. a. weil betroffene Bundesstaaten geografisch nicht zur Jade-Helm-Route passen</td>
+      <td><span class="tag tag-widerlegt">VT-WIDERLEGT</span></td>
+    </tr>
+    <tr>
+      <td>Foto von "Wachturm-Fundamenten" in Winchester, Kentucky</td>
+      <td>Reguläre Asphalt-Ausbesserung im Parkplatz, als Fundamente für Wachtürme "wie in Auschwitz-Birkenau" fehlgedeutet</td>
+      <td><span class="tag tag-widerlegt">VT-WIDERLEGT</span></td>
+    </tr>
+    <tr>
+      <td>Echte Überwachungstürme auf Walmart-Parkplätzen</td>
+      <td>Mobile, solarbetriebene "SkyCop"/"Lot Cop"-Kameratürme (LiveView Technologies) — seit ca. 2011 zur Diebstahlabschreckung im Einsatz, mit den Schließungen 2015 nicht verbunden</td>
+      <td><span class="tag tag-belegt">BELEGT</span> <span style="color:var(--text-dim);font-size:0.78rem;">(aber falsch zugeordnet)</span></td>
+    </tr>
+    <tr>
+      <td>Verstärkung der Gerüchte im Netz</td>
+      <td>Twitter-Konten der russischen "Internet Research Agency" griffen die bereits kursierenden Theorien auf und verbreiteten sie weiter — sie erfanden sie nicht</td>
+      <td><span class="tag tag-belegt">BELEGT</span></td>
+    </tr>
+  </table>
+
+  <div class="source-box">
+    <span class="label">Quellen:</span> Snopes: "Walmart Closure Conspiracy Theories" (23.04.2015) · PolitiFact: "No, Walmart stores aren't becoming FEMA camps" (2023) · Bruce Schneier, "Guard Towers at Walmart" (schneier.com, 2011) · Wikipedia: "LiveView Technologies" · Task & Purpose / The Hill: Aussagen des ehem. CIA-Direktors zu russischen Bot-Accounts und Jade Helm · Clemson University Social Media Listening Center: IRA-Twitter-Datenbank · US-Senats-Geheimdienstausschuss, Bericht 2018 zu IRA-Aktivitäten.
+  </div>
+
+  <h2>3. FEMA: Reale Funktion versus Verschwörung</h2>
+
+  <p>FEMA wurde 1979 unter Carter gegründet, um Katastrophenschutz-Zuständigkeiten aus mehreren Behörden zu bündeln: Vorsorge, Koordination der Bundeshilfe, Wiederaufbaufinanzierung, Hochwasserversicherung. Nach dem dokumentierten Versagen bei Hurrikan Katrina 2005 reorganisierte der Post-Katrina Emergency Management Reform Act (2006) die Behörde als eigenständige Einheit im Department of Homeland Security.</p>
+
+  <h3>Das Sargfeld von Madison, Georgia</h3>
+
+  <p>Seit über 20 Jahren kursiert das Bild eines Feldes voller schwarzer Kunststoffbehälter bei Madison, Georgia — mal als "500.000 FEMA-Särge", mal als CDC-Vorbereitung für ein Massensterben. Tatsächlich handelt es sich um "Standard Air Seal Vaults" der Firma Vantage Products Corporation: witterungsfeste Grabgewölbe, die verhindern, dass sich Erde über Särgen im Boden absenkt. Die Firma mietete das Feld schlicht als günstige Außenlagerfläche, weil die Vaults ohnehin wetterfest sind. Weder FEMA noch CDC besitzen das Gelände oder haben mit der Firma einen Vertrag.</p>
+
+  <table>
+    <tr><th>Behauptung</th><th>Fakten</th><th>Einordnung</th></tr>
+    <tr>
+      <td>500.000 "FEMA-Särge" für Massensterben</td>
+      <td>Reguläre Grabgewölbe eines privaten Bestattungszulieferers, kein Regierungsauftrag, Firma bestätigt dies öffentlich</td>
+      <td><span class="tag tag-widerlegt">VT-WIDERLEGT</span></td>
+    </tr>
+    <tr>
+      <td>Geheime FEMA-Internierungslager</td>
+      <td>Jahrzehntealte, wiederholt geprüfte Theorie; FEMA.gov unterhält eine eigene Rumor-Response-Seite dazu</td>
+      <td><span class="tag tag-widerlegt">VT-WIDERLEGT</span></td>
+    </tr>
+  </table>
+
+  <div class="source-box">
+    <span class="label">Quellen:</span> Lead Stories: "Field In Madison, Georgia, Does NOT Store 'Disposable Coffins'" (2021) · PolitiFact: "Don't fault these vaults" (17.04.2023) · Snopes: "Did Obama Quietly Order Millions of Disposable Coffins for 'FEMA Camps'?" · The Covington News: "Company debunks FEMA coffin myth" (Statement Vantage Products) · FEMA.gov: Rumor Response.
+  </div>
+
+  <h3>Die reale Kritik: Trump gegen FEMA, und die Bilanz von 2024</h3>
+
+  <p>Die tatsächlich dokumentierte Schwäche von FEMA ist das genaue Gegenteil der Lager-Erzählung: zu langsam, zu unterbesetzt, zu bürokratisch. Bei den Hurrikanen Helene und Milton im Herbst 2024 stand laut Government Accountability Office (GAO) am 1. November nur noch 4 % des FEMA-Einsatzpersonals zur Verfügung; bis Dezember 2024 stauten sich 500.000 unbearbeitete Hilfsanträge; Betroffene berichteten von langen Wartezeiten in der Hotline und Engpässen bei Notunterkünften.</p>
+
+  <p>Genau an diesem Punkt setzte Präsident Trump im Januar 2025 an: Per Executive Order 14180 richtete er den "FEMA Review Council" ein und kündigte an, die Behörde nach der Hurrikansaison "phasenweise" umzubauen oder aufzulösen. Der Abschlussbericht des Councils (7. Mai 2026) empfiehlt am Ende keine vollständige Abschaffung, aber eine drastische Verkleinerung: Halbierung der Belegschaft, ein neues Blockzuschuss-System, mehr Verantwortung und Kosten für die Bundesstaaten.</p>
+
+  <table>
+    <tr><th>Ereignis</th><th>Fakten</th><th>Einordnung</th></tr>
+    <tr>
+      <td>FEMA-Leistung bei Helene/Milton, 2024</td>
+      <td>GAO dokumentiert Personalmangel, Antragsrückstau, lange Wartezeiten</td>
+      <td><span class="tag tag-belegt">BELEGT</span></td>
+    </tr>
+    <tr>
+      <td>Trumps Auflösungs-/Umbaupläne, 2025–2026</td>
+      <td>Executive Order 14180, Review-Council-Bericht Mai 2026: Halbierung der Belegschaft, keine vollständige Abschaffung</td>
+      <td><span class="tag tag-belegt">BELEGT</span></td>
+    </tr>
+  </table>
+
+  <div class="source-box">
+    <span class="label">Quellen:</span> GAO-25-108598: "Disaster Assistance High-Risk Series: Federal Response Workforce Readiness" · House Oversight Democrats, Anhörung zur FEMA-Verwaltung (21.11.2024) · NPR: "The Trump administration says it wants to eliminate FEMA" (26.06.2025) · CNN: "Trump's FEMA council to recommend dramatic downsizing" (10.12.2025) · DHS: "Final Report, The President's Council to Assess the Federal Emergency Management Agency" (07.05.2026).
+  </div>
+
+  <h2>4. Vergiftete Recherche: Das wiederkehrende Muster</h2>
+
+  <p>In allen drei Fällen ist die Struktur identisch. Am Anfang steht ein reales, oft nur teilweise erklärtes Ereignis: eine ungewöhnlich geheime Baustelle, eine plötzliche Ladenschließung, ein unauffälliges Firmenlager. Dazu kommt ein zweites, unabhängiges reales Faktum — eine Militärübung, ein Sicherheitsprodukt, eine echte Verwaltungsschwäche. Beide Fakten werden zusammengefügt, mit einer dritten, unbelegten Behauptung verknüpft — und im Netz weiterverstärkt, teils gezielt, wie im Fall der russischen IRA-Konten.</p>
+
+  <p>Der berechtigte Teil des Misstrauens verschwindet dabei nicht: Dass Regierungen Bauprojekte geheim halten, dass FEMA bei echten Katastrophen versagt hat, ist dokumentiert und sollte hinterfragt werden. Das Problem entsteht, wenn dieses berechtigte Misstrauen als Sprungbrett für Behauptungen dient, die empirisch nicht mehr zu halten sind — Lager statt Bürokratieversagen, Wachtürme statt Diebstahlkameras, Massengräber statt Grabgewölbe-Lagerhaltung.</p>
+
+  <blockquote>
+    "Die plausibelste Theorie von allen war, dass die geschlossenen Walmart-Filialen tatsächlich ziemlich schlechte Klempnerprobleme hatten."
+    Snopes.com, Fazit des Fact-Checks vom 23.04.2015
+  </blockquote>
+
+  <div class="methodik">
+    Hinweis zur Methodik: Alle Einordnungen in diesem Artikel stützen sich auf öffentlich zugängliche Primärquellen (Behördenseiten, Gerichtsdokumente, Gutachten des GAO), etablierten Wirtschafts- und Sicherheitsjournalismus sowie unabhängige Faktencheck-Organisationen. Die Kategorien BELEGT / EXTRAPOLATION / OFFEN / VT-WIDERLEGT bewerten die jeweilige Einzelbehauptung, nicht die Motive beteiligter Personen oder Institutionen. Leser sind ausdrücklich eingeladen, die verlinkten Quellen selbst zu prüfen.
+  </div>
+
+  <div class="open-questions">
+    <em>Offene Fragen: Warum bleibt ausgerechnet die Geheimhaltung um reale Bauprojekte so beständig, obwohl sie selbst erst die Gerüchte erzeugt, die Behörden anschließend dementieren müssen? Wäre mehr Transparenz beim PEOC-Ausbau — unabhängig von der Administration — nicht schlicht billiger als der wiederkehrende Vertrauensschaden? Und: Wie viele der aktuell kursierenden "Beweisbilder" zu anderen Themen lassen sich mit derselben Methode — Bildherkunft, Zeitpunkt, unabhängige Bestätigung — in Minuten auflösen, wenn man nur danach sucht?</em>
+  </div>
+
+  <div class="series-nav">Verwandt: "Das Playbook der Verschwörung" — Faktencheck zum Akte-X-Monolog von Tad O'Malley, dieselbe Vergiftete-Recherche-Mechanik am Beispiel einer Fernsehserie.</div>
+
+  <footer>dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.</footer>
+
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

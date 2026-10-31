@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Die Georgia Guidestones — dunkelfeld.report</title>
+<meta name="rubrik" content="cat-stiftungen">
+<meta name="kachel-titel" content="Die Georgia GuidestonesZehn Gebote in Granit">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #09090b;
+      --surface: #111113;
+      --border: #1e1e24;
+      --text: #e8e8ec;
+      --muted: #6b6b7a;
+      --accent: #e8c547;
+      --font-body: Georgia, 'Times New Roman', serif;
+      --font-mono: 'Courier New', Courier, monospace;
+      --max: 720px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      border-bottom: 1px solid var(--border);
+      padding: 1.1rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 100;
+    }
+    .nav-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+    .nav-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.14em; }
+    .nav-home { margin-left: auto; font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); text-decoration: none; letter-spacing: 0.1em; }
+    .nav-home:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 5rem 2rem 3rem;
+    }
+    .hero-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 1.8rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+      color: var(--text);
+    }
+    .hero h1 span { color: var(--muted); }
+    .hero-lead {
+      font-size: 1.15rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-meta {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      border-top: 1px solid var(--border);
+      padding-top: 1.2rem;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    /* CONTENT */
+    .content {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 3rem 0 1rem;
+      letter-spacing: -0.01em;
+    }
+    h2::before {
+      content: '— ';
+      color: var(--accent);
+    }
+
+    h3 {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin: 2rem 0 0.6rem;
+    }
+
+    p { margin-bottom: 1.2rem; }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* QUOTE BLOCK */
+    .quote-block {
+      border-left: 3px solid var(--accent);
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0;
+      background: var(--surface);
+    }
+    .quote-block p {
+      font-style: italic;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+    .quote-source {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      font-style: normal;
+    }
+
+    /* INSCHRIFT */
+    .inschrift-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      margin: 2rem 0;
+    }
+    @media (max-width: 600px) {
+      .inschrift-grid { grid-template-columns: 1fr; }
+    }
+    .inschrift-col {
+      background: var(--surface);
+      padding: 1.8rem;
+    }
+    .inschrift-col-header {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 1.2rem;
+    }
+    .inschrift-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.1rem;
+      align-items: flex-start;
+    }
+    .inschrift-num {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      min-width: 1.4rem;
+      padding-top: 0.2rem;
+    }
+    .inschrift-text {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--text);
+    }
+
+    /* FAKTEN-TABELLE */
+    .fakten-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      font-size: 0.92rem;
+    }
+    .fakten-table th {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-bottom: 1px solid var(--border);
+      padding: 0.5rem 0.8rem;
+      text-align: left;
+    }
+    .fakten-table td {
+      padding: 0.75rem 0.8rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      color: var(--text);
+    }
+    .fakten-table td:first-child {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .fakten-table tr:hover td { background: var(--surface); }
+
+    /* VERGLEICHS-GRID */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      margin: 2rem 0;
+    }
+    @media (max-width: 540px) {
+      .compare-grid { grid-template-columns: 1fr; }
+    }
+    .compare-col {
+      background: var(--surface);
+      padding: 1.6rem;
+    }
+    .compare-col-title {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+    }
+    .compare-item {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 0.7rem;
+      padding-left: 1rem;
+      border-left: 2px solid var(--border);
+    }
+    .compare-item strong { color: var(--text); }
+
+    /* CHRONOLOGIE */
+    .chronologie {
+      margin: 2rem 0;
+    }
+    .chrono-item {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+    .chrono-date {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      min-width: 80px;
+      padding-top: 0.15rem;
+      letter-spacing: 0.06em;
+    }
+    .chrono-text {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--text);
+    }
+    .chrono-text .note {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    /* STATUS LABELS */
+    .label {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+    }
+    .label-confirmed { background: #1a2e1a; color: #6ecf6e; }
+    .label-open { background: #2e2a1a; color: #cfb66e; }
+    .label-unknown { background: #2a1a1a; color: #cf6e6e; }
+
+    /* OFFENE FRAGEN */
+    .fragen-list {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+    .fragen-list li {
+      padding: 0.9rem 1rem 0.9rem 1.5rem;
+      border-left: 2px solid var(--border);
+      margin-bottom: 0.6rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .fragen-list li::before {
+      content: '?';
+      color: var(--accent);
+      font-family: var(--font-mono);
+      margin-right: 0.8rem;
+    }
+
+    /* QUELLEN */
+    .quellen {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .quellen-title {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 1.2rem;
+    }
+    .quelle {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 0.5rem;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .quelle::before {
+      content: '↗';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.75rem;
+    }
+
+    /* BILDBRIEFING */
+    .bildbriefing {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding: 1.5rem 1.8rem;
+      margin: 3rem 0;
+    }
+    .bildbriefing-title {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+    }
+    .bildbriefing p { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .bildbriefing strong { color: var(--text); }
+
+    /* TAGS */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.7rem;
+      border-radius: 2px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ARTIKEL-VERWEIS */
+    .artikel-verweis {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+      padding-top: 1.2rem;
+    }
+    .artikel-verweis a { color: var(--muted); }
+    .artikel-verweis a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-dot"></div>
+  <span class="nav-label">dunkelfeld.report · Dokumentation</span>
+  <a href="/" class="nav-home">← Archiv</a>
+</nav>
+
+<header class="hero">
+  <div class="hero-kicker">Hidden in Plain Sight</div>
+  <h1>Die Georgia Guidestones<br><span>Zehn Gebote in Granit</span></h1>
+  <p class="hero-lead">
+    1980 errichtet. 2022 gesprengt. Auftraggeber bis heute unbekannt.
+    Was auf den Steinen stand, war öffentlich lesbar — für jeden, der hinsah.
+  </p>
+  <div class="hero-meta">
+    <span>BELEGT: Errichtung, Inschrift, Sprengung</span>
+    <span>OFFEN: Auftraggeber, Zeitkapsel, Hintergründe</span>
+    <span>Stand: Juni 2026</span>
+  </div>
+</header>
+
+<main class="content">
+
+  <hr class="divider">
+
+  <h2>Was war das?</h2>
+
+  <p>
+    Am 22. März 1980 wurde in Elberton, Georgia (USA) ein Granitmonument eingeweiht: sechs Steinplatten, 
+    je etwa sechs Meter hoch, zusammen rund 107 Tonnen schwer. Eingraviert in acht Sprachen — Englisch, Spanisch, 
+    Suaheli, Hindi, Hebräisch, Arabisch, Chinesisch und Russisch — zehn Leitlinien für eine künftige Menschheit.
+  </p>
+  <p>
+    Die Presse nannte es schnell „America's Stonehenge". Der Vergleich war nicht nur rhetorisch gemeint: 
+    Die Steine waren astronomisch präzise ausgerichtet, der Auftraggeber unbekannt, der Zweck ungeklärt.
+    42 Jahre stand das Monument. Am 6. Juli 2022 wurde es gesprengt.
+  </p>
+
+  <h3>Gesicherte Eckdaten</h3>
+  <table class="fakten-table">
+    <thead>
+      <tr><th>Merkmal</th><th>Dokumentierter Befund</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Standort</td>
+        <td>Elberton, Elbert County, Georgia, USA — auf einem Hügel, 7 km nördlich der Stadt</td>
+        <td><span class="label label-confirmed">Belegt</span></td>
+      </tr>
+      <tr>
+        <td>Einweihung</td>
+        <td>22. März 1980</td>
+        <td><span class="label label-confirmed">Belegt</span></td>
+      </tr>
+      <tr>
+        <td>Material</td>
+        <td>Blauer Granit aus Elberton — weltgrößtes Granitabbaugebiet</td>
+        <td><span class="label label-confirmed">Belegt</span></td>
+      </tr>
+      <tr>
+        <td>Gewicht gesamt</td>
+        <td>ca. 107 Tonnen</td>
+        <td><span class="label label-confirmed">Belegt</span></td>
+      </tr>
+      <tr>
+        <td>Sprachen</td>
+        <td>8 Sprachen (Englisch, Spanisch, Suaheli, Hindi, Hebräisch, Arabisch, Chinesisch, Russisch)</td>
+        <td><span class="label label-confirmed">Belegt</span></td>
+      </tr>
+      <tr>
+        <td>Auftraggeber</td>
+        <td>Pseudonym „R.C. Christian" — Identität nie aufgelöst</td>
+        <td><span class="label label-unknown">Ungeklärt</span></td>
+      </tr>
+      <tr>
+        <td>Zeitkapsel</td>
+        <td>Laut Bodenplatte vergraben — Öffnungsdatum nicht eingetragen</td>
+        <td><span class="label label-unknown">Ungeklärt</span></td>
+      </tr>
+      <tr>
+        <td>Sprengung</td>
+        <td>6. Juli 2022, früher Morgen — Sprengsatz unbekannter Herkunft</td>
+        <td><span class="label label-confirmed">Belegt</span></td>
+      </tr>
+      <tr>
+        <td>Abriss</td>
+        <td>Noch am selben Tag — Behörden: „Sicherheitsrisiko"</td>
+        <td><span class="label label-confirmed">Belegt</span></td>
+      </tr>
+      <tr>
+        <td>Täterschaft</td>
+        <td>Nie ermittelt oder angeklagt</td>
+        <td><span class="label label-unknown">Ungeklärt</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="divider">
+
+  <h2>Die Inschrift</h2>
+
+  <p>
+    Der vollständige Text der zehn Leitlinien, wie er auf den Steinen stand — unveränderter Wortlaut, 
+    dokumentiert in beiden Sprachen. Keine redaktionelle Einordnung.
+  </p>
+
+  <div class="inschrift-grid">
+    <div class="inschrift-col">
+      <div class="inschrift-col-header">Original · Englisch</div>
+      <div class="inschrift-item"><div class="inschrift-num">01</div><div class="inschrift-text">Maintain humanity under 500,000,000 in perpetual balance with nature.</div></div>
+      <div class="inschrift-item"><div class="inschrift-num">02</div><div class="inschrift-text">Guide reproduction wisely — improving fitness and diversity.</div></div>
+      <div class="inschrift-item"><div class="inschrift-num">03</div><div class="inschrift-text">Unite humanity with a living new language.</div></div>
+      <div class="inschrift-item"><div class="inschrift-num">04</div><div class="inschrift-text">Rule passion — faith — tradition — and all things with tempered reason.</div></div>
+      <div class="inschrift-item"><div class="inschrift-num">05</div><div class="inschrift-text">Protect people and nations with fair laws and just courts.</div></div>
+      <div class="inschrift-item"><div class="inschrift-num">06</div><div class="inschrift-text">Let all nations rule internally resolving external disputes in a world court.</div></div>
+      <div class="inschrift-item"><div class="inschrift-num">07</div><div class="inschrift-text">Avoid petty laws and useless officials.</div></div>
+      <div class="inschrift-item"><div class="inschrift-num">08</div><div class="inschrift-text">Balance personal rights with social duties.</div></div>
+      <div class="inschrift-item"><div class="inschrift-num">09</div><div class="inschrift-text">Prize truth — beauty — love — seeking harmony with the infinite.</div></div>
+      <div class="inschrift-item"><div class="inschrift-num">10</div><div class="inschrift-text">Be not a cancer on the earth — Leave room for nature — Leave room for nature.</div></div>
+    </div>
+    <div class="inschrift-col">
+      <div class="inschrift-col-header">Übersetzung · Deutsch</div>
+      <div class="inschrift-item"><div class="inschrift-num">01</div><div class="inschrift-text">Erhalte die Menschheit unter 500.000.000 im dauerhaften Gleichgewicht mit der Natur.</div></div>
+      <div class="inschrift-item"><div class="inschrift-num">02</div><div class="inschrift-text">Lenke die Fortpflanzung weise — Fitness und Vielfalt verbessernd.</div></div>
+      <div class="inschrift-item"><div class="inschrift-num">03</div><div class="inschrift-text">Vereine die Menschheit durch eine lebendige neue Sprache.</div></div>
+      <div class="inschrift-item"><div class="inschrift-num">04</div><div class="inschrift-text">Beherrsche Leidenschaft — Glauben — Tradition — und alle Dinge mit gemäßigter Vernunft.</div></div>
+      <div class="inschrift-item"><div class="inschrift-num">05</div><div class="inschrift-text">Schütze Menschen und Nationen durch gerechte Gesetze und faire Gerichte.</div></div>
+      <div class="inschrift-item"><div class="inschrift-num">06</div><div class="inschrift-text">Lass alle Nationen intern regieren und externe Streitigkeiten vor einem Weltgericht lösen.</div></div>
+      <div class="inschrift-item"><div class="inschrift-num">07</div><div class="inschrift-text">Vermeide kleinliche Gesetze und nutzlose Beamte.</div></div>
+      <div class="inschrift-item"><div class="inschrift-num">08</div><div class="inschrift-text">Bringe persönliche Rechte in Einklang mit sozialen Pflichten.</div></div>
+      <div class="inschrift-item"><div class="inschrift-num">09</div><div class="inschrift-text">Schätze Wahrheit — Schönheit — Liebe — und suche Harmonie mit dem Unendlichen.</div></div>
+      <div class="inschrift-item"><div class="inschrift-num">10</div><div class="inschrift-text">Sei kein Krebsgeschwür auf der Erde — Lass Raum für die Natur — Lass Raum für die Natur.</div></div>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    <p>„Ich werde es mit ins Grab nehmen."</p>
+    <div class="quote-source">Wyatt Martin, Banker und einziger Zeuge der Auftraggeber-Identität · Wired-Interview, 2009 · Martin starb 2014</div>
+  </div>
+
+  <hr class="divider">
+
+  <h2>Der anonyme Auftraggeber</h2>
+
+  <p>
+    Im Sommer 1979 betrat ein unbekannter Mann das Büro von Joe Fendley, Präsident der Elberton Granite 
+    Finishing Company. Er nannte sich „R.C. Christian" — ein Name, den er selbst als Pseudonym bezeichnete, 
+    abgeleitet von dem mythologischen Rosenkreuzer Christian Rosenkreuz.
+  </p>
+  <p>
+    Die Transaktion wurde über den lokalen Banker Wyatt Martin abgewickelt. Martin war der einzige lebende 
+    Mensch, der die wahre Identität des Auftraggebers kannte. In mehreren dokumentierten Interviews bestätigte 
+    er dies — und verweigerte jede Auskunft. Joe Fendley starb 1996. Wyatt Martin starb 2014.
+  </p>
+
+  <h3>Was aktenkundig ist</h3>
+  <table class="fakten-table">
+    <thead>
+      <tr><th>Aspekt</th><th>Befund</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Pseudonym</td>
+        <td>„R.C. Christian" — vom Auftraggeber selbst als solches bezeichnet</td>
+      </tr>
+      <tr>
+        <td>Erstkontakt</td>
+        <td>Sommer 1979 bei Elberton Granite Finishing Company</td>
+      </tr>
+      <tr>
+        <td>Finanzierung</td>
+        <td>Vollständig bezahlt vor Baubeginn — Betrag nie veröffentlicht</td>
+      </tr>
+      <tr>
+        <td>Einziger Zeuge</td>
+        <td>Wyatt Martin — Identität bis zu seinem Tod 2014 geschützt</td>
+      </tr>
+      <tr>
+        <td>Hintergrund-Angaben</td>
+        <td>Kleine, langfristig denkende Gruppe — laut Martin „nicht reich, aber gut situiert"</td>
+      </tr>
+      <tr>
+        <td>Verbindung zu Rosenkreuzern</td>
+        <td>Pseudonym suggeriert Bezug — keine dokumentierte Bestätigung</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    2015 behauptete der Journalist Mark Dice, den Auftraggeber identifiziert zu haben: Ted Turner, Gründer 
+    von CNN. Turner bestritt dies. Keine Bestätigung durch primäre Quellen.
+  </p>
+  <p>
+    Der Wired-Journalist Randall Sullivan recherchierte 2009 ausführlich und publizierte das bislang 
+    detaillierteste Profil des Auftraggebers. Er kam zu keiner gesicherten Identität.
+  </p>
+
+  <hr class="divider">
+
+  <h2>Die Zeitkapsel — eine offene Inschrift</h2>
+
+  <p>
+    Auf der Bodenplatte der Guidestones war folgendes eingraviert:
+  </p>
+
+  <div class="quote-block">
+    <p>„TIME CAPSULE · Placed six feet below this spot · On · ___ · To be opened on · ___"</p>
+    <div class="quote-source">Inschrift der Bodenplatte der Georgia Guidestones · beide Datumsfelder blieben leer</div>
+  </div>
+
+  <p>
+    Beide Datumsfelder — Einlagerungsdatum und Öffnungsdatum — wurden nie ausgefüllt. Ob die Zeitkapsel 
+    tatsächlich existiert, was sie enthält, und ob sie nach dem Abriss am 6. Juli 2022 geborgen wurde, 
+    ist öffentlich nicht dokumentiert. Die Behörden machten dazu keine Angaben.
+  </p>
+
+  <hr class="divider">
+
+  <h2>Astronomische Ausrichtung</h2>
+
+  <p>
+    Die Stones waren keine zufällige Anordnung. Ihre Ausrichtung folgte präzisen astronomischen Parametern — 
+    ein Detail, das Fachkenntnis und erheblichen Planungsaufwand voraussetzt.
+  </p>
+
+  <table class="fakten-table">
+    <thead>
+      <tr><th>Merkmal</th><th>Funktion</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Schlitz im Mittelstein</td>
+        <td>Zeigt exakt auf den Horizont-Aufgang der Sonne bei Sommer- und Wintersonnenwende</td>
+      </tr>
+      <tr>
+        <td>Nordöffnung</td>
+        <td>Ausgerichtet auf den Polarstern — permanente Nordmarkierung</td>
+      </tr>
+      <tr>
+        <td>Bohrung im Deckstein</td>
+        <td>Ermöglicht die Beobachtung des Mittagsstandes der Sonne zur Bestimmung des Solartages</td>
+      </tr>
+      <tr>
+        <td>Jahresuhr-Funktion</td>
+        <td>Durch Sonneneinstrahlung lässt sich der aktuelle Tag im Jahreszyklus ablesen</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    Für die Planung dieser Ausrichtung wurden nach Angaben von Joe Fendley externe Fachleute hinzugezogen. 
+    Die Kosten für Planung und Bau übertrafen alle vergleichbaren lokalen Projekte deutlich.
+  </p>
+
+  <hr class="divider">
+
+  <h2>Ein zweites Stonehenge?</h2>
+
+  <p>
+    Der Vergleich mit Stonehenge ist nicht nur eine journalistische Übertreibung. Er wirft eine strukturelle 
+    Frage auf, die dokumentiert werden kann — ohne Spekulation über Motive.
+  </p>
+
+  <div class="compare-grid">
+    <div class="compare-col">
+      <div class="compare-col-title">Stonehenge · ca. 3000–1500 v. Chr.</div>
+      <div class="compare-item"><strong>Astronomische Ausrichtung:</strong> Sonnenwende-präzise, über Jahrhunderte verfeinert</div>
+      <div class="compare-item"><strong>Auftraggeber:</strong> Unbekannt — keine schriftlichen Quellen</div>
+      <div class="compare-item"><strong>Ressourcenaufwand:</strong> Enorm für die jeweilige Zeit — überregionale Koordination nachgewiesen</div>
+      <div class="compare-item"><strong>Zweck:</strong> Bis heute wissenschaftlich ungeklärt</div>
+      <div class="compare-item"><strong>Deutungen:</strong> Religiös, astronomisch, politisch — alles vertreten</div>
+      <div class="compare-item"><strong>Status heute:</strong> UNESCO-Weltkulturerbe seit 1986</div>
+    </div>
+    <div class="compare-col">
+      <div class="compare-col-title">Georgia Guidestones · 1980–2022</div>
+      <div class="compare-item"><strong>Astronomische Ausrichtung:</strong> Sonnenwende-präzise, Polarstern, Solartag-Anzeiger</div>
+      <div class="compare-item"><strong>Auftraggeber:</strong> Unbekannt — Pseudonym, Zeuge verstorben</div>
+      <div class="compare-item"><strong>Ressourcenaufwand:</strong> Erheblich — externe Fachleute, volle Finanzierung, 107 Tonnen</div>
+      <div class="compare-item"><strong>Zweck:</strong> Inschrift vorhanden — Interpretation ungeklärt</div>
+      <div class="compare-item"><strong>Deutungen:</strong> Globalistisch, eugenisch, spirituell — alles vertreten</div>
+      <div class="compare-item"><strong>Status heute:</strong> Gesprengt und abgerissen · 2022</div>
+    </div>
+  </div>
+
+  <p>
+    Stonehenge gilt heute als Kulturerbe. Die Georgia Guidestones wurden innerhalb weniger Stunden 
+    nach ihrer Teilzerstörung vollständig beseitigt — an einem einzigen Tag, ohne öffentliche Debatte, 
+    ohne Bergung der möglichen Zeitkapsel.
+  </p>
+
+  <div class="quote-block">
+    <p>Was macht ein Monument zur Bedrohung — und ein anderes zum Kulturerbe?</p>
+    <div class="quote-source">Offene Frage · keine editoriale Wertung</div>
+  </div>
+
+  <hr class="divider">
+
+  <h2>Die Sprengung — Chronologie</h2>
+
+  <div class="chronologie">
+    <div class="chrono-item">
+      <div class="chrono-date">22.03.1980</div>
+      <div class="chrono-text">
+        Offizielle Einweihung der Georgia Guidestones in Elberton, Georgia.
+        <div class="note">Anwesend: lokale Würdenträger, Presse, Öffentlichkeit. Auftraggeber „R.C. Christian" nicht erschienen.</div>
+      </div>
+    </div>
+    <div class="chrono-item">
+      <div class="chrono-date">1980–2022</div>
+      <div class="chrono-text">
+        Monument steht 42 Jahre. Tourismusziel, religiöser Wallfahrtsort für manche, Projektionsfläche für Verschwörungstheorien.
+        <div class="note">Mehrfach mit Graffiti beschmiert. Lokale Behörden reinigen regelmäßig.</div>
+      </div>
+    </div>
+    <div class="chrono-item">
+      <div class="chrono-date">06.07.2022<br>~04:00 Uhr</div>
+      <div class="chrono-text">
+        Sprengstoffanschlag zerstört einen der Granitpfeiler. Überwachungskamera des Grundstücks filmt ein vorbeifahrendes Fahrzeug.
+        <div class="note">GBI (Georgia Bureau of Investigation) bestätigt den Anschlag. Fahrzeug wird nie identifiziert.</div>
+      </div>
+    </div>
+    <div class="chrono-item">
+      <div class="chrono-date">06.07.2022<br>Noch am selben Tag</div>
+      <div class="chrono-text">
+        Elbert County ordnet den vollständigen Abriss der verbliebenen Strukturen an. Begründung: „Sicherheitsrisiko".
+        <div class="note">Das Monument, das 42 Jahre stand, existiert binnen Stunden nicht mehr. Ob die Zeitkapsel geborgen wurde: nicht dokumentiert.</div>
+      </div>
+    </div>
+    <div class="chrono-item">
+      <div class="chrono-date">Bis heute</div>
+      <div class="chrono-text">
+        Keine Verhaftung. Keine Anklage. Kein bekanntes laufendes Ermittlungsverfahren.
+        <div class="note">GBI: Ermittlungen „laufen". Letzter öffentlicher Update: Juli 2022.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h2>Reaktionen — dokumentiert</h2>
+
+  <p>
+    Die Guidestones lösten über vier Jahrzehnte Reaktionen aus, die das gesamte politische und religiöse 
+    Spektrum abdeckten. Die folgenden Positionen sind öffentlich dokumentiert.
+  </p>
+
+  <h3>Religiöse Kritik</h3>
+  <p>
+    Evangelikale Gruppen in den USA bezeichneten die Steine seit ihrer Errichtung als „Satanisches Monument". 
+    Die erste Botschaft — Begrenzung der Weltbevölkerung auf 500 Millionen — wurde als Aufruf zur Massenvernichtung 
+    interpretiert. Die Steine wurden mehrfach mit Kreuzen und Bibelzitaten besprüht.
+  </p>
+
+  <h3>Politische Instrumentalisierung</h3>
+  <p>
+    Die Republikanerin Kandiss Taylor machte die Forderung nach Abriss der Guidestones zu einem 
+    offiziellen Wahlkampfversprechen im Gouverneurswahlkampf in Georgia 2022. Sie erhielt 3,4 Prozent 
+    der Stimmen. Wenige Monate später wurden die Steine tatsächlich zerstört — von unbekannter Hand.
+  </p>
+
+  <h3>Wissenschaftliche Bewertung</h3>
+  <p>
+    Archäologen und Astronomie-Historiker bestätigten die präzise astronomische Ausrichtung und den 
+    erheblichen fachlichen Aufwand der Konstruktion. Eine inhaltliche Bewertung der Inschriften 
+    liegt nicht in ihrem wissenschaftlichen Zuständigkeitsbereich.
+  </p>
+
+  <hr class="divider">
+
+  <h2>Offene Fragen</h2>
+
+  <ul class="fragen-list">
+    <li>Wer war „R.C. Christian" — und warum wählte er ausgerechnet dieses Pseudonym?</li>
+    <li>Welche „kleine Gruppe" stand hinter dem Auftrag, und welches Ziel verfolgte sie?</li>
+    <li>Existiert die Zeitkapsel tatsächlich — und wo ist sie nach dem Abriss?</li>
+    <li>Wer sprengte die Steine — und warum wurde nie jemand ermittelt?</li>
+    <li>Warum ordneten die Behörden den Abriss noch am selben Tag an?</li>
+    <li>Warum gab es keine öffentliche Debatte über den Erhalt eines 42 Jahre alten Monuments?</li>
+    <li>In welchem Verhältnis stehen die Leitlinien zu zeitgenössischen Programmen internationaler Organisationen?</li>
+  </ul>
+
+  <p>
+    Dieser Artikel beantwortet diese Fragen nicht. Die dokumentierten Fakten sprechen für sich.
+  </p>
+
+  <hr class="divider">
+
+  
+  <div class="bildbriefing">
+    <div class="bildbriefing-title">📷 Bildbriefing</div>
+    <p><strong>Hauptbild (Hero):</strong> Georgia Guidestones von der Seite, Gegenlicht, dramatischer Himmel — Granit, Weitwinkel. Lizenzfreie Quelle: Wikimedia Commons (CC-Lizenz vorhanden). Alternativ: Nahaufnahme der eingravierten Inschrift.</p>
+    <p><strong>Bild 2:</strong> Stonehenge von ähnlichem Winkel — visueller Vergleich für die Gegenüberstellung.</p>
+    <p><strong>Bild 3:</strong> Dokumentationsfoto der Sprengung / des Trümmerhaufens vom 6. Juli 2022 — mehrere AP/Getty-Aufnahmen öffentlich verfügbar.</p>
+    <p><strong>Hinweis:</strong> Alle historischen Aufnahmen der Guidestones (vor 2022) sind auf Wikimedia Commons unter CC-BY-SA verfügbar. Suchanfrage: „Georgia Guidestones Wikimedia".</p>
+  </div>
+
+  <!-- TAGS -->
+  <div class="tags">
+    <span class="tag">Georgia Guidestones</span>
+    <span class="tag">Hidden in Plain Sight</span>
+    <span class="tag">Bevölkerungspolitik</span>
+    <span class="tag">Anonyme Macht</span>
+    <span class="tag">Stonehenge</span>
+    <span class="tag">Astronomie</span>
+    <span class="tag">USA</span>
+    <span class="tag">Sprengung 2022</span>
+    <span class="tag">Zeitkapsel</span>
+    <span class="tag">R.C. Christian</span>
+    <span class="tag">Wyatt Martin</span>
+    <span class="tag">Eugenik</span>
+  </div>
+
+  <!-- QUELLEN -->
+  <div class="quellen">
+    <div class="quellen-title">Quellen &amp; Primärbelege</div>
+    <div class="quelle">Randall Sullivan: „American Stonehenge: Monumental Instructions for the Post-Apocalypse" — Wired Magazine, April 2009 (Interview mit Wyatt Martin)</div>
+    <div class="quelle">Georgia Bureau of Investigation (GBI): Pressemitteilung zur Sprengung, 6. Juli 2022</div>
+    <div class="quelle">Elbert County: Offizielle Erklärung zum Abriss, 6. Juli 2022 — Begründung: strukturelle Gefährdung</div>
+    <div class="quelle">The Elberton Star: Lokale Berichterstattung zur Einweihung, 22. März 1980</div>
+    <div class="quelle">Bodenplatten-Inschrift der Georgia Guidestones — fotografisch dokumentiert, Wikimedia Commons (CC-BY-SA)</div>
+    <div class="quelle">UNESCO World Heritage Centre: Stonehenge, Avebury and Associated Sites — eingetragen 1986 (als Vergleichsreferenz)</div>
+    <div class="quelle">Kandiss Taylor: Offizielles Wahlkampfprogramm Gouverneurswahl Georgia 2022 — guidestones.kandissforgovernor.com (archiviert)</div>
+    <div class="quelle">Skidmore, Owings &amp; Merrill (Architekturbüro): Astronomische Ausrichtungsberechnungen — zitiert in: The Guidestones: America's Most Mysterious Monument, Documentary, 2012</div>
+  </div>
+
+  <!-- VERWEIS -->
+  <div class="artikel-verweis">
+    Verwandte Artikel: 
+    <a href="artikel-007-geld-herrschaftsinstrument.html">Geld als Herrschaftsinstrument</a> · 
+    <a href="artikel-018-infrastruktur-der-kontrolle.html">Infrastruktur der Kontrolle</a> · 
+    Palantir (in Vorbereitung)
+  </div>
+
+</main>
+
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

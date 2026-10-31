@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geoengineering — Die graue Zone | dunkelfeld.report</title>
+<meta name="rubrik" content="cat-technik">
+<meta name="kachel-titel" content="Geoengineering — Die graue Zone">
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --source-bg: #1a1a2e;
+    --text: #e8e8ea;
+    --muted: #9a9aa5;
+    --border: #26262e;
+    --belegt: #6fbf73;
+    --extrapolation: #e0a03c;
+    --offen: #8a8a94;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 2.9rem);
+    line-height: 1.15;
+    margin: 0 0 0.6rem;
+    color: var(--text);
+  }
+  .subtitle {
+    color: var(--muted);
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-bottom: 2.5rem;
+  }
+  p { padding-bottom: 1.2rem; margin: 0; }
+  h2 {
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin: 3rem 0 1.2rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.6rem;
+  }
+  h3 {
+    font-size: 1.15rem;
+    color: var(--text);
+    margin: 2rem 0 0.8rem;
+  }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    padding: 0.15rem 0.55rem;
+    border-radius: 3px;
+    margin-right: 0.5rem;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .tag-belegt { color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag-extrapolation { color: var(--extrapolation); border: 1px solid var(--extrapolation); }
+  .tag-offen { color: var(--offen); border: 1px solid var(--offen); }
+  .tag-widerlegt { color: var(--muted); border: 1px solid var(--muted); text-decoration: line-through; }
+
+  .source-box {
+    background: var(--source-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.3rem;
+    margin: 1.2rem 0 2rem;
+    font-size: 0.95rem;
+    color: var(--muted);
+    font-family: Georgia, serif;
+  }
+  .source-box strong { color: var(--text); }
+
+  .timeline {
+    border-left: 2px solid var(--border);
+    margin: 1.5rem 0 2.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item { margin-bottom: 1.6rem; position: relative; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.62rem;
+    top: 0.4rem;
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    margin: 1.5rem 0 2.5rem;
+  }
+  .stat-card {
+    background: var(--bg);
+    padding: 1.3rem 1rem;
+  }
+  .stat-num {
+    font-size: 1.6rem;
+    color: var(--accent);
+    font-family: Georgia, serif;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.03em;
+  }
+
+  .person-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 0;
+    font-size: 0.98rem;
+  }
+  .person-name { color: var(--text); }
+  .person-role { color: var(--muted); font-size: 0.85rem; text-align: right; }
+
+  .pull-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--accent);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 0;
+    margin: 2.5rem 0;
+    line-height: 1.5;
+  }
+
+  .open-question {
+    font-style: italic;
+    color: var(--muted);
+    margin: 1rem 0;
+  }
+
+  ul { padding-left: 1.3rem; margin: 0 0 1.2rem; }
+  li { margin-bottom: 0.5rem; }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.9;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  .series-nav {
+    margin-top: 2.5rem;
+    padding: 1.2rem;
+    border: 1px solid var(--border);
+    font-family: 'Courier New', monospace;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .series-nav strong { color: var(--accent); display: block; margin-bottom: 0.5rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">
+    <span>DUNKELFELD.REPORT</span>
+    <span>STAND: JULI 2026</span>
+  </div>
+
+  <h1>Geoengineering — Die graue Zone</h1>
+  <div class="subtitle">Wie Militär, Politik, Konzerne und Wissenschaft sich zu einem Thema verhalten, das längst keine Zukunftsvision mehr ist</div>
+
+  <p>
+  Ein bayerisches Nachrichtenmagazin widmete dem Thema kürzlich eine dreiteilige Serie unter dem Titel „Letzte Rettung Größenwahn". Auch andere große deutsche Medienhäuser berichten inzwischen regelmäßig. Das ist bemerkenswert: Was über Jahre als Randthema oder gar als Verschwörungserzählung abgetan wurde, findet nun in der seriösen Presse statt. Der Grund ist einfach — die Aktivitäten sind längst dokumentiert, öffentlich und in Milliardenhöhe finanziert.
+  </p>
+  <p>
+  Dieser Artikel folgt dem Beleg-vor-Motiv-Prinzip: Es werden keine Absichten unterstellt, die nicht durch Primärquellen gedeckt sind. Was folgt, ist eine Bestandsaufnahme von fünf Ebenen — Militär, Politik, Konzerne, Staaten und Wissenschaft — und wie sie sich zueinander verhalten.
+  </p>
+
+  <h2>I. Das Militär warnte zuerst</h2>
+
+  <p>
+  <span class="tag tag-belegt">BELEGT</span>
+  Im November 2012 veröffentlichte das <strong>Planungsamt der Bundeswehr</strong> ein internes Papier mit dem Titel „Geoengineering — Eine sicherheitspolitische Perspektive". Die Studie unterscheidet zwei Grundansätze: Carbon Dioxide Removal (CDR), also die Entfernung von CO₂ aus der Atmosphäre, und Solar Radiation Management (SRM), die Reduzierung der Sonneneinstrahlung durch Aerosole oder Wolkenaufhellung.
+  </p>
+
+  <div class="pull-quote">
+  „Ein radikalisierter und finanzstarker Akteur könnte sich als 'Retter der Welt' verstehen und im Alleingang einen massiven SRM-Einsatz durchführen."
+  <div style="font-size: 0.85rem; margin-top: 0.5rem; font-style: normal; color: var(--muted);">— sinngemäß aus dem Bundeswehr-Papier, Planungsamt der Bundeswehr, 2012</div>
+  </div>
+
+  <p>
+  <span class="tag tag-belegt">BELEGT</span>
+  Das Papier verweist zudem darauf, dass Wettermodifikation trotz der ENMOD-Konvention von 1976 (die den militärischen Einsatz von Umweltmodifikation verbietet) als Waffe nutzbar bliebe, weil die Konvention "das Thema selber" nicht erfasse — nur dessen kriegerische Anwendung.
+  </p>
+
+  <div class="source-box">
+  <strong>Quelle:</strong> Planungsamt der Bundeswehr: „Geoengineering — Eine sicherheitspolitische Perspektive", November 2012 (internes Dossier, auszugsweise öffentlich zitiert).
+  </div>
+
+  <h2>II. Politik: Zwischen Abwiegeln und offen lassen</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-date">2023</span>
+      <span class="tag tag-belegt">BELEGT</span> Auf eine Kleine Anfrage der AfD-Fraktion antwortet die Bundesregierung, sie unterstütze und entwickle kein Solar Radiation Management.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">OKTOBER 2025</span>
+      <span class="tag tag-belegt">BELEGT</span> Bundestagsdrucksache 21/2338: Die Bundesregierung erklärt, es gäbe keine bekannten Geoengineering-Aktivitäten in Deutschland, keine erhöhten Messwerte und kein geplantes Verbot. SRM sei „derzeit keine klimapolitische Option".
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">JANUAR 2026</span>
+      <span class="tag tag-belegt">BELEGT</span> Antrag mehrerer Abgeordneter (Bundestagsdrucksache 21/038/2103832): Die Bundesregierung „lässt es offen", SRM-Methoden künftig einzuplanen oder zu erproben — eine völkerrechtliche Regelung wird gefordert.
+    </div>
+  </div>
+
+  <p>
+  <span class="tag tag-extrapolation">EXTRAPOLATION</span>
+  Bemerkenswert ist der Widerspruch zur Position des Umweltbundesamts (UBA), das SRM-Einsatz und -Entwicklung vollständig ablehnt — auch nicht als Notfalloption. Während das UBA eine klare Haltung vertritt, hält sich die Bundesregierung in ihren Antworten auf parlamentarische Anfragen auffällig zurück, ohne sich UBA-Position anzuschließen oder ihr zu widersprechen.
+  </p>
+
+  <div class="source-box">
+  <strong>Quellen:</strong> Bundestagsdrucksache 21/2338 (Oktober 2025); Bundestagsdrucksache 21/038/2103832 (Januar 2026), dserver.bundestag.de; Umweltbundesamt, Themenseite Geoengineering-Governance, umweltbundesamt.de.
+  </div>
+
+  <h2>III. Die privaten Akteure</h2>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-num">75 Mio. $</span>
+      <span class="stat-label">Kapital für Stardust Solutions (2024–2025)</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">124</span>
+      <span class="stat-label">Ballonstarts von Make Sunsets</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">370.000 $</span>
+      <span class="stat-label">Lobbyausgaben Stardust, 2025 (OpenSecrets)</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">57 Mio. $</span>
+      <span class="stat-label">UK-Staatsförderung (ARIA) für Freiluftversuche</span>
+    </div>
+  </div>
+
+  <h3>Stardust Solutions</h3>
+  <p>
+  <span class="tag tag-belegt">BELEGT</span>
+  Das US-israelische Cleantech-Unternehmen will bis Ende der 2020er-Jahre ein komplettes System für stratosphärische Partikelinjektion bereitstellen. Im Oktober 2025 sammelte das Unternehmen 60 Millionen US-Dollar Risikokapital ein — nach eigenen Angaben die größte Finanzierungsrunde, die je einem SRM-Unternehmen gelang. Im Mai 2026 legte Stardust erstmals die chemische Zusammensetzung seiner Partikel offen. CEO Yanai Yedvab betont, ein realer Einsatz erfolge nur mit Zustimmung von Regierungen, die klare Regeln setzten.
+  </p>
+  <p>
+  <span class="tag tag-belegt">BELEGT</span>
+  Zu den Investoren zählt laut Medienrecherchen ein Kapitalfonds mit Verbindungen zu israelischen Militär- und Geheimdienstkreisen sowie der frühere Google-Manager Chris Sacca.
+  </p>
+
+  <h3>Make Sunsets</h3>
+  <p>
+  <span class="tag tag-belegt">BELEGT</span>
+  Das kleinere US-Startup verkauft „Kühlgutschriften" an Kunden und hat bereits 124 Ballonstarts mit Schwefeldioxid in die Stratosphäre durchgeführt — ohne vorherige gesellschaftliche oder wissenschaftliche Abstimmung.
+  </p>
+
+  <div class="source-box">
+  <strong>Quellen:</strong> Center for International Environmental Law, Solar Geoengineering Developments (Mai 2026), ciel.org; Cleanthinking.de, Stardust Solutions-Dossier (Mai 2026); neue-energie.net, Solares Geoengineering (Januar 2026); OpenSecrets.org, Lobbying-Daten Stardust Solutions.
+  </div>
+
+  <h2>IV. Staaten: Großbritannien als Vorreiter</h2>
+
+  <p>
+  <span class="tag tag-belegt">BELEGT</span>
+  Großbritannien ist das erste Land, das über eine staatliche Behörde — die <strong>Advanced Research and Invention Agency (ARIA)</strong> — Freiluft-Experimente zu Solar Geoengineering direkt finanziert: rund 57 Millionen US-Dollar für Feldversuche und Simulationen zur „Abkühlung der Erde".
+  </p>
+  <p>
+  <span class="tag tag-offen">OFFEN</span>
+  China unterhält ein staatliches Wetterbeeinflussungsamt, aktiv unter anderem bei den Olympischen Spielen 2008 in Peking (Cloud Seeding gegen Regen). Das tatsächliche Ausmaß aktueller Aktivitäten ist nicht öffentlich beziffert. Berichte über eine Beteiligung von US-Universitäten am Aufbau eines chinesischen „Weather-Warfare"-Programms konnten im Rahmen dieser Recherche nicht abschließend verifiziert werden und werden hier bewusst nicht als Tatsache dargestellt.
+  </p>
+
+  <div class="source-box">
+  <strong>Quellen:</strong> Geoengineering Monitor / ETC Group, Solar Radiation Management-Themenseite; U.S. GAO, Science & Tech Spotlight: Solar Geoengineering, GAO-26-108837 (März 2026).
+  </div>
+
+  <h2>V. Die wissenschaftliche Gegenbewegung</h2>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-num">500+</span>
+      <span class="stat-label">Wissenschaftler aus 60 Ländern fordern Verbot</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">3</span>
+      <span class="stat-label">US-Bundesstaaten mit bestehendem Verbot</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">34</span>
+      <span class="stat-label">US-Bundesstaaten mit Verboten in Vorbereitung</span>
+    </div>
+  </div>
+
+  <p>
+  <span class="tag tag-belegt">BELEGT</span>
+  Mehr als 500 Wissenschaftler aus rund 60 Ländern haben in einem offenen Brief ein weltweites Verbot von Solar Geoengineering gefordert. Ein Expertengremium im Auftrag der EU-Kommission warnt vor einer „gefährlichen Ablenkung" vom eigentlichen Ziel — der Reduktion von Treibhausgasemissionen.
+  </p>
+  <p>
+  <span class="tag tag-belegt">BELEGT</span>
+  Gegenläufig dazu haben Tennessee, Louisiana und Florida Geoengineering per Gesetz verboten. In 34 weiteren US-Bundesstaaten sowie auf Bundesebene und in Mexiko sind weitere Verbote in Vorbereitung. Im Februar 2026 brachte der US-Abgeordnete Greg Steube ein entsprechendes Bundesgesetz ein.
+  </p>
+
+  <div class="source-box">
+  <strong>Quellen:</strong> Cleanthinking.de, Stardust Solutions-Dossier (Mai 2026, aktualisiert); Heinrich-Böll-Stiftung / ETC Group, „Irrweg Geoengineering — Ein zivilgesellschaftliches Briefing", boell.de.
+  </div>
+
+  <h2>Das Muster</h2>
+
+  <p>
+  Fünf Ebenen, ein wiederkehrendes Muster: Das Militär analysiert das Risiko frühzeitig und öffentlich. Die Politik hält sich bei der Bewertung auffällig zurück, ohne sich klar zu positionieren. Private Konzerne handeln, bevor eine Regulierung existiert. Einzelne Staaten finanzieren das direkt. Und ein wachsender Teil der Wissenschaft warnt lauter, als die Politik zuhört.
+  </p>
+
+  <div class="open-question">
+  Was bedeutet es, wenn eine Technologie mit planetaren Nebenwirkungen von privaten Unternehmen vorangetrieben wird, bevor eine internationale Regulierung besteht?
+  </div>
+  <div class="open-question">
+  Warum positioniert sich die deutsche Bundesregierung in ihren Antworten auf parlamentarische Anfragen zurückhaltender als die eigene Umweltbehörde?
+  </div>
+  <div class="open-question">
+  Wer trägt die Verantwortung, wenn ein „Termination Shock" — der plötzliche Wärmeanstieg nach einem Abbruch der Maßnahmen — tatsächlich eintritt?
+  </div>
+
+  <div class="series-nav">
+    <strong>Verwandte Dossiers auf dunkelfeld.report</strong>
+    Infrastruktur der Kontrolle · Infrastruktur der Einflussnahme · Wer kontrolliert, was wir essen?
+  </div>
+
+  <footer>
+    <p>Alle dargestellten Informationen basieren auf öffentlich zugänglichen Primärquellen: Bundestagsdrucksachen, Behördenpublikationen, Fachpublikationen und investigativen Medienrecherchen. Diese Seite erhebt keinen Anspruch auf Vollständigkeit.</p>
+    <p style="margin-top:1rem;">dunkelfeld.report — Hidden in Plain Sight</p>
+  </footer>
+
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

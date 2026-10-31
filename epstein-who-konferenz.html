@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Die Konferenz | dunkelfeld.report</title>
+<meta name="rubrik" content="cat-stiftungen">
+<meta name="kachel-titel" content="Die Konferenz">
+<meta name="description" content="Jeffrey Epstein organisierte 2015 eine WHO-nahe Gesundheitskonferenz im International Peace Institute. WHO-Direktorin Margaret Chan sprach über absichtlich herbeigeführte Ausbrüche. Der Veranstalter wird heute wegen schwerer Korruption ermittelt.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #09090b;
+    --surface: #111113;
+    --surface2: #1a1a2e;
+    --amber: #e8c547;
+    --amber-dim: #c9a832;
+    --text: #e4e4e7;
+    --text-muted: #71717a;
+    --text-dim: #a1a1aa;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --red: #f87171;
+    --border: #27272a;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.85;
+    padding: 0 1rem;
+  }
+  .container { max-width: 720px; margin: 0 auto; padding: 3rem 0 5rem; }
+
+  /* HEADER NAV */
+  .site-nav {
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+    margin-bottom: 3.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    letter-spacing: 0.05em;
+  }
+  .site-nav a { color: var(--text-muted); text-decoration: none; }
+  .site-nav a:hover { color: var(--amber); }
+  .site-nav .logo { color: var(--amber); font-weight: bold; font-size: 0.9rem; }
+
+  /* META */
+  .article-meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .article-meta span { display: flex; align-items: center; gap: 0.4rem; }
+
+  /* TITLE */
+  h1 {
+    font-family: Georgia, serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #fff;
+    margin-bottom: 0.6rem;
+  }
+  .subtitle {
+    font-size: 1.15rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  .amber-rule { height: 3px; background: var(--amber); width: 60px; margin-bottom: 2.5rem; }
+
+  /* LEAD */
+  .lead {
+    font-size: 1.18rem;
+    line-height: 1.85;
+    color: var(--text);
+    border-left: 3px solid var(--amber);
+    padding-left: 1.2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* BODY TEXT */
+  p { padding-bottom: 1.2rem; }
+  h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--amber);
+    margin: 2.5rem 0 1rem;
+    font-family: Georgia, serif;
+    letter-spacing: 0.01em;
+  }
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 1.8rem 0 0.7rem;
+  }
+
+  /* TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    font-weight: bold;
+    letter-spacing: 0.07em;
+    padding: 0.15em 0.5em;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin: 0 0.1em;
+    white-space: nowrap;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid rgba(74,222,128,0.3); }
+  .tag-extrapolation { background: rgba(251,146,60,0.15); color: var(--orange); border: 1px solid rgba(251,146,60,0.3); }
+  .tag-offen { background: rgba(248,113,113,0.15); color: var(--red); border: 1px solid rgba(248,113,113,0.3); }
+
+  /* SOURCE BOX */
+  .source-box {
+    background: var(--surface2);
+    border-left: 3px solid var(--amber);
+    padding: 1.2rem 1.4rem;
+    margin: 2rem 0;
+    font-size: 0.92rem;
+  }
+  .source-box .source-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+  .source-box p { padding-bottom: 0.4rem; color: var(--text-dim); }
+  .source-box a { color: var(--amber-dim); word-break: break-all; font-size: 0.85rem; }
+  .source-box a:hover { color: var(--amber); }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border: 1px solid var(--amber);
+    padding: 1.5rem 1.8rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+  .pull-quote::before {
+    content: '"';
+    font-size: 4rem;
+    color: var(--amber);
+    opacity: 0.3;
+    position: absolute;
+    top: -0.5rem;
+    left: 1rem;
+    line-height: 1;
+    font-family: Georgia, serif;
+  }
+  .pull-quote p {
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--text);
+    padding-bottom: 0;
+    padding-top: 0.5rem;
+  }
+  .pull-quote .attribution {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 0.8rem;
+    display: block;
+    padding-bottom: 0;
+  }
+
+  /* TIMELINE */
+  .timeline { margin: 2rem 0; }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--border);
+  }
+  .timeline-item:last-child { border-bottom: 1px solid var(--border); }
+  .timeline-year {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--amber);
+    font-weight: bold;
+    padding-top: 0.1rem;
+  }
+  .timeline-content { font-size: 0.95rem; color: var(--text-dim); }
+  .timeline-content strong { color: var(--text); }
+
+  /* PERSON CARD */
+  .person-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--amber);
+    padding: 1.2rem;
+    margin: 1.5rem 0;
+  }
+  .person-card .person-name {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 0.3rem;
+  }
+  .person-card .person-role {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 0.8rem;
+  }
+  .person-card p { font-size: 0.9rem; color: var(--text-dim); padding-bottom: 0.3rem; }
+
+  /* CLOSING QUESTIONS */
+  .closing-questions {
+    border-top: 1px solid var(--border);
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+  }
+  .closing-questions .qs-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.2rem;
+  }
+  .closing-questions p {
+    font-style: italic;
+    color: var(--text-dim);
+    padding-bottom: 0.8rem;
+    font-size: 1rem;
+  }
+
+  /* FOOTER */
+  .article-footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 1.65rem; }
+    .timeline-item { grid-template-columns: 80px 1fr; }
+    .site-nav { gap: 1.2rem; flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <nav class="site-nav">
+    <span class="logo">dunkelfeld.report</span>
+    <a href="index.html">Startseite</a>
+    <a href="index.html#artikel">Artikel</a>
+    <a href="index.html#dossiers">Dossiers</a>
+  </nav>
+
+  <div class="article-meta">
+    <span>Kategorie: Strukturen &amp; Netzwerke</span>
+    <span>Quellenbasis: DOJ / FBI-Dokumente · WHO-Archiv · Europol · Medienberichte</span>
+  </div>
+
+  <h1>Die Konferenz</h1>
+  <p class="subtitle">Jeffrey Epstein, das International Peace Institute und eine WHO-Direktorin, die über „absichtlich herbeigeführte Ausbrüche" sprach — vier Jahre vor COVID-19.</p>
+  <div class="amber-rule"></div>
+
+  <div class="lead">
+    Im Jahr 2015 organisierte Jeffrey Epstein mit einem Budget von einer Million Dollar eine Konferenz zu „Gesundheit und Sicherheit" in New York. Als Rednerin trat die amtierende WHO-Generaldirektorin Margaret Chan auf. Als Veranstalter fungierte nach außen das International Peace Institute, geführt von Terje Rød-Larsen — Epsteins engstem diplomatischen Vertrautem. Rød-Larsen und seine Frau werden heute wegen schwerer Korruption ermittelt. Was stand auf der Agenda?
+  </div>
+
+  <h2>I. Das Dokument</h2>
+
+  <p>Im Rahmen der Epstein-Akten-Veröffentlichung des US-Justizministeriums wurde ein Dokument mit der Kennung <strong>EFTA02676303</strong> zugänglich gemacht. <span class="tag tag-belegt">BELEGT</span> Es enthält Programm, Budgetplanung und Teilnehmerliste der Konferenz mit dem Titel <em>„The Rothschild Conference on Health and Security"</em>, abgehalten im International Peace Institute, New York. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Aus dem Dokument geht hervor: Epstein entwarf das Einladungsschreiben, in dem er Bill Gates bat, die Hauptrede zu halten. <span class="tag tag-belegt">BELEGT</span> Das Budget von einer Million Dollar lag in Epsteins Planung. Als Außengesicht der Veranstaltung trat das IPI unter Rød-Larsen auf.</p>
+
+  <div class="source-box">
+    <span class="source-label">Primärquelle — US-Justizministerium</span>
+    <p>Konferenzprogramm, Budget und Teilnehmerliste (Datensatz 11, EFTA02676303)</p>
+    <a href="https://justice.gov/epstein/files/DataSet%2011/EFTA02676303.pdf" target="_blank">justice.gov/epstein/files/DataSet 11/EFTA02676303.pdf</a>
+  </div>
+
+  <h2>II. Was Margaret Chan sagte</h2>
+
+  <p>Margaret Chan, damalige Generaldirektorin der Weltgesundheitsorganisation (WHO) und Vorgängerin von Tedros Adhanom Ghebreyesus, sprach 2015 auf dieser Konferenz. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Das sichtbare Programm-Dokument nennt als thematischen Rahmen biologische Sicherheit und epidemische Bedrohungen — einschließlich des Begriffs „accidental or deliberately perpetrated outbreaks" (versehentlich oder absichtlich herbeigeführte Ausbrüche). <span class="tag tag-belegt">BELEGT</span> Ob Chan diese Formulierung selbst verwendete oder ob sie dem Programm entstammt, geht aus den zugänglichen Unterlagen nicht abschließend hervor. <span class="tag tag-offen">OFFEN</span></p>
+
+  <div class="pull-quote">
+    <p>accidental or deliberately perpetrated outbreaks</p>
+    <span class="attribution">Konferenzprogramm „The Rothschild Conference on Health and Security", IPI New York, 2015 — Quelle: DOJ/EFTA02676303</span>
+  </div>
+
+  <p>Derselbe Begriff — absichtlich herbeigeführte Ausbrüche — ist ein etablierter Terminus im Bereich Biosicherheit und findet sich auch in WHO-Dokumenten, SIPRI-Berichten und parlamentarischen Anfragen. <span class="tag tag-belegt">BELEGT</span> Seine Verwendung auf einer von Epstein organisierten Konferenz mit WHO-Beteiligung ist gleichwohl ein dokumentierter Sachverhalt.</p>
+
+  <h2>III. Margaret Chans Vorgeschichte: 2009</h2>
+
+  <p>Margaret Chan war nicht zum ersten Mal mit weitreichenden Entscheidungen zu Pandemie-Erklärungen verbunden. Am 11. Juni 2009 rief sie als WHO-Generaldirektorin die höchstmögliche Pandemiestufe — Stufe 6 — für die Schweinegrippe (H1N1) aus. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Der Europarat untersuchte das Pandemiemanagement 2010 und warf der WHO und nationalen Gesundheitsbehörden schwere Fehler vor. <span class="tag tag-belegt">BELEGT</span> Mehrere Mitglieder des 16-köpfigen Notfallkomitees, das Chan beraten hatte, wurden nicht öffentlich benannt — ein Umstand, den die Fachzeitschrift British Medical Journal als „kurios" bezeichnete. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Relevant für den Kontext: Zwischen Mai 2009 (Änderung der Pandemie-Definition durch die WHO) und der Pandemie-Ausrufung im Juni 2009 wurden zwei wesentliche Kriterien aus der WHO-Definition gestrichen — darunter die Bedingung einer hohen Mortalitätsrate. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <span class="source-label">Quellen — WHO / Europarat / BMJ</span>
+    <p>WHO: Ausrufung Pandemiestufe 6, 11. Juni 2009 — <a href="https://www.who.int/mediacentre/news/statements/2009/h1n1_pandemic_phase6_20090611/en/" target="_blank">WHO-Archiv</a></p>
+    <p>Tagesspiegel, 22. Juni 2010: „Schweinegrippe: Profit ohne Pandemie" — <a href="https://www.tagesspiegel.de/meinung/schweinegrippe-profit-ohne-pandemie/1865892.html" target="_blank">tagesspiegel.de</a></p>
+    <p>Parliamentary Assembly of the Council of Europe, Resolution 1749 (2010): „Handling of the H1N1 pandemic: more transparency needed"</p>
+  </div>
+
+  <h2>IV. Terje Rød-Larsen und das International Peace Institute</h2>
+
+  <p>Das International Peace Institute (IPI) mit Sitz in New York trat nach außen als Veranstalter der Konferenz auf. Präsident des IPI war zu dieser Zeit Terje Rød-Larsen — norwegischer Diplomat und Mitarchitekt der Oslo-Abkommen von 1993. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Rød-Larsen bezeichnete Epstein in den Akten als seinen „besten Freund" und „durch und durch guten Menschen". <span class="tag tag-belegt">BELEGT</span> Das Testament Epsteins, unterzeichnet zwei Tage vor seinem Tod, sah für jedes der zwei Kinder Rød-Larsens ein Vermächtnis von je 5 Millionen Dollar vor — insgesamt 10 Millionen Dollar. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Epstein stellte Rød-Larsen auch der Baronin Ariane de Rothschild vor — eine Verbindung, aus der Epsteins Beratungsmandat für die Edmond de Rothschild Group hervorging, für das er im Dezember 2015 nach einem Vergleich mit dem US-Justizministerium 25 Millionen Dollar erhielt. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="person-card">
+    <div class="person-name">Terje Rød-Larsen</div>
+    <div class="person-role">Diplomat · IPI-Präsident 2005–2021 · Oslo-Abkommen 1993</div>
+    <p>Bezeichnet Epstein als „besten Freund". Kinder im Epstein-Testament mit je 5 Mio. USD bedacht.</p>
+    <p>Seine Ehefrau Mona Juul war norwegische Botschafterin (zuletzt UK, dann Jordanien/Irak) — und wurde im Zuge der Ermittlungen suspendiert.</p>
+    <p>Rød-Larsen stellte Epstein der Baronin Ariane de Rothschild vor. Epstein vermittelte daraus ein Beratungsmandat von 25 Mio. USD (2015).</p>
+    <p>IPI vergab unter Rød-Larsen Stellen an Frauen aus Epsteins Umfeld — nach Angaben des Associated Press im Zusammenhang mit Visa-Beschaffung. <span class="tag tag-belegt">BELEGT</span></p>
+  </div>
+
+  <h2>V. Stand der Ermittlungen 2026</h2>
+
+  <p>Im Januar 2026 veröffentlichte das US-Justizministerium die Epstein-Akten. In den Unterlagen dokumentiert war die enge Verflechtung zwischen Rød-Larsen, dem IPI und Epsteins Netzwerk. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Im Februar 2026 eröffnete die norwegische Wirtschaftsermittlungsbehörde ØKOKRIM ein Verfahren wegen des Verdachts schwerer Korruption gegen Rød-Larsen und seine Frau Mona Juul. <span class="tag tag-belegt">BELEGT</span> Untersucht werden unter anderem der unter Marktwert erworbene Kauf einer Osloer Wohnung im Jahr 2018 sowie ein Besuch auf Epsteins Privatinsel im Jahr 2011 und die Finanzierung von Pflegediensten für Rød-Larsen. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Im April 2026 weiteten die Ermittlungen sich aus: ØKOKRIM und französische Behörden bildeten ein gemeinsames Ermittlungsteam (JIT). In Frankreich laufen parallele Verfahren wegen möglicher Finanzdelikte im Zusammenhang mit Personen, die in den Epstein-Akten auftauchen. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="source-box">
+    <span class="source-label">Quellen — Ermittlungsstand</span>
+    <p>Guardian, 9. Februar 2026: Two senior Norwegian diplomats being investigated over Epstein links</p>
+    <p>Euronews, 27. April 2026: Norway and France launch joint police probe into diplomats' alleged links with Epstein — <a href="https://www.euronews.com/my-europe/2026/04/27/norway-and-france-launch-joint-police-probe-into-diplomats-alleged-links-with-epstein" target="_blank">euronews.com</a></p>
+    <p>Al Jazeera, 12. Februar 2026: Compromised peace? Oslo Accords figure deeply linked to Epstein network — <a href="https://www.aljazeera.com/features/2026/2/12/compromised-peace-oslo-accords-figure-deeply-linked-to-epstein-network" target="_blank">aljazeera.com</a></p>
+    <p>Bloomberg, 18. Februar 2026: DOJ Files Detail Epstein's Connections to Norway's Elite Through Rød-Larsen — <a href="https://www.bloomberg.com/news/articles/2026-02-18/how-a-low-key-norwegian-became-epstein-s-top-diplomatic-fixer" target="_blank">bloomberg.com</a></p>
+    <p>Miami Herald / AOL, April 2026: Epstein made millions off DOJ settlement with famed European bank dynasty — <a href="https://www.aol.com/articles/epstein-made-millions-off-doj-093000349.html" target="_blank">aol.com</a></p>
+  </div>
+
+  <h2>VI. Chronologie der dokumentierten Ereignisse</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-year">2009</span>
+      <div class="timeline-content"><strong>Margaret Chan ruft Pandemiestufe 6 aus</strong> — Schweinegrippe (H1N1). WHO-Definition wurde kurz zuvor geändert: Mortalitätskriterium gestrichen. Europarat kritisiert Pandemiemanagement.</div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-year">2011</span>
+      <div class="timeline-content"><strong>Rød-Larsen und Frau Mona Juul auf Epsteins Privatinsel</strong> (Little Saint James) — Gegenstand laufender Ermittlungen.</div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-year">2013</span>
+      <div class="timeline-content"><strong>Epstein leiht Rød-Larsen 130.000 USD.</strong> Beginn der dokumentierten Korrespondenz zwischen Epstein und Baronin Ariane de Rothschild — vermittelt durch Rød-Larsen.</div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-year">2015</span>
+      <div class="timeline-content"><strong>„Rothschild Conference on Health and Security"</strong> im International Peace Institute. Organisiert von Epstein (Budget: 1 Mio. USD). Rednerin: WHO-Generaldirektorin Margaret Chan. Thema u.a.: „absichtlich oder versehentlich herbeigeführte Ausbrüche". Parallel: US-DOJ-Vergleich mit Edmond de Rothschild Group — Epstein erhält 25 Mio. USD Honorar.</div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-year">2018</span>
+      <div class="timeline-content"><strong>Wohnungskauf Oslo unter Marktwert</strong> durch Rød-Larsen / Juul — Gegenstand laufender Ermittlungen.</div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-year">Aug. 2019</span>
+      <div class="timeline-content"><strong>Jeffrey Epstein stirbt</strong> in Untersuchungshaft in New York. Tod offiziell als Suizid eingestuft.</div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-year">2020</span>
+      <div class="timeline-content"><strong>COVID-19-Pandemie.</strong> WHO unter Tedros (Chan-Nachfolger) erklärt globale Notlage. Kritik an Transparenz und Interessenkonflikten wiederholt sich.</div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-year">Jan. 2026</span>
+      <div class="timeline-content"><strong>US-Justizministerium veröffentlicht Epstein-Akten</strong> (über 6 Millionen Seiten). Rød-Larsen-Verbindungen erstmals vollständig dokumentiert öffentlich.</div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-year">Feb. 2026</span>
+      <div class="timeline-content"><strong>ØKOKRIM eröffnet Ermittlungen</strong> gegen Rød-Larsen und Mona Juul wegen schwerer Korruption. Juul wird suspendiert. Guardian, Al Jazeera, Bloomberg berichten.</div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-year">Apr. 2026</span>
+      <div class="timeline-content"><strong>Gemeinsames Ermittlungsteam (JIT)</strong> Norwegen/Frankreich. Französische Parallelverfahren wegen Personen aus Epstein-Dokumenten.</div>
+    </div>
+  </div>
+
+  <h2>VII. Strukturelle Einordnung</h2>
+
+  <p>Was die Epstein-Akten in diesem Komplex zeigen, ist ein dokumentiertes Muster: Ein verurteilter Sexualstraftäter <span class="tag tag-belegt">BELEGT</span> betrieb aktiv den Aufbau und die Pflege von Verbindungen zu internationalen Gesundheitsinstitutionen. <span class="tag tag-belegt">BELEGT</span> Er finanzierte eine Konferenz, die WHO-Spitzenvertreter mit Themen der biologischen Sicherheit zusammenbrachte. <span class="tag tag-belegt">BELEGT</span> Der institutionelle Träger dieser Konferenz war das IPI unter Rød-Larsen, der heute unter Korruptionsverdacht steht. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <p>Ob und wie diese Verbindungen die inhaltliche oder personelle Ausrichtung der WHO beeinflussten, lässt sich aus den vorliegenden Dokumenten nicht ableiten. <span class="tag tag-offen">OFFEN</span> Die Existenz der Verbindungen selbst ist jedoch durch Primärquellen belegt.</p>
+
+  <p>Für den Kontext relevant: Epstein fungierte nachweislich als Mittler zwischen Eliten aus Diplomatie, Finanz und Wissenschaft — unter Nutzung institutioneller Hüllen wie dem IPI. <span class="tag tag-belegt">BELEGT</span> Die Mechanismen seiner Einflussnahme sind Gegenstand laufender Strafverfolgung in mehreren Ländern. <span class="tag tag-belegt">BELEGT</span></p>
+
+  <div class="closing-questions">
+    <div class="qs-label">Offene Fragen</div>
+    <p><em>Welche weiteren Personen aus dem Bereich globaler Gesundheitspolitik waren auf der Konferenz von 2015 anwesend, deren vollständige Teilnehmerliste im DOJ-Dokument EFTA02676303 einzusehen ist?</em></p>
+    <p><em>Welche Rolle spielte das International Peace Institute unter Rød-Larsen bei der Vermittlung von Kontakten zwischen Epstein und anderen internationalen Institutionen — und auf wessen Initiative?</em></p>
+    <p><em>In welchem Verhältnis steht Epsteins finanzielle Unterstützung für das IPI zu den Stellenvergaben, die das Institut an Frauen aus Epsteins Umfeld vornahm?</em></p>
+    <p><em>Was ergeben die laufenden Ermittlungen in Norwegen und Frankreich über den genauen Charakter der finanziellen Transaktionen zwischen Epstein, Rød-Larsen und weiteren Beteiligten?</em></p>
+  </div>
+
+  <div class="article-footer">
+    <p>Redaktionelle Standards: dunkelfeld.report arbeitet ausschließlich mit verifizierten Primärquellen. Alle Behauptungen sind mit BELEGT / EXTRAPOLATION / OFFEN/NICHT BELEGT gekennzeichnet. Schlussfolgerungen zieht der Leser.</p>
+    <p style="margin-top:0.7rem;">Primärquelle: US-Justizministerium, Epstein Files, DataSet 11, EFTA02676303 — <a href="https://justice.gov/epstein" target="_blank" style="color:var(--amber-dim);">justice.gov/epstein</a></p>
+    <p style="margin-top:0.4rem;">Weiterführende Originaldokumente: <a href="https://sayerji.substack.com/p/exclusive-jeffrey-epstein-secretly" target="_blank" style="color:var(--amber-dim);">sayerji.substack.com</a></p>
+  </div>
+
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gesundes System, kranke Patienten | dunkelfeld.report</title>
+<meta name="rubrik" content="cat-nahrung">
+<meta name="kachel-titel" content="Gesundes System, kranke Patienten">
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --surface: #141414;
+    --surface2: #1a1a1a;
+    --border: #2a2a2a;
+    --text: #e0e0e0;
+    --muted: #888;
+    --accent: #c0392b;
+    --accent2: #e67e22;
+    --green: #27ae60;
+    --white: #f0f0f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Georgia', serif; line-height: 1.8; font-size: 17px; }
+  header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 1.2rem 2rem; }
+  .logo { font-family: 'Arial', sans-serif; font-size: 1.1rem; font-weight: 900; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; }
+  .logo span { color: var(--muted); font-weight: 400; }
+  .container { max-width: 760px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+  .tag { display: inline-block; font-family: 'Arial', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); padding: 0.2rem 0.6rem; margin-bottom: 1.2rem; }
+  h1 { font-family: 'Arial', sans-serif; font-size: 2.4rem; font-weight: 900; line-height: 1.15; color: var(--white); margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .subtitle { font-size: 1.1rem; color: var(--muted); font-style: italic; margin-bottom: 0.8rem; line-height: 1.6; }
+  .meta { font-family: 'Arial', sans-serif; font-size: 0.78rem; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+  h2 { font-family: 'Arial', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.08em; margin: 2.5rem 0 1rem; }
+  p { margin-bottom: 1.3rem; }
+  .pullquote { border-left: 4px solid var(--accent); margin: 2rem 0; padding: 1rem 1.5rem; background: var(--surface2); font-size: 1.15rem; font-style: italic; color: var(--white); line-height: 1.6; }
+  .factbox { background: var(--surface2); border: 1px solid var(--border); border-top: 3px solid var(--accent2); padding: 1.5rem; margin: 2rem 0; font-family: 'Arial', sans-serif; font-size: 0.9rem; }
+  .factbox .fb-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.8rem; }
+  .factbox ul { padding-left: 1.2rem; }
+  .factbox li { margin-bottom: 0.5rem; color: var(--text); }
+  .dangerbox { background: #1a0a0a; border: 1px solid var(--accent); padding: 1.5rem; margin: 2rem 0; font-family: 'Arial', sans-serif; font-size: 0.92rem; color: #e0b0b0; }
+  .dangerbox .db-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin: 2rem 0; border: 1px solid var(--border); }
+  .compare-col { padding: 1.2rem; font-family: 'Arial', sans-serif; font-size: 0.88rem; }
+  .compare-col:first-child { border-right: 1px solid var(--border); }
+  .compare-col .col-title { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.8rem; padding-bottom: 0.5rem; border-bottom: 2px solid; }
+  .compare-col.kasse .col-title { color: var(--accent); border-color: var(--accent); }
+  .compare-col.privat .col-title { color: var(--green); border-color: var(--green); }
+  .compare-col ul { padding-left: 1rem; }
+  .compare-col li { margin-bottom: 0.4rem; color: var(--text); }
+  .timeline { margin: 2rem 0; }
+  .tl-item { display: grid; grid-template-columns: 80px 1fr; gap: 1rem; margin-bottom: 0.8rem; font-family: 'Arial', sans-serif; font-size: 0.88rem; }
+  .tl-year { color: var(--accent2); font-weight: 700; padding-top: 0.1rem; }
+  .tl-text { background: var(--surface2); border-left: 2px solid var(--border); padding: 0.5rem 1rem; color: var(--text); }
+  .conclusion { background: var(--surface2); border-left: 4px solid var(--accent2); padding: 1.5rem; margin: 2.5rem 0; font-size: 1rem; line-height: 1.8; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+  footer { font-family: 'Arial', sans-serif; font-size: 0.78rem; color: var(--muted); padding-top: 1.5rem; border-top: 1px solid var(--border); line-height: 1.8; }
+  @media (max-width: 600px) {
+    h1 { font-size: 1.7rem; }
+    .compare { grid-template-columns: 1fr; }
+    .compare-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+    .container { padding: 2rem 1.2rem 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">dunkelfeld<span>.info</span></div>
+</header>
+
+<div class="container">
+
+  <div class="tag">Analyse · Gesundheitspolitik</div>
+
+  <h1>Gesundes System, kranke Patienten</h1>
+  <p class="subtitle">Das deutsche Gesundheitssystem ist nicht kaputt. Es funktioniert — nur nicht für alle. Eine Analyse der Mechanismen, der Profiteure und der Frage, warum strukturelle Reformen seit Jahrzehnten ausbleiben.</p>
+  <div class="meta">dunkelfeld.report · Juni 2026 · Lesezeit ca. 7 Minuten · Quellen: BMG, GKV, Bertelsmann-Stiftung, Bundesrechnungshof</div>
+
+  <p>Im April 2026 beschloss das Bundeskabinett das GKV-Beitragssatzstabilisierungsgesetz. Der Name klingt nach Lösung. Der Inhalt ist ein Maßnahmenpaket, das vor allem eines tut: die Kosten weiter zu den Versicherten verlagern. Höhere Zuzahlungen, Kürzungen beim Zahnersatz, Ausschluss von Leistungen.</p>
+
+  <p>Gleichzeitig: Der Zusatzbeitrag steigt 2026 zum vierten Mal in Folge. Das Defizit ab 2027 wird auf mindestens 15 Milliarden Euro geschätzt. Die Bertelsmann-Stiftung rechnet mit einem Beitragssatz von bis zu 18,7 Prozent bis 2040.</p>
+
+  <p>Das ist kein Systemversagen. Das ist Systemfunktion — nur zugunsten der falschen Seite.</p>
+
+  <div class="pullquote">
+    Ein System, das Gewinne privatisiert und Verluste sozialisiert, funktioniert. Nur nicht für seine Versicherten.
+  </div>
+
+  <h2>I. Die Beitragsspirale — belegbar in Zahlen</h2>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">2022</div>
+      <div class="tl-text">Durchschnittlicher Zusatzbeitrag: 1,4 % · Gesamtbeitragssatz: ca. 16,0 %</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2024</div>
+      <div class="tl-text">Zusatzbeitrag: 1,7 % · Sozialbeiträge überschreiten erstmals 40%-Marke</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2025</div>
+      <div class="tl-text">Zusatzbeitrag: 2,5 % · GKV-Defizit: knapp 14 Mrd. € · Reserven unter gesetzlichem Minimum</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2026</div>
+      <div class="tl-text">Zusatzbeitrag: 2,9 % (Spanne: 2,18–4,39 %) · Kabinett beschließt Sparpaket auf Kosten der Versicherten</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2027+</div>
+      <div class="tl-text">Prognostizierte Deckungslücke: 15 Mrd. € · BMG erwartet weiteren Beitragsanstieg</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2040</div>
+      <div class="tl-text">Bertelsmann-Prognose: Beitragssatz bis zu 18,7 % — wenn keine Strukturreform erfolgt</div>
+    </div>
+  </div>
+
+  <p>Zum Vergleich: 2022 lag der Zusatzbeitrag bei 1,4 Prozent. Er hat sich in vier Jahren mehr als verdoppelt. Die Einnahmen der GKV stiegen 2025 um 5 Prozent — die Ausgaben um 7,8 Prozent. Die Schere öffnet sich strukturell.</p>
+
+  <h2>II. Zwei Klassen — eine Realität</h2>
+
+  <p>Die Zwei-Klassen-Medizin ist kein politischer Begriff. Sie ist eine messbare Versorgungsrealität, die sich in Wartezeiten, Behandlungsoptionen und Arztdichte abbildet.</p>
+
+  <div class="compare">
+    <div class="compare-col kasse">
+      <div class="col-title">🔴 Kassenpatient</div>
+      <ul>
+        <li>Facharzttermin: ∅ 3–4 Wochen Wartezeit</li>
+        <li>Gedeckelte Arztbudgets limitieren Behandlungsumfang</li>
+        <li>Zahnersatz: Festzuschuss ab 2026 um 10% gekürzt</li>
+        <li>Zuzahlungen: um 50% erhöht (Kabinettsbeschluss April 2026)</li>
+        <li>Innovationsmedikamente: oft nur nach Widerspruch verfügbar</li>
+      </ul>
+    </div>
+    <div class="compare-col privat">
+      <div class="col-title">🟢 Privatpatient</div>
+      <ul>
+        <li>Facharzttermin: ∅ wenige Tage</li>
+        <li>Keine Budgetbegrenzung beim Arzt</li>
+        <li>Volle Zahnersatz-Erstattung möglich</li>
+        <li>Keine Zuzahlungsgrenzen nach GKV-Schema</li>
+        <li>Direktzugang zu Spezialisten und neueren Therapien</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>Dieselbe Praxis. Derselbe Arzt. Andere Wartezeit. Der Grund ist strukturell: Privatpatienten werden nach GOÄ abgerechnet — oft 2,3- bis 3,5-fach höher als Kassensätze. Für Ärzte ist die Priorisierung von Privatpatienten wirtschaftlich rational. Für das Solidarsystem ist sie eine Bankrotterklärung.</p>
+
+  <h2>III. Das Sparpaket und seine Logik</h2>
+
+  <p>Das GKV-Stabilisierungsgesetz vom April 2026 enthält folgende Maßnahmen — alle dokumentiert im Kabinettsbeschluss:</p>
+
+  <div class="factbox">
+    <div class="fb-title">Maßnahmen Kabinett April 2026 — wer zahlt?</div>
+    <ul>
+      <li>Zuzahlungen für Patienten: +50% (erstmals seit 2004 angepasst)</li>
+      <li>Zahnersatz-Festzuschüsse: -10% (zurück auf Niveau vor 2020)</li>
+      <li>Cannabis-Blüten: aus GKV-Erstattung gestrichen</li>
+      <li>Apothekenabschlag: von 1,77 € auf 2,07 € erhöht — Apotheken zahlen mehr</li>
+      <li>Arzneimittelpreise: Wettbewerb bei patentgeschützten Medikamenten ermöglicht — aber freiwillig</li>
+      <li>Krankenhausvergütung: Steigerungen begrenzt auf Grundlohnrate minus 1 Pp (2027–2029)</li>
+    </ul>
+  </div>
+
+  <p>Was fällt auf? Die direkten Einschnitte treffen Versicherte und Leistungserbringer. Die strukturelle Frage — warum Arzneimittelpreise in Deutschland zu den höchsten Europas gehören, warum Klinikkonzerne Renditen erwirtschaften, während kommunale Krankenhäuser schließen — wird nicht beantwortet.</p>
+
+  <div class="pullquote">
+    Gespart wird dort, wo Widerstand am geringsten ist: bei den Patienten.
+  </div>
+
+  <h2>IV. Wer profitiert — die Struktur hinter dem System</h2>
+
+  <p>Cui bono? In einem System mit jährlich über 300 Milliarden Euro Umsatz gibt es viele Antworten.</p>
+
+  <div class="factbox">
+    <div class="fb-title">Profiteure des Status quo</div>
+    <ul>
+      <li><strong>Pharmaindustrie:</strong> Deutschland ist einer der teuersten Arzneimittelmärkte Europas. Patentschutz und Preisgestaltung ermöglichen Gewinnmargen, die anderswo reguliert wären.</li>
+      <li><strong>Private Klinikkonzerne:</strong> Helios, Rhön, Asklepios — börsennotierte Konzerne haben kommunale Krankenhäuser systematisch übernommen. Gewinn wird ausgeschüttet, Verlustbereiche werden geschlossen oder ausgelagert.</li>
+      <li><strong>Digitale Gesundheitswirtschaft:</strong> ePA, DiGA, Telemedizin — ein Milliardenmarkt, der mit GKV-Mitteln und Steuergeldern aufgebaut wird, während Dividenden privat fließen.</li>
+      <li><strong>Beratungsindustrie:</strong> Jede Reform produziert Gutachten, Strategiepapiere, Implementierungsbegleitung — bezahlt aus öffentlichen Mitteln.</li>
+    </ul>
+  </div>
+
+  <p>Keiner dieser Akteure hat ein Interesse an einem effizienten, kostengünstigen Solidarsystem. Ineffizienz ist ihr Geschäftsmodell.</p>
+
+  <h2>V. Warum die Reform ausbleibt</h2>
+
+  <p>Das ist die eigentliche dunkelfeld-Frage: Warum werden strukturelle Probleme, die seit Jahrzehnten bekannt sind, nicht behoben?</p>
+
+  <p>Antwort eins: politische Komplexität. Das Gesundheitssystem ist ein Interessengeflecht aus Kassen, Ärzteverbänden, Kliniken, Pharmaunternehmen, Gewerkschaften und Ländern. Jede Strukturreform trifft organisierte Interessen, die sich wehren.</p>
+
+  <p>Antwort zwei: Lobbymacht. Die pharmazeutische Industrie, die privaten Klinikkonzerne und die Krankenversicherungslobby sind in Berlin gut vernetzt. Reformvorschläge, die ihren Interessen schaden, haben eine kurze Halbwertszeit.</p>
+
+  <p>Antwort drei — die unbequemste: Das System ist nicht gescheitert. Es liefert für die, die es gestalten. Die Kosten tragen die anderen.</p>
+
+  <div class="dangerbox">
+    <div class="db-title">⚠ Strukturproblem</div>
+    Ein System, das jährlich mehr Beiträge nimmt und weniger Leistung liefert, und dabei keine politischen Konsequenzen erzeugt, ist stabil — für seine Nutznießer. Die Frage ist nicht, ob das System funktioniert. Die Frage ist: für wen.
+  </div>
+
+  <h2>VI. Was Versicherte jetzt wissen sollten</h2>
+
+  <p>Drei konkrete Fakten, die jeder kennen sollte:</p>
+
+  <div class="factbox">
+    <div class="fb-title">Was du tun kannst — belegbar und legal</div>
+    <ul>
+      <li><strong>Sonderkündigungsrecht:</strong> Bei jeder Beitragserhöhung haben GKV-Mitglieder das Recht, innerhalb von zwei Monaten zu wechseln. Die Spanne der Zusatzbeiträge 2026 reicht von 2,18% bis 4,39% — das macht bei mittlerem Einkommen hunderte Euro Unterschied pro Jahr.</li>
+      <li><strong>Terminservicestellen:</strong> Seit 2019 müssen Kassenärztliche Vereinigungen Termine innerhalb von vier Wochen vermitteln (§ 75 SGB V). Dieses Recht wird selten genutzt — weil kaum jemand davon weiß.</li>
+      <li><strong>Widerspruchsrecht:</strong> Leistungsablehnungen können und sollten widersprochen werden. Die Widerspruchsquote ist hoch — und die Erfolgsquote auch.</li>
+    </ul>
+  </div>
+
+  <div class="conclusion">
+    <strong>Fazit:</strong> Das deutsche Gesundheitssystem ist kein gescheitertes System. Es ist ein System, das genau das tut, was seine Strukturen erlauben: Gewinne privatisieren, Kosten sozialisieren, Reformen blockieren. Die Beitragszahler finanzieren das — ohne ausreichende Gegenleistung, ohne Transparenz, ohne politische Konsequenz für die Verantwortlichen. Das zu benennen ist kein Angriff auf das Gesundheitswesen. Es ist Voraussetzung dafür, es zu verbessern.
+  </div>
+
+  <hr class="divider">
+
+  <footer>
+    dunkelfeld.report · Analyse · Juni 2026<br>
+    Quellen: Bundesgesundheitsministerium (Kabinettsbeschluss 29.04.2026, Referentenentwurf 16.04.2026) · GKV-Schätzerkreis · Bertelsmann-Stiftung GKV-Prognose · Bundesrechnungshof · Ottonova/Check24 Zusatzbeitragsübersicht 2026 · Ipsos Sorgenbarometer Mai 2026<br>
+    Alle Aussagen basieren auf öffentlich zugänglichen und belegbaren Quellen. Meinungen sind als solche gekennzeichnet.<br><br>
+    <strong>Tags:</strong> #Gesundheitssystem #GKV #Krankenkasse #Zusatzbeitrag #ZweiKlassenMedizin #Privatisierung #Pharmaindustrie #dunkelfeld #Analyse #Gesundheitspolitik
+  </footer>
+
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

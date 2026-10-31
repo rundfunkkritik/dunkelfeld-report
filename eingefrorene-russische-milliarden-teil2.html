@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wer richtet hier eigentlich? — dunkelfeld.report</title>
+<meta name="rubrik" content="cat-geo">
+<meta name="kachel-titel" content="Wer richtet hier eigentlich?">
+<meta name="description" content="Sechs Gerichte, ein Streitgegenstand: Wer legitimiert die Zuständigkeiten im Streit um die eingefrorenen russischen Milliarden? Teil 2 der Dokumentation.">
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --box-bg: #1a1a2e;
+    --belegt: #4caf7d;
+    --extrapolation: #e0954f;
+    --offen: #9a9aa5;
+    --text: #e4e2d8;
+    --text-dim: #a8a6a0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0 20px 80px;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  .meta-nav {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    padding: 24px 0 8px;
+    letter-spacing: 0.02em;
+  }
+  .meta-nav a { color: var(--accent); text-decoration: none; }
+  .meta-nav a:hover { text-decoration: underline; }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 24px;
+  }
+  h1 {
+    font-family: Georgia, serif;
+    font-size: 2.1rem;
+    line-height: 1.25;
+    color: #fff;
+    margin: 10px 0 18px;
+  }
+  .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+  .lede {
+    font-size: 1.15rem;
+    margin-bottom: 40px;
+    border-left: 3px solid var(--accent);
+    padding-left: 20px;
+  }
+  h2 {
+    font-family: Georgia, serif;
+    color: var(--accent);
+    font-size: 1.5rem;
+    margin-top: 56px;
+    border-bottom: 1px solid #2a2a3a;
+    padding-bottom: 10px;
+  }
+  h3 {
+    color: #fff;
+    font-size: 1.15rem;
+    margin-top: 30px;
+  }
+  p { margin: 18px 0; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-left: 8px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(76,175,125,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag-extrapolation { background: rgba(224,149,79,0.15); color: var(--extrapolation); border: 1px solid var(--extrapolation); }
+  .tag-offen { background: rgba(154,154,165,0.15); color: var(--offen); border: 1px solid var(--offen); }
+  .tag-widerlegt { background: rgba(154,154,165,0.1); color: var(--offen); border: 1px solid var(--offen); text-decoration: line-through; }
+
+  .person-card {
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 18px 20px;
+    margin: 20px 0;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .person-num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.8rem;
+    color: var(--accent);
+    font-weight: bold;
+    min-width: 40px;
+  }
+  .person-title { color: #fff; font-size: 1.1rem; margin: 0 0 6px; }
+  .person-role { font-family: 'Courier New', monospace; font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 8px; display: block; }
+
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    margin: 14px 0 34px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .source-box strong { color: var(--accent); }
+
+  .quote-box {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #fff;
+    border-left: 3px solid var(--accent);
+    padding: 10px 24px;
+    margin: 32px 0;
+  }
+  .quote-attr {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    font-style: normal;
+    color: var(--text-dim);
+    display: block;
+    margin-top: 10px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 0.92rem;
+  }
+  th, td {
+    border: 1px solid #2a2a3a;
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--box-bg);
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 14px;
+    margin: 28px 0;
+  }
+  .stat-box {
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 16px 14px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    color: var(--accent);
+    font-weight: bold;
+    display: block;
+  }
+  .stat-label { font-size: 0.85rem; color: var(--text-dim); margin-top: 6px; }
+
+  .open-questions {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid #2a2a3a;
+  }
+  .open-questions p { font-style: italic; color: var(--text-dim); }
+
+  .series-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+  }
+  .series-nav a { color: var(--accent); text-decoration: none; }
+  .series-nav a:hover { text-decoration: underline; }
+
+  footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid #2a2a3a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="meta-nav"><a href="index.html">← Übersicht</a> · dunkelfeld.report</div>
+  <div class="kicker">Geldsystem &amp; Geopolitik · Teil 2 von 2</div>
+
+  <h1>Wer richtet hier eigentlich?</h1>
+  <p class="subtitle">Sechs Gerichte, ein Streitgegenstand: Im Fall der eingefrorenen russischen Milliarden erklären sich mehrere Rechtsordnungen gleichzeitig für zuständig — ohne dass eine übergeordnete Instanz das auflösen könnte.</p>
+
+  <p class="lede">Teil 1 dieser Dokumentation zeigte, was mit den 210 Mrd. Euro geschehen soll. Teil 2 stellt die Frage, die im öffentlichen Streit meist untergeht: Wer entscheidet das eigentlich — und mit welcher Legitimation? Die Antwort: mindestens sechs verschiedene Instanzen, gleichzeitig, mit sich teils widersprechenden Ansprüchen.</p>
+
+  <h2>1. Moskauer Arbitragegericht — die Zentralbank Russlands gegen Euroclear</h2>
+
+  <div class="person-card">
+    <span class="person-num">01</span>
+    <div>
+      <p class="person-title">Klägerin: Zentralbank Russlands · Beklagte: Euroclear</p>
+      <span class="person-role">Forum: Moskauer Arbitragegericht</span>
+      <p style="margin:0;">Urteil vom 15. Mai 2026: Schadenersatz von 18,17 Billionen Rubel (rund 200 Mrd. Euro) zulasten Euroclears — die bislang größte juristische Vergeltungsaktion Moskaus seit Beginn der Vermögenssperren 2022. Am 26. Mai ordnete das Gericht die sofortige Vollstreckung an; Euroclears Anträge auf Aussetzung wurden abgewiesen. Im Juni/Juli 2026 verlor Euroclear zusätzlich die Berufung.</p>
+    </div>
+  </div>
+
+  <p><strong>Legitimationsgrundlage</strong> <span class="tag tag-belegt">BELEGT</span>: Russland führte 2020, verschärft seit 2022, Artikel 248.1 der russischen Wirtschaftsprozessordnung ein. Er erklärt russische Gerichte für "ausschließlich zuständig", sobald ein russischer Kläger durch westliche Sanktionen betroffen ist — unabhängig davon, welche Gerichtsbarkeit der ursprüngliche Vertrag vorsah. Euroclears eigene Anwälte bezeichneten das Verfahren, das unter Ausschluss der Öffentlichkeit stattfand, als "Schauprozess". Der Westen erkennt diese Zuständigkeit nicht an.</p>
+
+  <div class="source-box">
+    <strong>Quellen:</strong> Berliner Zeitung, 15.05.2026 — "Moskauer Gericht verurteilt Euroclear zur Zahlung von 200 Milliarden"; ad-hoc-news, 15.05.2026; finanznachrichten.de, Juli 2026 — "Euroclear verliert Berufung"; BRF Nachrichten — Zitat "Schauprozess"
+  </div>
+
+  <h2>2. Gericht der Europäischen Union (EuG), Luxemburg — Russland gegen die EU</h2>
+
+  <div class="person-card">
+    <span class="person-num">02</span>
+    <div>
+      <p class="person-title">Klägerin: Zentralbank Russlands · Beklagter: Rat der Europäischen Union</p>
+      <span class="person-role">Forum: EuG, Kirchberg-Plateau, Luxemburg</span>
+      <p style="margin:0;">Klage eingereicht am 27. Februar 2026. Ziel: Aufhebung des EU-Ratsbeschlusses vom Dezember 2025, der jede Rückübertragung der eingefrorenen Vermögenswerte unbefristet untersagt. Die Zentralbank argumentiert, der Beschluss verletze "grundlegende und unveräußerliche Rechte" wie die Unverletzlichkeit von Eigentum und staatliche Immunität — und sei zudem formal fehlerhaft zustande gekommen, weil er nicht einstimmig, sondern nur mit qualifizierter Mehrheit (25 von 27 Staaten, gegen Ungarn und die Slowakei) beschlossen wurde.</p>
+    </div>
+  </div>
+
+  <p><strong>Legitimationsgrundlage</strong> <span class="tag tag-belegt">BELEGT</span>: Artikel 263 AEUV erlaubt die Anfechtung von EU-Rechtsakten vor dem EuG — reguläres, unstrittiges EU-Verfahrensrecht. Offen bleibt lediglich die Detailfrage, ob eine ausländische Zentralbank hier überhaupt klagebefugt ist. Das Gericht selbst hat unbestrittene Autorität über EU-Recht.</p>
+
+  <div class="source-box">
+    <strong>Quellen:</strong> lessentiel.lu, 03.03.2026 — "Russische Zentralbank verklagt EU in Luxemburg bei Gericht der Europäischen Union"; beck-aktuell, 03.03.2026 — "Russlands Zentralbank klagt gegen EU"
+  </div>
+
+  <h2>3. Brüsseler Unternehmensgericht — Euroclear gegen die Zentralbank Russlands</h2>
+
+  <div class="person-card">
+    <span class="person-num">03</span>
+    <div>
+      <p class="person-title">Klägerin: Euroclear · Beklagte: Zentralbank Russlands</p>
+      <span class="person-role">Forum: Handelsgericht Brüssel (Belgien)</span>
+      <p style="margin:0;">Ein separates, drittes Verfahren, eingereicht Ende Juni 2026 — nicht zu verwechseln mit Verfahren 1 und 2. Euroclear klagt hier gegen die russische Zentralbank selbst, mit dem Ziel, die internationale Vollstreckung des Moskauer Urteils (200 Mrd. Euro) zu verhindern. Euroclears Position: Das Moskauer Gericht war nie zuständig, das Verfahren sei "unfair und fiktiv" gewesen — zuständig sei ausschließlich ein belgisches Gericht.</p>
+    </div>
+  </div>
+
+  <p><strong>Legitimationsgrundlage</strong> <span class="tag tag-belegt">BELEGT</span>: reguläres belgisches Zivil- bzw. Handelsrecht, gestützt auf den Sitz Euroclears in Brüssel und die dort geltenden Vertragsbedingungen der Depotverwahrung. Aus westlicher Sicht die "richtige" Adresse für den Streit — aus russischer Sicht irrelevant, da Moskau die eigene Zuständigkeit bereits für sich beansprucht hat.</p>
+
+  <div class="source-box">
+    <strong>Quellen:</strong> Moscow Times, 30.06.2026 — "Euroclear Sues Russian Central Bank in Belgian Court"; Yahoo Finance, Juli 2026 — "Euroclear takes frozen assets dispute against Russia to court in Brussels"; ORF, Juni 2026 — "Euroclear klagt Russische Zentralbank in Belgien"; BRF Nachrichten
+  </div>
+
+  <h2>4. Britische Gerichte — die Yukos-Altaktionäre</h2>
+
+  <div class="person-card">
+    <span class="person-num">04</span>
+    <div>
+      <p class="person-title">Antragsteller: ehemalige Yukos-Aktionäre · Antragsgegner: Russischer Staat</p>
+      <span class="person-role">Forum: britische Gerichte (Vollstreckungsverfahren)</span>
+      <p style="margin:0;">Im März 2026 wies ein britisches Gericht zentrale Einwände Russlands gegen ein Vollstreckungsverfahren zurück. Grundlage ist ein Schiedsspruch des Ständigen Schiedshofs (PCA) von 2014 unter dem Energiecharta-Vertrag, dem Russland selbst beigetreten war. Die Altaktionäre versuchen seither, russisches Staatsvermögen im Ausland zur Begleichung zu erreichen.</p>
+    </div>
+  </div>
+
+  <p><strong>Legitimationsgrundlage</strong> <span class="tag tag-belegt">BELEGT</span>: die New Yorker Konvention von 1958 zur Anerkennung und Vollstreckung internationaler Schiedssprüche. Die britischen Gerichte prüfen hier nur die Vollstreckung eines längst gefällten, unstrittig zustande gekommenen Schiedsspruchs — die sauberste Legitimationskette unter allen sechs Verfahren.</p>
+
+  <div class="source-box">
+    <strong>Quelle:</strong> finanzblatt.net, 08.06.2026 — "Russlands Kriegskasse bekommt ein weiteres Rechtsproblem"
+  </div>
+
+  <h2>5. Internationale Investitionsschiedsverfahren — die Oligarchen</h2>
+
+  <div class="stat-grid">
+    <div class="stat-box"><span class="stat-num">28</span><span class="stat-label">Schiedsverfahren sanktionierter Oligarchen/Unternehmen</span></div>
+    <div class="stat-box"><span class="stat-num">62 Mrd. $</span><span class="stat-label">geforderte Entschädigung insgesamt</span></div>
+    <div class="stat-box"><span class="stat-num">&gt;50 %</span><span class="stat-label">der direkten Sanktionsklagen allein 2025 eingereicht</span></div>
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Michail Fridman klagt gegen Großbritannien. Vier russische Investoren mit Vermögen bei Euroclear kündigten im September/Oktober 2025 offiziell Schiedsklagen gegen Belgien an. Der russische Oligarch Andrey Molchanov klagt — nach Beschlagnahmung seiner Anteile an einer Zementfirma durch ein ukrainisches Gericht — mit Hilfe einer Tochterfirma unter dem Deutschland-Ukraine-Investitionsschutzabkommen gegen die Ukraine.</p>
+
+  <p><strong>Legitimationsgrundlage</strong> <span class="tag tag-belegt">BELEGT</span>: bilaterale Investitionsschutzabkommen (BITs), die die jeweiligen Staaten teils Jahrzehnte vor dem Krieg unterzeichnet haben. Die Besonderheit: Private Investoren können damit Staaten direkt verklagen, über sogenannte Investor-Staat-Streitbeilegungsmechanismen (ISDS) — ganz ohne Umweg über die eigene Regierung. Ein Instrument, das ursprünglich Konzerne vor staatlicher Enteignung schützen sollte.</p>
+
+  <div class="source-box">
+    <strong>Quelle:</strong> power-shift.de, 09.12.2025 — "Milliardenklagen von Oligarchen untergraben Russland-Sanktionen" (Studie zu Investitionsschiedsverfahren)
+  </div>
+
+  <h2>6. Internationaler Gerichtshof (IGH) — der Faktor, der fehlt</h2>
+  <p>Der IGH wäre theoretisch die naheliegende neutrale Instanz. Er spielt in der Praxis bislang <span class="tag tag-offen">OFFEN</span> keine Rolle: Für eine Klage vor dem IGH bräuchte Russland eine Zustimmungsgrundlage der beklagten Staaten — die in aller Regel nicht vorliegt. EU-Gerichte wiederum sind an geltendes EU-Sanktionsrecht gebunden und würden eine Klage der russischen Zentralbank dort voraussichtlich abweisen, solange dieses Recht gilt.</p>
+
+  <h2>7. Die Übersicht</h2>
+
+  <table>
+    <tr><th>Forum</th><th>Parteien</th><th>Legitimationsbasis</th></tr>
+    <tr><td>Moskauer Arbitragegericht</td><td>Russische ZB vs. Euroclear</td><td>Einseitige Selbstermächtigung (Art. 248.1 russ. Prozessrecht)</td></tr>
+    <tr><td>EuG, Luxemburg</td><td>Russische ZB vs. EU-Rat</td><td>Reguläres EU-Verfahrensrecht (Art. 263 AEUV)</td></tr>
+    <tr><td>Handelsgericht Brüssel</td><td>Euroclear vs. russische ZB</td><td>Belgisches Zivilrecht, Vertragssitz Euroclear</td></tr>
+    <tr><td>Britische Gerichte</td><td>Yukos-Aktionäre vs. Russland</td><td>New Yorker Konvention 1958 + PCA-Schiedsspruch 2014</td></tr>
+    <tr><td>ISDS/PCA-Verfahren</td><td>Oligarchen vs. EU-Staaten</td><td>Bilaterale Investitionsschutzabkommen</td></tr>
+    <tr><td>IGH</td><td>—</td><td>Keine Zustimmungsgrundlage — bislang kein Faktor</td></tr>
+  </table>
+
+  <h2>8. Was das bedeutet</h2>
+  <p>Es gibt kein Weltgericht, das alle sechs Verfahren bindend zusammenführen könnte. Jede Instanz zieht ihre Autorität entweder aus freiwilliger Vertragszustimmung in der Vergangenheit (EU-Verfahrensrecht, New Yorker Konvention, BITs) oder aus einseitiger Selbstermächtigung durch nationales Recht (Moskaus Art. 248.1). Moskau nutzt die zweite Variante am konsequentesten — und genau das erzeugt die Konfusion: Zwei Rechtsordnungen erklären sich gegenseitig für zuständig und die jeweils andere Seite für illegitim, ohne dass eine dritte, übergeordnete Instanz das verbindlich auflösen kann.</p>
+
+  <div class="quote-box">
+    "Ein belgisches Gericht sei in dem Fall zuständig."
+    <span class="quote-attr">— Position eines Euroclear-Anwalts, der das Moskauer Verfahren als "Schauprozess" bezeichnete</span>
+  </div>
+
+  <div class="open-questions">
+    <p><em>Was passiert, wenn ein westliches Gericht ein Urteil fällt, das Russland ebenso wenig anerkennt wie der Westen das Moskauer Urteil anerkennt — laufen beide Rechtsordnungen dann dauerhaft parallel, ohne jemals aufeinanderzutreffen?</em></p>
+    <p><em>Welche Präzedenzwirkung entfaltet Artikel 248.1 des russischen Prozessrechts für andere Staaten, die künftig ähnliche Sanktionsstreitigkeiten vor die eigenen Gerichte bringen wollen?</em></p>
+    <p><em>Wie viele der 28 Oligarchen-Schiedsverfahren werden am Ende tatsächlich Erfolg haben — und wer zahlt dann: die sanktionierenden Staaten oder am Ende wieder der europäische Steuerzahler?</em></p>
+  </div>
+
+  <div class="series-nav">
+    <a href="eingefrorene-russische-milliarden-teil1.html">← Teil 1: Die eingefrorenen Milliarden</a>
+    <a href="index.html">Übersicht</a>
+  </div>
+
+  <footer>
+    dunkelfeld.report — Hidden in Plain Sight<br>
+    Tags: <span class="tag tag-belegt">BELEGT</span> = verifiziert &nbsp;
+    <span class="tag tag-extrapolation">EXTRAPOLATION</span> = strukturell plausibel &nbsp;
+    <span class="tag tag-offen">OFFEN</span> = ungeklärt &nbsp;
+    <span class="tag tag-widerlegt">VT-WIDERLEGT</span> = widerlegt<br>
+    Alle Angaben quellenbasiert · Unschuldsvermutung gilt bei laufenden Verfahren · Stand: Juli 2026<br>
+    <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a>
+  </footer>
+
+</div>
+</body>
+</html>

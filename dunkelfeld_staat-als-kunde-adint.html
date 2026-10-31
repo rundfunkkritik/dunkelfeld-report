@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Staat als Kunde — Wenn Behörden kaufen, was sie nicht erheben dürfen</title>
+<meta name="rubrik" content="cat-kontrolle">
+<meta name="kachel-titel" content="Der Staat als Kunde">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0a;
+    --fg:#e8e8e8;
+    --muted:#8a8a8a;
+    --red:#ff2b3d;
+    --cyan:#2bd9ff;
+    --yellow:#ffd52b;
+    --line:#1e1e1e;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--fg);
+    font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    font-weight:300;
+    line-height:1.75;
+    margin:0;
+    padding:0 20px 80px;
+    font-size:15px;
+  }
+  .wrap{max-width:760px;margin:0 auto;}
+  header{border-bottom:1px solid var(--line);padding:56px 0 32px;margin-bottom:40px;}
+  .serie{
+    font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--red);margin-bottom:22px;font-weight:500;
+  }
+  h1{
+    font-size:34px;line-height:1.22;font-weight:700;margin:0 0 20px;
+    letter-spacing:-.01em;
+  }
+  .teaser{color:var(--muted);font-size:16px;line-height:1.7;margin:0;}
+  .meta{
+    margin-top:26px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#555;
+  }
+  h2{
+    font-size:21px;font-weight:700;margin:52px 0 18px;line-height:1.35;
+    display:flex;align-items:baseline;gap:14px;
+  }
+  h2 .num{
+    color:var(--red);font-size:12px;font-weight:500;letter-spacing:.1em;
+    border:1px solid var(--red);padding:3px 7px;flex-shrink:0;
+  }
+  p{margin:0 0 20px;}
+  strong{font-weight:500;color:#fff;}
+  a{color:var(--cyan);text-decoration:none;border-bottom:1px solid #1b4c58;}
+  a:hover{border-bottom-color:var(--cyan);}
+
+  .factbox,.dangerbox,.fairness{
+    border-left:3px solid;padding:22px 24px;margin:34px 0;font-size:14px;line-height:1.7;
+  }
+  .factbox{border-color:var(--cyan);background:rgba(43,217,255,.045);}
+  .dangerbox{border-color:var(--red);background:rgba(255,43,61,.05);}
+  .fairness{border-color:var(--yellow);background:rgba(255,213,43,.045);}
+  .label{
+    font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;
+    margin-bottom:12px;display:block;
+  }
+  .factbox .label{color:var(--cyan);}
+  .dangerbox .label{color:var(--red);}
+  .fairness .label{color:var(--yellow);}
+  .factbox p:last-child,.dangerbox p:last-child,.fairness p:last-child{margin-bottom:0;}
+  .factbox ul,.dangerbox ul{margin:0;padding-left:20px;}
+  .factbox li,.dangerbox li{margin-bottom:9px;}
+  .factbox li:last-child,.dangerbox li:last-child{margin-bottom:0;}
+
+  .pullquote{
+    font-size:21px;line-height:1.5;font-weight:500;color:#fff;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:28px 0;margin:44px 0;text-align:center;
+  }
+  .pullquote .src{
+    display:block;font-size:11px;font-weight:400;color:#666;
+    letter-spacing:.12em;text-transform:uppercase;margin-top:16px;
+  }
+
+  .timeline{margin:38px 0;border-left:1px solid var(--line);padding-left:0;}
+  .tl-item{position:relative;padding:0 0 22px 26px;}
+  .tl-item::before{
+    content:'';position:absolute;left:-4px;top:9px;width:7px;height:7px;
+    background:var(--red);border-radius:50%;
+  }
+  .tl-date{
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);
+    display:block;margin-bottom:4px;font-weight:500;
+  }
+  .tl-text{font-size:14px;color:var(--fg);line-height:1.65;}
+
+  .cross-ref{
+    border:1px dashed #2a2a2a;padding:16px 20px;margin:34px 0;
+    font-size:13px;color:var(--muted);
+  }
+  .cross-ref a{color:var(--red);border-bottom-color:#4a1218;}
+
+  .fazit{
+    border:1px solid var(--red);padding:28px 26px;margin:52px 0 40px;
+    background:rgba(255,43,61,.035);
+  }
+  .fazit h2{margin-top:0;}
+  .fazit p:last-child{margin-bottom:0;}
+
+  .quellen{
+    border-top:1px solid var(--line);margin-top:56px;padding-top:26px;
+    font-size:12px;color:var(--muted);line-height:1.9;
+  }
+  .quellen strong{color:var(--fg);display:block;margin-bottom:12px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;}
+
+  @media(max-width:600px){
+    h1{font-size:26px;}
+    body{font-size:14px;}
+    .pullquote{font-size:17px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="serie">Wer kontrolliert wen? · Teil der Serie</div>
+  <h1>Der Staat als Kunde</h1>
+  <p class="teaser">Es gibt Daten, die deutsche Behörden nicht erheben dürfen. Sie können sie aber kaufen. Zwei Landeskriminalämter haben es zugegeben, neun weitere schweigen, der Bund erklärt die Frage zum Staatsgeheimnis — und die neue Geheimdienstreform lässt genau diese Lücke offen. Eine Rekonstruktion eines Marktes, auf dem der Überwachte zugleich die Ware ist.</p>
+  <div class="meta">dunkelfeld.report · 27. Juli 2026 · Recherche &amp; Analyse</div>
+</header>
+
+<p>Wer in Deutschland ein Handy orten will, braucht einen Richter. Die Funkzellenabfrage — also die Auskunft eines Mobilfunkanbieters darüber, welche Geräte sich zu einer bestimmten Zeit an einem bestimmten Ort eingebucht haben — ist eine richterlich zu genehmigende Überwachungsmaßnahme. Das ist der Rechtsstaat, wie er im Lehrbuch steht.</p>
+
+<p>Es gibt allerdings einen zweiten Weg zum selben Ergebnis. Er führt nicht über ein Gericht, sondern über eine Rechnung.</p>
+
+<h2><span class="num">01</span>Zwei Behörden geben es zu</h2>
+
+<p>Anfang Juni 2026 veröffentlichten netzpolitik.org und der Bayerische Rundfunk das Ergebnis von Anfragen nach dem Informationsfreiheitsgesetz an sämtliche Landeskriminalämter. Die Frage war schlicht: Nutzt ihr Daten kommerzieller Anbieter — also Daten aus der Werbeindustrie?</p>
+
+<p>Zwei Behörden bestätigten es. Das <strong>Landeskriminalamt Brandenburg</strong> teilte mit, es greife zur Bekämpfung verschiedener Kriminalitätsphänomene anlassbezogen auch auf Datenhändler zurück; genutzt werde das vor allem bei Cybercrime und Wirtschaftskriminalität zur Analyse von Täter- und Tatzusammenhängen. Welche Daten das genau sind, aus welchen Quellen sie stammen und welche Firmen beteiligt sind, wollte die Behörde nicht offenlegen — das könne die Strafverfolgung beeinträchtigen.</p>
+
+<p>Das <strong>Landeskriminalamt Mecklenburg-Vorpommern</strong> antwortete zunächst ähnlich vage, wurde auf Nachfrage aber deutlicher: Zu den genutzten Daten gehörten auch Standortdaten aus der Werbeindustrie. Ob man sie selbst gekauft oder über einen spezialisierten Dienstleister genutzt habe, blieb offen. Künftig, so die Behörde, sei die Nutzung nicht mehr vorgesehen.</p>
+
+<div class="factbox">
+  <span class="label">Factbox — Was auf diesem Markt gehandelt wird</span>
+  <ul>
+    <li><strong>Herkunft:</strong> Tracking-Firmen saugen Standort- und Verhaltensdaten aus Apps ab — nach den bisherigen Recherchen aus zehntausenden Anwendungen, in der Regel ohne Wissen der Nutzer.</li>
+    <li><strong>Genauigkeit:</strong> Angeboten werden metergenaue Ortungen. Aus ihnen lassen sich Bewegungsprofile lesen: Wohnadresse, Arbeitsplatz, Urlaubsziele — aber auch Besuche in Kliniken oder religiösen Einrichtungen.</li>
+    <li><strong>Umfang:</strong> Allein aus kostenlosen Datenproben verschiedener Anbieter hat das internationale Rechercheteam der „Databroker Files" seit 2024 mehr als 13 Milliarden Handy-Standorte zusammengetragen.</li>
+    <li><strong>Fachbegriff:</strong> ADINT — <em>Advertising-based Intelligence</em>, also Aufklärung auf Basis von Werbedaten. Spezialisierte Firmen liefern dazu Oberflächen, die sich bedienen wie ein Kartendienst: statt nach Restaurants sucht man nach Geräten in einem Gebiet.</li>
+  </ul>
+</div>
+
+<h2><span class="num">02</span>Neun Länder schweigen</h2>
+
+<p>Interessanter als die zwei Geständnisse ist die Verteilung der Antworten. Fünf Länder — Bremen, Hessen, Rheinland-Pfalz, Sachsen-Anhalt und Schleswig-Holstein — verneinten den Einsatz klar. Neun weitere Landeskriminalämter verweigerten die Auskunft: Geheimschutz, polizeitaktische Gründe, sensible Bereiche der Polizeiarbeit.</p>
+
+<p>Der Münchner Polizeirechtler Mark Zöller wertet dieses Schweigen als Indiz: Dass Behörden den Einsatz weder bestätigen noch verneinen, spreche dafür, dass er dort zumindest erwogen werde. Zur Rechtslage selbst ist er eindeutig. Eine Ermächtigungsgrundlage existiere in keinem Polizeigesetz; wer es dennoch tue, handle <strong>ohne gesetzliche Grundlage</strong>.</p>
+
+<p>Das ist keine Einzelmeinung. Alle 16 Landesdatenschutzbehörden wurden angefragt — keine einzige konnte eine konkrete Rechtsgrundlage benennen. Die brandenburgische Landesdatenschutzbeauftragte stellte ausdrücklich klar, dass allgemeine Generalklauseln aus ihrer Sicht nicht ausreichen. Mehrere Polizeibehörden berufen sich trotzdem genau darauf.</p>
+
+<div class="dangerbox">
+  <span class="label">Dangerbox — Der Richtervorbehalt als Formsache</span>
+  <p>Der Landesdatenschutzbeauftragte von Mecklenburg-Vorpommern benennt das Kernproblem in einem Satz: Mit kommerziellen Standortdaten lassen sich ähnliche Erkenntnisse gewinnen wie mit einer Funkzellenabfrage — nur eben ohne die richterliche Genehmigung, die für die Funkzellenabfrage zwingend ist.</p>
+  <p>Damit wird der Richtervorbehalt nicht abgeschafft. Er wird umgangen. Nicht durch Gesetzesänderung, sondern durch Beschaffungsweg. Hinzu kommen zwei weitere Probleme: In den Paketen der Datenhändler stecken Daten von Millionen unbeteiligter Geräte. Und ob diese Daten überhaupt rechtmäßig erhoben wurden, ist mehr als fraglich — von einer informierten Einwilligung der Betroffenen kann nach den bisherigen Recherchen in der Regel keine Rede sein.</p>
+</div>
+
+<p>In Mecklenburg-Vorpommern läuft inzwischen eine datenschutzrechtliche Prüfung. Von der Existenz des Einsatzes erfuhr die Aufsichtsbehörde allerdings nicht von der Polizei, sondern durch die Presseanfrage. Ergebnisse werden nicht vor Ende des Jahres erwartet.</p>
+
+<h2><span class="num">03</span>Das Wort, das nur in der Begründung steht</h2>
+
+<p>Auf Bundesebene wird die Frage gar nicht erst beantwortet. Als die Linken-Abgeordnete Donata Vogtschmidt Ende 2025 wissen wollte, ob Bundespolizei und Bundeskriminalamt Werbedaten nutzen, verweigerte die Bundesregierung die Auskunft — nicht einmal in eingestufter Form, also unter Geheimhaltungsauflagen gegenüber dem Parlament. Begründung: Schon ein geringfügiges Risiko des Bekanntwerdens sei nicht hinnehmbar.</p>
+
+<p>Ein Parlament, das nicht erfahren darf, ob die Exekutive einkauft, was sie selbst nicht erheben dürfte, kann diese Praxis auch nicht kontrollieren. Das ist keine Nebenfolge der Geheimhaltung. Das ist ihre Funktion.</p>
+
+<p>Es gibt jedoch eine Spur, und sie liegt an einer bezeichnenden Stelle: nicht im Gesetzestext, sondern in dessen Begründung. Schon 2023 war im Entwurf zur Novelle des BND-Gesetzes vom Ankauf umfänglicher Werbedatenbanken die Rede — eingeordnet unter „allgemein zugängliche Quellen", also unter Material, das keiner besonderen Regelung bedarf.</p>
+
+<p>Im aktuellen Reformentwurf von Innenminister Alexander Dobrindt taucht der Fachbegriff dann ausdrücklich auf. In den Erläuterungen zu § 88 des neuen BND-Gesetzes — dort geht es um die Frage, wann der Auslandsnachrichtendienst Daten an andere Stellen <em>weitergeben</em> darf — werden angekaufte Werbedatensammlungen und im Netz verfügbare Datenleaks ausdrücklich als übermittlungsfähig genannt. Solche Bestände dürfen dem Entwurf zufolge auch automatisiert und vollständig weitergereicht werden.</p>
+
+<div class="pullquote">
+  Wer regelt, unter welchen Bedingungen etwas weitergegeben werden darf, setzt voraus, dass es vorhanden ist.
+</div>
+
+<p>Genau so lesen es die Fachleute. Der Jurist Peter Schantz, früher Ministerialdirektor im Bundesjustizministerium, hält in seiner Stellungnahme fest, dass der Datenankauf damit erkennbar als übliche Vorgehensweise des Dienstes behandelt werde. Die Bundesbeauftragte für den Datenschutz stellt zugleich fest, was im Entwurf <em>nicht</em> steht: eine ausdrückliche Rechtsgrundlage für den Ankauf und die Nutzung kommerzieller Daten. Gestützt werde die Praxis weiterhin auf die allgemeinen Generalklauseln — also auf genau jene Normen, die nach Auffassung der Datenschutzbehörden dafür nicht taugen.</p>
+
+<div class="timeline">
+  <div class="tl-item">
+    <span class="tl-date">2017</span>
+    <div class="tl-text">Forschende der University of Washington prägen den Begriff ADINT und warnen, dass sich die Infrastruktur der Online-Werbung zur Überwachung zweckentfremden lässt.</div>
+  </div>
+  <div class="tl-item">
+    <span class="tl-date">Oktober 2023</span>
+    <div class="tl-text">In der Begründung zum Entwurf der BND-Gesetz-Novelle ist vom Ankauf umfänglicher Werbedatenbanken die Rede — eingeordnet als „allgemein zugängliche Quellen".</div>
+  </div>
+  <div class="tl-item">
+    <span class="tl-date">Februar 2024 ff.</span>
+    <div class="tl-text">Die „Databroker Files" von netzpolitik.org und BR zeigen, dass sich über gehandelte Standortdaten Regierungsbeamte, EU-Personal, NATO-Stützpunkte und sogar Geheimdienstmitarbeiter ausspähen lassen.</div>
+  </div>
+  <div class="tl-item">
+    <span class="tl-date">Mai 2024</span>
+    <div class="tl-text">Eine Studie des Thinktanks Interface kommt zu dem Schluss, dass es gute Gründe für die Annahme gibt, deutsche Dienste kauften bereits ein — ohne Genehmigungsverfahren und ohne nachträgliche Kontrolle.</div>
+  </div>
+  <div class="tl-item">
+    <span class="tl-date">November 2025</span>
+    <div class="tl-text">Ein Gutachten der Wissenschaftlichen Dienste des Bundestages sieht Hinweise, dass behördlicher Datenkauf kein Ausnahmefall mehr ist — und stellt fest, dass Bundespolizei und BKA dafür keine Rechtsgrundlage haben.</div>
+  </div>
+  <div class="tl-item">
+    <span class="tl-date">Dezember 2025</span>
+    <div class="tl-text">Die Bundesregierung erklärt die Frage, ob Bundesbehörden Werbedaten nutzen, gegenüber dem Parlament für nicht beantwortbar.</div>
+  </div>
+  <div class="tl-item">
+    <span class="tl-date">Juni 2026</span>
+    <div class="tl-text">Zwei Landeskriminalämter bestätigen erstmals die Nutzung kommerzieller Datenanbieter. Neun weitere schweigen. Eine Datenschutzbehörde leitet eine Prüfung ein.</div>
+  </div>
+  <div class="tl-item">
+    <span class="tl-date">Juli 2026</span>
+    <div class="tl-text">Der Entwurf der Geheimdienstreform erweitert die Befugnisse an vielen Stellen — schafft für Datenkäufe aber weiterhin keine ausdrückliche Rechtsgrundlage.</div>
+  </div>
+</div>
+
+<h2><span class="num">04</span>Die Gegenrichtung: der Staat als Lieferant</h2>
+
+<p>Der Datenstrom fließt nicht nur in eine Richtung. Ende April 2026 beschloss das Bundeskabinett ein Paket aus drei Gesetzentwürfen, das Bundeskriminalamt und Bundespolizei zur automatisierten Datenanalyse und zum biometrischen Abgleich von Gesichtsbildern mit Aufnahmen aus dem offenen Internet ermächtigen soll.</p>
+
+<p>Der für diesen Zusammenhang entscheidende Teil steht im Kleingedruckten. Die Entwürfe erlauben es, vorhandene personenbezogene Daten zum Training von KI-Systemen zu verwenden — und diese Daten zu diesem Zweck auch an private Unternehmen weiterzugeben. Eine Anonymisierung soll unterbleiben dürfen, wenn sie unverhältnismäßigen Aufwand bedeutet. Für den Internetabgleich sieht der Entwurf zudem vor, dass private Anbieter im In- und Ausland — auch außerhalb der EU — eingeschaltet werden können.</p>
+
+<p>In den Beständen, aus denen sich das speist, stehen nicht nur Verurteilte oder Verdächtige, sondern auch Opfer, Zeugen und Kontaktpersonen. Die Gesellschaft für Freiheitsrechte hält das Paket in ihrer Stellungnahme in wesentlichen Teilen für verfassungswidrig und verweist auf ein Urteil des Bundesverfassungsgerichts von 2023, das vergleichbare Landesregelungen in Hessen und Hamburg bereits teilweise kassiert hat. AlgorithmWatch, Amnesty International, der Chaos Computer Club und weitere Organisationen kommen zu dem Schluss, dass sich diese Befugnisse auch durch Nachbesserungen nicht grundrechtskonform ausgestalten ließen.</p>
+
+<p>Damit schließt sich ein Kreis. Der Staat kauft auf einem Markt ein, dessen Ware aus dem Verhalten seiner Bürger besteht. Und er speist denselben Markt mit Daten, die er hoheitlich erhoben hat.</p>
+
+<div class="cross-ref">
+  → Zur privaten Seite desselben Musters siehe unseren Beitrag zur Schattendatenbank der Schufa: Daten, die eigentlich gelöscht sein müssten, bleiben verfügbar — nur nicht für die Betroffenen.
+</div>
+
+<h2><span class="num">05</span>Cui bono</h2>
+
+<p>Die Frage, wer von dieser Konstruktion profitiert, hat drei Antworten.</p>
+
+<p><strong>Erstens die Behörden.</strong> Der Kauf von Daten ist kein Grundrechtseingriff im klassischen Sinn, sondern ein Beschaffungsvorgang. Es gibt keinen Richtervorbehalt, keine Benachrichtigungspflicht, keine Zweckbindung, die jemand prüfen würde. Genau das ist nach Einschätzung der Forschung der eigentliche Anreiz: Man erhält Daten, die man selbst nicht erheben dürfte, und spart sich zugleich Genehmigungsverfahren, Nutzungsbeschränkungen und Kontrolle. In Großbritannien ist für die Einspeisung gekaufter Daten in die Systeme eines Nachrichtendienstes ein Genehmigungsverfahren unter Beteiligung unabhängiger Rechtskontrolle vorgesehen. In Deutschland ist nicht geplant, dass der Unabhängige Kontrollrat in diesem Bereich überhaupt tätig wird.</p>
+
+<p><strong>Zweitens die Industrie.</strong> Das Geschäftsmodell der Datenhändler ist nach Einschätzung von Datenschutzbehörden, Juristen und Verbraucherschützern in weiten Teilen rechtswidrig. Ein Staat, der auf diesem Markt zum Kunden wird, hat ein strukturelles Interesse daran, dass es diesen Markt weiterhin gibt. Er ist dann nicht mehr nur Aufsicht, sondern auch Abnehmer.</p>
+
+<p><strong>Drittens — und hier kippt die Rechnung — niemand.</strong> Dieselbe Recherche, die den behördlichen Einkauf offenlegte, hatte zuvor gezeigt, dass sich mit frei gehandelten Werbedaten Mitarbeitende von Bundesbehörden, EU-Personal und Angehörige von Militärstützpunkten identifizieren und in ihren Bewegungen verfolgen lassen. Parteiübergreifend gilt dieser Markt in Deutschland und der EU als Sicherheitsrisiko: Was deutsche Behörden kaufen können, können ausländische Dienste ebenfalls kaufen. Der Einkauf im Namen der Sicherheit stützt einen Markt, der die Sicherheit gefährdet.</p>
+
+<div class="pullquote">
+  Ein Staat, der auf einem Schwarzmarkt einkauft, wird zu dessen Stammkunden — und damit zu dessen stillem Gesellschafter.
+</div>
+
+<div class="fairness">
+  <span class="label">Fairnessbox — Die Gegenposition</span>
+  <p>Sicherheitsbehörden und Teile der Politik argumentieren, dass kommerziell verfügbare Daten angesichts realer Bedrohungslagen und knapper Ressourcen ein legitimes Ermittlungsmittel seien. Der CDU-Abgeordnete Roderich Kiesewetter etwa hat es 2024 für durchaus sinnvoll gehalten, solche Daten verstärkt zur Aufklärung zu nutzen — verband das allerdings mit der Forderung, den Datenmarkt selbst zu regulieren, damit gegnerische Dienste ihn nicht nutzen können.</p>
+  <p>Es ist zudem richtig, dass die Rechtslage bislang nicht höchstrichterlich geklärt ist. Die Prüfung in Mecklenburg-Vorpommern läuft, ein Urteil gibt es nicht. Mehrere Landeskriminalämter halten den Einsatz auf Basis vorhandener Generalklauseln ausdrücklich für zulässig. Und nach der Rechtsprechung können auch rechtswidrig erlangte Erkenntnisse im Einzelfall verwertbar sein — je schwerer die Straftat, desto eher.</p>
+  <p>Was dieser Text behauptet, ist deshalb nicht, dass Straftaten ungeklärt bleiben müssten. Es ist, dass für einen Eingriff dieser Tiefe zuerst ein Gesetz nötig wäre. Der Polizeirechtler Zöller formuliert die Reihenfolge des Rechtsstaats knapp: erst regeln, dann loslegen.</p>
+</div>
+
+<div class="fazit">
+  <h2><span class="num">06</span>Dunkelfeld-Fazit</h2>
+  <p>Die deutsche Überwachungsdebatte dreht sich seit Jahren um Befugnisse: Was darf die Polizei, was der Verfassungsschutz, unter welchen Voraussetzungen, mit welcher Genehmigung. Das ist die sichtbare Ebene. Auf ihr wird gestritten, geklagt, gelegentlich gewonnen.</p>
+  <p>Der Datenkauf umgeht diese Ebene vollständig. Er braucht keine neue Befugnis, weil er formal keine Erhebung ist. Er taucht in keiner Statistik auf, weil ihn niemand zählt. Er erscheint in keiner Überwachungsbilanz, weil sich ohne Rechtsgrundlage auch nichts bewerten lässt. Und er wird dem Parlament nicht einmal unter Geheimhaltung mitgeteilt.</p>
+  <p>Der Befund lässt sich ohne Zuspitzung formulieren: Die wirksamste Ausweitung staatlicher Überwachung der vergangenen Jahre steht in keinem Gesetz. Sie steht in Verträgen, die niemand sehen darf — und bezahlt wird sie aus Mitteln, deren Höhe ebenfalls niemand kennt.</p>
+</div>
+
+<div class="quellen">
+  <strong>Quellen</strong>
+  netzpolitik.org / Bayerischer Rundfunk, 02.06.2026: „Daten-Schwarzmarkt: Deutsche Polizei nutzt offenbar rechtswidrig Databroker" (Ingo Dachwitz, Sebastian Meineck)<br>
+  netzpolitik.org, 17.07.2026: „Aufrüstung der Geheimdienste: Innenministerium lässt Datenkäufe in der Grauzone" (Ingo Dachwitz)<br>
+  netzpolitik.org, 19.12.2025: „Sicherheitsbehörden und Databroker: Bundesregierung macht Datenkauf zum Staatsgeheimnis"<br>
+  netzpolitik.org, 04.05.2026: „FAQ: Das Überwachungspaket der Bundesregierung" (Köver / Reuter / Schwarzbeck)<br>
+  Wissenschaftliche Dienste des Deutschen Bundestages, WD 3 - 065/25 (Gutachten auf Anfrage von Donata Vogtschmidt, MdB)<br>
+  Deutscher Bundestag, Drucksache 20/8627: Gesetzentwurf zur Änderung des BND-Gesetzes, Begründung<br>
+  BMI: Referentenentwurf Nachrichtendienstrecht (2026), Begründung zu § 88 BND-Gesetz-E<br>
+  Peter Schantz: Stellungnahme zum BND-Gesetz (2026), veröffentlicht über die Gesellschaft für Freiheitsrechte<br>
+  Gesellschaft für Freiheitsrechte: Stellungnahme zum Sicherheitspaket, April 2026<br>
+  AlgorithmWatch: Stellungnahme zu den digitalen Ermittlungsbefugnissen, April 2026<br>
+  Corbinian Ruckerbauer / Thorsten Wetzling (Interface, ehem. Stiftung Neue Verantwortung): „Nachrichtendienstliche Datenkäufe", Mai 2024<br>
+  Citizen Lab, University of Toronto: Analysen zu ADINT-Anbietern<br>
+  Bundesverfassungsgericht, Urteil vom 16.02.2023 zur automatisierten Datenanalyse (Hessen/Hamburg)<br>
+  <br>
+  Stand: 27. Juli 2026. Alle Angaben zu laufenden Gesetzgebungsverfahren beziehen sich auf den zu diesem Zeitpunkt veröffentlichten Stand.
+</div>
+
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

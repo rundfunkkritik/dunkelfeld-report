@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Die eingefrorenen Milliarden — dunkelfeld.report</title>
+<meta name="rubrik" content="cat-geo">
+<meta name="kachel-titel" content="Die eingefrorenen Milliarden">
+<meta name="description" content="210 Milliarden Euro russischer Staatsreserven liegen seit 2022 in der EU fest. Ein Überblick über Zahlen, Akteure und den Machtpoker um Europas heikelsten Finanztopf — Teil 1 einer zweiteiligen Dokumentation.">
+<style>
+  :root {
+    --bg: #09090b;
+    --accent: #e8c547;
+    --box-bg: #1a1a2e;
+    --belegt: #4caf7d;
+    --extrapolation: #e0954f;
+    --offen: #9a9aa5;
+    --text: #e4e2d8;
+    --text-dim: #a8a6a0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0 20px 80px;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  .meta-nav {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    padding: 24px 0 8px;
+    letter-spacing: 0.02em;
+  }
+  .meta-nav a { color: var(--accent); text-decoration: none; }
+  .meta-nav a:hover { text-decoration: underline; }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 24px;
+  }
+  h1 {
+    font-family: Georgia, serif;
+    font-size: 2.1rem;
+    line-height: 1.25;
+    color: #fff;
+    margin: 10px 0 18px;
+  }
+  .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+  .lede {
+    font-size: 1.15rem;
+    margin-bottom: 40px;
+    border-left: 3px solid var(--accent);
+    padding-left: 20px;
+  }
+  h2 {
+    font-family: Georgia, serif;
+    color: var(--accent);
+    font-size: 1.5rem;
+    margin-top: 56px;
+    border-bottom: 1px solid #2a2a3a;
+    padding-bottom: 10px;
+  }
+  h3 {
+    color: #fff;
+    font-size: 1.15rem;
+    margin-top: 30px;
+  }
+  p { margin: 18px 0; }
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-left: 8px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(76,175,125,0.15); color: var(--belegt); border: 1px solid var(--belegt); }
+  .tag-extrapolation { background: rgba(224,149,79,0.15); color: var(--extrapolation); border: 1px solid var(--extrapolation); }
+  .tag-offen { background: rgba(154,154,165,0.15); color: var(--offen); border: 1px solid var(--offen); }
+  .tag-widerlegt { background: rgba(154,154,165,0.1); color: var(--offen); border: 1px solid var(--offen); text-decoration: line-through; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 14px;
+    margin: 28px 0;
+  }
+  .stat-box {
+    background: var(--box-bg);
+    border-radius: 6px;
+    padding: 16px 14px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.6rem;
+    color: var(--accent);
+    font-weight: bold;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-top: 6px;
+  }
+
+  .timeline { margin: 30px 0; border-left: 2px solid var(--accent); padding-left: 24px; }
+  .timeline-item { margin-bottom: 22px; position: relative; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -30px;
+    top: 6px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .source-box {
+    background: var(--box-bg);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    margin: 14px 0 34px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .source-box strong { color: var(--accent); }
+
+  .quote-box {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #fff;
+    border-left: 3px solid var(--accent);
+    padding: 10px 24px;
+    margin: 32px 0;
+  }
+  .quote-attr {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    font-style: normal;
+    color: var(--text-dim);
+    display: block;
+    margin-top: 10px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    border: 1px solid #2a2a3a;
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--box-bg);
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .open-questions {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid #2a2a3a;
+  }
+  .open-questions p { font-style: italic; color: var(--text-dim); }
+
+  .series-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+  }
+  .series-nav a { color: var(--accent); text-decoration: none; }
+  .series-nav a:hover { text-decoration: underline; }
+
+  footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid #2a2a3a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="meta-nav"><a href="index.html">← Übersicht</a> · dunkelfeld.report</div>
+  <div class="kicker">Geldsystem &amp; Geopolitik · Teil 1 von 2</div>
+
+  <h1>Die eingefrorenen Milliarden</h1>
+  <p class="subtitle">210 Milliarden Euro russischer Staatsreserven liegen seit 2022 in Europa fest. Ein Überblick über Zahlen, Blockaden und den Machtpoker zwischen Brüssel, Moskau und Washington.</p>
+
+  <p class="lede">Seit Februar 2022 sind russische Zentralbankreserven in der EU eingefroren — der größte Teil davon beim belgischen Zentralverwahrer Euroclear. Bis heute ist ungeklärt, was mit dem Geld geschehen soll. Dieser Artikel dokumentiert die Fakten, ohne die Frage zu beantworten, wer am Ende zahlt.</p>
+
+  <h2>1. Die Ausgangslage</h2>
+  <p>Nach dem russischen Angriff auf die Ukraine froren die EU, die USA und weitere Staaten internationale Währungsreserven der russischen Zentralbank ein. Der weitaus größte Teil liegt in Europa — konzentriert bei einem einzigen Finanzdienstleister.</p>
+
+  <div class="stat-grid">
+    <div class="stat-box"><span class="stat-num">~210 Mrd. €</span><span class="stat-label">russische Staatsreserven in der EU eingefroren</span></div>
+    <div class="stat-box"><span class="stat-num">~185–200 Mrd. €</span><span class="stat-label">davon bei Euroclear, Brüssel</span></div>
+    <div class="stat-box"><span class="stat-num">~70 %</span><span class="stat-label">der weltweit eingefrorenen russischen Zentralbankreserven liegen in der EU</span></div>
+    <div class="stat-box"><span class="stat-num">Feb. 2022</span><span class="stat-label">Beginn des Einfrierens</span></div>
+  </div>
+
+  <p>Wichtig für die rechtliche Einordnung <span class="tag tag-belegt">BELEGT</span>: Das Geld bleibt formal russisches Eigentum. Eine Enteignung hat bislang nicht stattgefunden — die EU nutzt bislang lediglich die daraus entstehenden Zinserträge und Kapitalgewinne, hält das Kapital selbst aber unangetastet und auf unbestimmte Zeit blockiert.</p>
+
+  <div class="source-box">
+    <strong>Quellen:</strong> t-online, 18.12.2025 — "Putin droht ein Geldschock"; Tagesspiegel, 12.02.2026 — "Europa steht vor einer schicksalhaften Entscheidung"; ORF, 11.12.2025 — "Eingefrorene russische Vermögen: Europa unter Zugzwang"
+  </div>
+
+  <h2>2. Der Streit: Was soll mit dem Geld geschehen?</h2>
+  <p>Die EU-Kommission unter Ursula von der Leyen brachte die Idee eines "Reparationsdarlehens" ins Spiel: bis zu 140–210 Mrd. Euro, abgesichert durch die eingefrorenen russischen Reserven, sollen der Ukraine als Kredit zur Verfügung gestellt werden — rückzahlbar nur dann, wenn Russland nach Kriegsende Reparationen leistet.</p>
+
+  <p>Dagegen stellte sich vor allem Belgien. Regierungschef Bart De Wever forderte <span class="tag tag-belegt">BELEGT</span> rechtsverbindliche, bedingungslose, unwiderrufliche, gesamtschuldnerische Garantien aller EU-Staaten für sämtliche Risiken — Schiedsgerichtskosten, Zinsen, entgangene Investitionen, Folgen für die Kreditwürdigkeit der russischen Zentralbank — sowie vollständigen Schutz der bei Euroclear verwahrten Vermögenswerte vor möglichen Vergeltungsmaßnahmen Moskaus.</p>
+
+  <p>Auch Frankreichs Präsident Emmanuel Macron sprach sich gegen eine direkte Konfiszierung aus und verwies auf die Bindung an internationales Recht.</p>
+
+  <div class="quote-box">
+    "Wenn Vermögenswerte eingefroren sind, muss man internationales Recht respektieren."
+    <span class="quote-attr">— Emmanuel Macron, Rand des EU-Gipfels, Kopenhagen</span>
+  </div>
+
+  <div class="source-box">
+    <strong>Quellen:</strong> Yahoo/Euronews, "Belgischer Warnbrief blockiert EU-Pläne zu russischen Vermögen"; Focus, "Streit über Vermögenswerte — jetzt tritt Macron auf die Bremse"; ZDFheute, 18.12.2025 — "EU-Gipfel über eingefrorene russische Vermögen: Darum geht es"
+  </div>
+
+  <h2>3. Der Kompromiss — und was er wirklich bedeutet</h2>
+  <p>Nach langem Ringen einigte sich die EU im Dezember 2025 nicht auf das große Reparationsdarlehen, sondern auf eine Zwischenlösung.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-date">Dez. 2025</span>
+      EU-Rat beschließt 90 Mrd. Euro Unterstützung für die Ukraine 2026/27 — finanziert über gemeinsame Kreditaufnahme der EU, <em>nicht</em> aus den russischen Vermögenswerten selbst.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Dez. 2025</span>
+      Der Rat beschließt zugleich, jede Rückübertragung der russischen Zentralbankreserven auf unbestimmte Zeit zu untersagen (Rechtsgrundlage: Art. 122 AEUV). 25 von 27 Mitgliedstaaten stimmen dafür — nur Ungarn und die Slowakei dagegen.
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Ende 2026</span>
+      Erste vorgesehene Überprüfung der Sperre — danach jährliche Wiederholung.
+    </div>
+  </div>
+
+  <p>Entscheidend ist die Konstruktion des Rückzahlungsrisikos <span class="tag tag-belegt">BELEGT</span>: Der Kredit soll erst zurückgezahlt werden, wenn Russland die Ukraine nach Kriegsende für die verursachten Schäden entschädigt hat. Gelingt das nicht, müssen die EU-Länder oder die Ukraine selbst dafür einstehen — nicht Russland. Das Risiko liegt also, unabhängig vom Kriegsausgang, am Ende bei Europa.</p>
+
+  <div class="source-box">
+    <strong>Quellen:</strong> ORF, 19.12.2025 — "90 Milliarden Euro: EU einigt sich auf Kredit für Ukraine"; Deutscher Bundestag, Drucksache 21/2565, 04.11.2025
+  </div>
+
+  <h2>4. Der Trump-Faktor</h2>
+  <p>Parallel zur europäischen Debatte brachte die US-Regierung eigene Pläne ins Spiel — mit einer bemerkenswerten Volte.</p>
+
+  <h3>Der Friedensplan-Entwurf, November 2025</h3>
+  <p><span class="tag tag-belegt">BELEGT</span> Ein der Ukraine vorgelegter Friedensplan-Entwurf schlug vor, die eingefrorenen Vermögenswerte freizugeben und in eine von Washington verwaltete Investitionsplattform umzuwandeln — was implizierte, dass Russland nicht nur von Reparationszahlungen verschont bliebe, sondern von der Verwaltung sogar wirtschaftlich profitieren könnte. Berichten zufolge enthielt eine frühere Fassung sogar eine Klausel, die russische Vermögenswerte explizit zu kommerziellen Vorteilen sowohl für Washington als auch für Moskau genutzt hätte — diese Passage wurde erst nach hochrangigen US-ukrainischen Gesprächen in Genf gestrichen.</p>
+
+  <h3>Das Rechenzentrum am AKW Saporischschja</h3>
+  <p>Das Wall Street Journal berichtete zusätzlich, der Plan sehe vor, 200 Mrd. Dollar der eingefrorenen Vermögenswerte für Projekte in der Ukraine zu nutzen — darunter ein neues Rechenzentrum, versorgt vom derzeit russisch besetzten Kernkraftwerk Saporischschja. Ein nicht namentlich genannter europäischer Vertreter verglich die vorgeschlagenen Energiegeschäfte zwischen Russland und den USA mit einer "wirtschaftlichen Version der Konferenz von Jalta 1945".</p>
+
+  <h3>Lobbying gegen den EU-eigenen Plan</h3>
+  <p>Laut Politico, gestützt auf vier EU-Beamte, drängten Vertreter der Trump-Regierung europäische Regierungen — insbesondere ihnen wohlgesonnene — dazu, den EU-Plan zur Nutzung der 210 Mrd. Euro für die Ukraine abzulehnen. Als Folge dieser Einflusskampagne sollen sich Italien, Bulgarien, Malta und Tschechien der Gruppe der abweichenden Länder angeschlossen haben.</p>
+
+  <div class="source-box">
+    <strong>Quellen:</strong> Euronews, 21.11.2025 — "Hebelt US-Plan Nutzung russischer Vermögenswerte aus?"; t-online, 11.12.2025 — "Trump-Plan sieht wohl russische Energie für Europa vor" (Quelle: Wall Street Journal); Tagesspiegel, 28.01.2026 — "Trump will wohl verhindern, dass das eingefrorene russische Vermögen an die Ukraine geht" (Quelle: Politico)
+  </div>
+
+  <h2>5. Moskau selbst nennt es beim Namen</h2>
+  <p>Ein Prinzip dieser Dokumentation ist, Positionen möglichst in den eigenen Worten der Beteiligten stehen zu lassen.</p>
+
+  <div class="quote-box">
+    "Diebstahl."
+    <span class="quote-attr">— Wladimir Putin über das geplante Reparationsdarlehen</span>
+  </div>
+
+  <div class="source-box">
+    <strong>Quelle:</strong> Yahoo/Euronews — "Belgischer Warnbrief blockiert EU-Pläne zu russischen Vermögen"
+  </div>
+
+  <h2>6. Zwischenstand</h2>
+  <p>Festzuhalten bleibt <span class="tag tag-belegt">BELEGT</span>: Das Geld ist eingefroren, nicht enteignet. Die EU finanziert die Ukraine vorerst über eigene Schulden, nicht über russisches Kapital. Die USA haben zeitweise versucht, das europäische Vorhaben zu verhindern und gleichzeitig eigene Zugriffsmodelle vorgeschlagen. Belgien hält den Schlüssel in der Hand, weil der Großteil des Geldes auf seinem Staatsgebiet liegt.</p>
+
+  <p>Was juristisch daraus folgt — und warum sich mehrere Gerichte gleichzeitig für zuständig erklären, ohne dass eine übergeordnete Instanz das auflösen kann — behandelt Teil 2 dieser Dokumentation.</p>
+
+  <div class="open-questions">
+    <p><em>Wer trägt am Ende tatsächlich die Kosten, wenn Russland — wie von Putin bereits angekündigt — keine Reparationen anerkennt?</em></p>
+    <p><em>Was ändert sich bei der ersten vorgesehenen Überprüfung der Vermögenssperre Ende 2026?</em></p>
+    <p><em>Welche Rolle spielt es, dass Belgien selbst jährlich Steuereinnahmen aus den Erträgen des eingefrorenen Vermögens erzielt — während es gleichzeitig als größter Blockierer auftritt?</em></p>
+  </div>
+
+  <div class="series-nav">
+    <a href="index.html">Übersicht</a>
+    <a href="eingefrorene-russische-milliarden-teil2.html">Teil 2: Wer richtet hier eigentlich? →</a>
+  </div>
+
+  <footer>
+    dunkelfeld.report — Hidden in Plain Sight<br>
+    Tags: <span class="tag tag-belegt">BELEGT</span> = verifiziert &nbsp;
+    <span class="tag tag-extrapolation">EXTRAPOLATION</span> = strukturell plausibel &nbsp;
+    <span class="tag tag-offen">OFFEN</span> = ungeklärt &nbsp;
+    <span class="tag tag-widerlegt">VT-WIDERLEGT</span> = widerlegt<br>
+    Alle Angaben quellenbasiert · Unschuldsvermutung gilt bei laufenden Verfahren · Stand: Juli 2026<br>
+    <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a>
+  </footer>
+
+</div>
+</body>
+</html>

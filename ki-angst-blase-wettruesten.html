@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Warnen und Wetten — dunkelfeld.report</title>
+<meta name="rubrik" content="cat-technik">
+<meta name="kachel-titel" content="Warnen und Wetten — das Muster hinter der KI-Debatte">
+<style>
+  :root{
+    --bg:#0a0a0b;
+    --surface:#111114;
+    --surface2:#15151a;
+    --border:#1e1e24;
+    --text:#e8e8ec;
+    --muted:#8a8a97;
+    --muted2:#6b6b7a;
+    --accent:#e8c547;
+    --belegt:#4caf7d;
+    --extra:#5a9bd6;
+    --offen:#8a8a97;
+    --widerlegt:#c25454;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Lora','Georgia',serif;
+    margin:0;
+    line-height:1.7;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  h1,h2,h3,.label,.tag,.mono{
+    font-family:'Space Grotesk','IBM Plex Mono',monospace,sans-serif;
+  }
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(232,197,71,0.35);}
+  a:hover{border-bottom-color:var(--accent);}
+
+  header.site{
+    border-bottom:1px solid var(--border);
+    padding:1.3rem 1.5rem;
+    display:flex;
+    align-items:center;
+    gap:0.8rem;
+    position:sticky;
+    top:0;
+    background:rgba(10,10,11,0.92);
+    backdrop-filter:blur(6px);
+    z-index:100;
+  }
+  header.site .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+  header.site .brand{font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted2);}
+  header.site .stand{margin-left:auto;font-size:0.7rem;color:var(--muted2);}
+
+  main{max-width:760px;margin:0 auto;padding:3rem 1.5rem 2rem;}
+
+  .kicker{font-size:0.78rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted2);margin-bottom:1.2rem;}
+  h1{
+    font-size:clamp(2.1rem,5.5vw,3.1rem);
+    font-weight:700;
+    line-height:1.12;
+    margin:0 0 1.3rem;
+    color:var(--text);
+  }
+  .lede{font-size:1.12rem;color:var(--muted);max-width:64ch;margin-bottom:2.2rem;}
+  .meta{font-size:0.78rem;color:var(--muted2);margin-bottom:2.8rem;border-bottom:1px solid var(--border);padding-bottom:1.6rem;}
+
+  section.block{margin-bottom:3rem;}
+  .section-label{
+    font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:0.9rem;font-weight:600;
+  }
+  h2{font-size:1.5rem;margin:0 0 1rem;color:var(--text);}
+  h3{font-size:1.08rem;margin:1.8rem 0 0.7rem;color:var(--text);}
+  p{margin:0 0 1.1rem;}
+
+  .tag{
+    display:inline-block;
+    font-size:0.65rem;
+    letter-spacing:0.06em;
+    padding:0.16rem 0.5rem;
+    border-radius:3px;
+    margin-right:0.4rem;
+    text-transform:uppercase;
+    vertical-align:middle;
+    border:1px solid currentColor;
+  }
+  .tag.belegt{color:var(--belegt);}
+  .tag.extra{color:var(--extra);}
+  .tag.offen{color:var(--offen);}
+  .tag.widerlegt{color:var(--widerlegt);}
+
+  .fact{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-left:3px solid var(--accent);
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:0.96rem;
+  }
+  .fact .tag{margin-bottom:0.5rem;}
+
+  table.stats{
+    width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.92rem;
+  }
+  table.stats th, table.stats td{
+    border-bottom:1px solid var(--border);
+    padding:0.6rem 0.7rem;text-align:left;vertical-align:top;
+  }
+  table.stats th{color:var(--muted2);font-weight:600;font-family:'IBM Plex Mono',monospace;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;}
+  table.stats td.num{color:var(--accent);font-family:'IBM Plex Mono',monospace;white-space:nowrap;}
+
+  blockquote.muster{
+    border-left:3px solid var(--accent);
+    padding:0.3rem 0 0.3rem 1.4rem;
+    margin:1.6rem 0;
+    color:var(--text);
+    font-style:italic;
+  }
+
+  .disclaimer{
+    background:var(--surface2);
+    border:1px solid var(--border);
+    padding:1.4rem 1.5rem;
+    margin-top:2.5rem;
+    font-size:0.9rem;
+    color:var(--muted);
+  }
+  .disclaimer .section-label{color:var(--muted2);}
+  .disclaimer ul{margin:0.6rem 0 0;padding-left:1.2rem;}
+  .disclaimer li{margin-bottom:0.5rem;}
+
+  .sources{
+    margin-top:3rem;border-top:1px solid var(--border);padding-top:2rem;
+  }
+  .sources h2{font-size:1.1rem;color:var(--muted2);text-transform:uppercase;letter-spacing:0.1em;font-size:0.85rem;}
+  .sources ol{padding-left:1.3rem;font-size:0.85rem;color:var(--muted);}
+  .sources li{margin-bottom:0.6rem;}
+  .sources .cat{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted2);margin:1.4rem 0 0.4rem;}
+
+  footer.site{
+    max-width:760px;margin:0 auto;padding:2.5rem 1.5rem 4rem;
+    border-top:1px solid var(--border);margin-top:2rem;
+    font-size:0.78rem;color:var(--muted2);
+  }
+  footer.site p{margin:0 0 0.6rem;}
+  footer.site .sig{color:var(--accent);}
+
+  @media (max-width:480px){
+    main{padding:2.2rem 1.1rem 1.5rem;}
+    table.stats{font-size:0.82rem;}
+    table.stats th, table.stats td{padding:0.5rem 0.4rem;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="dot"></div>
+  <span class="brand">dunkelfeld.report — Analyse · Systemkritik · Quellenbasiert</span>
+  <span class="stand">Stand: September 2026</span>
+</header>
+
+<main>
+  <div class="kicker">Struktur der Kontrolle · KI-Governance · Teil 1</div>
+  <h1>Warnen und Wetten — das Muster hinter der KI-Debatte</h1>
+  <p class="lede">
+    Drei Stränge, die in der öffentlichen Debatte meist getrennt verhandelt werden, ergeben
+    zusammengelegt ein klareres Bild: Wer am lautesten vor Künstlicher Intelligenz warnt, ist
+    oft derselbe Akteur, der am tiefsten in ihre Finanzierung verstrickt ist — während auf der
+    sicherheitspolitischen Ebene ein Wettrüsten läuft, das sich mit klassischen Mitteln der
+    Rüstungskontrolle nicht mehr einhegen lässt.
+  </p>
+  <p class="meta">Lesedauer ca. 10 Minuten &nbsp;·&nbsp; Teil 1 einer Recherche, Teil 2: „Zwei Kontinente, ein Muster", Teil 3: „Gegenwart vs. Zukunft"</p>
+
+  <section class="block">
+    <div class="section-label">Damals</div>
+    <h2>Zwei historische Vergleichsfälle</h2>
+    <p>
+      Klassische Rüstungskontrolle — etwa bei Atomwaffen — funktionierte, weil ihr Gegenstand
+      zählbar war: Sprengköpfe, Trägersysteme, Anreicherungsanlagen lassen sich inspizieren
+      und verifizieren. Der New-START-Vertrag zwischen den USA und Russland war bis Anfang
+      2026 der letzte verbliebene Vertrag, der auf diesem Prinzip beruhte.
+    </p>
+    <p>
+      Auf der wirtschaftlichen Seite gibt es einen anderen historischen Vergleichspunkt: das
+      sogenannte Vendor-Financing der späten 1990er-Jahre, als Telekomausrüster wie Lucent
+      Technologies ihren Kunden — oft kleinen, kaum kreditwürdigen Netzbetreibern — den Kauf
+      der eigenen Geräte per Kredit finanzierten. Der Kreislauf brach beim Platzen der
+      Dotcom-Blase zusammen.
+    </p>
+    <div class="fact"><span class="tag belegt">Belegt</span>
+      Bestraft wurde damals nicht das Vendor-Financing als Geschäftsmodell, sondern die
+      verschleierte Buchführung darüber: Die SEC klagte zehn Lucent-Führungskräfte wegen
+      Wertpapierbetrugs an, dem Unternehmen wurde vorgeworfen, zwischen 2000 und 2003 rund
+      1,148 Mrd. USD Umsatz falsch verbucht und Rückstellungen zur Gewinnglättung manipuliert
+      zu haben. Lucent zahlte eine Strafe von 25 Mio. USD — damals die höchste je verhängte
+      Strafe für diese Art von Bilanzbetrug.
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-label">Heute</div>
+    <h2>Drei Stränge, ein Zeitraum</h2>
+
+    <h3>1. Die Angst-Rhetorik — und wer sie hinterfragt</h3>
+    <div class="fact"><span class="tag belegt">Belegt</span>
+      Sicherheitsforscher Evan Hubinger von Anthropic beziffert das Risiko, dass Künstliche
+      Intelligenz die Menschheit innerhalb der kommenden zehn Jahre auslöscht, auf mehr als
+      zehn Prozent. OpenAI-Chef Sam Altman zieht öffentlich Parallelen zwischen der
+      KI-Entwicklung und der Erfindung der Atombombe.
+    </div>
+    <div class="fact"><span class="tag belegt">Belegt</span>
+      Angela Müller, Geschäftsleiterin von Algorithm Watch Zürich, stellte im ZDF-Kulturzeit-
+      Interview (16.09.2026) die Gegenfrage, wem diese Angst-Kommunikation eigentlich nützt —
+      und verwies darauf, dass komplexe Regulierung, wie sie aus Angst-Szenarien häufig
+      abgeleitet wird, kleinere Anbieter überproportional benachteiligt und damit tendenziell
+      die etablierten Großkonzerne stärkt.
+    </div>
+
+    <h3>2. Die Blase — zirkuläre Milliardendeals ohne externe Nachfrage</h3>
+    <table class="stats">
+      <tr><th>Deal / Kennzahl</th><th>Volumen</th></tr>
+      <tr><td>OpenAI – Oracle (Cloud-Infrastruktur)</td><td class="num">300 Mrd. USD</td></tr>
+      <tr><td>Nvidia – OpenAI (Investitionspartnerschaft)</td><td class="num">100 Mrd. USD</td></tr>
+      <tr><td>OpenAI – AMD (Chip-Abnahme, inkl. Kapitalbeteiligung)</td><td class="num">200 Mrd. USD</td></tr>
+      <tr><td>Stargate-Projekt (OpenAI/SoftBank/Oracle, Rechenzentren USA)</td><td class="num">500 Mrd. USD</td></tr>
+      <tr><td>OpenAI – Gesamtverpflichtungen bei 7 Zulieferern, 2025–2035</td><td class="num">1,15 Billionen USD</td></tr>
+      <tr><td>OpenAI – prognostizierter Verlust 2026</td><td class="num">14 Mrd. USD</td></tr>
+    </table>
+    <div class="fact"><span class="tag belegt">Belegt</span>
+      Laut einer MIT-Studie werfen 95 Prozent der bisherigen Investitionen in generative KI
+      keinerlei messbare Rendite ab. Kritiker beschreiben das Geflecht aus Investitionen,
+      Chip-Abnahmeverträgen und Cloud-Verpflichtungen zwischen denselben wenigen Unternehmen
+      (Nvidia, Oracle, OpenAI, AMD, Microsoft) als „zirkuläre Finanzierung" — Kapital, das sich
+      im Kreis dreht, statt externe Nachfrage abzubilden. Befürworter widersprechen: Es handle
+      sich um langfristige Lieferbindungen in einem Markt mit knappen Spitzen-Chips, kein
+      Schneeballsystem.
+    </div>
+    <div class="fact"><span class="tag belegt">Belegt</span>
+      Anders als beim Lucent-Fall gibt es aktuell keinen Betrugsvorwurf — die Deals sind
+      öffentlich angekündigte Verträge, keine verschleierte Buchführung. Die US-Börsenaufsicht
+      SEC bewegt sich zudem in die Gegenrichtung: Im Juli 2026 stellte sie klar, dass
+      bestimmte Formen von Rechenzentrums-Fremdkapital nicht unter die
+      Verbriefungsregeln des Dodd-Frank-Gesetzes fallen — ein regulatorischer Rückenwind statt
+      einer Bremse. Am 1. Juli 2026 kündigte die SEC-Vorsitzende zudem eine grundlegende
+      Abkehr von der bisherigen Durchsetzungspraxis an, hin zu weniger, dafür ausgewählten
+      Verfahren. Historisch griff die SEC bei vergleichbaren Fällen ohnehin erst nach einem
+      Crash ein — im Lucent-Fall erst 2004, Jahre nach dem Platzen der Dotcom-Blase.
+    </div>
+
+    <h3>3. Militärisches Wettrüsten — ohne Verifikationsmöglichkeit</h3>
+    <div class="fact"><span class="tag belegt">Belegt</span>
+      Der New-START-Vertrag lief am 5. Februar 2026 aus — seither begrenzt kein Vertrag mehr
+      die strategischen Nukleararsenale der USA und Russlands. UN-Generalsekretär António
+      Guterres hatte die Staatengemeinschaft aufgefordert, bis 2026 ein rechtsverbindliches
+      Instrument gegen tödliche autonome Waffensysteme zu beschließen (UN-Resolution 79/62,
+      Dezember 2024) — dieses Ziel wurde nicht erreicht.
+    </div>
+    <div class="fact"><span class="tag belegt">Belegt</span>
+      Im Juni 2026 berichtete ein ukrainischer Drohnenhersteller von einem Testeinsatz nahe
+      Bachmut: Quadrokopter schalteten nach mehrminütiger Umkreisung selbstständig in einen
+      Modus, in dem ein KI-Modell eigenständig Ziele auswählte; zwei russische Soldaten seien
+      dabei getötet worden. Im selben Jahr bestellte die Bundeswehr erstmals KI-gestützte
+      Kampfdrohnen, Auslieferung an eine Brigade in Litauen ab 2027.
+    </div>
+    <div class="fact"><span class="tag belegt">Belegt</span>
+      Der strukturelle Grund, warum ein Moratorium hier schwerer durchzusetzen ist als bei
+      Atomwaffen: Klassische Rüstungskontrolle setzt Zählbarkeit voraus — Flugzeuge, Schiffe,
+      Sprengköpfe lassen sich inspizieren. Autonome Waffensysteme basieren auf Software;
+      Datenquellen, Modellarchitektur und Entscheidungslogik lassen sich geheim halten, ohne
+      dass ein Vertragspartner dies von außen nachweisen könnte.
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-label">Das Muster</div>
+    <h2>Warnung und Beschleunigung laufen parallel</h2>
+    <p>
+      Die drei Stränge berühren sich an einem Punkt: In allen dreien sprechen dieselben oder
+      benachbarte Akteure öffentlich von Gefahr, Risiko oder Vorsicht — während sie
+      gleichzeitig, unverifiziert und ohne dass ein Bremsmechanismus sichtbar wäre, genau in
+      die Richtung weiter investieren oder aufrüsten, vor der gewarnt wird. Das gilt
+      finanziell (Milliardendeals trotz Blasenwarnung), sicherheitspolitisch (Kampfdrohnen-
+      Bestellung trotz verfehlter UN-Frist) und rhetorisch (Auslöschungsrisiko-Prozentzahlen
+      bei gleichzeitig laufendem Wettbewerb um Marktanteile).
+    </p>
+    <blockquote class="muster">
+      Keiner der drei Stränge belegt eine abgestimmte Absicht. Zusammen ergeben sie aber ein
+      wiederkehrendes Bild: Die öffentliche Warnung und die private Beschleunigung schließen
+      sich bei denselben Akteuren nicht aus — sie koexistieren.
+    </blockquote>
+  </section>
+
+  <div class="disclaimer">
+    <div class="section-label">Was wir ausdrücklich nicht behaupten</div>
+    <ul>
+      <li>Wir unterstellen den zitierten Sicherheitsforschern und Führungskräften keine
+        bewusste Täuschungsabsicht. Die Risikoeinschätzungen können ernst gemeint sein und
+        gleichzeitig geschäftlich vorteilhaft wirken — beides schließt sich nicht aus.</li>
+      <li>Wir bewerten nicht, ob China spezifisch ausgebremst werden sollte oder nicht — das
+        ist eine politische Frage, zu der unterschiedliche legitime Positionen bestehen.</li>
+      <li>Wir behaupten nicht, dass die beschriebenen Finanzierungsdeals zwangsläufig in einer
+        Blase enden — die Einschätzung ist unter Ökonomen umstritten, wir dokumentieren die
+        Faktenlage und beide Lesarten.</li>
+      <li>Wir treffen keine Aussage darüber, ob der dokumentierte KI-Drohneneinsatz nahe
+        Bachmut völkerrechtlich zulässig war — dazu fehlen uns unabhängig verifizierte Details
+        zum Einsatzkontext.</li>
+    </ul>
+  </div>
+
+  <div class="sources">
+    <h2>Quellenverzeichnis</h2>
+
+    <div class="cat">Medien &amp; Interviews</div>
+    <ol>
+      <li>ZDFheute / Kulturzeit: „Konzerne warnen vor KI: Warum mehr als Angst dahinter steckt", Interview mit Angela Müller (Algorithm Watch), 16.09.2026</li>
+      <li>Bloomberg: „AI Circular Deals: How Microsoft, OpenAI and Nvidia Keep Paying Each Other" (2026)</li>
+      <li>Deutsche Wirtschafts Nachrichten: „Platzt die KI-Blase? Zirkuläres Finanzierungsmodell von OpenAI, Nvidia &amp; Co." (2025/2026)</li>
+      <li>finanzmarktwelt.de: „KI-Blase droht: Nvidia, OpenAI und ein getarntes Ponzi-Schema" (2025), inkl. Verweis auf MIT-Studie zur GenAI-Rendite</li>
+    </ol>
+
+    <div class="cat">Sicherheitspolitik &amp; Rüstungskontrolle</div>
+    <ol>
+      <li>Erhard-Eppler-Kreis: „Rüstungskontrolle für KI" (2026) — u. a. zu New-START-Vertragsende und Drohnentest nahe Bachmut</li>
+      <li>UN-Generalversammlung, Resolution 79/62 (2. Dezember 2024) zu tödlichen autonomen Waffensystemen</li>
+      <li>kritiken.de: „Das ethische Vakuum: Warum die Regulierung von KI-Waffensystemen völkerrechtlich scheitert" (2026)</li>
+    </ol>
+
+    <div class="cat">Wirtschaftsdaten</div>
+    <ol>
+      <li>blockeden.xyz / bex.co: „The Great AI Circular Financing Loop" (2026), Aufschlüsselung der OpenAI-Lieferverpflichtungen</li>
+      <li>it-boltwise.de: „KI-Boom an der Wall Street: Blase vs. Fundament bei NVIDIA, Oracle &amp; Co." (2026)</li>
+      <li>SEC-Litigation Release zu Lucent Technologies (Wertpapierbetrug, Rückstellungsmanipulation), sec.gov</li>
+      <li>Tomasz Tunguz: „Circular Financing: Does Nvidia's $110B Bet Echo the Telecom Bubble?" (Okt. 2025) — Einordnung Lucent-SEC-Strafe (25 Mio. USD)</li>
+      <li>cash-online.de: „Zirkuläre KI-Finanzierung: Das Risikogeflecht um Nvidia und OpenAI" (2026) — SEC-Klarstellung zu Dodd-Frank-Verbriefungsregeln, Juli 2026</li>
+      <li>Federated Hermes Inc., SEC-Form 10-Q FY2026 — Zitat SEC-Vorsitzende zur Abkehr von „regulation by enforcement", 1. Juli 2026</li>
+    </ol>
+  </div>
+</main>
+
+<footer class="site">
+  <p>Alle dargestellten Informationen basieren auf öffentlich zugänglichen Quellen:
+    Medienberichten, Wirtschaftsdaten und Recherchen unabhängiger Organisationen. Meinungen
+    und Bewertungen sind als solche gekennzeichnet (Extrapolation). Leserinnen und Leser sind
+    ausdrücklich zur eigenständigen Prüfung der verlinkten Quellen eingeladen.</p>
+  <p class="sig">dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.</p>
+</footer>
+
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

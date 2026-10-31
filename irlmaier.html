@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Irlmaier-Komplex | dunkelfeld.report</title>
+<meta name="rubrik" content="cat-medien">
+<meta name="kachel-titel" content="Der Irlmaier-Komplex">
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --surface: #141414;
+    --surface2: #1a1a1a;
+    --border: #2a2a2a;
+    --text: #e0e0e0;
+    --muted: #888;
+    --accent: #c0392b;
+    --accent2: #e67e22;
+    --gold: #c9a84c;
+    --white: #f0f0f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', serif;
+    line-height: 1.8;
+    font-size: 17px;
+  }
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .logo {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .logo span { color: var(--muted); font-weight: 400; }
+  .container { max-width: 760px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+  .tag {
+    display: inline-block;
+    font-family: 'Arial', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.2rem 0.6rem;
+    margin-bottom: 1.2rem;
+  }
+  h1 {
+    font-family: 'Arial', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+  .subtitle {
+    font-size: 1.1rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+  }
+  .meta {
+    font-family: 'Arial', sans-serif;
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h2 {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 2.5rem 0 1rem;
+  }
+  p { margin-bottom: 1.3rem; }
+  .pullquote {
+    border-left: 4px solid var(--accent);
+    margin: 2rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--surface2);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.6;
+  }
+  .factbox {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--gold);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    font-family: 'Arial', sans-serif;
+    font-size: 0.9rem;
+  }
+  .factbox .fb-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+  .sequence {
+    margin: 2rem 0;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+  }
+  .seq-item {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    border-bottom: 1px solid var(--border);
+    font-family: 'Arial', sans-serif;
+    font-size: 0.88rem;
+  }
+  .seq-item:last-child { border-bottom: none; }
+  .seq-prophecy {
+    padding: 0.9rem 1rem;
+    border-right: 1px solid var(--border);
+    color: var(--gold);
+    font-style: italic;
+  }
+  .seq-reality {
+    padding: 0.9rem 1rem;
+    color: var(--text);
+  }
+  .seq-header {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    background: #111;
+    font-family: 'Arial', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--accent);
+  }
+  .seq-header div { padding: 0.6rem 1rem; color: var(--muted); }
+  .dangerbox {
+    background: #1a0a0a;
+    border: 1px solid var(--accent);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    font-family: 'Arial', sans-serif;
+    font-size: 0.92rem;
+    color: #e0b0b0;
+  }
+  .dangerbox .db-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+  .profiteur-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .profiteur-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--accent2);
+    padding: 1rem;
+    font-family: 'Arial', sans-serif;
+    font-size: 0.82rem;
+  }
+  .profiteur-box .p-title {
+    font-weight: 700;
+    color: var(--accent2);
+    margin-bottom: 0.5rem;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .profiteur-box p { color: var(--text); margin-bottom: 0; font-size: 0.82rem; }
+  .conclusion {
+    background: var(--surface2);
+    border-left: 4px solid var(--accent2);
+    padding: 1.5rem;
+    margin: 2.5rem 0;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+  footer {
+    font-family: 'Arial', sans-serif;
+    font-size: 0.78rem;
+    color: var(--muted);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    line-height: 1.8;
+  }
+  @media (max-width: 600px) {
+    h1 { font-size: 1.7rem; }
+    .profiteur-grid { grid-template-columns: 1fr; }
+    .seq-item, .seq-header { grid-template-columns: 1fr; }
+    .seq-prophecy { border-right: none; border-bottom: 1px solid var(--border); }
+    .seq-header div:last-child { display: none; }
+    .container { padding: 2rem 1.2rem 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">dunkelfeld<span>.info</span></div>
+</header>
+
+<div class="container">
+
+  <div class="tag">Analyse · Prophezeiung & Panik</div>
+
+  <h1>Der Irlmaier-Komplex</h1>
+  <p class="subtitle">Wie ein bayerischer Brunnenbauer zum viralen Krisenphänomen wurde — und wer davon profitiert, dass Millionen Menschen seine Worte für Gegenwartsbeschreibung halten.</p>
+  <div class="meta">dunkelfeld.report · Juni 2026 · Lesezeit ca. 7 Minuten · Alle Quellenangaben öffentlich zugänglich</div>
+
+  <p>Alois Irlmaier starb 1959. In den letzten zwölf Monaten wurden seine Prophezeiungen auf TikTok, YouTube und Telegram millionenfach aufgerufen. Google Trends zeigt Spitzen immer dann, wenn sich geopolitische Ereignisse überschlagen: Ukraine-Krieg, Iran-Krieg, jeder neue NATO-Alarm.</p>
+
+  <p>Das ist keine Randerscheinung. Das ist ein gesellschaftliches Symptom. Und wie bei jedem Symptom lohnt es sich, nach der Ursache zu fragen — und danach, wer von der Krankheit profitiert.</p>
+
+  <div class="pullquote">
+    Wenn offizielle Erklärungen versagen, blühen inoffizielle. Das ist keine Esoterik — das ist Soziologie.
+  </div>
+
+  <h2>I. Das Szenario — was Irlmaier tatsächlich sagte</h2>
+
+  <p>Irlmaier beschrieb zwischen 1947 und 1957 gegenüber verschiedenen Zeugen immer wieder dieselbe Abfolge. Keine konkreten Jahreszahlen, keine exakten Orte — aber eine Sequenz von Zuständen, die er als Vorzeichen eines großen europäischen Krieges bezeichnete.</p>
+
+  <div class="sequence">
+    <div class="seq-header">
+      <div>Irlmaier (1947–1957)</div>
+      <div>Gegenwart 2024–2026</div>
+    </div>
+    <div class="seq-item">
+      <div class="seq-prophecy">„Zuerst kommt ein Wohlstand wie noch nie."</div>
+      <div class="seq-reality">Nachkriegsjahrzehnte bis 2008: historisch beispielloser Massenwohlstand in Westeuropa. ✓ eingetroffen</div>
+    </div>
+    <div class="seq-item">
+      <div class="seq-prophecy">„Dann folgt ein Glaubensabfall wie noch nie."</div>
+      <div class="seq-reality">2023: über 400.000 Kirchenaustritte in Deutschland allein aus der kath. Kirche. Langzeittrend seit Jahrzehnten. ✓ messbar</div>
+    </div>
+    <div class="seq-item">
+      <div class="seq-prophecy">„Eine Sittenverderbnis wie noch nie."</div>
+      <div class="seq-reality">Stark interpretationsabhängig. Je nach Weltbild: Liberalisierung oder Werteverfall. ⚠ nicht falsifizierbar</div>
+    </div>
+    <div class="seq-item">
+      <div class="seq-prophecy">„Viele Fremde kommen ins Land."</div>
+      <div class="seq-reality">2015, 2022, 2026 (Iran-Krieg): mehrere große Migrationswellen in kurzer Abfolge. ✓ faktisch</div>
+    </div>
+    <div class="seq-item">
+      <div class="seq-prophecy">„Das Geld verliert seinen Wert."</div>
+      <div class="seq-reality">2021–2024: Reallohnverlust 4–5%, Inflationsspitze über 8%. 34% der Deutschen nennen Inflation als Hauptsorge (Ipsos Mai 2026). ✓ belegbar</div>
+    </div>
+    <div class="seq-item">
+      <div class="seq-prophecy">„Dann Revolution."</div>
+      <div class="seq-reality">Noch nicht. Aber: 82% sehen Deutschland auf falschem Kurs (Ipsos 2026). Politische Destabilisierung in mehreren EU-Ländern. ⏳ offen</div>
+    </div>
+    <div class="seq-item">
+      <div class="seq-prophecy">„Dann überfallen die Russen über Nacht den Westen."</div>
+      <div class="seq-reality">Noch nicht eingetroffen. Iran-Krieg erhöht geopolitische Spannung. NATO-Berichte sehen Bündnis unvorbereitet. ⏳ offen</div>
+    </div>
+  </div>
+
+  <h2>II. Die methodische Falle</h2>
+
+  <p>Bevor man mit dem Zählen der Treffer beginnt, sollte man eine Frage stellen: Ist diese Sequenz überhaupt falsifizierbar?</p>
+
+  <p>Wohlstand → moralischer Verfall → Überfremdungsangst → Geldentwertung → politische Unruhe → Krieg. Das ist nicht Prophetie. Das ist das Standardmodell des Zivilisationsabstiegs, das sich in dieser oder ähnlicher Form bei Oswald Spengler, Ibn Khaldun, und dutzenden anderen Geschichtsphilosophen findet. Es passt auf das spätrömische Reich genauso wie auf die Weimarer Republik.</p>
+
+  <div class="factbox">
+    <div class="fb-title">Methodische Einordnung</div>
+    Eine Prophezeiung, die auf jede Krisenepoche passt, hat keinen Vorhersagewert. Sie hat emotionalen Wert: Sie gibt dem Chaos einen Namen. Das ist psychologisch mächtig — und analytisch wertlos.
+  </div>
+
+  <p>Was Irlmaiers Sequenz unbestreitbar leistet: Sie beschreibt menschliche Krisenpsychologie präzise. Menschen suchen in Zeiten der Orientierungslosigkeit nach Mustern. Und ein Muster, das schon „vorher" da war, fühlt sich wie Beweis an.</p>
+
+  <h2>III. Die selbsterfüllende Dimension</h2>
+
+  <p>Hier wird es interessant — und dunkel.</p>
+
+  <p>Wenn genug Menschen glauben, dass Krieg kommt, verändern sie ihr Verhalten. Sie horten. Sie ziehen sich zurück. Sie misstrauen Institutionen. Sie wählen anders. Sie werden resistenter gegen Deeskalationsnarrative — weil jede Beruhigung als Lüge erscheint, die das Unvermeidliche nur verzögert.</p>
+
+  <p>Massenpsychologisch kann eine Prophezeiungskultur Instabilität erzeugen, die sie zu bestätigen scheint. Das nennt sich self-fulfilling prophecy — und es ist kein marginales Phänomen. Wirtschaftskrisen entstehen oft so. Bankruns entstehen so. Und politische Radikalisierung auch.</p>
+
+  <div class="pullquote">
+    Wer Menschen davon überzeugt, dass Krieg unausweichlich ist, macht ihn wahrscheinlicher.
+  </div>
+
+  <h2>IV. Wer profitiert?</h2>
+
+  <p>Die zentrale dunkelfeld-Frage: Cui bono? Wem nützt die massenhafte Verbreitung von Kriegsprophezeiungen?</p>
+
+  <div class="profiteur-grid">
+    <div class="profiteur-box">
+      <div class="p-title">Content-Industrie</div>
+      <p>Irlmaier-Videos generieren hohe Klickzahlen. Angst ist der stärkste Engagement-Treiber. YouTuber, TikToker und Telegram-Kanäle monetarisieren kollektive Zukunftsangst direkt.</p>
+    </div>
+    <div class="profiteur-box">
+      <div class="p-title">Rüstungslobby</div>
+      <p>Kriegsangst legitimiert Rüstungsausgaben. Jeder Irlmaier-Viral ist indirekt Werbung für höhere Verteidigungsbudgets — die wiederum bestimmten Industrien nützen.</p>
+    </div>
+    <div class="profiteur-box">
+      <div class="p-title">Politische Ränder</div>
+      <p>Sowohl rechte als auch links-alternative Kräfte nutzen Prophezeiungsnarrative, um Systemkritik zu untermauern. Irlmaier liefert den apokalyptischen Rahmen, in den jede Agenda passt.</p>
+    </div>
+  </div>
+
+  <p>Dazu kommt eine subtilere Gruppe: Regierungen und Institutionen, die von einer verängstigten, passiven Bevölkerung profitieren. Eine Gesellschaft, die auf das Unausweichliche wartet, fordert keine Rechenschaft. Sie erträgt.</p>
+
+  <h2>V. Was die Kriegsangst wirklich bedeutet</h2>
+
+  <p>Laut Ipsos-Sorgenbarometer (Mai 2026) nennen 27 Prozent der Deutschen Angst vor militärischen Konflikten als eine ihrer drei größten Sorgen. Im April — direkt nach Ausbruch des Iran-Kriegs — waren es 31 Prozent, der höchste Wert seit 2022.</p>
+
+  <p>Diese Angst ist real. Sie ist berechtigt. Sie verdient eine ernsthafte politische Antwort: ehrliche Lageeinschätzung, glaubwürdige Sicherheitspolitik, offene Kommunikation über Risiken und Schutzmaßnahmen.</p>
+
+  <p>Was sie bekommt: Rüstungsdebatten in Parlamentssprache. Und Irlmaier-Videos.</p>
+
+  <div class="dangerbox">
+    <div class="db-title">⚠ Strukturproblem</div>
+    Wenn die Lücke zwischen realer Angst und offizieller Kommunikation groß genug ist, füllen andere sie. Propheten, Demagogen, Panikproduzenten. Das ist nicht das Versagen der Menschen, die Irlmaier schauen. Das ist das Versagen der Institutionen, die ihnen keine bessere Antwort anbieten.
+  </div>
+
+  <h2>VI. Irlmaier als Spiegel</h2>
+
+  <p>Alois Irlmaier war möglicherweise ein bemerkenswerter Mensch. Seine dokumentierten Treffsicherheiten im Zweiten Weltkrieg — beschriebene Bombeneinschläge, Auffinden Vermisster — sind gerichtlich protokolliert. Das lässt sich nicht einfach wegdiskutieren.</p>
+
+  <p>Aber seine Prophezeiungen zum Dritten Weltkrieg sind ein anderes Kapitel. Sie sind vage genug, um auf jede Epoche zu passen. Präzise genug, um Angst zu generieren. Und viral genug, um ein Symptom zu sein — kein Befund.</p>
+
+  <p>Der Befund ist dieser: Eine Gesellschaft, die kollektiv zu einem Brunnenbauer aus dem Jahr 1950 schaut, um ihre Gegenwart zu verstehen, hat ein Kommunikationsproblem. Kein Esoterik-Problem.</p>
+
+  <div class="conclusion">
+    <strong>Fazit:</strong> Irlmaier ist kein Prophet. Er ist ein Spiegel. Was wir in ihm sehen, ist nicht die Zukunft — es ist die Gegenwart einer Gesellschaft, die Orientierung sucht und sie von ihren Institutionen nicht bekommt. Die Frage ist nicht: Hat er recht? Die Frage ist: Warum glauben es so viele — und wem nützt das?
+  </div>
+
+  <hr class="divider">
+
+  <footer>
+    dunkelfeld.report · Analyse · Juni 2026<br>
+    Quellen: Ipsos Sorgenbarometer Mai 2026 · Questico/Wahrsager.de Irlmaier-Dokumentation · Augsburger Allgemeine, Merkur.de, Spiegel (archiviert) · Gerichtsprotokolle Irlmaier zitiert nach öffentlichen Quellen<br>
+    Alle Aussagen basieren auf öffentlich zugänglichen und belegbaren Quellen. Meinungen sind als solche gekennzeichnet.<br><br>
+    <strong>Tags:</strong> #Irlmaier #Prophezeiung #Kriegsangst #Panik #Gesellschaft #Analyse #dunkelfeld #SelbsterfüllendeProphezeihung #Desinformation #Zukunftsangst
+  </footer>
+
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

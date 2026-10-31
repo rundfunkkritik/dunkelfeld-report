@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schutzherr des Islam? — dunkelfeld.report</title>
+<meta name="rubrik" content="cat-migration">
+<meta name="kachel-titel" content="Schutzherr des Islam?">
+<style>
+  :root {
+    --bg: #0d0f12;
+    --bg-card: #15181d;
+    --ink: #e4e2dc;
+    --ink-dim: #9a9690;
+    --accent: #b3312c;
+    --accent-2: #7a8a9a;
+    --line: #2a2d33;
+    --belegt: #6fcf97;
+    --extra: #e0b84a;
+    --vt: #b48ae0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    line-height: 1.75;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 64px 24px 96px; }
+  .kicker {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+    display: block;
+  }
+  h1 {
+    font-family: Georgia, serif;
+    font-size: 2.3rem;
+    line-height: 1.2;
+    margin: 0 0 14px;
+    color: #fff;
+  }
+  .subtitle {
+    font-style: italic;
+    color: var(--ink-dim);
+    font-size: 1.1rem;
+    margin: 0 0 40px;
+    border-left: 3px solid var(--accent);
+    padding-left: 16px;
+  }
+  h2 {
+    font-family: Georgia, serif;
+    color: #fff;
+    font-size: 1.4rem;
+    margin: 48px 0 18px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  p { margin: 0 0 20px; font-size: 1.05rem; }
+  strong { color: #fff; }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 8px;
+    display: inline-block;
+  }
+  .belegt { background: rgba(111,207,151,0.12); color: var(--belegt); }
+  .extra { background: rgba(224,184,74,0.12); color: var(--extra); }
+  .vt { background: rgba(180,138,224,0.12); color: var(--vt); }
+
+  .gegenueber {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    margin: 32px 0;
+    border: 1px solid var(--line);
+  }
+  .gegenueber > div { background: var(--bg-card); padding: 22px; }
+  .gegenueber .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .gegenueber .damals .label { color: var(--accent-2); }
+  .gegenueber .heute .label { color: var(--accent); }
+  .gegenueber p { font-size: 0.95rem; margin: 0; }
+  @media (max-width: 600px) {
+    .gegenueber { grid-template-columns: 1fr; }
+  }
+
+  .faktenbox {
+    background: var(--bg-card);
+    border-left: 3px solid var(--accent);
+    padding: 20px 24px;
+    margin: 28px 0;
+  }
+  .faktenbox .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 10px;
+  }
+  .faktenbox ul { margin: 0; padding-left: 20px; }
+  .faktenbox li { margin-bottom: 10px; }
+
+  .stat-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin: 32px 0;
+  }
+  .stat {
+    background: var(--bg-card);
+    padding: 18px 20px;
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+  }
+  .stat .number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.5rem;
+    color: var(--accent);
+    display: block;
+  }
+  .stat .label { font-size: 0.82rem; color: var(--ink-dim); }
+
+  .muster-box {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    padding: 26px;
+    margin: 32px 0;
+  }
+  .muster-box h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 16px;
+  }
+
+  .person-box {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent-2);
+    padding: 22px 24px;
+    margin: 32px 0;
+  }
+  .person-box h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+    margin: 0 0 14px;
+  }
+  .person-box p { margin-bottom: 0; font-size: 0.98rem; }
+
+  .hoffnung {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--ink);
+    font-style: italic;
+    text-align: center;
+  }
+  .hoffnung .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+    display: block;
+    margin-bottom: 14px;
+    font-style: normal;
+  }
+
+  .quellen {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 0.85rem;
+    color: var(--ink-dim);
+  }
+  .quellen .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+    display: block;
+    margin-bottom: 14px;
+  }
+  .quellen ol { padding-left: 20px; }
+  .quellen li { margin-bottom: 10px; }
+
+  footer {
+    margin-top: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-dim);
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <span class="kicker">dunkelfeld.report</span>
+  <h1>Schutzherr des Islam?</h1>
+  <p class="subtitle">Ein Regime, das die eigene Bevölkerung nach rassischen Kategorien sortierte und vernichtete, präsentierte sich zeitgleich in Nordafrika, auf dem Balkan, in der Krim und im Kaukasus als Beschützer der Muslime. Gut erforscht — und kaum bekannt, weil es nicht ins gängige Bild passt.</p>
+
+  <p><span class="tag belegt">BELEGT</span>Als Hitlers Truppen ab 1941/42 in muslimisch besiedelte Kriegsgebiete einmarschierten, warb Berlin gezielt um Muslime als Verbündete. Rassistische Vorbehalte der NS-Ideologie wurden dabei mit auffälligem Pragmatismus beiseitegeschoben, sobald militärischer Nutzen erkennbar war.</p>
+
+  <h2>Der frühe Kontakt: 1933</h2>
+  <p>Die Kooperation begann nicht erst im Krieg. Am 31. März 1933 — einen Tag vor dem reichsweiten NS-Judenboykott — traf sich Amin al-Husseini, Großmufti von Jerusalem, mit dem deutschen Generalkonsul in Jerusalem und bot dem gerade etablierten NS-Regime seine Unterstützung an.</p>
+
+  <div class="person-box">
+    <h3>Der Akteur — Amin al-Husseini</h3>
+    <p>Palästinensischer Araber, 1921–1937 Großmufti von Jerusalem mit erheblichem politischen und ökonomischen Einfluss. Nach Flucht ins Exil ab 1941 in Berlin. <span class="tag belegt">BELEGT</span>Sein Einfluss auf die tatsächliche NS-Politik war begrenzt: Sein Ziel, verbindliche Zusagen für arabische Unabhängigkeit zu erreichen, scheiterte. Wirksam war er vor allem dort, wo seine Vorstöße deutschen Interessen dienten — etwa beim Unterbinden jüdischer Emigration aus Südosteuropa nach Palästina.</p>
+  </div>
+
+  <h2>Damals / Heute — eine Richtigstellung</h2>
+  <div class="gegenueber">
+    <div class="damals">
+      <span class="label">Kooperation — 1941–1945</span>
+      <p>Enge Zusammenarbeit al-Husseinis mit dem NS-Regime in Berlin. Propagandarolle, begrenzter politischer Einfluss, keine nachweisbare Rolle bei der Planung der "Endlösung".</p>
+    </div>
+    <div class="heute">
+      <span class="label">Behauptung — 2015</span>
+      <p><span class="tag vt">VT — richtiggestellt</span>Benjamin Netanyahu behauptete, al-Husseini habe Hitler die Idee zur "Endlösung" eingegeben. Angela Merkel widersprach öffentlich, Yad Vashem protestierte scharf. Historisch gilt die These als unhaltbar.</p>
+    </div>
+  </div>
+
+  <h2>Die bürokratische Kategorie "Islam"</h2>
+  <p><span class="tag belegt">BELEGT</span>Deutsche Militär- und Verwaltungsstellen fassten ethnisch, sprachlich und sozial völlig heterogene Bevölkerungsgruppen bewusst unter dem Sammelbegriff "Islam" zusammen. Der Vorteil aus deutscher Sicht: Die Kategorie umging heikle Fragen nationaler Unabhängigkeit und suggerierte zugleich eine gemeinsame Loyalitätsbasis.</p>
+
+  <h2>Militärische Mobilisierung: die Ostlegionen</h2>
+  <p>Am 22. Dezember 1941 befahl Hitler den Aufbau von "Ostlegionen". Rekrutiert wurden lokale Freiwillige ebenso wie muslimische Kriegsgefangene — deren Lager eine Sterberate von rund zehn Prozent durch Hunger und Seuchen aufwiesen.</p>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="number">137.000–200.000</span><span class="label">Muslime in der Wehrmacht (gesamt)</span></div>
+    <div class="stat"><span class="number">600.000–1 Mio.</span><span class="label">Muslime auf alliierter Seite</span></div>
+    <div class="stat"><span class="number">1942</span><span class="label">Beginn Ausbildung Heeresimame, Göttingen</span></div>
+  </div>
+
+  <p><span class="tag belegt">BELEGT</span>Bekanntestes Beispiel einer muslimischen Kampfeinheit ist die bosnische Waffen-SS-Division "Handschar". Wehrmacht und Waffen-SS rekrutierten insgesamt Zehntausende muslimische Freiwillige — Bosnier, Albaner, Krimtataren, Muslime aus dem Kaukasus und Zentralasien.</p>
+
+  <p><span class="tag extra">EXTRAPOLATION</span>Der vermeintliche "muslimische Fanatismus" wurde von NS-Funktionären als militärisch nützliche Eigenschaft betrachtet — eine Zuschreibung, die eher deutschen Erwartungen als der Realität entsprach, wie die hohe Desertionsrate nahelegt.</p>
+
+  <div class="faktenbox">
+    <span class="label">Primärquelle — Seelsorge als Kalkül</span>
+    <ul>
+      <li>Ab 1942: Ausbildung von "Heeresimamen" am Lehrstuhl für Orientalistik, Göttingen</li>
+      <li>Offiziell reine Seelsorger ohne politischen Auftrag</li>
+      <li>Tatsächlich Teil des Versuchs, die Moral der schlecht ausgerüsteten Ostlegionen zu stabilisieren</li>
+    </ul>
+  </div>
+
+  <h2>Propaganda: Radio Berlin</h2>
+  <p>Neben Druckschriften, die zwischen 1940 und 1943 millionenfach über das Afrikakorps verbreitet wurden, setzte das Regime vor allem auf Radio. <span class="tag belegt">BELEGT</span>Über Kurzwelle sendeten "Radio Berlin" und die "Stimme des freien Arabertums" arabischsprachige Programme, produziert unter Mitwirkung arabischer Exilanten und Kollaborateure. Die Propaganda betonte systematisch vermeintlich gemeinsame Feinde: das britische Empire, den Kommunismus — und die Juden.</p>
+
+  <div class="muster-box">
+    <h3>Das Muster</h3>
+    <p>Trotz erheblichem propagandistischem und organisatorischem Aufwand gelang es dem Regime nicht, den Islam zu instrumentalisieren, um Muslime als geschlossene Gruppe zu gewinnen. Viele Ostlegionäre desertierten kurz nach der Rekrutierung. <span class="tag extra">EXTRAPOLATION</span>Das Bild war zudem nicht monolithisch: Albanische Muslime etwa boten hunderten jüdischen Flüchtlingen Zuflucht — Kollaboration und Solidarität existierten nebeneinander, nicht als sich ausschließende Kategorien.</p>
+  </div>
+
+  <div class="person-box">
+    <h3>Der Historiker — David Motadel</h3>
+    <p>Associate Professor of International History, London School of Economics. Promotion 2010 in Cambridge (Gates Scholar), ausgezeichnet mit Prince Consort Prize und Seeley Medal. Legte 2014 (Harvard University Press, neun Sprachen) die erste umfassende Studie zur NS-Islampolitik vor — gestützt auf Archivarbeit in über 30 Archiven in 14 Ländern. Deutscher Titel: <em>"Für Prophet und Führer"</em> (Klett-Cotta).</p>
+  </div>
+
+  <div class="hoffnung">
+    <span class="label">Einordnung</span>
+    <p>Wie viele weitere Kapitel europäischer Diktaturgeschichte widersprechen dem vereinfachten Bild, das wir uns von ihnen gemacht haben?</p>
+  </div>
+
+  <div class="quellen">
+    <span class="label">Quellen</span>
+    <ol>
+      <li>David Motadel, "Für Prophet und Führer" (Klett-Cotta / Harvard University Press, 2014)</li>
+      <li>Islamportal Österreich, "Muslime und Nationalsozialismus"</li>
+      <li>jungle.world, "Die Deutschen als Schutzmacht des Islam"</li>
+      <li>lernen-aus-der-geschichte.de, Arabische Muslim_innen und der Nationalsozialismus</li>
+      <li>muslimische-spuren.de, 1942: Aufbau muslimischer Einheiten</li>
+    </ol>
+  </div>
+
+  <footer>dunkelfeld.report — Stand: Juli 2026</footer>
+
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

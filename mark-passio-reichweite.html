@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mark Passio: Wie aus einer Selbstaussage ein Reichweitenphänomen wurde | Dunkelfeld</title>
+<meta name="rubrik" content="cat-medien">
+<meta name="kachel-titel" content="Mark Passio: Wie aus einer Selbstaussage ein Reichweitenphänomen wurde">
+<meta name="description" content="Was ist über Mark Passio belegt, was nur Selbstaussage, was offen? Eine Quellenprüfung mit Zeitleiste und der dokumentierten Multiplikatorenkette der Truth-Szene.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0d0d; --bg2:#151515; --bg3:#1c1c1c;
+  --gelb:#f5c400; --text:#e8e6e1; --dim:#9a978f; --line:#2c2c2c;
+  --belegt:#4caf7a; --extra:#e0a23a; --offen:#8f9bb3; --wider:#d9534f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Lora',Georgia,serif;font-size:18px;line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--gelb);text-decoration:underline;text-underline-offset:3px}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+.topbar{border-bottom:1px solid var(--line);padding:14px 0;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.topbar .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.topbar a{text-decoration:none;color:var(--dim)}
+.topbar b{color:var(--gelb);font-weight:500}
+header.hero{padding:56px 0 36px}
+.kicker{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gelb);margin-bottom:18px}
+h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,6.4vw,48px);line-height:1.12;letter-spacing:-.01em;margin-bottom:20px}
+.sub{font-size:20px;color:var(--dim);font-style:italic}
+.meta{margin-top:22px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--dim);letter-spacing:.05em}
+h2{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(23px,4.6vw,31px);line-height:1.2;margin:56px 0 18px}
+h2 .nr{display:block;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--gelb);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;font-weight:500}
+h3{font-family:'Space Grotesk',sans-serif;font-size:19px;margin:28px 0 8px}
+p{margin-bottom:18px}
+.tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.08em;padding:2px 8px;border:1px solid currentColor;border-radius:3px;vertical-align:2px;white-space:nowrap}
+.t-belegt{color:var(--belegt)} .t-extra{color:var(--extra)} .t-offen{color:var(--offen)} .t-wider{color:var(--wider)}
+.box{background:var(--bg2);border-left:3px solid var(--gelb);padding:20px 22px;margin:26px 0}
+.box p:last-child{margin-bottom:0}
+.box .lbl{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gelb);margin-bottom:10px;display:block}
+.legend{display:grid;gap:10px;margin:8px 0 0}
+.legend div{display:flex;gap:12px;align-items:baseline;font-size:16px;line-height:1.5}
+.legend .tag{min-width:122px;text-align:center}
+/* Zeitleiste */
+.timeline{position:relative;margin:34px 0 10px;padding-left:34px}
+.timeline::before{content:"";position:absolute;left:9px;top:0;bottom:0;width:2px;background:var(--line)}
+.timeline .progress{position:absolute;left:9px;top:0;width:2px;height:0;background:var(--gelb);transition:height .25s linear}
+.ev{position:relative;padding:0 0 30px;opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.ev.in{opacity:1;transform:none}
+.ev::before{content:"";position:absolute;left:-34px;top:6px;width:20px;height:20px;border-radius:50%;background:var(--bg);border:2px solid var(--dim);transition:border-color .4s,background .4s}
+.ev.in::before{border-color:var(--gelb);background:var(--gelb)}
+.ev .date{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;color:var(--gelb);margin-bottom:4px}
+.ev h4{font-family:'Space Grotesk',sans-serif;font-size:19px;line-height:1.3;margin-bottom:6px}
+.ev p{font-size:16.5px;line-height:1.65;color:var(--text);margin-bottom:8px}
+/* Aussagen */
+.claim{background:var(--bg2);border:1px solid var(--line);padding:18px 20px;margin:0 0 14px}
+.claim .q{font-family:'Space Grotesk',sans-serif;font-size:18px;line-height:1.4;margin-bottom:12px}
+.claim .row{display:flex;gap:12px;align-items:baseline;font-size:15.5px;line-height:1.55;margin-bottom:6px;color:var(--text)}
+.claim .row .k{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--dim);min-width:92px;letter-spacing:.04em}
+.claim .row div{flex:1}
+/* Kette */
+.chain{counter-reset:s;margin:26px 0}
+.step{position:relative;background:var(--bg2);border:1px solid var(--line);padding:18px 20px 16px 62px;margin-bottom:12px}
+.step::before{counter-increment:s;content:counter(s);position:absolute;left:18px;top:16px;width:30px;height:30px;border-radius:50%;background:var(--gelb);color:#0d0d0d;font-family:'Space Grotesk',sans-serif;font-weight:700;display:flex;align-items:center;justify-content:center}
+.step b{font-family:'Space Grotesk',sans-serif;font-size:18px;display:block;margin-bottom:6px}
+.step p{font-size:16px;line-height:1.6;margin-bottom:8px}
+.nicht ul{list-style:none}
+.nicht li{padding:10px 0 10px 28px;border-bottom:1px solid var(--line);position:relative;font-size:17px;line-height:1.55}
+.nicht li:last-child{border-bottom:0}
+.nicht li::before{content:"✕";position:absolute;left:0;color:var(--gelb);font-family:'IBM Plex Mono',monospace}
+.offen-q{font-style:italic;color:var(--text)}
+.offen-q li{margin:0 0 12px 22px}
+.quellen{font-size:15.5px;line-height:1.55}
+.quellen li{margin:0 0 12px 20px}
+.quellen .typ{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--dim);letter-spacing:.06em;display:block}
+footer{border-top:1px solid var(--line);margin-top:64px;padding:28px 0 48px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--dim);letter-spacing:.04em;line-height:1.7}
+@media(max-width:560px){
+  body{font-size:17px}
+  .claim .row{flex-direction:column;gap:4px}
+  .legend div{flex-direction:column;gap:4px}
+  .step{padding:16px 16px 14px 56px}
+}
+@media(prefers-reduced-motion:reduce){.ev{opacity:1;transform:none;transition:none}.timeline .progress{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <a href="index.html">← Dunkelfeld.report</a>
+  <b>Reichweiten-Mechanik</b>
+</div></div>
+
+<header class="hero"><div class="wrap">
+  <div class="kicker">Quellenprüfung · Truth-Szene</div>
+  <h1>Mark Passio: Wie aus einer Selbstaussage ein Reichweitenphänomen wurde</h1>
+  <p class="sub">Was ist belegt, was ist nur behauptet, was ist offen – und wer hat ihn groß gemacht?</p>
+  <div class="meta">Stand: 18. Oktober 2026 · Quellenlage: überwiegend Eigen- und Szenequellen</div>
+</div></header>
+
+<main class="wrap">
+
+<div class="box">
+  <span class="lbl">Kurzfassung</span>
+  <p>Mark Passio erreicht in der Truth-Szene ein großes Publikum (konkrete Aufrufzahlen konnten wir nicht verifizieren), aber seine Biografie beruht fast vollständig auf seinen eigenen Angaben. Seine zentrale Weltdeutung – eine okkulte Elite steuere die Welt – ist in den geprüften Quellen <strong>nirgends belegt</strong>. Belegt ist dagegen, <strong>wie</strong> seine Inhalte verbreitet wurden: Mitschnitt-Kanäle, ein Interview-Kreislauf der Szene, Konferenzbühnen und eigene Schüler.</p>
+</div>
+
+<h3>So lesen Sie die Kennzeichnung</h3>
+<div class="legend">
+  <div><span class="tag t-belegt">BELEGT</span><span>Dokumentiert und in einer genannten Quelle nachprüfbar.</span></div>
+  <div><span class="tag t-extra">EXTRAPOLATION</span><span>Naheliegende Schlussfolgerung aus belegten Fakten, selbst aber nicht belegt.</span></div>
+  <div><span class="tag t-offen">OFFEN</span><span>Nicht überprüfbar oder in den geprüften Quellen nicht gefunden.</span></div>
+</div>
+<p style="margin-top:18px;font-size:16px;color:var(--dim)">Wichtig: „BELEGT" bei einer Aussage heißt nur, dass Passio sie so getroffen hat. Ob sie stimmt, steht in einer zweiten Zeile.</p>
+
+<h2><span class="nr">Damals</span>Die Herkunftserzählung</h2>
+
+<p>Passios Autorität beruht auf einer Lebensgeschichte, die er und die Kanäle, die ihn einladen, immer wieder erzählen: Er sei Satanist gewesen, sogar Priester der Church of Satan, und habe sich später abgewandt. Das gibt ihm das Etikett des Insiders, der „von innen" weiß, wie das System funktioniert.</p>
+
+<p>Nach eigenem Bericht war er in den 1990ern in einer satanischen Death-Metal-Band. Anton LaVey habe seine Texte und seine Musik gefunden und ihn kontaktiert, danach sei er zum Priester ernannt worden. <span class="tag t-offen">OFFEN</span> Er gibt zudem an, nur ein einfacher Priester gewesen zu sein, auf der zweiten von etwa fünf Rangstufen, und nie „High Priest" gesagt zu haben (<a href="https://www.debarelli.com/post/mark-passio-the-satanic-occult-system-explained">Interview-Transkript</a>). Eine unabhängige Bestätigung durch die Church of Satan oder durch Dritte fanden wir nicht.</p>
+
+<p>Dass er trotzdem häufig als „ehemaliger Priester der Church of Satan" angekündigt wird, zeigen die Ankündigungstexte von Red Ice Radio und The Higher Side Chats. Mark Devlin stellt ihn als ehemaligen Praktizierenden in LaVeys Church of Satan vor. <span class="tag t-belegt">BELEGT</span> Der Titel wird dort wiederholt, nicht geprüft. <span class="tag t-extra">EXTRAPOLATION</span></p>
+
+<h2><span class="nr">Zeitleiste</span>Vom Seminar zur Bühne</h2>
+
+<div class="timeline" id="tl">
+  <div class="progress" id="tlp"></div>
+
+  <div class="ev">
+    <div class="date">1990er</div>
+    <h4>Band, LaVey-Kontakt, Priesterernennung</h4>
+    <p>Alles aus Passios eigenem Bericht. Er nennt eine satanische Death-Metal-Band, LaVey habe ihn über seine Texte und Musik gefunden.</p>
+    <span class="tag t-offen">OFFEN</span>
+  </div>
+
+  <div class="ev">
+    <div class="date">Datum nicht genannt</div>
+    <h4>Abkehr und Mitgründung der „Free Your Mind Conference"</h4>
+    <p>Laut Eigenbiografie Mitgründer einer Philadelphia-Konferenz zu Bewusstsein, Mind Control und Okkultem. Wann genau, wird nicht angegeben.</p>
+    <span class="tag t-offen">OFFEN</span>
+  </div>
+
+  <div class="ev">
+    <div class="date">2010</div>
+    <h4>Eigene Internetradioshow „What On Earth Is Happening"</h4>
+    <p>Startjahr laut Eigenbiografie, die Sendung hat nach dieser Angabe inzwischen hunderte Folgen.</p>
+    <span class="tag t-belegt">BELEGT</span> <span style="font-size:14px;color:var(--dim)">als Angebot, Startjahr nur Eigenangabe</span>
+  </div>
+
+  <div class="ev">
+    <div class="date">19. Oktober 2013</div>
+    <h4>Ganztagsseminar „Natural Law" in New Haven</h4>
+    <p>Veranstaltet von Art und Chris Capozzi im Omni Hotel. Aufnahme und Schnitt übernahmen Richard Grove und Tragedy And Hope Communications. Der Mitschnitt wurde in Teilen online gestellt.</p>
+    <span class="tag t-belegt">BELEGT</span> <span class="tag t-extra">EXTRAPOLATION</span> <span style="font-size:14px;color:var(--dim)">als Wendepunkt</span>
+  </div>
+
+  <div class="ev">
+    <div class="date">17. Februar 2018</div>
+    <h4>Anarchapulco: „Anarchy &amp; The Occult"</h4>
+    <p>Vortrag vor der Anarchisten-Szene in Acapulco, Mexiko. Im selben Jahr spricht ihn Derrick Broze (Conscious Resistance, Activist Post) dort für ein Interview an.</p>
+    <span class="tag t-belegt">BELEGT</span>
+  </div>
+
+  <div class="ev">
+    <div class="date">15. Februar 2019</div>
+    <h4>Anarchapulco, Teil II</h4>
+    <p>Thema laut Ankündigung: Moralrelativismus in der Anarchistenszene und der Gegensatz von Religion und Initiation.</p>
+    <span class="tag t-belegt">BELEGT</span>
+  </div>
+
+  <div class="ev">
+    <div class="date">2023</div>
+    <h4>Anarchapulco, Teil III</h4>
+    <p>Dritter Vortrag der Reihe. Seine These: Die Lösung für Tyrannei liege nicht in etwas Neuem, sondern in moralischer Bildung der Bevölkerung.</p>
+    <span class="tag t-belegt">BELEGT</span>
+  </div>
+
+  <div class="ev">
+    <div class="date">Fortlaufend</div>
+    <h4>Eigenes Ökosystem</h4>
+    <p>One Great Work Network, ein 23-wöchiger „True Media"-Kurs für Schüler, die seine Inhalte selbst verbreiten sollen, und der Dokumentarfilm „The Science of Natural Law".</p>
+    <span class="tag t-belegt">BELEGT</span> <span style="font-size:14px;color:var(--dim)">als Eigenangebote</span>
+  </div>
+</div>
+
+<h2><span class="nr">Heute</span>Die Kernaussagen im Faktencheck</h2>
+
+<p>Jede Aussage hat zwei Ebenen: Hat er sie so gesagt? Und ist die Behauptung selbst belegt?</p>
+
+<div class="claim">
+  <div class="q">„Objektive Moral heißt: keinen Schaden gegen fühlende Wesen initiieren."</div>
+  <div class="row"><span class="k">Aussage</span><div><span class="tag t-belegt">BELEGT</span> Seine zentrale Definition laut mehreren Profiltexten.</div></div>
+  <div class="row"><span class="k">Behauptung</span><div><span class="tag t-offen">OFFEN</span> Eine ethische Position, keine empirisch prüfbare Tatsachenbehauptung. Wir bewerten sie hier nicht.</div></div>
+</div>
+
+<div class="claim">
+  <div class="q">„Der Glaube an Herrscher und Autorität kommt der Billigung von Sklaverei gleich."</div>
+  <div class="row"><span class="k">Aussage</span><div><span class="tag t-belegt">BELEGT</span> Er kritisiert Religion, Staat und das Konzept von Autorität grundsätzlich.</div></div>
+  <div class="row"><span class="k">Behauptung</span><div><span class="tag t-offen">OFFEN</span> Wertung, kein Faktum.</div></div>
+</div>
+
+<div class="claim">
+  <div class="q">„Dunkle okkulte Organisationen sind Filterzentren, die Psychopathen für Machtpositionen suchen."</div>
+  <div class="row"><span class="k">Aussage</span><div><span class="tag t-belegt">BELEGT</span> So fasst Red Ice Radio seine Thesen aus dem Interview zusammen.</div></div>
+  <div class="row"><span class="k">Behauptung</span><div><span class="tag t-offen">OFFEN</span> In den geprüften Quellen fanden wir keine Dokumente, Zeugen oder Primärquellen dafür.</div></div>
+</div>
+
+<div class="claim">
+  <div class="q">„Die Welt wird von technokratischen Okkultisten beherrscht."</div>
+  <div class="row"><span class="k">Aussage</span><div><span class="tag t-belegt">BELEGT</span> Steht so in seiner eigenen Dokumentationsbeschreibung und in Titeln seiner Auftritte („Occultocracy", „Technocratic Enslavement").</div></div>
+  <div class="row"><span class="k">Behauptung</span><div><span class="tag t-offen">OFFEN</span> Keine Belege gefunden. Das ist nicht dasselbe wie widerlegt: Wir fanden schlicht keine Quelle, die sie prüft.</div></div>
+</div>
+
+<div class="claim">
+  <div class="q">„Ich war Priester der Church of Satan."</div>
+  <div class="row"><span class="k">Aussage</span><div><span class="tag t-belegt">BELEGT</span> Er sagt es selbst, wiederholt und seit Jahren.</div></div>
+  <div class="row"><span class="k">Behauptung</span><div><span class="tag t-offen">OFFEN</span> Keine unabhängige Bestätigung gefunden.</div></div>
+</div>
+
+<div class="claim">
+  <div class="q">Aussagen zu Corona und Impfstoffen</div>
+  <div class="row"><span class="k">Aussage</span><div><span class="tag t-offen">OFFEN</span> In dieser Recherche konnten wir keine Passio-Quelle dazu finden. Wer sie verwenden will, braucht Video und Minutenangabe.</div></div>
+  <div class="row"><span class="k">Behauptung</span><div><span class="tag t-offen">OFFEN</span> Nicht prüfbar, solange die Aussage nicht belegt ist.</div></div>
+</div>
+
+<h2><span class="nr">Das Muster</span>Wer macht aus einem Vortrag ein Phänomen?</h2>
+
+<p>Die Reichweite ist nicht erklärt, wenn man nur seine Thesen betrachtet. Die Quellen zeigen eine Kette, die mehrere voneinander unabhängige Akteure umfasst:</p>
+
+<div class="chain">
+  <div class="step">
+    <b>Der Mitschnitt-Verlag</b>
+    <p>Das Seminar von 2013 wurde nicht von Passio selbst veröffentlicht, sondern von Tragedy And Hope Communications aufgenommen, geschnitten und über einen eigenen YouTube-Kanal verbreitet. Ein Szene-Kanal übernahm also Produktion und Verbreitung.</p>
+    <span class="tag t-belegt">BELEGT</span> <span class="tag t-extra">EXTRAPOLATION</span> <span style="font-size:14px;color:var(--dim)">als Hebel</span>
+  </div>
+  <div class="step">
+    <b>Der Interview-Kreislauf</b>
+    <p>Red Ice Radio, The Higher Side Chats und Mark Devlin stellen ihn jeweils als ehemaligen Insider der Church of Satan vor. Jedes Format bringt ihn vor das Publikum eines anderen Formats.</p>
+    <span class="tag t-belegt">BELEGT</span> <span class="tag t-extra">EXTRAPOLATION</span> <span style="font-size:14px;color:var(--dim)">als Verstärker</span>
+  </div>
+  <div class="step">
+    <b>Die Konferenzbühne</b>
+    <p>Anarchapulco bringt ihn bei drei dokumentierten Auftritten (2018, 2019, 2023) vor ein libertär-anarchistisches Publikum. Das ist eine Brücke von der Esoterik- und Truth-Szene in die anarchistische Szene.</p>
+    <span class="tag t-belegt">BELEGT</span>
+  </div>
+  <div class="step">
+    <b>Die Fan-Plattformen</b>
+    <p>Seine Seminar-Videos wurden auch auf Plattformen wie Steemit und DTube eingestellt. Ein Fan richtete dort ein Konto für ihn ein, Kommentare rufen offen dazu auf, seine Botschaft weiterzutragen.</p>
+    <span class="tag t-belegt">BELEGT</span>
+  </div>
+  <div class="step">
+    <b>Die eigenen Multiplikatoren</b>
+    <p>Mit dem 23-wöchigen „True Media"-Kurs bildet er Schüler aus, die Naturrecht-Inhalte im Netz selbst verbreiten sollen. Die Verbreitung wird zum Teil des Angebots.</p>
+    <span class="tag t-belegt">BELEGT</span>
+  </div>
+</div>
+
+<div class="box">
+  <span class="lbl">Eine Lücke, die wir benennen</span>
+  <p>Wir fanden keine Quelle, die die <strong>deutschsprachige</strong> Verbreitung belegt: wer übersetzt, wer teilt, welche Kanäle ihn hierzulande tragen. Auch konkrete Aufrufzahlen konnten wir nicht verifizieren. <span class="tag t-offen">OFFEN</span></p>
+</div>
+
+<h3>Warum das Muster zählt</h3>
+<p>In der Recherche gibt es das Phänomen der „vergifteten Recherche": Ein dokumentierter Strang verliert an Glaubwürdigkeit, weil er neben unbelegten Behauptungen steht. Bei Passio liegt das offen: Die Reichweite verdankt er der Mischung aus einer klaren Ethik-Botschaft und einer dramatischen Elitenthese. Wer ihn nutzt oder kritisiert, sollte beide Stränge getrennt behandeln. In diesem Artikel geht es nur um den zweiten Strang und um die Verbreitung.</p>
+
+<h2><span class="nr">Grenzen</span>Was wir ausdrücklich nicht behaupten</h2>
+
+<div class="box nicht">
+  <ul>
+    <li>Wir behaupten <strong>nicht</strong>, dass Passio lügt oder seine Biografie erfunden ist. Wir sagen nur, dass sie nicht unabhängig überprüfbar ist.</li>
+    <li>Wir behaupten <strong>nicht</strong>, dass die Elitenthese widerlegt ist. Wir haben keine Belege dafür gefunden.</li>
+    <li>Wir unterstellen weder Motive noch Geschäftsinteressen. Dafür liegen keine Dokumente vor.</li>
+    <li>Wir behaupten <strong>nicht</strong>, dass das Seminar von 2013 der Auslöser seiner Reichweite war. Das ist eine Schlussfolgerung.</li>
+    <li>Wir treffen keine Aussage über seine Zuschauer. Reichweite sagt nichts über deren Motive.</li>
+    <li>Wir bewerten die Naturrecht-Ethik als Philosophie hier nicht.</li>
+  </ul>
+</div>
+
+<h2><span class="nr">Offen</span>Was noch fehlt</h2>
+
+<ul class="offen-q">
+  <li>Gibt es eine unabhängige Bestätigung, ob und in welchem Rang er in der Church of Satan geführt wurde?</li>
+  <li>Welche Primärquellen stützen die These von den „Filterzentren" und der technokratischen Okkultherrschaft?</li>
+  <li>Welche Aussagen zu Corona und Impfstoffen hat er tatsächlich getroffen – in welchem Video, an welcher Minute?</li>
+  <li>Wie hoch sind seine tatsächlichen Aufrufzahlen, und wie entwickelten sie sich seit 2013?</li>
+  <li>Wer trägt seine Inhalte im deutschsprachigen Raum?</li>
+</ul>
+
+<h2><span class="nr">Quellen</span>Worauf dieser Artikel beruht</h2>
+
+<p style="font-size:16px;color:var(--dim)">Die Quellen sind überwiegend Eigen- oder Szenequellen. Sie belegen, was Passio sagt, nicht ob es stimmt. Unabhängige journalistische oder wissenschaftliche Einordnungen zu Passio haben wir nicht gefunden.</p>
+
+<ul class="quellen">
+  <li><a href="https://www.debarelli.com/post/mark-passio-the-satanic-occult-system-explained">Interview-Transkript, debarelli.com</a><span class="typ">SZENEQUELLE · Passios Aussagen zu Band, LaVey, Priesterrang</span></li>
+  <li><a href="https://www.tapatalk.com/groups/alteredge/former-church-of-satan-priest-mark-passio-t287.html">Red-Ice-Radio-Beschreibung, Raconteurs News</a><span class="typ">SZENEQUELLE · Ankündigung und Thesen</span></li>
+  <li><a href="https://www.thehighersidechats.com/mark-passio-the-occult-cabal-our-slave-system-natural-law/">The Higher Side Chats</a><span class="typ">SZENEQUELLE · Show Notes</span></li>
+  <li><a href="https://www.spreaker.com/episode/gvp-028-mark-passio-natural-law-morality--12359609">GVP #028, Mark Devlin</a><span class="typ">SZENEQUELLE · Episodenbeschreibung</span></li>
+  <li><a href="https://geopoliticsandempire.substack.com/p/mark-passio-the-occultocracy-our">Geopolitics &amp; Empire: Profil und Vortragsbeschreibung</a><span class="typ">SZENEQUELLE · übernimmt Passios Eigenbiografie</span></li>
+  <li><a href="https://evolvingseeds.substack.com/p/mark-passio-the-living-legend">EvolvingSeeds: „The Living Legend"</a><span class="typ">SZENEQUELLE · Eigenbiografie</span></li>
+  <li><a href="https://archive.org/details/what-on-earth-is-happening-documentary">Dokumentationsbeschreibung, archive.org</a><span class="typ">SZENEQUELLE · Selbstbeschreibung als „Whistleblower"</span></li>
+  <li><a href="https://steemit.steemapps.com/naturallaw/@markpassio/6wswfy9k">Natural-Law-Seminar 2013, Teil 1</a><span class="typ">EIGENQUELLE · Veranstaltung, Veranstalter, Mitschnitt</span></li>
+  <li><a href="https://thetruthaddict.substack.com/p/anarchy-and-the-occult">„Anarchy &amp; The Occult", Anarchapulco-Vorträge</a><span class="typ">SZENEQUELLE · Daten der Vorträge</span></li>
+  <li><a href="https://steemit.steemapps.com/truth/@dbroze/w2fat5ud">Interview mit Derrick Broze, Anarchapulco 2018</a><span class="typ">SZENEQUELLE · Interview</span></li>
+  <li><a href="https://explorer.lbry.io/claims/496532feec994062219bb427e0619a44bb62eadd">True Media Roundtable</a><span class="typ">EIGENQUELLE · Kursangebot</span></li>
+  <li><a href="https://steemit.steemapps.com/dtube/@stateofanarchy/y4gyulj0">The State of Anarchy zur Dokumentation</a><span class="typ">SZENEQUELLE · Dokumentarfilm „The Science of Natural Law"</span></li>
+</ul>
+
+</main>
+
+<footer><div class="wrap">
+  Dunkelfeld.report · Beleg vor Motiv · Fakten werden nebeneinandergestellt, Schlüsse zieht die Leserin und der Leser selbst.
+</div></footer>
+
+<script>
+(function(){
+  var evs=[].slice.call(document.querySelectorAll('#tl .ev'));
+  var bar=document.getElementById('tlp');
+  var tl=document.getElementById('tl');
+  function progress(){
+    var r=tl.getBoundingClientRect();
+    var vh=window.innerHeight;
+    var done=Math.min(Math.max((vh*0.6-r.top)/r.height,0),1);
+    bar.style.height=(done*100)+'%';
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:0.2});
+    evs.forEach(function(e){io.observe(e);});
+  } else { evs.forEach(function(e){e.classList.add('in');}); }
+  window.addEventListener('scroll',progress,{passive:true});
+  window.addEventListener('resize',progress);
+  progress();
+})();
+</script>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

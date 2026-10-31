@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der nahtlose Übergang, Teil 2 — Parteiübergreifend | dunkelfeld.report</title>
+<meta name="rubrik" content="cat-staat">
+<meta name="kachel-titel" content="Der nahtlose Übergang Teil 2: Parteiübergreifend — warum der eine skandalisiert wurde und der andere nicht">
+<style>
+  :root {
+    --bg: #09090b;
+    --bg-box: #1a1a2e;
+    --amber: #e8c547;
+    --text: #e4e4e7;
+    --text-dim: #9999a3;
+    --green: #6fbf73;
+    --orange: #e0954f;
+    --grey: #8a8a92;
+    --red: #c0605f;
+    --border: #2a2a3a;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+  }
+
+  .masthead {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 18px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .meta {
+    font-family: 'Courier New', monospace;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    line-height: 1.25;
+    color: #fff;
+    margin: 10px 0 6px;
+  }
+
+  h1 .sub {
+    display: block;
+    font-size: 1.15rem;
+    color: var(--amber);
+    font-weight: normal;
+    margin-top: 8px;
+  }
+
+  .dek {
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    font-style: italic;
+    margin-bottom: 36px;
+    border-left: 3px solid var(--amber);
+    padding-left: 16px;
+  }
+
+  h2 {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-top: 52px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+  }
+
+  h3 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+
+  p { margin: 0 0 16px; }
+
+  a { color: var(--amber); }
+
+  /* Evidence tags */
+  .tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .tag-belegt { background: rgba(111,191,115,0.15); color: var(--green); border: 1px solid rgba(111,191,115,0.4); }
+  .tag-extra  { background: rgba(224,149,79,0.15); color: var(--orange); border: 1px solid rgba(224,149,79,0.4); }
+  .tag-offen  { background: rgba(138,138,146,0.15); color: var(--grey); border: 1px solid rgba(138,138,146,0.4); }
+  .tag-vt     { background: rgba(192,96,95,0.15); color: var(--red); border: 1px solid rgba(192,96,95,0.4); text-decoration: line-through; }
+
+  /* Source box */
+  .source-box {
+    background: var(--bg-box);
+    border-left: 3px solid var(--amber);
+    padding: 14px 18px;
+    margin: 18px 0 28px;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+  }
+  .source-box strong { color: var(--amber); font-family: Georgia, serif; }
+
+  /* Pull quote */
+  .pull-quote {
+    font-size: 1.3rem;
+    color: #fff;
+    font-style: italic;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+    margin: 32px 0;
+    line-height: 1.5;
+  }
+  .pull-quote cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-style: normal;
+    font-size: 0.8rem;
+    color: var(--amber);
+    margin-top: 10px;
+  }
+
+  /* Stat grid */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .stat {
+    background: var(--bg-box);
+    border: 1px solid var(--border);
+    padding: 16px;
+    text-align: center;
+    border-radius: 4px;
+  }
+  .stat .num {
+    font-family: 'Courier New', monospace;
+    font-size: 1.7rem;
+    color: var(--amber);
+    font-weight: bold;
+    display: block;
+  }
+  .stat .label {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 0.92rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 9px 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border-bottom: 1px solid var(--amber);
+  }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* Person card */
+  .person-card {
+    background: var(--bg-box);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px 20px;
+    margin: 18px 0;
+  }
+  .person-card .name {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+  }
+  .person-card .party {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--amber);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+
+  /* Timeline */
+  .timeline { margin: 24px 0; border-left: 2px solid var(--border); padding-left: 22px; }
+  .t-item { position: relative; margin-bottom: 22px; }
+  .t-item::before {
+    content: '';
+    position: absolute;
+    left: -28px;
+    top: 5px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+  .t-date {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.82rem;
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  /* Redaktionshinweis box */
+  .editorial-note {
+    background: rgba(232,197,71,0.06);
+    border: 1px dashed rgba(232,197,71,0.4);
+    padding: 16px 18px;
+    margin: 26px 0;
+    font-size: 0.93rem;
+    color: var(--text);
+  }
+  .editorial-note .label {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .open-questions {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .open-questions h2 { border: none; padding-bottom: 0; }
+  .open-questions p { font-style: italic; color: var(--text-dim); }
+
+  .sources-list {
+    margin-top: 50px;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    font-family: 'Courier New', monospace;
+    line-height: 1.8;
+    word-break: break-word;
+  }
+  .sources-list h2 { border: none; }
+
+  .series-nav {
+    margin-top: 60px;
+    padding: 20px;
+    background: var(--bg-box);
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .series-nav a { color: var(--text); text-decoration: none; }
+  .series-nav a:hover { color: var(--amber); }
+
+  footer {
+    margin-top: 50px;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    letter-spacing: 0.03em;
+  }
+
+  .methodik {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    font-family: 'Courier New', monospace;
+    background: var(--bg-box);
+    padding: 16px 18px;
+    border-radius: 4px;
+    margin: 30px 0;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <span>dunkelfeld.report</span>
+    <span>Hidden in Plain Sight</span>
+  </div>
+
+  <div class="meta">ARTIKEL · NS-KONTINUITÄT, TEIL 2 · Juli 2026 · Lesedauer ca. 14 Minuten</div>
+
+  <h1>Der nahtlose Übergang
+    <span class="sub">Teil 2: Parteiübergreifend — warum der eine skandalisiert wurde und der andere nicht</span>
+  </h1>
+
+  <div class="dek">
+    Teil 1 dieser Serie dokumentierte die institutionelle Kontinuität von Reich zu Bund. Teil 2 fragt weiter: Wie verteilt sich die NS-Vergangenheit tatsächlich über die Parteien der jungen Bundesrepublik — und warum wurde ein Fall skandalisiert, ein anderer, vergleichbarer, nie?
+  </div>
+
+  <p>Im Herbst 1978 musste Baden-Württembergs Ministerpräsident Hans Filbinger zurücktreten. Seine Vergangenheit als Marinerichter war zum Politikum geworden. Zur selben Zeit war Karl Schiller, SPD-Bundeswirtschaftsminister von 1966 bis 1972, längst als Wirtschaftsweiser der Republik geehrt — obwohl auch er, wie im Folgenden dokumentiert, eine belastete NS-Vergangenheit hatte. Der Historiker Udo Wengst hat genau diesen Unterschied benannt: Schillers Verstrickung sei „im Rückblick eigenartig" unbeachtet geblieben. Dieser Artikel stellt die Fakten aller Parteien nebeneinander — ohne eine Partei zu bevorzugen, ohne eine zu schonen.</p>
+
+  <h2>01 · Das Gegengewicht: 23. März 1933</h2>
+
+  <p>Bevor die Zahlen zu Einzelfällen kommen, gehört die Gegenprobe an den Anfang, weil sie oft fehlt: Beim Ermächtigungsgesetz vom 23. März 1933 stimmten 444 Abgeordnete mit Ja, 94 mit Nein.</p>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="num">94 : 0</span><span class="label">SPD geschlossen dagegen (von 94 Anwesenden)</span></div>
+    <div class="stat"><span class="num">26</span><span class="label">SPD-Abgeordnete fehlten — Schutzhaft, Flucht, Tod</span></div>
+    <div class="stat"><span class="num">81</span><span class="label">KPD-Mandate zuvor für ungültig erklärt</span></div>
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Die SPD war die einzige an diesem Tag anwesende Fraktion, die geschlossen gegen das Ermächtigungsgesetz stimmte. Von den 120 gewählten SPD-Abgeordneten fehlten 26 — in Schutzhaft, auf der Flucht oder bereits tot. Die 81 KPD-Mandate waren nach dem Reichstagsbrand für ungültig erklärt worden und saßen gar nicht erst im Saal.</p>
+
+  <p>Dieser Fakt steht am Anfang, nicht weil er die folgenden Befunde relativiert, sondern weil ohne ihn jede Aufrechnung schief würde. Die Frage dieses Artikels ist nicht „war die SPD auch braun" — sie war es an diesem historischen Scheidepunkt nachweislich nicht. Die Frage ist enger und unbequemer: Wie geht die Bundesrepublik nach 1945 mit NS-Belastung um, wenn sie in den eigenen Reihen auftaucht — und zwar bei jeder Partei?</p>
+
+  <h2>02 · Weimar: Das belastete Fundament</h2>
+
+  <p>Die SPD trägt aus der Weimarer Zeit selbst ein schweres, oft missverstandenes Erbe. Drei Komplexe gehören zur Einordnung — mit klarer Trennung von Beleg und Interpretation.</p>
+
+  <h3>Der Ebert-Groener-Pakt</h3>
+  <p><span class="tag tag-belegt">BELEGT</span> Am 10. November 1918 sicherte General Wilhelm Groener dem SPD-Vorsitzenden Friedrich Ebert in einem Telefonat die Loyalität der Obersten Heeresleitung gegen eine linksradikale Revolution zu — im Gegenzug blieb die Befehlsgewalt beim alten Offizierskorps.</p>
+  <p><span class="tag tag-offen">UMSTRITTEN</span> Es existiert kein Vertragstext, kein Protokoll. Alles Bekannte stammt aus Groeners eigenen, retrospektiven Darstellungen: seiner Zeugenaussage im Münchener Dolchstoßprozess 1925 und seinen postum 1957 veröffentlichten Lebenserinnerungen — beide mit rechtfertigendem Charakter. Der Begriff „Pakt" ist eine spätere Zuschreibung, kein zeitgenössischer Ausdruck.</p>
+
+  <h3>Noske und die Freikorps</h3>
+  <div class="pull-quote">
+    „Meinetwegen! Einer muß der Bluthund werden, ich scheue die Verantwortung nicht."
+    Gustav Noske, „Von Kiel bis Kapp", Berlin 1920, S. 68 — Selbstaussage
+  </div>
+  <p><span class="tag tag-belegt">BELEGT</span> Am 6./7. Januar 1919 übertrug Ebert Noske den Oberbefehl über die Truppen um Berlin, darunter Freikorps-Einheiten wie die Brigade Reinhard und die Garde-Kavallerie-Schützen-Division. Beim Januaraufstand (5.–12.1.1919) starben laut Untersuchungsausschuss des Preußischen Landtags 156 Menschen. Bei den Märzkämpfen — ausgelöst durch die Falschmeldung, in Berlin-Lichtenberg seien 60 Polizisten ermordet worden — erging am 9. März 1919 ein Schießbefehl; etwa 1.200 Menschen kamen ums Leben. Noske selbst sprach am 13. März 1919 vor der Nationalversammlung von den „Hyänen der Revolution".</p>
+
+  <h3>Luxemburg und Liebknecht, 15. Januar 1919</h3>
+  <p><span class="tag tag-belegt">BELEGT</span> Die Ermordung wurde von der Garde-Kavallerie-Schützen-Division unter Koordination von Waldemar Pabst ausgeführt. Das anschließende Feldkriegsgericht der eigenen Division verhängte am 14. Mai 1919 minimale Strafen — keine Mordverurteilung. Pabst selbst wurde nie angeklagt, nie vorgeladen.</p>
+  <p><span class="tag tag-vt">NICHT BELEGBAR</span> Die These, Noske habe einen direkten Mordbefehl gegeben, stützt sich einzig auf eine spätere Aussage Pabsts — eines Täters mit Eigeninteresse, dessen Version im SPIEGEL 1962 seinem eigenen Brief von 1969 widerspricht. Der Forschungsstand (u. a. Klaus Gietinger) ist hier von erheblicher Skepsis geprägt.</p>
+  <p><span class="tag tag-extra">EXTRAPOLATION, konsensfähig</span> Belegbar ist dagegen die indirekte Mitverantwortung: das Bündnis mit den Freikorps, eine Erklärung des Rats der Volksbeauftragten vom 9. Januar 1919 („die Stunde der Abrechnung naht") und die anschließende Nichtverfolgung der Täter.</p>
+
+  <div class="editorial-note">
+    <span class="label">Redaktionelle Einordnung</span>
+    Die verbreitete Pauschalthese „aus den Freikorps wurde die SA/SS" hält der Quantität nicht stand. Laut Julius Pomplun kämpften rund 150.000 Menschen in Freikorps-Verbänden; nur etwa ein Viertel trat später der NSDAP bei — ein Anteil, der „ziemlich genau dem in der damaligen erwachsenen männlichen Bevölkerung" entspricht. In SA und SS lag der Anteil einfacher Freikorpsangehöriger sogar niedriger (SA ca. 2 %, SS ca. 1 %), nur im SS-Führungspersonal war er mit 10–18 % erhöht. Qualitativ — Gewaltkultur, Mythos, Führungspersonal — trifft eine Kontinuität zu; quantitativ als Massenphänomen nicht.
+  </div>
+
+  <h2>03 · Die Parteizahlen des 1. Bundestags 1949</h2>
+
+  <p>Auf einer Tagung der Kommission für Geschichte des Parlamentarismus (26./27. Februar 2026) wurden erstmals fraktionsbezogene Zahlen zu ehemaligen NSDAP-Mitgliedern im ersten Bundestag vorgestellt.</p>
+
+  <table>
+    <tr><th>Fraktion</th><th>Anteil ehem. NSDAP-Mitglieder</th><th>Vorgetragen von</th></tr>
+    <tr><td>FDP</td><td>≈ 36 % (19 von 53)</td><td>Ines Soldwisch, Aachen</td></tr>
+    <tr><td>CDU/CSU</td><td>14,5 % (offizielle Eigenangabe der Union damals: 3 %)</td><td>Frank Bösch, Potsdam</td></tr>
+    <tr><td>SPD</td><td>4,5 %</td><td>Kristina Meyer, Berlin</td></tr>
+  </table>
+
+  <p><span class="tag tag-offen">UMSTRITTEN, methodisch einzuordnen</span> Es handelt sich um einen Forschungs-Zwischenstand von einer Fachtagung, nicht um eine publizierte, peer-reviewte Studie. Zum 2. Bundestag 1953 liegt bereits ein gesicherterer Wert vor: 129 von 487 Abgeordneten, also 26,5 % (AA-Historikerkommission). In Niedersachsen ermittelte eine Studie im Landtagsauftrag (Glienke 2012, 755 Biografien) für die FDP bis zu 60 % (1963–67), für die CDU bis 45 % (1959–63) und für die SPD bis zu 19 %.</p>
+
+  <h2>04 · Die Institutionen: Der eigentliche Befund</h2>
+
+  <p>Die schärfsten Zahlen liegen nicht bei den Parlamentsfraktionen, sondern bei den Behörden, die die junge Bundesrepublik tatsächlich am Laufen hielten.</p>
+
+  <table>
+    <tr><th>Behörde</th><th>Studie</th><th>Befund</th></tr>
+    <tr><td>Bundeskriminalamt</td><td>„Schatten der Vergangenheit", 2011</td><td>1959: 75 % des Leitungspersonals ehem. NSDAP, 65 % ehem. SS</td></tr>
+    <tr><td>Bundesjustizministerium</td><td>„Die Akte Rosenburg", 2016</td><td>1957: 76 % der Unterabteilungs-/Referatsleiter; 1949–73 gesamt 53 %</td></tr>
+    <tr><td>Bundesinnenministerium</td><td>„Hüter der Ordnung", 2018</td><td>Gründungspersonal 52 %, Höchststand 66 %; zum Vergleich DDR-Innenministerium 14 %</td></tr>
+    <tr><td>Auswärtiges Amt</td><td>„Das Amt", 2010</td><td>1950: 58 von 137 leitenden Beamten = 42,3 %</td></tr>
+    <tr><td>BND</td><td>Historikerkommission ab 2011</td><td><span class="tag tag-vt">NICHT belegbar</span> — keine belastbare Prozentzahl, Aktenkassationen dokumentiert</td></tr>
+  </table>
+
+  <p><span class="tag tag-offen">UMSTRITTEN</span> An „Das Amt" gibt es methodische Kritik — u. a. von Hans Mommsen (methodische Mängel), Johannes Hürter (fehlende Differenzierung) und Horst Möller (politische Auftragsdynamik). Die Grundthese der massiven personellen Kontinuität ist davon jedoch kaum betroffen.</p>
+  <p><span class="tag tag-vt">NICHT sauber vergleichbar</span> Eine BMI-Vorstudie nennt abweichende Werte (BMI 54 %, AA 33 %, BMJ 48 %, BKA 75 %) mit unklaren Bezugsgruppen. Diese Zahlen sollten nicht ungeprüft neben die Einzelstudien gestellt werden.</p>
+
+  <div class="source-box"><strong>Quellen zu diesem Abschnitt:</strong> BKA, Sonderband 2011 · BMJ, „Die Akte Rosenburg", 2016 · BMI, „Hüter der Ordnung", 2018 · Auswärtiges Amt, „Das Amt", 2010 · Wissenschaftliche Dienste des Bundestages, WD 1-3000-045/18 und WD 1-015/19: „quellengestützte systematische wissenschaftliche Untersuchungen [zum Bundestag] liegen bisher nicht vor."</div>
+
+  <h2>05 · Einzelfälle über Parteigrenzen hinweg</h2>
+
+  <p>Namen ordnen ein, was Prozentzahlen abstrakt lassen. Die folgenden Fälle stehen bewusst nebeneinander — CDU/CSU, FDP und SPD.</p>
+
+  <div class="person-card">
+    <span class="party">CDU/CSU</span>
+    <div class="name">Kurt Georg Kiesinger</div>
+    <p><span class="tag tag-belegt">BELEGT</span> NSDAP-Eintritt 1. Mai 1933, Mitgliedsnummer 2.633.930. Ab 1940 stellvertretender Leiter der Rundfunkpolitischen Abteilung im Auswärtigen Amt. Bundeskanzler 1966–1969.</p>
+  </div>
+
+  <div class="person-card">
+    <span class="party">CDU/CSU</span>
+    <div class="name">Theodor Oberländer</div>
+    <p><span class="tag tag-belegt">BELEGT</span> NSDAP-Eintritt ebenfalls 1. Mai 1933, Mitgliedsnummer 2.331.552. Teilnehmer am Hitlerputsch 1923, später Reichsleiter im Bund Deutscher Osten, zwischen 29. Juni und 6. Juli 1941 in Lemberg anwesend. Bundesvertriebenenminister 1953–1960.</p>
+  </div>
+
+  <div class="person-card">
+    <span class="party">CDU/CSU</span>
+    <div class="name">Hans Filbinger</div>
+    <p><span class="tag tag-belegt">BELEGT</span> NSDAP-Eintritt 1. Mai 1937, Mitgliedsnummer 4.026.789. Als Marinerichter an mindestens 234 Verfahren beteiligt, 169-mal als Richter, 63-mal als Ankläger; 1978 wurden vier Todesurteilsfälle öffentlich bekannt. Rücktritt als baden-württembergischer Ministerpräsident am 7. August 1978. Zitat: „Was damals rechtens war, kann heute nicht Unrecht sein."</p>
+  </div>
+
+  <div class="person-card">
+    <span class="party">FDP</span>
+    <div class="name">Naumann-Kreis</div>
+    <p><span class="tag tag-belegt">BELEGT</span> Werner Naumann war ab 22. April 1944 geschäftsführender Staatssekretär im Reichspropagandaministerium und in Hitlers Testament als Goebbels-Nachfolger benannt. In der Nacht zum 15. Januar 1953 verhafteten britische Besatzungsbehörden die Kreis-Führung; im Sommer 1953 stellte der BGH das Verfahren ein. Ziel war die Unterwanderung des FDP-Landesverbands Nordrhein-Westfalen unter Friedrich Middelhauve. Ernst Achenbach galt als „eigentlicher Kopf"; Werner Best arbeitete in dessen Kanzlei.</p>
+  </div>
+
+  <div class="person-card">
+    <span class="party">FDP</span>
+    <div class="name">Hans-Dietrich Genscher</div>
+    <p><span class="tag tag-offen">UMSTRITTEN, andere Kategorie</span> Rückwirkend zum 20. April 1944 in die NSDAP aufgenommen, Mitgliedsnummer 10.123.636 — Jahrgang 1927, Sammelantrag im letzten Kriegsjahr. Der Aktenbefund ist belegt, die Deutung umstritten. Mit Kiesingers Eintritt 1933 ist dieser Fall nicht vergleichbar.</p>
+  </div>
+
+  <div class="person-card">
+    <span class="party">SPD</span>
+    <div class="name">Karl Schiller</div>
+    <p><span class="tag tag-belegt">BELEGT</span> SA-Mitglied Juni 1933 bis 1938, NSDAP-Eintritt 1. Mai 1937, Mitgliedsnummer 4.663.250. 1938 Politischer Leiter der NSDAP-Ortsgruppe „Klaus Groth" in Kiel. Von 1935 bis 1941 Forschungsgruppenleiter am Kieler Institut für Weltwirtschaft; seine dortigen Gutachten gelten in der Forschung als „Bestandteil der NS-Kriegsführung". SPD-Mitglied ab 1946, Bundeswirtschaftsminister 1966–1972. Aufarbeitung u. a. bei Torben Lütjen (2008) und Gunnar Take, „Forschen für den Wirtschaftskrieg" (De Gruyter, 2019).</p>
+  </div>
+
+  <div class="pull-quote">
+    Schillers Verstrickung sei „im Rückblick eigenartig" — mit Kiesingers vergleichbar, nur wurde Kiesinger wiederholt skandalisiert und Schiller nie.
+    Rezensent Udo Wengst, sehepunkte.de, 2008
+  </div>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Weitere SPD-Bundesminister mit NSDAP-Mitgliedschaft sind nicht dokumentiert — Schiller ist der einzige verifizierte Fall auf Ministerebene. Kristina Meyer zeigt in „Die SPD und die NS-Vergangenheit 1945–1990" (2015) zusätzlich, dass die SPD das sogenannte 131er-Gesetz (Wiedereinstellung ehemaliger NS-Beamter) mittrug und aktiv um Waffen-SS-Veteranen als Wählerschaft warb.</p>
+
+  <h3>Herbert Wehner — ein anderer Komplex</h3>
+  <p><span class="tag tag-belegt">BELEGT</span> Wehner war 1927 bis 1942 KPD-Mitglied, davon 1937–1941 im Moskauer Hotel Lux unter dem Decknamen „Kurt Funk". Der Historiker Reinhard Müller belegte aus Moskauer Archiven, dass Wehner 1937 unter Druck des NKWD mehrere Personen belastete.</p>
+  <p><span class="tag tag-offen">UMSTRITTEN</span> Ob dies unter Zwang oder aus Eigeninitiative geschah, ist offen. Eine kausale Zurechnung nachfolgender Hinrichtungen ist in der Forschung umstritten und sollte nicht als gesichert dargestellt werden.</p>
+  <div class="editorial-note">
+    <span class="label">Methodische Trennung</span>
+    Wehners Belastung ist stalinistischer, nicht nationalsozialistischer Natur. Eine Gleichsetzung mit den übrigen hier dokumentierten Fällen wäre unsauber und wird hier bewusst vermieden.
+  </div>
+
+  <h2>06 · Der methodische Kern</h2>
+
+  <p><span class="tag tag-belegt">BELEGT</span> Die Bundesregierung stellte 2012 selbst klar: Eine bloße NSDAP-Mitgliedschaft lasse „keine sicheren Rückschlüsse auf eine NS-Grundhaltung" zu. Für einen fairen Vergleich ist daher zwischen drei Kategorien zu unterscheiden:</p>
+
+  <table>
+    <tr><th>Kategorie</th><th>Beispiel</th></tr>
+    <tr><td>Formalmitgliedschaft</td><td>Genscher, 1944, Jahrgang 1927, Sammelantrag</td></tr>
+    <tr><td>Frühe Überzeugungsmitgliedschaft</td><td>Kiesinger und Oberländer, beide 1. Mai 1933</td></tr>
+    <tr><td>Aktive Beteiligung an NS-Unrecht</td><td>Globke (Rassengesetz-Kommentar), Filbinger (Marinerichter), Schiller (Kriegsgutachter)</td></tr>
+  </table>
+
+  <p>Diese Grenze verläuft nicht entlang von Parteigrenzen. Das ist der eigentliche Befund dieses Artikels.</p>
+
+  <div class="editorial-note">
+    <span class="label">Vorab-Korrektur, wichtig</span>
+    Hans Globke war entgegen verbreiteter Annahme kein NSDAP-Mitglied — sein Aufnahmeantrag wurde 1943 wegen seiner Zentrums-Vergangenheit endgültig abgelehnt. Seine tatsächliche Belastung — der Kommentar zu den Nürnberger Gesetzen (1936, mit Wilhelm Stuckart) und die Namensänderungsverordnung — wiegt sachlich schwerer als eine Mitgliedskarte. Ein Beispiel dafür, wie wichtig die genaue Quellenlage gegenüber der kursierenden Zuschreibung ist.
+  </div>
+
+  <div class="methodik">
+    Zu dieser Serie gehört bereits <em>„Der nahtlose Übergang", Teil 1</em> (ns-kontinuitaet.html): Artikel 131 GG, Globke, Hallstein, Speidel, Heusinger, Oberländer, Auswärtiges Amt, Bundeswehr. Teil 2 ergänzt: Rosenburg/BMJ, BKA, BMI, die Parteizahlen des 1. Bundestags, die Naumann-Affäre, Kiesinger, Filbinger und Schiller — mit der parteiübergreifenden Ebene als Kernaussage.
+  </div>
+
+  <div class="open-questions">
+    <h2>Offene Fragen</h2>
+    <p><em>Warum wurde Kiesinger über Jahrzehnte politisch skandalisiert, während Schillers vergleichbare Verstrickung öffentlich kaum je zum Thema wurde? Liegt es an der Art der Belastung, am Amt, an der medialen Aufmerksamkeit — oder an etwas, das sich mit den vorliegenden Quellen nicht abschließend beantworten lässt?</em></p>
+    <p><em>Warum liegt bis heute keine quellengestützte Gesamtstudie zur NS-Vergangenheit des Bundestags vor — obwohl entsprechende Studien für Ministerien und Behörden seit Jahren existieren?</em></p>
+  </div>
+
+  <div class="sources-list">
+    <h2>Quellenverzeichnis</h2>
+    <p><strong>Weimar:</strong> de.wikiquote.org/wiki/Gustav_Noske (Bluthund-Zitat mit Seitenangabe) · dhm.de/lemo (Ebert-Groener-Pakt) · germanhistorydocs.org (Groener, 1957) · lisa.gerda-henkel-stiftung.de (Pomplun, Freikorps) · hsozkult.de/publicationreview/id/reb-133894</p>
+    <p><strong>1933:</strong> bpb.de/kurz-knapp/hintergrund-aktuell/156904 · bundestag.de/dokumente/textarchiv/1933-03-23-ermaechtigungsgesetz-938540 · fes.de/feshistory/blog/sozialdemokratische-reichstagsfraktion-1933</p>
+    <p><strong>NS-Kontinuität, Institutionen und Parteien:</strong> bundestag.de, Wissenschaftliche Dienste WD 1-3000-045/18 und WD 1-015/19 · hsozkult.de/conferencereport/id/fdkn-162089 (Parteizahlen 1. Bundestag) · taz.de/!5103258 (Glienke, Niedersachsen) · bka.de, Sonderband 2011 · zzf-potsdam.de (BMI-Vorstudie) · sehepunkte.de/2008/05/14171.html (Wengst zu Schiller) · sehepunkte.de/2011/01/18745.html (Buchna zur FDP) · hsozkult.de/publicationreview/id/reb-22341 (Meyer zur SPD)</p>
+    <p style="margin-top:16px; font-style: italic; color: var(--text-dim);">Alle Angaben in diesem Artikel beruhen auf öffentlich zugänglichen Primärquellen, Fachpublikationen und dokumentierten Forschungsständen. Leser werden ausdrücklich zur eigenständigen Prüfung der genannten Quellen eingeladen.</p>
+  </div>
+
+  <div class="series-nav">
+    <a href="ns-kontinuitaet.html">← Teil 1: Der nahtlose Übergang</a>
+    <a href="index.html">dunkelfeld.report — Übersicht</a>
+  </div>
+
+  <footer>dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.</footer>
+
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

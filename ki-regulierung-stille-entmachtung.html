@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zwei Kontinente, ein Muster — dunkelfeld.report</title>
+<meta name="rubrik" content="cat-technik">
+<meta name="kachel-titel" content="Zwei Kontinente, ein Muster: Wie KI-Regeln leise entkernt werden">
+<style>
+  :root{
+    --bg:#0a0a0b;
+    --surface:#111114;
+    --surface2:#15151a;
+    --border:#1e1e24;
+    --text:#e8e8ec;
+    --muted:#8a8a97;
+    --muted2:#6b6b7a;
+    --accent:#e8c547;
+    --belegt:#4caf7d;
+    --extra:#5a9bd6;
+    --offen:#8a8a97;
+    --widerlegt:#c25454;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Lora','Georgia',serif;
+    margin:0;
+    line-height:1.7;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  h1,h2,h3,.label,.tag,.mono{
+    font-family:'Space Grotesk','IBM Plex Mono',monospace,sans-serif;
+  }
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(232,197,71,0.35);}
+  a:hover{border-bottom-color:var(--accent);}
+
+  header.site{
+    border-bottom:1px solid var(--border);
+    padding:1.3rem 1.5rem;
+    display:flex;
+    align-items:center;
+    gap:0.8rem;
+    position:sticky;
+    top:0;
+    background:rgba(10,10,11,0.92);
+    backdrop-filter:blur(6px);
+    z-index:100;
+  }
+  header.site .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+  header.site .brand{font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted2);}
+  header.site .stand{margin-left:auto;font-size:0.7rem;color:var(--muted2);}
+
+  main{max-width:760px;margin:0 auto;padding:3rem 1.5rem 2rem;}
+
+  .kicker{font-size:0.78rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted2);margin-bottom:1.2rem;}
+  h1{
+    font-size:clamp(2.1rem,5.5vw,3.1rem);
+    font-weight:700;
+    line-height:1.12;
+    margin:0 0 1.3rem;
+    color:var(--text);
+  }
+  .lede{font-size:1.12rem;color:var(--muted);max-width:64ch;margin-bottom:2.2rem;}
+  .meta{font-size:0.78rem;color:var(--muted2);margin-bottom:2.8rem;border-bottom:1px solid var(--border);padding-bottom:1.6rem;}
+
+  section.block{margin-bottom:3rem;}
+  .section-label{
+    font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:0.9rem;font-weight:600;
+  }
+  h2{font-size:1.5rem;margin:0 0 1rem;color:var(--text);}
+  h3{font-size:1.08rem;margin:1.8rem 0 0.7rem;color:var(--text);}
+  p{margin:0 0 1.1rem;}
+
+  .tag{
+    display:inline-block;
+    font-size:0.65rem;
+    letter-spacing:0.06em;
+    padding:0.16rem 0.5rem;
+    border-radius:3px;
+    margin-right:0.4rem;
+    text-transform:uppercase;
+    vertical-align:middle;
+    border:1px solid currentColor;
+  }
+  .tag.belegt{color:var(--belegt);}
+  .tag.extra{color:var(--extra);}
+  .tag.offen{color:var(--offen);}
+  .tag.widerlegt{color:var(--widerlegt);}
+
+  .fact{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-left:3px solid var(--accent);
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:0.96rem;
+  }
+  .fact .tag{margin-bottom:0.5rem;}
+
+  table.stats{
+    width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.92rem;
+  }
+  table.stats th, table.stats td{
+    border-bottom:1px solid var(--border);
+    padding:0.6rem 0.7rem;text-align:left;vertical-align:top;
+  }
+  table.stats th{color:var(--muted2);font-weight:600;font-family:'IBM Plex Mono',monospace;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;}
+  table.stats td.num{color:var(--accent);font-family:'IBM Plex Mono',monospace;white-space:nowrap;}
+
+  blockquote.muster{
+    border-left:3px solid var(--accent);
+    padding:0.3rem 0 0.3rem 1.4rem;
+    margin:1.6rem 0;
+    color:var(--text);
+    font-style:italic;
+  }
+
+  .disclaimer{
+    background:var(--surface2);
+    border:1px solid var(--border);
+    padding:1.4rem 1.5rem;
+    margin-top:2.5rem;
+    font-size:0.9rem;
+    color:var(--muted);
+  }
+  .disclaimer .section-label{color:var(--muted2);}
+  .disclaimer ul{margin:0.6rem 0 0;padding-left:1.2rem;}
+  .disclaimer li{margin-bottom:0.5rem;}
+
+  .sources{
+    margin-top:3rem;border-top:1px solid var(--border);padding-top:2rem;
+  }
+  .sources h2{font-size:1.1rem;color:var(--muted2);text-transform:uppercase;letter-spacing:0.1em;font-size:0.85rem;}
+  .sources ol{padding-left:1.3rem;font-size:0.85rem;color:var(--muted);}
+  .sources li{margin-bottom:0.6rem;}
+  .sources .cat{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted2);margin:1.4rem 0 0.4rem;}
+
+  footer.site{
+    max-width:760px;margin:0 auto;padding:2.5rem 1.5rem 4rem;
+    border-top:1px solid var(--border);margin-top:2rem;
+    font-size:0.78rem;color:var(--muted2);
+  }
+  footer.site p{margin:0 0 0.6rem;}
+  footer.site .sig{color:var(--accent);}
+
+  @media (max-width:480px){
+    main{padding:2.2rem 1.1rem 1.5rem;}
+    table.stats{font-size:0.82rem;}
+    table.stats th, table.stats td{padding:0.5rem 0.4rem;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="dot"></div>
+  <span class="brand">dunkelfeld.report — Analyse · Systemkritik · Quellenbasiert</span>
+  <span class="stand">Stand: September 2026</span>
+</header>
+
+<main>
+  <div class="kicker">Struktur der Kontrolle · KI-Governance</div>
+  <h1>Zwei Kontinente, ein Muster: Wie KI-Regeln leise entkernt werden</h1>
+  <p class="lede">
+    Während die öffentliche Debatte um Künstliche Intelligenz von Weltuntergangsszenarien,
+    einer möglichen Finanzblase und dem Wettlauf mit China dominiert wird, läuft im
+    Hintergrund ein wesentlich stiller, aber besser dokumentierter Vorgang: Auf beiden Seiten
+    des Atlantiks werden im selben Zeitfenster gerade erst erkämpfte KI-Schutzregeln verzögert,
+    verwässert oder ganz ausgehebelt — mit derselben Begründung: Vereinfachung, Wettbewerbsfähigkeit,
+    nationale Einheitlichkeit.
+  </p>
+  <p class="meta">Lesedauer ca. 9 Minuten &nbsp;·&nbsp; Teil einer zweiteiligen Recherche, Teil 1: „Warnen und Wetten"</p>
+
+  <section class="block">
+    <div class="section-label">Damals</div>
+    <h2>Zwei hart erkämpfte Kompromisse</h2>
+    <p>
+      Der EU AI Act trat im August 2024 in Kraft und wurde weltweit als erstes umfassendes
+      KI-Gesetz gefeiert — Ergebnis jahrelanger Verhandlungen zwischen Parlament, Rat und
+      Kommission, mit gestaffeltem Zeitplan: Verbotene Praktiken und KI-Kompetenzpflichten ab
+      Februar 2025, Governance-Regeln für General-Purpose-AI-Modelle ab August 2025,
+      Hochrisiko-Pflichten ursprünglich ab 2. August 2026.
+    </p>
+    <div class="fact"><span class="tag belegt">Belegt</span>
+      Parallel dazu bauten in den USA — mangels Bundesgesetz — einzelne Bundesstaaten seit 2023
+      eigene Schutzregeln auf: Kalifornien, Colorado, Florida, Indiana, Kentucky und Rhode Island
+      erließen Gesetze gegen algorithmische Diskriminierung, gegen KI-generiertes
+      Kindesmissbrauchsmaterial und gegen manipulative Deepfakes. Colorado setzte sein
+      Antidiskriminierungsgesetz für 2026 in Kraft.
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-label">Heute</div>
+    <h2>Der Rückbau — auf beiden Seiten, fast zeitgleich</h2>
+
+    <h3>1. USA: Präemption per Gesetzesanlauf, Exekutivorder und Klage</h3>
+    <p>
+      Im Juli 2025 versuchte Senator Ted Cruz, während der Verhandlungen zum großen
+      Haushaltspaket ein zehnjähriges Moratorium für bundesstaatliche KI-Gesetze durchzusetzen.
+      Die Klausel fiel im Senat mit 99 zu 1 Stimmen heraus — ein seltener parteiübergreifender
+      Konsens gegen die Idee.
+    </p>
+    <div class="fact"><span class="tag belegt">Belegt</span>
+      Unbeeindruckt davon unterzeichnete die Trump-Regierung am 11. Dezember 2025 eine
+      Executive Order („Ensuring a National Policy Framework for Artificial Intelligence"),
+      die dasselbe Ziel über den exekutiven Weg verfolgt. Parallel wird im Kongress der
+      „American Artificial Intelligence Leadership and Uniformity Act" (HR 5388) verhandelt,
+      der ein fünfjähriges Moratorium für neue Landesgesetze vorsieht. Ein Rechtsstreit bis zum
+      Supreme Court gilt als wahrscheinlich.
+    </div>
+    <p>
+      Das Justizministerium sollte laut Berichten eine „KI-Litigation Task Force" aufbauen, die
+      gezielt Landesgesetze wie den Colorado AI Act rechtlich angreift.
+    </p>
+    <table class="stats">
+      <tr><th>Kennzahl</th><th>Wert</th></tr>
+      <tr><td>Politische Ausgaben von Big-Tech-Führungskräften, Konzernen und Investoren (Wahlzyklus 2024 + 2025)</td><td class="num">≥ 1,1 Mrd. USD</td></tr>
+      <tr><td>Föderale Lobbyisten, die 2025 zu KI-Themen arbeiteten</td><td class="num">3.570 (26 % aller registrierten Lobbyisten)</td></tr>
+      <tr><td>Anstieg der KI-Lobbyisten seit 2022</td><td class="num">+168 %</td></tr>
+      <tr><td>Föderale Lobbyausgaben des Tech-Sektors (erste 3 Quartale 2025)</td><td class="num">314 Mio. USD</td></tr>
+    </table>
+    <p style="font-size:0.85rem;color:var(--muted2);">Quelle: Public Citizen, Recherchebericht „Generative Influence" / „Robo-Trump" (2025/2026)</p>
+
+    <h3>2. EU: Verzögerung per „Vereinfachung"</h3>
+    <div class="fact"><span class="tag belegt">Belegt</span>
+      Am 19. November 2025 legte die EU-Kommission den „Digital Omnibus on AI" vor. Kernpunkt:
+      Verschiebung der Hochrisiko-Pflichten des AI Acts vom 2. August 2026 auf den
+      2. Dezember 2027 — bei bestimmten Systemen sogar bis August 2028. Nach zwei
+      Trilog-Runden (zuletzt gescheitert am 28. April 2026) einigten sich Parlament, Rat und
+      Kommission am 6./7. Mai 2026; das Parlament ratifizierte am 16. Juni 2026, das Gesetz
+      trat am 27. Juli 2026 in Kraft.
+    </div>
+    <p>
+      Offizielle Begründung: fehlende harmonisierte technische Normen und Prüfstellen — ein
+      Punkt, der sachlich zutrifft, da die CEN-CENELEC-Normungsarbeit tatsächlich Jahre hinter
+      dem ursprünglichen Zeitplan liegt.
+    </p>
+    <div class="fact"><span class="tag belegt">Belegt</span>
+      Zwei Digitalrechtsorganisationen (Liberties.eu, ECNL) kommen unabhängig voneinander zum
+      selben Befund: Hinter dem Begriff „Vereinfachung" stehe eine Verwässerung konkreter
+      Transparenzpflichten — etwa die Streichung der Pflicht, im öffentlichen KI-Register
+      anzugeben, in welchen Mitgliedstaaten ein System vermarktet wird und aus welchem Grund
+      sich ein Anbieter selbst von Pflichten ausnimmt.
+    </div>
+    <div class="fact"><span class="tag belegt">Belegt</span>
+      Bundeskanzler Merz lobbyierte laut Berichterstattung persönlich bei anderen
+      Mitgliedstaaten für die Verzögerung und holte Frankreich und Italien mit ins Boot.
+      Lobbyunterlagen, ausgewertet vom Jacques Delors Centre, zeigen: Meta-Vertreter trafen
+      sich bis Januar 2026 38-mal mit rechten Fraktionen im EU-Parlament (EKR, Patrioten für
+      Europa, Europa der souveränen Nationen) — mehr Kontakttermine als mit zentristischen
+      Fraktionen.
+    </div>
+
+    <h3>3. Der OpenAI-Sonderfall: Größe als Auslöser — und als Schutzschild</h3>
+    <p>
+      Beide Regelwerke sind bewusst als Schwellenwert-Systeme konstruiert: Wer groß genug ist,
+      bekommt automatisch mehr Pflichten.
+    </p>
+    <div class="fact"><span class="tag belegt">Belegt</span>
+      Nach Art. 51 Abs. 2 AI Act gelten GPAI-Modelle oberhalb von 10²⁵ Gleitkommaoperationen
+      Trainingsrechenleistung automatisch als „systemisches Risiko" — das betrifft aktuelle
+      GPT-Modelle. Zusatzpflichten: Modellevaluierung, adversariale Tests,
+      Vorfall-Meldepflicht an das AI Office, Cybersicherheitsnachweise.
+    </div>
+    <div class="fact"><span class="tag belegt">Belegt</span>
+      Im Oktober 2025 musste OpenAI offenlegen, dass ChatGPTs Suchfunktion im Schnitt
+      120,4 Millionen monatliche EU-Nutzer erreicht — fast das Dreifache der gesetzlichen
+      Schwelle von 45 Millionen für eine Einstufung als „Very Large Online Search Engine"
+      (VLOSE) nach dem Digital Services Act. Die EU-Kommission prüft seither aktiv diese
+      Einstufung, die systemische Risikobewertungen, externe Audits und
+      Werbetransparenzpflichten nach sich ziehen würde.
+    </div>
+    <div class="fact"><span class="tag extra">Extrapolation</span>
+      Beobachter weisen darauf hin, dass dieselben Schwellenwert-Pflichten kleinere,
+      europäische Anbieter relativ zum Umsatz stärker belasten als die großen Player: OpenAI,
+      Google oder Meta können Compliance-Abteilungen aufbauen, ein kleines Startup kann das
+      kaum. Die „Kette" trifft damit formal die Größten — die konkrete Kostenlast verteilt sich
+      aber eher zulasten der Kleinen. Diese Einschätzung ist plausibel, aber ihrer Natur nach
+      eine Bewertung, keine Messgröße.
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-label">Das Muster</div>
+    <h2>Zwei Spielzüge, ein Zeitfenster</h2>
+    <p>
+      Auffällig ist nicht der jeweilige Vorgang für sich — Lobbying, Gesetzgebungsverfahren
+      und Verzögerungen sind Alltag demokratischer Prozesse. Auffällig ist die Gleichzeitigkeit:
+      Beide Rückbauten laufen im selben Zeitfenster (November 2025 bis August 2026) wie die
+      lauteste öffentliche KI-Debatte des Jahres — Doom-Warnungen von Tech-Konzernen,
+      Bubble-Diskussion um zirkuläre Milliardendeals, Wettlauf-Rhetorik gegenüber China (siehe
+      Teil 1 dieser Recherche). Die Aufmerksamkeit der Öffentlichkeit bindet sich an
+      Zukunftsszenarien, während die strukturell wirksamste Regulierungsebene — die
+      Bundesstaaten in den USA, die konkreten Transparenzpflichten in der EU — im selben
+      Moment verhandelt wird.
+    </p>
+    <blockquote class="muster">
+      In beiden Fällen wird dieselbe Sprache benutzt: „Vereinfachung", „Einheitlichkeit",
+      „Wettbewerbsfähigkeit". In beiden Fällen ist der dokumentierte Effekt derselbe: weniger
+      Transparenzpflicht, mehr Zeit für die Marktführer, weniger Handlungsspielraum für die
+      Ebene, die bisher am schnellsten reagiert hat.
+    </blockquote>
+  </section>
+
+  <div class="disclaimer">
+    <div class="section-label">Was wir ausdrücklich nicht behaupten</div>
+    <ul>
+      <li>Wir behaupten keine Absprache oder Koordination zwischen US-amerikanischen und
+        europäischen Akteuren. Die Gleichzeitigkeit ist dokumentiert, ein kausaler oder
+        kommunikativer Zusammenhang nicht.</li>
+      <li>Wir bewerten nicht die Motive einzelner Politiker (Cruz, Merz oder andere) über die
+        dokumentierten Handlungen und Lobbykontakte hinaus.</li>
+      <li>Wir treffen kein abschließendes Urteil darüber, ob die Verzögerung des AI Acts
+        sachlich gerechtfertigt war — das Argument fehlender harmonisierter Normen ist
+        technisch zutreffend und wird von Kritikern nicht bestritten, nur die Nutzung des
+        Zeitfensters.</li>
+      <li>Wir behaupten nicht, dass OpenAI regulatorisch bevorzugt wird — im Gegenteil ist die
+        Konzern-Größe der direkte Auslöser zusätzlicher Pflichten. Wir dokumentieren lediglich,
+        dass die Kostenverteilung dieser Pflichten umstritten ist.</li>
+    </ul>
+  </div>
+
+  <div class="sources">
+    <h2>Quellenverzeichnis</h2>
+
+    <div class="cat">Primärquellen &amp; Institutionen</div>
+    <ol>
+      <li>European Parliament Think Tank: „Digital Omnibus on AI" (2026), europarl.europa.eu</li>
+      <li>Europäische Kommission: „High-level summary of the AI Act", artificialintelligenceact.eu / digital-strategy.ec.europa.eu</li>
+      <li>DLA Piper GENIE: „The Digital AI Omnibus: Proposed deferral of high risk AI obligations" (2026)</li>
+      <li>OpenAI: „A Primer on the EU AI Act" (Global Affairs, openai.com)</li>
+      <li>Verfassungsblog: „Searching for Answers — Why the EU Commission Should Designate Chatbots as Search Engines under the DSA" (2026)</li>
+    </ol>
+
+    <div class="cat">Recherche &amp; Watchdog-Organisationen</div>
+    <ol>
+      <li>Public Citizen: „Generative Influence" (2026) und „Robo-Trump: Big Tech's Big Spending and the Republican Effort to Delete State Laws Against AI Harms" (2025/2026), citizen.org</li>
+      <li>ECNL: „A rollback of AI safeguards before they even apply" (Juni 2026)</li>
+      <li>Liberties.eu: „Digital Omnibus Moves Forward, Trampling Fundamental Rights" (Mai 2026)</li>
+      <li>GovFacts: „Big Tech's Push to Stop States From Regulating AI"</li>
+      <li>The Good Lobby: „Europe's AI Act Got Stuck Again"</li>
+      <li>Jacques Delors Centre — Lobbytreffen-Auswertung, zitiert nach Center for Cyber Diplomacy and International Security (2026)</li>
+    </ol>
+
+    <div class="cat">Wirtschafts- &amp; Fachpresse</div>
+    <ol>
+      <li>readsludge.com: „AI Boom on K Street: One in Four Lobbyists Now Work on AI" (2026)</li>
+      <li>Forbes: „'A Black Box' — AI Targets Washington's $5 Billion Lobbying Machine" (2026)</li>
+      <li>The European Post: „Digital Omnibus Enters Into Force and Delays EU AI Act Rules" (Juli 2026)</li>
+    </ol>
+  </div>
+</main>
+
+<footer class="site">
+  <p>Alle dargestellten Informationen basieren auf öffentlich zugänglichen Quellen: Parlaments-
+    und Kommissionsdokumenten, Recherchen unabhängiger Watchdog-Organisationen und
+    Wirtschaftsfachpresse. Meinungen und Bewertungen sind als solche gekennzeichnet
+    (Extrapolation). Leserinnen und Leser sind ausdrücklich zur eigenständigen Prüfung der
+    verlinkten Quellen eingeladen.</p>
+  <p class="sig">dunkelfeld.report — Fakten, die das Licht scheuen nicht nötig haben.</p>
+</footer>
+
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

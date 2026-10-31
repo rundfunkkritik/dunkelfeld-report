@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zwei Emissionsquellen, zwei Geschwindigkeiten | dunkelfeld.report</title>
+<meta name="rubrik" content="cat-gruene">
+<meta name="kachel-titel" content="Zwei Emissionsquellen, zwei Geschwindigkeiten">
+<style>
+  :root {
+    --bg: #09090b;
+    --bg-box: #1a1a2e;
+    --amber: #e8c547;
+    --grey: #8a8a8f;
+    --text: #e4e4e7;
+    --green: #4ade80;
+    --orange: #e8a047;
+    --red: #e84747;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+  .kicker {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin: 0 0 8px;
+    color: #fff;
+  }
+  .subtitle {
+    font-size: 1.15rem;
+    color: var(--grey);
+    font-style: italic;
+    margin-bottom: 28px;
+  }
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--grey);
+    border-top: 1px solid #2a2a35;
+    border-bottom: 1px solid #2a2a35;
+    padding: 10px 0;
+    margin-bottom: 32px;
+  }
+  h2 {
+    color: var(--amber);
+    font-size: 1.4rem;
+    margin-top: 48px;
+    border-bottom: 1px solid #2a2a35;
+    padding-bottom: 8px;
+  }
+  h3 {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-top: 28px;
+  }
+  p { margin: 16px 0; }
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 6px;
+    font-weight: bold;
+  }
+  .tag-belegt { background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid var(--green); }
+  .tag-extrapolation { background: rgba(232,160,71,0.15); color: var(--orange); border: 1px solid var(--orange); }
+  .tag-offen { background: rgba(138,138,143,0.15); color: var(--grey); border: 1px solid var(--grey); }
+
+  .source-box {
+    background: var(--bg-box);
+    border-left: 3px solid var(--amber);
+    padding: 14px 18px;
+    margin: 20px 0;
+    font-size: 0.95rem;
+  }
+  .source-box .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--amber);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  table.comparison {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 0.92rem;
+  }
+  table.comparison th, table.comparison td {
+    border: 1px solid #2a2a35;
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  table.comparison th {
+    background: var(--bg-box);
+    color: var(--amber);
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .stat {
+    background: var(--bg-box);
+    padding: 16px;
+    text-align: center;
+    border-radius: 4px;
+  }
+  .stat .value {
+    font-size: 1.6rem;
+    color: var(--amber);
+    font-weight: bold;
+    display: block;
+  }
+  .stat .label {
+    font-size: 0.78rem;
+    color: var(--grey);
+    margin-top: 4px;
+  }
+
+  .timeline {
+    border-left: 2px solid #2a2a35;
+    margin: 24px 0 24px 8px;
+    padding-left: 20px;
+  }
+  .timeline-item {
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -25px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+  .timeline-date {
+    font-family: 'Courier New', monospace;
+    color: var(--amber);
+    font-size: 0.82rem;
+  }
+
+  .open-questions {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid #2a2a35;
+    font-style: italic;
+    color: var(--grey);
+  }
+  .open-questions h2 {
+    font-style: normal;
+    border: none;
+    padding-bottom: 0;
+  }
+  .open-questions li { margin-bottom: 12px; }
+
+  .sources-list {
+    margin-top: 40px;
+    font-size: 0.85rem;
+    color: var(--grey);
+    font-family: 'Courier New', monospace;
+  }
+  .sources-list h2 {
+    font-family: Georgia, serif;
+  }
+  .sources-list ul { padding-left: 20px; }
+  .sources-list li { margin-bottom: 6px; }
+
+  .series-nav {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid #2a2a35;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--grey);
+    text-align: center;
+  }
+
+  a { color: var(--amber); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">dunkelfeld.report · Hidden in Plain Sight</div>
+  <h1>Zwei Emissionsquellen, zwei Geschwindigkeiten</h1>
+  <div class="subtitle">Wie Deutschland mit Emissionen aus Rüstung und Landwirtschaft unterschiedlich umgeht</div>
+  <div class="meta">SLUG: lenkungsabgaben-vergleich &nbsp;·&nbsp; STATUS: Faktenvergleich &nbsp;·&nbsp; QUELLEN: Bundestag.de, dserver.bundestag.de, DIP, UBA</div>
+
+  <p>Im Juni 2022 beschließt der Bundestag ein 100-Milliarden-Euro-Sondervermögen für die Bundeswehr — mit den Stimmen von SPD, Grünen, FDP und Union. Zur gleichen Zeit diskutiert dieselbe Regierung seit Jahren über eine Abgabe von wenigen Cent pro Kilo Fleisch, um den Umbau der Tierhaltung zu finanzieren. Die Abgabe ist bis heute nicht Gesetz. Zwei Vorgänge, zwei Tempi. Hier stehen die dokumentierten Fakten nebeneinander — ohne Motiv-Unterstellung.</p>
+
+  <div class="stat-grid">
+    <div class="stat">
+      <span class="value">593 : 80 : 7</span>
+      <span class="label">Ja : Nein : Enthaltung, Sondervermögen Bundeswehr, 3.6.2022</span>
+    </div>
+    <div class="stat">
+      <span class="value">0</span>
+      <span class="label">Gesetzlich umgesetzte Tierwohlabgaben bis heute</span>
+    </div>
+  </div>
+
+  <h2>Fall 1 — Sondervermögen Bundeswehr</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">27. April 2022</div>
+      <p>Erste Lesung der Gesetzentwürfe zur Errichtung eines "Sondervermögens Bundeswehr" (Drucksache 20/1409) und der zugehörigen Grundgesetzänderung (20/1410).</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">9. Mai 2022</div>
+      <p>Expertenanhörung im Haushaltsausschuss unter Leitung von Prof. Dr. Helge Braun (CDU/CSU).</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">3. Juni 2022</div>
+      <p>Zweite und dritte Lesung. Namentliche Abstimmung zur Grundgesetzänderung: 684 abgegebene Stimmen, davon 568 Ja, 96 Nein, 20 Enthaltungen. Zur Errichtung des Sondervermögens selbst: 593 Ja, 80 Nein, 7 Enthaltungen.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">10. Juni 2022</div>
+      <p>Der Bundesrat billigt die Grundgesetzänderung mit der erforderlichen Zweidrittelmehrheit.</p>
+    </div>
+  </div>
+
+  <span class="tag tag-belegt">BELEGT</span>
+  <div class="source-box">
+    <span class="label">Bundestag.de, Deutscher Bundestag Drucksachen 20/1409, 20/1410, 20/2090, 20/2091</span>
+    Der Haushaltsausschuss nahm die geänderten Gesetzentwürfe mit den Stimmen von SPD, Bündnis 90/Die Grünen, FDP und CDU/CSU an. AfD und Die Linke stimmten dagegen.
+  </div>
+
+  <p><strong>Wichtige Nuance:</strong> 19 Abgeordnete gaben nach § 31 der Geschäftsordnung des Bundestages schriftliche Erklärungen ab, in denen sie von der jeweiligen Fraktionsmehrheit abweichende Positionen begründeten — davon <strong>14 aus der Fraktion Bündnis 90/Die Grünen</strong>, drei von der AfD, zwei von der SPD. Die Fraktion war intern also nicht geschlossen, auch wenn die Mehrheit zustimmte.</p>
+
+  <span class="tag tag-belegt">BELEGT</span>
+  <div class="source-box">
+    <span class="label">Wikipedia / Bundestag-Plenarprotokoll, 3.6.2022</span>
+    14 Abgeordnete von Bündnis 90/Die Grünen gaben abweichende schriftliche Erklärungen zur Zustimmung ihrer Fraktion ab.
+  </div>
+
+  <h2>Fall 2 — Tierwohlabgabe</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">2020</div>
+      <p>Die Borchert-Kommission (benannt nach dem früheren CDU-Agrarminister Jochen Borchert), vom Bund eingesetztes Kompetenznetzwerk Nutztierhaltung, schlägt eine Tierwohlabgabe von 40 Cent pro Kilo Fleisch vor. Die Einnahmen sollen den Stallumbau finanzieren.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">18. April 2023</div>
+      <p>Bundestags-Drucksache 20/6418 dokumentiert die politische Debatte um die Abgabe — u.a. mit Verweis auf Umfragen, wonach nur wenige Verbraucher bereit sind, für mehr Tierwohl zu zahlen, und auf sinkenden Fleischkonsum durch Inflation.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">August 2023</div>
+      <p>Bundeslandwirtschaftsminister Cem Özdemir (Grüne) bringt ein Gesetz zur staatlichen Haltungskennzeichnung in Kraft — fünf Kategorien ("Stall" bis "Bio"). Zunächst nur für Schweinefleisch, mehrfach verschoben, Vollumsetzung nun erst ab Januar 2027 geplant.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">laufend</div>
+      <p>Özdemir legt ein Eckpunktepapier zur eigentlichen Tierwohlabgabe vor (wenige Cent/kg, zweckgebunden für Stallumbau). Da es sich um eine Steuerabgabe handelt, liegt die Entscheidung beim Bundesfinanzministerium. Ein Gesetzentwurf existiert bis heute nicht.</p>
+    </div>
+  </div>
+
+  <span class="tag tag-belegt">BELEGT</span>
+  <div class="source-box">
+    <span class="label">bpb.de, Deine tägliche Dosis Politik / Bundestag DIP-Datenbank</span>
+    Die Tierwohlabgabe wurde als Konzept 2020 vorgeschlagen, als Eckpunktepapier 2024 konkretisiert — ein Gesetzentwurf zur eigentlichen Abgabe liegt bislang nicht vor.
+  </div>
+
+  <h2>Methan-Kontext</h2>
+
+  <p>Eine aktuelle Große Anfrage im Bundestag (Drucksache 21/4598, 9. März 2026) fragt die Bundesregierung explizit nach Methan-Reduktionsmaßnahmen in der Landwirtschaft. Grundlage sind Zahlen des Umweltbundesamts:</p>
+
+  <span class="tag tag-belegt">BELEGT</span>
+  <div class="source-box">
+    <span class="label">Umweltbundesamt, Methan-Emissionen, Mai 2025 (zitiert in BT-Drucksache 21/4598)</span>
+    Der größte Teil der deutschen Methan-Emissionen entfällt auf die Landwirtschaft sowie Abfall/Abwasser; Verkehr und Militär tragen laut UBA inzwischen nur noch sehr geringe Mengen bei.
+  </div>
+
+  <p>Das erklärt teilweise, warum Landwirtschaft und nicht die Rüstung im Zentrum von Lenkungsabgaben-Debatten steht: Methan aus Tierhaltung ist ein dokumentiert größerer Emissionsposten als Rüstungsemissionen. Das beantwortet aber nicht die Frage nach dem politischen Tempo-Unterschied zwischen den beiden Prozessen.</p>
+
+  <h2>Die Gegenüberstellung</h2>
+
+  <table class="comparison">
+    <tr>
+      <th>Bereich</th>
+      <th>Grüne Position</th>
+      <th>Belegter Status (Aug. 2026)</th>
+    </tr>
+    <tr>
+      <td>Rüstung (Sondervermögen)</td>
+      <td>Fraktionsmehrheit stimmte zu, keine begleitende Lenkungsabgabe auf Rüstungsemissionen diskutiert</td>
+      <td>Umgesetzt — Gesetz seit Juni 2022 in Kraft</td>
+    </tr>
+    <tr>
+      <td>Landwirtschaft / Fleisch</td>
+      <td>Abgabe vorgeschlagen und konkretisiert (Özdemir), Kennzeichnung teilweise umgesetzt</td>
+      <td>Abgabe selbst bis heute nicht Gesetz; Kennzeichnung erst ab 2027 vollständig</td>
+    </tr>
+  </table>
+
+  <div class="open-questions">
+    <h2>Offene Fragen</h2>
+    <ul>
+      <li><span class="tag tag-offen">OFFEN</span> Warum wurde bei den Rüstungsemissionen des Sondervermögens keine vergleichbare Lenkungsdebatte geführt wie bei der Landwirtschaft?</li>
+      <li><span class="tag tag-offen">OFFEN</span> Warum dauert die gesetzliche Umsetzung der Tierwohlabgabe (seit 2020 diskutiert) so viel länger als die des Sondervermögens (von erster Ankündigung bis Gesetz in unter vier Monaten)?</li>
+      <li><span class="tag tag-offen">OFFEN</span> Spielt der akute sicherheitspolitische Handlungsdruck 2022 (Kriegsbeginn) eine Rolle für das Tempo — und wenn ja, warum begründet ein vergleichbarer klimapolitischer Handlungsdruck bei der Landwirtschaft kein ähnliches Tempo?</li>
+    </ul>
+  </div>
+
+  <div class="sources-list">
+    <h2>Quellen</h2>
+    <ul>
+      <li>Deutscher Bundestag, Textarchiv: "Bundestag beschließt das Sondervermögen für die Bundeswehr", 3.6.2022</li>
+      <li>Deutscher Bundestag, Drucksachen 20/1409, 20/1410, 20/2090, 20/2091, 20/2126, 20/2133</li>
+      <li>Wikipedia: "Sondervermögen Bundeswehr" (Abstimmungsergebnisse, abweichende Erklärungen)</li>
+      <li>Bundesrat, BundesratKOMPAKT, 10.6.2022</li>
+      <li>Deutscher Bundestag, Drucksache 20/6418 (18.4.2023)</li>
+      <li>Deutscher Bundestag, Drucksache 21/4598 (9.3.2026), Große Anfrage Methan-Emissionen Landwirtschaft</li>
+      <li>bpb.de, "Tierwohlabgabe auf Fleisch", Deine tägliche Dosis Politik</li>
+      <li>Umweltbundesamt, Methan-Emissionen nach Sektor, Mai 2025</li>
+    </ul>
+  </div>
+
+  <div class="series-nav">dunkelfeld.report · Hidden in Plain Sight</div>
+
+</div>
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>

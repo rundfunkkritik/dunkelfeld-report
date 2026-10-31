@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programmiertes Geld – Was die UNO in Afrika testet | dunkelfeld.report</title>
+<meta name="rubrik" content="cat-geld">
+<meta name="kachel-titel" content="Programmiertes Geld: Was das UN-Entwicklungsprogramm in Afrika, Haiti und Nigeria testet">
+<meta name="description" content="Das UN-Entwicklungsprogramm UNDP pilotiert tokenisierte, zweckgebundene Zahlungen – dokumentiert in einer offiziellen Broschüre von Januar 2026. Was in Kamerun, Haiti und Nigeria erprobt wird, soll skalierbare Infrastruktur werden.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #09090b;
+    --surface: #111114;
+    --surface2: #1a1a2e;
+    --border: #1e1e26;
+    --text: #e2e2e6;
+    --muted: #6b6b7a;
+    --accent: #e8c547;
+    --belegt: #4caf7d;
+    --extrapolation: #e8a247;
+    --offen: #888;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* HEADER */
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .site-brand {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .site-brand span {
+    color: var(--accent);
+  }
+
+  .site-nav {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* CONTAINER */
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ARTICLE HEADER */
+  .article-header {
+    padding: 3.5rem 0 2.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+  }
+
+  .category-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+  }
+
+  h1 {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    line-height: 1.25;
+    font-weight: 700;
+    color: #f4f4f5;
+    margin-bottom: 1.2rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* BODY TEXT */
+  .article-body p {
+    margin-bottom: 1.2rem;
+  }
+
+  h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #f4f4f5;
+    margin: 2.8rem 0 1rem;
+    line-height: 1.3;
+  }
+
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 2rem 0 0.8rem;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* STATUS TAGS */
+  .tag {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+    position: relative;
+    top: -2px;
+  }
+  .tag-belegt { background: rgba(76,175,125,0.15); color: var(--belegt); border: 1px solid rgba(76,175,125,0.3); }
+  .tag-extrapolation { background: rgba(232,162,71,0.12); color: var(--extrapolation); border: 1px solid rgba(232,162,71,0.3); }
+  .tag-offen { background: rgba(136,136,136,0.1); color: var(--offen); border: 1px solid rgba(136,136,136,0.2); }
+
+  /* LEGEND */
+  .tag-legend {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 1rem 1.2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    margin-bottom: 2.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+  }
+  .tag-legend span { color: var(--muted); }
+
+  /* SOURCE BOX */
+  .source-box {
+    background: var(--surface2);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: #b0b0c0;
+    font-family: 'Courier New', monospace;
+  }
+  .source-box strong {
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.68rem;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-left: 3px solid var(--accent);
+    padding: 0.8rem 1.4rem;
+    margin: 2rem 0;
+    font-size: 1.05rem;
+    color: #d0d0da;
+    font-style: italic;
+    line-height: 1.65;
+  }
+  .pull-quote cite {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    font-style: normal;
+    margin-top: 0.5rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* STAT GRID */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 2rem 0;
+  }
+  .stat-card {
+    background: var(--surface);
+    padding: 1.4rem 1.2rem;
+  }
+  .stat-value {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--text);
+    line-height: 1.4;
+    margin-bottom: 0.3rem;
+  }
+  .stat-source {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* PROGRAM CARDS */
+  .program-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 2rem 0;
+  }
+  .program-card {
+    background: var(--surface);
+    padding: 1.4rem 1.6rem;
+  }
+  .program-country {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .program-title {
+    font-weight: 700;
+    color: #f4f4f5;
+    margin-bottom: 0.6rem;
+    font-size: 1rem;
+  }
+  .program-text {
+    font-size: 0.88rem;
+    color: #b0b0c0;
+    line-height: 1.65;
+  }
+  .program-detail {
+    margin-top: 0.8rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--border);
+    line-height: 1.5;
+  }
+
+  /* COMPARISON TABLE */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.88rem;
+  }
+  .compare-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 0.7rem 1rem;
+    border-bottom: 2px solid var(--border);
+  }
+  .compare-table td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.55;
+    color: #c8c8d8;
+  }
+  .compare-table tr:hover td { background: var(--surface); }
+  .compare-table td:first-child { color: var(--text); font-weight: 600; font-size: 0.85rem; }
+
+  /* CLOSING QUESTIONS */
+  .closing-questions {
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+    margin-top: 3rem;
+  }
+  .closing-questions p {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 0.7rem;
+    line-height: 1.7;
+  }
+  .closing-questions .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    font-style: normal;
+  }
+
+  /* FOOTER */
+  .article-footer {
+    margin-top: 4rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+  }
+  .footer-nav {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .primary-link {
+    display: inline-block;
+    background: var(--accent);
+    color: #09090b;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.4rem;
+    font-weight: 700;
+    margin-top: 0.5rem;
+    transition: opacity 0.2s;
+  }
+  .primary-link:hover { opacity: 0.85; text-decoration: none; }
+
+  .site-footer {
+    border-top: 1px solid var(--border);
+    margin-top: 4rem;
+    padding: 2rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    .site-header { flex-direction: column; gap: 0.7rem; text-align: center; }
+    .meta-row { gap: 1rem; }
+    .stat-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="site-header">
+    <div class="site-brand">dunkelfeld<span>.</span>report</div>
+    <div class="site-nav">Fakten · Primärquellen · Keine Schlussfolgerungen</div>
+  </div>
+</header>
+
+<main class="container">
+
+  <article>
+
+    <header class="article-header">
+      <div class="category-label">Geldsystem · Digitale Infrastruktur · UN-Institutionen</div>
+      <h1>Programmiertes Geld: Was das UN-Entwicklungsprogramm in Afrika, Haiti und Nigeria testet</h1>
+      <p class="subtitle">Das UNDP erprobt tokenisierte Zahlungen, bei denen Empfänger nur bei vorab genehmigten Händlern für erlaubte Waren bezahlen können. Jede Transaktion wird unveränderbar auf der Blockchain gespeichert. Das Programm ist öffentlich dokumentiert.</p>
+      <div class="meta-row">
+        <span>Stand: Juni 2026</span>
+        <span>Kategorie: Geldsystem</span>
+        <span>Primärquelle: UNDP-Broschüre Januar 2026</span>
+      </div>
+    </header>
+
+    <div class="tag-legend">
+      <span><span class="tag tag-belegt">BELEGT</span> Primärquelle vorhanden</span>
+      <span><span class="tag tag-extrapolation">EXTRAPOLATION</span> Strukturell plausibel, interpretativ</span>
+      <span><span class="tag tag-offen">OFFEN</span> Nicht belegt / ungeklärt</span>
+    </div>
+
+    <div class="article-body">
+
+      <p>Im Januar 2026 veröffentlichte das Entwicklungsprogramm der Vereinten Nationen (UNDP) eine Broschüre mit dem Titel <em>„New Tech, New Partners: Transforming Development in the Digital Era"</em>. Das Dokument beschreibt Pilotprogramme in mehreren Ländern, in denen konventionelle Geldzahlungen durch tokenisierte, programmierbare Guthaben ersetzt wurden.<span class="tag tag-belegt">BELEGT</span></p>
+
+      <div class="source-box">
+        <strong>Primärquelle</strong>
+        UNDP Alternative Finance Lab: „New Tech, New Partners: Transforming Development in the Digital Era — A snapshot of UNDP's blockchain practice", Januar 2026.<br><br>
+        <a href="https://www.undp.org/sites/g/files/zskgke326/files/2026-01/undp-new-tech-new-partners-transforming-development-in-the-digital-era.pdf" target="_blank" rel="noopener">→ Originaldokument (PDF, undp.org)</a>
+      </div>
+
+      <p>Die Programme richten sich an Hilfsempfänger, Kleinstunternehmer und NGO-Mitarbeiter. Sie verwenden Blockchain-basierte digitale Wallets, sogenannte <em>purpose-bound tokens</em> — zweckgebundene Wertmarken, die nur unter vordefinierten Bedingungen ausgegeben werden können. Der Einsatz der Mittel ist von der ausgebenden Stelle vollständig einsehbar.</p>
+
+      <h2>Was das UNDP selbst beschreibt</h2>
+
+      <p>Die Broschüre dokumentiert laufende und geplante Pilotprogramme in Kamerun, Südsudan, Sambia, Haiti, Kolumbien, Guatemala, Nigeria, Liberia, Syrien, Gambia und Papua-Neuguinea. Die folgende Zusammenfassung basiert ausschließlich auf dem Originaltext des UNDP.<span class="tag tag-belegt">BELEGT</span></p>
+
+      <div class="program-grid">
+
+        <div class="program-card">
+          <div class="program-country">Kamerun · Südsudan · Sambia</div>
+          <div class="program-title">Zweckgebundene Tokens für Unternehmerinnen und Jugendliche</div>
+          <div class="program-text">
+            Das UNDP ersetzt konventionelle Ratenzahlungen durch token-basierte Gutscheine. Die Empfänger erhalten den vollen Förderbetrag vorab — allerdings in Form von Tokens, die ausschließlich bei vorab geprüften, lokalen Anbietern für vorab definierte Ausgabenkategorien (Betriebsmittel, Registrierung, Ausrüstung) eingesetzt werden können.
+          </div>
+          <div class="program-detail">
+            UNDP-Wortlaut: <em>„UNDP defines each grant scheme and issues purpose-bound tokens from its bank account, setting rules on who can receive them, what they can be used for, where they can be used, and for how long they are valid."</em><br><br>
+            Jede Transaktion wird auf einem distributed ledger (verteiltes Hauptbuch) aufgezeichnet. Programm- und Finanzteams überwachen Nutzung, ungenutztes Guthaben und Händleraktivitäten über ein Dashboard.
+          </div>
+        </div>
+
+        <div class="program-card">
+          <div class="program-country">Haiti</div>
+          <div class="program-title">Prosperity Loop: Digitale Zahlungen für Hilfszahlungen und Gehälter</div>
+          <div class="program-text">
+            In Haiti werden sowohl Hilfszahlungen als auch Gehälter von NGO-Mitarbeitern auf digitale Wallets überwiesen, die mit einem gemeinsamen Zahlungsnetzwerk verbunden sind. Das System läuft auf der Stellar-Blockchain.
+          </div>
+          <div class="program-detail">
+            UNDP-Wortlaut: <em>„Each transaction is recorded in a shared ledger on the Stellar blockchain […] programme partners [have] near-real-time insight into how funds move through neighbourhood economies."</em><br><br>
+            Aufgeführte Nutzergruppen: einkommensschwache Haushalte, Unternehmerinnen, Kleinhändler, Mikrofinanzinstitutionen, NGOs und Community-Organisationen.
+          </div>
+        </div>
+
+        <div class="program-card">
+          <div class="program-country">Nigeria</div>
+          <div class="program-title">Prepaid-Solarstrom: Zahle oder bleib im Dunkeln</div>
+          <div class="program-text">
+            Das UNDP beschreibt ein Modell, in dem westliche Partnerfirmen lokale Mini-Solarnetze errichten. Bewohner zahlen im Voraus in kleinen Raten für den Strom, den sie verbrauchen. Wer nicht zahlt oder nicht zahlen kann, erhält keinen Strom.
+          </div>
+          <div class="program-detail">
+            UNDP-Wortlaut: <em>„Users pay in advance in small instalments for the energy they consume (Prepaid). If they cannot pay, there is no electricity for them."</em><br><br>
+            Laut Broschüre plant das UNDP, dieses Modell auf die Vermietung landwirtschaftlicher Ausrüstung auszuweiten. <span class="tag tag-belegt">BELEGT</span>
+          </div>
+        </div>
+
+        <div class="program-card">
+          <div class="program-country">Kolumbien · Bogotá</div>
+          <div class="program-title">Stablecoin-Transfers für das städtische Mindesteinkommen</div>
+          <div class="program-text">
+            In Bogotá werden Empfänger des städtischen Mindesteinkommens (MIG) in einem Pilotprojekt mit stablecoin-basierten Transfers statt Bargeld versorgt. Das erklärte Ziel: Sichtbarkeit darüber, wofür das Geld ausgegeben wird.
+          </div>
+          <div class="program-detail">
+            UNDP-Wortlaut: <em>„The city has almost no visibility into how this money is used. […] The exercise is designed to produce anonymized and aggregated insights on user interaction and spending patterns."</em><br><br>
+            Tech-Stack: Stellar Disbursement Platform, USDC-Stablecoin, Decaf Wallet (iOS/Android), Visa-Infrastruktur, Echtzeit-Dashboards mit On-Chain-Daten.
+          </div>
+        </div>
+
+      </div>
+
+      <h2>Was das System technisch leistet</h2>
+
+      <p>Die eingesetzten Technologien sind im Dokument benannt. Sie ermöglichen:<span class="tag tag-belegt">BELEGT</span></p>
+
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Eigenschaft</th>
+            <th>Funktion laut UNDP-Dokument</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Purpose-bound tokens</td>
+            <td>Guthaben kann nur bei vorab freigegebenen Händlern für erlaubte Produktkategorien eingesetzt werden. Ablaufdaten möglich.</td>
+          </tr>
+          <tr>
+            <td>Blockchain-Speicherung</td>
+            <td>Jede Transaktion wird „unveränderbar" auf dem distributed ledger gespeichert. Vollständiger Audit-Trail.</td>
+          </tr>
+          <tr>
+            <td>Smart contracts</td>
+            <td>Auszahlungen werden automatisch ausgelöst, sobald vordefinierte Bedingungen erfüllt sind — ohne manuelle Freigabe.</td>
+          </tr>
+          <tr>
+            <td>Echtzeit-Dashboard</td>
+            <td>Programme und Finanzteams können Ausgabeverhalten, Händleraktivität und ungenutztes Guthaben in Echtzeit einsehen.</td>
+          </tr>
+          <tr>
+            <td>UNDP Digital Wallet</td>
+            <td>Das UNDP hat eine eigene digitale Wallet-Infrastruktur entwickelt, die als skalierbare öffentliche Infrastruktur positioniert wird.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Der Rahmen: Skalierung als erklärtes Ziel</h2>
+
+      <p>Die Broschüre beschreibt die Pilotprojekte nicht als Einzelfälle. Sie sind ausdrücklich als <em>Blaupausen für Replikation</em> konzipiert.<span class="tag tag-belegt">BELEGT</span></p>
+
+      <div class="pull-quote">
+        „The pilot will launch across three UNDP Country Offices, designed as a blueprint for replication in GEF Small Grants and other livelihood and financing programmes."
+        UNDP: New Tech, New Partners, S. 23 — zum Pilotprogramm in Kamerun, Südsudan, Sambia
+      </div>
+
+      <div class="pull-quote">
+        „The pilot has been tested in Cap-Haïtien with MFIs and NGOs, and is positioned for national rollout as partners and regulatory conditions allow."
+        UNDP: New Tech, New Partners, S. 29 — zum Haiti-Programm
+      </div>
+
+      <p>Der UNDP-Administrator Alexander De Croo schreibt im Vorwort: Man bewege sich <em>„from isolated pilots to scalable public infrastructure"</em> — von isolierten Piloten zu skalierbarer öffentlicher Infrastruktur.<span class="tag tag-belegt">BELEGT</span></p>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-value">50+</div>
+          <div class="stat-label">Blockchain-Pilotprojekte durch UNDP unterstützt</div>
+          <div class="stat-source">UNDP: New Tech, New Partners, S. 14</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">50+</div>
+          <div class="stat-label">Länder mit aktiven Programmen</div>
+          <div class="stat-source">UNDP: New Tech, New Partners, S. 14</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">500+</div>
+          <div class="stat-label">UNDP-Mitarbeiter durch Blockchain Academy ausgebildet</div>
+          <div class="stat-source">UNDP: New Tech, New Partners, S. 14</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">1.700+</div>
+          <div class="stat-label">Mitglieder in der UN Blockchain Community of Practice</div>
+          <div class="stat-source">UNDP: New Tech, New Partners, S. 15</div>
+        </div>
+      </div>
+
+      <h2>Verbindung zum digitalen Euro</h2>
+
+      <p>Das Dokument erwähnt die <em>European Digital Identity (EUDI) Wallet</em> als verwandtes Instrument, das ebenfalls gerade in Europa eingeführt wird. Norbert Häring weist in seiner Analyse des Dokuments auf diesen Zusammenhang hin.<span class="tag tag-extrapolation">EXTRAPOLATION</span></p>
+
+      <div class="source-box">
+        <strong>Sekundärquelle</strong>
+        Norbert Häring: „UN legt offen, wohin die Reise mit digitalem Zentralbankgeld gehen soll: In die totale Kontrolle", 27. Juni 2026.<br><br>
+        <a href="https://norberthaering.de/geldsystem/undp-new-tech/" target="_blank" rel="noopener">→ norberthaering.de</a><br><br>
+        <em>Häring gilt als verlässlicher Aggregator. Seine Fußnoten wurden eigenständig über das Primärdokument verifiziert. Interpretationen sind als Extrapolation gekennzeichnet.</em>
+      </div>
+
+      <p>Die technische Parallele: Auch die EUDI Wallet arbeitet mit nicht-übertragbaren, digital signierten Nachweisen über Identität und Berechtigung. Ob und in welchem Umfang sie mit programmierbaren Zahlungsfunktionen kombiniert wird, ist Gegenstand laufender EU-Gesetzgebung.<span class="tag tag-offen">OFFEN</span></p>
+
+      <h2>Was das Dokument nicht beantwortet</h2>
+
+      <p>Die Broschüre liefert keine Antworten auf folgende Fragen:</p>
+
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Frage</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Wie viel Guthaben können Empfänger in bar abheben?</td>
+            <td><span class="tag tag-offen">OFFEN</span> Im Dokument: „Bargeldabhebungen bei Agenten sind möglich, wobei nicht mitgeteilt wird, wie viel."</td>
+          </tr>
+          <tr>
+            <td>Welche Datenschutzrechte haben die Empfänger?</td>
+            <td><span class="tag tag-offen">OFFEN</span> Das Dokument nennt „privacy-preserving design" als Ziel, ohne konkrete Rechte zu benennen.</td>
+          </tr>
+          <tr>
+            <td>Was geschieht mit gespeicherten Transaktionsdaten nach Programmende?</td>
+            <td><span class="tag tag-offen">OFFEN</span> Keine Angabe im Dokument.</td>
+          </tr>
+          <tr>
+            <td>Wer kann im Konfliktfall Guthaben sperren oder einfrieren?</td>
+            <td><span class="tag tag-offen">OFFEN</span> Smart contracts regeln automatische Freigaben — Sperrmechanismen werden nicht beschrieben.</td>
+          </tr>
+          <tr>
+            <td>Haben Empfänger die Wahl zwischen Token und konventioneller Auszahlung?</td>
+            <td><span class="tag tag-offen">OFFEN</span> Aus dem Dokument nicht ersichtlich.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Kontextdokument: Artikel 7 — Geld als Herrschaftsinstrument</h2>
+
+      <p>Die technische Funktionalität programmierbarer Zahlungssysteme — Ablaufdaten, Ausgabenbeschränkungen, lückenlose Rückverfolgung — wurde in diesem Archiv bereits im Zusammenhang mit CBDCs (Central Bank Digital Currencies) beschrieben. Das UNDP-Dokument liefert dazu den ersten öffentlich dokumentierten Einsatzfall in der Praxis: an Hilfsempfängern in Entwicklungsländern, durchgeführt von einer UN-Institution.<span class="tag tag-extrapolation">EXTRAPOLATION</span></p>
+
+      <div class="source-box">
+        <strong>Verwandtes Dossier</strong>
+        Dossier #7: „Geld als Herrschaftsinstrument — Zentralbanken, CBDCs und die Architektur des programmierbaren Geldes"<br>
+        <a href="#">→ dunkelfeld.report/artikel-07</a>
+      </div>
+
+    </div><!-- end article-body -->
+
+    <div class="closing-questions">
+      <p class="label">Offene Fragen</p>
+      <p><em>Wenn programmierbare Tokens in Krisenkontexten zuerst eingesetzt werden — weil Empfänger dort am wenigsten Verhandlungsmacht haben —, unter welchen Bedingungen werden sie für andere Bevölkerungsgruppen optional? Und wann nicht mehr?</em></p>
+      <p><em>Das UNDP beschreibt die vollständige Echtzeiteinsicht in Ausgabeverhalten als Feature. Welche Institution hat dasselbe Merkmal in Bezug auf UNDP selbst?</em></p>
+      <p><em>Die Broschüre spricht von „öffentlichem Nutzen" als zentralem Kriterium. Wer definiert diesen Nutzen — und für wen?</em></p>
+    </div>
+
+    <footer class="article-footer">
+      <div class="footer-nav">Primärquelle</div>
+      <a class="primary-link" href="https://www.undp.org/sites/g/files/zskgke326/files/2026-01/undp-new-tech-new-partners-transforming-development-in-the-digital-era.pdf" target="_blank" rel="noopener">→ UNDP-Broschüre im Original (PDF)</a>
+      <p style="margin-top:2rem; font-family:'Courier New',monospace; font-size:0.72rem; color:var(--muted); line-height:1.7;">
+        Alle zitierten Textstellen sind dem Originaldokument entnommen und seitengenau verifizierbar. Interpretationen sind als EXTRAPOLATION gekennzeichnet. Ungeklärte Punkte als OFFEN. Dieses Archiv erhebt keinen Anspruch auf Vollständigkeit und zieht keine Schlussfolgerungen über Absichten.
+      </p>
+    </footer>
+
+  </article>
+
+</main>
+
+<footer class="site-footer">
+  dunkelfeld.report · Primärquellen · Keine Werbung · Keine Schlussfolgerungen<br>
+  <a href="/" style="color:var(--muted)">Zurück zur Übersicht</a>
+</footer>
+
+<!-- LEGAL-FOOTER -->
+<div style="max-width:720px;margin:2rem auto;padding:1.2rem;text-align:center;font-family:'Courier New',monospace;font-size:0.7rem;color:#52525b;border-top:1px solid #2a2a2e;">
+  <a href="impressum.html" style="color:#e8c547;text-decoration:none;">Impressum</a> · <a href="datenschutz.html" style="color:#e8c547;text-decoration:none;">Datenschutz</a>
+</div>
+</body>
+</html>
